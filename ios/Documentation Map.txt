@@ -1,0 +1,117 @@
+# Callouts
+    - Supported System Versions
+    - Countly Code Generator (Start of # Advanced Configuration)
+    - CocoaPods Support (Start of # CocoaPods)
+    - Event Names and Segmentation (End of # Recording Events)
+    - Enterprise Edition Feature (Geolocation)
+    - Enterprise Edition Feature (Symbolication)
+    - Enterprise Edition Feature (User Profiles)
+
+# Integration
+
+# Advanced Configuration
+    - Debug Mode
+        . Logger Delegate
+    - Additional Features (PushNotifications, CrashReporting, AutoViewTracking)
+    - Device ID
+        . Using a Custom Device ID
+        . Temporary Device ID
+        . Changing Device ID
+        . Handling User Login and Logout
+        . Resetting Stored Device ID
+        . Getting Device ID
+        . Device ID Type
+    - App Key
+        . Changing App Key     
+        . Replacing App Keys in Queue    
+        . Removing App Keys from Queue
+    - Security
+        . Pinned Certificates
+        . Custom Header Field
+        . Parameter Tampering Protection
+    - Other Settings
+        . Update Session Period
+        . Event Send Threshold
+        . Stored Requests Limit
+        . Always use the POST method
+        . Custom URLSessionConfiguration
+        . Manual Session Handling
+        . Custom Metrics
+        . Attribution
+
+# Notes
+    - Default Device ID
+    - Automatic Reference Counting (ARC)
+    - App Transport Security (ATS)
+    - Swift Projects
+    - Updating Countly iOS SDK
+    - CocoaPods
+    - Carthage
+    - Swift Package Manager (SPM)
+    - Frequently Asked Questions (FAQ) Page
+
+# Recording Events 
+    - Regular Events
+    - Timed Events
+
+# Push Notifications 
+    - Setting up APNs Authentication
+        . APNs Auth Key
+        . Universal Certificate
+    - Configuring iOS App
+    - Rich Push Notifications (iOS10+)
+    - Provisional Permission for Push Notifications (iOS 12+ only)
+    - How do Push Notifications Work in Countly
+    - Deep Linking
+    - Advanced Setup
+        . Test Mode
+        . Disabling Alerts Shown by Notifications
+        . Manually Handling Notifications 
+        . Always Sending Push Tokens
+        . Notification Permission with Preferred Types and Callback
+        . GeoLocation
+        . Custom Alert Sounds
+        . macOS launchNotification
+
+# Crash Reporting
+    - Automatic Crash Reporting
+    - Manually Handled Exceptions
+    - Crash Report Contents
+        . Default Crash Report Information
+        . Custom Crash Logs
+        . Custom Crash Segmentation
+    - Crash Filtering
+    - Symbolication
+        . Automatic dSYM Uploading
+        . Manual dSYM Uploading
+        . Bitcode Enabled Apps
+        . How to Use Symbolication
+    - PLCrashReporter
+        . PLCrashReporter Signal Handler Type
+        . PLCrashReporter callback blocks
+
+# User Profiles
+    - Default User Properties
+    - Custom User Properties
+    - Custom User Property Modifiers
+
+# View Tracking
+    - Auto View Tracking
+    - Exception View Controllers
+    - Manual View Tracking
+
+# Feedbacks
+    - Star Rating
+    - Feedbak Widgets
+    - NPS (Net Promoter Score) and Survey Widgets
+
+# Remote Config
+
+# Performance Monitoring
+    - App Start Time
+    - Manual Network Traces
+    - Custom Traces
+
+# watchOS Integration
+
+# Consents
