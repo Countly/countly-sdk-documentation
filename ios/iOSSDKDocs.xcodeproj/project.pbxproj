@@ -1,0 +1,77 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		D2EBAF3325DAE30D00D60321 /* 20.04.3.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20.04.3.md; sourceTree = "<group>"; };
+		D2EBAF3425DAE30D00D60321 /* 20.11.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20.11.0.md; sourceTree = "<group>"; };
+		D2EBAF3525DAE30D00D60321 /* current.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = current.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		D2C1349525DAE2860042FF39 = {
+			isa = PBXGroup;
+			children = (
+				D2EBAF3525DAE30D00D60321 /* current.md */,
+				D2EBAF3425DAE30D00D60321 /* 20.11.0.md */,
+				D2EBAF3325DAE30D00D60321 /* 20.04.3.md */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		D2C1349625DAE2860042FF39 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = D2C1349925DAE2860042FF39 /* Build configuration list for PBXProject "iOSSDKDocs" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2C1349525DAE2860042FF39;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		D2C1349A25DAE2860042FF39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		D2C1349B25DAE2860042FF39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2C1349925DAE2860042FF39 /* Build configuration list for PBXProject "iOSSDKDocs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2C1349A25DAE2860042FF39 /* Debug */,
+				D2C1349B25DAE2860042FF39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2C1349625DAE2860042FF39 /* Project object */;
+}
