@@ -9,7 +9,7 @@
 /* Begin PBXFileReference section */
 		D2EBAF3325DAE30D00D60321 /* 20.04.3.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20.04.3.md; sourceTree = "<group>"; };
 		D2EBAF3425DAE30D00D60321 /* 20.11.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20.11.0.md; sourceTree = "<group>"; };
-		D2EBAF3525DAE30D00D60321 /* current.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = current.md; sourceTree = "<group>"; };
+		D2EBAF3525DAE30D00D60321 /* current.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = current.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
