@@ -48,6 +48,7 @@
     - CocoaPods
     - Carthage
     - Swift Package Manager (SPM)
+    - Rebranding    
     - Frequently Asked Questions (FAQ) Page
 
 # Recording Events 
