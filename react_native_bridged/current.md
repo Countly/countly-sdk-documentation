@@ -678,7 +678,7 @@ apply plugin: 'com.google.gms.google-services'
   Edition.
 </p>
 <p>
-  <span style="font-weight:400">We highly recommend allowing Countly to listen to the&nbsp;</span><strong>INSTALL_REFERRER</strong><span style="font-weight:400">&nbsp;intent in order to receive more precise attribution on Android, something you may do by adding the following XML code to your&nbsp;</span><strong>AndroidManifest.xml</strong><span style="font-weight:400">&nbsp;file inside&nbsp;the </span><strong>application</strong><span style="font-weight:400">&nbsp;tag.</span>
+  <span style="font-weight:400">For version 20.11.4 and greater we highly recommend allowing Countly to listen to the </span><strong>INSTALL_REFERRER</strong><span style="font-weight:400">&nbsp;intent in order to receive more precise attribution on Android, something you may do by adding the following XML code to your&nbsp;</span><strong>AndroidManifest.xml</strong><span style="font-weight:400">&nbsp;file inside&nbsp;the </span><strong>application</strong><span style="font-weight:400">&nbsp;tag.</span>
 </p>
 <pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
 	&lt;intent-filter&gt;
