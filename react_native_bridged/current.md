@@ -677,6 +677,17 @@ apply plugin: 'com.google.gms.google-services'
   installs from specific campaigns. This feature is available for the Enterprise
   Edition.
 </p>
+<p>
+  <span style="font-weight:400">We highly recommend allowing Countly to listen to the&nbsp;</span><strong>INSTALL_REFERRER</strong><span style="font-weight:400">&nbsp;intent in order to receive more precise attribution on Android, something you may do by adding the following XML code to your&nbsp;</span><strong>AndroidManifest.xml</strong><span style="font-weight:400">&nbsp;file inside&nbsp;the </span><strong>application</strong><span style="font-weight:400">&nbsp;tag.</span>
+</p>
+<pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
+	&lt;intent-filter&gt;
+		&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+	&lt;/intent-filter&gt;
+&lt;/receiver&gt;</code></pre>
+<p>
+  <strong><span style="font-weight:400">For more information about how to set up your campaigns, please&nbsp;</span><a href="http://resources.count.ly/docs/referral-analytics"><span style="font-weight:400">review this documentation</span></a><span style="font-weight:400">.</span></strong>
+</p>
 <p>Call the method below before initialization.</p>
 <pre><span>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.</span><br>Countly.<span>enableAttribution</span>();</pre>
 <p>
