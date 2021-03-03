@@ -806,17 +806,25 @@
 <p>
   <span>You may listen to notification receive and click events. To listen to notification events follow the following steps:</span>
 </p>
-<ol>
-  <li>
-    <span>Implement <code>INotificationListener</code> and overrides&nbsp; <code>OnNotificationClicked</code><code>OnNotificationReceived</code> methods into your class.<br></span>
-  </li>
-  <li>
-    <span>After calling <code>Countly.Instance.Init(...)</code>, call <code>Countly.Instance.Notifications.AddListener(this)</code>.<br></span>
-  </li>
-  <li>
-    <span>To stop listening notification receive and click events, call <code>Countly.Instance.Notifications.RemoveListener(this)</code>.</span><span></span>
-  </li>
-</ol>
+<p>
+  <span><span>1. Implement <code>INotificationListener</code> interface and its members' methods <code>OnNotificationClicked</code> and <code>OnNotificationReceived</code>&nbsp;into your class.<br></span></span>
+</p>
+<p>
+  <span><span>Example:</span></span>
+</p>
+<pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message)<br>  {<br>  }<br><br>  public void OnNotificationClicked(string message, int index)<br>  {<br>  }<br>}</code></span></pre>
+<p>
+  <span>2. After calling <code>Countly.Instance.Init(...)</code>, call <code>Countly.Instance.Notifications.AddListener(this)</code>.</span><span></span><span></span>
+</p>
+<p>
+  <span>Example:</span>
+</p>
+<pre><span><code>private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>  {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  };<br>  Countly.Instance.Init(config);<br>  countly.Notifications.AddListener(this);<br>}</code></span><span></span></pre>
+<p>
+  <span>To stop listening notification receive and click events, call</span>
+</p>
+<pre><span><code>Countly.Instance.Notifications.RemoveListener(this);</code></span></pre>
 <p>
   <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br><br></span>
 </p>
+<p>&nbsp;</p>
