@@ -800,3 +800,23 @@
 <p>
   <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package and add back the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol.</span>
 </p>
+<h2>
+  <span>Adding Notification Callbacks</span>
+</h2>
+<p>
+  <span>You may listen to notification receive and click events. To listen to notification events follow the following steps:</span>
+</p>
+<ol>
+  <li>
+    <span>Implement <code>INotificationListener</code> and overrides&nbsp; <code>OnNotificationClicked</code><code>OnNotificationReceived</code> methods into your class.<br></span>
+  </li>
+  <li>
+    <span>After calling <code>Countly.Instance.Init(...)</code>, call <code>Countly.Instance.Notifications.AddListener(this)</code>.<br></span>
+  </li>
+  <li>
+    <span>To stop listening notification receive and click events, call <code>Countly.Instance.Notifications.RemoveListener(this)</code>.</span><span></span>
+  </li>
+</ol>
+<p>
+  <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br><br></span>
+</p>
