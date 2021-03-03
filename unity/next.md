@@ -60,10 +60,10 @@
   <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the potential parameters:</span>
 </p>
 <p>
-  <span><strong>appKey -&nbsp;</strong>(Mandatory, string) The “App Key” for the app that you created on the Countly server.&nbsp;<strong>Example:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.<br><strong>serverUrl -</strong>&nbsp;(Mandatory, string) The URL of the Countly server where you are going to post your requests.&nbsp;<strong>Example:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a><br></span>
+  <span><strong>AppKey - </strong>(Mandatory, string) The “App Key” for the app that you created on the Countly server.&nbsp;<strong>Example:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.<br><strong>serverUrl -</strong>&nbsp;(Mandatory, string) The URL of the Countly server where you are going to post your requests.&nbsp;<strong>Example:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a><br></span>
 </p>
 <p>
-  <strong>deviceId -<span>&nbsp;</span></strong>(Optional, string) Your Device
+  <strong>DeviceId -<span>&nbsp;</span></strong>(Optional, string) Your Device
   ID. It is an optional parameter.<span>&nbsp;</span><strong>Example:</strong><span>&nbsp;</span>f16e5af2-8a2a-4f37-965d-qwer5678ui98.
 </p>
 <p>Below you can find details of each parameter:</p>
@@ -72,13 +72,13 @@
   parameter tampering. The default value is<span>&nbsp;</span><strong>NULL</strong>.&nbsp;
 </p>
 <p>
-  <strong>enablePost -<span>&nbsp;</span></strong>(bool) When set to<span>&nbsp;</span><strong>true</strong>,
+  <strong>EnablePost -<span>&nbsp;</span></strong>(bool) When set to<span>&nbsp;</span><strong>true</strong>,
   all requests made to the Countly server will be done using HTTP POST. Otherwise,
   the SDK sends all requests using the HTTP GET method. In some cases, if the data
   to be sent exceeds the 1800-character limit, the SDK uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
 </p>
 <p>
-  <span><strong>enableTestMode -&nbsp;</strong>(Optional, bool) This parameter is useful in development when you don't want to send requests to the Countly server. The default value is<strong>&nbsp;false</strong>.</span>
+  <span><strong>EnableTestMode - </strong>(Optional, bool) This parameter is useful in development when you don't want to send requests to the Countly server. The default value is<strong>&nbsp;false</strong>.</span>
 </p>
 <p>
   <strong>RequiresConsent -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
@@ -86,35 +86,35 @@
   <span>during the app run when the user wants to opt-out of SDK features.</span>
 </p>
 <p>
-  <strong>enableConsoleLogging -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
+  <strong>EnableConsoleLogging -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
   parameter is useful when you are debugging your application. When set to<span>&nbsp;</span><strong>true</strong>,
   it basically turns on Logging.&nbsp;
 </p>
 <p>
-  <strong>ignoreSessionCooldown -</strong><span>&nbsp;(Optional, bool)&nbsp;</span>Turns
+  <strong>IgnoreSessionCooldown -</strong><span>&nbsp;(Optional, bool)&nbsp;</span>Turns
   on/off the session cooldown behavior.<span>&nbsp;</span><span>The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
 </p>
 <p>
-  <strong>sessionDuration -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
+  <strong>SessionDuration -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
   the interval (in seconds) after which the application will automatically extend
   the session, providing the manual session is disabled. This interval is also
   used to process requests in the queue. The default value is<strong><span>&nbsp;</span>60<span>&nbsp;</span></strong>(seconds).
 </p>
 <p>
-  <strong>eventThreshold -</strong><span>&nbsp;(Optional, int) Sets&nbsp;</span>a
+  <strong>EventThreshold -</strong><span>&nbsp;(Optional, int) Sets&nbsp;</span>a
   threshold value that limits the number of events that can be recorded internally
   by the system before they can all be sent together in one request. Once the threshold
   limit is reached, the system groups all recorded events and sends them to the
   server. The default value is<span>&nbsp;</span><strong>100.</strong><span>&nbsp;</span>
 </p>
 <p>
-  <strong>storedRequestLimit -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
+  <strong>StoredRequestLimit -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
   a threshold value that limits the number of requests that can be stored internally
-  by the system. The system processes these requests after every sessionDuration
+  by the system. The system processes these requests after every session duration
   interval has passed. The default value is<span>&nbsp;</span><strong>1000.</strong>
 </p>
 <p>
-  <strong>notificationMode -<span>&nbsp;</span></strong>(Optional, enum) When<span>&nbsp;</span><strong>None</strong>,
+  <strong>NotificationMode -<span>&nbsp;</span></strong>(Optional, enum) When<span>&nbsp;</span><strong>None</strong>,
   the SDK disables Push Notifications for the device. Use an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or
   an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
   testing purposes and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
@@ -122,7 +122,7 @@
   is<span>&nbsp;</span><strong>None.</strong>
 </p>
 <p>
-  <strong>enableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) U</span>sed
+  <strong>EnableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) U</span>sed
   to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
@@ -149,6 +149,18 @@
   Set <code>EnableConsoleLogging</code> on the config object to enable logging:
 </p>
 <pre>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};</pre>
+<h2 id="device-id" class="anchor-heading">Device ID</h2>
+<p>
+  <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
+</p>
+<p>
+  <span>You may specify the device ID by yourself if you have one (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
+</p>
+<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true,<br>DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
+<p>
+  <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
+</p>
+<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tampering Protection</h2>
 <p>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
