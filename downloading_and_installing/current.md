@@ -44,7 +44,7 @@
         <a href="https://github.com/Countly/countly-sdk-android">Click to get</a>
       </td>
       <td>
-        <a href="doc:countly-sdk-for-android">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -55,7 +55,7 @@
         <a href="https://github.com/Countly/countly-sdk-web">Click to get</a>
       </td>
       <td>
-        <a href="doc:countly-sdk-for-web">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -67,7 +67,7 @@
         <a href="https://github.com/Countly/countly-sdk-nodejs">Click to get</a>
       </td>
       <td>
-        <a href="doc:countly-sdk-for-nodejs">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037442892-NodeJS" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -76,10 +76,10 @@
         <em>with Icenium, MeteorJS, Ionic support</em>
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-js">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Click to get</a>
       </td>
       <td>
-        <a href="doc:phonegap-icenium-meteor">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813011-Cordova" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -90,7 +90,7 @@
         <a href="https://github.com/Countly/countly-sdk-react-native-bridge">Click to get</a>
       </td>
       <td>
-        <a href="doc:react-native-bridge">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -102,7 +102,7 @@
       </td>
       <td>
         <p>
-          <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter" target="_self">Click for documentation</a>
+          <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter" target="_self" rel="undefined">Click for documentation</a>
         </p>
       </td>
     </tr>
@@ -114,7 +114,7 @@
         <a href="https://github.com/Countly/countly-sdk-windows">Click to get from Nuget</a>
       </td>
       <td>
-        <a href="doc:countly-sdk-for-windows-phone">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037754691-Windows" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -382,4 +382,3 @@
 <p>
   <span style="font-weight:400">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay.</span>
 </p>
-<h2>&nbsp;</h2>
