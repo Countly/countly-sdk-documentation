@@ -154,11 +154,11 @@
   <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
 </p>
 <p>
-  <span>You may specify the device ID by yourself if you have one (it has to be unique for each device). It may be an email or some other internal ID used by your other systems.</span>
+  <span>You may specify the device ID by yourself if you have one (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true,<br>DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
 <p>
-  <span>You may let Countly SDK handles the device ID on its own. You may then use the following calls.&nbsp;</span>
+  <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tampering Protection</h2>
