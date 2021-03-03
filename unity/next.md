@@ -326,7 +326,7 @@
   </li>
 </ul>
 <h2 id="logging-handled-exceptions" class="anchor-heading">
-  <span>Reporting nonfatal exception</span>
+  <span>Reporting exceptions</span>
 </h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span>
@@ -336,20 +336,12 @@
 </p>
 <p>Example:</p>
 <pre><strong>try</strong><br> {<br><strong>    throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br> <strong>catch</strong> (Exception ex)<br> {<br>    <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception); <br> }&nbsp;<br><br></pre>
-<h2 id="logging-handled-exceptions" class="anchor-heading">
-  <span>Reporting nonfatal exception with segmentation</span>
-</h2>
+<p id="logging-handled-exceptions" class="anchor-heading">You can also send a segmentation with an exception.</p>
 <pre><span><br>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><strong><br>try</strong><br>{<br><strong> throw</strong> <strong>new</strong> DivideByZeroException();<br>}<br><strong>catch</strong> (Exception ex)<br>{<br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, true); <br>}&nbsp;</span></pre>
-<h2 id="logging-handled-exceptions" class="anchor-heading">
-  <span>Reporting fatal exception</span>
-</h2>
 <p>
-  <span>If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
 <pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
-<h2 id="logging-handled-exceptions" class="anchor-heading">
-  <span>Reporting fatal exception with segmentation</span>
-</h2>
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
 <h2 id="adding-breadcrumbs" class="anchor-heading">Adding breadcrumbs</h2>
 <p>
@@ -650,20 +642,25 @@
   *<span> </span><code>RemoteConfig</code><span>&nbsp;</span>- allow downloading
   remote config values from your server
 </p>
-<h2>Give Specific Consents&nbsp;</h2>
+<h2>
+  <span>Giving Consent During Init</span>
+</h2>
+<h3>
+  <span>Give Consents individually</span>
+</h3>
 <p>
   In case consent is required, you may give consent to features before the SDK
   Init call. These features consents are not persistent and must be given on every
   restart.
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be given</span></code><br><code class="java hljs">Consents[] consents = new Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// give consents to the features</span></code><br><code class="java hljs">configuration.GiveConsent(consents);</code></pre>
-<h2 id="feature-groups" class="anchor-heading">
-  <span>Consents</span> groups
-</h2>
+<pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be given</span></code><br><code class="java hljs">Consents[] consents = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// give consents to the features</span></code><br><code class="java hljs">configuration.GiveConsent(consents);</code></pre>
+<h3>
+  <span>Give Consents in groups</span>
+</h3>
 <p>
   <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>CreateConsentGroup</code></span><span>. Those groups are not persistent and must be created on every restart. Consents to groups may be given to using <code class="java hljs">GiveConsentToGroup</code>.</span>
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be added to the group</span></code><br><code class="java hljs">Consents[] <span class="hljs-comment">consents</span> = new Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// create the Consent group</span></code><br><code class="java hljs">configuration.CreateConsentGroup("User-Consents", <span class="hljs-comment">consents</span>);</code><br><code class="java hljs"><span class="hljs-comment">// give consent to the provide consent group</span></code><br><code class="java hljs">configuration.GiveConsentToGroup("User-Consents");</code></pre>
+<pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be added to the group</span></code><br><code class="java hljs">Consents[] <span class="hljs-comment">consents</span> = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// create the Consent group</span></code><br><code class="java hljs">configuration.CreateConsentGroup("User-Consents", <span class="hljs-comment">consents</span>);</code><br><code class="java hljs"><span class="hljs-comment">// give consent to the provide consent group</span></code><br><code class="java hljs">configuration.GiveConsentToGroup("User-Consents");</code></pre>
 <h2 id="changing-consent" class="anchor-heading">Changing consent</h2>
 <p>
   <span>There are 3 ways of changing feature consent: </span>
