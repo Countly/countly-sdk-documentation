@@ -27,20 +27,6 @@
   <a href="https://github.com/Countly/countly-sdk-unity/releases" target="_blank" rel="noopener">GitHub</a>
   and import it into your project.
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Adding Write Permission</span></strong>
-  </p>
-  <p>
-    If you expect the game to be saved
-    <span>on an SD card or any other type of external storage</span>, set
-    <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
-  </p>
-</div>
-<p>
-  For more information, check the sample app on
-  <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;
-</p>
 <h1>
   <span>Setting up the SDK</span>
 </h1>
@@ -68,7 +54,7 @@
 </p>
 <p>Below you can find details of each parameter:</p>
 <p>
-  <strong>salt -<span>&nbsp;</span></strong>(Optional, string) Used to prevent
+  <strong>Salt -<span>&nbsp;</span></strong>(Optional, string) Used to prevent
   parameter tampering. The default value is<span>&nbsp;</span><strong>NULL</strong>.&nbsp;
 </p>
 <p>
@@ -161,6 +147,20 @@
   <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Adding Write Permission</strong></span>
+  </p>
+  <p>
+    If you expect the game to be saved
+    <span>on an SD card or any other type of external storage</span>, set
+    <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
+  </p>
+  <p>
+    For more information, check the sample app on
+    <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;
+  </p>
+</div>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tampering Protection</h2>
 <p>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
@@ -176,34 +176,73 @@
   <span>In case you would like to check if init has been called, you may use the following property:</span>
 </p>
 <pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
-<h1>Session handling</h1>
-<p>The Unity SDK handles the session automatically.</p>
+<h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
 <p>
-  <strong>Begin Session:</strong> the SDK is responsible for automatically handling
-  the Countly session in your app. As soon as you call the initialization methods
-  (Begin and SetDefaults) in your app start event, the SDK will start the session
-  automatically (only when you set <code>enableManualSessionHandling</code> to
-  true during initialization).
+  <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
+</p>
+<h2>Automatic crash reporting</h2>
+<p>
+  The Unity SDK can automatically report uncaught exceptions/crashes in the application
+  to the Countly server. To report uncaught exceptions/crashes automatically, enable
+  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
+</p>
+<h2 id="accessing-crashrelated-functionality" class="anchor-heading">Accessing crash-related functionalities</h2>
+<p>
+  In the SDK all crash-related functionalities can be browsed from the returned
+  interface on:
+</p>
+<pre>countly.CrashReports.</pre>
+<p>To log exception use the following code snippet:</p>
+<pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
+<p>Here is the detail of the parameters:</p>
+<ul>
+  <li>
+    <strong>message -</strong> (<span>Mandatory</span>, string) a string that
+    contains a detailed description of the exception.
+  </li>
+  <li>
+    <strong>stackTrace -</strong> (<span>Mandatory, </span>string) A string that
+    describes the contents of the call stack.
+  </li>
+  <li>
+    <strong>type - </strong>(<span>Mandatory, </span>LogType) The type of the
+    log message.
+  </li>
+  <li>
+    <strong>segments - </strong>(Optional, ) Custom key/values to be reported.
+  </li>
+  <li>
+    <strong>nonfatal -</strong>&nbsp; (Optional, bool) Set false if the error
+    is fatal.
+  </li>
+</ul>
+<h2 id="logging-handled-exceptions" class="anchor-heading">
+  <span>Reporting exceptions</span>
+</h2>
+<p>
+  <span>You might catch an exception or similar error during your app’s runtime.</span>
 </p>
 <p>
-  <strong>Update Session:</strong> the SDK is responsible for automatically extending
-  the session after every 60 seconds (default value). This value is configurable
-  during initialization using the parameter sessionDuration. It cannot be modified
-  after initialization.
+  <span>You may also log these handled exceptions to monitor how and when they are happening.</span>
 </p>
+<p>Example:</p>
+<pre><strong>try</strong><br> {<br><strong>    throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br> <strong>catch</strong> (Exception ex)<br> {<br>    <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception); <br> }&nbsp;<br><br></pre>
+<p id="logging-handled-exceptions" class="anchor-heading">You can also send a segmentation with an exception.</p>
+<pre><span><br>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><strong><br>try</strong><br>{<br><strong> throw</strong> <strong>new</strong> DivideByZeroException();<br>}<br><strong>catch</strong> (Exception ex)<br>{<br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, true); <br>}&nbsp;</span></pre>
 <p>
-  Note that in iOS, the session will not be extended when the app is in the background.
-  As soon as the user switches back to the app, the session extension will resume.
-  In Android, the session will extend on both occasions: foreground and background.
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
+<pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
+<pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
+<h2 id="adding-breadcrumbs" class="anchor-heading">Adding breadcrumbs</h2>
 <p>
-  <strong>End Session:</strong> the SDK is responsible for automatically ending
-  the session whenever the user quits the application.
+  Throughout your app, you can leave&nbsp;crash breadcrumbs
+  <span>Mandatory that </span>which would describe previous steps that were taken
+  in your app before the crash. After a crash happens, they will be sent together
+  with the crash report.
 </p>
-<p>
-  The Session will be ended automatically when the user
-  <span class="wysiwyg-color-black">calls </span><span style="background-color:#e9ebed;font-family:monospace, monospace;font-size:13px;white-space:pre">Application.Quit()</span>.
-</p>
+<p>The following command adds a crash breadcrumb:</p>
+<pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h1>Custom Events</h1>
 <h2>Setting up custom events</h2>
 <p>
@@ -297,73 +336,38 @@
 <p>
   <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
-<h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
-<p>
-  <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
-</p>
-<h2>Automatic crash reporting</h2>
-<p>
-  The Unity SDK can automatically report uncaught exceptions/crashes in the application
-  to the Countly server. To report uncaught exceptions/crashes automatically, enable
-  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
-</p>
-<h2 id="accessing-crashrelated-functionality" class="anchor-heading">Accessing crash-related functionalities</h2>
-<p>
-  In the SDK all crash-related functionalities can be browsed from the returned
-  interface on:
-</p>
-<pre>countly.CrashReports.</pre>
-<p>To log exception use the following code snippet:</p>
-<pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
-<p>Here is the detail of the parameters:</p>
-<ul>
-  <li>
-    <strong>message -</strong> (<span>Mandatory</span>, string) a string that
-    contains a detailed description of the exception.
-  </li>
-  <li>
-    <strong>stackTrace -</strong> (<span>Mandatory, </span>string) A string that
-    describes the contents of the call stack.
-  </li>
-  <li>
-    <strong>type - </strong>(<span>Mandatory, </span>LogType) The type of the
-    log message.
-  </li>
-  <li>
-    <strong>segments - </strong>(Optional, ) Custom key/values to be reported.
-  </li>
-  <li>
-    <strong>nonfatal -</strong>&nbsp; (Optional, bool) Set false if the error
-    is fatal.
-  </li>
-</ul>
-<h2 id="logging-handled-exceptions" class="anchor-heading">
-  <span>Reporting exceptions</span>
+<h1>&nbsp;</h1>
+<h1>Session handling</h1>
+<h2>
+  <span style="font-weight:400">&nbsp;Automatic session tracking&nbsp;</span>
 </h2>
+<p>The Unity SDK handles the session automatically.</p>
 <p>
-  <span>You might catch an exception or similar error during your app’s runtime.</span>
+  <strong>Begin Session:</strong> the SDK is responsible for automatically handling
+  the Countly session in your app. As soon as you call the initialization methods
+  (Begin and SetDefaults) in your app start event, the SDK will start the session
+  automatically (only when you set <code>enableManualSessionHandling</code> to
+  true during initialization).
 </p>
 <p>
-  <span>You may also log these handled exceptions to monitor how and when they are happening.</span>
+  <strong>Update Session:</strong> the SDK is responsible for automatically extending
+  the session after every 60 seconds (default value). This value is configurable
+  during initialization using the parameter session duration. It cannot be modified
+  after initialization.
 </p>
-<p>Example:</p>
-<pre><strong>try</strong><br> {<br><strong>    throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br> <strong>catch</strong> (Exception ex)<br> {<br>    <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception); <br> }&nbsp;<br><br></pre>
-<p id="logging-handled-exceptions" class="anchor-heading">You can also send a segmentation with an exception.</p>
-<pre><span><br>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><strong><br>try</strong><br>{<br><strong> throw</strong> <strong>new</strong> DivideByZeroException();<br>}<br><strong>catch</strong> (Exception ex)<br>{<br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, true); <br>}&nbsp;</span></pre>
 <p>
-  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
+  Note that in iOS, the session will not be extended when the app is in the background.
+  As soon as the user switches back to the app, the session extension will resume.
+  In Android, the session will extend on both occasions: foreground and background.
 </p>
-<pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
-<pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
-<h2 id="adding-breadcrumbs" class="anchor-heading">Adding breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave&nbsp;crash breadcrumbs
-  <span>Mandatory that </span>which would describe previous steps that were taken
-  in your app before the crash. After a crash happens, they will be sent together
-  with the crash report.
+  <strong>End Session:</strong> the SDK is responsible for automatically ending
+  the session whenever the user quits the application.
 </p>
-<p>The following command adds a crash breadcrumb:</p>
-<pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
+<p>
+  The Session will be ended automatically when the user
+  <span class="wysiwyg-color-black">calls </span><span style="background-color:#e9ebed;font-family:monospace, monospace;font-size:13px;white-space:pre">Application.Quit()</span>.
+</p>
 <h1>View tracking</h1>
 <p>
   The Countly Unity SDK supports manual view (screen) tracking. With this feature,
@@ -404,6 +408,154 @@
 </ul>
 <p>example:</p>
 <pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
+<h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Changing a device ID</h1>
+<p>
+  The Countly Unity SDK persists Device ID when you provide it during initialization
+  or generates a random ID when you don’t provide it. This Device ID will be used
+  persistently for all future requests made from a device until you change that.
+</p>
+<p>
+  The SDK allows you to change the Device ID at any point in time. You can use
+  any of the following two methods to changing the Device ID, depending on your
+  needs.
+</p>
+<h2>
+  <span>Changing Device ID without server merge</span>
+</h2>
+<p>
+  This method changes the Device ID and does the following other operations:
+</p>
+<ol>
+  <li>Ends all the events that have been recorded until now.</li>
+  <li>Ends the current session.</li>
+  <li>
+    Updates Device ID and starts a new session with a new Device ID.
+  </li>
+</ol>
+<p>Example:</p>
+<pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
+<h2>
+  <span>Changing Device ID with server merge</span>
+</h2>
+<p>
+  This method changes the Device ID and merges data for both Device IDs in the
+  Countly server.
+</p>
+<p>Example:</p>
+<pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
+<h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving the Device ID&nbsp;</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.&nbsp;
+</p>
+<pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
+<h1>Push Notification</h1>
+<p>
+  The Countly Unity SDK supports
+  <span>FCM (Firebase Cloud Messaging) for Android. By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br><br></span>
+</p>
+<pre><span>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = COUNTLY_APP_KEY,<br>ServerUrl = COUNTLY_SERVER_URL,<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken<br>};</span></pre>
+<p>&nbsp;</p>
+<p>
+  <span>Use an <strong>iOS Test Token </strong>or an <strong>Android Test Token</strong> for testing purposes and in production use a <strong>Production</strong> <strong>Token</strong></span>
+</p>
+<h2>
+  <span>Android&nbsp;</span>
+</h2>
+<h3 id="getting-fcm-credentials" class="anchor-heading">FCM credentials</h3>
+<p>
+  <span>The Countly server needs an FCM server key to send notifications through FCM. </span><span></span>
+</p>
+<p id="integrating-fcm-into-your-app" class="anchor-heading">
+  To set it up, refer to
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#getting-fcm-credentials" target="_self" rel="undefined">Android documentation</a>.
+</p>
+<h3 class="anchor-heading">Integrating FCM into your app</h3>
+<ol>
+  <li>
+    <span>Download google-services.json from </span><a href="https://console.firebase.google.com/">Firebase console.</a>
+  </li>
+  <li>
+    <span>Create google-services.xml from google-services.json. You can use an online converter </span><a href="https://dandar3.github.io/android/google-services-json-to-xml.html" rel="nofollow">here</a><span>.</span>
+  </li>
+  <li>
+    <span>Put your file google-services.xml in /Plugins/Android/Notifications/res/values (replace if necessary).</span>
+  </li>
+</ol>
+<h3>
+  <span style="font-size:1.2em;font-weight:600">Changing </span><span style="font-size:1.2em;font-weight:600">N</span><span style="font-size:1.2em;font-weight:600">otification </span><span style="font-size:1.2em;font-weight:600">Sound and I</span><span style="font-size:1.2em;font-weight:600">cons</span>
+</h3>
+<p>
+  <span>In order to change the sound and icons of the notifications, replace the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
+</p>
+<p>
+  <span><strong>Note</strong>: The Notification channel name and description can be updated through the <strong>strings.xml</strong> file located in the <strong>Assets\Plugins\Android\Notifications\res\values </strong>folder.</span>
+</p>
+<h3>
+  <span>Remove FCM Dependencies</span>
+</h3>
+<p>
+  <span>By default, FCM dependencies are part of the <strong>SDK.</strong> To remove FCM dependencies, go to the <strong>Assets\Plugins\Android </strong>folder and delete the <strong>Notifications</strong> folder.</span>
+</p>
+<p>
+  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package.</span>
+</p>
+<h2>
+  <span>iOS</span>
+</h2>
+<h3>Adding Scripting Define Symbols</h3>
+<p>
+  In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
+  <strong>Other Settings</strong> section, add the
+  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"><br></strong>
+</p>
+<h3>
+  <span>APNs Credentials</span>
+</h3>
+<p>
+  <span>The Countly server needs the APNs <strong>Auth Key&nbsp;</strong>to send notifications. To get the APNs <strong>Auth Key&nbsp;</strong>and upload it to the County Server, refer to <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#setting-up-apns-authentication" target="_self">iOS Documentation.</a></span>
+</p>
+<h3 id="configuring-ios-app" class="anchor-heading" tabindex="-1">Configuring the iOS app</h3>
+<p>
+  After exporting the <strong>iOS</strong> project, open the project in
+  <strong>Xcode</strong>, and add <strong>Push Notifications</strong> Capability.<img src="/hc/article_attachments/900004294166/Screenshot_2020-10-26_at_3.13.25_PM.png" alt="Screenshot_2020-10-26_at_3.13.25_PM.png">
+</p>
+<h3>
+  <span>Removing the APNs Dependencies</span>
+</h3>
+<p>
+  <span>By default, the <strong>APNs</strong> dependencies are part of the <strong>SDK.</strong> To remove the <strong>APNs</strong> dependencies, go to the <strong>Assets\Plugins </strong>folder and delete the <strong>iOS</strong> folder. Remove the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol from <strong>Scripting Define Symbols </strong>in <strong>Player Settings.</strong></span>
+</p>
+<p>
+  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package and add back the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol.</span>
+</p>
+<h2>
+  <span>Adding Notification Callbacks</span>
+</h2>
+<p>
+  <span>You may listen to notification receive and click events. To listen to notification events follow the following steps:</span>
+</p>
+<p>
+  <span>1. Implement <code>INotificationListener</code> interface and its members' methods <code>OnNotificationClicked</code> and <code>OnNotificationReceived</code>&nbsp;into your class.<br></span>
+</p>
+<p>
+  <span>Example:</span>
+</p>
+<pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message)<br>  {<br>  }<br><br>  public void OnNotificationClicked(string message, int index)<br>  {<br>  }<br>}</code></span></pre>
+<p>
+  <span>2. After calling <code>Countly.Instance.Init(...)</code>, call <code>Countly.Instance.Notifications.AddListener(this)</code>.</span><span></span><span></span>
+</p>
+<p>
+  <span>Example:</span>
+</p>
+<pre><span><code>private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>  {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  };<br>  Countly.Instance.Init(config);<br>  countly.Notifications.AddListener(this);<br>}</code></span><span></span></pre>
+<p>
+  <span>To stop listening notification receive and click events, call</span>
+</p>
+<pre><span><code>Countly.Instance.Notifications.RemoveListener(this);</code></span></pre>
+<p>
+  <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br></span>
+</p>
 <h1>
   <span>User location</span>
 </h1>
@@ -450,13 +602,30 @@
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
 </p>
+<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
+<p>
+  <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
+</p>
+<h2 id="manual-remote-config-download" class="anchor-heading">Manual Remote Config download</h2>
+<p>
+  To download Remote Config, call <code>countly.RemoteConfigs.Update()</code>.
+  After the successful download, the SDK stores the updated config locally.
+</p>
+<pre><strong>await</strong> countly.RemoteConfigs.Update();</pre>
+<h2 id="getting-remote-config-values" class="anchor-heading">Getting Remote Config</h2>
+<p>
+  To access the stored config,&nbsp; call
+  <code>countly.RemoteConfigs.Configs</code>. It will return <code>null</code>
+  if there isn't any config stored.
+</p>
+<pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
 <h1>
   <span class="wysiwyg-color-black">Ratings</span>
 </h1>
 <p>
   <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback and comments. For more details</span>,
   please see the
-  <a href="/hc/en-us/articles/360037641291" target="_self">Ratings documentation</a>.
+  <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
 <p>
   <span>When a user rates your application, you can report it to the Countly server using the following method:</span><span></span>
@@ -480,23 +649,6 @@
   <span>Example:</span>
 </p>
 <pre><strong>await</strong> countly.StarRatingReport.StarRatingAsync("android", "0.1", 3);</pre>
-<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
-<p>
-  <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
-</p>
-<h2 id="manual-remote-config-download" class="anchor-heading">Downloading Remote Config</h2>
-<p>
-  To download Remote Config, call <code>countly.RemoteConfigs.Update()</code>.
-  After the successful download, the SDK stores the updated config locally.
-</p>
-<pre><strong>await</strong> countly.RemoteConfigs.Update();</pre>
-<h2 id="getting-remote-config-values" class="anchor-heading">Getting Remote Config</h2>
-<p>
-  To access the stored config,&nbsp; call
-  <code>countly.RemoteConfigs.Configs</code>. It will return <code>null</code>
-  if there isn't any config stored.
-</p>
-<pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
 <h1>User Profiles</h1>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
@@ -697,146 +849,4 @@
   </li>
 </ul>
 <pre><code>// Give consent to all features</code><br>Countly.Instance.Consent.GiveConsentAll();<br><br><span><span class="hljs-comment"><code class="java hljs">// Remove consent from all features</code></span></span><br>Countly.Instance.Consent.RemoveAllConsent();</pre>
-<h1>Changing Device ID</h1>
-<p>
-  The Countly Unity SDK persists Device ID when you provide it during initialization
-  or generates a random ID when you don’t provide it. This Device ID will be used
-  persistently for all future requests made from a device until you change that.
-</p>
-<p>
-  The SDK allows you to change the Device ID at any point in time. You can use
-  any of the following two methods to changing the Device ID, depending on your
-  needs.
-</p>
-<h2>
-  <span>Changing Device ID without server merge</span>
-</h2>
-<p>
-  This method changes the Device ID and does the following other operations:
-</p>
-<ol>
-  <li>Ends all the events that have been recorded until now.</li>
-  <li>Ends the current session.</li>
-  <li>
-    Updates Device ID and starts a new session with a new Device ID.
-  </li>
-</ol>
-<p>Example:</p>
-<pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
-<h2>
-  <span>Changing Device ID with server merge</span>
-</h2>
-<p>
-  This method changes the Device ID and merges data for both Device IDs in the
-  Countly server.
-</p>
-<p>Example:</p>
-<pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
-<h1>Push Notification</h1>
-<p>
-  The Countly Unity SDK supports
-  <span>FCM (Firebase Cloud Messaging) for Android. By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br><br></span>
-</p>
-<pre><span>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = COUNTLY_APP_KEY,<br>ServerUrl = COUNTLY_SERVER_URL,<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken<br>};</span></pre>
-<p>&nbsp;</p>
-<p>
-  <span>Use an <strong>iOS Test Token </strong>or an <strong>Android Test Token</strong> for testing purposes and in production use a <strong>Production</strong> <strong>Token</strong></span>
-</p>
-<h2>
-  <span>Android&nbsp;</span>
-</h2>
-<h3 id="getting-fcm-credentials" class="anchor-heading">FCM credentials</h3>
-<p>
-  <span>The Countly server needs an FCM server key to send notifications through FCM. </span><span></span>
-</p>
-<p id="integrating-fcm-into-your-app" class="anchor-heading">
-  To set it up, refer to
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#getting-fcm-credentials" target="_self" rel="undefined">Android documentation</a>.
-</p>
-<h3 class="anchor-heading">Integrating FCM into your app</h3>
-<ol>
-  <li>
-    <span>Download google-services.json from </span><a href="https://console.firebase.google.com/">Firebase console.</a>
-  </li>
-  <li>
-    <span>Create google-services.xml from google-services.json. You can use an online converter </span><a href="https://dandar3.github.io/android/google-services-json-to-xml.html" rel="nofollow">here</a><span>.</span>
-  </li>
-  <li>
-    <span>Put your file google-services.xml in /Plugins/Android/Notifications/res/values (replace if necessary).</span>
-  </li>
-</ol>
-<h3>
-  <span style="font-size:1.2em;font-weight:600">Changing </span><span style="font-size:1.2em;font-weight:600">N</span><span style="font-size:1.2em;font-weight:600">otification </span><span style="font-size:1.2em;font-weight:600">Sound and I</span><span style="font-size:1.2em;font-weight:600">cons</span>
-</h3>
-<p>
-  <span>In order to change the sound and icons of the notifications, replace the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
-</p>
-<p>
-  <span><strong>Note</strong>: The Notification channel name and description can be updated through the <strong>strings.xml</strong> file located in the <strong>Assets\Plugins\Android\Notifications\res\values </strong>folder.</span>
-</p>
-<h3>
-  <span>Remove FCM Dependencies</span>
-</h3>
-<p>
-  <span>By default, FCM dependencies are part of the <strong>SDK.</strong> To remove FCM dependencies, go to the <strong>Assets\Plugins\Android </strong>folder and delete the <strong>Notifications</strong> folder.</span>
-</p>
-<p>
-  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package.</span>
-</p>
-<h2>
-  <span>iOS</span>
-</h2>
-<h3>Adding Scripting Define Symbols</h3>
-<p>
-  In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
-  <strong>Other Settings</strong> section, add the
-  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"><br></strong>
-</p>
-<h3>
-  <span>APNs Credentials</span>
-</h3>
-<p>
-  <span>The Countly server needs the APNs <strong>Auth Key&nbsp;</strong>to send notifications. To get the APNs <strong>Auth Key&nbsp;</strong>and upload it to the County Server, refer to <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#setting-up-apns-authentication" target="_self">iOS Documentation.</a></span>
-</p>
-<h3 id="configuring-ios-app" class="anchor-heading" tabindex="-1">Configuring the iOS app</h3>
-<p>
-  After exporting the <strong>iOS</strong> project, open the project in
-  <strong>Xcode</strong>, and add <strong>Push Notifications</strong> Capability.<img src="/hc/article_attachments/900004294166/Screenshot_2020-10-26_at_3.13.25_PM.png" alt="Screenshot_2020-10-26_at_3.13.25_PM.png">
-</p>
-<h3>
-  <span>Removing the APNs Dependencies</span>
-</h3>
-<p>
-  <span>By default, the <strong>APNs</strong> dependencies are part of the <strong>SDK.</strong> To remove the <strong>APNs</strong> dependencies, go to the <strong>Assets\Plugins </strong>folder and delete the <strong>iOS</strong> folder. Remove the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol from <strong>Scripting Define Symbols </strong>in <strong>Player Settings.</strong></span>
-</p>
-<p>
-  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package and add back the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol.</span>
-</p>
-<h2>
-  <span>Adding Notification Callbacks</span>
-</h2>
-<p>
-  <span>You may listen to notification receive and click events. To listen to notification events follow the following steps:</span>
-</p>
-<p>
-  <span><span>1. Implement <code>INotificationListener</code> interface and its members' methods <code>OnNotificationClicked</code> and <code>OnNotificationReceived</code>&nbsp;into your class.<br></span></span>
-</p>
-<p>
-  <span><span>Example:</span></span>
-</p>
-<pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message)<br>  {<br>  }<br><br>  public void OnNotificationClicked(string message, int index)<br>  {<br>  }<br>}</code></span></pre>
-<p>
-  <span>2. After calling <code>Countly.Instance.Init(...)</code>, call <code>Countly.Instance.Notifications.AddListener(this)</code>.</span><span></span><span></span>
-</p>
-<p>
-  <span>Example:</span>
-</p>
-<pre><span><code>private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>  {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  };<br>  Countly.Instance.Init(config);<br>  countly.Notifications.AddListener(this);<br>}</code></span><span></span></pre>
-<p>
-  <span>To stop listening notification receive and click events, call</span>
-</p>
-<pre><span><code>Countly.Instance.Notifications.RemoveListener(this);</code></span></pre>
-<p>
-  <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br><br></span>
-</p>
 <p>&nbsp;</p>
