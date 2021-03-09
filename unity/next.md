@@ -75,7 +75,7 @@
 <p>
   <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
 </p>
-<h2 id="enabling-logging" class="anchor-heading">Enabling logging</h2>
+<h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
 </p>
@@ -109,7 +109,7 @@
     <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;
   </p>
 </div>
-<h2>SDK Notes</h2>
+<h2>SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
@@ -181,7 +181,7 @@
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
-<h1>Custom Events</h1>
+<h1>Custom events</h1>
 <h2>Setting up custom events</h2>
 <p>
   <span style="font-weight:400">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight:400">custom event</span></a><span style="font-weight:400"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
@@ -274,8 +274,7 @@
 <p>
   <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
-<h1>&nbsp;</h1>
-<h1>Session handling</h1>
+<h1>Sessions</h1>
 <h2>
   <span style="font-weight:400">&nbsp;Automatic session tracking&nbsp;</span>
 </h2>
@@ -346,7 +345,7 @@
 </ul>
 <p>example:</p>
 <pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
-<h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Changing a device ID</h1>
+<h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
   The Countly Unity SDK persists Device ID when you provide it during initialization
   or generates a random ID when you don’t provide it. This Device ID will be used
@@ -387,7 +386,7 @@
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
-<h1>Push Notification</h1>
+<h1>Push notifications</h1>
 <p>
   The Countly Unity SDK supports
   <span>FCM (Firebase Cloud Messaging) for Android. By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br><br></span>
@@ -540,7 +539,7 @@
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
 </p>
-<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
+<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
@@ -557,9 +556,7 @@
   if there isn't any config stored.
 </p>
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
-<h1>
-  <span class="wysiwyg-color-black">Ratings</span>
-</h1>
+<h1>User feedback</h1>
 <p>
   <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback and comments. For more details</span>,
   please see the
@@ -587,7 +584,7 @@
   <span>Example:</span>
 </p>
 <pre><strong>await</strong> countly.StarRatingReport.StarRatingAsync("android", "0.1", 3);</pre>
-<h1>User Profiles</h1>
+<h1>User profiles</h1>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
   the Countly server. The SDK allows you to set the following predefined data for
@@ -682,7 +679,7 @@
 </p>
 <p>Example:</p>
 <pre>countly.UserDetails.Max("Weight", 90);<br>countly.UserDetails.SetOnce("Distance", "10KM");<br>countly.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> countly.UserDetails.SaveAsync();</pre>
-<h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User Consent management</h1>
+<h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User consent</h1>
 <p>
   <span>In an effort to comply with GDPR, starting from 20.11.1, Unity Countly SDK provides ways to toggle different Countly features on/off depending on the given consent.</span>
 </p>
@@ -788,18 +785,18 @@
 </ul>
 <pre><code>// Give consent to all features</code><br>Countly.Instance.Consent.GiveConsentAll();<br><br><span><span class="hljs-comment"><code class="java hljs">// Remove consent from all features</code></span></span><br>Countly.Instance.Consent.RemoveAllConsent();</pre>
 <h1>Security and privacy</h1>
-<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tampering Protection</h2>
+<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tamper protection</h2>
 <p>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
 </p>
 <pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
 <h1>Other features</h1>
-<h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if init has been called</h2>
+<h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if the SDK has been initialized</h2>
 <p>
   <span>In case you would like to check if init has been called, you may use the following property:</span>
 </p>
 <pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
-<h2 id="checking-if-init-has-been-called" class="anchor-heading">Optional Configuration</h2>
+<h2 id="checking-if-init-has-been-called" class="anchor-heading">SDK config parameters explained</h2>
 <p>
   <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the optional parameters:</span><span></span>
 </p>
