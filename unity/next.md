@@ -20,114 +20,62 @@
 <ol>
   <li>Scripting version is based on .NET 4.x equivalent</li>
   <li>API Compatibility Level is based on .NET 4.x</li>
+  <li>SDK is tested on IOS, Android, Windows, UWP, and Mac OSX</li>
 </ol>
-<h1>Integration</h1>
+<p>
+  You can take a look at our sample application in the&nbsp;<a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>.
+  It should show how most of the functionalities can be used
+</p>
+<h1>Adding the SDK to the project</h1>
 <p>
   Download the Unity package from
   <a href="https://github.com/Countly/countly-sdk-unity/releases" target="_blank" rel="noopener">GitHub</a>
   and import it into your project.
 </p>
-<h1>
-  <span>Setting up the SDK</span>
-</h1>
+<p>
+  To import the package (right click on <strong>Assets </strong>=&gt;
+  <strong>Import Package </strong>=&gt; <strong>Custom Package </strong>=&gt;
+  <strong>Path_To_Package</strong>) and leave all the files checked because we
+  need to import all the files in the package.
+</p>
+<p>
+  <img src="/hc/article_attachments/900006790726/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="388" height="641">
+</p>
+<h1>SDK Integration</h1>
+<h2>Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.&nbsp;
 </p>
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</pre>
+<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br><strong>AppKey</strong> = <span>COUNTLY_APP_KEY,</span><br><strong>ServerUrl</strong> = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</pre>
+<p>
+  <span><strong>AppKey - </strong>(Mandatory) The “App Key” for the app that you created on the Countly server. Example<strong>:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.</span>
+</p>
+<p>
+  <span><strong>ServerUrl -</strong> (Mandatory) The URL of the Countly server where you are going to post your requests. Example<strong>:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a></span>
+</p>
 <p>
   To configure the SDK during init, a config object called "<strong>CountlyConfiguration</strong>"
   is used. The configuration is done by creating such an object. Afterward that
   config object is provided to the "Init" method.
 </p>
-<p>
-  <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the potential parameters:</span>
-</p>
-<p>
-  <span><strong>AppKey - </strong>(Mandatory, string) The “App Key” for the app that you created on the Countly server.&nbsp;<strong>Example:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.<br><strong>serverUrl -</strong>&nbsp;(Mandatory, string) The URL of the Countly server where you are going to post your requests.&nbsp;<strong>Example:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a><br></span>
-</p>
-<p>
-  <strong>DeviceId -<span>&nbsp;</span></strong>(Optional, string) Your Device
-  ID. It is an optional parameter.<span>&nbsp;</span><strong>Example:</strong><span>&nbsp;</span>f16e5af2-8a2a-4f37-965d-qwer5678ui98.
-</p>
-<p>Below you can find details of each parameter:</p>
-<p>
-  <strong>Salt -<span>&nbsp;</span></strong>(Optional, string) Used to prevent
-  parameter tampering. The default value is<span>&nbsp;</span><strong>NULL</strong>.&nbsp;
-</p>
-<p>
-  <strong>EnablePost -<span>&nbsp;</span></strong>(bool) When set to<span>&nbsp;</span><strong>true</strong>,
-  all requests made to the Countly server will be done using HTTP POST. Otherwise,
-  the SDK sends all requests using the HTTP GET method. In some cases, if the data
-  to be sent exceeds the 1800-character limit, the SDK uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
-</p>
-<p>
-  <span><strong>EnableTestMode - </strong>(Optional, bool) This parameter is useful in development when you don't want to send requests to the Countly server. The default value is<strong>&nbsp;false</strong>.</span>
-</p>
-<p>
-  <strong>RequiresConsent -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
-  is useful
-  <span>during the app run when the user wants to opt-out of SDK features.</span>
-</p>
-<p>
-  <strong>EnableConsoleLogging -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
-  parameter is useful when you are debugging your application. When set to<span>&nbsp;</span><strong>true</strong>,
-  it basically turns on Logging.&nbsp;
-</p>
-<p>
-  <strong>IgnoreSessionCooldown -</strong><span>&nbsp;(Optional, bool)&nbsp;</span>Turns
-  on/off the session cooldown behavior.<span>&nbsp;</span><span>The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
-</p>
-<p>
-  <strong>SessionDuration -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
-  the interval (in seconds) after which the application will automatically extend
-  the session, providing the manual session is disabled. This interval is also
-  used to process requests in the queue. The default value is<strong><span>&nbsp;</span>60<span>&nbsp;</span></strong>(seconds).
-</p>
-<p>
-  <strong>EventThreshold -</strong><span>&nbsp;(Optional, int) Sets&nbsp;</span>a
-  threshold value that limits the number of events that can be recorded internally
-  by the system before they can all be sent together in one request. Once the threshold
-  limit is reached, the system groups all recorded events and sends them to the
-  server. The default value is<span>&nbsp;</span><strong>100.</strong><span>&nbsp;</span>
-</p>
-<p>
-  <strong>StoredRequestLimit -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
-  a threshold value that limits the number of requests that can be stored internally
-  by the system. The system processes these requests after every session duration
-  interval has passed. The default value is<span>&nbsp;</span><strong>1000.</strong>
-</p>
-<p>
-  <strong>NotificationMode -<span>&nbsp;</span></strong>(Optional, enum) When<span>&nbsp;</span><strong>None</strong>,
-  the SDK disables Push Notifications for the device. Use an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or
-  an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
-  testing purposes and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
-  SDK uses the supplied mode for sending Push Notifications. The default value
-  is<span>&nbsp;</span><strong>None.</strong>
-</p>
-<p>
-  <strong>EnableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) U</span>sed
-  to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
-  the SDK will catch exceptions and automatically report them to the Countly server.
-  The default value is<span>&nbsp;</span><strong>true.</strong>
-</p>
-<h2 id="providing-the-application-key" class="anchor-heading">Providing the application key</h2>
+<h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
 <p>
   <span>Also called "AppKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
 </p>
 <p>
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<h2 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h2>
+<h3 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h3>
 <p>
   <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
 </p>
 <p>
-  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span><span></span>
+  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
 </p>
-<h2 id="enabling-logging" class="anchor-heading">Enabling logging</h2>
+<h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
 </p>
@@ -161,21 +109,11 @@
     <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;
   </p>
 </div>
-<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tampering Protection</h2>
-<p>
-  <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
-</p>
-<pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
-<h2 id="checking-if-init-has-been-called" class="anchor-heading">Accessing Countly Global Instance</h2>
+<h2>SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
 <pre>Countly.Instance.</pre>
-<h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if init has been called</h2>
-<p>
-  <span>In case you would like to check if init has been called, you may use the following property:</span>
-</p>
-<pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
 <h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
 <p>
   <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
@@ -243,7 +181,7 @@
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
-<h1>Custom Events</h1>
+<h1>Custom events</h1>
 <h2>Setting up custom events</h2>
 <p>
   <span style="font-weight:400">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight:400">custom event</span></a><span style="font-weight:400"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
@@ -336,8 +274,7 @@
 <p>
   <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
-<h1>&nbsp;</h1>
-<h1>Session handling</h1>
+<h1>Sessions</h1>
 <h2>
   <span style="font-weight:400">&nbsp;Automatic session tracking&nbsp;</span>
 </h2>
@@ -408,7 +345,7 @@
 </ul>
 <p>example:</p>
 <pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
-<h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Changing a device ID</h1>
+<h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
   The Countly Unity SDK persists Device ID when you provide it during initialization
   or generates a random ID when you don’t provide it. This Device ID will be used
@@ -449,7 +386,7 @@
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
-<h1>Push Notification</h1>
+<h1>Push notifications</h1>
 <p>
   The Countly Unity SDK supports
   <span>FCM (Firebase Cloud Messaging) for Android. By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br><br></span>
@@ -602,7 +539,7 @@
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
 </p>
-<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
+<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
@@ -619,9 +556,7 @@
   if there isn't any config stored.
 </p>
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
-<h1>
-  <span class="wysiwyg-color-black">Ratings</span>
-</h1>
+<h1>User feedback</h1>
 <p>
   <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback and comments. For more details</span>,
   please see the
@@ -649,7 +584,7 @@
   <span>Example:</span>
 </p>
 <pre><strong>await</strong> countly.StarRatingReport.StarRatingAsync("android", "0.1", 3);</pre>
-<h1>User Profiles</h1>
+<h1>User profiles</h1>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
   the Countly server. The SDK allows you to set the following predefined data for
@@ -744,7 +679,7 @@
 </p>
 <p>Example:</p>
 <pre>countly.UserDetails.Max("Weight", 90);<br>countly.UserDetails.SetOnce("Distance", "10KM");<br>countly.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> countly.UserDetails.SaveAsync();</pre>
-<h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User Consent management</h1>
+<h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User consent</h1>
 <p>
   <span>In an effort to comply with GDPR, starting from 20.11.1, Unity Countly SDK provides ways to toggle different Countly features on/off depending on the given consent.</span>
 </p>
@@ -849,4 +784,84 @@
   </li>
 </ul>
 <pre><code>// Give consent to all features</code><br>Countly.Instance.Consent.GiveConsentAll();<br><br><span><span class="hljs-comment"><code class="java hljs">// Remove consent from all features</code></span></span><br>Countly.Instance.Consent.RemoveAllConsent();</pre>
-<p>&nbsp;</p>
+<h1>Security and privacy</h1>
+<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tamper protection</h2>
+<p>
+  <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
+</p>
+<pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
+<h1>Other features</h1>
+<h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if the SDK has been initialized</h2>
+<p>
+  <span>In case you would like to check if init has been called, you may use the following property:</span>
+</p>
+<pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
+<h2 id="checking-if-init-has-been-called" class="anchor-heading">SDK config parameters explained</h2>
+<p>
+  <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the optional parameters:</span><span></span>
+</p>
+<p>
+  <strong>DeviceId -<span>&nbsp;</span></strong>(Optional, string) Your Device
+  ID. It is an optional parameter.<span>&nbsp;</span><strong>Example:</strong><span>&nbsp;</span>f16e5af2-8a2a-4f37-965d-qwer5678ui98.
+</p>
+<p>Below you can find details of each parameter:</p>
+<p>
+  <strong>Salt -<span>&nbsp;</span></strong>(Optional, string) Used to prevent
+  parameter tampering. The default value is<span>&nbsp;</span><strong>NULL</strong>.&nbsp;
+</p>
+<p>
+  <strong>EnablePost -<span>&nbsp;</span></strong>(bool) When set to<span>&nbsp;</span><strong>true</strong>,
+  all requests made to the Countly server will be done using HTTP POST. Otherwise,
+  the SDK sends all requests using the HTTP GET method. In some cases, if the data
+  to be sent exceeds the 1800-character limit, the SDK uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>EnableTestMode - </strong>(Optional, bool) This parameter is useful in development when you don't want to send requests to the Countly server. The default value is<strong>&nbsp;false</strong>.</span>
+</p>
+<p>
+  <strong>RequiresConsent -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
+  is useful
+  <span>during the app run when the user wants to opt-out of SDK features.</span>
+</p>
+<p>
+  <strong>EnableConsoleLogging -<span>&nbsp;</span></strong><span>(Optional, bool)&nbsp;</span>This
+  parameter is useful when you are debugging your application. When set to<span>&nbsp;</span><strong>true</strong>,
+  it basically turns on Logging.&nbsp;
+</p>
+<p>
+  <strong>IgnoreSessionCooldown -</strong><span>&nbsp;(Optional, bool)&nbsp;</span>Turns
+  on/off the session cooldown behavior.<span>&nbsp;</span><span>The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
+</p>
+<p>
+  <strong>SessionDuration -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
+  the interval (in seconds) after which the application will automatically extend
+  the session, providing the manual session is disabled. This interval is also
+  used to process requests in the queue. The default value is<strong><span>&nbsp;</span>60<span>&nbsp;</span></strong>(seconds).
+</p>
+<p>
+  <strong>EventThreshold -</strong><span>&nbsp;(Optional, int) Sets&nbsp;</span>a
+  threshold value that limits the number of events that can be recorded internally
+  by the system before they can all be sent together in one request. Once the threshold
+  limit is reached, the system groups all recorded events and sends them to the
+  server. The default value is<span>&nbsp;</span><strong>100.</strong><span>&nbsp;</span>
+</p>
+<p>
+  <strong>StoredRequestLimit -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
+  a threshold value that limits the number of requests that can be stored internally
+  by the system. The system processes these requests after every session duration
+  interval has passed. The default value is<span>&nbsp;</span><strong>1000.</strong>
+</p>
+<p>
+  <strong>NotificationMode -<span>&nbsp;</span></strong>(Optional, enum) When<span>&nbsp;</span><strong>None</strong>,
+  the SDK disables Push Notifications for the device. Use an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or
+  an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
+  testing purposes and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
+  SDK uses the supplied mode for sending Push Notifications. The default value
+  is<span>&nbsp;</span><strong>None.</strong>
+</p>
+<p>
+  <strong>EnableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) U</span>sed
+  to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
+  the SDK will catch exceptions and automatically report them to the Countly server.
+  The default value is<span>&nbsp;</span><strong>true.</strong><code class="java hljs"></code>
+</p>
