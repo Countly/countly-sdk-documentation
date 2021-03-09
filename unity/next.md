@@ -26,7 +26,7 @@
   You can take a look at our sample application in the&nbsp;<a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>.
   It should show how most of the functionalities can be used
 </p>
-<h2>Adding the Countly SDK</h2>
+<h1>Adding the SDK to the project</h1>
 <p>
   Download the Unity package from
   <a href="https://github.com/Countly/countly-sdk-unity/releases" target="_blank" rel="noopener">GitHub</a>
@@ -41,12 +41,8 @@
 <p>
   <img src="/hc/article_attachments/900006790726/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="388" height="641">
 </p>
-<h1>
-  <span style="font-weight:400">SDK Integration</span>
-</h1>
-<h2>
-  <span>Minimal Setup</span>
-</h2>
+<h1>SDK Integration</h1>
+<h2>Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.&nbsp;
 </p>
