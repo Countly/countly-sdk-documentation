@@ -21,7 +21,7 @@
 <p>
   <span style="font-weight:400">This is the Countly SDK for React Native applications. It features bridging, meaning it includes all the functionalities that Android and iOS SDKs provide rather than having those functionalities as React Native code.</span>
 </p>
-<h1>Creating a new application</h1>
+<h1>Adding the SDK to the project</h1>
 <p>
   <span style="font-weight:400">In order to use the React Native SDK, please use the following commands to create a new React Native application.</span>
 </p>
@@ -35,23 +35,13 @@ react-native run-ios                # Run the iOS project
 # New terminal
 adb reverse tcp:8081 tcp:8081       # Link Android port
 npm start                           # Run the build server</code></pre>
-<h1 id="installing-the-countly-sdk" class="anchor-heading">Installing the Countly SDK</h1>
 <p>
-  <span style="font-weight:400">Run the following snippet in the root directory of your React Native project to install the npm dependencies and link&nbsp;</span><strong>native libraries</strong><span style="font-weight:400">.</span>
+  <span style="font-weight:400">Run the following snippet in the root directory of your React Native project to install the npm dependencies and link&nbsp;</span><strong>native libraries</strong><span style="font-weight:400">.<br><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
 </p>
 <pre># Include the Countly Class in the file that you want to use.<br>npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git<br># OR <br>npm install --save countly-sdk-react-native-bridge@20.11.0<br><br># Linking the library to your app<br><br># react-native &lt; 0.60. For both Android and iOS<br>react-native link countly-sdk-react-native-bridge<br>cd node_modules/countly-sdk-react-native-bridge/ios/<br>pod install <br>cd ../../../<br><br># react-native &gt;= 0.60 for iOS (Android will autolink)<br>cd ios <br>pod install<br>cd ..</pre>
 <h1 id="setting-up-the-countly-sdk" class="anchor-heading">Integration</h1>
 <p>
   <span style="font-weight:400">We will need to call two methods (<code>init</code> and <code>start</code>) in order to set up our SDK. You may also like to specify other parameters at this step (i.e. whether logging will be used). These methods should only be called once during the app's lifecycle and should be done as early as possible. Your main app component's <code>componentDidMount</code>method may be a good place.&nbsp;</span>
-</p>
-<p>
-  <span style="font-weight:400">See the <code>serverURL</code> value in the code snippet below. </span>
-</p>
-<p>
-  <span style="font-weight:400">If you are using the Countly Enterprise Edition trial servers, use the domain from which you are accessing your trial dashboard, such as <a href="https://try.count.ly" target="_self">https://try.count.ly</a></span><span style="font-weight:400">,</span><span style="font-weight:400">&nbsp;</span><a href="https://us-try.count.ly/"><span style="font-weight:400">https://us-try.count.ly</span></a>,<span style="font-weight:400">&nbsp;or&nbsp;</span><a href="https://asia-try.count.ly./"><span style="font-weight:400">https://asia-try.count.ly.</span></a><span style="font-weight:400"> </span>
-</p>
-<p>
-  <span style="font-weight:400">If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as </span><em><span style="font-weight:400">https://example.com</span></em><span style="font-weight:400">&nbsp;or&nbsp;</span><em><span style="font-weight:400">https://IP</span></em><span style="font-weight:400">&nbsp;(if SSL is setup).</span>
 </p>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
 
@@ -82,9 +72,9 @@ Countly.start(); // start session tracking
 <p>
   <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
 </p>
-<h2 id="enabling-logging" class="anchor-heading">Enabling logging</h2>
+<h2 id="enabling-logging" class="anchor-heading">Enable logging</h2>
 <p>
-  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
+  <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
 </p>
 <p>
   Call&nbsp;<code>setLoggingEnabled</code>&nbsp;on the config class to enable logging:
@@ -97,7 +87,7 @@ Countly.start(); // start session tracking
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
 <h1 id="crash-reporting" class="anchor-heading">Crash reporting</h1>
 <p>
-  <span>The Countly SDK for Android has the ability to collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>crash reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
+  <span>The Countly SDK has the ability to collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>crash reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
 <h2 id="enabling-automatic-crash-reporting" class="anchor-heading">Enabling automatic crash reporting</h2>
 <p>
@@ -141,7 +131,7 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <h1 id="custom-events" class="anchor-heading">Custom Events</h1>
 <h2 id="setting-up-custom-events" class="anchor-heading">Setting up custom events</h2>
 <p>
-  <span>A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>custom event</span></a><span>&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the Android SDK to the Countly instance by default.</span>
+  <span>A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>custom event</span></a><span> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the SDK to the Countly instance by default.</span>
 </p>
 <div class="callout callout--warning">
   <p class="callout__title">
@@ -207,15 +197,17 @@ Countly.endEvent(eventName);</code></pre>
 <pre><code class="java hljs">String eventName = <span class="hljs-string">"Custom event"</span>;
 
 <span class="hljs-comment">//start some event</span>
-Countly.startEvent(eventName);
-<span class="hljs-comment">//wait some time<br></span>
-<span class="hljs-comment">var event = { "eventName": eventName, "eventCount": 1, "eventSum": "0.99" }; <br>event.segments = { "Country": "Germany", "Age": "28" };<br><br></span><span class="hljs-comment">//end the event while also providing segmentation information, count and sum</span>
+Countly.startEvent(eventName);<br><br>var event = { "eventName": eventName, "eventCount": 1, "eventSum": "0.99" };<br>event.segments = { "Country": "Germany", "Age": "28" };<span class="hljs-comment"><br><br></span><span class="hljs-comment">//end the event while also providing segmentation information, count and sum</span>
 Countly.endEvent(<span class="hljs-comment">event</span>);
 </code></pre>
 <p>
   You may cancel the started timed event in case it is not relevant anymore:
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">//start some event</span><br><span class="hljs-comment">Countly.startEvent(eventName);<br></span><span class="hljs-comment">//wait some time</span>
+<pre><code class="java hljs">String eventName = <span class="hljs-string">"Event name"</span>;
+
+<span class="hljs-comment">//start some event</span>
+Countly.startEvent(eventName);
+<span class="hljs-comment">//wait some time</span>
 
 <span class="hljs-comment">//cancel the event </span>
 Countly.cancelEvent(eventName);</code></pre>
@@ -228,159 +220,156 @@ Countly.cancelEvent(eventName);</code></pre>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><code class="java hljs">// record view with segments<br>var viewSegmentation = { "Country": "Germany", "Age": "28" };<br>Countly.recordView("View Name", viewSegmentation);</code></pre>
+<pre><code class="java hljs">var viewSegmentation = { "Country": "Germany", "Age": "28" };<br>Countly.recordView("View Name", viewSegmentation);</code></pre>
 <p>
   <span>To review the resulting data, open the dashboard and go to</span><span>&nbsp;<code>Analytics &gt; Views</code></span><span>. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span>here</span></a><span>.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/1059a04-3.PNG">
-  <h1 id="changing-a-device-id" class="anchor-heading">Changing a device ID</h1>
-  <p>
-    When the SDK is initialized the first time and no custom device ID is provided,
-    a random one will be generated. For most use cases that is enough as it provides
-    a random identity to one of your apps users.<span style="font-weight:400"><span></span></span><span style="font-weight:400"><span></span></span>
-  </p>
-  <p>
-    <span style="font-weight:400"><span>For iOS: the device ID generated by the SDK is the Identifier For Vendor (IDFV).<br>For Android:&nbsp; the device ID generated by the SDK is the OpenUDID or Google Advertising ID.</span></span>
-  </p>
-  <p>
-    To solve other potential use cases, we provide 3 ways to handle your device
-    id:
-  </p>
-  <ul>
-    <li>Changing device ID with merge</li>
-    <li>Changing device ID without merge</li>
-    <li>Using a temporary ID</li>
-  </ul>
-  <h2 id="changing-device-id-with-and-without-merge" class="anchor-heading">Changing device ID with and without merge</h2>
-  <p>
-    <span style="font-weight:400">You may configure or change the device ID anytime using the method below.<br></span>
-  </p>
-  <pre>Countly.<span>changeDeviceId</span>(DEVICE_ID, <span>ON_SERVER</span>);</pre>
-  <p>
-    <span>You may either allow the device to be counted as a new device or merge existing data on the server. </span>If
-    <code>onServer</code> is set to <code>true</code>,
-    <span>the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>Otherwise, if&nbsp;<code>onServer</code> is&nbsp;set to <code>false</code>, the device will be counted as a new device on the server.<br></span>
-  </p>
-  <h2 id="temporary-device-id" class="anchor-heading">Temporary Device ID</h2>
-  <p>
-    You may use a temporary device ID mode for keeping all requests on hold until
-    the real device ID is set later.&nbsp;
-  </p>
-  <p>
-    To enable this
-    <span style="font-weight:400">when initializing the SDK, use the method below.</span>
-  </p>
-  <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, "TemporaryDeviceID"</span>)</pre>
-  <p>
-    To enable a temporary device ID <strong>after</strong> initialization, use
-    the method below.
-  </p>
-  <pre>Countly.<span>changeDeviceId</span>(Countly."TemporaryDeviceID", <span>ON_SERVER</span>);</pre>
-  <p>
-    <strong>Note:</strong> When passing the<span> </span><code>TemporaryDeviceID</code><span>&nbsp;</span>for
-    the<span>&nbsp;</span><code>deviceID</code><span>&nbsp;</span>parameter,
-    the argument for the <code>onServer</code>parameter does not matter.
-  </p>
-  <p>
-    As long as the device ID value is<span> </span><code>TemporaryDeviceID</code>,
-    the SDK will be in temporary device ID mode and all requests will be on hold,
-    but they will be persistently stored.
-  </p>
-  <p>
-    When in temporary device ID mode, method calls for presenting feedback widgets
-    and updating remote config will be ignored.
-  </p>
-  <p>
-    Later, when the real device ID is set using the<span> </span><code>Countly.<span>changeDeviceId</span>(DEVICE_ID, <span>ON_SERVER</span>);</code><span>&nbsp;</span>method,
-    all requests which have been kept on hold until that point will start with
-    the real device ID.
-  </p>
-  <h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving the device id</h2>
-  <p>
-    You may want to see what device id Countly is assigning for the specific
-    device. For that, you may use the following calls.
-  </p>
-  <pre><code class="java hljs">String usedId = Countly().getCurrentDeviceId();</code></pre>
-  <h1>Push Notifications</h1>
-  <p>
-    Please first check our
-    <a href="/hc/en-us/articles/360037270012" target="_self" rel="undefined">Push Notifications documentation</a>
-    to see how you can use this feature. Since Android and iOS handles notifications
-    differently (from how you can send them externally to how they are handled
-    in native code), we need to provide different instructions for these two
-    platforms.
-  </p>
-  <h2>General Setup</h2>
-  <p>
-    <span>First, when setting up Push for the React Native (Bridge) SDK, select the push token mode. This allows you to choose either test or production modes. Note that the </span>push
-    token mode should be set before initialization. U<span style="font-weight:400">se the method below.</span>
-  </p>
-  <pre>// Important: call this method before init method<br>Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");<br>// Countly.messagingMode.DEVELOPMENT<br>// Countly.messagingMode.PRODUCTION<br>// Countly.messagingMode.ADHOC</pre>
-  <p>
-    <span>When you are ready to initialize Countly Push, call <code>Countly.askForNotificationPermission()</code> after <code>init</code>, using the method below.</span>
-  </p>
-  <pre>// Call this method any time.<br>Countly.askForNotificationPermission();<br>// This method will ask for permission, <br>// and send push token to countly server.</pre>
-  <p>
-    To register a Push Notification callback after initialising the SDK, use
-    the method below.
-  </p>
-  <pre>Countly.registerForNotification(function(theNotification){<br>console.log(JSON.stringify(theNotification));<br>});</pre>
-  <h2>Android Setup</h2>
-  <p>
-    Step 1:
-    <span>For FCM credentials setup please follow the instruction from this URL</span><br>
-    <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
-  </p>
-  <p>
-    Step 2: Make sure you have <code>google-services.json</code> from
-    <a href="https://firebase.google.com/">https://firebase.google.com/</a>
-  </p>
-  <p>
-    Step 3: Make sure the app package name and the
-    <code>google-services.json</code> <code>package_name</code> matches.
-  </p>
-  <p>
-    Step 4: Place the <code>google-services.json</code> file inside
-    <code>android/app</code>
-  </p>
-  <p>
-    Step 5: Use google services latest version from this link
-    <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
-  </p>
-  <p>
-    Step 6: Add the following line in the file <code>android/build.gradle</code>
-  </p>
-  <pre><code class="JavaScript">buildscript {
+</div>
+<h1 id="changing-a-device-id" class="anchor-heading">Device ID management</h1>
+<p>
+  When the SDK is initialized the first time and no custom device ID is provided,
+  a random one will be generated. For most use cases that is enough as it provides
+  a random identity to one of your apps users.<span style="font-weight:400"><span></span></span><span style="font-weight:400"><span></span></span>
+</p>
+<p>
+  <span style="font-weight:400"><span>For iOS: the device ID generated by the SDK is the Identifier For Vendor (IDFV).<br>For Android:&nbsp; the device ID generated by the SDK is the OpenUDID or Google Advertising ID.</span></span>
+</p>
+<p>
+  To solve other potential use cases, we provide 3 ways to handle your device id:
+</p>
+<ul>
+  <li>Changing device ID with merge</li>
+  <li>Changing device ID without merge</li>
+  <li>Using a temporary ID</li>
+</ul>
+<h2 id="changing-device-id-with-and-without-merge" class="anchor-heading">Changing device ID with and without merge</h2>
+<p>
+  <span style="font-weight:400">You may configure or change the device ID anytime using the method below.<br></span>
+</p>
+<pre>Countly.<span>changeDeviceId</span>(DEVICE_ID, <span>ON_SERVER</span>);</pre>
+<p>
+  <span>You may either allow the device to be counted as a new device or merge existing data on the server. </span>If
+  <code>onServer</code> is set to <code>true</code>,
+  <span>the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>Otherwise, if&nbsp;<code>onServer</code> is&nbsp;set to <code>false</code>, the device will be counted as a new device on the server.<br></span>
+</p>
+<h2 id="temporary-device-id" class="anchor-heading">Temporary Device ID</h2>
+<p>
+  You may use a temporary device ID mode for keeping all requests on hold until
+  the real device ID is set later.&nbsp;
+</p>
+<p>
+  To enable this
+  <span style="font-weight:400">when initializing the SDK, use the method below.</span>
+</p>
+<pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, "TemporaryDeviceID"</span>)</pre>
+<p>
+  To enable a temporary device ID <strong>after</strong> initialization, use the
+  method below.
+</p>
+<pre>Countly.<span>changeDeviceId</span>(Countly."TemporaryDeviceID", <span>ON_SERVER</span>);</pre>
+<p>
+  <strong>Note:</strong> When passing the<span> </span><code>TemporaryDeviceID</code><span>&nbsp;</span>for
+  the<span>&nbsp;</span><code>deviceID</code><span>&nbsp;</span>parameter, the
+  argument for the <code>onServer</code>parameter does not matter.
+</p>
+<p>
+  As long as the device ID value is<span> </span><code>TemporaryDeviceID</code>,
+  the SDK will be in temporary device ID mode and all requests will be on hold,
+  but they will be persistently stored.
+</p>
+<p>
+  When in temporary device ID mode, method calls for presenting feedback widgets
+  and updating remote config will be ignored.
+</p>
+<p>
+  Later, when the real device ID is set using the<span> </span><code>Countly.<span>changeDeviceId</span>(DEVICE_ID, <span>ON_SERVER</span>);</code><span>&nbsp;</span>method,
+  all requests which have been kept on hold until that point will start with the
+  real device ID.
+</p>
+<h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving the device id</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.
+</p>
+<pre><code class="java hljs">String usedId = Countly().getCurrentDeviceId();</code></pre>
+<h1>Push Notifications</h1>
+<p>
+  Please first check our
+  <a href="/hc/en-us/articles/360037270012" target="_self" rel="undefined">Push Notifications documentation</a>
+  to see how you can use this feature. Since Android and iOS handles notifications
+  differently (from how you can send them externally to how they are handled in
+  native code), we need to provide different instructions for these two platforms.
+</p>
+<h2>General Setup</h2>
+<p>
+  <span>First, when setting up Push for the React Native (Bridge) SDK, select the push token mode. This allows you to choose either test or production modes. Note that the </span>push
+  token mode should be set before initialization. U<span style="font-weight:400">se the method below.</span>
+</p>
+<pre>// Important: call this method before init method<br>Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");<br>// Countly.messagingMode.DEVELOPMENT<br>// Countly.messagingMode.PRODUCTION<br>// Countly.messagingMode.ADHOC</pre>
+<p>
+  <span>When you are ready to initialize Countly Push, call <code>Countly.askForNotificationPermission()</code> after <code>init</code>, using the method below.</span>
+</p>
+<pre>// Call this method any time.<br>Countly.askForNotificationPermission();<br>// This method will ask for permission, <br>// and send push token to countly server.</pre>
+<p>
+  To register a Push Notification callback after initialising the SDK, use the
+  method below.
+</p>
+<pre>Countly.registerForNotification(function(theNotification){<br>console.log(JSON.stringify(theNotification));<br>});</pre>
+<h2>Android Setup</h2>
+<p>
+  Step 1:
+  <span>For FCM credentials setup please follow the instruction from this URL</span><br>
+  <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
+</p>
+<p>
+  Step 2: Make sure you have <code>google-services.json</code> from
+  <a href="https://firebase.google.com/">https://firebase.google.com/</a>
+</p>
+<p>
+  Step 3: Make sure the app package name and the
+  <code>google-services.json</code> <code>package_name</code> matches.
+</p>
+<p>
+  Step 4: Place the <code>google-services.json</code> file inside
+  <code>android/app</code>
+</p>
+<p>
+  Step 5: Use google services latest version from this link
+  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
+</p>
+<p>
+  Step 6: Add the following line in the file <code>android/build.gradle</code>
+</p>
+<pre><code class="JavaScript">buildscript {
     dependencies {
         classpath 'com.google.gms:google-services:4.3.2'
     }
 }
 </code></pre>
-  <p>
-    Step 7: Add the following line in file <code>android/app/build.gradle</code>
-  </p>
-  <pre><code class="JavaScript">// Add this at the bottom of the file
+<p>
+  Step 7: Add the following line in file <code>android/app/build.gradle</code>
+</p>
+<pre><code class="JavaScript">// Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
 </code></pre>
-  <h2>iOS Setup</h2>
-  <p>
-    For iOS push notification please follow the instruction from this URL
-    <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
-  </p>
-  <p>
-    For React Native you can find <code>CountlyNotificationService.h/m</code>
-    file under
-    <code>Pods/Pods/CountlyPod/Core/CountlyNotificationService.h/m</code>
-  </p>
-  <p>
-    You can drag and drop both .h and .m files from Pod to Compile Sources.
-  </p>
-  <div class="img-container">
-    <img src="/hc/article_attachments/900006223363/Screenshot_2020-12-23_at_6.54.30_PM.png" alt="Screenshot_2020-12-23_at_6.54.30_PM.png">
-  </div>
-  <h1 id="parameter-tampering-protection" class="anchor-heading">User Location</h1>
+<h2>iOS Setup</h2>
+<p>
+  For iOS push notification please follow the instruction from this URL
+  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+</p>
+<p>
+  For React Native you can find <code>CountlyNotificationService.h/m</code> file
+  under <code>Pods/Pods/CountlyPod/Core/CountlyNotificationService.h/m</code>
+</p>
+<p>
+  You can drag and drop both .h and .m files from Pod to Compile Sources.
+</p>
+<div class="img-container">
+  <img src="/hc/article_attachments/900006223363/Screenshot_2020-12-23_at_6.54.30_PM.png" alt="Screenshot_2020-12-23_at_6.54.30_PM.png">
 </div>
+<h1 id="parameter-tampering-protection" class="anchor-heading">User Location</h1>
 <p>
   <span>Countly allows you to send geolocation-based push notifications to your users. By default, the Countly Server uses the GeoIP database to deduce a user's location. </span>
 </p>
@@ -428,42 +417,12 @@ var ipAddress = "103.238.105.167";
 
 Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
-<h2>
-  <span style="font-weight:400">Disable Location</span>
-</h2>
+<h2>Disable Location</h2>
 <p>
   <span style="font-weight:400">To erase any cached location data from the device and stop further location tracking, use the following method. Note that i</span><span style="font-weight:400">f after disabling location, the <code>setLocation</code></span><span style="font-weight:400">is called with any non-null value, tracking will resume.</span>
 </p>
 <pre><code class="javascript">//disable location tracking
 Countly.disableLocation();</code></pre>
-<h1>Remote Config</h1>
-<p>
-  <span style="font-weight:400"> Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please review the</span><a href="https://resources.count.ly/docs/remote-config">&nbsp;<span style="font-weight:400">Remote Config documentation</span></a><span style="font-weight:400">. </span>
-</p>
-<pre><code class="javascript">// remoteConfigUpdate will update all remote config values
-Countly.remoteConfigUpdate(function(data){ 
-	console.log(data);
-});
-
-// updateRemoteConfigForKeysOnly will update only those values which keyname are pass in array
-Countly.updateRemoteConfigForKeysOnly(["test1"],function(data){
-	console.log(data);
-});
-
-// updateRemoteConfigExceptKeys will update only values except which keyname are pass in array
-Countly.updateRemoteConfigExceptKeys(["test1"],function(data){
-	console.log(data);
-});
-      
-// getRemoteConfigValueForKey will fetch remote config values for keyname sent
-Countly.getRemoteConfigValueForKey("test1",function(data){
-	console.log(data);
-});</code></pre>
-<p>
-  <span style="font-weight:400">To erase all the values downloaded from the server call the function below.</span>
-</p>
-<pre><code class="javascript">Countly.remoteConfigClearValues();
-</code></pre>
 <h1 id="remote-config" class="anchor-heading">Remote Config</h1>
 <p>
   <span>Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
@@ -512,7 +471,7 @@ Countly.getRemoteConfigValueForKey("test1",function(data){
   <span>At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
 <pre><code class="java hljs">Countly.remoteConfigClearValues();</code></pre>
-<h1>Receiving user feedback</h1>
+<h1>User feedback</h1>
 <p>
   <span style="font-weight:400">There are a different ways of receiving feedback from your users: the Star-rating dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).</span>
 </p>
@@ -715,7 +674,7 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
   the request
 </p>
 <pre>Countly.<span>recordNetworkTrace</span>(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</pre>
-<h1>User Consent Management</h1>
+<h1>User consent</h1>
 <p>
   <span style="font-weight:400">Being compliant with GDPR and other data privacy regulations, Countly provides ways to toggle different Countly tracking features on or off depending on a user's given consent. For more details, please review the </span><a href="https://resources.count.ly/docs/compliance-hub"><span style="font-weight:400">Compliance Hub plugin</span></a><span style="font-weight:400">&nbsp;documentation.</span><span style="font-weight:400"><br></span>
 </p>
@@ -843,7 +802,7 @@ Countly.removeAllConsent();</code></pre>
   <span style="font-weight:400">The string values corresponding to the features that will be used in the <code>giveConsent</code> or <code>removeConsent</code> </span><span style="font-weight:400">methods may be found&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#exposing-available-features-for-consent" target="_self"><span style="font-weight:400">here</span></a><span style="font-weight:400">. In addition, please review our platform SDK documents if the feature is applicable or not for that platform.</span>
 </p>
 <h1>
-  <span style="font-weight:400">Security and privacy: </span>
+  <span style="font-weight:400">Security and privacy</span>
 </h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tampering protection</h2>
 <p>
@@ -891,7 +850,7 @@ Countly.enableParameterTamperingProtection(<span class="hljs-string">"salt"</spa
   Note that <code>count.ly.cer</code> is the name of the file. Replace this file
   with the one you have.
 </p>
-<h1>Other features, configuration options:</h1>
+<h1>Other features</h1>
 <h2>Attribution analytics &amp; install campaigns&nbsp;</h2>
 <p>
   <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
@@ -949,7 +908,7 @@ Countly.setHttpPostForced(false);</code></pre>
 </code></pre>
 <h2>Checking if onStart has been called</h2>
 <p>
-  <span style="font-weight:400">For some Android applications, there might be a use case where the developer would like to check if the Countly SDK onStart function has been called. To do so, use the call below.</span>
+  <span style="font-weight:400">For some applications, there might be a use case where the developer would like to check if the Countly SDK onStart function has been called. To do so, use the call below.</span>
 </p>
 <pre><code class="javascript">Countly.hasBeenCalledOnStart().then(result =&gt; console.log(result)); // true or false </code></pre>
 <h2>Native C++ Crash Reporting</h2>
