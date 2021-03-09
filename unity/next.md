@@ -3,6 +3,20 @@
   You can download the latest release from
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">Github</a>.&nbsp;
 </p>
+<p>
+  The following are some of the key assumptions being considered while developing
+  the SDK. Please take into account the following <strong>before</strong> integrating
+  this SDK:
+</p>
+<ol>
+  <li>Scripting version is based on .NET 4.x equivalent</li>
+  <li>API Compatibility Level is based on .NET 4.x</li>
+  <li>SDK is tested on IOS, Android, Windows, UWP, and Mac OSX</li>
+</ol>
+<p>
+  You can take a look at our sample application in the&nbsp;<a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>.
+  It should show how most of the functionalities can be used.
+</p>
 <div class="callout callout--info">
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
@@ -12,41 +26,55 @@
     <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity" target="_self" rel="undefined">here.</a>
   </p>
 </div>
-<p>
-  The following are some of the key assumptions being considered while developing
-  the SDK. Please take into account the following <strong>before</strong> integrating
-  this SDK:
-</p>
-<ol>
-  <li>Scripting version is based on .NET 4.x equivalent</li>
-  <li>API Compatibility Level is based on .NET 4.x</li>
-</ol>
-<h1>Integration</h1>
+<h1 id="adding-the-countly-sdk" class="anchor-heading">Adding the Countly SDK</h1>
 <p>
   Download the Unity package from
   <a href="https://github.com/Countly/countly-sdk-unity/releases" target="_blank" rel="noopener">GitHub</a>
   and import it into your project.
 </p>
 <h1>
-  <span>Setting up the SDK</span>
+  <span style="font-weight:400">Integration</span>
 </h1>
+<h2>
+  <span>Minimal Setup</span>
+</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.&nbsp;
 </p>
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</pre>
+<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br><strong>AppKey</strong> = <span>COUNTLY_APP_KEY,</span><br><strong>ServerUrl</strong> = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</pre>
+<p>
+  <span><strong>AppKey - </strong>(Mandatory) The “App Key” for the app that you created on the Countly server. Example<strong>:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.</span>
+</p>
+<p>
+  <span><strong>ServerUrl -</strong> (Mandatory) The URL of the Countly server where you are going to post your requests. Example<strong>:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a></span>
+</p>
 <p>
   To configure the SDK during init, a config object called "<strong>CountlyConfiguration</strong>"
   is used. The configuration is done by creating such an object. Afterward that
   config object is provided to the "Init" method.
 </p>
+<h2 id="providing-the-application-key" class="anchor-heading">Providing the application key</h2>
 <p>
-  <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the potential parameters:</span>
+  <span>Also called "AppKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
 </p>
 <p>
-  <span><strong>AppKey - </strong>(Mandatory, string) The “App Key” for the app that you created on the Countly server.&nbsp;<strong>Example:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.<br><strong>serverUrl -</strong>&nbsp;(Mandatory, string) The URL of the Countly server where you are going to post your requests.&nbsp;<strong>Example:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a><br></span>
+  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
+</p>
+<h2 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h2>
+<p>
+  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
+</p>
+<p>
+  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
+</p>
+<h2>
+  <span style="font-weight:400"><span>Optional Configuration</span></span>
+</h2>
+<p>
+  <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the optional parameters:</span><span></span>
 </p>
 <p>
   <strong>DeviceId -<span>&nbsp;</span></strong>(Optional, string) Your Device
@@ -112,20 +140,6 @@
   to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
-</p>
-<h2 id="providing-the-application-key" class="anchor-heading">Providing the application key</h2>
-<p>
-  <span>Also called "AppKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
-</p>
-<p>
-  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
-</p>
-<h2 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h2>
-<p>
-  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
-</p>
-<p>
-  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span><span></span>
 </p>
 <h2 id="enabling-logging" class="anchor-heading">Enabling logging</h2>
 <p>
