@@ -23,8 +23,11 @@
   <li>SDK is tested on IOS, Android, Windows, UWP, and Mac OSX</li>
 </ol>
 <p>
-  You can take a look at our sample application in the&nbsp;<a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>.
-  It should show how most of the functionalities can be used
+  To look at our sample application, download the sample project from
+  <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>
+  and open the 'EntryPoint.unity' scene. 'EntryPoint.unity' located in 'Example'
+  folder under Assest. There is also 'CountlyEntryPoint.cs' script in Example folder,
+  and this script shows how most of the functionalities can be used.
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
@@ -95,30 +98,40 @@
   <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Adding Write Permission</strong></span>
-  </p>
-  <p>
-    If you expect the game to be saved
-    <span>on an SD card or any other type of external storage</span>, set
-    <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
-  </p>
-  <p>
-    For more information, check the sample app on
-    <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;
-  </p>
+<h2 id="crash-reporting" class="anchor-heading">SDK data storage</h2>
+<p>
+  Countly SDK s<span>tore data that are meant for your app's use only, within an internal storage volume. If your game saves in external storage, SDK will store data within external storage. You may need to add permission to store data on an SD card. Please read the </span><a href="https://support.count.ly/hc/en-us/articles/900004822063/preview/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTAwMDA0ODIyMDYzLCJleHAiOjE2MTUzMDgyNzh9.8RmHSX-vMkkqfVVXyS-u5wQHNSeWKrmimjVPyV6uqqk#crash-reporting" target="_self">Required app permissions</a>
+  section for more information.
+</p>
+<p>
+  SDK uses Preferences to keep track of application and user preferences and s<span>tore private, primitive data in key-value pairs. </span>Operational
+  data stores in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'. <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> is a fast acid table-style document NoSQL Embedded Database.&nbsp;<br></span>
+</p>
+<p>
+  <span>SDK save <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform:</span>
+</p>
+<p>
+  <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+</p>
+<h2 id="crash-reporting" class="anchor-heading">Required app permissions</h2>
+<p>
+  If you expect the game to be saved
+  <span>on an SD card or any other type of external storage</span>, set
+  <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
+</p>
+<div class="c-message_attachment__row">
+  <span class="c-message_attachment__text" data-qa="message_attachment_text"><span dir="auto">When configuring your app, make sure that it has permissions to access the internet.</span></span>
 </div>
 <h2>SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
 <pre>Countly.Instance.</pre>
-<h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
+<h1 class="anchor-heading" tabindex="-1">Crash reporting</h1>
 <p>
   <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2>Automatic crash reporting</h2>
+<h2>Automatic crash handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
   to the Countly server. To report uncaught exceptions/crashes automatically, enable
@@ -154,9 +167,7 @@
     is fatal.
   </li>
 </ul>
-<h2 id="logging-handled-exceptions" class="anchor-heading">
-  <span>Reporting exceptions</span>
-</h2>
+<h2 id="logging-handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span>
 </p>
@@ -172,7 +183,7 @@
 </p>
 <pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
-<h2 id="adding-breadcrumbs" class="anchor-heading">Adding breadcrumbs</h2>
+<h2 id="adding-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave&nbsp;crash breadcrumbs
   <span>Mandatory that </span>which would describe previous steps that were taken
