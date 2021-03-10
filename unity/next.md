@@ -113,6 +113,9 @@
 <p>
   <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
 </p>
+<p>
+  <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Unity editor create database document file at<br>"/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.box" on Mac OSX.</span>
+</p>
 <h2 id="crash-reporting" class="anchor-heading">Required app permissions</h2>
 <p>
   If you expect the game to be saved
