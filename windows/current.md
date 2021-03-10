@@ -6,12 +6,17 @@
     <span class="wysiwyg-font-size-large"><strong>Minimum Windows version</strong></span>
   </p>
   <p>
-    Countly Windows SDK supports following operating system versions:
+    Countly Windows SDK supports following operating systems and .NET versions:
   </p>
-  <p>
-    Windows 8.1 Windows 10 Windows 10 Mobile .NET 3.5 .NET 4.0 Client Profile
-    .NET 4.5 and above .NET Standard 2.0 Xamarin (Android, iOS)
-  </p>
+  <ul>
+    <li>Windows 8.1</li>
+    <li>Windows 10</li>
+    <li>Windows 10 Mobile</li>
+    <li>.NET 3.5</li>
+    <li>.NET 4.0 Client Profile</li>
+    <li>.NET 4.5 and above</li>
+    <li>.NET Standard 2.0</li>
+  </ul>
 </div>
 <div class="callout callout--info">
   <p class="callout__title">
