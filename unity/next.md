@@ -108,7 +108,7 @@
   data stores in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'. <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> is a fast acid table-style document NoSQL Embedded Database.&nbsp;<br></span>
 </p>
 <p>
-  <span>SDK save <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform:</span>
+  <span>The SDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform:</span>
 </p>
 <p>
   <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
