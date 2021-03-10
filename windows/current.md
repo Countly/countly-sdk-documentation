@@ -6,7 +6,7 @@
     <span class="wysiwyg-font-size-large"><strong>Minimum Windows version</strong></span>
   </p>
   <p>
-    Countly Windows SDK supports following operating systems and .NET versions:
+    The Countly Windows SDK supports the following operating systems and .NET versions:
   </p>
   <ul>
     <li>Windows 8.1</li>
