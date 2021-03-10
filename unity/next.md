@@ -27,7 +27,7 @@
   <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>
   and open the 'EntryPoint.unity' scene. 'EntryPoint.unity' located in 'Example'
   folder under Assest. There is also 'CountlyEntryPoint.cs' script in Example folder,
-  and this script shows how most of the functionalities can be used.
+  and this script shows how most of the functionality can be used.
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
