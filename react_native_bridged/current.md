@@ -21,6 +21,13 @@
 <p>
   <span style="font-weight:400">This is the Countly SDK for React Native applications. It features bridging, meaning it includes all the functionalities that Android and iOS SDKs provide rather than having those functionalities as React Native code.</span>
 </p>
+<p>
+  <span style="font-weight:400"><strong>Supported Platforms:</strong>&nbsp;Countly SDK supports iOS and Android.<br></span>
+</p>
+<p>
+  You can take a look at our sample application in the&nbsp;<a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>.
+  It should show how most of the functionalities can be used.
+</p>
 <h1>Adding the SDK to the project</h1>
 <p>
   <span style="font-weight:400">In order to use the React Native SDK, please use the following commands to create a new React Native application.</span>
@@ -85,11 +92,15 @@ Countly.start(); // start session tracking
   <span style="font-weight:400"><span>You may provide your own custom device ID when</span> initializing the SDK using the method below.</span>
 </p>
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
+<h2 class="anchor-heading">SDK data storage</h2>
+<p>
+  <span>The SDK persistently stored requests in a queue and sent them to the Countly server after every minute or after reaches a threshold and on a successful response from the server remove a request from the queue.</span>
+</p>
 <h1 id="crash-reporting" class="anchor-heading">Crash reporting</h1>
 <p>
   <span>The Countly SDK has the ability to collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>crash reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2 id="enabling-automatic-crash-reporting" class="anchor-heading">Enabling automatic crash reporting</h2>
+<h2 id="enabling-automatic-crash-reporting" class="anchor-heading">Automatic crash handling</h2>
 <p>
   <span style="font-weight:400">With this feature, the Countly SDK will generate a crash report if your application crashes due to an exception and send it to the Countly server for further inspection.</span>
 </p>
@@ -101,7 +112,7 @@ Countly.start(); // start session tracking
 </p>
 <pre><code class="javascript">// Using Countly crash reports
 Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
-<h2 id="adding-a-custom-keyvalue-segment-to-a-crash-report" class="anchor-heading">Adding a custom key-value segment to a crash report</h2>
+<h2 id="adding-a-custom-keyvalue-segment-to-a-crash-report" class="anchor-heading">Automatic crash report segmentation</h2>
 <p>
   <span>You may add a key/value segment to crash reports. For example, you could set which specific library or framework version you used in your app. You may then figure out if there is any correlation between the specific library or another segment and the crash reports.</span>
 </p>
@@ -109,15 +120,7 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
   <span>Use the following function for this purpose:</span>
 </p>
 <pre><code class="java hljs">var segment = {"Key": "Value"};<br>Countly.setCustomCrashSegments(segment);</code></pre>
-<h2 id="adding-breadcrumbs" class="anchor-heading">Adding breadcrumbs</h2>
-<p>
-  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
-  previous steps that were taken in your app before the crash. After a crash happens,
-  they will be sent together with the crash report.
-</p>
-<p>Following the command adds crash breadcrumb:</p>
-<pre><code class="java hljs">Countly.addCrashLog(String record) </code></pre>
-<h2 id="logging-handled-exceptions" class="anchor-heading">Logging handled exceptions</h2>
+<h2 id="logging-handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span>
 </p>
@@ -128,6 +131,93 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <p>
   <span style="font-weight:400">The method <code class="javascript">logException</code>takes a string for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.</span>
 </p>
+<h2 id="adding-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
+<p>
+  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
+  previous steps that were taken in your app before the crash. After a crash happens,
+  they will be sent together with the crash report.
+</p>
+<p>Following the command adds crash breadcrumb:</p>
+<pre><code class="java hljs">Countly.addCrashLog(String record) </code></pre>
+<h2>Native C++ Crash Reporting</h2>
+<p>
+  <span style="font-weight:400">If you have C++ libraries in your Android app, the React Native Bridge SDK allows you to record possible crashes in your Countly server by integrating the <code>sdk-native</code></span><span style="font-weight:400">developed within our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight:400">Android SDK</span></a><span style="font-weight:400">. F</span><span style="font-weight:400">ind more information <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#native-c-crash-reporting" target="_blank" rel="noopener">here</a>.</span>
+</p>
+<p>
+  <span style="font-weight:400">As this feature is optional, you will need to uncomment some parts in our SDK files in order to make it available. </span>
+</p>
+<p>
+  <span style="font-weight:400">1. Go to <code>android/build.gradle</code></span><span style="font-weight:400">and add the package dependency (all file paths in this section are given relative to the <code>countly-sdk-react-native-bridge</code></span><span style="font-weight:400">which was <code>npm</code></span><span style="font-weight:400">installed above):</span>
+</p>
+<pre><code class="shell">dependencies {
+    implementation 'ly.count.android:sdk-native:19.02.3'    
+}</code></pre>
+<p>
+  <span style="font-weight:400">2. Uncomment the following in the <code>android/src/main/java/ly/count/android/sdk/react/CountlyReactNative.java</code></span><span style="font-weight:400">file:</span>
+</p>
+<pre><code class="java">import ly.count.android.sdknative.CountlyNative;
+    
+@ReactMethod
+  public void initNative(){
+  CountlyNative.initNative(getReactApplicationContext());
+}
+	
+@ReactMethod
+  public void testCrash(){
+  CountlyNative.crash();
+}
+    </code></pre>
+<p>
+  <span style="font-weight:400">3. Modify <code>Countly.js</code></span><span style="font-weight:400">to connect from JavaScript to these new methods:</span>
+</p>
+<pre><code class="javascript">Countly.initNative = function(){
+    CountlyReactNative.initNative();
+}
+
+Countly.testCrash = function(){
+    CountlyReactNative.testCrash();
+}</code></pre>
+<p>
+  <span style="font-weight:400">If you are using our sample app in <code>example/App.js</code></span><span style="font-weight:400">,</span><span style="font-weight:400"> also uncomment the following parts in it for easy testing:</span>
+</p>
+<pre><code class="javascript">initNative(){
+  Countly.initNative();
+};
+
+testCrash(){
+  Countly.testCrash();
+}
+
+// ...
+
+            &lt; Button onPress = { this.initNative } title = "Init Native" color = "#00b5ad"&gt; 
+            &lt; Button onPress = { this.testCrash } title = "Test Native Crash" color = "crimson"&gt; 
+
+</code></pre>
+<p>
+  <span style="font-weight:400">We suggest calling <code>Countly.initNative()</code></span><span style="font-weight:400"> as soon as your app is initialized to be able to catch setup time crashes. Sending crash dump files to the server will be taken care of by the Android SDK during the next app initialization. We also provide a Gradle plugin that automatically uploads symbol files to your server (these are needed for the symbolication of crash dumps). Integrate it into your React Native project as explained in the relevant Android documentation </span><a href="https://resources.count.ly/docs/countly-sdk-for-android#section-native-c-crash-reporting"><span style="font-weight:400">page</span></a><span style="font-weight:400">.</span>
+</p>
+<p>
+  <span style="font-weight:400">This is what the debug logs will look like if you use this feature:</span>
+</p>
+<pre><code class="text">$ adb logcat -s Countly:V countly_breakpad_cpp:V
+
+# when Countly.initNative() is called 
+
+D/countly_breakpad_cpp(123): breakpad initialize succeeded. dump files will be saved at /Countly/CrashDumps
+
+# when a crash occurs (you may trigger one by Countly.testCrash())
+
+D/countly_breakpad_cpp(123): DumpCallback started
+D/countly_breakpad_cpp(123): DumpCallback ==&gt; succeeded path=/Countly/CrashDumps/30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp
+
+# when app is run again after the crash 
+
+D/Countly (124): Initializing...
+D/Countly (124): Checking for native crash dumps
+D/Countly (124): Native crash folder exists, checking for dumps
+D/Countly (124): Crash dump folder contains [1] files
+D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
 <h1 id="custom-events" class="anchor-heading">Custom Events</h1>
 <h2 id="setting-up-custom-events" class="anchor-heading">Setting up custom events</h2>
 <p>
@@ -911,85 +1001,6 @@ Countly.setHttpPostForced(false);</code></pre>
   <span style="font-weight:400">For some applications, there might be a use case where the developer would like to check if the Countly SDK onStart function has been called. To do so, use the call below.</span>
 </p>
 <pre><code class="javascript">Countly.hasBeenCalledOnStart().then(result =&gt; console.log(result)); // true or false </code></pre>
-<h2>Native C++ Crash Reporting</h2>
-<p>
-  <span style="font-weight:400">If you have C++ libraries in your Android app, the React Native Bridge SDK allows you to record possible crashes in your Countly server by integrating the <code>sdk-native</code></span><span style="font-weight:400">developed within our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight:400">Android SDK</span></a><span style="font-weight:400">. F</span><span style="font-weight:400">ind more information <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#native-c-crash-reporting" target="_blank" rel="noopener">here</a>.</span>
-</p>
-<p>
-  <span style="font-weight:400">As this feature is optional, you will need to uncomment some parts in our SDK files in order to make it available. </span>
-</p>
-<p>
-  <span style="font-weight:400">1. Go to <code>android/build.gradle</code></span><span style="font-weight:400">and add the package dependency (all file paths in this section are given relative to the <code>countly-sdk-react-native-bridge</code></span><span style="font-weight:400">which was <code>npm</code></span><span style="font-weight:400">installed above):</span>
-</p>
-<pre><code class="shell">dependencies {
-    implementation 'ly.count.android:sdk-native:19.02.3'    
-}</code></pre>
-<p>
-  <span style="font-weight:400">2. Uncomment the following in the <code>android/src/main/java/ly/count/android/sdk/react/CountlyReactNative.java</code></span><span style="font-weight:400">file:</span>
-</p>
-<pre><code class="java">import ly.count.android.sdknative.CountlyNative;
-    
-@ReactMethod
-  public void initNative(){
-  CountlyNative.initNative(getReactApplicationContext());
-}
-	
-@ReactMethod
-  public void testCrash(){
-  CountlyNative.crash();
-}
-    </code></pre>
-<p>
-  <span style="font-weight:400">3. Modify <code>Countly.js</code></span><span style="font-weight:400">to connect from JavaScript to these new methods:</span>
-</p>
-<pre><code class="javascript">Countly.initNative = function(){
-    CountlyReactNative.initNative();
-}
-
-Countly.testCrash = function(){
-    CountlyReactNative.testCrash();
-}</code></pre>
-<p>
-  <span style="font-weight:400">If you are using our sample app in <code>example/App.js</code></span><span style="font-weight:400">,</span><span style="font-weight:400"> also uncomment the following parts in it for easy testing:</span>
-</p>
-<pre><code class="javascript">initNative(){
-  Countly.initNative();
-};
-
-testCrash(){
-  Countly.testCrash();
-}
-
-// ...
-
-            &lt; Button onPress = { this.initNative } title = "Init Native" color = "#00b5ad"&gt; 
-            &lt; Button onPress = { this.testCrash } title = "Test Native Crash" color = "crimson"&gt; 
-
-</code></pre>
-<p>
-  <span style="font-weight:400">We suggest calling <code>Countly.initNative()</code></span><span style="font-weight:400"> as soon as your app is initialized to be able to catch setup time crashes. Sending crash dump files to the server will be taken care of by the Android SDK during the next app initialization. We also provide a Gradle plugin that automatically uploads symbol files to your server (these are needed for the symbolication of crash dumps). Integrate it into your React Native project as explained in the relevant Android documentation </span><a href="https://resources.count.ly/docs/countly-sdk-for-android#section-native-c-crash-reporting"><span style="font-weight:400">page</span></a><span style="font-weight:400">.</span>
-</p>
-<p>
-  <span style="font-weight:400">This is what the debug logs will look like if you use this feature:</span>
-</p>
-<pre><code class="text">$ adb logcat -s Countly:V countly_breakpad_cpp:V
-
-# when Countly.initNative() is called 
-
-D/countly_breakpad_cpp(123): breakpad initialize succeeded. dump files will be saved at /Countly/CrashDumps
-
-# when a crash occurs (you may trigger one by Countly.testCrash())
-
-D/countly_breakpad_cpp(123): DumpCallback started
-D/countly_breakpad_cpp(123): DumpCallback ==&gt; succeeded path=/Countly/CrashDumps/30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp
-
-# when app is run again after the crash 
-
-D/Countly (124): Initializing...
-D/Countly (124): Checking for native crash dumps
-D/Countly (124): Native crash folder exists, checking for dumps
-D/Countly (124): Crash dump folder contains [1] files
-D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
 <h2>Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
