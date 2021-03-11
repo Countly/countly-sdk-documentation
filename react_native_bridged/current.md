@@ -94,10 +94,8 @@ Countly.start(); // start session tracking
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
 <p>
-  <span>The SDK persistently stored requests in a queue and sent them to the Countly server after every minute or after reaches a threshold and on a successful response from the server remove a request from the queue.<br></span>For
-  iOS: SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
-  For Android: SDK data is stored in
-  <span>SharedPreferences. A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them. Each SharedPreferences file is managed by the framework and can be private or shared.</span>
+For iOS devices SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
+  For Android devices SDK data is stored in SharedPreferences.
 </p>
 <h1 id="crash-reporting" class="anchor-heading">Crash reporting</h1>
 <p>
