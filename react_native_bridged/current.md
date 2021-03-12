@@ -454,13 +454,27 @@ apply plugin: 'com.google.gms.google-services'
 </p>
 <p>
   For React Native you can find <code>CountlyNotificationService.h/m</code> file
-  under <code>Pods/Pods/CountlyPod/Core/CountlyNotificationService.h/m</code>
+  under
+  <code>Pods/Development Pods/CountlyReactNative/CountlyNotificationService.h/m</code>
 </p>
+<p>
+  <strong>Pro Tips to find the files from deep hierarchy:<br></strong>
+</p>
+<ul>
+  <li>
+    You can filter the files in the navigator using a shortcut ⌥⌘J (Option-Command-J),
+    in the filter box type "CountlyNotificationService" and it will show the
+    related files only.
+  </li>
+  <li>
+    <span>&nbsp;You can find the file using the shortcut</span><span> ⇧⌘O (Shift-Command-O) and then navigate to that file using the shortcut ⇧⌘J (Shift-Command-J)</span>
+  </li>
+</ul>
 <p>
   You can drag and drop both .h and .m files from Pod to Compile Sources.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/900006223363/Screenshot_2020-12-23_at_6.54.30_PM.png" alt="Screenshot_2020-12-23_at_6.54.30_PM.png">
+  <img src="/hc/article_attachments/900007796263/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
 </div>
 <h1 id="parameter-tampering-protection" class="anchor-heading">User Location</h1>
 <p>
