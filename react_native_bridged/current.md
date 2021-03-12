@@ -46,7 +46,7 @@ npm start                           # Run the build server</code></pre>
   <span style="font-weight:400">Run the following snippet in the root directory of your React Native project to install the npm dependencies and link&nbsp;</span><strong>native libraries</strong><span style="font-weight:400">.<br><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
 </p>
 <pre># Include the Countly Class in the file that you want to use.<br>npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git<br># OR <br>npm install --save countly-sdk-react-native-bridge@20.11.0<br><br># Linking the library to your app<br><br># react-native &lt; 0.60. For both Android and iOS<br>react-native link countly-sdk-react-native-bridge<br>cd node_modules/countly-sdk-react-native-bridge/ios/<br>pod install <br>cd ../../../<br><br># react-native &gt;= 0.60 for iOS (Android will autolink)<br>cd ios <br>pod install<br>cd ..</pre>
-<h1 id="setting-up-the-countly-sdk" class="anchor-heading">Integration</h1>
+<h1 id="setting-up-the-countly-sdk" class="anchor-heading">SDK Integration</h1>
 <p>
   <span style="font-weight:400">We will need to call two methods (<code>init</code> and <code>start</code>) in order to set up our SDK. You may also like to specify other parameters at this step (i.e. whether logging will be used). These methods should only be called once during the app's lifecycle and should be done as early as possible. Your main app component's <code>componentDidMount</code>method may be a good place.&nbsp;</span>
 </p>
@@ -65,14 +65,18 @@ Countly.start(); // start session tracking
 <p>
   <span class="wysiwyg-color-black" style="font-weight:400">After <code>init</code> and <code>start</code> have been called once, you may use the commands in the rest of this document to send additional data and metrics to your server.</span>
 </p>
-<h2 id="providing-the-application-key" class="anchor-heading">Providing the application key</h2>
+<p id="providing-the-application-key" class="anchor-heading">
+  <span class="wysiwyg-font-size-large"><strong>Providing the application key</strong></span>
+</p>
 <p>
   <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
 </p>
 <p>
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<h2 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h2>
+<p id="providing-the-server-url" class="anchor-heading">
+  <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
+</p>
 <p>
   <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
 </p>
@@ -94,8 +98,9 @@ Countly.start(); // start session tracking
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
 <p>
-For iOS devices SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
-  For Android devices SDK data is stored in SharedPreferences.
+  For iOS: SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
+  For Android: SDK data is stored in
+  <span>SharedPreferences. A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them.</span>
 </p>
 <h1 id="crash-reporting" class="anchor-heading">Crash reporting</h1>
 <p>
@@ -259,13 +264,21 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     occurred +&nbsp;<span>the total amount, both of which are also available, segmented into countries and application versions.</span><span></span>
   </li>
 </ul>
-<h3 id="1-event-key-and-count" class="anchor-heading">1. Event key and count</h3>
+<p id="1-event-key-and-count" class="anchor-heading">
+  <strong>1. Event key and count</strong>
+</p>
 <pre><code class="java hljs">var event = {"eventName":"Purchase","eventCount":1};<br>Countly.sendEvent(event);</code></pre>
-<h3 id="2-event-key-count-and-sum" class="anchor-heading">2. Event key, count, and sum</h3>
+<p id="2-event-key-count-and-sum" class="anchor-heading">
+  <strong>2. Event key, count, and sum</strong>
+</p>
 <pre><code class="java hljs">var event = {"eventName":"Purchase","eventCount":1,"eventSum":"0.99"};<br>Countly.sendEvent(event);</code></pre>
-<h3 id="3-event-key-and-count-with-segmentations" class="anchor-heading">3. Event key and count with segmentation(s)</h3>
+<p id="3-event-key-and-count-with-segmentations" class="anchor-heading">
+  <strong>3. Event key and count with segmentation(s)</strong>
+</p>
 <pre><code class="java hljs">var event = {"eventName":"<span class="hljs-string">purchase</span>","eventCount":1}; <br>event.segments = {"Country" : "Germany", "<span class="hljs-string">app_version</span>" : "1.0"}; <br>Countly.sendEvent(event);</code></pre>
-<h3 id="4-event-key-count-and-sum-with-segmentations" class="anchor-heading">4. Event key, count, and sum with segmentation(s)</h3>
+<p id="4-event-key-count-and-sum-with-segmentations" class="anchor-heading">
+  <strong>4. Event key, count, and sum with segmentation(s)</strong>
+</p>
 <pre><code class="java hljs">var event = {"eventName":"purchase","eventCount":1};<br>event.segments = {"Country" : "Germany", "app_version" : "1.0","eventSum":"0.99"};<br>Countly.sendEvent(event);</code></pre>
 <p>
   <span>Those are only a few examples of what you can do with custom events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
@@ -474,7 +487,7 @@ apply plugin: 'com.google.gms.google-services'
 <div class="img-container">
   <img src="/hc/article_attachments/900007796263/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
 </div>
-<h1 id="parameter-tampering-protection" class="anchor-heading">User Location</h1>
+<h1>User Location</h1>
 <p>
   <span>Countly allows you to send geolocation-based push notifications to your users. By default, the Countly Server uses the GeoIP database to deduce a user's location. </span>
 </p>
@@ -583,7 +596,21 @@ Countly.disableLocation();</code></pre>
 <p>
   <span style="font-weight:400">The Star-rating dialog allows users to give feedback as a rating from 1 to 5. The Ratings widget allows users to rate using the same 1 to 5 emoji-based rating system as well as leave a text comment. The Surveys widgets (Surveys and NPS®) allow for even more targeted feedback from users.</span>
 </p>
-<h2>Ratings widget</h2>
+<h2>Star rating dialog</h2>
+<p>
+  <span style="font-weight:400">The Star-rating integration provides a dialog for getting user feedback about an application. It contains a title, a simple message explaining its purpose, a 1 through 5-star meter for getting users rating, and a dismiss button in case the user does not want to give a rating.</span>
+</p>
+<p>
+  <span style="font-weight:400">This star rating has nothing to do with Google Play Store ratings and reviews. It is simply for getting brief feedback from your users to be displayed on the Countly dashboard. If the user dismisses the star-rating dialog without giving a rating, the event will not be recorded.</span>
+</p>
+<pre><code class="javascript">Countly.showStarRating();</code></pre>
+<p>
+  The star-rating dialog's title, message, and dismiss button text may be customized
+  either through the <code>init</code> function or the&nbsp;<code>SetStarRatingDialogTexts</code>
+  function.&nbsp;
+</p>
+<pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
+<h2>Rating widget</h2>
 <p>
   <span style="font-weight:400">The rating widget displays a server-configured widget to your user devices.</span>
 </p>
@@ -609,21 +636,7 @@ Countly.disableLocation();</code></pre>
   <span style="font-weight:400">Then, call the function to show the widget popup using the widget ID below.</span>
 </p>
 <pre><code class="javascript">Countly.showFeedbackPopup("WidgetId", "Button Text");</code></pre>
-<h2>Star-rating dialog</h2>
-<p>
-  <span style="font-weight:400">The Star-rating integration provides a dialog for getting user feedback about an application. It contains a title, a simple message explaining its purpose, a 1 through 5-star meter for getting users rating, and a dismiss button in case the user does not want to give a rating.</span>
-</p>
-<p>
-  <span style="font-weight:400">This star rating has nothing to do with Google Play Store ratings and reviews. It is simply for getting brief feedback from your users to be displayed on the Countly dashboard. If the user dismisses the star-rating dialog without giving a rating, the event will not be recorded.</span>
-</p>
-<pre><code class="javascript">Countly.showStarRating();</code></pre>
-<p>
-  The star-rating dialog's title, message, and dismiss button text may be customized
-  either through the <code>init</code> function or the&nbsp;<code>SetStarRatingDialogTexts</code>
-  function.&nbsp;
-</p>
-<pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
-<h2>Surveys widget</h2>
+<h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
@@ -906,10 +919,8 @@ Countly.removeAllConsent();</code></pre>
 <p>
   <span style="font-weight:400">The string values corresponding to the features that will be used in the <code>giveConsent</code> or <code>removeConsent</code> </span><span style="font-weight:400">methods may be found&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#exposing-available-features-for-consent" target="_self"><span style="font-weight:400">here</span></a><span style="font-weight:400">. In addition, please review our platform SDK documents if the feature is applicable or not for that platform.</span>
 </p>
-<h1>
-  <span style="font-weight:400">Security and privacy</span>
-</h1>
-<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tampering protection</h2>
+<h1>Security and privacy</h1>
+<h2>Parameter tampering protection</h2>
 <p>
   You can set optional<span>&nbsp;</span><code>salt</code><span>&nbsp;</span>to
   be used for calculating checksum of request data, which will be sent with each
@@ -926,7 +937,9 @@ Countly.enableParameterTamperingProtection(<span class="hljs-string">"salt"</spa
   Countly won't accept any incoming requests.
 </p>
 <h2>Pinned Certificate (Call this method before initialization)</h2>
-<h4>Terminal</h4>
+<p>
+  <strong>Terminal</strong>
+</p>
 <pre>openssl s_client -connect try.count.ly:443 -showcerts</pre>
 <p>
   Run the above command and copy the content inside the begin certificate and the
@@ -940,16 +953,22 @@ Countly.enableParameterTamperingProtection(<span class="hljs-string">"salt"</spa
   Note that Android needs the certificate string, while iOS needs the entire .cer
   file.
 </p>
-<h4>Android</h4>
+<p>
+  <strong>Android</strong>
+</p>
 <pre>cd AwesomeProject<br>ls<br>count.ly.cer<br>mkdir -p ./android/app/src/main/assets/<br>cp ./count.ly.cer ./android/app/src/main/assets/</pre>
-<h4>iOS</h4>
+<p>
+  <strong>iOS</strong>
+</p>
 <pre>open ./ios/AwesomeProject.xcworkspace<br>Right click on AwesomeProject and select `New Group` (ScreenShot 1)<br>Name it `Resources`<br>Drag and Drop count.ly.cer file under that folder (ScreenShot 2)<br>Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <pre><br><img src="/hc/article_attachments/900002229303/Screenshot_2020-07-07_at_11.39.02_AM.png" alt="Screenshot_2020-07-07_at_11.39.02_AM.png"><br><img src="/hc/article_attachments/900001515963/ScreenShot_Pinned_Certificate_1.png" alt="ScreenShot_Pinned_Certificate_1.png"></pre>
 <p>
   <img src="/hc/article_attachments/900001515983/Screenshot_Pinned_Certificate_2.png" alt="Screenshot_Pinned_Certificate_2.png">
 </p>
 <pre><img src="/hc/article_attachments/900002229363/Screenshot_2020-07-07_at_11.39.40_AM.png" alt="Screenshot_2020-07-07_at_11.39.40_AM.png"></pre>
-<h4>JavaScript</h4>
+<p>
+  <strong>JavaScript</strong>
+</p>
 <pre>Countly.pinnedCertificates("count.ly.cer");</pre>
 <p>
   Note that <code>count.ly.cer</code> is the name of the file. Replace this file
