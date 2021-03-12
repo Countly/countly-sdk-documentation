@@ -108,10 +108,7 @@
   data stores in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'. <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> is a fast acid table-style document NoSQL Embedded Database.&nbsp;<br></span>
 </p>
 <p>
-  <span>The SDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform:</span>
-</p>
-<p>
-  <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+  <span>The SDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform: </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
 </p>
 <p>
   <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Unity editor create database document file at<br>"/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.box" on Mac OSX.</span>
@@ -134,13 +131,6 @@
 <p>
   <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2>Automatic crash handling</h2>
-<p>
-  The Unity SDK can automatically report uncaught exceptions/crashes in the application
-  to the Countly server. To report uncaught exceptions/crashes automatically, enable
-  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
-</p>
-<h2 id="accessing-crashrelated-functionality" class="anchor-heading">Accessing crash-related functionalities</h2>
 <p>
   In the SDK all crash-related functionalities can be browsed from the returned
   interface on:
@@ -170,6 +160,12 @@
     is fatal.
   </li>
 </ul>
+<h2>Automatic crash handling</h2>
+<p>
+  The Unity SDK can automatically report uncaught exceptions/crashes in the application
+  to the Countly server. To report uncaught exceptions/crashes automatically, enable
+  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
+</p>
 <h2 id="logging-handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span>
@@ -196,7 +192,6 @@
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h1>Custom events</h1>
-<h2>Setting up custom events</h2>
 <p>
   <span style="font-weight:400">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight:400">custom event</span></a><span style="font-weight:400"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
@@ -206,7 +201,6 @@
   the server once the threshold limit is reached. By default, Countly tracks only
   up to 100 events. However, this is also configurable.
 </p>
-<h2>Accessing event-related functionalities</h2>
 <p>
   In the SDK, all custom event-related functionalities can be browsed from the
   returned interface on:
@@ -235,12 +229,14 @@
     <strong>duration -</strong> set sum if needed, the default value is "0".
   </li>
 </ul>
-<h2>Segmentation</h2>
+<p>
+  <strong>Segmentation</strong>
+</p>
 <p>
   When providing segmentation for events, the only valid data types are: "String",
   "Integer", "Double", and "Boolean". All other types will be ignored.
 </p>
-<h2>Custom event usage examples</h2>
+<h2>Recording events</h2>
 <p>
   <span style="font-weight:400">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight:400">ere is a quick summary of the information for each usage:</span>
 </p>
@@ -267,20 +263,30 @@
     <span style="font-weight:400">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
-<h3>1. Event key and count</h3>
+<p>
+  <strong>1. Event key and count</strong>
+</p>
 <pre><code class="java"><strong>await</strong> countly.Events.RecordEventAsync("purchase", count: 1);</code></pre>
-<h3>2. Event key, count, and sum</h3>
+<p>
+  <strong>2. Event key, count, and sum</strong>
+</p>
 <pre><code class="java"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
-<h3>3. Event key and count with segmentation(s)</h3>
+<p>
+  <strong>3. Event key and count with segmentation(s)</strong>
+</p>
 <pre><code class="java">SegmentModel segmentation= new SegmentModel();
 
 <strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segment, count: 1);<br></code></pre>
-<h3>4. Event key, count, and sum with segmentation(s)</h3>
+<p>
+  <strong>4. Event key, count, and sum with segmentation(s)</strong>
+</p>
 <pre><code class="java">SegmentModel segmentation = new SegmentModel();
  segmentation.Add("country", "Germany");<br> segmentation.Add("app_version", "1.0");
 
 <strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segment, count: 1, sum: 0.99);</code></pre>
-<h3>5. Event key, count, sum, and duration with segmentation(s)</h3>
+<p>
+  <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
+</p>
 <pre><code class="java">SegmentModel segmentation = new SegmentModel();
  segmentation.Add("country", "Germany");<br> segmentation.Add("app_version", "1.0");
 
@@ -320,6 +326,7 @@
   <span class="wysiwyg-color-black">calls </span><span style="background-color:#e9ebed;font-family:monospace, monospace;font-size:13px;white-space:pre">Application.Quit()</span>.
 </p>
 <h1>View tracking</h1>
+<h2>Manual view recording</h2>
 <p>
   The Countly Unity SDK supports manual view (screen) tracking. With this feature,
   you can report what views a user did and for how long. Thus, whenever there is
@@ -333,46 +340,23 @@
   method:
 </p>
 <pre><strong>await</strong> countly.Views.RecordCloseViewAsync("Home Scene");</pre>
-<h1>View actions</h1>
-<p>
-  It is possible to report actions taken on views for heat maps or any other purpose.
-  For that, use the following method:
-</p>
-<pre><strong>await</strong> countly.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
-<p>All parameters are mandatory.</p>
-<ul>
-  <li>
-    <strong>type -</strong> (string) Action type
-  </li>
-  <li>
-    <strong>x -</strong> (int) Action's x-coordinate
-  </li>
-  <li>
-    <strong>y -</strong> (int) Action's y-coordinate
-  </li>
-  <li>
-    <strong>width&nbsp;-</strong> (int) Width of screen.
-  </li>
-  <li>
-    <strong>height&nbsp;-</strong> (int) Height of screen.
-  </li>
-</ul>
-<p>example:</p>
-<pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
 <h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
-  The Countly Unity SDK persists Device ID when you provide it during initialization
-  or generates a random ID when you don’t provide it. This Device ID will be used
-  persistently for all future requests made from a device until you change that.
+  <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID by yourself if you have one (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
+<h2>Device ID generation</h2>
+<p>
+  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or generates a random ID when you don’t provide it. This Device ID will be used persistently for all future requests made from a device until you change that.</span>
+</p>
+<h2>Changing device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
   any of the following two methods to changing the Device ID, depending on your
   needs.
 </p>
-<h2>
-  <span>Changing Device ID without server merge</span>
-</h2>
+<p id="changing-device-id-without-server-merge" class="anchor-heading">
+  <strong>1. Changing Device ID without server merge</strong>
+</p>
 <p>
   This method changes the Device ID and does the following other operations:
 </p>
@@ -385,16 +369,16 @@
 </ol>
 <p>Example:</p>
 <pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
-<h2>
-  <span>Changing Device ID with server merge</span>
-</h2>
+<p id="changing-device-id-with-server-merge" class="anchor-heading">
+  <strong>2. Changing Device ID with server merge</strong>
+</p>
 <p>
   This method changes the Device ID and merges data for both Device IDs in the
   Countly server.
 </p>
 <p>Example:</p>
 <pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
-<h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving the Device ID&nbsp;</h2>
+<h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.&nbsp;
@@ -527,6 +511,7 @@
     <span>Your user’s IP address.</span><span></span>
   </li>
 </ul>
+<h2>Setting location</h2>
 <p>
   <span>During init you can either disable location:<br></span>
 </p>
@@ -553,17 +538,44 @@
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
 </p>
+<h1>Heatmaps</h1>
+<h2>Tracking clicks</h2>
+<p>
+  It is possible to track clicks and action taken on views and report them for
+  heat maps or any other purpose. For that, use the following method:
+</p>
+<pre><strong>await</strong> countly.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
+<p>All parameters are mandatory.</p>
+<ul>
+  <li>
+    <strong>type -</strong> (string) Action type
+  </li>
+  <li>
+    <strong>x -</strong> (int) Action's x-coordinate
+  </li>
+  <li>
+    <strong>y -</strong> (int) Action's y-coordinate
+  </li>
+  <li>
+    <strong>width&nbsp;-</strong> (int) Width of screen.
+  </li>
+  <li>
+    <strong>height&nbsp;-</strong> (int) Height of screen.
+  </li>
+</ul>
+<p>example:</p>
+<pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
-<h2 id="manual-remote-config-download" class="anchor-heading">Manual Remote Config download</h2>
+<h2 id="manual-remote-config-download" class="anchor-heading">Manual remote config</h2>
 <p>
   To download Remote Config, call <code>countly.RemoteConfigs.Update()</code>.
   After the successful download, the SDK stores the updated config locally.
 </p>
 <pre><strong>await</strong> countly.RemoteConfigs.Update();</pre>
-<h2 id="getting-remote-config-values" class="anchor-heading">Getting Remote Config</h2>
+<h2>Accessing remote config values</h2>
 <p>
   To access the stored config,&nbsp; call
   <code>countly.RemoteConfigs.Configs</code>. It will return <code>null</code>
@@ -572,7 +584,7 @@
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
 <h1>User feedback</h1>
 <p>
-  <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback and comments. For more details</span>,
+  <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback . For more details</span>,
   please see the
   <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
@@ -621,7 +633,7 @@
   Apart from the above data, you can also add custom data for a user. The SDK allows
   you to upload user details using the methods listed below.
 </p>
-<h2 id="setting-up-user-profiles" class="anchor-heading" tabindex="-1">Setting up User Profiles</h2>
+<h2>Setting predefined values</h2>
 <p>
   <span>Available in the Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information.&nbsp;</span>
 </p>
@@ -630,7 +642,7 @@
 </p>
 <p>Example:</p>
 <pre><strong>var</strong> userDetails = <strong>new</strong> CountlyUserDetailsModel( "Full Name", "username", "useremail@email.com", "Organization", "222-222-222", "http://webresizer.com/images2/bird1_after.jpg", "M", "1986",<br>    <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Hair", "Black" }, <br>    { "Race", "Asian" }, <br>}); <br><strong>await</strong> countly.UserDetails.SetUserDetailsAsync(userDetails);</pre>
-<h2>Setting up custom user details</h2>
+<h2>Setting custom values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
   even when you don’t want to send other user-related data. Similar to the above
@@ -642,7 +654,7 @@
 </p>
 <p>Example:</p>
 <pre>var userDetails = <strong>new</strong> CountlyUserDetailsModel( <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Height", "5.8" }, <br>    { "Mole", "Lower Left Cheek" } <br>    });<br><strong>await</strong> countly.UserDetails.SetCustomUserDetailsAsync(userDetails);</pre>
-<h2 id="modifying-custom-data" class="anchor-heading">Modifying custom data</h2>
+<h2>Modifying data</h2>
 <p>
   <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
 </p>
@@ -677,7 +689,9 @@
   <code><strong>await</strong> countly.UserDetails.SaveAsync();</code> to send
   them to the server.
 </p>
-<h2>Recording multiple update requests</h2>
+<p>
+  <strong>Recording multiple update requests</strong>
+</p>
 <p>
   Apart from updating a single property in one request, you can modify multiple
   (unique) properties in one single request. This way you can increment Weight
@@ -700,6 +714,7 @@
 <p>
   More information about GDPR can be found<span>&nbsp;</span><a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
+<h2>Enabling consent</h2>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
@@ -712,9 +727,6 @@
 </p>
 <p>
   <span>Consent for features may be given and revoked at any time, but if it is given after Countly init, some features may only work in part.</span>
-</p>
-<p>
-  <span>If consent is removed, but the appropriate function can't be called before the app closes, it should be done upon the next app start, so that any relevant server-side features may be disabled (such as the reverse geo IP for location).</span>
 </p>
 <p>
   <span>Feature names in the <strong>Unity SDK</strong> are stored as <strong>Enum</strong> called <code>Consents</code></span><span>.</span>
@@ -755,21 +767,15 @@
   *<span> </span><code>RemoteConfig</code><span>&nbsp;</span>- allow downloading
   remote config values from your server
 </p>
-<h2>
-  <span>Giving Consent During Init</span>
-</h2>
-<h3>
-  <span>Give Consents individually</span>
-</h3>
 <p>
   In case consent is required, you may give consent to features before the SDK
   Init call. These features consents are not persistent and must be given on every
   restart.
 </p>
 <pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be given</span></code><br><code class="java hljs">Consents[] consents = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// give consents to the features</span></code><br><code class="java hljs">configuration.GiveConsent(consents);</code></pre>
-<h3>
-  <span>Give Consents in groups</span>
-</h3>
+<h2>
+  <span style="font-weight:400">Feature groups</span>
+</h2>
 <p>
   <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>CreateConsentGroup</code></span><span>. Those groups are not persistent and must be created on every restart. Consents to groups may be given to using <code class="java hljs">GiveConsentToGroup</code>.</span>
 </p>
