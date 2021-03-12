@@ -43,7 +43,7 @@ flutter run</code></pre>
   You can install packages from the command line with Flutter:
 </p>
 <pre><code class="shell">flutter pub get</code></pre>
-<h1 id="setting-up-the-countly-sdk" class="anchor-heading">Integration</h1>
+<h1 id="setting-up-the-countly-sdk" class="anchor-heading">SDK Integration</h1>
 <p>
   Below you can find necessary code snippets to initialize the SDK for sending
   data to Countly servers. Where possible, use your server URL instead of
@@ -55,16 +55,18 @@ flutter run</code></pre>
   dashboard, under the "Applications" menu item.
 </p>
 <pre>Countly.<span>isInitialized</span>().then((bool isInitialized){<br>      <span>if</span>(!isInitialized){<br>        <span>/// Recommended settings for Countly initialisation<br></span><span>        </span>Countly.<span>setLoggingEnabled</span>(<span>true</span>); <span>// Enable countly internal debugging logs<br></span><span>        </span>Countly.<span>enableCrashReporting</span>(); <span>// Enable crash reporting to report unhandled crashes to Countly<br></span><span>        </span>Countly.<span>setRequiresConsent</span>(<span>true</span>); <span>// Set that consent should be required for features to work.<br></span><span>        </span>Countly.<span>giveConsentInit</span>([<span>"location"</span>, <span>"sessions"</span>, <span>"attribution"</span>, <span>"push"</span>, <span>"events"</span>, <span>"views"</span>, <span>"crashes"</span>, <span>"users"</span>, <span>"push"</span>, <span>"star-rating"</span>, <span>"apm"</span>, <span>"feedback"</span>, <span>"remote-config"</span>]);<br>        Countly.<span>setLocationInit</span>(<span>"TR"</span>, <span>"Istanbul"</span>, <span>"41.0082,28.9784"</span>, <span>"10.2.33.12"</span>);<span>// Set user initial location.</span><span><br></span><br>        Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY </span>).then((value){<br>          Countly.<span>appLoadingFinished</span>();<br>          Countly.<span>start</span>();<span><br></span><span>        </span>}); <span>// Initialize the countly SDK.<br></span><span>      </span>}<span>else</span>{<br>        print(<span>"Countly: Already initialized."</span>);<br>      }<br>    });</pre>
-<h2>
-  <span>Providing the application key</span>
-</h2>
+<p>
+  <strong><span class="wysiwyg-font-size-large">Providing the application key</span></strong>
+</p>
 <p>
   <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
 </p>
 <p>
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<h2 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h2>
+<p id="providing-the-server-url" class="anchor-heading">
+  <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
+</p>
 <p>
   <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
 </p>
@@ -93,10 +95,9 @@ flutter run</code></pre>
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
 <p>
-  <span>The SDK persistently stored requests in a queue and sent them to the Countly server after every minute or after reaches a threshold and on a successful response from the server remove a request from the queue.<br></span>For
-  iOS: SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
+  For iOS: SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
   For Android: SDK data is stored in
-  <span>SharedPreferences. A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them. Each SharedPreferences file is managed by the framework and can be private or shared.</span>
+  <span>SharedPreferences. A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them.</span>
 </p>
 <h1>Crash reporting</h1>
 <p>
@@ -516,7 +517,7 @@ apply plugin: 'com.google.gms.google-services'
   When you are finally ready to initialise Countly push, you would call this:
 </p>
 <pre><span>// This method will ask for permission, enables push notification and send push token to countly server.;<br>Countly.askForNotificationPermission();</span></pre>
-<h1 id="parameter-tampering-protection" class="anchor-heading">User Location</h1>
+<h1>User Location</h1>
 <p>
   <span>Countly allows you to send geolocation-based push notifications to your users. By default, the Countly Server uses the GeoIP database to deduce a user's location. </span>
 </p>
@@ -997,11 +998,7 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
   <span>If you would like to remove consent for all the features, you can use&nbsp;the&nbsp;<code>removeAllConsent</code></span><span>&nbsp;method:</span>
 </p>
 <pre><code class="javascript">Countly.removeAllConsent();</code></pre>
-<div class="callout callout--info">
-  <p>
-    <span style="font-size:2.1em;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Security and privacy</span>
-  </p>
-</div>
+<h1>Security and privacy</h1>
 <h2>Parameter tampering protection</h2>
 <p>
   You can set optional <code>salt</code> to be used for calculating checksum of
