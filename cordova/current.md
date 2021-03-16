@@ -3,17 +3,6 @@
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Cordova version</span></strong>
-  </p>
-  <p>The Countly Cordova SDK requires:</p>
-  <ul>
-    <li>cordova version &gt;= 9.0.0</li>
-    <li>cordova-android version &gt;= 8.0.0</li>
-    <li>cordova-ios version &gt;= 5.0.0</li>
-  </ul>
-</div>
-<div class="callout callout--info">
-  <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
@@ -22,9 +11,14 @@
   </p>
 </div>
 <p>
-  Setting up Countly SDK inside your Phonegap, Cordova, Icenium or Meteor application
-  is straightforward. Just follow these steps.
+  <span class="wysiwyg-font-size-large"><strong>Minimum Cordova version</strong></span>
 </p>
+<p>The Countly Cordova SDK requires:</p>
+<ul>
+  <li>cordova version &gt;= 9.0.0</li>
+  <li>cordova-android version &gt;= 8.0.0</li>
+  <li>cordova-ios version &gt;= 5.0.0</li>
+</ul>
 <p>
   <span style="font-weight:400"><strong>Supported Platforms:</strong>&nbsp;Countly SDK supports iOS and Android.</span>
 </p>
@@ -34,14 +28,21 @@
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
-  First run the following to create a Countly demo application.
+  Setting up Countly SDK inside your Phonegap or Cordova application is straightforward.
+  Just follow these steps.
 </p>
-<pre>cordova create countly-demo-js com.countly.demo countly-demo-js<br>cd countly-demo-js</pre>
 <p>
-  Add Countly core plugin<br>
+  <span class="wysiwyg-font-size-large"><strong>Cordova</strong></span>
+</p>
+<p>
+  Add Countly SDK in your Cordova project using following commands:<br>
   <span style="font-weight:400"><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
 </p>
-<pre>cordova plugin add https://github.com/Countly/countly-sdk-cordova.git<br># OR<br>cordova plugin add countly-sdk-js@19.9.3</pre>
+<pre>cd PATH_TO_YOUR_PROJECT<br><br>cordova plugin add https://github.com/Countly/countly-sdk-cordova.git<br># OR<br>cordova plugin add countly-sdk-js@20.11.0</pre>
+<p>
+  If iOS/Android Platform are already added in your project, first remove them
+</p>
+<pre>cordova platform remove android<br>cordova platform remove ios</pre>
 <p>Now add platform of your choice</p>
 <pre>cordova platform add android<br>cordova platform add ios</pre>
 <p>
@@ -58,14 +59,34 @@
   with further development.
 </p>
 <p>
-  <strong><span class="wysiwyg-font-size-large">Using SDK with Meteor app</span></strong>
+  <strong><span class="wysiwyg-font-size-large">Ionic</span></strong>
 </p>
-<p>Run this command for Meteor:</p>
-<pre>meteor add countly:countly-sdk-js</pre>
 <p>
-  <strong><span class="wysiwyg-font-size-large">Ionic 2.0</span></strong>
+  Add Countly SDK in your Ionic project using following commands:<br>
+  <span style="font-weight:400"><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
 </p>
-<pre>npm install -g ionic cordova<br>ionic start countly-demo-ionic blank<br>cd countly-demo-ionic<br>ionic cordova plugin add https://github.com/Countly/countly-sdk-cordova.git<br>ionic serve<br># Note to ionic devs: This plugin does not work on a browser.</pre>
+<pre>cd PATH_TO_YOUR_PROJECT<br><br>ionic cordova plugin add https://github.com/Countly/countly-sdk-cordova.git<br># OR<br>ionic cordova plugin add countly-sdk-js@20.11.0</pre>
+<p>
+  If iOS/Android Platform are already added in your project, first remove them
+</p>
+<pre>ionic cordova platform remove android<br>ionic cordova platform remove ios</pre>
+<p>Now add platform of your choice</p>
+<pre>ionic cordova platform add android<br>ionic cordova platform add ios</pre>
+<p>Now prepare the platforms you have added</p>
+<pre>ionic cordova prepare android<br>ionic cordova prepare ios</pre>
+<p>
+  It's important that you make sure you build it with Cordova, as Cordova links
+  folders very well.
+</p>
+<pre>ionic cordova build android<br>ionic cordova build ios</pre>
+<p>Now run the application directly for Android,</p>
+<pre>ionic cordova run android</pre>
+<p>Or iOS:</p>
+<pre>ionic cordova run ios</pre>
+<p>
+  Alternatively, you can open the source in Xcode, or Android Studio and move on
+  with further development.
+</p>
 <p>In your index.html, use the following lines:</p>
 <pre>&lt;script type="text/javascript" src="cordova.js"&gt;&lt;/script&gt;<br>&lt;script type="text/javascript" src="Countly.js"&gt;&lt;/script&gt;</pre>
 <h1>SDK Integration</h1>
