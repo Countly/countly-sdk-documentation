@@ -41,8 +41,8 @@
   <strong>Path_To_Package</strong>) and leave all the files checked because we
   need to import all the files in the package.
 </p>
-<p>
-  <img src="/hc/article_attachments/900006790726/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="388" height="641">
+<p class="wysiwyg-text-align-center">
+  <img src="/hc/article_attachments/900006790726/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="408" height="674">
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
@@ -98,9 +98,9 @@
   <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
-<h2 id="crash-reporting" class="anchor-heading">SDK data storage</h2>
+<h2 class="anchor-heading">SDK data storage</h2>
 <p>
-  Countly SDK s<span>tore data that are meant for your app's use only, within an internal storage volume. If your game saves in external storage, SDK will store data within external storage. You may need to add permission to store data on an SD card. Please read the </span><a href="https://support.count.ly/hc/en-us/articles/900004822063/preview/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6OTAwMDA0ODIyMDYzLCJleHAiOjE2MTUzMDgyNzh9.8RmHSX-vMkkqfVVXyS-u5wQHNSeWKrmimjVPyV6uqqk#crash-reporting" target="_self">Required app permissions</a>
+  Countly SDK s<span>tore data that are meant for your app's use only, within an internal storage volume. If your game saves in external storage, SDK will store data within external storage. You may need to add permission to store data on an SD card. Please read the </span><a href="#require-app-permissions" target="_self" rel="undefined">Required app permissions</a>
   section for more information.
 </p>
 <p>
@@ -113,14 +113,14 @@
 <p>
   <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Unity editor create database document file at<br>"/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.box" on Mac OSX.</span>
 </p>
-<h2 id="crash-reporting" class="anchor-heading">Required app permissions</h2>
+<h2 id="require-app-permissions" class="anchor-heading">Required app permissions</h2>
 <p>
   If you expect the game to be saved
   <span>on an SD card or any other type of external storage</span>, set
   <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
 </p>
 <div class="c-message_attachment__row">
-  <span class="c-message_attachment__text" data-qa="message_attachment_text"><span dir="auto">When configuring your app, make sure that it has permissions to access the internet.</span></span>
+  <span class="c-message_attachment__text" data-qa="message_attachment_text"><span dir="auto">When configuring your app, make sure that it has permission to access the internet.</span></span>
 </div>
 <h2>SDK notes</h2>
 <p>
@@ -136,7 +136,17 @@
   interface on:
 </p>
 <pre>countly.CrashReports.</pre>
-<p>To log exception use the following code snippet:</p>
+<h2>Automatic crash handling</h2>
+<p>
+  The Unity SDK can automatically report uncaught exceptions/crashes in the application
+  to the Countly server. To report uncaught exceptions/crashes automatically, enable
+  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
+</p>
+<h2 class="anchor-heading">Handled exceptions</h2>
+<p>
+  <span>You might catch an exception or similar error during your app’s runtime.</span><span>You may also log these handled exceptions to monitor how and when they are happening. </span>To
+  log exception use the following code snippet:
+</p>
 <pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
 <p>Here is the detail of the parameters:</p>
 <ul>
@@ -160,29 +170,16 @@
     is fatal.
   </li>
 </ul>
-<h2>Automatic crash handling</h2>
-<p>
-  The Unity SDK can automatically report uncaught exceptions/crashes in the application
-  to the Countly server. To report uncaught exceptions/crashes automatically, enable
-  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
-</p>
-<h2 id="logging-handled-exceptions" class="anchor-heading">Handled exceptions</h2>
-<p>
-  <span>You might catch an exception or similar error during your app’s runtime.</span>
-</p>
-<p>
-  <span>You may also log these handled exceptions to monitor how and when they are happening.</span>
-</p>
 <p>Example:</p>
 <pre><strong>try</strong><br> {<br><strong>    throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br> <strong>catch</strong> (Exception ex)<br> {<br>    <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception); <br> }&nbsp;<br><br></pre>
-<p id="logging-handled-exceptions" class="anchor-heading">You can also send a segmentation with an exception.</p>
+<p class="anchor-heading">You can also send a segmentation with an exception.</p>
 <pre><span><br>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><strong><br>try</strong><br>{<br><strong> throw</strong> <strong>new</strong> DivideByZeroException();<br>}<br><strong>catch</strong> (Exception ex)<br>{<br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, true); <br>}&nbsp;</span></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
 <pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
-<h2 id="adding-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
+<h2 class="anchor-heading">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave&nbsp;crash breadcrumbs
   <span>Mandatory that </span>which would describe previous steps that were taken
@@ -206,7 +203,10 @@
   returned interface on:
 </p>
 <pre>countly.Events.</pre>
-<p>Use the following code snippet to record an event:</p>
+<h2>Recording events</h2>
+<p>
+  <span>Here is a quick way to </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">record an event:</span>
+</p>
 <pre>countly.Events.RecordEventAsync(string key, SegmentModel segmentation,<br>int? count = 1, double? sum = 0, double? duration = null);</pre>
 <p>Here is the detail of the parameters:</p>
 <ul>
@@ -214,29 +214,21 @@
     <strong>key -&nbsp;</strong>(Mandatory, string) Event key
   </li>
   <li>
-    <strong>segmentation -</strong> (Mandatory, SegmentModel) Custom segmentation
-    you want to set, leave null if you don't want to add anything.
+    <strong>segmentation -</strong> (Mandatory) Custom keys/values to be reported.
   </li>
   <li>
-    <strong>count -</strong> (Optional, int) How many of these events have occurred,
-    default value is "1".
+    <strong>count -</strong> (Optional, int) how many times an event occurred.
   </li>
   <li>
-    <strong>sum -</strong> (Optional, int) Set sum if needed, default value is
-    "0".
+    <strong>sum -</strong> (Optional, int) a sum<span>&nbsp;property</span>.
   </li>
   <li>
-    <strong>duration -</strong> set sum if needed, the default value is "0".
+    <strong>duration -</strong> duration of an event.
   </li>
 </ul>
 <p>
-  <strong>Segmentation</strong>
+  <span style="font-weight:400"><strong>Note:</strong> When providing segmentation for events, the only valid data types are: "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
 </p>
-<p>
-  When providing segmentation for events, the only valid data types are: "String",
-  "Integer", "Double", and "Boolean". All other types will be ignored.
-</p>
-<h2>Recording events</h2>
 <p>
   <span style="font-weight:400">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight:400">ere is a quick summary of the information for each usage:</span>
 </p>
@@ -294,6 +286,15 @@
 <p>
   <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
+<h2>Timed events</h2>
+<p>
+  <span style="font-weight:400">To record a timed event, calculate the duration of an event and pass it while recording the event.<br>Example:</span>
+</p>
+<pre><code class="java">DateTime startTime = DateTime.UtcNow;<br>...<br><br>double duration = (DateTime.UtcNow - startTime).TotalSeconds;<br>
+<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);<br></code></pre>
+<p>
+  <span>You may provide segmentation, count, and sum while recording an event.</span>
+</p>
 <h1>Sessions</h1>
 <h2>
   <span style="font-weight:400">&nbsp;Automatic session tracking&nbsp;</span>
@@ -340,13 +341,19 @@
   method:
 </p>
 <pre><strong>await</strong> countly.Views.RecordCloseViewAsync("Home Scene");</pre>
-<h1 id="changing-a-device-id" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<h1 class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
   <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID by yourself if you have one (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
 <h2>Device ID generation</h2>
 <p>
-  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or generates a random ID when you don’t provide it. This Device ID will be used persistently for all future requests made from a device until you change that.</span>
+  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or generates a random ID when you don’t provide it. </span>
+</p>
+<p>
+  <span>SDK generates a unique device identifier. It is guaranteed to be unique for every device. For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
+</p>
+<p>
+  <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
 </p>
 <h2>Changing device ID</h2>
 <p>
@@ -354,31 +361,27 @@
   any of the following two methods to changing the Device ID, depending on your
   needs.
 </p>
-<p id="changing-device-id-without-server-merge" class="anchor-heading">
-  <strong>1. Changing Device ID without server merge</strong>
+<p class="anchor-heading">
+  <strong>Changing Device ID with server merge</strong>
 </p>
 <p>
-  This method changes the Device ID and does the following other operations:
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<ol>
-  <li>Ends all the events that have been recorded until now.</li>
-  <li>Ends the current session.</li>
-  <li>
-    Updates Device ID and starts a new session with a new Device ID.
-  </li>
-</ol>
-<p>Example:</p>
-<pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
-<p id="changing-device-id-with-server-merge" class="anchor-heading">
-  <strong>2. Changing Device ID with server merge</strong>
+<pre><strong>await</strong> countly.Device.ChangeDeviceIdAndMergeSessionDataAsync("New Device Id");</pre>
+<p class="anchor-heading">
+  <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
-  This method changes the Device ID and merges data for both Device IDs in the
-  Countly server.
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<p>Example:</p>
 <pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
-<h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
+</p>
+<p>
+  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+</p>
+<h2 class="anchor-heading">Retrieving current device ID&nbsp;</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.&nbsp;
