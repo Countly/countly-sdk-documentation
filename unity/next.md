@@ -207,23 +207,29 @@
 <p>
   <span>Here is a quick way to </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">record an event:</span>
 </p>
-<pre>countly.Events.RecordEventAsync(string key, SegmentModel segmentation,<br>int? count = 1, double? sum = 0, double? duration = null);</pre>
-<p>Here is the detail of the parameters:</p>
+<pre><strong>public</strong> async Task ReportCustomEventAsync(string key, IDictionary&lt;string, object&gt; segmentation = null, int? count = 1, double? sum = null, double? duration = null)</pre>
+<p>
+  <span>An event must contain&nbsp;</span><strong>key</strong><span>&nbsp;and&nbsp;</span><strong>count</strong><span> properties. If the count is not provided, the default value will be 1. Optionally, you may also provide the </span><strong>sum</strong><span>&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>duration</strong><span> property for recording some duration/period of time and&nbsp;<strong>segmentation</strong>&nbsp;as a map with keys and values for segmentation.</span><br>
+  Here is the detail of the parameters:
+</p>
 <ul>
   <li>
     <strong>key -&nbsp;</strong>(Mandatory, string) Event key
   </li>
   <li>
-    <strong>segmentation -</strong> (Mandatory) Custom keys/values to be reported.
+    <strong>segmentation -</strong> (Optional) Custom keys/values to be reported.
   </li>
   <li>
     <strong>count -</strong> (Optional, int) how many times an event occurred.
+    <span>If the count is not provided, the default value will be 1.</span>
   </li>
   <li>
-    <strong>sum -</strong> (Optional, int) a sum<span>&nbsp;property</span>.
+    <strong>sum -</strong> (Optional, int) a<span> property of the event</span>.
+    If not provided, the default value will be 0.
   </li>
   <li>
-    <strong>duration -</strong> duration of an event.
+    <strong>duration -</strong> (Optional, double) duration of an event, If not
+    provided, the default value will be 0.
   </li>
 </ul>
 <p>
@@ -258,73 +264,57 @@
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="java"><strong>await</strong> countly.Events.RecordEventAsync("purchase", count: 1);</code></pre>
+<pre><code class="java"><strong>await</strong> countly.Events.ReportCustomEventAsync("purchase", count: 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="java"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
+<pre><code class="java"><strong>await</strong> countly.Events.ReportCustomEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java">SegmentModel segmentation= new SegmentModel();
+<pre><code class="java">Dictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;<br>{<br>{ "country", "Germany" },<br>{ "app_version", "1.0" }<br>};
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segment, count: 1);<br></code></pre>
+<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);<br></code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java">SegmentModel segmentation = new SegmentModel();
- segmentation.Add("country", "Germany");<br> segmentation.Add("app_version", "1.0");
+<pre><code class="java">Dictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;<br>{<br>{ "country", "Germany" },<br>{ "app_version", "1.0" }<br>};
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segment, count: 1, sum: 0.99);</code></pre>
+<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java">SegmentModel segmentation = new SegmentModel();
- segmentation.Add("country", "Germany");<br> segmentation.Add("app_version", "1.0");
+<pre><code class="java">Dictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;<br>{<br>{ "country", "Germany" },<br>{ "app_version", "1.0" }<br>};
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segment, count: 1, sum: 0.99, duration: 60);<br></code></pre>
+<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);<br></code></pre>
 <p>
   <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
 <h2>Timed events</h2>
 <p>
-  <span style="font-weight:400">To record a timed event, calculate the duration of an event and pass it while recording the event.<br>Example:</span>
+  <span style="font-weight:400">Currently, SDK doesn't have any direct mechanism to record timed events. To record a timed event, you would have to calculate the duration of an event yourself and pass it while recording the event.</span>
+</p>
+<p>
+  <span style="font-weight:400">Example:</span>
 </p>
 <pre><code class="java">DateTime startTime = DateTime.UtcNow;<br>...<br><br>double duration = (DateTime.UtcNow - startTime).TotalSeconds;<br>
 <strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);<br></code></pre>
 <p>
-  <span>You may provide segmentation, count, and sum while recording an event.</span>
+  <span>You may provide segmentation, count, and sum while recording a timed event.</span>
 </p>
 <h1>Sessions</h1>
 <h2>
   <span style="font-weight:400">&nbsp;Automatic session tracking&nbsp;</span>
 </h2>
-<p>The Unity SDK handles the session automatically.</p>
 <p>
-  <strong>Begin Session:</strong> the SDK is responsible for automatically handling
-  the Countly session in your app. As soon as you call the initialization methods
-  (Begin and SetDefaults) in your app start event, the SDK will start the session
-  automatically (only when you set <code>enableManualSessionHandling</code> to
-  true during initialization).
+  The Unity SDK handles the session automatically. After calling the
+  <strong>Init</strong> method, the SDK starts the session automatically and extending
+  the session after every 60 seconds. This value is configurable during initialization.
+  It cannot be modified after initialization.
 </p>
 <p>
-  <strong>Update Session:</strong> the SDK is responsible for automatically extending
-  the session after every 60 seconds (default value). This value is configurable
-  during initialization using the parameter session duration. It cannot be modified
-  after initialization.
-</p>
-<p>
-  Note that in iOS, the session will not be extended when the app is in the background.
-  As soon as the user switches back to the app, the session extension will resume.
-  In Android, the session will extend on both occasions: foreground and background.
-</p>
-<p>
-  <strong>End Session:</strong> the SDK is responsible for automatically ending
-  the session whenever the user quits the application.
-</p>
-<p>
-  The Session will be ended automatically when the user
-  <span class="wysiwyg-color-black">calls </span><span style="background-color:#e9ebed;font-family:monospace, monospace;font-size:13px;white-space:pre">Application.Quit()</span>.
+  The SDK ends the current session whenever the user quits the app or app goes
+  into the background.
 </p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
@@ -347,10 +337,10 @@
 </p>
 <h2>Device ID generation</h2>
 <p>
-  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or generates a random ID when you don’t provide it. </span>
+  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or </span><span>generates a unique device identifier. It is guaranteed to be unique for every device. </span>
 </p>
 <p>
-  <span>SDK generates a unique device identifier. It is guaranteed to be unique for every device. For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
+  <span>For IOS It uses <em><strong>'UIDevice.identifierForVendor'</strong></em> and for Android, it returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;<strong>different value</strong>&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
 </p>
 <p>
   <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
