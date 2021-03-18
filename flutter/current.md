@@ -29,7 +29,7 @@ flutter run</code></pre>
   It is a great way of understanding how different methods work, like custom events,
   custom user profiles and views.
 </p>
-<h1 id="adding-the-sdk-to-the-project" class="anchor-heading">Adding the SDK to the project</h1>
+<h1>Adding the SDK to the project</h1>
 <p>
   Add this to your package's <code>pubspec.yaml</code> file:
 </p>
@@ -43,7 +43,7 @@ flutter run</code></pre>
   You can install packages from the command line with Flutter:
 </p>
 <pre><code class="shell">flutter pub get</code></pre>
-<h1 id="setting-up-the-countly-sdk" class="anchor-heading">SDK Integration</h1>
+<h1>SDK Integration</h1>
 <p>
   Below you can find necessary code snippets to initialize the SDK for sending
   data to Countly servers. Where possible, use your server URL instead of
@@ -64,7 +64,7 @@ flutter run</code></pre>
 <p>
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<p id="providing-the-server-url" class="anchor-heading">
+<p>
   <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
 </p>
 <p>
@@ -93,7 +93,7 @@ flutter run</code></pre>
   <span style="font-weight:400"><span>You may provide your own custom device ID when</span> initializing the SDK</span>
 </p>
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
-<h2 class="anchor-heading">SDK data storage</h2>
+<h2>SDK data storage</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
   For Android: SDK data is stored in
@@ -379,7 +379,7 @@ Countly.recordView("Dashboard");</code></pre>
   the<code>onServer</code><span>&nbsp;</span>bool is set to <code>true</code>,
   <span>the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>Otherwise, if&nbsp;<code>onServer</code> bool is&nbsp;set to <code>false</code>, the device will be counted as a new device on the server.<br></span>
 </p>
-<h2 id="temporary-device-id" class="anchor-heading">Temporary Device ID</h2>
+<h2>Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode for keeping all requests on hold until
   the real device ID is set later.&nbsp;
@@ -880,7 +880,7 @@ Countly.pullValue("type", "morning");
   While using APM calls, you have the ability to provide trace keys by which you
   can track those parameters in your dashboard.
 </p>
-<h2 id="app-start-time" class="anchor-heading">App Start Time</h2>
+<h2>App Start Time</h2>
 <p>
   For the app start time to be recorded, you need to call the<span>&nbsp;</span><code>appLoadingFinished</code><span>&nbsp;</span>method.
   Make sure this method is called after <code>init</code>.
