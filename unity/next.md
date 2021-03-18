@@ -292,12 +292,12 @@
 </p>
 <h2>Timed events</h2>
 <p>
-  <span style="font-weight:400">Currently, SDK doesn't have any direct mechanism to record timed events. To record a timed event, you would have to calculate the duration of an event yourself and pass it while recording the event.</span>
+  <span style="font-weight:400">Currently, SDK doesn't have any direct mechanism to record timed events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
 </p>
 <p>
   <span style="font-weight:400">Example:</span>
 </p>
-<pre><code class="java">DateTime startTime = DateTime.UtcNow;<br>...<br><br>double duration = (DateTime.UtcNow - startTime).TotalSeconds;<br>
+<pre><code class="java">//At the start of your planned event you would record the start timestamp<br>DateTime startTime = DateTime.UtcNow;<br>...<br><br>//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed<br>double duration = (DateTime.UtcNow - startTime).TotalSeconds;<br>//Then you would pass this information when recording a Countly event
 <strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);<br></code></pre>
 <p>
   <span>You may provide segmentation, count, and sum while recording a timed event.</span>
