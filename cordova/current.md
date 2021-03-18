@@ -11,15 +11,6 @@
   </p>
 </div>
 <p>
-  <span class="wysiwyg-font-size-large"><strong>Minimum Cordova version</strong></span>
-</p>
-<p>The Countly Cordova SDK requires:</p>
-<ul>
-  <li>cordova version &gt;= 9.0.0</li>
-  <li>cordova-android version &gt;= 8.0.0</li>
-  <li>cordova-ios version &gt;= 5.0.0</li>
-</ul>
-<p>
   <span style="font-weight:400"><strong>Supported Platforms:</strong>&nbsp;Countly SDK supports iOS and Android.</span>
 </p>
 <p>
@@ -28,7 +19,18 @@
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
-  Setting up Countly SDK inside your Phonegap or Cordova application is straightforward.
+  <span class="wysiwyg-font-size-medium"><strong>Minimum Supported Cordova versions</strong></span>
+</p>
+<p>
+  To integrate the Countly Cordova SDK, you app must satisfy the following requirements:
+</p>
+<ul>
+  <li>cordova &gt;= 9.0.0</li>
+  <li>cordova-android &gt;= 8.0.0</li>
+  <li>cordova-ios &gt;= 5.0.0</li>
+</ul>
+<p>
+  Setting up Countly SDK inside your Ionic or Cordova application is straightforward.
   Just follow these steps.
 </p>
 <p>
@@ -96,7 +98,7 @@
   <code>try.count.ly</code> in case you have your own server.
 </p>
 <pre>// initialize<br>// use your server name below if required.<br>Countly.init("https://try.count.ly","App_Key");<br><br>//example to start and stop Countly<br>Countly.start();<br>Countly.stop();<br><br>//example to halt Countly<br>Countly.halt();</pre>
-<p id="providing-the-application-key" class="anchor-heading">
+<p>
   <span class="wysiwyg-font-size-large"><strong>Providing the application key</strong></span>
 </p>
 <p>
@@ -105,7 +107,7 @@
 <p>
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<p id="providing-the-server-url" class="anchor-heading">
+<p>
   <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
 </p>
 <p>
@@ -135,7 +137,7 @@ Countly.setLoggingEnabled();</code></pre>
   <span style="font-weight:400"><span>You may provide your own custom device ID when</span> initializing the SDK</span>
 </p>
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
-<h2 class="anchor-heading">SDK data storage</h2>
+<h2>SDK data storage</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in file named "<span>Countly.dat</span>"&nbsp;<br>
   For Android: SDK data is stored in
@@ -145,7 +147,7 @@ Countly.setLoggingEnabled();</code></pre>
 <p>
   <span>The Countly SDK has the ability to collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>crash reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2 id="enabling-automatic-crash-reporting" class="anchor-heading">Automatic crash handling</h2>
+<h2>Automatic crash handling</h2>
 <p>
   <span style="font-weight:400">With this feature, the Countly SDK will generate a crash report if your application crashes due to an exception and send it to the Countly server for further inspection.</span>
 </p>
@@ -163,7 +165,7 @@ Countly.setLoggingEnabled();</code></pre>
 <pre><code class="javascript">// Using countly crash reports
 Countly.enableCrashReporting();
 </code></pre>
-<h2 id="logging-handled-exceptions" class="anchor-heading">Handled exceptions</h2>
+<h2>Handled exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span>
 </p>
@@ -179,7 +181,7 @@ Countly.logException(stackFramesFromStackTraceJS, booleanNonFatal, segments);</c
 <p>
   <span style="font-weight:400">The method <code class="javascript">logException</code>takes a string for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.</span>
 </p>
-<h2 id="adding-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
+<h2>Crash breadcrumbs</h2>
 <p>
   Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
   previous steps that were taken in your app before the crash. After a crash happens,
@@ -190,7 +192,7 @@ Countly.logException(stackFramesFromStackTraceJS, booleanNonFatal, segments);</c
 Countly.addCrashLog("My crash log from JavaScript");
 </code></pre>
 <h1>Custom events</h1>
-<h2 id="setting-up-custom-events" class="anchor-heading">Setting up custom events</h2>
+<h2>Setting up custom events</h2>
 <p>
   A custom event is any type of action that you can send to a Countly instance,
   e.g purchase, settings changed, view enabled and so. This way it's possible to
@@ -324,7 +326,7 @@ Countly.startEvent("Timed Event With Segment, Sum And Count");<br>setTimeout(fun
 Countly.recordView("My Home Page");
 Countly.recordView("Profile Page");
 </code></pre>
-<h1 id="changing-a-device-id" class="anchor-heading">Device ID management</h1>
+<h1>Device ID management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
@@ -353,7 +355,7 @@ Countly.recordView("Profile Page");
   the<code>onServer</code><span>&nbsp;</span>bool is set to <code>true</code>,
   <span>the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>Otherwise, if&nbsp;<code>onServer</code> bool is&nbsp;set to <code>false</code>, the device will be counted as a new device on the server.<br></span>
 </p>
-<h2 id="temporary-device-id" class="anchor-heading">Temporary Device ID</h2>
+<h2>Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode for keeping all requests on hold until
   the real device ID is set later.&nbsp;
@@ -615,7 +617,7 @@ Countly.setLocation("28.006324", "-82.7166183");</code></pre>
 }, function(r){
   alert(r);
 });</code></pre>
-<h1 id="getting-user-feedback" class="anchor-heading" tabindex="-1">User feedback</h1>
+<h1>User feedback</h1>
 <p>
   There are two ways of getting feedback from your users: Star rating dialog, feedback
   widget.
@@ -624,7 +626,7 @@ Countly.setLocation("28.006324", "-82.7166183");</code></pre>
   Star rating dialog allows users to give feedback as a rating from 1 to 5. The
   feedback widget allows to get the same 1 to 5 rating and also a text comment.
 </p>
-<h2 id="star-rating-dialog" class="anchor-heading">Star rating dialog</h2>
+<h2>Star rating dialog</h2>
 <p>
   Star rating integration provides a dialog for getting user's feedback about the
   application. It contains a title, simple message explaining what it is for, a
@@ -809,7 +811,7 @@ Countly.userData.pushUniqueValue("pushUniqueValue","morning");<br>Countly.userDa
   Those include app foreground time, app background time. Additionally, custom
   traces and network traces can be manually recorded.
 </p>
-<h2 id="app-start-time" class="anchor-heading">App Start Time</h2>
+<h2>App Start Time</h2>
 <p>
   For the app start time to be recorded, you need to call the<span>&nbsp;</span><code>appLoadingFinished</code><span>&nbsp;</span>method.
   Make sure this method is called after <code>init</code>.
