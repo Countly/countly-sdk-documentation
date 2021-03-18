@@ -338,13 +338,18 @@
 </p>
 <h2>Device ID generation</h2>
 <p>
-  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or </span><span>generates a unique device ID.&nbsp;<br>SDK uses</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code> to provides a device ID and It is guaranteed to be unique for every device.</span>
+  The SDK uses <code class="java">SystemInfo.deviceUniqueIdentifier</code> exposed by Unity when generating the default device ID. This would then use different sources for generating the ID. Those sources would depend on the platform.
 </p>
 <p>
-  <span>For IOS, <code class="java">SystemInfo.deviceUniqueIdentifier</code> uses <em><strong>'UIDevice.identifierForVendor'</strong></em> as the source and for Android, it returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;<strong>different value</strong>&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
-</p>
-<p>
-  <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
+  <span>For IOS, <code class="java">SystemInfo.deviceUniqueIdentifier</code> would use <em><strong>'UIDevice.identifierForVendor'</strong></em> or <a href="https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor"> IDFV</a> as the source.<br>
+    For Android, it would returns the MD5 has of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;<strong>different value</strong>&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;
+    For Win32 builds ...
+    <br>
+    For UWP builds...
+    <br>
+    For macOS builds...
+    <br>
+    <br>For more information about <code class="java">SystemInfo.deviceUniqueIdentifier</code> <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
 </p>
 <h2>Changing device ID</h2>
 <p>
