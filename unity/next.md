@@ -314,7 +314,7 @@
 </p>
 <p>
   The SDK ends the current session whenever the user quits the app or app goes
-  into the background.
+  into the background. A session would be started again when the app comes to the foreground.
 </p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
