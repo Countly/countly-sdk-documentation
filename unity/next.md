@@ -203,13 +203,8 @@
   returned interface on:
 </p>
 <pre>countly.Events.</pre>
-<h2>Recording events</h2>
 <p>
-  <span>Here is a quick way to </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">record an event:</span>
-</p>
-<pre><strong>public</strong> async Task ReportCustomEventAsync(string key, IDictionary&lt;string, object&gt; segmentation = null, int? count = 1, double? sum = null, double? duration = null)</pre>
-<p>
-  <span>An event must contain&nbsp;</span><strong>key</strong><span>&nbsp;and&nbsp;</span><strong>count</strong><span> properties. If the count is not provided, the default value will be 1. Optionally, you may also provide the </span><strong>sum</strong><span>&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>duration</strong><span> property for recording some duration/period of time and&nbsp;<strong>segmentation</strong>&nbsp;as a map with keys and values for segmentation.</span><br>
+  <span>An event must contain&nbsp;</span><strong>key</strong><span>&nbsp;and&nbsp;</span><strong>count</strong><span> properties. If the count is not provided, the default value will be 1. Optionally, you may also provide the </span><strong>sum</strong><span>&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>duration</strong><span> property for recording some duration/period of time, and <strong>segmentation</strong>&nbsp;as a map with keys and values for segmentation.</span><br>
   Here is the detail of the parameters:
 </p>
 <ul>
@@ -235,6 +230,11 @@
 <p>
   <span style="font-weight:400"><strong>Note:</strong> When providing segmentation for events, the only valid data types are: "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
 </p>
+<h2>Recording events</h2>
+<p>
+  <span>Here is a quick way to </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">record an event:</span>
+</p>
+<pre><strong>public</strong> async Task ReportCustomEventAsync(string key, IDictionary&lt;string, object&gt; segmentation = null, int? count = 1, double? sum = null, double? duration = null)</pre>
 <p>
   <span style="font-weight:400">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight:400">ere is a quick summary of the information for each usage:</span>
 </p>
@@ -314,7 +314,8 @@
 </p>
 <p>
   The SDK ends the current session whenever the user quits the app or app goes
-  into the background. A session would be started again when the app comes to the foreground.
+  into the background. A session would be started again when the app comes to the
+  foreground.
 </p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
@@ -337,10 +338,10 @@
 </p>
 <h2>Device ID generation</h2>
 <p>
-  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or </span><span>generates a unique device identifier. It is guaranteed to be unique for every device. </span>
+  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or </span><span>generates a unique device ID.&nbsp;<br>SDK uses</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code> to provides a device ID and It is guaranteed to be unique for every device.</span>
 </p>
 <p>
-  <span>For IOS It uses <em><strong>'UIDevice.identifierForVendor'</strong></em> and for Android, it returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;<strong>different value</strong>&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
+  <span>For IOS, <code class="java">SystemInfo.deviceUniqueIdentifier</code> uses <em><strong>'UIDevice.identifierForVendor'</strong></em> as the source and for Android, it returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;<strong>different value</strong>&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
 </p>
 <p>
   <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
