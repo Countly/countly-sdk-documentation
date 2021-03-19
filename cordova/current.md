@@ -19,10 +19,8 @@
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
-  <span class="wysiwyg-font-size-medium"><strong>Minimum Supported Cordova versions</strong></span>
-</p>
-<p>
-  To integrate the Countly Cordova SDK, you app must satisfy the following requirements:
+  The core of this SDK is developed around Cordova. We have a minimum version requirement
+  for it's core and android, ios modules that have to be satisfied:
 </p>
 <ul>
   <li>cordova &gt;= 9.0.0</li>
@@ -30,8 +28,14 @@
   <li>cordova-ios &gt;= 5.0.0</li>
 </ul>
 <p>
-  Setting up Countly SDK inside your Ionic or Cordova application is straightforward.
-  Just follow these steps.
+  If you would integrate this SDK in any other project similar to cordova (like
+  ionic, phonegap, meteor), you would have to make sure that you are setting the
+  platform requirements for those projectssimilar to these.
+</p>
+<p>&nbsp;</p>
+<p>
+  Setting up Countly SDK inside your Cordova, Ionics application is straightforward.
+  Just follow the laid out steps for the specific projects:
 </p>
 <p>
   <span class="wysiwyg-font-size-large"><strong>Cordova</strong></span>
