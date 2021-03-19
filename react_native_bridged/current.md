@@ -1,21 +1,13 @@
-<div class="callout callout--warning">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large">Documentation Version</span>
-  </p>
-  <p>This documentation applies to version 20.11.0.</p>
-  <p>
-    To access the documentation for versions 20.04 and older, click
-    <a href="/hc/en-us/articles/900003765726" target="_self" rel="undefined">here.</a>
-  </p>
-</div>
+<p>
+  <span style="font-weight:400">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.0</span>
+</p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">React Native Bridge is a successor to the React Native SDK</span></strong>
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    The React Native SDK, which was developed earlier, will soon be end-of-life
-    and will no longer be maintained.
-    <span class="wysiwyg-color-black">Please use this bridge SDK for a more complete and tested version</span>.
+    To access the documentation for version 20.04 and older, click
+    <a href="/hc/en-us/articles/900003765726" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -65,7 +57,8 @@ Countly.start(); // start session tracking
 <p>
   <span class="wysiwyg-color-black" style="font-weight:400">After <code>init</code> and <code>start</code> have been called once, you may use the commands in the rest of this document to send additional data and metrics to your server.</span>
 </p>
-<p><strong>Providing the application key</strong></span>
+<p>
+  <strong>Providing the application key</strong>
 </p>
 <p>
   <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
