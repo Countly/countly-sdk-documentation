@@ -1,21 +1,13 @@
-<div class="callout callout--warning">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large">Documentation Version</span>
-  </p>
-  <p>This documentation applies to version 20.11.0.</p>
-  <p>
-    To access the documentation for versions 20.04 and older, click
-    <a href="/hc/en-us/articles/900003765726" target="_self" rel="undefined">here.</a>
-  </p>
-</div>
+<p>
+  <span style="font-weight:400">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.0</span>
+</p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">React Native Bridge is a successor to the React Native SDK</span></strong>
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    The React Native SDK, which was developed earlier, will soon be end-of-life
-    and will no longer be maintained.
-    <span class="wysiwyg-color-black">Please use this bridge SDK for a more complete and tested version</span>.
+    To access the documentation for version 20.04 and older, click
+    <a href="/hc/en-us/articles/900003765726" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -46,7 +38,7 @@ npm start                           # Run the build server</code></pre>
   <span style="font-weight:400">Run the following snippet in the root directory of your React Native project to install the npm dependencies and link&nbsp;</span><strong>native libraries</strong><span style="font-weight:400">.<br><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
 </p>
 <pre># Include the Countly Class in the file that you want to use.<br>npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git<br># OR <br>npm install --save countly-sdk-react-native-bridge@20.11.0<br><br># Linking the library to your app<br><br># react-native &lt; 0.60. For both Android and iOS<br>react-native link countly-sdk-react-native-bridge<br>cd node_modules/countly-sdk-react-native-bridge/ios/<br>pod install <br>cd ../../../<br><br># react-native &gt;= 0.60 for iOS (Android will autolink)<br>cd ios <br>pod install<br>cd ..</pre>
-<h1 id="setting-up-the-countly-sdk" class="anchor-heading">SDK Integration</h1>
+<h1>SDK Integration</h1>
 <p>
   <span style="font-weight:400">We will need to call two methods (<code>init</code> and <code>start</code>) in order to set up our SDK. You may also like to specify other parameters at this step (i.e. whether logging will be used). These methods should only be called once during the app's lifecycle and should be done as early as possible. Your main app component's <code>componentDidMount</code>method may be a good place.&nbsp;</span>
 </p>
@@ -65,8 +57,8 @@ Countly.start(); // start session tracking
 <p>
   <span class="wysiwyg-color-black" style="font-weight:400">After <code>init</code> and <code>start</code> have been called once, you may use the commands in the rest of this document to send additional data and metrics to your server.</span>
 </p>
-<p id="providing-the-application-key" class="anchor-heading">
-  <span class="wysiwyg-font-size-large"><strong>Providing the application key</strong></span>
+<p>
+  <strong>Providing the application key</strong>
 </p>
 <p>
   <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
@@ -74,7 +66,7 @@ Countly.start(); // start session tracking
 <p>
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<p id="providing-the-server-url" class="anchor-heading">
+<p>
   <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
 </p>
 <p>
@@ -83,7 +75,7 @@ Countly.start(); // start session tracking
 <p>
   <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
 </p>
-<h2 id="enabling-logging" class="anchor-heading">Enable logging</h2>
+<h2>Enable logging</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
 </p>
@@ -102,11 +94,11 @@ Countly.start(); // start session tracking
   For Android: SDK data is stored in
   <span>SharedPreferences. A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them.</span>
 </p>
-<h1 id="crash-reporting" class="anchor-heading">Crash reporting</h1>
+<h1>Crash reporting</h1>
 <p>
   <span>The Countly SDK has the ability to collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>crash reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2 id="enabling-automatic-crash-reporting" class="anchor-heading">Automatic crash handling</h2>
+<h2>Automatic crash handling</h2>
 <p>
   <span style="font-weight:400">With this feature, the Countly SDK will generate a crash report if your application crashes due to an exception and send it to the Countly server for further inspection.</span>
 </p>
@@ -118,7 +110,7 @@ Countly.start(); // start session tracking
 </p>
 <pre><code class="javascript">// Using Countly crash reports
 Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
-<h2 id="adding-a-custom-keyvalue-segment-to-a-crash-report" class="anchor-heading">Automatic crash report segmentation</h2>
+<h2>Automatic crash report segmentation</h2>
 <p>
   <span>You may add a key/value segment to crash reports. For example, you could set which specific library or framework version you used in your app. You may then figure out if there is any correlation between the specific library or another segment and the crash reports.</span>
 </p>
@@ -126,7 +118,7 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
   <span>Use the following function for this purpose:</span>
 </p>
 <pre><code class="java hljs">var segment = {"Key": "Value"};<br>Countly.setCustomCrashSegments(segment);</code></pre>
-<h2 id="logging-handled-exceptions" class="anchor-heading">Handled exceptions</h2>
+<h2>Handled exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span>
 </p>
@@ -137,7 +129,7 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <p>
   <span style="font-weight:400">The method <code class="javascript">logException</code>takes a string for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.</span>
 </p>
-<h2 id="adding-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
+<h2>Crash breadcrumbs</h2>
 <p>
   Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
   previous steps that were taken in your app before the crash. After a crash happens,
@@ -224,8 +216,8 @@ D/Countly (124): Checking for native crash dumps
 D/Countly (124): Native crash folder exists, checking for dumps
 D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
-<h1 id="custom-events" class="anchor-heading">Custom Events</h1>
-<h2 id="setting-up-custom-events" class="anchor-heading">Setting up custom events</h2>
+<h1>Custom Events</h1>
+<h2>Setting up custom events</h2>
 <p>
   <span>A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>custom event</span></a><span> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the SDK to the Countly instance by default.</span>
 </p>
@@ -237,12 +229,12 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
 </div>
-<h2 id="segmentation" class="anchor-heading">Segmentation</h2>
+<h2>Segmentation</h2>
 <p>
   When providing segmentation for events, the only valid data types are: "String",
   "Integer", "Double" and "Boolean". All other types will be ignored.
 </p>
-<h2 id="custom-event-usage-examples" class="anchor-heading">Custom event usage examples</h2>
+<h2>Custom event usage examples</h2>
 <p>
   <span>We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span>&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
@@ -264,26 +256,26 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     occurred +&nbsp;<span>the total amount, both of which are also available, segmented into countries and application versions.</span><span></span>
   </li>
 </ul>
-<p id="1-event-key-and-count" class="anchor-heading">
+<p>
   <strong>1. Event key and count</strong>
 </p>
 <pre><code class="java hljs">var event = {"eventName":"Purchase","eventCount":1};<br>Countly.sendEvent(event);</code></pre>
-<p id="2-event-key-count-and-sum" class="anchor-heading">
+<p>
   <strong>2. Event key, count, and sum</strong>
 </p>
 <pre><code class="java hljs">var event = {"eventName":"Purchase","eventCount":1,"eventSum":"0.99"};<br>Countly.sendEvent(event);</code></pre>
-<p id="3-event-key-and-count-with-segmentations" class="anchor-heading">
+<p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
 <pre><code class="java hljs">var event = {"eventName":"<span class="hljs-string">purchase</span>","eventCount":1}; <br>event.segments = {"Country" : "Germany", "<span class="hljs-string">app_version</span>" : "1.0"}; <br>Countly.sendEvent(event);</code></pre>
-<p id="4-event-key-count-and-sum-with-segmentations" class="anchor-heading">
+<p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
 <pre><code class="java hljs">var event = {"eventName":"purchase","eventCount":1};<br>event.segments = {"Country" : "Germany", "app_version" : "1.0","eventSum":"0.99"};<br>Countly.sendEvent(event);</code></pre>
 <p>
   <span>Those are only a few examples of what you can do with custom events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
-<h2 id="timed-events" class="anchor-heading">Timed events</h2>
+<h2>Timed events</h2>
 <p>
   <span>It's possible to create timed events by defining a start and a stop moment.</span>
 </p>
@@ -331,7 +323,7 @@ Countly.cancelEvent(eventName);</code></pre>
 <div class="img-container">
   <img src="https://count.ly/images/guide/1059a04-3.PNG">
 </div>
-<h1 id="changing-a-device-id" class="anchor-heading">Device ID management</h1>
+<h1>Device ID management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
@@ -348,7 +340,7 @@ Countly.cancelEvent(eventName);</code></pre>
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2 id="changing-device-id-with-and-without-merge" class="anchor-heading">Changing device ID with and without merge</h2>
+<h2>Changing device ID with and without merge</h2>
 <p>
   <span style="font-weight:400">You may configure or change the device ID anytime using the method below.<br></span>
 </p>
@@ -358,7 +350,7 @@ Countly.cancelEvent(eventName);</code></pre>
   <code>onServer</code> is set to <code>true</code>,
   <span>the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>Otherwise, if&nbsp;<code>onServer</code> is&nbsp;set to <code>false</code>, the device will be counted as a new device on the server.<br></span>
 </p>
-<h2 id="temporary-device-id" class="anchor-heading">Temporary Device ID</h2>
+<h2>Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode for keeping all requests on hold until
   the real device ID is set later.&nbsp;
@@ -392,7 +384,7 @@ Countly.cancelEvent(eventName);</code></pre>
   all requests which have been kept on hold until that point will start with the
   real device ID.
 </p>
-<h2 id="retrieving-the-device-id-and-its-type" class="anchor-heading">Retrieving the device id</h2>
+<h2>Retrieving the device id</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.
@@ -541,11 +533,11 @@ Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </p>
 <pre><code class="javascript">//disable location tracking
 Countly.disableLocation();</code></pre>
-<h1 id="remote-config" class="anchor-heading">Remote Config</h1>
+<h1>Remote Config</h1>
 <p>
   <span>Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
-<h2 id="manual-remote-config-download" class="anchor-heading">Manual Remote Config download</h2>
+<h2>Manual Remote Config download</h2>
 <p>
   <span>There are three ways for manually requesting a remote config update:</span><span></span>
 </p>
@@ -578,13 +570,13 @@ Countly.disableLocation();</code></pre>
 <p>
   <span>When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a simple manual request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2 id="getting-remote-config-values" class="anchor-heading">Getting Remote Config values</h2>
+<h2>Getting Remote Config values</h2>
 <p>
   To request a stored value, call<span>&nbsp;</span><code>getRemoteConfigValueForKey</code>
   or&nbsp; <code>getRemoteConfigValueForKeyP</code> with the specified key.
 </p>
 <pre><code class="java hljs">Countly.getRemoteConfigValueForKey("KeyName", function(data){<br>console.log(data);<br>});<br><br>var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
-<h2 id="clearing-stored-remote-config-values" class="anchor-heading">Clearing Stored Remote Config values</h2>
+<h2>Clearing Stored Remote Config values</h2>
 <p>
   <span>At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
@@ -726,7 +718,7 @@ Countly.enableApm();</code></pre>
   including app foreground time, app background time. Additionally, custom traces
   and network traces can be manually recorded.
 </p>
-<h2 id="app-start-time" class="anchor-heading">App Start Time</h2>
+<h2>App Start Time</h2>
 <p>
   For the app start time to be recorded, you need to call the<span>&nbsp;</span><code>appLoadingFinished</code><span>&nbsp;</span>method.
   Make sure this method is called after <code>init</code>.
@@ -919,7 +911,9 @@ Countly.removeAllConsent();</code></pre>
 <p>
   <span style="font-weight:400">The string values corresponding to the features that will be used in the <code>giveConsent</code> or <code>removeConsent</code> </span><span style="font-weight:400">methods may be found&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#exposing-available-features-for-consent" target="_self"><span style="font-weight:400">here</span></a><span style="font-weight:400">. In addition, please review our platform SDK documents if the feature is applicable or not for that platform.</span>
 </p>
-<h1>Security and privacy</h1>
+<h1>
+  <span style="font-weight:400">Security and privacy</span>
+</h1>
 <h2>Parameter tampering protection</h2>
 <p>
   You can set optional<span>&nbsp;</span><code>salt</code><span>&nbsp;</span>to
