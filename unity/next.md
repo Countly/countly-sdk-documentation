@@ -108,10 +108,10 @@
   data stores in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'. <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> is a fast acid table-style document NoSQL Embedded Database.&nbsp;<br></span>
 </p>
 <p>
-  <span>The SDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform: </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+  <span>The SDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform: </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
 </p>
 <p>
-  <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Unity editor create database document file at<br>"/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.box" on Mac OSX.</span>
+  <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Unity editor create database document file at<br>"/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.box" on Mac OSX.</span>
 </p>
 <h2 id="require-app-permissions" class="anchor-heading">Required app permissions</h2>
 <p>
@@ -190,7 +190,7 @@
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h1>Custom events</h1>
 <p>
-  <span style="font-weight:400">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight:400">custom event</span></a><span style="font-weight:400"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
+  <span style="font-weight: 400;">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">custom event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
 <p>
   The Unity SDK helps record as many events as you want (you can set a threshold
@@ -204,39 +204,18 @@
 </p>
 <pre>countly.Events.</pre>
 <p>
-  <span>An event must contain&nbsp;</span><strong>key</strong><span>&nbsp;and&nbsp;</span><strong>count</strong><span> properties. If the count is not provided, the default value will be 1. Optionally, you may also provide the </span><strong>sum</strong><span>&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>duration</strong><span> property for recording some duration/period of time, and <strong>segmentation</strong>&nbsp;as a map with keys and values for segmentation.</span><br>
-  Here is the detail of the parameters:
+  <span>An event must contain&nbsp;</span><strong>key</strong><span> property. Optionally, you may also provide the <strong>count </strong>property, the </span><strong>sum</strong><span>&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>duration</strong><span> property for recording some duration/period of time, and <strong>segmentation</strong> as a map with keys and values for segmentation. If the <strong>count</strong>, <strong>sum</strong>, or <strong>duration</strong> property is not provided, their default values will be 1, 0, and 0 respectively.</span>
 </p>
-<ul>
-  <li>
-    <strong>key -&nbsp;</strong>(Mandatory, string) Event key
-  </li>
-  <li>
-    <strong>segmentation -</strong> (Optional) Custom keys/values to be reported.
-  </li>
-  <li>
-    <strong>count -</strong> (Optional, int) how many times an event occurred.
-    <span>If the count is not provided, the default value will be 1.</span>
-  </li>
-  <li>
-    <strong>sum -</strong> (Optional, int) a<span> property of the event</span>.
-    If not provided, the default value will be 0.
-  </li>
-  <li>
-    <strong>duration -</strong> (Optional, double) duration of an event, If not
-    provided, the default value will be 0.
-  </li>
-</ul>
 <p>
-  <span style="font-weight:400"><strong>Note:</strong> When providing segmentation for events, the only valid data types are: "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+  <span style="font-weight: 400;"><strong>Note:</strong> When providing segmentation for events, the only valid data types are: "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
 </p>
 <h2>Recording events</h2>
 <p>
-  <span>Here is a quick way to </span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">record an event:</span>
+  <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
 </p>
 <pre><strong>public</strong> async Task ReportCustomEventAsync(string key, IDictionary&lt;string, object&gt; segmentation = null, int? count = 1, double? sum = null, double? duration = null)</pre>
 <p>
-  <span style="font-weight:400">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight:400">ere is a quick summary of the information for each usage:</span>
+  <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
 </p>
 <ul>
   <li>
@@ -249,16 +228,16 @@
   <li>
     Usage 3: how many times the&nbsp;<strong>purchase</strong> event occurred
     +
-    <span style="font-weight:400">from which countries and application versions those purchases were made.</span>
+    <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
   <li>
     Usage 4: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +&nbsp;<span style="font-weight:400">the total amount, both of which are also available, segmented into countries and application versions.</span>
+    +&nbsp;<span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
   <li>
     Usage 5: how many times the&nbsp;<strong>purchase</strong> event occurred
     +
-    <span style="font-weight:400">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
+    <span style="font-weight: 400;">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
 <p>
@@ -288,14 +267,14 @@
 
 <strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);<br></code></pre>
 <p>
-  <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
+  <span style="font-weight: 400;">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
 <h2>Timed events</h2>
 <p>
-  <span style="font-weight:400">Currently, SDK doesn't have any direct mechanism to record timed events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
+  <span style="font-weight: 400;">Currently, SDK doesn't have any direct mechanism to record timed events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
 </p>
 <p>
-  <span style="font-weight:400">Example:</span>
+  <span style="font-weight: 400;">Example:</span>
 </p>
 <pre><code class="java">//At the start of your planned event you would record the start timestamp<br>DateTime startTime = DateTime.UtcNow;<br>...<br><br>//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed<br>double duration = (DateTime.UtcNow - startTime).TotalSeconds;<br>//Then you would pass this information when recording a Countly event
 <strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);<br></code></pre>
@@ -304,7 +283,7 @@
 </p>
 <h1>Sessions</h1>
 <h2>
-  <span style="font-weight:400">&nbsp;Automatic session tracking&nbsp;</span>
+  <span style="font-weight: 400;">&nbsp;Automatic session tracking&nbsp;</span>
 </h2>
 <p>
   The Unity SDK handles the session automatically. After calling the
@@ -338,18 +317,28 @@
 </p>
 <h2>Device ID generation</h2>
 <p>
-  The SDK uses <code class="java">SystemInfo.deviceUniqueIdentifier</code> exposed by Unity when generating the default device ID. This would then use different sources for generating the ID. Those sources would depend on the platform.
+  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or </span><span>generates a unique device ID.&nbsp;<br>SDK uses</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code> to provides a device ID and It is guaranteed to be unique for every device.</span>
 </p>
 <p>
-  <span>For IOS, <code class="java">SystemInfo.deviceUniqueIdentifier</code> would use <em><strong>'UIDevice.identifierForVendor'</strong></em> or <a href="https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor"> IDFV</a> as the source.<br>
-    For Android, it would returns the MD5 has of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;<strong>different value</strong>&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;
-    For Win32 builds ...
-    <br>
-    For UWP builds...
-    <br>
-    For macOS builds...
-    <br>
-    <br>For more information about <code class="java">SystemInfo.deviceUniqueIdentifier</code> <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
+  <span><strong>IOS:</strong> on pre-iOS7 devices, it will return a hash of the MAC address. On iOS7 devices, it will be</span>
+</p>
+<p>
+  <span><code class="java">UIDevice identifierForVendor</code> or, if that fails for any reason,</span>
+</p>
+<p>
+  <span><code class="java">ASIdentifierManager advertisingIdentifier</code></span>
+</p>
+<p>
+  <span>&nbsp;<strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code>&nbsp;returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;different value&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;</span>
+</p>
+<p>
+  <span><strong>Windows Store Apps</strong>: uses AdvertisingManager::AdvertisingId for returning unique device identifiers.</span>
+</p>
+<p>
+  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.,<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
+</p>
+<p>
+  <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
 </p>
 <h2>Changing device ID</h2>
 <p>
@@ -417,7 +406,7 @@
   </li>
 </ol>
 <h3>
-  <span style="font-size:1.2em;font-weight:600">Changing </span><span style="font-size:1.2em;font-weight:600">N</span><span style="font-size:1.2em;font-weight:600">otification </span><span style="font-size:1.2em;font-weight:600">Sound and I</span><span style="font-size:1.2em;font-weight:600">cons</span>
+  <span style="font-size: 1.2em; font-weight: 600;">Changing </span><span style="font-size: 1.2em; font-weight: 600;">N</span><span style="font-size: 1.2em; font-weight: 600;">otification </span><span style="font-size: 1.2em; font-weight: 600;">Sound and I</span><span style="font-size: 1.2em; font-weight: 600;">cons</span>
 </h3>
 <p>
   <span>In order to change the sound and icons of the notifications, replace the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
@@ -773,7 +762,7 @@
 </p>
 <pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be given</span></code><br><code class="java hljs">Consents[] consents = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// give consents to the features</span></code><br><code class="java hljs">configuration.GiveConsent(consents);</code></pre>
 <h2>
-  <span style="font-weight:400">Feature groups</span>
+  <span style="font-weight: 400;">Feature groups</span>
 </h2>
 <p>
   <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>CreateConsentGroup</code></span><span>. Those groups are not persistent and must be created on every restart. Consents to groups may be given to using <code class="java hljs">GiveConsentToGroup</code>.</span>
