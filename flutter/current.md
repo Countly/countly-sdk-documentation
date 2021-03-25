@@ -191,10 +191,12 @@ flutter run</code></pre>
 <pre>Countly.<span>addCrashLog</span>(<span>String logs</span>)</pre>
 <h1>Custom events</h1>
 <p>
-  A custom event is any type of action that you can send to a Countly instance,
-  e.g purchase, settings changed, view enabled and so. This way it's possible to
-  get much more information from your application compared to what is sent from
-  Flutter SDK to Countly instance by default.
+  A
+  <a href="http://resources.count.ly/docs/custom-events"><span>custom event</span></a>
+  is any type of action that you can send to a Countly instance, e.g purchase,
+  settings changed, view enabled and so. This way it's possible to get much more
+  information from your application compared to what is sent from Flutter SDK to
+  Countly instance by default.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -206,27 +208,30 @@ flutter run</code></pre>
 </div>
 <h2>Recording events</h2>
 <p>
-  We will be recording a purchase event. Here is a quick summary of what information
-  each usage will provide us:
+  We will be recording a <strong>purchase</strong> event. Here is a quick summary
+  of what information each usage will provide us:
 </p>
 <ul>
-  <li>Usage 1: how many times a purchase event occurred.</li>
   <li>
-    Usage 2: how many times purchase event occurred + the total amount of those
-    purchases.
+    Usage 1: how many times a <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 3: how many times purchase event occurred + which countries and application
-    versions those purchases were made from.
+    Usage 2: how many times <strong>purchase</strong> event occurred + the total
+    amount of those purchases.
   </li>
   <li>
-    Usage 4: how many times a purchase event occurred + the total amount both
-    of which are also available segmented into countries and application versions.
+    Usage 3: how many times <strong>purchase</strong> event occurred + which
+    countries and application versions those purchases were made from.
   </li>
   <li>
-    Usage 5: how many times purchase event occurred + the total amount both of
-    which are also available segmented into countries and application versions
-    + the total duration of those events (under Timed Events topic below)
+    Usage 4: how many times a <strong>purchase</strong> event occurred + the
+    total amount both of which are also available segmented into countries and
+    application versions.
+  </li>
+  <li>
+    Usage 5: how many times <strong>purchase</strong> event occurred + the total
+    amount both of which are also available segmented into countries and application
+    versions + the total duration of those events (under Timed Events topic below)
   </li>
 </ul>
 <p>
@@ -272,6 +277,23 @@ var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
   "sum": "0.99"
+};
+event["segmentation"] = {
+  "Country": "Germany",
+  "Age": "28"
+};
+Countly.recordEvent(event);
+</code></pre>
+<p>
+  <span class="wysiwyg-font-size-large">5. Event key, count, sum and duration with segmentation(s)</span>
+</p>
+<pre><code class="javascript">
+// example for event with segment and sum
+var event = {
+  "key": "Event With Sum And Segment",
+  "count": 1,
+  "sum": "0.99",
+  "duration": "0"
 };
 event["segmentation"] = {
   "Country": "Germany",
