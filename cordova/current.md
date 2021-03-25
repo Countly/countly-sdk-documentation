@@ -30,7 +30,7 @@
 <p>
   If you would integrate this SDK in any other project similar to cordova (like
   ionic, phonegap, meteor), you would have to make sure that you are setting the
-  platform requirements for those projectssimilar to these.
+  platform requirements for those projects similar to these.
 </p>
 <p>&nbsp;</p>
 <p>
@@ -198,10 +198,12 @@ Countly.addCrashLog("My crash log from JavaScript");
 <h1>Custom events</h1>
 <h2>Setting up custom events</h2>
 <p>
-  A custom event is any type of action that you can send to a Countly instance,
-  e.g purchase, settings changed, view enabled and so. This way it's possible to
-  get much more information from your application compared to what is sent from
-  Android SDK to Countly instance by default.
+  A
+  <a href="http://resources.count.ly/docs/custom-events"><span>custom event</span></a>
+  is any type of action that you can send to a Countly instance, e.g purchase,
+  settings changed, view enabled and so. This way it's possible to get much more
+  information from your application compared to what is sent from Android SDK to
+  Countly instance by default.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -211,28 +213,32 @@ Countly.addCrashLog("My crash log from JavaScript");
     All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
 </div>
+<h2>Recording events</h2>
 <p>
-  As an example, we will be recording a purchase event. Here is a quick summary
-  what information each usage will provide us:
+  We will be recording a <strong>purchase</strong> event. Here is a quick summary
+  of what information each usage will provide us:
 </p>
 <ul>
-  <li>Usage 1: how many times purchase event occured.</li>
   <li>
-    Usage 2: how many times purchase event occured + the total amount of those
-    purchases.
+    Usage 1: how many times <strong>purchase</strong> event occured.
   </li>
   <li>
-    Usage 3: how many times purchase event occured + which countries and application
-    versions those purchases were made from.
+    Usage 2: how many times <strong>purchase</strong> event occured + the total
+    amount of those purchases.
   </li>
   <li>
-    Usage 4: how many times purchase event occured + the total amount both of
-    which are also available segmented into countries and application versions.
+    Usage 3: how many times <strong>purchase</strong> event occured + which countries
+    and application versions those purchases were made from.
   </li>
   <li>
-    Usage 5: how many times purchase event occured + the total amount both of
-    which are also available segmented into countries and application versions
-    + the total duration of those events.
+    Usage 4: how many times <strong>purchase</strong> event occured + the total
+    amount both of which are also available segmented into countries and application
+    versions.
+  </li>
+  <li>
+    Usage 5: how many times <strong>purchase</strong> event occured + the total
+    amount both of which are also available segmented into countries and application
+    versions + the total duration of those events.
   </li>
 </ul>
 <p>
