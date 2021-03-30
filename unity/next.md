@@ -204,8 +204,25 @@
 </p>
 <pre>countly.Events.</pre>
 <p>
-  <span>An event must contain&nbsp;</span><strong>key</strong><span> property. Optionally, you may also provide the <strong>count </strong>property, the </span><strong>sum</strong><span>&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>duration</strong><span> property for recording some duration/period of time, and <strong>segmentation</strong> as a map with keys and values for segmentation. If the <strong>count</strong>, <strong>sum</strong>, or <strong>duration</strong> property is not provided, their default values will be 1, 0, and 0 respectively.</span>
+  <span>An event must have a <strong>key</strong> property. A <strong>key</strong> contains the name of the event. For example, a user purchased an item in a game and an event with the key 'purchase' sent on the server.<br>Optionally, you may also set the following properties:</span>
 </p>
+<ul>
+  <li>
+    <strong>count -</strong> &nbsp;an int that contains the count of the event
+    that occurred. if not provided the default value will be <strong>1</strong>.
+  </li>
+  <li>
+    <strong>sum -</strong> it contains the sum of things. F<span>or example, in-app purchase events sum of purchased items. Its default value will be <strong>0</strong>.</span>
+  </li>
+  <li>
+    <strong>duration - </strong>contains the duration of an event. The default
+    value will be <strong>0</strong> if not provided.
+  </li>
+  <li>
+    <strong>segments - </strong>a map with key and values to report additional
+    information.
+  </li>
+</ul>
 <p>
   <span style="font-weight: 400;"><strong>Note:</strong> When providing segmentation for events, the only valid data types are: "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
 </p>
@@ -322,7 +339,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2>Device ID generation</h2>
 <p>
-  <span>The Countly Unity SDK persists Device ID when you provide it during initialization or </span><span>generates a unique device ID.&nbsp;<br>SDK uses</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code> to provides a device ID and It is guaranteed to be unique for every device.</span>
+  <span>If you have a unique ID that you can retrieve, you may use it. If the device ID is not provided during initialization, Countly Unity SDK </span><span>generates a unique device ID and uses it for future requests.&nbsp;<br>The SDK uses</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code> to provides a device ID and It is should be unique for every device.</span>
 </p>
 <p>
   <span><strong>IOS:</strong> on pre-iOS7 devices, it will return a hash of the MAC address. On iOS7 devices, it will be</span>
@@ -337,10 +354,10 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>&nbsp;<strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code>&nbsp;returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;different value&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;</span>
 </p>
 <p>
-  <span><strong>Windows Store Apps</strong>: uses AdvertisingManager::AdvertisingId for returning unique device identifiers.</span>
+  <span><strong>Windows Store Apps:</strong> uses <code class="java">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
 </p>
 <p>
-  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.,<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
+  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
 </p>
 <p>
   <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
@@ -380,7 +397,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <h1>Push notifications</h1>
 <p>
   The Countly Unity SDK supports
-  <span>FCM (Firebase Cloud Messaging) for Android. By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br><br></span>
+  <span>FCM (Firebase Cloud Messaging) for Android. By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br></span>
 </p>
 <pre><span>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = COUNTLY_APP_KEY,<br>ServerUrl = COUNTLY_SERVER_URL,<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken<br>};</span></pre>
 <p>&nbsp;</p>
