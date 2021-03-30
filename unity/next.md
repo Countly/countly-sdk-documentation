@@ -276,8 +276,13 @@
 <p>
   <span style="font-weight: 400;">Example:</span>
 </p>
-<pre><code class="java">//At the start of your planned event you would record the start timestamp<br>DateTime startTime = DateTime.UtcNow;<br>...<br><br>//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed<br>double duration = (DateTime.UtcNow - startTime).TotalSeconds;<br>//Then you would pass this information when recording a Countly event
-<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);<br></code></pre>
+<pre><code class="java">//At the start of your planned event you would record the start timestamp
+DateTime startTime = DateTime.UtcNow;
+...
+//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed 
+double duration = (DateTime.UtcNow - startTime).TotalSeconds; 
+//Then you would pass this information when recording a Countly event
+<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);</code></pre>
 <p>
   <span>You may provide segmentation, count, and sum while recording a timed event.</span>
 </p>
