@@ -129,6 +129,25 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <p>
   <span style="font-weight: 400;">The method <code class="javascript">logException</code>takes a string for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.</span>
 </p>
+<p>
+  <span>Below are some examples that how to log<span style="font-weight: 400;"> handled/nonfatal and unhandled/fatal exceptions manually</span>.</span>
+</p>
+<p>
+  <strong>1. Manually report handled exception</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", true);</code></pre>
+<p>
+  <strong>2. Manually report handled exception with segmentation</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", true, {"_facebook_version": "0.0.1"});</code></pre>
+<p>
+  <strong>3. Manually report fatal exception</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", false);</code></pre>
+<p>
+  <strong>4. Manually report fatal exception with segmentation</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", false, {"_facebook_version": "0.0.1"});</code></pre>
 <h2>Crash breadcrumbs</h2>
 <p>
   Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
@@ -139,19 +158,25 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <pre><code class="java hljs">Countly.addCrashLog(String record) </code></pre>
 <h2>Native C++ Crash Reporting</h2>
 <p>
-  <span style="font-weight: 400;">If you have C++ libraries in your Android app, the React Native Bridge SDK allows you to record possible crashes in your Countly server by integrating the <code>sdk-native</code></span><span style="font-weight: 400;">developed within our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">Android SDK</span></a><span style="font-weight: 400;">. F</span><span style="font-weight: 400;">ind more information <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#native-c-crash-reporting" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">If you have C++ libraries in your React Native Android app, the React Native Bridge SDK allows you to record possible crashes in your Countly server by integrating the <code>sdk-native</code></span><span style="font-weight: 400;">developed within our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">Android SDK</span></a><span style="font-weight: 400;">. F</span><span style="font-weight: 400;">ind more information <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#native-c-crash-reporting" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As this feature is optional, you will need to do some changes in your android project files in order to make it available. </span>
+  <span style="font-weight: 400;">As this feature is optional, you will need to do some changes in your react native android project files in order to make it available.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Go to <code>android/build.gradle</code></span><span style="font-weight: 400;">and add the package dependency<span>&nbsp;(please change the&nbsp;<code>LATEST_VERSION</code></span><span>&nbsp;below by checking our Maven&nbsp;</span><a href="https://bintray.com/countly/maven/sdk-native"><span>page</span></a><span>, currently 19.02.3)</span></span><span style="font-weight: 400;">:</span>
+  <span style="font-weight: 400;">Go to <code>YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code></span><span style="font-weight: 400;">and add the package dependency<span>&nbsp;(please change the&nbsp;<code>LATEST_VERSION</code></span><span>&nbsp;below by checking our Maven&nbsp;</span><a href="https://bintray.com/countly/maven/sdk-native"><span>page</span></a><span>, currently 20.11.6)</span></span><span style="font-weight: 400;">:</span>
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:<span>LATEST_VERSION</span>'    
 }</code></pre>
 <p>
-  <span>Then call our init method as early as possible in your application life cycle to be able to catch crashes that occur during initialization:</span>
+  <span>Then call <span style="font-weight: 400;"><code>Countly.initNative()</code></span> method as early as possible in your react native android project, <span style="font-weight: 400;"><code>onCreate()</code> function in</span> <span style="font-weight: 400;"><code>MainApplication.java</code> may be a good place for this call. </span></span>
+</p>
+<p>
+  <span><span style="font-weight: 400;">You may find <code>MainApplication.java</code> at this path:</span></span>
+</p>
+<p>
+  <span><span style="font-weight: 400;"><code>YOUR_REACT_NATIVE_PROJECT_PATH/android/app/src/main/java/com/PROJECT_NAME</code> </span>&nbsp;</span>
 </p>
 <pre><code class="java hljs"><span class="hljs-keyword">import</span> ly.count.android.sdknative.CountlyNative;
 
