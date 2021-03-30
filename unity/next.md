@@ -204,28 +204,32 @@
 </p>
 <pre>countly.Events.</pre>
 <p>
-  <span>An event must have a <strong>key</strong> property. A <strong>key</strong> contains the name of the event. For example, a user purchased an item in a game and an event with the key 'purchase' sent on the server.<br>Optionally, you may also set the following properties:</span>
+  <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event.&nbsp; For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
+</p>
+<p>
+  <span>Optionally there are also other properties that you might want to set:</span>
 </p>
 <ul>
   <li>
-    <strong>count -</strong> &nbsp;an int that contains the count of the event
-    that occurred. if not provided the default value will be <strong>1</strong>.
+    <strong>count -</strong>&nbsp; a whole numerical value that marks how many
+    times this event has happened. The default value for that is
+    <strong>1</strong>.
   </li>
   <li>
-    <strong>sum -</strong> it contains the sum of things. F<span>or example, in-app purchase events sum of purchased items. Its default value will be <strong>0</strong>.</span>
+    <strong>sum -</strong> This value would be summed across all events in the
+    dashboard. F<span>or example, in-app purchase events sum of purchased items. Its default value is <strong>0</strong>.</span>
   </li>
   <li>
-    <strong>duration - </strong>contains the duration of an event. The default
-    value will be <strong>0</strong> if not provided.
+    <strong>duration - </strong>Used to record and track the duration of events.
+    The default value is <strong>0</strong>.
   </li>
   <li>
-    <strong>segments - </strong>a map with key and values to report additional
-    information.
+    <strong>segments - </strong>A value where you can provide custom segmentation
+    for your events to track additional information. It is a key and value map.
+    The accepted data types for the value are
+    <span style="font-weight: 400;">"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
 </ul>
-<p>
-  <span style="font-weight: 400;"><strong>Note:</strong> When providing segmentation for events, the only valid data types are: "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
-</p>
 <h2>Recording events</h2>
 <p>
   <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
@@ -335,11 +339,14 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <pre><strong>await</strong> countly.Views.RecordCloseViewAsync("Home Scene");</pre>
 <h1 class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
-  <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID by yourself if you have one (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
+  <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
 <h2>Device ID generation</h2>
 <p>
-  <span>If you have a unique ID that you can retrieve, you may use it. If the device ID is not provided during initialization, Countly Unity SDK </span><span>generates a unique device ID and uses it for future requests.&nbsp;<br>The SDK uses</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code> to provides a device ID and It is should be unique for every device.</span>
+  <span>If no device ID is provided the first time the SDK is initialised, the SDK will generate a unique device ID. The source of that id is</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code>which is a value exposed by Unity. It should be unique for every device.</span>
+</p>
+<p>
+  <span>Here are the underlying mechanisms used to generate that value for some platforms:</span>
 </p>
 <p>
   <span><strong>IOS:</strong> on pre-iOS7 devices, it will return a hash of the MAC address. On iOS7 devices, it will be</span>
@@ -357,10 +364,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span><strong>Windows Store Apps:</strong> uses <code class="java">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
 </p>
 <p>
-  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span>
-</p>
-<p>
-  <span>This Device ID will be used persistently for all future requests made from a device until you change that.</span>
+  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span><span></span>
 </p>
 <h2>Changing device ID</h2>
 <p>
