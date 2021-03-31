@@ -179,12 +179,12 @@
 </p>
 <p>
   The Session will be ended automatically when the user
-  <span class="wysiwyg-color-black">calls </span><span style="background-color:#e9ebed;font-family:monospace, monospace;font-size:13px;white-space:pre">Application.Quit()</span>.
+  <span class="wysiwyg-color-black">calls </span><span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;">Application.Quit()</span>.
 </p>
-<h1>Custom Events</h1>
-<h2>Setting up custom events</h2>
+<h1>Events</h1>
+<h2>Setting up events</h2>
 <p>
-  <span style="font-weight:400">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight:400">custom event</span></a><span style="font-weight:400"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
+  <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
 <p>
   The Unity SDK helps record as many events as you want (you can set a threshold
@@ -194,8 +194,8 @@
 </p>
 <h2>Accessing event-related functionalities</h2>
 <p>
-  In the SDK, all custom event-related functionalities can be browsed from the
-  returned interface on:
+  In the SDK, all event-related functionalities can be browsed from the returned
+  interface on:
 </p>
 <pre>countly.Events.</pre>
 <h2>Segmentation</h2>
@@ -203,9 +203,9 @@
   When providing segmentation for events, the only valid data types are: "String",
   "Integer", "Double", and "Boolean". All other types will be ignored.
 </p>
-<h2>Custom event usage examples</h2>
+<h2>Event usage examples</h2>
 <p>
-  <span style="font-weight:400">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight:400">ere is a quick summary of the information for each usage:</span>
+  <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
 </p>
 <ul>
   <li>
@@ -218,16 +218,16 @@
   <li>
     Usage 3: how many times the&nbsp;<strong>purchase</strong> event occurred
     +
-    <span style="font-weight:400">from which countries and application versions those purchases were made.</span>
+    <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
   <li>
     Usage 4: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +&nbsp;<span style="font-weight:400">the total amount, both of which are also available, segmented into countries and application versions.</span>
+    +&nbsp;<span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
   <li>
     Usage 5: how many times the&nbsp;<strong>purchase</strong> event occurred
     +
-    <span style="font-weight:400">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
+    <span style="font-weight: 400;">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
 <h3>1. Event key and count</h3>
@@ -249,7 +249,7 @@
 
 <strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segment, count: 1, sum: 0.99, duration: 60);<br></code></pre>
 <p>
-  <span style="font-weight:400">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
+  <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
 <h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
 <p>
@@ -524,7 +524,7 @@
   </li>
 </ol>
 <h3>
-  <span style="font-size:1.2em;font-weight:600">Changing </span><span style="font-size:1.2em;font-weight:600">N</span><span style="font-size:1.2em;font-weight:600">otification </span><span style="font-size:1.2em;font-weight:600">Sound and I</span><span style="font-size:1.2em;font-weight:600">cons</span>
+  <span style="font-size: 1.2em; font-weight: 600;">Changing </span><span style="font-size: 1.2em; font-weight: 600;">N</span><span style="font-size: 1.2em; font-weight: 600;">otification </span><span style="font-size: 1.2em; font-weight: 600;">Sound and I</span><span style="font-size: 1.2em; font-weight: 600;">cons</span>
 </h3>
 <p>
   <span>In order to change the sound and icons of the notifications, replace the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
