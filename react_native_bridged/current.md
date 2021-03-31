@@ -170,7 +170,7 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
     implementation 'ly.count.android:sdk-native:<span>LATEST_VERSION</span>'    
 }</code></pre>
 <p>
-  <span>Then call <span style="font-weight: 400;"><code>Countly.initNative()</code></span> method as early as possible in your react native android project, <span style="font-weight: 400;"><code>onCreate()</code> function in</span> <span style="font-weight: 400;"><code>MainApplication.java</code> may be a good place for this call. </span></span>
+  <span>Then call <span style="font-weight: 400;"><code>Countly.initNative()</code></span> method as early as possible in your react native android project <span style="font-weight: 400;">to be able to catch setup time crashes</span>, it should be preferably in the "onCreate" callback of the Application class<span style="font-weight: 400;">. </span></span>
 </p>
 <p>
   <span><span style="font-weight: 400;">You may find <code>MainApplication.java</code> at this path:</span></span>
@@ -178,15 +178,15 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <p>
   <span><span style="font-weight: 400;"><code>YOUR_REACT_NATIVE_PROJECT_PATH/android/app/src/main/java/com/PROJECT_NAME</code> </span>&nbsp;</span>
 </p>
-<pre><code class="java hljs"><span class="hljs-keyword">import</span> ly.count.android.sdknative.CountlyNative;
+<pre><code class="java hljs"><span class="hljs-keyword">// import this in your Application class<br>import</span> ly.count.android.sdknative.CountlyNative;
 
-CountlyNative.initNative(getApplicationContext());</code></pre>
+// call this function in "onCreate" callback of Application class<br>CountlyNative.initNative(getApplicationContext());</code></pre>
 <p>
   <code>getApplicationContext()</code><span>&nbsp;</span>is needed to determine
   a storage place for minidump files.
 </p>
 <p>
-  <span style="font-weight: 400;">We suggest calling <code>Countly.initNative()</code></span><span style="font-weight: 400;"> as soon as your app is initialized to be able to catch setup time crashes. Sending crash dump files to the server will be taken care of by the SDK during the next app initialization. We also provide a Gradle plugin that automatically uploads symbol files to your server (these are needed for the symbolication of crash dumps). Integrate it into your React Native project as explained in the relevant Android documentation </span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#native-c-crash-reporting" target="_self" rel="undefined">page</a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Sending crash dump files to the server will be taken care of by the SDK during the next app initialization. We also provide a Gradle plugin that automatically uploads symbol files to your server (these are needed for the symbolication of crash dumps). Integrate it into your React Native project as explained in the relevant Android documentation </span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#native-c-crash-reporting" target="_self" rel="undefined">page</a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">This is what the debug logs will look like if you use this feature:</span>
