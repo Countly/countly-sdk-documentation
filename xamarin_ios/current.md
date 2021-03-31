@@ -171,7 +171,7 @@ namespace CountlyTestNative.iOS
   force device ID initialization again. This will reset the initially stored device
   ID and Countly iOS SDK will work as if it is the first app launch.
 </p>
-<pre><code class="csharp">			config.ForceDeviceIDInitialization = true;</code></pre>
+<pre><code class="csharp">      config.ForceDeviceIDInitialization = true;</code></pre>
 <p>
   After you start Countly with <strong>ForceDeviceIDInitialization</strong> flag
   only once while developing, you can remove that line.
@@ -228,8 +228,8 @@ Countly.SharedInstance().EndSession();</code></pre>
 </ul>
 <p>
   <strong>EventSendThreshold</strong> is used to send events requests to server
-  when number of recorded custom events reach it without waiting for next update
-  session request.
+  when number of recorded events reach it without waiting for next update session
+  request.
 </p>
 <pre><code class="csharp"> config.EventSendThreshold = 5;</code></pre>
 <ul>
@@ -354,7 +354,7 @@ config.CustomHeaderFieldValue = "my_custom_value";</code></pre>
 </p>
 <h1>Recording Events</h1>
 <p>
-  Here is a quick summary on how to use custom events recording methods.
+  Here is a quick summary on how to use event recording methods.
 </p>
 <h2>Regular Events</h2>
 <p>
@@ -430,8 +430,8 @@ config.CustomHeaderFieldValue = "my_custom_value";</code></pre>
 [Register("AppDelegate")]
 public class AppDelegate : UIApplicationDelegate
 {
-	public override bool FinishedLaunching(UIApplication application,                 NSDictionary launchOptions)
-  	{
+  public override bool FinishedLaunching(UIApplication application,                 NSDictionary launchOptions)
+    {
             application.WeakDelegate = this;
             Countly.SharedInstance().Init();
             //Basic Setting for countly server
