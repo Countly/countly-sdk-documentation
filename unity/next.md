@@ -422,24 +422,6 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
     <span>Put your file google-services.xml in /Plugins/Android/Notifications/res/values (replace if necessary).</span>
   </li>
 </ol>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Changing notification sound and icons</strong></span>
-</p>
-<p>
-  <span>In order to change the sound and icons of the notifications, replace the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
-</p>
-<p>
-  <span><strong>Note</strong>: The Notification channel name and description can be updated through the <strong>strings.xml</strong> file located in the <strong>Assets\Plugins\Android\Notifications\res\values </strong>folder.</span>
-</p>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Remove FCM Dependencies</strong></span>
-</p>
-<p>
-  <span>By default, FCM dependencies are part of the <strong>SDK.</strong> To remove FCM dependencies, go to the <strong>Assets\Plugins\Android </strong>folder and delete the <strong>Notifications</strong> folder.</span>
-</p>
-<p>
-  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package.</span>
-</p>
 <h3>
   <span>iOS</span>
 </h3>
@@ -462,27 +444,55 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <p>
   After exporting the <strong>iOS</strong> project, open the project in
-  <strong>Xcode</strong>, and add <strong>Push Notifications</strong> Capability.<img src="/hc/article_attachments/900004294166/Screenshot_2020-10-26_at_3.13.25_PM.png" alt="Screenshot_2020-10-26_at_3.13.25_PM.png">
-</p>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Removing the APNs Dependencies</strong></span>
-</p>
-<p>
-  <span>By default, the <strong>APNs</strong> dependencies are part of the <strong>SDK.</strong> To remove the <strong>APNs</strong> dependencies, go to the <strong>Assets\Plugins </strong>folder and delete the <strong>iOS</strong> folder. Remove the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol from <strong>Scripting Define Symbols </strong>in <strong>Player Settings.</strong></span>
-</p>
-<p>
-  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package and add back the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol.</span>
+  <strong>Xcode</strong>, and add <strong>Push Notifications</strong> Capability.
 </p>
 <h2>
   <span>Enabling push</span>
 </h2>
 <p>
-  <span>By default Push Notifications are disabled. To enable them to set Notification Mode in the Configuration.<br></span>
+  <span>By default Push Notifications are disabled. To enable them to set Notification Mode other than <code>None</code> in the Configuration before SDK init call. For testing purposes, use <code>iOSTestToken</code> and&nbsp;<code>AndroidTestToken</code> modes for Android and iOS platforms respectively.<br></span>
+</p>
+<p>
+  <span>Example:</span>
 </p>
 <pre><span>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = COUNTLY_APP_KEY,<br>ServerUrl = COUNTLY_SERVER_URL,<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken<br>};</span></pre>
-<p>&nbsp;</p>
 <p>
-  <span>Use an <strong>iOS Test Token </strong>or an <strong>Android Test Token</strong> for testing purposes and in production use a <strong>Production</strong> <strong>Token</strong></span>
+  <strong>Note:</strong> Change the notification mode to
+  <span><code>ProductionToken</code>in production.</span>
+</p>
+<h2>Removing push and its dependencies</h2>
+<p>
+  <span>By default, push dependencies are part of the SDK. You may remove them, and add them back after removing them.<br>Don't forget to change notification mode to <code>None</code>, after removing push notification dependencies from SDK.<br></span>
+</p>
+<h3>
+  <span>Android</span><span></span>
+</h3>
+<p>
+  <span>To remove FCM dependencies from the android build, go to the <strong>Assets\Plugins\Android </strong>folder and delete the <strong>Notifications</strong> folder.</span>
+</p>
+<p>
+  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package.</span><span></span>
+</p>
+<h3>
+  <span>IOS</span>
+</h3>
+<p>
+  <span>The <strong>APN's</strong> dependencies are part of the <strong>SDK.</strong> To remove the <strong>APNs</strong> dependencies, go to the <strong>Assets\Plugins </strong>folder and delete the <strong>iOS</strong> folder. Remove the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol from <strong>Scripting Define Symbols </strong>in <strong>Player Settings.</strong></span>
+</p>
+<p>
+  <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package and add back the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol.</span>
+</p>
+<h2>
+  <span>Customizing push messages</span>
+</h2>
+<h3>
+  <span>Android</span>
+</h3>
+<p>
+  <span>To change the sound and icons of the android notifications, update the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
+</p>
+<p>
+  <span><strong>Note</strong>: The Notification channel name and description can be updated through the <strong>strings.xml</strong> file located in the <strong>Assets\Plugins\Android\Notifications\res\values </strong>folder.</span>
 </p>
 <h2>Handling push callbacks</h2>
 <p>
