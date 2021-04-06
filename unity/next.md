@@ -486,22 +486,26 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2>Handling push callbacks</h2>
 <p>
-  <span>You may listen to notification receive and click events. To listen to notification events follow the following steps:</span>
-</p>
-<p>
-  <span>1. Implement <code>INotificationListener</code> interface and its members' methods <code>OnNotificationClicked</code> and <code>OnNotificationReceived</code>&nbsp;into your class.<br></span>
+  <span>In order to listen to notification receive and click events, implement <code>INotificationListener</code> interface and its members' methods <code>OnNotificationClicked</code> and <code>OnNotificationReceived</code> into your class.&nbsp;</span><span><br></span>
 </p>
 <p>
   <span>Example:</span>
 </p>
 <pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message)<br>  {<br>  }<br><br>  public void OnNotificationClicked(string message, int index)<br>  {<br>  }<br>}</code></span></pre>
 <p>
-  <span>2. After calling <code>Countly.Instance.Init(...)</code>, call <code>Countly.Instance.Notifications.AddListener(this)</code>.</span><span></span><span></span>
+  <span>&nbsp;There are two ways to register for this class to listen to notification events.</span>
+</p>
+<p>
+  <span>1. You may call <code>AddListener(this)</code>on <code>CountlyConfiguration</code> object before the SDK Init call.</span>
 </p>
 <p>
   <span>Example:</span>
 </p>
-<pre><span><code>private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>  {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  };<br>  Countly.Instance.Init(config);<br>  countly.Notifications.AddListener(this);<br>}</code></span><span></span></pre>
+<pre><span><code>private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>  {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  };<br>  config.AddListener(this);<br>  Countly.Instance.Init(config);<br>}</code></span><span></span></pre>
+<p>
+  <span></span><span></span>2. If SDK has been initialized<span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">, use the following code snippet to listen to push notification events.</span>
+</p>
+<pre><code style="font-size: 15px;">Countly.Instance.Notifications.AddListener(this);</code></pre>
 <p>
   <span>To stop listening notification receive and click events, call</span>
 </p>
@@ -537,7 +541,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>or set location info that will be sent during the start of the user session:</span>
 </p>
-<pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);<br><br></pre>
+<pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
   <span>Note that the ipAddress will only be updated if set through the init process.</span>
 </p>
