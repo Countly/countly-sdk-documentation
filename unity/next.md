@@ -450,7 +450,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>Enabling push</span>
 </h2>
 <p>
-  <span>By default Push Notifications are disabled. To enable them to set Notification Mode other than <code>None</code> in the Configuration before SDK init call. For testing purposes, use <code>iOSTestToken</code> and&nbsp;<code>AndroidTestToken</code> modes for Android and iOS platforms respectively.<br></span>
+  <span>By default Push Notifications are disabled. To enable push, set Notification mode other than <code>None</code> in the Configuration before SDK init call. For testing purposes, use <code>iOSTestToken</code> and&nbsp;<code>AndroidTestToken</code> modes for Android and iOS platforms respectively.<br></span>
 </p>
 <p>
   <span>Example:</span>
