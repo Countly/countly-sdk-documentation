@@ -399,10 +399,13 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
 <h1>Push notifications</h1>
+<p>
+  Countly provides support for FCM(<span>Firebase Cloud Messaging), Huawei Push Kit, and APNs (Apple Push Notification) as push notification service providers. The Unity SKD supports only FCM and APNS for Android and iOS platforms respectively. FCM and APNs dependencies are part of the SDK.</span>
+</p>
 <h2>Integration</h2>
-<h3>
-  <span>Android</span>
-</h3>
+<p>
+  <strong><span class="wysiwyg-font-size-large">Android</span></strong>
+</p>
 <p>
   <span>The Countly server needs an FCM server key to send notifications through FCM. </span><span></span>
 </p>
@@ -422,60 +425,70 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
     <span>Put your file google-services.xml in /Plugins/Android/Notifications/res/values (replace if necessary).</span>
   </li>
 </ol>
-<h3>
-  <span>iOS</span>
-</h3>
 <p>
-  <span class="wysiwyg-font-size-medium"><strong>Adding Scripting Define Symbols</strong></span>
+  <strong><span class="wysiwyg-font-size-large">iOS</span></strong>
 </p>
 <p>
-  In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
+  The Countly server needs the APNs Auth Key&nbsp;to send notifications. To get
+  the APNs Auth Key&nbsp;and upload it to the County Server, for further information
+  refer to
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#setting-up-apns-authentication" target="_self">iOS Documentation.</a>
+</p>
+<p>To set up push for iOS, follow the next two steps:</p>
+<p>
+  1. In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
   <strong>Other Settings</strong> section, add the
-  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"><br></strong>
+  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
 </p>
 <p>
-  <span class="wysiwyg-font-size-medium"><strong>APNs Credentials</strong></span>
-</p>
-<p>
-  <span>The Countly server needs the APNs <strong>Auth Key&nbsp;</strong>to send notifications. To get the APNs <strong>Auth Key&nbsp;</strong>and upload it to the County Server, refer to <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#setting-up-apns-authentication" target="_self">iOS Documentation.</a></span>
-</p>
-<p id="configuring-ios-app" class="anchor-heading" tabindex="-1">
-  <span class="wysiwyg-font-size-medium"><strong>Configuring the iOS app</strong></span>
-</p>
-<p>
-  After exporting the <strong>iOS</strong> project, open the project in
+  2. After exporting the <strong>iOS</strong> project, open the project in
   <strong>Xcode</strong>, and add <strong>Push Notifications</strong> Capability.
+  For further information regarding iOS app configuring refer to
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#configuring-ios-app" target="_self" rel="undefined">iOS Documentation.</a>
 </p>
 <h2>
   <span>Enabling push</span>
 </h2>
 <p>
-  <span>By default Push Notifications are disabled. To enable push, set Notification mode other than <code>None</code> in the Configuration before SDK init call. For testing purposes, use <code>iOSTestToken</code> and&nbsp;<code>AndroidTestToken</code> modes for Android and iOS platforms respectively.<br></span>
+  <span>By default Push Notifications are disabled. To enable push, set Notification mode other than <code>None</code> in the Configuration before SDK init call.<br></span>
 </p>
 <p>
   <span>Example:</span>
 </p>
-<pre><span>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = COUNTLY_APP_KEY,<br>ServerUrl = COUNTLY_SERVER_URL,<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken<br>};</span></pre>
+<pre><span>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = COUNTLY_APP_KEY,<br>ServerUrl = COUNTLY_SERVER_URL,<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken<br>};<br></span></pre>
 <p>
-  <strong>Note:</strong> Change the notification mode to
-  <span><code>ProductionToken</code>in production.</span>
+  <span> Here is an overview of notification modes:</span>
 </p>
+<ul>
+  <li>
+    <span><code>None</code>- it is the default value of notification mode. This mode disables the notification feature.</span>
+  </li>
+  <li>
+    <span><code>AndroidTestToken</code> / <code>iOSTestToken</code>- during development build, use <code>AndroidTestToken</code>&nbsp;and <code>iOSTestToken</code>&nbsp;modes for Android and iOS platforms respectively.</span>
+  </li>
+  <li>
+    <span><code>iOSAdHocToken</code> - use this for distribution of iOS builds on TestFlight and AdHoc.</span>
+  </li>
+  <li>
+    <span><code>ProductionToken</code> - use this mode for the production builds.</span><span></span>
+  </li>
+</ul>
 <h2>Removing push and its dependencies</h2>
 <p>
   <span>By default, push dependencies are part of the SDK. You may remove them, and add them back after removing them.<br>Don't forget to change notification mode to <code>None</code>, after removing push notification dependencies from SDK.<br></span>
 </p>
-<h3>
-  <span>Android</span><span></span>
-</h3>
+<p>
+  <strong><span class="wysiwyg-font-size-large">Android</span></strong><span></span>
+</p>
 <p>
   <span>To remove FCM dependencies from the android build, go to the <strong>Assets\Plugins\Android </strong>folder and delete the <strong>Notifications</strong> folder.</span>
 </p>
 <p>
   <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package.</span><span></span>
 </p>
-<h3>
-  <span>IOS</span>
-</h3>
+<p>
+  <span class="wysiwyg-font-size-large"><strong>IOS</strong></span>
+</p>
 <p>
   <span>The <strong>APN's</strong> dependencies are part of the <strong>SDK.</strong> To remove the <strong>APNs</strong> dependencies, go to the <strong>Assets\Plugins </strong>folder and delete the <strong>iOS</strong> folder. Remove the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol from <strong>Scripting Define Symbols </strong>in <strong>Player Settings.</strong></span>
 </p>
@@ -485,9 +498,9 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <h2>
   <span>Customizing push messages</span>
 </h2>
-<h3>
-  <span>Android</span>
-</h3>
+<p>
+  <strong><span class="wysiwyg-font-size-large">Android</span></strong>
+</p>
 <p>
   <span>To change the sound and icons of the android notifications, update the sound and icons in the folder Assets/Plugins/Android/Notifications/res.&nbsp;</span>
 </p>
