@@ -400,25 +400,14 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
 <h1>Push notifications</h1>
 <p>
-  Countly provides support for FCM(<span>Firebase Cloud Messaging), Huawei Push Kit, and APNs (Apple Push Notification) as push notification service providers. The Unity SKD uses FCM and APNs as push notification providers for Android and iOS platforms respectively, and it doesn't support the Huawei Push Kit push service.<br></span>
+  <span>The Unity SKD uses FCM and APNs as push notification providers for Android and iOS platforms respectively, and it doesn't support the Huawei Push Kit push service.<br></span>
 </p>
 <p>
-  <span>By default, FCM and APNs dependencies are part of the SDK, and you may remove these dependencies.</span><span></span>
+  <span>By default, FCM and APNs dependencies are added as part of the SDK. They can be removed in case you don't need them.</span><span></span>
 </p>
 <p>
-  <span>Note that SDK supports only <strong>text push notifications</strong>. It doesn't support the following:</span>
+  <span>Note that SDK doesn't support Deep linking, </span><span>Data only push, and </span><span>Rich push notifications yet. You can send text push notifications only.</span>
 </p>
-<ul>
-  <li>
-    <span>Deep linking</span>
-  </li>
-  <li>
-    <span>Data only push</span>
-  </li>
-  <li>
-    <span>Rich push notifications</span>
-  </li>
-</ul>
 <h2>Integration</h2>
 <p>
   <strong><span class="wysiwyg-font-size-large">Android</span></strong>
