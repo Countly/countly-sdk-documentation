@@ -542,7 +542,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br></span>
 </p>
-<h1>
+<h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
 </h1>
 <p>
@@ -562,32 +562,41 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
     <span>Your user’s IP address.</span><span></span>
   </li>
 </ul>
-<h2>Setting location</h2>
+<h2 id="setting-location" class="anchor-heading">Setting location</h2>
 <p>
   <span>During init you can either disable location:<br></span>
 </p>
 <pre>config.DisableLocation();</pre>
 <p>
-  <span>or set location info that will be sent during the start of the user session:</span>
+  <span>or set location info in the configuration:</span>
 </p>
 <pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
-  <span>Note that the ipAddress will only be updated if set through the init process.</span>
+  <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
-<pre><span>string countryCode = </span><span class="hljs-string">"us"</span><span>;<br>string city = </span><span class="hljs-string">"Houston"</span><span>;<br>string latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br>string longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br>string ipAddress = </span><span class="hljs-keyword">null</span><span>;</span>&nbsp;<br><br>countly.Location.S<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);<br><br></pre>
 <p>
-  When those values are set, a separate request will be created to send them sent.
-  Except for ip address, because Countly Server processes IP address only when
-  starting a session.
+  <span>Note that the IP address will only be updated if set through the init process.</span>
+</p>
+<p>
+  <span>You can use&nbsp;<code>Countly.Location.</code>&nbsp;to disable or set the location at any time after the SDK Init call.</span>
+</p>
+<p>
+  <span>For example:</span>
+</p>
+<pre><code class="hljs cs"><span><span class="hljs-keyword">string</span> countryCode = </span><span class="hljs-string">"us"</span><span>;<br><span class="hljs-keyword">string</span> city = </span><span class="hljs-string">"Houston"</span><span>;<br><span class="hljs-keyword">string</span> latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br><span class="hljs-keyword">string</span> longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br><span class="hljs-keyword">string</span> ipAddress = </span><span class="hljs-keyword"><span class="hljs-literal">null</span></span><span>;</span>&nbsp;<br><br><span>Countly.Instance</span>.Location.S<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);</code></pre>
+<p>
+  When those values are set, a separate request will be created to send them. Except
+  for IP address, because Countly server processes IP address only when starting
+  a session.
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
-<h2>Disabling location</h2>
+<h2 id="disabling-location" class="anchor-heading">Disabling location</h2>
 <p>
   <span>Users might want to opt-out of location tracking. To do so, call:</span>
 </p>
 <pre>countly.Location.DisableLocation();</pre>
 <p>
-  <span>This action will erase the cached location data from the device and the server.</span>
+  <span>This action will erase the cached location data from the device and the serve</span>
 </p>
 <h1>Heatmaps</h1>
 <h2>Tracking clicks</h2>
