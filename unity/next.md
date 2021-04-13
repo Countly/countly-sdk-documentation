@@ -564,11 +564,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </ul>
 <h2 id="setting-location" class="anchor-heading">Setting location</h2>
 <p>
-  <span>During init you can either disable location:<br></span>
-</p>
-<pre>config.DisableLocation();</pre>
-<p>
-  <span>or set location info in the configuration:</span>
+  <span>During init, you can </span><span>set location info in the configuration:</span>
 </p>
 <pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
@@ -578,7 +574,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>Note that the IP address will only be updated if set through the init process.</span>
 </p>
 <p>
-  <span>You can use&nbsp;<code>Countly.Location.</code>&nbsp;to disable or set the location at any time after the SDK Init call.</span>
+  <span>Use <code>Countly.Location.</code>&nbsp;to disable or set the location at any time after the SDK Init call.</span>
 </p>
 <p>
   <span>For example:</span>
@@ -592,11 +588,13 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>If you don't want to set specific fields, set them to null.</p>
 <h2 id="disabling-location" class="anchor-heading">Disabling location</h2>
 <p>
-  <span>Users might want to opt-out of location tracking. To do so, call:</span>
+  <span>Users might want to opt-out of location tracking. To do so, </span><span>you can disable location during init:<br></span>
 </p>
-<pre>countly.Location.DisableLocation();</pre>
+<pre>config.DisableLocation();</pre>
+<p>To disable location after SDK initialization, call:</p>
+<pre>Countly.Instance.Location.DisableLocation();</pre>
 <p>
-  <span>This action will erase the cached location data from the device and the serve</span>
+  <span>These actions will erase the cached location data from the device and the server.</span>
 </p>
 <h1>Heatmaps</h1>
 <h2>Tracking clicks</h2>
