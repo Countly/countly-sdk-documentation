@@ -608,22 +608,22 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>All parameters are mandatory.</p>
 <ul>
   <li>
-    <strong>type -</strong> (string) Action type
+    <strong>type -</strong> (string) action type
   </li>
   <li>
-    <strong>x -</strong> (int) Action's x-coordinate
+    <strong>x -</strong> (int) action's x-coordinate
   </li>
   <li>
-    <strong>y -</strong> (int) Action's y-coordinate
+    <strong>y -</strong> (int) action's y-coordinate
   </li>
   <li>
-    <strong>width&nbsp;-</strong> (int) Width of screen.
+    <strong>width&nbsp;-</strong> (int) width of the screen.
   </li>
   <li>
-    <strong>height&nbsp;-</strong> (int) Height of screen.
+    <strong>height&nbsp;-</strong> (int) height of the screen.
   </li>
 </ul>
-<p>example:</p>
+<p>Example:</p>
 <pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
@@ -643,7 +643,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
 <p>
-  <span>The <code>Dictionary&lt;string, object&gt;</code> returns value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
+  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
 </p>
 <h1>User feedback</h1>
 <p>
