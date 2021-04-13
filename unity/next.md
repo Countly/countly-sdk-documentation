@@ -602,7 +602,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   It is possible to track clicks and action taken on views and report them for
   heat maps or any other purpose. For that, use the following method:
 </p>
-<pre><strong>await</strong> countly.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
+<pre><strong>await</strong> Countly.Instance.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
 <p>All parameters are mandatory.</p>
 <ul>
   <li>
@@ -622,24 +622,25 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   </li>
 </ul>
 <p>Example:</p>
-<pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
+<pre><strong>await</strong> Countly.Instance.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
 <h2 id="manual-remote-config-download" class="anchor-heading">Manual remote config</h2>
 <p>
-  To download Remote Config, call <code>countly.RemoteConfigs.Update()</code>.
-  After the successful download, the SDK stores the updated config locally.
+  To download Remote Config, call
+  <code>Countly.Instance.RemoteConfigs.Update()</code>. After the successful download,
+  the SDK stores the updated config locally.
 </p>
-<pre><strong>await</strong> countly.RemoteConfigs.Update();</pre>
+<pre><strong>await</strong> Countly.Instance.RemoteConfigs.Update();</pre>
 <h2>Accessing remote config values</h2>
 <p>
   To access the stored config,&nbsp; call
-  <code>countly.RemoteConfigs.Configs</code>. It will return <code>null</code>
-  if there isn't any config stored.
+  <code>Countly.Instance.RemoteConfigs.Configs</code>. It will return
+  <code>null</code> if there isn't any config stored.
 </p>
-<pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
+<pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = Countly.Instance.RemoteConfigs.Configs;</pre>
 <p>
   <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
 </p>
