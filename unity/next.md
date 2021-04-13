@@ -642,9 +642,12 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   if there isn't any config stored.
 </p>
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
+<p>
+  <span>The <code>Dictionary&lt;string, object&gt;</code> returns value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
+</p>
 <h1>User feedback</h1>
 <p>
-  <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback . For more details</span>,
+  <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback. For more details</span>,
   please see the
   <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
