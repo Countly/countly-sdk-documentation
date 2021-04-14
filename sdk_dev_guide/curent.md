@@ -275,6 +275,33 @@
 <p>
   <span style="font-weight: 400;">In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span style="font-weight: 400;">.</span>
 </p>
+<h1>Crash reporting</h1>
+<p>
+  <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">In regard to crashes, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. You should also provide a way for users to log errors manually (for example, logging handled exceptions which are not fatal).</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Basically, for automatically captured errors, you should set the&nbsp;</span><strong>_nonfatal</strong><span style="font-weight: 400;">&nbsp;property to false, whereas on user logged errors the&nbsp;</span><strong>_nonfatal</strong><span style="font-weight: 400;">&nbsp;property should be true. You should also provide a way to set custom key/values to be reported as segments with crash reports, either by providing global default segments or setting separately for automatically tracked errors and user logged errors.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Additionally, there should be a way for the SDK user to leave breadcrumbs that would be submitted together with the crash reports. In order to collect breadcrumbs as logs, create an empty array upon initialization and provide a method to add breadcrumbs as strings into that array as elements for log. Also, in the event of a crash, concatenate the array with new line symbols and submit under the&nbsp;</span><strong>_logs</strong><span style="font-weight: 400;">&nbsp;property. There is no need to persistently save those logs on a device, as we would like to have a clean log on every app start.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The end API could look like this (but it should be totally based on the specific platform error handling):</span>
+</p>
+<ul>
+  <li>Countly.enable_auto_error_reporting(map segments)</li>
+  <li>
+    Countly.log_handled_error(string title, string stack, map segments)
+  </li>
+  <li>
+    Countly.log_unhandled_error(string title, string stack, map segments)
+  </li>
+  <li>Countly.add_breadcrumb(string log)</li>
+</ul>
+<h2>Symbolication (WIP)</h2>
 <h1>Events</h1>
 <p>
   <span style="font-weight: 400;">Events (or custom events) are the basic Countly reporting tool that reports when something has happened in the app. Someone clicked a button, performed a specific action, etc. All of these examples could be recorded as an event.</span>
@@ -478,17 +505,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
 lastMsTs = 0;
 
 function getUniqueMsTimestamp(){
-  //get current timestamp in miliseconds
-  ts = getMsTimestamp();
+	//get current timestamp in miliseconds
+	ts = getMsTimestamp();
   
   //if last used timestamp is equal or greater
   if(lastMsTs &gt;= ts){
-    //increase last used
+  	//increase last used
     lastMsTs++;
   }
   else{
-    //store current timestamp as last used
-    lastMsTs = ts;
+  	//store current timestamp as last used
+  	lastMsTs = ts;
   }
   //return timestamp
   return lastMsTs;
@@ -768,6 +795,14 @@ function getUniqueMsTimestamp(){
 <p>
   <strong>Note:</strong>&nbsp;<span style="font-weight: 400;">If a new and current device ID is exactly the same, then the Countly SDK must ignore this change call.</span>
 </p>
+<h1>Push Notifications</h1>
+<p>
+  <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference#section-push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
+</p>
+<pre><code class="text">Countly.enable_push()</code></pre>
 <h1>Recording location</h1>
 <p>
   There are 4 location related parameters that can be set in a Countly SDK. It
@@ -948,63 +983,6 @@ function getUniqueMsTimestamp(){
   "c": "z",
 }
 </code></pre>
-<h1>User Details</h1>
-<p>
-  <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are&nbsp;</span><a href="https://api.count.ly/reference#section-user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
-</p>
-<ul>
-  <li>Countly.user_details(map details)</li>
-  <li>Countly.user_custom_details(map custom_details)</li>
-</ul>
-<p>
-  <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference#section-user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
-</p>
-<h2>Modifying custom data properties</h2>
-<p>
-  <span style="font-weight: 400;">You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The standard methods that should be provided by the SDK are as follows (provided as pseudo-code, naming conventions may differ from platform to platform):</span>
-</p>
-<ul>
-  <li>Countly.userData.set(string key, string value)</li>
-  <li>Countly.userData.setOnce(string key, string value)</li>
-  <li>Countly.userData.increment(string key)</li>
-  <li>Countly.userData.incrementBy(string key, double value)</li>
-  <li>Countly.userData.multiply(string key, double value)</li>
-  <li>Countly.userData.max(string key, double value)</li>
-  <li>Countly.userData.min(string key, double value)</li>
-  <li>Countly.userData.push(string key, string value)</li>
-  <li>Countly.userData.pushUnique(string key, string value)</li>
-  <li>Countly.userData.pull(string key, string value)</li>
-  <li>Countly.userData.save() //send data to server</li>
-</ul>
-<p>
-  <strong>Note</strong>:&nbsp;<span style="font-weight: 400;">when reporting to the server, assure the push, pushUnique, and pull parameters can provide multiple values for the same property as an array.</span>
-</p>
-<p>
-  Here is
-  <a href="https://api.count.ly/reference#section-modifying-custom-user-data" target="_self">more information</a>
-  on how to report this data to the server.
-</p>
-<h2>Consents</h2>
-<p>
-  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
-</p>
-<h2>Device ID Change</h2>
-<p>
-  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
-</p>
-<h2>Salt</h2>
-<p>
-  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
-</p>
 <h1>User feedback</h1>
 <h2>Star Rating</h2>
 <p>
@@ -1124,7 +1102,119 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   If temporary device ID is enabled, feedback widgets can't be shown and a empty
   list of available widgets is returned.
 </p>
-<h1>User consent (GDPR)</h1>
+<h1>User Profiles</h1>
+<p>
+  <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are&nbsp;</span><a href="https://api.count.ly/reference#section-user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
+</p>
+<ul>
+  <li>Countly.user_details(map details)</li>
+  <li>Countly.user_custom_details(map custom_details)</li>
+</ul>
+<p>
+  <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference#section-user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
+</p>
+<h2>Modifying custom data properties</h2>
+<p>
+  <span style="font-weight: 400;">You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The standard methods that should be provided by the SDK are as follows (provided as pseudo-code, naming conventions may differ from platform to platform):</span>
+</p>
+<ul>
+  <li>Countly.userData.set(string key, string value)</li>
+  <li>Countly.userData.setOnce(string key, string value)</li>
+  <li>Countly.userData.increment(string key)</li>
+  <li>Countly.userData.incrementBy(string key, double value)</li>
+  <li>Countly.userData.multiply(string key, double value)</li>
+  <li>Countly.userData.max(string key, double value)</li>
+  <li>Countly.userData.min(string key, double value)</li>
+  <li>Countly.userData.push(string key, string value)</li>
+  <li>Countly.userData.pushUnique(string key, string value)</li>
+  <li>Countly.userData.pull(string key, string value)</li>
+  <li>Countly.userData.save() //send data to server</li>
+</ul>
+<p>
+  <strong>Note</strong>:&nbsp;<span style="font-weight: 400;">when reporting to the server, assure the push, pushUnique, and pull parameters can provide multiple values for the same property as an array.</span>
+</p>
+<p>
+  Here is
+  <a href="https://api.count.ly/reference#section-modifying-custom-user-data" target="_self">more information</a>
+  on how to report this data to the server.
+</p>
+<h2>Consents</h2>
+<p>
+  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
+</p>
+<h2>Device ID Change</h2>
+<p>
+  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
+</p>
+<h2>Salt</h2>
+<p>
+  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
+</p>
+<h1>Application Performance Monitoring</h1>
+<p>
+  Countly server supports multiple metrics for performance monitoring. They are
+  divided into 3 groups:
+</p>
+<ul>
+  <li>Custom traces</li>
+  <li>Network request traces</li>
+  <li>Device traces</li>
+</ul>
+<h2>Trace / Metric keys</h2>
+<p>
+  In some of the exposed functionality, developers can provide the metric key for
+  identifying the tracked thing. There are some requirements that the key must
+  meet. Those requirements will be enforced on the API endpoint, and if the key
+  will be deemed invalid, the trace will be dropped. Therefore it's important to
+  catch invalid keys and warn about them on the SDK side.
+</p>
+<p>Metric keys have a maximum length of 32 characters.&nbsp;</p>
+<p>Trace keys have a maximum length of 2048 characters.</p>
+<p>
+  Metric names can't start with "$" and they can't have "." in them. Trace names
+  can't start with "$". Those values should still be accepted. But the SDK should
+  print a warning that the server will strip those characters.
+</p>
+<h2>API Calls</h2>
+<p>
+  Currently, there is no batching functionality for APM requests. Every APM data
+  point/trace should be put in the request queue immediately after it is acquired.
+  So that would be after a network request is finished, after a custom trace has
+  ended, every time the device goes to the background or foreground, etc.
+</p>
+<p>
+  APM data is combined into a single JSON object which is set to the "apm" param.
+  So a basic request would look similar to:
+</p>
+<pre>/i<span style="font-weight: 400;">?app_key=app_key<br>  &amp;device_id=device_id<br>  &amp;dow=dow<br>  &amp;hour=hour<br>  &amp;timestamp=timestamp<br>  &amp;apm={ _apm_params }</span></pre>
+<h2>Custom traces</h2>
+<p>
+  These are used as a tool to measure the performance of some running task. At
+  the basic level, this function is similar to timed events. The default metric
+  that gets tracked is the "duration" of the event.&nbsp; There should be a "startTrace"
+  and "endTrace" call, which start and end the tracking. When ending the tracking,
+  the developer has the option of providing additional metrics. Those metrics are
+  String and Integer/Numeric pairs.
+</p>
+<p>&nbsp;Sample custom trace API request:</p>
+<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"forLoopProfiling_1",<br>        "apm_metrics":{"duration": 10, “memory”: 200}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=15847000900000</span></pre>
+<h2>Network traces</h2>
+<p>Sample network trace request:</p>
+<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"network",<br>        "name":"/count.ly/about",<br>        "apm_metrics":{"response_time":1330,"response_payload_size":120, "response_code": 300, "request_payload_size": 70}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=1584698900000</span></pre>
+<h2>Device traces</h2>
+<p>Sample device trace request:</p>
+<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"</span><span style="font-weight: 400;">app_start</span><span style="font-weight: 400;">",<br>        "apm_metrics":{"duration": 15000}, <br>        "stz": 1584698900, <br>        "etz": 1584699900}<br>  &amp;timestamp=1584698900</span></pre>
+<p>&nbsp;</p>
+<h1>User consent</h1>
 <p>
   <span style="font-weight: 400;">GDPR compatibility is about dividing the SDK functionality into different features and allowing SDK integrators to ask for consent when using these features. Once consent has been given, only then may the SDK send newly collected (after consent is given) data to the server.</span>
 </p>
@@ -1328,96 +1418,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   10)&nbsp;<span style="font-weight: 400;">The Countly SDK checks if feature names or groups have already been passed to the <code>removeConsent</code></span><span style="font-weight: 400;">&nbsp;method, and it ignores all repetitive calls. Or, it attempts to cancel consents never given at all.</span>
 </p>
-<h1>Push Notifications</h1>
-<p>
-  <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference#section-push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
-</p>
-<pre><code class="text">Countly.enable_push()</code></pre>
-<h1>Crash reporting</h1>
-<p>
-  <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">In regard to crashes, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. You should also provide a way for users to log errors manually (for example, logging handled exceptions which are not fatal).</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Basically, for automatically captured errors, you should set the&nbsp;</span><strong>_nonfatal</strong><span style="font-weight: 400;">&nbsp;property to false, whereas on user logged errors the&nbsp;</span><strong>_nonfatal</strong><span style="font-weight: 400;">&nbsp;property should be true. You should also provide a way to set custom key/values to be reported as segments with crash reports, either by providing global default segments or setting separately for automatically tracked errors and user logged errors.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Additionally, there should be a way for the SDK user to leave breadcrumbs that would be submitted together with the crash reports. In order to collect breadcrumbs as logs, create an empty array upon initialization and provide a method to add breadcrumbs as strings into that array as elements for log. Also, in the event of a crash, concatenate the array with new line symbols and submit under the&nbsp;</span><strong>_logs</strong><span style="font-weight: 400;">&nbsp;property. There is no need to persistently save those logs on a device, as we would like to have a clean log on every app start.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The end API could look like this (but it should be totally based on the specific platform error handling):</span>
-</p>
-<ul>
-  <li>Countly.enable_auto_error_reporting(map segments)</li>
-  <li>
-    Countly.log_handled_error(string title, string stack, map segments)
-  </li>
-  <li>
-    Countly.log_unhandled_error(string title, string stack, map segments)
-  </li>
-  <li>Countly.add_breadcrumb(string log)</li>
-</ul>
-<h1>Application Performance Monitoring</h1>
-<p>
-  Countly server supports multiple metrics for performance monitoring. They are
-  divided into 3 groups:
-</p>
-<ul>
-  <li>Custom traces</li>
-  <li>Network request traces</li>
-  <li>Device traces</li>
-</ul>
-<h2>Trace / Metric keys</h2>
-<p>
-  In some of the exposed functionality, developers can provide the metric key for
-  identifying the tracked thing. There are some requirements that the key must
-  meet. Those requirements will be enforced on the API endpoint, and if the key
-  will be deemed invalid, the trace will be dropped. Therefore it's important to
-  catch invalid keys and warn about them on the SDK side.
-</p>
-<p>Metric keys have a maximum length of 32 characters.&nbsp;</p>
-<p>Trace keys have a maximum length of 2048 characters.</p>
-<p>
-  Metric names can't start with "$" and they can't have "." in them. Trace names
-  can't start with "$". Those values should still be accepted. But the SDK should
-  print a warning that the server will strip those characters.
-</p>
-<h2>API Calls</h2>
-<p>
-  Currently, there is no batching functionality for APM requests. Every APM data
-  point/trace should be put in the request queue immediately after it is acquired.
-  So that would be after a network request is finished, after a custom trace has
-  ended, every time the device goes to the background or foreground, etc.
-</p>
-<p>
-  APM data is combined into a single JSON object which is set to the "apm" param.
-  So a basic request would look similar to:
-</p>
-<pre>/i<span style="font-weight: 400;">?app_key=app_key<br>  &amp;device_id=device_id<br>  &amp;dow=dow<br>  &amp;hour=hour<br>  &amp;timestamp=timestamp<br>  &amp;apm={ _apm_params }</span></pre>
-<h2>Custom traces</h2>
-<p>
-  These are used as a tool to measure the performance of some running task. At
-  the basic level, this function is similar to timed events. The default metric
-  that gets tracked is the "duration" of the event.&nbsp; There should be a "startTrace"
-  and "endTrace" call, which start and end the tracking. When ending the tracking,
-  the developer has the option of providing additional metrics. Those metrics are
-  String and Integer/Numeric pairs.
-</p>
-<p>&nbsp;Sample custom trace API request:</p>
-<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"forLoopProfiling_1",<br>        "apm_metrics":{"duration": 10, “memory”: 200}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=15847000900000</span></pre>
-<h2>Network traces</h2>
-<p>Sample network trace request:</p>
-<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"network",<br>        "name":"/count.ly/about",<br>        "apm_metrics":{"response_time":1330,"response_payload_size":120, "response_code": 300, "request_payload_size": 70}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=1584698900000</span></pre>
-<h2>Device traces</h2>
-<p>Sample device trace request:</p>
-<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"</span><span style="font-weight: 400;">app_start</span><span style="font-weight: 400;">",<br>        "apm_metrics":{"duration": 15000}, <br>        "stz": 1584698900, <br>        "etz": 1584699900}<br>  &amp;timestamp=1584698900</span></pre>
-<p>&nbsp;</p>
-<h1>Security</h1>
+<h1>Security and privacy</h1>
 <h2>Parameter tampering</h2>
 <p>
   <span style="font-weight: 400;">This is one of the preventive measures of Countly. If someone in the middle intercepts the request, it would be possible to change the data in the request and make another request with other data to the server or simply make random requests to the server through the retrieved <code>app_key</code></span><span style="font-weight: 400;">.</span>
@@ -1434,9 +1435,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
 </p>
-<h1>Symbolication (WIP)</h1>
 <h1>Other features</h1>
-<h2>Attribution</h2>
+<h2>Attribution (WIP)</h2>
 <p>
   Attribution allows attributing installs from specific campaigns. They are tied
   together with sessions. Attribution information should be sent in the following
@@ -1449,4 +1449,3 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     when there is no session consent)
   </li>
 </ol>
-<p>WIP</p>
