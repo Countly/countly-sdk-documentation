@@ -127,27 +127,11 @@ flutter run</code></pre>
   If you want to catch Dart errors,&nbsp;<span>run your app inside a&nbsp;Zone and&nbsp;</span>supply&nbsp;<code>Countly.recordDartError</code>&nbsp;to
   the&nbsp;<code>onError</code>&nbsp;parameter:
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <pre><span>void </span>main() {<br>  runZonedGuarded&lt;Future&lt;<span>void</span>&gt;&gt;(() <span>async </span>{<br>    runApp(<span>MyApp</span>());<br>  }, Countly.<span>recordDartError</span>);<br>}<span></span></pre>
 <h2>Automatic crash report segmentation</h2>
 <p>
   <span style="font-weight: 400;">You may add a key/value segment to crash reports. For example, you could set which specific library or framework version you used in your app. You may then figure out if there is any correlation between the specific library or another segment and the crash reports.</span><span style="font-weight: 400;"></span>
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <p>
   <span style="font-weight: 400;">The following call will add the provided segmentation to all recorded crashes. Use the following function for this purpose:</span>
 </p>
@@ -162,14 +146,6 @@ flutter run</code></pre>
   to provide <code>exception.toString()</code>
 </p>
 <pre><span>Countly.logException</span>(String exception, bool nonfatal, [Map&lt;String, Object&gt; segmentation])</pre>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    The following calls are only supported starting from the SDK version 20.04.1.
-  </p>
-</div>
 <p>
   The issue is recorded with a provided Exception object. If no stacktrace is set,<span class="s1"><code>StackTrace.current</code></span>&nbsp;will
   be used.
@@ -182,71 +158,39 @@ flutter run</code></pre>
 </p>
 <pre><span>Countly.logExceptionManual</span>(String message, bool nonfatal, {StackTrace stacktrace, Map&lt;String, Object&gt; segmentation})</pre>
 <p>
-  <span>Below are some examples that how to log<span style="font-weight: 400;"> handled/nonfatal and unhandled/fatal exceptions manually</span>.</span>
+  <span>Below are some examples that how to log<span style="font-weight: 400;"> handled/nonfatal and unhandled/fatal exceptions manually</span>.<br></span>
 </p>
 <p>
-  <strong>1. Manually report handled exception</strong>
+  <strong>1. Manually report exception</strong>
 </p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, true);
+<pre><code class="javascript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal);
 <br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", true);
+Countly.logExceptionManual("MESSAGE_STRING", nonfatal);
 </code></pre>
 <p>
-  <strong>2. Manually report handled exception with stack trace</strong>
+  <strong>2. Manually report exception with stack trace</strong>
 </p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, true, stacktrace: STACK_TRACE_OBJECT);
+<pre><code class="javascript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, stacktrace: STACK_TRACE_OBJECT);
 <br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", true, stacktrace: STACK_TRACE_OBJECT);
+Countly.logExceptionManual("MESSAGE_STRING", nonfatal, stacktrace: STACK_TRACE_OBJECT);
 </code></pre>
 <p>
-  <strong>3. Manually report handled exception with segmentation</strong>
+  <strong>3. Manually report exception with segmentation</strong>
 </p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, true, segmentation: {"_facebook_version": "0.0.1"});
+<pre><code class="javascript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, segmentation: {"_facebook_version": "0.0.1"});
 <br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", true, segmentation: {"_facebook_version": "0.0.1"});
+Countly.logExceptionManual("MESSAGE_STRING", nonfatal, segmentation: {"_facebook_version": "0.0.1"});
 </code></pre>
 <p>
-  <strong>4. Manually report handled exception with stack trace and segmentation</strong>
+  <strong>4. Manually report exception with stack trace and segmentation</strong>
 </p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, true, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
+<pre><code class="javascript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
 <br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", true, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
-</code></pre>
-<p>
-  <strong>5. Manually report fatal exception</strong>
-</p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, false);
-<br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", false);
-</code></pre>
-<p>
-  <strong>6. Manually report fatal exception with stack trace</strong>
-</p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, false, stacktrace: STACK_TRACE_OBJECT);
-<br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", false, stacktrace: STACK_TRACE_OBJECT);
-</code></pre>
-<p>
-  <strong>7. Manually report fatal exception with segmentation</strong>
-</p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, false, segmentation: {"_facebook_version": "0.0.1"});
-<br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", false, segmentation: {"_facebook_version": "0.0.1"});
-</code></pre>
-<p>
-  <strong>8. Manually report fatal exception with stack trace and segmentation</strong>
-</p>
-<pre><code class="javascript">// With Exception object
-Countly.logExceptionEx(EXCEPTION_OBJECT, false, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
-<br>// With String message
-Countly.logExceptionManual("MESSAGE_STRING", false, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
+Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
 </code></pre>
 <h2>Crash breadcrumbs</h2>
 <p>
@@ -445,14 +389,6 @@ timer = new Timer(new Duration(seconds: 5), () {
 <pre><code class="javascript">// record a view on your application
 Countly.recordView("HomePage");
 Countly.recordView("Dashboard");</code></pre>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <p>
   While manually tracking views, you may want to add custom segmentation to them.
 </p>
@@ -591,14 +527,6 @@ apply plugin: 'com.google.gms.google-services'
   token mode should be set before init.
 </p>
 <pre><span>// Set messaging mode for push notifications</span><br>Countly.<span>pushTokenType</span>(Countly.<span>messagingMode</span>[<span>"TEST"</span>]);<span></span><span></span></pre>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <p>
   You may want to listen to a callback of when a push notification is received.
   You would register to that like this:
@@ -851,14 +779,6 @@ Countly.disableLocation();</code></pre>
 <h2>Feedback widget manual reporting</h2>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.11.1
-  </p>
-</div>
-<div class="callout callout--info">
-  <p class="callout__title">
     <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
   </p>
   <p>Currently this feature is only available for Android</p>
@@ -954,14 +874,6 @@ Countly.pushValue("type", "morning");
 Countly.pullValue("type", "morning");
 </code></pre>
 <h1>Application Performance Monitoring</h1>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <p>
   This SDK provides a few mechanisms for APM. To start using them you would first
   need to enable this feature and give the required consent if it was required.
@@ -1129,14 +1041,6 @@ Countly.enableParameterTamperingProtection("salt");</code></pre>
 </p>
 <h1>Other features</h1>
 <h2>Attribution&nbsp;</h2>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <p>
   <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
@@ -1196,14 +1100,6 @@ Countly.enableParameterTamperingProtection("salt");</code></pre>
 </p>
 <pre>Countly.eventSendThreshold(<span>6</span>);</pre>
 <h2>Checking if the SDK has been initialized</h2>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Minimum Countly SDK Version</strong></span>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.04.1.
-  </p>
-</div>
 <p>
   <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
 </p>
