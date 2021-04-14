@@ -645,15 +645,17 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
 </p>
 <h1>User feedback</h1>
+<h2>Ratings</h2>
 <p>
   <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback. For more details</span>,
   please see the
   <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
+<h3>Manual rating reporting</h3>
 <p>
   <span>When a user rates your application, you can report it to the Countly server using the following method:</span><span></span>
 </p>
-<pre><span><strong>await</strong> countly.StarRatingReport.ReportStarRatingAsync(string platform, string appVersion, int rating);</span></pre>
+<pre><span><strong>await</strong> Countly.Instance.StarRatingReport.ReportStarRatingAsync(string platform, string appVersion, int rating);</span></pre>
 <p>
   <span>All parameters are mandatory.</span>
 </p>
@@ -671,8 +673,15 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>Example:</span>
 </p>
-<pre><strong>await</strong> countly.StarRatingReport.StarRatingAsync("android", "0.1", 3);</pre>
+<pre><code><strong>await</strong> <span>Countly.Instance</span>.StarRatingReport.StarRatingAsync("android", "0.1", 3);</code></pre>
 <h1>User profiles</h1>
+<p>
+  <span>Available in the Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information.&nbsp;</span>
+</p>
+<p>
+  <span>You may send user-related information to Countly and let the Countly Dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
+</p>
+<h2>Setting predefined values</h2>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
   the Countly server. The SDK allows you to set the following predefined data for
@@ -684,26 +693,19 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <li>Email: Email address of the user.</li>
   <li>Organization: Organization the user is working in.</li>
   <li>Phone: Phone number.</li>
-  <li>Picture Url: Web-based Url for the user’s profile.</li>
+  <li>PictureUrl: Web-based Url for the user’s profile.</li>
   <li>
     Gender: Gender of the user (use only single char like ‘M’ for Male and ‘F’
     for Female).
   </li>
-  <li>Birth year: Birth year of the user.</li>
+  <li>BirthYear: Birth year of the user.</li>
 </ol>
 <p>
   Apart from the above data, you can also add custom data for a user. The SDK allows
   you to upload user details using the methods listed below.
 </p>
-<h2>Setting predefined values</h2>
-<p>
-  <span>Available in the Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information.&nbsp;</span>
-</p>
-<p>
-  <span>You may send user-related information to Countly and let the Countly Dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
-</p>
 <p>Example:</p>
-<pre><strong>var</strong> userDetails = <strong>new</strong> CountlyUserDetailsModel( "Full Name", "username", "useremail@email.com", "Organization", "222-222-222", "http://webresizer.com/images2/bird1_after.jpg", "M", "1986",<br>    <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Hair", "Black" }, <br>    { "Race", "Asian" }, <br>}); <br><strong>await</strong> countly.UserDetails.SetUserDetailsAsync(userDetails);</pre>
+<pre><code>CountlyUserDetailsModel userDetails = new CountlyUserDetailsModel(name: "Full Name", username: "username", email: "useremail@email.com", organization: "Organization", phone: "222-222-222", pictureUrl: "http://webresizer.com/images2/bird1_after.jpg", "M", "1986", null);<br>await Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
 <h2>Setting custom values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
@@ -715,7 +717,17 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   for sending custom data to the Countly server.
 </p>
 <p>Example:</p>
-<pre>var userDetails = <strong>new</strong> CountlyUserDetailsModel( <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Height", "5.8" }, <br>    { "Mole", "Lower Left Cheek" } <br>    });<br><strong>await</strong> countly.UserDetails.SetCustomUserDetailsAsync(userDetails);</pre>
+<pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel( <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Height", "5.8" }, <br>    { "Mole", "Lower Left Cheek" } <br>    });<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SetCustomUserDetailsAsync(userDetails);</code></pre>
+<h2>Setting User picture</h2>
+<h3>
+  <span style="font-weight: 400;">Setting picture URL</span>
+</h3>
+<p>
+  The SDK allows you to set the user's picture along with other details using the
+  methods listed below.
+</p>
+<p>Example:</p>
+<pre><code>CountlyUserDetailsModel userDetails = new CountlyUserDetailsModel(name: "Full Name", username: "username", email: "useremail@email.com", organization: "Organization", phone: "222-222-222", pictureUrl: "http://webresizer.com/images2/bird1_after.jpg", "M", "1986", null);<br>await Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
 <h2>Modifying data</h2>
 <p>
   <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
@@ -724,35 +736,35 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>You will find the list of available manipulations below:</span>
 </p>
 <pre><code class="java hljs"><span class="hljs-comment">//set one custom properties</span>
-<strong>await</strong> countly.UserDetails.Set(<span class="hljs-string">"test"</span>, <span class="hljs-string">"test"</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Set(<span class="hljs-string">"test"</span>, <span class="hljs-string">"test"</span>);<br>
 <span class="hljs-comment">//increment used value by 1</span>
-<strong>await</strong> countly.UserDetails.Increment(<span class="hljs-string">"used"</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Increment(<span class="hljs-string">"used"</span>);<br>
 <span class="hljs-comment">//increment used value by provided value</span>
-<strong>await</strong> countly.UserDetails.IncrementBy(<span class="hljs-string">"used"</span>, <span class="hljs-number">2</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.IncrementBy(<span class="hljs-string">"used"</span>, <span class="hljs-number">2</span>);<br>
 <span class="hljs-comment">//multiply value by provided value</span>
-<strong>await</strong> countly.UserDetails.Multiply(<span class="hljs-string">"used"</span>, <span class="hljs-number">3</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Multiply(<span class="hljs-string">"used"</span>, <span class="hljs-number">3</span>);<br>
 <span class="hljs-comment">//save maximal value</span>
-<strong>await</strong> countly.UserDetails.Max(<span class="hljs-string">"highscore"</span>, <span class="hljs-number">300</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Max(<span class="hljs-string">"highscore"</span>, <span class="hljs-number">300</span>);<br>
 <span class="hljs-comment">//save minimal value</span>
-<strong>await</strong> countly.UserDetails.Min(<span class="hljs-string">"best_time"</span>,<span class="hljs-number">60</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Min(<span class="hljs-string">"best_time"</span>,<span class="hljs-number">60</span>);<br>
 <span class="hljs-comment">//set value if it does not exist</span>
-<strong>await</strong> countly.UserDetails.SetOnce(<span class="hljs-string">"tag"</span>, <span class="hljs-string">"test"</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.SetOnce(<span class="hljs-string">"tag"</span>, <span class="hljs-string">"test"</span>);<br>
 <span class="hljs-comment">//insert value to array of unique values</span>
-<strong>await</strong> countly.UserDetails.PushUnique(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.PushUnique(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);<br>
 <span class="hljs-comment">//insert value to array which can have duplicates</span>
-<strong>await</strong> countly.UserDetails.Push(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Push(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);<br>
 <span class="hljs-comment">//remove value from array</span>
-<strong>await</strong> countly.UserDetails.Pull(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Pull(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);
 
 <span class="hljs-comment">//send provided values to server</span>
-<strong>await</strong> countly.UserDetails.SaveAsync()<br></code></pre>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync()<br></code></pre>
 <p>
   In the end, always call
-  <code><strong>await</strong> countly.UserDetails.SaveAsync();</code> to send
-  them to the server.
+  <code><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code>
+  to send them to the server.
 </p>
 <p>
-  <strong>Recording multiple update requests</strong>
+  <strong><span class="wysiwyg-font-size-medium">Recording multiple update requests</span></strong>
 </p>
 <p>
   Apart from updating a single property in one request, you can modify multiple
@@ -768,7 +780,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   the latest value will be posted to the server.&nbsp;
 </p>
 <p>Example:</p>
-<pre>countly.UserDetails.Max("Weight", 90);<br>countly.UserDetails.SetOnce("Distance", "10KM");<br>countly.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> countly.UserDetails.SaveAsync();</pre>
+<pre><code><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
 <h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User consent</h1>
 <p>
   <span>In an effort to comply with GDPR, starting from 20.11.1, Unity Countly SDK provides ways to toggle different Countly features on/off depending on the given consent.</span>
