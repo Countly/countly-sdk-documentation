@@ -684,8 +684,8 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <h2>Setting predefined values</h2>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
-  the Countly server. The SDK allows you to set the following predefined data for
-  a particular user:
+  the Countly server. You may set the following predefined data for a particular
+  user:
 </p>
 <ol>
   <li>Name: Full name of the user.</li>
