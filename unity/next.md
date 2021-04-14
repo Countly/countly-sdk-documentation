@@ -542,7 +542,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br></span>
 </p>
-<h1>
+<h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
 </h1>
 <p>
@@ -562,32 +562,39 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
     <span>Your user’s IP address.</span><span></span>
   </li>
 </ul>
-<h2>Setting location</h2>
+<h2 id="setting-location" class="anchor-heading">Setting location</h2>
 <p>
-  <span>During init you can either disable location:<br></span>
-</p>
-<pre>config.DisableLocation();</pre>
-<p>
-  <span>or set location info that will be sent during the start of the user session:</span>
+  <span>During init, you can </span><span>set location info in the configuration:</span>
 </p>
 <pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
-  <span>Note that the ipAddress will only be updated if set through the init process.</span>
+  <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
-<pre><span>string countryCode = </span><span class="hljs-string">"us"</span><span>;<br>string city = </span><span class="hljs-string">"Houston"</span><span>;<br>string latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br>string longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br>string ipAddress = </span><span class="hljs-keyword">null</span><span>;</span>&nbsp;<br><br>countly.Location.S<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);<br><br></pre>
 <p>
-  When those values are set, a separate request will be created to send them sent.
-  Except for ip address, because Countly Server processes IP address only when
-  starting a session.
+  <span>Note that the IP address will only be updated if set through the init process.</span>
+</p>
+<p>
+  <span>Use <code>Countly.Location.</code>&nbsp;to disable or set the location at any time after the SDK Init call.</span>
+</p>
+<p>
+  <span>For example:</span>
+</p>
+<pre><code class="hljs cs"><span><span class="hljs-keyword">string</span> countryCode = </span><span class="hljs-string">"us"</span><span>;<br><span class="hljs-keyword">string</span> city = </span><span class="hljs-string">"Houston"</span><span>;<br><span class="hljs-keyword">string</span> latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br><span class="hljs-keyword">string</span> longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br><span class="hljs-keyword">string</span> ipAddress = </span><span class="hljs-keyword"><span class="hljs-literal">null</span></span><span>;</span>&nbsp;<br><br><span>Countly.Instance</span>.Location.S<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);</code></pre>
+<p>
+  When those values are set, a separate request will be created to send them. Except
+  for IP address, because Countly server processes IP address only when starting
+  a session.
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
-<h2>Disabling location</h2>
+<h2 id="disabling-location" class="anchor-heading">Disabling location</h2>
 <p>
-  <span>Users might want to opt-out of location tracking. To do so, call:</span>
+  <span>Users might want to opt-out of location tracking. To do so, </span><span>you can disable location during init:<br></span>
 </p>
-<pre>countly.Location.DisableLocation();</pre>
+<pre>config.DisableLocation();</pre>
+<p>To disable location after SDK initialization, call:</p>
+<pre>Countly.Instance.Location.DisableLocation();</pre>
 <p>
-  <span>This action will erase the cached location data from the device and the server.</span>
+  <span>These actions will erase the cached location data from the device and the server.</span>
 </p>
 <h1>Heatmaps</h1>
 <h2>Tracking clicks</h2>
@@ -595,47 +602,51 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   It is possible to track clicks and action taken on views and report them for
   heat maps or any other purpose. For that, use the following method:
 </p>
-<pre><strong>await</strong> countly.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
+<pre><strong>await</strong> Countly.Instance.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
 <p>All parameters are mandatory.</p>
 <ul>
   <li>
-    <strong>type -</strong> (string) Action type
+    <strong>type -</strong> (string) action type
   </li>
   <li>
-    <strong>x -</strong> (int) Action's x-coordinate
+    <strong>x -</strong> (int) action's x-coordinate
   </li>
   <li>
-    <strong>y -</strong> (int) Action's y-coordinate
+    <strong>y -</strong> (int) action's y-coordinate
   </li>
   <li>
-    <strong>width&nbsp;-</strong> (int) Width of screen.
+    <strong>width&nbsp;-</strong> (int) width of the screen.
   </li>
   <li>
-    <strong>height&nbsp;-</strong> (int) Height of screen.
+    <strong>height&nbsp;-</strong> (int) height of the screen.
   </li>
 </ul>
-<p>example:</p>
-<pre><strong>await</strong> countly.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
+<p>Example:</p>
+<pre><strong>await</strong> Countly.Instance.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
 <h2 id="manual-remote-config-download" class="anchor-heading">Manual remote config</h2>
 <p>
-  To download Remote Config, call <code>countly.RemoteConfigs.Update()</code>.
-  After the successful download, the SDK stores the updated config locally.
+  To download Remote Config, call
+  <code>Countly.Instance.RemoteConfigs.Update()</code>. After the successful download,
+  the SDK stores the updated config locally.
 </p>
-<pre><strong>await</strong> countly.RemoteConfigs.Update();</pre>
+<pre><strong>await</strong> Countly.Instance.RemoteConfigs.Update();</pre>
 <h2>Accessing remote config values</h2>
 <p>
   To access the stored config,&nbsp; call
-  <code>countly.RemoteConfigs.Configs</code>. It will return <code>null</code>
-  if there isn't any config stored.
+  <code>Countly.Instance.RemoteConfigs.Configs</code>. It will return
+  <code>null</code> if there isn't any config stored.
 </p>
-<pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = countly.RemoteConfigs.Configs;</pre>
+<pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = Countly.Instance.RemoteConfigs.Configs;</pre>
+<p>
+  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
+</p>
 <h1>User feedback</h1>
 <p>
-  <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback . For more details</span>,
+  <span class="wysiwyg-color-black">Rating Is a customer satisfaction tool that collects direct user feedback. For more details</span>,
   please see the
   <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
