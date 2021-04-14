@@ -178,9 +178,7 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <p>
   <span><span style="font-weight: 400;"><code>YOUR_REACT_NATIVE_PROJECT_PATH/android/app/src/main/java/com/PROJECT_NAME</code> </span>&nbsp;</span>
 </p>
-<pre><code class="java hljs"><span class="hljs-keyword">// import this in your Application class<br>import</span> ly.count.android.sdknative.CountlyNative;
-
-// call this function in "onCreate" callback of Application class<br>CountlyNative.initNative(getApplicationContext());</code></pre>
+<pre>// import this in your Application class<br>import ly.count.android.sdknative.CountlyNative; <br><br>// call this function in "onCreate" callback of Application class<br>CountlyNative.initNative(getApplicationContext());</pre>
 <p>
   <code>getApplicationContext()</code><span>&nbsp;</span>is needed to determine
   a storage place for minidump files.
