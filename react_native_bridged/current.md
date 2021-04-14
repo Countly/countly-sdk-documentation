@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight:400">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.0</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.0</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -11,10 +11,10 @@
   </p>
 </div>
 <p>
-  <span style="font-weight:400">This is the Countly SDK for React Native applications. It features bridging, meaning it includes all the functionalities that Android and iOS SDKs provide rather than having those functionalities as React Native code.</span>
+  <span style="font-weight: 400;">This is the Countly SDK for React Native applications. It features bridging, meaning it includes all the functionalities that Android and iOS SDKs provide rather than having those functionalities as React Native code.</span>
 </p>
 <p>
-  <span style="font-weight:400"><strong>Supported Platforms:</strong>&nbsp;Countly SDK supports iOS and Android.<br></span>
+  <span style="font-weight: 400;"><strong>Supported Platforms:</strong>&nbsp;Countly SDK supports iOS and Android.<br></span>
 </p>
 <p>
   You can take a look at our sample application in the&nbsp;<a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>.
@@ -22,7 +22,7 @@
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
-  <span style="font-weight:400">In order to use the React Native SDK, please use the following commands to create a new React Native application.</span>
+  <span style="font-weight: 400;">In order to use the React Native SDK, please use the following commands to create a new React Native application.</span>
 </p>
 <pre><code class="shell">npm install -g react-native-cli     # Install React Native
 react-native init AwesomeProject    # Create a new project
@@ -35,12 +35,12 @@ react-native run-ios                # Run the iOS project
 adb reverse tcp:8081 tcp:8081       # Link Android port
 npm start                           # Run the build server</code></pre>
 <p>
-  <span style="font-weight:400">Run the following snippet in the root directory of your React Native project to install the npm dependencies and link&nbsp;</span><strong>native libraries</strong><span style="font-weight:400">.<br><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
+  <span style="font-weight: 400;">Run the following snippet in the root directory of your React Native project to install the npm dependencies and link&nbsp;</span><strong>native libraries</strong><span style="font-weight: 400;">.<br><strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.</span>
 </p>
 <pre># Include the Countly Class in the file that you want to use.<br>npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git<br># OR <br>npm install --save countly-sdk-react-native-bridge@20.11.0<br><br># Linking the library to your app<br><br># react-native &lt; 0.60. For both Android and iOS<br>react-native link countly-sdk-react-native-bridge<br>cd node_modules/countly-sdk-react-native-bridge/ios/<br>pod install <br>cd ../../../<br><br># react-native &gt;= 0.60 for iOS (Android will autolink)<br>cd ios <br>pod install<br>cd ..</pre>
 <h1>SDK Integration</h1>
 <p>
-  <span style="font-weight:400">We will need to call two methods (<code>init</code> and <code>start</code>) in order to set up our SDK. You may also like to specify other parameters at this step (i.e. whether logging will be used). These methods should only be called once during the app's lifecycle and should be done as early as possible. Your main app component's <code>componentDidMount</code>method may be a good place.&nbsp;</span>
+  <span style="font-weight: 400;">We will need to call two methods (<code>init</code> and <code>start</code>) in order to set up our SDK. You may also like to specify other parameters at this step (i.e. whether logging will be used). These methods should only be called once during the app's lifecycle and should be done as early as possible. Your main app component's <code>componentDidMount</code>method may be a good place.&nbsp;</span>
 </p>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
 
@@ -55,10 +55,10 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY"); // Initialize the co
 Countly.start(); // start session tracking
 }</code></pre>
 <p>
-  <span class="wysiwyg-color-black" style="font-weight:400">After <code>init</code> and <code>start</code> have been called once, you may use the commands in the rest of this document to send additional data and metrics to your server.</span>
+  <span class="wysiwyg-color-black" style="font-weight: 400;">After <code>init</code> and <code>start</code> have been called once, you may use the commands in the rest of this document to send additional data and metrics to your server.</span>
 </p>
 <p>
-  <strong>Providing the application key</strong>
+  <span class="wysiwyg-font-size-medium"><strong>Providing the application key</strong></span>
 </p>
 <p>
   <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
@@ -67,7 +67,7 @@ Countly.start(); // start session tracking
   <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
 <p>
-  <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
+  <span class="wysiwyg-font-size-medium"><strong>Providing the server URL</strong></span>
 </p>
 <p>
   <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
@@ -85,7 +85,7 @@ Countly.start(); // start session tracking
 <pre><code class="hljs coffeescript">Countly.setLoggingEnabled(true); // Enable countly internal debugging logs</code></pre>
 <h2>Device ID</h2>
 <p>
-  <span style="font-weight:400"><span>You may provide your own custom device ID when</span> initializing the SDK using the method below.</span>
+  <span style="font-weight: 400;"><span>You may provide your own custom device ID when</span> initializing the SDK using the method below.</span>
 </p>
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, DEVICE_ID</span>)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
@@ -100,13 +100,13 @@ Countly.start(); // start session tracking
 </p>
 <h2>Automatic crash handling</h2>
 <p>
-  <span style="font-weight:400">With this feature, the Countly SDK will generate a crash report if your application crashes due to an exception and send it to the Countly server for further inspection.</span>
+  <span style="font-weight: 400;">With this feature, the Countly SDK will generate a crash report if your application crashes due to an exception and send it to the Countly server for further inspection.</span>
 </p>
 <p>
-  <span style="font-weight:400">If a crash report cannot be delivered to the server (e.g. no internet connection, unavailable server, etc.), then the SDK stores the crash report locally in order to try again at a later time.</span>
+  <span style="font-weight: 400;">If a crash report cannot be delivered to the server (e.g. no internet connection, unavailable server, etc.), then the SDK stores the crash report locally in order to try again at a later time.</span>
 </p>
 <p>
-  <span style="font-weight:400">You will need to call the following method before calling <code>init</code> in order to activate automatic crash reporting.</span>
+  <span style="font-weight: 400;">You will need to call the following method before calling <code>init</code> in order to activate automatic crash reporting.</span>
 </p>
 <pre><code class="javascript">// Using Countly crash reports
 Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
@@ -127,8 +127,27 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 </p>
 <pre><code class="java hljs">Countly.logException(stack, nonfatal, customSegments);</code></pre>
 <p>
-  <span style="font-weight:400">The method <code class="javascript">logException</code>takes a string for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.</span>
+  <span style="font-weight: 400;">The method <code class="javascript">logException</code>takes a string for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.</span>
 </p>
+<p>
+  <span>Below are some examples that how to log<span style="font-weight: 400;"> handled/nonfatal and unhandled/fatal exceptions manually</span>.</span>
+</p>
+<p>
+  <strong>1. Manually report handled exception</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", true);</code></pre>
+<p>
+  <strong>2. Manually report handled exception with segmentation</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", true, {"_facebook_version": "0.0.1"});</code></pre>
+<p>
+  <strong>3. Manually report fatal exception</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", false);</code></pre>
+<p>
+  <strong>4. Manually report fatal exception with segmentation</strong>
+</p>
+<pre><code class="java hljs">Countly.logException("STACK_TRACE_STRING", false, {"_facebook_version": "0.0.1"});</code></pre>
 <h2>Crash breadcrumbs</h2>
 <p>
   Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
@@ -139,64 +158,36 @@ Countly.enableCrashReporting();<br>Countly.init(...);</code></pre>
 <pre><code class="java hljs">Countly.addCrashLog(String record) </code></pre>
 <h2>Native C++ Crash Reporting</h2>
 <p>
-  <span style="font-weight:400">If you have C++ libraries in your Android app, the React Native Bridge SDK allows you to record possible crashes in your Countly server by integrating the <code>sdk-native</code></span><span style="font-weight:400">developed within our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight:400">Android SDK</span></a><span style="font-weight:400">. F</span><span style="font-weight:400">ind more information <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#native-c-crash-reporting" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">If you have C++ libraries in your React Native Android app, the React Native Bridge SDK allows you to record possible crashes in your Countly server by integrating the <code>sdk-native</code></span><span style="font-weight: 400;">developed within our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">Android SDK</span></a><span style="font-weight: 400;">. F</span><span style="font-weight: 400;">ind more information <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#native-c-crash-reporting" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight:400">As this feature is optional, you will need to uncomment some parts in our SDK files in order to make it available. </span>
+  <span style="font-weight: 400;">As this feature is optional, you will need to do some changes in your react native android project files in order to make it available.</span>
 </p>
 <p>
-  <span style="font-weight:400">1. Go to <code>android/build.gradle</code></span><span style="font-weight:400">and add the package dependency (all file paths in this section are given relative to the <code>countly-sdk-react-native-bridge</code></span><span style="font-weight:400">which was <code>npm</code></span><span style="font-weight:400">installed above):</span>
+  <span style="font-weight: 400;">Go to <code>YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code></span><span style="font-weight: 400;">and add the package dependency<span>&nbsp;(please change the&nbsp;<code>LATEST_VERSION</code></span><span>&nbsp;below by checking our Maven&nbsp;</span><a href="https://bintray.com/countly/maven/sdk-native"><span>page</span></a><span>, currently 20.11.6)</span></span><span style="font-weight: 400;">:</span>
 </p>
 <pre><code class="shell">dependencies {
-    implementation 'ly.count.android:sdk-native:19.02.3'    
+    implementation 'ly.count.android:sdk-native:<span>LATEST_VERSION</span>'    
 }</code></pre>
 <p>
-  <span style="font-weight:400">2. Uncomment the following in the <code>android/src/main/java/ly/count/android/sdk/react/CountlyReactNative.java</code></span><span style="font-weight:400">file:</span>
-</p>
-<pre><code class="java">import ly.count.android.sdknative.CountlyNative;
-    
-@ReactMethod
-  public void initNative(){
-  CountlyNative.initNative(getReactApplicationContext());
-}
-	
-@ReactMethod
-  public void testCrash(){
-  CountlyNative.crash();
-}
-    </code></pre>
-<p>
-  <span style="font-weight:400">3. Modify <code>Countly.js</code></span><span style="font-weight:400">to connect from JavaScript to these new methods:</span>
-</p>
-<pre><code class="javascript">Countly.initNative = function(){
-    CountlyReactNative.initNative();
-}
-
-Countly.testCrash = function(){
-    CountlyReactNative.testCrash();
-}</code></pre>
-<p>
-  <span style="font-weight:400">If you are using our sample app in <code>example/App.js</code></span><span style="font-weight:400">,</span><span style="font-weight:400"> also uncomment the following parts in it for easy testing:</span>
-</p>
-<pre><code class="javascript">initNative(){
-  Countly.initNative();
-};
-
-testCrash(){
-  Countly.testCrash();
-}
-
-// ...
-
-            &lt; Button onPress = { this.initNative } title = "Init Native" color = "#00b5ad"&gt; 
-            &lt; Button onPress = { this.testCrash } title = "Test Native Crash" color = "crimson"&gt; 
-
-</code></pre>
-<p>
-  <span style="font-weight:400">We suggest calling <code>Countly.initNative()</code></span><span style="font-weight:400"> as soon as your app is initialized to be able to catch setup time crashes. Sending crash dump files to the server will be taken care of by the Android SDK during the next app initialization. We also provide a Gradle plugin that automatically uploads symbol files to your server (these are needed for the symbolication of crash dumps). Integrate it into your React Native project as explained in the relevant Android documentation </span><a href="https://resources.count.ly/docs/countly-sdk-for-android#section-native-c-crash-reporting"><span style="font-weight:400">page</span></a><span style="font-weight:400">.</span>
+  <span>Then call <span style="font-weight: 400;"><code>Countly.initNative()</code></span> method as early as possible in your react native android project <span style="font-weight: 400;">to be able to catch setup time crashes</span>, it should be preferably in the "onCreate" callback of the Application class<span style="font-weight: 400;">. </span></span>
 </p>
 <p>
-  <span style="font-weight:400">This is what the debug logs will look like if you use this feature:</span>
+  <span><span style="font-weight: 400;">You may find <code>MainApplication.java</code> at this path:</span></span>
+</p>
+<p>
+  <span><span style="font-weight: 400;"><code>YOUR_REACT_NATIVE_PROJECT_PATH/android/app/src/main/java/com/PROJECT_NAME</code> </span>&nbsp;</span>
+</p>
+<pre>// import this in your Application class<br>import ly.count.android.sdknative.CountlyNative; <br><br>// call this function in "onCreate" callback of Application class<br>CountlyNative.initNative(getApplicationContext());</pre>
+<p>
+  <code>getApplicationContext()</code><span>&nbsp;</span>is needed to determine
+  a storage place for minidump files.
+</p>
+<p>
+  <span style="font-weight: 400;">Sending crash dump files to the server will be taken care of by the SDK during the next app initialization. We also provide a Gradle plugin that automatically uploads symbol files to your server (these are needed for the symbolication of crash dumps). Integrate it into your React Native project as explained in the relevant Android documentation </span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#native-c-crash-reporting" target="_self" rel="undefined">page</a><span style="font-weight: 400;">.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This is what the debug logs will look like if you use this feature:</span>
 </p>
 <pre><code class="text">$ adb logcat -s Countly:V countly_breakpad_cpp:V
 
@@ -217,7 +208,6 @@ D/Countly (124): Native crash folder exists, checking for dumps
 D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
 <h1>Custom Events</h1>
-<h2>Setting up custom events</h2>
 <p>
   <span>A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>custom event</span></a><span> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the SDK to the Countly instance by default.</span>
 </p>
@@ -228,15 +218,10 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   <p>
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
+  <h2>Recording events</h2>
 </div>
-<h2>Segmentation</h2>
 <p>
-  When providing segmentation for events, the only valid data types are: "String",
-  "Integer", "Double" and "Boolean". All other types will be ignored.
-</p>
-<h2>Custom event usage examples</h2>
-<p>
-  <span>We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span>&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
+  <span>We will be recording a </span><strong>purchase</strong><span>&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
 <ul>
   <li>
@@ -327,10 +312,10 @@ Countly.cancelEvent(eventName);</code></pre>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
-  a random identity to one of your apps users.<span style="font-weight:400"><span></span></span><span style="font-weight:400"><span></span></span>
+  a random identity to one of your apps users.<span style="font-weight: 400;"><span></span></span><span style="font-weight: 400;"><span></span></span>
 </p>
 <p>
-  <span style="font-weight:400"><span>For iOS: the device ID generated by the SDK is the Identifier For Vendor (IDFV).<br>For Android:&nbsp; the device ID generated by the SDK is the OpenUDID or Google Advertising ID.</span></span>
+  <span style="font-weight: 400;"><span>For iOS: the device ID generated by the SDK is the Identifier For Vendor (IDFV).<br>For Android:&nbsp; the device ID generated by the SDK is the OpenUDID or Google Advertising ID.</span></span>
 </p>
 <p>
   To solve other potential use cases, we provide 3 ways to handle your device id:
@@ -342,7 +327,7 @@ Countly.cancelEvent(eventName);</code></pre>
 </ul>
 <h2>Changing device ID with and without merge</h2>
 <p>
-  <span style="font-weight:400">You may configure or change the device ID anytime using the method below.<br></span>
+  <span style="font-weight: 400;">You may configure or change the device ID anytime using the method below.<br></span>
 </p>
 <pre>Countly.<span>changeDeviceId</span>(DEVICE_ID, <span>ON_SERVER</span>);</pre>
 <p>
@@ -357,7 +342,7 @@ Countly.cancelEvent(eventName);</code></pre>
 </p>
 <p>
   To enable this
-  <span style="font-weight:400">when initializing the SDK, use the method below.</span>
+  <span style="font-weight: 400;">when initializing the SDK, use the method below.</span>
 </p>
 <pre>Countly.<span>init</span>(<span>SERVER_URL</span>, <span>APP_KEY, "TemporaryDeviceID"</span>)</pre>
 <p>
@@ -401,7 +386,7 @@ Countly.cancelEvent(eventName);</code></pre>
 <h2>General Setup</h2>
 <p>
   <span>First, when setting up Push for the React Native (Bridge) SDK, select the push token mode. This allows you to choose either test or production modes. Note that the </span>push
-  token mode should be set before initialization. U<span style="font-weight:400">se the method below.</span>
+  token mode should be set before initialization. U<span style="font-weight: 400;">se the method below.</span>
 </p>
 <pre>// Important: call this method before init method<br>Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");<br>// Countly.messagingMode.DEVELOPMENT<br>// Countly.messagingMode.PRODUCTION<br>// Countly.messagingMode.ADHOC</pre>
 <p>
@@ -516,7 +501,7 @@ var ipAddress = "103.238.105.167";
 
 Countly.setLocationInit(countryCode, city, latitude + "," + longitude, ipAddress);</code></pre>
 <p>
-  <span style="font-weight:400"><span>Geolocation recording methods may also be called at any time after the Countly SDK has started.<br>To do so, use the <code>setLocation</code> method as shown below.</span></span><span style="font-weight:400"></span>
+  <span style="font-weight: 400;"><span>Geolocation recording methods may also be called at any time after the Countly SDK has started.<br>To do so, use the <code>setLocation</code> method as shown below.</span></span><span style="font-weight: 400;"></span>
 </p>
 <pre><code class="javascript">// Example for setLocation
 var countryCode = "us";
@@ -529,7 +514,7 @@ Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
 <h2>Disable Location</h2>
 <p>
-  <span style="font-weight:400">To erase any cached location data from the device and stop further location tracking, use the following method. Note that i</span><span style="font-weight:400">f after disabling location, the <code>setLocation</code></span><span style="font-weight:400">is called with any non-null value, tracking will resume.</span>
+  <span style="font-weight: 400;">To erase any cached location data from the device and stop further location tracking, use the following method. Note that i</span><span style="font-weight: 400;">f after disabling location, the <code>setLocation</code></span><span style="font-weight: 400;">is called with any non-null value, tracking will resume.</span>
 </p>
 <pre><code class="javascript">//disable location tracking
 Countly.disableLocation();</code></pre>
@@ -583,17 +568,17 @@ Countly.disableLocation();</code></pre>
 <pre><code class="java hljs">Countly.remoteConfigClearValues();</code></pre>
 <h1>User feedback</h1>
 <p>
-  <span style="font-weight:400">There are a different ways of receiving feedback from your users: the Star-rating dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).</span>
+  <span style="font-weight: 400;">There are a different ways of receiving feedback from your users: the Star-rating dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).</span>
 </p>
 <p>
-  <span style="font-weight:400">The Star-rating dialog allows users to give feedback as a rating from 1 to 5. The Ratings widget allows users to rate using the same 1 to 5 emoji-based rating system as well as leave a text comment. The Surveys widgets (Surveys and NPS®) allow for even more targeted feedback from users.</span>
+  <span style="font-weight: 400;">The Star-rating dialog allows users to give feedback as a rating from 1 to 5. The Ratings widget allows users to rate using the same 1 to 5 emoji-based rating system as well as leave a text comment. The Surveys widgets (Surveys and NPS®) allow for even more targeted feedback from users.</span>
 </p>
 <h2>Star rating dialog</h2>
 <p>
-  <span style="font-weight:400">The Star-rating integration provides a dialog for getting user feedback about an application. It contains a title, a simple message explaining its purpose, a 1 through 5-star meter for getting users rating, and a dismiss button in case the user does not want to give a rating.</span>
+  <span style="font-weight: 400;">The Star-rating integration provides a dialog for getting user feedback about an application. It contains a title, a simple message explaining its purpose, a 1 through 5-star meter for getting users rating, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
 <p>
-  <span style="font-weight:400">This star rating has nothing to do with Google Play Store ratings and reviews. It is simply for getting brief feedback from your users to be displayed on the Countly dashboard. If the user dismisses the star-rating dialog without giving a rating, the event will not be recorded.</span>
+  <span style="font-weight: 400;">This star rating has nothing to do with Google Play Store ratings and reviews. It is simply for getting brief feedback from your users to be displayed on the Countly dashboard. If the user dismisses the star-rating dialog without giving a rating, the event will not be recorded.</span>
 </p>
 <pre><code class="javascript">Countly.showStarRating();</code></pre>
 <p>
@@ -604,28 +589,28 @@ Countly.disableLocation();</code></pre>
 <pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
 <h2>Rating widget</h2>
 <p>
-  <span style="font-weight:400">The rating widget displays a server-configured widget to your user devices.</span>
+  <span style="font-weight: 400;">The rating widget displays a server-configured widget to your user devices.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/ea55d24-072bb00-t1.png">
 </div>
 <p>
-  <span style="font-weight:400">All the text fields in the example above can be configured and replaced with a custom string of your choice.</span>
+  <span style="font-weight: 400;">All the text fields in the example above can be configured and replaced with a custom string of your choice.</span>
 </p>
 <p>
-  <span style="font-weight:400">In addition to a 1 through 5 rating, it is possible for users to leave a text comment and an email, should the user like to be contacted by the app developer.</span>
+  <span style="font-weight: 400;">In addition to a 1 through 5 rating, it is possible for users to leave a text comment and an email, should the user like to be contacted by the app developer.</span>
 </p>
 <p>
-  <span style="font-weight:400">Showing the rating widget in a single call involves a two-set process: b</span><span style="font-weight:400">efore it is shown, the SDK tries to contact the server to get more information about the dialog. Therefore, a network connection to it is needed.</span>
+  <span style="font-weight: 400;">Showing the rating widget in a single call involves a two-set process: b</span><span style="font-weight: 400;">efore it is shown, the SDK tries to contact the server to get more information about the dialog. Therefore, a network connection to it is needed.</span>
 </p>
 <p>
-  <span style="font-weight:400">To display the widget after initializing the SDK, you will first need to get the widget ID from your server, as shown below.</span>
+  <span style="font-weight: 400;">To display the widget after initializing the SDK, you will first need to get the widget ID from your server, as shown below.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/f773cf4-2dd58c6-t2.png">
 </div>
 <p>
-  <span style="font-weight:400">Then, call the function to show the widget popup using the widget ID below.</span>
+  <span style="font-weight: 400;">Then, call the function to show the widget popup using the widget ID below.</span>
 </p>
 <pre><code class="javascript">Countly.showFeedbackPopup("WidgetId", "Button Text");</code></pre>
 <h2>Feedback widget</h2>
@@ -666,10 +651,10 @@ Countly.disableLocation();</code></pre>
 <pre><code class="javascript">Countly.presentFeedbackWidget("WIDGET_TYPE", "WIDGET_ID", "CLOSE_BUTTON_TEXT");</code></pre>
 <h1>User Profiles</h1>
 <p>
-  <span style="font-weight:400">You can provide Countly any details you may have about your user or visitor. This will allow you to track each specific user on the "User Profiles" tab, which is available in Countly Enterprise Edition. For more details, please review the <a href="/hc/en-us/articles/360037630571" target="_self" rel="undefined">User Profiles documentation</a>.</span>
+  <span style="font-weight: 400;">You can provide Countly any details you may have about your user or visitor. This will allow you to track each specific user on the "User Profiles" tab, which is available in Countly Enterprise Edition. For more details, please review the <a href="/hc/en-us/articles/360037630571" target="_self" rel="undefined">User Profiles documentation</a>.</span>
 </p>
 <p>
-  <span style="font-weight:400">In order to set a user profile, use the code snippet below. After you send a user’s data, it can be found in your Dashboard under <code>Users &gt; User Profiles</code>.</span>
+  <span style="font-weight: 400;">In order to set a user profile, use the code snippet below. After you send a user’s data, it can be found in your Dashboard under <code>Users &gt; User Profiles</code>.</span>
 </p>
 <pre><code class="javascript">// Example for setting user data
 var options = {};
@@ -684,7 +669,7 @@ options.gender = "M";
 options.byear = 1919;
 Countly.setUserData(options);</code></pre>
 <p>
-  <span style="font-weight:400">Countly also supports custom user properties that you can attach for each user. In order to set or modify a user's data (e.g. increment, multiply, etc.), use the code snippet below.</span>
+  <span style="font-weight: 400;">Countly also supports custom user properties that you can attach for each user. In order to set or modify a user's data (e.g. increment, multiply, etc.), use the code snippet below.</span>
 </p>
 <pre><code class="javascript">// examples for custom user properties
 Countly.userData.setProperty("keyName", "keyValue"); //set custom property
@@ -702,7 +687,7 @@ Countly.userData.pullValue("type", "morning");//remove value from array</code></
 <p>
   The Performance Monitoring feature allows you to analyze your application's performance
   on various aspects.
-  <span style="font-weight:400">For more details, please review the</span>
+  <span style="font-weight: 400;">For more details, please review the</span>
   <a href="https://support.count.ly/hc/en-us/articles/900000819806-Performance-monitoring" target="_self">Performance Monitoring documentation</a>.
 </p>
 <p>
@@ -786,7 +771,7 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
 <pre>Countly.<span>recordNetworkTrace</span>(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</pre>
 <h1>User consent</h1>
 <p>
-  <span style="font-weight:400">Being compliant with GDPR and other data privacy regulations, Countly provides ways to toggle different Countly tracking features on or off depending on a user's given consent. For more details, please review the </span><a href="https://resources.count.ly/docs/compliance-hub"><span style="font-weight:400">Compliance Hub plugin</span></a><span style="font-weight:400">&nbsp;documentation.</span><span style="font-weight:400"><br></span>
+  <span style="font-weight: 400;">Being compliant with GDPR and other data privacy regulations, Countly provides ways to toggle different Countly tracking features on or off depending on a user's given consent. For more details, please review the </span><a href="https://resources.count.ly/docs/compliance-hub"><span style="font-weight: 400;">Compliance Hub plugin</span></a><span style="font-weight: 400;">&nbsp;documentation.</span><span style="font-weight: 400;"><br></span>
 </p>
 <p>
   <span>Currently, available features with consent control are as follows</span>:
@@ -819,10 +804,10 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
   </li>
 </ul>
 <p>
-  <span style="font-weight:400">Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also be interested in reviewing their relevant documentation on this topic (</span><a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#consents" target="_self" rel="undefined">iOS Consents</a><span style="font-weight:400">&nbsp;and&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent-management" target="_self" rel="undefined">Android Consents</a><span style="font-weight:400">).</span>
+  <span style="font-weight: 400;">Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also be interested in reviewing their relevant documentation on this topic (</span><a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#consents" target="_self" rel="undefined">iOS Consents</a><span style="font-weight: 400;">&nbsp;and&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent-management" target="_self" rel="undefined">Android Consents</a><span style="font-weight: 400;">).</span>
 </p>
 <p>
-  <span style="font-weight:400">Next we will go over the methods that are available in this SDK.</span>
+  <span style="font-weight: 400;">Next we will go over the methods that are available in this SDK.</span>
 </p>
 <table>
   <tbody>
@@ -838,7 +823,7 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
       <td>boolean</td>
       <td>
         <p>
-          <span style="font-weight:400">The requirement for checking consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code></span><span style="font-weight:400">with <code>true</code></span><span style="font-weight:400">before initializing Countly. You may also pass a consent flag as true or false when you call <code>init</code></span><span style="font-weight:400">.</span>
+          <span style="font-weight: 400;">The requirement for checking consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code></span><span style="font-weight: 400;">with <code>true</code></span><span style="font-weight: 400;">before initializing Countly. You may also pass a consent flag as true or false when you call <code>init</code></span><span style="font-weight: 400;">.</span>
         </p>
       </td>
     </tr>
@@ -849,7 +834,7 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
       <td>string array of strings</td>
       <td>
         <p>
-          <span style="font-weight:400">To add consent for a single feature (string parameter) or a subset of features (array of strings parameter). Use this method for giving consent before&nbsp;</span><span style="font-weight:400">initializing.<br></span>
+          <span style="font-weight: 400;">To add consent for a single feature (string parameter) or a subset of features (array of strings parameter). Use this method for giving consent before&nbsp;</span><span style="font-weight: 400;">initializing.<br></span>
         </p>
       </td>
     </tr>
@@ -860,7 +845,7 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
       <td>string array of strings</td>
       <td>
         <p>
-          <span style="font-weight:400">To add consent for a single feature (string parameter) or a subset of features (array of strings parameter). Use this method for giving consent after </span><span style="font-weight:400">initializing.</span>&nbsp;
+          <span style="font-weight: 400;">To add consent for a single feature (string parameter) or a subset of features (array of strings parameter). Use this method for giving consent after </span><span style="font-weight: 400;">initializing.</span>&nbsp;
         </p>
       </td>
     </tr>
@@ -871,7 +856,7 @@ await Countly.init("https://try.count.ly", "YOUR_APP_KEY");<br>Countly.appLoadin
       <td>string array of strings</td>
       <td>
         <p>
-          <span style="font-weight:400">To remove consent for a single feature (string parameter) or a subset of features (array of strings parameter).</span>
+          <span style="font-weight: 400;">To remove consent for a single feature (string parameter) or a subset of features (array of strings parameter).</span>
         </p>
       </td>
     </tr>
@@ -909,10 +894,10 @@ Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
 <p>
-  <span style="font-weight:400">The string values corresponding to the features that will be used in the <code>giveConsent</code> or <code>removeConsent</code> </span><span style="font-weight:400">methods may be found&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#exposing-available-features-for-consent" target="_self"><span style="font-weight:400">here</span></a><span style="font-weight:400">. In addition, please review our platform SDK documents if the feature is applicable or not for that platform.</span>
+  <span style="font-weight: 400;">The string values corresponding to the features that will be used in the <code>giveConsent</code> or <code>removeConsent</code> </span><span style="font-weight: 400;">methods may be found&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#exposing-available-features-for-consent" target="_self"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">. In addition, please review our platform SDK documents if the feature is applicable or not for that platform.</span>
 </p>
 <h1>
-  <span style="font-weight:400">Security and privacy</span>
+  <span style="font-weight: 400;">Security and privacy</span>
 </h1>
 <h2>Parameter tampering protection</h2>
 <p>
@@ -977,7 +962,7 @@ Countly.enableParameterTamperingProtection(<span class="hljs-string">"salt"</spa
   Edition.
 </p>
 <p>
-  <span style="font-weight:400">For version 20.11.4 and greater we highly recommend allowing Countly to listen to the </span><strong>INSTALL_REFERRER</strong><span style="font-weight:400">&nbsp;intent in order to receive more precise attribution on Android, something you may do by adding the following XML code to your&nbsp;</span><strong>AndroidManifest.xml</strong><span style="font-weight:400">&nbsp;file inside&nbsp;the </span><strong>application</strong><span style="font-weight:400">&nbsp;tag.</span>
+  <span style="font-weight: 400;">For version 20.11.4 and greater we highly recommend allowing Countly to listen to the </span><strong>INSTALL_REFERRER</strong><span style="font-weight: 400;">&nbsp;intent in order to receive more precise attribution on Android, something you may do by adding the following XML code to your&nbsp;</span><strong>AndroidManifest.xml</strong><span style="font-weight: 400;">&nbsp;file inside&nbsp;the </span><strong>application</strong><span style="font-weight: 400;">&nbsp;tag.</span>
 </p>
 <pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
 	&lt;intent-filter&gt;
@@ -985,17 +970,17 @@ Countly.enableParameterTamperingProtection(<span class="hljs-string">"salt"</spa
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
-  <strong><span style="font-weight:400">For more information about how to set up your campaigns, please&nbsp;</span><a href="http://resources.count.ly/docs/referral-analytics"><span style="font-weight:400">review this documentation</span></a><span style="font-weight:400">.</span></strong>
+  <strong><span style="font-weight: 400;">For more information about how to set up your campaigns, please&nbsp;</span><a href="http://resources.count.ly/docs/referral-analytics"><span style="font-weight: 400;">review this documentation</span></a><span style="font-weight: 400;">.</span></strong>
 </p>
 <p>Call the method below before initialization.</p>
 <pre><span>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.</span><br>Countly.<span>enableAttribution</span>();</pre>
 <p>
-  <span>For iOS 14+ use the <code><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Countly</span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">.</span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">recordAttributionID("IDFA")</span></code></span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"> function instead of <span><code>Countly.enableAttribution()</code></span></span>
+  <span>For iOS 14+ use the <code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Countly</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">.</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">recordAttributionID("IDFA")</span></code></span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;"> function instead of <span><code>Countly.enableAttribution()</code></span></span>
 </p>
 <p>
-  <span>You can use <code><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Countly</span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">.</span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">recordAttributionID</span></code>&nbsp;function to specify IDFA for campaign attribution</span>
+  <span>You can use <code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Countly</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">.</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">recordAttributionID</span></code>&nbsp;function to specify IDFA for campaign attribution</span>
 </p>
-<pre><span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">Countly</span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">.</span><span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">recordAttributionID("</span>IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM");</span><span></span></pre>
+<pre><span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Countly</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">.</span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">recordAttributionID("</span>IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM");</span><span></span></pre>
 <p>
   <span>For iOS 14+ due to Apple changes regarding Application Tracking, you need to ask the user for permission to track the Application.</span><span></span>
 </p>
@@ -1010,7 +995,7 @@ Countly.enableParameterTamperingProtection(<span class="hljs-string">"salt"</spa
 </div>
 <h2>Forcing HTTP POST</h2>
 <p>
-  <span style="font-weight:400">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In the event you would like an override so that HTTP POST may be used in all cases, call the <code>setHttpPostForced</code> function after you have called <code>init</code>. You may use the same function later in the app’s life cycle to disable the override. This function has to be called every time the app starts, using the method below.</span>
+  <span style="font-weight: 400;">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In the event you would like an override so that HTTP POST may be used in all cases, call the <code>setHttpPostForced</code> function after you have called <code>init</code>. You may use the same function later in the app’s life cycle to disable the override. This function has to be called every time the app starts, using the method below.</span>
 </p>
 <pre><code class="javascript">  
 // enabling the override
@@ -1020,13 +1005,13 @@ Countly.setHttpPostForced(true);
 Countly.setHttpPostForced(false);</code></pre>
 <h2>Checking if init has been called</h2>
 <p>
-  <span style="font-weight:400">In the event you would like to check if init has been called, use the function below.</span>
+  <span style="font-weight: 400;">In the event you would like to check if init has been called, use the function below.</span>
 </p>
 <pre><code class="javascript">Countly.isInitialized().then(result =&gt; console.log(result)); // true or false
 </code></pre>
 <h2>Checking if onStart has been called</h2>
 <p>
-  <span style="font-weight:400">For some applications, there might be a use case where the developer would like to check if the Countly SDK onStart function has been called. To do so, use the call below.</span>
+  <span style="font-weight: 400;">For some applications, there might be a use case where the developer would like to check if the Countly SDK onStart function has been called. To do so, use the call below.</span>
 </p>
 <pre><code class="javascript">Countly.hasBeenCalledOnStart().then(result =&gt; console.log(result)); // true or false </code></pre>
 <h2>Interacting with the internal request queue</h2>
@@ -1048,11 +1033,11 @@ Countly.setHttpPostForced(false);</code></pre>
   the current app key, these requests app key will be replaced with the current
   app key.<br>
   <br>
-  <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">2. You can remove all requests with a different app key in the request queue:</span>
+  <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">2. You can remove all requests with a different app key in the request queue:</span>
 </p>
 <pre><span>//Removes all requests with a different app key in request queue.<br></span>Countly.removeDifferentAppKeysFromQueue();</pre>
 <p>
-  <span style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">In the request queue, if there are any requests whose app key is different than the current app key, these requests will be removed from the request queue.</span>
+  <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">In the request queue, if there are any requests whose app key is different than the current app key, these requests will be removed from the request queue.</span>
 </p>
 <h2>Setting an event queue threshold</h2>
 <p>
