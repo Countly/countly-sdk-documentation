@@ -210,8 +210,8 @@ Countly.SharedInstance().EndSession();</code></pre>
 </ul>
 <p>
   <strong>EventSendThreshold</strong> is used to send events requests to server
-  when number of recorded custom events reach it without waiting for next update
-  session request.
+  when number of recorded events reach it without waiting for next update session
+  request.
 </p>
 <pre><code class="csharp"> config.EventSendThreshold = 5;</code></pre>
 <ul>
@@ -329,7 +329,7 @@ config.CustomHeaderFieldValue = "my_custom_value";</code></pre>
 </p>
 <h1>Recording Events</h1>
 <p>
-  Here is a quick summary on how to use custom events recording methods.
+  Here is a quick summary on how to use event recording methods.
 </p>
 <h2>Regular Events</h2>
 <p>

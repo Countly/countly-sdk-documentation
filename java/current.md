@@ -14,10 +14,10 @@
 </p>
 <p>The dependency can be added as:</p>
 <pre><code class="xml">&lt;dependency&gt;
-	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
-	&lt;artifactId&gt;java&lt;/artifactId&gt;
-	&lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
-	&lt;type&gt;pom&lt;/type&gt;
+  &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
+  &lt;artifactId&gt;java&lt;/artifactId&gt;
+  &lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
+  &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1>Initializing the Java SDK</h1>
 <p>
@@ -57,7 +57,7 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <h1>Recording first event</h1>
-<p>Now let's record our first custom event:</p>
+<p>Now let's record our first event:</p>
 <pre><code class="java">Countly.getSession().event("dummy").setCount(2).record();</code></pre>
 <p>
   Countly will record an event with a key <code>purchase-btn</code> with sum of
