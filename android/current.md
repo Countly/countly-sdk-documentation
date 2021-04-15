@@ -47,7 +47,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:20.11.0'
+    compile 'ly.count.android:sdk:20.11.7'
 }</code></pre>
 <p>
   <strong>Adding the SDK via Eclipse</strong>
@@ -249,7 +249,7 @@
   <img src="https://count.ly/images/guide/7cbb985-breakpad.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You may download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the default JCenter or Bintray Maven repositories and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://bintray.com/countly/maven/sdk-native"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 19.02.3):</span>
+  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You may download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the default JCenter or Bintray Maven repositories and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://bintray.com/countly/maven/sdk-native"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 20.11.7):</span>
 </p>
 <pre><code class="java">// build gradle file 
 
@@ -277,7 +277,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <strong>Automatic creation and upload of symbol files</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 19.02.3):</span>
+  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.7):</span>
 </p>
 <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin 
 
@@ -2034,4 +2034,3 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 <p>
   <span style="font-weight: 400;">There is a build step for the <code>sdk-native</code></span><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in <code>sdk-native/src/cpp_precompilation</code></span><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in <code>sdk-native/src/main/jniLibs/</code></span><span style="font-weight: 400;">&nbsp;that are externally built.</span>
 </p>
-
