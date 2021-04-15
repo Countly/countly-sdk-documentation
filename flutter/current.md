@@ -172,7 +172,7 @@ flutter run</code></pre>
 </p>
 <pre><code class="JavaScript">Countly.logExceptionManual(String message, bool nonfatal, {StackTrace stacktrace, Map&lt;String, Object&gt; segmentation})</code></pre>
 <p>
-  Below are some examples that how to lo handled/nonfatal and unhandled/fatal exceptions manually.
+  Below are some examples that how to log handled/nonfatal and unhandled/fatal exceptions manually.
 </p>
 <p>
   <strong>1. Manually report exception</strong>
