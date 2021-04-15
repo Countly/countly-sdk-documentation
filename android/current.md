@@ -47,7 +47,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:20.11.7'
+    compile 'ly.count.android:sdk:20.11.0'
 }</code></pre>
 <p>
   <strong>Adding the SDK via Eclipse</strong>
@@ -273,9 +273,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <code>getApplicationContext()</code> is needed to determine a storage place for
   minidump files.
 </p>
-<p>
-  <strong>Automatic creation and upload of symbol files</strong>
-</p>
+<h2>Automatic symbol file upload</h2>
 <p>
   <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.7):</span>
 </p>
@@ -297,7 +295,7 @@ buildscript {
   <span style="font-weight: 400;">Then you will need to configure a Gradle Countly block for the plugin:</span>
 </p>
 <pre><code class="java">countly {
-    server "https://YOUR_SERVER", 
+    server "https://YOUR_SERVER" 
     app_key "YOUR_APP_KEY"  
 }</code></pre>
 <p>
@@ -318,10 +316,14 @@ buildscript {
 
 ./gradlew :project-name:uploadNativeSymbols</code></pre>
 <p>
-  <span style="font-weight: 400;">You may also configure your build so these tasks will run after every build:</span>
+  <span style="font-weight: 400;">You may also configure your build so these tasks will run after every build (leave out the task which is not required for you):</span>
 </p>
 <pre><code class="java">tasks.whenTaskAdded { task -&gt;
     if (task.name.startsWith('assemble')) {
+    		//this would upload your Java mapping file
+        task.dependsOn('uploadJaveSymbols')
+        
+    		//this would upload your native (c++) symbols
         task.dependsOn('uploadNativeSymbols')
     }
 }</code></pre>
