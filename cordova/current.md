@@ -1,43 +1,22 @@
 <p>
-  This document will guide you through the process of Countly SDK installation and it applies to version 20.11.
+  This document will guide you through the process of Countly SDK installation
+  and it applies to version 20.11.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Minimum Windows version</strong></span>
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    The Countly Windows SDK supports the following operating systems and .NET
-    versions:
-  </p>
-  <ul>
-    <li>Windows 8.1</li>
-    <li>Windows 10</li>
-    <li>Windows 10 Mobile</li>
-    <li>.NET 3.5</li>
-    <li>.NET 4.0 Client Profile</li>
-    <li>.NET 4.5 and above</li>
-    <li>.NET Standard 2.0</li>
-  </ul>
-</div>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>SDK in transition</strong></span>
-  </p>
-  <p>
-    Historically access to the SDK functions we're accessed through "Countly.FunctionName()".
-    Starting from version 18.10.0 it has been refactored to a singleton, which
-    means that it's functions by calling "Countly.Instance.FunctionName()". At
-    the moment it is still backwards compatible for old functionality, but new
-    features can only be accessed through "Countly.Instance". In the future all
-    call will be accessible only through "Countly.Instance". This documentation
-    will not show the usage of depracated calls.
+    To access the documentation for version 19.9.3 and older, click
+    <a href="/hc/en-us/articles/900004883663" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
-  <strong>Supported Platforms:</strong>  Countly SDK supports iOS and Android.
+  <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.
 </p>
 <p>
-  You can take a look at our sample application in the  <a href="https://github.com/Countly/countly-sdk-cordova-example" target="_self" rel="undefined">Github repo</a>.
+  You can take a look at our sample application in the
+  <a href="https://github.com/Countly/countly-sdk-cordova-example" target="_self" rel="undefined">Github repo</a>.
   It should show how most of the functionalities can be used.
 </p>
 <h1>Adding the SDK to the project</h1>
@@ -55,7 +34,7 @@
   ionic, phonegap, meteor), you would have to make sure that you are setting the
   platform requirements for those projects similar to these.
 </p>
-<p>  </p>
+<p>&nbsp;</p>
 <p>
   Setting up Countly SDK inside your Cordova, Ionics application is straightforward.
   Just follow the laid out steps for the specific projects:
@@ -65,8 +44,8 @@
 </p>
 <p>
   Add Countly SDK in your Cordova project using following commands:
-
-  <strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.
+  <strong>Note: </strong>use the latest SDK version currently available, not specifically
+  the one shown in the sample below.
 </p>
 <pre><code class="shell">cd PATH_TO_YOUR_PROJECT
 
@@ -100,8 +79,8 @@ ordova build ios</code></pre>
 </p>
 <p>
   Add Countly SDK in your Ionic project using following commands:
-
-  <strong>Note: </strong>use the latest SDK version currently available, not specifically the one shown in the sample below.
+  <strong>Note: </strong>use the latest SDK version currently available, not specifically
+  the one shown in the sample below.
 </p>
 <pre><code class="shell">cd PATH_TO_YOUR_PROJECT
 
@@ -156,55 +135,49 @@ Countly.halt();</code></pre>
   <span class="wysiwyg-font-size-large"><strong>Providing the application key</strong></span>
 </p>
 <p>
-  Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.
+  Also called "appKey" as shorthand. The application key is used to identify for
+  which application this information is tracked. You receive this value by creating
+  a new application in your Countly dashboard and accessing it in its application
+  management screen.
 </p>
 <p>
-  <strong>Note:  </strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.
+  <strong>Note: </strong>Ensure you are using the App Key (found under Management
+  -&gt; Applications) and not the API Key. Entering the API Key will not work.
 </p>
 <p>
   <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
 </p>
 <p>
-  If you are using Countly Enterprise Edition trial servers, use  <code>https://try.count.ly</code>,  <code>https://us-try.count.ly</code>  or  <code>https://asia-try.count.ly</code>  It is basically the domain from which you are accessing your trial dashboard.
-</p>
-<ol>
-  <li>
-    In Solution Explorer open context menu on
-    <strong>References - Manage NuGet Packages</strong>.
-  </li>
-  <li>Select nuget.org in Package source.</li>
-  <li>
-    Type <strong>Countly</strong> in search box.
-  </li>
-  <li>
-    Select Countly Analytics from results list and click Install button.
-  </li>
-</ol>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as  <a href="https://example.com/">https://example.com</a>  or  <a href="https://ip/">https://IP</a>  (if SSL has been set up).
-</p>
-<h1>SDK Set up</h1>
-<p>
-  Add <code>using CountlySDK;</code> in the usings section
+  If you are using Countly Enterprise Edition trial servers, use
+  <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
+  <code>https://asia-try.count.ly</code> It is basically the domain from which
+  you are accessing your trial dashboard.
 </p>
 <p>
-  Before you can use any Countly functinality, you need to call
-  <code>Countly.Instance.Init</code> to initiate the SDK.
+  If you use both Community Edition and Enterprise Edition, use your own domain
+  name or IP address, such as
+  <a href="https://example.com/">https://example.com</a> or
+  <a href="https://ip/">https://IP</a> (if SSL has been set up).
+</p>
+<h2>Enable logging</h2>
+<p>
+  If logging is enabled then our sdk will print out debug messages about it's internal
+  state and encountered problems.
 </p>
 <p>
-  When the SDK is initialized for the first time and no device ID is provided, a device ID will be generated by SDK.
+  When advise doing this while implementing countly features in your application.
 </p>
-<pre><code class="csharp">//create the Countly init object
-CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
-cc.appVersion = "1.2.3";
-
-//initiate the SDK with your preferences
-Countly.Instance.Init(cc);</code></pre>
+<pre><code class="javascript">// example for setLoggingEnabled
+Countly.setLoggingEnabled();</code></pre>
+<h2>Device ID</h2>
 <p>
-  For iOS: the device ID generated by SDK is the Identifier For Vendor (IDFV)
-For Android:   the device ID generated by SDK is the OpenUDID or Google Advertising ID
+  When the SDK is initialized for the first time and no device ID is provided,
+  a device ID will be generated by SDK.
+</p>
+<p>
+  For iOS: the device ID generated by SDK is the Identifier For Vendor (IDFV) For
+  Android: the device ID generated by SDK is the OpenUDID or Google Advertising
+  ID
 </p>
 <p>
   You may provide your own custom device ID when initializing the SDK
@@ -212,34 +185,33 @@ For Android:   the device ID generated by SDK is the OpenUDID or Google Advertis
 <pre><code class="javascript">Countly.init(SERVER_URL, APP_KEY, DEVICE_ID)</code></pre>
 <h2>SDK data storage</h2>
 <p>
-  For iOS: SDK data is stored in Application Support Directory in file named "Countly.dat"  
-  
-  For Android: SDK data is stored in
-  SharedPreferences. A SharedPreferences object points to a file containing key-value pairs and provides simple methods to read and write them.
+  For iOS: SDK data is stored in Application Support Directory in file named "Countly.dat"
+  For Android: SDK data is stored in SharedPreferences. A SharedPreferences object
+  points to a file containing key-value pairs and provides simple methods to read
+  and write them.
 </p>
-<h1>Additional info for Windows Store project setup</h1>
-<div class="callout callout--danger">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Windows Store build has been removed</strong></span>
-  </p>
-  <p>The following section of documentation will be removed soon</p>
-</div>
+<h1>Crash reporting</h1>
 <p>
-  The Countly SDK has the ability to collect <a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics">crash reports</a>,  which you may examine and resolve later on the server.
+  The Countly SDK has the ability to collect
+  <a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics">crash reports</a>,
+  which you may examine and resolve later on the server.
 </p>
+<h2>Automatic crash handling</h2>
 <p>
-  With this feature, the Countly SDK will generate a crash report if your application crashes due to an exception and send it to the Countly server for further inspection.
+  With this feature, the Countly SDK will generate a crash report if your application
+  crashes due to an exception and send it to the Countly server for further inspection.
 </p>
 <p>
-  If a crash report cannot be delivered to the server (e.g. no internet connection, unavailable server, etc.), then the SDK stores the crash report locally in order to try again at a later time.
+  If a crash report cannot be delivered to the server (e.g. no internet connection,
+  unavailable server, etc.), then the SDK stores the crash report locally in order
+  to try again at a later time.
 </p>
 <p>
-  You will need to call the following method before calling <code>init</code> in order to activate automatic crash reporting.
+  You will need to call the following method before calling <code>init</code> in
+  order to activate automatic crash reporting.
 </p>
-<pre><code class="csharp">protected override void OnLaunched(LaunchActivatedEventArgs e)
-{
-  
-...
+<p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stacktrace.js/2.0.0/stacktrace.min.js">// <![CDATA[
 
 // ]]></script>
 </p>
@@ -251,14 +223,20 @@ Countly.enableCrashReporting();
   You might catch an exception or similar error during your app’s runtime.
 </p>
 <p>
-  You may also log these handled exceptions to monitor how and when they are happening with the following command:
+  You may also log these handled exceptions to monitor how and when they are happening
+  with the following command:
 </p>
 <p>
-  Call <code>Countly.Instance.SessionEnd()</code> before app is closed to mark
-  the end of the apps session.
+  You can also send a custom crash log to Countly using code below.
 </p>
+<pre><code class="javascript">// Send Exception to the server
+Countly.logException(["My Customized error message"], true, {"_facebook_version": "0.0.1"});
+Countly.logException(stackFramesFromStackTraceJS, booleanNonFatal, segments);</code></pre>
 <p>
-  The method <code class="javascript">logException</code>takes a string, array of strings or strackframes for the stack trace, a boolean flag indicating if the crash is considered fatal or not, and a segments dictionary to add additional data to your crash report.
+  The method <code class="javascript">logException</code>takes a string, array
+  of strings or strackframes for the stack trace, a boolean flag indicating if
+  the crash is considered fatal or not, and a segments dictionary to add additional
+  data to your crash report.
 </p>
 <p>
   Below are some examples that how to log handled/nonfatal and unhandled/fatal
@@ -334,36 +312,29 @@ Countly.logException("ERROR_STRING", false, {"_facebook_version": "0.0.1"});
 Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], false, {"_facebook_version": "0.0.1"});</code></pre>
 <h2>Crash breadcrumbs</h2>
 <p>
-  Throughout your app you can leave  crash breadcrumbs which would describe
-  previous steps that were taken in your app before the crash. After a crash happens,
-  they will be sent together with the crash report.
+  Throughout your app you can leave crash breadcrumbs which would describe previous
+  steps that were taken in your app before the crash. After a crash happens, they
+  will be sent together with the crash report.
 </p>
-<pre><code class="csharp">//start the user session
-Countly.Instance.SessionBegin();
-  
-//end the user session
-Countly.Instance.SessionEnd();
-
-//update the session manually
-int elapsedTime = 60;//elapsed time in seconds
-Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
-<h1>Using events</h1>
+<p>Following the command adds crash breadcrumb:</p>
+<pre><code class="javascript">// Add crash breadcrumb
+Countly.addCrashLog("My crash log from JavaScript");
+</code></pre>
+<h1>Custom events</h1>
+<h2>Setting up custom events</h2>
 <p>
-  A
-  <a href="http://resources.count.ly/docs/custom-events">custom event</a>
-  is any type of action that you can send to a Countly instance, e.g purchase,
-  settings changed, view enabled and so. This way it's possible to get much more
-  information from your application compared to what is sent from Android SDK to
-  Countly instance by default.
-  In all the examples below we will be recording a <strong>purchase</strong> event.
-  Here is a quick summary what information each usage will provide us.
+  A <a href="http://resources.count.ly/docs/custom-events">custom event</a> is
+  any type of action that you can send to a Countly instance, e.g purchase, settings
+  changed, view enabled and so. This way it's possible to get much more information
+  from your application compared to what is sent from Android SDK to Countly instance
+  by default.
 </p>
-<div class="callout callout--warning">
+<div class="callout callout--info">
   <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
+    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
   </p>
   <p>
-    All data passed to Countly instance via SDK or API should be in UTF-8.
+    All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
 </div>
 <h2>Recording events</h2>
@@ -505,7 +476,8 @@ Countly.recordView("Profile Page");
 </p>
 <p>
   For iOS: the device ID generated by the SDK is the Identifier For Vendor (IDFV).
-For Android:   the device ID generated by the SDK is the OpenUDID or Google Advertising ID.
+  For Android: the device ID generated by the SDK is the OpenUDID or Google Advertising
+  ID.
 </p>
 <p>
   To solve other potential use cases, we provide 3 ways to handle your device id:
@@ -515,24 +487,21 @@ For Android:   the device ID generated by the SDK is the OpenUDID or Google Adve
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2>
-  Changing the Device ID
-</h2>
-<p>
-  You may configure/change the device ID anytime using:
-</p>
+<h2>Changing the Device ID</h2>
+<p>You may configure/change the device ID anytime using:</p>
 <pre><code class="javascript">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
 <p>
-  You may either allow the device to be counted as a new device or merge existing data on the server. If
-  the<code>onServer</code>  bool is set to <code>true</code>,
-  the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.
-Otherwise, if  <code>onServer</code> bool is  set to <code>false</code>, the device will be counted as a new device on the server.
-
+  You may either allow the device to be counted as a new device or merge existing
+  data on the server. If the<code>onServer</code> bool is set to
+  <code>true</code>, the old device ID on the server will be replaced with the
+  new one, and data associated with the old device ID will be merged automatically.
+  Otherwise, if <code>onServer</code> bool is set to <code>false</code>, the device
+  will be counted as a new device on the server.
 </p>
 <h2>Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode for keeping all requests on hold until
-  the real device ID is set later.  
+  the real device ID is set later.
 </p>
 <p>
   You can enable temporary device ID when initializing the SDK:
@@ -541,44 +510,56 @@ Otherwise, if  <code>onServer</code> bool is  set to <code>false</code>, the dev
 <p>To enable a temporary device ID after init, you would call:</p>
 <pre><code class="javascript">Countly.changeDeviceId(Countly."TemporaryDeviceID", ON_SERVER);</code></pre>
 <p>
-   <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for <code>deviceID</code> parameter,
-  argument for <code>onServer</code>parameter does not matter.
+  <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for
+  <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
+  does not matter.
 </p>
 <p>
-  As long as the device ID value is <code>TemporaryDeviceID</code>,
-  the SDK will be in temporary device ID mode and all requests will be on hold,
-  but they will be persistently stored.
-</p>
-<pre><code class="csharp">Countly.Instance.RecordView("Some View");</code></pre>
-<h1>Managing DeviceId</h1>
-<p>
-  To link events, sessions, crashes, etc to a user, a deviceId is used. It is usually
-  generated by the SDK. It is then saved locally and then reused on every init,
-  unless the developer supplies it's own device Id.
+  As long as the device ID value is <code>TemporaryDeviceID</code>, the SDK will
+  be in temporary device ID mode and all requests will be on hold, but they will
+  be persistently stored.
 </p>
 <p>
-  Later, when the real device ID is set using <code>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code>  method,
-  all requests which have been kept on hold until that point will start with the
-  real device ID
+  When in temporary device ID mode, method calls for presenting feedback widgets
+  and updating remote config will be ignored.
 </p>
 <p>
-  The SDK supports multiple ways for generating that ID, each with it's pro's and
-  con's and some limited to a specific compilation target:
+  Later, when the real device ID is set using
+  <code>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code> method, all requests
+  which have been kept on hold until that point will start with the real device
+  ID
 </p>
-<ul>
+<h2>Retrieving current device ID</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device
+  and what the source of that id is. For that you may use the following calls.
+  The id type is an enum with the possible values of: "DEVELOPER_SUPPLIED", "OPEN_UDID",
+  "ADVERTISING_ID".
+</p>
+<pre><code class="javascript">// get device id
+Countly.getDeviceID(function(deviceId){
+  console.log(deviceId);
+}, function(getDeviceIDError){
+  console.log(getDeviceIDError);
+});</code></pre>
+<h1>Push notifications</h1>
+<p>Here are the steps to make push notifications work:</p>
+<ol>
   <li>
-    cpuId - [net35, net40] (we recommend against using this) uses the OS provided
-    CPU id info to generate a hash that is used as a id. It should be possible
-    to generate the same id on a reinstall if the cpu stays the same. On virtual
-    machines and windows 10 devices is not guaranteed to be unique and generates
-    the same id and therefore device id conflicts
+    Go to <a href="https://firebase.google.com">https://firebase.google.com</a>
   </li>
   <li>
-    multipleWindowsFields - [net35, net40] uses multiple OS provided fields (CPU
-    id, disk serial number, windows serial number, windows username, mac address)
-    to generate a hash that would be used as the device Id. This method should
-    regenerate the same id on a reinstall, provided those source fields do not
-    change
+    Register / Login to the Firebase console. You should be logged in to
+    <a href="https://console.firebase.google.com.">https://console.firebase.google.com.</a>
+  </li>
+  <li>Create and select a project if you haven't done before.</li>
+  <li>Go to Settings &gt; Project settings.</li>
+  <li>Create an app for Android.</li>
+  <li>
+    Download the <code>google-services.json</code> for Android.
+  </li>
+  <li>
+    Place this file under your root project folder. i.e. above www folder.
   </li>
   <li>
     Put these tags in config.xml file for Android:
@@ -591,7 +572,8 @@ Otherwise, if  <code>onServer</code> bool is  set to <code>false</code>, the dev
     </div>
   </li>
   <li>
-    Put these tags in config.xml file if you are using cordova-android 9.x or greater:
+    Put these tags in config.xml file if you are using cordova-android 9.x or
+    greater:
     <div class="tabs">
       <div class="tab">
         <pre><code class="xml">&lt;preference name="GradlePluginGoogleServicesEnabled" value="true" /&gt;
@@ -617,7 +599,8 @@ Otherwise, if  <code>onServer</code> bool is  set to <code>false</code>, the dev
 </div>
 <h2>Push Method Implementation</h2>
 <p>
-  First, when setting up push for the Cordova SDK, you would first select the push token mode. This would allow you to choose either test or production modes, push
+  First, when setting up push for the Cordova SDK, you would first select the push
+  token mode. This would allow you to choose either test or production modes, push
   token mode should be set before init.
 </p>
 <pre><code class="javascript">// Important call this method before init method
@@ -626,7 +609,8 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
 // Countly.messagingMode.PRODUCTION
 // Countly.messagingMode.ADHOC</code></pre>
 <p>
-  When you are finally ready to initialize Countly push, you would call Countly.askForNotificationPermission(), this function should be call after init.
+  When you are finally ready to initialize Countly push, you would call Countly.askForNotificationPermission(),
+  this function should be call after init.
 </p>
 <pre><code class="javascript">// Call this method any time.
 Countly.askForNotificationPermission();
@@ -661,27 +645,42 @@ Countly.askForNotificationPermission();
   </li>
   <li>ip address of your user</li>
 </ul>
+<pre><code class="javascript">// send user location
+Countly.setLocation("28.006324", "-82.7166183");</code></pre>
 <p>
-  Device id and generation method can be provided during SDK init. Those values
-  can also bet not set, then the default method for that target will be used.
+  When those values are set, they will be sent every time when initiating a session.
+  If they are set after a session was initiated, a separate request will also be
+  sent. Except for ip address, because Countly Server processes ip address only
+  when starting a session.
 </p>
-<pre><code class="csharp">//create the Countly init object
-CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
-cc.appVersion = "1.2.3";
-cc.developerProvidedDeviceId = "use@email.com";
-
-//initiate the SDK with your preferences
-Countly.Instance.Init(cc);</code></pre>
+<p>If you don't want to set specific fields, set them to null.</p>
 <p>
-  It is possible to change the device Id after the app is initiated. It can be
-  done with a server side merge and without one. In both cases the new id will
-  be used on further app launches.
+  Users might want to opt out of location tracking. To do that, call:
 </p>
 <p>
-  If it is done without a server side merge, then the previous session will end
-  and a new session will be started with the new id.
+  It will erase cached location data from the device and the server.
+</p>
+<h1>Remote Config</h1>
+<p>
+  Remote config allows you to modiffy how your app functions or looks by requesting
+  key-value pairs from your Countly server. The returned values can be modiffied
+  based on the user profile. For more details please see Remote Config documentation.
+</p>
+<h2>Automatic remote config</h2>
+<p>
+  There are two ways of acquiring remote config data, by automatic download or
+  manual request. By default, automatic remote config is disabled and therefore
+  without developer intervention no remote config values will be requested.
+</p>
+<p>
+  Automatic value download happens when the SDK is initiated or when the device
+  ID is changed. To enable it, you have to call setRemoteConfigAutomaticDownload
+  before init. As a optional value you can provide a callback to be informed when
+  the request is finished.
+</p>
+<p>
+  Note: call <code class="javascript">setRemoteConfigAutomaticDownload</code> method
+  before init
 </p>
 <pre><code class="javascript">// Call this method before init
 Countly.setRemoteConfigAutomaticDownload(function(r){
@@ -691,79 +690,105 @@ Countly.setRemoteConfigAutomaticDownload(function(r){
 });
 </code></pre>
 <p>
-  With a server side merge, the events, session information and etc will be assigned
-  to the new device id.
-</p>
-<pre><code class="csharp">//changing without a server side merge
-Countly.Instance.ChangeDeviceId("newId", false);
-Countly.Instance.ChangeDeviceId("newIdAgain");
-
-//changing with a server side merge
-Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
-<h1>Setting up User Profiles</h1>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Availability</strong></span>
-  </p>
-  <p>
-    This feature is available with
-    <a href="http://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
-  </p>
-</div>
-<p>
-  You can save info about user tracking data is related to. Countly provides
-  <code>Countly.UserDetails</code> object that exposes user-related properties
+  If the callback returns a non null value, then you can expect that the request
+  failed and no values where updated.
 </p>
 <p>
-  Each time you change property value, Countly syncs it with a server. If you set
-  value as <code>null</code>, you will delete the property.
+  When doing an automatic update, all locally stored values are replaced with the
+  ones received (all locally stored ones are deleted and new ones are associated
+  instead). It is possible that a previously valid key returns no value after an
+  update.
+</p>
+<h2>Manual remote config</h2>
+<p>
+  There are three ways for manually requesting a Remote Config update:
+</p>
+<ul>
+  <li>Manually updating everything</li>
+  <li>Manually updating specific keys</li>
+  <li>Manually updating everything except specific keys</li>
+</ul>
+<p>
+  Each of these requests also has a callback. If that returns a non-null value,
+  that means the request encountered an error and failed.
 </p>
 <p>
-  <code>Countly.UserDetails.Name = "John";</code> // set name to John
-  <code>Countly.UserDetails.Name = "null";</code> // remove name
+  Functionally, the manual update for everything remoteConfigUpdate is the same
+  as the automatic update - it replaces all stored values with the ones from the
+  server (all locally stored ones are deleted and replaced with new ones instead).
+  The advantage is that you can make the request whenever it is desirable for you.
+  It has a callback to let you know when it has finished.
+</p>
+<pre><code class="javascript">Countly.remoteConfigUpdate(function(r){
+  alert(r)
+}, function(r){
+  alert(r);
+});</code></pre>
+<p>
+  You might want to update only specific key values. For that you need to call
+  <code>updateRemoteConfigForKeysOnly</code> with a list of keys you want to be
+  updated. That list is an array with string values of those keys. It has a callback
+  to let you know when the request has finished.
+</p>
+<pre><code class="javascript">Countly.updateRemoteConfigForKeysOnly(["name"], function(r){
+  alert(r)
+}, function(r){
+  alert(r);
+});</code></pre>
+<p>
+  You might want to update all values except a few defined keys, for that call
+  updateRemoteConfigExceptKeys. The key list is a array with string values of the
+  keys. It has a callback to let you know when the request has finished.
+</p>
+<pre><code class="javascript">Countly.updateRemoteConfigExceptKeys(["url"], function(r){
+  alert(r)
+}, function(r){
+  alert(r);
+});</code></pre>
+<p>
+  When making requests with a "inclusion" or "exclusion" array, if those arrays
+  ar empty or null, they will function the same as a simple manual request and
+  will update all values. This means that it will also erase all keys not returned
+  by the server.
+</p>
+<h2>Getting Remote Config values</h2>
+<p>
+  To request a stored value, call <code>getRemoteConfigValueForKey</code> with
+  the specified key. If it returns null then no value was found. The SDK has no
+  knowledge of the returned value type and therefore returns an object. The developer
+  needs to cast it to the appropriate type. The returned values can also be a JSONArray,
+  JSONObject or just a simple value like int.
+</p>
+<pre><code class="javascript">Countly.getRemoteConfigValueForKey("name", function(r){
+   alert(r)
+ }, function(r){
+   alert(r);
+ });</code></pre>
+<h2>Clearing stored values</h2>
+<p>
+  At some point you might want to erase all values downloaded from the server.
+  To achieve that you need to call one function, depicted below:
+</p>
+<pre><code class="javascript">Countly.remoteConfigClearValues(function(r){
+  alert(r)
+}, function(r){
+  alert(r);
+});</code></pre>
+<h1>User feedback</h1>
+<p>
+  There are two ways of getting feedback from your users: Star rating dialog, feedback
+  widget.
 </p>
 <p>
-  You can provide custom properties for user using <code>Custom</code> object
+  Star rating dialog allows users to give feedback as a rating from 1 to 5. The
+  feedback widget allows to get the same 1 to 5 rating and also a text comment.
 </p>
+<h2>Star rating dialog</h2>
 <p>
-  <code>Countly.UserDetails.Custom.Add("city", "london");</code>
-</p>
-<p>
-  Additionally you can upload picture of the user to the server. Accepted picture
-  formats are .png, .gif and .jpeg and picture will be resized to maximal 150x150
-  dimensions.
-</p>
-<p>
-  <code>Countly.UserDetails.UploadUserPicture(picture_stream);</code>
-</p>
-<p>
-  <strong>Note</strong>: dots (.) and dollar signs ($) in key names will be stripped
-  out.
-</p>
-<h1>Setting up Crash Reports</h1>
-<p>
-  Countly SDK has an ability to automatically collect crash reports which you can
-  examine and resolve later on the server. This applies for Windows Store apps,
-  on other platforms you should subscribe to unhandled exceptions handler manually.
-  Exception details and device properties will be sent on next app launch.
-</p>
-<p>
-  To log handled exceptions, which are not fatal, use
-  <code>Countly.RecordException;</code> method. You can provide custom properties
-  for crash providing key/value object to store for this crash report and server
-  will segment values for you for the same crash.
-</p>
-<p>
-  Following command adds crash breadcrumb like log record to the log that will
-  be send together with crash report <code>Countly.AddBreadCrumb;</code>
-</p>
-<h1>Setting user location</h1>
-<p>It's possible to set the user location.</p>
-<p>
-  There are 4 fields that can be provided: * Comma separate latitude and longitude
-  values, for example "56.42345,123.45325" * ip address of your user * country
-  code in the 2 letter iso standard * city name (has to be set together with country
-  code)
+  Star rating integration provides a dialog for getting user's feedback about the
+  application. It contains a title, simple message explaining what it is for, a
+  1-to-5 star meter for getting users rating and a dismiss button in case the user
+  does not want to give a rating.
 </p>
 <p>
   This star-rating has nothing to do with Google Play Store ratings and reviews.
@@ -773,8 +798,8 @@ Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
 </p>
 <p>
   Star-rating dialog's title, message and dismiss button text can be customized
-  either through the init function or the <code>SetStarRatingDialogTexts</code> function.
-  If you don't want to override one of those values, set it to "null".
+  either through the init function or the <code>SetStarRatingDialogTexts</code>
+  function. If you don't want to override one of those values, set it to "null".
 </p>
 <pre><code class="javascript">// Star Rating
 countly.askForStarRating(Function(ratingResult){
@@ -946,12 +971,15 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
 <pre><code class="javascript">Countly.enableApm(); 
 // Enable APM features.</code></pre>
 <p>
-  If there are fields you don't want to set, set them to null. If you want to reset
-  a field, set it to empty string.
+  With this, Countly SDK will start measuring some performance traces automatically.
+  Those include app foreground time, app background time. Additionally, custom
+  traces and network traces can be manually recorded.
 </p>
+<h2>App Start Time</h2>
 <p>
-  For the app start time to be recorded, you need to call the <code>appLoadingFinished</code> method.
-  Make sure this method is called after <code>init</code>.
+  For the app start time to be recorded, you need to call the
+  <code>appLoadingFinished</code> method. Make sure this method is called after
+  <code>init</code>.
 </p>
 <pre><code class="javascript">// Example of appLoadingFinished
 Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
@@ -960,26 +988,25 @@ Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
   onsole.error(err);
 });</code></pre>
 <p>
-  This calculates and records the app launch time for performance monitoring.
-  
-  It should be called when the app is loaded and it successfully displayed its
-  first user-facing view. E.g. <code>onDeviceReady:</code> method or wherever
-  is suitable for the app's flow. The time passed since the app has started to
-  launch will be automatically calculated and recorded for performance monitoring.
-  Note that the app launch time can be recorded only once per app launch. So, the
-  second and following calls to this method will be ignored.
+  This calculates and records the app launch time for performance monitoring. It
+  should be called when the app is loaded and it successfully displayed its first
+  user-facing view. E.g. <code>onDeviceReady:</code> method or wherever is suitable
+  for the app's flow. The time passed since the app has started to launch will
+  be automatically calculated and recorded for performance monitoring. Note that
+  the app launch time can be recorded only once per app launch. So, the second
+  and following calls to this method will be ignored.
 </p>
-<pre><code class="csharp">//disable location tracking
-Countly.Instance.DisableLocation();</code></pre>
-<p>This will also erase all location info server side.</p>
-<h1>Using SDK sample</h1>
+<h2>Custom traces</h2>
 <p>
-  You may also measure any operation you want and record it using custom traces. First, you need to start a trace by using the <code class="objectivec">startTrace(traceKey)</code> method:
+  You may also measure any operation you want and record it using custom traces.
+  First, you need to start a trace by using the
+  <code class="objectivec">startTrace(traceKey)</code> method:
 </p>
 <pre><code class="javascript">Countly.startTrace(traceKey);</code></pre>
 <p>
   Then you may end it using the
-  <code class="objectivec">endTrace(traceKey, customMetric)</code>method, optionally passing any metrics as key-value pairs:
+  <code class="objectivec">endTrace(traceKey, customMetric)</code>method, optionally
+  passing any metrics as key-value pairs:
 </p>
 <pre><code class="javascript">String traceKey = "Trace Key"
 ;
@@ -989,14 +1016,14 @@ Map&lt;String, int&gt; customMetric = {
 };
 Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>
-  The duration of the custom trace will be automatically calculated on ending.  Trace
-  names should be non-zero length valid strings.  Trying to start a custom
-  trace with the already started name will have no effect.  Trying to end a
-  custom trace with already ended (or not yet started) name will have no effect.
+  The duration of the custom trace will be automatically calculated on ending.
+  Trace names should be non-zero length valid strings. Trying to start a custom
+  trace with the already started name will have no effect. Trying to end a custom
+  trace with already ended (or not yet started) name will have no effect.
 </p>
-<pre><code class="csharp">    Countly.IsLoggingEnabled = true;</code></pre>
 <p>
-  You may also cancel any custom trace you started, using  <code class="objectivec">cancelTrace(traceKey)</code>method:
+  You may also cancel any custom trace you started, using
+  <code class="objectivec">cancelTrace(traceKey)</code>method:
 </p>
 <pre><code class="javascript">Countly.cancelTrace(traceKey);</code></pre>
 <p>
@@ -1006,30 +1033,23 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 <pre><code class="javascript">Countly.clearAllTraces(traceKey);</code></pre>
 <h2>Network traces</h2>
 <p>
-  You may record manual network traces using the<code>ecordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime)</code>  method.
+  You may record manual network traces using the<code>ecordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime)</code>
+  method.
 </p>
 <p>
   A network trace is a collection of measured information about a network request.
-
   When a network request is completed, a network trace can be recorded manually
   to be analyzed in the Performance Monitoring feature later with the following
-  parameters:  
+  parameters:
 </p>
 <p>
-  - <code>networkTraceKey</code>: A non-zero length valid string
-
-  - <code>responseCode</code>: HTTP status code of the received response
-
-  - <code>requestPayloadSize</code>: Size of the request's payload in bytes
-
-  - <code>responsePayloadSize</code>: Size of the received response's payload in
-  bytes
-
-  - <code>startTime</code>: UNIX time stamp in milliseconds for the starting time
-  of the request
-
-  - <code>endTime</code>: UNIX time stamp in milliseconds for the ending time of
-  the request
+  - <code>networkTraceKey</code>: A non-zero length valid string -
+  <code>responseCode</code>: HTTP status code of the received response -
+  <code>requestPayloadSize</code>: Size of the request's payload in bytes -
+  <code>responsePayloadSize</code>: Size of the received response's payload in
+  bytes - <code>startTime</code>: UNIX time stamp in milliseconds for the starting
+  time of the request - <code>endTime</code>: UNIX time stamp in milliseconds for
+  the ending time of the request
 </p>
 <pre><code class="javascript">Countly.recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</code></pre>
 <div></div>
@@ -1041,19 +1061,9 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>More information about GDPR can be found here.</p>
 <p>
   By default the requirement for consent is disabled. To enable it, you have to
-  do it with the CountlyConfig object by setting <code>consentRequired</code> to
-  <code>true</code>.
+  call setRequiresConsent with true, before initializing Countly.
 </p>
-<pre><code class="csharp">//create the Countly init object
-CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
-
-//enable consent
-cc.consentRequired = true;
-
-//initiate the SDK with your preferences
-Countly.Instance.Init(cc);</code></pre>
+<pre><code class="javascript">Countly.setRequiresConsent(true);</code></pre>
 <p>
   By default no consent is given. That means that if no consent is enabled, Countly
   will not work and no network requests, related to features, will be sent. When
@@ -1061,22 +1071,35 @@ Countly.Instance.Init(cc);</code></pre>
   server.
 </p>
 <p>
-  Cconsent for features is not persistent and will have to be set every time while
-  initializing countly. Therefore the storage and persistance of given consent
-  falls on the sdk integrator.
+  For all features, except push, consent is not persistent and will have to be
+  set every time before countly init. Therefore the storage and persistance of
+  given consent falls on the sdk integrator.
 </p>
 <p>
-  Feature names in this SDK are stored as a enum called
-  <code>ConsentFeatures</code>.
+  Consent for features can be given and revoked at any time, but if it is given
+  after Countly init, some features might work partially.
 </p>
-<p>Features currently supported by this SDK are:</p>
+<p>
+  If consent is removed, but the appropriate function can't be called before the
+  app closes, it should be done at next app start so that any relevant server side
+  features could be disabled (like reverse geo ip for location)
+</p>
+<p>
+  Feature names in the Android SDK are stored as static fields in the class called
+  CountlyFeatureNames.
+</p>
+<p>The current features are:</p>
 <ul>
   <li>
     sessions - tracking when, how often and how long users use your app
   </li>
-  <li>events - allow sending events to server</li>
+  <li>events - allow sending custom events to server</li>
+  <li>views - allow tracking which views user visits</li>
   <li>location - allow sending location information</li>
   <li>crashes - allow tracking crashes, exceptions and errors</li>
+  <li>
+    attribution - allow tracking from which campaign did user come
+  </li>
   <li>
     users - allow collecting/providing user information, including custom properties
   </li>
@@ -1091,56 +1114,69 @@ Countly.Instance.Init(cc);</code></pre>
 <p>There are 3 ways of changing feature consent:</p>
 <ul>
   <li>
-    giveConsentInit -
-    To add consent for a single feature (string parameter) or a subset of features (array of strings parameter). Use this method for giving consent before  initializing.
+    giveConsentInit - To add consent for a single feature (string parameter)
+    or a subset of features (array of strings parameter). Use this method for
+    giving consent before initializing.
   </li>
 </ul>
+<pre><code class="javascript">//giveConsent
+Countly.giveConsentInit(["events", "views", "star-rating", "crashes"]);
+
+// removeConsent
+Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+<ul>
+  <li>
+    giveConsent/removeConsent - gives or removes consent to a specific feature
+  </li>
+</ul>
+<pre><code class="javascript">//giveConsent
+Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
+
+// removeConsent
+Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+<ul>
+  <li>
+    giveAllConsent/removeAllConsent - giveAll or removeAll consent to a specific
+    feature
+  </li>
+</ul>
+<pre><code class="javascript">//giveAllConsent
+Countly.giveAllConsent();
+
+//removeAllConsent
+Countly.removeAllConsent();
+</code></pre>
+<div></div>
+<h1>Security and privacy</h1>
+<h2>Parameter Tampering Protection</h2>
 <p>
-  Consent for features can be given or removed at any time. Values are set using
-  <code>Dictionary&lt;ConsentFeatures, bool&gt;</code>. That can be done either
-  during init:
+  You can set optional salt to be used for calculating checksum of request data,
+  which will be sent with each request using &amp;checksum field. You need to set
+  exactly the same salt on Countly server. If salt on Countly server is set, all
+  requests would be checked for validity of &amp;checksum field before being processed.
 </p>
-<pre><code class="csharp">//create the Countly init object
-CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
-
-//enable consent
-cc.consentRequired = true;
-
-//set consent features
-Dictionary&lt;ConsentFeatures, bool&gt; consent = new Dictionary&lt;ConsentFeatures, bool&gt;();
-consent.Add(ConsentFeatures.Crashes, true);
-consent.Add(ConsentFeatures.Events, false);
-consent.Add(ConsentFeatures.Location, true);
-consent.Add(ConsentFeatures.Sessions, false);
-consent.Add(ConsentFeatures.Users, false);
-cc.givenConsent = consent;
-
-//initiate the SDK with your preferences
-Countly.Instance.Init(cc);</code></pre>
+<pre><code class="javascript">// sending data with salt
+Countly.enableParameterTamperingProtection("salt");</code></pre>
+<h1>Other features</h1>
+<h2>Forcing HTTP POST</h2>
 <p>
-  It can also be done at any other moment in the app after init:
+  If the data sent to the server is short enough, the sdk will use HTTP GET requests.
+  In case you want an override so that HTTP POST is used in all cases, call the
+  "setHttpPostForced" function after you called "init". You can use the same function
+  to later in the apps life cycle disable the override. This function has to be
+  called every time the app starts.
 </p>
-<pre><code class="csharp">//preparing consent features
-Dictionary&lt;ConsentFeatures, bool&gt; consent = new Dictionary&lt;ConsentFeatures, bool&gt;();
-consent.Add(ConsentFeatures.Crashes, true);
-consent.Add(ConsentFeatures.Events, false);
-consent.Add(ConsentFeatures.Location, true);
-
-//changing consent
-Countly.Instance.SetConsent(consent);</code></pre>
-<h1>Used storage</h1>
+<pre><code class="javascript">Countly.setHttpPostForced(true); // default is false
+</code></pre>
+<h2>Optional parameters during initialization</h2>
 <p>
-  Cached requests and other SDK relevant information is stored in files in a named
-  folder. All platform targets except .net40 call that folder "countly", .net40
-  calls that folder "countly_data".
-</p>
-<p>
-  All platform targets except .net35 will use
-  <a href="https://docs.microsoft.com/en-us/dotnet/standard/io/isolated-storage">IsolatedStorage</a>
-  for that. .net35 will store that named folder in the same folder as the executable
-  by default.
+  You can provide optional parameters that will be used during begin_session request.
+  They must be set right after the <code>init</code> function so that they are
+  set before the request is sent to the server. To set them, use the
+  <code>setOptionalParametersForInitialization</code> function. If you want to
+  set those optional parameters, this function has to be called every time the
+  app starts. If you don't to set one off those values, leave that field
+  <code>null</code>.
 </p>
 <p>The optional parameters are:</p>
 <ul>
@@ -1163,9 +1199,3 @@ Countly.setOptionalParametersForInitialization({
 
 //and then call the below code
 Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")</code></pre>
-<p>
-  If there are permission limitations for your app targeting .net35, then there
-  is a call where you can change the path for the named storage folder. You can
-  change that by using this:
-</p>
-<pre><code class="csharp">Countly.SetCustomDataPath("C:\path\to\new\folder\");</code></pre>
