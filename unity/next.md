@@ -790,7 +790,6 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   More information about GDPR can be found<span>&nbsp;</span><a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
-<h2>Enabling consent</h2>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
@@ -805,7 +804,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>Consent for features may be given and revoked at any time, but if it is given after Countly init, some features may only work in part.</span>
 </p>
 <p>
-  <span>Feature names in the <strong>Unity SDK</strong> are stored as <strong>Enum</strong> called <code>Consents</code></span><span>.</span>
+  <span>Feature names in the <strong>Unity SDK,</strong> are stored as <strong>Enum</strong> called <code>Consents</code></span><span>.</span>
 </p>
 <p>The current features are:</p>
 <p>
@@ -853,7 +852,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span style="font-weight: 400;">Feature groups</span>
 </h2>
 <p>
-  <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>CreateConsentGroup</code></span><span>. Those groups are not persistent and must be created on every restart. Consents to groups may be given to using <code class="java hljs">GiveConsentToGroup</code>.</span>
+  <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>CreateConsentGroup</code></span><span>. Those groups are not persistent and must be created on every restart. Consents to groups may be given by using <code class="java">GiveConsentToGroup</code>.</span>
 </p>
 <pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be added to the group</span></code><br><code class="java hljs">Consents[] <span class="hljs-comment">consents</span> = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// create the Consent group</span></code><br><code class="java hljs">configuration.CreateConsentGroup("User-Consents", <span class="hljs-comment">consents</span>);</code><br><code class="java hljs"><span class="hljs-comment">// give consent to the provide consent group</span></code><br><code class="java hljs">configuration.GiveConsentToGroup("User-Consents");</code></pre>
 <h2 id="changing-consent" class="anchor-heading">Changing consent</h2>
