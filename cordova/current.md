@@ -34,7 +34,6 @@
   ionic, phonegap, meteor), you would have to make sure that you are setting the
   platform requirements for those projects similar to these.
 </p>
-<p>&nbsp;</p>
 <p>
   Setting up Countly SDK inside your Cordova, Ionics application is straightforward.
   Just follow the laid out steps for the specific projects:
@@ -43,7 +42,7 @@
   <span class="wysiwyg-font-size-large"><strong>Cordova</strong></span>
 </p>
 <p>
-  Add Countly SDK in your Cordova project using following commands:
+  Add Countly SDK in your Cordova project using following commands:<br>
   <strong>Note: </strong>use the latest SDK version currently available, not specifically
   the one shown in the sample below.
 </p>
@@ -78,7 +77,7 @@ ordova build ios</code></pre>
   <strong><span class="wysiwyg-font-size-large">Ionic</span></strong>
 </p>
 <p>
-  Add Countly SDK in your Ionic project using following commands:
+  Add Countly SDK in your Ionic project using following commands:<br>
   <strong>Note: </strong>use the latest SDK version currently available, not specifically
   the one shown in the sample below.
 </p>
