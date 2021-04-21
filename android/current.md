@@ -320,10 +320,10 @@ buildscript {
 </p>
 <pre><code class="java">tasks.whenTaskAdded { task -&gt;
     if (task.name.startsWith('assemble')) {
-    		//this would upload your Java mapping file
+        //this would upload your Java mapping file
         task.dependsOn('uploadJaveSymbols')
         
-    		//this would upload your native (c++) symbols
+        //this would upload your native (c++) symbols
         task.dependsOn('uploadNativeSymbols')
     }
 }</code></pre>
@@ -1446,7 +1446,11 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   If the user would have closed the widget, you would report that by passaing a
   "null" reportedResult.
 </p>
-<p>&nbsp;</p>
+<p>
+  For more information regarding the returned data structure and how to structure
+  the response, you would look
+  <a href="/hc/en-us/articles/900004340186" target="_self">here</a>.
+</p>
 <h1>User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Available with Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information. User Profiles may contain any information you either collect or is collected automatically by the Countly SDK.</span>
@@ -2035,4 +2039,11 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 </p>
 <p>
   <span style="font-weight: 400;">There is a build step for the <code>sdk-native</code></span><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in <code>sdk-native/src/cpp_precompilation</code></span><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in <code>sdk-native/src/main/jniLibs/</code></span><span style="font-weight: 400;">&nbsp;that are externally built.</span>
+</p>
+<h2>Supporting other operating systems</h2>
+<p>
+  Our Android SDK should be able support Android based operating systems without
+  issues. It should also work without any major issues on devices that don't have
+  Google services, for example, on Huawei devices which have the HarmonyOS operating
+  system.
 </p>
