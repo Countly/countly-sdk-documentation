@@ -790,22 +790,22 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   More information about GDPR can be found<span>&nbsp;</span><a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
-<h2>Enabling consent</h2>
+<h2>Setup during init</h2>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
-<pre>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>RequiresConsent = true<br>};<br><br>Countly.Instance.Init(configuration);</pre>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>RequiresConsent = true<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
 <p>
-  <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
+  <span>By default, when consent is required, no consent is given. If no consent is given, SDK will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
 </p>
 <p>
-  <span>For all features, except&nbsp;<code>push</code></span><span>, consent is not persistent and will have to be set each time before Countly init. Therefore, the storage and persistence of the given consent fall on the SDK integrator.</span>
+  <span>Set consent is not persistent and will have to be set each time before Countly init. Therefore, the storage and persistence of the given consent fall on the SDK integrator.</span>
 </p>
 <p>
   <span>Consent for features may be given and revoked at any time, but if it is given after Countly init, some features may only work in part.</span>
 </p>
 <p>
-  <span>Feature names in the <strong>Unity SDK</strong> are stored as <strong>Enum</strong> called <code>Consents</code></span><span>.</span>
+  <span>Feature names in the <strong>Unity SDK,</strong> are stored as <strong>Enum</strong> called <code>Consents</code></span><span>.</span>
 </p>
 <p>The current features are:</p>
 <p>
@@ -848,38 +848,42 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   Init call. These features consents are not persistent and must be given on every
   restart.
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be given</span></code><br><code class="java hljs">Consents[] consents = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// give consents to the features</span></code><br><code class="java hljs">configuration.GiveConsent(consents);</code></pre>
-<h2>
-  <span style="font-weight: 400;">Feature groups</span>
-</h2>
-<p>
-  <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>CreateConsentGroup</code></span><span>. Those groups are not persistent and must be created on every restart. Consents to groups may be given to using <code class="java hljs">GiveConsentToGroup</code>.</span>
-</p>
-<pre><code class="java hljs"><span class="hljs-comment">// prepare consents that should be added to the group</span></code><br><code class="java hljs">Consents[] <span class="hljs-comment">consents</span> = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java hljs"><span class="hljs-comment">// create the Consent group</span></code><br><code class="java hljs">configuration.CreateConsentGroup("User-Consents", <span class="hljs-comment">consents</span>);</code><br><code class="java hljs"><span class="hljs-comment">// give consent to the provide consent group</span></code><br><code class="java hljs">configuration.GiveConsentToGroup("User-Consents");</code></pre>
+<pre><code>// prepare consents that should be given</code><br><code>Consents[] consents = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code>// give consents to the features</code><br><code>configuration.GiveConsent(consents);</code></pre>
 <h2 id="changing-consent" class="anchor-heading">Changing consent</h2>
 <p>
-  <span>There are 3 ways of changing feature consent: </span>
+  After init call, use<span>&nbsp;<code class="java">Countly.Instance.Consents.</code> to change co</span>nsent.
+</p>
+<p>
+  <span>There are 2 ways of changing feature consent: </span>
 </p>
 <ul>
   <li>
     <span>&nbsp;<code>GiveConsent</code>/<code>RemoveConsent</code></span><span>&nbsp;- gives or removes consent to a specific feature.</span>
   </li>
 </ul>
-<pre><span><span class="hljs-comment"><code class="java hljs">// give consent to "sessions" feature</code></span> <br><span class="hljs-comment"><code class="java hljs">Countly.Instance.Consents.GiveConsent(new Consents[] { Consents.Sessions});</code></span><br><span class="hljs-comment"><code class="java hljs">// remove consent from "sessions" feature </code><br></span><span class="hljs-comment"><code class="java hljs">Countly.Instance.Consents.RemoveConsent(new Consents[] { Consents.Sessions});</code></span> <br></span></pre>
-<ul>
-  <li>
-    <code>GiveConsentToGroup</code> / <code>RemoveConsentOfGroup</code>-
-    <span>gives or removes</span> consent for a feature group.
-  </li>
-</ul>
-<pre><code>// prepare array of groups</code><br>string[] groupName = new string[]{ "User-Consents", "Events-Consents" };<br><br><span><span class="hljs-comment"><code class="java hljs">// give consent to groups</code></span></span><br>Countly.Instance.Consent.GiveConsentToGroup(groupName);<br><br><span><span class="hljs-comment"><code class="java hljs">// remove consent of groups </code></span></span><br>Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</pre>
+<pre><code class="java">// give consent to "sessions" feature</code><br><code>Countly.Instance.Consents.GiveConsent(new Consents[] { Consents.Sessions});</code><br><code class="java">// remove consent from "sessions" feature </code><br><code>Countly.Instance.Consents.RemoveConsent(new Consents[] { Consents.Sessions});</code></pre>
 <ul>
   <li>
     <code>GiveConsentAll</code> / <code>RemoveAllConsent</code>-
     <span>gives or removes</span> all consents.
   </li>
 </ul>
-<pre><code>// Give consent to all features</code><br>Countly.Instance.Consent.GiveConsentAll();<br><br><span><span class="hljs-comment"><code class="java hljs">// Remove consent from all features</code></span></span><br>Countly.Instance.Consent.RemoveAllConsent();</pre>
+<pre><code class="hljs-comment">// Give consent to all features</code><br><code>Countly.Instance.Consent.GiveConsentAll();</code><br><code class="hljs-comment">// Remove consent from all features</code><br><code>Countly.Instance.Consent.RemoveAllConsent();</code></pre>
+<h2>
+  <span style="font-weight: 400;">Feature groups</span>
+</h2>
+<p>
+  <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. Groups may be created using <code>CreateConsentGroup</code> call during SDK configuration</span><span>. Those groups are not persistent and must be created on every restart. During SDK configuration consents to groups may be given by using <code class="java">GiveConsentToGroup</code>.</span>
+</p>
+<pre><code class="java hljs"><span class="java">// prepare consents that should be added to the group</span></code><br><code class="java hljs">Consents[] <span class="hljs-comment">consents</span> = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java"><span class="java">// create the Consent group</span></code><br><code class="java">configuration.CreateConsentGroup("User-Consents", <span class="hljs-comment">consents</span>);</code><br><code class="java hljs"><span class="hljs-comment">// give consent to the provide consent group</span></code><br><code class="java hljs">configuration.GiveConsentToGroup("User-Consents");</code></pre>
+<p>
+  After init has been called, use <code>GiveConsentToGroup</code> /
+  <code>RemoveConsentOfGroup</code> to <span>give or remove </span>consent for
+  a feature group.
+</p>
+<p>Example:</p>
+<pre><code class="java">// prepare array of groups</code><br><code>string[] groupName = new string[]{ "User-Consents", "Events-Consents" };</code><br><code class="java">// give consent to groups</code><br><code>Countly.Instance.Consent.GiveConsentToGroup(groupName);</code><br><code class="java">// remove consent of groups </code><br><code>Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
+<p>&nbsp;</p>
 <h1>Security and privacy</h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tamper protection</h2>
 <p>
