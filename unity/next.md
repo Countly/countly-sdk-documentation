@@ -873,7 +873,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span style="font-weight: 400;">Feature groups</span>
 </h2>
 <p>
-  <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. Groups may be created using <code>CreateConsentGroup</code> call, during SDK configuration</span><span>. Those groups are not persistent and must be created on every restart. During SDK configuration, consents to groups may be given by using <code class="java">GiveConsentToGroup</code>.</span>
+  <span>Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. Groups may be created using <code>CreateConsentGroup</code> call during SDK configuration</span><span>. Those groups are not persistent and must be created on every restart. During SDK configuration consents to groups may be given by using <code class="java">GiveConsentToGroup</code>.</span>
 </p>
 <pre><code class="java hljs"><span class="java">// prepare consents that should be added to the group</span></code><br><code class="java hljs">Consents[] <span class="hljs-comment">consents</span> = <strong>new</strong> Consents[] { Consents.Users, Consents.Location;</code><br><code class="java"><span class="java">// create the Consent group</span></code><br><code class="java">configuration.CreateConsentGroup("User-Consents", <span class="hljs-comment">consents</span>);</code><br><code class="java hljs"><span class="hljs-comment">// give consent to the provide consent group</span></code><br><code class="java hljs">configuration.GiveConsentToGroup("User-Consents");</code></pre>
 <p>
