@@ -346,6 +346,10 @@ Countly.addCrashLog("My crash log from JavaScript");
     <code>sum</code> is an overall numerical data set tied to an event. For example, total amount of in-app purchase event.
   </li>
   <li>
+    <code class="JavaScript">duration</code> is used to record and track the
+    duration of events.
+  </li>
+  <li>
     <code>segmentation</code> is a key-value pairs, we can use <code>segmentation</code> to track additional information.
   </li>
 </ul>
