@@ -3,14 +3,6 @@
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Android version</span></strong>
-  </p>
-  <p>
-    The Countly Android SDK requires a minimum of Android 4.2.x (API Level 17).
-  </p>
-</div>
-<div class="callout callout--info">
-  <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
@@ -18,13 +10,13 @@
     <a href="/hc/en-us/articles/900004313263" target="_self" rel="undefined">here.</a>
   </p>
 </div>
-<h1>Adding the Countly SDK</h1>
 <p>
-  <span style="font-weight: 400;">You can use both Android Studio and Eclipse to add the Countly SDK to your project.</span>
+  The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
+  17). You can take a look at our sample application in the
+  <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
+  It should show how most of the functionalities can be used.
 </p>
-<p>
-  <strong>Adding via Android Studio</strong>
-</p>
+<h1>Adding the SDK to the project</h1>
 <p>
   <span style="font-weight: 400;">You may use the default JCenter repository to download the SDK package. If it is not included in your project, include it as follows:</span>
 </p>
@@ -47,37 +39,16 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:20.11.0'
+    compile 'ly.count.android:sdk:20.11.7'
 }</code></pre>
-<p>
-  <strong>Adding the SDK via Eclipse</strong>
-</p>
-<p>
-  Eclipse users can download JARs - <code>sdk.jar</code>
-  <a href="https://bintray.com/beta/#/countly/maven/sdk?tab=overview">from Bintray Release</a>
-  files.
-</p>
-<p>
-  <span style="font-weight: 400;">Another option for Eclipse users is to use sources instead of jars. To do so, simply create 2 packages and put sources from the&nbsp;</span><a href="http://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">Github repository</span></a><span style="font-weight: 400;">&nbsp;into the corresponding packages.</span>
-</p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Generate personalized SDK code snippets</span></strong>
-  </p>
-  <p>
-    <a href="http://code.count.ly">The Countly Code Generator</a> may be used
-    to generate SDK custom code snippets easily and quickly. You may provide
-    values for your event or user profile or simply start with basic integration.
-    This service will also generate the necessary code for you to use in your
-    favorite IDE (e.g. Android Studio).
-  </p>
-</div>
-<h1>Setting up the Countly SDK</h1>
+<h1>&nbsp;</h1>
+<h1>SDK Integration</h1>
 <p>
   Before you can use any functionality, you have to initiate the SDK. That is done
   either in your&nbsp;<code>Application</code> subclass (preferred), or from your
   main activity <code>onCreate</code> method.
 </p>
+<h2>Minimal setup</h2>
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.<span>sharedInstance</span>().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
@@ -89,21 +60,25 @@
   function calls to enable functionality you need. Afterward that config object
   is provided to the "init" method.<span style="font-weight: 400;"></span>
 </p>
-<h2>Providing the application key</h2>
+<p>
+  <strong>Providing the application key</strong>
+</p>
 <p>
   <span style="font-weight: 400;">Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
 </p>
 <p>
   <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
-<h2>Providing the server URL</h2>
+<p>
+  <strong>Providing the server URL</strong>
+</p>
 <p>
   <span style="font-weight: 400;">If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,<span>&nbsp;</span><code>https://us-try.count.ly</code><span>&nbsp;</span>or<span>&nbsp;</span><code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as </span><a href="https://example.com"><span style="font-weight: 400;">https://example.com</span></a><span style="font-weight: 400;">&nbsp;or&nbsp;</span><a href="https://ip/"><span style="font-weight: 400;">https://IP</span></a><span style="font-weight: 400;">&nbsp;(if SSL has been set up).</span>
 </p>
-<h2>Enabling logging</h2>
+<h2>SDK logging</h2>
 <p>
   <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Androids internal log calls.</span>
 </p>
@@ -158,16 +133,11 @@
 <div class="img-container">
   <img src="https://count.ly/images/guide/283f96f-activity_lifecycle.png">
 </div>
-<h2>Adding permissions</h2>
+<h2>Required app permissions</h2>
 <p>
   <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any in your manifest file. Those calls should look something like this:</span>
 </p>
 <pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
-<h2>Sample application</h2>
-<p>
-  You can take a look at our sample application in the&nbsp;<a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
-  It should show how most of the functionalities can be used.
-</p>
 <h1>Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
@@ -481,7 +451,8 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   stored in milliseconds. For that you would use:
 </p>
 <pre><code class="java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
-<h1>Manual session control</h1>
+<h1>Sessions</h1>
+<h2>Manual sessions</h2>
 <p>
   Sometimes it might be preferable to control the session manually instead of relying
   on the SDK.
@@ -916,7 +887,6 @@ implementation 'com.google.firebase:firebase-messaging:18.0.0'</code></pre>
   }
 }
 </code></pre>
-<h2>&nbsp;</h2>
 <h2>
   <strong>Huawei PushKit</strong>
 </h2>
@@ -2046,4 +2016,112 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   issues. It should also work without any major issues on devices that don't have
   Google services, for example, on Huawei devices which have the HarmonyOS operating
   system.
+</p>
+<h2>Is it possible to use Android SDK with another crash SDK?</h2>
+<p>
+  It should be fine to use Countly together with another crash SDK. If you would
+  like to track caught exception, you would just pass them to both SDKs. When catching
+  uncaught exceptions with both, there are some uncertainties. Although in Android
+  there can be only one uncaught exception handler, you can save the previous handler
+  and when receiving an uncaught exception, pass it also to the saved one. We can't
+  be certain how other SDKs are implemented or if the OS would give enough time
+  to propagate the exception through all handlers. Therefore, if you want to use
+  Countly with another crash SDK, we advise to initialize Countly as the last one.
+</p>
+<h2>
+  How can I tell which Countly Android SDK version I am using?
+</h2>
+<p>
+  The Countly class has a public static string called
+  <code>COUNTLY_SDK_VERSION_STRING</code> that contains the current SDK version.
+  You can access it by calling <code>Countly.COUNTLY_SDK_VERSION_STRING</code>.
+  It would return something similar to "20.11.7".
+</p>
+<h2>What information is collected by the SDK</h2>
+<p>
+  The following description mentions data that is collected by SDK's to perform
+  their functions and implement the required features. Before any of it is sent
+  to the server, it is stored locally.
+</p>
+<p>
+  * When sending any network requests to the server, the following things are sent
+  in addition of the main data:<br>
+  - Timestamp of when the request is creted<br>
+  - Current hour<br>
+  - Current day of week<br>
+  - Current timezone<br>
+  - SDK version<br>
+  - SDK name
+</p>
+<p>
+  * If sessions are used then it would record the session start time, end time
+  and duration
+</p>
+<p>
+  * If sessions are used then also device metrics are collected which contains:<br>
+  - Device model<br>
+  - Device type (phone, tablet, etc)<br>
+  - Screen resolution<br>
+  - Screen density<br>
+  - OS name<br>
+  - OS version<br>
+  - App version<br>
+  - Locale identifier<br>
+  - Carrier name
+</p>
+<p>* The current device orientation</p>
+<p>
+  * When generating a device ID, if no custom ID is provided, the SDK will use:<br>
+  - Secure.ANDROID_ID as the default ID and advertising id as a fallback devices
+  ID
+</p>
+<p>
+  * If push notification are used:<br>
+  - The devices push notification token<br>
+  - If the user clicks on the notification then the time of the click and on which
+  button the user has clicked on&nbsp;
+</p>
+<p>
+  * If automatic view tracking is enabled, it will collect:<br>
+  - activity class name&nbsp;
+</p>
+<p>
+  * If feedback or rating widgets are used, it will collect the users input and
+  time of the widgets completion
+</p>
+<p>
+  * When events are recorded, the time of when the event is recorded, will be collected
+</p>
+<p>
+  * If the consent feature is used, the SDK will collect and send what consent
+  has been given to the SDK or removed from the SDK
+</p>
+<p>
+  * If crash tracking is enabled, it will collect the following information at
+  the time of the crash:<br>
+  - OS name<br>
+  - OS version<br>
+  - Device model<br>
+  - Device architecture<br>
+  - Device resolution<br>
+  - App version<br>
+  - App build number<br>
+  - Time of the crash<br>
+  - Crash stacktrace<br>
+  - Error description<br>
+  - Total RAM<br>
+  - Currently used RAM<br>
+  - Total disk size<br>
+  - Currently used disk size<br>
+  - Device battery level<br>
+  - Device orientation<br>
+  - If there is a network connection<br>
+  - If the app is in the background<br>
+  - How long has the application been running<br>
+  - If the device has been rooted
+</p>
+<p>
+  Any other information like data in custom events, location, user profile information
+  or other manual requests depends on what the developer decides to provide and
+  is not collected by the SDK itself.
 </p>
