@@ -891,6 +891,17 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
 <h1>Other features</h1>
+<h2>Setting event queue threshold</h2>
+<p>
+  In SDK configuration, you may limit the number of events that can be recorded
+  internally by the system before they can all be sent together in one request.&nbsp;<br>
+  Example:
+</p>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<p>
+  Once the threshold limit is reached, the system groups all recorded events and
+  sends them to the server.
+</p>
 <h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if the SDK has been initialized</h2>
 <p>
   <span>In case you would like to check if init has been called, you may use the following property:</span>
@@ -955,7 +966,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <strong>NotificationMode -<span>&nbsp;</span></strong>(Optional, enum) When<span>&nbsp;</span><strong>None</strong>,
   the SDK disables Push Notifications for the device. Use an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or
   an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
-  testing purposes and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
+  testing purposes, and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
   SDK uses the supplied mode for sending Push Notifications. The default value
   is<span>&nbsp;</span><strong>None.</strong>
 </p>
