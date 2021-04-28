@@ -974,5 +974,50 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <strong>EnableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) U</span>sed
   to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
   the SDK will catch exceptions and automatically report them to the Countly server.
-  The default value is<span>&nbsp;</span><strong>true.</strong><code class="java hljs"></code>
+  The default value is<span>&nbsp;</span><strong>true.</strong>
 </p>
+<h2>FAQ and Troubleshooting</h2>
+<h3>What information is collected by the SDK</h3>
+<p>
+  <span>User data are sent whenever the developer of the application wants to send them via SDK. They are not bound by session or a specific event, so they can be sent whenever it is required.&nbsp;</span>
+</p>
+<p>This is a list of data that SDK may collect from users.</p>
+<ul>
+  <li class="p-rich_text_section">User name &amp; surname</li>
+  <li>City and country</li>
+  <li>First &amp; last seen time</li>
+  <li>Picture</li>
+  <li>App information</li>
+  <li>E-mail</li>
+  <li>Phone</li>
+  <li>Organization name</li>
+  <li>Gender</li>
+  <li>Age</li>
+  <li>Total sessions</li>
+  <li>Total time spent</li>
+  <li>Last purchase date/time</li>
+  <li>Last purchase amount</li>
+  <li>Total purchase count and amount</li>
+  <li>Any custom key values</li>
+</ul>
+<p>
+  Note that collecting data is optional, and depending on the country and the regulations,
+  you may need to get end-user acceptance.
+</p>
+<p>
+  SDK collects the following information from the device while performing its operations.
+</p>
+<ul>
+  <li>Operating system name</li>
+  <li>DPI of the screen</li>
+  <li>The model of the device</li>
+  <li>Screen resolution</li>
+  <li>The language the user's operating system</li>
+  <li>Application version number</li>
+  <li>Processor name</li>
+  <li>The graphics API type</li>
+  <li>Amount of system memory present</li>
+  <li>The current battery level</li>
+  <li>Orientation of the screen</li>
+  <li>The type of Internet reachability</li>
+</ul>
