@@ -940,10 +940,6 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   it basically turns on Logging.&nbsp;
 </p>
 <p>
-  <strong>IgnoreSessionCooldown -</strong><span>&nbsp;(Optional, bool)&nbsp;</span>Turns
-  on/off the session cooldown behavior.<span>&nbsp;</span><span>The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
-</p>
-<p>
   <strong>SessionDuration -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
   the interval (in seconds) after which the application will automatically extend
   the session, providing the manual session is disabled. This interval is also
