@@ -979,45 +979,54 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <h2>FAQ and Troubleshooting</h2>
 <h3>What information is collected by the SDK</h3>
 <p>
-  <span>User data are sent whenever the developer of the application wants to send them via SDK. They are not bound by session or a specific event, so they can be sent whenever it is required.&nbsp;</span>
-</p>
-<p>This is a list of data that SDK may collect from users.</p>
-<ul>
-  <li class="p-rich_text_section">User name &amp; surname</li>
-  <li>City and country</li>
-  <li>First &amp; last seen time</li>
-  <li>Picture</li>
-  <li>App information</li>
-  <li>E-mail</li>
-  <li>Phone</li>
-  <li>Organization name</li>
-  <li>Gender</li>
-  <li>Age</li>
-  <li>Total sessions</li>
-  <li>Total time spent</li>
-  <li>Last purchase date/time</li>
-  <li>Last purchase amount</li>
-  <li>Total purchase count and amount</li>
-  <li>Any custom key values</li>
-</ul>
-<p>
-  Note that collecting data is optional, and depending on the country and the regulations,
-  you may need to get end-user acceptance.
+  The following description mentions data that is collected by SDK to perform their
+  functions and implement the required features. Before any of it is sent to the
+  server, it is stored locally.
 </p>
 <p>
-  SDK collects the following information from the device while performing its operations.
+  * When sending any network requests to the server, the following things are sent
+  in addition to the main data:<br>
+  - Timestamp of when the request is created<br>
+  - Current hour<br>
+  - Current day of week<br>
+  - Current timezone<br>
+  - SDK version<br>
+  - SDK name
 </p>
-<ul>
-  <li>Operating system name</li>
-  <li>DPI of the screen</li>
-  <li>The model of the device</li>
-  <li>Screen resolution</li>
-  <li>The language the user's operating system</li>
-  <li>Application version number</li>
-  <li>Processor name</li>
-  <li>The graphics API type</li>
-  <li>Amount of system memory present</li>
-  <li>The current battery level</li>
-  <li>Orientation of the screen</li>
-  <li>The type of Internet reachability</li>
-</ul>
+<p>
+  * If sessions are used then it would record the session start time, end time,
+  and duration
+</p>
+<p>
+  * If sessions are used then also device metrics are collected which contains:<br>
+  - Device model<br>
+  - Device type (phone, tablet, etc)<br>
+  - Screen resolution<br>
+  - Screen density<br>
+  - OS name<br>
+  - OS version<br>
+  - App version
+</p>
+<p>* The current device orientation</p>
+<p>
+  * If push notification is used:<br>
+  - The devices push notification token<br>
+  - If the user clicks on the notification then the time of the click and on which
+  button the user has clicked on&nbsp;
+</p>
+<p>
+  * When events are recorded, the time of when the event is recorded will be collected
+</p>
+<p>
+  <span>* If the consent feature is used, the SDK will collect and send what consent has been given to the SDK or removed from the SDK</span>
+</p>
+<p>
+  <span>* If crash tracking is enabled, it will collect the following information at the time of the crash:<br>- OS name<br>- OS version<br>- Device model<br>- Device architecture<br></span>-
+  The graphics API type<br>
+  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stacktrace<br>- Error description<br>- Total RAM<br>- Device battery level<br>- Device orientation<br></span>-
+  The type of Internet reachability<br>
+  <span>- If there is a network connection<br>- If the app is in the background<br>- How long has the application been running<br></span>
+</p>
+<p>
+  <span>Any other information like data in custom events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
+</p>
