@@ -808,7 +808,7 @@ Countly.sharedInstance().endSession()</code></pre>
   <a href="https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc">https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc</a>
 </p>
 <p>
-  And for extra permission required on iOS 14+ please see:
+  And for App Tracking Transparency permission required on iOS 14.5+ please see:
   <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
 </p>
 <p>&nbsp;</p>
