@@ -6,12 +6,18 @@
     <span class="wysiwyg-font-size-large"><strong>Minimum Windows version</strong></span>
   </p>
   <p>
-    Countly Windows SDK supports following operating system versions:
+    The Countly Windows SDK supports the following operating systems and .NET
+    versions:
   </p>
-  <p>
-    Windows 8.1 Windows 10 Windows 10 Mobile .NET 3.5 .NET 4.0 Client Profile
-    .NET 4.5 and above .NET Standard 2.0 Xamarin (Android, iOS)
-  </p>
+  <ul>
+    <li>Windows 8.1</li>
+    <li>Windows 10</li>
+    <li>Windows 10 Mobile</li>
+    <li>.NET 3.5</li>
+    <li>.NET 4.0 Client Profile</li>
+    <li>.NET 4.5 and above</li>
+    <li>.NET Standard 2.0</li>
+  </ul>
 </div>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -217,7 +223,7 @@ Countly.Instance.SessionEnd();
 //update the session manually
 int elapsedTime = 60;//elapsed time in seconds
 Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
-<h1>Using custom events</h1>
+<h1>Using events</h1>
 <p>
   In all the examples below we will be recording a <strong>purchase</strong> event.
   Here is a quick summary what information each usage will provide us.
@@ -512,7 +518,7 @@ Countly.Instance.Init(cc);</code></pre>
   <li>
     sessions - tracking when, how often and how long users use your app
   </li>
-  <li>events - allow sending custom events to server</li>
+  <li>events - allow sending events to server</li>
   <li>location - allow sending location information</li>
   <li>crashes - allow tracking crashes, exceptions and errors</li>
   <li>
