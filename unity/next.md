@@ -972,8 +972,8 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
 </p>
-<h2>FAQ and Troubleshooting</h2>
-<h3>What information is collected by the SDK</h3>
+<h1>FAQ and Troubleshooting</h1>
+<h2>What information is collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
@@ -996,14 +996,17 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   * If sessions are used then also device metrics are collected which contains:<br>
   - Device model<br>
-  - Device type (phone, tablet, etc)<br>
   - Screen resolution<br>
   - Screen density<br>
   - OS name<br>
   - OS version<br>
-  - App version
+  - App version<br>
+  <span>- Locale identifier</span>
 </p>
-<p>* The current device orientation</p>
+<p>
+  <span></span><span>* When generating a device ID, if no custom ID is provided, the SDK will use:</span><br>
+  <span>- Android: md5 of ANDROID_ID&nbsp;<br></span><span>- iOS: I</span><span>t will be vendor id and </span><span>advertising id as a fallback<br></span><span>- Windows stores apps: It will be advertising id<br></span><span>- Windows Standalone: It will be hash from the concatenation of strings taken from computer system hardware classes.</span><span></span>
+</p>
 <p>
   * If push notification is used:<br>
   - The devices push notification token<br>
@@ -1011,15 +1014,15 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   button the user has clicked on&nbsp;
 </p>
 <p>
-  * When events are recorded, the time of when the event is recorded will be collected
-</p>
-<p>
-  <span>* If the consent feature is used, the SDK will collect and send what consent has been given to the SDK or removed from the SDK</span>
+  * When events are recorded, the following information collected:<br>
+  - Time of event<br>
+  - Current hour<br>
+  - Current day of week
 </p>
 <p>
   <span>* If crash tracking is enabled, it will collect the following information at the time of the crash:<br>- OS name<br>- OS version<br>- Device model<br>- Device architecture<br></span>-
   The graphics API type<br>
-  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stacktrace<br>- Error description<br>- Total RAM<br>- Device battery level<br>- Device orientation<br></span>-
+  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stack trace<br>- Error description<br>- Total RAM<br>- Device battery level<br>- Device orientation<br></span>-
   The type of Internet reachability<br>
   <span>- If there is a network connection<br>- If the app is in the background<br>- How long has the application been running<br></span>
 </p>
