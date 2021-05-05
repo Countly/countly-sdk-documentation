@@ -1861,6 +1861,9 @@ Countly.sharedInstance().recordCity("Tokyo", andISOCountryCode:"JP")
 Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
   </div>
 </div>
+<p>
+  <span style="font-weight: 400;">Preferably you should use either location coordinate or city and country code pair.</span>
+</p>
 <p>GeoLocation info can also be disabled:</p>
 <div class="tabs">
   <div class="tabs-menu">
