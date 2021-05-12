@@ -18,30 +18,19 @@
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
-  <span style="font-weight: 400;">You may use the default JCenter repository to download the SDK package. If it is not included in your project, include it as follows:</span>
+  <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it as follows:</span>
 </p>
 <pre><code>buildscript {
     repositories {
-        jcenter()
-    }
-}</code></pre>
-<p>
-  <span style="font-weight: 400;">You can also add the Bintray Maven repository:</span>
-</p>
-<pre><code>buildscript {
-    repositories {
-        maven {
-            url  "http://dl.bintray.com/countly/maven"
-        }
+        mavenCentral()
     }
 }</code></pre>
 <p>
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:20.11.7'
+    compile 'ly.count.android:sdk:20.11.8'
 }</code></pre>
-<h1>&nbsp;</h1>
 <h1>SDK Integration</h1>
 <p>
   Before you can use any functionality, you have to initiate the SDK. That is done
@@ -290,10 +279,10 @@ buildscript {
 </p>
 <pre><code class="java">tasks.whenTaskAdded { task -&gt;
     if (task.name.startsWith('assemble')) {
-        //this would upload your Java mapping file
+    		//this would upload your Java mapping file
         task.dependsOn('uploadJaveSymbols')
         
-        //this would upload your native (c++) symbols
+    		//this would upload your native (c++) symbols
         task.dependsOn('uploadNativeSymbols')
     }
 }</code></pre>
