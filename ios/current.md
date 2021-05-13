@@ -3503,7 +3503,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 <p>
   <span style="font-weight: 400;">The Countly iOS SDK reports consent changes to the Countly Server, so that the Countly Server can make preparations, or clean-up on the server side as well.</span>
 </p>
-<h1>iOS SDK FAQ and Troubleshooting</h1>
+<h1>FAQ and Troubleshooting</h1>
 <p>
   This section highlights the most frequently asked questions and any troubleshooting
   queries you may face while integrating the Countly iOS SDK into your iOS, watchOS,

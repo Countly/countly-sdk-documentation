@@ -116,3 +116,5 @@
 # watchOS Integration
 
 # Consents
+
+# FAQ and Troubleshooting
