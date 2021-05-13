@@ -3596,12 +3596,6 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   <span class="wysiwyg-color-black">In addition to this, Countly iOS SDK sends previously stored requests, if any, followed by a <code>begin_session</code> request, when it starts. If your app records any events meanwhile, these events will be queued and sent to server when all previously queued requests are successfully completed.</span>
 </p>
 <h2>
-  <span class="wysiwyg-color-black">How should I answer IDFA related questions on App Store Connect?</span>
-</h2>
-<p>
-  <span class="wysiwyg-color-black">Apple has some rules on IDFA usage in the apps depending on purpose. If you are getting warnings about this while sending your app to the App Store, please <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-app-store-connect-idfa-warning">read this document</a>.</span>
-</p>
-<h2>
   <span class="wysiwyg-color-black">Why can some of the requests not be processed by Countly Server?</span>
 </h2>
 <p>
