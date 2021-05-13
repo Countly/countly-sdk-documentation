@@ -3505,11 +3505,9 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </p>
 <h1>iOS SDK FAQ and Troubleshooting</h1>
 <p>
-  This document highlights the most frequently asked questions and any troubleshooting
-  queries you may face when integrating the Countly iOS SDK into yout iOS, watchOS,
-  tvOS, or macOS applications. To learn how to integrate the Countly iOS SDK itself,
-  please view the Countly iOS SDK document
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-and-macOS" target="_self">here</a>.
+  This section highlights the most frequently asked questions and any troubleshooting
+  queries you may face while integrating the Countly iOS SDK into your iOS, watchOS,
+  tvOS, or macOS applications.
 </p>
 <h2>
   <span class="wysiwyg-color-black">What platforms does Countly iOS SDK support?</span>
