@@ -886,13 +886,6 @@ end</code></pre>
 <p>
   <a href="https://gist.github.com/erkanyildiz/4ee00b4326bb666fac636ef74bbd8450">https://gist.github.com/erkanyildiz/4ee00b4326bb666fac636ef74bbd8450</a>
 </p>
-<h2>Frequently Asked Questions (FAQ) Page</h2>
-<p>
-  <span style="font-weight: 400;">For frequently asked questions about the Countly iOS SDK, you can refer to the FAQ page:</span>
-</p>
-<p>
-  <a href="https://resources.count.ly/docs/ios-faq"><span style="font-weight: 400;">page:</span>https://resources.count.ly/docs/ios-faq</a>
-</p>
 <h1>Recording Events</h1>
 <p>
   <span style="font-weight: 400;">Here is a quick summary on how to use event recording methods:</span>
