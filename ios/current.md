@@ -3626,6 +3626,22 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   <span class="wysiwyg-color-black">If you get <code>Warning: no rule to process file '../countly-sdk-ios/README.md' of type net.daringfireball.markdown for architecture arm64</code> in Xcode, it means <code>README.md</code> (and/or <code>CHANGELOG.md</code>) file is added to <code>Build Phases &gt; Compile Sources</code> in your target. Please remove <code>README.md</code> from <code>Compile Sources</code> list.</span>
 </p>
 <h2>
+  <span class="wysiwyg-color-black">How is Countly affected by Apple's App Tracking Transparency changes?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">As Countly is not and has never been doing any tracking, it is not affected by Apple's App Tracking Transparency changes.
+  </span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">Definition of "tracking" by Apple's User Privacy and Data Use guidelines:</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">“Tracking” refers to linking data collected from your app about a particular end-user or device, such as a user ID, device ID, or profile, with Third-Party Data for targeted advertising or advertising measurement purposes, or sharing data collected from your app about a particular end-user or device with a data broker.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">For further information please see <a href="https://developer.apple.com/app-store/app-privacy-details/">App Privact Details section on Apple Developer website.</a></span>
+</p>
+<h2>
   <span class="wysiwyg-color-black">What is the average data size of a Countly iOS SDK request sent to Countly Server?</span>
 </h2>
 <p>
