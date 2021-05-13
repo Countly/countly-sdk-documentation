@@ -3503,3 +3503,276 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 <p>
   <span style="font-weight: 400;">The Countly iOS SDK reports consent changes to the Countly Server, so that the Countly Server can make preparations, or clean-up on the server side as well.</span>
 </p>
+<h1>iOS SDK FAQ and Troubleshooting</h1>
+<p>
+  This document highlights the most frequently asked questions and any troubleshooting
+  queries you may face when integrating the Countly iOS SDK into yout iOS, watchOS,
+  tvOS, or macOS applications. To learn how to integrate the Countly iOS SDK itself,
+  please view the Countly iOS SDK document
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-and-macOS" target="_self">here</a>.
+</p>
+<h2>
+  <span class="wysiwyg-color-black">What platforms does Countly iOS SDK support?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">Even though its official name is Countly iOS SDK, it supports all Apple platforms (macOS, tvOS, and watchOS), in addition to iOS. You can use the same SDK for all kinds of projects with different sets of features available for each platform. You can also see how to integrate it into your projects by <a href="https://github.com/Countly/countly-sample-ios">checking our sample apps here</a>.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">Which features are available for each platform?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">In addition to Analytics, Events, and User Profiles features, Countly iOS SDK has Push Notifications, Crash Reporting, Auto View Tracking, Remote Config, and Star-Rating features. Availability of these features for platforms are as follows:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <span class="wysiwyg-color-black">iOS</span><br>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>,&nbsp;<code>Remote Config</code>,&nbsp;</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span class="wysiwyg-color-black">macOS</span><br>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>,&nbsp;<code>Remote Config</code>,&nbsp;</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span class="wysiwyg-color-black">tvOS</span><br>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>,&nbsp;</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span class="wysiwyg-color-black">watchOS</span><br>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>,&nbsp;</span>
+    </p>
+  </li>
+</ul>
+<h2>
+  <span class="wysiwyg-color-black">Can I integrate Countly iOS SDK using CocoaPods?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-cocoapods">read our notes</a> to avoid issues.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">You can check for <code>kCountlySDKVersion</code> constant in Countly iOS SDK source. It is defined as <code>NSString* const kCountlySDKVersion = @"18.08";</code></span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">What is the difference between Default Properties and Custom Properties of User Profiles?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">User Profiles <em>(only available in Enterprise Edition)</em> has two kinds of properties: Default Properties and Custom Properties.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">Default Properties are predefined fields like <code>name</code>, <code>username</code>, <code>email</code>, <code>birth year</code>, <code>organization</code>, <code>gender</code>, <code>phone number</code> and <code>profile picture</code>. They are displayed in their own place in User Profiles section. You can set them using default properties on <code>Countly.user</code> singleton ( Ex: <code>Countly.user.email = @"john@doe.com";</code> ) and record them using <code>[Countly.user save];</code> method.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">Custom Properties are custom defined key-value pairs. You can set them using <code>Countly.user.custom</code> dictionary ( Ex: <code>Countly.user.custom = @{@"testkey1":@"testvalue1", @"testkey2":@"testvalue2"};</code> ) and record them using <code>[Countly.user save];</code> method as well.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">For details please see <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-user-profiles">User Profiles documentation</a>.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <code>userLoggedIn:</code> method ( Ex: <code>[Countly.sharedInstance userLoggedIn:@"user123@example.com"];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">Later, when the user logs out, you can use <code>[Countly.sharedInstance userLoggedOut];</code> method which will switch back to default deviceID and track that device anonymously.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">Why are events not displayed on Countly Server dashboard?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">Events are queued but not sent to server until next <code>updateSessionPeriod</code> (60 seconds by default) or <code>eventSendThreshold</code> (10 by default) is reached. So, a little delay may be expecting in displaying events on Countly Server dashboard, while still seeing session data immediately.</span>
+</p>
+<p>
+  <span class="wysiwyg-color-black">In addition to this, Countly iOS SDK sends previously stored requests, if any, followed by a <code>begin_session</code> request, when it starts. If your app records any events meanwhile, these events will be queued and sent to server when all previously queued requests are successfully completed.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">How should I answer IDFA related questions on App Store Connect?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">Apple has some rules on IDFA usage in the apps depending on purpose. If you are getting warnings about this while sending your app to the App Store, please <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-app-store-connect-idfa-warning">read this document</a>.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">Why can some of the requests not be processed by Countly Server?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">There was a query string encoding bug in Countly iOS SDK in versions <code>16.02.01</code> and <code>16.06</code>. Due to this bug, some carrier names (especially Chinese) in query string cannot be parsed. This has been fixed in version <code>16.06.1</code>. If you are using one of the specified versions, please update the SDK.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">Is it possible to use Countly iOS SDK with another crash SDK?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">In iOS there can only be one uncaught exception handler. Even though it is possible to save the previous handler and pass the uncaught exception to the previous handler as well, it is not safe to assume that it will work in all cases. We can't know how other SDKs are implemented or whether iOS will give enough time for the all the handlers to do their work before terminating the app, hence, we advise to use Countly as the only crash handler.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">Why are my test crashes not reported?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">If you are running your app with Xcode debugger attached while forcing a test crash, Countly iOS SDK cannot handle the crash as debugger will be intercepting. Please make sure you run your app without Xcode debugger attached.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-handling-notifications-manually">Handling Notifications Manually</a> section.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">If you get <code>Warning: no rule to process file '../countly-sdk-ios/README.md' of type net.daringfireball.markdown for architecture arm64</code> in Xcode, it means <code>README.md</code> (and/or <code>CHANGELOG.md</code>) file is added to <code>Build Phases &gt; Compile Sources</code> in your target. Please remove <code>README.md</code> from <code>Compile Sources</code> list.</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">What is the average data size of a Countly iOS SDK request sent to Countly Server?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">While there are several types of requests that Countly iOS SDK sends to Countly Server, the most common ones are:</span>
+</p>
+<ul>
+  <li>
+    <span class="wysiwyg-color-black">Begin Session Request: It is sent on every app launch (and session start after coming back from the background), and it includes basic metrics.</span><br>
+    <span class="wysiwyg-color-black">An example Begin Session request (<code>498 bytes</code>) :</span>
+  </li>
+</ul>
+<pre><span class="wysiwyg-color-black"><code>http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
+&amp;device_id=00000000-0000-0000-0000-000000000000
+&amp;timestamp=1534402860000&amp;hour=16&amp;dow=5&amp;tz=540
+&amp;sdk_version=18.08&amp;sdk_name=objc-native-ios
+&amp;begin_session=1
+&amp;metrics=%7B%22_device%22%3A%22iPhone9%2C1%22%2C%22_os%22%3A%22iOS%22%2C%22_os_version%22%3A%2211.4.1%22%2C%22_locale%22%3A%22en_JP%22%2C%22_density%22%3A%22%402x%22%2C%22_resolution%22%3A%22750x1334%22%2C%22_app_version%22%3A%221.0%22%2C%20%22_carrier%22%3A%22NTT%22%7D
+</code></span></pre>
+<ul>
+  <li>
+    <span class="wysiwyg-color-black">Update Session Request: It is sent every 60 seconds by default, but it depends on Countly iOS SDK initial configuration.</span><br>
+    <span class="wysiwyg-color-black">An example Update Session request (<code>233 bytes</code>) :</span>
+  </li>
+</ul>
+<pre><span class="wysiwyg-color-black"><code>http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
+&amp;device_id=00000000-0000-0000-0000-000000000000
+&amp;timestamp=1534402920000&amp;hour=16&amp;dow=5&amp;tz=540
+&amp;sdk_version=18.08&amp;sdk_name=objc-native-ios
+&amp;session_duration=60
+</code></span></pre>
+<ul>
+  <li>
+    <span class="wysiwyg-color-black">End Session Request: It is sent at the end of a session, when the app goes to background or terminates.</span><br>
+    <span class="wysiwyg-color-black">An example End Session request (<code>247 bytes</code>) :</span>
+  </li>
+</ul>
+<pre><span class="wysiwyg-color-black"><code>http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
+&amp;device_id=00000000-0000-0000-0000-000000000000
+&amp;timestamp=1534402956000&amp;hour=16&amp;dow=5&amp;tz=540
+&amp;sdk_version=18.08&amp;sdk_name=objc-native-ios
+&amp;session_duration=36
+&amp;end_session=1
+</code></span></pre>
+<ul>
+  <li>
+    <span class="wysiwyg-color-black">Other Requests For Events, User Details, Push Notifications, Crash Reporting, View Tracking, Feedbacks, Consents, and some other features: Countly iOS SDK sends various requests with various data sizes. Frequency and size of these requests depend on Countly iOS SDK initial configuration and your app's use cases, as well as the end user.</span>
+  </li>
+</ul>
+<h2>
+  <span class="wysiwyg-color-black">What data metrics are collected by Countly iOS SDK?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">Countly iOS SDK collects following metrics by default:</span>
+</p>
+<ul>
+  <li>
+    <span class="wysiwyg-color-black">Device Model</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">Screen Resolution</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">Screen Density</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">OS Name</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">OS Version</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">App Version</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">Locale Identifier</span>
+  </li>
+  <li>
+    <span class="wysiwyg-color-black">Carrier</span>
+  </li>
+</ul>
+<p>
+  <span class="wysiwyg-color-black">Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS App Install Status</span>
+</p>
+<h2>
+  <span class="wysiwyg-color-black">Why are push notification action events not reported?</span>
+</h2>
+<p>
+  <span class="wysiwyg-color-black">Notification action event is recorded when a user interacts with the notification and system calls <code class="c-mrkdwn__code" data-stringify-type="code">didReceiveNotificationResponse:</code>&nbsp;method.</span>
+</p>
+<div class="c-message_kit__gutter">
+  <div class="c-message_kit__gutter__right" data-qa="message_content">
+    <div class="c-message_kit__blocks c-message_kit__blocks--rich_text">
+      <div class="c-message__message_blocks c-message__message_blocks--rich_text">
+        <div class="p-block_kit_renderer" data-qa="block-kit-renderer">
+          <div class="p-block_kit_renderer__block_wrapper p-block_kit_renderer__block_wrapper--first">
+            <div class="p-rich_text_block" dir="auto">
+              <div class="p-rich_text_section">
+                <span class="wysiwyg-color-black">If you tap on the notification, but still do not get any action events, please check for the following possible problem points:</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="threads_view_C1R2Y3A6R-1587640571.043600-1587729500.048800" class="c-virtual_list__item" data-qa="virtual-list-item">
+  <div class="p-threads_view__default_background">
+    <div class="c-message_kit__background c-message_kit__background--hovered c-message_kit__message c-message_kit__thread_message p-threads_view_reply" data-qa="message_container" data-qa-unprocessed="false" data-qa-placeholder="false">
+      <div class="c-message_kit__hover c-message_kit__hover--hovered" data-qa-hover="true">
+        <div class="c-message_kit__actions c-message_kit__actions--default">
+          <div class="c-message_kit__gutter">
+            <div class="c-message_kit__gutter__right" data-qa="message_content">
+              <div class="c-message_kit__blocks c-message_kit__blocks--rich_text">
+                <div class="c-message__message_blocks c-message__message_blocks--rich_text">
+                  <div class="p-block_kit_renderer" data-qa="block-kit-renderer">
+                    <div class="p-block_kit_renderer__block_wrapper p-block_kit_renderer__block_wrapper--first">
+                      <div class="p-rich_text_block" dir="auto">
+                        <div class="p-rich_text_section"></div>
+                        <ol>
+                          <li class="p-rich_text_section">
+                            <span class="wysiwyg-color-black">You are setting&nbsp;<code class="c-mrkdwn__code" data-stringify-type="code">UNUserNotificationCenter.currentNotificationCenter</code>'s&nbsp;delegate manually at some point, so Countly iOS SDK can not handle the notification</span>
+                          </li>
+                          <li class="p-rich_text_section">
+                            <span class="wysiwyg-color-black"><code class="c-mrkdwn__code" data-stringify-type="code">requiresConsent</code> flag is enabled on initial config, but consent for Push Notifications feature is not granted (Note that this has nothing to do with iOS notification permission)</span>
+                          </li>
+                          <li class="p-rich_text_section">
+                            <span class="wysiwyg-color-black">Notification is not coming from Countly and it does not have any value for<span style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">&nbsp;</span><code class="c-mrkdwn__code" style="color: #000000; font-size: 15px;" data-stringify-type="code">kCountlyPNKeyNotificationID     = @"i"</code><span style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">&nbsp; key in it</span></span>
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
