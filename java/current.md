@@ -8,16 +8,22 @@
 </p>
 <h1>Adding SDK as a dependency</h1>
 <p>
-  SDK is hosted on bintray, more info can be found
-  <a href="https://bintray.com/beta/#/countly/maven/java?tab=overview">here</a>.
-  To add it, you first have to add Bintray Maven repository "https://dl.bintray.com/countly/maven".
+  SDK is hosted on MavenCentral, more info can be found
+  <a href="https://search.maven.org/artifact/ly.count.sdk/java" target="_self" rel="undefined">here</a>
+  and
+  <a href="https://search.maven.org/artifact/ly.count.sdk/core" target="_self">here</a>.
+  To add it, you first have to add the MavenCentral repository. For gradle you
+  would do it something like this:
 </p>
+<pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
+<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:19.09-sdk2-rc"<br></span><span>}</span></pre>
+<p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
-  &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
-  &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
-  &lt;type&gt;pom&lt;/type&gt;
+	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
+	&lt;artifactId&gt;java&lt;/artifactId&gt;
+	&lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
+	&lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1>Initializing the Java SDK</h1>
 <p>
