@@ -891,6 +891,17 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
 <h1>Other features</h1>
+<h2>Setting event queue threshold</h2>
+<p>
+  In SDK configuration, you may limit the number of events that can be recorded
+  internally by the system before they can all be sent together in one request.&nbsp;<br>
+  Example:
+</p>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<p>
+  Once the threshold limit is reached, the system groups all recorded events and
+  sends them to the server.
+</p>
 <h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if the SDK has been initialized</h2>
 <p>
   <span>In case you would like to check if init has been called, you may use the following property:</span>
@@ -929,10 +940,6 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   it basically turns on Logging.&nbsp;
 </p>
 <p>
-  <strong>IgnoreSessionCooldown -</strong><span>&nbsp;(Optional, bool)&nbsp;</span>Turns
-  on/off the session cooldown behavior.<span>&nbsp;</span><span>The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
-</p>
-<p>
   <strong>SessionDuration -</strong><span>&nbsp;(Optional, int)&nbsp;</span>Sets
   the interval (in seconds) after which the application will automatically extend
   the session, providing the manual session is disabled. This interval is also
@@ -955,7 +962,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <strong>NotificationMode -<span>&nbsp;</span></strong>(Optional, enum) When<span>&nbsp;</span><strong>None</strong>,
   the SDK disables Push Notifications for the device. Use an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or
   an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
-  testing purposes and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
+  testing purposes, and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
   SDK uses the supplied mode for sending Push Notifications. The default value
   is<span>&nbsp;</span><strong>None.</strong>
 </p>
@@ -963,5 +970,62 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <strong>EnableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) U</span>sed
   to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
   the SDK will catch exceptions and automatically report them to the Countly server.
-  The default value is<span>&nbsp;</span><strong>true.</strong><code class="java hljs"></code>
+  The default value is<span>&nbsp;</span><strong>true.</strong>
+</p>
+<h1>FAQ and Troubleshooting</h1>
+<h2>What information is collected by the SDK</h2>
+<p>
+  The following description mentions data that is collected by SDK to perform their
+  functions and implement the required features. Before any of it is sent to the
+  server, it is stored locally.
+</p>
+<p>
+  * When sending any network requests to the server, the following things are sent
+  in addition to the main data:<br>
+  - Timestamp of when the request is created<br>
+  - Current hour<br>
+  - Current day of week<br>
+  - Current timezone<br>
+  - SDK version<br>
+  - SDK name
+</p>
+<p>
+  * If sessions are used then it would record the session start time, end time,
+  and duration
+</p>
+<p>
+  * If sessions are used then also device metrics are collected which contains:<br>
+  - Device model<br>
+  - Screen resolution<br>
+  - Screen density<br>
+  - OS name<br>
+  - OS version<br>
+  - App version<br>
+  <span>- Locale identifier</span>
+</p>
+<p>
+  <span></span><span>* When generating a device ID, if no custom ID is provided, the SDK will use:</span><br>
+  <span>- Android: md5 of ANDROID_ID&nbsp;<br></span><span>- iOS: I</span><span>t will be vendor id and </span><span>advertising id as a fallback<br></span><span>- Windows stores apps: It will be advertising id<br></span><span>- Windows Standalone: It will be hash from the concatenation of strings taken from computer system hardware classes.</span><span></span>
+</p>
+<p>
+  * If push notification is used:<br>
+  - The devices push notification token<br>
+  - If the user clicks on the notification then the time of the click and on which
+  button the user has clicked on&nbsp;
+</p>
+<p>
+  * When events are recorded, the following information collected:<br>
+  - Time of event<br>
+  - Current hour<br>
+  - Current day of week
+</p>
+<p>
+  <span>* If crash tracking is enabled, it will collect the following information at the time of the crash:<br>- OS name<br>- OS version<br>- Device model<br>- Device architecture<br></span>-
+  The graphics API type<br>
+  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stack trace<br>- Error description<br>- Total RAM<br>- Device battery level<br>- Device orientation<br></span>-
+  The type of Internet reachability<br>
+  <span>- If there is a network connection<br>- If the app is in the background<br>- How long has the application been running<br></span>
+</p>
+<p>
+  <span>Any other information like data in custom events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
 </p>
