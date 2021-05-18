@@ -1,6 +1,8 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 20.11.<br>Countly is an open source SDK, you can take a look at our SDK code in the <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
+  and it applies to version 20.11.<br>
+  Countly is an open source SDK, you can take a look at our SDK code in the
+  <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -115,9 +117,7 @@ ionic cordova build ios</code></pre>
 <pre><code class="javascript">&lt;script type="text/javascript" src="cordova.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="Countly.js"&gt;&lt;/script&gt;</code></pre>
 <h1>SDK Integration</h1>
-<h2>
-  Minimal setup
-</h2>
+<h2>Minimal setup</h2>
 <p>
   Below you can find necessary code snippets to initialize the SDK for sending
   data to Countly servers. Where possible, use your server URL instead of
@@ -343,14 +343,16 @@ Countly.addCrashLog("My crash log from JavaScript");
     <code>count</code> is the number of times this event occurred
   </li>
   <li>
-    <code>sum</code> is an overall numerical data set tied to an event. For example, total amount of in-app purchase event.
+    <code>sum</code> is an overall numerical data set tied to an event. For example,
+    total amount of in-app purchase event.
   </li>
   <li>
     <code class="JavaScript">duration</code> is used to record and track the
     duration of events.
   </li>
   <li>
-    <code>segmentation</code> is a key-value pairs, we can use <code>segmentation</code> to track additional information.
+    <code>segmentation</code> is a key-value pairs, we can use
+    <code>segmentation</code> to track additional information.
   </li>
 </ul>
 <div class="callout callout--info">
@@ -483,16 +485,27 @@ setTimeout(function() {
     Countly.endEvent(events);
 },  1000);</code></pre>
 <h1>View tracking</h1>
+<p>You may track custom views with the following code snippet:</p>
+<pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
 <p>
-  You can manually add your own views in your application, and each view will be
-  visible under Analytics &gt; Views. Below you can see two examples of sending
-  a view using <code>Countly.recordview</code> function.
+  While manually tracking views, you may add your custom segmentation to them like
+  this:
 </p>
-<pre><code class="javascript">// record a view on your application
-Countly.recordView("My Home Page");
-Countly.recordView("Profile Page");
-</code></pre>
-<h1>Device ID management</h1>
+<pre><code class="JavaScript">var viewSegmentation = { "Country": "Germany", "Age": "28" };
+Countly.recordView("View Name", viewSegmentation);</code></pre>
+<p>
+  To review the resulting data, open the dashboard and go to
+  <code class="JavaScript">Analytics &gt; Views</code>. For more information on
+  how to use view tracking data to its fullest potential, click
+  <a href="http://resources.count.ly/docs/view-analytics">here</a>.
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+</div>
+<h1>&nbsp;</h1>
+<p>
+  <span style="font-size: 2.1em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Device ID management</span>
+</p>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
