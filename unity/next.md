@@ -322,6 +322,13 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   into the background. A session would be started again when the app comes to the
   foreground.
 </p>
+<h3>
+  <span style="font-weight: 400;">&nbsp;Disable automatic session tracking&nbsp;</span>
+</h3>
+<p>
+  <span>You might want to disable automatic session tracking. To do so, use the following code snippet before</span><span> init call.<br></span>
+</p>
+<pre>config.DisableAutomaticSessionTracking();</pre>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
 <p>
