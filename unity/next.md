@@ -309,7 +309,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h1>Sessions</h1>
 <h2>
-  <span style="font-weight: 400;">&nbsp;Automatic session tracking&nbsp;</span>
+  <span style="font-weight: 400;">Automatic session tracking&nbsp;</span>
 </h2>
 <p>
   The Unity SDK handles the session automatically. After calling the
@@ -323,7 +323,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   foreground.
 </p>
 <h3>
-  <span style="font-weight: 400;">&nbsp;Disable automatic session tracking&nbsp;</span>
+  <span style="font-weight: 400;">Disable automatic session tracking&nbsp;</span>
 </h3>
 <p>
   <span>You might want to disable automatic session tracking. To do so, use the following code snippet before</span><span> init call.<br></span>
