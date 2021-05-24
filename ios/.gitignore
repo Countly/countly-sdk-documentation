@@ -1,0 +1,6 @@
+# Xcode specific files #
+########################
+iOSSDKDocs.xcodeproj/project.xcworkspace/
+iOSSDKDocs.xcodeproj/xcuserdata/
+current.html
+style.css
