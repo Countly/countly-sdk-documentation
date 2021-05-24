@@ -217,7 +217,7 @@
       <td style="width: 96px;">YES</td>
       <td style="width: 84px;">YES</td>
       <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">NO</td>
+      <td style="width: 71px;">YES</td>
     </tr>
     <tr>
       <td style="width: 138px;">Web</td>
@@ -247,7 +247,7 @@
       <td style="width: 96px;">YES</td>
       <td style="width: 84px;">YES</td>
       <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">NO</td>
+      <td style="width: 71px;">YES</td>
     </tr>
     <tr>
       <td style="width: 138px;">Flutter</td>
@@ -257,7 +257,7 @@
       <td style="width: 96px;">YES</td>
       <td style="width: 84px;">YES</td>
       <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">NO</td>
+      <td style="width: 71px;">YES</td>
     </tr>
     <tr>
       <td style="width: 138px;">Windows&nbsp;</td>
@@ -285,7 +285,7 @@
       <td style="width: 92px;">YES</td>
       <td style="width: 80px;">YES</td>
       <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">NO</td>
+      <td style="width: 84px;">YES</td>
       <td style="width: 107px;">NO</td>
       <td style="width: 71px;">NO</td>
     </tr>
