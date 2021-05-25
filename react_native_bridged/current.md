@@ -1231,6 +1231,14 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 </p>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
+  </p>
+  <p>
+    This feature is only supported by the minimum SDK version 20.11.7.
+  </p>
+</div>
 <p>
   For overriding default metrics or adding extra ones that are sent with begin_session
   requests, you can use pass 'customMetric' Object to the function
