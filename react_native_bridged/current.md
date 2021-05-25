@@ -1230,6 +1230,22 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
   Replace this file with the one you have.
 </p>
 <h1>Other features</h1>
+<h2>Custom Metrics</h2>
+<p>
+  For overriding default metrics or adding extra ones that are sent with begin_session
+  requests, you can use pass 'customMetric' Object to the function
+  <code>Countly.setCustomMetrics(customMetric)</code>, Custom metrics should be
+  an Object, with keys and values are both String's only.
+</p>
+<pre><code class="JavaScript">var customMetric = {"key": "value"};
+Countly.setCustomMetrics(customMetric);</code></pre>
+<p>
+  For overriding default metrics, keys should be one of the below String value's:
+</p>
+<pre>"_device"<br>"_device_type"<br>"_os"<br>"_os_version"<br>"_app_version"<br>"_carrier"<br>"_resolution"<br>"_density"<br>"_locale"</pre>
+<p>Example to override 'Carrier' and 'App Version'</p>
+<pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
+Countly.setCustomMetrics(customMetric);</code></pre>
 <h2>Attribution analytics &amp; install campaigns</h2>
 <p>
   <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
