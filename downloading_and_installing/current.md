@@ -151,30 +151,6 @@
     point-and-click service that builds necessary code for you.
   </p>
 </div>
-<h1>Community Supported SDKs</h1>
-<p>
-  <span style="font-weight: 400;">These client libraries are developed and supported by the Countly community and not by Countly directly. Refer to the corresponding author for support and more information.</span>
-</p>
-<ul>
-  <li>
-    <a href="https://github.com/shadow0162/countly-sdk-cocos2d-x">Cocos2d-x SDK</a>
-    and
-    <a href="http://resources.count.ly/docs/cocos2d-x">documentation page</a>
-  </li>
-  <li>
-    <a href="https://www.nuget.org/packages?q=countly" target="_self">Xamarin SDK</a>
-    (C#),
-    <a href="http://resources.count.ly/docs/xamarin-android" target="_self">documentation for Android</a>
-    and
-    <a href="http://resources.count.ly/docs/xamarin-ios" target="_self">documentation for iOS</a>
-  </li>
-  <li>
-    <a href="https://github.com/dieskim/countly-sdk-titanium-ios">Titanium Appcelerator SDK (iOS)</a>
-  </li>
-  <li>
-    <a href="https://github.com/dieskim/countly-sdk-titanium-android">Titanium Appcelerator SDK (Android)</a>
-  </li>
-</ul>
 <h1>Feature comparison</h1>
 <p>This is a feature comparison for officially supported SDKs.</p>
 <table style="width: 821px;">
@@ -292,29 +268,10 @@
   </tbody>
 </table>
 <p>&nbsp;</p>
-<h1>Example of iOS application for testing</h1>
-<p>
-  <span style="font-weight: 400;">We have built a sample iOS application that may be used to send different types of data (e.g. events, sessions, crashes, user profiles, etc.) to the Countly servers. Please see </span><a href="https://github.com/Countly/countly-sample-ios"><span style="font-weight: 400;">https://github.com/Countly/countly-sample-ios</span></a><span style="font-weight: 400;">.</span>
-</p>
-<h1>Example of Android application for testing</h1>
-<p>
-  <span style="font-weight: 400;">Similar to iOS, we have a sample Android application that can send events, sessions, crashes, user profiles, etc. to the Countly servers. Below you may see the instructions on how to use the example Android application.</span>
-</p>
-<ul>
-  <li>
-    Download/clone
-    <a href="https://github.com/Countly/countly-sdk-android">Android SDK git repository</a>.
-  </li>
-  <li>Open downloaded project in Android Studio.</li>
-  <li>
-    Edit <code>App.java</code> in the app module to specifying the correct server/credentials/preferences.
-  </li>
-  <li>Hit "Run".</li>
-</ul>
 <h1>FAQ and Troubleshooting</h1>
 <h2>What is the hostname meant to write inside the SDK?</h2>
 <p>
-  <span style="font-weight: 400;">Inside the SDK, you'll see the API HOST directive that you need to fill in. This is the same as the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span><a href="https://192.168.1.1/"><span style="font-weight: 400;">https://192.168.1.1.</span></a><span style="font-weight: 400;">&nbsp;If there is a server name associated with your IP, the server name may also be used&nbsp;(e.g.&nbsp;<a href="https://analytics.mycompany.com).">https://analytics.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Inside the SDK, you'll see the API HOST directive that you need to fill in. This is the same as the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span><span style="font-weight: 400;"><a href="https://192.168.1.1">https://192.168.1.1</a> if the SSL configuration is complete, or <a href="http://192.168.1.1" target="_self" rel="undefined">http://192.168.1.1</a> if there is no SSL configuration.</span><span style="font-weight: 400;">&nbsp;If there is a server name associated with your IP, the server name may also be used&nbsp;(e.g.&nbsp;<a href="https://countly.mycompany.com)." target="_self" rel="undefined">https://countly.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
 </p>
 <h2>
   I integrated the SDK, but cannot see, or can only partially see, data on the
@@ -368,7 +325,7 @@
   <strong>6. Check Filtering rules</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Management &gt; Filtering rules</code></span><span style="font-weight: 400;">&nbsp;(previously named Blocking Rules) to see whether there are any rules that block events or any requests.</span>
+  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Management &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules that block events or any requests.</span>
 </p>
 <p>
   <strong>7. Check event limits</strong>

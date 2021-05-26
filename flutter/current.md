@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 20.11.0<br>Countly is an open source SDK, you can take a look at our SDK code in the <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
+  and it applies to version 20.11.0
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -16,6 +16,10 @@
   SDK in your application. Flutter SDK requires Android and iOS SDKs, hence all
   the features and limitations regarding those platforms also apply to Countly
   Flutter SDK.
+</p>
+<p>
+  Countly is an open source SDK, you can take a look at our SDK code in the
+  <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
 </p>
 <p>
   <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.
@@ -47,9 +51,7 @@ flutter run</code></pre>
 </p>
 <pre><code class="shell">flutter pub get</code></pre>
 <h1>SDK Integration</h1>
-<h2>
-  Minimal setup
-</h2>
+<h2>Minimal setup</h2>
 <p>
   The shortest way to initiate the SDK if you want Countly SDK to take care of
   device ID seamlessly, use the code below. You can find your app key on your Countly
@@ -125,7 +127,7 @@ flutter run</code></pre>
 <h1>Crash reporting</h1>
 <p>
   This feature allows the Countly SDK to record crash reports of either encountered
-  issues of exceptions which cause your application to crash. Those reports will
+  issues or exceptions which cause your application to crash. Those reports will
   be sent to your Countly server for further inspection.
 </p>
 <p>
@@ -166,8 +168,8 @@ flutter run</code></pre>
   There are multiple ways you could report a handled exception/error to Countly.
 </p>
 <p class="p1">
-  This call does not add a stacktrace automatically if it's needed, it should already
-  be added to the exception variable, a potential use case would be to provide
+  This call does not add a stacktrace automatically. If it is required, it should
+  be provided to the function. A potential use case would be to
   <code>exception.toString()</code>
 </p>
 <pre><code class="JavaScript">Countly.logException(String exception, bool nonfatal, [Map&lt;String, Object&gt; segmentation])</code></pre>
@@ -223,7 +225,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   steps that were taken in your app before the crash. After a crash happens, they
   will be sent together with the crash report.
 </p>
-<p>Following the command adds crash breadcrumb:</p>
+<p>The following function call adds a crash breadcrumb:</p>
 <pre><code class="JavaScript">Countly.addCrashLog(String logs)</code></pre>
 <h1>Events</h1>
 <p>
@@ -244,14 +246,16 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
     <code>count</code> is the number of times this event occurred
   </li>
   <li>
-    <code>sum</code> is an overall numerical data set tied to an event. For example, total amount of in-app purchase event.
+    <code>sum</code> is an overall numerical data set tied to an event. For example,
+    total amount of in-app purchase event.
   </li>
   <li>
     <code class="JavaScript">duration</code> is used to record and track the
     duration of events.
   </li>
   <li>
-    <code>segmentation</code> is a key-value pairs, we can use <code>segmentation</code> to track additional information.
+    <code>segmentation</code> is a key-value pairs, we can use
+    <code>segmentation</code> to track additional information.
   </li>
 </ul>
 <div class="callout callout--info">
@@ -392,8 +396,8 @@ timer = new Timer(new Duration(seconds: 5), () {
         "count": 1,
     };
     event["segmentation"] = {
-      	"Country": "Germany",
-      	"Age": "28"
+        "Country": "Germany",
+        "Age": "28"
     };
     Countly.endEvent(event);
     timer.cancel();
@@ -651,12 +655,12 @@ Countly.disableLocation();</code></pre>
 </p>
 <p>
   Automatic value download happens when the SDK is initiated or when the device
-  ID is changed. To enable it, you have to call setRemoteConfigAutomaticDownload
-  before init. As an optional value you can provide a callback to be informed when
-  the request is finished.
+  ID is changed. To enable it, you have to call
+  <code>setRemoteConfigAutomaticDownload</code> before init. As an optional value
+  you can provide a callback to be informed when the request is finished.
 </p>
 <pre><code class="JavaScript">Countly.setRemoteConfigAutomaticDownload((result){
-	print(result);
+  print(result);
 });</code></pre>
 <p>
   If the callback returns a non-null value, then you can expect that the request
@@ -689,7 +693,7 @@ Countly.disableLocation();</code></pre>
   for you. It has a callback to let you know when it has finished.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigUpdate((result){
-	print(result);
+  print(result);
 });</code></pre>
 <p>
   You might want to update only specific key values. For that you need to call
@@ -698,7 +702,7 @@ Countly.disableLocation();</code></pre>
   to let you know when the request has finished.
 </p>
 <pre><code class="JavaScript">Countly.updateRemoteConfigForKeysOnly(["name"],(result){
-	print(result);
+  print(result);
 });</code></pre>
 <p>
   You might want to update all values except a few defined keys, for that call
@@ -706,7 +710,7 @@ Countly.disableLocation();</code></pre>
   values of the keys. It has a callback to let you know when the request has finished.
 </p>
 <pre><code class="JavaScript">Countly.updateRemoteConfigExceptKeys(["url"],(result){
-	print(result);
+  print(result);
 });</code></pre>
 <p>
   When making requests with an "inclusion" or "exclusion" array, if those arrays
@@ -723,7 +727,7 @@ Countly.disableLocation();</code></pre>
   JSONObject or just a simple value like int.
 </p>
 <pre><code class="JavaScript">Countly.getRemoteConfigValueForKey("name", (result){
-	print(result);
+  print(result);
 });</code></pre>
 <h2>Clearing stored remote config values</h2>
 <p>
@@ -731,7 +735,7 @@ Countly.disableLocation();</code></pre>
   To achieve that you need to call one function.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigClearValues((result){
-	print(result);
+  print(result);
 });</code></pre>
 <h1>User feedback</h1>
 <p>
@@ -822,7 +826,7 @@ Countly.disableLocation();</code></pre>
 <pre><code class="JavaScript">class CountlyPresentableFeedback {<br>    public String widgetId;<br>    public String type;<br>    public String name;<br>}</code></pre>
 <p>
   To determine what kind of widget that is, check the "type" value. The potential
-  values are <code style="font-size: 15px;">"survey" and "nps"</code>.
+  values are <code>"survey"</code> and <code>"nps"</code>.
 </p>
 <p>
   Then use the widget type and description (which is the same as provided in the
@@ -858,24 +862,24 @@ Countly.disableLocation();</code></pre>
 </p>
 <p>
   First you would need to retrieve the available widget list with the previously
-  mentioned `getAvailableFeedbackWidgets` call. After that you would have a list
-  of possible `CountlyPresentableFeedback` objects. You would pick the one widget
-  you would want to display.
+  mentioned <code>getAvailableFeedbackWidgets</code> call. After that you would
+  have a list of possible <code>CountlyPresentableFeedback</code> objects. You
+  would pick the one widget you would want to display.
 </p>
 <p>
-  Having the `CountlyPresentableFeedback` object of the widget you would want to
-  display, you would use the following call to retrieve the widget information:
+  Having the <code>CountlyPresentableFeedback</code> object of the widget you would
+  want to display, you would use the following call to retrieve the widget information:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget); {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
+<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
 <p>
-  `retrievedWidgetData` would contain a Map with all of the required information
-  to present the widget yourself.
+  <code>retrievedWidgetData</code> would contain a Map with all of the required
+  information to present the widget yourself.
 </p>
 <p>
   After you have collected the required information from your users, you would
-  package the responses into a `Map&lt;String, Object&gt;` and then use it, the
-  widgetInformation and the widgetData to report the feedback result with the following
-  call:
+  package the responses into a <code>Map&lt;String, Object&gt;</code> and then
+  use it, the widgetInformation and the widgetData to report the feedback result
+  with the following call:
 </p>
 <pre><code class="JavaScript">//this contains the reported results
 Map&lt;String, Object&gt; reportedResult = {};
@@ -965,12 +969,12 @@ Countly.pullValue("type", "morning");
 <pre><code class="JavaScript">//Example of appLoadingFinished
 Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished();<br>});<br></code></pre>
 <p>
-  This calculates and records the app launch time for performance monitoring.<br>
-  It should be called when the app is loaded and it successfully displayed its
-  first user-facing view. The time passed since the app has started to launch will
-  be automatically calculated and recorded for performance monitoring. Note that
-  the app launch time can be recorded only once per app launch. So, the second
-  and following calls to this method will be ignored.
+  This calculates and records the app launch time for performance monitoring. It
+  should be called when the app is loaded and it successfully displayed its first
+  user-facing view. The time passed since the app has started to launch will be
+  automatically calculated and recorded for performance monitoring. Note that the
+  app launch time can be recorded only once per app launch. So, the second and
+  following calls to this method will be ignored.
 </p>
 <h2>Custom trace</h2>
 <p>
@@ -987,7 +991,8 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
 <p>To end a custom trace, use:</p>
 <pre><code class="JavaScript">String traceKey = "Trace Key";<br>Map&lt;String, int&gt; customMetric = {<br>  "ABC": 1233,<br>  "C44C": 1337<br>};<br>Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>
-  The provided Map of integer values that will be added to that trace in the dashboard.
+  In this sameple a Map of integer values is provided when ending a trace. Those
+  will be added to that trace in the dashboard.
 </p>
 <h2>Network trace</h2>
 <p>
@@ -997,11 +1002,11 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
 </p>
 <pre><code class="JavaScript">Countly.recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</code></pre>
 <p>
-  `networkTraceKey` is a unique identifier of the API endpoint you are targeting
-  or just the url you are targeting, all params should be stripped. You would also
-  provide the received response code, sent payload size in bytes, received payload
-  size in bytes, request start time timestamp in milliseconds, and request end
-  finish timestamp in milliseconds.
+  <code>networkTraceKey</code> is a unique identifier of the API endpoint you are
+  targeting or just the url you are targeting, all params should be stripped. You
+  would also provide the received response code, sent payload size in bytes, received
+  payload size in bytes, request start time timestamp in milliseconds, and request
+  end finish timestamp in milliseconds.
 </p>
 <h1>User consent</h1>
 <p>
