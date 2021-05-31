@@ -972,7 +972,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
 </p>
-<h1>FAQ and Troubleshooting</h1>
+<h1>FAQ</h1>
 <h2>What information is collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
