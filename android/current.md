@@ -1945,7 +1945,7 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 </p>
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
 <h1>
-  <span style="font-weight: 400;">Frequently Asked Questions</span>
+  <span style="font-weight: 400;">FAQ</span>
 </h1>
 <h2>How can I build the the Android SDK?</h2>
 <p>
