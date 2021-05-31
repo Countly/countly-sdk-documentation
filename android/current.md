@@ -279,10 +279,10 @@ buildscript {
 </p>
 <pre><code class="java">tasks.whenTaskAdded { task -&gt;
     if (task.name.startsWith('assemble')) {
-    		//this would upload your Java mapping file
+        //this would upload your Java mapping file
         task.dependsOn('uploadJaveSymbols')
         
-    		//this would upload your native (c++) symbols
+        //this would upload your native (c++) symbols
         task.dependsOn('uploadNativeSymbols')
     }
 }</code></pre>
@@ -1945,12 +1945,9 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 </p>
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
 <h1>
-  <span style="font-weight: 400;">FAQ and Troubleshooting</span>
+  <span style="font-weight: 400;">Frequently Asked Questions</span>
 </h1>
-<p>
-  <span style="font-weight: 400;"><span>If you have questions regarding the Android SDK and want to explore some basic troubleshooting, please refer to&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037501952-Android-SDK-FAQ-and-Troubleshooting" target="_self" rel="undefined">this document</a><span>.</span></span>
-</p>
-<h2>Building the Android SDK</h2>
+<h2>How can I build the the Android SDK?</h2>
 <p>
   <span style="font-weight: 400;">If you need to customize our Android SDK to fit your needs, you may find it&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">&nbsp;among our Countly Github repositories as an Android Studio project. Modules included in the project are:</span>
 </p>
@@ -1999,7 +1996,7 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 <p>
   <span style="font-weight: 400;">There is a build step for the <code>sdk-native</code></span><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in <code>sdk-native/src/cpp_precompilation</code></span><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in <code>sdk-native/src/main/jniLibs/</code></span><span style="font-weight: 400;">&nbsp;that are externally built.</span>
 </p>
-<h2>Supporting other operating systems</h2>
+<h2>Which operating systems are supported?</h2>
 <p>
   Our Android SDK should be able support Android based operating systems without
   issues. It should also work without any major issues on devices that don't have

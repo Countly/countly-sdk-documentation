@@ -3496,7 +3496,9 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 <p>
   <span style="font-weight: 400;">The Countly iOS SDK reports consent changes to the Countly Server, so that the Countly Server can make preparations, or clean-up on the server side as well.</span>
 </p>
-<h1>FAQ and Troubleshooting</h1>
+<h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
+  <span>Frequently Asked Questions</span>
+</h1>
 <p>
   This section highlights the most frequently asked questions and any troubleshooting
   queries you may face while integrating the Countly iOS SDK into your iOS, watchOS,
@@ -3622,8 +3624,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   <span class="wysiwyg-color-black">How is Countly affected by Apple's App Tracking Transparency changes?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">As Countly is not and has never been doing any tracking, it is not affected by Apple's App Tracking Transparency changes.
-  </span>
+  <span class="wysiwyg-color-black">As Countly is not and has never been doing any tracking, it is not affected by Apple's App Tracking Transparency changes. </span>
 </p>
 <p>
   <span class="wysiwyg-color-black">Definition of "tracking" by Apple's User Privacy and Data Use guidelines:</span>

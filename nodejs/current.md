@@ -2,18 +2,6 @@
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
   device or server, like tracking your API.
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">npm</span>
-    <span class="tabs-link">yarn</span>
-  </div>
-  <div class="tab">
-    <pre><code class="shell">npm install countly-sdk-nodejs</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">yarn add countly-sdk-nodejs</code></pre>
-  </div>
-</div>
 <p>
   Before starting, for those who have examined our mobile SDKs - we can tell that
   events or tags that are used in mobile SDKs are quite similar to those we use
@@ -37,6 +25,21 @@
   <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
 </div>
 <h1>Setting up</h1>
+<p>
+  To add the SDK to your project, you would use a command similar to these:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">npm</span>
+    <span class="tabs-link">yarn</span>
+  </div>
+  <div class="tab">
+    <pre><code class="shell">npm install countly-sdk-nodejs</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="shell">yarn add countly-sdk-nodejs</code></pre>
+  </div>
+</div>
 <p>Example setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 

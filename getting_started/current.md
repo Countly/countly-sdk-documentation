@@ -1,7 +1,6 @@
 <p>
   Countly provides various functionality in different SDKs targeted for mobile,
-  web, desktop, server to server and IoT use cases. For a feature comparison in
-  all SDKs,
+  web, desktop, server to server use cases. For a feature comparison in all SDKs,
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
 </p>
 <p>
@@ -19,9 +18,9 @@
   ids Countly Server receives requests from. Similarly, users list in
   <a href="/hc/en-us/articles/360037630571" target="_blank" rel="noopener">User Profiles</a>
   section is a list of anonymous devices Countly Server is receiving data from.
-  All data originating from a single device, including sessions, events, views,
-  crashes, is grouped under these individual profiles since all the data is tagged
-  with the originating device id.
+  All data originating from a single device, including sessions, events, views
+  and crashes, is grouped under these individual profiles since all the data is
+  tagged with the originating device id.
 </p>
 <p>
   Most Countly SDKs including,
@@ -156,23 +155,27 @@
   these event segments will be available for use cases such as;
 </p>
 <ul>
-  <li>Filter events where Route Type = Eco using Drill</li>
   <li>
-    Construct 3 different funnels where final step is the Journey event in all
-    but filtered to be Route Type = Eco, Route Type = Fastest and Route Type
-    = Shortest
+    Filter events where <strong>Route Type = Eco</strong> using Drill
   </li>
   <li>
-    Create a behavioral cohort of users who did have a Journey with Route Type
-    = Eco at least 2 times in the last 30 days (these are our eco friendly personas
-    which we can target using
+    Construct 3 different funnels where final step is the Journey event in all
+    but filtered to be <strong>Route Type = Eco</strong>,
+    <strong>Route Type = Fastest</strong> and
+    <strong>Route Type = Shortest</strong>
+  </li>
+  <li>
+    Create a behavioral cohort of users who did have a Journey with
+    <strong>Route Type = Eco</strong> at least 2 times in the last 30 days (these
+    are our eco friendly personas which we can target using
     <a href="/hc/en-us/articles/360037270492" target="_blank" rel="noopener">remote config</a>
     and
     <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications#sending-automated-push-notifications" target="_blank" rel="noopener">automated push notifications</a>)
   </li>
   <li>
     Construct 2 formulas in which you calculate average kilometers driven per
-    journey for Route Type = Shortest and Route Type = Fastest
+    journey for <strong>Route Type = Shortest</strong> and
+    <strong>Route Type = Fastest</strong>
   </li>
 </ul>
 <p>

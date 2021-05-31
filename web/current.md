@@ -899,7 +899,6 @@ Countly.collect_from_forms(document, true);</code></pre>
   
 &lt;/form&gt;</code></pre>
 <h2>Collect user data from Facebook</h2>
-<p>&nbsp;</p>
 <p>
   <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
 </p>
