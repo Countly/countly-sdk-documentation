@@ -8,8 +8,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 20.11.1 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/900007764903" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -19,7 +19,7 @@
 </p>
 <ol>
   <li>Scripting version is based on .NET 4.x equivalent</li>
-  <li>API Compatibility Level is based on .NET 4.x</li>
+  <li>API Compatibility Level is based on .NET 4.x equivalent</li>
   <li>SDK is tested on IOS, Android, Windows, UWP, and Mac OSX</li>
 </ol>
 <p>
@@ -188,9 +188,9 @@
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
-<h1>Custom events</h1>
+<h1>Events</h1>
 <p>
-  <span style="font-weight: 400;">A&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">custom event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
+  <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
 <p>
   The Unity SDK helps record as many events as you want (you can set a threshold
@@ -199,8 +199,8 @@
   up to 100 events. However, this is also configurable.
 </p>
 <p>
-  In the SDK, all custom event-related functionalities can be browsed from the
-  returned interface on:
+  In the SDK, all event-related functionalities can be browsed from the returned
+  interface on:
 </p>
 <pre>countly.Events.</pre>
 <p>
@@ -288,11 +288,11 @@
 
 <strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);<br></code></pre>
 <p>
-  <span style="font-weight: 400;">These are only a few examples of what you can do with Custom Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
+  <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
 <h2>Timed events</h2>
 <p>
-  <span style="font-weight: 400;">Currently, SDK doesn't have any direct mechanism to record timed events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
+  <span style="font-weight: 400;">Currently, SDK doesn't have any direct mechanism to record timed Events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Example:</span>
@@ -309,7 +309,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h1>Sessions</h1>
 <h2>
-  <span style="font-weight: 400;">&nbsp;Automatic session tracking&nbsp;</span>
+  <span style="font-weight: 400;">Automatic session tracking&nbsp;</span>
 </h2>
 <p>
   The Unity SDK handles the session automatically. After calling the
@@ -322,6 +322,24 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   into the background. A session would be started again when the app comes to the
   foreground.
 </p>
+<h3>
+  <span style="font-weight: 400;">Disable automatic session tracking&nbsp;</span>
+</h3>
+<p>
+  <span>You might want to disable automatic session tracking. To do so, use the following code snippet before</span><span> init call.<br></span>
+</p>
+<pre>config.DisableAutomaticSessionTracking();</pre>
+<p>
+  Note that after disabling session tracking, the following things would happen:
+</p>
+<ul>
+  <li class="p-rich_text_section">Session information would not be recorded&nbsp;</li>
+  <li class="p-rich_text_section">Device metrics would not be recorded</li>
+  <li class="p-rich_text_section">
+    On dashboard location map would not be updated and, overview and analytics
+    session related to sessions and users would all be empty
+  </li>
+</ul>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
 <p>
@@ -813,8 +831,8 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   and how long users use your app
 </p>
 <p>
-  *<span> </span><code>Events</code><span>&nbsp;</span>- allow sending custom events
-  to the server
+  *<span> </span><code>Events</code><span>&nbsp;</span>- allow sending events to
+  the server
 </p>
 <p>
   *<span> </span><code>Views</code><span>&nbsp;</span>- allow the tracking of which
@@ -1027,5 +1045,5 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>- If there is a network connection<br>- If the app is in the background<br>- How long has the application been running<br></span>
 </p>
 <p>
-  <span>Any other information like data in custom events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
+  <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
 </p>
