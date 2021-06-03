@@ -8,8 +8,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 20.11.1 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/900007764903" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
