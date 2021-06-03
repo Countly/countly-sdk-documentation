@@ -337,7 +337,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <li class="p-rich_text_section">Device metrics would not be recorded</li>
   <li class="p-rich_text_section">
     On dashboard location map would not be updated and, overview and analytics
-    sections related to sessions and users would all be empty
+    session related to sessions and users would all be empty
   </li>
 </ul>
 <h1>View tracking</h1>
