@@ -505,17 +505,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
 lastMsTs = 0;
 
 function getUniqueMsTimestamp(){
-	//get current timestamp in miliseconds
-	ts = getMsTimestamp();
+  //get current timestamp in miliseconds
+  ts = getMsTimestamp();
   
   //if last used timestamp is equal or greater
   if(lastMsTs &gt;= ts){
-  	//increase last used
+    //increase last used
     lastMsTs++;
   }
   else{
-  	//store current timestamp as last used
-  	lastMsTs = ts;
+    //store current timestamp as last used
+    lastMsTs = ts;
   }
   //return timestamp
   return lastMsTs;
@@ -834,8 +834,9 @@ function getUniqueMsTimestamp(){
   first "begin_session" request and cached internally. Location values set after
   init but before the first begin session request would overwrite the values set
   in init and should be sent with the first begin_session request. If there is
-  no session consent, location values set in init should be sent as a separate
-  request that contains only location values.
+  no session consent or automatic session recording is disabled, location values
+  set in init should be sent as a separate request that contains only location
+  values and they should be cached internally.
 </p>
 <p>
   If during init location tracking is disabled and session consent is not given,
