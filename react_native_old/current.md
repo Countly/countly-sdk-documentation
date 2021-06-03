@@ -142,9 +142,9 @@ Countly.init("https://try.count.ly","app_key","deviceId")
   you provide a deviceID, then it will take that as DeviceId. For example, you
   can use hashed value of user's email as a deviceID.
 </p>
-<h1>Sending custom events</h1>
+<h1>Sending events</h1>
 <p>
-  You can send custom events with segmentations using following examples.
+  You can send events with segmentations using following examples.
 </p>
 <p>Example for sending a basic event:</p>
 <pre><code class="javascript">var event = {"key":"basic_event","count":1};
@@ -226,7 +226,7 @@ react-native link react-native-firebase</code></pre>
 <pre><code class="java">dependencies {
     ...
     //These should be already present in your gradle file.
-  	implementation project(':react-native-firebase')
+    implementation project(':react-native-firebase')
     
     //Add these lines
     implementation "com.google.android.gms:play-services-base:16.0.1"

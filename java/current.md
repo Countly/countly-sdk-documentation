@@ -8,11 +8,17 @@
 </p>
 <h1>Adding SDK as a dependency</h1>
 <p>
-  SDK is hosted on bintray, more info can be found
-  <a href="https://bintray.com/beta/#/countly/maven/java?tab=overview">here</a>.
-  To add it, you first have to add Bintray Maven repository "https://dl.bintray.com/countly/maven".
+  SDK is hosted on MavenCentral, more info can be found
+  <a href="https://search.maven.org/artifact/ly.count.sdk/java" target="_self" rel="undefined">here</a>
+  and
+  <a href="https://search.maven.org/artifact/ly.count.sdk/core" target="_self">here</a>.
+  To add it, you first have to add the MavenCentral repository. For gradle you
+  would do it something like this:
 </p>
+<pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
+<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:19.09-sdk2-rc"<br></span><span>}</span></pre>
+<p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
 	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
 	&lt;artifactId&gt;java&lt;/artifactId&gt;
@@ -57,7 +63,7 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <h1>Recording first event</h1>
-<p>Now let's record our first custom event:</p>
+<p>Now let's record our first event:</p>
 <pre><code class="java">Countly.getSession().event("dummy").setCount(2).record();</code></pre>
 <p>
   Countly will record an event with a key <code>purchase-btn</code> with sum of

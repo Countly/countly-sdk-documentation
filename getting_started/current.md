@@ -1,7 +1,6 @@
 <p>
   Countly provides various functionality in different SDKs targeted for mobile,
-  web, desktop, server to server and IoT use cases. For a feature comparison in
-  all SDKs,
+  web, desktop, server to server use cases. For a feature comparison in all SDKs,
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
 </p>
 <p>
@@ -19,9 +18,9 @@
   ids Countly Server receives requests from. Similarly, users list in
   <a href="/hc/en-us/articles/360037630571" target="_blank" rel="noopener">User Profiles</a>
   section is a list of anonymous devices Countly Server is receiving data from.
-  All data originating from a single device, including sessions, events, views,
-  crashes, is grouped under these individual profiles since all the data is tagged
-  with the originating device id.
+  All data originating from a single device, including sessions, events, views
+  and crashes, is grouped under these individual profiles since all the data is
+  tagged with the originating device id.
 </p>
 <p>
   Most Countly SDKs including,
@@ -75,8 +74,10 @@
   <strong>Basic</strong> or&nbsp;<strong>Premium</strong> to later on filter &amp;
   segment all reports based on the account type of your customers.
 </p>
-<h1>Custom events</h1>
-<p>A custom event generally represents one of the following:</p>
+<h1>Events</h1>
+<p>
+  An "event" in Countly generally represents one of the following:
+</p>
 <ul>
   <li>
     An action of the user such as an interaction with a single UI element, or
@@ -92,21 +93,21 @@
   </li>
 </ul>
 <p>
-  It is important to note that custom events aren't designed to only track simple
-  user interactions such as "user clicked this button". The way you define custom
-  events in your app determines the depth of insights you can get from Countly.
-  Tracking everything you possibly can or tracking very little are equally bad.
-  An ideal strategy is collecting the needs of various departments in your organization
+  It is important to note that events aren't designed to only track simple user
+  interactions such as "user clicked this button". The way you define events in
+  your app determines the depth of insights you can get from Countly. Tracking
+  everything you possibly can or tracking very little are equally bad. An ideal
+  strategy is collecting the needs of various departments in your organization
   that'll take advantage of Countly. As a common example;
 </p>
 <ul>
   <li>
-    Product team will want to check feature usage, they'll need multiple custom
-    events that show how users interact with various application features
+    Product team will want to check feature usage, they'll need multiple events
+    that show how users interact with various application features
   </li>
   <li>
     Customer experience &amp; success team will want to understand paths users
-    go through (such as during on-boarding) and get stuck in, and will need custom
+    go through (such as during on-boarding) and get stuck in, and will need customized
     events as milestone indicators
   </li>
   <li>
@@ -116,8 +117,8 @@
   </li>
   <li>
     CXOs and managers will want to see higher level metrics or KPIs, thus this
-    higher level data should exist either as dedicated custom events or individual
-    ones to be used while constructing complex metrics using
+    higher level data should exist either as dedicated events or individual ones
+    to be used while constructing complex metrics using
     <a href="/hc/en-us/articles/360037639931" target="_blank" rel="noopener">Formulas</a>
   </li>
 </ul>
@@ -133,43 +134,48 @@
 </p>
 <pre><span>{<br>   "key": "Journey",<br>   "count": 1,<br>   "sum": 100,<br>   "dur": 3600,<br>   "segmentation": {<br>      "Route Type": "Fastest"<br>   }<br>}</span></pre>
 <p>
-  Now let's dive into custom event segments and strategies you can follow.
+  Now let's dive into event segments and strategies you can follow.
 </p>
-<h1>Deciding on custom event segments</h1>
+<h1>Deciding on event segments</h1>
 <p>
-  Segments are properties that add further detail and meaning to a custom event.
-  Segments are important since most of the time you aren't only interested in how
-  many times some general action happened but also will have the need to dig deeper,
-  filter certain cases or group occurrences by different nuances of the action.
+  Segments are properties that add further detail and meaning to an event. Segments
+  are important since most of the time you aren't only interested in how many times
+  some general action happened but also will have the need to dig deeper, filter
+  certain cases or group occurrences by different nuances of the action.
 </p>
 <p>
-  From our custom event sample in the above section, thanks to the Route Type event
-  segment, you can not only see overall journeys taking place, but also see how
-  many of the journeys were planned with a fastest, shortest or eco route types
-  offered in the app. Furthermore, in plugins like&nbsp;<a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
+  From our event sample in the above section, thanks to the Route Type event segment,
+  you can not only see overall journeys taking place, but also see how many of
+  the journeys were planned with a fastest, shortest or eco route types offered
+  in the app. Furthermore, in plugins like
+  <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
   <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>&nbsp;and
   <a href="/hc/en-us/articles/360037639931" target="_blank" rel="noopener">Formulas</a>
   these event segments will be available for use cases such as;
 </p>
 <ul>
-  <li>Filter events where Route Type = Eco using Drill</li>
   <li>
-    Construct 3 different funnels where final step is the Journey event in all
-    but filtered to be Route Type = Eco, Route Type = Fastest and Route Type
-    = Shortest
+    Filter events where <strong>Route Type = Eco</strong> using Drill
   </li>
   <li>
-    Create a behavioral cohort of users who did have a Journey with Route Type
-    = Eco at least 2 times in the last 30 days (these are our eco friendly personas
-    which we can target using
+    Construct 3 different funnels where final step is the Journey event in all
+    but filtered to be <strong>Route Type = Eco</strong>,
+    <strong>Route Type = Fastest</strong> and
+    <strong>Route Type = Shortest</strong>
+  </li>
+  <li>
+    Create a behavioral cohort of users who did have a Journey with
+    <strong>Route Type = Eco</strong> at least 2 times in the last 30 days (these
+    are our eco friendly personas which we can target using
     <a href="/hc/en-us/articles/360037270492" target="_blank" rel="noopener">remote config</a>
     and
     <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications#sending-automated-push-notifications" target="_blank" rel="noopener">automated push notifications</a>)
   </li>
   <li>
     Construct 2 formulas in which you calculate average kilometers driven per
-    journey for Route Type = Shortest and Route Type = Fastest
+    journey for <strong>Route Type = Shortest</strong> and
+    <strong>Route Type = Fastest</strong>
   </li>
 </ul>
 <p>
