@@ -329,6 +329,17 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>You might want to disable automatic session tracking. To do so, use the following code snippet before</span><span> init call.<br></span>
 </p>
 <pre>config.DisableAutomaticSessionTracking();</pre>
+<p>
+  Note that after disabling session tracking, the following things would happen:
+</p>
+<ul>
+  <li class="p-rich_text_section">Session information would not be recorded&nbsp;</li>
+  <li class="p-rich_text_section">Device metrics would not be recorded</li>
+  <li class="p-rich_text_section">
+    On dashboard location map would not be updated and, overview and analytics
+    sections related to sessions and users would all be empty
+  </li>
+</ul>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
 <p>
