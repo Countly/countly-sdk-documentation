@@ -19,7 +19,7 @@
 </p>
 <ol>
   <li>Scripting version is based on .NET 4.x equivalent</li>
-  <li>API Compatibility Level is based on .NET Standard 2.0</li>
+  <li>API Compatibility Level is based on .NET 4.x equivalent</li>
   <li>SDK is tested on IOS, Android, Windows, UWP, and Mac OSX</li>
 </ol>
 <p>
