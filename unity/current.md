@@ -292,7 +292,7 @@
 </p>
 <h2>Timed events</h2>
 <p>
-  <span style="font-weight: 400;">Currently, SDK doesn't have any direct mechanism to record Events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
+  <span style="font-weight: 400;">Currently, SDK doesn't have any direct mechanism to record timed Events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Example:</span>
