@@ -205,7 +205,7 @@
   <span style="font-weight: 400;">Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span>
+  <span style="font-weight: 400;">If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span style="font-weight: 400;"></span>
 </p>
 <h1>Request queue</h1>
 <p>
@@ -1450,3 +1450,78 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     when there is no session consent)
   </li>
 </ol>
+<h2>SDK internal limits</h2>
+<p>The SDK should have the following limits:</p>
+<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+  <li data-stringify-indent="0">
+    "<strong data-stringify-type="bold">maxKeyLength</strong>" - 128 chars
+  </li>
+</ul>
+<p>
+  <span>Limits the maximum size of all string keys.</span><br>
+  <span>"Keys" include:</span><br>
+  <span>&nbsp;- event names</span><br>
+  <span>&nbsp;- view names</span><br>
+  <span>&nbsp;- custom trace key name (APM)</span><br>
+  <span>&nbsp;- custom metric key (apm)</span><br>
+  <span>&nbsp;- segmentation key (for all features)</span><br>
+  <span>&nbsp;- custom user property</span>
+</p>
+<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+  <li data-stringify-indent="0">
+    "<strong data-stringify-type="bold">maxValueSize</strong>" - 256 chars
+  </li>
+</ul>
+<p>
+  <span>Limits the size of all values in our key-value pairs.</span><br>
+  <span>"Value" fields include:</span><br>
+  <span>&nbsp;- segmentation value in case of strings (for all features)</span><br>
+  <span>&nbsp;- custom user property string value</span><br>
+  <span>&nbsp;- breadcrumb text</span><br>
+  <span>&nbsp;- manual feedback widget reporting fields (reported as event)</span><br>
+  <span>&nbsp;- rating widget response (reported as event)</span>
+</p>
+<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+  <li data-stringify-indent="0">
+    "<strong data-stringify-type="bold">maxSegmentationValues</strong>" - 30
+    dev entries
+  </li>
+</ul>
+<p>
+  <span>Max amount of custom (dev provided) segmentation in one event</span>
+</p>
+<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+  <li data-stringify-indent="0">
+    "<strong data-stringify-type="bold">maxBreadcrumbCount</strong>" - 100 entries
+  </li>
+</ul>
+<p>
+  <span>Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted</span>
+</p>
+<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+  <li data-stringify-indent="0">
+    "<strong data-stringify-type="bold">maxStackTraceLinesPerThread</strong>"
+    - default value of 30
+  </li>
+</ul>
+<p>
+  <span>limits how many stack trace lines would be recorded per thread</span>
+</p>
+<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+  <li data-stringify-indent="0">
+    "<strong data-stringify-type="bold">maxStackTraceLineLength</strong>" - default
+    value of 200
+  </li>
+</ul>
+<p>
+  <span>limits how many characters are allowed per stack trace line. This limits also the crash message length</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  <span>In addition to those 2 exposed tweakable crash related values, there would also be an internal one for "maxStackTraceThreadCount". Which would limit the maximum amount of recorded threads with a default of 30. This would be mostly just a sanity check thing as that has to be capped in some way.<span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>In cases where stack traces can be provided as string, the maximum line count would therefore be 30*30 = 900. That string would have to be split into lines and then checked accordingly.</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  Crash information like PLC crashes for iOS and native Android crashes do not
+  have any limits applied to them.
+</p>
