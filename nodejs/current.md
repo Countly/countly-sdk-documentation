@@ -2,24 +2,12 @@
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
   device or server, like tracking your API.
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">npm</span>
-    <span class="tabs-link">yarn</span>
-  </div>
-  <div class="tab">
-    <pre><code class="shell">npm install countly-sdk-nodejs</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">yarn add countly-sdk-nodejs</code></pre>
-  </div>
-</div>
 <p>
   Before starting, for those who have examined our mobile SDKs - we can tell that
-  custom events or tags that are used in mobile SDKs are quite similar to those
-  we use in Javascript code. For example, it's possible to modify custom property
-  values of user details, with modification commands like inc, mul, max, or min.
-  Likewise, any custom events can be sent with segmentation easily.
+  events or tags that are used in mobile SDKs are quite similar to those we use
+  in Javascript code. For example, it's possible to modify custom property values
+  of user details, with modification commands like inc, mul, max, or min. Likewise,
+  any event can be sent with segmentation easily.
 </p>
 <div class="callout callout--info">
   <h3 class="callout__title">What is an APP KEY?</h3>
@@ -37,6 +25,21 @@
   <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
 </div>
 <h1>Setting up</h1>
+<p>
+  To add the SDK to your project, you would use a command similar to these:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">npm</span>
+    <span class="tabs-link">yarn</span>
+  </div>
+  <div class="tab">
+    <pre><code class="shell">npm install countly-sdk-nodejs</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="shell">yarn add countly-sdk-nodejs</code></pre>
+  </div>
+</div>
 <p>Example setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
@@ -63,7 +66,7 @@ Countly.begin_session();</code></pre>
     <a href="https://IP">https://IP</a> (if SSL is setup).
   </p>
 </div>
-<p>Now you can make custom event calls like:</p>
+<p>Now you can make event calls like:</p>
 <pre><code class="javascript">Countly.add_event({
     "key": "in_app_purchase",
     "count": 3,
@@ -220,37 +223,37 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   <a href="http://resources.count.ly/docs/i">API reference</a>
 </p>
 <pre><code class="javascript">Countly.request({
-	app_key:"somekey", 
+  app_key:"somekey", 
   devide_id:"someid", 
   events:"[{'key':'val','count':1}]", 
   metrics:"{'_os':'Linux'}",
   begin_session:1
 });</code></pre>
-<h1>Custom Events</h1>
+<h1>Events</h1>
 <h3>Adding an event</h3>
 <p>
-  Custom event is a way to track any custom actions or other data you want to track
+  An event is a way to track any custom actions or other data you want to track
   from your website. You can also provide segments to be able to view breakdown
   of action by provided segment values.
 </p>
 <p>
-  Custom event consists of Javascript object with keys: * key - the name of the
-  event (mandatory) * count - number of events (default: 1) * sum - sum to report
-  with event (optional) * dur - duration to report with event (optional) * segmentation
+  An event consists of Javascript object with keys: * key - the name of the event
+  (mandatory) * count - number of events (default: 1) * sum - sum to report with
+  event (optional) * dur - duration to report with event (optional) * segmentation
   - an object with key/value pairs to report with event as segments
 </p>
 <p>
-  Here is an example of adding a custom event with all possible properties:
+  Here is an example of adding an event with all possible properties:
 </p>
 <pre><code class="javascript">Countly.add_event({
-	"key": "click",
+  "key": "click",
   "count": 1,
   "sum": 1.5,
   "dur": 30,
-	"segmentation": {
+  "segmentation": {
     "key1": "value1",
     "key2": "value2"
-	}
+  }
 });</code></pre>
 <div class="callout callout--warning">
   <h3 class="callout__title">Data passed should be in UTF-8</h3>
@@ -281,13 +284,13 @@ Countly.end_event("timedEvent")
 
 //or end event with additional data
 Countly.end_event({
-	"key": "timedEvent",
+  "key": "timedEvent",
   "count": 1,
   "sum": 1.5,
-	"segmentation": {
+  "segmentation": {
     "key1": "value1",
     "key2": "value2"
-	}
+  }
 });</code></pre>
 <h1>User Profiles and Custom data</h1>
 <h3>User details</h3>
@@ -345,8 +348,8 @@ Countly.userData.save() //send userData to server</code></pre>
   reports, by providing an object with key/values to add to error reports.
 </p>
 <pre><code class="javascript">Countly.track_errors({
-	"facebook_sdk": "2.3",
-	"jquery": "1.8"
+  "facebook_sdk": "2.3",
+  "jquery": "1.8"
 })</code></pre>
 <p>
   Apart from reporting unhandled errors automatically, you can also report handled
@@ -359,10 +362,10 @@ Countly.userData.save() //send userData to server</code></pre>
   <strong>Countly.log_error(error, segments);</strong>
 </p>
 <pre><code class="javascript">try{
-	//do something here
+  //do something here
 }
 catch(ex){
-	//report error to Countly
+  //report error to Countly
   Countly.log_error(ex);
 }</code></pre>
 <p>

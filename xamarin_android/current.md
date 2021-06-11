@@ -44,7 +44,7 @@
   URL or it won't work. Starting from the version 16.12.03, the SDK will erase
   the trailing "/" and write a warning to the log.
 </p>
-<pre><code class="csharp">Countly.SharedInstance().Init(this, "https://YOUR_SERVER", "YOUR_APP_KEY");	</code></pre>
+<pre><code class="csharp">Countly.SharedInstance().Init(this, "https://YOUR_SERVER", "YOUR_APP_KEY"); </code></pre>
 <div class="callout callout--info">
   <h3 class="callout__title">Which server/host should I use inside SDK?</h3>
   <p>
@@ -70,7 +70,7 @@
 </p>
 <pre><code class="csharp">Countly.SharedInstance().Init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", null, DeviceId.Type.AdvertisingId);</code></pre>
 <p>Or, you can use OpenUDID:</p>
-<pre><code class="csharp">Countly.SharedInstance().Init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", null, DeviceId.Type.OpenUdid);	</code></pre>
+<pre><code class="csharp">Countly.SharedInstance().Init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", null, DeviceId.Type.OpenUdid); </code></pre>
 <p>
   For all of those different approaches,
   <code>Countly.SharedInstance().Init(...)</code> method should be called from
@@ -201,10 +201,10 @@ Countly.SharedInstance().HttpPostForced = false;
   <strong>Note:</strong> Make sure you use App Key (found under Management -&gt;
   Applications) and not API Key. Entering API Key will not work.
 </p>
-<h1>Setting up custom events</h1>
+<h1>Setting up events</h1>
 <p>
-  A <a href="http://resources.count.ly/docs/custom-events">custom event</a> is
-  any type of action that you can send to a Countly instance, e.g purchase, settings
+  An<a href="http://resources.count.ly/docs/custom-events">&nbsp;event</a> is any
+  type of action that you can send to a Countly instance, e.g purchase, settings
   changed, view enabled and so. This way it's possible to get much more information
   from your application compared to what is sent from Android SDK to Countly instance
   by default.
@@ -265,9 +265,9 @@ segmentation.put("app_version", "1.0");
 
 Countly.SharedInstance().RecordEvent("purchase", segmentation, 1, 0.99, 60);</code></pre>
 <p>
-  Those are only a few examples with what you can do with custom events. You can
-  extend those examples and use country, app_version, game_level, time_of_day and
-  any other segmentation that will provide you valuable insights.
+  Those are only a few examples with what you can do with events. You can extend
+  those examples and use country, app_version, game_level, time_of_day and any
+  other segmentation that will provide you valuable insights.
 </p>
 <h1>Timed events</h1>
 <p>
@@ -357,9 +357,9 @@ Countly.SharedInstance().DisableLocation();</code></pre>
   tag.
 </p>
 <pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
-	&lt;intent-filter&gt;
-		&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-	&lt;/intent-filter&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+  &lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
   Note that modifying <strong>AndroidManifest.xml</strong> file is the only thing
@@ -459,11 +459,11 @@ Countly.SharedInstance().SetStarRatingDisableAskingForEachAppVersion(false);</co
   implement the methods OnRating and OnDismiss as per need.
 </p>
 <pre><code class="csharp">public void OnRate(int rating) {
-    	//the user rated the app
+      //the user rated the app
     }
 
         public void OnDismiss() {
-    	//the star rating dialog was dismissed
+      //the star rating dialog was dismissed
     }</code></pre>
 <p>Take an instance of it in your Activity file.</p>
 <pre><code class="csharp">CountlyStarRating.RatingCallback callback = new CountlyStarRating.RatingCallback();
@@ -640,9 +640,9 @@ Countly.UserData.Save();</code></pre>
 </p>
 <p>
   The current features are: * <code>sessions</code> - tracking when, how often
-  and how long users use your app * <code>events</code> - allow sending custom
-  events to the server * <code>views</code> - allow tracking which views user visits
-  * <code>location</code> - allow sending location information *
+  and how long users use your app * <code>events</code> - allow sending events
+  to the server * <code>views</code> - allow tracking which views user visits *
+  <code>location</code> - allow sending location information *
   <code>crashes</code> - allow tracking crashes, exceptions and errors *
   <code>attribution</code> - allow tracking from which campaign did user come *
   <code>users</code> - allow collecting/providing user information, including custom
