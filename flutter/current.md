@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 20.11.0<br>Countly is an open source SDK, you can take a look at our SDK code in the <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
+  and it applies to version 20.11.0<span style="font-weight: 400;"><br>Countly is an open source SDK, you can take a look at our SDK code in the <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a></span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -48,7 +48,7 @@ flutter run</code></pre>
 <pre><code class="shell">flutter pub get</code></pre>
 <h1>SDK Integration</h1>
 <h2>
-  Minimal setup
+  Minimal setup<span style="font-weight: 400;"></span>
 </h2>
 <p>
   The shortest way to initiate the SDK if you want Countly SDK to take care of
@@ -238,20 +238,20 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 </p>
 <ul>
   <li>
-    <code>key</code> identifies the event
+    <code>key</code><span>&nbsp;</span>identifies the event
   </li>
   <li>
-    <code>count</code> is the number of times this event occurred
+    <code>count</code><span>&nbsp;</span>is the number of times this event occurred
   </li>
   <li>
-    <code>sum</code> is an overall numerical data set tied to an event. For example, total amount of in-app purchase event.
+    <span><code>sum</code> is an overall numerical data set tied to an event</span><span>. For example, total amount of in-app purchase event.</span>
   </li>
   <li>
     <code class="JavaScript">duration</code> is used to record and track the
     duration of events.
   </li>
   <li>
-    <code>segmentation</code> is a key-value pairs, we can use <code>segmentation</code> to track additional information.
+    <span><code>segmentation</code> is a key-value pairs, we can use <code>segmentation</code> to track additional information.</span>
   </li>
 </ul>
 <div class="callout callout--info">
@@ -272,11 +272,11 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
     Usage 1: how many times a <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times <strong>purchase</strong> event occurred + the total
-    amount of those purchases.
+    Usage 2: how many times a <strong>purchase</strong> event occurred + the
+    total amount of those purchases.
   </li>
   <li>
-    Usage 3: how many times <strong>purchase</strong> event occurred + which
+    Usage 3: how many times a <strong>purchase</strong> event occurred + which
     countries and application versions those purchases were made from.
   </li>
   <li>
@@ -359,14 +359,15 @@ Countly.recordEvent(event);
 </code></pre>
 <h2>Timed events</h2>
 <p>
+  <span>It's possible to create timed events by defining a start and a stop moment</span>
+</p>
+<p>
   <span class="wysiwyg-font-size-large">1.Timed event with key</span>
 </p>
 <pre><code class="JavaScript">// Basic event
 Countly.startEvent("Timed Event");
-Timer timer;
-timer = new Timer(new Duration(seconds: 5), () {
+Timer timer = Timer(new Duration(seconds: 5), () {
     Countly.endEvent({ "key": "Timed Event" });
-    timer.cancel();
 });
 </code></pre>
 <p>
@@ -374,10 +375,8 @@ timer = new Timer(new Duration(seconds: 5), () {
 </p>
 <pre><code class="JavaScript">// Event with sum
 Countly.startEvent("Timed Event With Sum");
-Timer timer;
-timer = new Timer(new Duration(seconds: 5), () {
+Timer timer = Timer(new Duration(seconds: 5), () {
     Countly.endEvent({ "key": "Timed Event With Sum", "sum": "0.99" });
-    timer.cancel();
 });
 </code></pre>
 <p>
@@ -385,8 +384,7 @@ timer = new Timer(new Duration(seconds: 5), () {
 </p>
 <pre><code class="JavaScript">// Event with segment
 Countly.startEvent("Timed Event With Segment");
-Timer timer;
-timer = new Timer(new Duration(seconds: 5), () {
+Timer timer = Timer(new Duration(seconds: 5), () {
     var event = {
         "key": "Timed Event With Segment",
         "count": 1,
@@ -396,15 +394,13 @@ timer = new Timer(new Duration(seconds: 5), () {
       	"Age": "28"
     };
     Countly.endEvent(event);
-    timer.cancel();
 });</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">4.Timed event with key, count, sum and segmentation</span>
 </p>
 <pre><code class="JavaScript">// Event with Segment, sum and count
 Countly.startEvent("Timed Event With Segment, Sum and Count");
-Timer timer;
-timer = new Timer(new Duration(seconds: 5), () {
+Timer timer = Timer(new Duration(seconds: 5), () {
     var event = {
         "key": "Timed Event With Segment, Sum and Count",
         "count": 1,
@@ -415,13 +411,30 @@ timer = new Timer(new Duration(seconds: 5), () {
         "Age": "28"
     };
     Countly.endEvent(event);
-    timer.cancel();
 });</code></pre>
 <h1>Sessions</h1>
-<p>To start recording a session you would start it with:</p>
+<h2>Automatic session tracking</h2>
+<p>
+  To start recording an automatic session tracking you would call:
+</p>
 <pre><code class="JavaScript">Countly.start();</code></pre>
 <p>
-  If you want to end recording the current session, you would call:
+  <span><code class="JavaScript">Countly.start();</code> will handle the start session, update session and end session automatically.<br>This is how it works:</span>
+</p>
+<ul>
+  <li>
+    <span><strong>Start/Begin session Request:</strong> It is sent on <code class="JavaScript">Countly.start();</code> call and when the app comes back to the foreground from the background, and it includes basic metrics.</span>
+  </li>
+  <li>
+    <strong>Update Session Request:</strong> It automatically sends a periodical
+    (60 sec by default) update session request while the app is in the foreground.
+  </li>
+  <li>
+    <span><strong>End Session Request:</strong> It is sent at the end of a session when the app goes to the background or terminates.</span>
+  </li>
+</ul>
+<p>
+  If you want to end automatic session tracking you would call:
 </p>
 <pre><code class="JavaScript">Countly.stop();</code></pre>
 <h1>View tracking</h1>
@@ -439,6 +452,22 @@ Countly.recordView("Dashboard");</code></pre>
 </p>
 <pre><code class="JavaScript">Map&lt;String, Object&gt; segments = {<br>  "Cats": 123,<br>  "Moons": 9.98,<br>  "Moose": "Deer"<br>};<br>Countly.recordView("HomePage", segments);</code></pre>
 <h1>Device ID management</h1>
+<p>
+  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id could be the username, email or some other internal ID used by your other systems.</span>
+</p>
+<h2>Device ID generation</h2>
+<p>
+  When the SDK is initialized for the first time with no device ID, then SDK will
+  generate a device ID.
+</p>
+<p>
+  <span>Here are the underlying mechanisms used to generate that value for some platforms:</span>
+</p>
+<p>
+  For iOS: the device ID generated by SDK is the Identifier For Vendor (IDFV)<br>
+  For Android: the device ID generated by SDK is the OpenUDID or Google Advertising
+  ID
+</p>
 <h2>Changing the Device ID</h2>
 <p>You may configure/change the device ID anytime using:</p>
 <pre><code class="JavaScript">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
@@ -481,6 +510,11 @@ Countly.recordView("Dashboard");</code></pre>
   which have been kept on hold until that point will start with the real device
   ID
 </p>
+<h2>Retrieving current device ID</h2>
+<p>
+  <span>You may want to see what device id Countly is assigning for the specific device. For that, you may use the following call:</span>
+</p>
+<pre><code class="JavaScript"><span>String currentDeviceId = </span>Countly.getCurrentDeviceId();</code></pre>
 <h1>Push notifications</h1>
 <h2>Android setup</h2>
 <p>
