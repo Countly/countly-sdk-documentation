@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 20.11.0<span style="font-weight: 400;"><br>Countly is an open source SDK, you can take a look at our SDK code in the <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a></span>
+  and it applies to version 20.11.0
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
