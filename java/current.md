@@ -2,17 +2,17 @@
   Java SDK shares a common core with an alternative Android SDK.
 </p>
 <p>
-  Process of setting up Countly Java SDK includes 2 simple steps: adding SDK as
-  dependency to your project and initializing SDK. Once those are done, you'll
+  The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
+  as a dependency to your project and initializing SDK. Once those are done, you'll
   have basic analytics on your server like users, sessions, devices, etc.
 </p>
-<h1>Adding SDK as a dependency</h1>
+<h1>Adding SDK to the project</h1>
 <p>
   SDK is hosted on MavenCentral, more info can be found
   <a href="https://search.maven.org/artifact/ly.count.sdk/java" target="_self" rel="undefined">here</a>
   and
   <a href="https://search.maven.org/artifact/ly.count.sdk/core" target="_self">here</a>.
-  To add it, you first have to add the MavenCentral repository. For gradle you
+  To add it, you first have to add the MavenCentral repository. For Gradle you
   would do it something like this:
 </p>
 <pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
@@ -20,16 +20,17 @@
 <pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:19.09-sdk2-rc"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
-	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
-	&lt;artifactId&gt;java&lt;/artifactId&gt;
-	&lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
-	&lt;type&gt;pom&lt;/type&gt;
+  &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
+  &lt;artifactId&gt;java&lt;/artifactId&gt;
+  &lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
+  &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
-<h1>Initializing the Java SDK</h1>
+<h1 class="anchor-heading">SDK Integration</h1>
+<h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
 <p>
   To start Countly SDK, you need to create a config class and pass it to the
-  <code>init</code> method. To that method you also pass the path where countly
-  can store it's things.
+  <code>init</code> method. To that method, you also pass the path where countly
+  can store its things.
 </p>
 <pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
                 .enableTestMode()
@@ -45,14 +46,14 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    Told SDK not to use https (note http:// in url) and to send data to Countly
+    Told SDK not to use HTTPS (note http:// in URL) and to send data to Countly
     server located at
     <a href="http://YOUR.SERVER.COM.">http://YOUR.SERVER.COM.</a> We also specified
-    app key (YOUR_APP_KEY).
+    the app key (YOUR_APP_KEY).
   </li>
   <li>
-    Enabled test mode (read - crash whenever in inconsistent state, don't forget
-    to disable it in Production!).
+    Enabled test mode (read - crash whenever in an inconsistent state, don't
+    forget to disable it in Production!).
   </li>
   <li>
     Set logging level to DEBUG to make sure everything works as expected.
@@ -62,13 +63,52 @@ Countly.init(targetFolder, config);</code></pre>
     random UUID string, as device id.
   </li>
 </ul>
-<h1>Recording first event</h1>
-<p>Now let's record our first event:</p>
-<pre><code class="java">Countly.getSession().event("dummy").setCount(2).record();</code></pre>
+<h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
 <p>
-  Countly will record an event with a key <code>purchase-btn</code> with sum of
-  10 and will eventually send it to our Countly server with next request. You can
-  also add segmentation, count and duration to an event.
+  <span>Also called "AppKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
+</p>
+<p>
+  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
+</p>
+<h3 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h3>
+<p>
+  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
+</p>
+<p>
+  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
+</p>
+<h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
+<p>
+  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
+</p>
+<p>
+  Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
+  the config object to enable logging:
+</p>
+<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
+                .enableTestMode()
+                .setLoggingLevel(Config.LoggingLevel.DEBUG)
+                .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+                .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
+<p>
+  Countly SDK stores serialized versions of the following classes:
+  <code>InternalConfig</code>, <code>SessionImpl</code>,
+  <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code> &amp;
+  <code>TimedEvents</code>. All those are stored in device memory, in binary form,
+  in separate files with filenames prefixed with <code>[CLY]_</code>.
+</p>
+<h2 id="sdk-notes" class="anchor-heading" tabindex="-1">SDK notes</h2>
+<h3>Test mode</h3>
+<p>
+  To ensure correct SDK behavior, please use
+  <code>Config.enableTestMode()</code> when your app is in development and testing.
+  In test mode, Countly SDK raises <code>RuntimeException</code>s whenever is in
+  an inconsistent state. Once you remove <code>Config.enableTestMode()</code> call
+  from your initialization sequence, SDK stops raising any
+  <code>Exception</code>s and switches to logging errors instead (if logging wasn't
+  specifically turned off). Without having test mode on during development you
+  may encounter some important issues with data consistency in production.
 </p>
 <h1>Modifying user profile</h1>
 <p>
@@ -82,8 +122,8 @@ Countly.init(targetFolder, config);</code></pre>
         .setPhone("+123456789")
         .commit();</code></pre>
 <p>
-  To set custom properties, call set(). To send modification operations, call corresponding
-  method:
+  To set custom properties, call set(). To send modification operations, call the
+  corresponding method:
 </p>
 <pre><code class="java">Countly.user(getApplicationContext()).edit()
         .set("mostFavoritePet", "dog")
@@ -91,95 +131,42 @@ Countly.init(targetFolder, config);</code></pre>
         .pushUnique("tags", "fan")
         .pushUnique("skill", "singer")
         .commit();</code></pre>
-<h1>Storage</h1>
-<p>
-  Countly SDK stores serialized versions of following classes:
-  <code>InternalConfig</code>, <code>SessionImpl</code>,
-  <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code> &amp;
-  <code>TimedEvents</code>. All those are stored in device memory, in binary form,
-  in separate files with filenames prefixed with <code>[CLY]_</code>.
-</p>
-<h1>Test mode</h1>
-<p>
-  To ensure correct SDK behaviour, please use
-  <code>Config.enableTestMode()</code> when you app is in development and testing.
-  In test mode Countly SDK raises <code>RuntimeException</code>s whenever is in
-  inconsistent state. Once you remove <code>Config.enableTestMode()</code> call
-  from your initialization sequence, SDK stops raising any
-  <code>Exception</code>s and switches to logging errors instead (if logging wasn't
-  specifically turned off). Without having test mode on during development you
-  may encounter some important issues with data consistency in production.
-</p>
-<h1>Authentication</h1>
-<p>
-  With no special steps performed, SDK will count any new app install (see note
-  above regarding device ID persistence) as new user. In some cases, like when
-  you have some kind of authentication system in your app, that's not what you
-  want. When actual person should be counted as one user in Countly irrespective
-  of number of app installs this user has and when you can provide user id to Countly
-  SDK, you should use <code>login</code> calls.
-</p>
-<h1>Sessions</h1>
-<p>
-  Session in Countly is a single app launch or several app launches if time between
-  them is less than 30 seconds (by default). Of course you can override this behaviour.
-</p>
-<p>
-  <code>Session</code> lifecycle methods include:
-</p>
-<ul>
-  <li>
-    session.begin() must be called when you want to send begin session request
-    to the server. This request contains all device metrics: device, model, carrier,
-    etc.
-  </li>
-  <li>
-    session.update() can be called to send a session duration update to the server
-    along with any events, user properties and any other data types supported
-    by Countly SDK. Called each Config.sendUpdateEachSeconds seconds in auto
-    session mode.
-  </li>
-  <li>
-    session.end() must be called to mark end of session. All the data recorded
-    since last session.update() or since session.begin() in case no updates have
-    been sent yet, is sent in this request as well.
-  </li>
-</ul>
 <h1>Events</h1>
 <p>
   Events in Countly represent some meaningful event user performed in your application
   within a <code>Session</code>. Please avoid recording everything like all taps
-  or clicks user performed. In case you do, it will be very hard to extract valuable
+  or clicks users performed. In case you do, it will be very hard to extract valuable
   information from generated analytics.
 </p>
 <p>
-  An <code>Event</code> object contains following data types:
+  An <code>Event</code> object contains the following data types:
 </p>
 <ul>
   <li>
-    <code>name</code>, or event key. Required. Unique string which identifies
+    <code>name</code>, or event key. Required. A unique string that identifies
     the event.
   </li>
   <li>
-    <code>count</code> - number of times. Required, 1 by default. Like number
-    of goods added to shopping basket.
+    <code>count</code> - number of times. Required, 1 by default. Like a number
+    of goods added to the shopping basket.
   </li>
   <li>
-    <code>sum</code> - sum of something, amount. Optional. Like total sum of
+    <code>sum</code> - sum of something, amount. Optional. Like a total sum of
     the basket.
   </li>
   <li>
     <code>dur</code> - duration of the event. Optional. For example how much
-    time user spent to checking out.
+    time users spent checking out.
   </li>
   <li>
     <code>segmentation</code> - some data associated with the event. Optional.
-    It's a Map&lt;String, String&gt; which can be filled with arbitary data like
-    {"category": "Pants", "size": "M"}.
+    It's a Map&lt;String, String&gt; which can be filled with arbitrary data
+    like {"category": "Pants", "size": "M"}.
   </li>
 </ul>
+<h2 id="recording-events" class="anchor-heading">Recording events</h2>
 <p>
-  Standard way of recording events is through your <code>Session</code> instance:
+  The standard way of recording events is through your <code>Session</code> instance:
 </p>
 <pre><code class="java">Countly.session().event('purchase')
                     .setCount(2)
@@ -188,13 +175,13 @@ Countly.init(targetFolder, config);</code></pre>
                     .addSegments("category", "pants", "size", "M")
                 .record();</code></pre>
 <p>
-  Please note last method in that call chain, <code>.record()</code> call is required
-  for event to be recorded.
+  Please note the last method in that call chain, <code>.record()</code> call is
+  required for the event to be recorded.
 </p>
 <p>
-  Example above results in new event being recorded in current session. Event won't
-  be sent to the server right away. Instead, Countly SDK will wait until one of
-  following happens:
+  The example above results in a new event being recorded in the current session.
+  The event won't be sent to the server right away. Instead, Countly SDK will wait
+  until one of the following happens:
 </p>
 <ul>
   <li>
@@ -206,34 +193,84 @@ Countly.init(targetFolder, config);</code></pre>
     not sent yet.
   </li>
   <li>
-    <code>Session.update()</code> have been called by developer.
+    <code>Session.update()</code> have been called by the developer.
   </li>
   <li>
-    <code>Session.end()</code> have been called by developer or by Countly SDK
-    in case of automatic session control.
+    <code>Session.end()</code> have been called by the developer or by Countly
+    SDK in case of automatic session control.
   </li>
 </ul>
-<h1>Timed events</h1>
 <p>
-  There is also special type of <code>Event</code> supported by Countly - timed
+  <span>We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span>&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
+</p>
+<ul>
+  <li>
+    Usage 1: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
+    occurred.
+  </li>
+  <li>
+    Usage 2: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
+    occurred + the total amount of those purchases.
+  </li>
+  <li>
+    Usage 3: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
+    occurred +<span>&nbsp;</span><span>from which countries and application versions those purchases were made.</span>
+  </li>
+  <li>
+    Usage 4: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
+    occurred +&nbsp;<span>the total amount, both of which are also available, segmented into countries and application versions.</span>
+  </li>
+  <li>
+    Usage 5: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
+    occurred +<span>&nbsp;</span><span>the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
+  </li>
+</ul>
+<h3 id="1-event-key-and-count" class="anchor-heading">1. Event key and count</h3>
+<pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).record();</code></pre>
+<h3 id="2-event-key-count-and-sum" class="anchor-heading">2. Event key, count, and sum</h3>
+<pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(20.3).record();</code></pre>
+<h3 id="3-event-key-and-count-with-segmentations" class="anchor-heading">3. Event key and count with segmentation(s)</h3>
+<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
+segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+
+Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSegmentation(segmentation).record();</code></pre>
+<h3 id="4-event-key-count-and-sum-with-segmentations" class="anchor-heading">4. Event key, count, and sum with segmentation(s)</h3>
+<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
+segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+
+Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setSegmentation(segmentation).record();</code></pre>
+<h3 id="5-event-key-count-sum-and-duration-with-segmentations" class="anchor-heading">5. Event key, count, sum, and duration with segmentation(s)</h3>
+<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
+segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+
+Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setDuration(5.3).setSegmentation(segmentation).record();;</code></pre>
+<p>
+  <span>Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
+</p>
+<h2>Timed events</h2>
+<p>
+  There is also a special type of <code>Event</code> supported by Countly - timed
   events. Timed events help you to track long continuous interactions when keeping
   an <code>Event</code> instance is not very convenient.
 </p>
-<p>Basic use case for timed events is following:</p>
+<p>The basic use case for timed events is following:</p>
 <ul>
   <li>
     User starts playing a level "37" of your game, you call
     <code>Countly.session().timedEvent("LevelTime").addSegment("level", "37")</code>
-    to start tracking how much time user spends on this level.
+    to start tracking how much time a user spends on this level.
   </li>
   <li>
-    Then something happens when user is in that level, for example user bought
-    some coins. Along with regular "Purchase" event, you decide you want to segment
-    "LevelTime" event with purchase information:
+    Then something happens when the user is at that level, for example, the user
+    bought some coins. Along with regular "Purchase" event, you decide you want
+    to segment the "LevelTime" event with purchase information:
     <code>Countly.session().timedEvent("LevelTime").setSum(9.99)</code>.
   </li>
   <li>
-    Once user stopped playing, you need to stop recording this event:
+    Once the user stopped playing, you need to stop recording this event:
     <code>Countly.session().timedEvent("LevelTime").endAndRecord()</code>
   </li>
 </ul>
@@ -244,11 +281,12 @@ Countly.init(targetFolder, config);</code></pre>
     segmentation);
   </li>
   <li>
-    which levels are generating most revenue (sum per <code>level</code> segmentation);
+    which levels are generating the most revenue (sum per <code>level</code>
+    segmentation);
   </li>
   <li>
     which levels are not generating revenue at all since you don't show ad there
-    (0 sum in <code>level</code> segmentation).
+    (0 sums in <code>level</code> segmentation).
   </li>
 </ul>
 <p>
@@ -256,3 +294,33 @@ Countly.init(targetFolder, config);</code></pre>
   event for it to be recorded. Without <code>endAndRecord()</code> call, nothing
   will happen.
 </p>
+<h1>Sessions</h1>
+<h2>Manual sessions</h2>
+<p>
+  Session in Countly is a single app launch or several app launches if the time
+  between them is less than 30 seconds (by default). Of course, you can override
+  this behavior.
+</p>
+<p>
+  <code>Session</code> lifecycle methods include:
+</p>
+<ul>
+  <li>
+    <code>session.begin()</code> must be called when you want to send begin session
+    request to the server. This request contains all device metrics: device,
+    model, carrier, etc.
+  </li>
+  <li>
+    <code>session.update()</code> can be called to send a session duration update
+    to the server along with any events, user properties, and any other data
+    types supported by Countly SDK. Called each Config.sendUpdateEachSeconds
+    seconds in auto session mode.
+  </li>
+  <li>
+    <code>session.end()</code>&nbsp;must be called to mark the end of the session.
+    All the data recorded since the last <code>session.update()</code> or since
+    <code>session.begin()</code> in case no updates have been sent yet, is sent
+    in this request as well.
+  </li>
+</ul>
+<h1>&nbsp;</h1>
