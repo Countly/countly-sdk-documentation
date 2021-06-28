@@ -110,27 +110,6 @@ Countly.init(targetFolder, config);</code></pre>
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
-<h1>Modifying user profile</h1>
-<p>
-  To set standard properties, call respective methods of <code>UserEditor</code>:
-</p>
-<pre><code class="java">Countly.user(getApplicationContext()).edit()
-        .setName("Firstname Lastname")
-        .setUsername("nickname")
-        .setEmail("test@test.com")
-        .setOrg("Tester")
-        .setPhone("+123456789")
-        .commit();</code></pre>
-<p>
-  To set custom properties, call set(). To send modification operations, call the
-  corresponding method:
-</p>
-<pre><code class="java">Countly.user(getApplicationContext()).edit()
-        .set("mostFavoritePet", "dog")
-        .inc("phoneCalls", 1)
-        .pushUnique("tags", "fan")
-        .pushUnique("skill", "singer")
-        .commit();</code></pre>
 <h1>Events</h1>
 <p>
   Events in Countly represent some meaningful event user performed in your application
@@ -323,4 +302,65 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
     in this request as well.
   </li>
 </ul>
+<h1 id="user-profiles" class="anchor-heading" tabindex="-1">User profiles</h1>
+<p>
+  <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a>
+</p>
+<h2 id="setting-predefined-values" class="anchor-heading">Setting predefined values</h2>
+<p>
+  The Countly Java SDK allows you to upload specific data related to a user to
+  the Countly server. You may set the following predefined data for a particular
+  user:
+</p>
+<ul>
+  <li>
+    <strong>Name</strong>: Full name of the user.
+  </li>
+  <li>
+    <strong>Username</strong>: Username of the user.
+  </li>
+  <li>
+    <strong>Email</strong>: Email address of the user.
+  </li>
+  <li>
+    <strong>Organization</strong>: Organization the user is working in.
+  </li>
+  <li>
+    <strong>Phone</strong>: Phone number.
+  </li>
+  <li>
+    <strong>Picture</strong>: Picture path for the user’s profile.
+  </li>
+  <li>
+    <strong>Gender</strong>: Gender of the user (use only single char like ‘M’
+    for Male and ‘F’ for Female).
+  </li>
+  <li>
+    <strong>BirthYear</strong>: Birth year of the user.
+  </li>
+</ul>
+<p>
+  The SDK allows you to upload user details using the methods listed below.
+</p>
+<p>
+  To set standard properties, call respective methods of <code>UserEditor</code>:
+</p>
+<pre><code class="java">Countly.user(getApplicationContext()).edit()
+        .setName("Firstname Lastname")
+        .setUsername("nickname")
+        .setEmail("test@test.com")
+        .setOrg("Tester")
+        .setPhone("+123456789")
+        .commit();</code></pre>
+<h2 id="setting-custom-values" class="anchor-heading">Setting custom values</h2>
+<p>
+  To set custom properties, call set(). To send modification operations, call the
+  corresponding method:
+</p>
+<pre><code class="java">Countly.user(getApplicationContext()).edit()
+        .set("mostFavoritePet", "dog")
+        .inc("phoneCalls", 1)
+        .pushUnique("tags", "fan")
+        .pushUnique("skill", "singer")
+        .commit();</code></pre>
 <h1>&nbsp;</h1>
