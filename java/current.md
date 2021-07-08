@@ -86,7 +86,6 @@ Countly.init(targetFolder, config);</code></pre>
   the config object to enable logging:
 </p>
 <pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
-                .enableTestMode()
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
@@ -363,4 +362,39 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
         .pushUnique("tags", "fan")
         .pushUnique("skill", "singer")
         .commit();</code></pre>
-<h1>&nbsp;</h1>
+<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<p>
+  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
+</p>
+<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
+<p>
+  The SDK allows you to change the Device ID at any point in time. You can use
+  any of the following two methods to changing the Device ID, depending on your
+  needs.
+</p>
+<p class="anchor-heading">
+  <strong>Changing Device ID with server merge</strong>
+</p>
+<p>
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+</p>
+<pre><code class="java hljs">Countly.<span>session</span>().changeDeviceIdWithMerge("New Device Id");</code></pre>
+<p class="anchor-heading">
+  <strong>Changing Device ID without server merge</strong>
+</p>
+<p>
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+</p>
+<pre><code class="java hljs">Countly.<span>session</span>().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
+</p>
+<p>
+  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+</p>
+<h2 id="retrieving-current-device-id&nbsp;" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.&nbsp;
+</p>
+<pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
