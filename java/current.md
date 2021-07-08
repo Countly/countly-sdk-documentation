@@ -1,7 +1,4 @@
 <p>
-  Java SDK shares a common core with an alternative Android SDK.
-</p>
-<p>
   The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
   as a dependency to your project and initializing SDK. Once those are done, you'll
   have basic analytics on your server like users, sessions, devices, etc.
@@ -376,7 +373,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   <strong>Changing Device ID with server merge</strong>
 </p>
 <p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
 <pre><code class="java hljs">Countly.<span>session</span>().changeDeviceIdWithMerge("New Device Id");</code></pre>
 <p class="anchor-heading">
