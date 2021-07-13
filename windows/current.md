@@ -27,20 +27,6 @@
     To access the documentation for version 20.05 click&nbsp;<a href="https://support.count.ly/hc/en-us/articles/4403584269593">here.</a>
   </p>
 </div>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>SDK in transition</strong></span>
-  </p>
-  <p>
-    Historically access to the SDK functions we're accessed through "Countly.FunctionName()".
-    Starting from version 18.10.0 it has been refactored to a singleton, which
-    means that it's functions by calling "Countly.Instance.FunctionName()". At
-    the moment it is still backwards compatible for old functionality, but new
-    features can only be accessed through "Countly.Instance". In the future all
-    call will be accessible only through "Countly.Instance". This documentation
-    will not show the usage of depracated calls.
-  </p>
-</div>
 <p>
   In order to set up Countly SDK in your Windows app, follow these steps:
 </p>
