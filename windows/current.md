@@ -1,5 +1,5 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications.
+  This document explains how to install Countly SDK for Windows desktop applications. It applies to version 20.11.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
