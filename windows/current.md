@@ -21,6 +21,14 @@
 </div>
 <div class="callout callout--info">
   <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
+  </p>
+  <p>
+    To access the documentation for version 20.05 click&nbsp;<a href="https://support.count.ly/hc/en-us/articles/4403584269593">here.</a>
+  </p>
+</div>
+<div class="callout callout--info">
+  <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>SDK in transition</strong></span>
   </p>
   <p>
