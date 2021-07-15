@@ -1465,7 +1465,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>&nbsp;- custom trace key name (APM)</span><br>
   <span>&nbsp;- custom metric key (apm)</span><br>
   <span>&nbsp;- segmentation key (for all features)</span><br>
-  <span>&nbsp;- custom user property</span>
+  <span>&nbsp;- custom user property</span><br>
+  <span>&nbsp;- custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span><br>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -1477,9 +1478,11 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>"Value" fields include:</span><br>
   <span>&nbsp;- segmentation value in case of strings (for all features)</span><br>
   <span>&nbsp;- custom user property string value</span><br>
+  <span>&nbsp;- user profile named key (username, email, etc) string values. Except "picture" field, that has a limit of 4096 chars</span><br>
+  <span>&nbsp;- custom user property modifier string values. For example, for modifiers like "push", "pull", "setOnce", etc.</span><br>
   <span>&nbsp;- breadcrumb text</span><br>
   <span>&nbsp;- manual feedback widget reporting fields (reported as event)</span><br>
-  <span>&nbsp;- rating widget response (reported as event)</span>
+  <span>&nbsp;- rating widget response (reported as event)<br></span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
