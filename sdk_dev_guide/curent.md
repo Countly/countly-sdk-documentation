@@ -505,17 +505,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
 lastMsTs = 0;
 
 function getUniqueMsTimestamp(){
-  //get current timestamp in miliseconds
-  ts = getMsTimestamp();
+	//get current timestamp in miliseconds
+	ts = getMsTimestamp();
   
   //if last used timestamp is equal or greater
   if(lastMsTs &gt;= ts){
-    //increase last used
+  	//increase last used
     lastMsTs++;
   }
   else{
-    //store current timestamp as last used
-    lastMsTs = ts;
+  	//store current timestamp as last used
+  	lastMsTs = ts;
   }
   //return timestamp
   return lastMsTs;
@@ -661,7 +661,7 @@ function getUniqueMsTimestamp(){
 </p>
 <h2>Reserved Segmentation keys</h2>
 <p>
-  <span style="font-weight: 400;">Currently, there are 9 segmentation keys that are reserved for Countly’s internal use. They should be ignored when the SDK user provides them as segmentation for any functionality. The list of keys is as follows:</span>
+  <span style="font-weight: 400;">Currently, there are 9 segmentation keys that are reserved for Countly’s internal use. The list of keys is as follows:</span>
 </p>
 <ul>
   <li>name</li>
@@ -674,12 +674,78 @@ function getUniqueMsTimestamp(){
   <li>domain</li>
   <li>dur</li>
 </ul>
+<p>
+  If SDK user has provided segmentation with these keys, they should be overwriten.
+</p>
 <h1>View tracking</h1>
 <p>
-  <span style="font-weight: 400;">Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually. Here is&nbsp;</span><a href="https://api.count.ly/reference#section-views" target="_self">more information on view-tracking API</a><span style="font-weight: 400;">s</span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually.&nbsp;</span>
+</p>
+<h2>
+  <span style="font-weight: 400;">View structure</span>
+</h2>
+<p>
+  <span style="font-weight: 400;">View information is packaged into events. There are 2 kinds of events:&nbsp;</span>
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">an event to indicate that a view was entered</span>
+  </li>
+  <li>
+    an event to send the duration of the view and indicate that the view was
+    exited
+  </li>
+</ul>
+<p>
+  All view related events use the event key "[CLY]_view" and are dependent on the
+  consent key "views".
+</p>
+<p>All view events are sent with a "count" of 1.</p>
+<p>
+  The duration field "dur" is used when reporting view duration. It should contain
+  the view duration in seconds.
+</p>
+<p>There are 5 potential segmentation values:</p>
+<ul>
+  <li>
+    "name" - string value of the view name, for example, "View_1"
+  </li>
+  <li>
+    "segment" - string value of the SDK platform name, for example, "Android"
+  </li>
+  <li>
+    "visit" - if the view was entered, this property should be set with the value
+    "1"
+  </li>
+  <li>
+    "start" - if the view was entered and it was the first view of a sessionm
+    this property should be set with "1"
+  </li>
+  <li>
+    "_idv" - the unique identifier of this view-session. This should be set to
+    the sha256 hash of the current timestamp (in ms), deviceID and view name
+    concatination.
+  </li>
+</ul>
+<p>
+  A sample event for reporting the first view would look like this:
+</p>
+<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>                <span>"segment"</span>: <span>"Android"</span>,<br>                <span>"visit"</span>: <span>1</span>,<br>                <span>"start"</span>: <span>1<br></span><span>        </span>}<br>    }<br>]</pre>
+<p>
+  <span style="font-weight: 400;">Sample event for reporting this views duration:</span>
+</p>
+<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"<br></span><span>        </span>}<br>    }<br>]</pre>
+<p>
+  <span style="font-weight: 400;">Here is&nbsp;<a href="https://api.count.ly/reference#section-views" target="_self">more information on view-tracking API</a>s.</span>
+</p>
+<h2>
+  <span style="font-weight: 400;">View manual reporting</span>
+</h2>
+<p>
+  <span style="font-weight: 400;">The following section will describe a sample implementation of manual views.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Let's start with manual view tracking, as it should be available on any platform. First, you will need to have 2 internal private properties as&nbsp;</span><strong>string lastView</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>int lastViewStartTime</strong><span style="font-weight: 400;">. Then, create an internal private method&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;">, which checks if </span><strong>lastView</strong><span style="font-weight: 400;">&nbsp;is null, and if not, it should report the duration for&nbsp;</span><strong>lastView</strong><span style="font-weight: 400;"> by calculating it based off the current timestamp and&nbsp;</span><strong>lastViewStartTime</strong><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">First, you will need to have 2 internal private properties as </span><strong>string lastView</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>int lastViewStartTime</strong><span style="font-weight: 400;">. Then, create an internal private method&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;">, which checks if </span><strong>lastView</strong><span style="font-weight: 400;">&nbsp;is null, and if not, it should report the duration for&nbsp;</span><strong>lastView</strong><span style="font-weight: 400;"> by calculating it based off the current timestamp and&nbsp;</span><strong>lastViewStartTime</strong><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">After those steps, provide a&nbsp;</span><strong>reportView</strong><span style="font-weight: 400;">&nbsp;method to set the view name as a string parameter inside this method call&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;"> to report the duration of the previous view (if there is one). Then set the provided view name as&nbsp;</span><strong>lastView&nbsp;</strong><span style="font-weight: 400;">and the current timestamp as&nbsp;</span><strong>lastViewStartTime</strong><span style="font-weight: 400;">. Report the view as an event with the&nbsp;</span><strong>visit</strong><span style="font-weight: 400;">&nbsp;property and&nbsp;</span><strong>segment</strong><span style="font-weight: 400;">&nbsp;as your platform name. Additionally, if this is the first view a user visits in this app session, then also report the&nbsp;</span><strong>start</strong><span style="font-weight: 400;">&nbsp;property as true. You will also need to call&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;"> with the app exit event.</span>
@@ -733,12 +799,6 @@ function getUniqueMsTimestamp(){
 }</code></pre>
 <p>
   <span style="font-weight: 400;">Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-view-actions" target="_self">reporting actions for views</a><span style="font-weight: 400;">.</span>
-</p>
-<h2>Orientation changes</h2>
-<p>Orientation change tracking requires "users" consent.</p>
-<p>
-  This feature sends a event of the current orientation. It is sent when the first
-  screen loads and every time the orientation changes.
 </p>
 <h1>Device ID management</h1>
 <p>
@@ -984,6 +1044,18 @@ function getUniqueMsTimestamp(){
   "c": "z",
 }
 </code></pre>
+<h2>Consents</h2>
+<p>
+  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
+</p>
+<h2>Device ID Change</h2>
+<p>
+  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
+</p>
+<h2>Salt</h2>
+<p>
+  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
+</p>
 <h1>User feedback</h1>
 <h2>Star Rating</h2>
 <p>
@@ -1148,17 +1220,11 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <a href="https://api.count.ly/reference#section-modifying-custom-user-data" target="_self">more information</a>
   on how to report this data to the server.
 </p>
-<h2>Consents</h2>
+<h2>Orientation changes</h2>
+<p>Orientation change tracking requires "users" consent.</p>
 <p>
-  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
-</p>
-<h2>Device ID Change</h2>
-<p>
-  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
-</p>
-<h2>Salt</h2>
-<p>
-  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
+  This feature sends a event of the current orientation. It is sent when the first
+  screen loads and every time the orientation changes.
 </p>
 <h1>Application Performance Monitoring</h1>
 <p>
@@ -1466,7 +1532,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>&nbsp;- custom metric key (apm)</span><br>
   <span>&nbsp;- segmentation key (for all features)</span><br>
   <span>&nbsp;- custom user property</span><br>
-  <span>&nbsp;- custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span><br>
+  <span>&nbsp;- custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
