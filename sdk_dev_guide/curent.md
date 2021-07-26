@@ -310,6 +310,9 @@
   <span style="font-weight: 400;">Events should be provided by the SDK user who knows what's important for the app to log. Also, events may be used to report some internal Countly events starting with the&nbsp;</span><strong>[CLY]_</strong><span style="font-weight: 400;">&nbsp;prefix, which vary per feature implementation on different platforms.</span>
 </p>
 <p>
+  <span style="font-weight: 400;">The call for recording events should support recording Countly internal events in case consent for their features is given. If no consent is required, they should be recorded aswell. The ability to record internal events should not be dependant on the consent for "events".</span>
+</p>
+<p>
   <span style="font-weight: 400;">An event must contain&nbsp;</span><strong>key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>count</strong><span style="font-weight: 400;">&nbsp;properties. If the count is not provided, it should default to&nbsp;1. Optionally, a user may also provide the&nbsp;</span><strong>sum</strong><span style="font-weight: 400;">&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property for recording some duration/period of time and&nbsp;</span><strong>segmentation</strong><span style="font-weight: 400;">&nbsp;as a map with keys and values for segmentation.</span>
 </p>
 <p>
