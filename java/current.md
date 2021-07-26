@@ -1,4 +1,17 @@
 <p>
+  This document will guide you through the process of Countly SDK installation
+  and it applies to version 20.11.0
+</p>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
+  </p>
+  <p>
+    To access the documentation for version 19.09-sdk2-rc, click
+    <a href="/hc/en-us/articles/4404187501465" target="_self" rel="undefined">here.</a>
+  </p>
+</div>
+<p>
   The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
   as a dependency to your project and initializing SDK. Once those are done, you'll
   have basic analytics on your server like users, sessions, devices, etc.
@@ -17,10 +30,10 @@
 <pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:19.09-sdk2-rc"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
-  &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
-  &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
-  &lt;type&gt;pom&lt;/type&gt;
+	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
+	&lt;artifactId&gt;java&lt;/artifactId&gt;
+	&lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
+	&lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 class="anchor-heading">SDK Integration</h1>
 <h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
