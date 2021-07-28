@@ -533,9 +533,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <div class="img-container">
   <img src="https://count.ly/images/guide/1059a04-3.PNG">
 </div>
-<p>
-  <span style="font-size: 2.1em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Device ID management</span>
-</p>
+<h1>Device ID management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
   ID yourself or allow the SDK to generate it. When providing one yourself, keep
@@ -658,50 +656,32 @@ Countly.getCurrentDeviceId(function(deviceId){
   </li>
   <li>Build your app, and test push notifications.</li>
 </ol>
-<div class="callout callout--warning">
-  <h3>iOS setup</h3>
-  <p>
-    There are no additional steps required for iOS,&nbsp;everything is set up
-    for you by the Countly Cordova SDK.
-  </p>
-  <h2>Enabling push&nbsp;</h2>
-  <p>
-    First, when setting up push for the Cordova SDK, you would first select the
-    push token mode. This would allow you to choose either test or production
-    modes, push token mode should be set before init.
-  </p>
-  <pre><code class="JavaScript">// Set messaging mode for push notifications
-// Important call this method before init method <br>Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");</code></pre>
-  <p>
-    When you are finally ready to initialise Countly push, you would call this:
-  </p>
-  <pre><code class="JavaScript">// This method will ask for permission, enables push notification and send push token to countly server.
+<h3>iOS setup</h3>
+<p>
+  There are no additional steps required for iOS,&nbsp;everything is set up for
+  you by the Countly Cordova SDK.
+</p>
+<h2>Enabling push&nbsp;</h2>
+<p>
+  First, when setting up push for the Cordova SDK, you would first select the push
+  token mode. This would allow you to choose either test or production modes, push
+  token mode should be set before init.
+</p>
+<pre><code class="JavaScript">// Set messaging mode for push notifications
+Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");</code></pre>
+<p>
+  When you are finally ready to initialise Countly push, you would call this:
+</p>
+<pre><code class="JavaScript">// This method will ask for permission, enables push notification and send push token to countly server.
 Countly.askForNotificationPermission();</code></pre>
-  <h2>Handling push callbacks</h2>
-  <p>
-    To register a Push Notification callback after initializing the SDK, use
-    the method below.
-  </p>
-</div>
+<h2>Handling push callbacks</h2>
+<p>
+  To register a Push Notification callback after initializing the SDK, use the
+  method below.
+</p>
 <pre><code class="javascript">Countly.registerForNotification(function(theNotification){
   console.log(JSON.stringify(theNotification));
 });</code></pre>
-<p class="callout__title">
-  <strong><span class="wysiwyg-font-size-large">Limitations of Cordova</span></strong>
-</p>
-<p>
-  Due to limitations of the way push is handled in a Cordova application, it's
-  not possible to report back actions done when a push notification is received.
-</p>
-<h2>Rich Push Notification</h2>
-<p>
-  For Android, there is no special procedure required, you can install the community
-  plugin, and it should work.
-</p>
-<p>
-  For iOS, you will need to follow these instruction:
-  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-rich-push-notifications-ios10-only-">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-rich-push-notifications-ios10-only-</a>
-</p>
 <h1>User location</h1>
 <p>
   While integrating this SDK into your application, you might want to track your
