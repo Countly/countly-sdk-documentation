@@ -682,6 +682,35 @@ Countly.askForNotificationPermission();</code></pre>
 <pre><code class="javascript">Countly.registerForNotification(function(theNotification){
   console.log(JSON.stringify(theNotification));
 });</code></pre>
+<p>
+  In order to listen to notification receive and click events, Place the below
+  code in <code>AppDelegate.m</code>
+</p>
+<p>Add header files</p>
+<pre><code class="JavaScript">#import "CountlyNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;
+</code></pre>
+<p>
+  Before <code>@end</code> add these methods
+</p>
+<pre><code class="JavaScript">// Required for the notification event. You must call the completion handler after handling the remote notification.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [CountlyNative onNotification: userInfo];
+    completionHandler(0);
+}
+
+// When app is killed.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+    NSDictionary *notification = response.notification.request.content.userInfo;
+    [CountlyNative onNotification: notification];
+    completionHandler();
+}
+
+// When app is running.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    [CountlyNative onNotification: notification.request.content.userInfo];
+    completionHandler(0);
+}</code></pre>
 <h1>User location</h1>
 <p>
   While integrating this SDK into your application, you might want to track your
