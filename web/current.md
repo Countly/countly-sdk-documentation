@@ -1625,7 +1625,7 @@ Countly.q.push(["report_trace",{
     name: "test call", //use name to identify trace and group them by
     stz: 1234567890123, //start timestamp in miliseconds
     etz: 1234567890123, //end timestamp in miliseconds
-    app_metrics: {
+    apm_metrics: {
         duration: 1000 //duration of trace
     }
 }]);</code></pre>
@@ -1637,7 +1637,7 @@ Countly.report_trace({
     name: "test call", //use name to identify trace and group them by
     stz: 1234567890123, //start timestamp in miliseconds
     etz: 1234567890123, //end timestamp in miliseconds
-    app_metrics: {
+    apm_metrics: {
         duration: 1000 //duration of trace
     }
 });</code></pre>
