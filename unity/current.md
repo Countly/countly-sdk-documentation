@@ -42,7 +42,7 @@
   need to import all the files in the package.
 </p>
 <p class="wysiwyg-text-align-center">
-  <img src="/hc/article_attachments/900006790726/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="408" height="674">
+  <img src="/hc/article_attachments/4404570305433/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
