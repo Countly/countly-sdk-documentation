@@ -33,8 +33,8 @@ flutter pub get
 flutter run</code></pre>
 <p>
   This example application has all the methods mentioned in this documentation.
-  It is a great way of understanding how different methods work, like custom events,
-  custom user profiles and views.
+  It is a great way of understanding how different methods work, like events, custom
+  user profiles and views.
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
@@ -228,10 +228,10 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 <pre><code class="JavaScript">Countly.addCrashLog(String logs)</code></pre>
 <h1>Events</h1>
 <p>
-  A <a href="http://resources.count.ly/docs/custom-events">custom event</a> is
-  any type of action that you can send to a Countly instance, e.g purchase, settings
-  changed, view enabled and so. This way it's possible to get much more information
-  from your application compared to what is sent from Flutter SDK to Countly instance
+  <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
+  of action that you can send to a Countly instance, e.g purchase, settings changed,
+  view enabled and so. This way it's possible to get much more information from
+  your application compared to what is sent from Flutter SDK to Countly instance
   by default.
 </p>
 <p>
@@ -298,7 +298,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 <p>
   <span class="wysiwyg-font-size-large">1. Event key and count</span>
 </p>
-<pre><code class="JavaScript">// example for sending basic custom event
+<pre><code class="JavaScript">// example for sending basic event
 var event = {
   "key": "Basic Event",
   "count": 1
@@ -533,8 +533,8 @@ Countly.recordView("Dashboard");</code></pre>
 <h2>Integration</h2>
 <h3>Android setup</h3>
 <p>
-  Step 1: Hope you have created your flutter app, and installed countly_flutter
-  package.
+  Step 1: For FCM credentials setup please follow the instruction from this URL
+  <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
 </p>
 <p>
   Step 2: Make sure you have <code>google-services.json</code> from
@@ -1127,7 +1127,7 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
   <li>
     sessions - tracking when, how often and how long users use your app
   </li>
-  <li>events - allow sending custom events to the server</li>
+  <li>events - allow sending events to the server</li>
   <li>views - allow tracking which views user visits</li>
   <li>location - allow sending location information</li>
   <li>crashes - allow tracking crashes, exceptions and errors</li>
