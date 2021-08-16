@@ -42,7 +42,7 @@
   need to import all the files in the package.
 </p>
 <p class="wysiwyg-text-align-center">
-  <img src="/hc/article_attachments/900006790726/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="408" height="674">
+  <img src="/hc/article_attachments/4404570305433/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
@@ -614,33 +614,6 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>These actions will erase the cached location data from the device and the server.</span>
 </p>
-<h1>Heatmaps</h1>
-<h2>Tracking clicks</h2>
-<p>
-  It is possible to track clicks and action taken on views and report them for
-  heat maps or any other purpose. For that, use the following method:
-</p>
-<pre><strong>await</strong> Countly.Instance.Views.ReportActionAsync(string type, int x, int y, int width, int height);</pre>
-<p>All parameters are mandatory.</p>
-<ul>
-  <li>
-    <strong>type -</strong> (string) action type
-  </li>
-  <li>
-    <strong>x -</strong> (int) action's x-coordinate
-  </li>
-  <li>
-    <strong>y -</strong> (int) action's y-coordinate
-  </li>
-  <li>
-    <strong>width&nbsp;-</strong> (int) width of the screen.
-  </li>
-  <li>
-    <strong>height&nbsp;-</strong> (int) height of the screen.
-  </li>
-</ul>
-<p>Example:</p>
-<pre><strong>await</strong> Countly.Instance.Views.ReportActionAsync("Click", 300, 500, 720, 1280);</pre>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
