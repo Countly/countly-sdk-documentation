@@ -603,7 +603,7 @@ apply plugin: 'com.google.gms.google-services'
   You can drag and drop both .h and .m files from Pod to Compile Sources.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/900007796263/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
+  <img src="/hc/article_attachments/4404577440025/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
 </div>
 <h2>Handling push callbacks</h2>
 <p>
