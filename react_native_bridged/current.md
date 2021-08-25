@@ -288,9 +288,9 @@ D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
 <h1>Events</h1>
 <p>
-  A <a href="http://resources.count.ly/docs/custom-events">custom event</a> is
-  any type of action that you can send to a Countly instance, e.g. purchases, changed
-  settings, view enabled, and so on. This way it's possible to get much more information
+  An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
+  of action that you can send to a Countly instance, e.g. purchases, changed settings,
+  view enabled, and so on. This way it's possible to get much more information
   from your application compared to what is sent from the SDK to the Countly instance
   by default.
 </p>
@@ -371,15 +371,15 @@ Countly.sendEvent(event);</code></pre>
 event.segments = {"Country" : "Germany", "app_version" : "1.0","eventSum":"0.99"};
 Countly.sendEvent(event);</code></pre>
 <p>
-  Those are only a few examples of what you can do with custom events. You may
-  extend those examples and use Country, app_version, game_level, time_of_day,
-  and any other segmentation that will provide you with valuable insights.
+  Those are only a few examples of what you can do with events. You may extend
+  those examples and use Country, app_version, game_level, time_of_day, and any
+  other segmentation that will provide you with valuable insights.
 </p>
 <h2>Timed events</h2>
 <p>
   It's possible to create timed events by defining a start and a stop moment.
 </p>
-<pre><code class="JavaScript">String eventName = "Custom event";
+<pre><code class="JavaScript">String eventName = "Event Name";
 
 //start some event
 Countly.startEvent(eventName);
@@ -392,7 +392,7 @@ Countly.endEvent(eventName);</code></pre>
   that case, you have to provide the segmentation, count, and sum. The default
   values for those are "null", 1 and 0.
 </p>
-<pre><code class="JavaScript">String eventName = "Custom event";
+<pre><code class="JavaScript">String eventName = "Event Name";
 
 //start some event
 Countly.startEvent(eventName);
@@ -1031,7 +1031,7 @@ Countly.endTrace(traceKey, customMetric);</pre>
   <li>
     sessions - tracking when, how often, and how long users use your app
   </li>
-  <li>events - allows sending custom events to the server</li>
+  <li>events - allows sending events to the server</li>
   <li>views - allows tracking which views user visits</li>
   <li>location - allows sending location information</li>
   <li>crashes - allows tracking crashes, exceptions, and errors</li>
@@ -1242,8 +1242,9 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <p>
   For overriding default metrics or adding extra ones that are sent with begin_session
   requests, you can use pass 'customMetric' Object to the function
-  <code>Countly.setCustomMetrics(customMetric)</code>, Custom metrics should be
-  an Object, with keys and values are both String's only.
+  <code>Countly.setCustomMetrics(customMetric)</code>, 'customMetric' should be
+  an Object with keys and values that are both Strings only. Note that the custom
+  metrics should be set before initialization.
 </p>
 <pre><code class="JavaScript">var customMetric = {"key": "value"};
 Countly.setCustomMetrics(customMetric);</code></pre>
