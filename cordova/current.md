@@ -325,7 +325,7 @@ Countly.addCrashLog("My crash log from JavaScript");
 </code></pre>
 <h1>Events</h1>
 <p>
-  <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
+  An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
   of action that you can send to a Countly instance, e.g purchase, settings changed,
   view enabled and so. This way it's possible to get much more information from
   your application compared to what is sent from SDK to Countly instance by default.
