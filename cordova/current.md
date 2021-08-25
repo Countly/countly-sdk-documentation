@@ -325,11 +325,10 @@ Countly.addCrashLog("My crash log from JavaScript");
 </code></pre>
 <h1>Events</h1>
 <p>
-  A <a href="http://resources.count.ly/docs/custom-events">custom event</a> is
-  any type of action that you can send to a Countly instance, e.g purchase, settings
-  changed, view enabled and so. This way it's possible to get much more information
-  from your application compared to what is sent from SDK to Countly instance by
-  default.
+  An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
+  of action that you can send to a Countly instance, e.g purchase, settings changed,
+  view enabled and so. This way it's possible to get much more information from
+  your application compared to what is sent from SDK to Countly instance by default.
 </p>
 <p>
   Here are the detail about properties which we can use with event:
@@ -395,7 +394,7 @@ Countly.addCrashLog("My crash log from JavaScript");
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="javascript">// example for sending basic custom event
+<pre><code class="javascript">// example for sending basic event
 var events = {"key":"Basic Event","count":1};
 Countly.recordEvent(events);</code></pre>
 <p>
@@ -433,9 +432,9 @@ events.segments = {
 };
 Countly.recordEvent(events);</code></pre>
 <p>
-  Those are only a few examples of what you can do with custom events. You can
-  extend those examples and use country, app_version, game_level, time_of_day and
-  any other segmentation that will provide you valuable insights.
+  Those are only a few examples of what you can do with events. You can extend
+  those examples and use country, app_version, game_level, time_of_day and any
+  other segmentation that will provide you valuable insights.
 </p>
 <h2>Timed events</h2>
 <p>
@@ -614,20 +613,17 @@ Countly.getCurrentDeviceId(function(deviceId){
 </p>
 <ol>
   <li>
-    Go to <a href="https://firebase.google.com">https://firebase.google.com</a>
+    For FCM credentials setup please follow the instruction from this URL <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
   </li>
   <li>
-    Register / Login to the Firebase console. You should be logged in to
-    <a href="https://console.firebase.google.com.">https://console.firebase.google.com.</a>
-  </li>
-  <li>Create and select a project if you haven't done it before.</li>
-  <li>Go to Settings &gt; Project settings.</li>
-  <li>Create an app for Android.</li>
-  <li>
-    Download the <code>google-services.json</code> for Android.
+      Make sure you have <code class="JavaScript">google-services.json</code> from <a href="https://firebase.google.com/">https://firebase.google.com/</a>
   </li>
   <li>
-    Place this file under your root project folder. i.e. above www folder.
+    Make sure the app package name and the <code class="JavaScript">google-services.json</code> <code class="JavaScript">package_name</code> matches.
+  </li>
+  <li>
+    Place this <code class="JavaScript">google-services.json</code> file under
+    your root project folder. i.e. above www folder.
   </li>
   <li>
     Put these tags in config.xml file for Android:
@@ -658,10 +654,10 @@ Countly.getCurrentDeviceId(function(deviceId){
 </ol>
 <h3>iOS setup</h3>
 <p>
-  There are no additional steps required for iOS,&nbsp;everything is set up for
+  There are no additional steps required for iOS,everything is set up for
   you by the Countly Cordova SDK.
 </p>
-<h2>Enabling push&nbsp;</h2>
+<h2>Enabling push</h2>
 <p>
   First, when setting up push for the Cordova SDK, you would first select the push
   token mode. This would allow you to choose either test or production modes, push
@@ -1174,7 +1170,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   <li>
     sessions - tracking when, how often and how long users use your app
   </li>
-  <li>events - allow sending custom events to server</li>
+  <li>events - allow sending events to server</li>
   <li>views - allow tracking which views user visits</li>
   <li>location - allow sending location information</li>
   <li>crashes - allow tracking crashes, exceptions and errors</li>
