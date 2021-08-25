@@ -288,7 +288,7 @@ D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
 <h1>Events</h1>
 <p>
-  <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
+  An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
   of action that you can send to a Countly instance, e.g. purchases, changed settings,
   view enabled, and so on. This way it's possible to get much more information
   from your application compared to what is sent from the SDK to the Countly instance
