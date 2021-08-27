@@ -508,17 +508,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
 lastMsTs = 0;
 
 function getUniqueMsTimestamp(){
-	//get current timestamp in miliseconds
-	ts = getMsTimestamp();
+  //get current timestamp in miliseconds
+  ts = getMsTimestamp();
   
   //if last used timestamp is equal or greater
   if(lastMsTs &gt;= ts){
-  	//increase last used
+    //increase last used
     lastMsTs++;
   }
   else{
-  	//store current timestamp as last used
-  	lastMsTs = ts;
+    //store current timestamp as last used
+    lastMsTs = ts;
   }
   //return timestamp
   return lastMsTs;
@@ -1118,15 +1118,16 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   dialog to be displayed only once per app lifetime, instead of for each new version.
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingDisableAskingForEachAppVersion = false;</code></pre>
-<h2>Surveys (WIP)</h2>
+<h2>Feedback widgets</h2>
 <p>
-  Showing surveys or performing any of the survey related features require that
-  the "feedback" consent is given.
+  Showing feedback widgets or performing any of the feedback widget related features
+  require that the "feedback" consent is given.
 </p>
 <p>
-  Currently there are 2 kinds of surveys: basic surveys and NPS. Both are shown
+  Currently there are 2 kinds of feedback widges: surveys and NPS. Both are shown
   using a very similar API and basicly the same processing.
 </p>
+<h3>Automatic feedback widgets</h3>
 <p>
   First step to showing a feedback widget is getting a list of the available surveys
   for this deviceID. That would be done with a function call named similar to "getAvailableFeedbackWidgets".
@@ -1150,7 +1151,6 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   'type'. Possible type values are "survey" and "nps". Both are used to mark the
   surveys type. The id is used to construct the web view url.
 </p>
-<p>&nbsp;</p>
 <p>
   <span>The idea is that the developer would retrieve this list of potential widgets and decide any further action he would want to make with them.</span>
 </p>
@@ -1163,7 +1163,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   in a webView or other similar mechanism. That webview will perform further survey
   interraction.
 </p>
-<p>Using that id we contstruct a url that looks like:</p>
+<p>Using that id we construct a url that looks like:</p>
 <pre>//for nps<br>/feedback/nps?widget_id=[widgetID]&amp;device_id=[deviceID]&amp;app_key=[appKey]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]<br><br>//for basic surveys<br>/feedback/survey?widget_id=[widgetID]&amp;device_id=[deviceID]&amp;app_key=[appKey]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]<br><br>//web SDK would also pass "origin"<br>//web SDK also passes "widget_v=Web"</pre>
 <p>
   The created url contains params for: widget_id, device_id, app_key, sdk_version,
@@ -1171,12 +1171,104 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   tamper protection is enabled, this url does not use the checksum param.
 </p>
 <p>
-  That url then should be provided to a webview and shown as a alert dialog similar
+  That url then should be provided to a webview and shown as an alert dialog similar
   to the rating widget.&nbsp;
 </p>
 <p>
-  If temporary device ID is enabled, feedback widgets can't be shown and a empty
+  If temporary device ID is enabled, feedback widgets can't be shown and an empty
   list of available widgets is returned.
+</p>
+<p>
+  It should be possible to provide 2 optional callbacks to the "presentFeedbackWidget"
+  call:
+</p>
+<ol>
+  <li>
+    a callback (potentially named "widgetShown") that is called when the widget
+    is successfully presented - currently that would mean that there were no
+    issues/errors while trying to show the dialog with the webView. Currently,
+    we don't verify if the webView is showing a working widget. If there would
+    be any issues during the presenting of the widget, this callback would return
+    an error message
+  </li>
+  <li>
+    a callback (potentially named "widgetClosed") that is called when the widget/dialog
+    is closed - for mobile SDK's and for the web SDK that would mean slightly
+    different things, but the main point is to have the host app/site notified
+    of when the "feedback process" is over. If there would be any issues during
+    the closing of the widget, this callback would return an error message.
+  </li>
+</ol>
+<h3>Manual feedback widgets</h3>
+<p>Manual feedback widget reporting has 3 steps:</p>
+<ol>
+  <li>
+    Retrieving a list of available widgets and picking one. This is the same
+    as for automatic feedback widgets and reuses the same call to retrieve them.
+  </li>
+  <li>Download widget data from the server.</li>
+  <li>Report the feedback result.</li>
+</ol>
+<p>
+  As mentioned before, the first step uses "getAvailableFeedbackWidgets" which
+  is also used for automatic feedback widgets. After inspecting the returned list,
+  the developer would select one widget he would want to report, and he the use
+  the "CountlyFeedbackWidget<span>" object for it.</span>
+</p>
+<p>
+  <span>Second step uses the "CountlyFeedbackWidget" object and calls "getFeedbackWidgetData". That function call accepts the "CountlyFeedbackWidget" object and a callback. That callback returns 2 values - the retrieved "CountlyWidgetData" JSON and an error message string. The string is used in case there are some issues with this call. </span>
+</p>
+<p>
+  <span>The returned "CountlyWidgetData" JSON is the parsed response from making a server request. That request is done outside of the request queue. Using the widget ID and widget type information from the "CountlyFeedbackWidget" object, we construct a url similar to:</span>
+</p>
+<pre>//for nps<br>/o/surveys/nps/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]<br><br>//for basic surveys<br>/o/surveys/survey/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]</pre>
+<p>
+  Performing a request on that URL should return JSON describing the widget which
+  should be returned as a parsed JSON object.
+</p>
+<p>
+  After this step, the developer has all the information he needs to create the
+  widget and all the information required to prepare a response to "report" the
+  filled widget. The feedback widgets support different question types, and their
+  filled-out responses are reported as segmentation to specific keys.
+</p>
+<p>
+  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>&nbsp;document
+  to better understand how to interpret the JSON and fill out the response, but
+  at the end of it there would be a "widgetResponse" segmentation object.
+</p>
+<p>
+  At the third step, the developer would call the "reportFeedbackWidgetManually"
+  function to report the result. This call requires 3 fields/values:
+  <span>"CountlyFeedbackWidget" object, "CountlyWidgetData" JSON and the "widgetResponse" segmentation object. If the "widgetResponse" is null then that means that the widget was closed without filling it out (this requires an event to be created).</span>
+</p>
+<p>
+  <span>"CountlyFeedbackWidget" object and "CountlyWidgetData" JSON are used to verify the correctness of the reported "widgetResponse". For now, this step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
+</p>
+<p>
+  <span>The reported widget result should be recorded as an event and put into the event queue. It should have the "[CLY]_nps" or "[CLY]_survey" key if it's an nps or survey widget respectively. That event should have the following segmentation:&nbsp;<br></span>
+</p>
+<ul>
+  <li>
+    <span>"platform" - SDK platform</span>
+  </li>
+  <li>
+    <span>"app_version" - host app version</span>
+  </li>
+  <li>
+    <span>"widget_id" - respective widget ID</span>
+  </li>
+</ul>
+<p>
+  <span>In addition to this segmentation which identifies the widget, the provided "widgetResponse" should be "unrolled" and set as fields in the event segmentation. If the "widgetResponse" was provided null and the widget was reported as closed, you should add the following segmentation value:<br></span>
+</p>
+<ul>
+  <li>
+    <span>"closed" - with the value of "1"</span>
+  </li>
+</ul>
+<p>
+  <span>After this event has been added to the event queue, the event queue should be forcefully combined into a request, event if the event count is under the threshold. This way the event is sent as soon as possible to the server and marks the widget as "completed" for that specific user.</span>
 </p>
 <h1>User Profiles</h1>
 <p>
