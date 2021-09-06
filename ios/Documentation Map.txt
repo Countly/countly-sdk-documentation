@@ -102,7 +102,7 @@
 
 # Feedbacks
     - Star Rating
-    - Feedbak Widgets
+    - Ratings Widgets
     - NPS (Net Promoter Score) and Survey Widgets
 
 # Remote Config
