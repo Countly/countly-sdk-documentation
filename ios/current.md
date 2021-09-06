@@ -1,7 +1,7 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>20.11.1</code>.
+  <code>20.11.3</code>.
 </p>
 <p>
   To access the documentation for version 20.11.0 and older, click
@@ -2800,8 +2800,8 @@ Countly.sharedInstance().getFeedbackWidgets
 </p>
 <p>
   Calls to this method will be ignored and <code>completionHandler</code> will
-  not be executed if: - Consent for <code>CLYConsentFeedback</code> is not given,
-  while <code>requiresConsent</code> flag is set on initial configuration. - Current
+  not be executed if:<br>- Consent for <code>CLYConsentFeedback</code> is not given,
+  while <code>requiresConsent</code> flag is set on initial configuration. <br>- Current
   device ID is <code>CLYTemporaryDeviceID</code>.
 </p>
 <p>
@@ -2827,6 +2827,105 @@ Countly.sharedInstance().getFeedbackWidgets
         let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
         aFeedbackWidget?.present()
     </code></pre>
+  </div>
+</div>
+<p>
+  Optionally you can pass appear and dismiss callback blocks:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">
+CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget presentWithAppearBlock:^
+{
+    NSLog(@"Appeared!");
+}
+andDismissBlock:^
+{
+    NSLog(@"Dismissed!");
+}];
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">
+let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.present(appear:
+{
+    print("Appeared.")
+},
+andDismiss:
+{
+    print("Dismissed.")
+})
+    </code></pre>
+  </div>
+</div>
+<h3>Manually Recording Feedback Widgets</h3>
+<p>
+  Optionally you can fetch feedback widget data and create your own UI using:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">
+CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
+{
+    if (error)
+    {
+        NSLog(@"Getting widget data failed. Error: %@", error);
+    }
+    else
+    {
+        NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
+    }
+}];
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">
+let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.getData
+{ (widgetData: [AnyHashable: Any]?, error: Error?) in
+    if (error != nil)
+    {
+        print("Getting widget data failed. Error \(error.debugDescription)")
+    }
+    else
+    {
+        print("Getting widget data successfully completed. \(String(describing: widgetData))")
+    }
+}    </code></pre>
+  </div>
+</div>
+<p>
+  And once you are done with your custom feedback widget UI you can record the result:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">
+[aFeedbackWidget recordResult:resultDictionary];
+// or
+[aFeedbackWidget recordResult:nil]; // if user dismissed the feedback widget without completing it
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">
+aFeedbackWidget.recordResult(resultDictionary)
+// or
+aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget without completing it
+</code></pre>
   </div>
 </div>
 <h1>Remote Config</h1>
