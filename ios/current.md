@@ -2865,7 +2865,7 @@ andDismiss:
   </div>
 </div>
 <h3>Manually Recording Feedback Widgets</h3>
-<p>
+<p><b>NOTE:<\b>Available only on Countly iOS SDK 20.11.3 or newer<br>
   Optionally you can fetch feedback widget data and create your own UI using:
 </p>
 <div class="tabs">
