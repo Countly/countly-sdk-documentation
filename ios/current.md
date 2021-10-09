@@ -2800,9 +2800,10 @@ Countly.sharedInstance().getFeedbackWidgets
 </p>
 <p>
   Calls to this method will be ignored and <code>completionHandler</code> will
-  not be executed if:<br>- Consent for <code>CLYConsentFeedback</code> is not given,
-  while <code>requiresConsent</code> flag is set on initial configuration. <br>- Current
-  device ID is <code>CLYTemporaryDeviceID</code>.
+  not be executed if:<br>
+  - Consent for <code>CLYConsentFeedback</code> is not given, while
+  <code>requiresConsent</code> flag is set on initial configuration.<br>
+  - Current device ID is <code>CLYTemporaryDeviceID</code>.
 </p>
 <p>
   Once you get the list, you can inspect <code>CountlyFeedbackWidget</code> objects
@@ -2829,9 +2830,7 @@ Countly.sharedInstance().getFeedbackWidgets
     </code></pre>
   </div>
 </div>
-<p>
-  Optionally you can pass appear and dismiss callback blocks:
-</p>
+<p>Optionally you can pass appear and dismiss callback blocks:</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
@@ -2865,7 +2864,15 @@ andDismiss:
   </div>
 </div>
 <h3>Manually Recording Feedback Widgets</h3>
-<p><b>NOTE:<\b>Available only on Countly iOS SDK 20.11.3 or newer<br>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
+  </p>
+  <p>
+    This feature is available only on Countly iOS SDK 20.11.3 or newer
+  </p>
+</div>
+<p>
   Optionally you can fetch feedback widget data and create your own UI using:
 </p>
 <div class="tabs">
@@ -2906,7 +2913,8 @@ aFeedbackWidget?.getData
   </div>
 </div>
 <p>
-  And once you are done with your custom feedback widget UI you can record the result:
+  And once you are done with your custom feedback widget UI you can record the
+  result:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2928,6 +2936,10 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
 </code></pre>
   </div>
 </div>
+<p>
+  For more information regarding how to structure the result dictionary, you would
+  look <a href="/hc/en-us/articles/900004340186" target="_self">here</a>.
+</p>
 <h1>Remote Config</h1>
 <p>
   <span style="font-weight: 400;">The Remote Config feature allows you to change the behavior and appearance of your applications at any time, without sending an update to the App Store by creating or updating custom key-value pairs on your Countly Server. You can also create conditions to get different values depending on user criteria. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
