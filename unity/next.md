@@ -188,6 +188,11 @@
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, crash reporting will be disabled until you give
+  <code>Crashes</code><span> consent. You may remove <code>Crashes</code> consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1>Events</h1>
 <p>
   <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
@@ -307,6 +312,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>You may provide segmentation, count, and sum while recording a timed event.</span>
 </p>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, the events feature will be disabled until you give
+  <code>Events</code><span> consent. You may remove <code>Events</code> consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1>Sessions</h1>
 <h2>
   <span style="font-weight: 400;">Automatic session tracking&nbsp;</span>
@@ -340,6 +350,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
     session related to sessions and users would all be empty
   </li>
 </ul>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, sessions tracking will be disabled until you give
+  <code>Sessions</code><span> consent. You may remove <code>Sessions</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
 <p>
@@ -355,6 +370,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   method:
 </p>
 <pre><strong>await</strong> countly.Views.RecordCloseViewAsync("Home Scene");</pre>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, view tracking will be disabled until you give
+  <code>Views</code><span> consent. You may remove <code>Views</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1 class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
   <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
@@ -560,6 +580,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br></span>
 </p>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, the push notification feature will be disabled until
+  you give <code>Push</code><span> consent. You may remove <code>Push</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
 </h1>
@@ -612,7 +637,12 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>To disable location after SDK initialization, call:</p>
 <pre>Countly.Instance.Location.DisableLocation();</pre>
 <p>
-  <span>These actions will erase the cached location data from the device and the server.</span>
+  <span>These actions will erase the cached location data from the device and the server.</span><span></span>
+</p>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, the user location feature will be disabled until you
+  give <code>Location</code><span> consent. You may remove <code>Location</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
 </p>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
@@ -633,7 +663,12 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = Countly.Instance.RemoteConfigs.Configs;</pre>
 <p>
-  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
+  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span><span></span>
+</p>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, the remote config feature will be disabled until you
+  give <code>RemoteConfig</code><span> consent. You may remove <code>RemoteConfig</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
 </p>
 <h1>User feedback</h1>
 <h2>Ratings</h2>
@@ -664,6 +699,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
     <span><strong>rating -</strong> (int) v</span><span>alue from 0 to 5 that will be set as the rating value.</span><span></span>
   </li>
 </ul>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, the ratings feature will be disabled until you give
+  <code>StarRating</code><span> consent. You may remove <code>StarRating</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1>User profiles</h1>
 <p>
   <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
@@ -774,6 +814,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <p>Example:</p>
 <pre><code><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
+<h2 class="anchor-heading">Consent</h2>
+<p>
+  If consents are enabled, user profile feature will be disabled until you give
+  <code>Users</code><span> consent. You may remove <code>Users</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+</p>
 <h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User consent</h1>
 <p>
   <span>In an effort to comply with GDPR, starting from 20.11.1, Unity Countly SDK provides ways to toggle different Countly features on/off depending on the given consent.</span>
