@@ -200,6 +200,9 @@
 <p>
   <span style="font-weight: 400;">Additionally, the SDK should be able to switch to post completely if a user should so specify in the SDK configuration/settings.</span>
 </p>
+<p>
+  <span style="font-weight: 400;">When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
+</p>
 <h1>SDK storage</h1>
 <p>
   <span style="font-weight: 400;">Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
@@ -310,7 +313,7 @@
   <span style="font-weight: 400;">Events should be provided by the SDK user who knows what's important for the app to log. Also, events may be used to report some internal Countly events starting with the&nbsp;</span><strong>[CLY]_</strong><span style="font-weight: 400;">&nbsp;prefix, which vary per feature implementation on different platforms.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The call for recording events should support recording Countly internal events in case consent for their features is given. If no consent is required, they should be recorded aswell. The ability to record internal events should not be dependant on the consent for "events".</span>
+  <span>The call for recording events should support recording Countly internal events. If consent is required then the ability to record them should be governed only by their respective feature consents. The ability to record internal events is in no way influenced by the " event" consent. If consent for some feature is given and "recordEvent" is used to record that features internal event, it should be recorded even if no "event" consent is given. If for some feature consent is not given and </span><span>"recordEvent" is used to record it's internal event, it should not be recorded even if "event" consent is given. If no consent is required, they should be recorded as well.</span>
 </p>
 <p>
   <span style="font-weight: 400;">An event must contain&nbsp;</span><strong>key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>count</strong><span style="font-weight: 400;">&nbsp;properties. If the count is not provided, it should default to&nbsp;1. Optionally, a user may also provide the&nbsp;</span><strong>sum</strong><span style="font-weight: 400;">&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property for recording some duration/period of time and&nbsp;</span><strong>segmentation</strong><span style="font-weight: 400;">&nbsp;as a map with keys and values for segmentation.</span>
@@ -1233,9 +1236,10 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   filled-out responses are reported as segmentation to specific keys.
 </p>
 <p>
-  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>&nbsp;document
-  to better understand how to interpret the JSON and fill out the response, but
-  at the end of it there would be a "widgetResponse" segmentation object.
+  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>
+  document to better understand how to interpret the JSON and fill out the response,
+  but at the end of it there would be a "<span>widgetResult</span>" segmentation
+  object.
 </p>
 <p>
   At the third step, the developer would call the "reportFeedbackWidgetManually"
@@ -1243,7 +1247,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>"CountlyFeedbackWidget" object, "CountlyWidgetData" JSON and the "widgetResponse" segmentation object. If the "widgetResponse" is null then that means that the widget was closed without filling it out (this requires an event to be created).</span>
 </p>
 <p>
-  <span>"CountlyFeedbackWidget" object and "CountlyWidgetData" JSON are used to verify the correctness of the reported "widgetResponse". For now, this step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
+  <span>"CountlyFeedbackWidget" object and "CountlyWidgetData" JSON are used to verify the correctness of the reported "widgetResult". For now, this step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
 </p>
 <p>
   <span>The reported widget result should be recorded as an event and put into the event queue. It should have the "[CLY]_nps" or "[CLY]_survey" key if it's an nps or survey widget respectively. That event should have the following segmentation:&nbsp;<br></span>
@@ -1260,7 +1264,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <p>
-  <span>In addition to this segmentation which identifies the widget, the provided "widgetResponse" should be "unrolled" and set as fields in the event segmentation. If the "widgetResponse" was provided null and the widget was reported as closed, you should add the following segmentation value:<br></span>
+  <span>In addition to this segmentation which identifies the widget, the provided "widgetResult" should be merged into the event segmentation. If the "widgetResult" was provided null and the widget was reported as closed, you should add the following segmentation value:<br></span>
 </p>
 <ul>
   <li>
@@ -1320,6 +1324,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   This feature sends a event of the current orientation. It is sent when the first
   screen loads and every time the orientation changes.
+</p>
+<p>
+  Orientation tracking is enabled by default if the required consent is given.
+</p>
+<p>
+  Orientation tracking can be disabled during init. The config variable would be
+  named similar to "<span>enableOrientationTracking" which then would receive a "false" value to turn orientation tracking off.</span>
 </p>
 <h1>Application Performance Monitoring</h1>
 <p>
@@ -1688,4 +1699,16 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   Crash information like PLC crashes for iOS and native Android crashes do not
   have any limits applied to them.
+</p>
+<h2>Changing the server URL</h2>
+<p>
+  This feature adds the ability to change the server URL after the SDK is initialised.
+</p>
+<p>
+  This should in memory overwrite the current URL. Basic url validation should
+  be performed on the provided URL.
+</p>
+<p>
+  After the URL is changed, all previously saved events and requests should be
+  sent to the new url.
 </p>
