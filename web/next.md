@@ -7,7 +7,7 @@
   </p>
   <p>
     To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="blank">here</a>.
   </p>
 </div>
 <p>
