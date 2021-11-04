@@ -767,7 +767,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
     
     //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget);
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, MyFeedbackWidget, FeedbackWidgetClass);
 }
 </span></span></code></pre>
   </div>
@@ -785,7 +785,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
     
     //Display the </span><span>feedback widget to the end user    
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget);
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, MyFeedbackWidget, FeedbackWidgetClass);
 }
 </span></span></code></pre>
   </div>
