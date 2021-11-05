@@ -746,7 +746,9 @@ Countly.report_feedback({
 </p>
 <p>
   Both NPS and Survey use the same API to fetch feedbacks from the server as well
-  as to display them to the end user.
+  as to display them to the end user. Also if you want to position the feedback widget
+  in a specific element, you can do so by specifying the element ID and the class name. 
+
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -765,9 +767,13 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   
     //The available feedback types are nps and survey, decide which one to show
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
     
     //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, MyFeedbackWidget, FeedbackWidgetClass);
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
 }
 </span></span></code></pre>
   </div>
@@ -784,8 +790,12 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     //The available feedback types are nps and survey, decide which one to show
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
     
-    //Display the </span><span>feedback widget to the end user    
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, MyFeedbackWidget, FeedbackWidgetClass);
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
+    
+    //Display the feedback widget to the end user 
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
 }
 </span></span></code></pre>
   </div>
