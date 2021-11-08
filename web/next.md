@@ -746,9 +746,13 @@ Countly.report_feedback({
 </p>
 <p>
   Both NPS and Survey use the same API to fetch feedbacks from the server as well
-  as to display them to the end user. Also if you want to position the feedback widget
-  in a specific element, you can do so by specifying the element ID and the class name. 
-
+  as to display them to the end user. By default, the created widget will be appended
+  to the end of the html document. In some scenarios you might prefer to have the
+  widget injected in a specific element. For those scenarios we have added optional
+  selectors. The first one is used for selecting an element by it's id and the
+  second one is used to select the element by it's class selector. Also if you
+  want to position the feedback widget in a specific element, you can do so by
+  specifying the element ID and the class name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
