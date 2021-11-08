@@ -751,8 +751,8 @@ Countly.report_feedback({
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. Also if you
-  want to position the feedback widget in a specific element, you can do so by
-  specifying the element ID and the class name.
+  want to inject the feedback widget in a specific element, you can do so by
+  specifying the element ID or the class name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
