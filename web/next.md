@@ -746,7 +746,13 @@ Countly.report_feedback({
 </p>
 <p>
   Both NPS and Survey use the same API to fetch feedbacks from the server as well
-  as to display them to the end user.
+  as to display them to the end user. By default, the created widget will be appended
+  to the end of the html document. In some scenarios you might prefer to have the
+  widget injected in a specific element. For those scenarios we have added optional
+  selectors. The first one is used for selecting an element by it's id and the
+  second one is used to select the element by it's class selector. Also if you
+  want to position the feedback widget in a specific element, you can do so by
+  specifying the element ID and the class name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -765,9 +771,13 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   
     //The available feedback types are nps and survey, decide which one to show
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
     
     //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget);
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
 }
 </span></span></code></pre>
   </div>
@@ -784,8 +794,12 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     //The available feedback types are nps and survey, decide which one to show
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
     
-    //Display the </span><span>feedback widget to the end user    
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget);
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
+    
+    //Display the feedback widget to the end user 
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
 }
 </span></span></code></pre>
   </div>
