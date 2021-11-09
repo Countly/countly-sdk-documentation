@@ -115,7 +115,10 @@
 </ul>
 <p>
   <span>No two places should have the same log message. This means that all messages should be unique. Knowing the log message and the sdk version it should be unambiguous to know which line printed that message.</span><br>
-  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called</span>
+  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called. If the function called is part of the public API of the SDK, that log should include the function name.</span>
+</p>
+<p>
+  <span>All calls, that can be called by developers, should produce a log message to indicate what is being called.</span><span></span>
 </p>
 <p>
   <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span><span>The goal is to have a good enough log coverage so that it's easy to understand what was happening with the SDK and how it was used when a SDK integrator provides his logs.</span><br>
@@ -1320,9 +1323,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   on how to report this data to the server.
 </p>
 <h2>Orientation changes</h2>
-<p>Orientation change tracking requires "users" consent.</p>
 <p>
-  This feature sends a event of the current orientation. It is sent when the first
+  This feature sends an event of the current orientation. It is sent when the first
   screen loads and every time the orientation changes.
 </p>
 <p>
@@ -1331,6 +1333,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   Orientation tracking can be disabled during init. The config variable would be
   named similar to "<span>enableOrientationTracking" which then would receive a "false" value to turn orientation tracking off.</span>
+</p>
+<p>Orientation change tracking requires "users" consent.</p>
+<p>
+  When recording the orientation event, you should use the key "[CLY]_orientation".
+  You would set the count to "1" and provide a single segmentation value. The key
+  for that value is "mode" and the value is "portrait" if the current orientation
+  is portrait mode or "landscape" if the current orientation is landscape mode.
 </p>
 <h1>Application Performance Monitoring</h1>
 <p>
@@ -1609,19 +1618,62 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span style="font-weight: 400;">If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
 </p>
 <h1>Other features</h1>
-<h2>Attribution (WIP)</h2>
+<h2>Attribution</h2>
 <p>
-  Attribution allows attributing installs from specific campaigns. They are tied
-  together with sessions. Attribution information should be sent in the following
-  situations, depending on which comes first:
+  Attribution allows attributing installs from specific campaigns.
 </p>
-<ol>
-  <li>With the first begin session call</li>
-  <li>
-    as soon as the information is available in a separate request (this is relevant
-    when there is no session consent)
-  </li>
-</ol>
+<p>
+  There are 2 forms of attribution: directAttribution and indirectAttribution.
+</p>
+<p>
+  There should be a way to provide them during init and there should be a way to
+  provide them after init.
+</p>
+<p>
+  These values should be sent when they are provided in a separate request.
+</p>
+<p>This requires attribution consent.</p>
+<h3>Direct attribution</h3>
+<p>
+  With this the dev is able to provide 2 String values: "Campaign ID" and "Campaign
+  user ID".
+</p>
+<p>
+  Common values that would be provided here would be from install attribution.
+</p>
+<p>Non valid or empty string should produce an error log.</p>
+<p>
+  The "Campaign ID" value is mandatory. If this has no valid value, an error log
+  should be printed and execution should be aborted.
+</p>
+<p>
+  The "Campaign user ID" value is optional and if it is missing or invalid, only
+  the "Campaign ID" value should be sent.
+</p>
+<p>
+  The call to record this value should be named something similar to "recordDirectAttribution".
+</p>
+<p>The param for the campaign ID should be added as:</p>
+<pre><span>"&amp;campaign_id=[PROVIDED_CAMPAIGN_ID]"</span></pre>
+<p>The param for the campaign user ID should be added as:</p>
+<pre><span>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</span></pre>
+<h3>Indirect attribution</h3>
+<p>
+  With this the dev is able to provide a single String value "Advertising ID".
+</p>
+<p>
+  Common values that would be provided here would be IDFA (for iOS) and AdvertisingId
+  (for Android).
+</p>
+<p>
+  Non valid or empty string should produce an error log and the execution of this
+  call should not continue.
+</p>
+<p>
+  The call to record this value should be named something similar to "recordIndirectAttribution".
+</p>
+<p>The param should be added as:</p>
+<pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID]</span><span>}</span></pre>
 <h2>SDK internal limits</h2>
 <p>The SDK should have the following limits:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
