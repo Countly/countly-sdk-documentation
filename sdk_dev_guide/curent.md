@@ -182,8 +182,34 @@
   <span style="font-weight: 400;">Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference#i"><span style="font-weight: 400;">/i endpoint Server API reference</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">There are some parameters that should be added to all requests even though they are not mandatory. Together with the required parameters they form the base request. Every request sent to the server should be formed from this base request. the parameters in it are: "app_key", "device_id", "timestamp", "hour", "dow", "tz", "sdk_version". "sdk_name".</span>
+  <span style="font-weight: 400;">There are some parameters that should be added to all requests even though they are not mandatory. Together with the required parameters they form the base request. Every request sent to the server should be formed from this base request. The parameters in this base request are: </span>
 </p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">"app_key" - the application key for this countly app (retrievable on the dashboard)</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"device_id" - the current users device ID</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"timestamp" - the timestamp in ms of when this request is created</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"hour" - the hour of the timestamp</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"dow" - the day of the week for this timestamp. 0 - sunday, ... , 6 - saturday.</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"tz" - this devices timezone offset</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"sdk_version" - the SDK's version</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"sdk_name" - the SDK's name</span>
+  </li>
+</ul>
 <p>
   <span style="font-weight: 400;">In cases where some devices may be offline, etc., and requests should be queued, it is highly recommended you add a timestamp to each request, displaying when it was created.</span>
 </p>
@@ -206,17 +232,49 @@
 <p>
   <span style="font-weight: 400;">When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
 </p>
-<h1>SDK storage</h1>
+<h2>SDK Metadata</h2>
+<p>
+  <span style="font-weight: 400;">The SDK should send the following metadata with every request.</span>
+</p>
+<ul>
+  <li>SDK name:</li>
+</ul>
+<p>
+  Query String Key: <code>sdk_name</code> Query String Value:
+  <code>[language]-[origin]-[platform]</code> Example:
+  <code>&amp;sdk_name=objc-native-ios</code>
+</p>
+<ul>
+  <li>SDK version:</li>
+</ul>
+<p>
+  Query String Key: <code>sdk_version</code> Query String Value: SDK version as
+  string Example: <code>&amp;sdk_version=20.10.0</code>
+</p>
+<p>
+  The SDK versions decode to [year].[month].[minor release number]. The SDK major
+  versions&nbsp; (year, month) should follow the server versions. Those are usually
+  incremented twice a year during our major releases. Minor release numbers should
+  start ar "0". Major version numbers (year, month) should stay the same even if
+  the SDK version is released a couple of months after the indicated date. If the
+  servers version is released in October 2020 the major versions would be "20.10".
+  The first version released by the SDK, that would be in sync with this server
+  version, would have the version "20.10.0". If the SDK needs to release an update
+  in January of 2021 and no major server release has happened, the next version
+  released by the SDK will be "20.10.1".
+</p>
+<p>
+  No zeroes should be added to the second number (indicating the month) in case
+  the release happens before October.
+</p>
+<h1>SDK storage and requests</h1>
 <p>
   <span style="font-weight: 400;">Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span style="font-weight: 400;"></span>
 </p>
-<h1>Request queue</h1>
-<p>
-  <span style="font-weight: 400;">(in case per app key storage is not available)</span>
-</p>
+<h2>Request queue</h2>
 <p>
   <span style="font-weight: 400;">In some cases, users might be offline, thus they are not able to make requests to the server. In other cases, the server may be down or in maintenance, thus unable to accept requests. In both cases, the SDK should handle queuing and persistently storing requests made to the Countly server and should wait for a successful response from the server before removing a request from the queue.</span>
 </p>
@@ -243,7 +301,7 @@
     <span style="font-weight: 400;">On some other thread there should be a request processor which takes the first request in the queue, applies the checksum if needed, determines the request type (GET or POST) based on the length, and makes the HTTP request</span>&nbsp;<br>
     <ul>
       <li>
-        <span style="font-weight: 400;">if the request is successful, then it should be removed from the queue and the next request will be processed upon the next iteration</span>
+        <span style="font-weight: 400;">if the request is successful (defined below), then it should be removed from the queue and the next request will be processed upon the next iteration</span>
       </li>
       <li>
         <span style="font-weight: 400;">if the request failed, the request processor should have a cool-down period, lasting a minute or so (configurable value), and it will then try the same request again until it is completed</span>
@@ -262,25 +320,106 @@
     <span style="font-weight: 400;">The HTTP response code was successful (which is any 2xx code or code between 200 &lt;= x &lt; 300)</span>
   </li>
   <li>
-    <span style="font-weight: 400;">The returned request is a JSON object that contains the field "result" (there can be other fields)</span>
+    <span style="font-weight: 400;">The returned request is a JSON object</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">That JSON object contains the field "result" (there can be other fields)</span>
   </li>
 </ol>
 <p>
-  <span style="font-weight: 400;">The server replies with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added. </span>
+  <span style="font-weight: 400;">When sending request to a Countly server, it would respond with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added.</span>
 </p>
 <p>
-  If the response code is within the required interval and the response text is
-  a JSON object which has the key "result" (the value of that entry does not matter),
-  then it means the request was successfully delivered to the server and can be
-  removed from the queue.
+  <span style="font-weight: 400;">If the previously described things are "true", </span>then
+  it means the request was successfully delivered to the server and can be removed
+  from the queue.
 </p>
-<h2>Queue size limit</h2>
+<h3>Queue size limit</h3>
 <p>
   <span style="font-weight: 400;">We need to limit the queue size so that it doesn’t overflow, and so that syncing up won’t take too long if some specific server is down for too long. This limit would be in the number of stored queries, and this limit should be available for the end-user to change as the SDK settings.</span>
 </p>
 <p>
   <span style="font-weight: 400;">In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span style="font-weight: 400;">.</span>
 </p>
+<h2>Event queue</h2>
+<p>
+  Similary to the request queue, each SDK should also have the event queue. It
+  is used for the purposes of combining multiple events together and decreasing
+  the total request amount.
+</p>
+<p>This queue is also FIFO, and has a maximum size.</p>
+<h2>Other storage</h2>
+<p>
+  Some other features might also require storage to store some things persistently
+  (remote config, etc).
+</p>
+<p>Those would have their own storage format.</p>
+<h2>Recording time of data</h2>
+<p>
+  <span style="font-weight: 400;">To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
+</p>
+<ul>
+  <li>
+    <strong>timestamp</strong>:
+    <span style="font-weight: 400;">13-digit UTC millisecond unique timestamp of the moment of action</span>
+  </li>
+  <li>
+    <strong>hour</strong>:
+    <span style="font-weight: 400;">Current user local hour (0 - 23)</span>
+  </li>
+  <li>
+    <strong>dow</strong>:&nbsp;<span style="font-weight: 400;">Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
+  </li>
+  <li>
+    <strong>tz</strong>:
+    <span style="font-weight: 400;">Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
+  </li>
+</ul>
+<p>
+  <span style="font-weight: 400;">As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
+</p>
+<pre><code class="javascript">//variable to hold last used timestamp
+lastMsTs = 0;
+
+function getUniqueMsTimestamp(){
+  //get current timestamp in miliseconds
+  ts = getMsTimestamp();
+  
+  //if last used timestamp is equal or greater
+  if(lastMsTs &gt;= ts){
+    //increase last used
+    lastMsTs++;
+  }
+  else{
+    //store current timestamp as last used
+    lastMsTs = ts;
+  }
+  //return timestamp
+  return lastMsTs;
+}</code></pre>
+<p>
+  <span style="font-weight: 400;">If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
+</p>
+<h1>General SDK structure overview</h1>
+<p>
+  <span style="font-weight: 400;">Depending on the SDK’s environment/language there could be a different set of features supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app type may not be providing telecom operator information.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  <span style="font-weight: 400;">Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
+</p>
+<h2>Initialization</h2>
+<p>
+  <span style="font-weight: 400;">In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method which accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
+</p>
+<pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
+</code></pre>
 <h1>Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
@@ -426,6 +565,75 @@
 <p>
   <span style="font-weight: 400;">If not, the following calls should be ignored: 1. events which have already started 2. events which have attempted to start again 3. events which have already ended 4. events which have attempted to end. Otherwise, they will provide an informative error.</span>
 </p>
+<h1>Device metrics</h1>
+<p>
+  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference#i%23section-metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span style="font-weight: 400;">&nbsp;metric.</span>
+</p>
+<ul>
+  <li>
+    <strong>Android</strong> - for Android
+  </li>
+  <li>
+    <strong>BeOS</strong> - for BeOS
+  </li>
+  <li>
+    <strong>BlackBerry</strong> - for BlackBerry
+  </li>
+  <li>
+    <strong>iOS</strong> - for iOS
+  </li>
+  <li>
+    <strong>Linux</strong> - for Linux
+  </li>
+  <li>
+    <strong>Open BSD</strong> - for Open BSD
+  </li>
+  <li>
+    <strong>os/2</strong> - for OS/2
+  </li>
+  <li>
+    <strong>macOS</strong> - for Mac OS X
+  </li>
+  <li>
+    <strong>QNX</strong> - for QNX
+  </li>
+  <li>
+    <strong>Roku</strong> - for Roku
+  </li>
+  <li>
+    <strong>SearchBot</strong> - for SearchBots
+  </li>
+  <li>
+    <strong>Sun OS</strong> - for Sun OS
+  </li>
+  <li>
+    <strong>Symbian</strong> - for Symbian
+  </li>
+  <li>
+    <strong>Tizen</strong> - for Tizen
+  </li>
+  <li>
+    <strong>tvOS</strong> - for Apple TV
+  </li>
+  <li>
+    <strong>Unix</strong> - for Unix
+  </li>
+  <li>
+    <strong>Unknown</strong> - if the operating system is unknown
+  </li>
+  <li>
+    <strong>watchOS</strong> - for Apple Watch
+  </li>
+  <li>
+    <strong>Windows</strong> - for Windows
+  </li>
+  <li>
+    <strong>Windows Phone</strong> for Windows Phone
+  </li>
+</ul>
 <h1>Session flow</h1>
 <p>
   For SDK's to track use sessions, there are 3 kinds of calls:
@@ -527,209 +735,6 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <p>
   <span style="font-weight: 400;">The 15-second cooldown is a default value and may be configured on the server, so don't rely on it being 15 seconds.</span>
-</p>
-<h1>Recording time of data</h1>
-<p>
-  <span style="font-weight: 400;">To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
-</p>
-<ul>
-  <li>
-    <strong>timestamp</strong>:
-    <span style="font-weight: 400;">13-digit UTC millisecond unique timestamp of the moment of action</span>
-  </li>
-  <li>
-    <strong>hour</strong>:
-    <span style="font-weight: 400;">Current user local hour (0 - 23)</span>
-  </li>
-  <li>
-    <strong>dow</strong>:&nbsp;<span style="font-weight: 400;">Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
-  </li>
-  <li>
-    <strong>tz</strong>:
-    <span style="font-weight: 400;">Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
-  </li>
-</ul>
-<p>
-  <span style="font-weight: 400;">As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
-</p>
-<pre><code class="javascript">//variable to hold last used timestamp
-lastMsTs = 0;
-
-function getUniqueMsTimestamp(){
-  //get current timestamp in miliseconds
-  ts = getMsTimestamp();
-  
-  //if last used timestamp is equal or greater
-  if(lastMsTs &gt;= ts){
-    //increase last used
-    lastMsTs++;
-  }
-  else{
-    //store current timestamp as last used
-    lastMsTs = ts;
-  }
-  //return timestamp
-  return lastMsTs;
-}</code></pre>
-<p>
-  <span style="font-weight: 400;">If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
-</p>
-<h1>API of the SDK</h1>
-<p>
-  <span style="font-weight: 400;">Depending on the SDK’s environment/language there could be a different set of features supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app type may not be providing telecom operator information.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is a list of things your SDK could support:</span>
-</p>
-<h1>Core features</h1>
-<p>
-  <span style="font-weight: 400;">Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
-</p>
-<h2>Initialization</h2>
-<p>
-  <span style="font-weight: 400;">In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method which accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
-</p>
-<pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
-</code></pre>
-<h2>Device metrics</h2>
-<p>
-  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference#i%23section-metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span style="font-weight: 400;">&nbsp;metric.</span>
-</p>
-<ul>
-  <li>
-    <strong>Android</strong> - for Android
-  </li>
-  <li>
-    <strong>BeOS</strong> - for BeOS
-  </li>
-  <li>
-    <strong>BlackBerry</strong> - for BlackBerry
-  </li>
-  <li>
-    <strong>iOS</strong> - for iOS
-  </li>
-  <li>
-    <strong>Linux</strong> - for Linux
-  </li>
-  <li>
-    <strong>Open BSD</strong> - for Open BSD
-  </li>
-  <li>
-    <strong>os/2</strong> - for OS/2
-  </li>
-  <li>
-    <strong>macOS</strong> - for Mac OS X
-  </li>
-  <li>
-    <strong>QNX</strong> - for QNX
-  </li>
-  <li>
-    <strong>Roku</strong> - for Roku
-  </li>
-  <li>
-    <strong>SearchBot</strong> - for SearchBots
-  </li>
-  <li>
-    <strong>Sun OS</strong> - for Sun OS
-  </li>
-  <li>
-    <strong>Symbian</strong> - for Symbian
-  </li>
-  <li>
-    <strong>Tizen</strong> - for Tizen
-  </li>
-  <li>
-    <strong>tvOS</strong> - for Apple TV
-  </li>
-  <li>
-    <strong>Unix</strong> - for Unix
-  </li>
-  <li>
-    <strong>Unknown</strong> - if the operating system is unknown
-  </li>
-  <li>
-    <strong>watchOS</strong> - for Apple Watch
-  </li>
-  <li>
-    <strong>Windows</strong> - for Windows
-  </li>
-  <li>
-    <strong>Windows Phone</strong> for Windows Phone
-  </li>
-</ul>
-<h2>SDK Metadata</h2>
-<p>
-  <span style="font-weight: 400;">The SDK should send the following metadata with every request.</span>
-</p>
-<ul>
-  <li>SDK name:</li>
-</ul>
-<p>
-  Query String Key: <code>sdk_name</code> Query String Value:
-  <code>[language]-[origin]-[platform]</code> Example:
-  <code>&amp;sdk_name=objc-native-ios</code>
-</p>
-<ul>
-  <li>SDK version:</li>
-</ul>
-<p>
-  Query String Key: <code>sdk_version</code> Query String Value: SDK version as
-  string Example: <code>&amp;sdk_version=20.10.0</code>
-</p>
-<p>
-  The SDK versions decode to [year].[month].[minor release number]. The SDK major
-  versions&nbsp; (year, month) should follow the server versions. Those are usually
-  incremented twice a year during our major releases. Minor release numbers should
-  start ar "0". Major version numbers (year, month) should stay the same even if
-  the SDK version is released a couple of months after the indicated date. If the
-  servers version is released in October 2020 the major versions would be "20.10".
-  The first version released by the SDK, that would be in sync with this server
-  version, would have the version "20.10.0". If the SDK needs to release an update
-  in January of 2021 and no major server release has happened, the next version
-  released by the SDK will be "20.10.1".
-</p>
-<p>
-  No zeroes should be added to the second number (indicating the month) in case
-  the release happens before October.
-</p>
-<h2>Additional parameters</h2>
-<p>
-  <span style="font-weight: 400;">There are also optional, additional parameters. If you can get them on your platform, then you may append them to any/every request. However, if you can’t, it might be a good idea to allow the SDK user to optionally provide such values.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If values are not provided, the Countly server will try to determine them automatically, based on all the other provided data.</span>
-</p>
-<p>
-  Here is
-  <a href="https://api.count.ly/reference#section-additional-parameters" target="_self">more information</a>
-  on possible additional API parameters.
-</p>
-<h2>Reserved Segmentation keys</h2>
-<p>
-  <span style="font-weight: 400;">Currently, there are 9 segmentation keys that are reserved for Countly’s internal use. The list of keys is as follows:</span>
-</p>
-<ul>
-  <li>name</li>
-  <li>segment</li>
-  <li>visit</li>
-  <li>start</li>
-  <li>bounce</li>
-  <li>exit</li>
-  <li>view</li>
-  <li>domain</li>
-  <li>dur</li>
-</ul>
-<p>
-  If SDK user has provided segmentation with these keys, they should be overwriten.
 </p>
 <h1>View tracking</h1>
 <p>
