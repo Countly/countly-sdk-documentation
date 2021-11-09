@@ -316,9 +316,6 @@
   <span style="font-weight: 400;">Events should be provided by the SDK user who knows what's important for the app to log. Also, events may be used to report some internal Countly events starting with the&nbsp;</span><strong>[CLY]_</strong><span style="font-weight: 400;">&nbsp;prefix, which vary per feature implementation on different platforms.</span>
 </p>
 <p>
-  <span>The call for recording events should support recording Countly internal events. If consent is required then the ability to record them should be governed only by their respective feature consents. The ability to record internal events is in no way influenced by the " event" consent. If consent for some feature is given and "recordEvent" is used to record that features internal event, it should be recorded even if no "event" consent is given. If for some feature consent is not given and </span><span>"recordEvent" is used to record it's internal event, it should not be recorded even if "event" consent is given. If no consent is required, they should be recorded as well.</span>
-</p>
-<p>
   <span style="font-weight: 400;">An event must contain&nbsp;</span><strong>key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>count</strong><span style="font-weight: 400;">&nbsp;properties. If the count is not provided, it should default to&nbsp;1. Optionally, a user may also provide the&nbsp;</span><strong>sum</strong><span style="font-weight: 400;">&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property for recording some duration/period of time and&nbsp;</span><strong>segmentation</strong><span style="font-weight: 400;">&nbsp;as a map with keys and values for segmentation.</span>
 </p>
 <p>
@@ -360,6 +357,54 @@
   <strong>Note</strong>: <strong>count</strong> value defaults to 1 internally
   if not specified.
 </p>
+<h2>Internal Events</h2>
+<p>
+  <span>The call for recording events should support recording Countly internal events. If consent is required then the ability to record them should be governed only by their respective feature consents. The ability to record internal events is in no way influenced by the " event" consent. If consent for some feature is given and "recordEvent" is used to record that features internal event, it should be recorded even if no "event" consent is given. If for some feature consent is not given and </span><span>"recordEvent" is used to record it's internal event, it should not be recorded even if "event" consent is given. If no consent is required, they should be recorded as well.</span>
+</p>
+<p>
+  <span>At the current moment there are the following internal events and their respective required consent:</span>
+</p>
+<ul>
+  <li>
+    <span><strong>[CLY]_nps</strong> - "feedback" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_survey</strong> - "feedback" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_star_rating</strong> - "star_rating" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_view</strong> - "view" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_orientation</strong> - "users" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_push_action</strong> - "push" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_action</strong> - "clicks" or "scroll" consent</span>
+  </li>
+</ul>
+<p>Example 1:</p>
+<ol>
+  <li>event consent is given, but 'view' consent is not given</li>
+  <li>dev calls "recordEvent('[CLY]_view')</li>
+  <li>event is not recorded</li>
+</ol>
+<p>Example 2:</p>
+<ol>
+  <li>event consent is given, and 'view' consent is also given</li>
+  <li>dev calls "recordEvent('[CLY]_view')</li>
+  <li>event is recorded</li>
+</ol>
+<p>Example 3:</p>
+<ol>
+  <li>event consent is not given, but 'view' consent is given</li>
+  <li>dev calls "recordEvent('[CLY]_view')</li>
+  <li>event is recorded</li>
+</ol>
 <h2>Timed Events</h2>
 <p>
   <span style="font-weight: 400;">In short, you may report time with the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property in an event. It is good practice to allow the user to measure some periods internally using the SDK API. For that purpose, the SDK needs to provide the methods below:</span>
