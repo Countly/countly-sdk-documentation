@@ -1,13 +1,13 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 21.11.</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.04 and older, click
-    <a href="/hc/en-us/articles/900004313263" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 20.11 and older, click
+    <a href="/hc/en-us/articles/4409196247065" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -29,7 +29,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:20.11.10'
+    compile 'ly.count.android:sdk:21.11.0'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
@@ -99,6 +99,7 @@
 </p>
 <p>You may also explicitly use OpenUDID:</p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
+<h2>SDK data storage (WIP)</h2>
 <h2>Adding callbacks</h2>
 <p>
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities:</span>
@@ -131,7 +132,12 @@
 <p>
   <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2>Enabling automatic crash reporting</h2>
+<p>
+  In the SDK all crash-related functionality can be browsed from the returned interface
+  on:
+</p>
+<pre><code class="java">Countly.sharedInstance().crashes()</code></pre>
+<h2>Automatic crash handling</h2>
 <p>
   To enable automatic crash reporting, call the following function on the config
   object.
@@ -139,7 +145,7 @@
   will be sent to the dashboard once the app is launched again and the SDK is initiated.
 </p>
 <pre><code class="java">config.enableCrashReporting();</code></pre>
-<h2>Adding a custom key-value segment to a crash report</h2>
+<h2>Automatic crash report segmentation</h2>
 <p>
   <span style="font-weight: 400;">You may add a key/value segment to crash reports. For example, you could set which specific library or framework version you used in your app. You may then figure out if there is any correlation between the specific library or another segment and the crash reports.</span>
 </p>
@@ -147,21 +153,7 @@
   <span style="font-weight: 400;">Use the following function for this purpose:</span>
 </p>
 <pre><code class="java">config.setCustomCrashSegment(Map&lt;String, String&gt; segments)</code></pre>
-<h2>Accessing crash-related functionality</h2>
-<p>
-  In the SDK all crash-related functionality can be browsed from the returned interface
-  on:
-</p>
-<pre><code class="java">Countly.sharedInstance().crashes()</code></pre>
-<h2>Adding breadcrumbs</h2>
-<p>
-  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
-  previous steps that were taken in your app before the crash. After a crash happens,
-  they will be sent together with the crash report.
-</p>
-<p>Following the command adds crash breadcrumb:</p>
-<pre><code class="java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
-<h2>Logging handled exceptions</h2>
+<h2>Handled exceptions</h2>
 <p>
   <span style="font-weight: 400;">You might catch an exception or similar error during your app’s runtime.</span>
 </p>
@@ -173,6 +165,14 @@
   <span style="font-weight: 400;">If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().crashes().recordUnhandledException(Exception exception);</code></pre>
+<h2>Crash breadcrumbs</h2>
+<p>
+  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
+  previous steps that were taken in your app before the crash. After a crash happens,
+  they will be sent together with the crash report.
+</p>
+<p>Following the command adds crash breadcrumb:</p>
+<pre><code class="java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
 <h2>Recording all threads</h2>
 <p>
   If you would like to record the state of all other threads during an uncaught
@@ -189,6 +189,8 @@
   should not be sent to the server:
 </p>
 <pre>config.setCrashFilterCallback(<span>new </span>CrashFilterCallback() {<br>    <span>@Override<br></span><span>    </span><span>public boolean </span>filterCrash(String crash) {<br>        //returns true if the crash should be ignored<br>        <span>return </span>crash.contains(<span>"secret"</span>);<br>    }<br>})</pre>
+<h2>Consent (WIP)</h2>
+<p>&nbsp;</p>
 <h2>Native C++ Crash Reporting</h2>
 <div class="callout callout--warning">
   <p>
@@ -325,25 +327,24 @@ buildscript {
   <span style="font-weight: 400;">We created a&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native"><span style="font-weight: 400;">sample app</span></a><span style="font-weight: 400;">&nbsp;in our github repo that demonstrates both how to use SDK-native and our upload plugin.</span>
 </p>
 <h1>Events</h1>
-<h2>Setting up events</h2>
 <p>
   <span style="font-weight: 400;">An</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">&nbsp;event</span></a><span style="font-weight: 400;">&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the Android SDK to the Countly instance by default.</span>
 </p>
 <p>
   All data passed to the Countly server via the SDK or API should be in UTF-8.
 </p>
-<h2>Accessing event-related functionality</h2>
+<p>&nbsp;</p>
 <p>
   In the SDK all event-related functionality can be browsed from the returned interface
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().events()</code></pre>
-<h2>Segmentation</h2>
+<p>&nbsp;</p>
 <p>
   When providing segmentation for events, the only valid data types are: "String",
   "Integer", "Double" and "Boolean". All other types will be ignored.
 </p>
-<h2>Event usage examples</h2>
+<h2>Recording events</h2>
 <p>
   <span style="font-weight: 400;">We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span style="font-weight: 400;">&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
@@ -430,7 +431,7 @@ Countly.sharedInstance().events().endEvent(eventName, segmentation, 4, 34);
 
 //cancel the event 
 Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
-<h2>Record past events</h2>
+<h2>Past events</h2>
 <p>
   In the previous examples, the event creation time is recorded once the event
   is created.
@@ -441,7 +442,9 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   stored in milliseconds. For that you would use:
 </p>
 <pre><code class="java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
+<h2>Consent (WIP)</h2>
 <h1>Sessions</h1>
+<h2>Automatic session tracking (WIP)</h2>
 <h2>Manual sessions</h2>
 <p>
   Sometimes it might be preferable to control the session manually instead of relying
@@ -462,8 +465,16 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   a session so that it is not closed server side. If you would want to increase
   that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
 </p>
+<h2>
+  <span>Consent (WIP)</span>
+</h2>
 <h1>View tracking</h1>
-<h2>Automatic view tracking&nbsp;</h2>
+<p>
+  In the SDK all view related functionality can be browsed from the returned interface
+  on:
+</p>
+<pre><code class="java">Countly.sharedInstance().views()</code></pre>
+<h2>Automatic views&nbsp;</h2>
 <p>
   <span style="font-weight: 400;">View tracking is a means to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
@@ -487,30 +498,6 @@ automaticViewSegmentation.put("Three", 4.44d);
 automaticViewSegmentation.put("Five", "Six");
 
 config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
-<h2>Tracking orientation changes</h2>
-<p>
-  To record your applications orientation changes, you need to enable it on your
-  init object like:
-</p>
-<pre>config.setTrackOrientationChanges(<span>true</span>);</pre>
-<p>
-  You need to add this to all of your activities where you want to track orientation:
-</p>
-<pre><code><span>android</span><span>:configChanges</span><span>="orientation|screenSize"</span></code></pre>
-<p>Inside of your manifest, it would look something like this:</p>
-<pre><code>&lt;<span>activity<br></span><span>    </span><span>android</span><span>:name</span><span>=".ActivityExample"<br></span><span>    </span><span>android</span><span>:label</span><span>="@string/activity_name"<br></span><span>    </span><span>android</span><span>:configChanges</span><span>="orientation|screenSize"</span>&gt;<br>&lt;/<span>activity</span>&gt;</code></pre>
-<p>
-  To finish your setup for orientation tracking, you need to set up the android
-  callback for "onConfigurationChanged". In those you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".&nbsp;You
-  may set it up similarly to this:
-</p>
-<pre><code class="java"><span>@Override<br></span><span>public void </span>onConfigurationChanged (Configuration newConfig){<br>    <span>super</span>.onConfigurationChanged(newConfig);<br>    Countly.<span>sharedInstance</span>().onConfigurationChanged(newConfig);<br>}</code></pre>
-<h2>Accessing view related functionality</h2>
-<p>
-  In the SDK all view related functionality can be browsed from the returned interface
-  on:
-</p>
-<pre><code class="java">Countly.sharedInstance().views()</code></pre>
 <h2>Manual view recording</h2>
 <p>
   <span style="font-weight: 400;">You may track custom views with the following code snippet as well:</span>
@@ -527,6 +514,9 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 <div class="img-container">
   <img src="https://count.ly/images/guide/1059a04-3.PNG">
 </div>
+<h2>
+  <span>Consent (WIP)</span>
+</h2>
 <h1>Device ID management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
@@ -541,7 +531,8 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2>Changing device ID with and without merge</h2>
+<h2>Device ID generation (WIP)</h2>
+<h2>Changing device ID</h2>
 <p>
   In case your application authenticates users, you might want to change the ID
   to the one in your backend after he has logged in. This helps you identify a
@@ -610,7 +601,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   or "changeDeviceIdWithMerge" or init the SDK with a developer supplied device
   ID.
 </p>
-<h2>Retrieving the device id and its type</h2>
+<h2>Retrieving current device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device
   and what the source of that id is. For that, you may use the following calls.
@@ -619,6 +610,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 </p>
 <pre><code class="java">String usedId = Countly.sharedInstance().getDeviceID();
 Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
+<h2>Consent (WIP)</h2>
 <h1>Push notifications</h1>
 <p>
   Countly supports FCM (Firebase Cloud Messaging) and Huawei Push Kit as push notification
@@ -1059,6 +1051,7 @@ ProxyActivity.intentExtraWhichButton</code></pre>
 <p>
   <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
 </p>
+<h2>Consent (WIP)</h2>
 <h1>User location</h1>
 <p>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
@@ -1109,6 +1102,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">This action will erase the cached location data from the device and the server.</span>
 </p>
+<h2>Consent (WIP)</h2>
 <h1>Remote Config</h1>
 <p>
   <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
@@ -1137,7 +1131,7 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
 <p>
   <span style="font-weight: 400;">When performing an automatic update, all locally stored values are replaced with the ones received (all locally stored values are deleted and replaced by new ones). It is possible that a previously valid key will return no value after an update.</span>
 </p>
-<h2>Manual Remote Config download</h2>
+<h2>Manual Remote Config</h2>
 <p>
   <span style="font-weight: 400;">There are three ways for manually requesting a remote config update: * Manually updating everything * Manually updating specific keys * Manually updating everything except specific keys.</span>
 </p>
@@ -1186,7 +1180,7 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
 <p>
   <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a simple manual request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2>Getting Remote Config values</h2>
+<h2>Accessing Remote Config values</h2>
 <p>
   To request a stored value, call <code>getRemoteConfigValueForKey</code>&nbsp;with
   the specified key. If it returns <code>null</code>
@@ -1203,11 +1197,12 @@ int int_value = (int) value_1;
 double double_value = (double) value_2;
 JSONArray jArray = (JSONArray) value_3;
 JSONObject jobj = (JSONObject) value_4;</code></pre>
-<h2>Clearing Stored Remote Config values</h2>
+<h2>Clearing Stored values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().remoteConfigClearValues();</code></pre>
+<h2>Consent (WIP)</h2>
 <h1>User feedback</h1>
 <p>
   <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
@@ -1215,49 +1210,8 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
 <p>
   <span style="font-weight: 400;">Star-rating dialog allows users to give feedback as a rating from 1 to 5. The rating widget allows users to rate using the same 1 to 5 rating system as well as leave a text comment. Feedback widgets (survey, nps) allow for even more textual feedback from users.</span>
 </p>
-<h2>Rating widget</h2>
-<p>
-  <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/072bb00-t1.png">
-</div>
-<p>
-  <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">In addition to a 1 to 5 rating, users may also leave a text comment along with an email, should the user desire to be contacted by the app developer.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Trying to show the rating widget is a single call, but, in reality, it’s a two-step process. Before it is displayed, the SDK attempts to contact the server to receive more information regarding the dialog. Therefore, a network connection is needed.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/2dd58c6-t2.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
-</p>
-<pre><code class="java">String widgetId = "xxxxx";
-String closeButtonText = "Close";
-Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, activity, new FeedbackRatingCallback() {
-  @Override
-  public void callback(String error) {
-    if(error != null){
-      Toast.makeText(activity, "Encountered error while showing raging widget dialog: [" + error + "]", Toast.LENGTH_LONG).show();
-    }
-  }
-});</code></pre>
-<h2>Report rating manually</h2>
-<p>
-  You may want to display your own custom UI to query users about the information
-  in the rating widget. In case you do that, you would then report that rating
-  result manually. To do that you would use the following call:
-</p>
-<pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordManualRating(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
-<h2>Star-rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star-rating dialog</h3>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
@@ -1330,6 +1284,48 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
       //the star rating dialog was dismissed
     }
 };</code></pre>
+<h3>Rating widget</h3>
+<p>
+  <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/072bb00-t1.png">
+</div>
+<p>
+  <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">In addition to a 1 to 5 rating, users may also leave a text comment along with an email, should the user desire to be contacted by the app developer.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Trying to show the rating widget is a single call, but, in reality, it’s a two-step process. Before it is displayed, the SDK attempts to contact the server to receive more information regarding the dialog. Therefore, a network connection is needed.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/2dd58c6-t2.png">
+</div>
+<p>
+  <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
+</p>
+<pre><code class="java">String widgetId = "xxxxx";
+String closeButtonText = "Close";
+Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, activity, new FeedbackRatingCallback() {
+  @Override
+  public void callback(String error) {
+    if(error != null){
+      Toast.makeText(activity, "Encountered error while showing raging widget dialog: [" + error + "]", Toast.LENGTH_LONG).show();
+    }
+  }
+});</code></pre>
+<h3>Manual rating reporting</h3>
+<p>
+  You may want to display your own custom UI to query users about the information
+  in the rating widget. In case you do that, you would then report that rating
+  result manually. To do that you would use the following call:
+</p>
+<pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordManualRating(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
 <h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of feedback widgets:
@@ -1527,6 +1523,25 @@ Countly.userData.save();</code></pre>
   In the end, always call <strong>Countly.userData.save()</strong> to send them
   to the server.
 </p>
+<h2>Orientation tracking</h2>
+<p>
+  To record your applications orientation changes, you need to enable it on your
+  init object like:
+</p>
+<pre>config.setTrackOrientationChanges(<span>true</span>);</pre>
+<p>
+  You need to add this to all of your activities where you want to track orientation:
+</p>
+<pre><code><span>android</span><span>:configChanges</span><span>="orientation|screenSize"</span></code></pre>
+<p>Inside of your manifest, it would look something like this:</p>
+<pre><code>&lt;<span>activity<br></span><span>    </span><span>android</span><span>:name</span><span>=".ActivityExample"<br></span><span>    </span><span>android</span><span>:label</span><span>="@string/activity_name"<br></span><span>    </span><span>android</span><span>:configChanges</span><span>="orientation|screenSize"</span>&gt;<br>&lt;/<span>activity</span>&gt;</code></pre>
+<p>
+  To finish your setup for orientation tracking, you need to set up the android
+  callback for "onConfigurationChanged". In those you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".&nbsp;You
+  may set it up similarly to this:
+</p>
+<pre><code class="java"><span>@Override<br></span><span>public void </span>onConfigurationChanged (Configuration newConfig){<br>    <span>super</span>.onConfigurationChanged(newConfig);<br>    Countly.<span>sharedInstance</span>().onConfigurationChanged(newConfig);<br>}</code></pre>
+<h2>Consent (WIP)</h2>
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To browse some of the provided functionality,
