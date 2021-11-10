@@ -711,9 +711,12 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </div>
 <h2>Report feedback</h2>
 <p>
-  In case you don't want to use Countly provided feedback and rating UI where 
-  you have to provide 'feedback' and 'star-rating' consents respectively, you may
-  use your own UI and simply report collected data to Countly.
+  In case you don't want to use Countly provided feedback and rating UI where you
+  may use your own UI and simply report collected data to Countly.
+</p>
+<p>
+  To report the rating widget result manually, you need to give "star-rating" consent
+  (in case consent is required).
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -752,8 +755,12 @@ Countly.report_feedback({
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by
-  specifying the element ID or the class name.
+  want to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
+</p>
+<p>
+  To use feedback widgets, you need to give "feedback" consent (in case consent
+  is required).
 </p>
 <div class="tabs">
   <div class="tabs-menu">
