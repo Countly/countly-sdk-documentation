@@ -711,7 +711,8 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </div>
 <h2>Report feedback</h2>
 <p>
-  In case you don't want to use Countly provided feedback and rating UI, you may
+  In case you don't want to use Countly provided feedback and rating UI where 
+  you have to provide 'feedback' and 'star-rating' consents respectively, you may
   use your own UI and simply report collected data to Countly.
 </p>
 <div class="tabs">
@@ -1343,10 +1344,10 @@ Countly.require_consent = true;</code></pre>
     <span style="font-weight: 400;">users - allows user information, including custom properties, to be collected/provided</span>
   </li>
   <li>
-    <span style="font-weight: 400;">star rating - allows users to rate the site and leave feedback</span>
+    <span style="font-weight: 400;">star-rating - allows user rating and feedback tracking through rating widgets</span>
   </li>
   <li>
-    <span style="font-weight: 400;">feedback - allows users to take part in surveys and nps ratings and submit feedbacks</span>
+    <span style="font-weight: 400;">feedback - allows survey, nps rating and feedback tracking through feedback widgets</span>
   </li>
   <li>
     <span style="font-weight: 400;">apm - allows performance tracking of application by recording traces</span>
