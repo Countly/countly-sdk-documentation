@@ -930,7 +930,6 @@ Countly.disableLocation();</code></pre>
   <p class="callout__title">
     <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
   </p>
-  <p>Currently this feature is only available for Android</p>
 </div>
 <p>
   There might be some usecases where you might to use the native UI or a custom
@@ -1249,18 +1248,28 @@ Countly.enableParameterTamperingProtection("salt");</code></pre>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition.
 </p>
-<p>Call this before init.</p>
-<pre><code class="JavaScript">// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
-Countly.enableAttribution();</code></pre>
 <p>
-  For iOS 14+ use the <code>recordAttributionID("IDFA")</code> function instead
-  of <code>Countly.enableAttribution()</code>
+  <span>There are 2 forms of attribution: direct Attribution and indirect Attribution.</span><span></span>
+</p>
+<h3>
+  <span>Direct Attribution</span>
+</h3>
+<p>
+  Currently, direct attribution is only available for Android.
 </p>
 <p>
-  You can use <code>recordAttributionID</code> function to specify IDFA for campaign
+  You can use <code>recordDirectAttribution</code> function to manually report
   attribution
 </p>
-<pre><code class="JavaScript">Countly.recordAttributionID("IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM");</code></pre>
+<pre><code class="JavaScript">Countly.recordDirectAttribution("Campaign_ID", "<span>Campaign_User_ID</span>");</code></pre>
+<h3>
+  <span>Indirect Attribution</span>
+</h3>
+<p>
+  You can use <code>recordIndirectAttribution</code> function to manually report
+  attribution
+</p>
+<pre><code class="JavaScript">Countly.recordIndirectAttribution("ADVERTISING_ID");</code></pre>
 <p>
   For iOS 14+ due to Apple changes regarding Application Tracking, you need to
   ask the user for permission to track the Application.
