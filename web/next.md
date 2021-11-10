@@ -711,8 +711,12 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </div>
 <h2>Report feedback</h2>
 <p>
-  In case you don't want to use Countly provided feedback and rating UI, you may
-  use your own UI and simply report collected data to Countly.
+  In case you don't want to use Countly provided feedback and rating UI where you
+  may use your own UI and simply report collected data to Countly.
+</p>
+<p>
+  To report the rating widget result manually, you need to give "star-rating" consent
+  (in case consent is required).
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -751,8 +755,12 @@ Countly.report_feedback({
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by
-  specifying the element ID or the class name.
+  want to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
+</p>
+<p>
+  To use feedback widgets, you need to give "feedback" consent (in case consent
+  is required).
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1343,10 +1351,10 @@ Countly.require_consent = true;</code></pre>
     <span style="font-weight: 400;">users - allows user information, including custom properties, to be collected/provided</span>
   </li>
   <li>
-    <span style="font-weight: 400;">star rating - allows users to rate the site and leave feedback</span>
+    <span style="font-weight: 400;">star-rating - allows user rating and feedback tracking through rating widgets</span>
   </li>
   <li>
-    <span style="font-weight: 400;">feedback - allows users to take part in surveys and nps ratings and submit feedbacks</span>
+    <span style="font-weight: 400;">feedback - allows survey, nps rating and feedback tracking through feedback widgets</span>
   </li>
   <li>
     <span style="font-weight: 400;">apm - allows performance tracking of application by recording traces</span>
