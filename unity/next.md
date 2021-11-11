@@ -108,11 +108,26 @@
   data stores in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'. <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> is a fast acid table-style document NoSQL Embedded Database.&nbsp;<br></span>
 </p>
 <p>
-  <span>The SDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at different locations depending on platform. Following is the location of database file in case of our sample app run on Android platform: </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+  <span>The UnitySDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at:</span>
 </p>
-<p>
-  <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">Unity editor create database document file at<br>"/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.box" on Mac OSX.</span>
-</p>
+<div>
+  <pre><span>Application.persistentDataPath;<br></span></pre>
+  <p>
+    <span><strong>Note:</strong> <code>Application.persistentDataPath</code>return different paths depending on thplatform.<br></span><span>Following are the locations of database file in case of our sample app run on <strong>Android:&nbsp;</strong>'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+  </p>
+  <p>
+    <span><strong>Linux: </strong>'home/&lt;username&gt;/.config/unity3d/Countly/CountlyDotNetSDK/db3.box'</span>
+  </p>
+  <p>
+    <span><strong>Windows: </strong></span>C:/Users/&lt;username&gt;/AppData/LocalLow/Countly/CountlyDotNetSDK/db3.box'
+  </p>
+  <p>
+    <span><strong>Mac OSX: </strong>'/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.boxx'</span>
+  </p>
+  <p>
+    <span><strong>iOS: </strong>'/var/mobile/Containers/Data/Application/&lt;random-folder-name&gt;/Documents/db3.box'<br></span>
+  </p>
+</div>
 <h2 id="require-app-permissions" class="anchor-heading">Required app permissions</h2>
 <p>
   If you expect the game to be saved
