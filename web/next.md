@@ -751,8 +751,8 @@ Countly.report_feedback({
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by
-  specifying the element ID or the class name.
+  want to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -809,8 +809,13 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </p>
 <h2>Report device orientation</h2>
 <p>
-  Orientation tracking is enabled by default where Countly reports the device orientation once a session starts, and
-  at any time the orientation changes. However you may disable orientation tracking by providing the enable_orientation_tracking setting when initializing the SDK as follows.
+  Orientation tracking is enabled by default and will be sent if the required "user"
+  consent is given (if enabled). Countly will report the device orientation once
+  a session starts, and at any time the orientation changes.
+</p>
+<p>
+  You may disable orientation tracking by providing the enable_orientation_tracking
+  setting when initializing the SDK as follows.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -833,7 +838,7 @@ Countly.init({
   </div>
 </div>
 <p>
-In case you need to force reporting orientation, you may call the following method.
+  In case you need to force reporting orientation, you may call the following method.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
