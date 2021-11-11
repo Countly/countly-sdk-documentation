@@ -817,9 +817,36 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </p>
 <h2>Report device orientation</h2>
 <p>
-  By default, Countly reports the device orientation once a session starts, and
-  at any time the orientation changes. In case you need to force reporting orientation,
-  you may call the following method.
+  Orientation tracking is enabled by default and will be sent if the required "user"
+  consent is given (if enabled). Countly will report the device orientation once
+  a session starts, and at any time the orientation changes.
+</p>
+<p>
+  You may disable orientation tracking by providing the enable_orientation_tracking
+  setting when initializing the SDK as follows.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//before loading Countly script
+Countly.enable_orientation_tracking = false;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to disable orientation tracking
+Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    enable_orientation_tracking: false //this will disable orientation tracking
+});</code></pre>
+  </div>
+</div>
+<p>
+  In case you need to force reporting orientation, you may call the following method.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
