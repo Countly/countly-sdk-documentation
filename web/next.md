@@ -711,8 +711,12 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </div>
 <h2>Report feedback</h2>
 <p>
-  In case you don't want to use Countly provided feedback and rating UI, you may
-  use your own UI and simply report collected data to Countly.
+  In case you don't want to use Countly provided feedback and rating UI where you
+  may use your own UI and simply report collected data to Countly.
+</p>
+<p>
+  To report the rating widget result manually, you need to give "star-rating" consent
+  (in case consent is required).
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -751,8 +755,12 @@ Countly.report_feedback({
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by
-  specifying the element ID or the class name.
+  want to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
+</p>
+<p>
+  To use feedback widgets, you need to give "feedback" consent (in case consent
+  is required).
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -809,9 +817,36 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </p>
 <h2>Report device orientation</h2>
 <p>
-  By default, Countly reports the device orientation once a session starts, and
-  at any time the orientation changes. In case you need to force reporting orientation,
-  you may call the following method.
+  Orientation tracking is enabled by default and will be sent if the required "user"
+  consent is given (if enabled). Countly will report the device orientation once
+  a session starts, and at any time the orientation changes.
+</p>
+<p>
+  You may disable orientation tracking by providing the enable_orientation_tracking
+  setting when initializing the SDK as follows.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//before loading Countly script
+Countly.enable_orientation_tracking = false;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to disable orientation tracking
+Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    enable_orientation_tracking: false //this will disable orientation tracking
+});</code></pre>
+  </div>
+</div>
+<p>
+  In case you need to force reporting orientation, you may call the following method.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1273,6 +1308,9 @@ catch(ex){
     <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
   </div>
 </div>
+<p>
+  <span style="font-weight: 400;">NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
+</p>
 <h1>GDPR Consent management</h1>
 <p>
   <span style="font-weight: 400;">In most cases, the </span><strong>opt_out</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>opt_in</strong><span style="font-weight: 400;">&nbsp;methods are enough to disable the tracking of specific users, such as testers. However, in some cases, you may require a more granular approach.</span>
@@ -1343,10 +1381,10 @@ Countly.require_consent = true;</code></pre>
     <span style="font-weight: 400;">users - allows user information, including custom properties, to be collected/provided</span>
   </li>
   <li>
-    <span style="font-weight: 400;">star rating - allows users to rate the site and leave feedback</span>
+    <span style="font-weight: 400;">star-rating - allows user rating and feedback tracking through rating widgets</span>
   </li>
   <li>
-    <span style="font-weight: 400;">feedback - allows users to take part in surveys and nps ratings and submit feedbacks</span>
+    <span style="font-weight: 400;">feedback - allows survey, nps rating and feedback tracking through feedback widgets</span>
   </li>
   <li>
     <span style="font-weight: 400;">apm - allows performance tracking of application by recording traces</span>
