@@ -1264,7 +1264,10 @@ catch(ex){
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In some cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
+  <span style="font-weight: 400;">In these cases, Countly clears the previously provided consents of the former user automatically as expected.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">In some other cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
 </p>
 <p>
   <span style="font-weight: 400;">This call will merge any data recorded for the current ID and save it as a user with a newly provided ID.</span>
@@ -1784,7 +1787,7 @@ Countly.track_performance({
 </div>
 <h1>Offline mode</h1>
 <p>
-  <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time.</span>
+  <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time and clears the consents provided so far.</span>
 </p>
 <p>
   <span style="font-weight: 400;">E.g. if you would like to track your users with a custom device_id, such as with your internal customer ID, and you may only receive that value as soon as the user logs in. Yet, you would also like to track what the user did before logging in.</span>
