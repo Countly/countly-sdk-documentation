@@ -751,8 +751,8 @@ Countly.report_feedback({
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by
-  specifying the element ID or the class name.
+  want to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1274,7 +1274,7 @@ catch(ex){
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">NOTE: For both cases the new ID must be a non-null value of type string.</span>
+  <span style="font-weight: 400;">NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
 </p>
 <h1>GDPR Consent management</h1>
 <p>
