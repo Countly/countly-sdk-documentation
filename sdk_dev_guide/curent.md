@@ -1174,6 +1174,59 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   dialog to be displayed only once per app lifetime, instead of for each new version.
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingDisableAskingForEachAppVersion = false;</code></pre>
+<h2>Rating widgets</h2>
+<h3>Automatic rating widgets</h3>
+<p>
+  Automatic widgets are integrated with custom html. That is either injected into
+  the page (web) or shown in a webView (mobile).
+</p>
+<p>
+  To present such a widget, you would have the following call:
+</p>
+<pre><span>presentRatingWidgetWithID</span>(S<span>tring </span>widgetId, <span>String </span>closeButtonText, <span>RatingWidgetCallback </span>callback)</pre>
+<p>
+  It takes the ID of the widget, the custom close button text and a callback.
+</p>
+<h3>Manual rating widgets</h3>
+<p>
+  In case a developer wants to use their custom UI, they can report the result
+  manually.
+</p>
+<p>They would use the following call:</p>
+<p>
+  <span>That function should be called "recordRatingWidgetWithID" and it should have the following parameters:</span><br>
+  <span>"(String widgetId, int rating, String email, String comment, boolean userCanBeContacted)"</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  <span>When recording the result manually, it should record an event with the internal key "[CLY]_star_rating". The event should have the following segmentation:</span>
+</p>
+<ul>
+  <li>
+    <span>"platform" - current platform</span>
+  </li>
+  <li>
+    <span>"app_version" - current app version</span>
+  </li>
+  <li>
+    <span>"rating" - provided rating result. In the range from 1 to 5.</span>
+  </li>
+  <li>
+    <span>"widget_id" - provided widget ID.</span>
+  </li>
+  <li>
+    <span>"contactMe" - provided value.</span>
+  </li>
+  <li>
+    "email" - <span>provided value.</span>
+  </li>
+  <li>
+    "comment" - <span>provided value.</span>
+  </li>
+</ul>
+<p>
+  <span>Basic filtering on the provided values should be performed. Invalid widget ID's should not be accepted. Rating value should be clamped to the range of [1,5].</span><span></span>
+</p>
 <h2>Feedback widgets</h2>
 <p>
   Showing feedback widgets or performing any of the feedback widget related features
