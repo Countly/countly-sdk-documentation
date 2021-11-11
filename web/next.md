@@ -1281,6 +1281,9 @@ catch(ex){
     <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
   </div>
 </div>
+<p>
+  <span style="font-weight: 400;">NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
+</p>
 <h1>GDPR Consent management</h1>
 <p>
   <span style="font-weight: 400;">In most cases, the </span><strong>opt_out</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>opt_in</strong><span style="font-weight: 400;">&nbsp;methods are enough to disable the tracking of specific users, such as testers. However, in some cases, you may require a more granular approach.</span>
