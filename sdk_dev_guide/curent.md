@@ -1245,7 +1245,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   that allows the grouping of this data). If a class is used for grouping, it should
   be named similar to "<span>CountlyPresentableFeedback". That object contains 2 values, widget id and widget type. Potential type values are currently "nps" and "survey".</span>
 </p>
-<p>The url to acquire all available widhets in a list is:</p>
+<p>The url to acquire all available widgets in a list is:</p>
 <pre>/o/sdk?method=feedback&amp;app_key=[appKey]&amp;device_id=[deviceID]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]</pre>
 <p>
   If parameter tampering is enabled, sha256 param should be added with the checksum.
