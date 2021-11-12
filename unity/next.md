@@ -20,7 +20,9 @@
 <ol>
   <li>Scripting version is based on .NET 4.x equivalent</li>
   <li>API Compatibility Level is based on .NET 4.x equivalent</li>
-  <li>SDK is tested on IOS, Android, Windows, UWP, and Mac OSX</li>
+  <li>
+    SDK is tested on IOS, Android, Windows, UWP, Linux and Mac OSX
+  </li>
 </ol>
 <p>
   To look at our sample application, download the sample project from
@@ -113,20 +115,28 @@
 <div>
   <pre><span>Application.persistentDataPath;<br></span></pre>
   <p>
-    <span><strong>Note:</strong> <code>Application.persistentDataPath</code>return different paths depending on thplatform.<br></span><span>Following are the locations of database file in case of our sample app run on <strong>Android:&nbsp;</strong>'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+    <span><strong>Note:</strong> <code>Application.persistentDataPath</code>return different paths depending on the platform.</span>
   </p>
   <p>
-    <span><strong>Linux: </strong>'home/&lt;username&gt;/.config/unity3d/Countly/CountlyDotNetSDK/db3.box'</span>
+    <span>Following are the locations of database file in case of our sample app run on:</span>
   </p>
-  <p>
-    <span><strong>Windows: </strong></span>C:/Users/&lt;username&gt;/AppData/LocalLow/Countly/CountlyDotNetSDK/db3.box'
-  </p>
-  <p>
-    <span><strong>Mac OSX: </strong>'/Users/&lt;username&gt;/Library/Application Support/Countly/CountlyDotNetSDK/db3.boxx'</span>
-  </p>
-  <p>
-    <span><strong>iOS: </strong>'/var/mobile/Containers/Data/Application/&lt;random-folder-name&gt;/Documents/db3.box'<br></span>
-  </p>
+  <ul>
+    <li>
+      <span><strong>Android:&nbsp;</strong>'/storage/emulated/0/Android/data/ly.count.demo/files/db3.box'</span>
+    </li>
+    <li>
+      <span><strong>Linux: </strong>'home/&lt;username&gt;/.config/unity3d/Countly/CountlyDotNetSDK/db3.box'</span>
+    </li>
+    <li>
+      <span><strong>Windows: </strong></span>'C:/Users/&lt;username&gt;/AppData/LocalLow/Countly/CountlyDotNetSDK/db3.box'
+    </li>
+    <li>
+      <strong>Mac OSX: </strong><span>'~/Library/Application Support/Countly/CountlyDotNetSDK/db3.box'</span>
+    </li>
+    <li>
+      <span><strong>iOS: </strong>'/var/mobile/Containers/Data/Application/&lt;random-folder-name&gt;/Documents/db3.box'</span>
+    </li>
+  </ul>
 </div>
 <h2 id="require-app-permissions" class="anchor-heading">Required app permissions</h2>
 <p>
