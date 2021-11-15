@@ -1263,9 +1263,11 @@ catch(ex){
     <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
   </div>
 </div>
-<p>
-  <span style="font-weight: 400;">In these cases, Countly clears the previously provided consents of the former user automatically as expected.</span>
-</p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">In some other cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
 </p>
@@ -1787,7 +1789,7 @@ Countly.track_performance({
 </div>
 <h1>Offline mode</h1>
 <p>
-  <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time and clears the consents provided so far.</span>
+  <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time.</span>
 </p>
 <p>
   <span style="font-weight: 400;">E.g. if you would like to track your users with a custom device_id, such as with your internal customer ID, and you may only receive that value as soon as the user logs in. Yet, you would also like to track what the user did before logging in.</span>
@@ -1795,6 +1797,11 @@ Countly.track_performance({
 <p>
   <span style="font-weight: 400;">Using offline mode within this context allows you to omit the user merging and server overhead that comes with it, including any possibly skewed aggregation data.</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If offline mode is entered and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again. Therefore after entering the offline mode, you should reestablish consent again.</span>
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">To launch the SDK in offline mode, simply provide the offline_mode config value as true. At this point you may omit providing the device_id value if you would like. </span>
 </p>
