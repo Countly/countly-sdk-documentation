@@ -107,18 +107,14 @@
 </p>
 <p>
   SDK uses Preferences to keep track of application and user preferences and s<span>tore private, primitive data in key-value pairs. </span>Operational
-  data stores in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'. <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> is a fast acid table-style document NoSQL Embedded Database.&nbsp;<br></span>
+  data is stored in<span><a href="https://www.iboxdb.com/" target="_self"> iBoxDB</a> database file, named 'db3.box'.&nbsp;<br></span>
 </p>
 <p>
-  <span>The UnitySDK saves the <a href="https://www.iboxdb.com/" target="_self">iBoxDB</a> database document file at:</span>
+  <span>The specific path where the database file would be stored is different for different platforms. To determine the specific path where the database is stored, you would look at the value returned by </span><span><code>Application.persistentDataPath</code>.</span>
 </p>
 <div>
-  <pre><span>Application.persistentDataPath;<br></span></pre>
   <p>
-    <span><strong>Note:</strong> <code>Application.persistentDataPath</code>return different paths depending on the platform.</span>
-  </p>
-  <p>
-    <span>Following are the locations of database file in case of our sample app run on:</span>
+    <span>Following are the locations of the database file were used in our sample app:</span>
   </p>
   <ul>
     <li>
@@ -206,16 +202,15 @@
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
 <h2 class="anchor-heading">Crash breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave&nbsp;crash breadcrumbs
-  <span>Mandatory that </span>would describe previous steps that were taken in
-  your app before the crash. After a crash happens, they will be sent together
-  with the crash report.
+  Throughout your app, you can leave crash breadcrumbs. They are shory logs<span>&nbsp;that </span>would
+  describe the previous steps that were taken in your app before the crash. After
+  a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <code>Crashes</code><span> consent is required to use the Crash feature. On removing the <code>Crashes</code> consent, no data related to the crash will store locally or send to the server.</span>
+  This feature uses <code>Crashes</code><span> consent. No additinal crash logs will be recorded if consent is required and not given.</span>
 </p>
 <h1>Events</h1>
 <p>
@@ -338,7 +333,10 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>Events</code> consent is required to use the event feature. On removing the <code>Events</code> consent, the event feature will get disabled and no data related to the event will store locally or send to the server.</span>
+  <span>This feature uses <code>Events</code> consent. </span><span>No additional events will be recorded if consent is required and not given.</span>
+</p>
+<p>
+  <span>When consent is removed, all previously started timed events will be cancelled.</span>
 </p>
 <h1>Sessions</h1>
 <h2>
@@ -375,13 +373,15 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </ul>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>Sessions</code> consent is required to use this feature. </span>During
-  SDK init, If the requirement for consent is set to enable and
-  <span><code>Sessions</code> consent isn't given then the session tracking feature will be disabled and the session will not start</span>.
+  <span>This feature requires<code>Sessions</code> consent. Sessions and metrics will not be recorded if consent is required and not given.</span>
 </p>
 <p>
-  After giving
-  <span><code>Sessions</code>consent if it wasn't given before, session begin request will send to server and the automatic session feature will get enabled. </span><span>On removing <code>Sessions</code>consent, the session feature will get disabled again.</span>
+  If consent was given and then is removed, the current session will not get explicitly
+  ended.
+</p>
+<p>
+  If consent was removed and then given, and automatic sessions were enabled, a
+  session will automatically be started.<span></span>
 </p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
@@ -400,7 +400,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <pre><strong>await</strong> countly.Views.RecordCloseViewAsync("Home Scene");</pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>Views</code> consent is required to use the views feature. On removing the <code>Views</code> consent, SDK doesn't store data related to the view locally or send it to the server.</span>
+  <span>This feature requires<code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
 </p>
 <h1 class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
@@ -454,6 +454,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.<br></span>
 </p>
@@ -464,9 +469,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
 <h2 class="anchor-heading">Consent</h2>
-<p>No consent is required to use this feature.</p>
+<p>No consent is required to change device ID.</p>
 <p>
-  <span><strong>Note</strong>: If consents are enabled, on successfully changing device id without merge, SDK removes all given consents.</span>
+  If device ID is changed without merging and consent was enabled, all previously
+  given consent will be removed. This means that all features will cease to function
+  until new consent has been given again for that new device ID.
 </p>
 <h1>Push notifications</h1>
 <p>
@@ -614,7 +621,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>Push</code> consent is required to use this feature. You will have to give consent before SDK initializes. You can not enable or disable the Push feature&nbsp;after SDK initialization.</span>
+  <span>This feature requires<code>Push</code> consent. No push notifications will be received if consent is required and not given.</span>
 </p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
@@ -672,7 +679,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>Location</code> consent is required to use this feature. On removing the <code>Location</code> consent, SDK sends a request with an empty "location" parameter to the server and the location feature will get disabled.</span>
+  <span>This feature requires<code>Location</code> consent. If consent is not given and is required, no location information will be recorded. No reverse geo IP will be performed server side. SDK will behave as if location tracking is disabled.</span>
+</p>
+<p>
+  If consent was given and then was removed, it will create a request that will
+  clear location information server side.
 </p>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
@@ -693,15 +704,15 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><strong>Dictionary</strong>&lt;<strong>string</strong>, <strong>object</strong>&gt; config = Countly.Instance.RemoteConfigs.Configs;</pre>
 <p>
-  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span><span></span>
+  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>RemoteConfig</code> consent is required to use this feature.</span>
+  <span>This feature requires<code>RemoteConfig</code> consent. If consent is required and not give, no remote config information will be downloaded and stored.</span>
 </p>
 <p>
-  If consents are enabled and no
-  <span><code>RemoteConfig</code> is given before SDK initialization, SDK removes locally stored remote configuration during initialization. SDK also removes locally stored remote configurations on removing the <code>RemoteConfig</code> consent after SDK initialization.</span>
+  If consent was given and then is removed, locally stored remote config information
+  will be cleared.
 </p>
 <h1>User feedback</h1>
 <h2>Ratings</h2>
@@ -734,7 +745,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </ul>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <code>StarRating</code><span>consent is required to use this feature. On giving or revoking <code>StarRating</code>consent, SDK doesn't store data locally or send it to the server.</span><span></span>
+  If consent is required, recording star rating requires<code>StarRating</code><span>consent. If consent is required and not give, it will not be possible to record star rating.</span><span></span>
 </p>
 <h1>User profiles</h1>
 <p>
@@ -848,7 +859,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <pre><code><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <code>User</code><span>consent is required to use this feature. On giving or revoking <code>User</code>consent, SDK doesn't store data locally or send it to the server.</span>
+  This feature requires<code>User</code><span>consent. If consent is required and not given, it will not be possible to record user profile information.</span>
 </p>
 <h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User consent</h1>
 <p>
