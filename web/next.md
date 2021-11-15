@@ -1290,8 +1290,13 @@ catch(ex){
     <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
   </div>
 </div>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
 <p>
-  <span style="font-weight: 400;">In some cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
+  <span style="font-weight: 400;">In some other cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
 </p>
 <p>
   <span style="font-weight: 400;">This call will merge any data recorded for the current ID and save it as a user with a newly provided ID.</span>
@@ -1822,6 +1827,11 @@ Countly.track_performance({
 <p>
   <span style="font-weight: 400;">Using offline mode within this context allows you to omit the user merging and server overhead that comes with it, including any possibly skewed aggregation data.</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If offline mode is entered and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again. Therefore after entering the offline mode, you should reestablish consent again.</span>
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">To launch the SDK in offline mode, simply provide the offline_mode config value as true. At this point you may omit providing the device_id value if you would like. </span>
 </p>
