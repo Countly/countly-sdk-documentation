@@ -134,7 +134,7 @@
       <strong>Mac OSX: </strong><span>'~/Library/Application Support/Countly/CountlyDotNetSDK/db3.box'</span>
     </li>
     <li>
-      <span><strong>iOS: </strong>'/var/mobile/Containers/Data/Application/&lt;random-folder-name&gt;/Documents/db3.box'</span>
+      <span><strong>iOS: </strong>'/var/mobile/Containers/Data/Application/&lt;random-folder-name&gt;/Documents/db3.box'</span><span></span>
     </li>
   </ul>
 </div>
@@ -207,16 +207,15 @@
 <h2 class="anchor-heading">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave&nbsp;crash breadcrumbs
-  <span>Mandatory that </span>which would describe previous steps that were taken
-  in your app before the crash. After a crash happens, they will be sent together
+  <span>Mandatory that </span>would describe previous steps that were taken in
+  your app before the crash. After a crash happens, they will be sent together
   with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, crash reporting will be disabled until you give
-  <code>Crashes</code><span> consent. You may remove <code>Crashes</code> consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <code>Crashes</code><span> consent is required to use the Crash feature. On removing or giving the <code>Crashes</code> consent, no data related to the crash will store locally or send to the server.</span>
 </p>
 <h1>Events</h1>
 <p>
@@ -339,8 +338,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, the events feature will be disabled until you give
-  <code>Events</code><span> consent. You may remove <code>Events</code> consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <span><code>Events</code> consent is required to use the event feature. On removing the <code>Events</code> consent, the event feature will get disabled and no data related to the event will store locally or send to the server.</span>
 </p>
 <h1>Sessions</h1>
 <h2>
@@ -377,8 +375,13 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </ul>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, sessions tracking will be disabled until you give
-  <code>Sessions</code><span> consent. You may remove <code>Sessions</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <span><code>Sessions</code> consent is required to use this feature. </span>During
+  SDK init, If the requirement for consent is set to enable and
+  <span><code>Sessions</code> consent isn't given then the session tracking feature will be disabled and the session will not start</span>.
+</p>
+<p>
+  After giving
+  <span><code>Sessions</code>consent if it wasn't given before, session begin request will send to server and the automatic session tracking will get enabled. </span><span>On removing <code>Sessions</code>consent, the session feature will get disabled again.</span>
 </p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
@@ -397,8 +400,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <pre><strong>await</strong> countly.Views.RecordCloseViewAsync("Home Scene");</pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, view tracking will be disabled until you give
-  <code>Views</code><span> consent. You may remove <code>Views</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <span><code>Views</code> consent is required to use the views feature. On removing the <code>Views</code> consent, SDK doesn't store data related to the view locally or send it to the server.</span>
 </p>
 <h1 class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
@@ -453,7 +455,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
 <p>
-  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.<br></span>
 </p>
 <h2 class="anchor-heading">Retrieving current device ID&nbsp;</h2>
 <p>
@@ -461,6 +463,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">string usedId = Countly.Instance.Device.DeviceId;</code></pre>
+<h2 class="anchor-heading">Consent</h2>
+<p>No consent is required to use this feature.</p>
+<p>
+  <span><strong>Note</strong>: If consents are enabled, on successfully changing device id without merge, SDK removes all given consents.</span>
+</p>
 <h1>Push notifications</h1>
 <p>
   <span>The Unity SKD uses FCM and APNs as push notification providers for Android and iOS platforms respectively, and it doesn't support the Huawei Push Kit push service.<br></span>
@@ -607,8 +614,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, the push notification feature will be disabled until
-  you give <code>Push</code><span> consent. You may remove <code>Push</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <span><code>Push</code> consent is required to use this feature. You will have to give consent before SDK initializes. You can not give or revoke<code>Push</code>consent after SDK initialization.</span>
 </p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
@@ -666,8 +672,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, the user location feature will be disabled until you
-  give <code>Location</code><span> consent. You may remove <code>Location</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <span><code>Location</code> consent is required to use this feature. On removing the <code>Location</code> consent, SDK sends a request with an empty "location" parameter to the server and the location feature will get disabled.</span>
 </p>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
@@ -692,8 +697,11 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, the remote config feature will be disabled until you
-  give <code>RemoteConfig</code><span> consent. You may remove <code>RemoteConfig</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <span><code>RemoteConfig</code> consent is required to use this feature.</span>
+</p>
+<p>
+  If consents are enabled and no
+  <span><code>RemoteConfig</code> is given before SDK initialization, SDK removes locally stored remote configuration during initialization. SDK also removes locally stored remote configurations on removing the <code>RemoteConfig</code> consent after SDK initialization.</span>
 </p>
 <h1>User feedback</h1>
 <h2>Ratings</h2>
@@ -726,8 +734,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </ul>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, the ratings feature will be disabled until you give
-  <code>StarRating</code><span> consent. You may remove <code>StarRating</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <code>StarRating</code><span>consent is required to use this feature. On giving or revoking <code>StarRating</code>consent, SDK doesn't store data locally or send it to the server.</span><span></span>
 </p>
 <h1>User profiles</h1>
 <p>
@@ -841,8 +848,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <pre><code><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  If consents are enabled, user profile feature will be disabled until you give
-  <code>Users</code><span> consent. You may remove <code>Users</code>&nbsp;consent to make it disable again. To know more visit <a href="#user-consent-management" target="_self">User consent section.</a></span>
+  <code>User</code><span>consent is required to use this feature. On giving or revoking <code>User</code>consent, SDK doesn't store data locally or send it to the server.</span>
 </p>
 <h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User consent</h1>
 <p>
