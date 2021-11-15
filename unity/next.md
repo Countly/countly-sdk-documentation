@@ -144,10 +144,10 @@
   <span>on an SD card or any other type of external storage</span>, set
   <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
 </p>
-<div class="c-message_attachment__row">
+<p>
   <span class="c-message_attachment__text" data-qa="message_attachment_text"><span dir="auto">When configuring your app, make sure that it has permission to access the internet.</span></span>
-</div>
-<h2>SDK notes</h2>
+</p>
+<h2 class="c-message_attachment__row">SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
@@ -215,7 +215,7 @@
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <code>Crashes</code><span> consent is required to use the Crash feature. On removing or giving the <code>Crashes</code> consent, no data related to the crash will store locally or send to the server.</span>
+  <code>Crashes</code><span> consent is required to use the Crash feature. On removing the <code>Crashes</code> consent, no data related to the crash will store locally or send to the server.</span>
 </p>
 <h1>Events</h1>
 <p>
@@ -381,7 +381,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <p>
   After giving
-  <span><code>Sessions</code>consent if it wasn't given before, session begin request will send to server and the automatic session tracking will get enabled. </span><span>On removing <code>Sessions</code>consent, the session feature will get disabled again.</span>
+  <span><code>Sessions</code>consent if it wasn't given before, session begin request will send to server and the automatic session feature will get enabled. </span><span>On removing <code>Sessions</code>consent, the session feature will get disabled again.</span>
 </p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
@@ -614,7 +614,7 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span><code>Push</code> consent is required to use this feature. You will have to give consent before SDK initializes. You can not give or revoke<code>Push</code>consent after SDK initialization.</span>
+  <span><code>Push</code> consent is required to use this feature. You will have to give consent before SDK initializes. You can not enable or disable the Push feature&nbsp;after SDK initialization.</span>
 </p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
