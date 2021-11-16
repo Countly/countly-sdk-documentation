@@ -696,17 +696,54 @@ Countly.track_forms(null, true);</code></pre>
   </div>
   <div class="tab">
     <pre><code class="javascript">//user stored conversion data
-Countly.q.push(['report_conversion']);
+Countly.q.push(['recordDirectAttribution']);
 
 //or provide campaign id yourself
-Countly.q.push(['report_conversion', "MyCampaignID"]);</code></pre>
+Countly.q.push(['recordDirectAttribution', "MyCampaignID"]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//user stored conversion data
-Countly.report_conversion();
+Countly.recordDirectAttribution();
 
 //or provide campaign id yourself
-Countly.report_conversion("MyCampaignID");</code></pre>
+Countly.recordDirectAttribution("MyCampaignID");</code></pre>
+  </div>
+</div>
+<h2>Rating widget</h2>
+<p>
+Rating widgets helps you manipulate user feedback that you can receive from web your 
+applications. They usually create a channel for users to interact, through a pop up widget, 
+where the collection of data is triggered, and the obtained feedback from users can be 
+stored, tracked, searched or manipulated in multitude of ways.
+</p>
+<p>
+While it is possible to customize the text fields of rating widgets according to your needs,
+the fundamental use case of a rating widget is to enable the user to leave a rating feedback on scale
+of 1 to 5, let the user contact the developer through e-mail and also to let the user be able to
+leave some comments or suggestions along the way. 
+</p>
+<p>
+After you have initialized the Countly Web SDK you can integrate the ratings widget as follows:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//after initializing
+//for a rating widget with widget ID '5b86772f7965c435319c79ee'
+Countly.q.push([
+    'enableRatingWidgets',
+    {'popups':['5b86772f7965c435319c79ee']}
+]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//after initializing
+//for a rating widget with widget ID '5b86772f7965c435319c79ee'
+Countly.enableRatingWidgets({
+    'popups':['5b86772f7965c435319c79ee'],
+});</code></pre>
   </div>
 </div>
 <h2>Report feedback</h2>
@@ -725,7 +762,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   </div>
   <div class="tab">
     <pre><code class="javascript">//user feedback
-Countly.q.push(['report_feedback', {
+Countly.q.push(['recordRatingWidgetWithID', {
     widget_id:"1234567890",
     contactMe: true,
     rating: 5,
@@ -735,7 +772,7 @@ Countly.q.push(['report_feedback', {
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//user feedback
-Countly.report_feedback({
+Countly.recordRatingWidgetWithID({
     widget_id:"1234567890",
     contactMe: true,
     rating: 5,
