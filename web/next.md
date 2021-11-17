@@ -709,149 +709,6 @@ Countly.recordDirectAttribution();
 Countly.recordDirectAttribution("MyCampaignID");</code></pre>
   </div>
 </div>
-<h2>Rating widget</h2>
-<p>
-Rating widgets helps you manipulate user feedback that you can receive from web your 
-applications. They usually create a channel for users to interact, through a pop up widget, 
-where the collection of data is triggered, and the obtained feedback from users can be 
-stored, tracked, searched or manipulated in multitude of ways.
-</p>
-<p>
-While it is possible to customize the text fields of rating widgets according to your needs,
-the fundamental use case of a rating widget is to enable the user to leave a rating feedback on scale
-of 1 to 5, let the user contact the developer through e-mail and also to let the user be able to
-leave some comments or suggestions along the way. 
-</p>
-<p>
-After you have initialized the Countly Web SDK you can integrate the ratings widget as follows:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//after initializing
-//for a rating widget with widget ID '5b86772f7965c435319c79ee'
-Countly.q.push([
-    'enableRatingWidgets',
-    {'popups':['5b86772f7965c435319c79ee']}
-]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//after initializing
-//for a rating widget with widget ID '5b86772f7965c435319c79ee'
-Countly.enableRatingWidgets({
-    'popups':['5b86772f7965c435319c79ee'],
-});</code></pre>
-  </div>
-</div>
-<h2>Report feedback</h2>
-<p>
-  In case you don't want to use Countly provided feedback and rating UI where you
-  may use your own UI and simply report collected data to Countly.
-</p>
-<p>
-  To report the rating widget result manually, you need to give "star-rating" consent
-  (in case consent is required).
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//user feedback
-Countly.q.push(['recordRatingWidgetWithID', {
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//user feedback
-Countly.recordRatingWidgetWithID({
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
-});</code></pre>
-  </div>
-</div>
-<h2>Report NPS and Surveys</h2>
-<p>
-  There are two types of surveys available - NPS and Basic survey.
-</p>
-<p>
-  Both NPS and Survey use the same API to fetch feedbacks from the server as well
-  as to display them to the end user. By default, the created widget will be appended
-  to the end of the html document. In some scenarios you might prefer to have the
-  widget injected in a specific element. For those scenarios we have added optional
-  selectors. The first one is used for selecting an element by it's id and the
-  second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by specifying
-  the element ID or the class name.
-</p>
-<p>
-  To use feedback widgets, you need to give "feedback" consent (in case consent
-  is required).
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
-Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
-<br>//Surveys feedback callback function
-function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-  
-    //The available feedback types are nps and survey, decide which one to show
-    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
-
-    //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
-    
-    //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
-}
-</span></span></code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
-Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
-<br>//Surveys feedback callback function
-function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-    if (err) {
-      console.log(err);
-        return;
-    }
-    
-    //The available feedback types are nps and survey, decide which one to show
-    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
-    
-    //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
-    
-    //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
-}
-</span></span></code></pre>
-  </div>
-</div>
-<p>
-  Note: Feedback widget's show policies are handled internally by the web sdk.
-</p>
 <h2>Report device orientation</h2>
 <p>
   Orientation tracking is enabled by default and will be sent if the required "user"
@@ -1924,6 +1781,163 @@ Countly.init();</code></pre>
     <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
 </div>
+<h1>User Feedback</h1>
+<p>
+If you want to receive feedback from your users there are a couple of ways you can do that in
+Countly. To get a rating or suggestion from users you can use rating widgets, which gives users 
+flexibility to give a rating, leave a comment or reach you with an e-mail. Another way the users
+can leave feedback is through the feedback widgets (survey, nps). With the help of these widgets
+you can ask your customers multiple questions and learn about their opinions and preferences in detail.  
+</p>
+<h2>Ratings</h2>
+<p>
+While it can be cumbersome for a customer to fill a survey, a quick alternative to get user feedback
+is to get rating. You can do that easily in Countly with built-in rating widgets or you can integrate
+its features to your own custom UI to get those sweet ratings.
+</p>
+<h3>Rating widget</h3>
+<p>
+Rating widgets helps you manipulate user feedback that you can receive from web your 
+applications. They usually create a channel for users to interact, through a pop up widget, 
+where the collection of data is triggered, and the obtained feedback from users can be 
+stored, tracked, searched or manipulated in multitude of ways.
+</p>
+<p>
+While it is possible to customize the text fields of rating widgets according to your needs,
+the fundamental use case of a rating widget is to enable the user to leave a rating feedback on scale
+of 1 to 5, let the user contact the developer through e-mail and also to let the user be able to
+leave some comments or suggestions along the way. 
+</p>
+<p>
+After you have initialized the Countly Web SDK you can integrate the ratings widget as follows:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//after initializing
+//for a rating widget with widget ID '5b86772f7965c435319c79ee'
+Countly.q.push([
+    'enableRatingWidgets',
+    {'popups':['5b86772f7965c435319c79ee']}
+]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//after initializing
+//for a rating widget with widget ID '5b86772f7965c435319c79ee'
+Countly.enableRatingWidgets({
+    'popups':['5b86772f7965c435319c79ee'],
+});</code></pre>
+  </div>
+</div>
+<h3>Manual rating reporting</h3>
+<p>
+  In case you don't want to use Countly provided feedback and rating UI where you
+  may use your own UI and simply report collected data to Countly.
+</p>
+<p>
+  To report the rating widget result manually, you need to give "star-rating" consent
+  (in case consent is required).
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//user feedback
+Countly.q.push(['recordRatingWidgetWithID', {
+    widget_id:"1234567890",
+    contactMe: true,
+    rating: 5,
+    email: "user@domain.com",
+    comment: "Very good"
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//user feedback
+Countly.recordRatingWidgetWithID({
+    widget_id:"1234567890",
+    contactMe: true,
+    rating: 5,
+    email: "user@domain.com",
+    comment: "Very good"
+});</code></pre>
+  </div>
+</div>
+<h2>Feedback widget</h2>
+<p>
+  There are two types of surveys available - NPS and Basic survey.
+</p>
+<p>
+  Both NPS and Survey use the same API to fetch feedbacks from the server as well
+  as to display them to the end user. By default, the created widget will be appended
+  to the end of the html document. In some scenarios you might prefer to have the
+  widget injected in a specific element. For those scenarios we have added optional
+  selectors. The first one is used for selecting an element by it's id and the
+  second one is used to select the element by it's class selector. Also if you
+  want to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
+</p>
+<p>
+  To use feedback widgets, you need to give "feedback" consent (in case consent
+  is required).
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
+Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
+<br>//Surveys feedback callback function
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+  
+    //The available feedback types are nps and survey, decide which one to show
+    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
+    
+    //Display the feedback widget to the end user 
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+}
+</span></span></code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
+Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
+<br>//Surveys feedback callback function
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+    if (err) {
+      console.log(err);
+        return;
+    }
+    
+    //The available feedback types are nps and survey, decide which one to show
+    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+    
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
+    
+    //Display the feedback widget to the end user 
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+}
+</span></span></code></pre>
+  </div>
+</div>
+<p>
+  Note: Feedback widget's show policies are handled internally by the web sdk.
+</p>
 <h1>Multiple trackers on the same domain</h1>
 <p>
   <span style="font-weight: 400;">Sometimes you would like to track different parts of the same domain/website as separate applications.</span>
