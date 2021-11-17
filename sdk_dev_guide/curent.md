@@ -1762,21 +1762,41 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <pre><span>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</span></pre>
 <h3>Indirect attribution</h3>
 <p>
-  With this the dev is able to provide a single String value "Advertising ID".
+  With this the dev is able to provide a map/dictionary of String to String values.
+  This allows multiple values to be provided.
 </p>
 <p>
   Common values that would be provided here would be IDFA (for iOS) and AdvertisingId
   (for Android).
 </p>
 <p>
-  Non valid or empty string should produce an error log and the execution of this
-  call should not continue.
+  Each useable value will have a predefined key that has to be used. IDFA will
+  need to be provided with the "idfa" key and Advertising ID will need to be provided
+  with the "adid" key.
+</p>
+<p>
+  The map/dictionary with valid key-value pairs will then be transformed into a
+  json object which will set to the "aid" param and then immedietelly sent to the
+  server.
+</p>
+<p>
+  Each key-value pair should be validated. If the key or value is either null,
+  undefined or empty string, that key-value pair should be removed from the map/dictionary
+  and an error message should be printed.
+</p>
+<p>
+  If after the validation no valid value is left another error log should be printed
+  and the execution of this call should not continue.
 </p>
 <p>
   The call to record this value should be named something similar to "recordIndirectAttribution".
 </p>
-<p>The param should be added as:</p>
+<p>The param in the request would look something like like:</p>
+<pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID], "idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
+<p>Or:</p>
 <pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID]</span><span>}</span></pre>
+<p>Or:</p>
+<pre><span>&amp;aid=</span><span>{"idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
 <h2>SDK internal limits</h2>
 <p>The SDK should have the following limits:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
