@@ -1772,7 +1772,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   Each useable value will have a predefined key that has to be used. IDFA will
   need to be provided with the "idfa" key and Advertising ID will need to be provided
-  with the "adid" key.
+  with the "adid" key.&nbsp;
 </p>
 <p>
   The map/dictionary with valid key-value pairs will then be transformed into a
@@ -1783,6 +1783,11 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   Each key-value pair should be validated. If the key or value is either null,
   undefined or empty string, that key-value pair should be removed from the map/dictionary
   and an error message should be printed.
+</p>
+<p>
+  It should not be validated if the provided keys are part of our officially supported
+  ones ("idfa" and "adid" at the time of writing). Just that the keys and their
+  values are legitamate values.
 </p>
 <p>
   If after the validation no valid value is left another error log should be printed
