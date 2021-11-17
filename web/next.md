@@ -1793,7 +1793,7 @@ you can ask your customers multiple questions and learn about their opinions and
 <p>
 While it can be cumbersome for a customer to fill a survey, a quick alternative to get user feedback
 is to get rating. You can do that easily in Countly with built-in rating widgets or you can integrate
-its features to your own custom UI to get those sweet ratings.
+its features to your own custom UI to get user ratings.
 </p>
 <h3>Rating widget</h3>
 <p>
