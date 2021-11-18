@@ -2131,3 +2131,84 @@ NSString *js = [NSString stringWithFormat: @"InitializeCountly('%@');", CountlyD
   <a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication" target="_self">Crash Symbolication</a>
   documentation.
 </p>
+<h1>Other Features</h1>
+<h2>SDK Internal Limits</h2>
+<p>Countly is highly customizable and let's you take a huge part at the control 
+of the system in multiple ways. From customizing segmentation values to changing
+ event keys great liberty comes with the cost of great responsibility. As a sanity
+ check measure Countly relies on internal limits to get a hold of the free flow of
+ values, keys, character and more. These internal limits are again customizable at
+ initialization and current limits and their default values are as follows:   
+</p>
+<p>
+<ul>
+Maximum size of all string keys:
+<li>
+<strong>maxKeyLength</strong> - 128 chars
+</li>
+
+Maximum size of all values in key-value pairs:
+<li>
+<strong>maxValueSize</strong> - 256 chars
+</li>
+
+Maximum amount of custom segmentation in one event:
+<li>
+<strong>maxSegmentationValues</strong> - 30 dev entries
+</li>
+
+Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted:
+<li>
+<strong>maxBreadcrumbCount</strong> - 100 entries
+</li>
+
+Maximum number of stack trace lines to be recorded per thread:
+<li>
+<strong>maxStackTraceLinesPerThread</strong> - 30 lines
+</li>
+
+Maximum number of characters that is allowed per stack trace line. This also limits
+ the crash message length:
+<li>
+<strong>maxStackTraceLineLength</strong> - 200 chars
+</li>
+</ul>
+</p>
+<p>
+To change these default values all you have to do is to set the properties
+during the initialization:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "https://try.count.ly";
+Countly.max_key_length = 500;
+Countly.max_value_size = 12;
+Countly.max_segmentation_values = 23;
+Countly.max_breadcrumb_count = 80;
+Countly.max_stack_trace_lines_per_thread = 50;
+Countly.max_stack_trace_line_length = 300;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    max_key_length: "500",
+    max_value_size: "12",
+    max_segmentation_values: "23",
+    max_breadcrumb_count: "80",
+    max_stack_trace_lines_per_thread: "50",
+    max_stack_trace_line_length: "300"
+});</code></pre>
+  </div>
+</div>
+<p>
