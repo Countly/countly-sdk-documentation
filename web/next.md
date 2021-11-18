@@ -1877,8 +1877,8 @@ Countly.recordRatingWidgetWithID({
   to the end of the html document. In some scenarios you might prefer to have the
   widget injected in a specific element. For those scenarios we have added optional
   selectors. The first one is used for selecting an element by it's id and the
-  second one is used to select the element by it's class selector. Also if you
-  want to inject the feedback widget in a specific element, you can do so by specifying
+  second one is used to select the element by it's class selector. If you want to
+  inject the feedback widget in a specific element, you can do so by specifying
   the element ID or the class name.
 </p>
 <p>
