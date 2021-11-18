@@ -1783,33 +1783,34 @@ Countly.init();</code></pre>
 </div>
 <h1>User Feedback</h1>
 <p>
-If you want to receive feedback from your users there are a couple of ways you can do that in
-Countly. To get a rating or suggestion from users you can use rating widgets, which gives users 
-flexibility to give a rating, leave a comment or reach you with an e-mail. Another way the users
-can leave feedback is through the feedback widgets (survey, nps). With the help of these widgets
-you can ask your customers multiple questions and learn about their opinions and preferences in detail.  
+  If you want to receive feedback from your users there are a couple of ways you
+  can do that in Countly. To get a rating or suggestion from users you can use
+  rating widgets, which gives users flexibility to give a rating, leave a comment
+  or reach you with an e-mail. Another way the users can leave feedback is through
+  the feedback widgets (survey, nps). With the help of these widgets you can ask
+  your customers multiple questions and learn about their opinions and preferences
+  in detail.
 </p>
 <h2>Ratings</h2>
 <p>
-While it can be cumbersome for a customer to fill a survey, a quick alternative to get user feedback
-is to get rating. You can do that easily in Countly with built-in rating widgets or you can integrate
-its features to your own custom UI to get user ratings.
+  While it can be cumbersome for a customer to fill a survey, a quick alternative
+  to get user feedback is to get a numerical user rating. That can be done with
+  the Countly rating widget.
 </p>
 <h3>Rating widget</h3>
 <p>
-Rating widgets helps you manipulate user feedback that you can receive from web your 
-applications. They usually create a channel for users to interact, through a pop up widget, 
-where the collection of data is triggered, and the obtained feedback from users can be 
-stored, tracked, searched or manipulated in multitude of ways.
+  Rating widgets create a channel for users to interact, through a pop up widget.
 </p>
 <p>
-While it is possible to customize the text fields of rating widgets according to your needs,
-the fundamental use case of a rating widget is to enable the user to leave a rating feedback on scale
-of 1 to 5, let the user contact the developer through e-mail and also to let the user be able to
-leave some comments or suggestions along the way. 
+  While it is possible to customize the text fields of rating widgets according
+  to your needs, the fundamental use case of a rating widget is to enable the user
+  to leave a rating feedback on scale of 1 to 5, let the user contact the developer
+  through e-mail and also to let the user be able to leave some comments or suggestions
+  along the way.
 </p>
 <p>
-After you have initialized the Countly Web SDK you can integrate the ratings widget as follows:
+  After you have initialized the Countly Web SDK you can integrate the ratings
+  widget as follows:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
