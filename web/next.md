@@ -2202,12 +2202,12 @@ Countly.max_stack_trace_line_length = 300;
     app_key:"YOUR_APP_KEY",
     device_id:"1234-1234-1234-1234",
     url: "https://try.count.ly",
-    max_key_length: "500",
-    max_value_size: "12",
-    max_segmentation_values: "23",
-    max_breadcrumb_count: "80",
-    max_stack_trace_lines_per_thread: "50",
-    max_stack_trace_line_length: "300"
+    max_key_length: 500,
+    max_value_size: 12,
+    max_segmentation_values: 23,
+    max_breadcrumb_count: 80,
+    max_stack_trace_lines_per_thread: 50,
+    max_stack_trace_line_length: 300
 });</code></pre>
   </div>
 </div>
