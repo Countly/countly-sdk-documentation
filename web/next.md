@@ -1806,11 +1806,19 @@ Countly.init();</code></pre>
   to your needs, the fundamental use case of a rating widget is to enable the user
   to leave a rating feedback on scale of 1 to 5, let the user contact the developer
   through e-mail and also to let the user be able to leave some comments or suggestions
-  along the way.
+  along the way. 
 </p>
 <p>
-  After you have initialized the Countly Web SDK you can integrate the ratings
-  widget as follows:
+With Countly, if you want, you can create a single rating widget to get feedback on a 
+specific topic or you can create multiple rating widgets that can tackle different
+topics depending on your needs. Another feature that can prove useful is the ability to
+show rating widgets on command, as a popup. This can be a very useful tool when interlinked 
+with a form submit button to ask your customers about their experience directly after 
+submitting their form or survey. 
+</p>
+<p>
+  After you have initialized the Countly Web SDK and gave "star-rating" consent for 
+  widgets to work you can integrate the ratings widget as follows:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1818,19 +1826,40 @@ Countly.init();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//after initializing
-//for a rating widget with widget ID '5b86772f7965c435319c79ee'
+    <pre><code class="javascript">//after initializing and giving consent
+//for a single rating widget with widget ID '5b86772f7965c435319c79ee'
 Countly.q.push([
     'enableRatingWidgets',
     {'popups':['5b86772f7965c435319c79ee']}
-]);</code></pre>
+]);
+
+//to manually show a rating widget as a popup
+Countly.q.push([
+    'presentRatingWidgetWithID',
+    '6gdd84asc435319c78s4'
+]);
+
+//to show multiple rating widgets with an array of different widget IDs
+Countly.q.push([
+    'initializeRatingWidgets',
+    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
+]);
+
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//after initializing
+    <pre><code class="javascript">//after initializing and giving consent
 //for a rating widget with widget ID '5b86772f7965c435319c79ee'
 Countly.enableRatingWidgets({
     'popups':['5b86772f7965c435319c79ee'],
-});</code></pre>
+});
+
+//to manually show a rating widget as a popup'
+Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
+
+//to show multiple rating widgets with an array of different widget IDs
+Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209194fcc"])
+</code></pre>
   </div>
 </div>
 <h3>Manual rating reporting</h3>
