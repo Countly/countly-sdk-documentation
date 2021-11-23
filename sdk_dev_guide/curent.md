@@ -1738,11 +1738,27 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>This requires attribution consent.</p>
 <h3>Direct attribution</h3>
 <p>
-  With this the dev is able to provide 2 String values: "Campaign ID" and "Campaign
-  user ID".
+  With this the dev is able to provide 2 String values: "Campaign type" and "Campaign
+  data". The "type" determines for what purpose the attribution data is provided.
+  Depending on the type, the expected data will differ, but usually that will be
+  a string representation of a json object.
 </p>
 <p>
-  Common values that would be provided here would be from install attribution.
+  Currently there is only one type "countly". That type expected the data to look
+  like following: '<span>{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}'. The inserted values would be retrieved from install attribution.</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  This feature is currently setup in a way to give more flexibility in the future.
+  For now it will be only possible to record install attribution by handling that
+  as a special case. In the future this feature will be generalised and a new param
+  will be added.
+</p>
+<p>&nbsp;</p>
+<p>
+  If the provided type is "countly" then a special case will be executed. The data
+  string is an stringified json that has 2 values "cid" or Campaign ID and "cuid"
+  or Campaign user ID.
 </p>
 <p>Non valid or empty string should produce an error log.</p>
 <p>
@@ -1770,10 +1786,17 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   (for Android).
 </p>
 <p>
-  Each useable value will have a predefined key that has to be used. IDFA will
-  need to be provided with the "idfa" key and Advertising ID will need to be provided
-  with the "adid" key.&nbsp;
+  Each usable value will have a predefined key that has to be used. IDFA will need
+  to be provided with the "idfa" key and Advertising ID will need to be provided
+  with the "adid" key. These keys have to the be provided by the SDK as "constant"
+  variables or some other convenient way where the developer is not setting the
+  final key manually.
 </p>
+<p>
+  The pseudo code for recording indirect attribution would look something like
+  this:
+</p>
+<pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>attributionValues </span>= <span>new </span>HashMap&lt;&gt;();<br><span>attributionValues</span>.put(<span>AttributionIndirectKey</span>.<span>AdvertisingID</span>, getAdvertisingID());<br><span>Countly</span>.recordIndirectAttribution(<span>attributionValues</span>);</pre>
 <p>
   The map/dictionary with valid key-value pairs will then be transformed into a
   json object which will set to the "aid" param and then immedietelly sent to the
@@ -1802,6 +1825,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID]</span><span>}</span></pre>
 <p>Or:</p>
 <pre><span>&amp;aid=</span><span>{"idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
+<p>Or:</p>
+<pre><span>&amp;aid=</span><span>{"rndid":[SOME_OTHER_ID_VALUE]</span><span>}</span></pre>
 <h2>SDK internal limits</h2>
 <p>The SDK should have the following limits:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
