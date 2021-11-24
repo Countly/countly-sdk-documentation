@@ -14,7 +14,7 @@
   <p>
     The Countly iOS SDK supports the minimum <code>Deployment Target</code>
     <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14) , and it
-    requires Xcode 9.0+ with <code>Base SDK</code> iOS 10.0+.
+    requires Xcode 13.0+ with <code>Base SDK</code> iOS 10.0+.
   </p>
 </div>
 <h1>Integration</h1>
