@@ -1817,8 +1817,10 @@ with a form submit button to ask your customers about their experience directly 
 submitting their form or survey. 
 </p>
 <p>
-  After you have initialized the Countly Web SDK and gave "star-rating" consent for 
-  widgets to work you can integrate the ratings widget as follows:
+  For rating widgets to show with proper styling and to be present on the screen first 
+  you have to enable them using 'enableRatingWidgets' after you have initialized the 
+  Countly Web SDK and gave "star-rating" consent for widgets. Then you can integrate 
+  the ratings widget as follows:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1838,13 +1840,6 @@ Countly.q.push([
     'presentRatingWidgetWithID',
     '6gdd84asc435319c78s4'
 ]);
-
-//to show multiple rating widgets with an array of different widget IDs
-Countly.q.push([
-    'initializeRatingWidgets',
-    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
-]);
-
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -1856,7 +1851,30 @@ Countly.enableRatingWidgets({
 
 //to manually show a rating widget as a popup'
 Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
+</code></pre>
+  </div>
+</div>
+<p>
+To see multiple rating widgets on the screen, after enabling your widgets with 'enableRatingWidgets'
+you have to use 'initializeRatingWidgets' by passing multiple widget IDs as an argument as follows:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//after enabling rating widgets
+//to show multiple rating widgets with an array of different widget IDs
+Countly.q.push([
+    'initializeRatingWidgets',
+    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
+]);
 
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//after enabling rating widgets
 //to show multiple rating widgets with an array of different widget IDs
 Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209194fcc"])
 </code></pre>
