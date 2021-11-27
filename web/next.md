@@ -75,35 +75,36 @@ Countly.q = Countly.q || [];
 // Provide your app key that you retrieved from Countly dashboard
 Countly.app_key = "YOUR_APP_KEY";
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly 
+// Provide your server IP or name. Use try.count.ly or us-try.count.ly
 // or asia-try.count.ly for EE trial server.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
-Countly.url = "https://yourdomain.com"; 
+Countly.url = "https://yourdomain.com";
 
 // Start pushing function calls to queue
 // Track sessions automatically (recommended)
 Countly.q.push(['track_sessions']);
-  
+
 //track web page views automatically (recommended)
 Countly.q.push(['track_pageview']);
-  
+
 // Uncomment the following line to track web heatmaps (Enterprise Edition)
 // Countly.q.push(['track_clicks']);
 
 // Uncomment the following line to track web scrollmaps (Enterprise Edition)
 // Countly.q.push(['track_scrolls']);
-  
+
 // Load Countly script asynchronously
 (function() {
-  var cly = document.createElement('script'); cly.type = 'text/javascript'; 
-  cly.async = true;
-  // Enter url of script here (see below for other option)
-  cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
-  cly.onload = function(){Countly.init()};
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+var cly = document.createElement('script'); cly.type = 'text/javascript';
+cly.async = true;
+// Enter url of script here (see below for other option)
+cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
+cly.onload = function(){Countly.init()};
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="html">&lt;!--Countly script--&gt;
@@ -112,20 +113,21 @@ Countly.q.push(['track_pageview']);
 
 Countly.init({
 // provide your app key that you retrieved from Countly dashboard
-    app_key: "YOUR_APP_KEY",
+app_key: "YOUR_APP_KEY",
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly 
+// Provide your server IP or name. Use try.count.ly or us-try.count.ly
 // or asia-try.count.ly for EE trial server.
 // If you use your own server, make sure you have https enabled if you use
 // https below.  
-    url: "http://yourdomain.com" 
-    
-  });
-  // track sessions automatically
-  Countly.track_sessions();
-  // track pageviews automatically
-  Countly.track_pageview();
+ url: "http://yourdomain.com"
+
+});
+// track sessions automatically
+Countly.track_sessions();
+// track pageviews automatically
+Countly.track_pageview();
 &lt;/script&gt;</code></pre>
+
   </div>
 </div>
 <p>
@@ -137,6 +139,7 @@ Countly.init({
 // https://github.com/Countly/countly-sdk-web/releases
 
 https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
+
 <p>
   <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;">&nbsp;to get this SDK directly from your Countly server.</span>
 </p>
@@ -443,15 +446,17 @@ Countly.ip_address = "83.140.15.1";</code></pre>
     <pre><code class="javascript">Countly.q.push(['track_pageview',location.pathname+location.hash]);
 
 $(window).on('hashchange', function() {
-  Countly.q.push(['track_pageview',location.pathname+location.hash]);
+Countly.q.push(['track_pageview',location.pathname+location.hash]);
 });</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.track_pageview(location.pathname+location.hash);
 
 $(window).on('hashchange', function() {
-  Countly.track_pageview(location.pathname+location.hash);
+Countly.track_pageview(location.pathname+location.hash);
 });</code></pre>
+
   </div>
 </div>
 <p>
@@ -474,6 +479,7 @@ Countly.q.push(['track_pageview',["/download/*"]]);
 
 //Ignoring specific page while providing custom values (like hash value) for page view
 Countly.q.push(['track_pageview', location.pathname+location.hash,["/test-page"]]);</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//Ignoring specific page
@@ -487,6 +493,7 @@ Countly.track_pageview(["/download/*"]);
 
 //Ignoring specific page while providing custom values (like hash value) for page view
 Countly.track_pageview(location.pathname+location.hash, ["/test-page"]);</code></pre>
+
   </div>
 </div>
 <p>
@@ -663,14 +670,15 @@ Countly.q.push(['track_forms']);
 
 //will collect hidden inputs
 Countly.q.push(['track_forms', null, true]);</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//will not collect hidden inputs
 Countly.track_forms();
 
-
 //will collect hidden inputs
 Countly.track_forms(null, true);</code></pre>
+
   </div>
 </div>
 <h2>Report conversion</h2>
@@ -700,6 +708,7 @@ Countly.q.push(['recordDirectAttribution']);
 
 //or provide campaign id yourself
 Countly.q.push(['recordDirectAttribution', "MyCampaignID"]);</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//user stored conversion data
@@ -707,6 +716,7 @@ Countly.recordDirectAttribution();
 
 //or provide campaign id yourself
 Countly.recordDirectAttribution("MyCampaignID");</code></pre>
+
   </div>
 </div>
 <h2>Report device orientation</h2>
@@ -771,6 +781,7 @@ Countly.q.push(['opt_out']);
 
 //to resume tracking user data call
 Countly.q.push(['opt_in']);</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//to stop tracking user data call
@@ -778,6 +789,7 @@ Countly.opt_out();
 
 //to resume tracking user data call
 Countly.opt_in();</code></pre>
+
   </div>
 </div>
 <p>
@@ -813,6 +825,7 @@ Countly.q.push(['collect_from_forms', formElement]);
 
 //collect from forms and report as custom user properties
 Countly.q.push(['collect_from_forms', document, true]);</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//collect data from forms
@@ -823,6 +836,7 @@ Countly.collect_from_forms(formElement);
 
 //collect from forms and report as custom user properties
 Countly.collect_from_forms(document, true);</code></pre>
+
   </div>
 </div>
 <p>
@@ -837,10 +851,11 @@ Countly.collect_from_forms(document, true);</code></pre>
 
 &lt;!-- get customfield by class --&gt;
 &lt;p&gt;&lt;input type="text" name="custom" id="custom" value="value" class="cly_user_key1"&gt;&lt;/p&gt;
-  
+
 &lt;p&gt;&lt;input id="submit-form" type="submit" value="Submit"&gt;&lt;/p&gt;
-  
+
 &lt;/form&gt;</code></pre>
+
 <h2>Collect user data from Facebook</h2>
 <p>
   <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
@@ -858,23 +873,24 @@ FB.init({
 });
 
 function CountlyGatherFBData(){
-    Countly.collect_from_facebook({"location":"location.name", "tz":"timezone"});
+Countly.collect_from_facebook({"location":"location.name", "tz":"timezone"});
 };
 
 FB.getLoginStatus(function(stsResp) {
-    if(stsResp.authResponse) {
-        CountlyGatherFBData();
-    } else {
-        FB.login(function(loginResp) {
-            if(loginResp.authResponse) {
-                CountlyGatherFBData();
-            } else {
-                alert('Please authorize this application to use it!');
-            }
-        });
-    }
+if(stsResp.authResponse) {
+CountlyGatherFBData();
+} else {
+FB.login(function(loginResp) {
+if(loginResp.authResponse) {
+CountlyGatherFBData();
+} else {
+alert('Please authorize this application to use it!');
+}
+});
+}
 });
 &lt;/script&gt;</code></pre>
+
 <h1>Events</h1>
 <h2>Adding an event</h2>
 <p>
@@ -965,14 +981,15 @@ Countly.q.push(['end_event', 'timedEvent']);
 
 //or end event with additional data
 Countly.q.push(['end_event',{
-  "key": "timedEvent",
-  "count": 1,
-  "sum": 1.5,
-  "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
-  }
+"key": "timedEvent",
+"count": 1,
+"sum": 1.5,
+"segmentation": {
+"key1": "value1",
+"key2": "value2"
+}
 }]);</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//end event
@@ -980,14 +997,15 @@ Countly.end_event("timedEvent")
 
 //or end event with additional data
 Countly.end_event({
-  "key": "timedEvent",
-  "count": 1,
-  "sum": 1.5,
-  "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
-  }
+"key": "timedEvent",
+"count": 1,
+"sum": 1.5,
+"segmentation": {
+"key1": "value1",
+"key2": "value2"
+}
 });</code></pre>
+
   </div>
 </div>
 <h1>User Profiles and Custom data</h1>
@@ -1339,19 +1357,19 @@ Countly.q = Countly.q || [];
 // Provide your app key that you retrieved from Countly dashboard
 Countly.app_key = "YOUR_APP_KEY";
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly 
+// Provide your server IP or name. Use try.count.ly or us-try.count.ly
 // or asia-try.count.ly for EE trial server.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
-Countly.url = "https://yourdomain.com"; 
+Countly.url = "https://yourdomain.com";
 
 //require consent before tracking anything
 Countly.require_consent = true; //this true means consent is required
 
 //(optionally) provide custom feature tree if needed
 Countly.q.push(['group_features', {
-    activity:["sessions","events","views"],
-    interaction:["scrolls","clicks","forms"]
+activity:["sessions","events","views"],
+interaction:["scrolls","clicks","forms"]
 }]);
 
 //we can call all the helper methods we want, they won't record until consent is provided for specific features
@@ -1365,36 +1383,37 @@ Countly.q.push(['track_errors', {jquery:"1.10", jqueryui:"1.10"}]);
 //Consent Management logic should be implemented and controlled by developer
 //this is just a simply example of what logic it could have
 if (typeof(localStorage) !== "undefined") {
-    var consents = localStorage.getItem("consents");
-    //checking if user already provided consent
-    if(consents){
-        //we already have array with consents from previous visit, let's just pass them to Countly
-        Countly.q.push(['add_consent', JSON.parse(consents)]);
-    }
-    else{
-        //user have not yet provided us a consent
-        //we need to display popup and ask user to give consent for specific features we want to track
-        //once we get response, we should store them like this
-        //example response
-        var response = ["activity", "interaction", "crashes"];
-        Countly.q.push(['add_consent', response]);
-        localStorage.setItem("consents", JSON.stringify(response));
-    }
-} else {
-    // Sorry! No Web Storage support..
-    // we can fallback to cookie
+var consents = localStorage.getItem("consents");
+//checking if user already provided consent
+if(consents){
+//we already have array with consents from previous visit, let's just pass them to Countly
+Countly.q.push(['add_consent', JSON.parse(consents)]);
 }
-  
+else{
+//user have not yet provided us a consent
+//we need to display popup and ask user to give consent for specific features we want to track
+//once we get response, we should store them like this
+//example response
+var response = ["activity", "interaction", "crashes"];
+Countly.q.push(['add_consent', response]);
+localStorage.setItem("consents", JSON.stringify(response));
+}
+} else {
+// Sorry! No Web Storage support..
+// we can fallback to cookie
+}
+
 // Load countly script asynchronously
 (function() {
-  var cly = document.createElement('script'); cly.type = 'text/javascript'; 
-  cly.async = true;
-  // Enter url of script here (see below for other option)
-  cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
-  cly.onload = function(){Countly.init()};
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+var cly = document.createElement('script'); cly.type = 'text/javascript';
+cly.async = true;
+// Enter url of script here (see below for other option)
+cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
+cly.onload = function(){Countly.init()};
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="html">&lt;!--Countly script--&gt;
@@ -1403,16 +1422,16 @@ if (typeof(localStorage) !== "undefined") {
 
 //initializing countly with params and passing require_consent config as true
 Countly.init({
-  app_key: "YOUR_APP_KEY",
-  url: "https://try.count.ly", //your server goes here
-  debug:true,
-  require_consent: true //this true means consent is required
+app_key: "YOUR_APP_KEY",
+url: "https://try.count.ly", //your server goes here
+debug:true,
+require_consent: true //this true means consent is required
 });
 
 //(optionally) provide custom feature tree if needed
 Countly.group_features({
-    activity:["sessions","events","views"],
-    interaction:["scrolls","clicks","forms"]
+activity:["sessions","events","views"],
+interaction:["scrolls","clicks","forms"]
 });
 
 //we can call all the helper methods we want, they won't record until consent is provided for specific features
@@ -1426,25 +1445,26 @@ Countly.track_errors({jquery:"1.10", jqueryui:"1.10"});
 //Consent Management logic should be implemented and controled by developer
 //this is just a simply example of what logic it could have
 if (typeof(localStorage) !== "undefined") {
-    var consents = localStorage.getItem("consents");
-    //checking if user already provided consent
-    if(consents){
-        //we already have array with consents from previous visit, let's just pass them to Countly
-        Countly.add_consent(JSON.parse(consents));
-    }
-    else{
-        //user have not yet provided us a consent
-        //we need to display popup and ask user to give consent for specific features we want to track
-        //once we get response, we should store them like this
-        //example response
-        var response = ["activity", "interaction", "crashes"];
-        Countly.add_consent(response);
-        localStorage.setItem("consents", JSON.stringify(response));
-    }
+var consents = localStorage.getItem("consents");
+//checking if user already provided consent
+if(consents){
+//we already have array with consents from previous visit, let's just pass them to Countly
+Countly.add_consent(JSON.parse(consents));
+}
+else{
+//user have not yet provided us a consent
+//we need to display popup and ask user to give consent for specific features we want to track
+//once we get response, we should store them like this
+//example response
+var response = ["activity", "interaction", "crashes"];
+Countly.add_consent(response);
+localStorage.setItem("consents", JSON.stringify(response));
+}
 } else {
-    // Sorry! No Web Storage support..
-    // we can fallback to cookie
+// Sorry! No Web Storage support..
+// we can fallback to cookie
 }</code></pre>
+
   </div>
 </div>
 <h1>Remote configuration</h1>
@@ -1477,11 +1497,12 @@ Countly.remote_config = true;
 
 //or provide a callback to be notified when configs are loaded
 Countly.remote_config = function(err, remoteConfigs){
-    if (!err) {
-        //we have our remoteConfigs here
-        console.log(remoteConfigs);
-    }
+if (!err) {
+//we have our remoteConfigs here
+console.log(remoteConfigs);
+}
 };</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//to enable remote configuration
@@ -1493,20 +1514,20 @@ Countly.init({
     remote_config: true //this will enable loading remote configuration
 });
 
-
 //or provide a callback to be notified when configs are loaded
 Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    remote_config: function(err, remoteConfigs){
-        if (!err) {
-            //we have our remoteConfigs here
-            console.log(remoteConfigs);
-        }
-    }
+debug:false,
+app_key:"YOUR_APP_KEY",
+device_id:"1234-1234-1234-1234",
+url: "https://try.count.ly",
+remote_config: function(err, remoteConfigs){
+if (!err) {
+//we have our remoteConfigs here
+console.log(remoteConfigs);
+}
+}
 });</code></pre>
+
   </div>
 </div>
 <h2>
@@ -1526,6 +1547,7 @@ var remoteConfig = Countly.get_remote_config();
 
 //or get value for specific key like 'test'
 var test = Countly.get_remote_config("test");</code></pre>
+
 <h2>Reloading configuration values</h2>
 <p>
   <span style="font-weight: 400;">Should you need to reload the remote config in order to receive the latest value, call&nbsp;the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;">&nbsp;method.</span>
@@ -1540,20 +1562,20 @@ Countly.fetch_remote_config(function(err, remoteConfigs){
     }
 });
 
-
 //reload specific keys only, as `key1` and `key2`
 Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
-    if (!err) {
-        console.log(remoteConfigs);
-    }
+if (!err) {
+console.log(remoteConfigs);
+}
 });
 
 //reload all key values except specific keys, as `key1` and `key2
 Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
-    if (!err) {
-        console.log(remoteConfigs);
-    }
+if (!err) {
+console.log(remoteConfigs);
+}
 });</code></pre>
+
 <h1>Performance monitoring</h1>
 <p>
   There are 2 ways to report performance traces. One way is to construct and report
@@ -1741,6 +1763,7 @@ Countly.url = "https://try.count.ly";
 Countly.offline_mode = true;
 
 Countly.init();</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
@@ -1907,11 +1930,13 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     //Define the element ID and the class name
     var selectorId = "targetIdSelector";
     var selectorClass = "targetClassSelector";
-    
-    //Display the feedback widget to the end user 
+
+    //Display the feedback widget to the end user
     Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+
 }
 </span></span></code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
@@ -1965,6 +1990,7 @@ Countly.url = "https://try.count.ly";
 Countly.namespace = "forum";
 
 Countly.init();</code></pre>
+
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
@@ -2062,8 +2088,9 @@ if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
   <div class="tab is-hidden">
     <pre><code class="objectivec">#import "CountlyDeviceInfo.h"
 
-NSString *js = [NSString stringWithFormat: @"InitializeCountly('%@');", CountlyDeviceInfo.sharedInstance.deviceID];
+NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", CountlyDeviceInfo.sharedInstance.deviceID];
 [myWebView stringByEvaluatingJavaScriptFromString:js];</code></pre>
+
   </div>
 </div>
 <h1>Tracking users with Javascript disabled</h1>
@@ -2194,35 +2221,80 @@ of the system in multiple ways. From customizing segmentation values to changing
 </p>
 <p>
 <ul>
-Maximum size of all string keys:
 <li>
 <strong>maxKeyLength</strong> - 128 chars
 </li>
-
-Maximum size of all values in key-value pairs:
+<ul>
+This is used for setting the maximum size of all string keys including:
+<li>
+ - event names
+</li>
+<li>
+ - view names
+ </li><li>
+ - custom trace key name (APM)
+ </li><li>
+ - custom metric key (apm)
+ </li><li>
+ - segmentation key (for all features)
+ </li><li>
+ - custom user property
+ </li><li>
+ - custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)
+  </li>
+</li>
+</ul>
 <li>
 <strong>maxValueSize</strong> - 256 chars
 </li>
+<ul>
+This is used for setting the maximum size of all values in key-value pairs including:
+<li>
+ - segmentation value in case of strings (for all features)
+</li>
+<li>
+ - custom user property string value
 
-Maximum amount of custom segmentation in one event:
+ </li><li>
+ - user profile named key (username, email, etc) string values. Except "picture" field, that has a limit of 4096 chars
+
+ </li><li>
+ - custom user property modifier string values. For example, for modifiers like "push", "pull", "setOnce", etc.
+
+ </li><li>
+ - breadcrumb text
+
+ </li><li>
+ - manual feedback widget reporting fields (reported as event)
+
+ </li><li>
+ - rating widget response (reported as event)
+
+  </li>
+</li>
+</ul>
 <li>
 <strong>maxSegmentationValues</strong> - 30 dev entries
+<br>To set the maximum amount of custom segmentation that can be recorded in one event.</br>
 </li>
 
-Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted:
+
 <li>
 <strong>maxBreadcrumbCount</strong> - 100 entries
+<br>To limit the amount of breadcrumbs that can be recorded before the oldest one is deleted from the logs.</br>
 </li>
 
-Maximum number of stack trace lines to be recorded per thread:
+
 <li>
 <strong>maxStackTraceLinesPerThread</strong> - 30 lines
+<br>Sets the maximum number of stack trace lines that can be recorded per thread.</br>
 </li>
 
-Maximum number of characters that is allowed per stack trace line. This also limits
- the crash message length:
+
 <li>
 <strong>maxStackTraceLineLength</strong> - 200 chars
+<br>This can set the maximum number of characters that is allowed per stack trace line. This also limits
+the crash message length.</br>
 </li>
 </ul>
 </p>
