@@ -2222,7 +2222,7 @@ of the system in multiple ways. From customizing segmentation values to changing
 <p>
 <ul>
 <li>
-<strong>maxKeyLength</strong> - 128 chars
+<strong>maxKeyLength</strong> - 128 chars. Keys that exceed this limit will be truncated.
 </li>
 <ul>
 This is used for setting the maximum size of all string keys including:
@@ -2245,7 +2245,7 @@ This is used for setting the maximum size of all string keys including:
 </li>
 </ul>
 <li>
-<strong>maxValueSize</strong> - 256 chars
+<strong>maxValueSize</strong> - 256 chars. Values that exceed this limit will be truncated.
 </li>
 <ul>
 This is used for setting the maximum size of all values in key-value pairs including:
@@ -2274,25 +2274,25 @@ This is used for setting the maximum size of all values in key-value pairs inclu
 </li>
 </ul>
 <li>
-<strong>maxSegmentationValues</strong> - 30 dev entries
+<strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed this limit will be removed.
 <br>To set the maximum amount of custom segmentation that can be recorded in one event.</br>
 </li>
 
 
 <li>
-<strong>maxBreadcrumbCount</strong> - 100 entries
+<strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded, the oldest entry will be removed.
 <br>To limit the amount of breadcrumbs that can be recorded before the oldest one is deleted from the logs.</br>
 </li>
 
 
 <li>
-<strong>maxStackTraceLinesPerThread</strong> - 30 lines
+<strong>maxStackTraceLinesPerThread</strong> - 30 lines. Lines that exceed this entry will be removed.
 <br>Sets the maximum number of stack trace lines that can be recorded per thread.</br>
 </li>
 
 
 <li>
-<strong>maxStackTraceLineLength</strong> - 200 chars
+<strong>maxStackTraceLineLength</strong> - 200 chars. Lines that exceed this limit will be truncated.
 <br>This can set the maximum number of characters that is allowed per stack trace line. This also limits
 the crash message length.</br>
 </li>
