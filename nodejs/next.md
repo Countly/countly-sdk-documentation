@@ -390,6 +390,11 @@ catch(ex){
   or Countly generated automatically, for example, when user was changed.
 </p>
 <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
 <p>
   In some cases, you may also need to change user's device ID in a way, that server
   will merge data of both user IDs (existing and new ID you provided) on the server,
