@@ -47,11 +47,7 @@
   <img src="/hc/article_attachments/4404570305433/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <p>
-  Unity SDK uses <strong>Newtonsoft Json</strong> package internally. Unlikely
-  unity versions 2020 and 2021, previous versions do not install this package in
-  the project by default.&nbsp; To Install the
-  <strong>Newtonsoft Json&nbsp;</strong>package in your project, go to
-  <strong>Windows </strong>=&gt; <strong>Package Manager</strong>.&nbsp;<img src="/hc/article_attachments/4410780721177/image.png" alt="image.png" width="633" height="447">
+  <span data-preserver-spaces="true">Unity SDK uses the&nbsp;</span><strong><span data-preserver-spaces="true">Newtonsoft Json</span></strong><span data-preserver-spaces="true"> package internally. This package is mandatory for SDK to work. Unity versions 2020 and 2021 install this package in the project on their own but in unity versions 2018 and 2019 you may have to install this package in the project manually. To Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package in your project manually, go to&nbsp;</span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">.</span><img src="/hc/article_attachments/4410780721177/image.png" alt="image.png" width="633" height="447">
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
