@@ -8,8 +8,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11.1 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/900007764903" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 20.11.5 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/4410908291737" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -53,7 +53,7 @@
   <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that (2018 and 2019) you would have to install this package in the project manually. </span>
 </p>
 <p>
-  <span data-preserver-spaces="true">On way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:</span><img src="/hc/article_attachments/4410780721177/image.png" alt="image.png" width="633" height="447">
+  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:</span><img src="/hc/article_attachments/4410780721177/image.png" alt="image.png" width="633" height="447">
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
