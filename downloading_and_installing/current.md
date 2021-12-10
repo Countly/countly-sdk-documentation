@@ -268,6 +268,122 @@
   </tbody>
 </table>
 <p>&nbsp;</p>
+<h1>Community Supported SDKs</h1>
+<p>
+  <span>These client libraries are developed and supported by the Countly community and not by Countly directly. Refer to the corresponding author for support and more information.</span>
+</p>
+<table>
+  <tbody>
+    <tr>
+      <th style="width: 302.641px;">SDK name</th>
+      <th style="width: 102.359px;">Where to get</th>
+      <th style="width: 175.109px;">Documentation link</th>
+    </tr>
+    <tr>
+      <td style="width: 294.641px;">
+        <strong>Cocos2d-x SDK</strong>
+      </td>
+      <td style="width: 94.3594px;">
+        <a href="https://github.com/shadow0162/countly-sdk-cocos2d-x" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td style="width: 167.109px;">
+        <a href="https://support.count.ly/hc/en-us/articles/360038883751-Cocos2d-x" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 294.641px;">
+        <strong>Titanium Appcelerator SDK (iOS)</strong>
+      </td>
+      <td style="width: 94.3594px;">
+        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-ios" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td style="width: 167.109px;">
+        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-ios" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 294.641px;">
+        <strong>Titanium Appcelerator SDK (Android)</strong>
+      </td>
+      <td style="width: 94.3594px;">
+        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-android" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td style="width: 167.109px;">
+        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-android" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 294.641px;">
+        <strong>Xamarin (Android)</strong>
+      </td>
+      <td style="width: 94.3594px;">
+        <a href="https://www.nuget.org/packages?q=countly" target="_self">Click to get</a>
+      </td>
+      <td style="width: 167.109px;">
+        <a href="https://support.count.ly/hc/en-us/articles/360037813691-Xamarin-Android-" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 294.641px;">
+        <strong>Xamarin (iOS)</strong>
+      </td>
+      <td style="width: 94.3594px;">
+        <a href="https://www.nuget.org/packages?q=countly" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td style="width: 167.109px;">
+        <a href="https://support.count.ly/hc/en-us/articles/360037443392-Xamarin-iOS" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 294.641px;">
+        <strong>Xamarin Forms (iOS)</strong>
+      </td>
+      <td style="width: 94.3594px;">
+        <a href="https://www.nuget.org/packages?q=countly" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td style="width: 167.109px;">
+        <a href="https://support.count.ly/hc/en-us/articles/360037813331-Xamarin-Forms-iOS-" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<h1>Sunsetted SDKs</h1>
+<p>
+  <span style="font-weight: 400;">This table includes a list of all SDKs that have been sunsetted by Countly.</span>
+</p>
+<table>
+  <tbody>
+    <tr>
+      <th>SDK name</th>
+      <th>Repository link</th>
+      <th>Documentation link</th>
+    </tr>
+    <tr>
+      <td>
+        <strong>IoT devices (Python)</strong>
+      </td>
+      <td>
+        <a href="https://github.com/Countly/countly-sdk-iot-python" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td>
+        <a href="https://support.count.ly/hc/en-us/articles/360037442772-IoT-devices-Python-" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>React Native (old)</strong>
+      </td>
+      <td>
+        <a href="https://github.com/Countly/countly-sdk-react-native" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td>
+        <a href="https://support.count.ly/hc/en-us/articles/360037443012-React-Native-unmaintained-" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
 <h1>FAQ and Troubleshooting</h1>
 <h2>What is the hostname meant to write inside the SDK?</h2>
 <p>
