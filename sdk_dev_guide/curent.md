@@ -2000,10 +2000,12 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   Upon receiving consent (also during init), the SDK should immediately begin collecting
   data allowed by the provided feature(s) and also begin sending the consent approval
   to the server in the form of <code>consent=&nbsp;{"feature":true}</code>. For
-  the exact feature names, refer to the list above. For example, if features are
-  <code>crashes</code> and <code>users</code>, then the request should contain
-  <code>consent&nbsp;=&nbsp;{"crashes":true,"users":true}</code>. This may be a
-  separate request, or it may be attached to any other SDK request.
+  the exact feature names, refer to the list above.
+</p>
+<p>
+  When consent is given, the update request should sent the current state of consent
+  values and not only the given "delta". This may be a separate request, or it
+  may be attached to any other SDK request.
 </p>
 <p>
   <span style="font-weight: 400;">If someone attempts to give consent for a second time, the SDK should ignore it as the consent is already given and nothing changes.</span>
@@ -2021,10 +2023,12 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   <span style="font-weight: 400;">Upon receiving the request to remove consent, the SDK should immediately stop collecting data allowed by the provided feature(s) and also send consent removal to the server in the form of <code>consent=&nbsp;{"feature":false}</code></span>
-  <span style="font-weight: 400;">. For example, if the features are crashes and users, then the request should contain <code>consent={"crashes":false,"users":false}</code>.</span>
+  <span style="font-weight: 400;">. </span>
 </p>
 <p>
-  <span style="font-weight: 400;">This may be a separate request, or it may be attached to any other request.</span>
+  When consent is removed, the update request should sent the current state of
+  consent values and not only the given "delta". This may be a separate request,
+  or it may be attached to any other SDK request.
 </p>
 <p>
   <span style="font-weight: 400;">Depending on the SDK structure, the SDK may sync existing requests in the queue. Or, it may ignore requests in the queue and never send them or remove them from the queue.</span>
