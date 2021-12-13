@@ -185,6 +185,23 @@ Countly.begin_session();</code></pre>
         _device: "aws-server"
     }
 });</code></pre>
+<div class="callout callout--info">
+  <h3 class="callout__title">Changing debugging after initialization</h3>
+  <p>
+    Sometimes just turning on the logs during the initialization is all you really
+    need. But sometimes you might want to see the logs only for a small time frame 
+    or some particular operation. In those situations you can simply use isLoggingEnabled 
+    function to turn the logs on or off as you wish, just like this:
+  </p>
+  <pre><code class="javascript">//to turn on the logs
+Countly.isLoggingEnabled(true);
+
+//some code in between
+//<...>
+
+//to turn off the logs
+Countly.isLoggingEnabled(false);</code></pre>
+</div>
 <h1>Helper methods</h1>
 <p>
   Helper methods created to allow you easily track most common actions
