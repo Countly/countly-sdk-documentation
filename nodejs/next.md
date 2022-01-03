@@ -185,6 +185,20 @@ Countly.begin_session();</code></pre>
         _device: "aws-server"
     }
 });</code></pre>
+<p>
+  Sometimes just turning on the logs during the initialization is all you really
+  need. But sometimes you might want to see the logs only for a small time frame
+  or some particular operation. In those situations you can simply use setLoggingEnabled
+  function to turn the logs on or off as you wish, just like this:
+</p>
+<pre><code class="javascript">//to turn on the logs
+Countly.setLoggingEnabled(true);
+
+//some code in between
+//&lt;...&gt;
+
+//to turn off the logs
+Countly.setLoggingEnabled(false);</code></pre>
 <h1>Helper methods</h1>
 <p>
   Helper methods created to allow you easily track most common actions
@@ -390,6 +404,11 @@ catch(ex){
   or Countly generated automatically, for example, when user was changed.
 </p>
 <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
 <p>
   In some cases, you may also need to change user's device ID in a way, that server
   will merge data of both user IDs (existing and new ID you provided) on the server,
@@ -488,6 +507,7 @@ Countly.report_feedback({
     comment: "Very good"
 });</code></pre>
 <p>&nbsp;</p>
+
 <h1>Other Features</h1>
 <h2>SDK Internal Limits</h2>
 <p>Countly is highly customizable and let's you take a huge part at the control 
@@ -593,3 +613,4 @@ during the initialization:
 });</code></pre>
   </div>
 <p>
+
