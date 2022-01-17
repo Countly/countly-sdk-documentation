@@ -13,8 +13,8 @@
   </p>
   <p>
     The Countly iOS SDK supports the minimum <code>Deployment Target</code>
-    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14) , and it
-    requires Xcode 13.0+ with <code>Base SDK</code> iOS 10.0+.
+    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14) , and it requires
+    Xcode 13.0+.
   </p>
 </div>
 <h1>Integration</h1>
@@ -30,13 +30,8 @@
   <a href="#carthage">Carthage</a>).
 </p>
 <p>
-  <strong>2.</strong> Add all files in <code>countly-ios-sdk</code> to your project
+  <strong>2.</strong> Add all <code>.h</code> and <code>.m</code> files in <code>countly-ios-sdk</code> folder to your project
   on Xcode.
-</p>
-<p>
-  You can delete <code>README.md</code> and <code>CHANGELOG.md</code> from your
-  project or remove them from <code>Target</code> &gt; <code>Build Phases</code>
-  &gt; <code>Compile Sources</code> to avoid compiler warnings.
 </p>
 <p>
   <strong>3.</strong> In your application delegate, import
@@ -348,7 +343,7 @@ func internalLog(_ log: String)
 </div>
 <p>
   Otherwise, if <code>onServer</code> bool is <strong>not</strong> set,
-  <span style="font-weight: 400;">the device will be counted as a new device on the server.</span>
+  <span style="font-weight: 400;">the device will be counted as a new device on the server.</span> And all given consents will be cancelled.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -368,42 +363,6 @@ func internalLog(_ log: String)
   <strong>Note:</strong> To switch back to the default device ID, you can pass
   <code>CLYDefaultDeviceID</code>.
 </p>
-<h3>Handling User Login and Logout</h3>
-<p>
-  <span style="font-weight: 400;">If your app allows users to login, logged-in users can be tracked with a custom user ID (such as accountID, username, memberID, email, etc.) instead of a device ID. For these cases, you can use the <code>userLoggedIn</code></span><span style="font-weight: 400;"> and <code>userLoggedOut</code></span><span style="font-weight: 400;"> convenience methods for changing the device ID.</span>
-</p>
-<p>
-  The<code>userLoggedIn</code>
-  <span style="font-weight: 400;">method handles switching from the device ID to a custom user ID for logged-in users. It is just a convenience method that sets passed user IDs as a new device ID and merges the existing data on the server.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance userLoggedIn:@"UserID"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().userLogged(in:"UserID")</code></pre>
-  </div>
-</div>
-<p>
-  The<code>userLoggedOut</code>
-  <span style="font-weight: 400;">method handles switching from the custom user ID to a default device ID for logged-out users. It is just a convenience method that handles setting the device ID to a default one and starting a new session. Afterwards, logged-out user's data will be tracked using the default device ID.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance userLoggedOut];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().userLoggedOut()</code></pre>
-  </div>
-</div>
 <h3>Resetting Stored Device ID</h3>
 <p>
   <span style="font-weight: 400;">In order to handle device ID changes for logged-in and logged-out users, the device ID specified in the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object of the <code>deviceID</code></span><span style="font-weight: 400;"> property (or the default device ID, if not specified) will be persistently stored as well as the device ID passed to the <code>setNewDeviceID:onServer</code></span><span style="font-weight: 400;">method at any time upon the first app launch. By this point, until you delete and re-install the app, the Countly iOS SDK will continue to use the stored device ID and ignore the <code>deviceID</code></span><span style="font-weight: 400;"> property. So, if you set the <code>deviceID</code></span><span style="font-weight: 400;"> property to something different upon future app launches during development, it will have no effect. In this case, you can set the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object in order to reset the stored device ID. This will reset the initially stored device ID and the Countly iOS SDK will work as if it is the first app launch.</span>
@@ -493,7 +452,7 @@ func internalLog(_ log: String)
   new app key, this method suspends the SDK and resumes it immediately after. The
   new app key needs to be a non-zero length string, otherwise the method call is
   ignored. <code>recordPushNotificationToken</code> and
-  <code>updateRemoteConfigWithCompletionHandler:</code> methods can need to be
+  <code>updateRemoteConfigWithCompletionHandler:</code> methods may need to be
   manually called again after the app key change.
 </p>
 <h3>Replacing App Keys in Queue</h3>
@@ -535,6 +494,29 @@ func internalLog(_ log: String)
     <pre><code class="swift">Countly.sharedInstance().removeDifferentAppKeysFromQueue()</code></pre>
   </div>
 </div>
+<h2>Host</h2>
+<h3>Changing Host</h3>
+<p>
+  You can configure the host even after you started the SDK using
+  <code>setNewHost:</code>method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance setNewHost:@"https://example.com"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().setNewHost("https://example.com")</code></pre>
+  </div>
+</div>
+<p> Requests that are already queued before changing the host will also be using the new host. The new host needs to be a non-zero length string, otherwise it is ignored.
+ <code>recordPushNotificationToken</code> and
+  <code>updateRemoteConfigWithCompletionHandler:</code> methods may need to be
+  manually called again after the host change.
+</p>
 <h2>Security</h2>
 <p>
   <span style="font-weight: 400;">You can specify extra security features on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object:</span>
@@ -555,39 +537,6 @@ func internalLog(_ log: String)
     <pre><code class="swift">config.pinnedCertificates = ["mycertificate.cer"]</code></pre>
   </div>
 </div>
-<h3>Custom Header Field</h3>
-<p>
-  <span style="font-weight: 400;">You can set the optional <code>customHeaderFieldName</code></span><span style="font-weight: 400;"> to be sent with every request. This can be useful if your server requires special headers to be sent for security reasons. Every request sent to the Countly Server will have this custom HTTP header and its value will be what you specify as the <code>customHeaderFieldValue</code></span><span style="font-weight: 400;">property.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.customHeaderFieldName = @"X-My-Custom-Field";
-config.customHeaderFieldValue = @"my_custom_value";</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.customHeaderFieldName = "X-My-Custom-Field"
-config.customHeaderFieldValue = "my_custom_value"</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">If you do not set the <code>customHeaderFieldValue</code></span><span style="font-weight: 400;"> value while setting the <code>customHeaderFieldName</code></span><span style="font-weight: 400;"> upon the initial Countly configuration (in case the value is not available upon app launch and has to be retrieved later on), requests will not start until you set it using the <code>setCustomHeaderFieldValue</code></span><span style="font-weight: 400;">method at a later time.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setCustomHeaderFieldValue:@"my_custom_value"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setCustomHeaderFieldValue("my_custom_value")</code></pre>
-  </div>
-</div>
 <h3>Parameter Tampering Protection</h3>
 <p>
   <span style="font-weight: 400;">You can set the optional <code>secretSalt</code></span><span style="font-weight: 400;"> to be used for calculating the checksum of the request data which will be sent with each request using the <code>&amp;checksum256</code></span><span style="font-weight: 400;"> field. You will need to set the exact same <code>secretSalt</code></span><span style="font-weight: 400;">on the Countly Server. If the <code>secretSalt</code></span><span style="font-weight: 400;">on the Countly Server is set, all requests would be checked for validity of the <code>&amp;checksum256</code></span><span style="font-weight: 400;">field before being processed.</span>
@@ -602,6 +551,28 @@ config.customHeaderFieldValue = "my_custom_value"</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">config.secretSalt = "mysecretsalt"</code></pre>
+  </div>
+</div>
+<h3>Ignoring Trust Check</h3>
+<p>
+  <span style="font-weight: 400;">You can set the <code>shouldIgnoreTrustCheck</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.
+</p>
+<p>
+This flag is used for ignoring all SSL trust check for pinned certificates by setting server trust as an exception.
+</p>
+<p>
+It can be used for self-signed certificates and works only for Development environment where <code>DEBUG</code> flag is set in target's build settings.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.shouldIgnoreTrustCheck = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.shouldIgnoreTrustCheck = true</code></pre>
   </div>
 </div>
 <h2>Other Settings</h2>
@@ -654,6 +625,83 @@ config.customHeaderFieldValue = "my_custom_value"</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">config.storedRequestsLimit = 5000</code></pre>
+  </div>
+</div>
+<h3>Maximum Key Length</h3>
+<p>
+  <span style="font-weight: 400;">You can specify the <code>maxKeyLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.
+</p>
+<p>It is used to limit the length of keys for event names, view names, APM network trace names, APM custom trace names, APM custom trace metric keys, segmentation keys, custom metric keys and custom user property keys.
+</p>
+<p>Keys longer than this limit will be truncated. If not set, it will be 128 chars by default.</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.maxKeyLength = 24;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.maxKeyLength = 24</code></pre>
+  </div>
+</div>
+<h3>Maximum Value Length</h3>
+<p>
+  <span style="font-weight: 400;">You can specify the <code>maxValueLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.
+</p>
+<p>It is used to limit the length of values for segmentation values, APM custom trace metric values, custom crash logs, custom metric values and custom user property values.
+</p>
+<p>Values longer than this limit will be truncated. If not set, it will be 256 chars by default.</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.maxValueLength = 24;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.maxValueLength = 24</code></pre>
+  </div>
+</div>
+<h3>Maximum Segmentation Values</h3>
+<p>
+  <span style="font-weight: 400;">You can specify the <code>maxSegmentationValues</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.
+</p>
+<p>It is used to limit the number of key-value pairs in segmentations. If there are more key-value pairs than this limit, some of them will be removed. As obviously there is no order among the keys of an NSDictionary, it is not defined which ones will be removed. If not set, it will be 30 by default.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.maxSegmentationValues = 10;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.maxSegmentationValues = 10</code></pre>
+  </div>
+</div>
+<h3>Orientation Tracking</h3>
+<p>
+  <span style="font-weight: 400;">You can set the <code>enableOrientationTracking</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.
+      This flag is used for enabling automatic user interface orientation tracking.
+      If set, user interface orientation tracking feature will be enabled and an event will be sent whenever user interface orientation changes.
+      Orientation event will not be sent if consent for <code>CLYConsentUserDetails</code> is not given while <code>requiresConsent</code> flag is set on initial configuration.
+      Automatic user interface orientation tracking is enabled by default.
+      For disabling it, please set this flag to <code>NO<code>.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.enableOrientationTracking = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableOrientationTracking = true</code></pre>
   </div>
 </div>
 <h3>Always use the POST method</h3>
@@ -2222,8 +2270,7 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
   And PLCrashReporter framework dependency should be added to your project manually
   from
   <a href="https://github.com/microsoft/plcrashreporter/releases" target="_self">its GitHub releases page</a>
-  or using CocoaPods (<span style="font-weight: 400;"><code>Countly/PL</code></span>
-  subspec).
+  or via CocoaPods using <code>Countly-PL.podspec</code> instead of default <code>Countly.podspec</code>.
 </p>
 <p>
   Existence of PLCrashReporter dependency will be checked using
@@ -3341,7 +3388,7 @@ else // if value exists, you can use it as you see fit
 </p>
 <p>
   <strong>4.</strong>
-  <span style="font-weight: 400;">Now it is time to add the Countly iOS SDK to your project. After cloning the Countly iOS SDK anywhere you would like, Drag&amp;Drop the <code>countly-sdk-ios</code></span><span style="font-weight: 400;"> folder into your Xcode project, and in the following dialog, please ensure the iPhone app target and </span><strong>WatchKit Extension</strong><span style="font-weight: 400;"> target (not WatchKit App) have been selected as well as the </span><strong>Copy items if needed</strong><span style="font-weight: 400;"> checkbox.</span>
+  <span style="font-weight: 400;">Now it is time to add the Countly iOS SDK to your project. After cloning the Countly iOS SDK anywhere you would like, Drag&amp;Drop <code>.h</code> and <code>.m</code> files in <code>countly-sdk-ios</code></span><span style="font-weight: 400;"> folder into your Xcode project, and in the following dialog, please ensure the iPhone app target and </span><strong>WatchKit Extension</strong><span style="font-weight: 400;"> target (not WatchKit App) have been selected as well as the </span><strong>Copy items if needed</strong><span style="font-weight: 400;"> checkbox.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/SvLcZmJTQPKXYWtkXdLn_hcHj93L.png">
@@ -3375,21 +3422,15 @@ else // if value exists, you can use it as you see fit
     <pre><code class="objectivec">CountlyConfig* config = CountlyConfig.new;
 config.appKey = @"YOUR_APP_KEY";
 config.host = @"https://YOUR_COUNTLY_SERVER";
-config.enableAppleWatch = YES;
 [Countly.sharedInstance startWithConfig:config];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let config: CountlyConfig = CountlyConfig()
 config.appKey = "YOUR_APP_KEY"
 config.host = "https://YOUR_COUNTLY_SERVER"
-config.enableAppleWatch = true
 Countly.sharedInstance().start(with: config)</code></pre>
   </div>
 </div>
-<p>
-  <strong>NOTE:</strong> <code class="swift">config.enableAppleWatch</code> flag
-  should not be set on independent watchOS apps.
-</p>
 <p>
   <strong>7.</strong> Add suspend code into the
   <code>applicationWillResignActive</code> method of
@@ -3456,24 +3497,6 @@ config.eventSendThreshold = 1;</code></pre>
 config.eventSendThreshold = 1</code></pre>
   </div>
 </div>
-<p>
-  <strong>Do not forget</strong><span style="font-weight: 400;"> to set the <code>enableAppleWatch</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;">object on your watch app's iOS counterpart:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.enableAppleWatch = YES;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.enableAppleWatch = true</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">With this setting, your watchOS app iOS counterpart will also report the paired Apple Watch's information to the server.</span>
-</p>
 <h1>Consents</h1>
 <p>
   <span style="font-weight: 400;">For compatibility with data protection regulations, such as GDPR, the Countly iOS SDK allows developers to enable/disable any feature at any time depending on user consent. Currently, available features with consent control are as follows:</span>
@@ -3697,10 +3720,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <code>userLoggedIn:</code> method ( Ex: <code>[Countly.sharedInstance userLoggedIn:@"user123@example.com"];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
-</p>
-<p>
-  <span class="wysiwyg-color-black">Later, when the user logs out, you can use <code>[Countly.sharedInstance userLoggedOut];</code> method which will switch back to default deviceID and track that device anonymously.</span>
+  <span class="wysiwyg-color-black">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <code>setNewDeviceID:onServer</code> method ( Ex: <code>[Countly.sharedInstance setNewDeviceID:@"user123@example.com" onServer:YES];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">Why are events not displayed on Countly Server dashboard?</span>
