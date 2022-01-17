@@ -333,7 +333,7 @@ func internalLog(_ log: String)
 </div>
 <p>
   Otherwise, if <code>onServer</code> bool is <strong>not</strong> set,
-  <span style="font-weight: 400;">the device will be counted as a new device on the server.</span> And given all consents will be cancelled.
+  <span style="font-weight: 400;">the device will be counted as a new device on the server.</span> And all given consents will be cancelled.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
