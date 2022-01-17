@@ -575,6 +575,12 @@ Countly.askForNotificationPermission();
 <pre><code class="JavaScript">// Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
 </code></pre>
+<p>
+  <strong>Note:</strong> You need to do some additional steps to handle multiple
+  messaging services if you are using other plugins for push notifications, please
+  follow the instructions from this URL:<br>
+  <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
+</p>
 <h2>iOS Setup</h2>
 <p>
   For iOS push notification please follow the instruction from this URL

@@ -115,7 +115,10 @@
 </ul>
 <p>
   <span>No two places should have the same log message. This means that all messages should be unique. Knowing the log message and the sdk version it should be unambiguous to know which line printed that message.</span><br>
-  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called</span>
+  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called. If the function called is part of the public API of the SDK, that log should include the function name.</span>
+</p>
+<p>
+  <span>All calls, that can be called by developers, should produce a log message to indicate what is being called.</span><span></span>
 </p>
 <p>
   <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span><span>The goal is to have a good enough log coverage so that it's easy to understand what was happening with the SDK and how it was used when a SDK integrator provides his logs.</span><br>
@@ -179,8 +182,34 @@
   <span style="font-weight: 400;">Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference#i"><span style="font-weight: 400;">/i endpoint Server API reference</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">There are some parameters that should be added to all requests even though they are not mandatory. Together with the required parameters they form the base request. Every request sent to the server should be formed from this base request. the parameters in it are: "app_key", "device_id", "timestamp", "hour", "dow", "tz", "sdk_version". "sdk_name".</span>
+  <span style="font-weight: 400;">There are some parameters that should be added to all requests even though they are not mandatory. Together with the required parameters they form the base request. Every request sent to the server should be formed from this base request. The parameters in this base request are: </span>
 </p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">"app_key" - the application key for this countly app (retrievable on the dashboard)</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"device_id" - the current users device ID</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"timestamp" - the timestamp in ms of when this request is created</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"hour" - the hour of the timestamp</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"dow" - the day of the week for this timestamp. 0 - sunday, ... , 6 - saturday.</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"tz" - this devices timezone offset</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"sdk_version" - the SDK's version</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">"sdk_name" - the SDK's name</span>
+  </li>
+</ul>
 <p>
   <span style="font-weight: 400;">In cases where some devices may be offline, etc., and requests should be queued, it is highly recommended you add a timestamp to each request, displaying when it was created.</span>
 </p>
@@ -200,17 +229,52 @@
 <p>
   <span style="font-weight: 400;">Additionally, the SDK should be able to switch to post completely if a user should so specify in the SDK configuration/settings.</span>
 </p>
-<h1>SDK storage</h1>
+<p>
+  <span style="font-weight: 400;">When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
+</p>
+<h2>SDK Metadata</h2>
+<p>
+  <span style="font-weight: 400;">The SDK should send the following metadata with every request.</span>
+</p>
+<ul>
+  <li>SDK name:</li>
+</ul>
+<p>
+  Query String Key: <code>sdk_name</code> Query String Value:
+  <code>[language]-[origin]-[platform]</code> Example:
+  <code>&amp;sdk_name=objc-native-ios</code>
+</p>
+<ul>
+  <li>SDK version:</li>
+</ul>
+<p>
+  Query String Key: <code>sdk_version</code> Query String Value: SDK version as
+  string Example: <code>&amp;sdk_version=20.10.0</code>
+</p>
+<p>
+  The SDK versions decode to [year].[month].[minor release number]. The SDK major
+  versions&nbsp; (year, month) should follow the server versions. Those are usually
+  incremented twice a year during our major releases. Minor release numbers should
+  start ar "0". Major version numbers (year, month) should stay the same even if
+  the SDK version is released a couple of months after the indicated date. If the
+  servers version is released in October 2020 the major versions would be "20.10".
+  The first version released by the SDK, that would be in sync with this server
+  version, would have the version "20.10.0". If the SDK needs to release an update
+  in January of 2021 and no major server release has happened, the next version
+  released by the SDK will be "20.10.1".
+</p>
+<p>
+  No zeroes should be added to the second number (indicating the month) in case
+  the release happens before October.
+</p>
+<h1>SDK storage and requests</h1>
 <p>
   <span style="font-weight: 400;">Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span style="font-weight: 400;"></span>
 </p>
-<h1>Request queue</h1>
-<p>
-  <span style="font-weight: 400;">(in case per app key storage is not available)</span>
-</p>
+<h2>Request queue</h2>
 <p>
   <span style="font-weight: 400;">In some cases, users might be offline, thus they are not able to make requests to the server. In other cases, the server may be down or in maintenance, thus unable to accept requests. In both cases, the SDK should handle queuing and persistently storing requests made to the Countly server and should wait for a successful response from the server before removing a request from the queue.</span>
 </p>
@@ -237,7 +301,7 @@
     <span style="font-weight: 400;">On some other thread there should be a request processor which takes the first request in the queue, applies the checksum if needed, determines the request type (GET or POST) based on the length, and makes the HTTP request</span>&nbsp;<br>
     <ul>
       <li>
-        <span style="font-weight: 400;">if the request is successful, then it should be removed from the queue and the next request will be processed upon the next iteration</span>
+        <span style="font-weight: 400;">if the request is successful (defined below), then it should be removed from the queue and the next request will be processed upon the next iteration</span>
       </li>
       <li>
         <span style="font-weight: 400;">if the request failed, the request processor should have a cool-down period, lasting a minute or so (configurable value), and it will then try the same request again until it is completed</span>
@@ -256,25 +320,106 @@
     <span style="font-weight: 400;">The HTTP response code was successful (which is any 2xx code or code between 200 &lt;= x &lt; 300)</span>
   </li>
   <li>
-    <span style="font-weight: 400;">The returned request is a JSON object that contains the field "result" (there can be other fields)</span>
+    <span style="font-weight: 400;">The returned request is a JSON object</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">That JSON object contains the field "result" (there can be other fields)</span>
   </li>
 </ol>
 <p>
-  <span style="font-weight: 400;">The server replies with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added. </span>
+  <span style="font-weight: 400;">When sending request to a Countly server, it would respond with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added.</span>
 </p>
 <p>
-  If the response code is within the required interval and the response text is
-  a JSON object which has the key "result" (the value of that entry does not matter),
-  then it means the request was successfully delivered to the server and can be
-  removed from the queue.
+  <span style="font-weight: 400;">If the previously described things are "true", </span>then
+  it means the request was successfully delivered to the server and can be removed
+  from the queue.
 </p>
-<h2>Queue size limit</h2>
+<h3>Queue size limit</h3>
 <p>
   <span style="font-weight: 400;">We need to limit the queue size so that it doesn’t overflow, and so that syncing up won’t take too long if some specific server is down for too long. This limit would be in the number of stored queries, and this limit should be available for the end-user to change as the SDK settings.</span>
 </p>
 <p>
   <span style="font-weight: 400;">In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span style="font-weight: 400;">.</span>
 </p>
+<h2>Event queue</h2>
+<p>
+  Similary to the request queue, each SDK should also have the event queue. It
+  is used for the purposes of combining multiple events together and decreasing
+  the total request amount.
+</p>
+<p>This queue is also FIFO, and has a maximum size.</p>
+<h2>Other storage</h2>
+<p>
+  Some other features might also require storage to store some things persistently
+  (remote config, etc).
+</p>
+<p>Those would have their own storage format.</p>
+<h2>Recording time of data</h2>
+<p>
+  <span style="font-weight: 400;">To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
+</p>
+<ul>
+  <li>
+    <strong>timestamp</strong>:
+    <span style="font-weight: 400;">13-digit UTC millisecond unique timestamp of the moment of action</span>
+  </li>
+  <li>
+    <strong>hour</strong>:
+    <span style="font-weight: 400;">Current user local hour (0 - 23)</span>
+  </li>
+  <li>
+    <strong>dow</strong>:&nbsp;<span style="font-weight: 400;">Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
+  </li>
+  <li>
+    <strong>tz</strong>:
+    <span style="font-weight: 400;">Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
+  </li>
+</ul>
+<p>
+  <span style="font-weight: 400;">As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
+</p>
+<pre><code class="javascript">//variable to hold last used timestamp
+lastMsTs = 0;
+
+function getUniqueMsTimestamp(){
+  //get current timestamp in miliseconds
+  ts = getMsTimestamp();
+  
+  //if last used timestamp is equal or greater
+  if(lastMsTs &gt;= ts){
+    //increase last used
+    lastMsTs++;
+  }
+  else{
+    //store current timestamp as last used
+    lastMsTs = ts;
+  }
+  //return timestamp
+  return lastMsTs;
+}</code></pre>
+<p>
+  <span style="font-weight: 400;">If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
+</p>
+<h1>General SDK structure overview</h1>
+<p>
+  <span style="font-weight: 400;">Depending on the SDK’s environment/language there could be a different set of features supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app type may not be providing telecom operator information.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  <span style="font-weight: 400;">Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
+</p>
+<h2>Initialization</h2>
+<p>
+  <span style="font-weight: 400;">In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method which accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
+</p>
+<pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
+</code></pre>
 <h1>Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
@@ -308,9 +453,6 @@
 </p>
 <p>
   <span style="font-weight: 400;">Events should be provided by the SDK user who knows what's important for the app to log. Also, events may be used to report some internal Countly events starting with the&nbsp;</span><strong>[CLY]_</strong><span style="font-weight: 400;">&nbsp;prefix, which vary per feature implementation on different platforms.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The call for recording events should support recording Countly internal events in case consent for their features is given. If no consent is required, they should be recorded aswell. The ability to record internal events should not be dependant on the consent for "events".</span>
 </p>
 <p>
   <span style="font-weight: 400;">An event must contain&nbsp;</span><strong>key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>count</strong><span style="font-weight: 400;">&nbsp;properties. If the count is not provided, it should default to&nbsp;1. Optionally, a user may also provide the&nbsp;</span><strong>sum</strong><span style="font-weight: 400;">&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property for recording some duration/period of time and&nbsp;</span><strong>segmentation</strong><span style="font-weight: 400;">&nbsp;as a map with keys and values for segmentation.</span>
@@ -354,6 +496,54 @@
   <strong>Note</strong>: <strong>count</strong> value defaults to 1 internally
   if not specified.
 </p>
+<h2>Internal Events</h2>
+<p>
+  <span>The call for recording events should support recording Countly internal events. If consent is required then the ability to record them should be governed only by their respective feature consents. The ability to record internal events is in no way influenced by the " event" consent. If consent for some feature is given and "recordEvent" is used to record that features internal event, it should be recorded even if no "event" consent is given. If for some feature consent is not given and </span><span>"recordEvent" is used to record it's internal event, it should not be recorded even if "event" consent is given. If no consent is required, they should be recorded as well.</span>
+</p>
+<p>
+  <span>At the current moment there are the following internal events and their respective required consent:</span>
+</p>
+<ul>
+  <li>
+    <span><strong>[CLY]_nps</strong> - "feedback" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_survey</strong> - "feedback" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_star_rating</strong> - "star_rating" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_view</strong> - "view" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_orientation</strong> - "users" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_push_action</strong> - "push" consent</span>
+  </li>
+  <li>
+    <span><strong>[CLY]_action</strong> - "clicks" or "scroll" consent</span>
+  </li>
+</ul>
+<p>Example 1:</p>
+<ol>
+  <li>event consent is given, but 'view' consent is not given</li>
+  <li>dev calls "recordEvent('[CLY]_view')</li>
+  <li>event is not recorded</li>
+</ol>
+<p>Example 2:</p>
+<ol>
+  <li>event consent is given, and 'view' consent is also given</li>
+  <li>dev calls "recordEvent('[CLY]_view')</li>
+  <li>event is recorded</li>
+</ol>
+<p>Example 3:</p>
+<ol>
+  <li>event consent is not given, but 'view' consent is given</li>
+  <li>dev calls "recordEvent('[CLY]_view')</li>
+  <li>event is recorded</li>
+</ol>
 <h2>Timed Events</h2>
 <p>
   <span style="font-weight: 400;">In short, you may report time with the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property in an event. It is good practice to allow the user to measure some periods internally using the SDK API. For that purpose, the SDK needs to provide the methods below:</span>
@@ -375,6 +565,75 @@
 <p>
   <span style="font-weight: 400;">If not, the following calls should be ignored: 1. events which have already started 2. events which have attempted to start again 3. events which have already ended 4. events which have attempted to end. Otherwise, they will provide an informative error.</span>
 </p>
+<h1>Device metrics</h1>
+<p>
+  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference#i%23section-metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span style="font-weight: 400;">&nbsp;metric.</span>
+</p>
+<ul>
+  <li>
+    <strong>Android</strong> - for Android
+  </li>
+  <li>
+    <strong>BeOS</strong> - for BeOS
+  </li>
+  <li>
+    <strong>BlackBerry</strong> - for BlackBerry
+  </li>
+  <li>
+    <strong>iOS</strong> - for iOS
+  </li>
+  <li>
+    <strong>Linux</strong> - for Linux
+  </li>
+  <li>
+    <strong>Open BSD</strong> - for Open BSD
+  </li>
+  <li>
+    <strong>os/2</strong> - for OS/2
+  </li>
+  <li>
+    <strong>macOS</strong> - for Mac OS X
+  </li>
+  <li>
+    <strong>QNX</strong> - for QNX
+  </li>
+  <li>
+    <strong>Roku</strong> - for Roku
+  </li>
+  <li>
+    <strong>SearchBot</strong> - for SearchBots
+  </li>
+  <li>
+    <strong>Sun OS</strong> - for Sun OS
+  </li>
+  <li>
+    <strong>Symbian</strong> - for Symbian
+  </li>
+  <li>
+    <strong>Tizen</strong> - for Tizen
+  </li>
+  <li>
+    <strong>tvOS</strong> - for Apple TV
+  </li>
+  <li>
+    <strong>Unix</strong> - for Unix
+  </li>
+  <li>
+    <strong>Unknown</strong> - if the operating system is unknown
+  </li>
+  <li>
+    <strong>watchOS</strong> - for Apple Watch
+  </li>
+  <li>
+    <strong>Windows</strong> - for Windows
+  </li>
+  <li>
+    <strong>Windows Phone</strong> for Windows Phone
+  </li>
+</ul>
 <h1>Session flow</h1>
 <p>
   For SDK's to track use sessions, there are 3 kinds of calls:
@@ -476,209 +735,6 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <p>
   <span style="font-weight: 400;">The 15-second cooldown is a default value and may be configured on the server, so don't rely on it being 15 seconds.</span>
-</p>
-<h1>Recording time of data</h1>
-<p>
-  <span style="font-weight: 400;">To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
-</p>
-<ul>
-  <li>
-    <strong>timestamp</strong>:
-    <span style="font-weight: 400;">13-digit UTC millisecond unique timestamp of the moment of action</span>
-  </li>
-  <li>
-    <strong>hour</strong>:
-    <span style="font-weight: 400;">Current user local hour (0 - 23)</span>
-  </li>
-  <li>
-    <strong>dow</strong>:&nbsp;<span style="font-weight: 400;">Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
-  </li>
-  <li>
-    <strong>tz</strong>:
-    <span style="font-weight: 400;">Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
-  </li>
-</ul>
-<p>
-  <span style="font-weight: 400;">As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
-</p>
-<pre><code class="javascript">//variable to hold last used timestamp
-lastMsTs = 0;
-
-function getUniqueMsTimestamp(){
-  //get current timestamp in miliseconds
-  ts = getMsTimestamp();
-  
-  //if last used timestamp is equal or greater
-  if(lastMsTs &gt;= ts){
-    //increase last used
-    lastMsTs++;
-  }
-  else{
-    //store current timestamp as last used
-    lastMsTs = ts;
-  }
-  //return timestamp
-  return lastMsTs;
-}</code></pre>
-<p>
-  <span style="font-weight: 400;">If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
-</p>
-<h1>API of the SDK</h1>
-<p>
-  <span style="font-weight: 400;">Depending on the SDK’s environment/language there could be a different set of features supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app type may not be providing telecom operator information.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is a list of things your SDK could support:</span>
-</p>
-<h1>Core features</h1>
-<p>
-  <span style="font-weight: 400;">Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
-</p>
-<h2>Initialization</h2>
-<p>
-  <span style="font-weight: 400;">In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method which accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
-</p>
-<pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
-</code></pre>
-<h2>Device metrics</h2>
-<p>
-  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference#i%23section-metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span style="font-weight: 400;">&nbsp;metric.</span>
-</p>
-<ul>
-  <li>
-    <strong>Android</strong> - for Android
-  </li>
-  <li>
-    <strong>BeOS</strong> - for BeOS
-  </li>
-  <li>
-    <strong>BlackBerry</strong> - for BlackBerry
-  </li>
-  <li>
-    <strong>iOS</strong> - for iOS
-  </li>
-  <li>
-    <strong>Linux</strong> - for Linux
-  </li>
-  <li>
-    <strong>Open BSD</strong> - for Open BSD
-  </li>
-  <li>
-    <strong>os/2</strong> - for OS/2
-  </li>
-  <li>
-    <strong>macOS</strong> - for Mac OS X
-  </li>
-  <li>
-    <strong>QNX</strong> - for QNX
-  </li>
-  <li>
-    <strong>Roku</strong> - for Roku
-  </li>
-  <li>
-    <strong>SearchBot</strong> - for SearchBots
-  </li>
-  <li>
-    <strong>Sun OS</strong> - for Sun OS
-  </li>
-  <li>
-    <strong>Symbian</strong> - for Symbian
-  </li>
-  <li>
-    <strong>Tizen</strong> - for Tizen
-  </li>
-  <li>
-    <strong>tvOS</strong> - for Apple TV
-  </li>
-  <li>
-    <strong>Unix</strong> - for Unix
-  </li>
-  <li>
-    <strong>Unknown</strong> - if the operating system is unknown
-  </li>
-  <li>
-    <strong>watchOS</strong> - for Apple Watch
-  </li>
-  <li>
-    <strong>Windows</strong> - for Windows
-  </li>
-  <li>
-    <strong>Windows Phone</strong> for Windows Phone
-  </li>
-</ul>
-<h2>SDK Metadata</h2>
-<p>
-  <span style="font-weight: 400;">The SDK should send the following metadata with every request.</span>
-</p>
-<ul>
-  <li>SDK name:</li>
-</ul>
-<p>
-  Query String Key: <code>sdk_name</code> Query String Value:
-  <code>[language]-[origin]-[platform]</code> Example:
-  <code>&amp;sdk_name=objc-native-ios</code>
-</p>
-<ul>
-  <li>SDK version:</li>
-</ul>
-<p>
-  Query String Key: <code>sdk_version</code> Query String Value: SDK version as
-  string Example: <code>&amp;sdk_version=20.10.0</code>
-</p>
-<p>
-  The SDK versions decode to [year].[month].[minor release number]. The SDK major
-  versions&nbsp; (year, month) should follow the server versions. Those are usually
-  incremented twice a year during our major releases. Minor release numbers should
-  start ar "0". Major version numbers (year, month) should stay the same even if
-  the SDK version is released a couple of months after the indicated date. If the
-  servers version is released in October 2020 the major versions would be "20.10".
-  The first version released by the SDK, that would be in sync with this server
-  version, would have the version "20.10.0". If the SDK needs to release an update
-  in January of 2021 and no major server release has happened, the next version
-  released by the SDK will be "20.10.1".
-</p>
-<p>
-  No zeroes should be added to the second number (indicating the month) in case
-  the release happens before October.
-</p>
-<h2>Additional parameters</h2>
-<p>
-  <span style="font-weight: 400;">There are also optional, additional parameters. If you can get them on your platform, then you may append them to any/every request. However, if you can’t, it might be a good idea to allow the SDK user to optionally provide such values.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If values are not provided, the Countly server will try to determine them automatically, based on all the other provided data.</span>
-</p>
-<p>
-  Here is
-  <a href="https://api.count.ly/reference#section-additional-parameters" target="_self">more information</a>
-  on possible additional API parameters.
-</p>
-<h2>Reserved Segmentation keys</h2>
-<p>
-  <span style="font-weight: 400;">Currently, there are 9 segmentation keys that are reserved for Countly’s internal use. The list of keys is as follows:</span>
-</p>
-<ul>
-  <li>name</li>
-  <li>segment</li>
-  <li>visit</li>
-  <li>start</li>
-  <li>bounce</li>
-  <li>exit</li>
-  <li>view</li>
-  <li>domain</li>
-  <li>dur</li>
-</ul>
-<p>
-  If SDK user has provided segmentation with these keys, they should be overwriten.
 </p>
 <h1>View tracking</h1>
 <p>
@@ -858,6 +914,372 @@ function getUniqueMsTimestamp(){
 <p>
   <strong>Note:</strong>&nbsp;<span style="font-weight: 400;">If a new and current device ID is exactly the same, then the Countly SDK must ignore this change call.</span>
 </p>
+<h2>
+  <span style="font-weight: 400;">Device ID state management during init</span>
+</h2>
+<p>
+  <span style="font-weight: 400;">There are different state combinations possible during init. This table covers all possible combinations and should be looked as a "truth table" of how the SDK should function.</span>
+</p>
+<table style="border-collapse: collapse; width: 100%; height: 362px;" border="1">
+  <tbody>
+    <tr style="height: 10px;">
+      <td class="wysiwyg-text-align-center" style="width: 42.8571%; height: 10px;" colspan="3">
+        <span class="wysiwyg-font-size-medium">SDK state at the end of the previous app session</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 28.5714%; height: 10px;" colspan="2">
+        <span class="wysiwyg-font-size-medium">Provided configuration during init</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 28.5714%; height: 10px;" colspan="2">
+        <span class="wysiwyg-font-size-medium">Action</span><span class="wysiwyg-font-size-medium"> take</span><span class="wysiwyg-font-size-medium">n</span><span class="wysiwyg-font-size-medium"> by SDK</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 42.8571%; height: 22px;" colspan="3">
+        <span class="wysiwyg-font-size-small">First</span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"> init</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #cfe2f3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #cfe2f3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 42.8571%; height: 22px;" colspan="3">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">First init</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 42.8571%; height: 22px;" colspan="3">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">First init</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fff2cc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enter temp ID mode</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fff2cc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enter temp ID mode</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 42.8571%; height: 22px;" colspan="3">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">First init (Custom device ID takes precedence)</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #cfe2f3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fff2cc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enter temp ID mode</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #cfe2f3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fff2cc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enter temp ID mode</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #ead1dc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK uses internally stored ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fce5cd;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK stays in temp ID mode</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #cfe2f3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #b6d7a8;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID, exit temp ID mode</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fce5cd;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK stays in temp ID mode</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #fff2cc;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enter temp ID mode</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">X</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #b6d7a8;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID, exit temp ID mode</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px; background-color: #d0e0e3;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets provided ID</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>&nbsp;</h1>
 <h1>Push Notifications</h1>
 <p>
   <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference#section-push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
@@ -1118,6 +1540,59 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   dialog to be displayed only once per app lifetime, instead of for each new version.
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingDisableAskingForEachAppVersion = false;</code></pre>
+<h2>Rating widgets</h2>
+<h3>Automatic rating widgets</h3>
+<p>
+  Automatic widgets are integrated with custom html. That is either injected into
+  the page (web) or shown in a webView (mobile).
+</p>
+<p>
+  To present such a widget, you would have the following call:
+</p>
+<pre><span>presentRatingWidgetWithID</span>(S<span>tring </span>widgetId, <span>String </span>closeButtonText, <span>RatingWidgetCallback </span>callback)</pre>
+<p>
+  It takes the ID of the widget, the custom close button text and a callback.
+</p>
+<h3>Manual rating widgets</h3>
+<p>
+  In case a developer wants to use their custom UI, they can report the result
+  manually.
+</p>
+<p>They would use the following call:</p>
+<p>
+  <span>That function should be called "recordRatingWidgetWithID" and it should have the following parameters:</span><br>
+  <span>"(String widgetId, int rating, String email, String comment, boolean userCanBeContacted)"</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  <span>When recording the result manually, it should record an event with the internal key "[CLY]_star_rating". The event should have the following segmentation:</span>
+</p>
+<ul>
+  <li>
+    <span>"platform" - current platform</span>
+  </li>
+  <li>
+    <span>"app_version" - current app version</span>
+  </li>
+  <li>
+    <span>"rating" - provided rating result. In the range from 1 to 5.</span>
+  </li>
+  <li>
+    <span>"widget_id" - provided widget ID.</span>
+  </li>
+  <li>
+    <span>"contactMe" - provided value.</span>
+  </li>
+  <li>
+    "email" - <span>provided value.</span>
+  </li>
+  <li>
+    "comment" - <span>provided value.</span>
+  </li>
+</ul>
+<p>
+  <span>Basic filtering on the provided values should be performed. Invalid widget ID's should not be accepted. Rating value should be clamped to the range of [1,5].</span><span></span>
+</p>
 <h2>Feedback widgets</h2>
 <p>
   Showing feedback widgets or performing any of the feedback widget related features
@@ -1136,7 +1611,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   that allows the grouping of this data). If a class is used for grouping, it should
   be named similar to "<span>CountlyPresentableFeedback". That object contains 2 values, widget id and widget type. Potential type values are currently "nps" and "survey".</span>
 </p>
-<p>The url to acquire all available widhets in a list is:</p>
+<p>The url to acquire all available widgets in a list is:</p>
 <pre>/o/sdk?method=feedback&amp;app_key=[appKey]&amp;device_id=[deviceID]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]</pre>
 <p>
   If parameter tampering is enabled, sha256 param should be added with the checksum.
@@ -1233,9 +1708,10 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   filled-out responses are reported as segmentation to specific keys.
 </p>
 <p>
-  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>&nbsp;document
-  to better understand how to interpret the JSON and fill out the response, but
-  at the end of it there would be a "widgetResponse" segmentation object.
+  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>
+  document to better understand how to interpret the JSON and fill out the response,
+  but at the end of it there would be a "<span>widgetResult</span>" segmentation
+  object.
 </p>
 <p>
   At the third step, the developer would call the "reportFeedbackWidgetManually"
@@ -1243,7 +1719,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>"CountlyFeedbackWidget" object, "CountlyWidgetData" JSON and the "widgetResponse" segmentation object. If the "widgetResponse" is null then that means that the widget was closed without filling it out (this requires an event to be created).</span>
 </p>
 <p>
-  <span>"CountlyFeedbackWidget" object and "CountlyWidgetData" JSON are used to verify the correctness of the reported "widgetResponse". For now, this step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
+  <span>"CountlyFeedbackWidget" object and "CountlyWidgetData" JSON are used to verify the correctness of the reported "widgetResult". For now, this step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
 </p>
 <p>
   <span>The reported widget result should be recorded as an event and put into the event queue. It should have the "[CLY]_nps" or "[CLY]_survey" key if it's an nps or survey widget respectively. That event should have the following segmentation:&nbsp;<br></span>
@@ -1260,7 +1736,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <p>
-  <span>In addition to this segmentation which identifies the widget, the provided "widgetResponse" should be "unrolled" and set as fields in the event segmentation. If the "widgetResponse" was provided null and the widget was reported as closed, you should add the following segmentation value:<br></span>
+  <span>In addition to this segmentation which identifies the widget, the provided "widgetResult" should be merged into the event segmentation. If the "widgetResult" was provided null and the widget was reported as closed, you should add the following segmentation value:<br></span>
 </p>
 <ul>
   <li>
@@ -1316,10 +1792,23 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   on how to report this data to the server.
 </p>
 <h2>Orientation changes</h2>
+<p>
+  This feature sends an event of the current orientation. It is sent when the first
+  screen loads and every time the orientation changes.
+</p>
+<p>
+  Orientation tracking is enabled by default if the required consent is given.
+</p>
+<p>
+  Orientation tracking can be disabled during init. The config variable would be
+  named similar to "<span>enableOrientationTracking" which then would receive a "false" value to turn orientation tracking off.</span>
+</p>
 <p>Orientation change tracking requires "users" consent.</p>
 <p>
-  This feature sends a event of the current orientation. It is sent when the first
-  screen loads and every time the orientation changes.
+  When recording the orientation event, you should use the key "[CLY]_orientation".
+  You would set the count to "1" and provide a single segmentation value. The key
+  for that value is "mode" and the value is "portrait" if the current orientation
+  is portrait mode or "landscape" if the current orientation is landscape mode.
 </p>
 <h1>Application Performance Monitoring</h1>
 <p>
@@ -1511,10 +2000,12 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   Upon receiving consent (also during init), the SDK should immediately begin collecting
   data allowed by the provided feature(s) and also begin sending the consent approval
   to the server in the form of <code>consent=&nbsp;{"feature":true}</code>. For
-  the exact feature names, refer to the list above. For example, if features are
-  <code>crashes</code> and <code>users</code>, then the request should contain
-  <code>consent&nbsp;=&nbsp;{"crashes":true,"users":true}</code>. This may be a
-  separate request, or it may be attached to any other SDK request.
+  the exact feature names, refer to the list above.
+</p>
+<p>
+  When consent is given, the update request should sent the current state of consent
+  values and not only the given "delta". This may be a separate request, or it
+  may be attached to any other SDK request.
 </p>
 <p>
   <span style="font-weight: 400;">If someone attempts to give consent for a second time, the SDK should ignore it as the consent is already given and nothing changes.</span>
@@ -1532,10 +2023,12 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   <span style="font-weight: 400;">Upon receiving the request to remove consent, the SDK should immediately stop collecting data allowed by the provided feature(s) and also send consent removal to the server in the form of <code>consent=&nbsp;{"feature":false}</code></span>
-  <span style="font-weight: 400;">. For example, if the features are crashes and users, then the request should contain <code>consent={"crashes":false,"users":false}</code>.</span>
+  <span style="font-weight: 400;">. </span>
 </p>
 <p>
-  <span style="font-weight: 400;">This may be a separate request, or it may be attached to any other request.</span>
+  When consent is removed, the update request should sent the current state of
+  consent values and not only the given "delta". This may be a separate request,
+  or it may be attached to any other SDK request.
 </p>
 <p>
   <span style="font-weight: 400;">Depending on the SDK structure, the SDK may sync existing requests in the queue. Or, it may ignore requests in the queue and never send them or remove them from the queue.</span>
@@ -1598,19 +2091,112 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span style="font-weight: 400;">If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
 </p>
 <h1>Other features</h1>
-<h2>Attribution (WIP)</h2>
+<h2>Attribution</h2>
 <p>
-  Attribution allows attributing installs from specific campaigns. They are tied
-  together with sessions. Attribution information should be sent in the following
-  situations, depending on which comes first:
+  Attribution allows attributing installs from specific campaigns.
 </p>
-<ol>
-  <li>With the first begin session call</li>
-  <li>
-    as soon as the information is available in a separate request (this is relevant
-    when there is no session consent)
-  </li>
-</ol>
+<p>
+  There are 2 forms of attribution: directAttribution and indirectAttribution.
+</p>
+<p>
+  There should be a way to provide them during init and there should be a way to
+  provide them after init.
+</p>
+<p>
+  These values should be sent when they are provided in a separate request.
+</p>
+<p>This requires attribution consent.</p>
+<h3>Direct attribution</h3>
+<p>
+  With this the dev is able to provide 2 String values: "Campaign type" and "Campaign
+  data". The "type" determines for what purpose the attribution data is provided.
+  Depending on the type, the expected data will differ, but usually that will be
+  a string representation of a json object.
+</p>
+<p>
+  Currently there is only one type "countly". That type expected the data to look
+  like following: '<span>{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}'. The inserted values would be retrieved from install attribution.</span>
+</p>
+<p>&nbsp;</p>
+<p>
+  This feature is currently setup in a way to give more flexibility in the future.
+  For now it will be only possible to record install attribution by handling that
+  as a special case. In the future this feature will be generalised and a new param
+  will be added.
+</p>
+<p>&nbsp;</p>
+<p>
+  If the provided type is "countly" then a special case will be executed. The data
+  string is an stringified json that has 2 values "cid" or Campaign ID and "cuid"
+  or Campaign user ID.
+</p>
+<p>Non valid or empty string should produce an error log.</p>
+<p>
+  The "Campaign ID" value is mandatory. If this has no valid value, an error log
+  should be printed and execution should be aborted.
+</p>
+<p>
+  The "Campaign user ID" value is optional and if it is missing or invalid, only
+  the "Campaign ID" value should be sent.
+</p>
+<p>
+  The call to record this value should be named something similar to "recordDirectAttribution".
+</p>
+<p>The param for the campaign ID should be added as:</p>
+<pre><span>"&amp;campaign_id=[PROVIDED_CAMPAIGN_ID]"</span></pre>
+<p>The param for the campaign user ID should be added as:</p>
+<pre><span>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</span></pre>
+<h3>Indirect attribution</h3>
+<p>
+  With this the dev is able to provide a map/dictionary of String to String values.
+  This allows multiple values to be provided.
+</p>
+<p>
+  Common values that would be provided here would be IDFA (for iOS) and AdvertisingId
+  (for Android).
+</p>
+<p>
+  Each usable value will have a predefined key that has to be used. IDFA will need
+  to be provided with the "idfa" key and Advertising ID will need to be provided
+  with the "adid" key. These keys have to the be provided by the SDK as "constant"
+  variables or some other convenient way where the developer is not setting the
+  final key manually.
+</p>
+<p>
+  The pseudo code for recording indirect attribution would look something like
+  this:
+</p>
+<pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>attributionValues </span>= <span>new </span>HashMap&lt;&gt;();<br><span>attributionValues</span>.put(<span>AttributionIndirectKey</span>.<span>AdvertisingID</span>, getAdvertisingID());<br><span>Countly</span>.recordIndirectAttribution(<span>attributionValues</span>);</pre>
+<p>
+  The map/dictionary with valid key-value pairs will then be transformed into a
+  json object which will set to the "aid" param and then immedietelly sent to the
+  server.
+</p>
+<p>
+  Each key-value pair should be validated. If the key or value is either null,
+  undefined or empty string, that key-value pair should be removed from the map/dictionary
+  and an error message should be printed.
+</p>
+<p>
+  It should not be validated if the provided keys are part of our officially supported
+  ones ("idfa" and "adid" at the time of writing). Just that the keys and their
+  values are legitamate values.
+</p>
+<p>
+  If after the validation no valid value is left another error log should be printed
+  and the execution of this call should not continue.
+</p>
+<p>
+  The call to record this value should be named something similar to "recordIndirectAttribution".
+</p>
+<p>The param in the request would look something like like:</p>
+<pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID], "idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
+<p>Or:</p>
+<pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID]</span><span>}</span></pre>
+<p>Or:</p>
+<pre><span>&amp;aid=</span><span>{"idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
+<p>Or:</p>
+<pre><span>&amp;aid=</span><span>{"rndid":[SOME_OTHER_ID_VALUE]</span><span>}</span></pre>
 <h2>SDK internal limits</h2>
 <p>The SDK should have the following limits:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
@@ -1688,4 +2274,16 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   Crash information like PLC crashes for iOS and native Android crashes do not
   have any limits applied to them.
+</p>
+<h2>Changing the server URL</h2>
+<p>
+  This feature adds the ability to change the server URL after the SDK is initialised.
+</p>
+<p>
+  This should in memory overwrite the current URL. Basic url validation should
+  be performed on the provided URL.
+</p>
+<p>
+  After the URL is changed, all previously saved events and requests should be
+  sent to the new url.
 </p>
