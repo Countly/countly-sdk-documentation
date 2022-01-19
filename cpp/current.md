@@ -1,5 +1,5 @@
 <p>
-  <span>This document will guide you through the process of SDK installation and it applies to version 20.11.1</span>
+  <span>This document will guide you through the process of SDK installation and it applies to version 20.11.1. </span>
 </p>
 <p>
   It is an open-source SDK, you can take a look at our SDK code in the<span>&nbsp;</span><a href="https://github.com/Countly/countly-sdk-cpp/" target="_self" rel="undefined">Github repo</a>
@@ -42,7 +42,7 @@ cmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launc
 <span class="pl-c1">cd</span> build
 make</pre>
   <p dir="auto">
-    Build with the option<span>&nbsp;</span><code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span>on
+    Build with the option<code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span><strong>ON</strong>
     to build executables to run the tests and sample app.
   </p>
   <div class="highlight highlight-source-shell position-relative overflow-auto">
@@ -89,7 +89,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   on the <code><span class="pl-c1">Counlty</span></code>&nbsp;object to enable
   logging:
 </p>
-<pre><span class="pl-c1"><span class="pl-k">void</span><span> </span><span class="pl-en">printLog</span><span>(Countly::LogLevel level, </span><span class="pl-k">const</span><span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(Countly::LogLevel level, </span><span class="pl-k">const</span><span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br></span><span><span class="pl-c1">Countly::getInstance</span>().<span class="pl-c1">setLogger</span>(logger_function);</span></pre>
+<pre><span class="pl-c1"><span class="pl-k"><code>void<span> </span><span class="pl-en">printLog</span><span>(Countly::LogLevel level, </span>const<span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(Countly::LogLevel level, </span>const<span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br><span>Countly::getInstance().setLogger(logger_function);</span></code><br></span></span></pre>
 <h2 id="device-id" class="anchor-heading">Device ID</h2>
 <p>
   <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
@@ -98,13 +98,13 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span>You have to specify the device ID by yourself (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
 <div>
-  <pre><span>Countly</span><span>::</span><span>getInstance</span><span>().setDeviceID("UNIQUE_DEVICE_ID");</span></pre>
+  <pre><span><code><span class="pl-c1">Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
 </div>
 <h2 class="c-message_attachment__row">SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
-<pre><span class="pl-c1">Countly::getInstance</span><span>()</span>.</pre>
+<pre><code><span class="pl-c1">Countly::getInstance<span>().</span></span></code></pre>
 <h1>Events</h1>
 <p>
   <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
@@ -140,7 +140,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
 </p>
 <div>
-  <pre><strong>void</strong><span> </span><span>RecordEvent</span><span>(</span><span>const</span><span> std::</span><strong>string</strong><span> key, std::</span><strong>map</strong><span>&lt;std::</span><strong>string</strong><span>, std::</span><strong>string</strong><span>&gt; segmentation, </span><strong>int</strong><span> count, </span><strong>double</strong><span> sum, <strong>double</strong> duration)</span></pre>
+  <pre><code><span class="pl-c1">void RecordEvent(const std::string key, std::map&lt;std::string, std::string&gt; segmentation, int count, double sum, double duration)</span></code></pre>
 </div>
 <p>
   <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
@@ -205,7 +205,7 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>You may also provide additional information e.g segmentation, count, and sum.</span>
 </p>
-<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>// add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
+<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>// add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span style="font-weight: 400;">SDK does have a mechanism to record event duration manually.</span>
 </p>
@@ -244,6 +244,21 @@ Countly.getInstance().addEvent(event);</code></pre>
     <code>endSession()</code> must be called to mark the end of the session.
   </li>
 </ul>
+<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<p>
+  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You have to specify the device ID yourself. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the user's username, email, or some other internal ID used by your other systems.</span><span></span>
+</p>
+<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
+<p class="anchor-heading">
+  <strong>Changing Device ID without server merge</strong>
+</p>
+<p>
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id");</span></code></span></pre>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
+</p>
 <h1 id="user-profiles" class="anchor-heading" tabindex="-1">User profiles</h1>
 <p>
   By default, you should do some session calls every 60 seconds after beginning
