@@ -613,13 +613,17 @@ Countly.getCurrentDeviceId(function(deviceId){
 </p>
 <ol>
   <li>
-    For FCM credentials setup please follow the instruction from this URL <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
+    For FCM credentials setup please follow the instruction from this URL
+    <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
   </li>
   <li>
-      Make sure you have <code class="JavaScript">google-services.json</code> from <a href="https://firebase.google.com/">https://firebase.google.com/</a>
+    Make sure you have <code class="JavaScript">google-services.json</code> from
+    <a href="https://firebase.google.com/">https://firebase.google.com/</a>
   </li>
   <li>
-    Make sure the app package name and the <code class="JavaScript">google-services.json</code> <code class="JavaScript">package_name</code> matches.
+    Make sure the app package name and the
+    <code class="JavaScript">google-services.json</code>
+    <code class="JavaScript">package_name</code> matches.
   </li>
   <li>
     Place this <code class="JavaScript">google-services.json</code> file under
@@ -654,8 +658,11 @@ Countly.getCurrentDeviceId(function(deviceId){
 </ol>
 <h3>iOS setup</h3>
 <p>
-  There are no additional steps required for iOS,everything is set up for
-  you by the Countly Cordova SDK.
+  <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
+</p>
+<p>
+  There are no additional steps required for iOS,everything is set up for you by
+  the Countly Cordova SDK.
 </p>
 <h2>Enabling push</h2>
 <p>
