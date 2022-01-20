@@ -660,6 +660,15 @@ Countly.getCurrentDeviceId(function(deviceId){
 <p>
   <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
 </p>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
+  </p>
+  <p>
+    This COUNTLY_EXCLUDE_PUSHNOTIFICATIONS is only supported by the minimum SDK
+    version 20.11.3.
+  </p>
+</div>
 <p>
   There are no additional steps required for iOS,everything is set up for you by
   the Countly Cordova SDK.
