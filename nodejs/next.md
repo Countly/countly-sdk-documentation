@@ -27,7 +27,9 @@
   </p>
   <p>
     To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app, and you will see App Key field
+    your app, and you will see App Key field. For more information on how to
+    acquire your application key (APP_KEY) and server URL, please check
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
   </p>
 </div>
 <div class="img-container">
