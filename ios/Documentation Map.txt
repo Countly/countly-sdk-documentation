@@ -17,7 +17,6 @@
         . Using a Custom Device ID
         . Temporary Device ID
         . Changing Device ID
-        . Handling User Login and Logout
         . Resetting Stored Device ID
         . Getting Device ID
         . Device ID Type
@@ -25,14 +24,20 @@
         . Changing App Key     
         . Replacing App Keys in Queue    
         . Removing App Keys from Queue
+    - Host
+        . Changing Host
     - Security
         . Pinned Certificates
-        . Custom Header Field
         . Parameter Tampering Protection
+        . Ignoring Trust Check
     - Other Settings
         . Update Session Period
         . Event Send Threshold
         . Stored Requests Limit
+        . Maximum Key Length
+        . Maximum Value Length
+        . Maximum Segmentation Values
+        . Orientation Tracking
         . Always use the POST method
         . Custom URLSessionConfiguration
         . Manual Session Handling
