@@ -1,4 +1,16 @@
-<h1>Building the SDK</h1>
+<p>
+  <span>This document will guide you through the process of SDK installation and it applies to version 20.11.1. </span>
+</p>
+<p>
+  It is an open-source SDK, you can take a look at our SDK code in the<span>&nbsp;</span><a href="https://github.com/Countly/countly-sdk-cpp/" target="_self" rel="undefined">Github repo</a>
+</p>
+<p>
+  <strong>Supported Platforms:</strong><span>&nbsp;</span>Windows, GNU/Linux, and
+  <span>Mac OS X</span>.
+</p>
+<h1>
+  <span>Adding the SDK to the project</span>
+</h1>
 <p dir="auto">
   Countly C++ SDK has been designed to work with very few dependencies in order
   to be available on most platforms. In order to build this SDK, you need:
@@ -29,9 +41,8 @@ make <span class="pl-c"># you might want to add something like -j8 to paralleliz
 cmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launch a TUI, configure the build as you see fit</span>
 <span class="pl-c1">cd</span> build
 make</pre>
-  <h2 dir="auto">Build Unit Tests and Sample App</h2>
   <p dir="auto">
-    Build with the option<span>&nbsp;</span><code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span>on
+    Build with the option<code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span><strong>ON</strong>
     to build executables to run the tests and sample app.
   </p>
   <div class="highlight highlight-source-shell position-relative overflow-auto">
@@ -48,12 +59,11 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><span>Countly&amp; countly = </span><span class="pl-c1">Countly::getInstance</span><span>();</span><br><span>countly.</span><span class="pl-c1">setDeviceID</span><span>(</span><span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span><span>);<br><span class="pl-c">//</span> OS, OS_version, device, resolution, carrier, app_version);<br>ct.<span class="pl-c1">SetMetrics</span>(<span class="pl-s"><span class="pl-pds">"</span>Windows 10<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>10.22<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Mac<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>800x600<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Carrier<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span>);</span><br><span>countly.</span><span class="pl-c1">Start</span><span>(</span><span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span><span>, </span><span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span><span>, </span><span class="pl-c1">443</span><span>);</span></pre>
+<pre><span>Countly&amp; countly = </span><span class="pl-c1">Countly::getInstance</span><span>();</span><br><span>countly.</span><span class="pl-c1">setDeviceID</span><span>(</span><span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span><span>);</span><br><span>countly.s</span><span class="pl-c1">tart</span><span>(</span><span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span><span>, </span><span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span><span>, </span><span class="pl-c1">443, true</span><span>);</span></pre>
 <p>
-  <span><strong>AppKey - </strong>(Mandatory) The “App Key” for the app that you created on the Countly server. Example<strong>:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.</span>
-</p>
-<p>
-  <span><strong>ServerUrl -</strong> (Mandatory) The URL of the Countly server where you are going to post your requests. Example<strong>:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a></span>
+  It is there that you provide your appKey, and your Countly server URL. For more
+  information on how to acquire you application key (appKey) and server URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D" target="_self">here</a>.
 </p>
 <h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
 <p>
@@ -79,7 +89,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   on the <code><span class="pl-c1">Counlty</span></code>&nbsp;object to enable
   logging:
 </p>
-<pre><span class="pl-c1"><span class="pl-k">void</span><span> </span><span class="pl-en">printLog</span><span>(Countly::LogLevel level, </span><span class="pl-k">const</span><span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(Countly::LogLevel level, </span><span class="pl-k">const</span><span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br></span><span><span class="pl-c1">Countly::getInstance</span>().<span class="pl-c1">setLogger</span>(logger_function);</span></pre>
+<pre><span class="pl-c1"><span class="pl-k"><code>void<span> </span><span class="pl-en">printLog</span><span>(Countly::LogLevel level, </span>const<span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(Countly::LogLevel level, </span>const<span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br><span>Countly::getInstance().setLogger(logger_function);</span></code><br></span></span></pre>
 <h2 id="device-id" class="anchor-heading">Device ID</h2>
 <p>
   <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
@@ -88,24 +98,17 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span>You have to specify the device ID by yourself (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
 <div>
-  <pre><span>Countly</span><span>::</span><span>getInstance</span><span>().setDeviceID("UNIQUE_DEVICE_ID");</span></pre>
+  <pre><span><code><span class="pl-c1">Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
 </div>
 <h2 class="c-message_attachment__row">SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
-<pre><span class="pl-c1">Countly::getInstance</span><span>()</span>.</pre>
+<pre><code><span class="pl-c1">Countly::getInstance<span>().</span></span></code></pre>
 <h1>Events</h1>
 <p>
   <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
-<p>
-  The C++ SDK helps record as many events as you want (you can set a threshold
-  limit), and the system will send them automatically to the server once the threshold
-  limit is reached. By default, Countly tracks only up to 200 events. However,
-  this is also configurable.
-</p>
-<pre><span class="pl-c1">Countly::getInstance</span><span>()</span>.SetMaxEventsPerMessage(10);</pre>
 <p>
   <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event.&nbsp; For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
 </p>
@@ -129,8 +132,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <li>
     <strong>segments - </strong>A value where you can provide custom segmentation
     for your events to track additional information. It is a key and value map.
-    The accepted data types for the value are
-    <span style="font-weight: 400;">"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    The accepted data type for the value is<span style="font-weight: 400;"><code class="java"><span>std::string</span></code>.</span>
   </li>
 </ul>
 <h2>Recording events</h2>
@@ -138,7 +140,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
 </p>
 <div>
-  <pre><strong>void</strong><span> </span><span>RecordEvent</span><span>(</span><span>const</span><span> std::</span><strong>string</strong><span> key, std::</span><strong>map</strong><span>&lt;std::</span><strong>string</strong><span>, std::</span><strong>string</strong><span>&gt; segmentation, </span><strong>int</strong><span> count, </span><strong>double</strong><span> sum, <strong>double</strong> duration)</span></pre>
+  <pre><code><span class="pl-c1">void RecordEvent(const std::string key, std::map&lt;std::string, std::string&gt; segmentation, int count, double sum, double duration)</span></code></pre>
 </div>
 <p>
   <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
@@ -203,7 +205,7 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>You may also provide additional information e.g segmentation, count, and sum.</span>
 </p>
-<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>// add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
+<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>// add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span style="font-weight: 400;">SDK does have a mechanism to record event duration manually.</span>
 </p>
@@ -212,21 +214,35 @@ Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <pre><span style="font-weight: 400;"><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["country"] = "Germany";<br><br><span class="pl-c1">Countly::getInstance</span><span>()</span>.<span>RecordEvent</span>("purchase", segmentation, 1, 0.99, 60.0);</code></span></pre>
 <h1>Sessions</h1>
-<h2>
-  <span style="font-weight: 400;">Manual session tracking&nbsp;</span>
+<h2 id="automatic-session-tracking&nbsp;" class="anchor-heading">
+  <span>Automatic session tracking&nbsp;</span>
 </h2>
 <p>
-  Sometimes it might be preferable to control the session manually instead of relying
-  on the SDK.
+  The SDK handles the session automatically. After calling the&nbsp;<span><span style="font-weight: 400;"><code class="java">s<span class="pl-c1">tart</span>(...)</code></span> </span>method,
+  the SDK starts the session automatically and extends the session after every
+  60 seconds. This value is configurable during and after initialization.&nbsp;<br>
+  Example:
 </p>
-<p>It is up to the implementer to make calls to:</p>
-<ul>
-  <li>Begin session</li>
-  <li>Update session duration</li>
-  <li>End session (also updates duration)</li>
-</ul>
-<p>The appropriate calls to do that are:</p>
-<pre>Countly.<span>getInstance</span>().beginSession();<br>Countly.<span>getInstance</span>().updateSession();<br>Countly.<span>getInstance</span>().endSession();</pre>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>()</span>.setAutomaticSessionUpdateInterval(10);<span></span></code></span></pre>
+<p>
+  <span style="font-weight: 400;"><span>The SDK ends the current session whenever the user quits the app.</span></span>
+</p>
+<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<p>
+  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You have to specify the device ID yourself. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the user's username, email, or some other internal ID used by your other systems.</span><span></span>
+</p>
+<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
+<p class="anchor-heading">
+  <strong>Changing Device ID without server merge</strong>
+</p>
+<p>
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id");</span></code></span></pre>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
+</p>
+<h1 id="user-profiles" class="anchor-heading" tabindex="-1">User profiles</h1>
 <p>
   By default, you should do some session calls every 60 seconds after beginning
   a session so that it is not closed server side. If you would want to increase
@@ -258,40 +274,66 @@ Countly.getInstance().addEvent(event);</code></pre>
 <h2>Setting predefined values</h2>
 <p>
   The Countly C++ SDK allows you to upload specific data related to a user to the
-  Countly server. You may set the following predefined data for a particular user:
+  Countly server. You may set the data against predefined keys for a particular
+  user.
 </p>
-<ul>
-  <li>
-    <strong>name</strong>: Full name of the user.
-  </li>
-  <li>
-    <strong>username</strong>: Username of the user.
-  </li>
-  <li>
-    <strong>email</strong>: Email address of the user.
-  </li>
-  <li>
-    <strong>organization</strong>: Organization the user is working in.
-  </li>
-  <li>
-    <strong>phone</strong>: Phone number.
-  </li>
-  <li>
-    <strong>picture</strong>: Web-based Url for the user’s profile.
-  </li>
-  <li>
-    <strong>gender</strong>: Gender of the user (use only single char like ‘M’
-    for Male and ‘F’ for Female).
-  </li>
-  <li>
-    <strong>byear</strong>: Birth year of the user.
-  </li>
-</ul>
+<p>The keys for predefined user data fields are as follows:</p>
+<div class="table-container">
+  <table style="height: 220px;">
+    <tbody>
+      <tr style="height: 22px;">
+        <th style="width: 104px; height: 22px;">Key</th>
+        <th style="width: 61px; height: 22px;">Type</th>
+        <th style="width: 337px; height: 22px;">Description</th>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">name</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's full name</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">username</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's nickname</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">email</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's email address</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">organization</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's organization name</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">phone</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's phone number</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">picture</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">URL to avatar or profile picture of the user</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">gender</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's gender as M for male and F for female</td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 96px; height: 22px;">byear</td>
+        <td style="width: 53px; height: 22px;">string</td>
+        <td style="width: 329px; height: 22px;">User's year of birth as integer</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <p>
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>Example:</p>
-<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"username", "username123"},<br>{"email", "useremail@email.com"},<br>{"phone", "222-222-222"},<br>{"phone", "222-222-222"},<br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>{"gender", "M"},<br>{"byear", "1991"},<br>{"organization", "Organization"},<br>};<br>Countly.getInstance().setUserDetails(userdetail);<br></code></pre>
+<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"username", "username123"},<br>{"email", "useremail@email.com"},<br>{"phone", "222-222-222"},<br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>{"gender", "M"},<br>{"byear", "1991"},<br>{"organization", "Organization"},<br>};<br>Countly.getInstance().setUserDetails(userdetail);</code></pre>
 <h2>Setting custom values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
