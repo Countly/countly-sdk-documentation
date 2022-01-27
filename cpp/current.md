@@ -84,10 +84,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span>You have to specify the device ID by yourself (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
 <div>
-  <pre><span><code><span class="pl-c1">Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code><br></span></pre>
-  <p>
-    <span><strong>Note:</strong> SDK doesn't store device ID provided by the user, every time user may have to provide device ID during init.</span>
-  </p>
+  <pre><span><code><span class="pl-c1">Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
 </div>
 <h2 class="c-message_attachment__row">SDK notes</h2>
 <p>
@@ -207,17 +204,14 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You have to specify the device ID yourself. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the user's username, email, or some other internal ID used by your other systems.</span><span></span>
 </p>
-<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
-<p class="anchor-heading">
-  <strong>Changing Device ID with server merge</strong>
+<p>
+  <span>In the C++ SDK the device ID is not persistant and has to be provided every time you start the SDK.</span>
 </p>
+<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
 <pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id", true);</span></code></span></pre>
-<p class="anchor-heading">
-  <strong>Changing Device ID without server merge</strong>
-</p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
@@ -225,8 +219,9 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
 </p>
+<p>&nbsp;</p>
 <p>
-  <span><strong>Note:</strong> If the second&nbsp;parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
+  <span>If the second parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
 </p>
 <p>
   <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
