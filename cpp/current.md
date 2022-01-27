@@ -84,7 +84,10 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span>You have to specify the device ID by yourself (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
 </p>
 <div>
-  <pre><span><code><span class="pl-c1">Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
+  <pre><span><code><span class="pl-c1">Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code><br></span></pre>
+  <p>
+    <span><strong>Note:</strong> SDK doesn't store device ID provided by the user, every time user may have to provide device ID during init.</span>
+  </p>
 </div>
 <h2 class="c-message_attachment__row">SDK notes</h2>
 <p>
@@ -252,7 +255,7 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>During init, you can&nbsp;</span><span>set location:</span>
 </p>
-<pre><code class="hljs cs"><span>Countly::getInstance()</span>.s<span>etLocation</span></code>(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<pre><code class="hljs cs"><span>Countly::getInstance().setLocation(countryCode, city, gpsCoordinates, ipAddress);</span></code></pre>
 <p>
   <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
