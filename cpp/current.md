@@ -65,21 +65,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   information on how to acquire you application key (appKey) and server URL, check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D" target="_self">here</a>.
 </p>
-<h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
-<p>
-  <span>Also called "AppKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
-</p>
-<p>
-  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
-</p>
-<h3 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h3>
-<p>
-  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
-</p>
-<p>
-  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
-</p>
-<h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
+<h2 id="enabling-logging" class="anchor-heading">SDK logging&nbsp; mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.&nbsp;</span>
 </p>
@@ -136,12 +122,6 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   </li>
 </ul>
 <h2>Recording events</h2>
-<p>
-  <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
-</p>
-<div>
-  <pre><code><span class="pl-c1">void RecordEvent(const std::string key, std::map&lt;std::string, std::string&gt; segmentation, int count, double sum, double duration)</span></code></pre>
-</div>
 <p>
   <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
 </p>
@@ -205,14 +185,7 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>You may also provide additional information e.g segmentation, count, and sum.</span>
 </p>
-<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>// add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
-<p>
-  <span style="font-weight: 400;">SDK does have a mechanism to record event duration manually.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Example:</span>
-</p>
-<pre><span style="font-weight: 400;"><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["country"] = "Germany";<br><br><span class="pl-c1">Countly::getInstance</span><span>()</span>.<span>RecordEvent</span>("purchase", segmentation, 1, 0.99, 60.0);</code></span></pre>
+<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>//add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
 <h1>Sessions</h1>
 <h2 id="automatic-session-tracking&nbsp;" class="anchor-heading">
   <span>Automatic session tracking&nbsp;</span>
@@ -233,20 +206,21 @@ Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
 <p class="anchor-heading">
+  <strong>Changing Device ID with server merge</strong>
+</p>
+<p>
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id", true);</span></code></span></pre>
+<p class="anchor-heading">
   <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id");</span></code></span></pre>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id", false);</span></code></span></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
-</p>
-<h1 id="user-profiles" class="anchor-heading" tabindex="-1">User profiles</h1>
-<p>
-  By default, you should do some session calls every 60 seconds after beginning
-  a session so that it is not closed server side. If you would want to increase
-  that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
 </p>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
