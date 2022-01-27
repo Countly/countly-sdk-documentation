@@ -220,7 +220,56 @@ Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly::getInstance</span><span>().setDeviceID("new-device-id", false);</span></code></span></pre>
 <p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
+</p>
+<p>
+  <span><strong>Note:</strong> If the second&nbsp;parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
+</p>
+<p>
+  <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
+</p>
+<h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
+  <span>User location</span>
+</h1>
+<p>
+  <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
+</p>
+<ul>
+  <li>
+    <span>Country code (two-letter ISO standard).</span>
+  </li>
+  <li>
+    <span>City name (must be set together with the country code).</span>
+  </li>
+  <li>
+    <span>Latitude and longitude values, separated by a comma e.g.</span><span>&nbsp;</span>"56.42345,123.45325".
+  </li>
+  <li>
+    <span>Your user’s IP address.</span><span></span>
+  </li>
+</ul>
+<h2 id="setting-location" class="anchor-heading">Setting location</h2>
+<p>
+  <span>During init, you can&nbsp;</span><span>set location:</span>
+</p>
+<pre><code class="hljs cs"><span>Countly::getInstance()</span>.s<span>etLocation</span></code>(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<p>
+  <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
+</p>
+<p>
+  <span>Note that the IP address will only be updated if set through the init process.</span>
+</p>
+<p>
+  <span>Example:</span>
+</p>
+<pre><code class="hljs cs"><span><span class="hljs-keyword">string</span> countryCode = </span><span class="hljs-string">"us"</span><span>;<br><span class="hljs-keyword">string</span> city = </span><span class="hljs-string">"Houston"</span><span>;<br><span class="hljs-keyword">string</span> latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br><span class="hljs-keyword">string</span> longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br><span class="hljs-keyword">string</span> ipAddress = ""</span><span>;</span>&nbsp;<br><br><span>Countly::getInstance()</span>.s<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);</code></pre>
+<p>
+  When those values are set a<span>fter SDK initialization</span>, a separate request
+  will be created to send them. Except for IP address, because Countly server processes
+  IP address only when starting a session.
+</p>
+<p>
+  If you don't want to set specific fields, set them to empty.
 </p>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
 <p>
