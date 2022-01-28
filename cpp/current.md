@@ -59,13 +59,20 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><span>Countly&amp; countly = </span><span class="pl-c1">Countly::getInstance</span><span>();</span><br><span>countly.</span><span class="pl-c1">setDeviceID</span><span>(</span><span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span><span>);</span><br><span>countly.s</span><span class="pl-c1">tart</span><span>(</span><span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span><span>, </span><span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span><span>, </span><span class="pl-c1">443, true</span><span>);</span></pre>
+<pre><span><code>Countly&amp; countly = <span class="pl-c1">Countly::getInstance</span>();<br>countly.<span class="pl-c1">setDeviceID</span>(<span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span>);<br>countly.s<span class="pl-c1">tart</span>(<span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span>, <span class="pl-c1">443, true</span>);</code></span></pre>
 <p>
   It is there that you provide your appKey, and your Countly server URL. For more
   information on how to acquire you application key (appKey) and server URL, check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D" target="_self">here</a>.
 </p>
-<h2 id="enabling-logging" class="anchor-heading">SDK logging&nbsp; mode</h2>
+<p>
+  The third parameter with type<code>int</code> is a virtual port number and it
+  is an optional parameter with a default value of <strong>-1</strong>.<br>
+  The last <code>bool</code>parameter is also optional with a default value
+  <code>false</code>. When you set this <code>true</code>SDK automatically
+  <span>extends the session after every 60 seconds.&nbsp;</span>
+</p>
+<h2 id="enabling-logging" class="anchor-heading">SDK logging mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.&nbsp;</span>
 </p>
@@ -75,7 +82,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   on the <code><span class="pl-c1">Counlty</span></code>&nbsp;object to enable
   logging:
 </p>
-<pre><span class="pl-c1"><span class="pl-k"><code>void<span> </span><span class="pl-en">printLog</span><span>(Countly::LogLevel level, </span>const<span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(Countly::LogLevel level, </span>const<span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br><span>Countly::getInstance().setLogger(logger_function);</span></code><br></span></span></pre>
+<pre><span class="pl-c1"><span class="pl-k"><code>void<span> </span><span class="pl-en">printLog</span><span>(Countly::LogLevel level, </span>const<span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(Countly::LogLevel level, </span>const<span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br><span>Countly::getInstance().setLogger(logger_function);</span></code></span></span></pre>
 <h2 id="device-id" class="anchor-heading">Device ID</h2>
 <p>
   <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
@@ -175,17 +182,13 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   <span>It's possible to create timed events by defining a start and a stop moment.</span>
 </p>
-<pre><code class="java hljs">Event event("Some event", 1);<br>
-<span class="hljs-comment">//start some event</span>
-event.startTimer();
-<span class="hljs-comment">//wait some time</span>
-
-<span class="hljs-comment">//end the timer and record event <br>event.stopTimer();</span>
+<pre><code class="java hljs">Event event("Some event", 1);</code><br><span class="hljs-comment"><br>//start some event</span><br><code class="java hljs">event.startTimer();<br></code><span class="hljs-comment">//wait some time<br><br></span><span class="hljs-comment">//end the timer and record event</span><br><code class="java hljs">event.stopTimer();<br>
 Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>You may also provide additional information e.g segmentation, count, and sum.</span>
 </p>
-<pre><code class="java hljs">//event with count and sum<br>Event event("Some event", 1, 0.99);<br>//add segmentation to event<br>event.addSegmentation("country", "Germany);<br>...</code><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
+<pre><span class="hljs-comment">//event with count and sum</span>
+<code class="java hljs">Event event("Some event", 1, 0.99);</code><br><span class="hljs-comment">//add segmentation to event</span><br><code class="java hljs">event.addSegmentation("country", "Germany");</code><br>...<br><br><code class="java hljs">Countly.getInstance().addEvent(event);</code></pre>
 <h1>Sessions</h1>
 <h2 id="automatic-session-tracking&nbsp;" class="anchor-heading">
   <span>Automatic session tracking&nbsp;</span>
@@ -219,7 +222,6 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
 </p>
-<p>&nbsp;</p>
 <p>
   <span>If the second parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
 </p>
@@ -248,19 +250,15 @@ Countly.getInstance().addEvent(event);</code></pre>
 </ul>
 <h2 id="setting-location" class="anchor-heading">Setting location</h2>
 <p>
-  <span>During init, you can&nbsp;</span><span>set location:</span>
-</p>
-<pre><code class="hljs cs"><span>Countly::getInstance().setLocation(countryCode, city, gpsCoordinates, ipAddress);</span></code></pre>
-<p>
-  <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
-</p>
-<p>
-  <span>Note that the IP address will only be updated if set through the init process.</span>
+  <span>During init, you may </span><span>set location, and </span><span>after SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="hljs cs"><span><span class="hljs-keyword">string</span> countryCode = </span><span class="hljs-string">"us"</span><span>;<br><span class="hljs-keyword">string</span> city = </span><span class="hljs-string">"Houston"</span><span>;<br><span class="hljs-keyword">string</span> latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br><span class="hljs-keyword">string</span> longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br><span class="hljs-keyword">string</span> ipAddress = ""</span><span>;</span>&nbsp;<br><br><span>Countly::getInstance()</span>.s<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);</code></pre>
+<pre><code class="hljs cs"><span><span class="hljs-keyword">string</span> countryCode = </span><span class="hljs-string">"us"</span><span>;<br><span class="hljs-keyword">string</span> city = </span><span class="hljs-string">"Houston"</span><span>;<br><span class="hljs-keyword">string</span> latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br><span class="hljs-keyword">string</span> longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br><span class="hljs-keyword">string</span> ipAddress = "192.168.0.1"</span><span>;</span>&nbsp;<br><br><span>Countly::getInstance()</span>.s<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);</code></pre>
+<p>
+  <span>Note that the IP address will only be updated if set through the init process.</span>
+</p>
 <p>
   When those values are set a<span>fter SDK initialization</span>, a separate request
   will be created to send them. Except for IP address, because Countly server processes
@@ -361,14 +359,14 @@ Countly.getInstance().addEvent(event);</code></pre>
   even when you don’t want to send other user-related data.
 </p>
 <p>Example:</p>
-<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"Height", "5.8"}, <br>{"Mole", "Lower Left Cheek"}<br>};<br>Countly.getInstance().setCustomUserDetails(userdetail);</code></pre>
+<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"Height", "5.8"}, <br>{"Mole", "Lower Left Cheek"}<br>};<br><br>Countly.getInstance().setCustomUserDetails(userdetail);</code></pre>
 <h2>Setting User picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
   the methods listed below.
 </p>
 <p>Example:</p>
-<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>};<br>Counlty.getInstance().setUserDetails(userdetail);</code></pre>
+<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>};<br><br>Counlty.getInstance().setUserDetails(userdetail);</code></pre>
 <h1>Security and privacy</h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tamper protection</h2>
 <p>
