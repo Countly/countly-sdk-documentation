@@ -1,65 +1,61 @@
 # Callouts
     - Supported System Versions
-    - Countly Code Generator (Start of # Advanced Configuration)
     - CocoaPods Support (Start of # CocoaPods)
     - Event Names and Segmentation (End of # Recording Events)
-    - Enterprise Edition Feature (Geolocation)
-    - Enterprise Edition Feature (Symbolication)
-    - Enterprise Edition Feature (User Profiles)
 
-# Integration
+# Adding the SDK to the project 
 
-# Advanced Configuration
-    - Debug Mode
-        . Logger Delegate
+# SDK Integration
+    - Minimal setup
     - Additional Features (PushNotifications, CrashReporting, AutoViewTracking)
+    - Debug mode
+        . Logger Delegate
     - Device ID
+        . Default Device ID
         . Using a Custom Device ID
-        . Temporary Device ID
-        . Changing Device ID
-        . Resetting Stored Device ID
-        . Getting Device ID
-        . Device ID Type
-    - App Key
-        . Changing App Key     
-        . Replacing App Keys in Queue    
-        . Removing App Keys from Queue
-    - Host
-        . Changing Host
-    - Security
-        . Pinned Certificates
-        . Parameter Tampering Protection
-        . Ignoring Trust Check
-    - Other Settings
-        . Update Session Period
-        . Event Send Threshold
-        . Stored Requests Limit
-        . Maximum Key Length
-        . Maximum Value Length
-        . Maximum Segmentation Values
-        . Orientation Tracking
-        . Always use the POST method
-        . Custom URLSessionConfiguration
-        . Manual Session Handling
-        . Custom Metrics
-        . Attribution
+    - SDK Data Storage
 
-# Notes
-    - Default Device ID
-    - Automatic Reference Counting (ARC)
-    - App Transport Security (ATS)
-    - Swift Projects
-    - Updating Countly iOS SDK
-    - CocoaPods
-    - Carthage
-    - Swift Package Manager (SPM)
-    - Rebranding    
+! Callout - Countly Code Generator
 
-# Recording Events 
+# Crash Reporting
+    - Automatic Crash Reporting
+    - Manually Handled Exceptions
+    - Crash Report Contents
+        . Default Crash Report Information
+        . Custom Crash Logs
+        . Custom Crash Segmentation
+    - Crash Filtering
+    - Symbolication
+        ! Callout - Enterprise Edition Feature (Symbolication)
+        . Automatic dSYM Uploading
+        . Manual dSYM Uploading
+        . Bitcode Enabled Apps
+        . How to Use Symbolication
+    - PLCrashReporter
+        . PLCrashReporter Signal Handler Type
+        . PLCrashReporter callback blocks
+
+# Events
     - Regular Events
     - Timed Events
 
-# Push Notifications 
+# Sessions
+    - Manual Session Handling
+    - Update Session Period
+
+# View Tracking
+    - Auto View Tracking
+    - Exception View Controllers
+    - Manual View Tracking
+
+# Device ID Management
+    - Changing Device ID
+    - Resetting Stored Device ID
+    - Temporary Device ID
+    - Getting Device ID
+    - Device ID Type
+
+# Push Notifications
     - Setting up APNs Authentication
         . APNs Auth Key
         . Universal Certificate
@@ -71,54 +67,77 @@
     - Advanced Setup
         . Test Mode
         . Disabling Alerts Shown by Notifications
-        . Manually Handling Notifications 
+        . Manually Handling Notifications
         . Always Sending Push Tokens
         . Notification Permission with Preferred Types and Callback
         . GeoLocation
         . Custom Alert Sounds
         . macOS launchNotification
 
-# Crash Reporting
-    - Automatic Crash Reporting
-    - Manually Handled Exceptions
-    - Crash Report Contents
-        . Default Crash Report Information
-        . Custom Crash Logs
-        . Custom Crash Segmentation
-    - Crash Filtering
-    - Symbolication
-        . Automatic dSYM Uploading
-        . Manual dSYM Uploading
-        . Bitcode Enabled Apps
-        . How to Use Symbolication
-    - PLCrashReporter
-        . PLCrashReporter Signal Handler Type
-        . PLCrashReporter callback blocks
+# User Location
+    ! Callout - Enterprise Edition Feature (User Location)
+    - Setting Location
+    - Disabling Location
 
-# User Profiles
-    - Default User Properties
-    - Custom User Properties
-    - Custom User Property Modifiers
-
-# View Tracking
-    - Auto View Tracking
-    - Exception View Controllers
-    - Manual View Tracking
+# Remote Config
+    - Setting up Remote Config
+    - Updating Remote Config
+    - Updating Remote Config Partially
 
 # Feedbacks
     - Star Rating
     - Ratings Widgets
     - NPS (Net Promoter Score) and Survey Widgets
+        . Manually Recording Feedback Widgets
 
-# Remote Config
+# User Profiles
+    ! Callout - Enterprise Edition Feature (User Profiles)
+    - Default User Properties
+    - Custom User Properties
+    - Custom User Property Modifiers
 
 # Performance Monitoring
     - App Start Time
     - Manual Network Traces
     - Custom Traces
 
+# Consents
+
+# Security and Privacy
+    - Pinned Certificates
+    - Parameter Tampering Protection
+    - Ignoring Trust Check
+
+# Changing Host and App Key
+    - App Key
+        . Changing App Key
+        . Replacing App Keys in Queue
+        . Removing App Keys from Queue
+    - Host
+        . Changing Host
+
+# Other Settings
+    - Event Send Threshold
+    - Stored Requests Limit
+    - Maximum Key Length
+    - Maximum Value Length
+    - Maximum Segmentation Values
+    - Orientation Tracking
+    - Always use the POST method
+    - Custom URLSessionConfiguration
+    - Custom Metrics
+    - Attribution
+
 # watchOS Integration
 
-# Consents
+# Notes
+    - Automatic Reference Counting (ARC)
+    - App Transport Security (ATS)
+    - Swift Projects
+    - Updating the Countly iOS SDK
+    - CocoaPods
+    - Carthage
+    - Swift Package Manager (SPM)
+    - Rebranding    
 
 # FAQ and Troubleshooting
