@@ -1,5 +1,5 @@
 <p>
-  <span>This document will guide you through the process of SDK installation and it applies to version 20.11.1. </span>
+  <span>This document will guide you through the process of SDK installation and it applies to version 21.11.1. </span>
 </p>
 <p>
   It is an open-source SDK, you can take a look at our SDK code in the<span>&nbsp;</span><a href="https://github.com/Countly/countly-sdk-cpp/" target="_self" rel="undefined">Github repo</a>
