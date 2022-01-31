@@ -1167,6 +1167,62 @@ catch(ex){
     <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
   </div>
 </div>
+<h2>Symbolication</h2>
+<div class="callout callout--warning">
+  <h3 class="callout__title">Enterprise</h3>
+  <p>
+    Crash symbolication is available for
+    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> users.
+  </p>
+</div>
+<p>
+  If the js files you serve are minified, transpiled or otherwise processed from
+  your source files, you can use symbolication. With symbolication, your stacktraces
+  will correctly point to the lines on the source files, which will help your developers
+  debug crashes and errors. Here's an example:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">JS Symbolication input sample</span>
+    <span class="tabs-link">JS Symbolication output sample</span>
+  </div>
+  <div class="tab">
+    <pre><code class="JS Symbolication input sample">ReferenceError: undefined_function is not defined
+    at r (file:///home/atak/Work/Countly/sample-app/dist/main.js:2:140)
+    at HTMLButtonElement.document.getElementById.onclick (file:///home/atak/Work/Countly/sample-app/dist/main.js:2:521)</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="JS Symbolication output sample">ReferenceError: undefined_function is not defined
+    at undefined_function (src/index.js:30:4)
+    at cause_error (src/index.js:37:10)</code></pre>
+  </div>
+</div>
+<p>
+  There are a number of JavaScript build tools and countless way to configure them
+  so laying out the steps for producing a source map file for each one would take
+  quite a while. We will focus on webpack for brevity and simplicity.
+</p>
+<p>
+  When using webpack configuration, the
+  <a href="https://webpack.js.org/configuration/devtool/" target="_blank" rel="noopener">devtool</a>
+  option to generate project source maps, keep in mind that options used to attain
+  more verbose information might take longer to build. You must choose an option
+  that generates the source map as a separate file and not inline with the final
+  js file. After setting this, your builds will produce a source map file ending
+  in <code>.map</code>, which is the source map file you will upload to your Countly
+  server.
+</p>
+<p>
+  To start symbolicating your errors you just need to upload your source map file
+  to your Countly instance via the side menu &gt; Improve &gt; Errors &gt; Manage
+  Symbols. In this view, the source map files you have uploaded are listed. To
+  upload one, you click the "Add Debug Symbol File", fill the symbol type and app
+  version fields accordingly and upload your <code>.map</code> file. With your
+  source map file uploaded, you can symbolicate the crash reports for that app
+  version on Countly. For more information, see
+  <a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication" target="_self">Crash Symbolication</a>
+  documentation.
+</p>
 <h1>Device ID management</h1>
 <p>
   <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
@@ -1209,6 +1265,76 @@ catch(ex){
 <p>
   <span style="font-weight: 400;">NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
 </p>
+<h2>Temporary Device ID (Offline mode)</h2>
+<p>
+  <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">E.g. if you would like to track your users with a custom device_id, such as with your internal customer ID, and you may only receive that value as soon as the user logs in. Yet, you would also like to track what the user did before logging in.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Using offline mode within this context allows you to omit the user merging and server overhead that comes with it, including any possibly skewed aggregation data.</span>
+</p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If offline mode is entered and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again. Therefore after entering the offline mode, you should reestablish consent again.</span>
+  </p>
+</div>
+<p>
+  <span style="font-weight: 400;">To launch the SDK in offline mode, simply provide the offline_mode config value as true. At this point you may omit providing the device_id value if you would like. </span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.offline_mode = true;
+
+Countly.init();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    offline_mode: true
+});</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Or you can enable offline mode at any point later in the SDK.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['enable_offline_mode']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.enable_offline_mode();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">If you would like to disable offline mode and optionally provide the device_id at a later time, you may do so by adhering to the following:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['disable_offline_mode', device_id]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
+  </div>
+</div>
 <h1>User consent</h1>
 <p>
   <span style="font-weight: 400;">In most cases, the </span><strong>opt_out</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>opt_in</strong><span style="font-weight: 400;">&nbsp;methods are enough to disable the tracking of specific users, such as testers. However, in some cases, you may require a more granular approach.</span>
@@ -1656,8 +1782,11 @@ Countly.track_performance({
 });</code></pre>
   </div>
 </div>
-<h1>Tracking a session manually</h1>
-<h2>Beginning a session</h2>
+<h1>Sessions</h1>
+<h2>Manual sessions</h2>
+<p>
+  <strong>Beginning a session</strong>
+</p>
 <p>
   <span style="font-weight: 400;">This method would allow you to control sessions manually. Only use this method if you aren’t planning on calling the track_sessions method and set the&nbsp;</span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;">&nbsp;setting to false for more granular control of the session.</span>
 </p>
@@ -1676,7 +1805,9 @@ Countly.track_performance({
     <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
   </div>
 </div>
-<h2>Extending a session</h2>
+<p>
+  <strong>Extending a session</strong>
+</p>
 <p>
   <span style="font-weight: 400;">The Countly SDK will extend the session itself by default (if&nbsp;<strong>noHeartBeat</strong>&nbsp;was provided in the&nbsp;<strong>begin_session</strong>), but if you have not selected this option, you may then extend it using this method and provide the seconds since the last <strong>begin_session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;call.</span>
 </p>
@@ -1692,7 +1823,9 @@ Countly.track_performance({
     <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
   </div>
 </div>
-<h2>Ending a session</h2>
+<p>
+  <strong>Ending a session</strong>
+</p>
 <p>
   <span style="font-weight: 400;">When a visitor is leaving your app or website, you should end their session with this method or by optionally providing the amount of seconds since the last&nbsp;<strong>begin session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;calls, which ever came last.</span>
 </p>
@@ -1706,76 +1839,6 @@ Countly.track_performance({
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.end_session(sec)</code></pre>
-  </div>
-</div>
-<h1>Offline mode</h1>
-<p>
-  <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">E.g. if you would like to track your users with a custom device_id, such as with your internal customer ID, and you may only receive that value as soon as the user logs in. Yet, you would also like to track what the user did before logging in.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Using offline mode within this context allows you to omit the user merging and server overhead that comes with it, including any possibly skewed aggregation data.</span>
-</p>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">If offline mode is entered and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again. Therefore after entering the offline mode, you should reestablish consent again.</span>
-  </p>
-</div>
-<p>
-  <span style="font-weight: 400;">To launch the SDK in offline mode, simply provide the offline_mode config value as true. At this point you may omit providing the device_id value if you would like. </span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.debug = false;
-Countly.app_key = "YOUR_APP_KEY";
-Countly.url = "https://try.count.ly";
-Countly.offline_mode = true;
-
-Countly.init();</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    offline_mode: true
-});</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Or you can enable offline mode at any point later in the SDK.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['enable_offline_mode']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.enable_offline_mode();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">If you would like to disable offline mode and optionally provide the device_id at a later time, you may do so by adhering to the following:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['disable_offline_mode', device_id]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
 </div>
 <h1>User feedback</h1>
@@ -1985,53 +2048,6 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 <p>
   Note: Feedback widget's show policies are handled internally by the web sdk.
 </p>
-<h1>Multiple trackers on the same domain</h1>
-<p>
-  <span style="font-weight: 400;">Sometimes you would like to track different parts of the same domain/website as separate applications.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If you just instantiate the Countly SDK in both places, but with different app IDs, then both of their continuous storages will clash storing information for both apps. There are times when this is exactly what you would like to have happen. Generally, it’s function will share a device_id, and although they might be storing requests together, each will be sent to a different app on the same server.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">However, there are situations where you would like to keep them completely separate. To do so you will need to provide a namespace for the different trackers to keep their local storages from clashing.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Simply providing a&nbsp;<strong>namespace&nbsp;</strong>as the init option will suffice.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.debug = false;
-Countly.app_key = "YOUR_APP_KEY";
-Countly.device_id = "1234-1234-1234-1234";
-Countly.url = "https://try.count.ly";
-Countly.namespace = "forum";
-
-Countly.init();</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    namespace: "forum"
-});</code></pre>
-  </div>
-</div>
-<h1>Cross website/domain tracking</h1>
-<p>
-  <span style="font-weight: 400;">You will need to use the same device_id value on the same user in both places to track the same user across different websites or domains.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">This may be achieved by passing the device ID as a URL parameter when transferring a user from one website/domain to the other.</span>
-</p>
-<p>
-  <strong><span style="font-weight: 400;">Simply take the device ID value from <strong>Countly.device_id</strong>&nbsp;and pass it as a URL parameter named&nbsp;<strong>cly_device_id</strong>&nbsp;as follows:&nbsp;<a href="http://newdomain.com/?cly_device_id=your-user-device-id">http://newdomain.com/?cly_device_id=your-user-device-id.</a></span></strong>
-</p>
 <h1>Using the Web SDK in Webview</h1>
 <p>
   <span style="font-weight: 400;">If you are going to use the Web SDK in the Webview of your app, there are prerequisites that must be checked to ensure it is fully functioning. There are no known iOS issues at this moment, but some specific settings need to be enabled for Android.</span>
@@ -2112,7 +2128,8 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
 [myWebView stringByEvaluatingJavaScriptFromString:js];</code></pre>
   </div>
 </div>
-<h1>Tracking users with Javascript disabled</h1>
+<h1>Other features and notes</h1>
+<h2>Tracking users with Javascript disabled</h2>
 <p>
   <span style="font-weight: 400;">In some cases, a user might have JavaScript disabled, meaning normal ways of tracking those users will prove ineffective. In such a case, you may use the transparent 1px x 1px image hosted on your Countly server as reporting the URL and report all the same&nbsp;<a href="https://api.count.ly/reference#i">parameters as all the SDKs have been described here</a>.</span>
 </p>
@@ -2130,7 +2147,54 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
   <span style="font-weight: 400;">However, as mentioned before, this accepts any parameters as a normal SDK endpoint does. Thus, if you dynamically generate data via the server, you may also dynamically generate this URL to provide information that you have about the user. That might be the device_id parameter (for identification), OS, OS version, and any other metrics or information you have, as for example</span>
 </p>
 <pre><code class="html">&lt;noscript&gt;&lt;img src='http://domain.com/pixel.png?app_key=12345&amp;device_id=test@test.com&amp;begin_session=1&amp;metrics={"_os":"Android", "_os_version":"4.1"}'/&gt;&lt;/noscript&gt;</code></pre>
-<h1>Tracked cookie list and explanations</h1>
+<h2>Multiple trackers on the same domain</h2>
+<p>
+  <span style="font-weight: 400;">Sometimes you would like to track different parts of the same domain/website as separate applications.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you just instantiate the Countly SDK in both places, but with different app IDs, then both of their continuous storages will clash storing information for both apps. There are times when this is exactly what you would like to have happen. Generally, it’s function will share a device_id, and although they might be storing requests together, each will be sent to a different app on the same server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">However, there are situations where you would like to keep them completely separate. To do so you will need to provide a namespace for the different trackers to keep their local storages from clashing.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Simply providing a&nbsp;<strong>namespace&nbsp;</strong>as the init option will suffice.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "https://try.count.ly";
+Countly.namespace = "forum";
+
+Countly.init();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    namespace: "forum"
+});</code></pre>
+  </div>
+</div>
+<h2>Cross website/domain tracking</h2>
+<p>
+  <span style="font-weight: 400;">You will need to use the same device_id value on the same user in both places to track the same user across different websites or domains.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This may be achieved by passing the device ID as a URL parameter when transferring a user from one website/domain to the other.</span>
+</p>
+<p>
+  <strong><span style="font-weight: 400;">Simply take the device ID value from <strong>Countly.device_id</strong>&nbsp;and pass it as a URL parameter named&nbsp;<strong>cly_device_id</strong>&nbsp;as follows:&nbsp;<a href="http://newdomain.com/?cly_device_id=your-user-device-id">http://newdomain.com/?cly_device_id=your-user-device-id.</a></span></strong>
+</p>
+<h2>Tracked cookie list and explanations</h2>
 <p>
   By default, Countly Web SDK uses local storage to keep information between page
   views, but if local storage is not available, Web SDK will try to fallback to
@@ -2173,63 +2237,6 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
     action map data
   </li>
 </ul>
-<h1>Symbolication</h1>
-<div class="callout callout--warning">
-  <h3 class="callout__title">Enterprise</h3>
-  <p>
-    Crash symbolication is available for
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> users.
-  </p>
-</div>
-<p>
-  If the js files you serve are minified, transpiled or otherwise processed from
-  your source files, you can use symbolication. With symbolication, your stacktraces
-  will correctly point to the lines on the source files, which will help your developers
-  debug crashes and errors. Here's an example:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">JS Symbolication input sample</span>
-    <span class="tabs-link">JS Symbolication output sample</span>
-  </div>
-  <div class="tab">
-    <pre><code class="JS Symbolication input sample">ReferenceError: undefined_function is not defined
-    at r (file:///home/atak/Work/Countly/sample-app/dist/main.js:2:140)
-    at HTMLButtonElement.document.getElementById.onclick (file:///home/atak/Work/Countly/sample-app/dist/main.js:2:521)</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="JS Symbolication output sample">ReferenceError: undefined_function is not defined
-    at undefined_function (src/index.js:30:4)
-    at cause_error (src/index.js:37:10)</code></pre>
-  </div>
-</div>
-<p>
-  There are a number of JavaScript build tools and countless way to configure them
-  so laying out the steps for producing a source map file for each one would take
-  quite a while. We will focus on webpack for brevity and simplicity.
-</p>
-<p>
-  When using webpack configuration, the
-  <a href="https://webpack.js.org/configuration/devtool/" target="_blank" rel="noopener">devtool</a>
-  option to generate project source maps, keep in mind that options used to attain
-  more verbose information might take longer to build. You must choose an option
-  that generates the source map as a separate file and not inline with the final
-  js file. After setting this, your builds will produce a source map file ending
-  in <code>.map</code>, which is the source map file you will upload to your Countly
-  server.
-</p>
-<p>
-  To start symbolicating your errors you just need to upload your source map file
-  to your Countly instance via the side menu &gt; Improve &gt; Errors &gt; Manage
-  Symbols. In this view, the source map files you have uploaded are listed. To
-  upload one, you click the "Add Debug Symbol File", fill the symbol type and app
-  version fields accordingly and upload your <code>.map</code> file. With your
-  source map file uploaded, you can symbolicate the crash reports for that app
-  version on Countly. For more information, see
-  <a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication" target="_self">Crash Symbolication</a>
-  documentation.
-</p>
-<h1>Other features and notes</h1>
 <h2>SDK Internal Limits</h2>
 <p>
   Countly is highly customizable and let's you take a huge part at the control
