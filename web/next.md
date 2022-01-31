@@ -374,507 +374,6 @@ Countly.ip_address = "83.140.15.1";</code></pre>
 <p>
   <span style="font-weight: 400;">Note that the Countly web SDK automatically captures UTM tags and stores them as user properties together with the corresponding user. This will make users segmentable in all the places around the dashboard, where granular data is used and segmentation capabilities are provided.</span>
 </p>
-<h1>Helper methods</h1>
-<p>
-  <span style="font-weight: 400;">Helper methods were created to allow you to easily track the most common actions on your web.</span>
-</p>
-<div class="callout callout--warning">
-  <h3 class="callout__title">Choose your helper methods carefully.</h3>
-  <p>
-    The helper methods we provide below are both for synchronous and asynchronous
-    tracking code. Choose the right helper method depending on your implementation.
-  </p>
-</div>
-<h2>Track Sessions</h2>
-<p>
-  <span style="font-weight: 400;">This method will automatically track user sessions by calling begin, extend, and end session methods.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_sessions']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_sessions();</code></pre>
-  </div>
-</div>
-<h2>Track Pageviews</h2>
-<p>
-  <span style="font-weight: 400;">This method will track the current pageview by using location.path as the page name and then reporting it to the server.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_pageview();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">For Ajax updated contents and single page web applications, pass the page name as a parameter to record the new page view.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview','pagename']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_pageview("pagename");</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Here is a good example if your single-page app uses URL hash.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview',location.pathname+location.hash]);
-
-$(window).on('hashchange', function() {
-Countly.q.push(['track_pageview',location.pathname+location.hash]);
-});</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_pageview(location.pathname+location.hash);
-
-$(window).on('hashchange', function() {
-Countly.track_pageview(location.pathname+location.hash);
-});</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">In some cases, you might like to ignore some URLs to exclude from tracking, such as dynamic URLs that include the user ID in the URL, internal URLs, or for any other reason. You may do so by providing another parameter with a list of strings of views to ignore or a list of regular expressions to ignore.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//Ignoring specific page
-Countly.q.push(['track_pageview',["/test-page"]]);
-
-//Ignoring multiple specific pages
-Countly.q.push(['track_pageview',["/test1", "/test2", "/test3"]]);
-
-//Ignoring all /download/{download_id} pages but not /download page
-Countly.q.push(['track_pageview',["/download/*"]]);
-
-//Ignoring specific page while providing custom values (like hash value) for page view
-Countly.q.push(['track_pageview', location.pathname+location.hash,["/test-page"]]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//Ignoring specific page
-Countly.track_pageview(["/test-page"]);
-
-//Ignoring multiple specific pages
-Countly.track_pageview(["/test1", "/test2", "/test3"]);
-
-//Ignoring all /download/{download_id} pages but not /download page
-Countly.track_pageview(["/download/*"]);
-
-//Ignoring specific page while providing custom values (like hash value) for page view
-Countly.track_pageview(location.pathname+location.hash, ["/test-page"]);</code></pre>
-  </div>
-</div>
-<p>
-  <span>Optionally, you may provide view segments (key/value pairs) to track them with the view (as the third parameter). There is a list of reserved segment keys that should not be used:</span>
-</p>
-<ul>
-  <li>start</li>
-  <li>visit</li>
-  <li>bounce</li>
-  <li>end</li>
-  <li>name</li>
-  <li>domain</li>
-  <li>view</li>
-  <li>segment</li>
-  <li>platform</li>
-</ul>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//Provide view segments
-Countly.q.push(['track_pageview', null, null, {theme:"red", mode:"fullscreen"}]);<br></code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//Provide view segments
-Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code></pre>
-  </div>
-</div>
-<h2>Overriding view name and URL getters</h2>
-<p>
-  <span style="font-weight: 400;">There are cases when determining the view name requires more complex logic, and in some cases, you will need to separate the URL and the View naming. This is done so you may still have some business logic view names, yet you have the valid URL underneath them to view action maps, such as clicks and scrolls.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">To do so you may define the view name and URL getter functions. That way you won’t need to provide separate view names, rather the SDK will use this getter function to receive the proper view name and the URL you would like to use.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is an example of how to create a getter for View and URL.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">View getter</span>
-    <span class="tabs-link">URL getter</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.getViewName = function(){
-  //get base for our view
-  var view = location.pathname;
-  
-  //if this is a page with dynamic id, we don't need id itself
-  if (view.startsWith("/id/")) {
-      view = "/id";
-  }
-  
-  //now let's beautify the name
-  //remove first character which always is slash (/)
-  view = view.substring(1);
-  
-  //split by sub paths and use spaces instead
-  view = view.split("/").join(" ");
-  
-  //upper case first letter
-  view[0].toUpperCase() + view.substring(1)
-  
-  //return beautified view name
-  return view;
-}</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.getViewUrl = function(){
-  //we want to have path and query string and hash as url
-  return location.pathname + location.search + location.hash;
-};</code></pre>
-  </div>
-</div>
-<h2>Track Clicks / Heatmaps (Enterprise edition)</h2>
-<p>
-  <span style="font-weight: 400;">This method will automatically track clicks on the last reported view and display them on the heatmap.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_clicks']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_clicks();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
-</p>
-<div class="callout callout--info">
-  <h3 class="callout__title">
-    Important notification about viewing heatmaps with HTTP/HTTPS content:
-  </h3>
-  <p>
-    Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
-    For this reason, if you are using HTTPS on your Countly instance, you will
-    only be able to view HTTPS content and no HTTP page content will be visible.
-  </p>
-</div>
-<p>
-  <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/b893929-11.png">
-</div>
-<h2>Track Scrolls / Scroll heatmaps (Enterprise edition)</h2>
-<p>
-  <span style="font-weight: 400;">This method will automatically track scrolls on the last reported view and display them on the heatmap.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_scrolls']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_scrolls();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/5bc44bc-topbar.png">
-</div>
-<h2>Track link clicks</h2>
-<p>
-  <span style="font-weight: 400;">This method will track clicks to specific links and will report events with the </span><strong>linkClick</strong><span style="font-weight: 400;">&nbsp;key as well as the link's text, ID, and URLs as segments.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">All links will automatically be tracked by default for the entire page, but you may provide the parent node as a parameter for which to track link clicks.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_links']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_links();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">As soon as you include this one-liner coder, you will automatically be able to see the "linkClick" event in your dashboard as data flows in with the text, ID, and URLs as segments.</span>
-</p>
-<h2>Track form submissions</h2>
-<p>
-  <span style="font-weight: 400;">This method will automatically track form submissions and collect form data. It will then input values in the form and report them as a Event with the <strong>formSubmit</strong>&nbsp;key.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">All forms will automatically be tracked by default for the entire page, but you may provide the parent node as a parameter for which to track forms.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The second parameter controls whether to collect hidden inputs or not. Hidden inputs are not collected by default.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//will not collect hidden inputs
-Countly.q.push(['track_forms']);
-
-//will collect hidden inputs
-Countly.q.push(['track_forms', null, true]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//will not collect hidden inputs
-Countly.track_forms();
-
-//will collect hidden inputs
-Countly.track_forms(null, true);</code></pre>
-  </div>
-</div>
-<h2>Report conversion</h2>
-<p>
-  <span style="font-weight: 400;">When using Countly attribution analytics, you may also report conversions to the Countly server, e.g. when a visitor purchases an item or registers on your site.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If a user visits your website through the Countly campaign link, the campaign information will be automatically stored by default for this user and used when reporting conversion.&nbsp;</span><span style="font-weight: 400;">If conversion has not yet been reported, the campaign information will be overwritten when that user visits through another campaign link. When you report the conversion, it would report the latest campaign user used to access your website.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">However, you may also overwrite that data and provide any specific campaign ID for which you would like to report conversion.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Conversion will not be reported if there is no stored campaign data and you have yet to provide a campaign ID.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Note: Conversion for each user may only be reported once, all other conversions will be ignored for that same user.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//user stored conversion data
-Countly.q.push(['recordDirectAttribution']);
-
-//or provide campaign id yourself
-Countly.q.push(['recordDirectAttribution', "MyCampaignID"]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//user stored conversion data
-Countly.recordDirectAttribution();
-
-//or provide campaign id yourself
-Countly.recordDirectAttribution("MyCampaignID");</code></pre>
-  </div>
-</div>
-<h2>Report device orientation</h2>
-<p>
-  Orientation tracking is enabled by default and will be sent if the required "user"
-  consent is given (if enabled). Countly will report the device orientation once
-  a session starts, and at any time the orientation changes.
-</p>
-<p>
-  You may disable orientation tracking by providing the enable_orientation_tracking
-  setting when initializing the SDK as follows.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//before loading Countly script
-Countly.enable_orientation_tracking = false;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//to disable orientation tracking
-Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    enable_orientation_tracking: false //this will disable orientation tracking
-});</code></pre>
-  </div>
-</div>
-<p>
-  In case you need to force reporting orientation, you may call the following method.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//user stored conversion data
-Countly.q.push(['report_orientation', "portrait"]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//user stored conversion data
-Countly.report_orientatio("portrait");</code></pre>
-  </div>
-</div>
-<h2>Opt in / Opt out</h2>
-<p>
-  <span style="font-weight: 400;">The Countly SDK will always be opt in by default, but you may easily disable all tracking by selecting&nbsp;the <strong>opt_out</strong>&nbsp;method. It will also persistently save settings and prevent tracking after page reloads. Select&nbsp;<strong>opt_in</strong> to resume tracking.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//to stop tracking user data call
-Countly.q.push(['opt_out']);
-
-//to resume tracking user data call
-Countly.q.push(['opt_in']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//to stop tracking user data call
-Countly.opt_out();
-
-//to resume tracking user data call
-Countly.opt_in();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
-</p>
-<div class="callout callout--info">
-  <h3 class="callout__title">Opt out by default</h3>
-  <p>
-    If you would like to have opt out selected by default, combine these methods
-    with the initial setting <strong>ignore_visitor</strong> on the Countly init
-    object.
-  </p>
-</div>
-<h1>Automatically fill user data</h1>
-<p>
-  <span style="font-weight: 400;">In most cases, you won’t know anything about your users, yet you will still want to try to collect any data possible. We provide 2 helper methods for this exact reason.</span>
-</p>
-<h2>Collect user data from filled forms</h2>
-<p>
-  <span style="font-weight: 400;">This method will look into the forms filled out by your users and will try to gather data, such as names, email addresses, usernames, etc.<br>All forms will automatically be checked, but you have the option to provide a form element if you would like to collect data only from a specific form, or select a method multiple times for different forms. Also, if you are already providing data for users, then you would not want to overwrite it. You may set the third parameter as true to indicate that data found should be stored in custom properties.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//collect data from forms
-Countly.q.push(['collect_from_forms']);
-
-//collect data from specific form
-Countly.q.push(['collect_from_forms', formElement]);
-
-//collect from forms and report as custom user properties
-Countly.q.push(['collect_from_forms', document, true]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//collect data from forms
-Countly.collect_from_forms();
-
-//collect data from specific form
-Countly.collect_from_forms(formElement);
-
-//collect from forms and report as custom user properties
-Countly.collect_from_forms(document, true);</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Passwords and other sensitive data will be omitted, however, if you would explicitly like to exclude some form input from being processed, just add the css class&nbsp;<strong>cly_user_ignore</strong>&nbsp;to that element. Oppositely, you may need to specify data from this input to be collected as the provided key by adding the prefixed css class&nbsp;<strong>cly_user_key</strong>. Therefore, if you would like to store data as a name, you should specify the&nbsp;<strong>cly_user_name</strong>&nbsp;css class.</span>
-</p>
-<pre><code class="html">&lt;form method='post' name='test_form'&gt;
-  &lt;!-- data will be checked in this input --&gt;
-&lt;p&gt;&lt;input type="text" name="e" value="myemail@mydomain.com"&gt;&lt;/p&gt;
-  
-&lt;!-- ignore this input --&gt;
-&lt;p&gt;&lt;input type="text" name="e" value="notmyemail@notmydomain.com" class="cly_user_ignore"&gt;&lt;/p&gt;
-
-&lt;!-- get customfield by class --&gt;
-&lt;p&gt;&lt;input type="text" name="custom" id="custom" value="value" class="cly_user_key1"&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;input id="submit-form" type="submit" value="Submit"&gt;&lt;/p&gt;
-
-&lt;/form&gt;</code></pre>
-<h2>Collect user data from Facebook</h2>
-<p>
-  <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is an example how to receive data from Facebook, including locations and time zones as custom properties.</span>
-</p>
-<pre><code class="html">&lt;script src="https://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript"&gt;
-FB.init({
-    appId: '251676171676751',
-    status: true,
-    cookie: true,
-    oauth: true
-});
-
-function CountlyGatherFBData(){
-Countly.collect_from_facebook({"location":"location.name", "tz":"timezone"});
-};
-
-FB.getLoginStatus(function(stsResp) {
-if(stsResp.authResponse) {
-CountlyGatherFBData();
-} else {
-FB.login(function(loginResp) {
-if(loginResp.authResponse) {
-CountlyGatherFBData();
-} else {
-alert('Please authorize this application to use it!');
-}
-});
-}
-});
-&lt;/script&gt;</code></pre>
 <h1>Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">Countly also provides a way for tracking JavaScript errors on your websites.</span>
@@ -1132,6 +631,22 @@ Countly.end_event({
   </div>
 </div>
 <h1>Sessions</h1>
+<h2>Automatic session tracking</h2>
+<p>
+  <span style="font-weight: 400;">This method will automatically track user sessions by calling begin, extend, and end session methods.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_sessions']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_sessions();</code></pre>
+  </div>
+</div>
 <h2>Manual sessions</h2>
 <p>
   <strong>Beginning a session</strong>
@@ -1188,6 +703,169 @@ Countly.end_event({
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.end_session(sec)</code></pre>
+  </div>
+</div>
+<h1>View tracking</h1>
+<p>
+  <span style="font-weight: 400;">This method will track the current pageview by using location.path as the page name and then reporting it to the server.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_pageview']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_pageview();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">For Ajax updated contents and single page web applications, pass the page name as a parameter to record the new page view.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_pageview','pagename']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_pageview("pagename");</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Here is a good example if your single-page app uses URL hash.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_pageview',location.pathname+location.hash]);
+
+$(window).on('hashchange', function() {
+Countly.q.push(['track_pageview',location.pathname+location.hash]);
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_pageview(location.pathname+location.hash);
+
+$(window).on('hashchange', function() {
+Countly.track_pageview(location.pathname+location.hash);
+});</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">In some cases, you might like to ignore some URLs to exclude from tracking, such as dynamic URLs that include the user ID in the URL, internal URLs, or for any other reason. You may do so by providing another parameter with a list of strings of views to ignore or a list of regular expressions to ignore.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//Ignoring specific page
+Countly.q.push(['track_pageview',["/test-page"]]);
+
+//Ignoring multiple specific pages
+Countly.q.push(['track_pageview',["/test1", "/test2", "/test3"]]);
+
+//Ignoring all /download/{download_id} pages but not /download page
+Countly.q.push(['track_pageview',["/download/*"]]);
+
+//Ignoring specific page while providing custom values (like hash value) for page view
+Countly.q.push(['track_pageview', location.pathname+location.hash,["/test-page"]]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//Ignoring specific page
+Countly.track_pageview(["/test-page"]);
+
+//Ignoring multiple specific pages
+Countly.track_pageview(["/test1", "/test2", "/test3"]);
+
+//Ignoring all /download/{download_id} pages but not /download page
+Countly.track_pageview(["/download/*"]);
+
+//Ignoring specific page while providing custom values (like hash value) for page view
+Countly.track_pageview(location.pathname+location.hash, ["/test-page"]);</code></pre>
+  </div>
+</div>
+<p>
+  <span>Optionally, you may provide view segments (key/value pairs) to track them with the view (as the third parameter). There is a list of reserved segment keys that should not be used:</span>
+</p>
+<ul>
+  <li>start</li>
+  <li>visit</li>
+  <li>bounce</li>
+  <li>end</li>
+  <li>name</li>
+  <li>domain</li>
+  <li>view</li>
+  <li>segment</li>
+  <li>platform</li>
+</ul>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//Provide view segments
+Countly.q.push(['track_pageview', null, null, {theme:"red", mode:"fullscreen"}]);<br></code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//Provide view segments
+Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code></pre>
+  </div>
+</div>
+<h2>Overriding view name and URL getters</h2>
+<p>
+  <span style="font-weight: 400;">There are cases when determining the view name requires more complex logic, and in some cases, you will need to separate the URL and the View naming. This is done so you may still have some business logic view names, yet you have the valid URL underneath them to view action maps, such as clicks and scrolls.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">To do so you may define the view name and URL getter functions. That way you won’t need to provide separate view names, rather the SDK will use this getter function to receive the proper view name and the URL you would like to use.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Here is an example of how to create a getter for View and URL.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">View getter</span>
+    <span class="tabs-link">URL getter</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.getViewName = function(){
+  //get base for our view
+  var view = location.pathname;
+  
+  //if this is a page with dynamic id, we don't need id itself
+  if (view.startsWith("/id/")) {
+      view = "/id";
+  }
+  
+  //now let's beautify the name
+  //remove first character which always is slash (/)
+  view = view.substring(1);
+  
+  //split by sub paths and use spaces instead
+  view = view.split("/").join(" ");
+  
+  //upper case first letter
+  view[0].toUpperCase() + view.substring(1)
+  
+  //return beautified view name
+  return view;
+}</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.getViewUrl = function(){
+  //we want to have path and query string and hash as url
+  return location.pathname + location.search + location.hash;
+};</code></pre>
   </div>
 </div>
 <h1>Device ID management</h1>
@@ -1301,6 +979,64 @@ Countly.init();</code></pre>
   <div class="tab is-hidden">
     <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
+</div>
+<h1>Heatmaps</h1>
+<h2>Tracking clicks</h2>
+<p>
+  <span style="font-weight: 400;">This method will automatically track clicks on the last reported view and display them on the heatmap.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_clicks']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_clicks();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
+</p>
+<div class="callout callout--info">
+  <h3 class="callout__title">
+    Important notification about viewing heatmaps with HTTP/HTTPS content:
+  </h3>
+  <p>
+    Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
+    For this reason, if you are using HTTPS on your Countly instance, you will
+    only be able to view HTTPS content and no HTTP page content will be visible.
+  </p>
+</div>
+<p>
+  <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/b893929-11.png">
+</div>
+<h2>Tracking scrolls</h2>
+<p>
+  <span style="font-weight: 400;">This method will automatically track scrolls on the last reported view and display them on the heatmap.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_scrolls']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_scrolls();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/5bc44bc-topbar.png">
 </div>
 <h1>Remote config</h1>
 <p>
@@ -1707,6 +1443,53 @@ Countly.userData.pull(key, value) //remove value from array under property with 
 Countly.userData.save() //send userData to server</code></pre>
   </div>
 </div>
+<h2>Orientation tracking</h2>
+<p>
+  Orientation tracking is enabled by default and will be sent if the required "user"
+  consent is given (if enabled). Countly will report the device orientation once
+  a session starts, and at any time the orientation changes.
+</p>
+<p>
+  You may disable orientation tracking by providing the enable_orientation_tracking
+  setting when initializing the SDK as follows.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//before loading Countly script
+Countly.enable_orientation_tracking = false;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to disable orientation tracking
+Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    enable_orientation_tracking: false //this will disable orientation tracking
+});</code></pre>
+  </div>
+</div>
+<p>
+  In case you need to force reporting orientation, you may call the following method.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//user stored conversion data
+Countly.q.push(['report_orientation', "portrait"]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//user stored conversion data
+Countly.report_orientatio("portrait");</code></pre>
+  </div>
+</div>
 <h1>Application Performance Monitoring</h1>
 <p>
   There are 2 ways to report performance traces. One way is to construct and report
@@ -1813,6 +1596,41 @@ Countly.track_performance({
   </div>
 </div>
 <h1>User consent</h1>
+<h2>Opt in / Opt out</h2>
+<p>
+  <span style="font-weight: 400;">The Countly SDK will always be opt in by default, but you may easily disable all tracking by selecting&nbsp;the <strong>opt_out</strong>&nbsp;method. It will also persistently save settings and prevent tracking after page reloads. Select&nbsp;<strong>opt_in</strong> to resume tracking.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//to stop tracking user data call
+Countly.q.push(['opt_out']);
+
+//to resume tracking user data call
+Countly.q.push(['opt_in']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to stop tracking user data call
+Countly.opt_out();
+
+//to resume tracking user data call
+Countly.opt_in();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
+</p>
+<div class="callout callout--info">
+  <h3 class="callout__title">Opt out by default</h3>
+  <p>
+    If you would like to have opt out selected by default, combine these methods
+    with the initial setting <strong>ignore_visitor</strong> on the Countly init
+    object.
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">In most cases, the </span><strong>opt_out</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>opt_in</strong><span style="font-weight: 400;">&nbsp;methods are enough to disable the tracking of specific users, such as testers. However, in some cases, you may require a more granular approach.</span>
 </p>
@@ -2050,6 +1868,178 @@ localStorage.setItem("consents", JSON.stringify(response));
   </div>
 </div>
 <h1>Other features and notes</h1>
+<h2>Automatically fill user data</h2>
+<p>
+  <span style="font-weight: 400;">In most cases, you won’t know anything about your users, yet you will still want to try to collect any data possible. We provide 2 helper methods for this exact reason.</span>
+</p>
+<h3>Collect user data from filled forms</h3>
+<p>
+  <span style="font-weight: 400;">This method will look into the forms filled out by your users and will try to gather data, such as names, email addresses, usernames, etc.<br>All forms will automatically be checked, but you have the option to provide a form element if you would like to collect data only from a specific form, or select a method multiple times for different forms. Also, if you are already providing data for users, then you would not want to overwrite it. You may set the third parameter as true to indicate that data found should be stored in custom properties.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//collect data from forms
+Countly.q.push(['collect_from_forms']);
+
+//collect data from specific form
+Countly.q.push(['collect_from_forms', formElement]);
+
+//collect from forms and report as custom user properties
+Countly.q.push(['collect_from_forms', document, true]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//collect data from forms
+Countly.collect_from_forms();
+
+//collect data from specific form
+Countly.collect_from_forms(formElement);
+
+//collect from forms and report as custom user properties
+Countly.collect_from_forms(document, true);</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Passwords and other sensitive data will be omitted, however, if you would explicitly like to exclude some form input from being processed, just add the css class&nbsp;<strong>cly_user_ignore</strong>&nbsp;to that element. Oppositely, you may need to specify data from this input to be collected as the provided key by adding the prefixed css class&nbsp;<strong>cly_user_key</strong>. Therefore, if you would like to store data as a name, you should specify the&nbsp;<strong>cly_user_name</strong>&nbsp;css class.</span>
+</p>
+<pre><code class="html">&lt;form method='post' name='test_form'&gt;
+  &lt;!-- data will be checked in this input --&gt;
+&lt;p&gt;&lt;input type="text" name="e" value="myemail@mydomain.com"&gt;&lt;/p&gt;
+  
+&lt;!-- ignore this input --&gt;
+&lt;p&gt;&lt;input type="text" name="e" value="notmyemail@notmydomain.com" class="cly_user_ignore"&gt;&lt;/p&gt;
+
+&lt;!-- get customfield by class --&gt;
+&lt;p&gt;&lt;input type="text" name="custom" id="custom" value="value" class="cly_user_key1"&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;input id="submit-form" type="submit" value="Submit"&gt;&lt;/p&gt;
+
+&lt;/form&gt;</code></pre>
+<h3>Collect user data from Facebook</h3>
+<p>
+  <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Here is an example how to receive data from Facebook, including locations and time zones as custom properties.</span>
+</p>
+<pre><code class="html">&lt;script src="https://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+FB.init({
+    appId: '251676171676751',
+    status: true,
+    cookie: true,
+    oauth: true
+});
+
+function CountlyGatherFBData(){
+Countly.collect_from_facebook({"location":"location.name", "tz":"timezone"});
+};
+
+FB.getLoginStatus(function(stsResp) {
+if(stsResp.authResponse) {
+CountlyGatherFBData();
+} else {
+FB.login(function(loginResp) {
+if(loginResp.authResponse) {
+CountlyGatherFBData();
+} else {
+alert('Please authorize this application to use it!');
+}
+});
+}
+});
+&lt;/script&gt;</code></pre>
+<h2>Attribution</h2>
+<p>
+  <span style="font-weight: 400;">When using Countly attribution analytics, you may also report conversions to the Countly server, e.g. when a visitor purchases an item or registers on your site.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If a user visits your website through the Countly campaign link, the campaign information will be automatically stored by default for this user and used when reporting conversion.&nbsp;</span><span style="font-weight: 400;">If conversion has not yet been reported, the campaign information will be overwritten when that user visits through another campaign link. When you report the conversion, it would report the latest campaign user used to access your website.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">However, you may also overwrite that data and provide any specific campaign ID for which you would like to report conversion.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Conversion will not be reported if there is no stored campaign data and you have yet to provide a campaign ID.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Note: Conversion for each user may only be reported once, all other conversions will be ignored for that same user.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//user stored conversion data
+Countly.q.push(['recordDirectAttribution']);
+
+//or provide campaign id yourself
+Countly.q.push(['recordDirectAttribution', "MyCampaignID"]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//user stored conversion data
+Countly.recordDirectAttribution();
+
+//or provide campaign id yourself
+Countly.recordDirectAttribution("MyCampaignID");</code></pre>
+  </div>
+</div>
+<h2>Track link clicks</h2>
+<p>
+  <span style="font-weight: 400;">This method will track clicks to specific links and will report events with the </span><strong>linkClick</strong><span style="font-weight: 400;">&nbsp;key as well as the link's text, ID, and URLs as segments.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">All links will automatically be tracked by default for the entire page, but you may provide the parent node as a parameter for which to track link clicks.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_links']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_links();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">As soon as you include this one-liner coder, you will automatically be able to see the "linkClick" event in your dashboard as data flows in with the text, ID, and URLs as segments.</span>
+</p>
+<h2>Track form submissions</h2>
+<p>
+  <span style="font-weight: 400;">This method will automatically track form submissions and collect form data. It will then input values in the form and report them as a Event with the <strong>formSubmit</strong>&nbsp;key.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">All forms will automatically be tracked by default for the entire page, but you may provide the parent node as a parameter for which to track forms.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The second parameter controls whether to collect hidden inputs or not. Hidden inputs are not collected by default.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//will not collect hidden inputs
+Countly.q.push(['track_forms']);
+
+//will collect hidden inputs
+Countly.q.push(['track_forms', null, true]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//will not collect hidden inputs
+Countly.track_forms();
+
+//will collect hidden inputs
+Countly.track_forms(null, true);</code></pre>
+  </div>
+</div>
 <h2>Using the Web SDK in Webview</h2>
 <p>
   <span style="font-weight: 400;">If you are going to use the Web SDK in the Webview of your app, there are prerequisites that must be checked to ensure it is fully functioning. There are no known iOS issues at this moment, but some specific settings need to be enabled for Android.</span>
