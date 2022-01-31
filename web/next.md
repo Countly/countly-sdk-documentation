@@ -10,6 +10,7 @@
     <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="blank">here</a>.
   </p>
 </div>
+<h1>Adding the SDK to the project</h1>
 <p>
   <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
@@ -50,7 +51,7 @@
 <div class="img-container">
   <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
 </div>
-<h1>Setting up (Recommended asynchronous usage)</h1>
+<h1>SDK Integration</h1>
 <p>
   <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
 </p>
@@ -201,7 +202,7 @@ function clickEvent(ob){
     IDE.
   </p>
 </div>
-<h1>Setup properties</h1>
+<h2>Setup properties</h2>
 <p>
   Here are the properties you may set up upon Countly initialization:
 </p>
@@ -874,214 +875,6 @@ alert('Please authorize this application to use it!');
 }
 });
 &lt;/script&gt;</code></pre>
-<h1>Events</h1>
-<h2>Adding an event</h2>
-<p>
-  <span style="font-weight: 400;">Events are a way to track any custom actions or other data you would like to track from your website. You may also set segments to be able to view a breakdown of the action by providing the segment values.</span>
-</p>
-<div class="callout callout--warning">
-  <h3 class="callout__title">Data passed should be in UTF-8</h3>
-  <p>
-    All data passed to the Countly instance via the SDK or API should be in UTF-8.
-  </p>
-</div>
-<p>An event consists of a JavaScript object with keys:</p>
-<ul>
-  <li>key - the name of the event (mandatory)</li>
-  <li>count - number of events (default: 1)</li>
-  <li>sum - sum to report with the event (optional)</li>
-  <li>
-    dur - duration expressed in seconds, meant for reporting with the event (optional)
-  </li>
-  <li>
-    segmentation - an object with key/value pairs to report with the event as
-    segments
-  </li>
-</ul>
-<p>
-  <span style="font-weight: 400;">Here is an example of adding an event with all possible properties:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['add_event',{
-  "key": "click",
-  "count": 1,
-  "sum": 1.5,
-  "dur": 30,
-  "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
-  }
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.add_event({
-  "key": "click",
-  "count": 1,
-  "sum": 1.5,
-  "dur": 30,
-  "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
-  }
-});</code></pre>
-  </div>
-</div>
-<h2>Timed Events</h2>
-<p>
-  <span style="font-weight: 400;">You may report time or duration with every event by providing the&nbsp;<strong>dur</strong>&nbsp;property of the event’s object. However, if you would like, you may also let the Web SDK track the duration of some specific events for you. You may use the&nbsp;<strong>start_event</strong>&nbsp;and&nbsp;<strong>end_event</strong>&nbsp;methods.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Firstly, you may start tracking an event time by providing the name of the event (which later on will be used as the key for the event object).</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['start_event', 'timedEvent']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.start_event("timedEvent")</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Countly will internally mark the start of the event and will wait until you end the event using the&nbsp;<strong>end_event</strong>&nbsp;method, setting up&nbsp;the <strong>dur</strong>&nbsp;property based on how much time has passed since&nbsp;the <strong>start_event</strong>&nbsp;for the same event name was selected.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//end event
-Countly.q.push(['end_event', 'timedEvent']);
-
-//or end event with additional data
-Countly.q.push(['end_event',{
-"key": "timedEvent",
-"count": 1,
-"sum": 1.5,
-"segmentation": {
-"key1": "value1",
-"key2": "value2"
-}
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//end event
-Countly.end_event("timedEvent")
-
-//or end event with additional data
-Countly.end_event({
-"key": "timedEvent",
-"count": 1,
-"sum": 1.5,
-"segmentation": {
-"key1": "value1",
-"key2": "value2"
-}
-});</code></pre>
-  </div>
-</div>
-<h1>User profiles</h1>
-<h2>User details</h2>
-<p>
-  <span style="font-weight: 400;">If you have any details about the user/visitor, you may provide Countly with that information. This will allow you to track every specific user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The list of possible parameters you may pass:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['user_details',{
-    "name": "Arturs Sosins",
-    "username": "ar2rsawseen",
-    "email": "test@test.com",
-    "organization": "Countly",
-    "phone": "+37112345678",
-    //Web URL to picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
-    "gender": "M",
-    "byear": 1987, //birth year
-    "custom":{
-      "key1":"value1",
-      "key2":"value2",
-      ...
-    }
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.user_details({
-    "name": "Arturs Sosins",
-    "username": "ar2rsawseen",
-    "email": "test@test.com",
-    "organization": "Countly",
-    "phone": "+37112345678",
-    //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
-    "gender": "M",
-    "byear": 1987, //birth year
-    "custom":{
-      "key1":"value1",
-      "key2":"value2",
-      ...
-    }
- });</code></pre>
-  </div>
-</div>
-<h2>Modifying custom data</h2>
-<p>
-  <span style="font-weight: 400;">Additionally, you may perform different manipulations on custom data values, such as incrementing the current value on the server or storing an array of values under the same property.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">After using modifiers, don't forget to call&nbsp;<code class="javascript">userData.save</code>&nbsp;to send data to server.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The list of available methods may be found below:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['userData.set', key, value]) //set custom property
-Countly.q.push(['userData.unset', key]) //remove custom property
-Countly.q.push(['userData.set_once', key, value]) //set custom property only if property does not exist
-Countly.q.push(['userData.increment', key]) //increment value in key by one
-Countly.q.push(['userData.increment_by', key, value]) //increment value in key by provided value
-Countly.q.push(['userData.multiply', key, value]) //multiply value in key by provided value
-Countly.q.push(['userData.max', key, value]) //save max value between current and provided
-Countly.q.push(['userData.min', key, value]) //save min value between current and provided
-Countly.q.push(['userData.push', key, value]) //add value to key as array element
-Countly.q.push(['userData.push_unique', key, value]) //add value to key as array element, but only store unique values in array
-Countly.q.push(['userData.pull', key, value]) //remove value from array under property with key as name
-Countly.q.push(['userData.save']) //send userData to server</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.userData.set(key, value) //set custom property
-Countly.userData.set_once(key, value) //set custom property only if property does not exist
-Countly.userData.increment(key) //increment value in key by one
-Countly.userData.increment_by(key, value) //increment value in key by provided value
-Countly.userData.multiply(key, value) //multiply value in key by provided value
-Countly.userData.max(key, value) //save max value between current and provided
-Countly.userData.min(key, value) //save min value between current and provided
-Countly.userData.push(key, value) //add value to key as array element
-Countly.userData.push_unique(key, value) //add value to key as array element, but only store unique values in array
-Countly.userData.pull(key, value) //remove value from array under property with key as name
-Countly.userData.save() //send userData to server</code></pre>
-  </div>
-</div>
 <h1>Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">Countly also provides a way for tracking JavaScript errors on your websites.</span>
@@ -1223,6 +1016,180 @@ catch(ex){
   <a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication" target="_self">Crash Symbolication</a>
   documentation.
 </p>
+<h1>Events</h1>
+<h2>Adding an event</h2>
+<p>
+  <span style="font-weight: 400;">Events are a way to track any custom actions or other data you would like to track from your website. You may also set segments to be able to view a breakdown of the action by providing the segment values.</span>
+</p>
+<div class="callout callout--warning">
+  <h3 class="callout__title">Data passed should be in UTF-8</h3>
+  <p>
+    All data passed to the Countly instance via the SDK or API should be in UTF-8.
+  </p>
+</div>
+<p>An event consists of a JavaScript object with keys:</p>
+<ul>
+  <li>key - the name of the event (mandatory)</li>
+  <li>count - number of events (default: 1)</li>
+  <li>sum - sum to report with the event (optional)</li>
+  <li>
+    dur - duration expressed in seconds, meant for reporting with the event (optional)
+  </li>
+  <li>
+    segmentation - an object with key/value pairs to report with the event as
+    segments
+  </li>
+</ul>
+<p>
+  <span style="font-weight: 400;">Here is an example of adding an event with all possible properties:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['add_event',{
+  "key": "click",
+  "count": 1,
+  "sum": 1.5,
+  "dur": 30,
+  "segmentation": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.add_event({
+  "key": "click",
+  "count": 1,
+  "sum": 1.5,
+  "dur": 30,
+  "segmentation": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+});</code></pre>
+  </div>
+</div>
+<h2>Timed Events</h2>
+<p>
+  <span style="font-weight: 400;">You may report time or duration with every event by providing the&nbsp;<strong>dur</strong>&nbsp;property of the event’s object. However, if you would like, you may also let the Web SDK track the duration of some specific events for you. You may use the&nbsp;<strong>start_event</strong>&nbsp;and&nbsp;<strong>end_event</strong>&nbsp;methods.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Firstly, you may start tracking an event time by providing the name of the event (which later on will be used as the key for the event object).</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['start_event', 'timedEvent']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.start_event("timedEvent")</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Countly will internally mark the start of the event and will wait until you end the event using the&nbsp;<strong>end_event</strong>&nbsp;method, setting up&nbsp;the <strong>dur</strong>&nbsp;property based on how much time has passed since&nbsp;the <strong>start_event</strong>&nbsp;for the same event name was selected.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//end event
+Countly.q.push(['end_event', 'timedEvent']);
+
+//or end event with additional data
+Countly.q.push(['end_event',{
+"key": "timedEvent",
+"count": 1,
+"sum": 1.5,
+"segmentation": {
+"key1": "value1",
+"key2": "value2"
+}
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//end event
+Countly.end_event("timedEvent")
+
+//or end event with additional data
+Countly.end_event({
+"key": "timedEvent",
+"count": 1,
+"sum": 1.5,
+"segmentation": {
+"key1": "value1",
+"key2": "value2"
+}
+});</code></pre>
+  </div>
+</div>
+<h1>Sessions</h1>
+<h2>Manual sessions</h2>
+<p>
+  <strong>Beginning a session</strong>
+</p>
+<p>
+  <span style="font-weight: 400;">This method would allow you to control sessions manually. Only use this method if you aren’t planning on calling the track_sessions method and set the&nbsp;</span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;">&nbsp;setting to false for more granular control of the session.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If&nbsp;<strong>noHeartBeat</strong>&nbsp;is true, then the Countly Web SDK will not automatically extend the session, meaning you would be the one to do it automatically.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['begin_session']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
+  </div>
+</div>
+<p>
+  <strong>Extending a session</strong>
+</p>
+<p>
+  <span style="font-weight: 400;">The Countly SDK will extend the session itself by default (if&nbsp;<strong>noHeartBeat</strong>&nbsp;was provided in the&nbsp;<strong>begin_session</strong>), but if you have not selected this option, you may then extend it using this method and provide the seconds since the last <strong>begin_session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;call.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['session_duration', sec]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
+  </div>
+</div>
+<p>
+  <strong>Ending a session</strong>
+</p>
+<p>
+  <span style="font-weight: 400;">When a visitor is leaving your app or website, you should end their session with this method or by optionally providing the amount of seconds since the last&nbsp;<strong>begin session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;calls, which ever came last.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['end_session']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.end_session(sec)</code></pre>
+  </div>
+</div>
 <h1>Device ID management</h1>
 <p>
   <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
@@ -1333,6 +1300,516 @@ Countly.init();</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
+  </div>
+</div>
+<h1>Remote config</h1>
+<p>
+  <span style="font-weight: 400;">Remote configuration functionality is disabled by default and needs to be explicitly enabled.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">When remote configuration is enabled, the SDK will only try to fetch it once upon SDK initialization and will receive the initially remote configuration and persistently store it.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">In the event of one of the following sessions, assuming it would not be possible to load the remote configuration from storage, you will receive an error object in the callback, but you will still have the stored values of the cached remote configuration object.</span>
+</p>
+<h2>Enabling Remote configuration</h2>
+<p>
+  <span style="font-weight: 400;">You may enable remote configuration by providing&nbsp;the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;">&nbsp;setting when initializing the SDK.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you provide a callback, it will be called when remote configuration is initially loaded and reloaded if you change the device_id.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//to enable remote configuration
+
+//before loading Countly script
+Countly.remote_config = true;
+
+//or provide a callback to be notified when configs are loaded
+Countly.remote_config = function(err, remoteConfigs){
+if (!err) {
+//we have our remoteConfigs here
+console.log(remoteConfigs);
+}
+};</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to enable remote configuration
+Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    remote_config: true //this will enable loading remote configuration
+});
+
+//or provide a callback to be notified when configs are loaded
+Countly.init({
+debug:false,
+app_key:"YOUR_APP_KEY",
+device_id:"1234-1234-1234-1234",
+url: "https://try.count.ly",
+remote_config: function(err, remoteConfigs){
+if (!err) {
+//we have our remoteConfigs here
+console.log(remoteConfigs);
+}
+}
+});</code></pre>
+  </div>
+</div>
+<h2>
+  Receiving configuration values<span style="font-weight: 400;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+</h2>
+<p>
+  <span style="font-weight: 400;">You receive the initially loaded remote configuration values in the provided callback, but if you&nbsp;need to get an updated version afterward, you can manually reload it.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</p>
+<p>
+  <span style="font-weight: 400;">You may call&nbsp;</span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the remote config object of a value for a specific key.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This method should be called once the remote configurations have been successfully loaded, or it will simply return an empty object or undefined values.</span>
+</p>
+<pre><code class="javascript">//get whole remote config object
+var remoteConfig = Countly.get_remote_config();
+
+//or get value for specific key like 'test'
+var test = Countly.get_remote_config("test");</code></pre>
+<h2>Reloading configuration values</h2>
+<p>
+  <span style="font-weight: 400;">Should you need to reload the remote config in order to receive the latest value, call&nbsp;the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;">&nbsp;method.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">By using this method, you may reload the entire object or simply reload some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large.</span>
+</p>
+<pre><code class="javascript">//reload whole configuration object
+Countly.fetch_remote_config(function(err, remoteConfigs){
+    if (!err) {
+        console.log(remoteConfigs);
+    }
+});
+
+//reload specific keys only, as `key1` and `key2`
+Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
+if (!err) {
+console.log(remoteConfigs);
+}
+});
+
+//reload all key values except specific keys, as `key1` and `key2
+Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
+if (!err) {
+console.log(remoteConfigs);
+}
+});</code></pre>
+<h1>User feedback</h1>
+<p>
+  If you want to receive feedback from your users there are a couple of ways you
+  can do that in Countly. To get a rating or suggestion from users you can use
+  rating widgets, which gives users flexibility to give a rating, leave a comment
+  or reach you with an e-mail. Another way the users can leave feedback is through
+  the feedback widgets (survey, nps). With the help of these widgets you can ask
+  your customers multiple questions and learn about their opinions and preferences
+  in detail.
+</p>
+<h2>Ratings</h2>
+<p>
+  While it can be cumbersome for a customer to fill a survey, a quick alternative
+  to get user feedback is to get a numerical user rating. That can be done with
+  the Countly rating widget.
+</p>
+<h3>Rating widget</h3>
+<p>
+  Rating widgets create a channel for users to interact, through a pop up widget.
+</p>
+<p>
+  While it is possible to customize the text fields of rating widgets according
+  to your needs, the fundamental use case of a rating widget is to enable the user
+  to leave a rating feedback on scale of 1 to 5, let the user contact the developer
+  through e-mail and also to let the user be able to leave some comments or suggestions
+  along the way.
+</p>
+<p>
+  With Countly, if you want, you can create a single rating widget to get feedback
+  on a specific topic or you can create multiple rating widgets that can tackle
+  different topics depending on your needs. Another feature that can prove useful
+  is the ability to show rating widgets on command, as a popup. This can be a very
+  useful tool when interlinked with a form submit button to ask your customers
+  about their experience directly after submitting their form or survey.
+</p>
+<p>
+  For rating widgets to show with proper styling and to be present on the screen
+  first you have to enable them using 'enableRatingWidgets' after you have initialized
+  the Countly Web SDK and gave "star-rating" consent for widgets. Then you can
+  integrate the ratings widget as follows:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//after initializing and giving consent
+//for a single rating widget with widget ID '5b86772f7965c435319c79ee'
+Countly.q.push([
+    'enableRatingWidgets',
+    {'popups':['5b86772f7965c435319c79ee']}
+]);
+
+//to manually show a rating widget as a popup
+Countly.q.push([
+    'presentRatingWidgetWithID',
+    '6gdd84asc435319c78s4'
+]);
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//after initializing and giving consent
+//for a rating widget with widget ID '5b86772f7965c435319c79ee'
+Countly.enableRatingWidgets({
+    'popups':['5b86772f7965c435319c79ee'],
+});
+
+//to manually show a rating widget as a popup'
+Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
+</code></pre>
+  </div>
+</div>
+<p>
+  To see multiple rating widgets on the screen, after enabling your widgets with
+  'enableRatingWidgets' you have to use 'initializeRatingWidgets' by passing multiple
+  widget IDs as an argument as follows:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//after enabling rating widgets
+//to show multiple rating widgets with an array of different widget IDs
+Countly.q.push([
+    'initializeRatingWidgets',
+    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
+]);
+
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//after enabling rating widgets
+//to show multiple rating widgets with an array of different widget IDs
+Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209194fcc"])
+</code></pre>
+  </div>
+</div>
+<h3>Manual rating reporting</h3>
+<p>
+  In case you don't want to use Countly provided feedback and rating UI where you
+  may use your own UI and simply report collected data to Countly.
+</p>
+<p>
+  To report the rating widget result manually, you need to give "star-rating" consent
+  (in case consent is required).
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//user feedback
+Countly.q.push(['recordRatingWidgetWithID', {
+    widget_id:"1234567890",
+    contactMe: true,
+    rating: 5,
+    email: "user@domain.com",
+    comment: "Very good"
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//user feedback
+Countly.recordRatingWidgetWithID({
+    widget_id:"1234567890",
+    contactMe: true,
+    rating: 5,
+    email: "user@domain.com",
+    comment: "Very good"
+});</code></pre>
+  </div>
+</div>
+<h2>Feedback widget</h2>
+<p>
+  There are two types of surveys available - NPS and Basic survey.
+</p>
+<p>
+  Both NPS and Survey use the same API to fetch feedbacks from the server as well
+  as to display them to the end user. By default, the created widget will be appended
+  to the end of the html document. In some scenarios you might prefer to have the
+  widget injected in a specific element. For those scenarios we have added optional
+  selectors. The first one is used for selecting an element by it's id and the
+  second one is used to select the element by it's class selector. If you want
+  to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name.
+</p>
+<p>
+  To use feedback widgets, you need to give "feedback" consent (in case consent
+  is required).
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
+Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
+<br>//Surveys feedback callback function
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+  
+    //The available feedback types are nps and survey, decide which one to show
+    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
+
+    //Display the feedback widget to the end user
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+
+}
+</span></span></code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
+Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
+<br>//Surveys feedback callback function
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+    if (err) {
+      console.log(err);
+        return;
+    }
+    
+    //The available feedback types are nps and survey, decide which one to show
+    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+    
+    //Define the element ID and the class name
+    var selectorId = "targetIdSelector";
+    var selectorClass = "targetClassSelector";
+    
+    //Display the feedback widget to the end user 
+    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+}
+</span></span></code></pre>
+  </div>
+</div>
+<p>
+  Note: Feedback widget's show policies are handled internally by the web sdk.
+</p>
+<h1>User profiles</h1>
+<h2>User details</h2>
+<p>
+  <span style="font-weight: 400;">If you have any details about the user/visitor, you may provide Countly with that information. This will allow you to track every specific user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The list of possible parameters you may pass:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['user_details',{
+    "name": "Arturs Sosins",
+    "username": "ar2rsawseen",
+    "email": "test@test.com",
+    "organization": "Countly",
+    "phone": "+37112345678",
+    //Web URL to picture
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+    "gender": "M",
+    "byear": 1987, //birth year
+    "custom":{
+      "key1":"value1",
+      "key2":"value2",
+      ...
+    }
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.user_details({
+    "name": "Arturs Sosins",
+    "username": "ar2rsawseen",
+    "email": "test@test.com",
+    "organization": "Countly",
+    "phone": "+37112345678",
+    //Web URL pointing to user picture
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+    "gender": "M",
+    "byear": 1987, //birth year
+    "custom":{
+      "key1":"value1",
+      "key2":"value2",
+      ...
+    }
+ });</code></pre>
+  </div>
+</div>
+<h2>Modifying custom data</h2>
+<p>
+  <span style="font-weight: 400;">Additionally, you may perform different manipulations on custom data values, such as incrementing the current value on the server or storing an array of values under the same property.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">After using modifiers, don't forget to call&nbsp;<code class="javascript">userData.save</code>&nbsp;to send data to server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The list of available methods may be found below:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['userData.set', key, value]) //set custom property
+Countly.q.push(['userData.unset', key]) //remove custom property
+Countly.q.push(['userData.set_once', key, value]) //set custom property only if property does not exist
+Countly.q.push(['userData.increment', key]) //increment value in key by one
+Countly.q.push(['userData.increment_by', key, value]) //increment value in key by provided value
+Countly.q.push(['userData.multiply', key, value]) //multiply value in key by provided value
+Countly.q.push(['userData.max', key, value]) //save max value between current and provided
+Countly.q.push(['userData.min', key, value]) //save min value between current and provided
+Countly.q.push(['userData.push', key, value]) //add value to key as array element
+Countly.q.push(['userData.push_unique', key, value]) //add value to key as array element, but only store unique values in array
+Countly.q.push(['userData.pull', key, value]) //remove value from array under property with key as name
+Countly.q.push(['userData.save']) //send userData to server</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.userData.set(key, value) //set custom property
+Countly.userData.set_once(key, value) //set custom property only if property does not exist
+Countly.userData.increment(key) //increment value in key by one
+Countly.userData.increment_by(key, value) //increment value in key by provided value
+Countly.userData.multiply(key, value) //multiply value in key by provided value
+Countly.userData.max(key, value) //save max value between current and provided
+Countly.userData.min(key, value) //save min value between current and provided
+Countly.userData.push(key, value) //add value to key as array element
+Countly.userData.push_unique(key, value) //add value to key as array element, but only store unique values in array
+Countly.userData.pull(key, value) //remove value from array under property with key as name
+Countly.userData.save() //send userData to server</code></pre>
+  </div>
+</div>
+<h1>Application Performance Monitoring</h1>
+<p>
+  There are 2 ways to report performance traces. One way is to construct and report
+  them manually. The other is using a plugin that will use boomerang.js to collect
+  data and report it as a performance trace.
+</p>
+<p>
+  To manually report trace you need to construct the trace and call a method like
+  this:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//report custom trace
+Countly.q.push(["report_trace",{
+    type: "device", //device or network
+    name: "test call", //use name to identify trace and group them by
+    stz: 1234567890123, //start timestamp in miliseconds
+    etz: 1234567890123, //end timestamp in miliseconds
+    apm_metrics: {
+        duration: 1000 //duration of trace
+    }
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//report custom trace
+Countly.report_trace({
+    type: "device", //device or network
+    name: "test call", //use name to identify trace and group them by
+    stz: 1234567890123, //start timestamp in miliseconds
+    etz: 1234567890123, //end timestamp in miliseconds
+    apm_metrics: {
+        duration: 1000 //duration of trace
+    }
+});</code></pre>
+  </div>
+</div>
+<p>
+  To automatically report traces you will need to include 2 additional files in
+  your project:
+</p>
+<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
+<p>
+  After that, you may call a method to start reporting loading and network traces
+  automatically. This method accepts boomerang initialization config (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on boomerang.js</a>)
+  as a parameter, so if you are familiar with it, you can modify it on your own.
+  In case you are not, you may follow this pattern:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//automatically report traces
+Countly.q.push(["track_performance", {
+    //page load timing
+    RT:{},
+    //required for automated networking traces
+    instrument_xhr: true,
+    captureXhrRequestResponse: true,
+    AutoXHR: {
+        alwaysSendXhr: true,
+        monitorFetch: true,
+        captureXhrRequestResponse: true
+    },
+    //required for screen freeze traces
+    Continuity: {
+        enabled: true,
+        monitorLongTasks: true,
+        monitorPageBusy: true,
+        monitorFrameRate: true,
+        monitorInteractions: true,
+        afterOnload: true
+    }
+}]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//automatically report traces
+Countly.track_performance({
+    //page load timing
+    RT:{},
+    //required for automated networking traces
+    instrument_xhr: true,
+    captureXhrRequestResponse: true,
+    AutoXHR: {
+        alwaysSendXhr: true,
+        monitorFetch: true,
+        captureXhrRequestResponse: true
+    },
+    //required for screen freeze traces
+    Continuity: {
+        enabled: true,
+        monitorLongTasks: true,
+        monitorPageBusy: true,
+        monitorFrameRate: true,
+        monitorInteractions: true,
+        afterOnload: true
+    }
+});</code></pre>
   </div>
 </div>
 <h1>User consent</h1>
@@ -1572,483 +2049,8 @@ localStorage.setItem("consents", JSON.stringify(response));
 }</code></pre>
   </div>
 </div>
-<h1>Remote config</h1>
-<p>
-  <span style="font-weight: 400;">Remote configuration functionality is disabled by default and needs to be explicitly enabled.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">When remote configuration is enabled, the SDK will only try to fetch it once upon SDK initialization and will receive the initially remote configuration and persistently store it.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">In the event of one of the following sessions, assuming it would not be possible to load the remote configuration from storage, you will receive an error object in the callback, but you will still have the stored values of the cached remote configuration object.</span>
-</p>
-<h2>Enabling Remote configuration</h2>
-<p>
-  <span style="font-weight: 400;">You may enable remote configuration by providing&nbsp;the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;">&nbsp;setting when initializing the SDK.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If you provide a callback, it will be called when remote configuration is initially loaded and reloaded if you change the device_id.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//to enable remote configuration
-
-//before loading Countly script
-Countly.remote_config = true;
-
-//or provide a callback to be notified when configs are loaded
-Countly.remote_config = function(err, remoteConfigs){
-if (!err) {
-//we have our remoteConfigs here
-console.log(remoteConfigs);
-}
-};</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//to enable remote configuration
-Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    remote_config: true //this will enable loading remote configuration
-});
-
-//or provide a callback to be notified when configs are loaded
-Countly.init({
-debug:false,
-app_key:"YOUR_APP_KEY",
-device_id:"1234-1234-1234-1234",
-url: "https://try.count.ly",
-remote_config: function(err, remoteConfigs){
-if (!err) {
-//we have our remoteConfigs here
-console.log(remoteConfigs);
-}
-}
-});</code></pre>
-  </div>
-</div>
-<h2>
-  Receiving configuration values<span style="font-weight: 400;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
-</h2>
-<p>
-  <span style="font-weight: 400;">You receive the initially loaded remote configuration values in the provided callback, but if you&nbsp;need to get an updated version afterward, you can manually reload it.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You may call&nbsp;</span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the remote config object of a value for a specific key.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">This method should be called once the remote configurations have been successfully loaded, or it will simply return an empty object or undefined values.</span>
-</p>
-<pre><code class="javascript">//get whole remote config object
-var remoteConfig = Countly.get_remote_config();
-
-//or get value for specific key like 'test'
-var test = Countly.get_remote_config("test");</code></pre>
-<h2>Reloading configuration values</h2>
-<p>
-  <span style="font-weight: 400;">Should you need to reload the remote config in order to receive the latest value, call&nbsp;the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;">&nbsp;method.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">By using this method, you may reload the entire object or simply reload some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large.</span>
-</p>
-<pre><code class="javascript">//reload whole configuration object
-Countly.fetch_remote_config(function(err, remoteConfigs){
-    if (!err) {
-        console.log(remoteConfigs);
-    }
-});
-
-//reload specific keys only, as `key1` and `key2`
-Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
-if (!err) {
-console.log(remoteConfigs);
-}
-});
-
-//reload all key values except specific keys, as `key1` and `key2
-Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
-if (!err) {
-console.log(remoteConfigs);
-}
-});</code></pre>
-<h1>Application Performance Monitoring</h1>
-<p>
-  There are 2 ways to report performance traces. One way is to construct and report
-  them manually. The other is using a plugin that will use boomerang.js to collect
-  data and report it as a performance trace.
-</p>
-<p>
-  To manually report trace you need to construct the trace and call a method like
-  this:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//report custom trace
-Countly.q.push(["report_trace",{
-    type: "device", //device or network
-    name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
-    apm_metrics: {
-        duration: 1000 //duration of trace
-    }
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//report custom trace
-Countly.report_trace({
-    type: "device", //device or network
-    name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
-    apm_metrics: {
-        duration: 1000 //duration of trace
-    }
-});</code></pre>
-  </div>
-</div>
-<p>
-  To automatically report traces you will need to include 2 additional files in
-  your project:
-</p>
-<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
-<p>
-  After that, you may call a method to start reporting loading and network traces
-  automatically. This method accepts boomerang initialization config (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on boomerang.js</a>)
-  as a parameter, so if you are familiar with it, you can modify it on your own.
-  In case you are not, you may follow this pattern:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//automatically report traces
-Countly.q.push(["track_performance", {
-    //page load timing
-    RT:{},
-    //required for automated networking traces
-    instrument_xhr: true,
-    captureXhrRequestResponse: true,
-    AutoXHR: {
-        alwaysSendXhr: true,
-        monitorFetch: true,
-        captureXhrRequestResponse: true
-    },
-    //required for screen freeze traces
-    Continuity: {
-        enabled: true,
-        monitorLongTasks: true,
-        monitorPageBusy: true,
-        monitorFrameRate: true,
-        monitorInteractions: true,
-        afterOnload: true
-    }
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//automatically report traces
-Countly.track_performance({
-    //page load timing
-    RT:{},
-    //required for automated networking traces
-    instrument_xhr: true,
-    captureXhrRequestResponse: true,
-    AutoXHR: {
-        alwaysSendXhr: true,
-        monitorFetch: true,
-        captureXhrRequestResponse: true
-    },
-    //required for screen freeze traces
-    Continuity: {
-        enabled: true,
-        monitorLongTasks: true,
-        monitorPageBusy: true,
-        monitorFrameRate: true,
-        monitorInteractions: true,
-        afterOnload: true
-    }
-});</code></pre>
-  </div>
-</div>
-<h1>Sessions</h1>
-<h2>Manual sessions</h2>
-<p>
-  <strong>Beginning a session</strong>
-</p>
-<p>
-  <span style="font-weight: 400;">This method would allow you to control sessions manually. Only use this method if you aren’t planning on calling the track_sessions method and set the&nbsp;</span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;">&nbsp;setting to false for more granular control of the session.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If&nbsp;<strong>noHeartBeat</strong>&nbsp;is true, then the Countly Web SDK will not automatically extend the session, meaning you would be the one to do it automatically.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['begin_session']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
-  </div>
-</div>
-<p>
-  <strong>Extending a session</strong>
-</p>
-<p>
-  <span style="font-weight: 400;">The Countly SDK will extend the session itself by default (if&nbsp;<strong>noHeartBeat</strong>&nbsp;was provided in the&nbsp;<strong>begin_session</strong>), but if you have not selected this option, you may then extend it using this method and provide the seconds since the last <strong>begin_session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;call.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['session_duration', sec]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
-  </div>
-</div>
-<p>
-  <strong>Ending a session</strong>
-</p>
-<p>
-  <span style="font-weight: 400;">When a visitor is leaving your app or website, you should end their session with this method or by optionally providing the amount of seconds since the last&nbsp;<strong>begin session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;calls, which ever came last.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['end_session']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.end_session(sec)</code></pre>
-  </div>
-</div>
-<h1>User feedback</h1>
-<p>
-  If you want to receive feedback from your users there are a couple of ways you
-  can do that in Countly. To get a rating or suggestion from users you can use
-  rating widgets, which gives users flexibility to give a rating, leave a comment
-  or reach you with an e-mail. Another way the users can leave feedback is through
-  the feedback widgets (survey, nps). With the help of these widgets you can ask
-  your customers multiple questions and learn about their opinions and preferences
-  in detail.
-</p>
-<h2>Ratings</h2>
-<p>
-  While it can be cumbersome for a customer to fill a survey, a quick alternative
-  to get user feedback is to get a numerical user rating. That can be done with
-  the Countly rating widget.
-</p>
-<h3>Rating widget</h3>
-<p>
-  Rating widgets create a channel for users to interact, through a pop up widget.
-</p>
-<p>
-  While it is possible to customize the text fields of rating widgets according
-  to your needs, the fundamental use case of a rating widget is to enable the user
-  to leave a rating feedback on scale of 1 to 5, let the user contact the developer
-  through e-mail and also to let the user be able to leave some comments or suggestions
-  along the way.
-</p>
-<p>
-  With Countly, if you want, you can create a single rating widget to get feedback
-  on a specific topic or you can create multiple rating widgets that can tackle
-  different topics depending on your needs. Another feature that can prove useful
-  is the ability to show rating widgets on command, as a popup. This can be a very
-  useful tool when interlinked with a form submit button to ask your customers
-  about their experience directly after submitting their form or survey.
-</p>
-<p>
-  For rating widgets to show with proper styling and to be present on the screen
-  first you have to enable them using 'enableRatingWidgets' after you have initialized
-  the Countly Web SDK and gave "star-rating" consent for widgets. Then you can
-  integrate the ratings widget as follows:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//after initializing and giving consent
-//for a single rating widget with widget ID '5b86772f7965c435319c79ee'
-Countly.q.push([
-    'enableRatingWidgets',
-    {'popups':['5b86772f7965c435319c79ee']}
-]);
-
-//to manually show a rating widget as a popup
-Countly.q.push([
-    'presentRatingWidgetWithID',
-    '6gdd84asc435319c78s4'
-]);
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//after initializing and giving consent
-//for a rating widget with widget ID '5b86772f7965c435319c79ee'
-Countly.enableRatingWidgets({
-    'popups':['5b86772f7965c435319c79ee'],
-});
-
-//to manually show a rating widget as a popup'
-Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
-</code></pre>
-  </div>
-</div>
-<p>
-  To see multiple rating widgets on the screen, after enabling your widgets with
-  'enableRatingWidgets' you have to use 'initializeRatingWidgets' by passing multiple
-  widget IDs as an argument as follows:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//after enabling rating widgets
-//to show multiple rating widgets with an array of different widget IDs
-Countly.q.push([
-    'initializeRatingWidgets',
-    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
-]);
-
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//after enabling rating widgets
-//to show multiple rating widgets with an array of different widget IDs
-Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209194fcc"])
-</code></pre>
-  </div>
-</div>
-<h3>Manual rating reporting</h3>
-<p>
-  In case you don't want to use Countly provided feedback and rating UI where you
-  may use your own UI and simply report collected data to Countly.
-</p>
-<p>
-  To report the rating widget result manually, you need to give "star-rating" consent
-  (in case consent is required).
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//user feedback
-Countly.q.push(['recordRatingWidgetWithID', {
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//user feedback
-Countly.recordRatingWidgetWithID({
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
-});</code></pre>
-  </div>
-</div>
-<h2>Feedback widget</h2>
-<p>
-  There are two types of surveys available - NPS and Basic survey.
-</p>
-<p>
-  Both NPS and Survey use the same API to fetch feedbacks from the server as well
-  as to display them to the end user. By default, the created widget will be appended
-  to the end of the html document. In some scenarios you might prefer to have the
-  widget injected in a specific element. For those scenarios we have added optional
-  selectors. The first one is used for selecting an element by it's id and the
-  second one is used to select the element by it's class selector. If you want
-  to inject the feedback widget in a specific element, you can do so by specifying
-  the element ID or the class name.
-</p>
-<p>
-  To use feedback widgets, you need to give "feedback" consent (in case consent
-  is required).
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
-Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
-<br>//Surveys feedback callback function
-function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-  
-    //The available feedback types are nps and survey, decide which one to show
-    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
-
-    //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
-
-    //Display the feedback widget to the end user
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
-
-}
-</span></span></code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
-Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
-<br>//Surveys feedback callback function
-function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-    if (err) {
-      console.log(err);
-        return;
-    }
-    
-    //The available feedback types are nps and survey, decide which one to show
-    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
-    
-    //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
-    
-    //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
-}
-</span></span></code></pre>
-  </div>
-</div>
-<p>
-  Note: Feedback widget's show policies are handled internally by the web sdk.
-</p>
-<h1>Using the Web SDK in Webview</h1>
+<h1>Other features and notes</h1>
+<h2>Using the Web SDK in Webview</h2>
 <p>
   <span style="font-weight: 400;">If you are going to use the Web SDK in the Webview of your app, there are prerequisites that must be checked to ensure it is fully functioning. There are no known iOS issues at this moment, but some specific settings need to be enabled for Android.</span>
 </p>
@@ -2128,7 +2130,6 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
 [myWebView stringByEvaluatingJavaScriptFromString:js];</code></pre>
   </div>
 </div>
-<h1>Other features and notes</h1>
 <h2>Tracking users with Javascript disabled</h2>
 <p>
   <span style="font-weight: 400;">In some cases, a user might have JavaScript disabled, meaning normal ways of tracking those users will prove ineffective. In such a case, you may use the transparent 1px x 1px image hosted on your Countly server as reporting the URL and report all the same&nbsp;<a href="https://api.count.ly/reference#i">parameters as all the SDKs have been described here</a>.</span>
