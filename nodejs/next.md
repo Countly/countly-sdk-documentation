@@ -509,3 +509,110 @@ Countly.report_feedback({
     comment: "Very good"
 });</code></pre>
 <p>&nbsp;</p>
+
+<h1>Other Features</h1>
+<h2>SDK Internal Limits</h2>
+<p>Countly is highly customizable and let's you take a huge part at the control 
+of the system in multiple ways. From customizing segmentation values to changing
+ event keys great liberty comes with the cost of great responsibility. As a sanity
+ check measure Countly relies on internal limits to get a hold of the free flow of
+ values, keys, character and more. These internal limits are again customizable at
+ initialization and current limits and their default values are as follows:   
+</p>
+<p>
+<ul>
+<li>
+<strong>maxKeyLength</strong> - 128 chars. Keys that exceed this limit will be truncated.
+</li>
+<ul>
+This is used for setting the maximum size of all string keys including:
+<li>
+ - event names
+</li>
+<li>
+ - view names
+ </li><li>
+ - custom trace key name (APM)
+ </li><li>
+ - custom metric key (apm)
+ </li><li>
+ - segmentation key (for all features)
+ </li><li>
+ - custom user property
+ </li><li>
+ - custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)
+  </li>
+</li>
+</ul>
+<li>
+<strong>maxValueSize</strong> - 256 chars. Values that exceed this limit will be truncated.
+</li>
+<ul>
+This is used for setting the maximum size of all values in key-value pairs including:
+<li>
+ - segmentation value in case of strings (for all features)
+</li>
+<li>
+ - custom user property string value
+
+ </li><li>
+ - user profile named key (username, email, etc) string values. Except "picture" field, that has a limit of 4096 chars
+
+ </li><li>
+ - custom user property modifier string values. For example, for modifiers like "push", "pull", "setOnce", etc.
+
+ </li><li>
+ - breadcrumb text
+
+ </li><li>
+ - manual feedback widget reporting fields (reported as event)
+
+ </li><li>
+ - rating widget response (reported as event)
+
+  </li>
+</li>
+</ul>
+<li>
+<strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed this limit will be removed.
+<br>To set the maximum amount of custom segmentation that can be recorded in one event.</br>
+</li>
+
+
+<li>
+<strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded, the oldest entry will be removed.
+<br>To limit the amount of breadcrumbs that can be recorded before the oldest one is deleted from the logs.</br>
+</li>
+
+
+<li>
+<strong>maxStackTraceLinesPerThread</strong> - 30 lines. Lines that exceed this entry will be removed.
+<br>Sets the maximum number of stack trace lines that can be recorded per thread.</br>
+</li>
+
+
+<li>
+<strong>maxStackTraceLineLength</strong> - 200 chars. Lines that exceed this limit will be truncated.
+<br>This can set the maximum number of characters that is allowed per stack trace line. This also limits
+the crash message length.</br>
+</li>
+</ul>
+</p>
+<p>
+To change these default values all you have to do is to set the properties
+during the initialization:
+</p>
+  </div>
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    max_key_length: 500,
+    max_value_size: 12,
+    max_segmentation_values: 23,
+    max_breadcrumb_count: 80,
+    max_stack_trace_lines_per_thread: 50,
+    max_stack_trace_line_length: 300
+});</code></pre>
+  </div>
+<p>
+
