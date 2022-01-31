@@ -50,86 +50,7 @@
 <div class="img-container">
   <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
 </div>
-<h1>SDK Integration</h1>
-<h2>Minimal Setup</h2>
-<h3>Providing the application key</h3>
-<h3>Providing the server URL</h3>
-<h2>SDK logging</h2>
-<h2>Device ID</h2>
-<h2>SDK notes</h2>
-
-<h1>Crash reporting</h1>
-<h2>Automatic crash handling</h2>
-<h2>Automatic crash report segmentation</h2>
-<h2>Handled exceptions</h2>
-<h2>Crash breadcrumbs</h2>
-<h2>Consent</h2>
-<h2>Symbolication</h2>
-
-<h1>Events</h1>
-<h2>Intro with event field overview</h2>
-<h2>Recording events</h2>
-<h2>Timed Events</h2>
-<h2>Consent</h2>
-
-<h1>Sessions</h1>
-<h2>Automatic session tracking</h2>
-<h2>Manual sessions</h2>
-<h3>Beginning a session</h3>
-<h3>Extending a session</h3>
-<h3>Ending a session</h3>
-<h2>Consent</h2>
-
-<h1>View tracking</h1>
-<h2>Automatic view tracking</h2>
-<h2>Automatic view segmentation</h2>
-<h2>Manual view tracking</h2>
-<h2>Consent</h2>
-
-<h1>Device ID management</h1>
-<h2>Changing device ID</h2>
-<h2>Consent</h2>
-
-<h1>Heatmaps</h1>
-<h2>Track Clicks</h2>
-<h2>Track Scrolls</h2>
-<h2>Consent</h2>
-
-<h1>Remote config</h1>
-<h2>Intro</h2>
-<h2>Automatic remote config</h2>
-<h2>Manual remote config</h2>
-<h2>Filtered value update</h2>
-<h2>Consent</h2>
-
-<h1>User Feedback</h1>
-<h2>Ratings</h2>
-<h3>Rating widget</h3>
-<h3>Manual rating reporting</h3>
-<h2>Feedback widget</h2>
-
-<h1>User Profiles</h1>
-<h2>Setting custom values</h2>
-<h2>Modifying data</h2>
-
-<h1>Application Performance Monitoring</h1>
-<h2>Custom traces</h2>
-<h2>Automatic device traces</h2>
-<h2>Consent</h2>
-
-<h1>User consent</h1>
-<h2>Setup during init</h2>
-<h2>Changing consent</h2>
-<h3>Opt in / Opt out</h3>
-<h3>Checking consent</h3>
-<h2>Feature groups</h2>
-
-<h1>Security and Privacy</h1>
-<h2>What data is collected by the SDK</h2>
-
-<h1>Other Features</h1>
-
-
+<h1>Setting up (Recommended asynchronous usage)</h1>
 <p>
   <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
 </p>
@@ -283,6 +204,7 @@ function clickEvent(ob){
     IDE.
   </p>
 </div>
+<h1>Setup properties</h1>
 <p>
   Here are the properties you may set up upon Countly initialization:
 </p>
@@ -454,7 +376,7 @@ Countly.ip_address = "83.140.15.1";</code></pre>
 <p>
   <span style="font-weight: 400;">Note that the Countly web SDK automatically captures UTM tags and stores them as user properties together with the corresponding user. This will make users segmentable in all the places around the dashboard, where granular data is used and segmentation capabilities are provided.</span>
 </p>
-
+<h1>Helper methods</h1>
 <p>
   <span style="font-weight: 400;">Helper methods were created to allow you to easily track the most common actions on your web.</span>
 </p>
@@ -465,6 +387,7 @@ Countly.ip_address = "83.140.15.1";</code></pre>
     tracking code. Choose the right helper method depending on your implementation.
   </p>
 </div>
+<h2>Track Sessions</h2>
 <p>
   <span style="font-weight: 400;">This method will automatically track user sessions by calling begin, extend, and end session methods.</span>
 </p>
@@ -480,6 +403,7 @@ Countly.ip_address = "83.140.15.1";</code></pre>
     <pre><code class="javascript">Countly.track_sessions();</code></pre>
   </div>
 </div>
+<h2>Track Pageviews</h2>
 <p>
   <span style="font-weight: 400;">This method will track the current pageview by using location.path as the page name and then reporting it to the server.</span>
 </p>
@@ -600,6 +524,7 @@ Countly.q.push(['track_pageview', null, null, {theme:"red", mode:"fullscreen"}])
 Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code></pre>
   </div>
 </div>
+<h2>Overriding view name and URL getters</h2>
 <p>
   <span style="font-weight: 400;">There are cases when determining the view name requires more complex logic, and in some cases, you will need to separate the URL and the View naming. This is done so you may still have some business logic view names, yet you have the valid URL underneath them to view action maps, such as clicks and scrolls.</span>
 </p>
@@ -645,6 +570,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 };</code></pre>
   </div>
 </div>
+<h2>Track Clicks / Heatmaps (Enterprise edition)</h2>
 <p>
   <span style="font-weight: 400;">This method will automatically track clicks on the last reported view and display them on the heatmap.</span>
 </p>
@@ -679,6 +605,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 <div class="img-container">
   <img src="https://count.ly/images/guide/b893929-11.png">
 </div>
+<h2>Track Scrolls / Scroll heatmaps (Enterprise edition)</h2>
 <p>
   <span style="font-weight: 400;">This method will automatically track scrolls on the last reported view and display them on the heatmap.</span>
 </p>
@@ -700,6 +627,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 <div class="img-container">
   <img src="https://count.ly/images/guide/5bc44bc-topbar.png">
 </div>
+<h2>Track link clicks</h2>
 <p>
   <span style="font-weight: 400;">This method will track clicks to specific links and will report events with the </span><strong>linkClick</strong><span style="font-weight: 400;">&nbsp;key as well as the link's text, ID, and URLs as segments.</span>
 </p>
@@ -721,6 +649,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 <p>
   <span style="font-weight: 400;">As soon as you include this one-liner coder, you will automatically be able to see the "linkClick" event in your dashboard as data flows in with the text, ID, and URLs as segments.</span>
 </p>
+<h2>Track form submissions</h2>
 <p>
   <span style="font-weight: 400;">This method will automatically track form submissions and collect form data. It will then input values in the form and report them as a Event with the <strong>formSubmit</strong>&nbsp;key.</span>
 </p>
@@ -752,6 +681,7 @@ Countly.track_forms(null, true);</code></pre>
 
   </div>
 </div>
+<h2>Report conversion</h2>
 <p>
   <span style="font-weight: 400;">When using Countly attribution analytics, you may also report conversions to the Countly server, e.g. when a visitor purchases an item or registers on your site.</span>
 </p>
@@ -789,6 +719,7 @@ Countly.recordDirectAttribution("MyCampaignID");</code></pre>
 
   </div>
 </div>
+<h2>Report device orientation</h2>
 <p>
   Orientation tracking is enabled by default and will be sent if the required "user"
   consent is given (if enabled). Countly will report the device orientation once
@@ -835,6 +766,7 @@ Countly.q.push(['report_orientation', "portrait"]);</code></pre>
 Countly.report_orientatio("portrait");</code></pre>
   </div>
 </div>
+<h2>Opt in / Opt out</h2>
 <p>
   <span style="font-weight: 400;">The Countly SDK will always be opt in by default, but you may easily disable all tracking by selecting&nbsp;the <strong>opt_out</strong>&nbsp;method. It will also persistently save settings and prevent tracking after page reloads. Select&nbsp;<strong>opt_in</strong> to resume tracking.</span>
 </p>
@@ -871,9 +803,11 @@ Countly.opt_in();</code></pre>
     object.
   </p>
 </div>
+<h1>Automatically fill user data</h1>
 <p>
   <span style="font-weight: 400;">In most cases, you won’t know anything about your users, yet you will still want to try to collect any data possible. We provide 2 helper methods for this exact reason.</span>
 </p>
+<h2>Collect user data from filled forms</h2>
 <p>
   <span style="font-weight: 400;">This method will look into the forms filled out by your users and will try to gather data, such as names, email addresses, usernames, etc.<br>All forms will automatically be checked, but you have the option to provide a form element if you would like to collect data only from a specific form, or select a method multiple times for different forms. Also, if you are already providing data for users, then you would not want to overwrite it. You may set the third parameter as true to indicate that data found should be stored in custom properties.</span>
 </p>
@@ -922,6 +856,7 @@ Countly.collect_from_forms(document, true);</code></pre>
 
 &lt;/form&gt;</code></pre>
 
+<h2>Collect user data from Facebook</h2>
 <p>
   <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
 </p>
@@ -956,6 +891,8 @@ alert('Please authorize this application to use it!');
 });
 &lt;/script&gt;</code></pre>
 
+<h1>Events</h1>
+<h2>Adding an event</h2>
 <p>
   <span style="font-weight: 400;">Events are a way to track any custom actions or other data you would like to track from your website. You may also set segments to be able to view a breakdown of the action by providing the segment values.</span>
 </p>
@@ -1011,6 +948,7 @@ alert('Please authorize this application to use it!');
 });</code></pre>
   </div>
 </div>
+<h2>Timed Events</h2>
 <p>
   <span style="font-weight: 400;">You may report time or duration with every event by providing the&nbsp;<strong>dur</strong>&nbsp;property of the event’s object. However, if you would like, you may also let the Web SDK track the duration of some specific events for you. You may use the&nbsp;<strong>start_event</strong>&nbsp;and&nbsp;<strong>end_event</strong>&nbsp;methods.</span>
 </p>
@@ -1070,6 +1008,8 @@ Countly.end_event({
 
   </div>
 </div>
+<h1>User profiles</h1>
+<h2>User details</h2>
 <p>
   <span style="font-weight: 400;">If you have any details about the user/visitor, you may provide Countly with that information. This will allow you to track every specific user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
 </p>
@@ -1118,6 +1058,7 @@ Countly.end_event({
  });</code></pre>
   </div>
 </div>
+<h2>Modifying custom data</h2>
 <p>
   <span style="font-weight: 400;">Additionally, you may perform different manipulations on custom data values, such as incrementing the current value on the server or storing an array of values under the same property.</span>
 </p>
@@ -1160,6 +1101,7 @@ Countly.userData.pull(key, value) //remove value from array under property with 
 Countly.userData.save() //send userData to server</code></pre>
   </div>
 </div>
+<h1>Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">Countly also provides a way for tracking JavaScript errors on your websites.</span>
 </p>
@@ -1244,6 +1186,7 @@ catch(ex){
     <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
   </div>
 </div>
+<h1>Device ID management</h1>
 <p>
   <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
 </p>
@@ -1285,12 +1228,14 @@ catch(ex){
 <p>
   <span style="font-weight: 400;">NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
 </p>
+<h1>User consent</h1>
 <p>
   <span style="font-weight: 400;">In most cases, the </span><strong>opt_out</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>opt_in</strong><span style="font-weight: 400;">&nbsp;methods are enough to disable the tracking of specific users, such as testers. However, in some cases, you may require a more granular approach.</span>
 </p>
 <p>
   <span style="font-weight: 400;">This section will tell you how to set up GDPR compliant consent management with the Countly Web SDK.</span>
 </p>
+<h2>Disable tracking until given consent</h2>
 <p>
   <span style="font-weight: 400;">To disable tracking until consent is given for a specific feature, all you need to do is pass true as the&nbsp;</span><strong>require_consent</strong><span style="font-weight: 400;">&nbsp;config before or during your selection of the Countly&nbsp;</span><strong>init</strong><span style="font-weight: 400;">&nbsp;method.</span>
 </p>
@@ -1320,6 +1265,7 @@ Countly.require_consent = true;</code></pre>
 <p>
   <span style="font-weight: 400;">Next, you may select all the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#helper-methods" target="_self">helper methods</a>&nbsp;you will be using. They won't be tracking or sending anything to the server until consent is given.</span>
 </p>
+<h2>Features for consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK provides different features for consent. You may check all the supported features for the current SDK by checking the&nbsp;</span><strong>Countly.features</strong><span style="font-weight: 400;">&nbsp;property. Here is a list containing all the properties with ex</span>planations:
 </p>
@@ -1388,6 +1334,7 @@ Countly.require_consent = true;</code></pre>
 //After this call Countly.add_consent("all") to allow all features</code></pre>
   </div>
 </div>
+<h2>Managing consent</h2>
 <p>
   <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you should check if you already have consent from this visitor. If not, you should present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the&nbsp;<strong>Countly.add_consent</strong>&nbsp;method and passing one or multiple features (as an array). For example, you should also allow the user to change their mind regarding separate settings screens and when changes are going to be made there.</span>
   <span style="font-weight: 400;">Respectively call the <strong>Countly.add_consent</strong> or <strong>Countly.remove_consent</strong>&nbsp;methods to allow Countly to track specific features or disable tracking for them.</span>
@@ -1520,6 +1467,7 @@ localStorage.setItem("consents", JSON.stringify(response));
 
   </div>
 </div>
+<h1>Remote config</h1>
 <p>
   <span style="font-weight: 400;">Remote configuration functionality is disabled by default and needs to be explicitly enabled.</span>
 </p>
@@ -1529,6 +1477,7 @@ localStorage.setItem("consents", JSON.stringify(response));
 <p>
   <span style="font-weight: 400;">In the event of one of the following sessions, assuming it would not be possible to load the remote configuration from storage, you will receive an error object in the callback, but you will still have the stored values of the cached remote configuration object.</span>
 </p>
+<h2>Enabling Remote configuration</h2>
 <p>
   <span style="font-weight: 400;">You may enable remote configuration by providing&nbsp;the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;">&nbsp;setting when initializing the SDK.</span>
 </p>
@@ -1581,7 +1530,9 @@ console.log(remoteConfigs);
 
   </div>
 </div>
-
+<h2>
+  Receiving configuration values<span style="font-weight: 400;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+</h2>
 <p>
   <span style="font-weight: 400;">You receive the initially loaded remote configuration values in the provided callback, but if you&nbsp;need to get an updated version afterward, you can manually reload it.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </p>
@@ -1597,6 +1548,7 @@ var remoteConfig = Countly.get_remote_config();
 //or get value for specific key like 'test'
 var test = Countly.get_remote_config("test");</code></pre>
 
+<h2>Reloading configuration values</h2>
 <p>
   <span style="font-weight: 400;">Should you need to reload the remote config in order to receive the latest value, call&nbsp;the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;">&nbsp;method.</span>
 </p>
@@ -1624,6 +1576,7 @@ console.log(remoteConfigs);
 }
 });</code></pre>
 
+<h1>Application Performance Monitoring</h1>
 <p>
   There are 2 ways to report performance traces. One way is to construct and report
   them manually. The other is using a plugin that will use boomerang.js to collect
@@ -1728,6 +1681,8 @@ Countly.track_performance({
 });</code></pre>
   </div>
 </div>
+<h1>Tracking a session manually</h1>
+<h2>Beginning a session</h2>
 <p>
   <span style="font-weight: 400;">This method would allow you to control sessions manually. Only use this method if you aren’t planning on calling the track_sessions method and set the&nbsp;</span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;">&nbsp;setting to false for more granular control of the session.</span>
 </p>
@@ -1746,6 +1701,7 @@ Countly.track_performance({
     <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
   </div>
 </div>
+<h2>Extending a session</h2>
 <p>
   <span style="font-weight: 400;">The Countly SDK will extend the session itself by default (if&nbsp;<strong>noHeartBeat</strong>&nbsp;was provided in the&nbsp;<strong>begin_session</strong>), but if you have not selected this option, you may then extend it using this method and provide the seconds since the last <strong>begin_session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;call.</span>
 </p>
@@ -1761,6 +1717,7 @@ Countly.track_performance({
     <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
   </div>
 </div>
+<h2>Ending a session</h2>
 <p>
   <span style="font-weight: 400;">When a visitor is leaving your app or website, you should end their session with this method or by optionally providing the amount of seconds since the last&nbsp;<strong>begin session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;calls, which ever came last.</span>
 </p>
@@ -1776,6 +1733,7 @@ Countly.track_performance({
     <pre><code class="javascript">Countly.end_session(sec)</code></pre>
   </div>
 </div>
+<h1>Offline mode</h1>
 <p>
   <span style="font-weight: 400;">Some cases do exist when you would like the SDK to collect data but not send it to the server until a certain point. Additionally, this mode allows you to delay providing the device_id property until a later time.</span>
 </p>
@@ -1846,6 +1804,7 @@ Countly.init();</code></pre>
     <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
 </div>
+<h1>User feedback</h1>
 <p>
   If you want to receive feedback from your users there are a couple of ways you
   can do that in Countly. To get a rating or suggestion from users you can use
@@ -1855,11 +1814,13 @@ Countly.init();</code></pre>
   your customers multiple questions and learn about their opinions and preferences
   in detail.
 </p>
+<h2>Ratings</h2>
 <p>
   While it can be cumbersome for a customer to fill a survey, a quick alternative
   to get user feedback is to get a numerical user rating. That can be done with
   the Countly rating widget.
 </p>
+<h3>Rating widget</h3>
 <p>
   Rating widgets create a channel for users to interact, through a pop up widget.
 </p>
@@ -1942,6 +1903,7 @@ Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209
 </code></pre>
   </div>
 </div>
+<h3>Manual rating reporting</h3>
 <p>
   In case you don't want to use Countly provided feedback and rating UI where you
   may use your own UI and simply report collected data to Countly.
@@ -1976,6 +1938,7 @@ Countly.recordRatingWidgetWithID({
 });</code></pre>
   </div>
 </div>
+<h2>Feedback widget</h2>
 <p>
   There are two types of surveys available - NPS and Basic survey.
 </p>
@@ -2048,6 +2011,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 <p>
   Note: Feedback widget's show policies are handled internally by the web sdk.
 </p>
+<h1>Multiple trackers on the same domain</h1>
 <p>
   <span style="font-weight: 400;">Sometimes you would like to track different parts of the same domain/website as separate applications.</span>
 </p>
@@ -2085,6 +2049,7 @@ Countly.init();</code></pre>
 });</code></pre>
   </div>
 </div>
+<h1>Cross website/domain tracking</h1>
 <p>
   <span style="font-weight: 400;">You will need to use the same device_id value on the same user in both places to track the same user across different websites or domains.</span>
 </p>
@@ -2094,6 +2059,7 @@ Countly.init();</code></pre>
 <p>
   <strong><span style="font-weight: 400;">Simply take the device ID value from <strong>Countly.device_id</strong>&nbsp;and pass it as a URL parameter named&nbsp;<strong>cly_device_id</strong>&nbsp;as follows:&nbsp;<a href="http://newdomain.com/?cly_device_id=your-user-device-id">http://newdomain.com/?cly_device_id=your-user-device-id.</a></span></strong>
 </p>
+<h1>Using the Web SDK in Webview</h1>
 <p>
   <span style="font-weight: 400;">If you are going to use the Web SDK in the Webview of your app, there are prerequisites that must be checked to ensure it is fully functioning. There are no known iOS issues at this moment, but some specific settings need to be enabled for Android.</span>
 </p>
@@ -2174,6 +2140,7 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
 
   </div>
 </div>
+<h1>Tracking users with Javascript disabled</h1>
 <p>
   <span style="font-weight: 400;">In some cases, a user might have JavaScript disabled, meaning normal ways of tracking those users will prove ineffective. In such a case, you may use the transparent 1px x 1px image hosted on your Countly server as reporting the URL and report all the same&nbsp;<a href="https://api.count.ly/reference#i">parameters as all the SDKs have been described here</a>.</span>
 </p>
@@ -2191,6 +2158,7 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
   <span style="font-weight: 400;">However, as mentioned before, this accepts any parameters as a normal SDK endpoint does. Thus, if you dynamically generate data via the server, you may also dynamically generate this URL to provide information that you have about the user. That might be the device_id parameter (for identification), OS, OS version, and any other metrics or information you have, as for example</span>
 </p>
 <pre><code class="html">&lt;noscript&gt;&lt;img src='http://domain.com/pixel.png?app_key=12345&amp;device_id=test@test.com&amp;begin_session=1&amp;metrics={"_os":"Android", "_os_version":"4.1"}'/&gt;&lt;/noscript&gt;</code></pre>
+<h1>Tracked cookie list and explanations</h1>
 <p>
   By default, Countly Web SDK uses local storage to keep information between page
   views, but if local storage is not available, Web SDK will try to fallback to
@@ -2233,6 +2201,7 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
     action map data
   </li>
 </ul>
+<h1>Symbolication</h1>
 <div class="callout callout--warning">
   <h3 class="callout__title">Enterprise</h3>
   <p>
@@ -2288,6 +2257,8 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
   <a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication" target="_self">Crash Symbolication</a>
   documentation.
 </p>
+<h1>Other features and notes</h1>
+<h2>SDK Internal Limits</h2>
 <p>Countly is highly customizable and let's you take a huge part at the control 
 of the system in multiple ways. From customizing segmentation values to changing
  event keys great liberty comes with the cost of great responsibility. As a sanity
