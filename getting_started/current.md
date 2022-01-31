@@ -13,13 +13,13 @@
 </p>
 <h1>User/device identification</h1>
 <p>
-  By default Countly generates an anonymous identifier to uniquely identify a device
+  By default, Countly generates an anonymous identifier to uniquely identify a device
   or browser. Total users metric for any period is based on unique number of device
   ids Countly Server receives requests from. Similarly, users list in
   <a href="/hc/en-us/articles/360037630571" target="_blank" rel="noopener">User Profiles</a>
   section is a list of anonymous devices Countly Server is receiving data from.
   All data originating from a single device, including sessions, events, views
-  and crashes, is grouped under these individual profiles since all the data is
+  and crashes, are grouped under these individual profiles since all the data is
   tagged with the originating device id.
 </p>
 <p>
@@ -36,7 +36,7 @@
 </p>
 <h1>Deciding on custom user properties</h1>
 <p>
-  User properties play an important role not only in reporting, but also in various
+  User properties play an important role not only in reporting but also in various
   other cases such as personalizing push notifications and creating conditional
   remote configuration variables.
 </p>
@@ -44,7 +44,7 @@
   Most Countly SDKs send some user properties together with the session request&nbsp;
   which is triggered automatically when the app is launched, user lands on a website,
   or manually in some cases such as server to server SDK usage. These properties,
-  which we call default user properties, are meta data including but not limited
+  which we call default user properties, are metadata including but not limited
   to app version, device, platform, platform version.&nbsp;
 </p>
 <p>
@@ -182,6 +182,25 @@
   As you can tell from the above reporting examples, event segment selection is
   an important part of your success with reporting &amp; visualization in Countly.
 </p>
+<h1>Acquiring your application key and server url</h1>
+<p>
+  <strong>Acquiring the application key</strong>
+</p>
+<p>
+  <span style="font-weight: 400;">Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
+</p>
+<p>
+  <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
+</p>
+<p>
+  <strong>Acquiring the server URL</strong>
+</p>
+<p>
+  <span style="font-weight: 400;">If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,<span>&nbsp;</span><code>https://us-try.count.ly</code><span>&nbsp;</span>or<span>&nbsp;</span><code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as </span><a href="https://example.com"><span style="font-weight: 400;">https://example.com</span></a><span style="font-weight: 400;">&nbsp;or&nbsp;</span><a href="https://ip/"><span style="font-weight: 400;">https://IP</span></a><span style="font-weight: 400;">&nbsp;(if SSL has been set up).</span>
+</p>
 <h1>Handling login/logout in your app</h1>
 <p>
   For a lot of apps, there is a login option. This allows you to confirm the identity
@@ -225,5 +244,5 @@
 <h2>Android</h2>
 <pre><span>public void </span><span>Login</span>() {<br>    <span>String newId </span>= <span>"SomeValue"</span>;<br>    <span>if </span>(<span>Countly</span>.<span>sharedInstance</span>().getDeviceIDType() == <span>DeviceId</span>.<span>Type</span>.<span>DEVELOPER_SUPPLIED</span>) {<br>        <span>// an ID was provided by the host app previously<br></span><span>        // we can assume that a device ID change with merge was executed previously<br></span><span>        // now we change it without merging<br></span><span>        </span><span>Countly</span>.<span>sharedInstance</span>().changeDeviceIdWithoutMerge(<span>DeviceId</span>.<span>Type</span>.<span>DEVELOPER_SUPPLIED</span>, <span>newId</span>);<br>    } <span>else </span>{<br>        <span>// SDK generated ID<br></span><span>        // we change device ID with merge so that data is combined<br></span><span>        </span><span>Countly</span>.<span>sharedInstance</span>().changeDeviceIdWithMerge(<span>newId</span>);<br>    }<br>}</pre>
 <h2>iOS</h2>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">public static void login()<br> &nbsp;<wbr> &nbsp;<wbr>{<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>DeviceId.Type type = Countly.sharedInstance().getDeviceIDType();<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>if(type.equals(DeviceId.Type.DEVELOPER_SUPPLIED))<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithoutMerge(DeviceId.Type.DEVELOPER_SUPPLIED,AuthManager.getInstance().getUserId());<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>else<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithMerge(AuthManager.getInstance().getUserId());<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr>}</pre>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">public static void login()<br> &nbsp;<wbr> &nbsp;<wbr>{<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>DeviceId.Type type = Countly.sharedInstance().getDeviceIDType();<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>if(type.equals(DeviceId.Type.DEVELOPER_SUPPLIED))<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithoutMerge(DeviceId.Type.DEVELOPER_SUPPLIED,<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>else<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithMerge(<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr>}</pre>
 <p>&nbsp;</p>
