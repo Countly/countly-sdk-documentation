@@ -36,7 +36,7 @@
   <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
 </p>
 <div class="callout callout--info">
-  <h3 class="callout__title">What is an APP KEY?</h3>
+  <p class="callout__title">What is an APP KEY?</p>
   <p>
     You'll see the APP_KEY definition above. This key is generated automatically
     when you create a website for tracking on the Countly dashboard. Note that
@@ -182,9 +182,9 @@ function clickEvent(ob){
   </div>
 </div>
 <div class="callout callout--info">
-  <h3 class="callout__title">
+  <p class="callout__title">
     Why aren’t I able to see AngularJS errors on the Countly dashboard?
-  </h3>
+  </p>
   <p>
     AngularJs swallows errors by default. You will need to extend Angular's
     <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>.
@@ -193,7 +193,7 @@ function clickEvent(ob){
   </p>
 </div>
 <div class="callout callout--info">
-  <h3 class="callout__title">Generate custom SDK code snippets</h3>
+  <p class="callout__title">Generate custom SDK code snippets</p>
   <p>
     <a href="http://code.count.ly/">Countly Code Generator</a> may be used to
     generate custom SDK code snippets simply and quickly. You may provide values
@@ -461,7 +461,7 @@ catch(ex){
 </div>
 <h2>Symbolication</h2>
 <div class="callout callout--warning">
-  <h3 class="callout__title">Enterprise</h3>
+  <p class="callout__title">Enterprise</p>
   <p>
     Crash symbolication is available for
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> users.
@@ -521,7 +521,7 @@ catch(ex){
   <span style="font-weight: 400;">Events are a way to track any custom actions or other data you would like to track from your website. You may also set segments to be able to view a breakdown of the action by providing the segment values.</span>
 </p>
 <div class="callout callout--warning">
-  <h3 class="callout__title">Data passed should be in UTF-8</h3>
+  <p class="callout__title">Data passed should be in UTF-8</p>
   <p>
     All data passed to the Countly instance via the SDK or API should be in UTF-8.
   </p>
@@ -1001,9 +1001,9 @@ Countly.init();</code></pre>
   <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
 </p>
 <div class="callout callout--info">
-  <h3 class="callout__title">
+  <p class="callout__title">
     Important notification about viewing heatmaps with HTTP/HTTPS content:
-  </h3>
+  </p>
   <p>
     Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
     For this reason, if you are using HTTPS on your Countly instance, you will
@@ -1624,7 +1624,7 @@ Countly.opt_in();</code></pre>
   <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
 </p>
 <div class="callout callout--info">
-  <h3 class="callout__title">Opt out by default</h3>
+  <p class="callout__title">Opt out by default</p>
   <p>
     If you would like to have opt out selected by default, combine these methods
     with the initial setting <strong>ignore_visitor</strong> on the Countly init
