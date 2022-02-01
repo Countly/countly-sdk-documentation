@@ -19,7 +19,9 @@
   any event can be sent with segmentation easily.
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">What is an APP KEY?</p>
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>What is an APP KEY?</strong></span>
+    </p>
   <p>
     You'll see APP_KEY definition above. This key is generated automatically
     when you create a website for tracking on Countly dashboard. Note that APP
@@ -63,7 +65,10 @@ Countly.init({
 
 Countly.begin_session();</code></pre>
 <div class="callout callout--info">
-  <p class="callout__title">Which API HOST name should I use to send data to?</p>
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Which API HOST name should I use to send data to?</strong></span>
+  </p>
+
   <p>
     If you are using Countly Enterprise Edition trial servers use
     <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
@@ -268,7 +273,11 @@ catch(ex){
   }
 });</code></pre>
 <div class="callout callout--warning">
-  <p class="callout__title">Data passed should be in UTF-8</p>
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
+  </p>
+
+  
   <p>
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>
