@@ -19,7 +19,9 @@
   any event can be sent with segmentation easily.
 </p>
 <div class="callout callout--info">
-  <h3 class="callout__title">What is an APP KEY?</h3>
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>What is an APP KEY?</strong></span>
+    </p>
   <p>
     You'll see APP_KEY definition above. This key is generated automatically
     when you create a website for tracking on Countly dashboard. Note that APP
@@ -35,7 +37,7 @@
 <div class="img-container">
   <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
 </div>
-<h1>Setting up</h1>
+<h1>Adding the SDK to the project</h1>
 <p>
   To add the SDK to your project, you would use a command similar to these:
 </p>
@@ -63,7 +65,10 @@ Countly.init({
 
 Countly.begin_session();</code></pre>
 <div class="callout callout--info">
-  <h3 class="callout__title">Which API HOST name should I use to send data to?</h3>
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Which API HOST name should I use to send data to?</strong></span>
+  </p>
+
   <p>
     If you are using Countly Enterprise Edition trial servers use
     <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
@@ -88,7 +93,7 @@ Countly.begin_session();</code></pre>
         "country": "Germany"
     }
 });</code></pre>
-<h1>Setup properties</h1>
+<h2>Setup properties</h2>
 <p>
   Here are the properties you can setup on Countly initialization
 </p>
@@ -201,165 +206,7 @@ Countly.setLoggingEnabled(true);
 
 //to turn off the logs
 Countly.setLoggingEnabled(false);</code></pre>
-<h1>Helper methods</h1>
-<p>
-  Helper methods created to allow you easily track most common actions
-</p>
-<h3>Track Views</h3>
-<p>
-  This method allows you to track different parts of your application, called views.
-  You can track how much time is spent on each part of the application.
-</p>
-<pre><code class="javascript">Countly.track_view("viewname");</code></pre>
-<p>
-  And optionally, as the third parameter, you can provide view segments (key/value
-  pairs) to track together with the view. There is a list of reserved segment keys
-  that should not be used:
-</p>
-<ul>
-  <li>start</li>
-  <li>visit</li>
-  <li>bounce</li>
-  <li>end</li>
-  <li>name</li>
-  <li>domain</li>
-  <li>view</li>
-  <li>segment</li>
-  <li>platform</li>
-</ul>
-<pre><code class="javascript">//Provide view segments
-Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
-<h3>Report conversion</h3>
-<p>
-  When using Countly attribution analytics, you can also report conversion to Countly
-  server, like for example when visitor purchased something or registered.
-</p>
-<p>
-  Note: that conversion for each user may be reported only once, all other conversions
-  will be ignored for this same user
-</p>
-<pre><code class="javascript">//or provide campaign id yourself
-Countly.report_conversion("MyCampaignID");</code></pre>
-<h3>Make raw request</h3>
-<p>
-  Sometimes if you are switching between users a lot, or changing some other data,
-  which is hard to handle over multiple processes, etc. You can simply make a raw
-  request with all possible SDK parameters described in
-  <a href="http://resources.count.ly/docs/i">API reference</a>
-</p>
-<pre><code class="javascript">Countly.request({
-  app_key:"somekey", 
-  devide_id:"someid", 
-  events:"[{'key':'val','count':1}]", 
-  metrics:"{'_os':'Linux'}",
-  begin_session:1
-});</code></pre>
-<h1>Events</h1>
-<h3>Adding an event</h3>
-<p>
-  An event is a way to track any custom actions or other data you want to track
-  from your website. You can also provide segments to be able to view breakdown
-  of action by provided segment values.
-</p>
-<p>
-  An event consists of Javascript object with keys: * key - the name of the event
-  (mandatory) * count - number of events (default: 1) * sum - sum to report with
-  event (optional) * dur - duration to report with event (optional) * segmentation
-  - an object with key/value pairs to report with event as segments
-</p>
-<p>
-  Here is an example of adding an event with all possible properties:
-</p>
-<pre><code class="javascript">Countly.add_event({
-  "key": "click",
-  "count": 1,
-  "sum": 1.5,
-  "dur": 30,
-  "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
-  }
-});</code></pre>
-<div class="callout callout--warning">
-  <h3 class="callout__title">Data passed should be in UTF-8</h3>
-  <p>
-    All data passed to Countly instance via SDK or API should be in UTF-8.
-  </p>
-</div>
-<h3>Timed Events</h3>
-<p>
-  You can report time or duration with every event by providing
-  <strong>dur</strong> property of the events object. But if you want, you can
-  also let Web SDK to track duration of some specific event for you, you can use
-  <strong>start_event</strong> and <strong>end_event</strong> methods.
-</p>
-<p>
-  Firstly you can start tracking event time by providing name of the event (which
-  later on will be used as key for event object)
-</p>
-<pre><code class="javascript">Countly.start_event("timedEvent")</code></pre>
-<p>
-  Countly will internally mark the start of event and will wait until you end event
-  with <strong>end_event</strong> method, setting up <strong>dur</strong> property
-  based on how much time has passed since <strong>start_event</strong> for same
-  event name was called.
-</p>
-<pre><code class="javascript">//end event
-Countly.end_event("timedEvent")
-
-//or end event with additional data
-Countly.end_event({
-  "key": "timedEvent",
-  "count": 1,
-  "sum": 1.5,
-  "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
-  }
-});</code></pre>
-<h1>User Profiles and Custom data</h1>
-<h3>User details</h3>
-<p>
-  If you have any details about the user/visitor, you can provide Countly with
-  that information. This will allow you track each and specific user on "User Profiles"
-  tab, which is available with
-  <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.
-</p>
-<p>The list of possible parameters you can pass is:</p>
-<pre><code class="javascript">Countly.user_details({
-    "name": "Arturs Sosins",
-    "username": "ar2rsawseen",
-    "email": "test@test.com",
-    "organization": "Countly",
-    "phone": "+37112345678",
-    //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
-    "gender": "M",
-    "byear": 1987, //birth year
-    "custom":{
-      "key1":"value1",
-      "key2":"value2",
-      ...
-    }
- });</code></pre>
-<h3>Modifying custom data</h3>
-<p>
-  Additionally you can do different manipulations on custom data values, like increment
-  current value on server or store array of values under same property.
-</p>
-<p>Below is the list of available methods:</p>
-<pre><code class="javascript">Countly.userData.set(key, value) //set custom property
-Countly.userData.set_once(key, value) //set custom property only if property does not exist
-Countly.userData.increment(key) //increment value in key by one
-Countly.userData.increment_by(key, value) //increment value in key by provided value
-Countly.userData.multiply(key, value) //multiply value in key by provided value
-Countly.userData.max(key, value) //save max value between current and provided
-Countly.userData.min(key, value) //save min value between current and provided
-Countly.userData.push(key, value) //add value to key as array element
-Countly.userData.push_unique(key, value) //add value to key as array element, but only store unique values in array
-Countly.userData.pull(key, value) //remove value from array under property with key as name
-Countly.userData.save() //send userData to server</code></pre>
-<h1>Tracking Javascript errors</h1>
+<h1>Crash reporting</h1>
 <p>
   Countly also provides a way to track NodeJS errors on your server.
 </p>
@@ -399,8 +246,126 @@ catch(ex){
   be then combined in single log and reported to server too.
 </p>
 <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
-<h1>Other methods</h1>
-<h3>Changing Device ID</h3>
+<h1>Events</h1>
+<h2>Adding an event</h2>
+<p>
+  An event is a way to track any custom actions or other data you want to track
+  from your website. You can also provide segments to be able to view breakdown
+  of action by provided segment values.
+</p>
+<p>
+  An event consists of Javascript object with keys: * key - the name of the event
+  (mandatory) * count - number of events (default: 1) * sum - sum to report with
+  event (optional) * dur - duration to report with event (optional) * segmentation
+  - an object with key/value pairs to report with event as segments
+</p>
+<p>
+  Here is an example of adding an event with all possible properties:
+</p>
+<pre><code class="javascript">Countly.add_event({
+  "key": "click",
+  "count": 1,
+  "sum": 1.5,
+  "dur": 30,
+  "segmentation": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+});</code></pre>
+<div class="callout callout--warning">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
+  </p>
+
+  
+  <p>
+    All data passed to Countly instance via SDK or API should be in UTF-8.
+  </p>
+</div>
+<h2>Timed Events</h2>
+<p>
+  You can report time or duration with every event by providing
+  <strong>dur</strong> property of the events object. But if you want, you can
+  also let Web SDK to track duration of some specific event for you, you can use
+  <strong>start_event</strong> and <strong>end_event</strong> methods.
+</p>
+<p>
+  Firstly you can start tracking event time by providing name of the event (which
+  later on will be used as key for event object)
+</p>
+<pre><code class="javascript">Countly.start_event("timedEvent")</code></pre>
+<p>
+  Countly will internally mark the start of event and will wait until you end event
+  with <strong>end_event</strong> method, setting up <strong>dur</strong> property
+  based on how much time has passed since <strong>start_event</strong> for same
+  event name was called.
+</p>
+<pre><code class="javascript">//end event
+Countly.end_event("timedEvent")
+
+//or end event with additional data
+Countly.end_event({
+  "key": "timedEvent",
+  "count": 1,
+  "sum": 1.5,
+  "segmentation": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+});</code></pre>
+<h1>Session</h1>
+<h2>Beginning a session</h2>
+<p>
+  This method would allow you to control sessions manually. Use it only, if you
+  don't call track_sessions method.
+</p>
+<p>
+  If <strong>noHeartBeat</strong> is true, then Countly SDK won't extend session
+  automatically, and you would need to do that manually.
+</p>
+<pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
+<h2>Extending a session</h2>
+<p>
+  By default (if <strong>noHeartBeat</strong> was not provided in
+  <strong>begin_session</strong>) Countly SDK will extend session itself, but if
+  you chose not to, then you can extend is using this method and provide seconds
+  since last call <strong>begin_session</strong> or
+  <strong>session_duration</strong> call, whatever was the last one.
+</p>
+<pre><code class="javascript">Countly.session_duration(sec)</code></pre>
+<h2>Ending a session</h2>
+<p>
+  When visitor is leaving your app or website, you should end his session with
+  this method, optionally providing amount of seconds since last
+  <strong>begin session</strong> or <strong>session_duration</strong> calls, whatever
+  was the last one.
+</p>
+<pre><code class="javascript">Countly.end_session(sec)</code></pre>
+<h1>View tracking</h1>
+<p>
+  This method allows you to track different parts of your application, called views.
+  You can track how much time is spent on each part of the application.
+</p>
+<pre><code class="javascript">Countly.track_view("viewname");</code></pre>
+<p>
+  And optionally, as the third parameter, you can provide view segments (key/value
+  pairs) to track together with the view. There is a list of reserved segment keys
+  that should not be used:
+</p>
+<ul>
+  <li>start</li>
+  <li>visit</li>
+  <li>bounce</li>
+  <li>end</li>
+  <li>name</li>
+  <li>domain</li>
+  <li>view</li>
+  <li>segment</li>
+  <li>platform</li>
+</ul>
+<pre><code class="javascript">//Provide view segments
+Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
+<h1>Device ID management</h1>
 <p>
   In some cases you may want to change the ID of the user/device that you provided
   or Countly generated automatically, for example, when user was changed.
@@ -423,35 +388,63 @@ catch(ex){
   new provided ID.
 </p>
 <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
-<h1>Tracking a session</h1>
-<h3>Beginning a session</h3>
+<h1>User feedback</h1>
 <p>
-  This method would allow you to control sessions manually. Use it only, if you
-  don't call track_sessions method.
+  If there is any way you can get some user feedback, there is not a simple method
+  to report collected data to Countly.
 </p>
+<pre><code class="javascript">//user feedback
+Countly.report_feedback({
+    widget_id:"1234567890",
+    contactMe: true,
+    rating: 5,
+    email: "user@domain.com",
+    comment: "Very good"
+});</code></pre>
+<p>&nbsp;</p>
+<h1>User profiles</h1>
+<h2>User details</h2>
 <p>
-  If <strong>noHeartBeat</strong> is true, then Countly SDK won't extend session
-  automatically, and you would need to do that manually.
+  If you have any details about the user/visitor, you can provide Countly with
+  that information. This will allow you track each and specific user on "User Profiles"
+  tab, which is available with
+  <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.
 </p>
-<pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
-<h3>Extending a session</h3>
+<p>The list of possible parameters you can pass is:</p>
+<pre><code class="javascript">Countly.user_details({
+    "name": "Arturs Sosins",
+    "username": "ar2rsawseen",
+    "email": "test@test.com",
+    "organization": "Countly",
+    "phone": "+37112345678",
+    //Web URL pointing to user picture
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+    "gender": "M",
+    "byear": 1987, //birth year
+    "custom":{
+      "key1":"value1",
+      "key2":"value2",
+      ...
+    }
+ });</code></pre>
+<h2>Modifying custom data</h2>
 <p>
-  By default (if <strong>noHeartBeat</strong> was not provided in
-  <strong>begin_session</strong>) Countly SDK will extend session itself, but if
-  you chose not to, then you can extend is using this method and provide seconds
-  since last call <strong>begin_session</strong> or
-  <strong>session_duration</strong> call, whatever was the last one.
+  Additionally you can do different manipulations on custom data values, like increment
+  current value on server or store array of values under same property.
 </p>
-<pre><code class="javascript">Countly.session_duration(sec)</code></pre>
-<h3>Ending a session</h3>
-<p>
-  When visitor is leaving your app or website, you should end his session with
-  this method, optionally providing amount of seconds since last
-  <strong>begin session</strong> or <strong>session_duration</strong> calls, whatever
-  was the last one.
-</p>
-<pre><code class="javascript">Countly.end_session(sec)</code></pre>
-<h1>Performance monitoring</h1>
+<p>Below is the list of available methods:</p>
+<pre><code class="javascript">Countly.userData.set(key, value) //set custom property
+Countly.userData.set_once(key, value) //set custom property only if property does not exist
+Countly.userData.increment(key) //increment value in key by one
+Countly.userData.increment_by(key, value) //increment value in key by provided value
+Countly.userData.multiply(key, value) //multiply value in key by provided value
+Countly.userData.max(key, value) //save max value between current and provided
+Countly.userData.min(key, value) //save min value between current and provided
+Countly.userData.push(key, value) //add value to key as array element
+Countly.userData.push_unique(key, value) //add value to key as array element, but only store unique values in array
+Countly.userData.pull(key, value) //remove value from array under property with key as name
+Countly.userData.save() //send userData to server</code></pre>
+<h1>Application Performance Monitoring</h1>
 <p>
   You can report a trace using <strong>report_trace</strong> method. Contents of
   it depend on which trace you report.
@@ -495,115 +488,111 @@ Countly.report_trace({
         duration: 1000,
     }
 });</code></pre>
-<h2>Report feedback</h2>
+<h1>Other features and notes</h1>
+<h2>Attribution</h2>
 <p>
-  If there is any way you can get some user feedback, there is not a simple method
-  to report collected data to Countly.
+  When using Countly attribution analytics, you can also report conversion to Countly
+  server, like for example when visitor purchased something or registered.
 </p>
-<pre><code class="javascript">//user feedback
-Countly.report_feedback({
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
+<p>
+  Note: that conversion for each user may be reported only once, all other conversions
+  will be ignored for this same user
+</p>
+<pre><code class="javascript">//or provide campaign id yourself
+Countly.report_conversion("MyCampaignID");</code></pre>
+<h2>Make raw request</h2>
+<p>
+  Sometimes if you are switching between users a lot, or changing some other data,
+  which is hard to handle over multiple processes, etc. You can simply make a raw
+  request with all possible SDK parameters described in
+  <a href="http://resources.count.ly/docs/i">API reference</a>
+</p>
+<pre><code class="javascript">Countly.request({
+  app_key:"somekey", 
+  devide_id:"someid", 
+  events:"[{'key':'val','count':1}]", 
+  metrics:"{'_os':'Linux'}",
+  begin_session:1
 });</code></pre>
-<p>&nbsp;</p>
-
-<h1>Other Features</h1>
 <h2>SDK Internal Limits</h2>
-<p>Countly is highly customizable and let's you take a huge part at the control 
-of the system in multiple ways. From customizing segmentation values to changing
- event keys great liberty comes with the cost of great responsibility. As a sanity
- check measure Countly relies on internal limits to get a hold of the free flow of
- values, keys, character and more. These internal limits are again customizable at
- initialization and current limits and their default values are as follows:   
-</p>
 <p>
-<ul>
-<li>
-<strong>maxKeyLength</strong> - 128 chars. Keys that exceed this limit will be truncated.
-</li>
-<ul>
-This is used for setting the maximum size of all string keys including:
-<li>
- - event names
-</li>
-<li>
- - view names
- </li><li>
- - custom trace key name (APM)
- </li><li>
- - custom metric key (apm)
- </li><li>
- - segmentation key (for all features)
- </li><li>
- - custom user property
- </li><li>
- - custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)
-  </li>
-</li>
-</ul>
-<li>
-<strong>maxValueSize</strong> - 256 chars. Values that exceed this limit will be truncated.
-</li>
-<ul>
-This is used for setting the maximum size of all values in key-value pairs including:
-<li>
- - segmentation value in case of strings (for all features)
-</li>
-<li>
- - custom user property string value
-
- </li><li>
- - user profile named key (username, email, etc) string values. Except "picture" field, that has a limit of 4096 chars
-
- </li><li>
- - custom user property modifier string values. For example, for modifiers like "push", "pull", "setOnce", etc.
-
- </li><li>
- - breadcrumb text
-
- </li><li>
- - manual feedback widget reporting fields (reported as event)
-
- </li><li>
- - rating widget response (reported as event)
-
-  </li>
-</li>
-</ul>
-<li>
-<strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed this limit will be removed.
-<br>To set the maximum amount of custom segmentation that can be recorded in one event.</br>
-</li>
-
-
-<li>
-<strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded, the oldest entry will be removed.
-<br>To limit the amount of breadcrumbs that can be recorded before the oldest one is deleted from the logs.</br>
-</li>
-
-
-<li>
-<strong>maxStackTraceLinesPerThread</strong> - 30 lines. Lines that exceed this entry will be removed.
-<br>Sets the maximum number of stack trace lines that can be recorded per thread.</br>
-</li>
-
-
-<li>
-<strong>maxStackTraceLineLength</strong> - 200 chars. Lines that exceed this limit will be truncated.
-<br>This can set the maximum number of characters that is allowed per stack trace line. This also limits
-the crash message length.</br>
-</li>
-</ul>
+  Countly is highly customizable and let's you take a huge part at the control
+  of the system in multiple ways. From customizing segmentation values to changing
+  event keys great liberty comes with the cost of great responsibility. As a sanity
+  check measure Countly relies on internal limits to get a hold of the free flow
+  of values, keys, character and more. These internal limits are again customizable
+  at initialization and current limits and their default values are as follows:
 </p>
+<ul>
+  <li>
+    <strong>maxKeyLength</strong> - 128 chars. Keys that exceed this limit will
+    be truncated.
+  </li>
+  <ul>
+    This is used for setting the maximum size of all string keys including:
+    <li>- event names</li>
+    <li>- view names</li>
+    <li>- custom trace key name (APM)</li>
+    <li>- custom metric key (apm)</li>
+    <li>- segmentation key (for all features)</li>
+    <li>- custom user property</li>
+    <li>
+      - custom user property keys that are used for property modifiers (mul,
+      push, pull, set, increment, etc)
+    </li>
+  </ul>
+  <li>
+    <strong>maxValueSize</strong> - 256 chars. Values that exceed this limit
+    will be truncated.
+  </li>
+  <ul>
+    This is used for setting the maximum size of all values in key-value pairs
+    including:
+    <li>- segmentation value in case of strings (for all features)</li>
+    <li>- custom user property string value</li>
+    <li>
+      - user profile named key (username, email, etc) string values. Except
+      "picture" field, that has a limit of 4096 chars
+    </li>
+    <li>
+      - custom user property modifier string values. For example, for modifiers
+      like "push", "pull", "setOnce", etc.
+    </li>
+    <li>- breadcrumb text</li>
+    <li>
+      - manual feedback widget reporting fields (reported as event)
+    </li>
+    <li>- rating widget response (reported as event)</li>
+  </ul>
+  <li>
+    <strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed
+    this limit will be removed.<br>
+    To set the maximum amount of custom segmentation that can be recorded in
+    one event.
+  </li>
+  <li>
+    <strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded,
+    the oldest entry will be removed.<br>
+    To limit the amount of breadcrumbs that can be recorded before the oldest
+    one is deleted from the logs.
+  </li>
+  <li>
+    <strong>maxStackTraceLinesPerThread</strong> - 30 lines. Lines that exceed
+    this entry will be removed.<br>
+    Sets the maximum number of stack trace lines that can be recorded per thread.
+  </li>
+  <li>
+    <strong>maxStackTraceLineLength</strong> - 200 chars. Lines that exceed this
+    limit will be truncated.<br>
+    This can set the maximum number of characters that is allowed per stack trace
+    line. This also limits the crash message length.
+  </li>
+</ul>
 <p>
-To change these default values all you have to do is to set the properties
-during the initialization:
+  To change these default values all you have to do is to set the properties during
+  the initialization:
 </p>
-  </div>
-    <pre><code class="javascript">Countly.init({
+<pre><code class="javascript">Countly.init({
     app_key:"YOUR_APP_KEY",
     url: "https://try.count.ly",
     max_key_length: 500,
@@ -613,6 +602,4 @@ during the initialization:
     max_stack_trace_lines_per_thread: 50,
     max_stack_trace_line_length: 300
 });</code></pre>
-  </div>
-<p>
-
+<p>&nbsp;</p>
