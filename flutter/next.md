@@ -7,14 +7,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 click
+    To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>
-  </p>
-</div>
-<div class="callout callout--info">
-  <p>
-    To access the documentation for version 20.04 and older, click
-    <a href="/hc/en-us/articles/900005264923" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
