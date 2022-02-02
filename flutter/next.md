@@ -72,32 +72,9 @@ flutter run</code></pre>
     }
   });</code></pre>
 <p>
-  <strong><span class="wysiwyg-font-size-large">Providing the application key</span></strong>
-</p>
-<p>
-  Also called "appKey" as shorthand. The application key is used to identify for
-  which application this information is tracked. You receive this value by creating
-  a new application in your Countly dashboard and accessing it in its application
-  management screen.
-</p>
-<p>
-  <strong>Note: </strong>Ensure you are using the App Key (found under Management
-  -&gt; Applications) and not the API Key. Entering the API Key will not work.
-</p>
-<p>
-  <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
-</p>
-<p>
-  If you are using Countly Enterprise Edition trial servers, use
-  <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
-  <code>https://asia-try.count.ly</code> It is basically the domain from which
-  you are accessing your trial dashboard.
-</p>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain
-  name or IP address, such as
-  <a href="https://example.com/">https://example.com</a> or
-  <a href="https://ip/">https://IP</a> (if SSL has been set up).
+  For more information on how to acquire your application key (appKey) and server
+  URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
 </p>
 <h2>Enable logging</h2>
 <p>
@@ -879,8 +856,7 @@ Countly.disableLocation();</code></pre>
 <pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {<br>if(error != null) {<br>   print(error);<br>}<br>});</code></pre>
 <p>
   <code class="JavaScript">closeButtonText</code> and
-  <code class="JavaScript">ratingWidgetCallback</code> are optional. The callback
-  is called when the widget is presented.
+  <code class="JavaScript">ratingWidgetCallback</code> are optional.
 </p>
 <h2>Feedback widget</h2>
 <p>
