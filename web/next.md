@@ -35,28 +35,13 @@
 <p>
   <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">What is an APP KEY?</p>
-  <p>
-    You'll see the APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on the Countly dashboard. Note that
-    an APP KEY is different than the API KEY, which is used to send data via
-    API calls.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app. Then you will see the App Key field.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
 <h1>SDK Integration</h1>
+<h2>Minimal setup</h2>
 <p>
   <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Inserting asynchronous code before closing the tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the tag.</span>
+  <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
 </p>
 <p>
   <span style="font-weight: 400;">An example setup would look like this:</span>
@@ -181,6 +166,97 @@ function clickEvent(ob){
 &lt;input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
   </div>
 </div>
+<h3>Providing the application key</h3>
+<p>
+  Also called "appKey" as shorthand. The application key is used to identify for
+  which application this information is tracked. You receive this value by creating
+  a new application in your Countly dashboard and accessing it in its application
+  management screen.
+</p>
+<div class="callout callout--info">
+  <p>
+    You'll see the APP_KEY definition above. This key is generated automatically
+    when you create a website for tracking on the Countly dashboard.
+  </p>
+  <p>
+    To retrieve your APP_KEY, go to Management -&gt; Applications and select
+    your app. Then you will see the App Key field.
+  </p>
+</div>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
+</div>
+<p>
+  <strong>Note:</strong> Ensure you are using the App Key (found under Management
+  -&gt; Applications) and not the API Key. Entering the API Key will not work.
+</p>
+<h3>Providing the server URL</h3>
+<p>
+  If you are using Countly Enterprise Edition trial servers, use https://try.count.ly,
+  https://us-try.count.ly or https://asia-try.count.ly It is basically the domain
+  from which you are accessing your trial dashboard.
+</p>
+<p>
+  If you use both Community Edition and Enterprise Edition, use your own domain
+  name or IP address, such as https://example.com or https://IP (if SSL has been
+  set up).
+</p>
+<h2>SDK logging</h2>
+<p>
+  The first thing you should do while integrating our SDK is enabling logging.
+  If logging is enabled, then our SDK will print out debug messages about its internal
+  state and encountered problems.
+</p>
+<p>
+  Set debug option to true at the Countly initialization to enable logging:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//during initialization
+    Countly.debug = true;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">Countly.init({
+    debug:true,
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+});</code></pre>
+  </div>
+</div>
+<h2>Device ID</h2>
+<p>
+  All tracked information is tied to a "device ID". A device ID is a unique identifier
+  for your users. One of the first things you'll need to decide is which device
+  ID generation strategy to use. The easiest method is letting the Countly SDK
+  seamlessly handle the device ID on its own.
+</p>
+<p>
+  Or you may specify the device ID by yourself if you have one (it has to be unique
+  for each device). It may be an email or some other internal ID used by your other
+  systems:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//during initialization
+    Countly.device_id = "1234-1234-1234-1234";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">Countly.init({
+    device_id: "1234-1234-1234-1234",
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly"
+});</code></pre>
+  </div>
+</div>
+<h2>SDK notes</h2>
 <div class="callout callout--info">
   <p class="callout__title">
     Why aren’t I able to see AngularJS errors on the Countly dashboard?
@@ -202,7 +278,7 @@ function clickEvent(ob){
     IDE.
   </p>
 </div>
-<h2>Setup properties</h2>
+<h3>Setup properties</h3>
 <p>
   Here are the properties you may set up upon Countly initialization:
 </p>
