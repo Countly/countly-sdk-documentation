@@ -876,7 +876,12 @@ Countly.disableLocation();</code></pre>
 <p>
   Using that you can call the function to show the widget popup:
 </p>
-<pre><code class="JavaScript">Countly.askForFeedback("5da0877c31ec7124c8bf398d", "Close");</code></pre>
+<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {<br>if(error != null) {<br>   print(error);<br>}<br>});</code></pre>
+<p>
+  <code class="JavaScript">closeButtonText</code> and
+  <code class="JavaScript">ratingWidgetCallback</code> are optional. The callback
+  is called when the widget is presented.
+</p>
 <h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
