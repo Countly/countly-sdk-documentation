@@ -4,8 +4,8 @@
   <code>21.11.0</code>.
 </p>
 <p>
-  To access the documentation for version 20.11.0 and older, click
-  <a href="https://support.count.ly/hc/en-us/articles/900004099706">here</a>.
+  To access the documentation for version 20.11.3 and older, click
+  <a href="https://support.count.ly/hc/en-us/articles/4410229126809">here</a>.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -1166,6 +1166,11 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 //replace and merge on server</code></pre>
   </div>
 </div>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging ("onServer" set to "NO") and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
 <p>
   Otherwise, if <code>onServer</code> bool is <strong>not</strong> set,
   <span style="font-weight: 400;">the device will be counted as a new device on the server.</span> And given all consents will be cancelled.
@@ -1208,6 +1213,11 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <span style="font-weight: 400;">After you start Countly once with the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag while developing, you can remove that line. The <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is not meant for production. It is only for debugging purposes while performing development and not being able to delete and re-install the app.</span>
 </p>
 <h2>Temporary Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If temporary ID mode is entered and consent is enabled, all previously given consent will be removed. Therefore after entering the temporary ID mode, you should reestablish consent again.</span>
+  </p>
+</div>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
   real device ID is set later. It can be enabled by setting

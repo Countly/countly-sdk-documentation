@@ -136,32 +136,10 @@ Countly.isInitialized().then((result) =&gt; {
             console.error(err);
         });</code></pre>
 <p>
-  <span class="wysiwyg-font-size-large"><strong>Providing the application key</strong></span>
-</p>
 <p>
-  Also called "appKey" as shorthand. The application key is used to identify for
-  which application this information is tracked. You receive this value by creating
-  a new application in your Countly dashboard and accessing it in its application
-  management screen.
-</p>
-<p>
-  <strong>Note: </strong>Ensure you are using the App Key (found under Management
-  -&gt; Applications) and not the API Key. Entering the API Key will not work.
-</p>
-<p>
-  <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
-</p>
-<p>
-  If you are using Countly Enterprise Edition trial servers, use
-  <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
-  <code>https://asia-try.count.ly</code> It is basically the domain from which
-  you are accessing your trial dashboard.
-</p>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain
-  name or IP address, such as
-  <a href="https://example.com/">https://example.com</a> or
-  <a href="https://ip/">https://IP</a> (if SSL has been set up).
+  For more information on how to acquire your application key (appKey) and server
+  URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.
 </p>
 <h2>Enable logging</h2>
 <p>
@@ -613,13 +591,17 @@ Countly.getCurrentDeviceId(function(deviceId){
 </p>
 <ol>
   <li>
-    For FCM credentials setup please follow the instruction from this URL <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
+    For FCM credentials setup please follow the instruction from this URL
+    <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
   </li>
   <li>
-      Make sure you have <code class="JavaScript">google-services.json</code> from <a href="https://firebase.google.com/">https://firebase.google.com/</a>
+    Make sure you have <code class="JavaScript">google-services.json</code> from
+    <a href="https://firebase.google.com/">https://firebase.google.com/</a>
   </li>
   <li>
-    Make sure the app package name and the <code class="JavaScript">google-services.json</code> <code class="JavaScript">package_name</code> matches.
+    Make sure the app package name and the
+    <code class="JavaScript">google-services.json</code>
+    <code class="JavaScript">package_name</code> matches.
   </li>
   <li>
     Place this <code class="JavaScript">google-services.json</code> file under
@@ -654,8 +636,20 @@ Countly.getCurrentDeviceId(function(deviceId){
 </ol>
 <h3>iOS setup</h3>
 <p>
-  There are no additional steps required for iOS,everything is set up for
-  you by the Countly Cordova SDK.
+  <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
+</p>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
+  </p>
+  <p>
+    This COUNTLY_EXCLUDE_PUSHNOTIFICATIONS is only supported by the minimum SDK
+    version 20.11.3.
+  </p>
+</div>
+<p>
+  There are no additional steps required for iOS,everything is set up for you by
+  the Countly Cordova SDK.
 </p>
 <h2>Enabling push</h2>
 <p>
