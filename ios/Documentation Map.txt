@@ -18,52 +18,52 @@
 ! Callout - Countly Code Generator
 
 # Crash Reporting
-    - Automatic Crash Reporting
-    - Manually Handled Exceptions
+    - Automatic Crash Handling
+    - Handled Exceptions
+    - Crash Breadcrumbs
     - Crash Report Contents
         . Default Crash Report Information
-        . Custom Crash Logs
         . Custom Crash Segmentation
     - Crash Filtering
+    - PLCrashReporter
+        . PLCrashReporter Signal Handler Type
+        . PLCrashReporter callback blocks
     - Symbolication
         ! Callout - Enterprise Edition Feature (Symbolication)
         . Automatic dSYM Uploading
         . Manual dSYM Uploading
         . Bitcode Enabled Apps
         . How to Use Symbolication
-    - PLCrashReporter
-        . PLCrashReporter Signal Handler Type
-        . PLCrashReporter callback blocks
 
 # Events
-    - Regular Events
+    - Recording Events
     - Timed Events
 
 # Sessions
-    - Manual Session Handling
+    - Automatic Session Tracking
+    - Manual Sessions
     - Update Session Period
 
 # View Tracking
-    - Auto View Tracking
-    - Exception View Controllers
-    - Manual View Tracking
+    - Automatic Views 
+    - Automatic view Exceptions
+    - Manual View Recording
 
 # Device ID Management
     - Changing Device ID
+    - Temporary Device ID    
+    - Retrieving current Device ID
     - Resetting Stored Device ID
-    - Temporary Device ID
-    - Getting Device ID
-    - Device ID Type
 
 # Push Notifications
     - Setting up APNs Authentication
         . APNs Auth Key
         . Universal Certificate
     - Configuring iOS App
-    - Rich Push Notifications (iOS10+)
+    - Deep Links
+    - Rich media
     - Provisional Permission for Push Notifications (iOS 12+ only)
-    - How do Push Notifications Work in Countly
-    - Deep Linking
+    - How do Push Notifications Work in Countly    
     - Advanced Setup
         . Test Mode
         . Disabling Alerts Shown by Notifications
@@ -81,56 +81,54 @@
 
 # Remote Config
     - Setting up Remote Config
-    - Updating Remote Config
-    - Updating Remote Config Partially
+    - Manual Remote Config
+    - Filtered value update
 
-# Feedbacks
-    - Star Rating
-    - Ratings Widgets
+# User Feedback
+    - Ratings
+        . Star Rating dialog
+        . Ratings Widget
+    - Feedback Widgets
     - NPS (Net Promoter Score) and Survey Widgets
-        . Manually Recording Feedback Widgets
+        . Manual reporting
 
 # User Profiles
     ! Callout - Enterprise Edition Feature (User Profiles)
     - Default User Properties
     - Custom User Properties
     - Custom User Property Modifiers
+    - Orientation Tracking
 
-# Performance Monitoring
+# Application Performance Monitoring
     - App Start Time
     - Manual Network Traces
     - Custom Traces
 
-# Consents
+# User consent
 
 # Security and Privacy
-    - Pinned Certificates
     - Parameter Tampering Protection
-    - Ignoring Trust Check
+    - SSL certificate pinning
+    - Using a self signed server certificate
 
-# Changing Host and App Key
-    - App Key
-        . Changing App Key
-        . Replacing App Keys in Queue
-        . Removing App Keys from Queue
-    - Host
-        . Changing Host
-
-# Other Settings
+# Other features and notes
+    - Changing Host and App Key
+        . App Key
+            , Changing App Key
+            , Replacing App Keys in Queue
+            , Removing App Keys from Queue
+        . Host
+            , Changing Host
     - Event Send Threshold
     - Stored Requests Limit
     - Maximum Key Length
     - Maximum Value Length
     - Maximum Segmentation Values
-    - Orientation Tracking
     - Always use the POST method
     - Custom URLSessionConfiguration
     - Custom Metrics
     - Attribution
-
-# watchOS Integration
-
-# Notes
+    - watchOS Integration
     - Automatic Reference Counting (ARC)
     - App Transport Security (ATS)
     - Swift Projects
@@ -140,4 +138,4 @@
     - Swift Package Manager (SPM)
     - Rebranding    
 
-# FAQ and Troubleshooting
+# FAQ
