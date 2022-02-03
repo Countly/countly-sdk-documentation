@@ -1231,18 +1231,26 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   Currently, direct attribution is only available for Android.
 </p>
 <p>
-  You can use <code>recordDirectAttribution</code> function to manually report
-  attribution
+  <span>You can use <code>recordDirectAttribution</code>&nbsp;method of <code>CountlyConfig</code></span><span> object before initializing the SDK.</span>
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution("Campaign_ID", "<span>Campaign_User_ID</span>");</code><span><br></span></pre>
+<p>
+  You can also use <code>recordDirectAttribution</code> function to manually report
+  attribution later:
 </p>
 <pre><code class="JavaScript">Countly.recordDirectAttribution("Campaign_ID", "<span>Campaign_User_ID</span>");</code></pre>
 <h3>
   <span>Indirect Attribution</span>
 </h3>
 <p>
-  You can use <code>recordIndirectAttribution</code> function to manually report
-  attribution
+  <span>You can use <code>recordDirectAttribution</code>&nbsp;method of <code>CountlyConfig</code></span><span> object before initializing the SDK.</span>
 </p>
-<pre><code class="JavaScript">Countly.recordIndirectAttribution("ADVERTISING_ID");</code></pre>
+<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
+<p>
+  You can also use <code>recordIndirectAttribution</code> function to manually
+  report attribution later
+</p>
+<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>Countly.recordIndirectAttribution(attributionValues);</code></pre>
 <p>
   For iOS 14+ due to Apple changes regarding Application Tracking, you need to
   ask the user for permission to track the Application.
