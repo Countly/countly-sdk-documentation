@@ -1582,6 +1582,7 @@ console.log(remoteConfigs);
   them manually. The other is using a plugin that will use boomerang.js to collect
   data and report it as a performance trace.
 </p>
+<h2>Manual performance monitoring</h2>
 <p>
   To manually report trace you need to construct the trace and call a method like
   this:
@@ -1616,23 +1617,46 @@ Countly.report_trace({
 });</code></pre>
   </div>
 </div>
+<h2>Automatic performance monitoring</h2>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">Automatic trace reporting has two different implementation depending on if you are using Countly synchronously or asynchronously.
+    </span>
+  </p>
+</div>
+<h3>Asynchronous implementation</h3>
 <p>
-  To automatically report traces you will need to include 2 additional files in
-  your project:
+  To automatically report traces you will need control the loading sequence of countly and boomerang.js scripts as boomerang.j depends on Countly to be initialized first. So instead of defining the scripts at the head tag you should use the script provided below, inside your Countly script at the top:
 </p>
-<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
+<pre><code class="javascript">syncScripts();
+        function syncScripts() {
+            var scripts = ['your_countly_source_path', 'boomerangminjs_source_path', 'your_countly_boomerangjs_source-path'];
+            var i = 0;
+            function loopScriptList(scripts) {
+                recursiveScriptMaker(scripts[i], function() {
+                    i++;
+                    if(i < scripts.length) {
+                        loopScriptList(scripts);   
+                    }
+                }); 
+            }
+            loopScriptList(scripts);      
+        }
+        function recursiveScriptMaker(source, callback ) {
+            var script = document.createElement('script');
+            script.onload = function() {
+                console.log('Successfully loaded the source: ' + source)
+                callback();
+            }
+            script.src = source;
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }<code></pre>
 <p>
   After that, you may call a method to start reporting loading and network traces
   automatically. This method accepts boomerang initialization config (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on boomerang.js</a>)
   as a parameter, so if you are familiar with it, you can modify it on your own.
   In case you are not, you may follow this pattern:
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
     <pre><code class="javascript">//automatically report traces
 Countly.q.push(["track_performance", {
     //page load timing
@@ -1655,8 +1679,11 @@ Countly.q.push(["track_performance", {
         afterOnload: true
     }
 }]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
+<h3>Synchronous implementation</h3>
+<p>To automatically report traces you will need to include 2 additional files in your project:<p>
+<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
+<p> After that, you may call a method to start reporting loading and network traces
+  automatically.An example pattern inside your Countly script would be:<p>
     <pre><code class="javascript">//automatically report traces
 Countly.track_performance({
     //page load timing
@@ -1679,8 +1706,6 @@ Countly.track_performance({
         afterOnload: true
     }
 });</code></pre>
-  </div>
-</div>
 <h1>Tracking a session manually</h1>
 <h2>Beginning a session</h2>
 <p>
