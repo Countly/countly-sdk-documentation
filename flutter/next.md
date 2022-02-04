@@ -1233,12 +1233,12 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <p>
   <span>You can use <code>recordDirectAttribution</code>&nbsp;method of <code>CountlyConfig</code></span><span> object before initializing the SDK.</span>
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution("Campaign_ID", "<span>Campaign_User_ID</span>");</code><span><br></span></pre>
+<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('countly', campaignData);</code><span><br></span></pre>
 <p>
   You can also use <code>recordDirectAttribution</code> function to manually report
   attribution later:
 </p>
-<pre><code class="JavaScript">Countly.recordDirectAttribution("Campaign_ID", "<span>Campaign_User_ID</span>");</code></pre>
+<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>Countly.recordDirectAttribution('countly', campaignData);</code></pre>
 <h3>
   <span>Indirect Attribution</span>
 </h3>
