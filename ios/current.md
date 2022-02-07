@@ -28,7 +28,7 @@ on Xcode</p>
 <p>- Using <a href="#carthage">Carthage</a></p>
 <p>- Using <a href="#cocoapods">CocoaPods</a></p>
 <h1>SDK Integration</h1>
-<h2>Minimal setup</h2>
+<h2>Minimal Setup</h2>
 <p>In your application delegate, import <code>Countly.h</code>, and
   <span style="font-weight: 400;">add the following lines at the beginning inside</span><code>application:didFinishLaunchingWithOptions:</code>
 </p>
@@ -128,7 +128,7 @@ on Xcode</p>
 </div>
 <p>Available additional features per platform:</p>
 <pre>iOS<br>  CLYPushNotifications<br>  CLYCrashReporting<br>  CLYAutoViewTracking<br><br>watchOS<br>  CLYCrashReporting<br><br>tvOS<br>  CLYCrashReporting<br>  CLYAutoViewTracking<br><br>macOS<br>  CLYPushNotifications<br>  CLYCrashReporting</pre>
-<h2>Debug mode</h2>
+<h2>Debug Mode</h2>
 <p>
   <span style="font-weight: 400;">If you would like to enable the Countly iOS SDK to debug mode, which logs internal info, errors, and warnings into your console, you can set the <code>enableDebug</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
@@ -495,7 +495,7 @@ Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thr
     <pre><code class="swift">config.shouldUseMachSignalHandler = true</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
   </div>
 </div>
-<h3>PLCrashReporter callback blocks</h3>
+<h3>PLCrashReporter Callback Blocks</h3>
 <p>
   There is a
   <span style="font-weight: 400;"><code>crashOccuredOnPreviousSessionCallback</code></span>
@@ -1270,7 +1270,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   parameter does not matter.
 </p>
 
-<h2>Retrieving current Device ID</h2>
+<h2>Retrieving Current Device ID</h2>
 <p>
   You can use <code>deviceID</code>method to get current device ID:
 </p>
@@ -1588,7 +1588,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 <p>
   <span style="font-weight: 400;">When users tap on the custom action buttons, the Countly iOS SDK will open the specified URLs with your app's scheme. Following this, the related method you added to your app's delegate will be called.</span>
 </p>
-<h2>Rich media</h2>
+<h2>Rich Media</h2>
 <p>
   <span style="font-weight: 400;">Rich push notifications allow you to send image, video, or audio attachments as well as customized action buttons on iOS10+. You will need to set up the Notification Service Extension to use it.</span>
 </p>
@@ -2206,7 +2206,7 @@ else // if value exists, you can use it as you see fit
 }</code></pre>
   </div>
 </div>
-<h2>Filtered value update</h2>
+<h2>Filtered Value Update</h2>
 <p>
   <span style="font-weight: 400;">You can also trigger partial updates for the Remote Config values you would like at any time. Adhere to the following in order to only update the values for the keys specified by you:</span>
 </p>
@@ -2522,7 +2522,7 @@ andDismiss:
     </code></pre>
   </div>
 </div>
-<h3>Manual reporting</h3>
+<h3>Manual Reporting</h3>
 <div class="callout callout--info">
   <p class="callout__title">
     <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
@@ -2935,7 +2935,7 @@ Countly.user().save()</code></pre>
     </p>
   </div>
 </div>
-<h1>User consent</h1>
+<h1>User Consent</h1>
 <p>
   <span style="font-weight: 400;">For compatibility with data protection regulations, such as GDPR, the Countly iOS SDK allows developers to enable/disable any feature at any time depending on user consent. Currently, available features with consent control are as follows:</span>
 </p>
@@ -3098,7 +3098,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.secretSalt = "mysecretsalt"</code></pre>
   </div>
 </div>
-<h2>SSL certificate pinning</h2>
+<h2>SSL Certificate Pinning</h2>
 <p>
   <span style="font-weight: 400;">You can use optional <code>pinnedCertificates</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object for specifying bundled certificates to be used for public key pinning. Certificates from your Countly Server must be DER encoded and should have a <code>.der</code>, <code>.cer</code> or <code>.crt</code></span><span style="font-weight: 400;"> extension. They must also be added to your project and be included in the Copy Bundles Resources.</span>
 </p>
@@ -3114,7 +3114,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.pinnedCertificates = ["mycertificate.cer"]</code></pre>
   </div>
 </div>
-<h2>Using a self signed server certificate</h2>
+<h2>Using a Self Signed-Server Certificate</h2>
 <p>
   <span style="font-weight: 400;">You can set the <code>shouldIgnoreTrustCheck</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.
 </p>
@@ -3136,7 +3136,7 @@ It can be used for self-signed certificates and works only for Development envir
     <pre><code class="swift">config.shouldIgnoreTrustCheck = true</code></pre>
   </div>
 </div>
-<h1>Other features notes</h1>
+<h1>Other Features and Notes</h1>
 <h2>Changing Host and App Key</h2>
 <h3>App Key</h3>
 <h4>Changing App Key</h4>

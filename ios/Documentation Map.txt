@@ -6,9 +6,9 @@
 # Adding the SDK to the project 
 
 # SDK Integration
-    - Minimal setup
+    - Minimal Setup
     - Additional Features (PushNotifications, CrashReporting, AutoViewTracking)
-    - Debug mode
+    - Debug Mode
         . Logger Delegate
     - Device ID
         . Default Device ID
@@ -27,7 +27,7 @@
     - Crash Filtering
     - PLCrashReporter
         . PLCrashReporter Signal Handler Type
-        . PLCrashReporter callback blocks
+        . PLCrashReporter Callback Blocks
     - Symbolication
         ! Callout - Enterprise Edition Feature (Symbolication)
         . Automatic dSYM Uploading
@@ -46,13 +46,13 @@
 
 # View Tracking
     - Automatic Views 
-    - Automatic view Exceptions
+    - Automatic View Exceptions
     - Manual View Recording
 
 # Device ID Management
     - Changing Device ID
     - Temporary Device ID    
-    - Retrieving current Device ID
+    - Retrieving Current Device ID
     - Resetting Stored Device ID
 
 # Push Notifications
@@ -61,7 +61,7 @@
         . Universal Certificate
     - Configuring iOS App
     - Deep Links
-    - Rich media
+    - Rich Media
     - Provisional Permission for Push Notifications (iOS 12+ only)
     - How do Push Notifications Work in Countly    
     - Advanced Setup
@@ -82,7 +82,7 @@
 # Remote Config
     - Setting up Remote Config
     - Manual Remote Config
-    - Filtered value update
+    - Filtered Value Update
 
 # User Feedback
     - Ratings
@@ -90,7 +90,7 @@
         . Ratings Widget
     - Feedback Widgets
     - NPS (Net Promoter Score) and Survey Widgets
-        . Manual reporting
+        . Manual Reporting
 
 # User Profiles
     ! Callout - Enterprise Edition Feature (User Profiles)
@@ -104,14 +104,14 @@
     - Manual Network Traces
     - Custom Traces
 
-# User consent
+# User Consent
 
 # Security and Privacy
     - Parameter Tampering Protection
-    - SSL certificate pinning
-    - Using a self signed server certificate
+    - SSL Certificate Pinning
+    - Using a Self-Signed Server Certificate
 
-# Other features and notes
+# Other Features and Notes
     - Changing Host and App Key
         . App Key
             , Changing App Key
