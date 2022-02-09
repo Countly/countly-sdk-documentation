@@ -1626,7 +1626,7 @@ Countly.report_trace({
 </div>
 <h3>Asynchronous Implementation</h3>
 <p>
-  To automatically report traces you will need control the loading sequence of countly and boomerang.js scripts as boomerang.j depends on Countly to be initialized first. So instead of defining the scripts at the head tag you should use the script provided below, inside your Countly script at the top:
+  To automatically report traces you will need control the loading sequence of countly and boomerang.js scripts as boomerang.js depends on Countly to be initialized first. So instead of defining the scripts at the head tag you should use the script provided below, inside your Countly script at the top:
 </p>
 <pre><code class="javascript">syncScripts();
         function syncScripts() {
