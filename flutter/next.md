@@ -7,14 +7,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 click
+    To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>
-  </p>
-</div>
-<div class="callout callout--info">
-  <p>
-    To access the documentation for version 20.04 and older, click
-    <a href="/hc/en-us/articles/900005264923" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -64,8 +58,7 @@ flutter run</code></pre>
   dashboard, under the "Applications" menu item.
 </p>
 <pre><code class="JavaScript">Countly.isInitialized().then((bool isInitialized){
-    if(!isInitialized){
-      Countly.init(SERVER_URL, APP_KEY ).then((value){
+    if(!isInitialized){<br>      CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>      Countly.initWithConfig(config).then((value){
         Countly.start();
       }); // Initialize the countly SDK.
     }else{
@@ -73,32 +66,9 @@ flutter run</code></pre>
     }
   });</code></pre>
 <p>
-  <strong><span class="wysiwyg-font-size-large">Providing the application key</span></strong>
-</p>
-<p>
-  Also called "appKey" as shorthand. The application key is used to identify for
-  which application this information is tracked. You receive this value by creating
-  a new application in your Countly dashboard and accessing it in its application
-  management screen.
-</p>
-<p>
-  <strong>Note: </strong>Ensure you are using the App Key (found under Management
-  -&gt; Applications) and not the API Key. Entering the API Key will not work.
-</p>
-<p>
-  <strong><span class="wysiwyg-font-size-large">Providing the server URL</span></strong>
-</p>
-<p>
-  If you are using Countly Enterprise Edition trial servers, use
-  <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
-  <code>https://asia-try.count.ly</code> It is basically the domain from which
-  you are accessing your trial dashboard.
-</p>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain
-  name or IP address, such as
-  <a href="https://example.com/">https://example.com</a> or
-  <a href="https://ip/">https://IP</a> (if SSL has been set up).
+  For more information on how to acquire your application key (appKey) and server
+  URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
 </p>
 <h2>Enable logging</h2>
 <p>
@@ -108,7 +78,7 @@ flutter run</code></pre>
 <p>
   We advise doing this while implementing Countly features in your application.
 </p>
-<pre><code class="JavaScript">Countly.setLoggingEnabled(true);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLoggingEnabled(true);</code></pre>
 <h2>Device ID</h2>
 <p>
   When the SDK is initialized for the first time and no device ID is provided,
@@ -121,7 +91,7 @@ flutter run</code></pre>
 <p>
   You may provide your own custom device ID when initializing the SDK
 </p>
-<pre><code class="JavaScript">Countly.init(SERVER_URL, APP_KEY, DEVICE_ID)</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setDeviceId(DEVICE_ID);</code></pre>
 <h2>SDK data storage</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in file named "Countly.dat"<br>
@@ -145,7 +115,7 @@ flutter run</code></pre>
   If you want to enable automatic unhandled crash reporting, you need to call this
   before init:
 </p>
-<pre><code class="JavaScript">Countly.enableCrashReporting()</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.enableCrashReporting()</code></pre>
 <p>
   By doing that it will automatically catch all errors that are thrown from within
   the Flutter framework.
@@ -167,7 +137,7 @@ flutter run</code></pre>
   The following call will add the provided segmentation to all recorded crashes.
   Use the following function for this purpose:
 </p>
-<pre><code class="JavaScript">Countly.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
 <h2>Handled exceptions</h2>
 <p class="p1">
   There are multiple ways you could report a handled exception/error to Countly.
@@ -683,12 +653,12 @@ override func userNotificationCenter(_ center: UNUserNotificationCenter, didRece
 <h2>Set User Location</h2>
 <p>
   If your app has a different way of detecting location, you may send this information
-  to the Countly Server by using the <code>setLocationInit</code> or<code>setLocation</code>
-  methods.
+  to the Countly Server by using the <code>setLocation</code> of&nbsp;
+  <code>CountlyConfig</code> or<code>setLocation</code> methods.
 </p>
 <p>
-  We recommend using the <code>setLocationInit</code> method before initialization
-  to sent location. This includes:
+  We recommend using the <code>setLocation</code>of <code>CountlyConfig</code>
+  method before initialization to sent location. This includes:
 </p>
 <ul>
   <li>
@@ -704,8 +674,8 @@ override func userNotificationCenter(_ center: UNUserNotificationCenter, didRece
     <code>IP</code> a string specifying an IP address in IPv4 or IPv6 formats
   </li>
 </ul>
-<pre><code class="JavaScript">// Example for setLocationInit
-Countly.setLocationInit("TR", "Istanbul", "41.0082,28.9784", "10.2.33.12");</code></pre>
+<pre><code class="JavaScript">// Example for setLocation
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLocation("TR", "Istanbul", "41.0082,28.9784", "10.2.33.12");</code></pre>
 <p>
   Geolocation recording methods may also be called at any time after the Countly
   SDK has started.<br>
@@ -740,9 +710,7 @@ Countly.disableLocation();</code></pre>
   <code>setRemoteConfigAutomaticDownload</code> before init. As an optional value
   you can provide a callback to be informed when the request is finished.
 </p>
-<pre><code class="JavaScript">Countly.setRemoteConfigAutomaticDownload((result){
-  print(result);
-});</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setRemoteConfigAutomaticDownload(true, (error) {<br>   print(error);<br>});</code></pre>
 <p>
   If the callback returns a non-null value, then you can expect that the request
   failed and no values were updated.
@@ -845,9 +813,9 @@ Countly.disableLocation();</code></pre>
 <pre><code class="JavaScript">Countly.askForStarRating();</code></pre>
 <p>
   The star-rating dialog's title, message, and dismiss button text may be customized
-  either through <code>setStarRatingDialogTexts</code> function.
+  either through the following functions:
 </p>
-<pre><code class="JavaScript">Countly.setStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setStarRatingTextTitle("Custom title"); // Only available for Android<br>config.setStarRatingTextMessage("Custom message");<br>config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
 <h2>Rating widget</h2>
 <p>
   Feedback widget shows a server configured widget to your user devices.
@@ -879,7 +847,11 @@ Countly.disableLocation();</code></pre>
 <p>
   Using that you can call the function to show the widget popup:
 </p>
-<pre><code class="JavaScript">Countly.askForFeedback("5da0877c31ec7124c8bf398d", "Close");</code></pre>
+<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {<br>if(error != null) {<br>   print(error);<br>}<br>});</code></pre>
+<p>
+  <code class="JavaScript">closeButtonText</code> and
+  <code class="JavaScript">ratingWidgetCallback</code> are optional.
+</p>
 <h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
@@ -1035,7 +1007,7 @@ Countly.pullValue("type", "morning");
   This SDK provides a few mechanisms for APM. To start using them you would first
   need to enable this feature and give the required consent if it was required.
 </p>
-<pre>Countly.enableApm(); // Enable APM features, which includes the recording of app start time.</pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config</code>.setRecordAppStartTime(true); // Enable APM features, which includes the recording of app start time.</pre>
 <p>
   While using APM calls, you have the ability to provide trace keys by which you
   can track those parameters in your dashboard.
@@ -1046,8 +1018,8 @@ Countly.pullValue("type", "morning");
   <code>appLoadingFinished</code> method. Make sure this method is called after
   <code>init</code>.
 </p>
-<pre><code class="JavaScript">//Example of appLoadingFinished
-Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished();<br>});<br></code></pre>
+<pre><code class="JavaScript">//Example of appLoadingFinished<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<br>});<br></code></pre>
 <p>
   This calculates and records the app launch time for performance monitoring. It
   should be called when the app is loaded and it successfully displayed its first
@@ -1071,7 +1043,7 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
 <p>To end a custom trace, use:</p>
 <pre><code class="JavaScript">String traceKey = "Trace Key";<br>Map&lt;String, int&gt; customMetric = {<br>  "ABC": 1233,<br>  "C44C": 1337<br>};<br>Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>
-  In this sameple a Map of integer values is provided when ending a trace. Those
+  In this sample, a Map of integer values is provided when ending a trace. Those
   will be added to that trace in the dashboard.
 </p>
 <h2>Network trace</h2>
@@ -1099,9 +1071,9 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
   By default the requirement for consent is disabled. To enable it, you have to
   call <code>setRequiresConsent</code> with true, before initializing Countly.
 </p>
-<pre><code class="JavaScript">Countly.setRequiresConsent(true);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setRequiresConsent(true);</code></pre>
 <p>
-  By default no consent is given. That means that if no consent is enabled, Countly
+  By default, no consent is given. That means that if no consent is enabled, Countly
   will not work and no network requests, related to features, will be sent. When
   the consent status of a feature is changed, that change will be sent to the Countly
   server.
@@ -1151,13 +1123,14 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
 </ul>
 <h2>Giving consents</h2>
 <p>
-  To give consent for features, you can use the <code>giveConsentInit</code>before
-  <code>init</code> or <code>giveConsent</code> after <code>init</code> by passing
-  the feature names as an Array.<br>
-  We recommend using the <code>giveConsentInit</code>because some features require
-  consents before <code>init</code>
+  To give consent for features, you can use the <code>setConsentEnabled</code>of
+  <code>CountlyConfig</code> class or <code>giveConsent</code> after
+  <code>init</code> by passing the feature names as an Array.<br>
+  We recommend using the<code>setConsentEnabled</code>of
+  <code>CountlyConfig</code> because some features require consents before
+  <code>init</code>
 </p>
-<pre><code class="JavaScript">Countly.giveConsentInit(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"]);<br></code><code class="JavaScript">Countly.giveConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"]);<br></code><code class="JavaScript">Countly.giveConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
 <h2>Removing consents</h2>
 <p>
   If the end-user changes his/her mind about consents at a later time, you will
@@ -1187,7 +1160,7 @@ Countly.init(SERVER_URL, APP_KEY ).then((value){<br>Countly.appLoadingFinished()
   <code>&amp;checksum</code> field before being processed.
 </p>
 <pre><code class="JavaScript">// sending data with salt
-Countly.enableParameterTamperingProtection("salt");</code></pre>
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParameterTamperingProtectionSalt("salt");</code></pre>
 <p>
   Make sure not to use salt on the Countly server and not on the SDK side, otherwise,
   Countly won't accept any incoming requests.
@@ -1282,7 +1255,7 @@ Countly.enableParameterTamperingProtection("salt");</code></pre>
   can use the same function later in the app's life cycle to disable the override.
   This function has to be called every time the app starts.
 </p>
-<pre><code class="JavaScript"> Countly.setHttpPostForced(true); // default is false</code></pre>
+<pre><code class="JavaScript"> CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setHttpPostForced(true); // default is false</code></pre>
 <h2>Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -1316,7 +1289,7 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
-<pre><code class="JavaScript">Countly.eventSendThreshold(6);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setEventQueueSizeToSend(6);</code></pre>
 <h2>Checking if the SDK has been initialized</h2>
 <p>
   In case you would like to check if init has been called, you may use the following
