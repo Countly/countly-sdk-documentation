@@ -654,7 +654,7 @@ override func userNotificationCenter(_ center: UNUserNotificationCenter, didRece
 <p>
   If your app has a different way of detecting location, you may send this information
   to the Countly Server by using the <code>setLocation</code> of&nbsp;
-  <code>CountlyConfig</code> or<code>setLocation</code> methods.
+  <code>CountlyConfig</code> or<code>setUserLocation</code> methods.
 </p>
 <p>
   We recommend using the <code>setLocation</code>of <code>CountlyConfig</code>
@@ -679,16 +679,17 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLocation
 <p>
   Geolocation recording methods may also be called at any time after the Countly
   SDK has started.<br>
-  To do so, use the <code>setLocation</code> method as shown below.
+  To do so, use the <code>setUserLocation</code> method as shown below.
 </p>
-<pre><code class="JavaScript">// Example for setLocation
-Countly.setLocation(latitude, longitude);
+<pre><code class="JavaScript">// Example for setUserLocation
+Countly.setUserLocation("TR", "Istanbul", "41.0082,28.9784", "10.2.33.12");
 </code></pre>
 <h2>Disable Location</h2>
 <p>
   To erase any cached location data from the device and stop further location tracking,
   use the following method. Note that if after disabling location, the
-  <code>setLocation</code> is called with any non-null value, tracking will resume.
+  <code>setUserLocation</code> is called with any non-null value, tracking will
+  resume.
 </p>
 <pre><code class="JavaScript">//disable location tracking
 Countly.disableLocation();</code></pre>
