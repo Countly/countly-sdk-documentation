@@ -1592,16 +1592,12 @@ Countly.report_trace({
 });</code></pre>
   </div>
 </div>
-<<<<<<< HEAD
 <div class="callout callout--warning">
   <p>
     <span style="font-weight: 400;">Whether you are using Countly synchronously or asynchronously, you should always provide the duration key and value in apm_metrics, otherwise custom traces won't be recorded. </span>
   </p>
 </div>
 <h2>Automatic performance monitoring</h2>
-=======
-<h2>Automatic Traces</h2>
->>>>>>> 39cedc37ac83dbe712c8c0f91aa305b8938b0601
 <div class="callout callout--warning">
   <p>
     <span style="font-weight: 400;">Automatic trace reporting has two different implementation depending on if you are using Countly synchronously or asynchronously. </span>
