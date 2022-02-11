@@ -1572,8 +1572,8 @@ console.log(remoteConfigs);
 Countly.q.push(["report_trace",{
     type: "device", //device or network
     name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
+    stz: 1234567890123, //start timestamp in milliseconds
+    etz: 1234567890123, //end timestamp in milliseconds
     apm_metrics: {
         duration: 1000 //duration of trace
     }
@@ -1584,25 +1584,24 @@ Countly.q.push(["report_trace",{
 Countly.report_trace({
     type: "device", //device or network
     name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
+    stz: 1234567890123, //start timestamp in milliseconds
+    etz: 1234567890123, //end timestamp in milliseconds
     apm_metrics: {
         duration: 1000 //duration of trace
     }
 });</code></pre>
   </div>
 </div>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">Whether you are using Countly synchronously or asynchronously, you should always provide the duration key and value in apm_metrics, otherwise custom traces won't be recorded. </span>
-  </p>
-</div>
+<p>
+  Whether you are using Countly synchronously or asynchronously, you should always
+  provide the duration key and value in apm_metrics, otherwise custom traces won't
+  be recorded.
+</p>
 <h2>Automatic performance monitoring</h2>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">Automatic trace reporting has two different implementation depending on if you are using Countly synchronously or asynchronously. </span>
-  </p>
-</div>
+<p>
+  Automatic trace reporting has two different implementation depending on if you
+  are using Countly synchronously or asynchronously.
+</p>
 <h3>Asynchronous Implementation</h3>
 <p>
   To automatically report traces you will need control the loading sequence of
@@ -1637,7 +1636,7 @@ Countly.report_trace({
   After that, you may call a method to start reporting loading and network traces
   automatically. This method accepts boomerang initialization config (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on boomerang.js</a>)
   as a parameter, so if you are familiar with it, you can modify it on your own
-  (<a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">you can reach them from here</a>).
+  (you can find the used files <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
   In case you are not, you may follow this pattern:
 </p>
 <pre><code class="javascript">//automatically report traces
