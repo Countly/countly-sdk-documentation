@@ -1557,7 +1557,7 @@ console.log(remoteConfigs);
   them manually. The other is using a plugin that will use boomerang.js to collect
   data and report it as a performance trace.
 </p>
-<h2>Manual performance monitoring</h2>
+<h2>Custom Traces</h2>
 <p>
   To manually report trace you need to construct the trace and call a method like
   this:
@@ -1592,21 +1592,25 @@ Countly.report_trace({
 });</code></pre>
   </div>
 </div>
+<<<<<<< HEAD
 <div class="callout callout--warning">
   <p>
     <span style="font-weight: 400;">Whether you are using Countly synchronously or asynchronously, you should always provide the duration key and value in apm_metrics, otherwise custom traces won't be recorded. </span>
   </p>
 </div>
 <h2>Automatic performance monitoring</h2>
+=======
+<h2>Automatic Traces</h2>
+>>>>>>> 39cedc37ac83dbe712c8c0f91aa305b8938b0601
 <div class="callout callout--warning">
   <p>
     <span style="font-weight: 400;">Automatic trace reporting has two different implementation depending on if you are using Countly synchronously or asynchronously. </span>
   </p>
 </div>
-<h3>Asynchronous implementation</h3>
+<h3>Asynchronous Implementation</h3>
 <p>
   To automatically report traces you will need control the loading sequence of
-  countly and boomerang.js scripts as boomerang.j depends on Countly to be initialized
+  countly and boomerang.js scripts as boomerang.js depends on Countly to be initialized
   first. So instead of defining the scripts at the head tag you should use the
   script provided below, inside your Countly script at the top:
 </p>
