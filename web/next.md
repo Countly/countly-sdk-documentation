@@ -44,6 +44,12 @@
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
 </p>
 <p>
+  Here you would also need to provide your application key and server URL. For
+  more information on how to acquire your application key (APP_KEY) and server
+  URL, please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
+</p>
+<p>
   <span style="font-weight: 400;">An example setup would look like this:</span>
 </p>
 <div class="tabs">
@@ -166,43 +172,6 @@ function clickEvent(ob){
 &lt;input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
   </div>
 </div>
-<h3>Providing the application key</h3>
-<p>
-  Also called "appKey" as shorthand. The application key is used to identify for
-  which application this information is tracked. You receive this value by creating
-  a new application in your Countly dashboard and accessing it in its application
-  management screen.
-</p>
-<div class="callout callout--info">
-  <p>
-    You'll see the APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on the Countly dashboard.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app. Then you will see the App Key field. For more information on how
-    to acquire your application key (APP_KEY) and server URL, please check
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
-<p>
-  <strong>Note:</strong> Ensure you are using the App Key (found under Management
-  -&gt; Applications) and not the API Key. Entering the API Key will not work.
-</p>
-<h3>Providing the server URL</h3>
-<p>
-  If you are using Countly Enterprise Edition trial servers, use https://try.count.ly,
-  https://us-try.count.ly or https://asia-try.count.ly It is basically the domain
-  from which you are accessing your trial dashboard.
-</p>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain
-  name or IP address, such as https://example.com or https://IP (if SSL has been
-  set up).
-</p>
 <h2>SDK logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enabling logging.
