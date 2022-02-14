@@ -41,31 +41,13 @@
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.<span>sharedInstance</span>().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
-  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL.</span>
+  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.</span>
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
   Configuration is done by creating such an object and then calling it's provided
   function calls to enable functionality you need. Afterward that config object
   is provided to the "init" method.<span style="font-weight: 400;"></span>
-</p>
-<p>
-  <strong>Providing the application key</strong>
-</p>
-<p>
-  <span style="font-weight: 400;">Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
-</p>
-<p>
-  <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
-</p>
-<p>
-  <strong>Providing the server URL</strong>
-</p>
-<p>
-  <span style="font-weight: 400;">If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,<span>&nbsp;</span><code>https://us-try.count.ly</code><span>&nbsp;</span>or<span>&nbsp;</span><code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as </span><a href="https://example.com"><span style="font-weight: 400;">https://example.com</span></a><span style="font-weight: 400;">&nbsp;or&nbsp;</span><a href="https://ip/"><span style="font-weight: 400;">https://IP</span></a><span style="font-weight: 400;">&nbsp;(if SSL has been set up).</span>
 </p>
 <h2>SDK logging</h2>
 <p>
