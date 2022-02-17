@@ -773,30 +773,6 @@ Countly.end_event({
   </div>
 </div>
 <p>
-  Also if you want you can start or stop time tracking for a user totally.
-  <strong>session_duration</strong> starts duration tracking automatically for
-  the user but to handle duration tracking manually you can use
-  <strong>start_time</strong> and <strong>stop_time</strong> as appropriate.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//to start duration tracking for the user
-Countly.q.push(['start_time']);    
-//to stop duration tracking for the user
-Countly.q.push(['stop_time']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//to start duration tracking for the user
-Countly.start_time()
-//to stop duration tracking for the user
-Countly.stop_time()</code></pre>
-  </div>
-</div>
-<p>
   <strong>Ending a session</strong>
 </p>
 <p>
