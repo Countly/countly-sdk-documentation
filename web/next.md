@@ -1990,33 +1990,6 @@ localStorage.setItem("consents", JSON.stringify(response));
 }</code></pre>
   </div>
 </div>
-<p>
-  <strong><strong>Checking consent</strong></strong>
-</p>
-<p>
-  You can check if any of the available consent is given in general with check_any_consent,
-  or you can check a specific feature to see if its consent is given with check_consent:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//to check if any consent is given, returns true if given
-Countly.q.push(['check_any_consent']);
-
-//to check if a specific consent is given, returns true if given
-Countly.q.push(['check_consent', 'consentToCheck']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//to check if any consent is given, returns true if given
-Countly.check_any_consent();
-
-//to check if a specific consent is given, returns true if given
-Countly.check_consent('consentToCheck');</code></pre>
-  </div>
-</div>
 <h1>Other features and notes</h1>
 <h2>Automatically fill user data</h2>
 <p>
