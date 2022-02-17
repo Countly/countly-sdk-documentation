@@ -338,6 +338,10 @@ function clickEvent(ob){
     <strong>session_cookie_timeout</strong> -
     <span style="font-weight: 400;">how long until a cookie session should expire, expressed in minutes (default: 30 minutes)</span>
   </li>
+    <li>
+    <strong>test_mode</strong> - stop hearBeat pulse for testing purposes (default:
+    false)
+  </li>
   <li>
     <strong>remote_config</strong> -
     <span style="font-weight: 400;">enable automatic remote config fetching, provide the callback function to be notified when fetching is complete (default: false)</span>
@@ -345,8 +349,14 @@ function clickEvent(ob){
   <li>
     <strong>namespace</strong> - h<span>ave a separate namespace for persistent data when using multiple trackers on the same domain</span>
   </li>
+   <li>
+    <strong>track_domains</strong> - <span>Set to false to disable domain tracking, so no domain data would be reported (default: true)</span>
+  </li>
   <li>
     <span><strong>headers</strong> - object to override or add headers to all SDK requests</span>
+  </li>
+   <li>
+    <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
     <span><strong>metrics</strong> -&nbsp;provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
@@ -489,6 +499,31 @@ catch(ex){
   //report error to Countly
   Countly.log_error(ex);
 }</code></pre>
+  </div>
+</div>
+<p>
+  For fatal errors you can use
+  <strong>Countly.recordError (error, nonFatal, segments)</strong> where nonFatal is false
+  to indicate the fatality of the error and error is an error object with a stack key that has the error message value. Also segments (optional) are for custom crash segments for any extra information that you want to deliver with custom key value pairs. You can use this same function for nonfatal errors too by just setting nonFatal value to true. 
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">
+  const error = {stack: 'Your error message here'};
+  //report fatal error to Countly
+  Countly.q.push(['recordError', error, nonFatal, segments]);
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">
+  const error = {stack: 'Your error message here'};
+  //report fatal error to Countly
+  Countly.recordError(error, nonFatal, segments);
+</code></pre>
   </div>
 </div>
 <p>
@@ -732,6 +767,30 @@ Countly.end_event({
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
+  </div>
+</div>
+<p>
+  Also if you want you can start or stop time tracking for a user totally.
+  <strong>session_duration</strong> starts duration tracking automatically for
+  the user but to handle duration tracking manually you can use
+  <strong>start_time</strong> and <strong>stop_time</strong> as appropriate.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//to start duration tracking for the user
+Countly.q.push(['start_time']);    
+//to stop duration tracking for the user
+Countly.q.push(['stop_time']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to start duration tracking for the user
+Countly.start_time()
+//to stop duration tracking for the user
+Countly.stop_time()</code></pre>
   </div>
 </div>
 <p>
@@ -1951,6 +2010,32 @@ localStorage.setItem("consents", JSON.stringify(response));
 }</code></pre>
   </div>
 </div>
+<strong>Checking consent<strong>
+<p>
+  You can check if any of the available consent is given in general with check_any_consent,
+  or you can check a specific feature to see if its consent is given with check_consent:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//to check if any consent is given, returns true if given
+Countly.q.push(['check_any_consent']);
+
+//to check if a specific consent is given, returns true if given
+Countly.q.push(['check_consent', 'consentToCheck']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//to check if any consent is given, returns true if given
+Countly.check_any_consent();
+
+//to check if a specific consent is given, returns true if given
+Countly.check_consent('consentToCheck');</code></pre>
+  </div>
+</div>
+
 <h1>Other features and notes</h1>
 <h2>Automatically fill user data</h2>
 <p>
