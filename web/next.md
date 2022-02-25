@@ -35,6 +35,58 @@
 <p>
   <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
 </p>
+<p>
+  Countly can run with all browsers that supports ECMAScript 5. Minimum versions
+  of major internet browsers that can run Countly are:
+</p>
+<table style="border-collapse: collapse; height: 46px; background-color: rgb(169, 255, 171); padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
+  <tbody>
+    <tr class="wysiwyg-text-align-center" style="height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 36px;">
+        <strong>IE</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 36px;">
+        <strong>Edge</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 36px;">
+        <strong>Firefox</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 36px;">
+        <strong>Firefox (Android)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Opera</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Opera (Mobile)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Safari</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Safari (iOS)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px; text-align: center; vertical-align: middle;">
+        <strong>Chrome</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 36px;">
+        <strong>Chrome (Android)</strong>
+      </td>
+    </tr>
+    <tr style="height: 22px; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 10px;">10</td>
+      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 10px;">12</td>
+      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 10px;">21</td>
+      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 10px;">96</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">15</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">64</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">23</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 10px;">98</td>
+    </tr>
+  </tbody>
+</table>
 <h1>SDK Integration</h1>
 <h2>Minimal setup</h2>
 <p>
