@@ -35,28 +35,19 @@
 <p>
   <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">What is an APP KEY?</p>
-  <p>
-    You'll see the APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on the Countly dashboard. Note that
-    an APP KEY is different than the API KEY, which is used to send data via
-    API calls.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app. Then you will see the App Key field.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
 <h1>SDK Integration</h1>
+<h2>Minimal setup</h2>
 <p>
   <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Inserting asynchronous code before closing the tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the tag.</span>
+  <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
+</p>
+<p>
+  Here you would also need to provide your application key and server URL. For
+  more information on how to acquire your application key (APP_KEY) and server
+  URL, please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
 </p>
 <p>
   <span style="font-weight: 400;">An example setup would look like this:</span>
@@ -181,6 +172,62 @@ function clickEvent(ob){
 &lt;input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
   </div>
 </div>
+<h2>SDK logging</h2>
+<p>
+  The first thing you should do while integrating our SDK is enabling logging.
+  If logging is enabled, then our SDK will print out debug messages about its internal
+  state and encountered problems.
+</p>
+<p>
+  Set debug option to true at the Countly initialization to enable logging:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//during initialization
+    Countly.debug = true;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">Countly.init({
+    debug:true,
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+});</code></pre>
+  </div>
+</div>
+<h2>Device ID</h2>
+<p>
+  All tracked information is tied to a "device ID". A device ID is a unique identifier
+  for your users. One of the first things you'll need to decide is which device
+  ID generation strategy to use. The easiest method is letting the Countly SDK
+  seamlessly handle the device ID on its own.
+</p>
+<p>
+  Or you may specify the device ID by yourself if you have one (it has to be unique
+  for each device). It may be an email or some other internal ID used by your other
+  systems:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//during initialization
+    Countly.device_id = "1234-1234-1234-1234";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">Countly.init({
+    device_id: "1234-1234-1234-1234",
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly"
+});</code></pre>
+  </div>
+</div>
+<h2>SDK notes</h2>
 <div class="callout callout--info">
   <p class="callout__title">
     Why aren’t I able to see AngularJS errors on the Countly dashboard?
@@ -202,7 +249,7 @@ function clickEvent(ob){
     IDE.
   </p>
 </div>
-<h2>Setup properties</h2>
+<h3>Setup properties</h3>
 <p>
   Here are the properties you may set up upon Countly initialization:
 </p>
@@ -299,7 +346,14 @@ function clickEvent(ob){
     <strong>namespace</strong> - h<span>ave a separate namespace for persistent data when using multiple trackers on the same domain</span>
   </li>
   <li>
+    <strong>track_domains</strong> -
+    <span>Set to false to disable domain tracking, so no domain data would be reported (default: true)</span>
+  </li>
+  <li>
     <span><strong>headers</strong> - object to override or add headers to all SDK requests</span>
+  </li>
+  <li>
+    <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
     <span><strong>metrics</strong> -&nbsp;provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
@@ -442,6 +496,37 @@ catch(ex){
   //report error to Countly
   Countly.log_error(ex);
 }</code></pre>
+  </div>
+</div>
+<p>
+  For fatal errors you can use recordError function which takes three parameters;
+  first, an error object with a stack key that has the error message value, second,
+  a boolean which is false to indicate the fatality of the error and lastly segments
+  object (optional) for custom crash segments for any extra information that you
+  want to deliver with custom key value pairs. You can use this same function for
+  nonfatal errors too by just setting the boolean value to true.
+</p>
+<p>
+  <strong>Countly.recordError(error, nonFatal, segments):</strong>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">
+  const error = {stack: 'Your error message here'};
+  //report fatal error to Countly
+  Countly.q.push(['recordError', error, nonFatal, segments]);
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">
+  const error = {stack: 'Your error message here'};
+  //report fatal error to Countly
+  Countly.recordError(error, nonFatal, segments);
+</code></pre>
   </div>
 </div>
 <p>
@@ -1496,6 +1581,7 @@ Countly.report_orientatio("portrait");</code></pre>
   them manually. The other is using a plugin that will use boomerang.js to collect
   data and report it as a performance trace.
 </p>
+<h2>Custom Traces</h2>
 <p>
   To manually report trace you need to construct the trace and call a method like
   this:
@@ -1510,8 +1596,8 @@ Countly.report_orientatio("portrait");</code></pre>
 Countly.q.push(["report_trace",{
     type: "device", //device or network
     name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
+    stz: 1234567890123, //start timestamp in milliseconds
+    etz: 1234567890123, //end timestamp in milliseconds
     apm_metrics: {
         duration: 1000 //duration of trace
     }
@@ -1522,8 +1608,8 @@ Countly.q.push(["report_trace",{
 Countly.report_trace({
     type: "device", //device or network
     name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
+    stz: 1234567890123, //start timestamp in milliseconds
+    etz: 1234567890123, //end timestamp in milliseconds
     apm_metrics: {
         duration: 1000 //duration of trace
     }
@@ -1531,23 +1617,54 @@ Countly.report_trace({
   </div>
 </div>
 <p>
-  To automatically report traces you will need to include 2 additional files in
-  your project:
+  Whether you are using Countly synchronously or asynchronously, you should always
+  provide the duration key and value in apm_metrics, otherwise custom traces won't
+  be recorded.
 </p>
-<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
+<h2>Automatic performance monitoring</h2>
+<p>
+  Automatic trace reporting has two different implementation depending on if you
+  are using Countly synchronously or asynchronously.
+</p>
+<h3>Asynchronous Implementation</h3>
+<p>
+  To automatically report traces you will need control the loading sequence of
+  countly and boomerang.js scripts as boomerang.js depends on Countly to be initialized
+  first. So instead of defining the scripts at the head tag you should use the
+  script provided below, inside your Countly script at the top:
+</p>
+<pre><code class="javascript">syncScripts();
+        function syncScripts() {
+            var scripts = ['your_countly_source_path', '../plugin/boomerang/boomerang.min.js', '../plugin/boomerang/countly_boomerang.js'];
+            var i = 0;
+            function loopScriptList(scripts) {
+                recursiveScriptMaker(scripts[i], function() {
+                    i++;
+                    if(i &lt; scripts.length) {
+                        loopScriptList(scripts);   
+                    }
+                }); 
+            }
+            loopScriptList(scripts);      
+        }
+        function recursiveScriptMaker(source, callback ) {
+            var script = document.createElement('script');
+            script.onload = function() {
+                console.log('Successfully loaded the source: ' + source)
+                callback();
+            }
+            script.src = source;
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }<code></code></code></pre>
 <p>
   After that, you may call a method to start reporting loading and network traces
   automatically. This method accepts boomerang initialization config (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on boomerang.js</a>)
-  as a parameter, so if you are familiar with it, you can modify it on your own.
+  as a parameter, so if you are familiar with it, you can modify it on your own
+  (you can find the used files
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
   In case you are not, you may follow this pattern:
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//automatically report traces
+<pre><code class="javascript">//automatically report traces
 Countly.q.push(["track_performance", {
     //page load timing
     RT:{},
@@ -1569,9 +1686,17 @@ Countly.q.push(["track_performance", {
         afterOnload: true
     }
 }]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//automatically report traces
+<h3>Synchronous implementation</h3>
+<p>
+  To automatically report traces you will need to include 2 additional files in
+  your project:
+</p>
+<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
+<p>
+  After that, you may call a method to start reporting loading and network traces
+  automatically.An example pattern inside your Countly script would be:
+</p>
+<pre><code class="javascript">//automatically report traces
 Countly.track_performance({
     //page load timing
     RT:{},
@@ -1593,8 +1718,6 @@ Countly.track_performance({
         afterOnload: true
     }
 });</code></pre>
-  </div>
-</div>
 <h1>User consent</h1>
 <h2>Opt in / Opt out</h2>
 <p>
