@@ -627,24 +627,27 @@ func application(application: UIApplication,  didReceiveRemoteNotification userI
 
 }
 
-@available(iOS 10.0, *)
-override func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -&gt; Void) {
+@available(iOS 10.0, \*)
+override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
 
     //Called when a notification is delivered to a foreground app.
 
     let userInfo: NSDictionary = notification.request.content.userInfo as NSDictionary
     CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
+
 }
 
-@available(iOS 10.0, *)
-override func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -&gt; Void) {
+@available(iOS 10.0, \*)
+override func userNotificationCenter(\_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -&gt; Void) {
 
     // Called to let your app know which action was selected by the user for a given notification.
     let userInfo: NSDictionary = response.notification.request.content.userInfo as NSDictionary
     // print("\(userInfo)")
     CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
+
 }
 </code></pre>
+
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -654,7 +657,8 @@ override func userNotificationCenter(_ center: UNUserNotificationCenter, didRece
 <p>
   If your app has a different way of detecting location, you may send this information
   to the Countly Server by using the <code>setLocation</code> of&nbsp;
-  <code>CountlyConfig</code> or<code>setUserLocation</code> methods.
+  <code>CountlyConfig</code> during init or<code>setUserLocation</code> method
+  after init.
 </p>
 <p>
   We recommend using the <code>setLocation</code>of <code>CountlyConfig</code>
@@ -674,15 +678,18 @@ override func userNotificationCenter(_ center: UNUserNotificationCenter, didRece
     <code>IP</code> a string specifying an IP address in IPv4 or IPv6 formats
   </li>
 </ul>
+<p>
+  <span>All values are optional, but at least one should be set.</span>
+</p>
 <pre><code class="JavaScript">// Example for setLocation
-CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLocation("TR", "Istanbul", "41.0082,28.9784", "10.2.33.12");</code></pre>
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLocation(country_code: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12')</code></pre>
 <p>
   Geolocation recording methods may also be called at any time after the Countly
   SDK has started.<br>
   To do so, use the <code>setUserLocation</code> method as shown below.
 </p>
 <pre><code class="JavaScript">// Example for setUserLocation
-Countly.setUserLocation("TR", "Istanbul", "41.0082,28.9784", "10.2.33.12");
+Countly.setUserLocation(countryCode: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12');
 </code></pre>
 <h2>Disable Location</h2>
 <p>
@@ -944,6 +951,7 @@ Map&lt;String, Object&gt; reportedResult = {};
 //report the results to the SDK
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
+
 <p>
   If the user would have closed the widget, you would report that by passaing a
   "null" reportedResult.
@@ -1003,6 +1011,7 @@ Countly.pushValue("type", "morning");
 //remove value from array
 Countly.pullValue("type", "morning");
 </code></pre>
+
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To start using them you would first
@@ -1203,6 +1212,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 ...
 }
 </code></pre>
+
 <p>
   Next create a configuration that will preserve the entire Flutter wrapper code.
   Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
@@ -1326,7 +1336,6 @@ Map&lt;String, Object&gt; options = {
     "ipAddress": "255.255.255.255"
 };
 Countly.setOptionalParametersForInitialization(options);
-
 
 //and then call the below code
 Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
