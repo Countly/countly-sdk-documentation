@@ -443,6 +443,12 @@ Countly.Instance.ChangeDeviceId("newIdAgain");
 
 //changing with a server side merge
 Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
+<h2 id="retrieving-current-device-id&nbsp;" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.&nbsp;
+</p>
+<pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
 <h1>User location</h1>
 <p>
   <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
