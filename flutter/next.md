@@ -1290,6 +1290,11 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   this, call:
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setEventQueueSizeToSend(6);</code></pre>
+<h2>Setting max queue size limit</h2>
+<p>
+  <span>You can specify the max request queue size by calling <code>setMaxRequestQueueSize</code></span><span> of the <code>CountlyConfig</code></span><span> object before starting Countly. It is used to limit the number of requests stored when there is a Countly Server connection problem. If your Countly Server is down, queued requests can reach excessive numbers, causing delivery problems to the server and requests stored on the device. To prevent this from happening, the Countly SDK will only store requests up to the max request queue size</span><span>. If the number of stored requests reaches the max request queue size</span><span>, the Countly SDK will start to drop the oldest requests, storing the newest ones in their place. If the max queue size limit</span><span>&nbsp;is not explicitly set, the default setting will be at&nbsp;</span><strong>1,000</strong><span>.</span>
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setMaxRequestQueueSize(2500);</code><span><br></span></pre>
 <h2>Checking if the SDK has been initialized</h2>
 <p>
   In case you would like to check if init has been called, you may use the following
@@ -1325,7 +1330,6 @@ Map&lt;String, Object&gt; options = {
     "ipAddress": "255.255.255.255"
 };
 Countly.setOptionalParametersForInitialization(options);
-
 
 //and then call the below code
 Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
