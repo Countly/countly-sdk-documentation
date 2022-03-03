@@ -505,6 +505,10 @@ Countly.recordView("Dashboard");</code></pre>
   For that, you may use the following call:
 </p>
 <pre><code class="JavaScript">String currentDeviceId = Countly.getCurrentDeviceId();</code></pre>
+<p>
+  <span>You can use </span><code>getDeviceIDType</code><span>&nbsp;method which returns a </span><code>DeviceIDType</code><span> to get the current device ID type, &nbsp;The id type is an enum with the possible values of: "DEVELOPER_SUPPLIED", "SDK_GENERATED", "TEMPORARY_ID" and "UNKNOWN".</span>
+</p>
+<pre><span>List result </span>= <span>await </span><span>Countly</span>.<span>getDeviceIDType</span>();<br><span>DeviceIdType deviceIdType </span>= <span>result</span>[<span>0</span>];<br><span>String</span>? <span>error </span>= <span>result</span>[<span>1</span>];<br><span>if </span>(<span>error </span>!= <span>null</span>) {<br>  print(<span>error</span>);<br>}</pre>
 <h1>Push notifications</h1>
 <h2>Integration</h2>
 <h3>Android setup</h3>
@@ -1325,7 +1329,6 @@ Map&lt;String, Object&gt; options = {
     "ipAddress": "255.255.255.255"
 };
 Countly.setOptionalParametersForInitialization(options);
-
 
 //and then call the below code
 Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
