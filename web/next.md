@@ -2351,6 +2351,66 @@ Countly.init();</code></pre>
     action map data
   </li>
 </ul>
+<h2>Multi Instancing</h2>
+<p>
+You can initialize Countly multiple times at the same page with different app keys to send information to different apps you own and gather data with higher flexibility and precision. These new instances have all functionality of Countly but depending on your init configuration they would behave differently. You can attach different events to different Countly instances to send events to specific applications even from the same button trigger or much more. A simple integration example would be:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">
+Countly = Countly || {};
+Countly.q = Countly.q || [];
+
+// initializing first instance, which will be global Countly
+Countly.init({
+	app_key: "YOUR_APP_KEY_1",
+	url: "https://try.count.ly" //your server goes here
+})
+// report event to first app
+Countly.add_event({
+	key:"first_app"
+});
+
+// initialize second instance for another app 
+Countly.q.push(["init", {
+	app_key: "YOUR_APP_KEY_2", //must have different APP key
+	url: "https://try.count.ly" //your server goes here
+}])
+// report event to second app asynchronously by passing app key as first argument
+Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
+	key:"second_app"
+}]);
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">
+// initializing first instance, which will be global Countly
+Countly.init({
+	app_key: "YOUR_APP_KEY_1",
+	url: "https://try.count.ly" //your server goes here
+})
+// report event to first app
+Countly.add_event({
+	key:"first_app"
+});
+
+// initialize second instance for another app
+var Countly2 = Countly.init({
+	app_key: "YOUR_APP_KEY_2", //must have different APP key
+	url: "https://try.count.ly" //your server goes here
+});
+// report event to second app
+Countly2.add_event({
+	key:"second_app"
+});
+    
+    </code></pre>
+  </div>
+</div>
 <h2>SDK Internal Limits</h2>
 <p>
   Countly is highly customizable and let's you take a huge part at the control
