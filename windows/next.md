@@ -1,5 +1,6 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications. It applies to version 21.11.0.
+  This document explains how to install Countly SDK for Windows desktop applications.
+  It applies to version 21.11.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -24,7 +25,7 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 click&nbsp;<a href="https://countly.zendesk.com/hc/en-us/articles/4413138651161">here.</a>
+    To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
   </p>
 </div>
 <p>
@@ -159,31 +160,31 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <pre><code class="csharp">protected override void OnLaunched(LaunchActivatedEventArgs e)
 {
-  
+
 ...
 
-  //create the Countly init object
-  CountlyConfig cc = new CountlyConfig();
-  cc.serverUrl = "http://YOUR_SERVER";
-  cc.appKey = "YOUR_APP_KEY";
-  cc.appVersion = "1.2.3";
-  cc.application = this
+//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "http://YOUR_SERVER";
+cc.appKey = "YOUR_APP_KEY";
+cc.appVersion = "1.2.3";
+cc.application = this
 
-  //initiate the SDK with your preferences
-  await Countly.Instance.Init(cc)
-  
-  if (rootFrame.Content == null)
-  {
-    // Removes the turnstile navigation for startup.
-    if (rootFrame.ContentTransitions != null)
-    {
-      this.transitions = new TransitionCollection();
-      foreach (var c in rootFrame.ContentTransitions)
-    {
-      this.transitions.Add(c);
-    }
-  }
-    
+//initiate the SDK with your preferences
+await Countly.Instance.Init(cc)
+
+if (rootFrame.Content == null)
+{
+// Removes the turnstile navigation for startup.
+if (rootFrame.ContentTransitions != null)
+{
+this.transitions = new TransitionCollection();
+foreach (var c in rootFrame.ContentTransitions)
+{
+this.transitions.Add(c);
+}
+}
+
 ...
 }</code></pre>
 <p>
@@ -207,7 +208,7 @@ Countly.Instance.Init(cc);</code></pre>
 
 private void OnResuming(object sender, object e)
 {
-  await Countly.Instance.SessionBegin();
+await Countly.Instance.SessionBegin();
 }</code></pre>
 <p>
   Update <code>OnSuspending</code> method created by Visual Studio in
@@ -219,9 +220,9 @@ private void OnResuming(object sender, object e)
 {
   var deferral = e.SuspendingOperation.GetDeferral();
 
-  await Countly.Instance.SessionEnd();
+await Countly.Instance.SessionEnd();
 
-  deferral.Complete();
+deferral.Complete();
 }</code></pre>
 <h3>Additional info for UWP project setup</h3>
 <p>
@@ -404,7 +405,7 @@ DateTime startTime = DateTime.UtcNow;
 </p>
 <pre><code class="csharp">//start the user session
 Countly.Instance.SessionBegin();
-  
+
 //end the user session
 Countly.Instance.SessionEnd();
 
@@ -498,6 +499,12 @@ Countly.Instance.ChangeDeviceId("newIdAgain");
 
 //changing with a server side merge
 Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
+<h2 id="retrieving-current-device-id&nbsp;" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.&nbsp;
+</p>
+<pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
 <h1>User location</h1>
 <p>
   <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
