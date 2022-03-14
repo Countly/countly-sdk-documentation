@@ -1288,6 +1288,18 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <span style="font-weight: 400;">From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
 </p>
 <pre><code class="text">Countly.enable_push()</code></pre>
+<h2>Actioned events</h2>
+<p>
+  When recording actioned events, one of the segmentation values recorded is the
+  platform value. It is recorded with the key "p". The platform is then recorded
+  with one unique character. Each platform needs to have it's own unique value.
+  The currently used ones are the following:
+</p>
+<ul>
+  <li>"a" - Android</li>
+  <li>"i" - iOS</li>
+  <li>"m" - macOS</li>
+</ul>
 <h1>Recording location</h1>
 <p>
   There are 4 location related parameters that can be set in a Countly SDK. It
