@@ -2132,15 +2132,15 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>&nbsp;</p>
 <p>
   This feature is currently setup in a way to give more flexibility in the future.
-  For now it will be only possible to record install attribution by handling that
-  as a special case. In the future this feature will be generalised and a new param
+  For now it will be only possible to record install attribution by handling twp
+  special cases. In the future this feature will be generalised and a new param
   will be added.
 </p>
 <p>&nbsp;</p>
 <p>
-  If the provided type is "countly" then a special case will be executed. The data
-  string is an stringified json that has 2 values "cid" or Campaign ID and "cuid"
-  or Campaign user ID.
+  If the provided type is "countly" then the first special case will be executed.
+  The data string is an stringified json that has 2 values "cid" or Campaign ID
+  and "cuid" or Campaign user ID.
 </p>
 <p>Non valid or empty string should produce an error log.</p>
 <p>
@@ -2158,6 +2158,16 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <pre><span>"&amp;campaign_id=[PROVIDED_CAMPAIGN_ID]"</span></pre>
 <p>The param for the campaign user ID should be added as:</p>
 <pre><span>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</span></pre>
+<h3>&nbsp;</h3>
+<p>
+  If the provided type is "_special_test" then the second special case will be
+  executed. If the provided data is not null or empty then it will be processed.&nbsp;
+</p>
+<p>
+  A request will be created. The provided value should be HTTP encoded and then
+  set to the parameter "attribution_data" and then sent.
+</p>
+<pre>"&amp;<span>attribution_data=[ENCODED_CAMPAIGN_DATA]"</span></pre>
 <h3>Indirect attribution</h3>
 <p>
   With this the dev is able to provide a map/dictionary of String to String values.
