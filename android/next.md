@@ -2089,7 +2089,6 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   - Device architecture<br>
   - Device resolution<br>
   - App version<br>
-  - App build number<br>
   - Time of the crash<br>
   - Crash stacktrace<br>
   - Error description<br>
