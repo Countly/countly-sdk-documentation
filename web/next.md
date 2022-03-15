@@ -10,36 +10,11 @@
     <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="blank">here</a>.
   </p>
 </div>
-<h1>Adding the SDK to the project</h1>
-<p>
-  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">npm</span>
-    <span class="tabs-link">bower</span> <span class="tabs-link">yarn</span>
-  </div>
-  <div class="tab">
-    <pre><code class="shell">npm install countly-sdk-web</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">bower install countly-sdk-web</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">yarn add countly-sdk-web</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
-</p>
 <p>
   Countly can run with all browsers that supports ECMAScript 5. Minimum versions
-  of major internet browsers that can run Countly are:
+  of major internet browsers that fully support ES5 are:
 </p>
-<table style="border-collapse: collapse; height: 46px; background-color: rgb(169, 255, 171); padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
+<table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
   <tbody>
     <tr class="wysiwyg-text-align-center" style="height: 36px;">
       <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 36px;">
@@ -87,6 +62,31 @@
     </tr>
   </tbody>
 </table>
+<h1>Adding the SDK to the project</h1>
+<p>
+  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">npm</span>
+    <span class="tabs-link">bower</span> <span class="tabs-link">yarn</span>
+  </div>
+  <div class="tab">
+    <pre><code class="shell">npm install countly-sdk-web</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="shell">bower install countly-sdk-web</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="shell">yarn add countly-sdk-web</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
+</p>
 <h1>SDK Integration</h1>
 <h2>Minimal setup</h2>
 <p>
