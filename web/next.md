@@ -10,6 +10,58 @@
     <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="blank">here</a>.
   </p>
 </div>
+<p>
+  Countly can run with all browsers that supports ECMAScript 5. Minimum versions
+  of major internet browsers that fully support ES5 are:
+</p>
+<table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
+  <tbody>
+    <tr class="wysiwyg-text-align-center" style="height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 36px;">
+        <strong>IE</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 36px;">
+        <strong>Edge</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 36px;">
+        <strong>Firefox</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 36px;">
+        <strong>Firefox (Android)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Opera</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Opera (Mobile)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Safari</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Safari (iOS)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px; text-align: center; vertical-align: middle;">
+        <strong>Chrome</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 36px;">
+        <strong>Chrome (Android)</strong>
+      </td>
+    </tr>
+    <tr style="height: 22px; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 10px;">10</td>
+      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 10px;">12</td>
+      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 10px;">21</td>
+      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 10px;">96</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">15</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">64</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">23</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 10px;">98</td>
+    </tr>
+  </tbody>
+</table>
 <h1>Adding the SDK to the project</h1>
 <p>
   <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
