@@ -433,16 +433,15 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
   <li>Begin session</li>
-  <li>Update session duration</li>
+  <li>
+    Update session duration. By default, you would call this every 60 seconds
+    after beginning a session so that it is not closed server side. If you would
+    want to increase that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
+  </li>
   <li>End session (also updates duration)</li>
 </ul>
 <p>The approprate call to do that are:</p>
 <pre>Countly.beginSession();<br>Countly.updateSession();<br>Countly.endSession();</pre>
-<p>
-  By default, you should do some session call every 60 seconds after beginning
-  a session so that it is not closed server side. If you would want to increase
-  that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
-</p>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
 <p>
