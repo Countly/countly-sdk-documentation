@@ -647,7 +647,6 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 
 }
 </code></pre>
-
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -661,8 +660,7 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
   after init.
 </p>
 <p>
-  We recommend using the <code>setLocation</code>of <code>CountlyConfig</code>
-  method before initialization to sent location. This includes:
+  When setting user location information, you would be setting these values:
 </p>
 <ul>
   <li>
@@ -951,7 +949,6 @@ Map&lt;String, Object&gt; reportedResult = {};
 //report the results to the SDK
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
-
 <p>
   If the user would have closed the widget, you would report that by passaing a
   "null" reportedResult.
@@ -1011,7 +1008,6 @@ Countly.pushValue("type", "morning");
 //remove value from array
 Countly.pullValue("type", "morning");
 </code></pre>
-
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To start using them you would first
@@ -1212,7 +1208,6 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 ...
 }
 </code></pre>
-
 <p>
   Next create a configuration that will preserve the entire Flutter wrapper code.
   Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
