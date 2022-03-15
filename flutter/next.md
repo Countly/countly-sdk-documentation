@@ -1233,13 +1233,24 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <h3>
   <span>Direct Attribution</span>
 </h3>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Only available for Android</strong></span>
+  </p>
+  <p>
+    Currently, direct attribution is only available for Android.
+  </p>
+</div>
 <p>
-  Currently, direct attribution is only available for Android.
+  You can pass "Campaign type" and "Campaign data". The "type" determines for what
+  purpose the attribution data is provided. Depending on the type, the expected
+  data will differ, but usually that will be a string representation of a JSON
+  object.
 </p>
 <p>
-  <span>You can use <code>recordDirectAttribution</code>&nbsp;method of <code>CountlyConfig</code></span><span> object before initializing the SDK.</span>
+  <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('countly', campaignData);</code><span><br></span></pre>
+<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code><span><br></span></pre>
 <p>
   You can also use <code>recordDirectAttribution</code> function to manually report
   attribution later:
@@ -1249,7 +1260,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   <span>Indirect Attribution</span>
 </h3>
 <p>
-  <span>You can use <code>recordDirectAttribution</code>&nbsp;method of <code>CountlyConfig</code></span><span> object before initializing the SDK.</span>
+  <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
 <pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
 <p>
@@ -1339,7 +1350,6 @@ Map&lt;String, Object&gt; options = {
     "ipAddress": "255.255.255.255"
 };
 Countly.setOptionalParametersForInitialization(options);
-
 
 //and then call the below code
 Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
