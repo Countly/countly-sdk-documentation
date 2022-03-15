@@ -423,6 +423,25 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   If you want to end automatic session tracking you would call:
 </p>
 <pre><code class="JavaScript">Countly.stop();</code></pre>
+<h2 id="manual-sessions" class="anchor-heading">Manual sessions</h2>
+<p>
+  Sometimes it might be preferable to control the session manually instead of relying
+  on the SDK.
+</p>
+<p>It can be enabled during init with:</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);</code><br>config.enableManualSessionHandling();</pre>
+<p>Afterwards it is up to the implementer to make calls to:</p>
+<ul>
+  <li>Begin session</li>
+  <li>
+    Update session duration. By default, you would call this every 60 seconds
+    after beginning a session so that it is not closed server side. If you would
+    want to increase that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
+  </li>
+  <li>End session (also updates duration)</li>
+</ul>
+<p>The approprate call to do that are:</p>
+<pre>Countly.beginSession();<br>Countly.updateSession();<br>Countly.endSession();</pre>
 <h1>View tracking</h1>
 <h2>Manual view recording</h2>
 <p>
