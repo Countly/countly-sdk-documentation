@@ -408,7 +408,8 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
-<h1 id="backend-mode" class="anchor-heading" tabindex="-1">Backend Mode</h1>
+<h1 id="other-features" class="anchor-heading" tabindex="-1">Other features</h1>
+<h2 id="backend-mode" class="anchor-heading" tabindex="-1">Backend Mode</h2>
 <p>
   Java SDK provides a special mode called 'Backend Mode'. It is useful when users
   have data stored in a file or database and want to send this data directly to
@@ -424,7 +425,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   will stop working. SDK keeps data recorded during this mode in volatile memory.
   On closing the application, data will lose.
 </p>
-<h2>Enabling Backend Mode</h2>
+<h3>Enabling Backend Mode</h3>
 <p>
   Create a config class and call <code class="java">enableBackendMode</code>on
   this object pass it to the <code>init</code> method.
@@ -434,16 +435,12 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
                 .setLoggingLevel(Config.LoggingLevel.DEBUG);
 
 Countly.init(targetFolder, config);</code></pre>
-<h2>Recording Data</h2>
+<h3>Recording Data</h3>
 <p>
   Users may have to provide device id and time in milliseconds every time during
   recording data.
 </p>
-<p>
-  Note: If the user provides 0 seconds, SDK fetches the current time in milliseconds,
-  and sends it to the server along with data.
-</p>
-<h3>1. Recording an Event</h3>
+<h4>1. Recording an event</h4>
 <p>
   You may record <span>as many events as you want.</span>
 </p>
@@ -477,30 +474,107 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>0</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
-<h3>2. Recording a View</h3>
+<h4>2. Recording a view</h4>
 <p>
-  You may record views by providing view detail in segmentation.
+  You may record views by providing view detail in segmentation and timestamp.
 </p>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"name"</span>, <span>"SampleView"</span>);<br>put(<span>"visit"</span>, <span>"1"</span>);<br>put(<span>"segment"</span>, <span>"Windows"</span>);<br>put(<span>"start"</span>, <span>"1"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordView(<span>"device-id"</span>, <span>"[CLY]_view"</span>, segmentation, <span>1646640780130L</span>);</code></pre>
-<h3>3. Recording a Crash</h3>
+<h4>3. Recording a crash</h4>
 <p>
-  <span>To report exceptions use the following call:</span>
+  <span>To report exceptions provide the following detail:</span>
 </p>
+<ul>
+  <li>
+    <strong>message-</strong>&nbsp;
+    <span>This is the main property which would be the identifier/name for that event.</span>
+  </li>
+  <li>
+    <strong>stackTrace-</strong>&nbsp; a whole numerical value that marks how
+    many times this event has happened.&nbsp;
+  </li>
+  <li>
+    <strong>segments -<span>&nbsp;</span></strong>A value where you can provide
+    custom segmentation for your crash to track additional information.
+  </li>
+  <li>
+    <strong>timestamp -</strong> time of the event in milliseconds.
+  </li>
+</ul>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "Divided By Zero", "stack traces, segmentation, <span>0</span>);<br>}</code></pre>
-<h3>4. Recording Session</h3>
+<h4>4. Recording session</h4>
 <p>
   <span>To start the session call:</span>
 </p>
 <pre><code class="java">Countly.<span>backendMode</span>().sessionBegin(<span>"device-id"</span>, <span>0</span>);</code><code class="java"></code><code class="java"></code></pre>
 <p>To update session call:</p>
-<pre><code class="java">Countly.<span>backendMode</span>().sessionUpdate(<span>"device-id"</span>, 14, 0);</code></pre>
+<pre><code class="java">double duration = 60;<br>Countly.<span>backendMode</span>().sessionUpdate(<span>"device-id"</span>, duration, 0);</code></pre>
 <p>To end session call:</p>
-<pre><code class="java">Countly.<span>backendMode</span>().sessionEnd(<span>"device-id"</span>, 20, 0);</code></pre>
-<h3>3. Recording User properties</h3>
+<pre><code class="java">double duration = 20;<br>Countly.<span>backendMode</span>().sessionEnd(<span>"device-id"</span>, duration, 0);</code></pre>
+<h4>3. Recording user properties</h4>
 <p>
   The SDK allows you to upload user details and properties.
   <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; userDetail = <span>new </span>HashMap&lt;&gt;();<br>userDetail.put(<span>"name"</span>, <span>"Full Name"</span>);<br>userDetail.put(<span>"username"</span>, <span>"username1"</span>);<br>userDetail.put(<span>"email"</span>, <span>"user@gmail.com"</span>);<br>userDetail.put(<span>"organization"</span>, <span>"Countly"</span>);<br>userDetail.put(<span>"phone"</span>, <span>"000-111-000"</span>);<br>userDetail.put(<span>"gender"</span>, <span>"M"</span>);<br>userDetail.put(<span>"byear"</span>, <span>"1991"</span>);<br><br><span>// User custom detail<br></span>Map&lt;String, Object&gt; customDetail = <span>new </span>HashMap&lt;&gt;();<br>customDetail.put(<span>"hair"</span>, <span>"black"</span>);<br>customDetail.put(<span>"height"</span>, <span>5.9</span>);<br><br><span>// Operations: inc, mul<br></span>Map&lt;String, Object&gt; operations = <span>new </span>HashMap&lt;&gt;();<br>operations.put(<span>"$inc"</span>, <span>1</span>);<br><span>//property 'weight', operation 'increment'<br></span>customDetail.put(<span>"weight"</span>, operations);<br><br>userDetail.put(<span>"custom"</span>, customDetail);<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
-<p>&nbsp;</p>
+<pre><code class="java">Map&lt;String, Object&gt; userDetail = <span>new </span>HashMap&lt;&gt;();<br>userDetail.put(<span>"name"</span>, <span>"Full Name"</span>);<br>userDetail.put(<span>"username"</span>, <span>"username1"</span>);<br>userDetail.put(<span>"email"</span>, <span>"user@gmail.com"</span>);<br>userDetail.put(<span>"organization"</span>, <span>"Countly"</span>);<br>userDetail.put(<span>"phone"</span>, <span>"000-111-000"</span>);<br>userDetail.put(<span>"gender"</span>, <span>"M"</span>);<br>userDetail.put(<span>"picture"</span>, <span>"<a class="c-link" tabindex="-1" href="http://webresizer.com/images2/bird1_after.jpg" target="_blank" rel="noopener noreferrer" data-stringify-link="http://webresizer.com/images2/bird1_after.jpg" data-sk="tooltip_parent" data-remove-tab-index="true">http://webresizer.com/images2/bird1_after.jpg</a>"</span>);<br>userDetail.put(<span>"byear"</span>, <span>"1991"</span>);<br><br><span>/* User custom detail */<br></span>Map&lt;String, Object&gt; customDetail = <span>new </span>HashMap&lt;&gt;();<br>customDetail.put(<span>"hair"</span>, <span>"black"</span>);<br>customDetail.put(<span>"height"</span>, <span>5.9</span>);<br><br><span>/* Operations: increment*/<br></span>Map&lt;String, Object&gt; operations = <span>new </span>HashMap&lt;&gt;();<br>operations.put(<span>"$inc"</span>, <span>1</span>);<br><br><span>/* property 'weight', operation 'increment' */<br></span>customDetail.put(<span>"weight"</span>, operations);<br><br>userDetail.put(<span>"custom"</span>, customDetail);<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
+<p>
+  The keys for predefined <span>modification operation</span>s are as follows:
+</p>
+<div class="table-container">
+  <table style="width: 427px;">
+    <tbody>
+      <tr>
+        <th style="width: 86.0938px;">Key</th>
+        <th style="width: 333.906px;">Description</th>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$inc</td>
+        <td style="width: 325.906px;">
+          <span>increment used value by 1</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$mul</td>
+        <td style="width: 325.906px;">
+          <span>multiply value by provided value</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$min</td>
+        <td style="width: 325.906px;">
+          <span>minimum value</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$max</td>
+        <td style="width: 325.906px;">
+          <span>maximal value</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$setOnce</td>
+        <td style="width: 325.906px;">
+          <span>set value if it does not exist</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$pull</td>
+        <td style="width: 325.906px;">
+          <span>remove value from array</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$push</td>
+        <td style="width: 325.906px;">
+          <span>insert value to an array</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$addToSet</td>
+        <td style="width: 325.906px;">
+          <span>insert value to an array of unique values</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
