@@ -666,7 +666,6 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 
 }
 </code></pre>
-
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -965,7 +964,6 @@ Map&lt;String, Object&gt; reportedResult = {};
 //report the results to the SDK
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
-
 <p>
   If the user would have closed the widget, you would report that by passaing a
   "null" reportedResult.
@@ -1025,7 +1023,6 @@ Countly.pushValue("type", "morning");
 //remove value from array
 Countly.pullValue("type", "morning");
 </code></pre>
-
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To start using them you would first
@@ -1226,7 +1223,6 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 ...
 }
 </code></pre>
-
 <p>
   Next create a configuration that will preserve the entire Flutter wrapper code.
   Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
@@ -1252,25 +1248,54 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <h3>
   <span>Direct Attribution</span>
 </h3>
+<div class="callout callout--info">
+  <p>
+    Currently, direct attribution is only available for Android.
+  </p>
+</div>
 <p>
-  Currently, direct attribution is only available for Android.
+  You can pass "Campaign type" and "Campaign data". The "type" determines for what
+  purpose the attribution data is provided. Depending on the type, the expected
+  data will differ, but usually that will be a string representation of a JSON
+  object.
 </p>
 <p>
-  You can use <code>recordDirectAttribution</code> function to manually report
-  attribution
+  <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">Countly.recordDirectAttribution("Campaign_ID", "<span>Campaign_User_ID</span>");</code></pre>
+<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code><span><br></span></pre>
+<p>
+  You can also use <code>recordDirectAttribution</code> function to manually report
+  attribution later:
+</p>
+<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>Countly.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
+<p>
+  Currently this feature is limited and accepts data only in a specific format
+  and for a single type. That type is "countly". it would be used to record install
+  attribution. The data also needs to be formatted in a specific way. Either with
+  the campaign id or with the campaign id and campaign user id.
+</p>
+<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>Countly.recordDirectAttribution('countly', campaignData);</code></pre>
 <h3>
   <span>Indirect Attribution</span>
 </h3>
 <p>
-  You can use <code>recordIndirectAttribution</code> function to manually report
-  attribution
+  This feature would be used to report things like advertising ID's. For each platform
+  those would be different values. For the most popular keys we have a class with
+  predefined values to use, it is called "AttributionKey".
 </p>
-<pre><code class="JavaScript">Countly.recordIndirectAttribution("ADVERTISING_ID");</code></pre>
 <p>
-  For iOS 14+ due to Apple changes regarding Application Tracking, you need to
-  ask the user for permission to track the Application.
+  <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
+</p>
+<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
+<p>
+  You can also use <code>recordIndirectAttribution</code> function to manually
+  report attribution later
+</p>
+<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>Countly.recordIndirectAttribution(attributionValues);</code></pre>
+<p>
+  In case you would be accessing IDFA for ios, for iOS 14+ due to Apple changes
+  regarding Application Tracking, you need to ask the user for permission to track
+  the Application.
 </p>
 <h2>Forcing HTTP POST</h2>
 <p>
