@@ -474,7 +474,7 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>0</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
-<h4>Recording a views</h4>
+<h4>Recording views</h4>
 <p>
   You may record views by providing view detail in segmentation and timestamp.
 </p>
