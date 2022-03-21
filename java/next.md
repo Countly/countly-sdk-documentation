@@ -440,7 +440,7 @@ Countly.init(targetFolder, config);</code></pre>
   Users may have to provide device id and time in milliseconds every time during
   recording data.
 </p>
-<h4>1. Recording an event</h4>
+<h4>Recording an event</h4>
 <p>
   You may record <span>as many events as you want.</span>
 </p>
@@ -474,13 +474,13 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>0</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
-<h4>2. Recording a view</h4>
+<h4>Recording a views</h4>
 <p>
   You may record views by providing view detail in segmentation and timestamp.
 </p>
 <p>Example:</p>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"name"</span>, <span>"SampleView"</span>);<br>put(<span>"visit"</span>, <span>"1"</span>);<br>put(<span>"segment"</span>, <span>"Windows"</span>);<br>put(<span>"start"</span>, <span>"1"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordView(<span>"device-id"</span>, <span>"[CLY]_view"</span>, segmentation, <span>1646640780130L</span>);</code></pre>
-<h4>3. Recording a crash</h4>
+<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"name"</span>, <span>"SampleView"</span>);<br>put(<span>"visit"</span>, <span>"1"</span>);<br>put(<span>"segment"</span>, <span>"Windows"</span>);<br>put(<span>"start"</span>, <span>"1"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordView(<span>"device-id"</span>, <span>"SampleView"</span>, segmentation, <span>1646640780130L</span>);</code></pre>
+<h4>Recording a crash</h4>
 <p>
   <span>To report exceptions provide the following detail:</span>
 </p>
@@ -501,8 +501,8 @@ Countly.init(targetFolder, config);</code></pre>
     <strong>timestamp -</strong> time of the event in milliseconds.
   </li>
 </ul>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "Divided By Zero", "stack traces, segmentation, <span>0</span>);<br>}</code></pre>
-<h4>4. Recording session</h4>
+<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, e, segmentation, <span>0</span>);<br>}</code></pre>
+<h4>Recording session</h4>
 <p>
   <span>To start the session call:</span>
 </p>
@@ -511,7 +511,7 @@ Countly.init(targetFolder, config);</code></pre>
 <pre><code class="java">double duration = 60;<br>Countly.<span>backendMode</span>().sessionUpdate(<span>"device-id"</span>, duration, 0);</code></pre>
 <p>To end session call:</p>
 <pre><code class="java">double duration = 20;<br>Countly.<span>backendMode</span>().sessionEnd(<span>"device-id"</span>, duration, 0);</code></pre>
-<h4>3. Recording user properties</h4>
+<h4>Recording user properties</h4>
 <p>
   The SDK allows you to upload user details and properties.
   <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
