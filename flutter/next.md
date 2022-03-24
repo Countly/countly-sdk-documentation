@@ -681,6 +681,7 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 
 }
 </code></pre>
+
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -936,7 +937,7 @@ Countly.disableLocation();</code></pre>
   After you have decided which widget you want to display, you would provide that
   object to the following function:
 </p>
-<pre><code class="JavaScript">Countly.presentFeedbackWidget(chosenWidget, "CLOSE_BUTTON_TEXT");</code></pre>
+<pre><code class="JavaScript">Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {<br>}, widgetClosed: () {<br>});</code></pre>
 <h2>Feedback widget manual reporting</h2>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -962,7 +963,7 @@ Countly.disableLocation();</code></pre>
   Having the <code>CountlyPresentableFeedback</code> object of the widget you would
   want to display, you would use the following call to retrieve the widget information:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
+<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {<br>if (error == null) {<br>// use "retrievedWidgetData" here<br>}<br>});<br><br>/// OR Without callback<br><br>List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
 <p>
   <code>retrievedWidgetData</code> would contain a Map with all of the required
   information to present the widget yourself.
@@ -983,6 +984,7 @@ Map&lt;String, Object&gt; reportedResult = {};
 //report the results to the SDK
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
+
 <p>
   If the user would have closed the widget, you would report that by passaing a
   "null" reportedResult.
@@ -1042,6 +1044,7 @@ Countly.pushValue("type", "morning");
 //remove value from array
 Countly.pullValue("type", "morning");
 </code></pre>
+
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To start using them you would first
@@ -1242,6 +1245,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 ...
 }
 </code></pre>
+
 <p>
   Next create a configuration that will preserve the entire Flutter wrapper code.
   Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
