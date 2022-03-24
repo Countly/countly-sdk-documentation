@@ -937,13 +937,14 @@ Countly.disableLocation();</code></pre>
   After you have decided which widget you want to display, you would provide that
   object to the following function:
 </p>
-<pre><code class="JavaScript">Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {<br>}, widgetClosed: () {<br>});</code></pre>
+<pre><code class="JavaScript">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {<br>   print('Widget Appeared');<br>}, widgetClosed: () {<br>   print('Widget Dismissed');<br>});</code></pre>
+<p>
+  <code class="JavaScript">widgetShown</code> and
+  <code class="JavaScript">widgetClosed</code> are optional callbacks, you can
+  pass these callbacks if you want to perform some actions when widget appear or
+  dismiss.
+</p>
 <h2>Feedback widget manual reporting</h2>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
-  </p>
-</div>
 <p>
   There might be some usecases where you might to use the native UI or a custom
   UI you have created instead of our webview solution. In those cases you would
@@ -961,9 +962,17 @@ Countly.disableLocation();</code></pre>
 </p>
 <p>
   Having the <code>CountlyPresentableFeedback</code> object of the widget you would
-  want to display, you would use the following call to retrieve the widget information:
+  want to display, you could use the '<code class="JavaScript">getFeedbackWidgetData</code>'&nbsp;
+  mehtod to retrieve the widget information with an optional 'onFinished' callback.<br>
+  In case you want to use with callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
+  in this way:
 </p>
-<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {<br>if (error == null) {<br>// use "retrievedWidgetData" here<br>}<br>});<br><br>/// OR Without callback<br><br>List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
+<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {<br>if (error == null) {<br>}<br>});</code></pre>
+<p>
+  If you want to use it without a callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
+  in this way:
+</p>
+<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
 <p>
   <code>retrievedWidgetData</code> would contain a Map with all of the required
   information to present the widget yourself.
