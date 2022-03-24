@@ -474,7 +474,7 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>0</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
-<h4>Recording views</h4>
+<h4>Recording a view</h4>
 <p>
   You may record views by providing view detail in segmentation and timestamp.
 </p>
@@ -516,7 +516,7 @@ Countly.init(targetFolder, config);</code></pre>
   The SDK allows you to upload user details and properties.
   <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; userDetail = <span>new </span>HashMap&lt;&gt;();<br>userDetail.put(<span>"name"</span>, <span>"Full Name"</span>);<br>userDetail.put(<span>"username"</span>, <span>"username1"</span>);<br>userDetail.put(<span>"email"</span>, <span>"user@gmail.com"</span>);<br>userDetail.put(<span>"organization"</span>, <span>"Countly"</span>);<br>userDetail.put(<span>"phone"</span>, <span>"000-111-000"</span>);<br>userDetail.put(<span>"gender"</span>, <span>"M"</span>);<br>userDetail.put(<span>"picture"</span>, <span>"<a class="c-link" tabindex="-1" href="http://webresizer.com/images2/bird1_after.jpg" target="_blank" rel="noopener noreferrer" data-stringify-link="http://webresizer.com/images2/bird1_after.jpg" data-sk="tooltip_parent" data-remove-tab-index="true">http://webresizer.com/images2/bird1_after.jpg</a>"</span>);<br>userDetail.put(<span>"byear"</span>, <span>"1991"</span>);<br><br><span>/* User custom detail */<br></span>Map&lt;String, Object&gt; customDetail = <span>new </span>HashMap&lt;&gt;();<br>customDetail.put(<span>"hair"</span>, <span>"black"</span>);<br>customDetail.put(<span>"height"</span>, <span>5.9</span>);<br><br><span>/* Operations: increment*/<br></span>Map&lt;String, Object&gt; operations = <span>new </span>HashMap&lt;&gt;();<br>operations.put(<span>"$inc"</span>, <span>1</span>);<br><br><span>/* property 'weight', operation 'increment' */<br></span>customDetail.put(<span>"weight"</span>, operations);<br><br>userDetail.put(<span>"custom"</span>, customDetail);<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
+<pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();<br>userDetail.put("name", "Full Name");<br>userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");<br>//custom detail<br>userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
 <p>
   The keys for predefined <span>modification operation</span>s are as follows:
 </p>
@@ -577,4 +577,13 @@ Countly.init(targetFolder, config);</code></pre>
       </tr>
     </tbody>
   </table>
+  <h4>Recording direct request</h4>
+  <p>
+    The SDK allows you to record direct requests. To record request provides
+    request data along with device id and timestamp.
+  </p>
+  <p>For example:</p>
+  <pre><code class="java">Map&lt;String, String&gt; requestData = <span>new </span>HashMap&lt;&gt;();<br>requestData.put(<span>"device_id"</span>, <span>"device-id-2"</span>);<br>requestData.put(<span>"timestamp"</span>, <span>"1646640780130"</span>);<br>requestData.put(<span>"key-name"</span>, <span>"data"</span>);<br><br>Countly.<span>backendMode</span>().recordDirectRequest("device-id-1", requestData, <span>1646640780130L</span>);</code></pre>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
 </div>
