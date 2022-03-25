@@ -689,4 +689,12 @@ Countly.init(targetFolder, config);</code></pre>
   <p>
     <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;'sdk_name', 'sdk_version', and 'checksum256' are protected by SDK, their values will not override.</span><span data-preserver-spaces="true"></span>
   </p>
+  <h3 id="checking-if-init-has-been-called" class="anchor-heading">Getting request queue size</h3>
+  <p>
+    <span>In case you would like to get size of request queue call:</span>
+  </p>
+  <pre><span><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></span></pre>
+  <p>
+    It will return the count of requests in memory request queue.
+  </p>
 </div>
