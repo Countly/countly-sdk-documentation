@@ -681,7 +681,6 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 
 }
 </code></pre>
-
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -856,7 +855,10 @@ Countly.disableLocation();</code></pre>
   The star-rating dialog's title, message, and dismiss button text may be customized
   either through the following functions:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setStarRatingTextTitle("Custom title"); // Only available for Android<br>config.setStarRatingTextMessage("Custom message");<br>config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setStarRatingTextTitle("Custom title"); // Only available for Android
+config.setStarRatingTextMessage("Custom message");
+config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
 <h2>Rating widget</h2>
 <p>
   Feedback widget shows a server configured widget to your user devices.
@@ -993,7 +995,6 @@ Map&lt;String, Object&gt; reportedResult = {};
 //report the results to the SDK
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
-
 <p>
   If the user would have closed the widget, you would report that by passaing a
   "null" reportedResult.
@@ -1053,7 +1054,6 @@ Countly.pushValue("type", "morning");
 //remove value from array
 Countly.pullValue("type", "morning");
 </code></pre>
-
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To start using them you would first
@@ -1254,7 +1254,6 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 ...
 }
 </code></pre>
-
 <p>
   Next create a configuration that will preserve the entire Flutter wrapper code.
   Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
