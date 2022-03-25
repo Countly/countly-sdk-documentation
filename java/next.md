@@ -410,6 +410,14 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
 <h1 id="other-features" class="anchor-heading" tabindex="-1">Other features</h1>
 <h2 id="backend-mode" class="anchor-heading" tabindex="-1">Backend Mode</h2>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Minimum Countly SDK Version</strong></span>
+  </p>
+  <p>
+    This feature is only supported by the minimum SDK version 20.11.2.
+  </p>
+</div>
 <p>
   Java SDK provides a special mode called 'Backend Mode'. It is useful when users
   have data stored in a file or database and want to send this data directly to
