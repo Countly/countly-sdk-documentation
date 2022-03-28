@@ -493,12 +493,9 @@ Countly.init(targetFolder, config);</code></pre>
   <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.&nbsp;</span>
 </p>
 <ul>
-  <ul>li&gt;</ul>
-</ul>
-<p>
-  <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
-</p>
-<ul>
+  <li>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
+  </li>
   <li>
     <strong><span data-preserver-spaces="true">name-</span></strong><span data-preserver-spaces="true">&nbsp;It is the name of the view and it must not be empty or null.</span>
   </li>
