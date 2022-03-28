@@ -701,7 +701,7 @@ Countly.init(targetFolder, config);</code></pre>
     <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
   </p>
   <p>
-    <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;'sdk_name', 'sdk_version', and 'checksum256' are protected values by default and their values will not overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
+    <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;'sdk_name', 'sdk_version', and 'checksum256' are protected by default and their values will not overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
   </p>
   <h3 id="checking-if-init-has-been-called" class="anchor-heading">Getting the request queue size</h3>
   <p>
