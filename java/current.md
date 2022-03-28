@@ -415,26 +415,27 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
     <span class="wysiwyg-font-size-large"><strong>Minimum Countly SDK Version</strong></span>
   </p>
   <p>
-    This feature is only supported by the minimum SDK version 20.11.2.
+    The minimum SDK version requirement for this feature is 20.11.2.
   </p>
 </div>
 <p>
-  Java SDK provides a special mode called 'Backend Mode'. It is useful when users
-  have data stored in a file or database and want to send this data directly to
-  the server without storing locally.&nbsp;During this mode, users may be able
-  to record and send data to the server without storing it in local storage, using
-  a few specific methods provided by SDK.
+  Java SDK provides a special mode to transfer data to Countly Servers, called
+  the 'Backend Mode'. It is useful when users have their data stored in one data
+  store and want to transfer this data directly to the servers without storing
+  it persistently beforehand.&nbsp;With the help of this mode, users are able to
+  record and send data to their server without storing it locally.
 </p>
 <p>
-  <strong>Note:</strong> If this mode is enabled, SDK enters into a special mode
+  <strong>Note:</strong> When this mode is enabled, SDK enters into a special mode
   where all features (Sessions, Events, Views, Crash, User properties, Consents)
-  will stop working. SDK keeps data recorded during this mode in volatile memory.
-  On closing the application, data will be lost.
+  will stop working. SDK keeps the data recorded during this mode in volatile memory
+  and when the application is closed the data will be lost.
 </p>
 <h3>Enabling Backend Mode</h3>
 <p>
-  Create a config class and call <code class="java">enableBackendMode</code>on
-  this object and pass it to the <code>init</code> method.
+  To enable Backend Mode you should create a config class and call
+  <code class="java">enableBackendMode</code>on this object, and later you should
+  pass it to the <code>init</code> method.
 </p>
 <pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
                 .enableBackendMode()<br>                .setRequestQueueMaxSize(<span>500</span>)
@@ -442,14 +443,15 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 
 Countly.init(targetFolder, config);</code></pre>
 <p>
-  By default in backend mode SDK store max 1000 requests, and on exceeding this
-  limit SDK drop the oldest request from memory queue. To update the request queue
-  max size call <code class="java">setRequestQueueMaxSize</code> on
-  <code class="java">Config</code>object before SDK init.
+  If the Backend Mode is enabled the SDK stores up to a maximum of 1000 requests
+  by default. Then when this limit is exceeded the SDK will drop the oldest request
+  from the queue in the memory. To change this request queue limit, call
+  <code class="java">setRequestQueueMaxSize</code> on the
+  <code class="java">Config</code>object before the SDK init.
 </p>
 <h3>Recording Data</h3>
 <p>
-  <span data-preserver-spaces="true">Users may have to provide device id and time in milliseconds every time recording any data. Device id is mandatory you can not set it null or empty while recording data.</span>
+  <span data-preserver-spaces="true">Users have to provide a device id, and optionally, the time in milliseconds every time they record any data. Device id is mandatory, so you can not set it null or not provide it while recording data.</span>
 </p>
 <p>
   <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;If the provided timestamp is null or less than 1, SDK updates its value to the current time in milliseconds.</span>
@@ -463,42 +465,42 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not record.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">key-</span></strong><span data-preserver-spaces="true">&nbsp;This is the main property which would be the identifier/name for that event. It is mandatory and the event will not be recorded if it is empty or null.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">count -</span></strong><span data-preserver-spaces="true">&nbsp;A whole numerical value that marks how many times this event has happened. If provided value is less than&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">, SDK set it to&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">.</span>
+    <strong><span data-preserver-spaces="true">count -</span></strong><span data-preserver-spaces="true">&nbsp;A whole positive numerical number value that marks how many times this event has happened. It is optional and if it is provided and its value is less than&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">, SDK will automatically set it to&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">sum -</span></strong><span data-preserver-spaces="true">&nbsp;This value would be summed across all events in the dashboard. If provided value is less than&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">, SDK set it to&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">.</span>
+    <strong><span data-preserver-spaces="true">sum -</span></strong><span data-preserver-spaces="true">&nbsp;This value will be summed up across all events in the dashboard. It is optional and if provided, and it is less than&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">, SDK will automatically set it to&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">duration -&nbsp;</span></strong><span data-preserver-spaces="true">Used to record and track the duration of events. Set it&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">&nbsp;if you don't have it.</span>
+    <strong><span data-preserver-spaces="true">duration -&nbsp;</span></strong><span data-preserver-spaces="true">This value is used for recording and tracking the duration of events. Set it to&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">&nbsp;if you don't want to report any duration.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A value where you can provide custom segmentation for your events to track additional information. It is not a mandatory field, you may set it&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a key and value map. The accepted data types for the value are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your events to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map that consists of key and value pairs. The accepted data types for the values are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>0</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
 <h4>Recording a view</h4>
 <p>
-  <span data-preserver-spaces="true">You may record views by providing view detail in segmentation and timestamp.</span>
+  <span data-preserver-spaces="true">You may record views by providing the view details in segmentation with timestamp.</span>
 </p>
 <p>
   <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.&nbsp;</span>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not record.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">name-</span></strong><span data-preserver-spaces="true">&nbsp;It is the name of the view and it is the main property it can not be empty or null.</span>
+    <strong><span data-preserver-spaces="true">name-</span></strong><span data-preserver-spaces="true">&nbsp;It is the name of the view and it must not be empty or null.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A value where you can provide custom segmentation for your view to track additional information. It is not a mandatory field, you may set it&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a key and value map. The accepted data types for the value are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">timestamp -</span></strong><span data-preserver-spaces="true">&nbsp;It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
@@ -512,21 +514,19 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not record.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, and if it is null or not provide no data will be recorded.&nbsp;</span>
   </li>
   <li>
     <strong>message-</strong>&nbsp;
-    <span>This is the main property which would be the identifier/name for that event. It can't be null or empty.</span><span></span>
+    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
   </li>
   <li>
     <strong>stacktrace-</strong>&nbsp;
     <span>A string that describes the contents of the call stack</span>. It
-    <span data-preserver-spaces="true">is mandatory, and can not be null or empty.</span>
+    <span data-preserver-spaces="true">is mandatory, and should not be null or empty.</span>
   </li>
   <li>
-    <strong>segmentation -<span>&nbsp;</span></strong>A value where you can provide
-    custom segmentation for your crash to track additional information.
-    <span>&nbsp;It is a key and value map. The accepted data types for the value are&nbsp;</span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -535,23 +535,23 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br> Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "message", "stacktrace", segmentation, null);</code></pre>
 <p>
-  You may also pass an instance of exception instead message and stacktrace to
-  record a crash.
+  You may also pass an instance of an exception instead of the message and the
+  stacktrace to record a crash.
 </p>
 <p>For example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, e, segmentation, null);<br>}</code></pre>
 <h4>Recording sessions</h4>
 <p>
-  <span>To start the session provide following detail:</span>
+  <span>To start a session please provide the following details:</span>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not record.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong>metrics-<span>&nbsp;</span></strong>It may contain device and app
-    information<span data-preserver-spaces="true">.&nbsp;</span><span>It is a key and value map</span>
-    it can not be null or empty<span>. The accepted data type for the value is </span><span>"String".</span>
+    <strong>metrics-<span>&nbsp;</span></strong>It is a map that contains device
+    and app information<span data-preserver-spaces="true"> as key value pairs.&nbsp;</span>
+    It should not be null or empty<span> and the accepted data type for the pairs is </span><span>"String".</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -561,15 +561,15 @@ Countly.init(targetFolder, config);</code></pre>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; metrics = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Android"</span>);<br>    put(<span>"_os_version"</span>, <span>"10"</span>);<br>    put(<span>"_app_version"</span>, <span>"1.2"</span>);<br>}};<br>Countly.<span>backendMode</span>().sessionBegin(<span>"device-id"</span>, metrics, <span>1646640780130L</span>);</code><code class="java"></code><code class="java"></code></pre>
 <p>
-  <span>To update or end the session provide the following detail:</span>
+  <span>To update or end a session please provide the following details:</span>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty session begin will not record.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no action will be taken.&nbsp;</span>
   </li>
   <li>
-    <strong>duration-&nbsp;</strong>It is duration of session, you may pass
-    <strong>0</strong> if you don't have it.
+    <strong>duration-&nbsp;</strong>It is the duration of a session, you may
+    pass <strong>0</strong> if you don't want to submit a duration.
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -583,29 +583,31 @@ Countly.init(targetFolder, config);</code></pre>
 <p>Session end:</p>
 <pre><code class="java">double duration = 20;<br>Countly.<span>backendMode</span>().sessionEnd(<span>"device-id"</span>, duration, 1223456767L);</code></pre>
 <h4>
-  Note: SDK set the value of duration to 0 If provided value is less than 0.
+  Note: Java SDK automatically sets the duration to 0 if you have provided a value
+  that is less than 0.
 </h4>
 <h4>Recording user properties</h4>
 <p>
-  The SDK allows you to upload user details and custom properties.&nbsp;
+  If you want to record some user information the SDK lets you do so by passing
+  data as user details and custom properties.&nbsp;
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty data will not record.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no data will be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong>userProperties-</strong> <span>It is a key and value map</span> it
-    can not be null or empty<span>. The accepted data types for the value are&nbsp;</span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong>userProperties-</strong> <span>It is a map of key/value pairs</span>
+    and it should not be null or empty<span>. The accepted data types as a value are&nbsp;</span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
     <strong>timestamp -</strong>
-    <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it <strong>null</strong>.</span>
+    <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to <strong>null</strong>.</span>
   </li>
 </ul>
 <p>For example:</p>
 <pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();<br>userDetail.put("name", "Full Name");<br>userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");<br><br>//custom detail<br>userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
 <p>
-  <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span><span></span>
+  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
 </p>
 <p>
   <span>For example:</span>
@@ -630,7 +632,7 @@ Countly.init(targetFolder, config);</code></pre>
       <tr>
         <td style="width: 78.0938px;">$mul</td>
         <td style="width: 325.906px;">
-          <span>multiply value by provided value</span>
+          <span>multiply value by the provided value</span>
         </td>
       </tr>
       <tr>
@@ -654,7 +656,7 @@ Countly.init(targetFolder, config);</code></pre>
       <tr>
         <td style="width: 78.0938px;">$pull</td>
         <td style="width: 325.906px;">
-          <span>remove value from array</span>
+          <span>remove value from an array</span>
         </td>
       </tr>
       <tr>
@@ -671,38 +673,39 @@ Countly.init(targetFolder, config);</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4>Recording direct request</h4>
+  <h4>Recording direct requests</h4>
   <p>
-    The SDK allows you to record direct requests. To record request provides
-    request data along with device id and timestamp. Here is detail:
+    The SDK allows you to record direct requests to the server. To record a request
+    you should provide the request data along with the device id and timestamp.
+    Here are the details:
   </p>
   <ul>
     <li>
-      <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty data will not record.&nbsp;</span>
+      <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, so if it is null or empty no data will be recorded.&nbsp;</span>
     </li>
     <li>
-      <strong>requestData-</strong> <span>It is a key and value map</span>
-      it can not be null or empty<span>. The accepted data type for the value is </span><span>"String".</span>
+      <strong>requestData-</strong> <span>It is a map of key/value pairs</span>
+      and it should not be null or empty<span>. The accepted data type for the value is </span><span>"String".</span>
     </li>
     <li>
       <strong>timestamp -</strong>
-      <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it <strong>null</strong>.</span>
+      <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to <strong>null</strong>.</span>
     </li>
   </ul>
   <p>For example:</p>
   <pre><code class="java">Map&lt;String, String&gt; requestData = <span>new </span>HashMap&lt;&gt;();<br>requestData.put(<span>"device_id"</span>, <span>"device-id-2"</span>);<br>requestData.put(<span>"timestamp"</span>, <span>"1646640780130"</span>);<br>requestData.put(<span>"key-name"</span>, <span>"data"</span>);<br><br>Countly.<span>backendMode</span>().recordDirectRequest("device-id-1", requestData, <span>1646640780130L</span>);</code></pre>
   <p>
-    <span data-preserver-spaces="true">Values in 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will override respective values in the base request.</span>
+    <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
   </p>
   <p>
-    <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;'sdk_name', 'sdk_version', and 'checksum256' are protected by SDK, their values will not override.</span><span data-preserver-spaces="true"></span>
+    <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;'sdk_name', 'sdk_version', and 'checksum256' are protected by default and their values will not overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
   </p>
-  <h3 id="checking-if-init-has-been-called" class="anchor-heading">Getting request queue size</h3>
+  <h3 id="checking-if-init-has-been-called" class="anchor-heading">Getting the request queue size</h3>
   <p>
-    <span>In case you would like to get size of request queue call:</span>
+    <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>
   <pre><span><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></span></pre>
   <p>
-    It will return the count of requests in memory request queue.
+    It will return the number of requests of the request queue in the memory.
   </p>
 </div>
