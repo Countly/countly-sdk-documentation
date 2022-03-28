@@ -419,7 +419,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   </p>
 </div>
 <p>
-  Java SDK provides a special mode for bulk data transfers called the 'Backend
+  Java SDK provides a special mode to transfer data called the 'Backend
   Mode'. It is useful when users have their data stored in a file or a database
   and want to transfer this data directly to the server without storing it locally.&nbsp;With
   the help of this mode, users are able to record and send data to their server
