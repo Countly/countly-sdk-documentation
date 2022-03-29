@@ -27,12 +27,12 @@
 </p>
 <pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:19.09-sdk2-rc"<br></span><span>}</span></pre>
+<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:20.11.1"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
 	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
 	&lt;artifactId&gt;java&lt;/artifactId&gt;
-	&lt;version&gt;19.09-sdk2-rc&lt;/version&gt;
+	&lt;version&gt;20.11.1&lt;/version&gt;
 	&lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 class="anchor-heading">SDK Integration</h1>
@@ -451,10 +451,10 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <h3>Recording Data</h3>
 <p>
-  <span data-preserver-spaces="true">Users have to provide a device id, and optionally, the time in milliseconds every time they record any data. Device id is mandatory, so you can not set it null or not provide it while recording data.</span>
+  <span data-preserver-spaces="true">Users have to provide a device id, and optionally, the time in milliseconds every time they record any data. The device id is mandatory, so you can not set it null or not provide it while recording data.</span>
 </p>
 <p>
-  <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;If the provided timestamp is null or less than 1, SDK updates its value to the current time in milliseconds.</span>
+  <strong>Note</strong>:<span data-preserver-spaces="true">&nbsp;If the provided timestamp is null or less than 1, SDK updates its value to the current time in milliseconds.</span>
 </p>
 <h4>Recording an event</h4>
 <p>
@@ -465,16 +465,16 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, it can not be empty or null.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">key-</span></strong><span data-preserver-spaces="true">&nbsp;This is the main property which would be the identifier/name for that event. It is mandatory and the event will not be recorded if it is empty or null.</span>
+    <strong><span data-preserver-spaces="true">key-</span></strong><span data-preserver-spaces="true"> This is the main property which would be the identifier/name for that event. It is mandatory and it can not be empty or null.</span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">count -</span></strong><span data-preserver-spaces="true">&nbsp;A whole positive numerical number value that marks how many times this event has happened. It is optional and if it is provided and its value is less than&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">, SDK will automatically set it to&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">sum -</span></strong><span data-preserver-spaces="true">&nbsp;This value will be summed up across all events in the dashboard. It is optional and if provided, and it is less than&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">, SDK will automatically set it to&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">.</span>
+    <strong><span data-preserver-spaces="true">sum -</span></strong><span data-preserver-spaces="true"> This value will be summed up across all events in the dashboard. It is optional you may set it <strong>null</strong>.</span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">duration -&nbsp;</span></strong><span data-preserver-spaces="true">This value is used for recording and tracking the duration of events. Set it to&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">&nbsp;if you don't want to report any duration.</span>
@@ -484,10 +484,14 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>0</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
+<pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>10.5</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
+<p>
+  <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
+  not be recorded if any of these two parameters is null or empty.&nbsp;
+</p>
 <h4>Recording a view</h4>
 <p>
-  <span data-preserver-spaces="true">You may record views by providing the view details in segmentation with timestamp.</span>
+  <span data-preserver-spaces="true">You may record views by providing the view details in segmentation with a timestamp.</span>
 </p>
 <p>
   <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.&nbsp;</span>
@@ -508,13 +512,17 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"visit"</span>, <span>"1"</span>);<br>put(<span>"segment"</span>, <span>"Windows"</span>);<br>put(<span>"start"</span>, <span>"1"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordView(<span>"device-id"</span>, <span>"SampleView"</span>, segmentation, <span>1646640780130L</span>);</code></pre>
+<p>
+  <strong>Note:&nbsp;</strong>Device ID and 'name' both are mandatory. The view
+  will not be recorded if any of these two parameters is null or empty.
+</p>
 <h4>Recording a crash</h4>
 <p>
   <span>To report exceptions provide the following detail:</span>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, and if it is null or not provide no data will be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, and if it is null or not provided no data will be recorded.&nbsp;</span>
   </li>
   <li>
     <strong>message-</strong>&nbsp;
@@ -536,10 +544,14 @@ Countly.init(targetFolder, config);</code></pre>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br> Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "message", "stacktrace", segmentation, null);</code></pre>
 <p>
   You may also pass an instance of an exception instead of the message and the
-  stacktrace to record a crash.
+  stack trace to record a crash.
 </p>
 <p>For example:</p>
 <pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, e, segmentation, null);<br>}</code></pre>
+<p>
+  <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
+  be recorded if it is null.
+</p>
 <h4>Recording sessions</h4>
 <p>
   <span>To start a session please provide the following details:</span>
@@ -550,8 +562,8 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
   <li>
     <strong>metrics-<span>&nbsp;</span></strong>It is a map that contains device
-    and app information<span data-preserver-spaces="true"> as key value pairs.&nbsp;</span>
-    It should not be null or empty<span> and the accepted data type for the pairs is </span><span>"String".</span>
+    and app information<span data-preserver-spaces="true"> as key-value pairs.&nbsp;</span>
+    It can be null or empty<span> and the accepted data type for the pairs is </span><span>"String".</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -560,6 +572,11 @@ Countly.init(targetFolder, config);</code></pre>
 </ul>
 <p>Example:</p>
 <pre><code class="java">Map&lt;String, String&gt; metrics = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Android"</span>);<br>    put(<span>"_os_version"</span>, <span>"10"</span>);<br>    put(<span>"_app_version"</span>, <span>"1.2"</span>);<br>}};<br>Countly.<span>backendMode</span>().sessionBegin(<span>"device-id"</span>, metrics, <span>1646640780130L</span>);</code><code class="java"></code><code class="java"></code></pre>
+<p>
+  <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
+  are predefined metrics keys. To know more about metrics, click
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-metrics" target="_self">here.</a>
+</p>
 <p>
   <span>To update or end a session please provide the following details:</span>
 </p>
@@ -582,10 +599,10 @@ Countly.init(targetFolder, config);</code></pre>
 <pre><code class="java">double duration = 60;<br>Countly.<span>backendMode</span>().sessionUpdate(<span>"device-id"</span>, duration, null);</code></pre>
 <p>Session end:</p>
 <pre><code class="java">double duration = 20;<br>Countly.<span>backendMode</span>().sessionEnd(<span>"device-id"</span>, duration, 1223456767L);</code></pre>
-<h4>
-  Note: Java SDK automatically sets the duration to 0 if you have provided a value
-  that is less than 0.
-</h4>
+<p>
+  <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
+  provided a value that is less than 0.
+</p>
 <h4>Recording user properties</h4>
 <p>
   If you want to record some user information the SDK lets you do so by passing
@@ -698,7 +715,7 @@ Countly.init(targetFolder, config);</code></pre>
     <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
   </p>
   <p>
-    <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true">&nbsp;'sdk_name', 'sdk_version', and 'checksum256' are protected by default and their values will not overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
+    <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true"> 'sdk_name', 'sdk_version', and 'checksum256' are protected by default and their values will not be overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
   </p>
   <h3 id="checking-if-init-has-been-called" class="anchor-heading">Getting the request queue size</h3>
   <p>
@@ -706,6 +723,6 @@ Countly.init(targetFolder, config);</code></pre>
   </p>
   <pre><span><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></span></pre>
   <p>
-    It will return the number of requests of the request queue in the memory.
+   It will return the count of requests in the memory request queue.
   </p>
 </div>
