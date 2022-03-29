@@ -1,12 +1,12 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 20.11.X</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.04 and older, click
+    To access the documentation for version 20.04.X and older, click
     <a href="/hc/en-us/articles/900004313263" target="_self" rel="undefined">here.</a>
   </p>
 </div>
@@ -29,7 +29,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:20.11.10'
+    compile 'ly.count.android:sdk:20.11.12'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
@@ -214,15 +214,12 @@
   <img src="https://count.ly/images/guide/7cbb985-breakpad.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You may download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the default JCenter or Bintray Maven repositories and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://bintray.com/countly/maven/sdk-native"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 20.11.10):</span>
+  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://search.maven.org/artifact/ly.count.android/sdk"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 20.11.12):</span>
 </p>
 <pre><code class="java">// build gradle file 
 
 repositories {
-    maven {
-        url 'https://dl.bintray.com/countly/maven'
-    }
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -240,18 +237,15 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
 </p>
 <h2>Automatic symbol file upload</h2>
 <p>
-  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.10):</span>
+  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.12):</span>
 </p>
 <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin 
 
 buildscript {
     repositories {
-        maven {
-            url 'https://dl.bintray.com/countly/maven'
-        }
-        jcenter()
+        mavenCentral()
     }
-    // for LATEST_VERSION check https://bintray.com/countly/maven/sdk-plugin
+    // for LATEST_VERSION check https://search.maven.org/artifact/ly.count.android/sdk
     dependencies {
         classpath group: 'ly.count.android', 'name': 'sdk-plugin', 'version': 'LATEST_VERSION'
     }
@@ -726,7 +720,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
-implementation 'com.google.firebase:firebase-messaging:18.0.0'</code></pre>
+implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <p>
   <span style="font-weight: 400;">Then add&nbsp;<code>CountlyPush.init()</code>&nbsp;call</span><span style="font-weight: 400;">&nbsp;to your <code>Application</code></span><span style="font-weight: 400;">&nbsp;subclass</span><span style="font-weight: 400;">. </span><span style="font-weight: 400;">Don't forget that Android O and later models require the use of <code>NotificationChannel</code>s</span><span style="font-weight: 400;">. Use <code>CountlyPush.CHANNEL_ID</code></span><span style="font-weight: 400;">&nbsp;for Countly-displayed notifications:</span>
 </p>
