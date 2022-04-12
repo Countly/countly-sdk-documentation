@@ -450,7 +450,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().views()</code></pre>
-<h2>Automatic views&nbsp;</h2>
+<h2>Automatic views</h2>
 <p>
   <span style="font-weight: 400;">View tracking is a means to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
