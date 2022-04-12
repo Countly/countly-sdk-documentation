@@ -457,7 +457,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
 </p>
 <h1>View tracking</h1>
-<h2>Automatic view tracking&nbsp;</h2>
+<h2>Automatic view tracking</h2>
 <p>
   <span style="font-weight: 400;">View tracking is a means to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
