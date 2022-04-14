@@ -498,10 +498,10 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">name-</span></strong><span data-preserver-spaces="true">&nbsp;It is the name of the view and it must not be empty or null.</span>
+    <strong><span data-preserver-spaces="true">name -</span></strong><span data-preserver-spaces="true">&nbsp;It is the name of the view and it must not be empty or null.</span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
@@ -522,14 +522,14 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, and if it is null or not provided no data will be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, and if it is null or not provided no data will be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong>message-</strong>&nbsp;
+    <strong>message -</strong>&nbsp;
     <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
   </li>
   <li>
-    <strong>stacktrace-</strong>&nbsp;
+    <strong>stacktrace -</strong>&nbsp;
     <span>A string that describes the contents of the call stack</span>. It
     <span data-preserver-spaces="true">is mandatory, and should not be null or empty.</span>
   </li>
@@ -537,17 +537,20 @@ Countly.init(targetFolder, config);</code></pre>
     <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
+    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#crash-reporting" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
+  </li>
+  <li>
     <strong>timestamp -</strong>
     <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
   </li>
 </ul>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br> Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "message", "stacktrace", segmentation, null);</code></pre>
+<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br>Map&lt;String, String&gt; crashDetails = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Windows 11"</span>);<br>    put(<span>"_os_version"</span>, <span>"11.202"</span>);<br>    put(<span>"_logs"</span>, <span>"main page"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "message", "stacktrace", segmentation, crashDetails, null);</code></pre>
 <p>
   You may also pass an instance of an exception instead of the message and the
   stack trace to record a crash.
 </p>
 <p>For example:</p>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, e, segmentation, null);<br>}</code></pre>
+<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br>Map&lt;String, String&gt; crashDetails = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Windows 11"</span>);<br>    put(<span>"_os_version"</span>, <span>"11.202"</span>);<br>    put(<span>"_logs"</span>, <span>"main page"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, e, segmentation, crashDetails, null);<br>}</code></pre>
 <p>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
   be recorded if it is null.
@@ -558,12 +561,15 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong>metrics-<span>&nbsp;</span></strong>It is a map that contains device
+    <strong>metrics -<span>&nbsp;</span></strong>It is a map that contains device
     and app information<span data-preserver-spaces="true"> as key-value pairs.&nbsp;</span>
     It can be null or empty<span> and the accepted data type for the pairs is </span><span>"String".</span>
+  </li>
+  <li>
+    <strong>location - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs and the accepted keys are "city", "country_code", "ip_address", and "location".</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -571,7 +577,7 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java">Map&lt;String, String&gt; metrics = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Android"</span>);<br>    put(<span>"_os_version"</span>, <span>"10"</span>);<br>    put(<span>"_app_version"</span>, <span>"1.2"</span>);<br>}};<br>Countly.<span>backendMode</span>().sessionBegin(<span>"device-id"</span>, metrics, <span>1646640780130L</span>);</code><code class="java"></code><code class="java"></code></pre>
+<pre><code class="java">Map&lt;String, String&gt; metrics = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Android"</span>);<br>    put(<span>"_os_version"</span>, <span>"10"</span>);<br>    put(<span>"_app_version"</span>, <span>"1.2"</span>);<br>}};<br>Map&lt;String, String&gt; location = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"ip_address"</span>, <span>"192.168.1.1"</span>);<br>    put(<span>"city"</span>, <span>"Lahore"</span>);<br>    put(<span>"country_code"</span>, <span>"PK"</span>);<br>    put(<span>"location"</span>, <span>"31.5204,74.3587"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().sessionBegin(<span>"device-id"</span>, metrics, location, <span>1646640780130L</span>);</code><code class="java"></code><code class="java"></code></pre>
 <p>
   <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
   are predefined metrics keys. To know more about metrics, click
@@ -582,11 +588,11 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no action will be taken.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no action will be taken.&nbsp;</span>
   </li>
   <li>
-    <strong>duration-&nbsp;</strong>It is the duration of a session, you may
-    pass <strong>0</strong> if you don't want to submit a duration.
+    <strong>duration - </strong>It is the duration of a session, you may pass
+    <strong>0</strong> if you don't want to submit a duration.
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -610,11 +616,12 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no data will be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no data will be recorded.&nbsp;</span>
   </li>
   <li>
-    <strong>userProperties-</strong> <span>It is a map of key/value pairs</span>
-    and it should not be null or empty<span>. The accepted data types as a value are&nbsp;</span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong>userProperties -</strong>
+    <span>It is a map of key/value pairs</span> and it should not be null or
+    empty<span>. The accepted data types as a value are&nbsp;</span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -698,10 +705,10 @@ Countly.init(targetFolder, config);</code></pre>
   </p>
   <ul>
     <li>
-      <strong><span data-preserver-spaces="true">deviceID-</span></strong><span data-preserver-spaces="true"> Device id is mandatory, so if it is null or empty no data will be recorded.&nbsp;</span>
+      <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, so if it is null or empty no data will be recorded.&nbsp;</span>
     </li>
     <li>
-      <strong>requestData-</strong> <span>It is a map of key/value pairs</span>
+      <strong>requestData -</strong> <span>It is a map of key/value pairs</span>
       and it should not be null or empty<span>. The accepted data type for the value is </span><span>"String".</span>
     </li>
     <li>
@@ -723,6 +730,6 @@ Countly.init(targetFolder, config);</code></pre>
   </p>
   <pre><span><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></span></pre>
   <p>
-   It will return the count of requests in the memory request queue.
+    It will return the number of requests in the memory request queue.
   </p>
 </div>
