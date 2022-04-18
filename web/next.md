@@ -2514,4 +2514,38 @@ Countly.max_stack_trace_line_length = 300;
 });</code></pre>
   </div>
 </div>
+<h2>Accessing device ID type</h2>
+<p>
+  If you want to execute your functions or to implement your logic depending on
+  the type of device ID that the user has Countly offers a convenience method for
+  you to do so.
+</p>
+<p>
+  Depending on whether a user is vising your site for the first time or might have
+  just logged in to their account or for many other reasons a user can have a certain
+  device ID that has a different type than another user. These types are DEVELOPER_SUPPLIED
+  device ID, in which the assignment of the ID is handled by your internal logic,
+  SDK_GENERATED device ID, in which the ID of the user was generated randomly by
+  Countly, and TEMPORARY_ID device ID, in which the user is currently offline and
+  no request is being sent to the servers.
+</p>
+<p>
+  You can reach the device ID type of a user any time you want simply by calling
+  the get_device_id_type function or you can even reach the current device ID of
+  the user with get_device_id:
+</p>
+<pre><code class="javascript">
+// You can get and compare if the device ID type is correct, and do something after
+var idType = Countly.get_device_id_type();
+// here lets check if it is SDK_GENERATED. Other options are DEVELOPER_SUPPLIED and TEMPORARY_ID
+if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
+  //... do something
+}
+
+// or you can just check if the device ID of the user is exactly what it should be
+var userId = Countly.get_device_id();
+if ( userId === "expectedId" ) {
+  //... do something
+}  
+</code></pre>
 <p>&nbsp;</p>
