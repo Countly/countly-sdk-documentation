@@ -10,6 +10,58 @@
     <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="blank">here</a>.
   </p>
 </div>
+<p>
+  Countly can run with all browsers that supports ECMAScript 5. Minimum versions
+  of major internet browsers that fully support ES5 are:
+</p>
+<table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
+  <tbody>
+    <tr class="wysiwyg-text-align-center" style="height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 36px;">
+        <strong>IE</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 36px;">
+        <strong>Edge</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 36px;">
+        <strong>Firefox</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 36px;">
+        <strong>Firefox (Android)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Opera</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Opera (Mobile)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Safari</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+        <strong>Safari (iOS)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px; text-align: center; vertical-align: middle;">
+        <strong>Chrome</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 36px;">
+        <strong>Chrome (Android)</strong>
+      </td>
+    </tr>
+    <tr style="height: 22px; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 10px;">10</td>
+      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 10px;">12</td>
+      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 10px;">21</td>
+      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 10px;">96</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">15</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">64</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">23</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 10px;">98</td>
+    </tr>
+  </tbody>
+</table>
 <h1>Adding the SDK to the project</h1>
 <p>
   <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
@@ -2522,4 +2574,71 @@ Countly.max_stack_trace_line_length = 300;
 });</code></pre>
   </div>
 </div>
+<h2>UTM tags</h2>
+<p>
+  If you are providing possible users links to your website, and if you would like
+  to track those users who have clicked those links, you can do so by using some
+  utm tags within your links and Countly web SDK would recognize and record these
+  users for you.
+</p>
+<p>
+  The web SDK offers you two options to set these tags in your links. First you
+  can use the default tags that has been set to be recognized by the SDK by default.
+  These tags are 'source', 'medium', 'campaign', 'term' and 'content'. If you add
+  any or all of these tags into your links as query Countly would recognize and
+  record them accordingly. An example usage of the default tags is as follows:
+</p>
+<pre><code class="javascript">
+// basic structure of a link that contains all available default tags
+yourUrl + ?utm_source=someValue&amp;utm_medium=someValue&amp;utm_campaign=someValue&amp;utm_term=someValue&amp;utm_content=someValue
+
+//or you can omit tags
+yourUrl + ?utm_source=someValue&amp;utm_campaign=someValue
+
+// yourUrl is the url of your site and someValue is any string value you want to pass
+</code></pre>
+<p>
+  Second option is to define your custom utm tags during the initialization of
+  Countly and use those tags in your links. You have to provide a map of key value
+  pairs where the key is the tag and the value is 'true' if you want the Countly
+  to check for that key in your links:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+// add your custom tags and set their value to true
+Countly.utm = {tag1: true, tag2: true};
+
+// then your links should look like this:
+yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    // add your custom tags and set their value to true
+    utm: {tag1: true, tag2: true}
+});
+
+// then your links should look like this:
+yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
+</code></pre>
+  </div>
+</div>
+<p>
+  The values you have provided will be captured and stored as user properties,
+  under the keys 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term' and 'utm_content'
+  if you have used the default tags or as 'utm_yourCustomTag1', 'utm_yourCustomTag1'...
+  if you have used custom tags, together with the corresponding user when a user
+  clicks that link. This will enable you to segment users in all places around
+  the dashboard, where granular data is used and segmentation capabilities are
+  provided.
+</p>
 <p>&nbsp;</p>
