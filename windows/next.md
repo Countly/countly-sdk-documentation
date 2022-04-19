@@ -647,7 +647,44 @@ consent.Add(ConsentFeatures.Location, true);
 
 //changing consent
 Countly.Instance.SetConsent(consent);</code></pre>
-<h1 class="anchor-heading" tabindex="-1">Other features</h1>
+<h1 class="anchor-heading" tabindex="-1">Other features and Notes</h1>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  <span>To change the Configuration, update the values of parameters in the "<code class="csharp">CountlyConfig</code></span><strong><span>&nbsp;</span></strong><span>object. Here are the details of the optional parameters:</span><span></span>
+</p>
+<p>
+  <span><strong>developerProvidedDeviceId -&nbsp;</strong>(Optional, string) Your Device ID. It is an optional parameter.&nbsp;<strong>Example:</strong>&nbsp;f16e5af2-8a2a-4f37-965d-qwer5678ui98.</span>
+</p>
+<p>
+  <span><strong>consentRequired-&nbsp;</strong>(Optional, bool)&nbsp;This is useful&nbsp;during the app run when the user wants to opt-out of SDK features.</span>
+</p>
+<p>
+  <span><strong>sessionUpdateInterval -</strong>&nbsp;(Optional, int)&nbsp;Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong>&nbsp;60&nbsp;</strong>(seconds).</span>
+</p>
+<h2>SDK Internal Limits</h2>
+<p>
+  SDK does have configurable fields to manipulate the internal SDK value and key
+  limits. If values or keys provided by the user, would exceed the limits, they
+  would be truncated. Here are the details of these configurable fields:<span></span>
+</p>
+<p>
+  <span><strong>MaxKeyLength -&nbsp;</strong>(int) Maximum size of all string keys. The default value is&nbsp;<strong>128</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxValueLength - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>256</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
+</p>
+<p>
+  <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
+</p>
 <h1 id="faq" class="anchor-heading" tabindex="-1">FAQ</h1>
 <h2 id="what-information-is-collected-by-the-sdk" class="anchor-heading">What information is collected by the SDK</h2>
 <p>
