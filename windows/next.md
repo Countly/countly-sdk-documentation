@@ -1,5 +1,6 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications. It applies to version 21.11.0.
+  This document explains how to install Countly SDK for Windows desktop applications.
+  It applies to version 21.11.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -24,7 +25,7 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 click&nbsp;<a href="https://countly.zendesk.com/hc/en-us/articles/4413138651161">here.</a>
+    To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
   </p>
 </div>
 <p>
@@ -77,26 +78,12 @@ cc.appVersion = "1.2.3";
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <p>
-  <span>In the </span><code>CountlyConfig</code><span>&nbsp;object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check&nbsp;<a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D" target="_self">here</a>.</span>
+  <span>In the </span><code>CountlyConfig</code><span>&nbsp;object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check&nbsp;<a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self" rel="undefined">here</a>.</span>
 </p>
 <p>
   <strong>Note: </strong>The SDK targets multiple profiles. Therefore for some
   of them, there are feature differences. Either with additional function calls
   or with additional fields in the CountlyConfig object.
-</p>
-<h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
-<p>
-  <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
-</p>
-<p>
-  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
-</p>
-<h3 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h3>
-<p>
-  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
-</p>
-<p>
-  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
 </p>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
