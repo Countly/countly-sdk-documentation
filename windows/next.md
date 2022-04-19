@@ -239,21 +239,42 @@ private void OnResuming(object sender, object e)
 
 await Countly.Instance.Init(cc);</code></pre>
 <h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
+<p>
+  <span>The Countly SDK for Windows can collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
+</p>
 <h2 id="automatic-crash-handling" class="anchor-heading">Automatic crash handling</h2>
 <p>
-  Countly SDK has an ability to automatically collect crash reports which you can
-  examine and resolve later on the server. This applies for Windows Store apps,
-  on other platforms you should subscribe to unhandled exceptions handler manually.
-  Exception details and device properties will be sent on next app launch.
+  Countly SDK has the ability to automatically collect crash reports which you
+  can examine and resolve later on the server. This applies to Windows Store apps,
+  on other platforms you should subscribe to the unhandled exceptions handler manually.
+  Exception details and device properties will be sent on the next app launch.
 </p>
 <h2 id="handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
-  To log handled exceptions, which are not fatal, use
-  <code>Countly.RecordException;</code> the method. You can provide custom properties
-  for crash providing key/value object to store for this crash report and server
-  will segment values for you for the same crash.
+  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening.&nbsp;</span><span>To log exceptions use the following code snippet:</span>
 </p>
-<pre><strong>Dictionary</strong>&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;<br>{<br>{ "customData", "importantStuff" }<br>};<br><br><strong>Countly</strong>.RecordException(ex.Message, ex.StackTrace, customInfo);</pre>
+<pre><code><strong>Dictionary</strong>&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;<br>{<br>{ "customData", "importantStuff" }<br>};<br><br>try {<br>    throw new Exception("It is an exception");<br>} catch (Exception ex) {<br><strong>    Countly</strong>.RecordException(ex.Message, ex.StackTrace, customInfo, false);<br>}</code></pre>
+<p>Here is the detail of the parameters:</p>
+<ul>
+  <li>
+    <strong>error -</strong><span> A</span>&nbsp;string that contains a detailed
+    description of the exception.
+  </li>
+  <li>
+    <strong>stackTrace -</strong><span> </span>A string that describes the contents
+    of the call stack.
+  </li>
+  <li>
+    <strong>customInfo -<span> </span></strong>Custom key/values to be reported.
+  </li>
+  <li>
+    <strong>unhandled -</strong>&nbsp; (bool) Set false if the error is fatal.
+  </li>
+</ul>
+<p>
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
+</p>
+<pre><span><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code>&nbsp;</span></pre>
 <h2 id="crash-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave&nbsp;crash breadcrumbs<span>&nbsp;</span><span>Mandatory that </span>would
@@ -262,6 +283,10 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre><strong>Countly</strong>.AddBreadCrumb("breadcrumb");</pre>
+<h2 id="consent" class="anchor-heading">Consent</h2>
+<p>
+  This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given</span>
+</p>
 <h1>Events</h1>
 <p>
   <span>An&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>event</span></a><span>&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
