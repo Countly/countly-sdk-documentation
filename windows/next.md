@@ -1,5 +1,6 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications. It applies to version 21.11.0.
+  This document explains how to install Countly SDK for Windows desktop applications.
+  It applies to version 21.11.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -24,7 +25,7 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 click&nbsp;<a href="https://countly.zendesk.com/hc/en-us/articles/4413138651161">here.</a>
+    To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
   </p>
 </div>
 <p>
@@ -443,10 +444,10 @@ Countly.Instance.ChangeDeviceId("newIdAgain");
 
 //changing with a server side merge
 Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
-<h2 id="retrieving-current-device-id&nbsp;" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
+<h2 id="retrieving-current-device-id" class="anchor-heading">Retrieving current device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
-  For that, you may use the following calls.&nbsp;
+  For that, you may use the following calls.
 </p>
 <pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
 <h1>User location</h1>
