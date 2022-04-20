@@ -1,5 +1,6 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications. It applies to version 21.11.0.
+  This document explains how to install Countly SDK for Windows desktop applications.
+  It applies to version 21.11.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -24,7 +25,7 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 click&nbsp;<a href="https://countly.zendesk.com/hc/en-us/articles/4413138651161">here.</a>
+    To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
   </p>
 </div>
 <p>
@@ -60,14 +61,13 @@
   <a href="https://github.com/Countly/countly-sdk-windows/">here</a>
 </p>
 <h1 id="sdk-integration" class="anchor-heading" tabindex="-1">SDK Integration</h1>
-<h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
-<p>
+<p class="anchor-heading">
   Before you can use any Countly functionality, you need to call
   <code>Countly.Instance.Init</code> to initiate the SDK.
 </p>
+<h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
 <p>
-  To that <code>Init</code> call, you need to pass a <code>CountlyConfig</code>
-  object where you set up your relevant configuration.
+  <span>The shortest way to initiate the SDK is with this call:</span>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
@@ -78,29 +78,12 @@ cc.appVersion = "1.2.3";
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <p>
-  <span><strong>appKey -&nbsp;</strong>(Mandatory) The “App Key” for the app that you created on the Countly server. Example<strong>:</strong>&nbsp;124qw3er5u678qwef88d6123456789qwertyui123.</span>
+  <span>In the </span><code>CountlyConfig</code><span>&nbsp;object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check&nbsp;<a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self" rel="undefined">here</a>.</span>
 </p>
 <p>
-  <span><strong>serverUrl -</strong>&nbsp;(Mandatory) The URL of the Countly server where you are going to post your requests. Example<strong>:</strong>&nbsp;<a href="https://us-try.count.ly/">https://try.count.ly/</a></span>
-</p>
-<p>
-  <strong>Note:</strong>The SDK targets multiple profiles. Therefore for some of
-  them, there are feature differences. Either with additional function calls or
-  with additional fields in the CountlyConfig object.
-</p>
-<h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
-<p>
-  <span>Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
-</p>
-<p>
-  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
-</p>
-<h3 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h3>
-<p>
-  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
-</p>
-<p>
-  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
+  <strong>Note: </strong>The SDK targets multiple profiles. Therefore for some
+  of them, there are feature differences. Either with additional function calls
+  or with additional fields in the CountlyConfig object.
 </p>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
@@ -468,6 +451,12 @@ Countly.Instance.ChangeDeviceId("newIdAgain");
 
 //changing with a server side merge
 Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
+<h2 id="retrieving-current-device-id" class="anchor-heading">Retrieving current device ID</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.
+</p>
+<pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
 <h1>User location</h1>
 <p>
   <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
@@ -665,7 +654,44 @@ consent.Add(ConsentFeatures.Location, true);
 
 //changing consent
 Countly.Instance.SetConsent(consent);</code></pre>
-<h1 class="anchor-heading" tabindex="-1">Other features</h1>
+<h1 class="anchor-heading" tabindex="-1">Other features and Notes</h1>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  <span>To change the Configuration, update the values of parameters in the "<code class="csharp">CountlyConfig</code></span><strong><span>&nbsp;</span></strong><span>object. Here are the details of the optional parameters:</span><span></span>
+</p>
+<p>
+  <span><strong>developerProvidedDeviceId -&nbsp;</strong>(Optional, string) Your Device ID. It is an optional parameter.&nbsp;<strong>Example:</strong>&nbsp;f16e5af2-8a2a-4f37-965d-qwer5678ui98.</span>
+</p>
+<p>
+  <span><strong>consentRequired-&nbsp;</strong>(Optional, bool)&nbsp;This is useful&nbsp;during the app run when the user wants to opt-out of SDK features.</span>
+</p>
+<p>
+  <span><strong>sessionUpdateInterval -</strong>&nbsp;(Optional, int)&nbsp;Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong>&nbsp;60&nbsp;</strong>(seconds).</span>
+</p>
+<h2>SDK Internal Limits</h2>
+<p>
+  SDK does have configurable fields to manipulate the internal SDK value and key
+  limits. If values or keys provided by the user, would exceed the limits, they
+  would be truncated. Here are the details of these configurable fields:<span></span>
+</p>
+<p>
+  <span><strong>MaxKeyLength -&nbsp;</strong>(int) Maximum size of all string keys. The default value is&nbsp;<strong>128</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxValueLength - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>256</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
+</p>
+<p>
+  <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
+</p>
 <h1 id="faq" class="anchor-heading" tabindex="-1">FAQ</h1>
 <h2 id="what-information-is-collected-by-the-sdk" class="anchor-heading">What information is collected by the SDK</h2>
 <p>
