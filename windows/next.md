@@ -268,7 +268,7 @@ await Countly.Instance.Init(cc);</code></pre>
 <pre><strong>Countly</strong>.AddBreadCrumb("breadcrumb");</pre>
 <h2 id="consent" class="anchor-heading">Consent</h2>
 <p>
-  This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given</span>
+  This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given.</span>
 </p>
 <h1>Events</h1>
 <p>
