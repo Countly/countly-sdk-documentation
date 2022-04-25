@@ -391,24 +391,24 @@ cc.developerProvidedDeviceId = "use@email.com";
 Countly.Instance.Init(cc);</code></pre>
 <h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
 <p>
-  It is possible to change the device Id after the app is initiated. It can be
-  done with a server-side merge and without one. In both cases, the new id will
-  be used on further app launches.
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", true);</span></code></span></pre>
 <p>
-  If it is done without a server-side merge, then the previous session will end
-  and a new session will be started with the new id.
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", false);</span></code></span></pre>
 <p>
-  With a server-side merge, the events, session information and etc will be assigned
-  to the new device id.
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
 </p>
-<pre><code class="csharp">//changing without a server side merge
-Countly.Instance.ChangeDeviceId("newId", false);
-Countly.Instance.ChangeDeviceId("newIdAgain");
-
-//changing with a server side merge
-Countly.Instance.ChangeDeviceId("ThisIsUnique", true);</code></pre>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If the device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
+<p>
+  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+</p>
 <h2 id="retrieving-current-device-id" class="anchor-heading">Retrieving current device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
