@@ -114,101 +114,9 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <pre><code class="csharp">Countly.SetCustomDataPath("C:\path\to\new\folder\");</code></pre>
 <h2 id="sdk-notes" class="anchor-heading" tabindex="-1">SDK notes</h2>
-<h3>Additional info for Windows Store project setup</h3>
-<div class="callout callout--danger">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Windows Store build has been removed</strong></span>
-  </p>
-  <p>The following section of documentation will be removed soon</p>
-</div>
-<p>
-  As the Countly SDK requires <strong>Internet (Client &amp; Server)</strong> to
-  be enabled. Open Package.appxmanifest, click on Capabilities section and make
-  it enabled
-</p>
-<p>
-  Add <code>using CountlySDK;</code> in the App.xaml.cs usings section
-</p>
-<p>
-  You need to call <code>Countly.Instance.SessionBegin();</code> each time when
-  app is activated and <code>await Countly.EndSession();</code> when app is deactivated.
-</p>
-<p>
-  That would mean adding <code>SessionBegin</code> calls to
-  <code>OnLaunched</code>, <code>OnActivated</code> and <code>OnResuming</code>
-  events and <code>SessionEnd</code> calls to <code>OnLaunched</code> event which
-  is already prepared for you by Visual Studio in <code>App.xaml.cs</code> file.
-  Add initialization code before page navigation happens.
-</p>
-<pre><code class="csharp">protected override void OnLaunched(LaunchActivatedEventArgs e)
-{
-  
-...
-
-  //create the Countly init object
-  CountlyConfig cc = new CountlyConfig();
-  cc.serverUrl = "http://YOUR_SERVER";
-  cc.appKey = "YOUR_APP_KEY";
-  cc.appVersion = "1.2.3";
-  cc.application = this
-
-  //initiate the SDK with your preferences
-  await Countly.Instance.Init(cc)
-  
-  if (rootFrame.Content == null)
-  {
-    // Removes the turnstile navigation for startup.
-    if (rootFrame.ContentTransitions != null)
-    {
-      this.transitions = new TransitionCollection();
-      foreach (var c in rootFrame.ContentTransitions)
-    {
-      this.transitions.Add(c);
-    }
-  }
-    
-...
-}</code></pre>
-<p>
-  Add <code>override</code> method called <code>OnActivated</code> to
-  <code>App.xaml.cs</code> file and call
-  <code>Countly.Instance.SessionBegin();</code> inside
-</p>
-<pre><code class="csharp">protected override void OnActivated(IActivatedEventArgs args)
-{
-  await Countly.Instance.SessionBegin();
-}</code></pre>
-<p>
-  Subscribe to application <code>Resuming</code> method in <code>App</code> constructor.
-</p>
-<pre><code class="csharp">public App()
-{
-  this.InitializeComponent();
-  this.Resuming += this.OnResuming;
-  this.Suspending += this.OnSuspending;
-}
-
-private void OnResuming(object sender, object e)
-{
-  await Countly.Instance.SessionBegin();
-}</code></pre>
-<p>
-  Update <code>OnSuspending</code> method created by Visual Studio in
-  <code>App.xaml.cs</code> file to handle Countly deactivation logic. Make sure
-  you use async/await statements, so app will not be closed before Countly receives
-  <code>end session</code> event
-</p>
-<pre><code class="csharp">private async void OnSuspending(object sender, SuspendingEventArgs e)
-{
-  var deferral = e.SuspendingOperation.GetDeferral();
-
-  await Countly.Instance.SessionEnd();
-
-  deferral.Complete();
-}</code></pre>
 <h3>Additional info for UWP project setup</h3>
 <p>
-  It's possible to register a unhandled crash handler during SDK initialization.
+  It's possible to register an unhandled crash handler during SDK initialization.
   To do that, you need to provide a link to your application.
 </p>
 <pre><code class="csharp">var cc = new CountlyConfig
@@ -225,9 +133,9 @@ await Countly.Instance.Init(cc);</code></pre>
 <h2 id="automatic-crash-handling" class="anchor-heading">Automatic crash handling</h2>
 <p>
   Countly SDK has an ability to automatically collect crash reports which you can
-  examine and resolve later on the server. This applies for Windows Store apps,
-  on other platforms you should subscribe to unhandled exceptions handler manually.
-  Exception details and device properties will be sent on next app launch.
+  examine and resolve later on the server. You should subscribe to unhandled exceptions
+  handler manually. Exception details and device properties will be sent on next
+  app launch.
 </p>
 <h2 id="handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
@@ -382,11 +290,6 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
     <strong>windowsGUID</strong> - [all platforms] generates a random GUID that
     will be used as a device id. Very high chance of being unique. Will generate
     a new id on a reinstall.
-  </li>
-  <li>
-    winHardwareToken - [windows 8 store apps] uses the hardware identification
-    token provided by the OS to generate a hash that will be used as an id. Should
-    be the same on a reinstall. Very high chance of being unique
   </li>
   <li>
     <strong>developerSupplied</strong> - The device Id was provided by the developer.
