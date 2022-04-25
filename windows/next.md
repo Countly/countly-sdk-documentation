@@ -137,8 +137,8 @@ await Countly.Instance.Init(cc);</code></pre>
 <p>
   Countly SDK has the ability to automatically collect crash reports which you
   can examine and resolve later on the server. You should subscribe to the unhandled
-  exceptions handler manually. Exception details and device properties will be sent
-  on the next app launch.
+  exceptions handler manually. Exception details and device properties will be
+  sent on the next app launch.
 </p>
 <h2 id="handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
@@ -165,7 +165,7 @@ await Countly.Instance.Init(cc);</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
-<pre><span><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code>&nbsp;</span></pre>
+<pre><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
 <h2 id="crash-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave&nbsp;crash breadcrumbs<span>&nbsp;</span><span>Mandatory that </span>would
