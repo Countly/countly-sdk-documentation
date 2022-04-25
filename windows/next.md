@@ -182,16 +182,39 @@ await Countly.Instance.Init(cc);</code></pre>
 <p>
   <span>An&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>event</span></a><span>&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
-<div class="callout callout--warning">
-  <h2 id="recording-events" class="anchor-heading">Recording events</h2>
-  <p>
-    <span>Here is a quick way to&nbsp;</span><span>record an event:</span>
-  </p>
-  <pre><code class="csharp">Countly.RecordEvent("event-key");</code></pre>
-  <p>
-    <span>Based on the example below of an event recording a&nbsp;<strong>purchase</strong>, h</span><span>ere is a quick summary of the information for each usage:</span>
-  </p>
-</div>
+<p>
+  <span>There are a couple of values that can be set when recording an event. The main one is the&nbsp;<strong>key</strong>&nbsp;property which would be the identifier/name for that event.&nbsp; For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
+</p>
+<p>
+  <span>Optionally there are also other properties that you might want to set:</span>
+</p>
+<ul>
+  <li>
+    <strong>Count -</strong>&nbsp; a whole numerical value that marks how many
+    times this event has happened. The default value for that is<span>&nbsp;</span><strong>1</strong>.
+  </li>
+  <li>
+    <strong>Sum -</strong><span>&nbsp;</span>This value would be summed across
+    all events in the dashboard. F<span>or example, in-app purchase events sum of purchased items. Its default value is <strong>null</strong>.</span>
+  </li>
+  <li>
+    <strong>Duration -<span>&nbsp;</span></strong>Used to record and track the
+    duration of events. The default value is<span> </span><strong>null</strong>.
+  </li>
+  <li>
+    <strong>Segmentation-<span>&nbsp;</span></strong>A value where you can provide
+    custom segmentation for your events to track additional information. It is
+    a key and value map. The accepted data types for the value are<span>&nbsp;</span><span>"String".&nbsp;</span>
+  </li>
+</ul>
+<h2 id="recording-events" class="anchor-heading">Recording events</h2>
+<p>
+  <span>Here is a quick way to&nbsp;</span><span>record an event:</span>
+</p>
+<pre><code class="csharp">Countly.RecordEvent("event-key");</code></pre>
+<p>
+  <span>Based on the example below of an event recording a&nbsp;<strong>purchase</strong>, h</span><span>ere is a quick summary of the information for each usage:</span>
+</p>
 <ul>
   <li>
     Usage 1: how many times <strong>purchase</strong> event occured.
@@ -216,31 +239,63 @@ await Countly.Instance.Init(cc);</code></pre>
   </li>
 </ul>
 <p>
-  First, add <code>using CountlySDK;</code> in the usings section
+  <strong>1. Event key and count</strong>
 </p>
-<h2>1. Event key and count</h2>
-<pre><code class="csharp">Countly.RecordEvent("purchase", 3);</code></pre>
-<h2>2. Event key, count and sum</h2>
-<pre><code class="csharp">Countly.RecordEvent("purchase", 3, 0.99);</code></pre>
-<h2>3. Event key and count with segmentation(s)</h2>
+<pre><code class="csharp">await Countly.RecordEvent("purchase", 3);</code></pre>
+<p>
+  <strong>2.</strong> <strong>Event key, count, and sum</strong>
+</p>
+<pre><code class="csharp">await Countly.RecordEvent("purchase", 3, 0.99);</code></pre>
+<p>
+  <strong>3. Event key and count with segmentation(s)</strong>
+</p>
 <pre><code class="csharp">Segmentation segmentation = new Segmentation();
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
-Countly.RecordEvent("purchase", 3, segmentation);   
-
-Countly.RecordEvent("purchase", 1, 0.99);
+await Countly.RecordEvent("purchase", 3, segmentation);
 </code></pre>
-<h2>4. Event key, count and sum with segmentation(s)</h2>
+<p>
+  <strong>4. Event key, count, and sum with segmentation(s)</strong>
+</p>
 <pre><code class="csharp">Segmentation segmentation = new Segmentation();
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
-Countly.RecordEvent("purchase", 3, 2.97, segmentation);
+await Countly.RecordEvent("purchase", 3, 2.97, segmentation);
 </code></pre>
-<h2>5. Event key, count, sum, duration with segmentation(s)</h2>
+<p>
+  <strong>5. Event key, count, sum, duration with segmentation(s)</strong>
+</p>
 <pre><code class="csharp">Segmentation segmentation = new Segmentation();
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
-Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pre>
+await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pre>
+<p>
+  <span>These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
+</p>
+<h2 id="timed-events" class="anchor-heading">Timed events</h2>
+<p>
+  <span>Currently, SDK doesn't have any direct mechanism to record timed Events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
+</p>
+<p>
+  <span>Example:</span>
+</p>
+<pre><code class="java hljs"><span class="hljs-comment">//At the start of your planned event you would record the start timestamp</span>
+DateTime startTime = DateTime.UtcNow;
+...
+<span class="hljs-comment">//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed </span>
+<span class="hljs-keyword">double</span> duration = (DateTime.UtcNow - startTime).TotalSeconds; 
+<span class="hljs-comment">//Then you would pass this information when recording a Countly event</span>
+<strong>await</strong> <span>Countly.RecordEvent("purchase", 3, null, duration, null);</span></code></pre>
+<p>
+  <span>You may provide segmentation, count, and sum while recording a timed event.</span>
+</p>
+<h2 id="consent" class="anchor-heading">Consent</h2>
+<p>
+  <span>This feature uses&nbsp;<code>Events</code>&nbsp;consent.&nbsp;</span><span>No additional events will be recorded if consent is required and not given.</span>
+</p>
+<p>
+  <span>When consent is removed, all previously started timed events will be cancelled.</span>
+</p>
 <h1>Sessions</h1>
 <h2>Manual sessions</h2>
 <p>
@@ -265,7 +320,7 @@ Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pre>
 </p>
 <pre><code class="csharp">//start the user session
 Countly.Instance.SessionBegin();
-  
+
 //end the user session
 Countly.Instance.SessionEnd();
 
