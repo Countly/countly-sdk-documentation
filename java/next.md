@@ -30,10 +30,10 @@
 <pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:20.11.1"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
-  &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
-  &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;20.11.1&lt;/version&gt;
-  &lt;type&gt;pom&lt;/type&gt;
+	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
+	&lt;artifactId&gt;java&lt;/artifactId&gt;
+	&lt;version&gt;20.11.1&lt;/version&gt;
+	&lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 class="anchor-heading">SDK Integration</h1>
 <h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>

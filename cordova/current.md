@@ -51,8 +51,11 @@
 <pre><code class="shell">cd PATH_TO_YOUR_PROJECT
 
 cordova plugin add https://github.com/Countly/countly-sdk-cordova.git
+
 # OR
+
 cordova plugin add countly-sdk-js@20.11.0</code></pre>
+
 <p>
   If iOS/Android Platform are already added in your project, first remove them
 </p>
@@ -86,8 +89,11 @@ ordova build ios</code></pre>
 <pre><code class="shell">cd PATH_TO_YOUR_PROJECT
 
 ionic cordova plugin add https://github.com/Countly/countly-sdk-cordova.git
+
 # OR
+
 ionic cordova plugin add countly-sdk-js@20.11.0</code></pre>
+
 <p>
   If iOS/Android Platform are already added in your project, first remove them
 </p>
@@ -195,6 +201,7 @@ Countly.setLoggingEnabled();</code></pre>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stacktrace.js/2.0.0/stacktrace.min.js">// <![CDATA[
 
 // ]]></script>
+
 </p>
 <pre><code class="javascript">// Using countly crash reports
 Countly.enableCrashReporting();
@@ -235,11 +242,12 @@ try {
   });
 }
 
-// With error string 
+// With error string
 Countly.logException("ERROR_STRING", true);
 
-// With array of strings 
+// With array of strings
 Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], true);</code></pre>
+
 <p>
   <strong>2. Manually report handled exception with segmentation</strong>
 </p>
@@ -252,11 +260,12 @@ try {
   });
 }
 
-// With error string 
-Countly.logException("ERROR_STRING", true, {"_facebook_version": "0.0.1"});
+// With error string
+Countly.logException("ERROR_STRING", true, {"\_facebook_version": "0.0.1"});
 
-// With array of strings 
-Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], true, {"_facebook_version": "0.0.1"});</code></pre>
+// With array of strings
+Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], true, {"\_facebook_version": "0.0.1"});</code></pre>
+
 <p>
   <strong>3. Manually report fatal exception</strong>
 </p>
@@ -269,11 +278,12 @@ try {
   });
 }
 
-// With error string 
+// With error string
 Countly.logException("ERROR_STRING", false);
 
-// With array of strings 
+// With array of strings
 Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], false);</code></pre>
+
 <p>
   <strong>4. Manually report fatal exception with segmentation</strong>
 </p>
@@ -286,11 +296,12 @@ try {
   });
 }
 
-// With error string 
-Countly.logException("ERROR_STRING", false, {"_facebook_version": "0.0.1"});
+// With error string
+Countly.logException("ERROR_STRING", false, {"\_facebook_version": "0.0.1"});
 
-// With array of strings 
-Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], false, {"_facebook_version": "0.0.1"});</code></pre>
+// With array of strings
+Countly.logException(["ERROR_STRING", "ERROR_STRING_2"], false, {"\_facebook_version": "0.0.1"});</code></pre>
+
 <h2>Crash breadcrumbs</h2>
 <p>
   Throughout your app you can leave crash breadcrumbs which would describe previous
@@ -427,8 +438,9 @@ setTimeout(function() {
 // Time Event With Sum
 Countly.startEvent("Timed Event With Sum");
 setTimeout(function() {
-    countly.endEvent({"key": "Timed Event With Sum", "sum": "0.99"});
+countly.endEvent({"key": "Timed Event With Sum", "sum": "0.99"});
 }, 1000);</code></pre>
+
 <p>
   When ending an event you can also provide additional information. But in that
   case, you have to provide segmentation, count and sum. The default values for
@@ -448,20 +460,21 @@ setTimeout(function() {
     Countly.endEvent(events);
 }, 1000)
 
-// Time  Event with Segment, sum and count
+// Time Event with Segment, sum and count
 Countly.startEvent("Timed Event With Segment, Sum And Count");
 setTimeout(function() {
-    var events = {
-        "key": "timedEvent",
-        "count": 1,
-        "sum": "0.99"
-    };
-    events.segments = {
-        "Country": "Turkey",
-        "Age": "28"
-    };
-    Countly.endEvent(events);
-},  1000);</code></pre>
+var events = {
+"key": "timedEvent",
+"count": 1,
+"sum": "0.99"
+};
+events.segments = {
+"Country": "Turkey",
+"Age": "28"
+};
+Countly.endEvent(events);
+}, 1000);</code></pre>
+
 <h1>Sessions</h1>
 <h2>Automatic session tracking</h2>
 <p>
@@ -690,16 +703,18 @@ Countly.askForNotificationPermission();</code></pre>
 }
 
 // When app is killed.
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
-    NSDictionary *notification = response.notification.request.content.userInfo;
-    [CountlyNative onNotification: notification];
-    completionHandler();
-}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter _)center didReceiveNotificationResponse:(UNNotificationResponse _)response withCompletionHandler:(void (^)(void))completionHandler{
+  NSDictionary \*notification = response.notification.request.content.userInfo;
+  [CountlyNative onNotification: notification];
+  completionHandler();
+  }
 
 // When app is running.
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
-    [CountlyNative onNotification: notification.request.content.userInfo];
-    completionHandler(0);
+
+- (void)userNotificationCenter:(UNUserNotificationCenter _)center willPresentNotification:(UNNotification _)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+[CountlyNative onNotification: notification.request.content.userInfo];
+completionHandler(0);
 }</code></pre>
 <h1>User location</h1>
 <p>
@@ -1018,6 +1033,7 @@ Countly.userData.setOnce("setOnce", 200);
 Countly.userData.pushUniqueValue("pushUniqueValue","morning");
 Countly.userData.pushValue("pushValue", "morning");
 Countly.userData.pullValue("pullValue", "morning");</code></pre>
+
 <p>
   In the end always call Countly.userData.save() to send them to the server.
 </p>
@@ -1178,7 +1194,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   <li>starRating - allow to send their rating and feedback</li>
   <li>apm - allow application performance monitoring</li>
   <li>
-    remoteConfig - allows downloading remote config values from your server
+    remote-config - allows downloading remote config values from your server
   </li>
 </ul>
 <h2>Changing consent</h2>
@@ -1195,6 +1211,7 @@ Countly.giveConsentInit(["events", "views", "star-rating", "crashes"]);
 
 // removeConsent
 Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+
 <ul>
   <li>
     giveConsent/removeConsent - gives or removes consent to a specific feature
@@ -1205,6 +1222,7 @@ Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
 
 // removeConsent
 Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+
 <ul>
   <li>
     giveAllConsent/removeAllConsent - giveAll or removeAll consent to a specific
@@ -1217,6 +1235,7 @@ Countly.giveAllConsent();
 //removeAllConsent
 Countly.removeAllConsent();
 </code></pre>
+
 <div></div>
 <h1>Security and privacy</h1>
 <h2>Parameter Tampering Protection</h2>
@@ -1266,7 +1285,6 @@ Countly.setOptionalParametersForInitialization({
     longitude: "-82.7166183",
     ipAddress: "255.255.255.255"
 });
-
 
 //and then call the below code
 Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")</code></pre>
