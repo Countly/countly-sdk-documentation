@@ -133,9 +133,9 @@ await Countly.Instance.Init(cc);</code></pre>
 <h2 id="automatic-crash-handling" class="anchor-heading">Automatic crash handling</h2>
 <p>
   Countly SDK has an ability to automatically collect crash reports which you can
-  examine and resolve later on the server. This applies for Windows Store apps,
-  on other platforms you should subscribe to unhandled exceptions handler manually.
-  Exception details and device properties will be sent on next app launch.
+  examine and resolve later on the server. You should subscribe to unhandled exceptions
+  handler manually. Exception details and device properties will be sent on next
+  app launch.
 </p>
 <h2 id="handled-exceptions" class="anchor-heading">Handled exceptions</h2>
 <p>
@@ -290,11 +290,6 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
     <strong>windowsGUID</strong> - [all platforms] generates a random GUID that
     will be used as a device id. Very high chance of being unique. Will generate
     a new id on a reinstall.
-  </li>
-  <li>
-    winHardwareToken - [windows 8 store apps] uses the hardware identification
-    token provided by the OS to generate a hash that will be used as an id. Should
-    be the same on a reinstall. Very high chance of being unique
   </li>
   <li>
     <strong>developerSupplied</strong> - The device Id was provided by the developer.
