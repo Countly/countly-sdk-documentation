@@ -2,23 +2,21 @@
   This document explains how to install Countly SDK for Windows desktop applications.
   It applies to version 21.11.0.
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Minimum Windows version</strong></span>
-  </p>
-  <p>
-    The Countly Windows SDK supports the following operating systems and .NET
-    versions:
-  </p>
-  <ul>
-    <li>Windows 8.1</li>
-    <li>Windows 10</li>
-    <li>Windows 10 Mobile</li>
-    <li>.NET 3.5</li>
-    <li>.NET 4.0 Client Profile</li>
-    <li>.NET 4.5 and above</li>
-    <li>.NET Standard 2.0</li>
-  </ul>
+<div>
+  <p>The Countly Windows SDK supports the following flavors.</p>
+  <ol>
+    <li>
+      <span>Universal Windows Platform</span>
+    </li>
+    <li>
+      <span>.NETStandard, Version=2.0</span>
+    </li>
+    <li>
+      <span>.NETPortable, Version=4.5</span>
+    </li>
+    <li>.NETFramework, Version=v3.5</li>
+    <li>.NETFramework, Version=v4.0, Profile=Client</li>
+  </ol>
 </div>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -29,37 +27,32 @@
   </p>
 </div>
 <p>
-  In order to set up Countly SDK in your Windows app, follow these steps:
-</p>
-<ol>
-  <li>
-    In Solution Explorer open context menu on
-    <strong>References - Manage NuGet Packages</strong>.
-  </li>
-  <li>Select nuget.org in Package source.</li>
-  <li>
-    Type <strong>Countly</strong> in search box.
-  </li>
-  <li>
-    Select Countly Analytics from results list and click Install button.
-  </li>
-</ol>
-<p>
-  The usage of the SDK requires a connection to the server. This connection usually
-  is access to the internet.
-</p>
-<p>
-  <span class="wysiwyg-font-size-large"><strong>SDK sample app</strong></span>
-</p>
-<p>
-  The Countly github page for this SDK contains also sample projects. You should
+  The Countly GitHub page for this SDK contains also sample projects. You should
   be able to download them to test the basic functionality of this SDK and make
-  sure you are using it correct in case you encounter any problems in your application
+  sure you are using it correctly in case you encounter any problems in your application
 </p>
 <p>
   The project page can be found
   <a href="https://github.com/Countly/countly-sdk-windows/">here</a>
 </p>
+<h1 id="adding-the-sdk-to-the-project" class="anchor-heading">Adding the SDK to the project</h1>
+<p>
+  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency in either your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
+</p>
+<ol>
+  <li>
+    In Solution Explorer, right-click<span>&nbsp;</span><strong>References</strong><span>&nbsp;</span>and
+    choose<span>&nbsp;</span><strong>Manage NuGet Packages</strong>.<img src="/hc/article_attachments/6091532680089/image-NuGet-packages.png" alt="image-NuGet-packages.png">
+  </li>
+  <li>
+    <span>Choose "nuget.org" as the&nbsp;</span><strong>Package source</strong><span>, select the&nbsp;</span><strong>Browse</strong><span>&nbsp;tab, search for&nbsp;</span><strong>Countly</strong><span>, select that package in the list, and select&nbsp;</span><strong>Install</strong><span>:<img src="/hc/article_attachments/6090928779673/mceclip0.png" alt="mceclip0.png"></span>
+  </li>
+  <li>
+    <p>
+      Accept any license prompts.<span></span>
+    </p>
+  </li>
+</ol>
 <h1 id="sdk-integration" class="anchor-heading" tabindex="-1">SDK Integration</h1>
 <p class="anchor-heading">
   Before you can use any Countly functionality, you need to call
