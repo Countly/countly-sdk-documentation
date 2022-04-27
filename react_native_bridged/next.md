@@ -80,39 +80,15 @@ if(!await Countly.isInitialized()) {
   Countly.start(); // start session tracking
 }</code></pre>
 <p>
+  For more information on how to acquire your application key (appKey) and server
+  URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
+</p>
+<p>
   After <code class="JavaScript">init</code> and
   <code class="JavaScript">start</code> have been called once, you may use the
   commands in the rest of this document to send additional data and metrics to
   your server.
-</p>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Providing the application key</strong></span>
-</p>
-<p>
-  Also called "appKey" as shorthand. The application key is used to identify for
-  which application this information is tracked. You receive this value by creating
-  a new application in your Countly dashboard and accessing it in its application
-  management screen.
-</p>
-<p>
-  <strong>Note: </strong>Ensure you are using the App Key (found under Management
-  -&gt; Applications) and not the API Key. Entering the API Key will not work.
-</p>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Providing the server URL</strong></span>
-</p>
-<p>
-  If you are using Countly Enterprise Edition trial servers, use
-  <code class="JavaScript">https://try.count.ly</code>,
-  <code class="JavaScript">https://us-try.count.ly</code> or
-  <code class="JavaScript">https://asia-try.count.ly</code> It is basically the
-  domain from which you are accessing your trial dashboard.
-</p>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain
-  name or IP address, such as
-  <a href="https://example.com/">https://example.com</a> or
-  <a href="https://ip/">https://IP</a> (if SSL has been set up).
 </p>
 <h2>Enable logging</h2>
 <p>
