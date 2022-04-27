@@ -42,6 +42,7 @@ react-native run-ios # Run the iOS project
 
 adb reverse tcp:8081 tcp:8081 # Link Android port
 npm start # Run the build server</code></pre>
+
 <p>
   Run the following snippet in the root directory of your React Native project
   to install the npm dependencies and link <strong>native libraries</strong>.
@@ -67,6 +68,7 @@ cd ../../../
 cd ios
 pod install
 cd ..</pre>
+
 <h1>SDK Integration</h1>
 <h2>Minimal setup</h2>
 <p>
@@ -82,16 +84,25 @@ if(!await Countly.isInitialized()) {
 await Countly.init("https://try.count.ly", "YOUR_APP_KEY"); // Initialize the countly SDK.
 Countly.start(); // start session tracking
 }</code></pre>
-<p>
-  For more information on how to acquire your application key (appKey) and server
-  URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
-</p>
+
 <p>
   After <code class="JavaScript">init</code> and
   <code class="JavaScript">start</code> have been called once, you may use the
   commands in the rest of this document to send additional data and metrics to
   your server.
+</p>
+<p>
+  <span class="wysiwyg-font-size-medium"><strong>Providing the application key</strong></span>
+</p>
+<p>
+  Also called "appKey" as shorthand. The application key is used to identify for
+  which application this information is tracked. You receive this value by creating
+  a new application in your Countly dashboard and accessing it in its application
+  management screen.
+</p>
+<p>
+  <strong>Note: </strong>Ensure you are using the App Key (found under Management
+  -&gt; Applications) and not the API Key. Entering the API Key will not work.
 </p>
 <p>
   <span class="wysiwyg-font-size-medium"><strong>Providing the server URL</strong></span>
@@ -248,6 +259,7 @@ import ly.count.android.sdknative.CountlyNative;
 
 // call this function in "onCreate" callback of Application class
 CountlyNative.initNative(getApplicationContext());</pre>
+
 <p>
   <code class="JavaScript">getApplicationContext()</code> is needed to determine
   a storage place for minidump files.
@@ -281,6 +293,7 @@ D/Countly (124): Checking for native crash dumps
 D/Countly (124): Native crash folder exists, checking for dumps
 D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
+
 <h1>Events</h1>
 <p>
   An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
@@ -382,6 +395,7 @@ Countly.startEvent(eventName);
 
 //end the event
 Countly.endEvent(eventName);</code></pre>
+
 <p>
   You may also provide additional information when ending an event. However, in
   that case, you have to provide the segmentation, count, and sum. The default
@@ -398,6 +412,7 @@ event.segments = { "Country": "Germany", "Age": "28" };
 //end the event while also providing segmentation information, count and sum
 Countly.endEvent(event);
 </code></pre>
+
 <p>
   You may cancel the started timed event in case it is not relevant anymore:
 </p>
@@ -409,6 +424,7 @@ Countly.startEvent(eventName);
 
 //cancel the event
 Countly.cancelEvent(eventName);</code></pre>
+
 <h1>View tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
 <pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
@@ -686,6 +702,7 @@ var longitude = "-95.220255";
 var ipAddress = "103.238.105.167";
 
 Countly.setLocationInit(countryCode, city, latitude + "," + longitude, ipAddress);</code></pre>
+
 <p>
   Geolocation recording methods may also be called at any time after the Countly
   SDK has started. To do so, use the <code class="JavaScript">setLocation</code>
@@ -700,6 +717,7 @@ var ipAddress = "103.238.105.167";
 
 Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
+
 <h2>Disable Location</h2>
 <p>
   To erase any cached location data from the device and stop further location tracking,
@@ -776,6 +794,7 @@ console.log(data);
 });
 
 var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
+
 <h2>Clearing Stored Remote Config values</h2>
 <p>
   At some point, you might like to erase all the values downloaded from the server.
@@ -1160,6 +1179,7 @@ Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 // for all available features
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
+
 <p>
   The string values corresponding to the features that will be used in the
   <code class="JavaScript">giveConsent</code> or
@@ -1328,6 +1348,7 @@ Countly.recordAttributionID(response.advertisingId);
 else {
 Countly.enableAttribution(); // Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
 }</pre>
+
 </div>
 <h2>Forcing HTTP POST</h2>
 <p>
@@ -1392,4 +1413,3 @@ Countly.removeDifferentAppKeysFromQueue();</pre>
   this, call:
 </p>
 <pre>Countly.setEventSendThreshold(6);</pre>
-<h2>&nbsp;</h2>
