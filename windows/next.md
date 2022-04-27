@@ -2,22 +2,6 @@
   This document explains how to install Countly SDK for Windows desktop applications.
   It applies to version 21.11.0.
 </p>
-<div>
-  <p>The Countly Windows SDK supports the following flavors.</p>
-  <ol>
-    <li>
-      <span>Universal Windows Platform</span>
-    </li>
-    <li>
-      <span>.NETStandard, Version=2.0</span>
-    </li>
-    <li>
-      <span>.NETPortable, Version=4.5</span>
-    </li>
-    <li>.NETFramework, Version=v3.5</li>
-    <li>.NETFramework, Version=v4.0, Profile=Client</li>
-  </ol>
-</div>
 <div class="callout callout--info">
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
@@ -25,6 +9,22 @@
   <p>
     To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
   </p>
+</div>
+<div>
+  <p>The Countly Windows SDK implements the following flavors:</p>
+  <ol>
+    <li>
+      <span>Universal Windows Platform</span>
+    </li>
+    <li>
+      <span>.NET Standard, Version=2.0</span>
+    </li>
+    <li>
+      <span>.NET Portable, Version=4.5</span>
+    </li>
+    <li>.NET Framework, Version=v3.5</li>
+    <li>.NET Framework, Version=v4.0, Profile=Client</li>
+  </ol>
 </div>
 <p>
   The Countly GitHub page for this SDK contains also sample projects. You should
