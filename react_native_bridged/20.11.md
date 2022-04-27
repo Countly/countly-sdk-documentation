@@ -1413,4 +1413,3 @@ Countly.removeDifferentAppKeysFromQueue();</pre>
   this, call:
 </p>
 <pre>Countly.setEventSendThreshold(6);</pre>
-<h2>&nbsp;</h2>
