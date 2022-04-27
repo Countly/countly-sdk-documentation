@@ -846,7 +846,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
 </p>
-<pre><code class="javascript">Countly.showFeedbackPopup("WidgetId", "Button Text");</code></pre>
+<pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
 <h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
@@ -1396,4 +1396,3 @@ Countly.removeDifferentAppKeysFromQueue();</pre>
   this, call:
 </p>
 <pre>Countly.setEventSendThreshold(6);</pre>
-<h2>&nbsp;</h2>
