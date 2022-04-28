@@ -80,13 +80,30 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
-  In order to make sure that requests to Countly are sent correctly, you need to
-  enable logging using the following:
+  <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
+  To enable logging you need to do the following two steps:
+</p>
+<p>
+  <strong>Step 1</strong>: Enable SDK logging using the following call:
 </p>
 <pre><code class="csharp hljs">    Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
+<p>You can turn it on and off in any place of your code.&nbsp;</p>
 <p>
-  You can turn it on and off in any place of your code. This will print debug messages
-  and give better insight into the inner workings of the SDK.
+  <strong>Step 2</strong>:
+  <span>Go to project properties, select the 'Build' tab and make sure the following things are correct.</span>
+</p>
+<ul>
+  <li>Configuration: Debug</li>
+  <li>"Define DEBUG constant" is checked</li>
+</ul>
+<p>
+  <img src="/hc/article_attachments/6153785226137/mceclip1.png" alt="mceclip1.png">
+</p>
+<p>
+  Log messages written in the application will show up in 'Output' windows.
+</p>
+<p>
+  <img src="/hc/article_attachments/6060787448473/mceclip4.png" alt="mceclip4.png">
 </p>
 <h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
 <p>
