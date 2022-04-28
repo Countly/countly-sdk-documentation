@@ -102,22 +102,15 @@ Countly.Instance.Init(cc);</code></pre>
 <ul>
   <li>Configuration: Debug</li>
   <li>"Define DEBUG constant" is checked</li>
-  <li>"Define TRACE constant" is checked</li>
 </ul>
 <p>
-  <img src="/hc/article_attachments/6058425239321/mceclip0.png" alt="mceclip0.png">
+  <img src="/hc/article_attachments/6153785226137/mceclip1.png" alt="mceclip1.png">
 </p>
 <p>
   Log messages written in the application will show up in 'Output' windows.
 </p>
 <p>
   <img src="/hc/article_attachments/6060787448473/mceclip4.png" alt="mceclip4.png">
-</p>
-<p>
-  To see logs in the release mode, change project 'Configuration' to 'Release'.
-</p>
-<p>
-  <img src="/hc/article_attachments/6058853802521/mceclip1.png" alt="mceclip1.png">
 </p>
 <h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
 <p>
