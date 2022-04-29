@@ -507,10 +507,27 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   <code class="JavaScript">Countly.askForNotificationPermission()</code> after
   <code class="JavaScript">init</code>, using the method below.
 </p>
-<pre>// Call this method any time.
-Countly.askForNotificationPermission();
+<pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only support Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");
 // This method will ask for permission, 
 // and send push token to countly server.</pre>
+<p>
+  With an option parameter of custom sound path for push notifications.
+</p>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
+  </p>
+  <p>
+    Currently custom sound feature is only available for Android
+  </p>
+</div>
+<div class="callout callout--warning">
+  <p>
+    If you would like to use a custom sound in your push notifications, they
+    must be present on the device. They may not be stored somewhere on the internet
+    and then linked from there.
+  </p>
+</div>
 <h2>Android Setup</h2>
 <p>
   Step 1: For FCM credentials setup please follow the instruction from this URL
