@@ -1057,7 +1057,7 @@ Countly.init({
     <span class="wysiwyg-font-size-large"><strong>Device ID Priority</strong></span>
   </p>
 <p>
-  If you have accidentally used multiple methods to set a device ID for your users
+  If you have used multiple methods to set a device ID for your users
   during your first init, Countly would fall back to the device ID priority hierarchy
   to assign the the correct ID for your user. This hierarchy is as follows:
 </p>
