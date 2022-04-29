@@ -1124,23 +1124,34 @@ Countly.init();</code></pre>
   you to do so.
 </p>
 <p>
+  You can reach the current device ID of the user with get_device_id:
+</p>
+<pre><code class="javascript">
+// you can just check if the device ID of the user is exactly what it should be
+var userId = Countly.get_device_id();
+if ( userId === "expectedId" ) {
+  //... do something
+}  
+</code></pre>
+<p>
   Depending on whether a user is vising your site for the first time or might have
   just logged in to their account or for many other reasons a user can have a certain
   device ID that has a different type than another user. These types are:
-  <ul>
+</p>
+<ul>
   <li>DEVELOPER_SUPPLIED device ID</li>
   <li>SDK_GENERATED device ID</li>
   <li>TEMPORARY_ID device ID</li>
-  </ul>
-  For DEVELOPER_SUPPLIED device ID, the assignment of the ID is handled by your internal logic,
-  for SDK_GENERATED device ID, the ID of the user was generated randomly by
-  Countly, and for TEMPORARY_ID device ID, the user is currently offline and
-  no request is being sent to the servers.
+</ul>
+<p>
+  For DEVELOPER_SUPPLIED device ID, the assignment of the ID is handled by your
+  internal logic, for SDK_GENERATED device ID, the ID of the user was generated
+  randomly by Countly, and for TEMPORARY_ID device ID, the user is currently offline
+  and no request is being sent to the servers.
 </p>
 <p>
   You can reach the device ID type of a user any time you want simply by calling
-  the get_device_id_type function or you can even reach the current device ID of
-  the user with get_device_id:
+  the get_device_id_type function:
 </p>
 <pre><code class="javascript">
 // You can get and compare if the device ID type is correct, and do something after
@@ -1149,12 +1160,6 @@ var idType = Countly.get_device_id_type();
 if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   //... do something
 }
-
-// or you can just check if the device ID of the user is exactly what it should be
-var userId = Countly.get_device_id();
-if ( userId === "expectedId" ) {
-  //... do something
-}  
 </code></pre>
 <h1>Heatmaps</h1>
 <h2>Tracking clicks</h2>
