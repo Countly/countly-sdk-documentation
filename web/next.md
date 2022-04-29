@@ -1117,6 +1117,45 @@ Countly.init();</code></pre>
     <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
 </div>
+<h2>Retrieving Current Device ID</h2>
+<p>
+  If you want to execute your functions or to implement your logic depending on
+  the type of device ID that the user has Countly offers a convenience method for
+  you to do so.
+</p>
+<p>
+  Depending on whether a user is vising your site for the first time or might have
+  just logged in to their account or for many other reasons a user can have a certain
+  device ID that has a different type than another user. These types are:
+  <ul>
+  <li>DEVELOPER_SUPPLIED device ID</li>
+  <li>SDK_GENERATED device ID</li>
+  <li>TEMPORARY_ID device ID</li>
+  </ul>
+  For DEVELOPER_SUPPLIED device ID, the assignment of the ID is handled by your internal logic,
+  for SDK_GENERATED device ID, the ID of the user was generated randomly by
+  Countly, and for TEMPORARY_ID device ID, the user is currently offline and
+  no request is being sent to the servers.
+</p>
+<p>
+  You can reach the device ID type of a user any time you want simply by calling
+  the get_device_id_type function or you can even reach the current device ID of
+  the user with get_device_id:
+</p>
+<pre><code class="javascript">
+// You can get and compare if the device ID type is correct, and do something after
+var idType = Countly.get_device_id_type();
+// here lets check if it is SDK_GENERATED. Other options are DEVELOPER_SUPPLIED and TEMPORARY_ID
+if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
+  //... do something
+}
+
+// or you can just check if the device ID of the user is exactly what it should be
+var userId = Countly.get_device_id();
+if ( userId === "expectedId" ) {
+  //... do something
+}  
+</code></pre>
 <h1>Heatmaps</h1>
 <h2>Tracking clicks</h2>
 <p>
@@ -2403,6 +2442,66 @@ Countly.init();</code></pre>
     action map data
   </li>
 </ul>
+<h2>Multi Instancing</h2>
+<p>
+You can initialize Countly multiple times at the same page with different app keys to send information to different apps you own and gather data with higher flexibility and precision. These new instances have all functionality of Countly but depending on your init configuration they would behave differently. You can attach different events to different Countly instances to send events to specific applications even from the same button trigger or much more. A simple integration example would be:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">
+Countly = Countly || {};
+Countly.q = Countly.q || [];
+
+// initializing first instance, which will be global Countly
+Countly.init({
+	app_key: "YOUR_APP_KEY_1",
+	url: "https://try.count.ly" //your server goes here
+})
+// report event to first app
+Countly.add_event({
+	key:"first_app"
+});
+
+// initialize second instance for another app 
+Countly.q.push(["init", {
+	app_key: "YOUR_APP_KEY_2", //must have different APP key
+	url: "https://try.count.ly" //your server goes here
+}])
+// report event to second app asynchronously by passing app key as first argument
+Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
+	key:"second_app"
+}]);
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">
+// initializing first instance, which will be global Countly
+Countly.init({
+	app_key: "YOUR_APP_KEY_1",
+	url: "https://try.count.ly" //your server goes here
+})
+// report event to first app
+Countly.add_event({
+	key:"first_app"
+});
+
+// initialize second instance for another app
+var Countly2 = Countly.init({
+	app_key: "YOUR_APP_KEY_2", //must have different APP key
+	url: "https://try.count.ly" //your server goes here
+});
+// report event to second app
+Countly2.add_event({
+	key:"second_app"
+});
+    
+    </code></pre>
+  </div>
+</div>
 <h2>SDK Internal Limits</h2>
 <p>
   Countly is highly customizable and let's you take a huge part at the control
@@ -2514,38 +2613,71 @@ Countly.max_stack_trace_line_length = 300;
 });</code></pre>
   </div>
 </div>
-<h2>Accessing device ID type</h2>
+<h2>UTM tags</h2>
 <p>
-  If you want to execute your functions or to implement your logic depending on
-  the type of device ID that the user has Countly offers a convenience method for
-  you to do so.
+  If you are providing possible users links to your website, and if you would like
+  to track those users who have clicked those links, you can do so by using some
+  utm tags within your links and Countly web SDK would recognize and record these
+  users for you.
 </p>
 <p>
-  Depending on whether a user is vising your site for the first time or might have
-  just logged in to their account or for many other reasons a user can have a certain
-  device ID that has a different type than another user. These types are DEVELOPER_SUPPLIED
-  device ID, in which the assignment of the ID is handled by your internal logic,
-  SDK_GENERATED device ID, in which the ID of the user was generated randomly by
-  Countly, and TEMPORARY_ID device ID, in which the user is currently offline and
-  no request is being sent to the servers.
-</p>
-<p>
-  You can reach the device ID type of a user any time you want simply by calling
-  the get_device_id_type function or you can even reach the current device ID of
-  the user with get_device_id:
+  The web SDK offers you two options to set these tags in your links. First you
+  can use the default tags that has been set to be recognized by the SDK by default.
+  These tags are 'source', 'medium', 'campaign', 'term' and 'content'. If you add
+  any or all of these tags into your links as query Countly would recognize and
+  record them accordingly. An example usage of the default tags is as follows:
 </p>
 <pre><code class="javascript">
-// You can get and compare if the device ID type is correct, and do something after
-var idType = Countly.get_device_id_type();
-// here lets check if it is SDK_GENERATED. Other options are DEVELOPER_SUPPLIED and TEMPORARY_ID
-if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
-  //... do something
-}
+// basic structure of a link that contains all available default tags
+yourUrl + ?utm_source=someValue&amp;utm_medium=someValue&amp;utm_campaign=someValue&amp;utm_term=someValue&amp;utm_content=someValue
 
-// or you can just check if the device ID of the user is exactly what it should be
-var userId = Countly.get_device_id();
-if ( userId === "expectedId" ) {
-  //... do something
-}  
+//or you can omit tags
+yourUrl + ?utm_source=someValue&amp;utm_campaign=someValue
+
+// yourUrl is the url of your site and someValue is any string value you want to pass
 </code></pre>
+<p>
+  Second option is to define your custom utm tags during the initialization of
+  Countly and use those tags in your links. You have to provide a map of key value
+  pairs where the key is the tag and the value is 'true' if you want the Countly
+  to check for that key in your links:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+// add your custom tags and set their value to true
+Countly.utm = {tag1: true, tag2: true};
+
+// then your links should look like this:
+yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    // add your custom tags and set their value to true
+    utm: {tag1: true, tag2: true}
+});
+
+// then your links should look like this:
+yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
+</code></pre>
+  </div>
+</div>
+<p>
+  The values you have provided will be captured and stored as user properties,
+  under the keys 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term' and 'utm_content'
+  if you have used the default tags or as 'utm_yourCustomTag1', 'utm_yourCustomTag1'...
+  if you have used custom tags, together with the corresponding user when a user
+  clicks that link. This will enable you to segment users in all places around
+  the dashboard, where granular data is used and segmentation capabilities are
+  provided.
+</p>
 <p>&nbsp;</p>
