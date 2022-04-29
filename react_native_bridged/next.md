@@ -511,7 +511,16 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
 // This method will ask for permission, 
 // and send push token to countly server.</pre>
 <p>
-  With an option parameter of custom sound path for push notifications.
+  With an option parameter of custom sound path for push notifications.<br>
+  We will use this custom sound path to create a soundUri and set the sound of
+  notification channel.
+</p>
+<p>
+  For more information about custom push notification sounds in Android check this
+  link:
+</p>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
