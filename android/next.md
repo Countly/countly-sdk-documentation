@@ -81,7 +81,6 @@
 </p>
 <p>You may also explicitly use OpenUDID:</p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
-<h2>SDK data storage (WIP)</h2>
 <h2>Adding callbacks</h2>
 <p>
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities:</span>
@@ -171,8 +170,6 @@
   should not be sent to the server:
 </p>
 <pre>config.setCrashFilterCallback(<span>new </span>CrashFilterCallback() {<br>    <span>@Override<br></span><span>    </span><span>public boolean </span>filterCrash(String crash) {<br>        //returns true if the crash should be ignored<br>        <span>return </span>crash.contains(<span>"secret"</span>);<br>    }<br>})</pre>
-<h2>Consent (WIP)</h2>
-<p>&nbsp;</p>
 <h2>Native C++ Crash Reporting</h2>
 <div class="callout callout--warning">
   <p>
@@ -418,9 +415,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   stored in milliseconds. For that you would use:
 </p>
 <pre><code class="java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
-<h2>Consent (WIP)</h2>
 <h1>Sessions</h1>
-<h2>Automatic session tracking (WIP)</h2>
 <h2>Manual sessions</h2>
 <p>
   Sometimes it might be preferable to control the session manually instead of relying
@@ -441,9 +436,6 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   a session so that it is not closed server side. If you would want to increase
   that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
 </p>
-<h2>
-  <span>Consent (WIP)</span>
-</h2>
 <h1>View tracking</h1>
 <p>
   In the SDK all view related functionality can be browsed from the returned interface
@@ -490,9 +482,6 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 <div class="img-container">
   <img src="https://count.ly/images/guide/1059a04-3.PNG">
 </div>
-<h2>
-  <span>Consent (WIP)</span>
-</h2>
 <h1>Device ID management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
@@ -507,7 +496,6 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2>Device ID generation (WIP)</h2>
 <h2>Changing device ID</h2>
 <p>
   In case your application authenticates users, you might want to change the ID
@@ -586,7 +574,6 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 </p>
 <pre><code class="java">String usedId = Countly.sharedInstance().getDeviceID();
 Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
-<h2>Consent (WIP)</h2>
 <h1>Push notifications</h1>
 <p>
   Countly supports FCM (Firebase Cloud Messaging) and Huawei Push Kit as push notification
@@ -1027,7 +1014,6 @@ ProxyActivity.intentExtraWhichButton</code></pre>
 <p>
   <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
 </p>
-<h2>Consent (WIP)</h2>
 <h1>User location</h1>
 <p>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
@@ -1078,7 +1064,6 @@ Countly.sharedInstance().disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">This action will erase the cached location data from the device and the server.</span>
 </p>
-<h2>Consent (WIP)</h2>
 <h1>Remote Config</h1>
 <p>
   <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
@@ -1178,7 +1163,6 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().remoteConfigClearValues();</code></pre>
-<h2>Consent (WIP)</h2>
 <h1>User feedback</h1>
 <p>
   <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
@@ -1517,7 +1501,6 @@ Countly.userData.save();</code></pre>
   may set it up similarly to this:
 </p>
 <pre><code class="java"><span>@Override<br></span><span>public void </span>onConfigurationChanged (Configuration newConfig){<br>    <span>super</span>.onConfigurationChanged(newConfig);<br>    Countly.<span>sharedInstance</span>().onConfigurationChanged(newConfig);<br>}</code></pre>
-<h2>Consent (WIP)</h2>
 <h1>Application Performance Monitoring</h1>
 <p>
   This SDK provides a few mechanisms for APM. To browse some of the provided functionality,
