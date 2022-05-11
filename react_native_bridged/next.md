@@ -516,6 +516,13 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   notification channel.
 </p>
 <p>
+  We recommend to add the custom sound file in your Android project res/raw folder.
+  Always create a "raw" folder by right clicking on Resources (res) folder and
+  select New -&gt; Android Resource Directory.<br>
+  Your custom sound path will be like this after adding it in res/raw folder:<br>
+  "android.resource://PACKAGE_NAME/raw/NAME_OF_SOUND_WITHOUT_EXTENSION";
+</p>
+<p>
   For more information about custom push notification sounds in Android check this
   link:
 </p>
