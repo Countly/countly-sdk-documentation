@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 20.11.0<br>
+  and it applies to version 21.11.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
@@ -9,8 +9,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.04 and older, click
-    <a href="/hc/en-us/articles/900003765726" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 20.11 and older, click
+    <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -34,15 +34,13 @@
 <pre><code class="shell">npm install -g react-native-cli     # Install React Native
 react-native init AwesomeProject    # Create a new project
 
-cd AwesomeProject # Go to that directory
-react-native run-android # OR # Run the android project
-react-native run-ios # Run the iOS project
+cd AwesomeProject                   # Go to that directory
+react-native run-android # OR       # Run the android project
+react-native run-ios                # Run the iOS project
 
 # New terminal
-
-adb reverse tcp:8081 tcp:8081 # Link Android port
-npm start # Run the build server</code></pre>
-
+adb reverse tcp:8081 tcp:8081       # Link Android port
+npm start                           # Run the build server</code></pre>
 <p>
   Run the following snippet in the root directory of your React Native project
   to install the npm dependencies and link <strong>native libraries</strong>.
@@ -57,18 +55,15 @@ npm install --save countly-sdk-react-native-bridge@20.11.0
 # Linking the library to your app
 
 # react-native &lt; 0.60. For both Android and iOS
-
 react-native link countly-sdk-react-native-bridge
 cd node_modules/countly-sdk-react-native-bridge/ios/
-pod install
+pod install 
 cd ../../../
 
 # react-native &gt;= 0.60 for iOS (Android will autolink)
-
-cd ios
+cd ios 
 pod install
 cd ..</pre>
-
 <h1>SDK Integration</h1>
 <h2>Minimal setup</h2>
 <p>
@@ -81,44 +76,19 @@ cd ..</pre>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
 
 if(!await Countly.isInitialized()) {
-await Countly.init("https://try.count.ly", "YOUR_APP_KEY"); // Initialize the countly SDK.
-Countly.start(); // start session tracking
+  await Countly.init("https://try.count.ly", "YOUR_APP_KEY"); // Initialize the countly SDK.
+  Countly.start(); // start session tracking
 }</code></pre>
-
+<p>
+  For more information on how to acquire your application key (appKey) and server
+  URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
+</p>
 <p>
   After <code class="JavaScript">init</code> and
   <code class="JavaScript">start</code> have been called once, you may use the
   commands in the rest of this document to send additional data and metrics to
   your server.
-</p>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Providing the application key</strong></span>
-</p>
-<p>
-  Also called "appKey" as shorthand. The application key is used to identify for
-  which application this information is tracked. You receive this value by creating
-  a new application in your Countly dashboard and accessing it in its application
-  management screen.
-</p>
-<p>
-  <strong>Note: </strong>Ensure you are using the App Key (found under Management
-  -&gt; Applications) and not the API Key. Entering the API Key will not work.
-</p>
-<p>
-  <span class="wysiwyg-font-size-medium"><strong>Providing the server URL</strong></span>
-</p>
-<p>
-  If you are using Countly Enterprise Edition trial servers, use
-  <code class="JavaScript">https://try.count.ly</code>,
-  <code class="JavaScript">https://us-try.count.ly</code> or
-  <code class="JavaScript">https://asia-try.count.ly</code> It is basically the
-  domain from which you are accessing your trial dashboard.
-</p>
-<p>
-  If you use both Community Edition and Enterprise Edition, use your own domain
-  name or IP address, such as
-  <a href="https://example.com/">https://example.com</a> or
-  <a href="https://ip/">https://IP</a> (if SSL has been set up).
 </p>
 <h2>Enable logging</h2>
 <p>
@@ -255,11 +225,10 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/src/main/java/com/PROJECT_NAME</code>
 </p>
 <pre>// import this in your Application class
-import ly.count.android.sdknative.CountlyNative;
+import ly.count.android.sdknative.CountlyNative; 
 
 // call this function in "onCreate" callback of Application class
 CountlyNative.initNative(getApplicationContext());</pre>
-
 <p>
   <code class="JavaScript">getApplicationContext()</code> is needed to determine
   a storage place for minidump files.
@@ -277,7 +246,7 @@ CountlyNative.initNative(getApplicationContext());</pre>
 </p>
 <pre><code class="text">$ adb logcat -s Countly:V countly_breakpad_cpp:V
 
-# when Countly.initNative() is called
+# when Countly.initNative() is called 
 
 D/countly_breakpad_cpp(123): breakpad initialize succeeded. dump files will be saved at /Countly/CrashDumps
 
@@ -286,14 +255,13 @@ D/countly_breakpad_cpp(123): breakpad initialize succeeded. dump files will be s
 D/countly_breakpad_cpp(123): DumpCallback started
 D/countly_breakpad_cpp(123): DumpCallback ==&gt; succeeded path=/Countly/CrashDumps/30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp
 
-# when app is run again after the crash
+# when app is run again after the crash 
 
 D/Countly (124): Initializing...
 D/Countly (124): Checking for native crash dumps
 D/Countly (124): Native crash folder exists, checking for dumps
 D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
-
 <h1>Events</h1>
 <p>
   An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
@@ -393,9 +361,8 @@ Countly.sendEvent(event);</code></pre>
 Countly.startEvent(eventName);
 //wait some time
 
-//end the event
+//end the event 
 Countly.endEvent(eventName);</code></pre>
-
 <p>
   You may also provide additional information when ending an event. However, in
   that case, you have to provide the segmentation, count, and sum. The default
@@ -412,7 +379,6 @@ event.segments = { "Country": "Germany", "Age": "28" };
 //end the event while also providing segmentation information, count and sum
 Countly.endEvent(event);
 </code></pre>
-
 <p>
   You may cancel the started timed event in case it is not relevant anymore:
 </p>
@@ -422,9 +388,8 @@ Countly.endEvent(event);
 Countly.startEvent(eventName);
 //wait some time
 
-//cancel the event
+//cancel the event 
 Countly.cancelEvent(eventName);</code></pre>
-
 <h1>View tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
 <pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
@@ -542,10 +507,43 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   <code class="JavaScript">Countly.askForNotificationPermission()</code> after
   <code class="JavaScript">init</code>, using the method below.
 </p>
-<pre>// Call this method any time.
-Countly.askForNotificationPermission();
+<pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only support Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");
 // This method will ask for permission, 
 // and send push token to countly server.</pre>
+<p>
+  With an option parameter of custom sound path for push notifications.<br>
+  We will use this custom sound path to create a soundUri and set the sound of
+  notification channel.
+</p>
+<p>
+  We recommend to add the custom sound file in your Android project res/raw folder.
+  Always create a "raw" folder by right clicking on Resources (res) folder and
+  select New -&gt; Android Resource Directory.<br>
+  Your custom sound path will be like this after adding it in res/raw folder:<br>
+  "android.resource://PACKAGE_NAME/raw/NAME_OF_SOUND_WITHOUT_EXTENSION";
+</p>
+<p>
+  For more information about custom push notification sounds in Android check this
+  link:
+</p>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
+</p>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
+  </p>
+  <p>
+    Currently custom sound feature is only available for Android
+  </p>
+</div>
+<div class="callout callout--warning">
+  <p>
+    If you would like to use a custom sound in your push notifications, they
+    must be present on the device. They may not be stored somewhere on the internet
+    and then linked from there.
+  </p>
+</div>
 <h2>Android Setup</h2>
 <p>
   Step 1: For FCM credentials setup please follow the instruction from this URL
@@ -648,17 +646,15 @@ console.log(JSON.stringify(theNotification));
 }
 
 // When app is killed.
-
-- (void)userNotificationCenter:(UNUserNotificationCenter _)center didReceiveNotificationResponse:(UNNotificationResponse _)response withCompletionHandler:(void (^)(void))completionHandler{
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
   [CountlyReactNative onNotificationResponse: response];
   completionHandler();
-  }
+}
 
 // When app is running.
-
-- (void)userNotificationCenter:(UNUserNotificationCenter _)center willPresentNotification:(UNNotification _)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
-[CountlyReactNative onNotification: notification.request.content.userInfo];
-completionHandler(0);
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+  [CountlyReactNative onNotification: notification.request.content.userInfo];
+  completionHandler(0);
 }
 </code></pre>
 <h1>User Location</h1>
@@ -702,7 +698,6 @@ var longitude = "-95.220255";
 var ipAddress = "103.238.105.167";
 
 Countly.setLocationInit(countryCode, city, latitude + "," + longitude, ipAddress);</code></pre>
-
 <p>
   Geolocation recording methods may also be called at any time after the Countly
   SDK has started. To do so, use the <code class="JavaScript">setLocation</code>
@@ -717,7 +712,6 @@ var ipAddress = "103.238.105.167";
 
 Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
-
 <h2>Disable Location</h2>
 <p>
   To erase any cached location data from the device and stop further location tracking,
@@ -794,7 +788,6 @@ console.log(data);
 });
 
 var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
-
 <h2>Clearing Stored Remote Config values</h2>
 <p>
   At some point, you might like to erase all the values downloaded from the server.
@@ -862,7 +855,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
 </p>
-<pre><code class="javascript">Countly.showFeedbackPopup("WidgetId", "Button Text");</code></pre>
+<pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
 <h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
@@ -1073,7 +1066,8 @@ Countly.endTrace(traceKey, customMetric);</pre>
   </li>
   <li>apm - allows application performance monitoring</li>
   <li>
-    remote-config - allows downloading remote config values from your server
+    <span>remote-config</span> - allows downloading remote config values from
+    your server
   </li>
 </ul>
 <p>
@@ -1179,7 +1173,6 @@ Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 // for all available features
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
-
 <p>
   The string values corresponding to the features that will be used in the
   <code class="JavaScript">giveConsent</code> or
@@ -1348,7 +1341,6 @@ Countly.recordAttributionID(response.advertisingId);
 else {
 Countly.enableAttribution(); // Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
 }</pre>
-
 </div>
 <h2>Forcing HTTP POST</h2>
 <p>
