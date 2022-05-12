@@ -1305,7 +1305,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <div class="tab">
     <pre><code class="javascript">//to enable remote configuration
 
-//before loading Countly script
+// in your Countly init script
 Countly.remote_config = true;
 
 //or provide a callback to be notified when configs are loaded
@@ -1701,7 +1701,7 @@ Countly.userData.save() //send userData to server</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//before loading Countly script
+    <pre><code class="javascript">// in your Countly init script
 Countly.enable_orientation_tracking = false;</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -1788,7 +1788,7 @@ Countly.report_trace({
   To automatically report traces you will need control the loading sequence of
   countly and boomerang.js scripts as boomerang.js depends on Countly to be initialized
   first. So instead of defining the scripts at the head tag you should use the
-  script provided below, inside your Countly script at the top:
+  script provided below, first thing inside your Countly init script:
 </p>
 <pre><code class="javascript">syncScripts();
         function syncScripts() {
@@ -1851,7 +1851,7 @@ Countly.q.push(["track_performance", {
 <pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
 <p>
   After that, you may call a method to start reporting loading and network traces
-  automatically.An example pattern inside your Countly script would be:
+  automatically.An example pattern inside your Countly init script would be:
 </p>
 <pre><code class="javascript">//automatically report traces
 Countly.track_performance({
@@ -1927,7 +1927,7 @@ Countly.opt_in();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//before loading Countly script
+    <pre><code class="javascript">// in your Countly init script
 Countly.require_consent = true;</code></pre>
   </div>
   <div class="tab is-hidden">
