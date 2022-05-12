@@ -42,10 +42,10 @@
 <ol>
   <li>
     In Solution Explorer, right-click<span>&nbsp;</span><strong>References</strong><span>&nbsp;</span>and
-    choose<span>&nbsp;</span><strong>Manage NuGet Packages</strong>.<img src="/hc/article_attachments/6091532680089/image-NuGet-packages.png" alt="image-NuGet-packages.png">
+    choose<span>&nbsp;</span><strong>Manage NuGet Packages</strong>.<img src="/hc/article_attachments/6536931626649/image-NuGet-packages.png" alt="image-NuGet-packages.png">
   </li>
   <li>
-    <span>Choose "nuget.org" as the&nbsp;</span><strong>Package source</strong><span>, select the&nbsp;</span><strong>Browse</strong><span>&nbsp;tab, search for&nbsp;</span><strong>Countly</strong><span>, select that package in the list, and select&nbsp;</span><strong>Install</strong><span>:<img src="/hc/article_attachments/6090928779673/mceclip0.png" alt="mceclip0.png"></span>
+    <span>Choose "nuget.org" as the&nbsp;</span><strong>Package source</strong><span>, select the&nbsp;</span><strong>Browse</strong><span>&nbsp;tab, search for&nbsp;</span><strong>Countly</strong><span>, select that package in the list, and select&nbsp;</span><strong>Install</strong><span>:<img src="/hc/article_attachments/6537196195481/mceclip0.png" alt="mceclip0.png"></span>
   </li>
   <li>
     <p>
@@ -97,13 +97,13 @@ Countly.Instance.Init(cc);</code></pre>
   <li>"Define DEBUG constant" is checked</li>
 </ul>
 <p>
-  <img src="/hc/article_attachments/6153785226137/mceclip1.png" alt="mceclip1.png">
+  <img src="/hc/article_attachments/6537183236249/mceclip1.png" alt="mceclip1.png">
 </p>
 <p>
   Log messages written in the application will show up in 'Output' windows.
 </p>
 <p>
-  <img src="/hc/article_attachments/6060787448473/mceclip4.png" alt="mceclip4.png">
+  <img src="/hc/article_attachments/6537211113369/mceclip4.png" alt="mceclip4.png">
 </p>
 <h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
 <p>
