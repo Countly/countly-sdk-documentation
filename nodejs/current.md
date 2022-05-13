@@ -34,8 +34,7 @@
   <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a> and download
   it inside your project folder by executing the lines:
 </p>
-<pre><code class="javascript">
-  git clone https://github.com/Countly/countly-sdk-nodejs.git
+<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>
 <h1>Adding the SDK to the project</h1>
 <p>
