@@ -67,7 +67,6 @@ Countly.init({
     app_key: "YOUR-APP-KEY",
     url: "https://your_server_url/"
 });</code></pre>
-
 <h2>SDK Logging</h2>
 <p>
   If you encounter a problem or want to see if everything is working smoothly just
