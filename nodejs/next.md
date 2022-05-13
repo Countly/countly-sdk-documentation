@@ -8,7 +8,7 @@
   </p>
   <p>
     To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
   </p>
 </div>
 <p>
@@ -34,8 +34,7 @@
   <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a> and download
   it inside your project folder by executing the lines:
 </p>
-<pre><code class="javascript">
-  git clone https://github.com/Countly/countly-sdk-nodejs.git
+<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>
 <h1>Adding the SDK to the project</h1>
 <p>
