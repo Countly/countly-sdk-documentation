@@ -1,6 +1,6 @@
 <p>
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 21.11.0.
+  device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -8,38 +8,41 @@
   </p>
   <p>
     To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
   </p>
 </div>
 <p>
-  Before starting, for those who have examined our mobile SDKs - we can tell that
-  events or tags that are used in mobile SDKs are quite similar to those we use
-  in Javascript code. For example, it's possible to modify custom property values
-  of user details, with modification commands like inc, mul, max, or min. Likewise,
-  any event can be sent with segmentation easily.
+  Countly NodeJS runs with the following node versions and up:
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>What is an APP KEY?</strong></span>
-    </p>
-  <p>
-    You'll see APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on Countly dashboard. Note that APP
-    KEY is different from API KEY, which is used to send data via API calls.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app, and you will see App Key field. For more information on how to
-    acquire your application key (APP_KEY) and server URL, please check
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+  <tbody>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;" colspan="5">Node Versions</td>
+    </tr>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^18</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^17</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^16</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^14.15</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^12.22</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  If you want to get the Countly NodeJS SDK codebase locally you can go to the
+  github repo
+  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a> and download
+  it inside your project folder by executing the lines:
+</p>
+<pre><code class="javascript">
+  git clone https://github.com/Countly/countly-sdk-nodejs.git
+</code></pre>
 <h1>Adding the SDK to the project</h1>
 <p>
-  To add the SDK to your project, you would use a command similar to these:
+  You can reach Countly NodeJS SDK npm package
+  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a>. To add it
+  to your project, you would use a command similar to these with your preferred
+  package manager:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -53,149 +56,43 @@
     <pre><code class="shell">yarn add countly-sdk-nodejs</code></pre>
   </div>
 </div>
-<p>Example setup would look like this:</p>
+<p>
+  After this you can import and use Countly as you wish inside your project as
+  described below.
+</p>
+<h1>SDK Integration</h1>
+<h2>Minimal Setup</h2>
+<p>
+  Where ever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
+  and initialize Countly. Here you would also need to provide your application
+  key and server URL. For more information on how to acquire your application key
+  (APP_KEY) and server URL, please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+</p>
+<p>Example basic setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
 Countly.init({
-    app_key: "{YOUR-API-KEY}",
-    url: "https://API_HOST/",
+    app_key: "YOUR-APP-KEY",
+    url: "https://your_server_url/"
+});</code></pre>
+<h2>SDK Logging</h2>
+<p>
+  If you encounter a problem or want to see if everything is working smoothly just
+  turning on the logs during the initialization is all you really need. You can
+  do so by setting the debug flag as true, during the init. This way you can see
+  the inner workings of the Countly from your console.
+</p>
+<pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
+
+Countly.init({
+    app_key: "YOUR-APP-KEY",
+    url: "https://your_server_url/",
     debug: true
-});
-
-
-Countly.begin_session();</code></pre>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Which API HOST name should I use to send data to?</strong></span>
-  </p>
-
-  <p>
-    If you are using Countly Enterprise Edition trial servers use
-    <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
-    <code>https://asia-try.count.ly</code>. Basically the domain you are accessing
-    your trial dashboard from.
-  </p>
-  <p>
-    If you use Community Edition and Enterprise Edition, use your own domain
-    name or IP address like
-    <a href="https://example.com">https://example.com</a> or
-    <a href="https://IP">https://IP</a> (if SSL is setup).
-  </p>
-</div>
-<p>Now you can make event calls like:</p>
-<pre><code class="javascript">Countly.add_event({
-    "key": "in_app_purchase",
-    "count": 3,
-    "sum": 2.97,
-    "dur": 1000,
-    "segmentation": {
-        "app_version": "1.0",
-        "country": "Germany"
-    }
-});</code></pre>
-<h2>Setup properties</h2>
-<p>
-  Here are the properties you can setup on Countly initialization
-</p>
-<ul>
-  <li>
-    <strong>app_key</strong> - mandatory, app key for your app created in Countly
-  </li>
-  <li>
-    <strong>device_id</strong> - to identify a visitor, will be auto generated
-    if not provided
-  </li>
-  <li>
-    <strong>url</strong> - your Countly server url (default: "https://cloud.count.ly"),
-    you must use your own server URL here
-  </li>
-  <li>
-    <strong>app_version</strong> - (optional) the version of your app or website
-  </li>
-  <li>
-    <strong>country_code</strong> - (optional) country code for your visitor
-  </li>
-  <li>
-    <strong>city</strong> - (optional) name of the city of your visitor
-  </li>
-  <li>
-    <strong>ip_address</strong> - (optional) ip address of your visitor
-  </li>
-  <li>
-    <strong>debug</strong> - output debug info into console (default: false)
-  </li>
-  <li>
-    <strong>interval</strong> - set an interval how often to check if there is
-    any data to report and report it (default: 500 ms)
-  </li>
-  <li>
-    <strong>fail_timeout</strong> - set time in seconds to wait after failed
-    connection to server (default: 60 seconds)
-  </li>
-  <li>
-    <strong>session_update</strong> - how often in seconds should session be
-    extended (default: 60 seconds)
-  </li>
-  <li>
-    <strong>max_events</strong> - maximum amount of events to send in one batch
-    (default: 10)
-  </li>
-  <li>
-    <strong>force_post</strong> - force using post method for all requests (default:
-    false)
-  </li>
-  <li>
-    <strong>storage_path</strong> - where SDK would store data, including id,
-    queues, etc (default: "../data/")
-  </li>
-  <li>
-    <strong>require_consent</strong> - pass true if you are implementing GDPR
-    compatible consent management. It would prevent running any functionality
-    without proper consent (default: false)
-  </li>
-  <li>
-    <strong>remote_config</strong> - Enable automatic remote config fetching,
-    provide callback function to be notified when fetching done (default: false)
-  </li>
-  <li>
-    <strong>http_options</strong> - function to get http options by reference
-    and overwrite them, before running each request
-  </li>
-  <li>
-    <strong>max_logs</strong> - maximum amount of breadcrumbs to store for crash
-    logs (default: 100)
-  </li>
-  <li>
-    <strong>metrics</strong> - provide for this user/device, or else will try
-    to collect what's possible
-  </li>
-</ul>
-<p>
-  Setting up properties in Countly NodeJS SDK is as follows (if you have your own
-  server, use it instead of try.count.ly):
-</p>
-<pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    app_version: "1.2",
-    country_code: "LV",
-    city: "Riga",
-    ip_address: "83.140.15.1",
-    http_options: function(options){
-        options.headers["user-agent"] = "Test";
-    },
-    metrics:{
-        _os: "Ubuntu",
-        _os_version: "16.04",
-        _device: "aws-server"
-    }
 });</code></pre>
 <p>
-  Sometimes just turning on the logs during the initialization is all you really
-  need. But sometimes you might want to see the logs only for a small time frame
-  or some particular operation. In those situations you can simply use setLoggingEnabled
+  But sometimes you might want to see the logs only for a small time frame or some
+  particular operation. In those situations you can simply use setLoggingEnabled
   function to turn the logs on or off as you wish, just like this:
 </p>
 <pre><code class="javascript">//to turn on the logs
@@ -206,6 +103,22 @@ Countly.setLoggingEnabled(true);
 
 //to turn off the logs
 Countly.setLoggingEnabled(false);</code></pre>
+<h2>SDK Data Storage</h2>
+<p>
+  Countly stores information like requests, events and device ID locally as JSON
+  objects before using it to ensure data consistency. Default location of this
+  stored data is at the base of your project under a folder called Data. You can
+  change the location or file name during the initialization by using the storage_path
+  flag:
+</p>
+<pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
+
+Countly.init({
+    app_key: "YOUR-APP-KEY",
+    url: "https://your_server_url/",
+    // by default it is "../data/"
+    storage_path: "../your_storage/path" 
+});</code></pre>
 <h1>Crash reporting</h1>
 <p>
   Countly also provides a way to track NodeJS errors on your server.
@@ -276,8 +189,6 @@ catch(ex){
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
   </p>
-
-  
   <p>
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>
@@ -513,6 +424,105 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   events:"[{'key':'val','count':1}]", 
   metrics:"{'_os':'Linux'}",
   begin_session:1
+});</code></pre>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  Here are the properties you can setup on Countly initialization
+</p>
+<ul>
+  <li>
+    <strong>app_key</strong> - mandatory, app key for your app created in Countly
+  </li>
+  <li>
+    <strong>device_id</strong> - to identify a visitor, will be auto generated
+    if not provided
+  </li>
+  <li>
+    <strong>url</strong> - your Countly server url (default: "https://cloud.count.ly"),
+    you must use your own server URL here
+  </li>
+  <li>
+    <strong>app_version</strong> - (optional) the version of your app or website
+  </li>
+  <li>
+    <strong>country_code</strong> - (optional) country code for your visitor
+  </li>
+  <li>
+    <strong>city</strong> - (optional) name of the city of your visitor
+  </li>
+  <li>
+    <strong>ip_address</strong> - (optional) ip address of your visitor
+  </li>
+  <li>
+    <strong>debug</strong> - output debug info into console (default: false)
+  </li>
+  <li>
+    <strong>interval</strong> - set an interval how often to check if there is
+    any data to report and report it (default: 500 ms)
+  </li>
+  <li>
+    <strong>fail_timeout</strong> - set time in seconds to wait after failed
+    connection to server (default: 60 seconds)
+  </li>
+  <li>
+    <strong>session_update</strong> - how often in seconds should session be
+    extended (default: 60 seconds)
+  </li>
+  <li>
+    <strong>max_events</strong> - maximum amount of events to send in one batch
+    (default: 10)
+  </li>
+  <li>
+    <strong>force_post</strong> - force using post method for all requests (default:
+    false)
+  </li>
+  <li>
+    <strong>storage_path</strong> - where SDK would store data, including id,
+    queues, etc (default: "../data/")
+  </li>
+  <li>
+    <strong>require_consent</strong> - pass true if you are implementing GDPR
+    compatible consent management. It would prevent running any functionality
+    without proper consent (default: false)
+  </li>
+  <li>
+    <strong>remote_config</strong> - Enable automatic remote config fetching,
+    provide callback function to be notified when fetching done (default: false)
+  </li>
+  <li>
+    <strong>http_options</strong> - function to get http options by reference
+    and overwrite them, before running each request
+  </li>
+  <li>
+    <strong>max_logs</strong> - maximum amount of breadcrumbs to store for crash
+    logs (default: 100)
+  </li>
+  <li>
+    <strong>metrics</strong> - provide for this user/device, or else will try
+    to collect what's possible
+  </li>
+</ul>
+<p>
+  Setting up properties in Countly NodeJS SDK is as follows (if you have your own
+  server, use it instead of try.count.ly):
+</p>
+<pre><code class="javascript">Countly.init({
+    debug:false,
+    app_key:"YOUR_APP_KEY",
+    device_id:"1234-1234-1234-1234",
+    url: "https://try.count.ly",
+    app_version: "1.2",
+    country_code: "LV",
+    city: "Riga",
+    ip_address: "83.140.15.1",
+    http_options: function(options){
+        options.headers["user-agent"] = "Test";
+    },
+    metrics:{
+        _os: "Ubuntu",
+        _os_version: "16.04",
+        _device: "aws-server"
+    }
 });</code></pre>
 <h2>SDK Internal Limits</h2>
 <p>

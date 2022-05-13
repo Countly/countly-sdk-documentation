@@ -8,7 +8,7 @@
   </p>
   <p>
     To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
   </p>
 </div>
 <p>
