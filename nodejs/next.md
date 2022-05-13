@@ -12,6 +12,23 @@
   </p>
 </div>
 <p>
+  Countly NodeJS runs with the following node versions and up:
+</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+  <tbody>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;" colspan="5">Node Versions</td>
+    </tr>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^18</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^17</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^16</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^14.15</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^12.22</td>
+    </tr>
+  </tbody>
+</table>
+<p>
   Before starting, for those who have examined our mobile SDKs - we can tell that
   events or tags that are used in mobile SDKs are quite similar to those we use
   in Javascript code. For example, it's possible to modify custom property values
