@@ -1,6 +1,6 @@
 <p>
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 21.11.0.
+  device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -11,26 +11,24 @@
     <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="blank">here</a>.
   </p>
 </div>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>What is an APP KEY?</strong></span>
-  </p>
-  <p>
-    You'll see APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on Countly dashboard. Note that APP
-    KEY is different from API KEY, which is used to send data via API calls.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app, and you will see App Key field. For more information on how to
-    acquire your application key (APP_KEY) and server URL, please check
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
-<h1>Adding the SDK to the Project</h1>
+<p>
+  Countly NodeJS runs with the following node versions and up:
+</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+  <tbody>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;" colspan="5">Node Versions</td>
+    </tr>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^18</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^17</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^16</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^14.15</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^12.22</td>
+    </tr>
+  </tbody>
+</table>
+<h1>Adding the SDK to the project</h1>
 <p>
   To add the SDK to your project, you would use a command similar to these:
 </p>
@@ -58,7 +56,9 @@
 <p>
   Where ever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here you would also need to provide your application
-  key and server URL.
+  key and server URL. For more information on how to acquire your application key (APP_KEY) and server
+  URL, please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
 </p>
 <p>Example setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
@@ -67,23 +67,7 @@ Countly.init({
     app_key: "YOUR-APP-KEY",
     url: "https://your_server_url/"
 });</code></pre>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Which API HOST name should I use to send data to?</strong></span>
-  </p>
-  <p>
-    If you are using Countly Enterprise Edition trial servers use
-    <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
-    <code>https://asia-try.count.ly</code>. Basically the domain you are accessing
-    your trial dashboard from.
-  </p>
-  <p>
-    If you use Community Edition and Enterprise Edition, use your own domain
-    name or IP address like
-    <a href="https://example.com">https://example.com</a> or
-    <a href="https://IP">https://IP</a> (if SSL is setup).
-  </p>
-</div>
+
 <h2>SDK Logging</h2>
 <p>
   If you encounter a problem or want to see if everything is working smoothly just
@@ -194,8 +178,6 @@ catch(ex){
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
   </p>
-
-  
   <p>
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>
