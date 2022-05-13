@@ -1,6 +1,6 @@
 <p>
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 21.11.0.
+  device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -18,25 +18,6 @@
   of user details, with modification commands like inc, mul, max, or min. Likewise,
   any event can be sent with segmentation easily.
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>What is an APP KEY?</strong></span>
-    </p>
-  <p>
-    You'll see APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on Countly dashboard. Note that APP
-    KEY is different from API KEY, which is used to send data via API calls.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app, and you will see App Key field. For more information on how to
-    acquire your application key (APP_KEY) and server URL, please check
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
 <h1>Adding the SDK to the project</h1>
 <p>
   To add the SDK to your project, you would use a command similar to these:
@@ -64,11 +45,15 @@ Countly.init({
 
 
 Countly.begin_session();</code></pre>
+<p>
+  For more information on how to acquire your application key (APP_KEY) and server
+  URL, please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+</p>
 <div class="callout callout--info">
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Which API HOST name should I use to send data to?</strong></span>
   </p>
-
   <p>
     If you are using Countly Enterprise Edition trial servers use
     <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
