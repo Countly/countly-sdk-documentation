@@ -50,23 +50,6 @@ Countly.begin_session();</code></pre>
   URL, please check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Which API HOST name should I use to send data to?</strong></span>
-  </p>
-  <p>
-    If you are using Countly Enterprise Edition trial servers use
-    <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or
-    <code>https://asia-try.count.ly</code>. Basically the domain you are accessing
-    your trial dashboard from.
-  </p>
-  <p>
-    If you use Community Edition and Enterprise Edition, use your own domain
-    name or IP address like
-    <a href="https://example.com">https://example.com</a> or
-    <a href="https://IP">https://IP</a> (if SSL is setup).
-  </p>
-</div>
 <p>Now you can make event calls like:</p>
 <pre><code class="javascript">Countly.add_event({
     "key": "in_app_purchase",
@@ -261,8 +244,6 @@ catch(ex){
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
   </p>
-
-  
   <p>
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>
