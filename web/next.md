@@ -1305,7 +1305,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <div class="tab">
     <pre><code class="javascript">//to enable remote configuration
 
-// in you Countly init script
+// in your Countly init script
 Countly.remote_config = true;
 
 //or provide a callback to be notified when configs are loaded
