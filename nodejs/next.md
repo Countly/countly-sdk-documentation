@@ -1,6 +1,6 @@
 <p>
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 21.11.0.
+  device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -11,26 +11,24 @@
     <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="blank">here</a>.
   </p>
 </div>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>What is an APP KEY?</strong></span>
-  </p>
-  <p>
-    You'll see APP_KEY definition above. This key is generated automatically
-    when you create a website for tracking on Countly dashboard. Note that APP
-    KEY is different from API KEY, which is used to send data via API calls.
-  </p>
-  <p>
-    To retrieve your APP_KEY, go to Management -&gt; Applications and select
-    your app, and you will see App Key field. For more information on how to
-    acquire your application key (APP_KEY) and server URL, please check
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
-  </p>
-</div>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/XmwUJ7VZSF2GConV76xY_app_key.png">
-</div>
-<h1>Adding the SDK to the Project</h1>
+<p>
+  Countly NodeJS runs with the following node versions and up:
+</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+  <tbody>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;" colspan="5">Node Versions</td>
+    </tr>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^18</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^17</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^16</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^14.15</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^12.22</td>
+    </tr>
+  </tbody>
+</table>
+<h1>Adding the SDK to the project</h1>
 <p>
   To add the SDK to your project, you would use a command similar to these:
 </p>
@@ -194,8 +192,6 @@ catch(ex){
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
   </p>
-
-  
   <p>
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>
