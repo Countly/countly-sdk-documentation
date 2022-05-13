@@ -28,9 +28,21 @@
     </tr>
   </tbody>
 </table>
+<p>
+  If you want to get the Countly NodeJS SDK codebase locally you can go to the
+  github repo
+  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a> and download
+  it inside your project folder by executing the lines:
+</p>
+<pre><code class="javascript">
+  git clone https://github.com/Countly/countly-sdk-nodejs.git
+</code></pre>
 <h1>Adding the SDK to the project</h1>
 <p>
-  To add the SDK to your project, you would use a command similar to these:
+  You can reach Countly NodeJS SDK npm package
+  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a>. To add it
+  to your project, you would use a command similar to these with your preferred
+  package manager:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -45,22 +57,19 @@
   </div>
 </div>
 <p>
-  Before starting, for those who have examined our mobile SDKs - we can tell that
-  events or tags that are used in mobile SDKs are quite similar to those we use
-  in Javascript code. For example, it's possible to modify custom property values
-  of user details, with modification commands like inc, mul, max, or min. Likewise,
-  any event can be sent with segmentation easily.
+  After this you can import and use Countly as you wish inside your project as
+  described below.
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
   Where ever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here you would also need to provide your application
-  key and server URL. For more information on how to acquire your application key (APP_KEY) and server
-  URL, please check
+  key and server URL. For more information on how to acquire your application key
+  (APP_KEY) and server URL, please check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
 </p>
-<p>Example setup would look like this:</p>
+<p>Example basic setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
 Countly.init({
@@ -70,7 +79,9 @@ Countly.init({
 <h2>SDK Logging</h2>
 <p>
   If you encounter a problem or want to see if everything is working smoothly just
-  turning on the logs during the initialization is all you really need.
+  turning on the logs during the initialization is all you really need. You can
+  do so by setting the debug flag as true, during the init. This way you can see
+  the inner workings of the Countly from your console.
 </p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
@@ -94,10 +105,11 @@ Countly.setLoggingEnabled(true);
 Countly.setLoggingEnabled(false);</code></pre>
 <h2>SDK Data Storage</h2>
 <p>
-  Countly stores information like requests, events and device ID locally before
-  using it to ensure data consistency. Default location of this stored date is
-  in your project under a folder called Data. You can change the location or file
-  name during the initialization:
+  Countly stores information like requests, events and device ID locally as JSON
+  objects before using it to ensure data consistency. Default location of this
+  stored data is at the base of your project under a folder called Data. You can
+  change the location or file name during the initialization by using the storage_path
+  flag:
 </p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
