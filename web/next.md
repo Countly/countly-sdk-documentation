@@ -1,64 +1,30 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.02.0.</span>
+  This documentation shows how to use Countly NodeJS SDK to track your nodejs running
+  device or server, like tracking your API. It applies to the SDK version 21.11.0.
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="blank">here</a>.
+    To access the documentation for version 20.11 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="blank">here</a>.
   </p>
 </div>
 <p>
-  Countly can run with all browsers that supports ECMAScript 5. Minimum versions
-  of major internet browsers that fully support ES5 are:
+  Countly NodeJS runs with the following node versions and up:
 </p>
-<table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
+<table style="border-collapse: collapse; width: 100%;" border="1">
   <tbody>
-    <tr class="wysiwyg-text-align-center" style="height: 36px;">
-      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 36px;">
-        <strong>IE</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 36px;">
-        <strong>Edge</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 36px;">
-        <strong>Firefox</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 36px;">
-        <strong>Firefox (Android)</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
-        <strong>Opera</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
-        <strong>Opera (Mobile)</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
-        <strong>Safari</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
-        <strong>Safari (iOS)</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px; text-align: center; vertical-align: middle;">
-        <strong>Chrome</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 36px;">
-        <strong>Chrome (Android)</strong>
-      </td>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;" colspan="5">Node Versions</td>
     </tr>
-    <tr style="height: 22px; padding: 2px;">
-      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 10px;">10</td>
-      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 10px;">12</td>
-      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 10px;">21</td>
-      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 10px;">96</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">15</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">64</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">23</td>
-      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 10px;">98</td>
+    <tr>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^18</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^17</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^16</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^14.15</td>
+      <td class="wysiwyg-text-align-center" style="width: 20%;">^12.22</td>
     </tr>
   </tbody>
 </table>
