@@ -325,45 +325,27 @@
 </p>
 <h2>Timed events</h2>
 <p>
-  <span>It's possible to create timed events by defining a start and a stop moment.</span>
+  <span style="font-weight: 400;">Currently, SDK doesn't have any direct mechanism to record timed Events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
 </p>
-<pre><code class="java hljs">string eventName = <span class="hljs-string">"Some event"</span>;
-
-<span class="hljs-comment">//start some event</span>
-Countly.Instance.Events.StartEvent(eventName);
-<span class="hljs-comment">//wait some time</span>
-
-<span class="hljs-comment">//end the event </span>
-Countly.Instance.Events.EndEvent(eventName);</code></pre>
 <p>
-  <span>You may also provide additional information when ending an event. However, in that case, you have to provide the segmentation, count, and sum. The default values for those are "null", 1, and 0.</span>
+  <span style="font-weight: 400;">Example:</span>
 </p>
-<pre><code class="java hljs">string eventName = <span class="hljs-string">"Some event"</span>;
-
-<span class="hljs-comment">//start some event</span>
-Countly.Instance.Events.StartEvent(eventName);
-<span class="hljs-comment">//wait some time</span>
-
-IDictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;();
-segmentation.Add(<span class="hljs-string">"wall"</span>, <span class="hljs-string">"orange"</span>);
-
-<span class="hljs-comment">//end the event while also providing segmentation information, count and sum</span>
-Countly.Instance.Events.EndEvent(eventName, segmentation, <span class="hljs-number">4</span>, <span class="hljs-number">34</span>);
-</code></pre>
+<pre><code class="java">//At the start of your planned event you would record the start timestamp
+DateTime startTime = DateTime.UtcNow;
+...
+//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed 
+double duration = (DateTime.UtcNow - startTime).TotalSeconds; 
+//Then you would pass this information when recording a Countly event
+<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>music</span>", duration: duration);</code></pre>
 <p>
-  You may cancel the started timed event in case it is not relevant anymore:
+  <span>You may provide segmentation, count, and sum while recording a timed event.</span>
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">//start some event</span><br><span class="hljs-comment">Countly.Instance.Events.StartEvent(eventName);</span>
-<span class="hljs-comment">//wait some time</span>
-
-<span class="hljs-comment">//cancel the event </span>
-Countly..Instance.Events.CancelEvent(eventName);</code></pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
   <span>This feature uses <code>Events</code> consent. </span><span>No additional events will be recorded if consent is required and not given.</span>
 </p>
 <p>
-  <span>When consent is removed, all previously started timed events will be canceled.</span>
+  <span>When consent is removed, all previously started timed events will be cancelled.</span>
 </p>
 <h1>Sessions</h1>
 <h2>
