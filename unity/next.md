@@ -357,7 +357,7 @@ Countly.Instance.Events.EndEvent(eventName, segmentation, <span class="hljs-numb
 <span class="hljs-comment">//wait some time</span>
 
 <span class="hljs-comment">//cancel the event </span>
-Countly..Instance.Events.CancelEvent(eventName);</code></pre>
+Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
   <span>This feature uses <code>Events</code> consent. </span><span>No additional events will be recorded if consent is required and not given.</span>
