@@ -336,7 +336,7 @@ Countly.Instance.Events.StartEvent(eventName);
 <span class="hljs-comment">//end the event </span>
 Countly.Instance.Events.EndEvent(eventName);</code></pre>
 <p>
-  <span>You may also provide additional information when ending an event. However, in that case, you have to provide the segmentation, count, and sum. The default values for those are "null", 1, and 0.</span>
+  <span>You may also provide additional information when ending an event. In that case you can provide the segmentation, count, or sum values. The default values for those are "null", 1, and 0.</span>
 </p>
 <pre><code class="java hljs">string eventName = <span class="hljs-string">"Some event"</span>;
 
