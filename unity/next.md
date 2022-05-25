@@ -1059,6 +1059,27 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
 </p>
+<h2 id="sdk-internal-limits" class="anchor-heading">SDK Internal Limits</h2>
+<p>
+  SDK does have configurable fields to manipulate the internal SDK value and key
+  limits. If values or keys provided by the user, would exceed the limits, they
+  would be truncated. Here are the details of these configurable fields:<span></span>
+</p>
+<p>
+  <span><strong>MaxKeyLength -&nbsp;</strong>(int) Maximum size of all string keys. The default value is&nbsp;<strong>128</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxValueSize -&nbsp;</strong>(int) Maximum size of all values in our key-value pairs. The default value is&nbsp;<strong>256</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxSegmentationValues -&nbsp;</strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is&nbsp;<strong>30</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxStackTraceLinesPerThread -&nbsp;</strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is&nbsp;<strong>30</strong>.&nbsp;</span>
+</p>
+<p>
+  <span><strong>MaxStackTraceLineLength -&nbsp;</strong>(int) Limits how many characters are allowed per stack trace line. The default value is&nbsp;<strong>200</strong>.</span>
+</p>
 <h1>FAQ</h1>
 <h2>What information is collected by the SDK</h2>
 <p>
