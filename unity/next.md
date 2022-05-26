@@ -347,13 +347,18 @@ Countly.Instance.Events.StartEvent(eventName);
 IDictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;();
 segmentation.Add(<span class="hljs-string">"wall"</span>, <span class="hljs-string">"orange"</span>);
 
-<span class="hljs-comment">//end the event while also providing segmentation information, count and sum</span>
-Countly.Instance.Events.EndEvent(eventName, segmentation, <span class="hljs-number">4</span>, <span class="hljs-number">34</span>);
+<span class="hljs-comment">//end the event while also providing segmentation information</span>
+Countly.Instance.Events.EndEvent(eventName, segmentation);
 </code></pre>
+<p>Here are other options to end timed events:</p>
+<pre><code class="java hljs"><span class="hljs-comment">//end the event while providing segmentation information and count</span>
+Countly.Instance.Events.EndEvent("timed-event", segmentation, <span class="hljs-number">4</span>);<br><br><span class="hljs-comment">//end the event while providing segmentation information, count and sum</span>
+Countly.Instance.Events.EndEvent("timed-event", segmentation, <span class="hljs-number">4, 10</span>);</code></pre>
 <p>
   You may cancel the started timed event in case it is not relevant anymore:
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">//start some event</span><br><span class="hljs-comment">Countly.Instance.Events.StartEvent(eventName);</span>
+<pre><code class="java hljs"><span class="hljs-comment">//start some event</span>
+Countly.Instance.Events.StartEvent(eventName);
 <span class="hljs-comment">//wait some time</span>
 
 <span class="hljs-comment">//cancel the event </span>
