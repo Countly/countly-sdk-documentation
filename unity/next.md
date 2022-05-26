@@ -407,6 +407,9 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 </p>
 <pre><span><code>Dictionary&lt;string, object&gt; viewSegmentation= new Dictionary&lt;string, object&gt;();<br>viewSegmentation.Add("Cats", 123);<br>viewSegmentation.Add("Moons", 9.98);<br>viewSegmentation.Add("Moose", "Deer");<br><br>await Countly.Instance.Views.RecordOpenViewAsync("Better view", viewSegmentation);</code></span></pre>
 <p>
+  <span>Note: The accepted data types for the segmentation value are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+</p>
+<p>
   When the screen closes you can report it to the server by using the following
   method:
 </p>
@@ -414,9 +417,6 @@ double duration = (DateTime.UtcNow - startTime).TotalSeconds;
 <p>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
-</div>
 <h2 class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires<code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
