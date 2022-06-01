@@ -78,7 +78,7 @@ flutter run</code></pre>
   <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#sdk-config-parameters-explained" target="_self">here</a>
   for more detail about "CountlyConfig" functionalities.
 </p>
-<h2>&nbsp;Enable logging</h2>
+<h2>Enable logging</h2>
 <p>
   If logging is enabled then our SDK will print out debug messages about its internal
   state and encountered problems.
@@ -1448,7 +1448,7 @@ Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
     data which will be sent with each request<span></span>
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#setting-an-event-queue-threshold" target="_self" rel="undefined">Event queue threshold</a>&nbsp;-</strong>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#setting-an-event-queue-threshold" target="_self" rel="undefined">Event queue threshold</a> -</strong>
     Set the threshold for event grouping. Event count that is bellow the threshold
     will be sent on update ticks.<span></span>
   </li>
