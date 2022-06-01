@@ -2761,6 +2761,8 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 </p>
 <p>
   Countly Web SDK is written in basic JavaScript so it is compatible with your
-  TypeScript projects by enabling allowJs in your project's tsconfig.json file.
+  TypeScript projects by enabling allowJs in your project's tsconfig.json file. However
+  as we use javascript features that can run in the browser, your project must also be 
+  runnable on the browser.
 </p>
 <p>&nbsp;</p>
