@@ -2750,4 +2750,19 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   the dashboard, where granular data is used and segmentation capabilities are
   provided.
 </p>
+
+<h1>FAQ</h1>
+<h2>Can I integrate Countly Web SDK to my TypeScript Project</h2>
+<p>
+  TypeScript is a strict syntactical superset of JavaScript. It helps you catch
+  errors early by adding static typing to the language. It compiles down to basic
+  JavaScript so it can be used anywhere JavaScript can run, whether Node.js or
+  browser.
+</p>
+<p>
+  Countly Web SDK is written in basic JavaScript so it is compatible with your
+  TypeScript projects by enabling allowJs in your project's tsconfig.json file. However
+  as we use javascript features that can run in the browser, your project must also be 
+  runnable on the browser.
+</p>
 <p>&nbsp;</p>
