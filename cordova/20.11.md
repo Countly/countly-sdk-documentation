@@ -2,7 +2,7 @@
   This document will guide you through the process of Countly SDK installation
   and it applies to version 20.11.<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
-  <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
+  <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -35,6 +35,15 @@
   If you would integrate this SDK in any other project similar to cordova (like
   ionic, phonegap, meteor), you would have to make sure that you are setting the
   platform requirements for those projects similar to these.
+</p>
+<p>
+  <strong>Note : </strong>Development on PhoneGap stopped in
+  <span>14 Aug 2020</span>. To the best of our knowledge, this SDK should still
+  be compatible with the final release.
+</p>
+<p>
+  For more information about PhoneGap shut down,
+  <a href="https://cordova.apache.org/announcements/2020/08/14/goodbye-phonegap.html#:~:text=Adobe%20recently%20announced%20that%20PhoneGap%20is%20shutting%20down." target="_self">click here</a>
 </p>
 <p>
   Setting up Countly SDK inside your Cordova, Ionics application is straightforward.
