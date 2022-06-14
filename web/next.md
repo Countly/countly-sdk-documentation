@@ -283,6 +283,48 @@ function clickEvent(ob){
 });</code></pre>
   </div>
 </div>
+<h2>SDK Data Storage</h2>
+<p>
+  Countly Web SDK stores various information like device ID, request queue, session
+  information and more in your device. This helps Countly to provide data consistency
+  and enable convenience methods like offline mode.
+</p>
+<p>
+  The default storage location of user specific data, except the session information,
+  is the local storage of your browser. Information stored here is persistent and
+  as long as it was not erased or overwritten it would stay on your device indefinitely.
+  However Countly gives you the option to change this behavior by selecting persistent
+  cookies as the main storage option or choosing not store any data at all, depending
+  on your needs. These storage options are mutually exclusive, meaning, only one
+  option can be selected at a given time.
+</p>
+<p>
+  If cookies were selected as the main storage medium it must be known that persistent
+  cookies have an expiration date and the information stored in them would be rendered
+  obsolete after a while. Incase of the session information, it is stored in session
+  cookies and would expire when the tab or browser is closed. Lastly if you decide
+  to not store any information, all information would stay in memory and would
+  be gone when the memory is cleared.
+</p>
+<p>These options can be selected during the initialization:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+Countly.storage = "localstorage";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  storage: "localstorage"
+});</code></pre>
+  </div>
+</div>
 <h2>SDK Notes</h2>
 <div class="callout callout--info">
   <p class="callout__title">
