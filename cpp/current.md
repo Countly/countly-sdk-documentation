@@ -228,6 +228,33 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
 </p>
+<h1 id="recording-a-view" class="anchor-heading">View tracking</h1>
+<p>
+  <span data-preserver-spaces="true">Currently, SDK doesn't have any direct mechanism to record views. You may record views by using <code><span class="pl-c1">RecordEvent</span></code> method.&nbsp;</span>
+</p>
+<p>
+  <span data-preserver-spaces="true">There are a couple of other values that can be set when recording a view.&nbsp;</span>
+</p>
+<ul>
+  <li>
+    <strong><span data-preserver-spaces="true">key-</span></strong>
+    <code class="java">[CLY]_view</code> is a predefined by SDK, do not change
+    it while recoding a view.<span data-preserver-spaces="true"><br></span>
+  </li>
+  <li>
+    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide view's name other information related to views.</span><span data-preserver-spaces="true">&nbsp; You may also provide </span><span data-preserver-spaces="true">custom data for your view to track additional information. It is a mandatory field, you may not set it to </span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">.</span><span data-preserver-spaces="true"></span>
+  </li>
+  <li>
+    <strong>count -&nbsp;</strong>It defines how many time this event
+    <span>occurred</span>. Set it to 1.
+  </li>
+</ul>
+<p>Example:</p>
+<pre><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["<span><span class="hljs-string">name</span></span>"] = "view-name";<br>segmentation["<span><span class="hljs-string">visit</span></span>"] = "1";<br>segmentation["<span><span class="hljs-string">segment</span></span>"] = "Windows";<br>segmentation["<span><span class="hljs-string">start</span></span>"] = "1";<br></code><code class="java"><br><span class="pl-c1">Countly::getInstance</span><span>()</span>.<span>RecordEvent</span>("[CLY]_view", segmentation, 1);</code></pre>
+<p>
+  <strong>Note: '</strong>name', 'visit', 'start' and 'segment' are internal keys
+  to record a view.
+</p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
 </h1>
