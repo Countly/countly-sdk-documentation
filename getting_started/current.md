@@ -13,9 +13,9 @@
 </p>
 <h1>User/device identification</h1>
 <p>
-  By default, Countly generates an anonymous identifier to uniquely identify a device
-  or browser. Total users metric for any period is based on unique number of device
-  ids Countly Server receives requests from. Similarly, users list in
+  By default, Countly generates an anonymous identifier to uniquely identify a
+  device or browser. Total users metric for any period is based on unique number
+  of device ids Countly Server receives requests from. Similarly, users list in
   <a href="/hc/en-us/articles/360037630571" target="_blank" rel="noopener">User Profiles</a>
   section is a list of anonymous devices Countly Server is receiving data from.
   All data originating from a single device, including sessions, events, views
@@ -245,4 +245,40 @@
 <pre><span>public void </span><span>Login</span>() {<br>    <span>String newId </span>= <span>"SomeValue"</span>;<br>    <span>if </span>(<span>Countly</span>.<span>sharedInstance</span>().getDeviceIDType() == <span>DeviceId</span>.<span>Type</span>.<span>DEVELOPER_SUPPLIED</span>) {<br>        <span>// an ID was provided by the host app previously<br></span><span>        // we can assume that a device ID change with merge was executed previously<br></span><span>        // now we change it without merging<br></span><span>        </span><span>Countly</span>.<span>sharedInstance</span>().changeDeviceIdWithoutMerge(<span>DeviceId</span>.<span>Type</span>.<span>DEVELOPER_SUPPLIED</span>, <span>newId</span>);<br>    } <span>else </span>{<br>        <span>// SDK generated ID<br></span><span>        // we change device ID with merge so that data is combined<br></span><span>        </span><span>Countly</span>.<span>sharedInstance</span>().changeDeviceIdWithMerge(<span>newId</span>);<br>    }<br>}</pre>
 <h2>iOS</h2>
 <pre class="c-mrkdwn__pre" data-stringify-type="pre">public static void login()<br> &nbsp;<wbr> &nbsp;<wbr>{<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>DeviceId.Type type = Countly.sharedInstance().getDeviceIDType();<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>if(type.equals(DeviceId.Type.DEVELOPER_SUPPLIED))<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithoutMerge(DeviceId.Type.DEVELOPER_SUPPLIED,<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>else<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithMerge(<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr>}</pre>
-<p>&nbsp;</p>
+<h1>
+  Using Countly SDK's with iOS and Android widgets and watches
+</h1>
+<p>
+  With mobile devices, there are 3 different modalities that a user can interact
+  with: phone app, phone widget, and watch app. When designing a product that spans
+  all three worlds, the goal is usually to track the users lifecycle across all
+  of them.
+</p>
+<p>
+  To perform this cross-modality tracking, care must be given that tracking is
+  performed with the same device ID across all of them. If the device ID, to which
+  the event or session is attributed, would not be the same across all devices
+  then the same user would be counted as a separate person on one of the devices.
+</p>
+<p>
+  This also means that if the users device ID would change, this change needs to
+  be synchronized across all modalities/apps.
+</p>
+<p>This can be achieved in 2 general approaches:</p>
+<ol>
+  <li>
+    Performing data recording at each location separately - each modality integrates,
+    configures, and initializes the Countly SDK separately. Device ID synchronization
+    needs to be performed manually across all modalities. Alternatively, every
+    modality needs a way to create the same device ID without cross-synchronization.
+  </li>
+  <li>
+    Performing data recording at a central location and proxying data recording
+    from each non-app modality - eliminates the need for synchronization as there
+    is only one instance of the SDK initialized and configured. Device ID changes
+    are immediately taken into account when they happen. Since cross-device recording
+    is centralized, views and sessions need to be recorded manually. Another
+    potential issue is that sometimes the main app might be out of reach for
+    proxy recording.
+  </li>
+</ol>
