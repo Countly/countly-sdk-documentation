@@ -697,8 +697,10 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 </p>
 <pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
 <p>Data Received for iOS platform:</p>
-<pre>{<br>Key = value;<br>aps = {<br>alert = {<br>body = Message;<br>subtitle = subtitle;<br>title = title;<br>};<br>badge = 1;<br>"mutable-content" = 1;<br>sound = custom;<br>};<br>c = {<br>a = "https://count.ly/images/logos/countly-logo-mark.png";<br>e = {<br>cc = TR;<br>dt = mobile;<br>};<br>i = 62b5b945cabedb0870e9f217;<br>l = "https://www.google.com/";<br>};<br>}</pre>
-<h1>User Location</h1>
+<pre>{<br>Key = value;<br> aps = {<br>  alert = {<br>   body = Message;<br>   subtitle = subtitle;<br>   title = title;<br>  };<br> badge = 1;<br> "mutable-content" = 1;<br> sound = custom;<br> };<br> c = {<br>  a = "https://count.ly/images/logos/countly-logo-mark.png";<br>   e = {<br>    cc = TR;<br>    dt = mobile;<br>   };<br>  i = 62b5b945cabedb0870e9f217;<br>  l = "https://www.google.com/";<br> };<br>}</pre>
+<p>
+  <span style="font-size: 2.1em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">User Location</span>
+</p>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
   By default, the Countly Server uses the GeoIP database to deduce a user's location.
