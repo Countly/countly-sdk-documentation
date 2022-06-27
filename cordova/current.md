@@ -648,7 +648,10 @@ Countly.getCurrentDeviceId(function(deviceId){
 </ol>
 <h3>iOS setup</h3>
 <p>
-  <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
+  <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span><span style="font-weight: 400;"></span>
+</p>
+<p>
+  <span style="font-weight: 400;"><img src="/hc/article_attachments/7912645823513/Screenshot_2022-06-27_at_5.35.43_PM.png" alt="Screenshot_2022-06-27_at_5.35.43_PM.png"></span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
