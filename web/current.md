@@ -100,6 +100,10 @@
   more information on how to acquire your application key (APP_KEY) and server
   URL, please check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
+  Also if you are planning to use Application Performance Monitoring (APM) there
+  would be additional steps necessary for you to follow. For more information on
+  APM and its integration please check
+  <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#application-performance-monitoring">here</a>.
 </p>
 <p>
   <span style="font-weight: 400;">An example setup would look like this:</span>
@@ -276,6 +280,48 @@ function clickEvent(ob){
     device_id: "1234-1234-1234-1234",
     app_key:"YOUR_APP_KEY",
     url: "https://try.count.ly"
+});</code></pre>
+  </div>
+</div>
+<h2>SDK Data Storage</h2>
+<p>
+  Countly Web SDK stores various information like device ID, request queue, session
+  information and more in your device. This helps Countly to provide data consistency
+  and enable convenience methods like offline mode.
+</p>
+<p>
+  The default storage location of user specific data, except the session information,
+  is the local storage of your browser. Information stored here is persistent and
+  as long as it was not erased or overwritten it would stay on your device indefinitely.
+  However Countly gives you the option to change this behavior by selecting persistent
+  cookies as the main storage option or choosing not store any data at all, depending
+  on your needs. These storage options are mutually exclusive, meaning, only one
+  option can be selected at a given time.
+</p>
+<p>
+  If cookies were selected as the main storage medium it must be known that persistent
+  cookies have an expiration date and the information stored in them would be rendered
+  obsolete after a while. Incase of the session information, it is stored in session
+  cookies and would expire when the tab or browser is closed. Lastly if you decide
+  to not store any information, all information would stay in memory and would
+  be gone when the memory is cleared.
+</p>
+<p>These options can be selected during the initialization:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+Countly.storage = "localstorage";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  storage: "localstorage"
 });</code></pre>
   </div>
 </div>
@@ -1305,7 +1351,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <div class="tab">
     <pre><code class="javascript">//to enable remote configuration
 
-//before loading Countly script
+// in your Countly init script
 Countly.remote_config = true;
 
 //or provide a callback to be notified when configs are loaded
@@ -1701,7 +1747,7 @@ Countly.userData.save() //send userData to server</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//before loading Countly script
+    <pre><code class="javascript">// in your Countly init script
 Countly.enable_orientation_tracking = false;</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -1788,7 +1834,7 @@ Countly.report_trace({
   To automatically report traces you will need control the loading sequence of
   countly and boomerang.js scripts as boomerang.js depends on Countly to be initialized
   first. So instead of defining the scripts at the head tag you should use the
-  script provided below, inside your Countly script at the top:
+  script provided below, first thing inside your Countly init script:
 </p>
 <pre><code class="javascript">syncScripts();
         function syncScripts() {
@@ -1851,7 +1897,7 @@ Countly.q.push(["track_performance", {
 <pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
 <p>
   After that, you may call a method to start reporting loading and network traces
-  automatically.An example pattern inside your Countly script would be:
+  automatically.An example pattern inside your Countly init script would be:
 </p>
 <pre><code class="javascript">//automatically report traces
 Countly.track_performance({
@@ -1927,7 +1973,7 @@ Countly.opt_in();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//before loading Countly script
+    <pre><code class="javascript">// in your Countly init script
 Countly.require_consent = true;</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2745,5 +2791,20 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   clicks that link. This will enable you to segment users in all places around
   the dashboard, where granular data is used and segmentation capabilities are
   provided.
+</p>
+
+<h1>FAQ</h1>
+<h2>Can I integrate Countly Web SDK to my TypeScript Project</h2>
+<p>
+  TypeScript is a strict syntactical superset of JavaScript. It helps you catch
+  errors early by adding static typing to the language. It compiles down to basic
+  JavaScript so it can be used anywhere JavaScript can run, whether Node.js or
+  browser.
+</p>
+<p>
+  Countly Web SDK is written in basic JavaScript so it is compatible with your
+  TypeScript projects by enabling allowJs in your project's tsconfig.json file. However
+  as we use javascript features that can run in the browser, your project must also be 
+  runnable on the browser.
 </p>
 <p>&nbsp;</p>
