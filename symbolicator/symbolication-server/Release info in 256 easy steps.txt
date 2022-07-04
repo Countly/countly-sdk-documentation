@@ -1,0 +1,43 @@
+<h1>Symbolication Server</h1>
+<h2>Internals</h2>
+<p>
+  Eslint file for guidelines:
+  <a href="https://github.com/Countly/countly-symbolicator/blob/staging/.eslintrc" target="_self">https://github.com/Countly/countly-symbolicator/blob/staging/.eslintrc</a>
+</p>
+<p>Structure:</p>
+<ul>
+  <li>
+    app.js - Starts and serves the symbolication server, database connection
+  </li>
+  <li>cluster.config.js - pm2 cluster configuration file</li>
+  <li>ecosystem.config.js - pm2 configuration file</li>
+  <li>lib - folder for main logic of the symbolication</li>
+  <li>log - log files from winston goes here</li>
+  <li>routes - router files</li>
+  <li>views - view engine templates</li>
+</ul>
+<h2>Release information</h2>
+<p>1) Update version number in:</p>
+<ul>
+  <li>package.json</li>
+  <li>app.js</li>
+</ul>
+<p>2) Run tests</p>
+<p>- Connect to your development server with your credentials</p>
+<p>- Open 2 consoles</p>
+<p>- At 1st console run:</p>
+<pre>cd ~/countly-symbolicator</pre>
+<p>to go to the the project folder if you are not there, then</p>
+<pre>node app -t --i_dont_care</pre>
+<p>to run the server in test mode</p>
+<p>- At 2nd console type:</p>
+<pre>npm test</pre>
+<p>if all tests are passed you are good to go.</p>
+<p>3) Connect to the production server with your credentials</p>
+<p>4) Access to console and type:</p>
+<pre>cd ~/countly-symbolicator<br>pm2 stop all</pre>
+<p>5) Copy your development code over to the production</p>
+<p>6) Type in console:</p>
+<pre>npm install<br>pm2 start ecosystem.config.js</pre>
+<p>7) Prepare changelog and use it as release notes on Github</p>
+<p>&nbsp;</p>
