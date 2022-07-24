@@ -6,7 +6,7 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11.0 and older, click
+    To access the documentation for version 21.11.0 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="blank">here</a>.
   </p>
 </div>
