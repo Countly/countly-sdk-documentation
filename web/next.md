@@ -2792,21 +2792,6 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   the dashboard, where granular data is used and segmentation capabilities are
   provided.
 </p>
-
-<h1>FAQ</h1>
-<h2>Can I integrate Countly Web SDK to my TypeScript Project</h2>
-<p>
-  TypeScript is a strict syntactical superset of JavaScript. It helps you catch
-  errors early by adding static typing to the language. It compiles down to basic
-  JavaScript so it can be used anywhere JavaScript can run, whether Node.js or
-  browser.
-</p>
-<p>
-  Countly Web SDK is written in basic JavaScript so it is compatible with your
-  TypeScript projects by enabling allowJs in your project's tsconfig.json file. However
-  as we use javascript features that can run in the browser, your project must also be 
-  runnable on the browser.
-</p>
 <h2>GA Adapter</h2>
 <p>
   If you are using Google Universal Analytics in your website and you would also
@@ -2837,7 +2822,6 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>o</span><span>)[</span><span>0</span><span>];</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
 </div>
 <div class="callout callout--info">
-  <p class="callout__title">&nbsp;</p>
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>GA Adapter Example</strong></span>
   </p>
@@ -2849,4 +2833,19 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
     <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_ga_adapter.html">GA Adapter Example</a>
   </p>
 </div>
+
+<h1>FAQ</h1>
+<h2>Can I integrate Countly Web SDK to my TypeScript Project</h2>
+<p>
+  TypeScript is a strict syntactical superset of JavaScript. It helps you catch
+  errors early by adding static typing to the language. It compiles down to basic
+  JavaScript so it can be used anywhere JavaScript can run, whether Node.js or
+  browser.
+</p>
+<p>
+  Countly Web SDK is written in basic JavaScript so it is compatible with your
+  TypeScript projects by enabling allowJs in your project's tsconfig.json file. However
+  as we use javascript features that can run in the browser, your project must also be 
+  runnable on the browser.
+</p>
 <p>&nbsp;</p>
