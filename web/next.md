@@ -1820,6 +1820,11 @@ Countly.report_trace({
   Automatic trace reporting has two different implementation depending on if you
   are using Countly synchronously or asynchronously.
 </p>
+<p>
+  You can reach to example implementations of APM from the following links:<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/mpa/index.html">Async Apm Example</a><br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html">Sync Apm Example</a>
+</p>
 <h3>Asynchronous Implementation</h3>
 <p>
   To automatically report traces you will need to control the loading sequence
@@ -1916,14 +1921,6 @@ Countly.track_performance({
         afterOnload: true
     }
 });</code></pre>
-<div class="callout callout--info">
-  <p class="callout__title">APM Examples</p>
-  <p>
-    You can reach to example implementations of APM from the following links:<br>
-    <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/mpa/index.html">Async Apm Example</a><br>
-    <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html">Sync Apm Example</a>
-  </p>
-</div>
 <h1>User Consent</h1>
 <h2>Opt In / Opt Out</h2>
 <p>
