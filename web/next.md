@@ -3,7 +3,7 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 22.04.0 and older, click
+    To access the documentation for version 22.02.0 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="blank">here</a>.
   </p>
 </div>
