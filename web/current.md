@@ -3,8 +3,8 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 21.11.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="blank">here</a>.
+    To access the documentation for version 22.04.0 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="blank">here</a>.
   </p>
 </div>
 <p>
