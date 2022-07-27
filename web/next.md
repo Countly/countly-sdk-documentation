@@ -326,20 +326,21 @@ Countly.init({
   </div>
 </div>
 <h2>SDK Notes</h2>
-<h3>Why aren’t I able to see AngularJS errors on the Countly dashboard?</h3>
+<h3>
+  Why aren’t I able to see AngularJS errors on the Countly dashboard?
+</h3>
 <p>
   AngularJs swallows errors by default. You will need to extend Angular's
-  <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>.
-  For more information,
+  <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>. For
+  more information,
   <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
 </p>
 <h3>Generate custom SDK code snippets</h3>
 <p>
-  <a href="http://code.count.ly/">Countly Code Generator</a> may be used to
-  generate custom SDK code snippets simply and quickly. You may provide values
-  for your event, or user profile or just start with basic integration, and
-  this service will generate the necessary code for you to use in your favorite
-  IDE.
+  <a href="http://code.count.ly/">Countly Code Generator</a> may be used to generate
+  custom SDK code snippets simply and quickly. You may provide values for your
+  event, or user profile or just start with basic integration, and this service
+  will generate the necessary code for you to use in your favorite IDE.
 </p>
 <h3>Setup Properties</h3>
 <p>
@@ -1094,15 +1095,15 @@ Countly.init({
   <p class="callout__title">
     <span class="wysiwyg-font-size-large"><strong>Device ID Priority</strong></span>
   </p>
-<p>
-  If you have used multiple methods to set a device ID for your users
-  during your first init, Countly would fall back to the device ID priority hierarchy
-  to assign the the correct ID for your user. This hierarchy is as follows:
-</p>
-<p>
-  URL set ID &gt; Developer set ID &gt; Temp ID (offline mode) &gt; SDK generated
-  ID
-</p>
+  <p>
+    If you have used multiple methods to set a device ID for your users during
+    your first init, Countly would fall back to the device ID priority hierarchy
+    to assign the the correct ID for your user. This hierarchy is as follows:
+  </p>
+  <p>
+    URL set ID &gt; Developer set ID &gt; Temp ID (offline mode) &gt; SDK generated
+    ID
+  </p>
 </div>
 <h2>Changing Device ID</h2>
 <p>
@@ -1281,8 +1282,8 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title"><strong>
-    Important notification about viewing heatmaps with HTTP/HTTPS content:</strong>
+  <p class="callout__title">
+    <strong> Important notification about viewing heatmaps with HTTP/HTTPS content:</strong>
   </p>
   <p>
     Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
@@ -2547,7 +2548,13 @@ Countly.init();</code></pre>
 </ul>
 <h2>Multi Instancing</h2>
 <p>
-You can initialize Countly multiple times at the same page with different app keys to send information to different apps you own and gather data with higher flexibility and precision. These new instances have all functionality of Countly but depending on your init configuration they would behave differently. You can attach different events to different Countly instances to send events to specific applications even from the same button trigger or much more. A simple integration example would be:
+  You can initialize Countly multiple times at the same page with different app
+  keys to send information to different apps you own and gather data with higher
+  flexibility and precision. These new instances have all functionality of Countly
+  but depending on your init configuration they would behave differently. You can
+  attach different events to different Countly instances to send events to specific
+  applications even from the same button trigger or much more. A simple integration
+  example would be:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2821,7 +2828,6 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
     <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_ga_adapter.html">GA Adapter Example</a>
   </p>
 </div>
-
 <h1>FAQ</h1>
 <h2>Can I integrate Countly Web SDK to my TypeScript Project</h2>
 <p>
@@ -2832,8 +2838,8 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 </p>
 <p>
   Countly Web SDK is written in basic JavaScript so it is compatible with your
-  TypeScript projects by enabling allowJs in your project's tsconfig.json file. However
-  as we use javascript features that can run in the browser, your project must also be 
-  runnable on the browser.
+  TypeScript projects by enabling allowJs in your project's tsconfig.json file.
+  However as we use javascript features that can run in the browser, your project
+  must also be runnable on the browser.
 </p>
 <p>&nbsp;</p>
