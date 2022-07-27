@@ -1775,6 +1775,11 @@ Countly.report_orientatio("portrait");</code></pre>
   them manually. The other is using a plugin that will utilize BoomerangJS to collect
   website's performance data and report it as a performance trace.
 </p>
+<p>
+  You can reach to example implementations of APM from the following links:<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/mpa/index.html">Async Apm Example</a><br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html">Sync Apm Example</a>
+</p>
 <h2>Custom Traces</h2>
 <p>
   To manually report trace you need to construct the trace object and call a method
@@ -1819,11 +1824,6 @@ Countly.report_trace({
 <p>
   Automatic trace reporting has two different implementation depending on if you
   are using Countly synchronously or asynchronously.
-</p>
-<p>
-  You can reach to example implementations of APM from the following links:<br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/mpa/index.html">Async Apm Example</a><br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html">Sync Apm Example</a>
 </p>
 <h3>Asynchronous Implementation</h3>
 <p>
