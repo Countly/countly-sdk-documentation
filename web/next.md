@@ -3,7 +3,7 @@
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
+    <strong>Older documentation</strong>
   </p>
   <p>
     To access the documentation for version 20.11.0 and older, click
@@ -1093,7 +1093,7 @@ Countly.init({
 </code></pre>
 <div class="callout callout--info">
   <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Device ID Priority</strong></span>
+    <strong>Device ID Priority</strong>
   </p>
   <p>
     If you have used multiple methods to set a device ID for your users during
