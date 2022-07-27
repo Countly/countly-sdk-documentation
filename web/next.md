@@ -2,9 +2,6 @@
   <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.02.0.</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 21.11.0 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="blank">here</a>.
@@ -326,27 +323,22 @@ Countly.init({
   </div>
 </div>
 <h2>SDK Notes</h2>
-<div class="callout callout--info">
-  <p class="callout__title">
-    Why aren’t I able to see AngularJS errors on the Countly dashboard?
-  </p>
-  <p>
-    AngularJs swallows errors by default. You will need to extend Angular's
-    <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>.
-    For more information,
-    <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
-  </p>
-</div>
-<div class="callout callout--info">
-  <p class="callout__title">Generate custom SDK code snippets</p>
-  <p>
-    <a href="http://code.count.ly/">Countly Code Generator</a> may be used to
-    generate custom SDK code snippets simply and quickly. You may provide values
-    for your event, or user profile or just start with basic integration, and
-    this service will generate the necessary code for you to use in your favorite
-    IDE.
-  </p>
-</div>
+<h3>
+  Why aren’t I able to see AngularJS errors on the Countly dashboard?
+</h3>
+<p>
+  AngularJs swallows errors by default. You will need to extend Angular's
+  <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>. For
+  more information,
+  <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
+</p>
+<h3>Generate custom SDK code snippets</h3>
+<p>
+  <a href="http://code.count.ly/">Countly Code Generator</a> may be used to generate
+  custom SDK code snippets simply and quickly. You may provide values for your
+  event, or user profile or just start with basic integration, and this service
+  will generate the necessary code for you to use in your favorite IDE.
+</p>
 <h3>Setup Properties</h3>
 <p>
   Here are the properties you may set up upon Countly initialization:
@@ -644,7 +636,6 @@ catch(ex){
 </div>
 <h2>Symbolication</h2>
 <div class="callout callout--warning">
-  <p class="callout__title">Enterprise</p>
   <p>
     Crash symbolication is available for
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> users.
@@ -704,7 +695,6 @@ catch(ex){
   <span style="font-weight: 400;">Events are a way to track any custom actions or other data you would like to track from your website. You may also set segments to be able to view a breakdown of the action by providing the segment values.</span>
 </p>
 <div class="callout callout--warning">
-  <p class="callout__title">Data passed should be in UTF-8</p>
   <p>
     All data passed to the Countly instance via the SDK or API should be in UTF-8.
   </p>
@@ -1100,7 +1090,7 @@ Countly.init({
 </code></pre>
 <div class="callout callout--info">
   <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Device ID Priority</strong></span>
+    <strong>Device ID Priority</strong>
   </p>
   <p>
     If you have used multiple methods to set a device ID for your users during
@@ -1290,7 +1280,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    Important notification about viewing heatmaps with HTTP/HTTPS content:
+    <strong> Viewing heatmaps with HTTP/HTTPS content:</strong>
   </p>
   <p>
     Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
@@ -1963,7 +1953,6 @@ Countly.opt_in();</code></pre>
   <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">Opt out by default</p>
   <p>
     If you would like to have opt out selected by default, combine these methods
     with the initial setting <strong>ignore_visitor</strong> on the Countly init
@@ -2811,6 +2800,44 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   the dashboard, where granular data is used and segmentation capabilities are
   provided.
 </p>
+<h2>GA Adapter</h2>
+<p>
+  If you are using Google Universal Analytics in your website and you would also
+  like to integrate Countly to your project, GA Adapter plugin can help you send
+  your Google Analytics data also to your Countly server without any extra integration.
+  This plugin will recognize your Google Analytics data and convert them into Countly
+  events and send it to your server, so you can observe your analytics data from
+  your Countly dashboard with ease.
+</p>
+<p>
+  There are 3 steps you have to follow to enable the GA Adapter plugin:
+</p>
+<ol>
+  <li>
+    First integrate Countly into your project (You can reach details from
+    <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#minimal-setup">here</a>)
+  </li>
+  <li>
+    Then declare the plugin script before your Google Analytics implementation
+    block
+  </li>
+  <li>
+    Finally, add 'CountlyGAAdapter();' into your Google Analytics snippet
+  </li>
+</ol>
+<p>A simple implementation would look something like this:</p>
+<div>
+  <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>o</span><span>)[</span><span>0</span><span>];</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
+</div>
+<div class="callout callout--info">
+  <p>
+    You can reach to an example implementation of this plugin from the following
+    link:
+  </p>
+  <p>
+    <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_ga_adapter.html">GA Adapter Example</a>
+  </p>
+</div>
 <h1>FAQ</h1>
 <h2>Can I integrate Countly Web SDK to my TypeScript Project</h2>
 <p>
