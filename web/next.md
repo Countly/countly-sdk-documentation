@@ -2,9 +2,6 @@
   <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.02.0.</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong>Older documentation</strong>
-  </p>
   <p>
     To access the documentation for version 20.11.0 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="blank">here</a>.
