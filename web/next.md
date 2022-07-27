@@ -1283,7 +1283,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong> Important notification about viewing heatmaps with HTTP/HTTPS content:</strong>
+    <strong> Viewing heatmaps with HTTP/HTTPS content:</strong>
   </p>
   <p>
     Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
