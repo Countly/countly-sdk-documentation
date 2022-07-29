@@ -282,3 +282,56 @@
     proxy recording.
   </li>
 </ol>
+<h1>How to validate your Countly integration?</h1>
+<p>
+  After you have integrated Countly SDK into your app or website, to the best of
+  your ability, you should normally verify your integration by checking if everything
+  is working as expected, both on your dashboard and on your app/website. To have
+  the most optimized verification process we recommend you to go through the following
+  steps.
+</p>
+<p>
+  <strong>Make sure you have the correct configuration</strong>
+</p>
+<p>
+  Here the most important thing is to verify if your 'app_key' and 'url' values
+  are entered correctly. For more information on checking your 'app_key' and server
+  url you can check out
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+</p>
+<p>
+  <strong>Turn on debugging</strong>
+</p>
+<p>
+  To check if your SDK implementation is working correctly you would want your
+  SDK to print out debug messages. To do so you need to enable the debug option
+  while you initialize your Countly instance. The way you do that differs from
+  SDK to SDK so you would want to check the documentation of the specific SDK that
+  you are using from
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs">here</a>.
+</p>
+<p>
+  <strong>Check your logs</strong>
+</p>
+<p>
+  After enabling debugging you would want to run your app or website and check
+  the debug messages from your console. If you see any error or warning messages
+  you might need to reimplement some Countly features according to their advise.
+</p>
+<p>
+  <strong>Check your Dashboard</strong>
+</p>
+<p>
+  If you have checked your logs and everything seems to be working fine in your
+  app or website it is time to check your dashboard to see if you are connected
+  to your server. You can simply open User Profiles in your Dashboard to see if
+  your app/website was able to connect and recognized as a user in your Countly
+  server. If it is you are good to go.
+</p>
+<p>
+  But incase you were not able to see your app/website in the User Profiles you
+  should check the Request Logs under Utilities segment to verify if you are connected
+  to the correct Dashboard application. If you can not see any request to your
+  application then you should verify if you have put the correct server url and
+  'app_key' into your Countly integration.
+</p>
