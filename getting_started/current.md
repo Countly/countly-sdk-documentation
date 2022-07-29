@@ -331,11 +331,11 @@
   as a user in your Countly server. If it is you are good to go.
 </p>
 <p>
-  In case it seems like some data is not being recorded you would check the Request
-  Logs under "Utilities" section. Here you can make sure that data is sent to the
-  correct Dashboard application, and you can double-check that there are no issues
-  with the requests. Sometimes requests are rejected if there are problems with
-  the checksum and sometimes requests are dropped if there filtering rules set
-  to do that. Sometimes filtering rules are targetting more things than planned
+  In case it seems like some data is not being recorded you would check the 'Request
+  Logs' under 'Utilities' section. Here you can make sure that data is sent to
+  the correct Dashboard application, and you can double-check that there are no
+  issues with the requests. Sometimes requests are rejected if there are problems
+  with the checksum and sometimes requests are dropped if there filtering rules
+  set to do that. Sometimes filtering rules are targetting more things than planned
   by accident.&nbsp;
 </p>
