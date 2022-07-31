@@ -302,6 +302,11 @@
   an outside synchronization mechanism will need to be used.
 </p>
 <p>
+  For additional integration details, you would also have a look at
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#watchos-integration" target="_self">this</a>
+  section.
+</p>
+<p>
   <strong>Notes for native Android integration</strong>
 </p>
 <p>
