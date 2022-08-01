@@ -385,6 +385,44 @@
   set to do that. Sometimes filtering rules are targetting more things than planned
   by accident.&nbsp;
 </p>
+<h1>
+  How long does it take for my data to show up on the dashboard?
+</h1>
+<p>
+  When you are checking your Countly Dashboard and sending events from your app
+  or website, you might realize that sometimes there is a delay for the data to
+  show up there. This is an expected behavior stemming from the internal logic
+  of the Countly SDKs and the potential server side calculations.
+</p>
+<p>
+  <strong>SDK Side Processes</strong>
+</p>
+<p>
+  In some cases, there might just be a connection issue. Either the user is offline
+  or unable to reach your server (due to server maintanance or other issues). Thus
+  they would not be able to send data to the server. If during this loss of connection
+  the SDK is not able to perform any network activity, it will wait for a while
+  before reattemping the upload of recorded information. By default, this delay
+  is 60 seconds (can be changed during init) and is tied to the session update
+  tick interval.
+</p>
+<p>
+  The second aspect that can influence this is the event queue. Before we sent
+  the recorded events to the server, we try to cache them to optimise the networking.
+  They are cached until their amount exceeds the threshold (by default 100, but
+  can be configured), or the session update tick happens, or some other internal
+  trigger happens.
+</p>
+<p>
+  <strong>Server Side Processes</strong>
+</p>
+<p>
+  In addition to this, there can be server side calculations that can add an additional
+  delay. Depending on where you are expecting the changes to show up, the types
+  and the length of the calculations involved would differ. For example, a cohort
+  can take minutes up to hours to process before showing up on your dashboard.
+  But most data would show up within seconds after reaching your Countly Server.
+</p>
 <h1>Is my SDK version compatible with my server?</h1>
 <p>
   If you have checked your Countly server version and your SDK version you might
