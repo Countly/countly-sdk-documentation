@@ -390,43 +390,38 @@
 </h1>
 <p>
   When you are checking your Countly Dashboard and sending events from your app
-  or website at the same time, you might realize that there is a delay in the data
-  that shows up in your screen. This is an expected behavior stemming from the
-  internal logic of the Countly SDKs due to server side calculations and the client
-  side queue management.
+  or website, you might realize that sometimes there is a delay for the data to
+  show up there. This is an expected behavior stemming from the internal logic
+  of the Countly SDKs and the potential server side calculations.
 </p>
 <p>
-  <strong>Client Side Processes</strong>
+  <strong>SDK Side Processes</strong>
 </p>
 <p>
-  In some cases, users might be offline, thus they are not able to make requests
-  to the server. In other cases, the server may be down or in maintenance, thus
-  unable to accept requests. To mitigate the loss of data that can occur from these
-  instances Countly SDKs stores each request in a FIFO (First-In-First-Out) queue
-  before sending them over to the server. Then periodictly the SDKs would try to
-  send these batched up requests to the server one by one. If it fails to connect
-  to the server and get a successful response it would try again and again until
-  it can deliver the request successfully and, only then, would erase the request
-  from the queue.
+  In some cases, there might just be a connection issue. Either the user is offline
+  or unable to reach your server (due to server maintanance or other issues). Thus
+  they would not be able to send data to the server. If during this loss of connection
+  the SDK is not able to perform any network activity, it will wait for a while
+  before reattemping the upload of recorded information. By default, this delay
+  is 60 seconds (can be changed during init) and is tied to the session update
+  tick interval.
 </p>
 <p>
-  So to not overflow the servers with requests by sending them over whenever they
-  come to existence, the SDKs would contact the server periodically by batching
-  them and sending them together. This time period is every 60 seconds by default
-  and is configurable during the initialization. Any event that can happen before
-  this periodic connection attempt to the server would be queued and wait its turn
-  to come at next connection attempt to the server.
+  The second aspect that can influence this is the event queue. Before we sent
+  the recorded events to the server, we try to cache them to optimise the networking.
+  They are cached until their amount exceeds the threshold (by default 100, but
+  can be configured), or the session update tick happens, or some other internal
+  trigger happens.
 </p>
 <p>
   <strong>Server Side Processes</strong>
 </p>
 <p>
-  While this periodic server connection cycle would explain most of the delay you
-  would see for any value to show up on your Dashboard, in addition to this, there
-  can be server side calculations that can add to this duration too. For example
-  depending on the complexity of your request and the amount of data you have,
-  a cohort can take minutes up to hours to process before showing up on your dashboard.
-  But most data would show up within seconds after reaching to your Countly Server.
+  In addition to this, there can be server side calculations that can add an additional
+  delay. Depending on where you are expecting the changes to show up, the types
+  and the length of the calculations involved would differ. For example, a cohort
+  can take minutes up to hours to process before showing up on your dashboard.
+  But most data would show up within seconds after reaching your Countly Server.
 </p>
 <h1>Is my SDK version compatible with my server?</h1>
 <p>
