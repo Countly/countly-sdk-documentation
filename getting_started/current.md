@@ -388,20 +388,15 @@
 <h1>Is my SDK version compatible with my server?</h1>
 <p>
   If you have checked your Countly server version and your SDK version you might
-  have noticed that they do not match. This stems from the differences in their
-  development cycles and their reach in general. Countly servers, by being used
-  by all SDKs has a bigger reach and so in general updated more frequently than,
-  lets say, C++ SDK, which is a niche SDK with less users and so reach. This might
-  lead you to see that your server version is higher than your SDK version more
-  often than now. Normally this is not a problem for using the core functionalities
-  of your SDK and the server as they are always engineered keeping backward compatibility
-  in mind.
+  have noticed that they most likely do not match. Due to the way our development
+  is structured, our Countly servers releases happen more often than any single
+  SDK. Usually this will lead you to see that your server version is higher than
+  your SDK version, and that is fine.
 </p>
 <p>
-  However some breaking changes in UI, new functionalities and security fixes might
-  be unavailable to you if you are intentionally using an older server or SDK version.
-  So because of that we always recommend you to use the latest version that is
-  available both for the Countly server and the SDKs. You can reach the latest
-  release information on our servers and the SDKs from their corresponding repos
-  <a href="https://github.com/Countly">here</a>.
+  Our guidelines are that the major version of your server should be the same or
+  higher than the major version of the SDK that you are using. As our versioning
+  scheme for our server releases and SDK's have 3 numbers separated by dots, somehing
+  like "22.02.3". The first two numbers is what we are calling the major version
+  and those are the ones that you should be paying attention to ("22.02.X").&nbsp;
 </p>
