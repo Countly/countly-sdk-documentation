@@ -282,3 +282,46 @@
     proxy recording.
   </li>
 </ol>
+<h1>
+  How long does it take for my data to show up on the dashboard?
+</h1>
+<p>
+  When you are checking your Countly Dashboard and sending events from your app
+  or website at the same time, you might realize that there is a delay in the data
+  that shows up in your screen. This is an expected behavior stemming from the
+  internal logic of the Countly SDKs due to server side calculations and the client
+  side queue management.
+</p>
+<p>
+  <strong>Client Side Processes</strong>
+</p>
+<p>
+  In some cases, users might be offline, thus they are not able to make requests
+  to the server. In other cases, the server may be down or in maintenance, thus
+  unable to accept requests. To mitigate the loss of data that can occur from these
+  instances Countly SDKs stores each request in a FIFO (First-In-First-Out) queue
+  before sending them over to the server. Then periodictly the SDKs would try to
+  send these batched up requests to the server one by one. If it fails to connect
+  to the server and get a successful response it would try again and again until
+  it can deliver the request successfully and, only then, would erase the request
+  from the queue.
+</p>
+<p>
+  So to not overflow the servers with requests by sending them over whenever they
+  come to existence, the SDKs would contact the server periodically by batching
+  them and sending them together. This time period is every 60 seconds by default
+  and is configurable during the initialization. Any event that can happen before
+  this periodic connection attempt to the server would be queued and wait its turn
+  to come at next connection attempt to the server.
+</p>
+<p>
+  <strong>Server Side Processes</strong>
+</p>
+<p>
+  While this periodic server connection cycle would explain most of the delay you
+  would see for any value to show up on your Dashboard, in addition to this, there
+  can be server side calculations that can add to this duration too. For example
+  depending on the complexity of your request and the amount of data you have,
+  a cohort can take minutes up to hours to process before showing up on your dashboard.
+  But most data would show up within seconds after reaching to your Countly Server.
+</p>
