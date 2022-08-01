@@ -187,7 +187,7 @@
   <strong>Acquiring the application key</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
+  <span style="font-weight: 400;">Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in Countly and accessing it in its application management screen.</span>
 </p>
 <p>
   <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
@@ -196,7 +196,7 @@
   <strong>Acquiring the server URL</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,<span>&nbsp;</span><code>https://us-try.count.ly</code><span>&nbsp;</span>or<span>&nbsp;</span><code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
+  <span style="font-weight: 400;">If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,<span>&nbsp;</span><code>https://us-try.count.ly</code><span>&nbsp;</span>or<span>&nbsp;</span><code>https://asia-try.count.ly</code> It is basically the domain from which you are accessing your trial server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as </span><a href="https://example.com"><span style="font-weight: 400;">https://example.com</span></a><span style="font-weight: 400;">&nbsp;or&nbsp;</span><a href="https://ip/"><span style="font-weight: 400;">https://IP</span></a><span style="font-weight: 400;">&nbsp;(if SSL has been set up).</span>
@@ -246,7 +246,7 @@
 <h2>iOS</h2>
 <pre class="c-mrkdwn__pre" data-stringify-type="pre">public static void login()<br> &nbsp;<wbr> &nbsp;<wbr>{<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>DeviceId.Type type = Countly.sharedInstance().getDeviceIDType();<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>if(type.equals(DeviceId.Type.DEVELOPER_SUPPLIED))<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithoutMerge(DeviceId.Type.DEVELOPER_SUPPLIED,<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>else<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithMerge(<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr>}</pre>
 <h1>
-  Using Countly SDK's with iOS and Android widgets and watches
+  Using the Countly SDK's with iOS and Android widgets and watches
 </h1>
 <p>
   With mobile devices, there are 3 different modalities that a user can interact
@@ -325,16 +325,16 @@
 <p>
   If you have a Flutter app, there doesn't seem to be an easy way to integrate
   other modalities. To achieve that you would need to create them using the native
-  platform langauges and integrate the native Countly SDK's. In that case, the
+  platform languages and integrate the native Countly SDK's. In that case, the
   recommendations from the previous sections would apply.
 </p>
 <h1>How to validate your Countly integration?</h1>
 <p>
-  After you have integrated Countly SDK into your app or website, to the best of
-  your ability, you should normally verify your integration by checking if everything
-  is working as expected, both on your dashboard and your app/website. To have
-  the most optimized verification process we recommend you to go through the following
-  steps.
+  After you have integrated the Countly SDK into your app or website, to the best
+  of your ability, you should normally verify your integration by checking if everything
+  is working as expected, both on your Countly server and your app/website. To
+  have the most optimized verification process we recommend you to go through the
+  following steps.
 </p>
 <p>
   <strong>Make sure you have the correct configuration</strong>
@@ -344,9 +344,9 @@
   are entered correctly. For more information on making sure that you are using
   your correct 'app_key' and server url, you can check out the following section
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
-  If those values seem correct, you would want to verify that your dashboard is
-  receiving data and that in itself should be enough to verify that those 2 fields
-  are correct.
+  If those values seem correct, you would want to verify that your Countly server
+  is receiving data and that in itself should be enough to verify that those 2
+  fields are correct.
 </p>
 <p>
   <strong>Checking SDK logs</strong>
@@ -367,48 +367,46 @@
   location of that would change depending on the platform and SDK.
 </p>
 <p>
-  <strong>Check your Dashboard</strong>
+  <strong>Check your Countly server</strong>
 </p>
 <p>
   If you have checked your SDK logs and everything seems to be working fine in
-  your app or website it is time to check your dashboard if the planned data is
-  recorded as expected. As a simple test, you can simply open User Profiles in
-  your Dashboard to see if your app/website was able to connect and recognized
-  as a user in your Countly server. If it is you are good to go.
+  your app or website it is time to check Countly if the planned data is recorded
+  as expected. As a simple test, you can simply open User Profiles in Countly to
+  see if your app/website was able to connect and recognized as a user in your
+  Countly server. If it is you are good to go.
 </p>
 <p>
   In case it seems like some data is not being recorded you would check the 'Request
-  Logs' under 'Utilities' section. Here you can make sure that data is sent to
-  the correct Dashboard application, and you can double-check that there are no
+  Logs' under the 'Utilities' section. Here you can make sure that data is sent
+  to the correct Countly application, and you can double-check that there are no
   issues with the requests. Sometimes requests are rejected if there are problems
   with the checksum and sometimes requests are dropped if there filtering rules
   set to do that. Sometimes filtering rules are targetting more things than planned
   by accident.&nbsp;
 </p>
-<h1>
-  How long does it take for my data to show up on the dashboard?
-</h1>
+<h1>How long does it take for my data to show up on Countly?</h1>
 <p>
-  When you are checking your Countly Dashboard and sending events from your app
-  or website, you might realize that sometimes there is a delay for the data to
-  show up there. This is an expected behavior stemming from the internal logic
-  of the Countly SDKs and the potential server side calculations.
+  When you are checking Countly and sending events from your app or website, you
+  might realize that sometimes there is a delay for the data to show up there.
+  This is an expected behavior stemming from the internal logic of the Countly
+  SDKs and the potential server-side calculations.
 </p>
 <p>
   <strong>SDK Side Processes</strong>
 </p>
 <p>
   In some cases, there might just be a connection issue. Either the user is offline
-  or unable to reach your server (due to server maintanance or other issues). Thus
+  or unable to reach your server (due to server maintenance or other issues). Thus
   they would not be able to send data to the server. If during this loss of connection
   the SDK is not able to perform any network activity, it will wait for a while
-  before reattemping the upload of recorded information. By default, this delay
+  before reattempting the upload of recorded information. By default, this delay
   is 60 seconds (can be changed during init) and is tied to the session update
   tick interval.
 </p>
 <p>
   The second aspect that can influence this is the event queue. Before we sent
-  the recorded events to the server, we try to cache them to optimise the networking.
+  the recorded events to the server, we try to cache them to optimize the networking.
   They are cached until their amount exceeds the threshold (by default 100, but
   can be configured), or the session update tick happens, or some other internal
   trigger happens.
@@ -417,24 +415,24 @@
   <strong>Server Side Processes</strong>
 </p>
 <p>
-  In addition to this, there can be server side calculations that can add an additional
+  In addition to this, there can be server-side calculations that can add additional
   delay. Depending on where you are expecting the changes to show up, the types
   and the length of the calculations involved would differ. For example, a cohort
-  can take minutes up to hours to process before showing up on your dashboard.
-  But most data would show up within seconds after reaching your Countly Server.
+  can take minutes up to hours to process before showing up on Countly. But most
+  data would show up within seconds after reaching your Countly Server.
 </p>
 <h1>Is my SDK version compatible with my server?</h1>
 <p>
   If you have checked your Countly server version and your SDK version you might
   have noticed that they most likely do not match. Due to the way our development
-  is structured, our Countly servers releases happen more often than any single
-  SDK. Usually this will lead you to see that your server version is higher than
+  is structured, our Countly server releases happen more often than any single
+  SDK. Usually, this will lead you to see that your server version is higher than
   your SDK version, and that is fine.
 </p>
 <p>
   Our guidelines are that the major version of your server should be the same or
   higher than the major version of the SDK that you are using. As our versioning
-  scheme for our server releases and SDK's have 3 numbers separated by dots, somehing
-  like "22.02.3". The first two numbers is what we are calling the major version
+  scheme for our server releases and SDKs has 3 numbers separated by dots, something
+  like "22.02.3". The first two numbers are what we are calling the major version
   and those are the ones that you should be paying attention to ("22.02.X").&nbsp;
 </p>
