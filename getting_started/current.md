@@ -385,3 +385,18 @@
   set to do that. Sometimes filtering rules are targetting more things than planned
   by accident.&nbsp;
 </p>
+<h1>Is my SDK version compatible with my server?</h1>
+<p>
+  If you have checked your Countly server version and your SDK version you might
+  have noticed that they most likely do not match. Due to the way our development
+  is structured, our Countly servers releases happen more often than any single
+  SDK. Usually this will lead you to see that your server version is higher than
+  your SDK version, and that is fine.
+</p>
+<p>
+  Our guidelines are that the major version of your server should be the same or
+  higher than the major version of the SDK that you are using. As our versioning
+  scheme for our server releases and SDK's have 3 numbers separated by dots, somehing
+  like "22.02.3". The first two numbers is what we are calling the major version
+  and those are the ones that you should be paying attention to ("22.02.X").&nbsp;
+</p>
