@@ -251,79 +251,82 @@
 <p>
   With mobile devices, there are 3 different modalities that a user can interact
   with: phone app, phone widget, and watch app. When designing a product that spans
-  all three worlds, the goal is usually to track the users lifecycle across all
+  all three worlds, the goal is usually to track the user's lifecycle across all
   of them.
 </p>
 <p>
   To perform this cross-modality tracking, care must be given that tracking is
   performed with the same device ID across all of them. If the device ID, to which
   the event or session is attributed, would not be the same across all devices
-  then the same user would be counted as a separate person on one of the devices.
+  and modalities then the same user would be counted as a separate person on one
+  of them.
 </p>
 <p>
-  This also means that if the users device ID would change, this change needs to
-  be synchronized across all modalities/apps.
+  This also means that if the user's device ID would change, this change needs
+  to be synchronized across all modalities/apps.
 </p>
 <p>This can be achieved in 2 general approaches:</p>
 <ol>
   <li>
     Performing data recording at each location separately - each modality integrates,
     configures, and initializes the Countly SDK separately. Device ID synchronization
-    needs to be performed manually across all modalities. Alternatively, every
-    modality needs a way to create the same device ID without cross-synchronization.
+    needs to be performed manually across all modalities. This would be accomplished
+    either by using some platform-provided method to perform direct communication
+    or using an outside device (for example, a server) to perform a centralized
+    exchange. Alternatively, every modality needs a way to create the same device
+    ID without direct cross-synchronization.
   </li>
   <li>
     Performing data recording at a central location and proxying data recording
     from each non-app modality - eliminates the need for synchronization as there
     is only one instance of the SDK initialized and configured. Device ID changes
     are immediately taken into account when they happen. Since cross-device recording
-    is centralized, views and sessions need to be recorded manually. Another
-    potential issue is that sometimes the main app might be out of reach for
-    proxy recording.
+    is centralized, views and sessions need to be recorded manually. The main
+    issue with this approach is that there will be times when the main app might
+    be out of reach for proxy recording or might not be running.
   </li>
 </ol>
-<h1>
-  How long does it take for my data to show up on the dashboard?
-</h1>
 <p>
-  When you are checking your Countly Dashboard and sending events from your app
-  or website at the same time, you might realize that there is a delay in the data
-  that shows up in your screen. This is an expected behavior stemming from the
-  internal logic of the Countly SDKs due to server side calculations and the client
-  side queue management.
+  To differentiate from which modality the event came from, you can use a custom
+  segmentation value that shows that. Every unique value would indicate a separate
+  modality.
 </p>
 <p>
-  <strong>Client Side Processes</strong>
+  <strong>Notes for native iOS integration</strong>
 </p>
 <p>
-  In some cases, users might be offline, thus they are not able to make requests
-  to the server. In other cases, the server may be down or in maintenance, thus
-  unable to accept requests. To mitigate the loss of data that can occur from these
-  instances Countly SDKs stores each request in a FIFO (First-In-First-Out) queue
-  before sending them over to the server. Then periodictly the SDKs would try to
-  send these batched up requests to the server one by one. If it fails to connect
-  to the server and get a successful response it would try again and again until
-  it can deliver the request successfully and, only then, would erase the request
-  from the queue.
+  The general recommendation is to have Countly integrated into each separate modality
+  as that seems to present the least amount of issues. If the modalities that are
+  used are from the same developer account then there should be an internal communication
+  channel available to them. If they are not on the same developer account then
+  an outside synchronization mechanism will need to be used.
 </p>
 <p>
-  So to not overflow the servers with requests by sending them over whenever they
-  come to existence, the SDKs would contact the server periodically by batching
-  them and sending them together. This time period is every 60 seconds by default
-  and is configurable during the initialization. Any event that can happen before
-  this periodic connection attempt to the server would be queued and wait its turn
-  to come at next connection attempt to the server.
+  For additional integration details, you would also have a look at
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#watchos-integration" target="_self">this</a>
+  section.
 </p>
 <p>
-  <strong>Server Side Processes</strong>
+  <strong>Notes for native Android integration</strong>
 </p>
 <p>
-  While this periodic server connection cycle would explain most of the delay you
-  would see for any value to show up on your Dashboard, in addition to this, there
-  can be server side calculations that can add to this duration too. For example
-  depending on the complexity of your request and the amount of data you have,
-  a cohort can take minutes up to hours to process before showing up on your dashboard.
-  But most data would show up within seconds after reaching to your Countly Server.
+  Due to the way the SDK is currently designed, integrating the SDK in a widget
+  will cause crashes. Therefore the recommendation is to proxy the tracking requests
+  to the host application. Shared preferences could potentially be used to achieve
+  this.
+</p>
+<p>
+  The SDK would be directly integrated with the watch modality and then synchronization
+  would be done with shared preferences.
+</p>
+<p>
+  <strong>Notes for Flutter integration</strong>
+</p>
+<p>
+  If you have a Flutter app, there doesn't seem to be an easy way to integrate
+  other modalities. To achieve that you would need to create them using the native
+  platform langauges and integrate the native Countly SDK's. In that case, the
+  recommendations from the previous sections would apply.
 </p>
 <h1>How to validate your Countly integration?</h1>
 <p>
@@ -381,4 +384,47 @@
   with the checksum and sometimes requests are dropped if there filtering rules
   set to do that. Sometimes filtering rules are targetting more things than planned
   by accident.&nbsp;
+</p>
+<h1>
+  How long does it take for my data to show up on the dashboard?
+</h1>
+<p>
+  When you are checking your Countly Dashboard and sending events from your app
+  or website at the same time, you might realize that there is a delay in the data
+  that shows up in your screen. This is an expected behavior stemming from the
+  internal logic of the Countly SDKs due to server side calculations and the client
+  side queue management.
+</p>
+<p>
+  <strong>Client Side Processes</strong>
+</p>
+<p>
+  In some cases, users might be offline, thus they are not able to make requests
+  to the server. In other cases, the server may be down or in maintenance, thus
+  unable to accept requests. To mitigate the loss of data that can occur from these
+  instances Countly SDKs stores each request in a FIFO (First-In-First-Out) queue
+  before sending them over to the server. Then periodictly the SDKs would try to
+  send these batched up requests to the server one by one. If it fails to connect
+  to the server and get a successful response it would try again and again until
+  it can deliver the request successfully and, only then, would erase the request
+  from the queue.
+</p>
+<p>
+  So to not overflow the servers with requests by sending them over whenever they
+  come to existence, the SDKs would contact the server periodically by batching
+  them and sending them together. This time period is every 60 seconds by default
+  and is configurable during the initialization. Any event that can happen before
+  this periodic connection attempt to the server would be queued and wait its turn
+  to come at next connection attempt to the server.
+</p>
+<p>
+  <strong>Server Side Processes</strong>
+</p>
+<p>
+  While this periodic server connection cycle would explain most of the delay you
+  would see for any value to show up on your Dashboard, in addition to this, there
+  can be server side calculations that can add to this duration too. For example
+  depending on the complexity of your request and the amount of data you have,
+  a cohort can take minutes up to hours to process before showing up on your dashboard.
+  But most data would show up within seconds after reaching to your Countly Server.
 </p>
