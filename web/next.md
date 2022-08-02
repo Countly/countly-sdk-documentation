@@ -59,6 +59,14 @@
     </tr>
   </tbody>
 </table>
+<p>
+  If you want to get the Countly Web SDK codebase locally you can go to the
+  github repo
+  <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
+  it inside your project folder by executing the lines:
+</p>
+<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
+</code></pre>
 <h1>Adding the SDK to the Project</h1>
 <p>
   <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
