@@ -525,7 +525,6 @@ Countly.ip_address = "83.140.15.1";</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-</div>
 <h1>Crash Reporting</h1>
 <p>
   <span style="font-weight: 400;">Countly also provides a way for tracking JavaScript errors on your websites.</span>
