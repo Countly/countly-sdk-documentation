@@ -2,9 +2,7 @@
   <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 21.11.X</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
+  <strong>Older documentation</strong>
   <p>
     To access the documentation for version 20.11.X and older, click
     <a href="/hc/en-us/articles/4409196247065" target="_self" rel="undefined">here.</a>
