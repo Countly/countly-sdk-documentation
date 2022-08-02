@@ -67,6 +67,9 @@
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
 </code></pre>
+<p>
+  Additionally to see example integrations of Countly Web SDK within some popular front-end frameworks you can reach our AngularJS and ReactJS examples from <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a> and <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a> respectively.
+</p>
 <h1>Adding the SDK to the Project</h1>
 <p>
   <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
@@ -248,14 +251,16 @@ function clickEvent(ob){
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">//during initialization
-    Countly.debug = true;</code></pre>
+    <pre><code class="html">
+//during initialization
+Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">Countly.init({
-    debug:true,
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
+    <pre><code class="html">
+Countly.init({
+debug:true,
+app_key:"YOUR_APP_KEY",
+url: "https://try.count.ly",
 });</code></pre>
   </div>
 </div>
