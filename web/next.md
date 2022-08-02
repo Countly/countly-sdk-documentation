@@ -256,11 +256,10 @@ function clickEvent(ob){
 Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">
-Countly.init({
-debug:true,
-app_key:"YOUR_APP_KEY",
-url: "https://try.count.ly",
+    <pre><code class="html">Countly.init({
+    debug:true,
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
 });</code></pre>
   </div>
 </div>
