@@ -90,6 +90,13 @@ if(!await Countly.isInitialized()) {
   commands in the rest of this document to send additional data and metrics to
   your server.
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>Enable logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
