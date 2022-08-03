@@ -136,7 +136,7 @@ ionic cordova build ios</code></pre>
 <pre><code class="javascript">// initialize
 Countly.isInitialized().then((result) =&gt; {
             if(result  != "true") {
-                Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+                Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
                     Countly.start();
                 },(err) =&gt; {
                     console.error(err);
@@ -1058,7 +1058,7 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
   <code>init</code>.
 </p>
 <pre><code class="javascript">// Example of appLoadingFinished
-Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
   Countly.appLoadingFinished();
 },(err) =&gt; {
   onsole.error(err);
