@@ -3,9 +3,6 @@
   and it applies to version 21.11.0
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>
@@ -236,9 +233,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   </li>
 </ul>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to the Countly server via SDK or API should be in UTF-8.
   </p>

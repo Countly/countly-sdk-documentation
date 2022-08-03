@@ -3,9 +3,6 @@
   and it applies to version 20.11.X
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 19.09-sdk2-rc, click
     <a href="/hc/en-us/articles/4404187501465" target="_self" rel="undefined">here.</a>
@@ -411,9 +408,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <h1 id="other-features" class="anchor-heading" tabindex="-1">Other features</h1>
 <h2 id="backend-mode" class="anchor-heading" tabindex="-1">Backend Mode</h2>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Minimum Countly SDK Version</strong></span>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     The minimum SDK version requirement for this feature is 20.11.2.
   </p>
