@@ -3,7 +3,6 @@
   and it applies to version 21.11.0
 </p>
 <div class="callout callout--info">
-  <strong>Older documentation</strong>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>

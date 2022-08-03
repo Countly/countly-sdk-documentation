@@ -3,7 +3,6 @@
   device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
-  <strong>Older documentation</strong>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.

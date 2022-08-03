@@ -5,7 +5,6 @@
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <strong>Older documentation</strong>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>

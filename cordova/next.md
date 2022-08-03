@@ -5,7 +5,6 @@
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <strong>Older documentation</strong>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/7019114935961" target="_self" rel="undefined">here.</a>

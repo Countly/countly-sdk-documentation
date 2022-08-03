@@ -4,7 +4,6 @@
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">Github</a>.&nbsp;
 </p>
 <div class="callout callout--info">
-  <strong>Older documentation</strong>
   <p>
     To access the documentation for version 21.11.0 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_self" rel="undefined">here.</a>
