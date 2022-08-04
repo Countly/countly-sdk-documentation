@@ -28,7 +28,7 @@
 <p>
   If you want to get the Countly NodeJS SDK codebase locally you can go to the
   github repo
-  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a> and download
+  <a href="https://github.com/Countly/countly-sdk-nodejs">here</a> and download
   it inside your project folder by executing the lines:
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
