@@ -3,9 +3,6 @@
   device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
@@ -31,7 +28,7 @@
 <p>
   If you want to get the Countly NodeJS SDK codebase locally you can go to the
   github repo
-  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a> and download
+  <a href="https://github.com/Countly/countly-sdk-nodejs">here</a> and download
   it inside your project folder by executing the lines:
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
@@ -192,9 +189,7 @@ catch(ex){
   }
 });</code></pre>
 <div class="callout callout--warning">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Data passed should be in UTF-8</strong></span>
-  </p>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>

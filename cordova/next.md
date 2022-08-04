@@ -5,9 +5,6 @@
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/7019114935961" target="_self" rel="undefined">here.</a>
@@ -139,7 +136,7 @@ ionic cordova build ios</code></pre>
 <pre><code class="javascript">// initialize
 Countly.isInitialized().then((result) =&gt; {
             if(result  != "true") {
-                Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+                Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
                     Countly.start();
                 },(err) =&gt; {
                     console.error(err);
@@ -353,9 +350,7 @@ Countly.addCrashLog("My crash log from JavaScript");
   </li>
 </ul>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+    <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
@@ -658,9 +653,7 @@ Countly.getCurrentDeviceId(function(deviceId){
   <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     This COUNTLY_EXCLUDE_PUSHNOTIFICATIONS is only supported by the minimum SDK
     version 20.11.3.
@@ -1044,9 +1037,7 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
 </p>
 <h1>Application Performance Monitoring</h1>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     This feature is only supported by the minimum SDK version 20.4.0.
   </p>
@@ -1074,7 +1065,7 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
   <code>init</code>.
 </p>
 <pre><code class="javascript">// Example of appLoadingFinished
-Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
   Countly.appLoadingFinished();
 },(err) =&gt; {
   onsole.error(err);

@@ -5,9 +5,6 @@
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>
@@ -301,9 +298,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   </li>
 </ul>
 <div class="callout callout--warning">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
@@ -537,9 +532,7 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
-  </p>
+ <strong>Supported Platforms</strong>
   <p>
     Currently custom sound feature is only available for Android
   </p>
@@ -1255,9 +1248,7 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     This feature is only supported by the minimum SDK version 20.11.7.
   </p>
