@@ -187,7 +187,7 @@
   <strong>Acquiring the application key</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">Also called "appKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in Countly and accessing it in its application management screen.</span>
+  <span style="font-weight: 400;">Also referred to as "appKey" or "app_key" as shorthand, the application key, is used to identify, for which application, the information that the SDK has gathered, is tracked. You receive this value by creating a new application in Countly and accessing it in its application management screen.</span>
 </p>
 <p>
   <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
@@ -196,10 +196,7 @@
   <strong>Acquiring the server URL</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,<span>&nbsp;</span><code>https://us-try.count.ly</code><span>&nbsp;</span>or<span>&nbsp;</span><code>https://asia-try.count.ly</code> It is basically the domain from which you are accessing your trial server.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as </span><a href="https://example.com"><span style="font-weight: 400;">https://example.com</span></a><span style="font-weight: 400;">&nbsp;or&nbsp;</span><a href="https://ip/"><span style="font-weight: 400;">https://IP</span></a><span style="font-weight: 400;">&nbsp;(if SSL has been set up).</span>
+  <span style="font-weight: 400;">This is basically the domain from which you are accessing your Countly server. </span><span style="font-weight: 400;">During your SDK initialization you'll see a value such as 'url', 'server url' or something similar that you need to fill in. You have to fill that value with the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span><span style="font-weight: 400;"><a href="https://192.168.1.1">https://192.168.1.1</a> , if the SSL configuration is complete, or <a href="http://192.168.1.1" target="_self" rel="undefined">http://192.168.1.1</a> if there is no SSL configuration.</span><span style="font-weight: 400;"> If there is a server name associated with your IP, that server name may also be used instead (e.g. <a href="https://countly.mycompany.com)." target="_self" rel="undefined">https://countly.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
 </p>
 <h1>Handling login/logout in your app</h1>
 <p>
