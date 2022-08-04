@@ -68,7 +68,7 @@
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
 </code></pre>
 <p>
-  Additionally to see example integrations of Countly Web SDK within some popular front-end frameworks you can reach our AngularJS and ReactJS examples from <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a> and <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a> respectively.
+  Additionally to see example integrations of Countly Web SDK within some popular front-end frameworks, you can reach our AngularJS and ReactJS examples from <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a> and <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a> respectively.
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
