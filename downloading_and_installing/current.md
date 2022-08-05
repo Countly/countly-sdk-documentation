@@ -164,120 +164,279 @@
 </div>
 <h1>Feature comparison</h1>
 <p>This is a feature comparison for officially supported SDKs.</p>
-<table style="width: 821px;">
+<table style="height: 252px; width: 601px;">
   <tbody>
-    <tr>
-      <th style="width: 146px;">SDK</th>
-      <th style="width: 72px;">Analytics</th>
-      <th style="width: 100px;">Push Notifications</th>
-      <th style="width: 88px;">User Profiles</th>
-      <th style="width: 104px;">Crash Reports</th>
-      <th style="width: 92px;">A/B Testing</th>
-      <th style="width: 115px;">Performance Monitoring</th>
-      <th style="width: 79px;">Feedback widgets</th>
+    <tr style="height: 44px;">
+      <th style="width: 143.137px; height: 44px;">SDK</th>
+      <th class="wysiwyg-text-align-center" style="width: 71.8px; height: 44px;">Analytics</th>
+      <th class="wysiwyg-text-align-center" style="width: 99.975px; height: 44px;">Push Notifications</th>
+      <th class="wysiwyg-text-align-center" style="width: 59.925px; height: 44px;">User Profiles</th>
+      <th class="wysiwyg-text-align-center" style="width: 61.3px; height: 44px;">Crash Reports</th>
+      <th class="wysiwyg-text-align-center" style="width: 58.075px; height: 44px;">A/B Testing</th>
+      <th class="wysiwyg-text-align-center" style="width: 100.675px; height: 44px;">Performance Monitoring</th>
+      <th class="wysiwyg-text-align-center" style="width: 74.2625px; height: 44px;">Feedback widgets</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">iOS</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">Android</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">Cordova</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">Web</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">-</td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">Node.js</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">-</td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">-</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">React Native</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">Flutter</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">Windows&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 135.137px; height: 22px;">C++</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+    </tr>
+    <tr style="height: 10px;">
+      <td style="width: 135.137px; height: 10px;">Unity</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 10px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 10px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 10px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 10px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 10px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 10px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 10px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
     </tr>
     <tr>
-      <td style="width: 138px;">iOS</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">YES</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">YES</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">Android</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">YES</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">YES</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">PhoneGap/Cordova</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">YES</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">YES</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">Web</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">N/A</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">YES</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">Node.js</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">N/A</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">NO</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">React Native</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">YES</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">YES</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">Flutter</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">YES</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">YES</td>
-      <td style="width: 71px;">YES</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">Windows&nbsp;</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">NO</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">NO</td>
-      <td style="width: 107px;">NO</td>
-      <td style="width: 71px;">NO</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">C++</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">NO</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">NO</td>
-      <td style="width: 84px;">NO</td>
-      <td style="width: 107px;">NO</td>
-      <td style="width: 71px;">NO</td>
-    </tr>
-    <tr>
-      <td style="width: 138px;">Unity</td>
-      <td style="width: 64px;">YES</td>
-      <td style="width: 92px;">YES</td>
-      <td style="width: 80px;">YES</td>
-      <td style="width: 96px;">YES</td>
-      <td style="width: 84px;">YES</td>
-      <td style="width: 107px;">NO</td>
-      <td style="width: 71px;">NO</td>
+      <td style="width: 135.137px;">Java</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large"><span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span></span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 51.925px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 53.3px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.075px;">
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large"><span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span></span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 92.675px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.2625px;">
+        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+      </td>
     </tr>
   </tbody>
 </table>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h1>Community Supported SDKs</h1>
 <p>
