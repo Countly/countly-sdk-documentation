@@ -72,7 +72,7 @@
     </tr>
     <tr>
       <td>
-        <strong>PhoneGap &amp; Cordova SDK</strong> (JavaScript)
+        <strong>Cordova SDK</strong> (JavaScript)
         <em>with Icenium, MeteorJS, Ionic support</em>
       </td>
       <td>
@@ -111,7 +111,7 @@
         <strong>Windows Phone &amp; Windows SDK</strong> (C#)
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-windows">Click to get from Nuget</a>
+        <a href="https://github.com/Countly/countly-sdk-windows">Click to get</a>
       </td>
       <td>
         <a href="https://support.count.ly/hc/en-us/articles/360037754691-Windows" target="_self" rel="undefined">Click for documentation</a>
@@ -137,6 +137,17 @@
       </td>
       <td>
         <a href="https://resources.count.ly/docs/countly-sdk-for-unity">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Java SDK </strong>(Java)
+      </td>
+      <td>
+        <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener">Click to get</a>
+      </td>
+      <td>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813891-Java" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
   </tbody>
