@@ -294,7 +294,7 @@
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
-        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
@@ -390,7 +390,7 @@
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 10px;">
-        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 10px;">
         <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
