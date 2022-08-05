@@ -396,10 +396,6 @@
 </table>
 <p>&nbsp;</p>
 <h1>FAQ and Troubleshooting</h1>
-<h2>What is the hostname meant to write inside the SDK?</h2>
-<p>
-  <span style="font-weight: 400;">Inside the SDK, you'll see the API HOST directive that you need to fill in. This is the same as the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span><span style="font-weight: 400;"><a href="https://192.168.1.1">https://192.168.1.1</a> if the SSL configuration is complete, or <a href="http://192.168.1.1" target="_self" rel="undefined">http://192.168.1.1</a> if there is no SSL configuration.</span><span style="font-weight: 400;">&nbsp;If there is a server name associated with your IP, the server name may also be used&nbsp;(e.g.&nbsp;<a href="https://countly.mycompany.com)." target="_self" rel="undefined">https://countly.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
-</p>
 <h2>
   I integrated the SDK, but cannot see, or can only partially see, data on the
   dashboard
