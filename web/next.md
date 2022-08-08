@@ -107,7 +107,7 @@
   Here you would also need to provide your application key and server URL. For
   more information on how to acquire your application key (APP_KEY) and server
   URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
   Also if you are planning to use Application Performance Monitoring (APM) there
   would be additional steps necessary for you to follow. For more information on
   APM and its integration please check
