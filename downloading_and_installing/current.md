@@ -468,7 +468,7 @@
         <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-ios" target="_self" rel="undefined">Click to get</a>
       </td>
       <td style="width: 167.109px;">
-        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-ios" target="_self" rel="undefined">Click for documentation</a>
+        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-ios#readme" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -479,7 +479,7 @@
         <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-android" target="_self" rel="undefined">Click to get</a>
       </td>
       <td style="width: 167.109px;">
-        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-android" target="_self" rel="undefined">Click for documentation</a>
+        <a href="https://github.com/dieskim/countly-sdk-appcelerator-titanium-android#readme" target="_self" rel="undefined">Click for documentation</a>
       </td>
     </tr>
     <tr>

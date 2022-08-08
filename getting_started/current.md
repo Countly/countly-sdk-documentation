@@ -24,10 +24,10 @@
 </p>
 <p>
   Most Countly SDKs including,
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#device-id" target="_blank" rel="noopener">iOS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#device-id" target="_blank" rel="noopener">Android</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-#changing-a-device-id" target="_blank" rel="noopener">React Native</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#changing-a-device-id" target="_blank" rel="noopener">Flutter</a>,&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#changing-device-id" target="_blank" rel="noopener">Web</a>&nbsp;offer
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#changing-device-id" target="_blank" rel="noopener">iOS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#changing-device-id" target="_blank" rel="noopener">Android</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-#changing-device-id-with-and-without-merge" target="_blank" rel="noopener">React Native</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#changing-the-device-id" target="_blank" rel="noopener">Flutter</a>,&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#changing-device-id" target="_blank" rel="noopener">Web</a>&nbsp;offer
   a mechanism to change/update this default device id for cases where you already
   have a better identifier such as an email address or account id or you get this
   information at some point in user journey such as after user logs into your application.
@@ -59,9 +59,9 @@
   with a historical snapshot of default, reserved and custom user properties and
   will be available to be used in reporting and features such as
   <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
-  <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
+  <a href="/hc/en-us/articles/360037997052-Funnels" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>,
-  <a href="/hc/en-us/articles/900000812986" target="_blank" rel="noopener">Retention</a>
+  <a href="/hc/en-us/articles/900000812986" target="_blank" rel="noopener">User Retention</a>
   and
   <a href="/hc/en-us/articles/360037639931" target="_blank" rel="noopener">Formulas</a>.
 </p>
@@ -149,7 +149,7 @@
   the journeys were planned with a fastest, shortest or eco route types offered
   in the app. Furthermore, in plugins like
   <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
-  <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
+  <a href="/hc/en-us/articles/360037997052-Funnels" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>&nbsp;and
   <a href="/hc/en-us/articles/360037639931" target="_blank" rel="noopener">Formulas</a>
   these event segments will be available for use cases such as;
@@ -170,7 +170,7 @@
     are our eco friendly personas which we can target using
     <a href="/hc/en-us/articles/360037270492" target="_blank" rel="noopener">remote config</a>
     and
-    <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications#sending-automated-push-notifications" target="_blank" rel="noopener">automated push notifications</a>)
+    <a href="/hc/en-us/articles/360037270012-Push-notifications#h_01F1QMBY7YJEJPKEHRPNRZAVRY" target="_blank" rel="noopener">automated push notifications</a>)
   </li>
   <li>
     Construct 2 formulas in which you calculate average kilometers driven per
