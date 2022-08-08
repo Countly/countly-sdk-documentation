@@ -338,9 +338,7 @@
   for these cases of integration validation and also for debugging if you are seeing
   partial or no data at all on your server.
 </p>
-<p>
-  <h3>1. Check SDK logs</h3>
-</p>
+<h2>1. Check SDK logs</h2>
 <p>
   As part of the process of integration verification, you would want to enable
   logging in the SDK and have a look at the printed-out messages. If there would
@@ -365,9 +363,7 @@
 <p>
   <span style="font-weight: 400;">Also check if requests fail or are successfully sent to the server, because if they fail, maybe the server is not reachable from this specific network, or you made a mistake when providing the URL to the server.</span>
 </p>
-<p>
-  <h3>2. Check Request Logs</h3>
-</p>
+  <h2>2. Check Request Logs</h2>
 <p>
   Next you would want to verify that your Countly server is receiving data from
   <span style="font-weight: 400;"><code>Utilities &gt; Request Logs</code></span>.
@@ -376,18 +372,14 @@
 <p>
   <img src="/hc/article_attachments/9208398657433/2.png" alt="2.png">
 </p>
-<p>
-  <h3>3. Make sure you have the correct configuration</h3>
-</p>
+  <h2>3. Make sure you have the correct configuration</h2>
 <p>
   Here the most important thing is to verify if your 'app_key' and 'URL' values
   are entered correctly. For more information on making sure that you are using
   your correct 'app_key' and server URL, you can check out the following section
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
 </p>
-<p>
-  <h3>4. Check your Countly server</h3>
-</p>
+  <h2>4. Check your Countly server</h2>
 <p>
   If you have checked your SDK logs and everything seems to be working fine in
   your app or website it is time to check Countly if the planned data is recorded
@@ -405,18 +397,14 @@
   rules are targeting more things than planned by accident.&nbsp; For debugging
   those issues and others, keep reading.
 </p>
-<p>
-  <h3>5. Check the server for errors</h3>
-</p>
+  <h2>5. Check the server for errors</h2>
 <p>
   <span style="font-weight: 400;">Check <code>Management &gt; Logs &gt; Api Log</code></span><span style="font-weight: 400;"> for errors. Chances are if there is a problem/bug with a specific plugin processing information there would be new errors in the logs.</span>
 </p>
 <p>
   <span style="font-weight: 400;"><img src="/hc/article_attachments/9277142121497/mceclip0.png" alt="mceclip0.png"></span>
 </p>
-<p>
-  <h3>6. Check plugins</h3>
-</p>
+  <h2>6. Check plugins</h2>
 <p>
   Some plugins that might be necessary process data and provide functionalities
   you want might not be activated or you might have accidentally disabled them.
@@ -426,27 +414,21 @@
 <p>
   <strong><img src="/hc/article_attachments/9277537797401/mceclip1.png" alt="mceclip1.png"></strong>
 </p>
-<p>
-  <h3>7. Check Filtering rules</h3>
-</p>
+  <h2>7. Check Filtering rules</h2>
 <p>
   <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu&gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules that block events or any requests.</span>
 </p>
 <p>
   <img src="/hc/article_attachments/9279924847385/filt.png" alt="filt.png">
 </p>
-<p>
-  <h3>8. Check event limits</h3>
-</p>
+  <h2>8. Check event limits</h2>
 <p>
   <span style="font-weight: 400;">The event name limit may be exceeded (the limit is 100, by default), and may be adjusted under <code>Management &gt; Settings &gt; API &gt; Data Limits&gt; Max unique event key</code>.</span>
 </p>
 <p>
   <strong><img src="/hc/article_attachments/9280040279577/mceclip2.png" alt="mceclip2.png"></strong>
 </p>
-<p>
-  <h3>9. Check checksum</h3>
-</p>
+  <h2>9. Check checksum</h2>
 <p>
   Some
   <span>SDKs provides an option to send a checksum along the request data to prevent data breach by a middleman. If you have a set a salt for checksum in your SDK but did not set it at your server or typed it wrongly, and vise versa, you should check your salt value from <span style="font-weight: 400;"><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
@@ -454,9 +436,7 @@
 <p>
   <span><img src="/hc/article_attachments/9280412281497/salt.png" alt="salt.png"></span>
 </p>
-<p>
-  <h3>10. Check time zone</h3>
-</p>
+  <h2>10. Check time zone</h2>
 <p>
   <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
