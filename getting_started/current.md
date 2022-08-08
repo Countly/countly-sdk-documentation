@@ -331,7 +331,7 @@
 <h1>How to validate your Countly integration?</h1>
 <p>
   After you have integrated the Countly SDK into your app or website, to the best
-  of your ability, whether you see some data or not in you Countly server, you
+  of your ability, whether you see some data or not in your Countly server, you
   should normally verify your integration by checking if everything is working
   as expected, both on your Countly server and your app/website. To have the most
   optimized verification process we recommend you to go through the following steps
@@ -358,55 +358,55 @@
   <span style="font-weight: 400;"><img src="/hc/article_attachments/9208973048217/mceclip0.png" alt="mceclip0.png"></span>
 </p>
 <p>
-  <span style="font-weight: 400;">Check if requests are being created - this means, you need to check whether you are calling SDK methods to actually send information to the server and that the SDK has been implemented correctly.</span>
+  <span style="font-weight: 400;">Check if requests are being created - this means, you need to check whether you are calling SDK methods to send information to the server and that the SDK has been implemented correctly.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Also check if requests fail or are successfully sent to the server, because if they fail, maybe the server is not reachable from this specific network, or you made a mistake when providing the URL to the server.</span>
 </p>
-  <h2>2. Check Request Logs</h2>
+<h2>2. Check Request Logs</h2>
 <p>
-  Next you would want to verify that your Countly server is receiving data from
+  Next, you would want to verify that your Countly server is receiving data from
   <span style="font-weight: 400;"><code>Utilities &gt; Request Logs</code></span>.
-  <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set-up parameter tampering, etc.</span>
+  <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set up parameter tampering, etc.</span>
 </p>
 <p>
   <img src="/hc/article_attachments/9208398657433/2.png" alt="2.png">
 </p>
-  <h2>3. Make sure you have the correct configuration</h2>
+<h2>3. Make sure you have the correct configuration</h2>
 <p>
   Here the most important thing is to verify if your 'app_key' and 'URL' values
   are entered correctly. For more information on making sure that you are using
   your correct 'app_key' and server URL, you can check out the following section
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
 </p>
-  <h2>4. Check your Countly server</h2>
+<h2>4. Check your Countly server</h2>
 <p>
   If you have checked your SDK logs and everything seems to be working fine in
   your app or website it is time to check Countly if the planned data is recorded
   as expected. As a simple test, you can simply open User Profiles in Countly to
   see if your app/website was able to connect and recognized as a user in your
-  Countly server. If it is you are good to go and you can stop here in the list.
+  Countly server. If it is you are good to go and you can stop here on the list.
 </p>
 <p>
   <img src="/hc/article_attachments/9209504188057/mceclip1.png" alt="mceclip1.png">
 </p>
 <p>
   In case it seems like some data is not being recorded, it can be due to some
-  requests being rejected related to problems with the checksum or sometimes requests
+  requests being rejected related to problems with the checksum, or sometimes requests
   might be dropped if there are filtering rules set to do that. Sometimes filtering
   rules are targeting more things than planned by accident.&nbsp; For debugging
   those issues and others, keep reading.
 </p>
-  <h2>5. Check the server for errors</h2>
+<h2>5. Check the server for errors</h2>
 <p>
   <span style="font-weight: 400;">Check <code>Management &gt; Logs &gt; Api Log</code></span><span style="font-weight: 400;"> for errors. Chances are if there is a problem/bug with a specific plugin processing information there would be new errors in the logs.</span>
 </p>
 <p>
   <span style="font-weight: 400;"><img src="/hc/article_attachments/9277142121497/mceclip0.png" alt="mceclip0.png"></span>
 </p>
-  <h2>6. Check plugins</h2>
+<h2>6. Check plugins</h2>
 <p>
-  Some plugins that might be necessary process data and provide functionalities
+  Some plugins that might be necessary to process data and provide functionalities
   you want might not be activated or you might have accidentally disabled them.
   You can check your plugins' status from
   <span style="font-weight: 400;"><code>Management &gt; Feature Management<br></code></span>
@@ -414,29 +414,29 @@
 <p>
   <strong><img src="/hc/article_attachments/9277537797401/mceclip1.png" alt="mceclip1.png"></strong>
 </p>
-  <h2>7. Check Filtering rules</h2>
+<h2>7. Check Filtering rules</h2>
 <p>
-  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu&gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules that block events or any requests.</span>
+  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu &gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether any rules block events or any requests.</span>
 </p>
 <p>
   <img src="/hc/article_attachments/9279924847385/filt.png" alt="filt.png">
 </p>
-  <h2>8. Check event limits</h2>
+<h2>8. Check event limits</h2>
 <p>
-  <span style="font-weight: 400;">The event name limit may be exceeded (the limit is 100, by default), and may be adjusted under <code>Management &gt; Settings &gt; API &gt; Data Limits&gt; Max unique event key</code>.</span>
+  <span style="font-weight: 400;">The event name limit may be exceeded (the limit is 100, by default), and may be adjusted under <code>Management &gt; Settings &gt; API &gt; Data Limits &gt; Max unique event key</code>.</span>
 </p>
 <p>
   <strong><img src="/hc/article_attachments/9280040279577/mceclip2.png" alt="mceclip2.png"></strong>
 </p>
-  <h2>9. Check checksum</h2>
+<h2>9. Check checksum</h2>
 <p>
   Some
-  <span>SDKs provides an option to send a checksum along the request data to prevent data breach by a middleman. If you have a set a salt for checksum in your SDK but did not set it at your server or typed it wrongly, and vise versa, you should check your salt value from <span style="font-weight: 400;"><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
+  <span>SDKs provide an option to send a checksum along the request data to prevent data breaches by a man-in-the-middle attack. If you have set a salt for checksum in your SDK but did not set it at your server or typed it wrongly, and vice versa, you should check your salt value from <span style="font-weight: 400;"><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
 <p>
   <span><img src="/hc/article_attachments/9280412281497/salt.png" alt="salt.png"></span>
 </p>
-  <h2>10. Check time zone</h2>
+<h2>10. Check time zone</h2>
 <p>
   <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
