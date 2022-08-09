@@ -40,7 +40,7 @@
 </p>
 <p>
   For more information of what values can be sent to the server, look
-  <a href="https://api.count.ly/reference#section-additional-parameters">here</a>.
+  <a href="https://api.count.ly/reference/i#additional-parameters">here</a>.
 </p>
 <h2>Logging / debug mode</h2>
 <p>
@@ -179,7 +179,7 @@
   <span style="font-weight: 400;">The Countly server is a simple HTTP based REST API server and all SDK requests should be made to&nbsp;</span><strong>/i</strong><span style="font-weight: 400;">&nbsp;endpoint with two required parameters:&nbsp;</span><strong>app_key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>device_id</strong><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference#i"><span style="font-weight: 400;">/i endpoint Server API reference</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference/i"><span style="font-weight: 400;">/i endpoint Server API reference</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">There are some parameters that should be added to all requests even though they are not mandatory. Together with the required parameters they form the base request. Every request sent to the server should be formed from this base request. The parameters in this base request are: </span>
@@ -422,7 +422,7 @@ function getUniqueMsTimestamp(){
 </code></pre>
 <h1>Crash reporting</h1>
 <p>
-  <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
+  <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
 </p>
 <p>
   <span style="font-weight: 400;">In regard to crashes, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. You should also provide a way for users to log errors manually (for example, logging handled exceptions which are not fatal).</span>
@@ -458,7 +458,7 @@ function getUniqueMsTimestamp(){
   <span style="font-weight: 400;">An event must contain&nbsp;</span><strong>key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>count</strong><span style="font-weight: 400;">&nbsp;properties. If the count is not provided, it should default to&nbsp;1. Optionally, a user may also provide the&nbsp;</span><strong>sum</strong><span style="font-weight: 400;">&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property for recording some duration/period of time and&nbsp;</span><strong>segmentation</strong><span style="font-weight: 400;">&nbsp;as a map with keys and values for segmentation.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">More on event formatting may be found in the&nbsp;</span><a href="https://api.count.ly/reference#i%23section-events"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">More on event formatting may be found in the&nbsp;</span><a href="https://api.count.ly/reference/i#events"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Here are a few examples of events:</span>
@@ -567,7 +567,7 @@ function getUniqueMsTimestamp(){
 </p>
 <h1>Device metrics</h1>
 <p>
-  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference#i%23section-metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference/i#metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span style="font-weight: 400;">&nbsp;metric.</span>
@@ -681,7 +681,7 @@ function getUniqueMsTimestamp(){
   <li>Countly.end_session(int seconds)</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">Here is the documentation showing how you may&nbsp;</span><a href="https://api.count.ly/reference#i%23section-session"><span style="font-weight: 400;">report sessions through our API</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Here is the documentation showing how you may&nbsp;</span><a href="https://api.count.ly/reference/i#session"><span style="font-weight: 400;">report sessions through our API</span></a><span style="font-weight: 400;">.</span>
 </p>
 <h2>Session API</h2>
 <p>
@@ -690,7 +690,7 @@ function getUniqueMsTimestamp(){
 </p>
 <h3>Starting a session</h3>
 <p>
-  <span style="font-weight: 400;">The SDK should then send the </span><strong>begin_session=1</strong><span style="font-weight: 400;"> param. This same request should also contain metrics parameters with the maximum metrics described on </span><a href="https://api.count.ly/reference#i"><span style="font-weight: 400;">/i page</span></a><span style="font-weight: 400;">, which may be collected from this SDK-specific environment/language. It might look something like:<br></span>
+  <span style="font-weight: 400;">The SDK should then send the </span><strong>begin_session=1</strong><span style="font-weight: 400;"> param. This same request should also contain metrics parameters with the maximum metrics described on </span><a href="https://api.count.ly/reference/i"><span style="font-weight: 400;">/i page</span></a><span style="font-weight: 400;">, which may be collected from this SDK-specific environment/language. It might look something like:<br></span>
 </p>
 <pre><span style="font-weight: 400;">"&amp;begin_session=1&amp;metrics={...}"</span></pre>
 <h3>Session update</h3>
@@ -795,7 +795,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"<br></span><span>        </span>}<br>    }<br>]</pre>
 <p>
-  <span style="font-weight: 400;">Here is&nbsp;<a href="https://api.count.ly/reference#section-views" target="_self">more information on view-tracking API</a>s.</span>
+  <span style="font-weight: 400;">Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
 </p>
 <h2>
   <span style="font-weight: 400;">View manual reporting</span>
@@ -857,7 +857,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     }
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference#section-view-actions" target="_self">reporting actions for views</a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a><span style="font-weight: 400;">.</span>
 </p>
 <h1>Device ID management</h1>
 <p>
@@ -902,7 +902,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     <span style="font-weight: 400;">Change the device ID and store it persistently for further session use</span>
   </li>
   <li>
-    <span style="font-weight: 400;">Use the&nbsp;</span><a href="https://api.count.ly/reference#section-change-id-and-merge-data" target="_self">old_device_id</a><span style="font-weight: 400;">&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
+    <span style="font-weight: 400;">Use the&nbsp;</span><a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a><span style="font-weight: 400;">&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
   </li>
   <li>
     <span style="font-weight: 400;">No need to end and restart the current session or clear started timed-events</span>
@@ -1282,7 +1282,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <h1>&nbsp;</h1>
 <h1>Push Notifications</h1>
 <p>
-  <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference#section-push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
+  <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference/i#push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
 </p>
 <p>
   <span style="font-weight: 400;">From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
@@ -1423,7 +1423,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the&nbsp;</span><a href="https://api.count.ly/reference#osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the&nbsp;</span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
@@ -1763,7 +1763,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are&nbsp;</span><a href="https://api.count.ly/reference#section-user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
+  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are&nbsp;</span><a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
@@ -1773,7 +1773,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <li>Countly.user_custom_details(map custom_details)</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference#section-user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
 </p>
 <h2>Modifying custom data properties</h2>
 <p>
@@ -1800,7 +1800,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   Here is
-  <a href="https://api.count.ly/reference#section-modifying-custom-user-data" target="_self">more information</a>
+  <a href="https://api.count.ly/reference/i#modifying-custom-user-data" target="_self">more information</a>
   on how to report this data to the server.
 </p>
 <h2>Orientation changes</h2>
