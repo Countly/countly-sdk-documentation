@@ -8,7 +8,9 @@
   <a href="https://support.count.ly/hc/en-us/articles/4410229126809">here</a>.
 </p>
 <div class="callout callout--info">
-  <strong>Supported System Versions</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Supported System Versions</span></strong>
+  </p>
   <p>
     The Countly iOS SDK supports the minimum <code>Deployment Target</code>
     <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14) , and it
@@ -92,13 +94,6 @@
 <p>
   <span style="font-weight: 400;">You can run your project and see the first session data immediately displayed on your Countly Server dashboard.</span>
 </p>
-<div class="callout callout--info">
-  <p>
-    If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
-  </p>
-</div>
 <h2>Additional Features</h2>
 <p>
   If you would like to use additional features, such as
@@ -250,7 +245,9 @@ func internalLog(_ log: String)
   for tvOS).
 </p>
 <div class="callout callout--info">
-  <strong>Countly Code Generator</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Countly Code Generator</span></strong>
+  </p>
   <p>
     <a href="https://code.count.ly">The Countly Code Generator</a> can be used
     to generate Countly iOS SDK code snippets easily and fast. You can provide
@@ -569,7 +566,9 @@ Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thr
 </div>
 <h2>Symbolication</h2>
 <div class="callout callout--info">
-  <strong>Enterprise Edition Feature</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Enterprise Edition Feature</span></strong>
+  </p>
   <p>
     This feature is only available with an
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
@@ -933,7 +932,9 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
   </div>
 </div>
 <div class="callout callout--warning">
-  <strong>Event Names and Segmentation</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Event Names and Segmentation</span></strong>
+  </p>
   <p>
     Event names must be non-zero length valid <code>NSString</code> and segmentation
     must be an <code>NSDictionary</code> which
@@ -1415,13 +1416,13 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <img src="https://count.ly/images/guide/94d763b-push_p12.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Click on </span><strong>Edit</strong><span style="font-weight: 400;"> and upload your Auth Key or exported certificate under the </span><strong>APN Credentials</strong><span style="font-weight: 400;"> section.</span>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;">&nbsp;section.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/ac0abd4-Screenshot_2017-09-20_14.55.34.png">
+  <img src="/hc/article_attachments/9330074939545/mceclip0.png" alt="mceclip0.png">
 </div>
 <p>
-  <span style="font-weight: 400;">After filling all the required fields, click the </span><strong>Validate</strong><span style="font-weight: 400;"> button. Countly will check the validity of the credentials by initiating a test connection to the APNs. If validation succeeds, click </span><strong>Save changes</strong><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
 </p>
 <h2>Configuring iOS app</h2>
 <p>
@@ -1991,7 +1992,9 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
 </div>
 <h1>User Location</h1>
 <div class="callout callout--info">
-  <strong>Enterprise Edition Feature</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Enterprise Edition Feature</span></strong>
+  </p>
   <p>
     This feature is only available with an
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
@@ -2424,7 +2427,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </div>
 </div>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/62867b4-feedbackwidgetss.png">
+  <img src="/hc/article_attachments/9330461975577/mceclip1.png" alt="mceclip1.png">
 </div>
 <h2>Feedback Widgets</h2>
 <p>
@@ -2540,7 +2543,9 @@ andDismiss:
 </div>
 <h3>Manual Reporting</h3>
 <div class="callout callout--info">
-  <strong>Minimum Countly SDK Version</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
+  </p>
   <p>
     This feature is available only on Countly iOS SDK 20.11.3 or newer
   </p>
@@ -2615,7 +2620,9 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
 </p>
 <h1>User Profiles</h1>
 <div class="callout callout--info">
-  <strong>Enterprise Edition Feature</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Enterprise Edition Feature</span></strong>
+  </p>
   <p>
     This feature is only available with an
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
@@ -3625,7 +3632,9 @@ config.eventSendThreshold = 1</code></pre>
 </p>
 <h2>CocoaPods</h2>
 <div class="callout callout--warning">
-  <strong>CocoaPods Support</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">CocoaPods Support</span></strong>
+  </p>
   <p>
     While the Countly iOS SDK supports integration via CocoaPods, we can not
     be able to help you with issues stemming from the CocoaPods themselves, especially
