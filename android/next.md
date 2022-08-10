@@ -666,7 +666,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly dashboard, select “Validate”, and eventually “Save changes”.</span>
+  <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/703de0a-Screenshot-2018-04-21-17.30.59-x.png">
