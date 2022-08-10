@@ -605,7 +605,7 @@ apply plugin: 'com.google.gms.google-services'
 Countly.disablePushNotifications();</code></pre>
 <p>
   For iOS push notification please follow the instruction from this URL
-  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
 </p>
 <p>
   For Flutter you can find <code>CountlyNotificationService.h/m</code> file under
@@ -1271,7 +1271,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <h1>Other features</h1>
 <h2>Attribution</h2>
 <p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition.
 </p>

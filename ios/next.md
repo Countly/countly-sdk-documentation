@@ -3726,7 +3726,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">Can I integrate Countly iOS SDK using CocoaPods?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-cocoapods">read our notes</a> to avoid issues.</span>
+  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#cocoapods">read our notes</a> to avoid issues.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
@@ -3750,7 +3750,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">For details please see <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-user-profiles">User Profiles documentation</a>.</span>
+  <span class="wysiwyg-color-black">For details please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-profiles">User Profiles documentation</a>.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
@@ -3783,7 +3783,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-handling-notifications-manually">Handling Notifications Manually</a> section.</span>
+  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#manually-handling-notifications">Handling Notifications Manually</a> section.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>
