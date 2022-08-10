@@ -211,7 +211,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code>and
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
-  <a href="https://bintray.com/countly/maven/sdk-native">page</a>, currently 20.11.6):
+  <a href="https://search.maven.org/artifact/ly.count.android/sdk-native">page</a>, currently 20.11.6):
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:LATEST_VERSION'    
@@ -593,7 +593,7 @@ apply plugin: 'com.google.gms.google-services'
 <h2>iOS Setup</h2>
 <p>
   For iOS push notification please follow the instruction from this URL
-  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications</a>
 </p>
 <p>
   For React Native you can find
@@ -1072,9 +1072,9 @@ Countly.endTrace(traceKey, customMetric);</pre>
 </ul>
 <p>
   Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also
-  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#consents" target="_self" rel="undefined">iOS Consents</a>
+  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent-management" target="_self" rel="undefined">Android Consents</a>).
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).
 </p>
 <p>
   Next we will go over the methods that are available in this SDK.
@@ -1271,7 +1271,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 Countly.setCustomMetrics(customMetric);</code></pre>
 <h2>Attribution analytics &amp; install campaigns</h2>
 <p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure the performance of your marketing campaign by attributing
   installs from specific campaigns. This feature is available for the Enterprise
   Edition.
@@ -1289,7 +1289,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
-  <strong>For more information about how to set up your campaigns, please <a href="http://resources.count.ly/docs/referral-analytics">review this documentation</a>.</strong>
+  <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
 </p>
 <p>Call the method below before initialization.</p>
 <pre>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.

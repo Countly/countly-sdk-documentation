@@ -193,7 +193,7 @@
   <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><img src="/hc/article_attachments/9208067266585/1.png" alt="1.png"></span>
+  <img src="/hc/article_attachments/9327716473881/001.png" alt="001.png">
 </p>
 <p>
   <strong>Acquiring the server URL</strong>
@@ -331,7 +331,7 @@
 <h1>How to validate your Countly integration?</h1>
 <p>
   After you have integrated the Countly SDK into your app or website, to the best
-  of your ability, whether you see some data or not in your Countly server, you
+  of your ability, whether you see some data or not in you Countly server, you
   should normally verify your integration by checking if everything is working
   as expected, both on your Countly server and your app/website. To have the most
   optimized verification process we recommend you to go through the following steps
@@ -355,22 +355,22 @@
   location of that would change depending on the platform and SDK.
 </p>
 <p>
-  <span style="font-weight: 400;"><img src="/hc/article_attachments/9208973048217/mceclip0.png" alt="mceclip0.png"></span>
+  <img src="/hc/article_attachments/9327716376601/002.png" alt="002.png">
 </p>
 <p>
-  <span style="font-weight: 400;">Check if requests are being created - this means, you need to check whether you are calling SDK methods to send information to the server and that the SDK has been implemented correctly.</span>
+  <span style="font-weight: 400;">Check if requests are being created - this means, you need to check whether you are calling SDK methods to actually send information to the server and that the SDK has been implemented correctly.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Also check if requests fail or are successfully sent to the server, because if they fail, maybe the server is not reachable from this specific network, or you made a mistake when providing the URL to the server.</span>
 </p>
 <h2>2. Check Request Logs</h2>
 <p>
-  Next, you would want to verify that your Countly server is receiving data from
+  Next you would want to verify that your Countly server is receiving data from
   <span style="font-weight: 400;"><code>Utilities &gt; Request Logs</code></span>.
-  <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set up parameter tampering, etc.</span>
+  <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set-up parameter tampering, etc.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9208398657433/2.png" alt="2.png">
+  <img src="/hc/article_attachments/9327716734617/003.png" alt="003.png">
 </p>
 <h2>3. Make sure you have the correct configuration</h2>
 <p>
@@ -385,14 +385,14 @@
   your app or website it is time to check Countly if the planned data is recorded
   as expected. As a simple test, you can simply open User Profiles in Countly to
   see if your app/website was able to connect and recognized as a user in your
-  Countly server. If it is you are good to go and you can stop here on the list.
+  Countly server. If it is you are good to go and you can stop here in the list.
 </p>
 <p>
-  <img src="/hc/article_attachments/9209504188057/mceclip1.png" alt="mceclip1.png">
+  <img src="/hc/article_attachments/9327773628825/004.png" alt="004.png">
 </p>
 <p>
   In case it seems like some data is not being recorded, it can be due to some
-  requests being rejected related to problems with the checksum, or sometimes requests
+  requests being rejected related to problems with the checksum or sometimes requests
   might be dropped if there are filtering rules set to do that. Sometimes filtering
   rules are targeting more things than planned by accident.&nbsp; For debugging
   those issues and others, keep reading.
@@ -402,46 +402,46 @@
   <span style="font-weight: 400;">Check <code>Management &gt; Logs &gt; Api Log</code></span><span style="font-weight: 400;"> for errors. Chances are if there is a problem/bug with a specific plugin processing information there would be new errors in the logs.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><img src="/hc/article_attachments/9277142121497/mceclip0.png" alt="mceclip0.png"></span>
+  <img src="/hc/article_attachments/9327773899289/005.png" alt="005.png">
 </p>
 <h2>6. Check plugins</h2>
 <p>
-  Some plugins that might be necessary to process data and provide functionalities
+  Some plugins that might be necessary process data and provide functionalities
   you want might not be activated or you might have accidentally disabled them.
   You can check your plugins' status from
   <span style="font-weight: 400;"><code>Management &gt; Feature Management<br></code></span>
 </p>
 <p>
-  <strong><img src="/hc/article_attachments/9277537797401/mceclip1.png" alt="mceclip1.png"></strong>
+  <img src="/hc/article_attachments/9327717115161/006.png" alt="006.png">
 </p>
 <h2>7. Check Filtering rules</h2>
 <p>
-  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu &gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether any rules block events or any requests.</span>
+  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu&gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules that block events or any requests.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9279924847385/filt.png" alt="filt.png">
+  <img src="/hc/article_attachments/9327774197657/007.png" alt="007.png">
 </p>
 <h2>8. Check event limits</h2>
 <p>
-  <span style="font-weight: 400;">The event name limit may be exceeded (the limit is 100, by default), and may be adjusted under <code>Management &gt; Settings &gt; API &gt; Data Limits &gt; Max unique event key</code>.</span>
+  <span style="font-weight: 400;">The event name limit may be exceeded (the limit is 100, by default), and may be adjusted under <code>Management &gt; Settings &gt; API &gt; Data Limits&gt; Max unique event key</code>.</span>
 </p>
 <p>
-  <strong><img src="/hc/article_attachments/9280040279577/mceclip2.png" alt="mceclip2.png"></strong>
+  <img src="/hc/article_attachments/9327774290713/008.png" alt="008.png">
 </p>
 <h2>9. Check checksum</h2>
 <p>
   Some
-  <span>SDKs provide an option to send a checksum along the request data to prevent data breaches by a man-in-the-middle attack. If you have set a salt for checksum in your SDK but did not set it at your server or typed it wrongly, and vice versa, you should check your salt value from <span style="font-weight: 400;"><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
+  <span>SDKs provides an option to send a checksum along the request data to prevent data breach by a middleman. If you have a set a salt for checksum in your SDK but did not set it at your server or typed it wrongly, and vise versa, you should check your salt value from <span style="font-weight: 400;"><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
 <p>
-  <span><img src="/hc/article_attachments/9280412281497/salt.png" alt="salt.png"></span>
+  <img src="/hc/article_attachments/9327717836441/009.png" alt="009.png">
 </p>
 <h2>10. Check time zone</h2>
 <p>
   <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><img src="/hc/article_attachments/9280481380377/time.png" alt="time.png"></span>
+  <img src="/hc/article_attachments/9327717905689/010.png" alt="010.png">
 </p>
 <h1>How long does it take for my data to show up on Countly?</h1>
 <p>
