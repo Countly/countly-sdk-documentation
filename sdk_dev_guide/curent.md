@@ -920,568 +920,593 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <p>
   <span style="font-weight: 400;">There are different state combinations possible during init. This table covers all possible combinations and should be looked as a "truth table" of how the SDK should function.</span>
 </p>
-<table style="border-collapse: collapse; width: 100%; height: 582px;" border="1">
+<table style="border-collapse: collapse; width: 96.6123%; height: 582px;" border="1">
   <tbody>
     <tr style="height: 10px;">
-      <td class="wysiwyg-text-align-center" style="height: 10px; width: 23.4024%;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="height: 10px; width: 19.9784%;" colspan="3">
         <span class="wysiwyg-font-size-medium">Stored Device ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="height: 10px; width: 50%;" colspan="3">Provided ID during init</td>
-      <td class="wysiwyg-text-align-center" style="height: 10px; width: 28.5714%;" colspan="2">
-        <span class="wysiwyg-font-size-medium">Action</span><span class="wysiwyg-font-size-medium"> take</span><span class="wysiwyg-font-size-medium">n</span><span class="wysiwyg-font-size-medium"> by SDK</span>
+      <td class="wysiwyg-text-align-center" style="height: 10px; width: 31.1749%;" colspan="3">
+        <span class="wysiwyg-font-size-medium">Provided ID During Init</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="height: 10px; width: 108.455%;" colspan="2">
+        <span class="wysiwyg-font-size-medium">Action Taken by SDK</span>
       </td>
     </tr>
     <tr style="height: 44px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 44px;" colspan="2">
-        <span class="wysiwyg-font-size-medium">Custom or</span><br>
-        <span class="wysiwyg-font-size-medium">UUID</span>
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;" colspan="2">
+        <p style="margin: 0;">
+          <span class="wysiwyg-font-size-small">Custom </span><span class="wysiwyg-font-size-small">or </span><span class="wysiwyg-font-size-small">UUID</span>
+        </p>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 44px;">
-        <span class="wysiwyg-font-size-medium">Temp ID</span>
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <p>
+          <span class="wysiwyg-font-size-small">Temp </span><span class="wysiwyg-font-size-small">ID</span>
+        </p>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 44px;">
-        <span class="wysiwyg-font-size-medium">Custom ID</span>
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <p>
+          <span class="wysiwyg-font-size-small">Custom </span><span class="wysiwyg-font-size-small">ID</span>
+        </p>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 44px;">
-        <span class="wysiwyg-font-size-medium">
-          <font size="2">Temp ID</font>
-        </span>
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <p>
+          <span class="wysiwyg-font-size-small">Temp</span><span class="wysiwyg-font-size-small"> ID</span>
+        </p>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 44px;">
-        <p>URL Provided</p>
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <p>
+          <span class="wysiwyg-font-size-small">URL </span><span class="wysiwyg-font-size-small">Provided</span>
+        </p>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 44px;">
-        <span class="wysiwyg-font-size-medium">'clearStoredDeviceID' flag is not set</span>
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is not set</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 44px;">
-        <span class="wysiwyg-font-size-medium">&nbsp;'clearStoredDeviceID' flag is set</span>
-      </td>
-    </tr>
-    <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 23.4024%; height: 22px;" colspan="3">
-        <font size="2">-</font>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #f0c0d9;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0c0d9;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <span class="wysiwyg-font-size-small">&nbsp;'clear Stored Device ID'</span><span class="wysiwyg-font-size-small"> </span><span class="wysiwyg-font-size-small">flag is set</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 23.4024%; height: 22px;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #f0c0d9; text-align: center; vertical-align: middle; padding: 2px;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0c0d9;">
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #b5f0b4; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="height: 22px; width: 23.4024%;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9784%;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #E6CDF0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #e6cdf0; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enters Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #E6CDF0;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #e6cdf0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enters Temp mode</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 23.4024%; height: 22px;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #f0e9b4; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="height: 22px; width: 23.4024%;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9784%;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #b5f0b4; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 23.4024%; height: 22px;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #f0e9b4; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-justify" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 23.4024%; height: 22px;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #f0e9b4; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 23.4024%; height: 22px;" colspan="3">
-        <font size="2">-</font>
+      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+        <font size="2">
+          - <span class="wysiwyg-font-size-small">(first init)</span>
+        </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <font size="2">
           <span class="wysiwyg-color-green110">⬤</span>
         </font>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #f0e9b4; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">&nbsp;-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #c8c0f0; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0c0d9;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; text-align: center; vertical-align: middle; padding: 2px; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0c0d9;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-&nbsp;</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #c8c0f0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-&nbsp;</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #c8c0f0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #fff2cc;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #fff2cc;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enters Temp mode</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #c8c0f0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">&nbsp;-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #c8c0f0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><br></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #c8c0f0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><br></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #c8c0f0; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><br></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #c8c0f0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">&nbsp;-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #E6CDF0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #e6cdf0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Stays in Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0c0d9;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0c0d9;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-&nbsp;</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID, exits Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">-</td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">-</td>
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-&nbsp;</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #E6CDF0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #e6cdf0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Stays in Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #E6CDF0;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #e6cdf0;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Enters Temp mode</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #F0E9B4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL provided ID, exits Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">&nbsp;-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID, exits Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #b5f0b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #F0E9B4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL provided ID, exits Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #F0E9B4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL provided ID, exits Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.11667%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.2857%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 15.1429%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 20.5714%; height: 22px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 13.8571%; height: 22px; background-color: #F0E9B4;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL provided ID, exits Temp mode</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 14.7143%; height: 22px; background-color: #f0e9b4;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
