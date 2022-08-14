@@ -88,6 +88,7 @@
     - Ratings
         . Star Rating dialog
         . Ratings Widget
+        . Manually Recording Ratings Widgets
     - Feedback Widgets
     - NPS (Net Promoter Score) and Survey Widgets
         . Manual Reporting

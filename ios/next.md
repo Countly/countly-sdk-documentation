@@ -2429,6 +2429,30 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 <div class="img-container">
   <img src="https://count.ly/images/guide/62867b4-feedbackwidgetss.png">
 </div>
+<h3>Manually Recording Ratings Widgets</h3>
+<p>If you wish to construct your own custom UI for displaying ratings widgets, you can manually record the result with given ID and other parameters as follows:<br> 
+<code>widgetID</code>: ID of the rating widget created on Countly Server<br>
+<code>rating</code>: User's rating<br>
+<code>email</code>: User's e-mail address (optional)<br>
+<code>comment</code>: User's comment (optional)<br>
+<code>userCanBeContacted</code>: User's consent for whether they can be contacted via e-mail or not<br>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance recordRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" rating:4 email:@"email@example.com" comment:@"Some comment" userCanBeContacted:YES];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().recordRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", rating: 4, email: "email@example.com", comment: "Some comment", userCanBeContacted: true)</code></pre>
+  </div>
+</div>
+<p>Calls to this method will be ignored if:<br>
+- Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag is set on initial configuration.<br>
+- <code>widgetID</code> is not a non-zero length valid string.<br>
+</p>
 <h2>Feedback Widgets</h2>
 <p>
   <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
