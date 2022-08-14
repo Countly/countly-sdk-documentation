@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		D244458D28A8D26A00306E97 /* next.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = next.md; sourceTree = "<group>"; };
 		D256352725D4CE7C00299BF6 /* Documentation Map.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Documentation Map.txt"; sourceTree = "<group>"; };
 		D2EBAF3325DAE30D00D60321 /* 20.04.3.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20.04.3.md; sourceTree = "<group>"; };
 		D2EBAF3425DAE30D00D60321 /* 20.11.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 20.11.0.md; sourceTree = "<group>"; };
@@ -18,6 +19,7 @@
 			isa = PBXGroup;
 			children = (
 				D2EBAF3525DAE30D00D60321 /* current.md */,
+				D244458D28A8D26A00306E97 /* next.md */,
 				D256352725D4CE7C00299BF6 /* Documentation Map.txt */,
 				D2EBAF3425DAE30D00D60321 /* 20.11.0.md */,
 				D2EBAF3325DAE30D00D60321 /* 20.04.3.md */,

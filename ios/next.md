@@ -93,6 +93,7 @@
   <span style="font-weight: 400;">You can run your project and see the first session data immediately displayed on your Countly Server dashboard.</span>
 </p>
 <div class="callout callout--info">
+  <strong>Verifying Your SDK Integration</strong>
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about methods to verify it from
@@ -1186,8 +1187,9 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   </div>
 </div>
 <div class="callout callout--warning">
+  <strong>Consent Reset on Device ID Change</strong>
   <p>
-    <span style="font-weight: 400;">If device ID is changed without merging ("onServer" set to "NO") and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+    <span style="font-weight: 400;">If device ID is changed without merging (<code>onServer</code> set to <code>NO</code>) and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
 <p>
@@ -1214,11 +1216,6 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <code>CLYDefaultDeviceID</code>.
 </p>
 <h2>Temporary Device ID</h2>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">If temporary ID mode is entered and consent is enabled, all previously given consent will be removed. Therefore after entering the temporary ID mode, you should reestablish consent again.</span>
-  </p>
-</div>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
   real device ID is set later. It can be enabled by setting
@@ -1288,6 +1285,12 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   is <code>CLYTemporaryDeviceID</code>, argument for the <code>onServer</code>
   parameter does not matter.
 </p>
+<div class="callout callout--warning">
+  <strong>Consent Reset on Temporary Device ID Mode</strong>
+  <p>
+    <span style="font-weight: 400;">If the SDK goes into Temporary Device ID mode and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. Therefore after entering the temporary ID mode, you should reestablish consent again.</span>
+  </p>
+</div>
 <h2>Retrieving Current Device ID</h2>
 <p>
   You can use <code>deviceID</code>method to get current device ID:
@@ -3628,7 +3631,7 @@ config.eventSendThreshold = 1</code></pre>
   <strong>CocoaPods Support</strong>
   <p>
     While the Countly iOS SDK supports integration via CocoaPods, we can not
-    be able to help you with issues stemming from the CocoaPods themselves, especially
+    be able to help you with issues stemming from the CocoaPods itself, especially
     for some advanced use-cases.
   </p>
 </div>
@@ -3636,7 +3639,7 @@ config.eventSendThreshold = 1</code></pre>
   <span style="font-weight: 400;">You can integrate the Countly iOS SDK using CocoaPods. For more information, please see the </span><a href="https://cocoapods.org/pods/Countly"><span style="font-weight: 400;">Countly CocoaPods page</span></a><span style="font-weight: 400;">. Please ensure you have the latest version of CocoaPods and your local spec repo is updated. For Notification Service Extension targets, please ensure your Podfile uses something similar to the following sub specs:</span>
 </p>
 <pre><code class="ruby">target 'MyMainApp' do
-  platform :ios,'8.0'
+  platform :ios,'10.0'
   pod 'Countly'
 end
 
