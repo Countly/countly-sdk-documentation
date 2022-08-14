@@ -999,7 +999,7 @@ Countly.sharedInstance().endSession()</code></pre>
   </div>
 </div>
 <h1>View Tracking</h1>
-<h2>Automatic Views</h2>
+<h2>Automatic View Tracking</h2>
 <p>
   <span style="font-weight: 400;">For Countly Auto View Tracking, you will need to specify <code>CLYAutoViewTracking</code> in <code>features</code></span>
   <span style="font-weight: 400;"> array on the </span><code>CountlyConfig</code><span style="font-weight: 400;"> object before starting Countly.</span>
@@ -1037,7 +1037,7 @@ Countly.sharedInstance().endSession()</code></pre>
 <p>
   <span style="font-weight: 400;">If the Auto View Tracking feature is not enabled upon initial configuration, enabling or disabling this property at a later time will have no effect. It will always be disabled.</span>
 </p>
-<h2>Automatic View Exceptions</h2>
+<h3>Default Exceptions for Automatic View Tracking</h3>
 <p>
   <span style="font-weight: 400;">Following system view controllers will be excluded by default from auto tracking, as they are not visible views but rather structural controllers:</span>
 </p>
@@ -1080,6 +1080,7 @@ UISnapshotModalViewController
 UIMultiColumnViewController
 UIKeyCommandDiscoverabilityHUDViewController
 </code></pre>
+<h3>Custom Exceptions for Automatic View Tracking</h3>
 <p>
   <span style="font-weight: 400;">In addition to these default exceptions, you can manually add your own exception view controllers using the <code>addExceptionForAutoViewTracking:</code></span><span style="font-weight: 400;">method by passing the view controller class name or title:</span>
 </p>
@@ -1129,6 +1130,39 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   Removing an already removed (or not yet added) view controller class name or
   title again will have no effect.
 </p>
+<h3>Customizing Auto View Tracking View Names</h3>
+<p>
+  You can utilize <code>CountlyAutoViewTrackingName</code> protocol to customize view names used by Auto View Tracking.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol.
+@interface MyViewController : UIViewController<CountlyAutoViewTrackingName>
+@end
+
+//and implement <code>countlyAutoViewTrackingName</code> method to return custom view name to be used by Auto View Tracking.
+
+- (NSString *)countlyAutoViewTrackingName
+{
+    return @"This is overriden custom view name";
+}</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol.
+class MyViewController: UIViewController, CountlyAutoViewTrackingName
+
+//and implement <code>countlyAutoViewTrackingName</code> function to return custom view name to be used by Auto View Tracking.
+
+func countlyAutoViewTrackingName() -> String
+{
+    return "This is overriden custom view name"
+}</code></pre>
+  </div>
+</div>
 <h2>Manual View Recording</h2>
 <p>
   <span style="font-weight: 400;">In addition to Auto View Tracking, you can manually record the appearance of a view using the <code>recordView:</code></span><span style="font-weight: 400;">method with the view's name:</span>

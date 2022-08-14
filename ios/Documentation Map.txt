@@ -43,8 +43,10 @@
     - Update Session Period
 
 # View Tracking
-    - Automatic Views
-    - Automatic View Exceptions
+    - Automatic View Tracking
+        . Default Exceptions for Automatic View Tracking
+        . Custom Exceptions for Automatic View Tracking
+        . Customizing Auto View Tracking View Names
     - Manual View Recording
 
 # Device ID Management
