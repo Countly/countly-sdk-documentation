@@ -2775,6 +2775,12 @@ Countly.user().pushUnique("key104", values:["uniqueValue2","uniqueValue3"])
 Countly.user().save()</code></pre>
   </div>
 </div>
+<p>
+<strong>Note:</strong>Once saved, all properties on <code>Countly.user()</code> will be cleared.
+</p>
+<p>
+<strong>Note:</strong>You can start setting user properties even before starting the Countly iOS SDK. They will be saved automatically when the SDK is started.
+</p>
 <h2>Orientation Tracking</h2>
 <p>
   <span style="font-weight: 400;">You can set the <code>enableOrientationTracking</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. This flag is used for enabling automatic user interface orientation tracking. If set, user interface orientation tracking feature will be enabled and an event will be sent whenever user interface orientation changes. Orientation event will not be sent if consent for <code>CLYConsentUserDetails</code> is not given while <code>requiresConsent</code> flag is set on initial configuration. Automatic user interface orientation tracking is enabled by default. For disabling it, please set this flag to <code>NO<code>.
