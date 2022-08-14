@@ -129,6 +129,9 @@
     - Custom URLSessionConfiguration
     - Custom Metrics
     - Attribution
+        . IDFA Attribution
+        . Direct Attribution
+        . Indirect Attribution
     - watchOS Integration
     - Automatic Reference Counting (ARC)
     - App Transport Security (ATS)
