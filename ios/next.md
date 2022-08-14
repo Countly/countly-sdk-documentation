@@ -2396,7 +2396,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <span style="font-weight: 400;">Once you call the <code>presentRatingWidgetWithID:completionHandler:</code></span><span style="font-weight: 400;"> method, the ratings feedback widget with the given ID will be displayed in a WKWebView, having been placed in the UIViewController.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First, the availability of the ratings feedback widget will be checked asynchronously. If the ratings feedback widget is available, it will be modally presented. Otherwise, the <code>completionHandler</code></span><span style="font-weight: 400;"> will be called with an <code>NSError</code></span><span style="font-weight: 400;">. the <code>completionHandler</code></span><span style="font-weight: 400;"> will also be called with <code>nil</code></span><span style="font-weight: 400;"> when the ratings feedback widget is dismissed by the user.</span>
+  <span style="font-weight: 400;">First, the availability of the ratings feedback widget will be checked asynchronously. If the ratings feedback widget is available, it will be modally presented. Otherwise, the <code>completionHandler</code></span><span style="font-weight: 400;"> will be called with an <code>NSError</code></span><span style="font-weight: 400;">. The <code>completionHandler</code></span><span style="font-weight: 400;"> will also be called with <code>nil</code></span><span style="font-weight: 400;"> when the ratings feedback widget is dismissed by the user.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
