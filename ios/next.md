@@ -3450,6 +3450,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2>Attribution</h2>
+<h3>IDFA Attribution</h3>
 <p>
   <span style="font-weight: 400;">You can use <code>attributionID</code> property on <code>CountlyConfig</code></span><span style="font-weight: 400;"> object to specify IDFA for campaign attribution before starting the SDK. If set, it will be sent with every <code>begin_session</code></span><span style="font-weight: 400;"> request.</span>
 </p>
@@ -3494,6 +3495,43 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   And for App Tracking Transparency permission required on iOS 14.5+ please see:
   <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
 </p>
+<h3>Direct Attribution</h3>
+<p>You can record direct attribution with campaign type and data.<br>
+Currently supported campaign types are <code>countly</code> and <code>_special_test</code>.<br>
+Campaign data has to be JSON string in <code>{"cid":"CAMPAIGN_ID", "cuid":"CAMPAIGN_USER_ID"}</code> format.<br>
+Calls to this method will be ignored if consent for <code>CLYConsentAttribution</code> is not given, while <code>requiresConsent</code> flag is set on initial configuration. 
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSString* campaignData = @"{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}";
+[Countly.sharedInstance recordDirectAttributionWithCampaignType:@"countly" andCampaignData:campaignData];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let campaignData = "{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}"
+Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", andCampaignData: campaignData)</code></pre>
+  </div>
+</div>
+<h3>Indirect Attribution</h3>
+<p>You can record indirect attribution with given key-value pairs.<br>
+Keys could be a predefined <code>CLYAttributionKeyIDFA</code> or <code>CLYAttributionKeyADID</code> or any non-zero length valid string.<br>
+Calls to this method will be ignored if consent for <code>CLYConsentAttribution</code> is not given, while <code>requiresConsent</code> flag is set on initial configuration. 
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance recordIndirectAttribution:@{CLYAttributionKeyADID: @"value", @"key1": @"value1", @"key2": @"value2"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
+  </div>
+</div>
 <h2>watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
