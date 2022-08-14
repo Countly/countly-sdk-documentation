@@ -2542,12 +2542,6 @@ andDismiss:
   </div>
 </div>
 <h3>Manual Reporting</h3>
-<div class="callout callout--info">
-  <strong>Minimum Countly SDK Version</strong>
-  <p>
-    This feature is available only on Countly iOS SDK 20.11.3 or newer
-  </p>
-</div>
 <p>
   Optionally you can fetch feedback widget data and create your own UI using:
 </p>
