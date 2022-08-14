@@ -2976,7 +2976,6 @@ CLYConsentPushNotifications<br>
 CLYConsentLocation<br>
 CLYConsentViewTracking<br>
 CLYConsentAttribution<br>
-CLYConsentAppleWatch<br>
 CLYConsentPerformanceMonitoring<br>
 CLYConsentFeedback<br>
 CLYConsentRemoteConfig</pre>
