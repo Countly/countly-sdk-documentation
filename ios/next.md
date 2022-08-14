@@ -2776,7 +2776,7 @@ Countly.user().save()</code></pre>
   </div>
 </div>
 <p>
-<strong>Note:</strong>Once saved, all properties on <code>Countly.user()</code> will be cleared.
+<strong>Note:</strong>Once saved, all properties on <code>Countly.user</code> will be cleared.
 </p>
 <p>
 <strong>Note:</strong>You can start setting user properties even before starting the Countly iOS SDK. They will be saved automatically when the SDK is started.
