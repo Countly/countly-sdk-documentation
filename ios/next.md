@@ -3404,6 +3404,21 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre>config.URLSessionConfiguration = URLSessionConfiguration.ephemeral</pre>
   </div>
 </div>
+<p>
+  In addition to initial configuration, you can also change URLSessionConfiguration later using:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance setNewURLSessionConfiguration:newURLSessionConfiguration];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre>Countly.sharedInstance().setNewURLSessionConfiguration(newURLSessionConfiguration)</pre>
+  </div>
+</div>
 <h2>Custom Metrics</h2>
 <p>
   For overriding default metrics or adding extra ones that are sent with
