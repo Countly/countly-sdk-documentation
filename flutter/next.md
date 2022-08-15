@@ -866,7 +866,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   Feedback widget shows a server configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/c928493-feedback_widget.png">
+  <img src="/hc/article_attachments/9519364331417/001.png" alt="001.png">
 </div>
 <p>
   It's possible to configure any of the shown text fields and replace them with
@@ -887,7 +887,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   you first have to get the widget ID from your server:
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/dee9bfc-feedback2.png">
+  <img src="/hc/article_attachments/9519388544793/002.png" alt="002.png">
 </div>
 <p>
   Using that you can call the function to show the widget popup:
