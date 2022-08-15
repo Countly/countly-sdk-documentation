@@ -46,13 +46,6 @@
   function calls to enable functionality you need. Afterward that config object
   is provided to the "init" method.<span style="font-weight: 400;"></span>
 </p>
-<div class="callout callout--info">
-  <p>
-    If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
-  </p>
-</div>
 <h2>SDK logging</h2>
 <p>
   <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Androids internal log calls.</span>
@@ -484,7 +477,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+  <img src="/hc/article_attachments/9508351988121/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -669,7 +662,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/703de0a-Screenshot-2018-04-21-17.30.59-x.png">
+  <img src="/hc/article_attachments/9508421820313/002.png" alt="002.png">
 </div>
 <h3>Integrating FCM into your app</h3>
 <p>
@@ -1253,7 +1246,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/072bb00-t1.png">
+  <img src="/hc/article_attachments/9508502169241/003.png" alt="003.png">
 </div>
 <p>
   <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
@@ -1268,7 +1261,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9508523082649/004.png" alt="004.png">
 </div>
 <p>
   <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
