@@ -520,7 +520,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+   <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -896,7 +896,7 @@ countly.askForStarRating(Function(ratingResult){
   Feedback widget shows a server configured widget to your user devices.
 </p>
 <p>
-  <img src="/hc/article_attachments/360050033271/072bb00-t1.png" alt="072bb00-t1.png">
+  <img src="/hc/article_attachments/9518534013209/002.png" alt="002.png">
 </p>
 <p>
   It's possible to configure any of the shown text fields and replace with a custom
@@ -917,7 +917,7 @@ countly.askForStarRating(Function(ratingResult){
   you first have to get the widget ID from your server:
 </p>
 <p>
-  <img src="/hc/article_attachments/360049916892/2dd58c6-t2.png" alt="2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9518534789401/003.png" alt="003.png">
 </p>
 <p>
   Using that you can call the function to show the widget popup:
