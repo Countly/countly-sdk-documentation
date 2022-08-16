@@ -408,7 +408,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+  <img src="/hc/article_attachments/9545215851033/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -830,7 +830,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   The rating widget displays a server-configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/ea55d24-072bb00-t1.png">
+  <img src="/hc/article_attachments/9545190761113/002.png" alt="002.png">
 </div>
 <p>
   All the text fields in the example above can be configured and replaced with
@@ -850,7 +850,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   the widget ID from your server, as shown below.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/f773cf4-2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9545218779033/003.png" alt="003.png">
 </div>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
