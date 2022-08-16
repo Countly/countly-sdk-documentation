@@ -934,16 +934,16 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 44px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;" colspan="2">
         <span class="wysiwyg-font-size-small">Non-Temp ID</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black;">
         <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.5207%; border-right: 1px solid black; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">Custom ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
