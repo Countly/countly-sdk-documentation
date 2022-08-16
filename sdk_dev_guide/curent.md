@@ -923,7 +923,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <table style="border-collapse: collapse; width: 96.6123%; height: 582px;" border="1">
   <tbody>
     <tr style="height: 10px;">
-      <td class="wysiwyg-text-align-center" style="height: 10px; width: 19.9784%;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="height: 10px; width: 19.9116%;" colspan="3">
         <span class="wysiwyg-font-size-medium">Stored Device ID</span>
       </td>
       <td class="wysiwyg-text-align-center" style="height: 10px; width: 31.1749%;" colspan="3">
@@ -934,42 +934,32 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 44px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;" colspan="2">
-        <p style="margin: 0;">
-          <span class="wysiwyg-font-size-small">Custom </span><span class="wysiwyg-font-size-small">or </span><span class="wysiwyg-font-size-small">UUID</span>
-        </p>
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black;" colspan="2">
+        <span class="wysiwyg-font-size-small">Non-Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
-        <p>
-          <span class="wysiwyg-font-size-small">Temp </span><span class="wysiwyg-font-size-small">ID</span>
-        </p>
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black;">
+        <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
-        <p>
-          <span class="wysiwyg-font-size-small">Custom </span><span class="wysiwyg-font-size-small">ID</span>
-        </p>
+      <td class="wysiwyg-text-align-center" style="width: 10.5207%; border-right: 1px solid black; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+        <span class="wysiwyg-font-size-small">Custom ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
-        <p>
-          <span class="wysiwyg-font-size-small">Temp</span><span class="wysiwyg-font-size-small"> ID</span>
-        </p>
+      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
+        <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
-        <p>
-          <span class="wysiwyg-font-size-small">URL </span><span class="wysiwyg-font-size-small">Provided</span>
-        </p>
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
+        <span class="wysiwyg-font-size-small">URL Provided</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is not set</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
-        <span class="wysiwyg-font-size-small">&nbsp;'clear Stored Device ID'</span><span class="wysiwyg-font-size-small"> </span><span class="wysiwyg-font-size-small">flag is set</span>
+        <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is set</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -989,9 +979,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1011,9 +1001,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9784%;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9116%;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1033,9 +1023,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1055,9 +1045,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9784%;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9116%;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1077,9 +1067,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1099,9 +1089,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1121,9 +1111,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 19.9784%; height: 22px;" colspan="3">
+      <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
         <font size="2">
-          - <span class="wysiwyg-font-size-small">(first init)</span>
+          <span class="wysiwyg-font-size-small">First Init</span>
         </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
@@ -1145,7 +1135,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1163,12 +1153,12 @@ end_sesson=1&amp;session_duration=30</code></pre>
       <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #c8c0f0; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; text-align: center; vertical-align: middle; padding: 2px; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0c0d9;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0c0d9;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">SDK generates ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1191,7 +1181,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1214,7 +1204,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1237,7 +1227,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-color-green110">⬤</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1260,7 +1250,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><br></span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1283,7 +1273,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><br></span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1306,7 +1296,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span><span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><br></span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1329,7 +1319,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1352,7 +1342,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1368,14 +1358,14 @@ end_sesson=1&amp;session_duration=30</code></pre>
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-&nbsp;</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID, exits Temp mode</span>
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID,<br>exits Temp mode </span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">-</td>
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">-</td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
@@ -1396,7 +1386,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1412,14 +1402,14 @@ end_sesson=1&amp;session_duration=30</code></pre>
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 25.1522%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL provided ID, exits Temp mode</span>
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL provided ID,<br>exits Temp mode</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #f0e9b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets URL Provided ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1435,14 +1425,14 @@ end_sesson=1&amp;session_duration=30</code></pre>
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">&nbsp;-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; text-align: center; vertical-align: middle; padding: 2px; background-color: #b5f0b4;">
-        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID, exits Temp mode</span>
+        <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID,<br>exits Temp mode</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #b5f0b4;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Sets custom ID</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1465,7 +1455,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
@@ -1488,7 +1478,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.90964%; height: 22px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 22px;" colspan="2">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 22px;">
