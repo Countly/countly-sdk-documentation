@@ -392,6 +392,14 @@ Countly.getInstance().addEvent(event);</code></pre>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
 </p>
+<h2>Setting custom SHA-256</h2>
+<p>
+  If
+  <span><code>salt</code>is set, SDK uses SHA-256 algorithm for calculating checksum of request data. </span>SDK
+  allow user to set custom SHA-256.
+</p>
+<p>Example:</p>
+<pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">Countly&amp; countly = Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
 <h1>FAQ</h1>
 <h2>What information is collected by the SDK</h2>
 <p>
