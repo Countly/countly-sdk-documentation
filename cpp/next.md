@@ -399,7 +399,7 @@ Countly.getInstance().addEvent(event);</code></pre>
   allow user to set custom SHA-256.
 </p>
 <p>Example:</p>
-<pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">Countly&amp; countly = Countly.getInstance();</code><br><code class="java hljs">countly .setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
+<pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">Countly&amp; countly = Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
 <h1>FAQ</h1>
 <h2>What information is collected by the SDK</h2>
 <p>
