@@ -2869,8 +2869,10 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 <p>
   The default behavior of Countly Web SDK is to ignore bots crawling your site
   to provide you a more accurate user analytics data. However, Countly can't detect
-  and block all bots crawling the internet. However, this is not the case for a
-  bot that you have created your own.
+  and block all bots crawling the internet as we use the userAgent string to detect
+  bots and spammy bots can hide by providing conventional
+  UserAgent. However, this is not the case for a bot that you have created your
+  own.
 </p>
 <p>
   To include your bots to be also ignored by the Countly Web SDK you have to include
