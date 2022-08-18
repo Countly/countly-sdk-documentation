@@ -5,9 +5,6 @@
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/7019114935961" target="_self" rel="undefined">here.</a>
@@ -139,7 +136,7 @@ ionic cordova build ios</code></pre>
 <pre><code class="javascript">// initialize
 Countly.isInitialized().then((result) =&gt; {
             if(result  != "true") {
-                Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+                Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
                     Countly.start();
                 },(err) =&gt; {
                     console.error(err);
@@ -153,6 +150,13 @@ Countly.isInitialized().then((result) =&gt; {
   URL, check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>Enable logging</h2>
 <p>
   If logging is enabled then our sdk will print out debug messages about it's internal
@@ -346,9 +350,7 @@ Countly.addCrashLog("My crash log from JavaScript");
   </li>
 </ul>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+    <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
@@ -520,7 +522,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+   <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -651,9 +653,7 @@ Countly.getCurrentDeviceId(function(deviceId){
   <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     This COUNTLY_EXCLUDE_PUSHNOTIFICATIONS is only supported by the minimum SDK
     version 20.11.3.
@@ -896,7 +896,7 @@ countly.askForStarRating(Function(ratingResult){
   Feedback widget shows a server configured widget to your user devices.
 </p>
 <p>
-  <img src="/hc/article_attachments/360050033271/072bb00-t1.png" alt="072bb00-t1.png">
+  <img src="/hc/article_attachments/9518534013209/002.png" alt="002.png">
 </p>
 <p>
   It's possible to configure any of the shown text fields and replace with a custom
@@ -917,7 +917,7 @@ countly.askForStarRating(Function(ratingResult){
   you first have to get the widget ID from your server:
 </p>
 <p>
-  <img src="/hc/article_attachments/360049916892/2dd58c6-t2.png" alt="2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9518534789401/003.png" alt="003.png">
 </p>
 <p>
   Using that you can call the function to show the widget popup:
@@ -1037,9 +1037,7 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
 </p>
 <h1>Application Performance Monitoring</h1>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     This feature is only supported by the minimum SDK version 20.4.0.
   </p>
@@ -1067,7 +1065,7 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
   <code>init</code>.
 </p>
 <pre><code class="javascript">// Example of appLoadingFinished
-Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
   Countly.appLoadingFinished();
 },(err) =&gt; {
   onsole.error(err);

@@ -3,9 +3,6 @@
   and it applies to version 20.11.X
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 19.09-sdk2-rc, click
     <a href="/hc/en-us/articles/4404187501465" target="_self" rel="undefined">here.</a>
@@ -87,6 +84,13 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
@@ -411,9 +415,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <h1 id="other-features" class="anchor-heading" tabindex="-1">Other features</h1>
 <h2 id="backend-mode" class="anchor-heading" tabindex="-1">Backend Mode</h2>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Minimum Countly SDK Version</strong></span>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     The minimum SDK version requirement for this feature is 20.11.2.
   </p>

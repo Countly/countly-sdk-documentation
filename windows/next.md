@@ -3,9 +3,6 @@
   It applies to version 21.11.0.
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
   </p>
@@ -78,6 +75,13 @@ Countly.Instance.Init(cc);</code></pre>
   of them, there are feature differences. Either with additional function calls
   or with additional fields in the CountlyConfig object.
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>

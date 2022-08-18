@@ -3,9 +3,6 @@
   and it applies to version 21.11.0
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
     To access the documentation for version 20.11 and older, click
     <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>
@@ -70,6 +67,13 @@ flutter run</code></pre>
   URL, check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>Enable logging</h2>
 <p>
   If logging is enabled then our SDK will print out debug messages about its internal
@@ -236,9 +240,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   </li>
 </ul>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to the Countly server via SDK or API should be in UTF-8.
   </p>
@@ -603,7 +605,7 @@ apply plugin: 'com.google.gms.google-services'
 Countly.disablePushNotifications();</code></pre>
 <p>
   For iOS push notification please follow the instruction from this URL
-  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
 </p>
 <p>
   For Flutter you can find <code>CountlyNotificationService.h/m</code> file under
@@ -864,7 +866,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   Feedback widget shows a server configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/c928493-feedback_widget.png">
+  <img src="/hc/article_attachments/9519364331417/001.png" alt="001.png">
 </div>
 <p>
   It's possible to configure any of the shown text fields and replace them with
@@ -885,7 +887,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   you first have to get the widget ID from your server:
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/dee9bfc-feedback2.png">
+  <img src="/hc/article_attachments/9519388544793/002.png" alt="002.png">
 </div>
 <p>
   Using that you can call the function to show the widget popup:
@@ -1269,7 +1271,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <h1>Other features</h1>
 <h2>Attribution</h2>
 <p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition.
 </p>
