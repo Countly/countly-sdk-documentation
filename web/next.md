@@ -2865,4 +2865,17 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   However as we use javascript features that can run in the browser, your project
   must also be runnable on the browser.
 </p>
+<h2>Ignoring your own bots</h2>
+<p>
+  The default behavior of Countly Web SDK is to ignore bots crawling your site
+  to provide you a more accurate user analytics data. However, Countly can't detect
+  and block all bots crawling the internet. However, this is not the case for a
+  bot that you have created your own.
+</p>
+<p>
+  To include your bots to be also ignored by the Countly Web SDK you have to include
+  'CountlySiteBot' in your userAgent string. This enables your SDK to recognize
+  your bot as one of the bots to be ignored and the SDK would stop recording data
+  for your bot.
+</p>
 <p>&nbsp;</p>
