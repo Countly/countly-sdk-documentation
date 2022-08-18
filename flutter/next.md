@@ -683,6 +683,15 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 
 }
 </code></pre>
+<h3>Data Structure Received in Push Callbacks</h3>
+<p>
+  Here is the example of how data will receive in push callbacks:<img src="/hc/article_attachments/7830011337369/Screenshot_2022-06-24_at_7.04.23_PM.png" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
+  <br>
+  Data Received for Android platform:
+</p>
+<pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
+<p>Data Received for iOS platform:</p>
+<pre>{<br>Key = value;<br> aps = {<br>  alert = {<br>   body = Message;<br>   subtitle = subtitle;<br>   title = title;<br>  };<br> badge = 1;<br> "mutable-content" = 1;<br> sound = custom;<br> };<br> c = {<br>  a = "https://count.ly/images/logos/countly-logo-mark.png";<br>   e = {<br>    cc = TR;<br>    dt = mobile;<br>   };<br>  i = 62b5b945cabedb0870e9f217;<br>  l = "https://www.google.com/";<br> };<br>}</pre>
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
