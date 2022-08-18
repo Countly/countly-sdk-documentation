@@ -1311,7 +1311,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/b893929-11.png">
+  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2>Tracking Scrolls</h2>
 <p>
@@ -1333,7 +1333,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/5bc44bc-topbar.png">
+  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
 </div>
 <h1>Remote Config</h1>
 <p>
