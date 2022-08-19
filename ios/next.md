@@ -93,7 +93,6 @@
   <span style="font-weight: 400;">You can run your project and see the first session data immediately displayed on your Countly Server dashboard.</span>
 </p>
 <div class="callout callout--info">
-  <strong>Verifying Your SDK Integration</strong>
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about methods to verify it from
@@ -999,7 +998,7 @@ Countly.sharedInstance().endSession()</code></pre>
   </div>
 </div>
 <h1>View Tracking</h1>
-<h2>Automatic View Tracking</h2>
+<h2>Automatic Views</h2>
 <p>
   <span style="font-weight: 400;">For Countly Auto View Tracking, you will need to specify <code>CLYAutoViewTracking</code> in <code>features</code></span>
   <span style="font-weight: 400;"> array on the </span><code>CountlyConfig</code><span style="font-weight: 400;"> object before starting Countly.</span>
@@ -1037,6 +1036,7 @@ Countly.sharedInstance().endSession()</code></pre>
 <p>
   <span style="font-weight: 400;">If the Auto View Tracking feature is not enabled upon initial configuration, enabling or disabling this property at a later time will have no effect. It will always be disabled.</span>
 </p>
+<h2>Automatic View Exceptions</h2>
 <h3>Default Exceptions for Automatic View Tracking</h3>
 <p>
   <span style="font-weight: 400;">Following system view controllers will be excluded by default from auto tracking, as they are not visible views but rather structural controllers:</span>
@@ -1148,7 +1148,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 
 - (NSString *)countlyAutoViewTrackingName
 {
-    return @"This is overriden custom view name";
+    return @"This is overridden custom view name";
 }</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -1159,7 +1159,7 @@ class MyViewController: UIViewController, CountlyAutoViewTrackingName
 
 func countlyAutoViewTrackingName() -> String
 {
-    return "This is overriden custom view name"
+    return "This is overridden custom view name"
 }</code></pre>
   </div>
 </div>
@@ -1322,7 +1322,7 @@ func countlyAutoViewTrackingName() -> String
 <div class="callout callout--warning">
   <strong>Consent Reset on Temporary Device ID Mode</strong>
   <p>
-    <span style="font-weight: 400;">If the SDK goes into Temporary Device ID mode and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. Therefore after entering the temporary ID mode, you should reestablish consent again.</span>
+    <span style="font-weight: 400;">If the SDK goes into Temporary Device ID mode and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. Therefore after entering the Temporary Device ID mode, you should reestablish consent again.</span>
   </p>
 </div>
 <h2>Retrieving Current Device ID</h2>
@@ -2419,7 +2419,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">Countly.sharedInstance().ask(forStarRating:{ (rating : Int) in print("rating \(rating)") })</code></pre>
   </div>
 </div>
-<h3>Ratings Widget</h3>
+<h3>Rating Widget</h3>
 <p>
   <span style="font-weight: 400;">You can use the Countly iOS SDK to display ratings feedback widgets configured on the Countly Server. For more information on ratings feedback widgets, please visit the </span><a href="https://resources.count.ly/docs/ratings-and-feedback"><span style="font-weight: 400;">Ratings widget documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
@@ -2463,8 +2463,8 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 <div class="img-container">
   <img src="https://count.ly/images/guide/62867b4-feedbackwidgetss.png">
 </div>
-<h3>Manually Recording Ratings Widgets</h3>
-<p>If you wish to construct your own custom UI for displaying ratings widgets, you can manually record the result with given ID and other parameters as follows:<br> 
+<h3>Manual Rating Reporting</h3>
+<p>If you wish to construct your own custom UI for displaying ratings widgets, you can manually record the result with the widget ID and other parameters as follows:<br> 
 <code>widgetID</code>: ID of the rating widget created on Countly Server<br>
 <code>rating</code>: User's rating<br>
 <code>email</code>: User's e-mail address (optional)<br>
@@ -2487,7 +2487,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 - Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag is set on initial configuration.<br>
 - <code>widgetID</code> is not a non-zero length valid string.<br>
 </p>
-<h2>Feedback Widgets</h2>
+<h2>Feedback Widget</h2>
 <p>
   <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
   First you need to get the list of all available NPS and survey widgets:
@@ -3445,7 +3445,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <p>
-  In addition to initial configuration, you can also change URLSessionConfiguration later using:
+  In addition to the initial configuration, you can also change URLSessionConfiguration later using:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
