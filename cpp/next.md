@@ -242,12 +242,12 @@ Countly.getInstance().addEvent(event);</code></pre>
   report which views a user has visited with the duration of that visit. To report
   a screen from your app to the Countly server, you can use the following method:
 </p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">std::string&amp; viewID = Countly::getInstance().views().openView</span>("<span class="hljs-selector-tag">Home</span> <span class="hljs-selector-tag">Scene</span>");</code></pre>
+<pre><span style="font-weight: 400;"><code><span>std::string&amp; viewID = Countly::getInstance().views()("Home Scene");</span></code></span></pre>
 <p>
   While tracking views manually, you may add your custom segmentation to those
   views like this:
 </p>
-<pre><span><code class="hljs cs">std::map&lt;std::string, std::string&gt; segmentation = {<br>{"cats", "123"},<br>{"moons", "9.98"},<br>{"Moose", "deer"},<br>};<br><br><span class="hljs-keyword">std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene", segmenttation)</span>;</code></span></pre>
+<pre><span><code>std::map&lt;std::string, std::string&gt; segmentation = {<br>{"cats", "123"},<br>{"moons", "9.98"},<br>{"Moose", "deer"},<br>};<br><br><span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene", segmentation);</code></span></pre>
 <p>
   When the screen closes you can report it to the server by using one of the following
   methods:
@@ -262,12 +262,12 @@ Countly.getInstance().addEvent(event);</code></pre>
   <span><span class="hljs-keyword">std::string</span>. You can use this ID to close a view.</span>
 </p>
 <p>For example:</p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">std::string&amp; viewID = Countly::getInstance().views().openView</span>("<span class="hljs-selector-tag">Home</span> <span class="hljs-selector-tag">Scene</span>");<br>...<br><br>//after some time<br>Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
+<pre><span><code>std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene");<br>...<br>Countly::getInstance().views().closeViewWithID(viewId);</code></span></pre>
 <p>
   <strong>2. Ending a view with a view name:<br></strong>You may close a view by
   its name using the following method:
 </p>
-<pre><code class="hljs css">Countly::getInstance().views().closeViewWithName("Home Scene");</code></pre>
+<pre><span><code>Countly::getInstance().views().closeViewWithName("Home Scene");</code></span></pre>
 <p>
   <span>To review the resulting view data, go to the </span><span><code>Analytics &gt; Views</code> section in your Countly server</span><span>. For more information on how to utilize view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span>here</span></a><span>.</span>
 </p>
