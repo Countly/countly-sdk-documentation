@@ -249,6 +249,9 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 </ul>
 <div class="callout callout--info">
   <strong>Data passed should be in UTF-8</strong>
+  <p>
+    All data passed to the Countly server via SDK or API should be in UTF-8.
+  </p>
 </div>
 <h2>Recording events</h2>
 <p>
