@@ -1,5 +1,5 @@
 <p>
-  <span>This document will guide you through the process of SDK installation and it applies to version 21.11.1. </span>
+  <span>This document will guide you through the process of SDK installation and it applies to version 22.02.0. </span>
 </p>
 <div class="callout callout--info">
   <p>
