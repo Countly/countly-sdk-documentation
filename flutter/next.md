@@ -1,11 +1,14 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0
+  and it applies to version 22.02.0
 </p>
 <div class="callout callout--info">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
+  </p>
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 21.11 and older, click
+    <a href="/hc/en-us/articles/9667091699097" target="_self" rel="“undefined”">here.</a>
   </p>
 </div>
 <p>
@@ -67,13 +70,14 @@ flutter run</code></pre>
   URL, check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
 </p>
-<div class="callout callout--info">
-  <p>
-    If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
-  </p>
-</div>
+<p>
+  To configure the SDK during init, a config object called "CountlyConfig" is used.
+  Configuration is done by creating such an object and then calling it's provided
+  function calls to enable functionality you need.<br>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#sdk-config-parameters-explained" target="_self">here</a>
+  for more detail about "CountlyConfig" functionalities.
+</p>
 <h2>Enable logging</h2>
 <p>
   If logging is enabled then our SDK will print out debug messages about its internal
@@ -240,7 +244,9 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   </li>
 </ul>
 <div class="callout callout--info">
-  <strong>Data passed should be in UTF-8</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
+  </p>
   <p>
     All data passed to the Countly server via SDK or API should be in UTF-8.
   </p>
@@ -605,7 +611,7 @@ apply plugin: 'com.google.gms.google-services'
 Countly.disablePushNotifications();</code></pre>
 <p>
   For iOS push notification please follow the instruction from this URL
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
 </p>
 <p>
   For Flutter you can find <code>CountlyNotificationService.h/m</code> file under
@@ -1018,6 +1024,16 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 <p>
   Note that this feature is available only for Enterprise Edition.
 </p>
+<p>
+  We recommend to set the user properties during initialization, you can set the
+  predefined and custom user properties during initialization:
+</p>
+<pre><code class="“JavaScript”">var userProperties = {<br>    ‘customProperty’: ‘custom Value’,<br>    ‘username’: ‘USER_NAME’,<br>    ‘email’: ‘USER_EMAIL’<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setUserProperties(userProperties); </code></pre>
+<p>
+  If you want to set the user data after init, you can use
+  <code class="“JavaScript”">Countly.setUserData(USER_DATA);</code>:
+</p>
 <pre><code class="JavaScript">// example for setting user data
 Map&lt;String, Object&gt; options = {
     "name": "Nicola Tesla",
@@ -1277,10 +1293,82 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   and
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">android</a>.
 </p>
-<h1>Other features</h1>
+<h1>Other Features and Notes</h1>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  To configure the SDK during init, a config object called "CountlyConfig" is used.
+  Configuration is done by creating such an object and then calling it's provided
+  function calls to enable functionality you need.<br>
+  Here is the list of functionalities "CountlyConfig" provided:
+</p>
+<ul>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#device-id-management" target="_self">Device Id</a> - </strong>A device ID is a unique identifier for your users. You may specify the device ID yourself or allow the SDK to generate it.<br></span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#enable-logging" target="_self">Enable Logging</a> -</strong>
+    To enable countly internal debugging logs<span></span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#automatic-crash-handling" target="_self" rel="undefined">Enable Crash Reporting</a> -</strong>
+    To enable uncaught crash reporting
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#parameter-tampering-protection" target="_self">Salt</a> -</strong>
+    Set the optional salt to be used for calculating the checksum of requested
+    data which will be sent with each request<span></span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#setting-an-event-queue-threshold" target="_self" rel="undefined">Event queue threshold</a> -</strong>
+    Set the threshold for event grouping. Event count that is bellow the threshold
+    will be sent on update ticks.<span></span>
+  </li>
+  <li>
+    <strong>Update Session Timer -</strong> Sets the interval for the automatic
+    session update calls
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#automatic-crash-report-segmentation" target="_self">Custom Crash Segment</a> -</strong>Set
+    custom crash segmentation which will be added to all recorded crashes
+  </li>
+  <li>
+    <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#user-consent" target="_self"><strong>User consent</strong></a>
+    - Set if consent should be required and give consents.
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#forcing-http-post" target="_self">Forcing HTTP POST</a> -<span> </span></strong><span>When set to</span><span>&nbsp;</span><strong>true</strong><span>, all requests made to the Countly server will be done using HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In some cases, if the data to be sent exceeds the 1800-character limit, the SDK uses the POST method.</span><span>&nbsp;The default value is&nbsp;<strong>false</strong>. </span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#star-rating-dialog" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs.</span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#application-performance-monitoring" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#set-user-location" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location.<br></span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#setting-max-queue-size-limit" target="_self">Max Queue Size Limit</a> - </strong>Set maximum size for the request queue.</span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#manual-sessions" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#automatic-remote-config" target="_self">Automatic Remote Config</a> - </strong>If
+    enable, will automatically download newest remote config values.
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#direct-attribution" target="_self">Direct Attribution</a> -</strong>
+    Report direct user attribution
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#indirect-attribution" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
+    Report indirect user attribution
+  </li>
+</ul>
 <h2>Attribution</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
+  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition.
 </p>
@@ -1393,36 +1481,3 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   function:
 </p>
 <pre><code class="JavaScript">Countly.isInitialized();</code></pre>
-<h2>Optional parameters during initialization</h2>
-<p>
-  You can provide optional parameters that will be used during begin_session request.
-  They must be set right after the <code>init</code> function so that they are
-  set before the request is sent to the server. To set them, use the
-  <code>setOptionalParametersForInitialization</code> function. If you want to
-  set those optional parameters, this function has to be called every time the
-  app starts. If you don't want to set one off those values, leave that field
-  <code>null</code>.
-</p>
-<p>The optional parameters are:</p>
-<ul>
-  <li>Country code: ISO Country code for the user's country</li>
-  <li>City: Name of the user's city</li>
-  <li>
-    Location: Comma separate latitude and longitude values, for example "56.42345,123.45325"
-  </li>
-  <li>Your user’s IP address</li>
-</ul>
-<pre><code class="JavaScript">
-//setting optional parameters
-Map&lt;String, Object&gt; options = {
-    "city": "Tampa",
-    "country": "US",
-    "latitude": "28.006324",
-    "longitude": "-82.7166183",
-    "ipAddress": "255.255.255.255"
-};
-Countly.setOptionalParametersForInitialization(options);
-
-//and then call the below code
-Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
-</code></pre>
