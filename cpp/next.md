@@ -235,8 +235,8 @@ Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
 </p>
-<h1 id="view-tracking" class="anchor-heading" tabindex="-1">View Tracking</h1>
-<h2 id="manual-view-recording" class="anchor-heading">Manual view recording</h2>
+<h1>View Tracking</h1>
+<h2>Manual View Recording</h2>
 <p>
   The Countly C++ SDK supports manual view (screen) tracking. With this feature,
   you can report what views a user did and for how long. Thus, whenever there is
@@ -248,7 +248,7 @@ Countly.getInstance().addEvent(event);</code></pre>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><span><code class="hljs cs">std::map&lt;std::string, std::string&gt; segmenttation = {<br>{"cats", "123"},<br>{"moons", "9.98"},<br>{"Moose", "deer"},<br>};<br><br><span class="hljs-keyword">std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene", segmenttation)</span>;</code></span></pre>
+<pre><span><code class="hljs cs">std::map&lt;std::string, std::string&gt; segmentation = {<br>{"cats", "123"},<br>{"moons", "9.98"},<br>{"Moose", "deer"},<br>};<br><br><span class="hljs-keyword">std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene", segmenttation)</span>;</code></span></pre>
 <p>
   When the screen closes you can report it to the server by using one of the following
   methods:
