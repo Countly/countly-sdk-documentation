@@ -1,6 +1,12 @@
 <p>
-  <span>This document will guide you through the process of SDK installation and it applies to version 21.11.1. </span>
+  <span>This document will guide you through the process of SDK installation and it applies to version 22.02.0. </span>
 </p>
+<div class="callout callout--info">
+  <p>
+    To access the documentation for version 21.11 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/9665186961945" target="blank">here</a>.
+  </p>
+</div>
 <p>
   It is an open-source SDK, you can take a look at our SDK code in the<span>&nbsp;</span><a href="https://github.com/Countly/countly-sdk-cpp/" target="_self" rel="undefined">Github repo</a>
 </p>
@@ -72,6 +78,13 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <code>false</code>. When you set this <code>true</code>SDK automatically
   <span>extends the session after every 60 seconds.&nbsp;</span>
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.&nbsp;</span>
@@ -227,6 +240,42 @@ Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <p>
   <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
+</p>
+<h1>View Tracking</h1>
+<h2>Manual View Recording</h2>
+<p>
+  The Countly C++ SDK supports manual view (screen) tracking, with which, you can
+  report which views a user has visited with the duration of that visit. To report
+  a screen from your app to the Countly server, you can use the following method:
+</p>
+<pre><span style="font-weight: 400;"><code><span>std::string&amp; viewID = Countly::getInstance().views()("Home Scene");</span></code></span></pre>
+<p>
+  While tracking views manually, you may add your custom segmentation to those
+  views like this:
+</p>
+<pre><span><code>std::map&lt;std::string, std::string&gt; segmentation = {<br>{"cats", "123"},<br>{"moons", "9.98"},<br>{"Moose", "deer"},<br>};<br><br><span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene", segmentation);</code></span></pre>
+<p>
+  When the screen closes you can report it to the server by using one of the following
+  methods:
+</p>
+<p>
+  <strong>1. Ending a view with a view ID:</strong>
+</p>
+<p>
+  When you start recording a view by calling the
+  <span class="hljs-selector-tag">openView</span> method, it returns a view ID
+  of type
+  <span><span class="hljs-keyword">std::string</span>. You can use this ID to close a view.</span>
+</p>
+<p>For example:</p>
+<pre><span><code>std::string&amp; viewID = Countly::getInstance().views().openView("Home Scene");<br>...<br>Countly::getInstance().views().closeViewWithID(viewId);</code></span></pre>
+<p>
+  <strong>2. Ending a view with a view name:<br></strong>You may close a view by
+  its name using the following method:
+</p>
+<pre><span><code>Countly::getInstance().views().closeViewWithName("Home Scene");</code></span></pre>
+<p>
+  <span>To review the resulting view data, go to the </span><span><code>Analytics &gt; Views</code> section in your Countly server</span><span>. For more information on how to utilize view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span>here</span></a><span>.</span>
 </p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User location</span>
@@ -385,6 +434,25 @@ Countly.getInstance().addEvent(event);</code></pre>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
 </p>
+<h2>Setting custom SHA-256</h2>
+<p>
+  C++ SDK allows users to set a custom SHA-256 method
+  <span>for calculating the checksum of request data.</span>
+</p>
+<p>
+  <span>To use the custom SHA-256 feature follow the following steps:</span>
+</p>
+<p>
+  <span>1. Build the Countly C++ SDK executable with the <code>COUNTLY_USE_CUSTOM_SHA256</code> option.</span>
+</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto">
+  <pre>cmake -DCOUNTLY_USE_SQLITE=1 -DCOUNTLY_USE_CUSTOM_SHA256=1 -B build</pre>
+</div>
+<p>
+  <span>2. Set custom SHA-256 method <code>setSha256</code></span>
+</p>
+<p>For example:</p>
+<pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">Countly&amp; countly = Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
 <h1>FAQ</h1>
 <h2>What information is collected by the SDK</h2>
 <p>
