@@ -1018,21 +1018,30 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 </p>
 <h1>User Profiles</h1>
 <p>
-  In order to set a user profile, use the code snippet below. After you send user
-  data, it can be viewed under the User Profiles menu.
+  Using the following calls, you can set key/value to the visitors user profile.
+  After you send user data, it can be viewed under the User Profiles menu.
 </p>
 <p>
   Note that this feature is available only for Enterprise Edition.
 </p>
+<h2>Setting User profile values during init</h2>
 <p>
-  We recommend to set the user properties during initialization, you can set the
-  predefined and custom user properties during initialization:
+  We recommend to set the user properties during initialization. This way they
+  would be reflected when the session is started shortly.
+</p>
+<p>
+  Using the following call, you can set both the predefined and the custom user
+  properties during initialization:
 </p>
 <pre><code class="“JavaScript”">var userProperties = {<br>    ‘customProperty’: ‘custom Value’,<br>    ‘username’: ‘USER_NAME’,<br>    ‘email’: ‘USER_EMAIL’<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setUserProperties(userProperties); </code></pre>
+<h2>Setting Predefined Values</h2>
 <p>
   If you want to set the user data after init, you can use
-  <code class="“JavaScript”">Countly.setUserData(USER_DATA);</code>:
+  <code class="“JavaScript”">Countly.setUserData(USER_DATA);</code>
+</p>
+<p>
+  Using the call you can only set the following predefined keys.
 </p>
 <pre><code class="JavaScript">// example for setting user data
 Map&lt;String, Object&gt; options = {
@@ -1047,10 +1056,7 @@ Map&lt;String, Object&gt; options = {
     "byear": "1919",
 };
 Countly.setUserData(options);</code></pre>
-<p>
-  In order to modify a user's data (e.g increment, etc), the following code sample
-  can be used.
-</p>
+<p>&nbsp;</p>
 <h2>Modifying custom data</h2>
 <p>
   Additionally, you can do different manipulations on your custom data values,
@@ -1058,8 +1064,7 @@ Countly.setUserData(options);</code></pre>
   the same property.
 </p>
 <p>Below is the list of available methods:</p>
-<pre><code class="JavaScript">
-//set one custom properties
+<pre><code class="JavaScript">//set one custom properties
 Countly.setProperty("setProperty", "My Property");
 //increment used value by 1
 Countly.increment("increment");
