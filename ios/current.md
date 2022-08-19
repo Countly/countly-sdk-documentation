@@ -1419,7 +1419,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Click on </span><strong>Edit</strong><span style="font-weight: 400;"> and upload your Auth Key or exported certificate under the </span><strong>APN Credentials</strong><span style="font-weight: 400;"> section.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/ac0abd4-Screenshot_2017-09-20_14.55.34.png">
+  <img src="/hc/article_attachments/9520178138521/001.png" alt="001.png">
 </div>
 <p>
   <span style="font-weight: 400;">After filling all the required fields, click the </span><strong>Validate</strong><span style="font-weight: 400;"> button. Countly will check the validity of the credentials by initiating a test connection to the APNs. If validation succeeds, click </span><strong>Save changes</strong><span style="font-weight: 400;">.</span>
@@ -2427,7 +2427,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </div>
 </div>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/62867b4-feedbackwidgetss.png">
+  <img src="/hc/article_attachments/9520208490137/002.png" alt="002.png">
 </div>
 <h2>Feedback Widgets</h2>
 <p>

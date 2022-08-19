@@ -107,7 +107,7 @@
   Here you would also need to provide your application key and server URL. For
   more information on how to acquire your application key (APP_KEY) and server
   URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
   Also if you are planning to use Application Performance Monitoring (APM) there
   would be additional steps necessary for you to follow. For more information on
   APM and its integration please check
@@ -1295,7 +1295,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
+  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps#heatmaps-troubleshooting">Troubleshooting guide</a>.</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -1311,7 +1311,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/b893929-11.png">
+  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2>Tracking Scrolls</h2>
 <p>
@@ -1333,7 +1333,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/5bc44bc-topbar.png">
+  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
 </div>
 <h1>Remote Config</h1>
 <p>
@@ -1966,7 +1966,7 @@ Countly.opt_in();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
+  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#disable-tracking-until-given-consent">following section</a>.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -2008,9 +2008,6 @@ Countly.require_consent = true;</code></pre>
 });</code></pre>
   </div>
 </div>
-<p>
-  <span style="font-weight: 400;">Next, you may select all the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#helper-methods" target="_self">helper methods</a>&nbsp;you will be using. They won't be tracking or sending anything to the server until consent is given.</span>
-</p>
 <h2>Features for Consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK provides different features for consent. You may check all the supported features for the current SDK by checking the&nbsp;</span><strong>Countly.features</strong><span style="font-weight: 400;">&nbsp;property. Here is a list containing all the properties with ex</span>planations:
@@ -2867,5 +2864,20 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   TypeScript projects by enabling allowJs in your project's tsconfig.json file.
   However as we use javascript features that can run in the browser, your project
   must also be runnable on the browser.
+</p>
+<h2>Ignoring your own bots</h2>
+<p>
+  The default behavior of Countly Web SDK is to ignore bots crawling your site
+  to provide you a more accurate user analytics data. However, Countly can't detect
+  and block all bots crawling the internet as we use the userAgent string to detect
+  bots and spammy bots can hide by providing conventional
+  UserAgent. However, this is not the case for a bot that you have created your
+  own.
+</p>
+<p>
+  To include your bots to be also ignored by the Countly Web SDK you have to include
+  'CountlySiteBot' in your userAgent string. This enables your SDK to recognize
+  your bot as one of the bots to be ignored and the SDK would stop recording data
+  for your bot.
 </p>
 <p>&nbsp;</p>

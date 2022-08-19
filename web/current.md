@@ -1292,7 +1292,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/b893929-11.png">
+  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2>Tracking Scrolls</h2>
 <p>
@@ -1314,7 +1314,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/5bc44bc-topbar.png">
+  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
 </div>
 <h1>Remote Config</h1>
 <p>
@@ -2848,5 +2848,20 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   TypeScript projects by enabling allowJs in your project's tsconfig.json file.
   However as we use javascript features that can run in the browser, your project
   must also be runnable on the browser.
+</p>
+<h2>Ignoring your own bots</h2>
+<p>
+  The default behavior of Countly Web SDK is to ignore bots crawling your site
+  to provide you a more accurate user analytics data. However, Countly can't detect
+  and block all bots crawling the internet as we use the userAgent string to detect
+  bots and spammy bots can hide by providing conventional
+  UserAgent. However, this is not the case for a bot that you have created your
+  own.
+</p>
+<p>
+  To include your bots to be also ignored by the Countly Web SDK you have to include
+  'CountlySiteBot' in your userAgent string. This enables your SDK to recognize
+  your bot as one of the bots to be ignored and the SDK would stop recording data
+  for your bot.
 </p>
 <p>&nbsp;</p>

@@ -8,7 +8,8 @@
   <a href="https://support.count.ly/hc/en-us/articles/4410229126809">here</a>.
 </p>
 <div class="callout callout--info">
-  <strong>Supported System Versions</strong>
+    <strong>Supported System Versions</strong>
+  </p>
   <p>
     The Countly iOS SDK supports the minimum <code>Deployment Target</code>
     <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14) , and it
@@ -933,7 +934,7 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
   </div>
 </div>
 <div class="callout callout--warning">
-  <strong>Event Names and Segmentation</strong>
+    <strong>Event Names and Segmentation</strong>
   <p>
     Event names must be non-zero length valid <code>NSString</code> and segmentation
     must be an <code>NSDictionary</code> which
@@ -1415,13 +1416,13 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <img src="https://count.ly/images/guide/94d763b-push_p12.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Click on </span><strong>Edit</strong><span style="font-weight: 400;"> and upload your Auth Key or exported certificate under the </span><strong>APN Credentials</strong><span style="font-weight: 400;"> section.</span>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;">&nbsp;section.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/ac0abd4-Screenshot_2017-09-20_14.55.34.png">
+  <img src="/hc/article_attachments/9520178138521/001.png" alt="001.png">
 </div>
 <p>
-  <span style="font-weight: 400;">After filling all the required fields, click the </span><strong>Validate</strong><span style="font-weight: 400;"> button. Countly will check the validity of the credentials by initiating a test connection to the APNs. If validation succeeds, click </span><strong>Save changes</strong><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
 </p>
 <h2>Configuring iOS app</h2>
 <p>
@@ -2424,7 +2425,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </div>
 </div>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/62867b4-feedbackwidgetss.png">
+  <img src="/hc/article_attachments/9520208490137/002.png" alt="002.png">
 </div>
 <h2>Feedback Widgets</h2>
 <p>
@@ -3717,7 +3718,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">Can I integrate Countly iOS SDK using CocoaPods?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-cocoapods">read our notes</a> to avoid issues.</span>
+  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#cocoapods">read our notes</a> to avoid issues.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
@@ -3741,7 +3742,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">For details please see <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-user-profiles">User Profiles documentation</a>.</span>
+  <span class="wysiwyg-color-black">For details please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-profiles">User Profiles documentation</a>.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
@@ -3774,7 +3775,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-handling-notifications-manually">Handling Notifications Manually</a> section.</span>
+  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#manually-handling-notifications">Handling Notifications Manually</a> section.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>

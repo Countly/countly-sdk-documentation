@@ -484,7 +484,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+  <img src="/hc/article_attachments/9508351988121/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -666,10 +666,10 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly dashboard, select “Validate”, and eventually “Save changes”.</span>
+  <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/703de0a-Screenshot-2018-04-21-17.30.59-x.png">
+  <img src="/hc/article_attachments/9508421820313/002.png" alt="002.png">
 </div>
 <h3>Integrating FCM into your app</h3>
 <p>
@@ -842,7 +842,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <h3>Getting Huawei credentials</h3>
 <p>
   Assuming you have followed Huawei's guide of
-  <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/android-dev-process-0000001050263396" target="_self">setting up an application</a>,
+  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-help-createapp-0000001146718717" target="_self">setting up an application</a>,
   next step would be to
   <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service#enable-service" target="_self">enable PushKit</a>.
   Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
@@ -986,7 +986,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
 
 </code></pre>
 <p>
-  <span style="font-weight: 400;">This parameter effectively disables any UI interactions and <code>Activity</code></span><span style="font-weight: 400;">&nbsp;instantiation from the Countly SDK. To enable the custom processing of push notifications, you may either register your own <code>WakefulBroadcastReceiver</code></span><span style="font-weight: 400;">&nbsp;or use&nbsp;</span><a href="http://resources.count.ly/v1.0/docs/countly-sdk-for-android#section-integrating-push-notifications-into-android-application"><span style="font-weight: 400;">our example with the broadcast action</span></a><span style="font-weight: 400;">. Once you have switched off the default push notification UI, please make sure to call <code>CountlyMessaging.recordMessageOpen(id)</code></span>whenever
+  <span style="font-weight: 400;">This parameter effectively disables any UI interactions and <code>Activity</code></span><span style="font-weight: 400;">&nbsp;instantiation from the Countly SDK. To enable the custom processing of push notifications, you may either register your own <code>WakefulBroadcastReceiver</code></span><span style="font-weight: 400;">&nbsp;or use&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#push-notifications"><span style="font-weight: 400;">our example with the broadcast action</span></a><span style="font-weight: 400;">. Once you have switched off the default push notification UI, please make sure to call <code>CountlyMessaging.recordMessageOpen(id)</code></span>whenever
   a push notification is delivered to your device, and&nbsp;<code>CountlyMessaging.recordMessageAction(id, index)</code><span style="font-weight: 400;">, </span><span style="font-weight: 400;">whenever a user positively reacts to your notification. <code>id</code></span><span style="font-weight: 400;">&nbsp;is a message ID string you may receive from&nbsp;the <code>c.i</code></span><span style="font-weight: 400;">&nbsp;key of the push notification payload. <code>index</code></span><span style="font-weight: 400;">&nbsp;is optional and used to identify the type of action as follows: 0 for the tap on the notification in drawer, 1 for tap on first button of rich push, 2 for tap on the second button if there is any.</span>
 </p>
 <h3>Handling button or push clicks</h3>
@@ -1253,7 +1253,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/072bb00-t1.png">
+  <img src="/hc/article_attachments/9508502169241/003.png" alt="003.png">
 </div>
 <p>
   <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
@@ -1268,7 +1268,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9508523082649/004.png" alt="004.png">
 </div>
 <p>
   <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
@@ -1768,7 +1768,7 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
 <h1>Other features</h1>
 <h2>Attribution analytics &amp; install campaigns</h2>
 <p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition.
 </p>
@@ -1784,7 +1784,7 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
   <span style="font-weight: 400;">Note that modifying&nbsp;your </span><strong>AndroidManifest.xml</strong><span style="font-weight: 400;">&nbsp;file is the only thing you would need to do in order to start receiving data from your campaigns via the Attribution Analytics plugin.</span>
 </p>
 <p>
-  <strong><span style="font-weight: 400;">For more information about how to set up your campaigns, please&nbsp;</span><a href="http://resources.count.ly/docs/referral-analytics"><span style="font-weight: 400;">review this documentation</span></a><span style="font-weight: 400;">.</span></strong>
+  <strong><span style="font-weight: 400;">For more information about how to set up your campaigns, please&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics"><span style="font-weight: 400;">review this documentation</span></a><span style="font-weight: 400;">.</span></strong>
 </p>
 <h2>Receiving and showing badge numbers from push notifications</h2>
 <p>
@@ -1800,7 +1800,7 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
   <span style="font-weight: 400;">In order to receive this badge number in your application, you must subscribe to the broadcasts about received messages. There you will be informed about all received push notifications using Message and the bundle. The badge number is sent with the key "badge". You may use it to extract the badge number from the bundle received and then use it to display badge numbers with your implementation of choice.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In the example below we will use a badge library called&nbsp;</span><a href="https://github.com/leolin310148/ShortcutBadger"><span style="font-weight: 400;">ShortcutBadger</span></a><span style="font-weight: 400;">, which is used to show badges on Android. Follow their instructions&nbsp;</span><a href="https://github.com/leolin310148/ShortcutBadger#usage"><span style="font-weight: 400;">in this link</span></a><span style="font-weight: 400;">&nbsp;on how to implement it in your Android project. You may also see the same example inside the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app-messaging"><span style="font-weight: 400;">Countly messaging sample project</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">In the example below we will use a badge library called&nbsp;</span><a href="https://github.com/leolin310148/ShortcutBadger"><span style="font-weight: 400;">ShortcutBadger</span></a><span style="font-weight: 400;">, which is used to show badges on Android. Follow their instructions&nbsp;</span><a href="https://github.com/leolin310148/ShortcutBadger#usage"><span style="font-weight: 400;">in this link</span></a><span style="font-weight: 400;">&nbsp;on how to implement it in your Android project.
 </p>
 <pre><code class="java">/** Register for broadcast action if you need to be notified when Countly message received */
 messageReceiver = new BroadcastReceiver() {

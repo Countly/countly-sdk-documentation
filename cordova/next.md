@@ -522,7 +522,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+   <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -650,7 +650,10 @@ Countly.getCurrentDeviceId(function(deviceId){
 </ol>
 <h3>iOS setup</h3>
 <p>
-  <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span>
+  <span style="font-weight: 400;">By default push notification is enabled for iOS, to disable you need to add the <code>COUNTLY_EXCLUDE_PUSHNOTIFICATIONS=1</code></span><span style="font-weight: 400;">&nbsp;flag to the <code>Build Settings</code> &gt; <code>Preprocessor Macros</code></span><span style="font-weight: 400;"> section in Xcode.</span><span style="font-weight: 400;"></span>
+</p>
+<p>
+  <span style="font-weight: 400;"><img src="/hc/article_attachments/7912645823513/Screenshot_2022-06-27_at_5.35.43_PM.png" alt="Screenshot_2022-06-27_at_5.35.43_PM.png"></span>
 </p>
 <div class="callout callout--info">
   <strong>Minimum Countly SDK Version</strong>
@@ -715,6 +718,15 @@ Countly.askForNotificationPermission();</code></pre>
 [CountlyNative onNotification: notification.request.content.userInfo];
 completionHandler(0);
 }</code></pre>
+<h3>Data Structure Received in Push Callbacks</h3>
+<p>
+  Here is the example of how data will receive in push callbacks:<img src="/hc/article_attachments/7830011337369/Screenshot_2022-06-24_at_7.04.23_PM.png" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
+  <br>
+  Data Received for Android platform:
+</p>
+<pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
+<p>Data Received for iOS platform:</p>
+<pre>{<br>Key = value;<br> aps = {<br>  alert = {<br>   body = Message;<br>   subtitle = subtitle;<br>   title = title;<br>  };<br> badge = 1;<br> "mutable-content" = 1;<br> sound = custom;<br> };<br> c = {<br>  a = "https://count.ly/images/logos/countly-logo-mark.png";<br>   e = {<br>    cc = TR;<br>    dt = mobile;<br>   };<br>  i = 62b5b945cabedb0870e9f217;<br>  l = "https://www.google.com/";<br> };<br>}</pre>
 <h1>User location</h1>
 <p>
   While integrating this SDK into your application, you might want to track your
@@ -896,7 +908,7 @@ countly.askForStarRating(Function(ratingResult){
   Feedback widget shows a server configured widget to your user devices.
 </p>
 <p>
-  <img src="/hc/article_attachments/360050033271/072bb00-t1.png" alt="072bb00-t1.png">
+  <img src="/hc/article_attachments/9518534013209/002.png" alt="002.png">
 </p>
 <p>
   It's possible to configure any of the shown text fields and replace with a custom
@@ -917,7 +929,7 @@ countly.askForStarRating(Function(ratingResult){
   you first have to get the widget ID from your server:
 </p>
 <p>
-  <img src="/hc/article_attachments/360049916892/2dd58c6-t2.png" alt="2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9518534789401/003.png" alt="003.png">
 </p>
 <p>
   Using that you can call the function to show the widget popup:

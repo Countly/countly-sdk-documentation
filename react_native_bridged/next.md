@@ -211,7 +211,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code>and
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
-  <a href="https://bintray.com/countly/maven/sdk-native">page</a>, currently 20.11.6):
+  <a href="https://search.maven.org/artifact/ly.count.android/sdk-native">page</a>, currently 20.11.6):
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:LATEST_VERSION'    
@@ -408,7 +408,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+  <img src="/hc/article_attachments/9545215851033/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -593,7 +593,7 @@ apply plugin: 'com.google.gms.google-services'
 <h2>iOS Setup</h2>
 <p>
   For iOS push notification please follow the instruction from this URL
-  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications</a>
 </p>
 <p>
   For React Native you can find
@@ -657,6 +657,15 @@ console.log(JSON.stringify(theNotification));
   completionHandler(0);
 }
 </code></pre>
+<h3>Data Structure Received in Push Callbacks</h3>
+<p>
+  Here is the example of how data will receive in push callbacks:<img src="/hc/article_attachments/7830011337369/Screenshot_2022-06-24_at_7.04.23_PM.png" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
+  <br>
+  Data Received for Android platform:
+</p>
+<pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
+<p>Data Received for iOS platform:</p>
+<pre>{<br> "c": {<br>  "i": "62b5b945cabedb0870e9f217",<br>  "l": "https:\/\/www.google.com\/",<br>  "e": {<br>   "dt": "mobile",<br>   "cc": "TR"<br>  },<br>  "a": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png"<br> },<br> "aps": {<br>  "mutable-content": 1,<br>  "alert": {<br>   "title": "title",<br>   "subtitle": "subtitle",<br>   "body": "Message"<br>  },<br>  "badge": 1,<br>  "sound": "custom"<br> },<br> "Key": "value"<br>}</pre>
 <h1>User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -830,7 +839,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   The rating widget displays a server-configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/ea55d24-072bb00-t1.png">
+  <img src="/hc/article_attachments/9545190761113/002.png" alt="002.png">
 </div>
 <p>
   All the text fields in the example above can be configured and replaced with
@@ -850,7 +859,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   the widget ID from your server, as shown below.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/f773cf4-2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9545218779033/003.png" alt="003.png">
 </div>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
@@ -1072,9 +1081,9 @@ Countly.endTrace(traceKey, customMetric);</pre>
 </ul>
 <p>
   Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also
-  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#consents" target="_self" rel="undefined">iOS Consents</a>
+  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent-management" target="_self" rel="undefined">Android Consents</a>).
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).
 </p>
 <p>
   Next we will go over the methods that are available in this SDK.
@@ -1271,7 +1280,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 Countly.setCustomMetrics(customMetric);</code></pre>
 <h2>Attribution analytics &amp; install campaigns</h2>
 <p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure the performance of your marketing campaign by attributing
   installs from specific campaigns. This feature is available for the Enterprise
   Edition.
@@ -1289,7 +1298,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
-  <strong>For more information about how to set up your campaigns, please <a href="http://resources.count.ly/docs/referral-analytics">review this documentation</a>.</strong>
+  <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
 </p>
 <p>Call the method below before initialization.</p>
 <pre>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
