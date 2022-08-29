@@ -1036,8 +1036,8 @@ Countly.sharedInstance().endSession()</code></pre>
 <p>
   <span style="font-weight: 400;">If the Auto View Tracking feature is not enabled upon initial configuration, enabling or disabling this property at a later time will have no effect. It will always be disabled.</span>
 </p>
-<h2>Automatic View Exceptions</h2>
-<h3>Default Exceptions for Automatic View Tracking</h3>
+<h3>Automatic View Exceptions</h3>
+<h4>Default Exceptions for Automatic View Tracking</h4>
 <p>
   <span style="font-weight: 400;">Following system view controllers will be excluded by default from auto tracking, as they are not visible views but rather structural controllers:</span>
 </p>
@@ -1080,7 +1080,7 @@ UISnapshotModalViewController
 UIMultiColumnViewController
 UIKeyCommandDiscoverabilityHUDViewController
 </code></pre>
-<h3>Custom Exceptions for Automatic View Tracking</h3>
+<h4>Custom Exceptions for Automatic View Tracking</h4>
 <p>
   <span style="font-weight: 400;">In addition to these default exceptions, you can manually add your own exception view controllers using the <code>addExceptionForAutoViewTracking:</code></span><span style="font-weight: 400;">method by passing the view controller class name or title:</span>
 </p>
@@ -1130,7 +1130,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   Removing an already removed (or not yet added) view controller class name or
   title again will have no effect.
 </p>
-<h3>Customizing Auto View Tracking View Names</h3>
+<h4>Customizing Auto View Tracking View Names</h4>
 <p>
   You can utilize <code>CountlyAutoViewTrackingName</code> protocol to customize view names used by Auto View Tracking.
 </p>
