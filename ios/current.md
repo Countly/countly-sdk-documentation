@@ -1,15 +1,14 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>21.11.0</code>.
+  <code>22.06.0</code>.
 </p>
 <p>
-  To access the documentation for version 20.11.3 and older, click
-  <a href="https://support.count.ly/hc/en-us/articles/4410229126809">here</a>.
+  To access the documentation for older versions please click
+  <a href="https://support.count.ly/hc/en-us/articles/10017895289625">here</a>.
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Supported System Versions</span></strong>
+    <strong>Supported System Versions</strong>
   </p>
   <p>
     The Countly iOS SDK supports the minimum <code>Deployment Target</code>
@@ -94,6 +93,13 @@
 <p>
   <span style="font-weight: 400;">You can run your project and see the first session data immediately displayed on your Countly Server dashboard.</span>
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>Additional Features</h2>
 <p>
   If you would like to use additional features, such as
@@ -245,9 +251,7 @@ func internalLog(_ log: String)
   for tvOS).
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Countly Code Generator</span></strong>
-  </p>
+  <strong>Countly Code Generator</strong>
   <p>
     <a href="https://code.count.ly">The Countly Code Generator</a> can be used
     to generate Countly iOS SDK code snippets easily and fast. You can provide
@@ -566,9 +570,7 @@ Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thr
 </div>
 <h2>Symbolication</h2>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Enterprise Edition Feature</span></strong>
-  </p>
+  <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
@@ -932,9 +934,7 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
   </div>
 </div>
 <div class="callout callout--warning">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Event Names and Segmentation</span></strong>
-  </p>
+    <strong>Event Names and Segmentation</strong>
   <p>
     Event names must be non-zero length valid <code>NSString</code> and segmentation
     must be an <code>NSDictionary</code> which
@@ -1037,7 +1037,8 @@ Countly.sharedInstance().endSession()</code></pre>
 <p>
   <span style="font-weight: 400;">If the Auto View Tracking feature is not enabled upon initial configuration, enabling or disabling this property at a later time will have no effect. It will always be disabled.</span>
 </p>
-<h2>Automatic View Exceptions</h2>
+<h3>Automatic View Exceptions</h3>
+<h4>Default Exceptions for Automatic View Tracking</h4>
 <p>
   <span style="font-weight: 400;">Following system view controllers will be excluded by default from auto tracking, as they are not visible views but rather structural controllers:</span>
 </p>
@@ -1080,6 +1081,7 @@ UISnapshotModalViewController
 UIMultiColumnViewController
 UIKeyCommandDiscoverabilityHUDViewController
 </code></pre>
+<h4>Custom Exceptions for Automatic View Tracking</h4>
 <p>
   <span style="font-weight: 400;">In addition to these default exceptions, you can manually add your own exception view controllers using the <code>addExceptionForAutoViewTracking:</code></span><span style="font-weight: 400;">method by passing the view controller class name or title:</span>
 </p>
@@ -1129,6 +1131,39 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   Removing an already removed (or not yet added) view controller class name or
   title again will have no effect.
 </p>
+<h4>Customizing Auto View Tracking View Names</h4>
+<p>
+  You can utilize <code>CountlyAutoViewTrackingName</code> protocol to customize view names used by Auto View Tracking.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol.
+@interface MyViewController : UIViewController<CountlyAutoViewTrackingName>
+@end
+
+//and implement <code>countlyAutoViewTrackingName</code> method to return custom view name to be used by Auto View Tracking.
+
+- (NSString *)countlyAutoViewTrackingName
+{
+    return @"This is overridden custom view name";
+}</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol.
+class MyViewController: UIViewController, CountlyAutoViewTrackingName
+
+//and implement <code>countlyAutoViewTrackingName</code> function to return custom view name to be used by Auto View Tracking.
+
+func countlyAutoViewTrackingName() -> String
+{
+    return "This is overridden custom view name"
+}</code></pre>
+  </div>
+</div>
 <h2>Manual View Recording</h2>
 <p>
   <span style="font-weight: 400;">In addition to Auto View Tracking, you can manually record the appearance of a view using the <code>recordView:</code></span><span style="font-weight: 400;">method with the view's name:</span>
@@ -1187,8 +1222,9 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   </div>
 </div>
 <div class="callout callout--warning">
+  <strong>Consent Reset on Device ID Change</strong>
   <p>
-    <span style="font-weight: 400;">If device ID is changed without merging ("onServer" set to "NO") and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+    <span style="font-weight: 400;">If device ID is changed without merging (<code>onServer</code> set to <code>NO</code>) and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
 <p>
@@ -1215,11 +1251,6 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <code>CLYDefaultDeviceID</code>.
 </p>
 <h2>Temporary Device ID</h2>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">If temporary ID mode is entered and consent is enabled, all previously given consent will be removed. Therefore after entering the temporary ID mode, you should reestablish consent again.</span>
-  </p>
-</div>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
   real device ID is set later. It can be enabled by setting
@@ -1289,6 +1320,12 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   is <code>CLYTemporaryDeviceID</code>, argument for the <code>onServer</code>
   parameter does not matter.
 </p>
+<div class="callout callout--warning">
+  <strong>Consent Reset on Temporary Device ID Mode</strong>
+  <p>
+    <span style="font-weight: 400;">If the SDK goes into Temporary Device ID mode and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. Therefore after entering the Temporary Device ID mode, you should reestablish consent again.</span>
+  </p>
+</div>
 <h2>Retrieving Current Device ID</h2>
 <p>
   You can use <code>deviceID</code>method to get current device ID:
@@ -1416,13 +1453,13 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <img src="https://count.ly/images/guide/94d763b-push_p12.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Click on </span><strong>Edit</strong><span style="font-weight: 400;"> and upload your Auth Key or exported certificate under the </span><strong>APN Credentials</strong><span style="font-weight: 400;"> section.</span>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;">&nbsp;section.</span>
 </p>
 <div class="img-container">
   <img src="/hc/article_attachments/9520178138521/001.png" alt="001.png">
 </div>
 <p>
-  <span style="font-weight: 400;">After filling all the required fields, click the </span><strong>Validate</strong><span style="font-weight: 400;"> button. Countly will check the validity of the credentials by initiating a test connection to the APNs. If validation succeeds, click </span><strong>Save changes</strong><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
 </p>
 <h2>Configuring iOS app</h2>
 <p>
@@ -1992,9 +2029,7 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
 </div>
 <h1>User Location</h1>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Enterprise Edition Feature</span></strong>
-  </p>
+  <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
@@ -2385,7 +2420,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">Countly.sharedInstance().ask(forStarRating:{ (rating : Int) in print("rating \(rating)") })</code></pre>
   </div>
 </div>
-<h3>Ratings Widget</h3>
+<h3>Rating Widget</h3>
 <p>
   <span style="font-weight: 400;">You can use the Countly iOS SDK to display ratings feedback widgets configured on the Countly Server. For more information on ratings feedback widgets, please visit the </span><a href="https://resources.count.ly/docs/ratings-and-feedback"><span style="font-weight: 400;">Ratings widget documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
@@ -2393,10 +2428,10 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <span style="font-weight: 400;">Here is how you can utilize ratings feedback widgets in your iOS apps:</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Once you call the <code>presentFeedbackWidgetWithID:completionHandler:</code></span><span style="font-weight: 400;"> method, the ratings feedback widget with the given ID will be displayed in a WKWebView, having been placed in the UIViewController.</span>
+  <span style="font-weight: 400;">Once you call the <code>presentRatingWidgetWithID:completionHandler:</code></span><span style="font-weight: 400;"> method, the ratings feedback widget with the given ID will be displayed in a WKWebView, having been placed in the UIViewController.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First, the availability of the ratings feedback widget will be checked asynchronously. If the ratings feedback widget is available, it will be modally presented. Otherwise, the <code>completionHandler</code></span><span style="font-weight: 400;"> will be called with an <code>NSError</code></span><span style="font-weight: 400;">. the <code>completionHandler</code></span><span style="font-weight: 400;"> will also be called with <code>nil</code></span><span style="font-weight: 400;"> when the ratings feedback widget is dismissed by the user.</span>
+  <span style="font-weight: 400;">First, the availability of the ratings feedback widget will be checked asynchronously. If the ratings feedback widget is available, it will be modally presented. Otherwise, the <code>completionHandler</code></span><span style="font-weight: 400;"> will be called with an <code>NSError</code></span><span style="font-weight: 400;">. The <code>completionHandler</code></span><span style="font-weight: 400;"> will also be called with <code>nil</code></span><span style="font-weight: 400;"> when the ratings feedback widget is dismissed by the user.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2404,7 +2439,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance presentFeedbackWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" completionHandler:^(NSError* error)
+    <pre><code class="objectivec">[Countly.sharedInstance presentRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" completionHandler:^(NSError* error)
 {
     if (error)
         NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
@@ -2413,7 +2448,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().presentFeedbackWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", completionHandler:
+    <pre><code class="swift">Countly.sharedInstance().presentRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", completionHandler:
 { (error : Error?) in
     if (error != nil)
     {
@@ -2429,7 +2464,31 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 <div class="img-container">
   <img src="/hc/article_attachments/9520208490137/002.png" alt="002.png">
 </div>
-<h2>Feedback Widgets</h2>
+<h3>Manual Rating Reporting</h3>
+<p>If you wish to construct your own custom UI for displaying ratings widgets, you can manually record the result with the widget ID and other parameters as follows:<br> 
+<code>widgetID</code>: ID of the rating widget created on Countly Server<br>
+<code>rating</code>: User's rating<br>
+<code>email</code>: User's e-mail address (optional)<br>
+<code>comment</code>: User's comment (optional)<br>
+<code>userCanBeContacted</code>: User's consent for whether they can be contacted via e-mail or not<br>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance recordRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" rating:4 email:@"email@example.com" comment:@"Some comment" userCanBeContacted:YES];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().recordRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", rating: 4, email: "email@example.com", comment: "Some comment", userCanBeContacted: true)</code></pre>
+  </div>
+</div>
+<p>Calls to this method will be ignored if:<br>
+- Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag is set on initial configuration.<br>
+- <code>widgetID</code> is not a non-zero length valid string.<br>
+</p>
+<h2>Feedback Widget</h2>
 <p>
   <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
   First you need to get the list of all available NPS and survey widgets:
@@ -2542,14 +2601,6 @@ andDismiss:
   </div>
 </div>
 <h3>Manual Reporting</h3>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is available only on Countly iOS SDK 20.11.3 or newer
-  </p>
-</div>
 <p>
   Optionally you can fetch feedback widget data and create your own UI using:
 </p>
@@ -2620,9 +2671,7 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
 </p>
 <h1>User Profiles</h1>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Enterprise Edition Feature</span></strong>
-  </p>
+  <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
     <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
@@ -2761,6 +2810,12 @@ Countly.user().pushUnique("key104", values:["uniqueValue2","uniqueValue3"])
 Countly.user().save()</code></pre>
   </div>
 </div>
+<p>
+<strong>Note:</strong>Once saved, all properties on <code>Countly.user</code> will be cleared.
+</p>
+<p>
+<strong>Note:</strong>You can start setting user properties even before starting the Countly iOS SDK. They will be saved automatically when the SDK is started.
+</p>
 <h2>Orientation Tracking</h2>
 <p>
   <span style="font-weight: 400;">You can set the <code>enableOrientationTracking</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. This flag is used for enabling automatic user interface orientation tracking. If set, user interface orientation tracking feature will be enabled and an event will be sent whenever user interface orientation changes. Orientation event will not be sent if consent for <code>CLYConsentUserDetails</code> is not given while <code>requiresConsent</code> flag is set on initial configuration. Automatic user interface orientation tracking is enabled by default. For disabling it, please set this flag to <code>NO<code>.
@@ -2962,7 +3017,6 @@ CLYConsentPushNotifications<br>
 CLYConsentLocation<br>
 CLYConsentViewTracking<br>
 CLYConsentAttribution<br>
-CLYConsentAppleWatch<br>
 CLYConsentPerformanceMonitoring<br>
 CLYConsentFeedback<br>
 CLYConsentRemoteConfig</pre>
@@ -3391,6 +3445,21 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre>config.URLSessionConfiguration = URLSessionConfiguration.ephemeral</pre>
   </div>
 </div>
+<p>
+  In addition to the initial configuration, you can also change URLSessionConfiguration later using:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance setNewURLSessionConfiguration:newURLSessionConfiguration];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre>Countly.sharedInstance().setNewURLSessionConfiguration(newURLSessionConfiguration)</pre>
+  </div>
+</div>
 <h2>Custom Metrics</h2>
 <p>
   For overriding default metrics or adding extra ones that are sent with
@@ -3437,6 +3506,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2>Attribution</h2>
+<h3>IDFA Attribution</h3>
 <p>
   <span style="font-weight: 400;">You can use <code>attributionID</code> property on <code>CountlyConfig</code></span><span style="font-weight: 400;"> object to specify IDFA for campaign attribution before starting the SDK. If set, it will be sent with every <code>begin_session</code></span><span style="font-weight: 400;"> request.</span>
 </p>
@@ -3481,6 +3551,43 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   And for App Tracking Transparency permission required on iOS 14.5+ please see:
   <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
 </p>
+<h3>Direct Attribution</h3>
+<p>You can record direct attribution with campaign type and data.<br>
+Currently supported campaign types are <code>countly</code> and <code>_special_test</code>.<br>
+Campaign data has to be JSON string in <code>{"cid":"CAMPAIGN_ID", "cuid":"CAMPAIGN_USER_ID"}</code> format.<br>
+Calls to this method will be ignored if consent for <code>CLYConsentAttribution</code> is not given, while <code>requiresConsent</code> flag is set on initial configuration. 
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSString* campaignData = @"{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}";
+[Countly.sharedInstance recordDirectAttributionWithCampaignType:@"countly" andCampaignData:campaignData];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let campaignData = "{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}"
+Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", andCampaignData: campaignData)</code></pre>
+  </div>
+</div>
+<h3>Indirect Attribution</h3>
+<p>You can record indirect attribution with given key-value pairs.<br>
+Keys could be a predefined <code>CLYAttributionKeyIDFA</code> or <code>CLYAttributionKeyADID</code> or any non-zero length valid string.<br>
+Calls to this method will be ignored if consent for <code>CLYConsentAttribution</code> is not given, while <code>requiresConsent</code> flag is set on initial configuration. 
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance recordIndirectAttribution:@{CLYAttributionKeyADID: @"value", @"key1": @"value1", @"key2": @"value2"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
+  </div>
+</div>
 <h2>watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
@@ -3632,12 +3739,10 @@ config.eventSendThreshold = 1</code></pre>
 </p>
 <h2>CocoaPods</h2>
 <div class="callout callout--warning">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">CocoaPods Support</span></strong>
-  </p>
+  <strong>CocoaPods Support</strong>
   <p>
     While the Countly iOS SDK supports integration via CocoaPods, we can not
-    be able to help you with issues stemming from the CocoaPods themselves, especially
+    be able to help you with issues stemming from the CocoaPods itself, especially
     for some advanced use-cases.
   </p>
 </div>
@@ -3645,7 +3750,7 @@ config.eventSendThreshold = 1</code></pre>
   <span style="font-weight: 400;">You can integrate the Countly iOS SDK using CocoaPods. For more information, please see the </span><a href="https://cocoapods.org/pods/Countly"><span style="font-weight: 400;">Countly CocoaPods page</span></a><span style="font-weight: 400;">. Please ensure you have the latest version of CocoaPods and your local spec repo is updated. For Notification Service Extension targets, please ensure your Podfile uses something similar to the following sub specs:</span>
 </p>
 <pre><code class="ruby">target 'MyMainApp' do
-  platform :ios,'8.0'
+  platform :ios,'10.0'
   pod 'Countly'
 end
 
@@ -3726,7 +3831,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">Can I integrate Countly iOS SDK using CocoaPods?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-cocoapods">read our notes</a> to avoid issues.</span>
+  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#cocoapods">read our notes</a> to avoid issues.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
@@ -3750,7 +3855,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">For details please see <a href="http://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-user-profiles">User Profiles documentation</a>.</span>
+  <span class="wysiwyg-color-black">For details please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-profiles">User Profiles documentation</a>.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
@@ -3783,7 +3888,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-handling-notifications-manually">Handling Notifications Manually</a> section.</span>
+  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#manually-handling-notifications">Handling Notifications Manually</a> section.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>

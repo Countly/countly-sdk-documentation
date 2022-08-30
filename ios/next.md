@@ -1,11 +1,11 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>22.06.0</code>.
+  <code>22.08.0</code>.
 </p>
 <p>
   To access the documentation for older versions please click
-  <a href="https://support.count.ly/hc/en-us/articles/4410229126809">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/10017895289625">here</a>.
 </p>
 <div class="callout callout--info">
     <strong>Supported System Versions</strong>
