@@ -510,18 +510,18 @@
   The first thing you would like to do is to create a new experiment in the A/B
   Testing section of your server app. Here you can give a name and a description
   of your experiment.<br>
-  <img src="/hc/article_attachments/9557660562457/mceclip0.png" alt="mceclip0.png"><br>
+  <img src="/hc/article_attachments/10048099151001/1_1.png" alt="1_1.png"><br>
   After giving your experiment a name and a definition, you would like to choose
   how you are going to target your users. This is especially important as for your
   experiment to work, certain users should be using the default version of your
   site or app while another group must be using the variation that you want to
   test with. Here the group which uses the default version of your app/website
   is usually referred to as the control group.<br>
-  <img src="/hc/article_attachments/9557779054361/mceclip1.png" alt="mceclip1.png"><br>
+  <img src="/hc/article_attachments/10048151821721/2_2.png" alt="2_2.png"><br>
   Next, you would want to define a goal for your experiment that you can measure
   its success against. This can be a user behavior or user property that you seek
   and you can define as many goals as you want.<br>
-  <img src="/hc/article_attachments/9557784538649/mceclip2.png" alt="mceclip2.png"><br>
+  <img src="/hc/article_attachments/10048139732377/3_3.png" alt="3_3.png"><br>
   Finally, you would need to define the parameters that you want to change in each
   variation of your site. This can be something like the background color you want
   to try or can be a new text for your page title.<br>
