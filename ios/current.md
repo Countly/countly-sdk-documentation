@@ -8,8 +8,7 @@
   <a href="https://support.count.ly/hc/en-us/articles/10017895289625">here</a>.
 </p>
 <div class="callout callout--info">
-    <strong>Supported System Versions</strong>
-  </p>
+  <strong>Supported System Versions</strong>
   <p>
     The Countly iOS SDK supports the minimum <code>Deployment Target</code>
     <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14) , and it
@@ -934,7 +933,7 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
   </div>
 </div>
 <div class="callout callout--warning">
-    <strong>Event Names and Segmentation</strong>
+  <strong>Event Names and Segmentation</strong>
   <p>
     Event names must be non-zero length valid <code>NSString</code> and segmentation
     must be an <code>NSDictionary</code> which
@@ -1133,7 +1132,8 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 </p>
 <h4>Customizing Auto View Tracking View Names</h4>
 <p>
-  You can utilize <code>CountlyAutoViewTrackingName</code> protocol to customize view names used by Auto View Tracking.
+  You can utilize <code>CountlyAutoViewTrackingName</code> protocol to customize
+  view names used by Auto View Tracking.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1141,27 +1141,10 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol.
-@interface MyViewController : UIViewController<CountlyAutoViewTrackingName>
-@end
-
-//and implement <code>countlyAutoViewTrackingName</code> method to return custom view name to be used by Auto View Tracking.
-
-- (NSString *)countlyAutoViewTrackingName
-{
-    return @"This is overridden custom view name";
-}</code></pre>
+    <pre><code class="objectivec">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol. @interface MyViewController : UIViewController @end //and implement <code>countlyAutoViewTrackingName</code> method to return custom view name to be used by Auto View Tracking. - (NSString *)countlyAutoViewTrackingName { return @"This is overridden custom view name"; }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol.
-class MyViewController: UIViewController, CountlyAutoViewTrackingName
-
-//and implement <code>countlyAutoViewTrackingName</code> function to return custom view name to be used by Auto View Tracking.
-
-func countlyAutoViewTrackingName() -> String
-{
-    return "This is overridden custom view name"
-}</code></pre>
+    <pre><code class="swift">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol. class MyViewController: UIViewController, CountlyAutoViewTrackingName //and implement <code>countlyAutoViewTrackingName</code> function to return custom view name to be used by Auto View Tracking. func countlyAutoViewTrackingName() -&gt; String { return "This is overridden custom view name" }</code></pre>
   </div>
 </div>
 <h2>Manual View Recording</h2>
@@ -2465,12 +2448,15 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <img src="/hc/article_attachments/9520208490137/002.png" alt="002.png">
 </div>
 <h3>Manual Rating Reporting</h3>
-<p>If you wish to construct your own custom UI for displaying ratings widgets, you can manually record the result with the widget ID and other parameters as follows:<br> 
-<code>widgetID</code>: ID of the rating widget created on Countly Server<br>
-<code>rating</code>: User's rating<br>
-<code>email</code>: User's e-mail address (optional)<br>
-<code>comment</code>: User's comment (optional)<br>
-<code>userCanBeContacted</code>: User's consent for whether they can be contacted via e-mail or not<br>
+<p>
+  If you wish to construct your own custom UI for displaying ratings widgets, you
+  can manually record the result with the widget ID and other parameters as follows:<br>
+  <code>widgetID</code>: ID of the rating widget created on Countly Server<br>
+  <code>rating</code>: User's rating<br>
+  <code>email</code>: User's e-mail address (optional)<br>
+  <code>comment</code>: User's comment (optional)<br>
+  <code>userCanBeContacted</code>: User's consent for whether they can be contacted
+  via e-mail or not
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2484,9 +2470,11 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">Countly.sharedInstance().recordRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", rating: 4, email: "email@example.com", comment: "Some comment", userCanBeContacted: true)</code></pre>
   </div>
 </div>
-<p>Calls to this method will be ignored if:<br>
-- Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag is set on initial configuration.<br>
-- <code>widgetID</code> is not a non-zero length valid string.<br>
+<p>
+  Calls to this method will be ignored if:<br>
+  - Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag
+  is set on initial configuration.<br>
+  - <code>widgetID</code> is not a non-zero length valid string.
 </p>
 <h2>Feedback Widget</h2>
 <p>
@@ -2811,10 +2799,12 @@ Countly.user().save()</code></pre>
   </div>
 </div>
 <p>
-<strong>Note:</strong>Once saved, all properties on <code>Countly.user</code> will be cleared.
+  <strong>Note:</strong>Once saved, all properties on <code>Countly.user</code>
+  will be cleared.
 </p>
 <p>
-<strong>Note:</strong>You can start setting user properties even before starting the Countly iOS SDK. They will be saved automatically when the SDK is started.
+  <strong>Note:</strong>You can start setting user properties even before starting
+  the Countly iOS SDK. They will be saved automatically when the SDK is started.
 </p>
 <h2>Orientation Tracking</h2>
 <p>
@@ -3446,7 +3436,8 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <p>
-  In addition to the initial configuration, you can also change URLSessionConfiguration later using:
+  In addition to the initial configuration, you can also change URLSessionConfiguration
+  later using:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3552,10 +3543,15 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
 </p>
 <h3>Direct Attribution</h3>
-<p>You can record direct attribution with campaign type and data.<br>
-Currently supported campaign types are <code>countly</code> and <code>_special_test</code>.<br>
-Campaign data has to be JSON string in <code>{"cid":"CAMPAIGN_ID", "cuid":"CAMPAIGN_USER_ID"}</code> format.<br>
-Calls to this method will be ignored if consent for <code>CLYConsentAttribution</code> is not given, while <code>requiresConsent</code> flag is set on initial configuration. 
+<p>
+  You can record direct attribution with campaign type and data.<br>
+  Currently supported campaign types are <code>countly</code> and
+  <code>_special_test</code>.<br>
+  Campaign data has to be JSON string in
+  <code>{"cid":"CAMPAIGN_ID", "cuid":"CAMPAIGN_USER_ID"}</code> format.<br>
+  Calls to this method will be ignored if consent for
+  <code>CLYConsentAttribution</code> is not given, while
+  <code>requiresConsent</code> flag is set on initial configuration.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3572,9 +3568,13 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   </div>
 </div>
 <h3>Indirect Attribution</h3>
-<p>You can record indirect attribution with given key-value pairs.<br>
-Keys could be a predefined <code>CLYAttributionKeyIDFA</code> or <code>CLYAttributionKeyADID</code> or any non-zero length valid string.<br>
-Calls to this method will be ignored if consent for <code>CLYConsentAttribution</code> is not given, while <code>requiresConsent</code> flag is set on initial configuration. 
+<p>
+  You can record indirect attribution with given key-value pairs.<br>
+  Keys could be a predefined <code>CLYAttributionKeyIDFA</code> or
+  <code>CLYAttributionKeyADID</code> or any non-zero length valid string.<br>
+  Calls to this method will be ignored if consent for
+  <code>CLYConsentAttribution</code> is not given, while
+  <code>requiresConsent</code> flag is set on initial configuration.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
