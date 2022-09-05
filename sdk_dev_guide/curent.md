@@ -1922,7 +1922,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   As mentioned before, the first step uses "getAvailableFeedbackWidgets" which
   is also used for automatic feedback widgets. After inspecting the returned list,
-  the developer would select one widget he would want to report, and he the use
+  the developer would select one widget he would want to report, and then he would use
   the "CountlyFeedbackWidget<span>" object for it.</span>
 </p>
 <p>
