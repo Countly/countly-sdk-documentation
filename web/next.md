@@ -60,15 +60,19 @@
   </tbody>
 </table>
 <p>
-  If you want to get the Countly Web SDK codebase locally you can go to the
-  github repo
-  <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
+  If you want to get the Countly Web SDK codebase locally you can go to the github
+  repo <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
   it inside your project folder by executing the lines:
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
 </code></pre>
 <p>
-  Additionally to see example integrations of Countly Web SDK within some popular front-end frameworks, you can reach our AngularJS and ReactJS examples from <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a> and <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a> respectively.
+  Additionally to see example integrations of Countly Web SDK within some popular
+  front-end frameworks, you can reach our AngularJS and ReactJS examples from
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a>
+  and
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a>
+  respectively.
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
@@ -1647,7 +1651,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 <p>
   Note: Feedback widget's show policies are handled internally by the web sdk.
 </p>
-<h3>Manual Feedback Widget Reporting</h3>
+<h3>Manual Reporting</h3>
 <p>
   Reporting feedback widgets manually consists of 3 main steps:
 </p>
@@ -2922,9 +2926,8 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   The default behavior of Countly Web SDK is to ignore bots crawling your site
   to provide you a more accurate user analytics data. However, Countly can't detect
   and block all bots crawling the internet as we use the userAgent string to detect
-  bots and spammy bots can hide by providing conventional
-  UserAgent. However, this is not the case for a bot that you have created your
-  own.
+  bots and spammy bots can hide by providing conventional UserAgent. However, this
+  is not the case for a bot that you have created your own.
 </p>
 <p>
   To include your bots to be also ignored by the Countly Web SDK you have to include
