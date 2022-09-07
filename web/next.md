@@ -426,6 +426,10 @@ Countly.init({
     <strong>ignore_prefetch</strong> -<span style="font-weight: 400;">&nbsp;ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
   </li>
   <li>
+    <strong>heatmap_whitelist</strong> -
+    <span style="font-weight: 400;">Array of trusted domains (as string) that can trigger heatmap script loading. By default the SDK whitelists your server url.</span>
+  </li>
+  <li>
     <strong>force_post</strong> -
     <span style="font-weight: 400;">force using post method for all requests (default: false)</span>
   </li>
