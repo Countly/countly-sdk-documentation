@@ -159,9 +159,7 @@
   <strong>Note: '</strong>name', 'visit', 'start' and 'segment' are internal keys
   to record a view.
 </p>
-<h1>
-  <font face="Arial, serif">Reporting a feedback widget manually</font>
-</h1>
+<h1>Reporting a feedback widget manually</h1>
 <p>
   This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
   <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>
@@ -229,14 +227,13 @@
   When reporting these widget's results manually, the filled out response is reported
   through the segmentation field of the reporting event. So depending on the type
   of widget you are reporting, you have to construct a
-  <strong>widgetResult </strong>object, specific to that widget, which would
-  then be utilized in the third call that has been mentioned at the top of this
-  section. In this third call the developer is expected to provide the widget object
-  obtained from the first call, the widget's data object that has been obtained
-  from the second call, and a properly formed
-  <strong>widgetResult&nbsp;</strong>object that has been created with respect
-  to the type of widget that is being reported. More information on how to form
-  this object is provided below.
+  <strong>widgetResult </strong>object, specific to that widget, which would then
+  be utilized in the third call that has been mentioned at the top of this section.
+  In this third call the developer is expected to provide the widget object obtained
+  from the first call, the widget's data object that has been obtained from the
+  second call, and a properly formed <strong>widgetResult&nbsp;</strong>object
+  that has been created with respect to the type of widget that is being reported.
+  More information on how to form this object is provided below.
 </p>
 <h2>Reporting NPS widgets manually</h2>
 <p>
