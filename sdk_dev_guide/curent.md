@@ -1826,7 +1826,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <p>
-  <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5]. Offline mode must not be on for this function to work.</span><span></span>
+  <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].&nbsp;</span><span></span>
 </p>
 <h2>Feedback widgets</h2>
 <p>
@@ -1925,7 +1925,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   As mentioned before, the first step uses "getAvailableFeedbackWidgets" function,
   which is also used for automatic feedback widgets. After inspecting the returned
   list, the developer would select one widget he would want to report from the
-  list of widgets, and then he would assign this widget as the "CountlyFeedbackWidget<span>" object.</span>
+  list of widgets, and then he would use this as the "CountlyFeedbackWidget<span>" object.</span>
 </p>
 <p>
   <span>Second step uses the "CountlyFeedbackWidget" object from the previous step and calls "getFeedbackWidgetData" function. This function call accepts the "CountlyFeedbackWidget" object and a callback. That callback returns 2 values - the retrieved "CountlyWidgetData" JSON and an error message string. The string is used in case there are some issues with this call. </span>
@@ -1944,15 +1944,15 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>the "widgetResult" object</span> ) to "report" the filled widget.
 </p>
 <p>
-  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>
+  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually</a>
   document to better understand how to interpret the widget type and data to fill
-  out the "<span>widgetResult</span>" object as depending on the type of the widget
+  out the "<span>widgetResult</span>" object. Depending on the type of the widget
   being reported this object would have different key/value pairs.
 </p>
 <p>
   At the third step, the developer would call the "reportFeedbackWidgetManually"
   function to report the result. This call requires 3 fields/values/parameters:
-  <span>"CountlyFeedbackWidget" object from the first step, "CountlyWidgetData" object from the second step and the "widgetResult" object that has been formed and provided by the developer. If the "widgetResult" is set to null then that means that the widget was closed without filling it out (this still requires an event to be created).</span>
+  <span>"CountlyFeedbackWidget" object from the first step, "CountlyWidgetData" object from the second step and the "widgetResult" object that has been formed and provided by the developer. If the "widgetResult" is set to "null" then that means that the widget was closed without filling it out (this still requires an event to be created).</span>
 </p>
 <p>
   <span>"CountlyFeedbackWidget" object is used for obtaining widget id and type, while "CountlyWidgetData" object is used to verify the correctness of the reported "widgetResult". For now, this second step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
