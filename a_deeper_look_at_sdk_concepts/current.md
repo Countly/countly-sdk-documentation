@@ -229,12 +229,12 @@
   When reporting these widget's results manually, the filled out response is reported
   through the segmentation field of the reporting event. So depending on the type
   of widget you are reporting, you have to construct a
-  <strong>widgetResponse </strong>object, specific to that widget, which would
+  <strong>widgetResult </strong>object, specific to that widget, which would
   then be utilized in the third call that has been mentioned at the top of this
   section. In this third call the developer is expected to provide the widget object
   obtained from the first call, the widget's data object that has been obtained
   from the second call, and a properly formed
-  <strong>widgetResponse&nbsp;</strong>object that has been created with respect
+  <strong>widgetResult&nbsp;</strong>object that has been created with respect
   to the type of widget that is being reported. More information on how to form
   this object is provided below.
 </p>
@@ -257,10 +257,10 @@
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>segm</span>.put(<span>"rating"</span>, <span>3</span>);<span>//value from 0 to 10<br></span><span>        </span><span>segm</span>.put(<span>"comment"</span>, <span>"Filled out comment"</span>);<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
 <h3>Web sample code</h3>
 <p>
-  The following code shows what is the expected widgetResponse objects looks like
+  The following code shows what is the expected widgetResult objects looks like
   for NPS widget:
 </p>
-<pre>var widgetResponse = {<br>         rating: 3, // between 0 to 10<br>         comment: "any comment" // string<br>    };</pre>
+<pre>var widgetResult = {<br>         rating: 3, // between 0 to 10<br>         comment: "any comment" // string<br>    };</pre>
 <h2>Reporting Rating widgets manually</h2>
 <p>
   To report the results of a Rating widget manually, again no information from
@@ -274,10 +274,10 @@
 </p>
 <h3>Web sample code</h3>
 <p>
-  The following code shows what is the expected widgetResponse objects looks like
+  The following code shows what is the expected widgetResult objects looks like
   for Rating widget:
 </p>
-<pre>var widgetResponse = {<br>         rating: 3, // between 1 to 5<br>         comment: "any comment", // string<br>         email: "email@any.mail", // string<br>         contactMe: true // boolean<br>    };</pre>
+<pre>var widgetResult = {<br>         rating: 3, // between 1 to 5<br>         comment: "any comment", // string<br>         email: "email@any.mail", // string<br>         contactMe: true // boolean<br>    };</pre>
 <h2>Reporting Survey widgets manually</h2>
 <p>
   To report survey widgets manually, investigation of the widget data received
@@ -295,9 +295,9 @@
   have the result segmentation key of "answ-1611875792-0".
 </p>
 <p>
-  At the end your widgetResponse would look something like this (Web example):
+  At the end your widgetResult would look something like this (Web example):
 </p>
-<pre>var widgetResponse = {<br>       "answ-1602694029-0": "answer", // for text input fields<br>       "answ-1602694029-1": 7, // for rating picker<br>       "answ-1602694029-2": "ch1602694029-0", // there is a question with choices. It is a choice key<br>       "answ-1602694029-3": "ch1602694030-0,ch1602694030-1" // in case 2 choices selected<br>      };</pre>
+<pre>var widgetResult = {<br>       "answ-1602694029-0": "answer", // for text input fields<br>       "answ-1602694029-1": 7, // for rating picker<br>       "answ-1602694029-2": "ch1602694029-0", // there is a question with choices. It is a choice key<br>       "answ-1602694029-3": "ch1602694030-0,ch1602694030-1" // in case 2 choices selected<br>      };</pre>
 <p>
   The specific value would depend on the question type. Here is a description of
   how to report results for different question types:
