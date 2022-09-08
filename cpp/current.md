@@ -19,10 +19,10 @@
 </h1>
 <p dir="auto">
   Countly C++ SDK has been designed to work with very few dependencies in order
-  to be available on most platforms. In order to build this SDK, you need:
+  to run on most platforms. In order to build this SDK, you need:
 </p>
 <ul dir="auto">
-  <li>a C++ compiler with C++14 support</li>
+  <li>C++ compiler with C++14 support</li>
   <li>libcurl (with openssl) and its headers if you are on *nix</li>
   <li>cmake &gt;= 3.13</li>
 </ul>
@@ -48,8 +48,8 @@ cmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launc
 <span class="pl-c1">cd</span> build
 make</pre>
   <p dir="auto">
-    Build with the option<code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span><strong>ON</strong>
-    to build executables to run the tests and sample app.
+    Build with the option <code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span><strong>ON</strong>
+    to build executables to run the tests and the sample app.
   </p>
   <div class="highlight highlight-source-shell position-relative overflow-auto">
     <pre>cmake -DCOUNTLY_BUILD_SAMPLE=1 -DCOUNTLY_BUILD_TESTS=1 -B build <span class="pl-c1">.</span> <span class="pl-c"># or do it interactively with cmake</span>
@@ -67,27 +67,27 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </p>
 <pre><span><code>cly::Countly&amp; countly = cly::<span class="pl-c1">Countly::getInstance</span>();<br>countly.<span class="pl-c1">setDeviceID</span>(<span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span>);<br>countly.s<span class="pl-c1">tart</span>(<span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span>, <span class="pl-c1">443, true</span>);</code></span></pre>
 <p>
-  It is there that you provide your appKey, and your Countly server URL. For more
-  information on how to acquire you application key (appKey) and server URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D" target="_self">here</a>.
+  Here you have to provide your appKey, and your Countly server URL. For more information
+  on how to acquire you application key (appKey) and server URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_blank" rel="noopener">here</a>.
 </p>
 <p>
   The third parameter with type<code>int</code> is a virtual port number and it
   is an optional parameter with a default value of <strong>-1</strong>.<br>
-  The last <code>bool</code>parameter is also optional with a default value
-  <code>false</code>. When you set this <code>true</code>SDK automatically
-  <span>extends the session after every 60 seconds.&nbsp;</span>
+  The last <code>bool</code> parameter is also optional with the default value
+  of <code>false</code>. When you set this value to <code>true</code> SDK automatically
+  <span>extends the session every 60 seconds.&nbsp;</span>
 </p>
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn more about methods to verify it from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
 <h2 id="enabling-logging" class="anchor-heading">SDK Logging</h2>
 <p>
-  <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.&nbsp;</span>
+  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and about encountered problems.&nbsp;</span>
 </p>
 <p>
   Set
@@ -98,10 +98,10 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <pre><span class="pl-c1"><span class="pl-k"><code>void<span> </span><span class="pl-en">printLog</span><span>(cly::Countly::LogLevel level, </span>const<span> string&amp; msg) {...}<br></span>...<br><br>void<span> (*logger_function)(cly::Countly::LogLevel level, </span>const<span> std::string&amp; message);</span><br><span>logger_function = printLog;</span><br><span>cly::Countly::getInstance().setLogger(logger_function);</span></code></span></span></pre>
 <h2 id="device-id" class="anchor-heading">Device ID</h2>
 <p>
-  <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
+  <span>All tracked information is tied to a "device ID", which is used as a unique identifier of your users.</span>
 </p>
 <p>
-  <span>You have to specify the device ID by yourself (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
+  <span>You have to specify the device ID by yourself (it has to be unique for each of your users). It may be an email or some other internal ID used in your system's internal logic.</span>
 </p>
 <div>
   <pre><span><code><span class="pl-c1">cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
@@ -116,7 +116,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
 <p>
-  <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event.&nbsp; For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
+  <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event.&nbsp; For example, in case a user buys an item in your game, you can create an event with the key 'purchase' to inform this action to your Countly server.</span>
 </p>
 <p>
   <span>Optionally there are also other properties that you might want to set:</span>
@@ -124,48 +124,46 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <ul>
   <li>
     <strong>count -</strong>&nbsp; a whole numerical value that marks how many
-    times this event has happened. The default value for that is
+    times this event has happened. The default value for this is
     <strong>1</strong>.
   </li>
   <li>
     <strong>sum -</strong> This value would be summed across all events in the
-    dashboard. F<span>or example, in-app purchase events sum of purchased items. Its default value is <strong>0</strong>.</span>
+    dashboard. F<span>or example, for in-app purchase events, it can be the sum of purchased items. Its default value is <strong>0</strong>.</span>
   </li>
   <li>
-    <strong>duration - </strong>Used to record and track the duration of events.
+    <strong>duration - </strong>For recording and tracking the duration of events.
     The default value is <strong>0</strong>.
   </li>
   <li>
     <strong>segments - </strong>A value where you can provide custom segmentation
     for your events to track additional information. It is a key and value map.
-    The accepted data type for the value is<span style="font-weight: 400;"><code class="java"><span>std::string</span></code>.</span>
+    The accepted data type for the value is
+    <span style="font-weight: 400;"><code class="java"><span>std::string</span></code>.</span>
   </li>
 </ul>
 <h2>Recording Events</h2>
 <p>
-  <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
+  <span style="font-weight: 400;">Here are some examples below, showing how to record an event for a <strong>purchase</strong> with varying levels of complexity</span><span style="font-weight: 400;">:</span>
 </p>
 <ul>
   <li>
-    Usage 1: how many times the&nbsp;<strong>purchase</strong> event occurred.
+    Usage 1: Times the <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times the&nbsp;<strong>purchase</strong> event occurred
-    + the total amount of those purchases.
+    Usage 2: Times the <strong>purchase</strong> event occurred + the total amount
+    of those purchases.
   </li>
   <li>
-    Usage 3: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +
-    <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
+    Usage 3: Times the <strong>purchase</strong> event occurred +
+    <span style="font-weight: 400;">origin of the purchase.</span>
   </li>
   <li>
-    Usage 4: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +&nbsp;<span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
+    Usage 4: Times the <strong>purchase</strong> event occurred +&nbsp;<span style="font-weight: 400;">the total amount + origin of the purchase.</span>
   </li>
   <li>
-    Usage 5: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +
-    <span style="font-weight: 400;">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
+    Usage 5: Times the <strong>purchase</strong> event occurred +
+    <span style="font-weight: 400;">the total amount + origin of the purchase + the total duration of those events.</span>
   </li>
 </ul>
 <p>
@@ -189,7 +187,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </p>
 <pre><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["country"] = "Germany";<br><br><span class="pl-c1">cly::Countly::getInstance</span><span>()</span>.<span>RecordEvent</span>("purchase", segmentation, 1, 0.99, 60.0);<br></code></pre>
 <p>
-  <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
+  <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, or any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
 <h2>Timed Events</h2>
 <p>
@@ -207,14 +205,15 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
   <span>Automatic Session Tracking&nbsp;</span>
 </h2>
 <p>
-  The SDK handles the session automatically. After calling the&nbsp;<span><span style="font-weight: 400;"><code class="java">s<span class="pl-c1">tart</span>(...)</code></span> </span>method,
-  the SDK starts the session automatically and extends the session after every
-  60 seconds. This value is configurable during and after initialization.&nbsp;<br>
+  The SDK handles the sessions automatically. After calling the
+  <span><span style="font-weight: 400;"><code class="java">s<span class="pl-c1">tart</span>(...)</code></span> </span>method,
+  the SDK starts the session tracking automatically and extends sessions after
+  every 60 seconds. This value is configurable during and after initialization.&nbsp;<br>
   Example:
 </p>
 <pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>()</span>.setAutomaticSessionUpdateInterval(10);<span></span></code></span></pre>
 <p>
-  <span style="font-weight: 400;"><span>The SDK ends the current session whenever the user quits the app.</span></span>
+  <span style="font-weight: 400;"><span>The SDK ends the current session whenever the user exits from the app.</span></span>
 </p>
 <h1>View Tracking</h1>
 <h2>Manual View Recording</h2>
@@ -254,28 +253,28 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
-  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You have to specify the device ID yourself. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the user's username, email, or some other internal ID used by your other systems.</span><span></span>
+  <span>A device ID is a unique identifier of your users. </span><span>You have to specify the device ID yourself. When providing one you should keep in mind that it has to be unique for all users. Some potential sources for such an ID may be the user's username, email, or some other internal ID used within your other systems.</span><span></span>
 </p>
 <p>
-  <span>In the C++ SDK the device ID is not persistant and has to be provided every time you start the SDK.</span>
+  <span>In the C++ SDK the device ID is not persistent and has to be provided every time you start the SDK.</span>
 </p>
 <h2 id="changing-device-id" class="anchor-heading">Changing Device ID</h2>
 <p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+  <span>In case your application authenticates users, you might want to change the initial device ID of the user to another one in your backend after the user logs in. This helps you identify a specific user with a specific ID on a device the user logs in, and the same scenario can also be used in cases where same user logs in using a different device (e.g another tablet, another mobile phone, or web). If you employ this logic, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device ID you specified in the following method call:</span>
 </p>
 <pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>().setDeviceID("new-device-id", true);</span></code></span></pre>
 <p>
-  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+  <span>If you integrate this method, there might be times where you might want to track information about another user that starts using your app from the same device (an account change), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In those cases, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
 <pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>().setDeviceID("new-device-id", false);</span></code></span></pre>
 <p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
+  <span>Doing it this , will prevent the previous user's data to merge with the new id.</span><span></span><span></span>
 </p>
 <p>
-  <span>If the second parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
+  <span>If the second parameter <code>same_user</code> is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
 </p>
 <p>
-  <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
+  <span>Otherwise, if <code>same_user</code> is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
 </p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
   <span>User Location</span>
