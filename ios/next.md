@@ -2667,7 +2667,7 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
 </div>
 <p>
   For more information regarding how to structure the result dictionary, you would
-  look <a href="/hc/en-us/articles/900004340186" target="_self">here</a>.
+  look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <div class="callout callout--info">

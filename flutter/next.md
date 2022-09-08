@@ -856,7 +856,8 @@ Countly.disableLocation();</code></pre>
   as leave a text comment. Feedback widgets (survey, nps) allow for even more textual
   feedback from users.
 </p>
-<h2>Star rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star Rating Dialog</h3>
 <p>
   Star rating integration provides a dialog for getting user's feedback about the
   application. It contains a title, simple message explaining what it is for, a
@@ -878,7 +879,7 @@ Countly.disableLocation();</code></pre>
 config.setStarRatingTextTitle("Custom title"); // Only available for Android
 config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
-<h2>Rating widget</h2>
+<h3>Rating Widget</h3>
 <p>
   Feedback widget shows a server configured widget to your user devices.
 </p>
@@ -914,7 +915,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   <code class="JavaScript">closeButtonText</code> and
   <code class="JavaScript">ratingWidgetCallback</code> are optional.
 </p>
-<h2>Feedback widget</h2>
+<h2>Feedback Widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
@@ -934,7 +935,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <pre><code class="JavaScript">FeedbackWidgetsResponse feedbackWidgetsResponse = await Countly.getAvailableFeedbackWidgets() ;</code></pre>
 <p>
   From the callback you would get
-  <code class="JavaScript">FeedbackWidgetsResponse</code> objec which contains
+  <code class="JavaScript">FeedbackWidgetsResponse</code> object which contains
   the list of all available widgets that apply to the current device id.
 </p>
 <p>The objects in the returned list look like this:</p>
@@ -965,9 +966,9 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   pass these callbacks if you want to perform some actions when widget appear or
   dismiss.
 </p>
-<h2>Feedback widget manual reporting</h2>
+<h3>Manual Reporting</h3>
 <p>
-  There might be some usecases where you might to use the native UI or a custom
+  There might be some use-cases where you might to use the native UI or a custom
   UI you have created instead of our webview solution. In those cases you would
   have to request all the widget related information and then report the result
   manually.
@@ -984,7 +985,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   Having the <code>CountlyPresentableFeedback</code> object of the widget you would
   want to display, you could use the '<code class="JavaScript">getFeedbackWidgetData</code>'&nbsp;
-  mehtod to retrieve the widget information with an optional 'onFinished' callback.<br>
+  method to retrieve the widget information with an optional 'onFinished' callback.<br>
   In case you want to use with callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
@@ -1015,8 +1016,12 @@ Map&lt;String, Object&gt; reportedResult = {};
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
 <p>
-  If the user would have closed the widget, you would report that by passaing a
+  If the user would have closed the widget, you would report that by passing a
   "null" reportedResult.
+</p>
+<p>
+  For more information regarding how to structure the reported result, you would
+  look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <p>
