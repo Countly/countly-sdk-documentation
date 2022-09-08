@@ -1286,6 +1286,40 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
 }
 </code></pre>
 <h1>Heatmaps</h1>
+<p>
+  Heatmaps feature is a web exclusive plugin that helps you to visualize user interactions
+  on your website. Web SDK supports this functionality by providing user click
+  and scroll information to your server. Then from your server, you can trigger
+  Heatmaps overlay to visualize these click clusters and scroll zones on your website.
+</p>
+<p>
+  To display this overlay the SDK loads certain scripts from your server. To ensure
+  the source of these scripts and to enable these scripts to be loaded from somewhere
+  else other than your Countly server, the SDK offers a whitelisting option during
+  the initialization since SDK version 22.06.2. To whitelist domains other than
+  your Countly server you should provide an array of these domains, as String values,
+  under the 'heatmap_whitelist' flag during the initialization:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com"];
+
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
+});</code></pre>
+  </div>
+</div>
 <h2>Tracking Clicks</h2>
 <p>
   <span style="font-weight: 400;">This method will automatically track clicks on the last reported view and display them on the heatmap.</span>
