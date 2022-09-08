@@ -15,7 +15,7 @@
   <span>Mac OS X</span>.
 </p>
 <h1>
-  <span>Adding the SDK to the project</span>
+  <span>Adding the SDK to the Project</span>
 </h1>
 <p dir="auto">
   Countly C++ SDK has been designed to work with very few dependencies in order
@@ -85,7 +85,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2 id="enabling-logging" class="anchor-heading">SDK logging mode</h2>
+<h2 id="enabling-logging" class="anchor-heading">SDK Logging</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.&nbsp;</span>
 </p>
@@ -106,7 +106,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <div>
   <pre><span><code><span class="pl-c1">cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
 </div>
-<h2 class="c-message_attachment__row">SDK notes</h2>
+<h2 class="c-message_attachment__row">SDK Notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
@@ -141,7 +141,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
     The accepted data type for the value is<span style="font-weight: 400;"><code class="java"><span>std::string</span></code>.</span>
   </li>
 </ul>
-<h2>Recording events</h2>
+<h2>Recording Events</h2>
 <p>
   <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
 </p>
@@ -191,7 +191,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
-<h2>Timed events</h2>
+<h2>Timed Events</h2>
 <p>
   <span>It's possible to create timed events by defining a start and a stop moment.</span>
 </p>
@@ -204,7 +204,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <code class="java hljs">cly::Event event("Some event", 1, 0.99);</code><br><span class="hljs-comment">//add segmentation to event</span><br><code class="java hljs">event.addSegmentation("country", "Germany");</code><br>...<br><br><code class="java hljs">cly::Countly.getInstance().addEvent(event);</code></pre>
 <h1>Sessions</h1>
 <h2 id="automatic-session-tracking&nbsp;" class="anchor-heading">
-  <span>Automatic session tracking&nbsp;</span>
+  <span>Automatic Session Tracking&nbsp;</span>
 </h2>
 <p>
   The SDK handles the session automatically. After calling the&nbsp;<span><span style="font-weight: 400;"><code class="java">s<span class="pl-c1">tart</span>(...)</code></span> </span>method,
@@ -215,31 +215,6 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>()</span>.setAutomaticSessionUpdateInterval(10);<span></span></code></span></pre>
 <p>
   <span style="font-weight: 400;"><span>The SDK ends the current session whenever the user quits the app.</span></span>
-</p>
-<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
-<p>
-  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You have to specify the device ID yourself. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the user's username, email, or some other internal ID used by your other systems.</span><span></span>
-</p>
-<p>
-  <span>In the C++ SDK the device ID is not persistant and has to be provided every time you start the SDK.</span>
-</p>
-<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
-<p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
-</p>
-<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>().setDeviceID("new-device-id", true);</span></code></span></pre>
-<p>
-  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
-</p>
-<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>().setDeviceID("new-device-id", false);</span></code></span></pre>
-<p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
-</p>
-<p>
-  <span>If the second parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
-</p>
-<p>
-  <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
 </p>
 <h1>View Tracking</h1>
 <h2>Manual View Recording</h2>
@@ -277,8 +252,33 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>To review the resulting view data, go to the </span><span><code>Analytics &gt; Views</code> section in your Countly server</span><span>. For more information on how to utilize view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span>here</span></a><span>.</span>
 </p>
+<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<p>
+  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You have to specify the device ID yourself. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the user's username, email, or some other internal ID used by your other systems.</span><span></span>
+</p>
+<p>
+  <span>In the C++ SDK the device ID is not persistant and has to be provided every time you start the SDK.</span>
+</p>
+<h2 id="changing-device-id" class="anchor-heading">Changing Device ID</h2>
+<p>
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>().setDeviceID("new-device-id", true);</span></code></span></pre>
+<p>
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">cly::Countly::getInstance</span><span>().setDeviceID("new-device-id", false);</span></code></span></pre>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
+</p>
+<p>
+  <span>If the second parameter<code>same_user</code>is set to&nbsp;<code>true</code>, the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
+</p>
+<p>
+  <span>Otherwise, if <code>same_user</code>&nbsp;bool is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
+</p>
 <h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
-  <span>User location</span>
+  <span>User Location</span>
 </h1>
 <p>
   <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
@@ -297,7 +297,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
     <span>Your user’s IP address.</span><span></span>
   </li>
 </ul>
-<h2 id="setting-location" class="anchor-heading">Setting location</h2>
+<h2 id="setting-location" class="anchor-heading">Setting Location</h2>
 <p>
   <span>During init, you may </span><span>set location, and </span><span>after SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
@@ -316,16 +316,16 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   If you don't want to set specific fields, set them to empty.
 </p>
-<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote config</h1>
+<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
-<h2 id="manual-remote-config-download" class="anchor-heading">Manual remote config</h2>
+<h2 id="manual-remote-config-download" class="anchor-heading">Manual Remote Config</h2>
 <p>
   To download Remote Config, call <code>updateRemoteConfig()</code>.&nbsp;
 </p>
 <pre><code>cly::Countly.<span>getInstance</span>().updateRemoteConfig();</code></pre>
-<h2>Accessing remote config values</h2>
+<h2>Accessing Remote Config Values</h2>
 <p>
   To access the stored config,&nbsp; call
   <code>cly::Countly.getInstance().getRemoteConfigValue(const std::string&amp; key)</code>.
@@ -339,7 +339,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
 </p>
-<h2>Setting predefined values</h2>
+<h2>Setting Predefined Values</h2>
 <p>
   The Countly C++ SDK allows you to upload specific data related to a user to the
   Countly server. You may set the data against predefined keys for a particular
@@ -402,28 +402,28 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <p>Example:</p>
 <pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"username", "username123"},<br>{"email", "useremail@email.com"},<br>{"phone", "222-222-222"},<br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>{"gender", "M"},<br>{"byear", "1991"},<br>{"organization", "Organization"},<br>};<br>cly::Countly.getInstance().setUserDetails(userdetail);</code></pre>
-<h2>Setting custom values</h2>
+<h2>Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
   even when you don’t want to send other user-related data.
 </p>
 <p>Example:</p>
 <pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"Height", "5.8"}, <br>{"Mole", "Lower Left Cheek"}<br>};<br><br>cly::Countly.getInstance().setCustomUserDetails(userdetail);</code></pre>
-<h2>Setting User picture</h2>
+<h2>Setting User Picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
   the methods listed below.
 </p>
 <p>Example:</p>
 <pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>};<br><br>cly::Counlty.getInstance().setUserDetails(userdetail);</code></pre>
-<h1>Security and privacy</h1>
-<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tamper protection</h2>
+<h1>Security and Privacy</h1>
+<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tamper Protection</h2>
 <p>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> the field before being processed.</span>
 </p>
 <pre><code class="java hljs">cly::Countly.getInstance().setSalt("salt");</code></pre>
-<h1>Other features</h1>
-<h2>Setting event queue threshold</h2>
+<h1>Other Features and Notes</h1>
+<h2>Setting Event Queue Threshold</h2>
 <p>
   After SDK init, you may limit the number of events that can be recorded internally
   by the system before they can all be sent together in one request.&nbsp;<br>
@@ -434,7 +434,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
 </p>
-<h2>Setting custom SHA-256</h2>
+<h2>Setting Custom SHA-256</h2>
 <p>
   C++ SDK allows users to set a custom SHA-256 method
   <span>for calculating the checksum of request data.</span>
@@ -454,7 +454,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>For example:</p>
 <pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">cly::Countly&amp; countly = cly::Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
 <h1>FAQ</h1>
-<h2>What information is collected by the SDK</h2>
+<h2>What Information is Collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
