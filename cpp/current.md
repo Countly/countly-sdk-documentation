@@ -1,10 +1,10 @@
 <p>
-  <span>This document will guide you through the process of SDK installation and it applies to version 22.02.0. </span>
+  <span>This document will guide you through the process of SDK installation and it applies to version 22.06.0. </span>
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 21.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/9665186961945" target="blank">here</a>.
+    To access the documentation for version 22.02 and older, click
+    <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="blank">here</a>.
   </p>
 </div>
 <p>
