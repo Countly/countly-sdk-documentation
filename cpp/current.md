@@ -280,7 +280,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
   <span>User Location</span>
 </h1>
 <p>
-  <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
+  <span>While integrating this SDK into your application, you might want to track your user's location. You could use this information to learn more about your app’s user base. There are 4 fields that can be provided:</span>
 </p>
 <ul>
   <li>
@@ -298,22 +298,22 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 </ul>
 <h2 id="setting-location" class="anchor-heading">Setting Location</h2>
 <p>
-  <span>During init, you may </span><span>set location, and </span><span>after SDK initialization, this location info will be sent to the server at the start of the user session.</span>
+  <span>During init, you may </span><span>set location, and </span><span>after the SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
 <p>
   <span>Example:</span>
 </p>
 <pre><code class="hljs cs"><span><span class="hljs-keyword">string</span> countryCode = </span><span class="hljs-string">"us"</span><span>;<br><span class="hljs-keyword">string</span> city = </span><span class="hljs-string">"Houston"</span><span>;<br><span class="hljs-keyword">string</span> latitude = </span><span class="hljs-string">"29.634933"</span><span>; <br><span class="hljs-keyword">string</span> longitude = </span><span class="hljs-string">"-95.220255"</span><span>; <br><span class="hljs-keyword">string</span> ipAddress = "192.168.0.1"</span><span>;</span>&nbsp;<br><br><span>cly::Countly::getInstance()</span>.s<span>etLocation</span>(<span>countryCode, city, latitude + </span><span class="hljs-string">","</span><span> + longitude, ipAddress</span>);</code></pre>
 <p>
-  <span>Note that the IP address will only be updated if set through the init process.</span>
+  <span>Note that the IP address would only be updated if it's set during the init process.</span>
 </p>
 <p>
-  When those values are set a<span>fter SDK initialization</span>, a separate request
-  will be created to send them. Except for IP address, because Countly server processes
-  IP address only when starting a session.
+  When these values are set a<span>fter the SDK initialization</span>, a separate
+  request will be created to send them to the server. Except for the IP address,
+  because Countly server can process an IP address only when starting a new session.
 </p>
 <p>
-  If you don't want to set specific fields, set them to empty.
+  If you don't want to set specific fields, you should set them to empty.
 </p>
 <h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
 <p>
@@ -340,9 +340,8 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <h2>Setting Predefined Values</h2>
 <p>
-  The Countly C++ SDK allows you to upload specific data related to a user to the
-  Countly server. You may set the data against predefined keys for a particular
-  user.
+  The Countly C++ SDK allows you to upload user specific data to your Countly server.
+  You may set the data against predefined keys for a particular user.
 </p>
 <p>The keys for predefined user data fields are as follows:</p>
 <div class="table-container">
@@ -418,14 +417,14 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <h1>Security and Privacy</h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tamper Protection</h2>
 <p>
-  <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> the field before being processed.</span>
+  <span>You may set an optional <code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span> field. You will need to set the exact same <code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> the field before being processed.</span>
 </p>
 <pre><code class="java hljs">cly::Countly.getInstance().setSalt("salt");</code></pre>
 <h1>Other Features and Notes</h1>
 <h2>Setting Event Queue Threshold</h2>
 <p>
   After SDK init, you may limit the number of events that can be recorded internally
-  by the system before they can all be sent together in one request.&nbsp;<br>
+  by the system before sent together in a single request.&nbsp;<br>
   Example:
 </p>
 <pre><code>cly::Counlty.getInstance().SetMaxEventsPerMessage(10);</code></pre>
@@ -455,9 +454,8 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
-  The following description mentions data that is collected by SDK to perform their
-  functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally.
+  There are some data that is collected by SDK to perform their functions and implement
+  the required features. Before any of it is sent to the server, it is stored locally.
 </p>
 <p>
   * When sending any network requests to the server, the following things are sent
