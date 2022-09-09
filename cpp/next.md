@@ -14,9 +14,7 @@
   <strong>Supported Platforms:</strong><span>&nbsp;</span>Windows, GNU/Linux, and
   <span>Mac OS X</span>.
 </p>
-<h1>
-  <span>Adding the SDK to the Project</span>
-</h1>
+<h1>Adding the SDK to the Project</h1>
 <p dir="auto">
   Countly C++ SDK has been designed to work with very few dependencies in order
   to run on most platforms. In order to build this SDK, you need:
@@ -85,7 +83,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2 id="enabling-logging" class="anchor-heading">SDK Logging</h2>
+<h2>SDK Logging</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and about encountered problems.&nbsp;</span>
 </p>
@@ -106,7 +104,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <div>
   <pre><span><code><span class="pl-c1">cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</span></code></span></pre>
 </div>
-<h2 class="c-message_attachment__row">SDK Notes</h2>
+<h2>SDK Notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
@@ -201,9 +199,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <pre><span class="hljs-comment">//event with count and sum</span>
 <code class="java hljs">cly::Event event("Some event", 1, 0.99);</code><br><span class="hljs-comment">//add segmentation to event</span><br><code class="java hljs">event.addSegmentation("country", "Germany");</code><br>...<br><br><code class="java hljs">cly::Countly.getInstance().addEvent(event);</code></pre>
 <h1>Sessions</h1>
-<h2 id="automatic-session-tracking&nbsp;" class="anchor-heading">
-  <span>Automatic Session Tracking&nbsp;</span>
-</h2>
+<h2>Automatic Session Tracking</h2>
 <p>
   The SDK handles the sessions automatically. After calling the
   <span><span style="font-weight: 400;"><code class="java">s<span class="pl-c1">tart</span>(...)</code></span> </span>method,
@@ -251,14 +247,14 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>To review the resulting view data, go to the </span><span><code>Analytics &gt; Views</code> section in your Countly server</span><span>. For more information on how to utilize view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span>here</span></a><span>.</span>
 </p>
-<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<h1>Device ID management</h1>
 <p>
   <span>A device ID is a unique identifier of your users. </span><span>You have to specify the device ID yourself. When providing one you should keep in mind that it has to be unique for all users. Some potential sources for such an ID may be the user's username, email, or some other internal ID used within your other systems.</span><span></span>
 </p>
 <p>
   <span>In the C++ SDK the device ID is not persistent and has to be provided every time you start the SDK.</span>
 </p>
-<h2 id="changing-device-id" class="anchor-heading">Changing Device ID</h2>
+<h2>Changing Device ID</h2>
 <p>
   <span>In case your application authenticates users, you might want to change the initial device ID of the user to another one in your backend after the user logs in. This helps you identify a specific user with a specific ID on a device the user logs in, and the same scenario can also be used in cases where same user logs in using a different device (e.g another tablet, another mobile phone, or web). If you employ this logic, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device ID you specified in the following method call:</span>
 </p>
@@ -276,9 +272,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   <span>Otherwise, if <code>same_user</code> is set to&nbsp;<code>false</code>, the device will be counted as a new device on the server.</span>
 </p>
-<h1 id="user-location" class="anchor-heading garden-focus-visible" tabindex="-1" data-garden-focus-visible="true">
-  <span>User Location</span>
-</h1>
+<h1>User Location</h1>
 <p>
   <span>While integrating this SDK into your application, you might want to track your user's location. You could use this information to learn more about your app’s user base. There are 4 fields that can be provided:</span>
 </p>
@@ -296,7 +290,7 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
     <span>Your user’s IP address.</span><span></span>
   </li>
 </ul>
-<h2 id="setting-location" class="anchor-heading">Setting Location</h2>
+<h2>Setting Location</h2>
 <p>
   <span>During init, you may </span><span>set location, and </span><span>after the SDK initialization, this location info will be sent to the server at the start of the user session.</span>
 </p>
@@ -315,11 +309,11 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   If you don't want to set specific fields, you should set them to empty.
 </p>
-<h1 id="remote-config" class="anchor-heading" tabindex="-1">Remote Config</h1>
+<h1>Remote Config</h1>
 <p>
   <span>Available in the Enterprise Edition, Remote Config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span>Remote Config documentation</span></a><span>.</span>
 </p>
-<h2 id="manual-remote-config-download" class="anchor-heading">Manual Remote Config</h2>
+<h2>Manual Remote Config</h2>
 <p>
   To download Remote Config, call <code>updateRemoteConfig()</code>.&nbsp;
 </p>
