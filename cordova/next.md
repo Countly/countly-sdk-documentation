@@ -871,7 +871,7 @@ Countly.setRemoteConfigAutomaticDownload(function(r){
 }, function(r){
   alert(r);
 });</code></pre>
-<h1>User feedback</h1>
+<h1>User Feedback</h1>
 <p>
   There are two ways of getting feedback from your users: Star rating dialog, feedback
   widget.
@@ -880,7 +880,8 @@ Countly.setRemoteConfigAutomaticDownload(function(r){
   Star rating dialog allows users to give feedback as a rating from 1 to 5. The
   feedback widget allows to get the same 1 to 5 rating and also a text comment.
 </p>
-<h2>Star rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star Rating Dialog</h3>
 <p>
   Star rating integration provides a dialog for getting user's feedback about the
   application. It contains a title, simple message explaining what it is for, a
@@ -903,7 +904,7 @@ countly.askForStarRating(Function(ratingResult){
   console.log(ratingResult);
 });</code></pre>
 <div></div>
-<h2>Rating widget</h2>
+<h3>Rating Widget</h3>
 <p>
   Feedback widget shows a server configured widget to your user devices.
 </p>

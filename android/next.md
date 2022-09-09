@@ -1167,7 +1167,7 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().remoteConfigClearValues();</code></pre>
-<h1>User feedback</h1>
+<h1>User Feedback</h1>
 <p>
   <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
 </p>
@@ -1175,7 +1175,7 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
   <span style="font-weight: 400;">Star-rating dialog allows users to give feedback as a rating from 1 to 5. The rating widget allows users to rate using the same 1 to 5 rating system as well as leave a text comment. Feedback widgets (survey, nps) allow for even more textual feedback from users.</span>
 </p>
 <h2>Ratings</h2>
-<h3>Star-rating dialog</h3>
+<h3>Star Rating Dialog</h3>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
@@ -1248,7 +1248,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
       //the star rating dialog was dismissed
     }
 };</code></pre>
-<h3>Rating widget</h3>
+<h3>Rating Widget</h3>
 <p>
   <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
 </p>
@@ -1283,14 +1283,14 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
     }
   }
 });</code></pre>
-<h3>Manual rating reporting</h3>
+<h3>Manual Rating Reporting</h3>
 <p>
   You may want to display your own custom UI to query users about the information
   in the rating widget. In case you do that, you would then report that rating
   result manually. To do that you would use the following call:
 </p>
 <pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordManualRating(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
-<h2>Feedback widget</h2>
+<h2>Feedback Widget</h2>
 <p>
   It is possible to display 2 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>
@@ -1330,7 +1330,7 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
   object to the following function:
 </p>
 <pre>Countly.<span>sharedInstance</span>().feedback().presentFeedbackWidget(chosenWidget, context, <span>"Close"</span>, <span>new </span>FeedbackCallback() {<br>    <span>@Override </span><span>public void </span>onFinished(String error) {<br><br>    }<br>});</pre>
-<h2>Feedback widget manual reporting</h2>
+<h3>Manual Reporting</h3>
 <p>
   There might be some usecases where you might to use the native UI or a custom
   UI you have created instead of our webview solution. In those cases you would
@@ -1369,7 +1369,7 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 <p>
   For more information regarding the returned data structure and how to structure
   the response, you would look
-  <a href="/hc/en-us/articles/900004340186" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <p>
