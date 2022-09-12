@@ -159,25 +159,32 @@
   <strong>Note: '</strong>name', 'visit', 'start' and 'segment' are internal keys
   to record a view.
 </p>
-<h1 class="article__title">Reporting a feedback widget manually</h1>
+<h1>Reporting a feedback widget manually</h1>
 <p>
-  This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>
+  This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>)
-  manually. It will give more context into how the widget data should be intepreted
-  and how the response should be structured when reporting back to the SDK. Not
-  all SDK's contain the functionality to do manual feedback widget reporting.&nbsp;
+  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">ratings</a>)
+  manually. It will give more context into how the widget data should be interpreted
+  and how the response should be structured when reporting back to the SDK. Also
+  it must be noted that not all SDKs contain the functionality to do manual feedback
+  widget reporting.&nbsp;
+</p>
+<p>The SDK should provide 3 calls to perform this process:</p>
+<ol>
+  <li>A call to fetch the widget list from the server</li>
+  <li>A call to fetch a single widget's data from the server</li>
+  <li>A call to report a single widget to the server</li>
+</ol>
+<p>
+  Widget list received would be a JSON array of objects corresponding to the widgets.
+  By selecting one of these objects (widgets) and providing it in the second call
+  developer can fetch its data from the server. When receiving the data, it would
+  be packaged in a JSON type object. Their structure would slightly differ depending
+  on the type of widget being reported.
 </p>
 <p>
-  The SDK should provide 2 calls to perform this. One to retrieve the widget data
-  describing the widget and another to report the result.
-</p>
-<p>
-  When receiving the data, it would be packaged in a JSON type object. Their structure
-  would slightly differ depending for which type of widget it is reported.
-</p>
-<p>
-  In case of a survey, it would looks something like this:<br>
+  In case of a survey, widget data would look something like this:<br>
   <br>
 </p>
 <pre class="c-mrkdwn__pre" data-stringify-type="pre">{<br>   "_id":"601345cf5e313f747656c241",<br>   "app_id":"5e3356e07b96b63120334842",<br>   "name":"Survey name",<br>   "questions":[<br>      {<br>         "type":"multi",<br>         "question":"Multi answer question",<br>         "required":true,<br>         "choices":[<br>            {<br>               "key":"ch1611875792-0",<br>               "value":"Choice A"<br>            },<br>            {<br>               "key":"ch1611875792-1",<br>               "value":"Choice B"<br>            },<br>            {<br>               "key":"ch1611875792-2",<br>               "value":"Choice C"<br>            },<br>            {<br>               "key":"ch1611875792-3",<br>               "value":"Choice D"<br>            }<br>         ],<br>         "randomize":false,<br>         "id":"1611875792-0"<br>      },<br>      {<br>         "type":"radio",<br>         "question":"Radio button question",<br>         "required":false,<br>         "choices":[<br>            {<br>               "key":"ch1611875792-0",<br>               "value":"First"<br>            },<br>            {<br>               "key":"ch1611875792-1",<br>               "value":"Second"<br>            },<br>            {<br>               "key":"ch1611875792-2",<br>               "value":"Third"<br>            },<br>            {<br>               "key":"ch1611875792-3",<br>               "value":"Fourth"<br>            }<br>         ],<br>         "randomize":false,<br>         "id":"1611875792-1"<br>      },<br>      {<br>         "type":"text",<br>         "question":"Text input question",<br>         "required":true,<br>         "id":"1611875792-2"<br>      },<br>      {<br>         "type":"dropdown",<br>         "question":"Question with a dropdown",<br>         "required":false,<br>         "choices":[<br>            {<br>               "key":"ch1611875792-0",<br>               "value":"Value 1"<br>            },<br>            {<br>               "key":"ch1611875792-1",<br>               "value":"Value 2"<br>            },<br>            {<br>               "key":"ch1611875792-2",<br>               "value":"Value 3"<br>            }<br>         ],<br>         "randomize":false,<br>         "id":"1611875792-3"<br>      },<br>      {<br>         "type":"rating",<br>         "question":"Rating type question",<br>         "required":false,<br>         "id":"1611875792-4"<br>      }<br>   ],<br>   "msg":{<br>      "thanks":"Thanks for your feedback!"<br>   },<br>   "appearance":{<br>      "show":"uClose",<br>      "position":"bLeft",<br>      "color":"#2eb52b"<br>   },<br>   "type":"survey"<br>}</pre>
@@ -206,21 +213,34 @@
    "type":"nps"
 }</pre>
 <p>
-  Both of these describe all server side configured information that would be used
-  to visualize a widget manually. Starting from some style and color related fields
-  and finally all questions and their potential answers. In the case of surveys,
-  it also shows the required id's to report survey results.
+  And incase of a rating widget it would look something like this:
+</p>
+<pre>{<br>    "_id":"62222d125852e20462481193",<br>    "popup_header_text":"What&amp;#39;s your opinion about this page?",<br>    "popup_comment_callout":"Add comment",<br>    "popup_email_callout":"Contact me via e-mail",<br>    "popup_button_callout":"Submit feedback",<br>    "popup_thanks_message":"Thank you for your feedback",<br>    "trigger_position":"mright",<br>    "trigger_bg_color":"13B94D",<br>    "trigger_font_color":"FFFFFF",<br>    "trigger_button_text":"Feedback",<br>    "target_devices":{<br>        "phone":true,<br>        "desktop":true,<br>        "tablet":true<br>       },<br>    "target_page":"all",<br>    "target_pages":["/"],<br>    "is_active":"true",<br>    "hide_sticker":false,<br>    "app_id":"12345687af5c256b91a6345f",<br>    "contact_enable":"true",<br>    "comment_enable":"true",<br>    "trigger_size":"m",<br>    "type":"rating",<br>    "ratings_texts":[<br>        "Very dissatisfied",<br>        "Somewhat dissatisfied",<br>        "Neither satisfied Nor Dissatisfied",<br>        "Somewhat Satisfied",<br>        "Very Satisfied"<br>       ],<br>    "status":true,<br>    "targeting":null,<br>    "ratingsCount":116,<br>    "ratingsSum":334<br>}</pre>
+<p>
+  These describe all server side configured information that would be used to visualize
+  a widget manually. Starting from some style and color related fields and finally
+  all questions and their potential answers. In the case of surveys, it also shows
+  the required id's to report survey results.
 </p>
 <p>&nbsp;</p>
 <p>
-  When reporting the widgets results manually, the filled out response is reported
-  through the segmentation field.
+  When reporting these widget's results manually, the filled out response is reported
+  through the segmentation field of the reporting event. So depending on the type
+  of widget you are reporting, you have to construct a
+  <strong>widgetResult </strong>object, specific to that widget, which would then
+  be utilized in the third call that has been mentioned at the top of this section.
+  In this third call the developer is expected to provide the widget object obtained
+  from the first call, the widget's data object that has been obtained from the
+  second call, and a properly formed <strong>widgetResult&nbsp;</strong>object
+  that has been created with respect to the type of widget that is being reported.
+  More information on how to form this object is provided below.
 </p>
 <h2>Reporting NPS widgets manually</h2>
 <p>
-  To report the results of a NPS widget manually, no information from the widgets
+  To report the results of an NPS widget manually, no information from the widget's
   data JSON is needed. These widgets can report only two pieces of information
-  - an integer rating from 1 to 10 and a String comment.
+  - an integer <strong>rating,</strong> ranging from 0 to 10, and a String
+  <strong>comment</strong>, representing the user's comment.
 </p>
 <p>
   Therefore when reporting these results, you need to set two segmentation values,
@@ -229,23 +249,52 @@
 </p>
 <h3>Android sample code</h3>
 <p>
-  The following sample code would report the result of a NPS widget:
+  The following sample code would report the result of an NPS widget:
 </p>
-<pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>segm</span>.put(<span>"rating"</span>, <span>3</span>);<span>//value from 1 to 10<br></span><span>        </span><span>segm</span>.put(<span>"comment"</span>, <span>"Filled out comment"</span>);<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
+<pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>segm</span>.put(<span>"rating"</span>, <span>3</span>);<span>//value from 0 to 10<br></span><span>        </span><span>segm</span>.put(<span>"comment"</span>, <span>"Filled out comment"</span>);<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
+<h3>Web sample code</h3>
+<p>
+  The following code shows what is the expected widgetResult objects looks like
+  for NPS widget:
+</p>
+<pre>var widgetResult = {<br>         rating: 3, // between 0 to 10<br>         comment: "any comment" // string<br>    };</pre>
+<h2>Reporting Rating widgets manually</h2>
+<p>
+  To report the results of a Rating widget manually, again no information from
+  the obtained widget data is needed. These widgets has similar reporting capabilities
+  to NPS widgets. So similarly there would be an integer
+  <strong>rating,</strong> ranging from 1 to 5, and a String
+  <strong>comment</strong>, representing the user's comment. Then in addition to
+  these there would be an <strong>email</strong> String for user email and a
+  <strong>contactMe</strong> Boolean (true or false) if the user gave consent to
+  be contacted again or not.
+</p>
+<h3>Web sample code</h3>
+<p>
+  The following code shows what is the expected widgetResult objects looks like
+  for Rating widget:
+</p>
+<pre>var widgetResult = {<br>         rating: 3, // between 1 to 5<br>         comment: "any comment", // string<br>         email: "email@any.mail", // string<br>         contactMe: true // boolean<br>    };</pre>
 <h2>Reporting Survey widgets manually</h2>
 <p>
-  To report survey widgets manually, investigation of the data JSON is needed.
-  Each question has a question type and depending on the question type, the answer
-  needs to be reported in a different way. Each questions also has it's own ID
-  which needs to be used as part of the segmentation key when reporting the result.
+  To report survey widgets manually, investigation of the widget data received
+  from the second call is needed. Each question has a question type and depending
+  on the question type, the answer needs to be reported in a different way. Each
+  questions also has it's own ID which needs to be used as part of the segmentation
+  key when reporting the result.
 </p>
 <p>
   The questions id can be seen in the "id" field. For example, in the above posted
   survey JSON the first question has the ID of "1611875792-0". When trying to report
-  the result for a question, you would append "answ-" to the start of an ID and
-  then use that as segmentation key. For example, for the first survey questions
-  you would have the result segmentation key of "answ-1611875792-0".
+  the result for a question,
+  <strong>you would append "answ-" to the start of an ID</strong> and then use
+  that as segmentation key. For example, for the first survey questions you would
+  have the result segmentation key of "answ-1611875792-0".
 </p>
+<p>
+  At the end your widgetResult would look something like this (Web example):
+</p>
+<pre>var widgetResult = {<br>       "answ-1602694029-0": "answer", // for text input fields<br>       "answ-1602694029-1": 7, // for rating picker<br>       "answ-1602694029-2": "ch1602694029-0", // there is a question with choices. It is a choice key<br>       "answ-1602694029-3": "ch1602694030-0,ch1602694030-1" // in case 2 choices selected<br>      };</pre>
 <p>
   The specific value would depend on the question type. Here is a description of
   how to report results for different question types:
@@ -259,7 +308,7 @@
 </p>
 <p>Users can select any combination of all answers.</p>
 <p>
-  You would prepare the segmentation value by concatinating the keys of the chosen
+  You would prepare the segmentation value by concatenating the keys of the chosen
   options and using a comma as the delimiter.
 </p>
 <p>
@@ -276,7 +325,7 @@
 </p>
 <p>Only one option can be selected.</p>
 <p>
-  You would use the chosen options key value as the value for your result segementation.
+  You would use the chosen options key value as the value for your result segmentation.
 </p>
 <p>
   <strong>Dropdown value selector</strong>
@@ -287,7 +336,7 @@
 </p>
 <p>Only one option can be selected.</p>
 <p>
-  You would use the chosen options key value as the value for your result segementation.
+  You would use the chosen options key value as the value for your result segmentation.
 </p>
 <p>
   <strong>Text input field</strong>

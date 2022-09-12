@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.06.0.</span>
+  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.06.X.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -59,6 +59,21 @@
     </tr>
   </tbody>
 </table>
+<p>
+  If you want to get the Countly Web SDK codebase locally you can go to the github
+  repo <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
+  it inside your project folder by executing the lines:
+</p>
+<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
+</code></pre>
+<p>
+  Additionally to see example integrations of Countly Web SDK within some popular
+  front-end frameworks, you can reach our AngularJS and ReactJS examples from
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a>
+  and
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a>
+  respectively.
+</p>
 <h1>Adding the SDK to the Project</h1>
 <p>
   <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
@@ -96,7 +111,7 @@
   Here you would also need to provide your application key and server URL. For
   more information on how to acquire your application key (APP_KEY) and server
   URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
   Also if you are planning to use Application Performance Monitoring (APM) there
   would be additional steps necessary for you to follow. For more information on
   APM and its integration please check
@@ -225,6 +240,13 @@ function clickEvent(ob){
 &lt;input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
   </div>
 </div>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>SDK Logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enabling logging.
@@ -240,8 +262,9 @@ function clickEvent(ob){
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">//during initialization
-    Countly.debug = true;</code></pre>
+    <pre><code class="html">
+//during initialization
+Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="html">Countly.init({
@@ -1276,7 +1299,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
+  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps#heatmaps-troubleshooting">Troubleshooting guide</a>.</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -1628,6 +1651,60 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 <p>
   Note: Feedback widget's show policies are handled internally by the web sdk.
 </p>
+<h3>Manual Reporting</h3>
+<div class="callout callout--warning">
+  <p>
+    Manual Feedback Reporting feature is only available from SDK version 22.06.1
+    and up.
+  </p>
+</div>
+<p>
+  Reporting feedback widgets manually consists of 3 main steps:
+</p>
+<ol>
+  <li>
+    Fetching widget list from the server with 'get_available_feedback_widgets'
+  </li>
+  <li>
+    Fetching one widget's data from that list with 'getFeedbackWidgetData'
+  </li>
+  <li>
+    Reporting that single widget's results with 'reportFeedbackWidgetManually'
+  </li>
+</ol>
+<p>
+  At first step, by using the 'get_available_feedback_widgets' function, you can
+  fetch the list of available widgets from your server as an array of widget objects.
+  This function takes a callback as a parameter and this callback should have two
+  parameters, first one for the returned list and the second one for the error.
+  Inside your callback you should process this array of widget objects and pick
+  one object that you want to report the results for.
+</p>
+<p>
+  At second step, by using the 'getFeedbackWidgetData' function, you can fetch
+  the data of the widget of your choice. This functions has two parameters, first
+  one is the widget object obtained from the first step and the second one is a
+  callback with two parameters, one for the retrieved data and second one is for
+  the error. Inside your callback you can process the returned object and gather
+  information necessary for you to provide at the next step.
+</p>
+<p>
+  The third and last step is the part where you would report the results for the
+  widget of your choice by using the 'reportFeedbackWidgetManually' function. This
+  function takes three parameters, first the widget object obtained from the first
+  step, second the widget data from the second step and third the result object
+  that you want to report for your widget. This result object would have different
+  key/value pairs depending on the type of widget you are reporting about so you
+  can reach to an in-depth explanation on how to form this object from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">here</a>.
+</p>
+<p>
+  And example implementation of the mentioned concepts can be seen here:
+</p>
+<div>
+  <pre><span>&nbsp; &nbsp; </span><span>var </span><span></span><span>CountlyFeedbackWidget</span><span>;</span><br><span>  &nbsp; </span><span>var </span><span></span><span>CountlyWidgetData</span><span>;</span><br><br><span>&nbsp; &nbsp; </span><span>// an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating' &nbsp; &nbsp;</span><br><span>  &nbsp; </span><span>function </span><span></span><span>getFeedbackWidgetListAndReportResults</span><span>(</span><span>widgetType</span><span>) </span><span></span><span>{</span><br><span>  &nbsp; &nbsp; </span><span>// get the widget list</span><br><span>  &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>get_available_feedback_widgets</span><span>(</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>// callback function, 1st param is the feedback widget list</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>function</span><span></span><span>(</span><span>feedbackList</span><span>,</span><span></span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>log</span><span>(</span><span>err</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>return</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br>          <br>          // Go through the widget list and pick one with the same type you are looking for<br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>var </span><span></span><span>i</span><span></span><span>= </span><span></span><span>feedbackList</span><span>.</span><span>length</span><span></span><span>-</span><span></span><span>1</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>while</span><span></span><span>(</span><span>i</span><span>--</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>feedbackList</span><span>[</span><span>i</span><span>].</span><span>type</span><span></span><span>===</span><span></span><span>widgetType</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>CountlyFeedbackWidget</span><span></span><span>=</span><span></span><span>feedbackList</span><span>[</span><span>i</span><span>];</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>break</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br>  <br>          // if the widget exists continue<br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>CountlyFeedbackWidget</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// Get data with the widget object</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>getFeedbackWidgetData</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// callback function, 1st param is the feedback widget data</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>function</span><span></span><span>(</span><span>feedbackData</span><span>,</span><span></span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>log</span><span>(</span><span>err</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>return</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>CountlyWidgetData</span><span></span><span>=</span><span></span><span>feedbackData</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// report results according to the widget type. Results to report are different for each widget type</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'nps'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>{</span><span></span><span>rating</span><span>:</span><span></span><span>3</span><span>,</span><span></span><span>comment</span><span>:</span><span></span><span>"comment"</span><span></span><span>});</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>                else </span><span></span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'survey'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>var </span><span></span><span>widgetResponse</span><span></span><span>=</span><span></span><span>{};</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// form the key/value pairs according to data</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>widgetResponse</span><span>[</span><span>"answ-"</span><span></span><span>+</span><span></span><span>CountlyWidgetData</span><span>.</span><span>questions</span><span>[</span><span>0</span><span>].</span><span>id</span><span>]</span><span></span><span>=</span><span></span><span>CountlyWidgetData</span><span>.</span><span>questions</span><span>[</span><span>0</span><span>].</span><span>type</span><span></span><span>===</span><span></span><span>"rating"</span><span></span><span>?</span><span></span><span>3</span><span></span><span>:</span><span></span><span>"answer"</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>widgetResponse</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>                else </span><span></span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'rating'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>{</span><span></span><span>rating</span><span>:</span><span></span><span>3</span><span>,</span><span></span><span>comment</span><span>:</span><span></span><span>"comment"</span><span>,</span><span></span><span>email</span><span>:</span><span></span><span>"email"</span><span>,</span><span></span><span>contactMe</span><span>:</span><span></span><span>true</span><span></span><span>});</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>          else</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>error</span><span>(</span><span>"The widget type you are looking for does not exist"</span><span>)</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>})</span><br><span>  &nbsp; </span><span>}</span></pre>
+</div>
+<p>&nbsp;</p>
 <h1>User Profiles</h1>
 <h2>User Details</h2>
 <p>
@@ -1947,7 +2024,7 @@ Countly.opt_in();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
+  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#disable-tracking-until-given-consent">following section</a>.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -1989,9 +2066,6 @@ Countly.require_consent = true;</code></pre>
 });</code></pre>
   </div>
 </div>
-<p>
-  <span style="font-weight: 400;">Next, you may select all the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#helper-methods" target="_self">helper methods</a>&nbsp;you will be using. They won't be tracking or sending anything to the server until consent is given.</span>
-</p>
 <h2>Features for Consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK provides different features for consent. You may check all the supported features for the current SDK by checking the&nbsp;</span><strong>Countly.features</strong><span style="font-weight: 400;">&nbsp;property. Here is a list containing all the properties with ex</span>planations:
@@ -2854,9 +2928,8 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   The default behavior of Countly Web SDK is to ignore bots crawling your site
   to provide you a more accurate user analytics data. However, Countly can't detect
   and block all bots crawling the internet as we use the userAgent string to detect
-  bots and spammy bots can hide by providing conventional
-  UserAgent. However, this is not the case for a bot that you have created your
-  own.
+  bots and spammy bots can hide by providing conventional UserAgent. However, this
+  is not the case for a bot that you have created your own.
 </p>
 <p>
   To include your bots to be also ignored by the Countly Web SDK you have to include

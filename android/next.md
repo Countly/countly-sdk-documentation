@@ -1189,7 +1189,7 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
   <span style="font-weight: 400;">Star-rating dialog allows users to give feedback as a rating from 1 to 5. The rating widget allows users to rate using the same 1 to 5 rating system as well as leave a text comment. Feedback widgets (survey, nps) allow for even more textual feedback from users.</span>
 </p>
 <h2>Ratings</h2>
-<h3>Star-Rating Dialog</h3>
+<h3>Star Rating Dialog</h3>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
@@ -1344,7 +1344,7 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
   object to the following function:
 </p>
 <pre>Countly.<span>sharedInstance</span>().feedback().presentFeedbackWidget(chosenWidget, context, <span>"Close"</span>, <span>new </span>FeedbackCallback() {<br>    <span>@Override </span><span>public void </span>onFinished(String error) {<br><br>    }<br>});</pre>
-<h2>Manual Reporting</h2>
+<h3>Manual Reporting</h3>
 <p>
   There might be some usecases where you might to use the native UI or a custom
   UI you have created instead of our webview solution. In those cases you would
@@ -1383,7 +1383,7 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 <p>
   For more information regarding the returned data structure and how to structure
   the response, you would look
-  <a href="/hc/en-us/articles/900004340186" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <p>
