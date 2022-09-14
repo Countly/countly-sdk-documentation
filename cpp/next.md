@@ -46,6 +46,10 @@ cmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launc
 <span class="pl-c1">cd</span> build
 make</pre>
   <p dir="auto">
+    To install the build library, check
+    <a href="#additional-project-install-option" target="_self">here</a>.
+  </p>
+  <p dir="auto">
     Build with the option <code>COUNTLY_BUILD_TESTS</code><span> and <code>COUNTLY_BUILD_SAMPLE</code></span><strong>ON</strong>
     to build executables to run the tests and the sample app.
   </p>
@@ -445,6 +449,17 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 </p>
 <p>For example:</p>
 <pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">cly::Countly&amp; countly = cly::Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
+<h2 class="p-rich_text_section">Additional project install option</h2>
+<p>
+  To install the countly library after building it run <code>make install</code>
+  command.<br>
+  For example:
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre"># assuming we are on project root
+cmake -DCOUNTLY_USE_CUSTOM_SHA256=1 -DCOUNTLY_USE_SQLITE=1 -DCOUNTLY_USE_CUSTOM_HTTP=1 -B build
+cd build
+make
+make install</pre>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
