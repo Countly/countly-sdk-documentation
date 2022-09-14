@@ -224,7 +224,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
 <p>
   <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.12):</span>
 </p>
-<h3>Automatic Upload Script</h3>
+<h3>Automatic symbol file upload</h3>
 <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin 
 
 buildscript {
