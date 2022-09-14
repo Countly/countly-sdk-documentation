@@ -13,7 +13,7 @@
   <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
   It should show how most of the functionalities can be used.
 </p>
-<h1>Adding the SDK to the project</h1>
+<h1>Adding the SDK to the Project</h1>
 <p>
   <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it as follows:</span>
 </p>
@@ -34,7 +34,7 @@
   either in your&nbsp;<code>Application</code> subclass (preferred), or from your
   main activity <code>onCreate</code> method.
 </p>
-<h2>Minimal setup</h2>
+<h2>Minimal Setup</h2>
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.<span>sharedInstance</span>().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
@@ -53,7 +53,7 @@
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2>SDK logging</h2>
+<h2>SDK Logging</h2>
 <p>
   <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Androids internal log calls.</span>
 </p>
@@ -108,12 +108,12 @@
 <div class="img-container">
   <img src="https://count.ly/images/guide/283f96f-activity_lifecycle.png">
 </div>
-<h2>Required app permissions</h2>
+<h2>Required App Permissions</h2>
 <p>
   <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any in your manifest file. Those calls should look something like this:</span>
 </p>
 <pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
-<h1>Crash reporting</h1>
+<h1>Crash Reporting</h1>
 <p>
   <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
 </p>
@@ -122,7 +122,7 @@
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().crashes()</code></pre>
-<h2>Automatic crash handling</h2>
+<h2>Automatic Crash Handling</h2>
 <p>
   To enable automatic crash reporting, call the following function on the config
   object.
@@ -130,7 +130,7 @@
   will be sent to the dashboard once the app is launched again and the SDK is initiated.
 </p>
 <pre><code class="java">config.enableCrashReporting();</code></pre>
-<h2>Automatic crash report segmentation</h2>
+<h2>Automatic Crash Report Segmentation</h2>
 <p>
   <span style="font-weight: 400;">You may add a key/value segment to crash reports. For example, you could set which specific library or framework version you used in your app. You may then figure out if there is any correlation between the specific library or another segment and the crash reports.</span>
 </p>
@@ -138,7 +138,7 @@
   <span style="font-weight: 400;">Use the following function for this purpose:</span>
 </p>
 <pre><code class="java">config.setCustomCrashSegment(Map&lt;String, String&gt; segments)</code></pre>
-<h2>Handled exceptions</h2>
+<h2>Handled Exceptions</h2>
 <p>
   <span style="font-weight: 400;">You might catch an exception or similar error during your app’s runtime.</span>
 </p>
@@ -150,7 +150,7 @@
   <span style="font-weight: 400;">If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().crashes().recordUnhandledException(Exception exception);</code></pre>
-<h2>Crash breadcrumbs</h2>
+<h2>Crash Breadcrumbs</h2>
 <p>
   Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
   previous steps that were taken in your app before the crash. After a crash happens,
@@ -158,14 +158,7 @@
 </p>
 <p>Following the command adds crash breadcrumb:</p>
 <pre><code class="java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
-<h2>Recording all threads</h2>
-<p>
-  If you would like to record the state of all other threads during an uncaught
-  exception or during the recording of a handled exception, you can call this during
-  init:
-</p>
-<pre>config.setRecordAllThreadsWithCrash();</pre>
-<h2>Crash filtering</h2>
+<h2>Crash Filtering</h2>
 <p>
   There might be cases where a crash could contain sensitive information. For such
   situations, there is a crash filtering option. You can provide a callback which
@@ -174,6 +167,13 @@
   should not be sent to the server:
 </p>
 <pre>config.setCrashFilterCallback(<span>new </span>CrashFilterCallback() {<br>    <span>@Override<br></span><span>    </span><span>public boolean </span>filterCrash(String crash) {<br>        //returns true if the crash should be ignored<br>        <span>return </span>crash.contains(<span>"secret"</span>);<br>    }<br>})</pre>
+<h2>Recording all threads</h2>
+<p>
+  If you would like to record the state of all other threads during an uncaught
+  exception or during the recording of a handled exception, you can call this during
+  init:
+</p>
+<pre>config.setRecordAllThreadsWithCrash();</pre>
 <h2>Native C++ Crash Reporting</h2>
 <div class="callout callout--warning">
   <p>
@@ -220,10 +220,11 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <code>getApplicationContext()</code> is needed to determine a storage place for
   minidump files.
 </p>
-<h2>Automatic symbol file upload</h2>
+<h2>Symbolication</h2>
 <p>
   <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.12):</span>
 </p>
+<h3>Automatic symbol file upload</h3>
 <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin 
 
 buildscript {
@@ -321,7 +322,7 @@ buildscript {
   When providing segmentation for events, the only valid data types are: "String",
   "Integer", "Double" and "Boolean". All other types will be ignored.
 </p>
-<h2>Recording events</h2>
+<h2>Recording Events</h2>
 <p>
   <span style="font-weight: 400;">We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span style="font-weight: 400;">&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
@@ -348,23 +349,33 @@ buildscript {
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
-<h3>1. Event key and count</h3>
+<p>
+  <strong>1. Event key and count</strong>
+</p>
 <pre><code class="java">Countly.sharedInstance().events().recordEvent("purchase", 1);</code></pre>
-<h3>2. Event key, count, and sum</h3>
+<p>
+  <strong>2. Event key, count, and sum</strong>
+</p>
 <pre><code class="java">Countly.sharedInstance().events().recordEvent("purchase", 1, 0.99);</code></pre>
-<h3>3. Event key and count with segmentation(s)</h3>
+<p>
+  <strong>3. Event key and count with segmentation(s)</strong>
+</p>
 <pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1);</code></pre>
-<h3>4. Event key, count, and sum with segmentation(s)</h3>
+<p>
+  <strong>4. Event key, count, and sum with segmentation(s)</strong>
+</p>
 <pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99);</code></pre>
-<h3>5. Event key, count, sum, and duration with segmentation(s)</h3>
+<p>
+  <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
+</p>
 <pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
@@ -373,7 +384,7 @@ Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99,
 <p>
   <span style="font-weight: 400;">Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
-<h2>Timed events</h2>
+<h2>Timed Events</h2>
 <p>
   <span style="font-weight: 400;">It's possible to create timed events by defining a start and a stop moment.</span>
 </p>
@@ -408,7 +419,7 @@ Countly.sharedInstance().events().endEvent(eventName, segmentation, 4, 34);
 
 //cancel the event 
 Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
-<h2>Past events</h2>
+<h2>Past Events</h2>
 <p>
   In the previous examples, the event creation time is recorded once the event
   is created.
@@ -420,7 +431,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 </p>
 <pre><code class="java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
 <h1>Sessions</h1>
-<h2>Manual sessions</h2>
+<h2>Manual Sessions</h2>
 <p>
   Sometimes it might be preferable to control the session manually instead of relying
   on the SDK.
@@ -433,20 +444,20 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   <li>Update session duration</li>
   <li>End session (also updates duration)</li>
 </ul>
-<p>The approprate call to do that are:</p>
+<p>The appropriate call to do that are:</p>
 <pre>Countly.<span>sharedInstance</span>().sessions().beginSession();<br>Countly.<span>sharedInstance</span>().sessions().updateSession();<br>Countly.<span>sharedInstance</span>().sessions().endSession();</pre>
 <p>
   By default, you should do some session call every 60 seconds after beginning
   a session so that it is not closed server side. If you would want to increase
   that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
 </p>
-<h1>View tracking</h1>
+<h1>View Tracking</h1>
 <p>
   In the SDK all view related functionality can be browsed from the returned interface
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().views()</code></pre>
-<h2>Automatic views</h2>
+<h2>Automatic Views</h2>
 <p>
   <span style="font-weight: 400;">View tracking is a means to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
@@ -459,7 +470,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   <span style="font-weight: 400;">It is possible to use short view names that make use of the simple activity name. This would look like "activityname". To use this functionality, call this before calling init:</span>
 </p>
 <pre><code class="java">config.setAutoTrackingUseShortName(true);</code></pre>
-<h2>Automatic view segmentation</h2>
+<h3>Automatic View Segmentation</h3>
 <p>
   It's possible to provide custom segmentation that will be set to all automatically
   recorded views:
@@ -470,7 +481,7 @@ automaticViewSegmentation.put("Three", 4.44d);
 automaticViewSegmentation.put("Five", "Six");
 
 config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
-<h2>Manual view recording</h2>
+<h2>Manual View Recording</h2>
 <p>
   <span style="font-weight: 400;">You may track custom views with the following code snippet as well:</span>
 </p>
@@ -486,7 +497,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 <div class="img-container">
   <img src="/hc/article_attachments/9508351988121/001.png" alt="001.png">
 </div>
-<h1>Device ID management</h1>
+<h1>Device ID Management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
@@ -500,7 +511,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2>Changing device ID</h2>
+<h2>Changing Device ID</h2>
 <p>
   In case your application authenticates users, you might want to change the ID
   to the one in your backend after he has logged in. This helps you identify a
@@ -545,7 +556,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   second would create a "multiuser" id for every device and possibly slightly inflate
   the user count.
 </p>
-<h2>Temporary device ID</h2>
+<h2>Temporary Device ID</h2>
 <p>
   In the previous ID management approaches, data is still sent to your server,
   but it adds user inflation risk if badly managed. The use of a temporary ID can
@@ -569,7 +580,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   or "changeDeviceIdWithMerge" or init the SDK with a developer supplied device
   ID.
 </p>
-<h2>Retrieving current device ID</h2>
+<h2>Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device
   and what the source of that id is. For that, you may use the following calls.
@@ -578,7 +589,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 </p>
 <pre><code class="java">String usedId = Countly.sharedInstance().getDeviceID();
 Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
-<h1>Push notifications</h1>
+<h1>Push Notifications</h1>
 <p>
   Countly supports FCM (Firebase Cloud Messaging) and Huawei Push Kit as push notification
   service providers.&nbsp;The SDK doesn't have any direct dependencies on FCM or
@@ -594,10 +605,9 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   to alter this behaviour by supplying HMS as a preferred provider:
 </p>
 <pre>CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)<br>.setProvider(Countly.CountlyMessagingProvider.<span>HMS</span>)<br>CountlyPush.init(countlyConfigPush);</pre>
-<p>&nbsp;</p>
-<h2>General SDK&nbsp;initialisation</h2>
+<h2>Integration</h2>
 <p>
-  To have the best experience with push notifications, the SDK should be initialised
+  To have the best experience with push notifications, the SDK should be initialized
   in the your Application subclass' "onCreate" method.&nbsp;<span style="font-weight: 400;">Don't forget that Android O and later models require the use of <code>NotificationChannel</code>s</span>.
   Use <code>CountlyPush.CHANNEL_ID</code>&nbsp;for Countly-displayed notifications:
 </p>
@@ -661,8 +671,8 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   Please follow provider-specific instructions for Firebase and / or Huawei PushKit
   below.
 </p>
-<h2>Firebase</h2>
-<h3>Getting FCM credentials</h3>
+<h3>Firebase</h3>
+<h4>Getting FCM Credentials</h4>
 <p>
   <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
   order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
@@ -680,7 +690,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 <div class="img-container">
   <img src="/hc/article_attachments/9508421820313/002.png" alt="002.png">
 </div>
-<h3>Integrating FCM into your app</h3>
+<h4>Integrating FCM into Your App</h4>
 <p>
   <span style="font-weight: 400;">Please review our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app" target="_self">Demo app</a><span style="font-weight: 400;">&nbsp;for a complete integration example.</span>
 </p>
@@ -844,10 +854,8 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
   }
 }
 </code></pre>
-<h2>
-  <strong>Huawei PushKit</strong>
-</h2>
-<h3>Getting Huawei credentials</h3>
+<h3>Huawei PushKit</h3>
+<h4>Getting Huawei Credentials</h4>
 <p>
   Assuming you have followed Huawei's guide of
   <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-help-createapp-0000001146718717" target="_self">setting up an application</a>,
@@ -883,7 +891,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <p>
   <img src="/hc/article_attachments/900003139143/Screenshot_2020-08-25_at_16.04.29.png" alt="Screenshot_2020-08-25_at_16.04.29.png">
 </p>
-<h3>Integrating HMS into your app</h3>
+<h4>Integrating HMS into Your App</h4>
 <p>
   HMS implementation in Countly SDK looks very much like FCM: add dependencies,
   add service definition and the service class. Please refer to our
@@ -900,8 +908,8 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <p>
   ... which is almost identical to the FCM demo service.&nbsp;
 </p>
-<h2>Advanced features</h2>
-<h3>Custom notification sound</h3>
+<h2>Customizing Push Messages</h2>
+<h3>Custom Notification Sound</h3>
 <div class="callout callout--warning">
   <p>
     If you would like to use a custom sound in your push notifications, they
@@ -932,7 +940,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   More info about that here:
   <a href="https://stackoverflow.com/questions/48986856/android-notification-setsound-is-not-working">https://stackoverflow.com/questions/48986856/android-notification-setsound-is-not-working</a>
 </p>
-<h3>Automatic message handling</h3>
+<h3>Automatic Message Handling</h3>
 <p>
   <span style="font-weight: 400;">Countly handles most common message handling tasks for you. For example, it generates and shows <code>Notification</code></span><span style="font-weight: 400;">&nbsp;or <code>Dialog</code></span><span style="font-weight: 400;">&nbsp;and tracks conversion rates automatically. In most cases, it’s not necessary for you to know how it works, but if you would like to customize the behavior or exchange it with your own implementation, here is a more in-depth explanation of what it does.</span>
 </p>
@@ -974,7 +982,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
     <span style="font-weight: 400;">It displays the corresponding buttons for notifications with custom buttons.</span>
   </li>
 </ul>
-<h3>Using Android deep links</h3>
+<h2>Deep Links</h2>
 <p>
   <span style="font-weight: 400;">When using Countly push notifications, you may benefit from Android deep links in your application for the buttons you provide. Those are basically links for specific activities of your application. A link may either be a generic ‘http’ link, such as <code>http://www.oneexample.com/survey</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;or a link with a custom URI (uniform resource indicator) scheme, such as <code>otherexample://things</code></span><span style="font-weight: 400;">.</span>
 </p>
@@ -984,7 +992,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
 <p>
   <span style="font-weight: 400;">A deeper guide on how to configure your application to use deep links may be found&nbsp;</span><a href="https://developer.android.com/training/app-links/deep-linking.html"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
-<h3>Developer-overridden message handling</h3>
+<h2>Receiving Data Only Notifications</h2>
 <p>
   <span style="font-weight: 400;">You may also completely disable the push notification handling made by the Countly SDK. To do so, just add <code>true</code></span><span style="font-weight: 400;">&nbsp;to the end of your <code>initMessaging()</code></span><span style="font-weight: 400;">call:</span>
 </p>
@@ -997,7 +1005,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   <span style="font-weight: 400;">This parameter effectively disables any UI interactions and <code>Activity</code></span><span style="font-weight: 400;">&nbsp;instantiation from the Countly SDK. To enable the custom processing of push notifications, you may either register your own <code>WakefulBroadcastReceiver</code></span><span style="font-weight: 400;">&nbsp;or use&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#push-notifications"><span style="font-weight: 400;">our example with the broadcast action</span></a><span style="font-weight: 400;">. Once you have switched off the default push notification UI, please make sure to call <code>CountlyMessaging.recordMessageOpen(id)</code></span>whenever
   a push notification is delivered to your device, and&nbsp;<code>CountlyMessaging.recordMessageAction(id, index)</code><span style="font-weight: 400;">, </span><span style="font-weight: 400;">whenever a user positively reacts to your notification. <code>id</code></span><span style="font-weight: 400;">&nbsp;is a message ID string you may receive from&nbsp;the <code>c.i</code></span><span style="font-weight: 400;">&nbsp;key of the push notification payload. <code>index</code></span><span style="font-weight: 400;">&nbsp;is optional and used to identify the type of action as follows: 0 for the tap on the notification in drawer, 1 for tap on first button of rich push, 2 for tap on the second button if there is any.</span>
 </p>
-<h3>Handling button or push clicks</h3>
+<h2>Handling Push Callbacks</h2>
 <p>
   <span style="font-weight: 400;">When receiving a push notification, the user may click the notification directly or they may click the button. When a user clicks anywhere on the push notification, an intent is launched to open the provided link. This may be a web page URL or a deep link. If you have configured your app, so that opening this intent will open an activity of your app, it should be possible to track which button was pressed.</span>
 </p>
@@ -1022,11 +1030,12 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <span style="font-weight: 400;">To read the extra from the intent, you would use something similar to this:</span>
 </p>
 <pre><code class="java">String buttonUrl = intent.getStringExtra(ProxyActivity.intentExtraButtonLink);</code></pre>
-<h2>Testing</h2>
-<p>
-  <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
-</p>
-<h1>User location</h1>
+<div class="callout callout--info">
+  <p>
+    <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
+  </p>
+</div>
+<h1>User Location</h1>
 <p>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
 </p>
@@ -1045,10 +1054,10 @@ ProxyActivity.intentExtraWhichButton</code></pre>
     <span style="font-weight: 400;">Your user’s IP address</span>
   </li>
 </ul>
-<p>During init you can either disable location:</p>
-<pre>config.setDisableLocation();</pre>
+<h2>Setting Location</h2>
 <p>
-  or set location info that will be sent during the start of the user session:
+  During init you can set location info that will be sent during the start of the
+  user session:
 </p>
 <pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
@@ -1068,6 +1077,9 @@ Countly.sharedInstance().setLocation(countryCode, city, latitude + "," + longitu
   starting a session.
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
+<h2>Disabling Location</h2>
+<p>Also during init you can disable location:</p>
+<pre>config.setDisableLocation();</pre>
 <p>
   Users might want to opt-out of location tracking. To do so, call:
 </p>
@@ -1080,7 +1092,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
-<h2>Automatic Remote Config download</h2>
+<h2>Automatic Remote Config</h2>
 <p>
   <span style="font-weight: 400;">There are two ways of acquiring remote config data: automatic download or manual request. Automatic remote config has been disabled by default and, therefore, without developer intervention, no remote config values will be requested.</span>
 </p>
@@ -1153,7 +1165,7 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
 <p>
   <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a simple manual request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2>Accessing Remote Config values</h2>
+<h2>Accessing Remote Config Values</h2>
 <p>
   To request a stored value, call <code>getRemoteConfigValueForKey</code>&nbsp;with
   the specified key. If it returns <code>null</code>
@@ -1170,7 +1182,7 @@ int int_value = (int) value_1;
 double double_value = (double) value_2;
 JSONArray jArray = (JSONArray) value_3;
 JSONObject jobj = (JSONObject) value_4;</code></pre>
-<h2>Clearing Stored values</h2>
+<h2>Clearing Stored Values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
@@ -1461,7 +1473,7 @@ Countly.userData.save()</code></pre>
 <p>
   <strong><span style="font-weight: 400;">You may use any key values to be stored and displayed on your Countly backend for custom user properties.&nbsp;</span>Note: keys with . or $ symbols will have those symbols removed.</strong>
 </p>
-<h2>Modifying custom data</h2>
+<h2>Modifying Data</h2>
 <p>
   <span style="font-weight: 400;">Additionally, you may perform different manipulations on your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
 </p>
@@ -1495,7 +1507,7 @@ Countly.userData.save();</code></pre>
   In the end, always call <strong>Countly.userData.save()</strong> to send them
   to the server.
 </p>
-<h2>Orientation tracking</h2>
+<h2>Orientation Tracking</h2>
 <p>
   To record your applications orientation changes, you need to enable it on your
   init object like:
@@ -1530,7 +1542,7 @@ Countly.userData.save();</code></pre>
   not start with an underscore or number. The key also has to be shorter than 32
   characters.
 </p>
-<h2>Custom trace</h2>
+<h2>Custom Traces</h2>
 <p>
   Currently, you can use custom traces to record the duration of application processes.
   At the end of them, you can also provide any additionally gathered data.
@@ -1547,7 +1559,7 @@ Countly.userData.save();</code></pre>
 <p>
   The provided Map of integer values that will be added to that trace in the dashboard.
 </p>
-<h2>Network trace</h2>
+<h2>Network Traces</h2>
 <p>You can use the APM to track your requests.</p>
 <p>Call this just before making your network request:</p>
 <pre>Countly.<span>sharedInstance</span>().apm().startNetworkRequest(String networkTraceKey, String uniqueId);</pre>
@@ -1565,7 +1577,7 @@ Countly.userData.save();</code></pre>
   the request and then also provided the received response code, sent payload size
   in bytes, and received payload size in bytes.
 </p>
-<h2>Automatic device traces</h2>
+<h2>Automatic Device Traces</h2>
 <p>Currently, the Android SDK provides 3 automatic traces:</p>
 <ul>
   <li>App start time</li>
@@ -1584,7 +1596,7 @@ Countly.userData.save();</code></pre>
   Third, you must initialize countly in your apps Application onStart callback.
 </p>
 <p>If you do this, you will get the correct on start times.</p>
-<h2>App time in background/foreground</h2>
+<h2>App Time in Background / Foreground</h2>
 <p>
   Countly will record the time your users spend in the foreground and background.
   For this to work, your users need to be given any consent. You also need to provide
@@ -1598,6 +1610,7 @@ Countly.userData.save();</code></pre>
   More information about GDPR can be found
   <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
+<h2>Setup During Init</h2>
 <p>
   <span style="font-weight: 400;">The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code></span><span style="font-weight: 400;">&nbsp;with <code>true</code></span><span style="font-weight: 400;">&nbsp;before initializing Countly.</span>
 </p>
@@ -1660,16 +1673,7 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
   * <code>remoteConfig</code> - allow to download remote config values from your
   server
 </p>
-<h2>Feature groups</h2>
-<p>
-  <span style="font-weight: 400;">Features may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>createFeatureGroup</code></span><span style="font-weight: 400;">. Those groups are not persistent and must be created on every restart.</span>
-</p>
-<pre><code class="java">// prepare features that should be added to the group
-String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.location };
-
-// create the feature group
-Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code></pre>
-<h2>Changing consent</h2>
+<h2>Changing Consent</h2>
 <p>
   <span style="font-weight: 400;">There are 3 ways of changing feature consent: </span>
 </p>
@@ -1709,8 +1713,22 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, true);
 
 // remove consent from "sessions" and "location" feature with a single consent group call
 Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
-<h1>Security and privacy</h1>
-<h2>SSL certificate pinning</h2>
+<h2>Feature Groups</h2>
+<p>
+  <span style="font-weight: 400;">Features may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>createFeatureGroup</code></span><span style="font-weight: 400;">. Those groups are not persistent and must be created on every restart.</span>
+</p>
+<pre><code class="java">// prepare features that should be added to the group
+String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.location };
+
+// create the feature group
+Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code></pre>
+<h1>Security and Privacy</h1>
+<h2>Parameter Tamper Protection</h2>
+<p>
+  <span style="font-weight: 400;">You may set the optional <code>salt</code></span><span style="font-weight: 400;">&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field. You will need to set exactly the same <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server. If&nbsp;the <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server is set, all requests would be checked for the validity of the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field before being processed.</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().enableParameterTamperingProtection("salt");</code></pre>
+<h2>SSL Certificate Pinning</h2>
 <p>
   <span>Public key and certificate pinning are techniques that improve communication security by eliminating the threat of&nbsp;</span><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a><span>&nbsp;in SSL connections.&nbsp;</span>
 </p>
@@ -1768,13 +1786,20 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
   More info can be found
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">here</a>.
 </p>
-<h2>Parameter Tampering Protection</h2>
+<h1>Other Features and Notes</h1>
+<h2>Setting Event Queue Threshold</h2>
 <p>
-  <span style="font-weight: 400;">You may set the optional <code>salt</code></span><span style="font-weight: 400;">&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field. You will need to set exactly the same <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server. If&nbsp;the <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server is set, all requests would be checked for the validity of the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field before being processed.</span>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
 </p>
-<pre><code class="java">Countly.sharedInstance().enableParameterTamperingProtection("salt");</code></pre>
-<h1>Other features</h1>
-<h2>Attribution analytics &amp; install campaigns</h2>
+<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h2>Checking If the SDK Has Been Initialized</h2>
+<p>
+  <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().isInitialized();</code></pre>
+<h2>Attribution</h2>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
@@ -1794,7 +1819,43 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
 <p>
   <strong><span style="font-weight: 400;">For more information about how to set up your campaigns, please&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics"><span style="font-weight: 400;">review this documentation</span></a><span style="font-weight: 400;">.</span></strong>
 </p>
-<h2>Receiving and showing badge numbers from push notifications</h2>
+<h2>Forcing HTTP POST</h2>
+<p>
+  <span style="font-weight: 400;">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In case you would like an override so that HTTP POST is used in all cases, call the "setHttpPostForced" function after you call "init". You may use the same function later in the app’s life cycle to disable the override. This function must be called every time the app starts.</span>
+</p>
+<pre><code class="java">//the init call before the override
+Countly.sharedInstance().init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
+  
+//enabling the override
+Countly.sharedInstance().setHttpPostForced(true);
+  
+//disabling the override
+Countly.sharedInstance().setHttpPostForced(false);</code></pre>
+<h2>Custom HTTP Header Values</h2>
+<p>
+  <span style="font-weight: 400;">In case you would like to add custom header key/value pairs to each request sent to the Countly server, you may make the following call:</span>
+</p>
+<pre><code class="java">HashMap&lt;String, String&gt; customHeaderValues = new HashMap&lt;&gt;();
+customHeaderValues.put("foo", "bar");
+
+Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
+<p>
+  <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
+</p>
+<h2>Custom Metrics</h2>
+<p>
+  During some specific circumstances, like beginning a session or requesting remote
+  config, the SDK is sending device metrics.
+</p>
+<p>
+  It is possible for you to either override the sent metrics (like the application
+  version for some specific variant) or provide either your own custom metrics.
+  If you are providing your own custom metrics, you would need your own custom
+  plugin server-side which would interpret it appropriately. If there is no plugin
+  to handle those custom values, they will be ignored.
+</p>
+<pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
+<h2>Receiving and Showing Badge Numbers from Push Notifications</h2>
 <p>
   <span style="font-weight: 400;">While showing badges isn't supported natively for versions before Android O, there are some devices and launchers that support it. Therefore, you may want to implement such a feature in your app. However, not all devices will support badges.</span>
 </p>
@@ -1808,7 +1869,7 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
   <span style="font-weight: 400;">In order to receive this badge number in your application, you must subscribe to the broadcasts about received messages. There you will be informed about all received push notifications using Message and the bundle. The badge number is sent with the key "badge". You may use it to extract the badge number from the bundle received and then use it to display badge numbers with your implementation of choice.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In the example below we will use a badge library called&nbsp;</span><a href="https://github.com/leolin310148/ShortcutBadger"><span style="font-weight: 400;">ShortcutBadger</span></a><span style="font-weight: 400;">, which is used to show badges on Android. Follow their instructions&nbsp;</span><a href="https://github.com/leolin310148/ShortcutBadger#usage"><span style="font-weight: 400;">in this link</span></a><span style="font-weight: 400;">&nbsp;on how to implement it in your Android project. </span>
+  <span style="font-weight: 400;">In the example below, we use a badge library called </span><a href="https://github.com/leolin310148/ShortcutBadger"><span style="font-weight: 400;">ShortcutBadger</span></a><span style="font-weight: 400;">, which is used for showing badge notifications on Android devices. You can reach instructions on how to implement it into your Android project </span><a href="https://github.com/leolin310148/ShortcutBadger#usage" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">. </span>
 </p>
 <pre><code class="java">/** Register for broadcast action if you need to be notified when Countly message received */
 messageReceiver = new BroadcastReceiver() {
@@ -1835,17 +1896,12 @@ messageReceiver = new BroadcastReceiver() {
 IntentFilter filter = new IntentFilter();
 filter.addAction(CountlyMessaging.getBroadcastAction(getApplicationContext()));
 registerReceiver(messageReceiver, filter);</code></pre>
-<h2>Checking if init has been called</h2>
-<p>
-  <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
-</p>
-<pre><code class="java">Countly.sharedInstance().isInitialized();</code></pre>
-<h2>Checking if onStart has been called</h2>
+<h2>Checking If onStart Has Been Called</h2>
 <p>
   <span style="font-weight: 400;">For some applications, there might a use case where the developer would like to check if the Countly SDK <code>onStart</code></span><span style="font-weight: 400;">&nbsp;function has been called. To do so, they may use the following call:</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().hasBeenCalledOnStart();</code></pre>
-<h2>Ignoring app crawlers</h2>
+<h2>Ignoring App Crawlers</h2>
 <p>
   <span style="font-weight: 400;">Sometimes server data might be polluted with app crawlers which are not real users, and you would like to ignore them. Starting from the 17.05 release, it's possible to ignore app crawlers by filtering on the app level. The current version does that, using device names. Internally, the Countly SDK has a list of crawler device names. If a device name matches one from that list, no information is sent to the server. </span>
 </p>
@@ -1866,30 +1922,7 @@ Countly.sharedInstance().addAppCrawlerName("App crawler");
 
 //returns true if this device is detected as a app crawler and false otherwise
 Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
-<h2>Forcing HTTP POST</h2>
-<p>
-  <span style="font-weight: 400;">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In case you would like an override so that HTTP POST is used in all cases, call the "setHttpPostForced" function after you call "init". You may use the same function later in the app’s life cycle to disable the override. This function must be called every time the app starts.</span>
-</p>
-<pre><code class="java">//the init call before the override
-Countly.sharedInstance().init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
-  
-//enabling the override
-Countly.sharedInstance().setHttpPostForced(true);
-  
-//disabling the override
-Countly.sharedInstance().setHttpPostForced(false);</code></pre>
-<h2>Setting Custom HTTP header values</h2>
-<p>
-  <span style="font-weight: 400;">In case you would like to add custom header key/value pairs to each request sent to the Countly server, you may make the following call:</span>
-</p>
-<pre><code class="java">HashMap&lt;String, String&gt; customHeaderValues = new HashMap&lt;&gt;();
-customHeaderValues.put("foo", "bar");
-
-Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
-<p>
-  <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
-</p>
-<h2>Interacting with the internal request queue</h2>
+<h2>Interacting with the Internal Request Queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
   Events get grouped together and sometimes there is no connection to the server
@@ -1911,106 +1944,13 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   Then you would call:
 </p>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.<span>sharedInstance</span>().flushRequestQueues();</pre>
-<h2>Setting an event queue threshold</h2>
+<h2>Direct Request</h2>
 <p>
-  Events get grouped together and are sent either every minute or after the unsent
-  event count reaches a threshold. By default it is 10. If you would like to change
-  this, call:
+  <span style="font-weight: 400;">You may send direct requests to the server with custom key/value pairs of&nbsp;<code>Map&lt;String, String&gt;</code>.&nbsp; These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
 </p>
-<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
-<h2>Custom Metrics</h2>
-<p>
-  During some specific circumstances, like beginning a session or requesting remote
-  config, the SDK is sending device metrics.
-</p>
-<p>
-  It is possible for you to either override the sent metrics (like the application
-  version for some specific variant) or provide either your own custom metrics.
-  If you are providing your own custom metrics, you would need your own custom
-  plugin server-side which would interpret it appropriately. If there is no plugin
-  to handle those custom values, they will be ignored.
-</p>
-<pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
-<h1>
-  <span style="font-weight: 400;">FAQ</span>
-</h1>
-<h2>How can I build the the Android SDK?</h2>
-<p>
-  <span style="font-weight: 400;">If you need to customize our Android SDK to fit your needs, you may find it&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">&nbsp;among our Countly Github repositories as an Android Studio project. Modules included in the project are:</span>
-</p>
-<table>
-  <tbody>
-    <tr>
-      <th>Module Name</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>
-        <code>sdk</code>
-      </td>
-      <td>Countly Android SDK.</td>
-    </tr>
-    <tr>
-      <td>
-        <code>app</code>
-      </td>
-      <td>
-        Sample app to test <code>sdk</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>sdk-native</code>
-      </td>
-      <td>
-        Module needed for
-        <a href="https://resources.count.ly/docs/countly-sdk-for-android#section-native-c-crash-reporting">Native C++ crash reporting</a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>app-native</code>
-      </td>
-      <td>
-        Sample app to test <code>sdk-native</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<p>
-  <span style="font-weight: 400;">Recently, Android Studio versions have a&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/issues/96#issuecomment-492327285"><span style="font-weight: 400;">bug</span></a><span style="font-weight: 400;"> which</span><span style="font-weight: 400;">&nbsp;you may encounter when building your project in Studio. If you see a build error such as <code>SIMPLE: Error configuring</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;please check your text view for the build Gradle output. If you see this error <code>CMake was unable to find a build program corresponding to "Ninja". CMAKE_MAKE_PROGRAM is not set</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;then you need to make <code>ninja</code></span><span style="font-weight: 400;">&nbsp;available in your&nbsp;</span><span style="font-weight: 400;">PATH</span><span style="font-weight: 400;">. If you are using <code>cmake</code></span><span style="font-weight: 400;">&nbsp;embedded in Studio, <code>ninja</code></span><span style="font-weight: 400;">&nbsp;may be found in&nbsp;the <code>&lt;sdk_location&gt;/cmake/&lt;cmake_version&gt;/bin</code></span><span style="font-weight: 400;">&nbsp;directory.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">There is a build step for the <code>sdk-native</code></span><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in <code>sdk-native/src/cpp_precompilation</code></span><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in <code>sdk-native/src/main/jniLibs/</code></span><span style="font-weight: 400;">&nbsp;that are externally built.</span>
-</p>
-<h2>Which operating systems are supported?</h2>
-<p>
-  Our Android SDK should be able support Android based operating systems without
-  issues. It should also work without any major issues on devices that don't have
-  Google services, for example, on Huawei devices which have the HarmonyOS operating
-  system.
-</p>
-<h2>Is it possible to use Android SDK with another crash SDK?</h2>
-<p>
-  It should be fine to use Countly together with another crash SDK. If you would
-  like to track caught exception, you would just pass them to both SDKs. When catching
-  uncaught exceptions with both, there are some uncertainties. Although in Android
-  there can be only one uncaught exception handler, you can save the previous handler
-  and when receiving an uncaught exception, pass it also to the saved one. We can't
-  be certain how other SDKs are implemented or if the OS would give enough time
-  to propagate the exception through all handlers. Therefore, if you want to use
-  Countly with another crash SDK, we advise to initialize Countly as the last one.
-</p>
-<h2>
-  How can I tell which Countly Android SDK version I am using?
-</h2>
-<p>
-  The Countly class has a public static string called
-  <code>COUNTLY_SDK_VERSION_STRING</code> that contains the current SDK version.
-  You can access it by calling <code>Countly.COUNTLY_SDK_VERSION_STRING</code>.
-  It would return something similar to "20.11.10".
-</p>
-<h2>What information is collected by the SDK</h2>
+<pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>requestMap </span>= <span>new </span>HashMap&lt;&gt;();<br><span>requestMap</span>.put(<span>"city"</span>, <span>"Istanbul"</span>);<br><span>requestMap</span>.put(<span>"country_code"</span>, <span>"TR"</span>);<br><span>requestMap</span>.put(<span>"ip_address"</span>, <span>"41.0082,28.9784"</span>);<br><br><span>try </span>{<br>    <span>JSONObject event </span>= <span>new </span>JSONObject();<br>    <span>event</span>.putOpt(<span>"key"</span>, <span>"test"</span>);<br>    <span>event</span>.putOpt(<span>"count"</span>, <span>"5"</span>);<br>    <span>event</span>.putOpt(<span>"sum"</span>, <span>"2"</span>);<br>    <span>event</span>.putOpt(<span>"dur"</span>, <span>"2000"</span>);<br><br>    <span>JSONObject ffJson </span>= <span>new </span>JSONObject();<br>    <span>ffJson</span>.putOpt(<span>"type"</span>, <span>"FF"</span>);<br>    <span>ffJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>ffJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject skipJson </span>= <span>new </span>JSONObject();<br>    <span>skipJson</span>.putOpt(<span>"type"</span>, <span>"skip"</span>);<br>    <span>skipJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>skipJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject resumeJson </span>= <span>new </span>JSONObject();<br>    <span>resumeJson</span>.putOpt(<span>"type"</span>, <span>"resume_play"</span>);<br>    <span>resumeJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>resumeJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONArray trickPlay </span>= <span>new </span>JSONArray();<br>    <span>trickPlay</span>.put(<span>ffJson</span>);<br>    <span>trickPlay</span>.put(<span>skipJson</span>);<br>    <span>trickPlay</span>.put(<span>resumeJson</span>);<br><br>    <span>JSONObject segmentation </span>= <span>new </span>JSONObject();<br>    <span>segmentation</span>.putOpt(<span>"trickplay"</span>, <span>trickPlay</span>);<br>    <span>event</span>.putOpt(<span>"segmentation"</span>, <span>segmentation</span>);<br><br>    <span>JSONArray events </span>= <span>new </span>JSONArray();<br>    <span>events</span>.put(<span>event</span>);<br>    <span>requestMap</span>.put(<span>"events"</span>,<span>events</span>.toString());<br>} <span>catch </span>(<span>JSONException </span>e) {<br>    e.printStackTrace();<br>}<br><span>Countly</span>.<span>sharedInstance</span>().requestQueue().addDirectRequest(<span>requestMap</span>);<span style="font-weight: 400;"></span></pre>
+<h1>FAQ</h1>
+<h2>What Information is Collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK's to perform
   their functions and implement the required features. Before any of it is sent
@@ -2096,4 +2036,80 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   Any other information like data in custom events, location, user profile information
   or other manual requests depends on what the developer decides to provide and
   is not collected by the SDK itself.
+</p>
+<h2>How can I build the Android SDK?</h2>
+<p>
+  <span style="font-weight: 400;">If you need to customize our Android SDK to fit your needs, you may find it&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">&nbsp;among our Countly Github repositories as an Android Studio project. Modules included in the project are:</span>
+</p>
+<table>
+  <tbody>
+    <tr>
+      <th>Module Name</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>
+        <code>sdk</code>
+      </td>
+      <td>Countly Android SDK.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>app</code>
+      </td>
+      <td>
+        Sample app to test <code>sdk</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>sdk-native</code>
+      </td>
+      <td>
+        Module needed for
+        <a href="https://resources.count.ly/docs/countly-sdk-for-android#section-native-c-crash-reporting">Native C++ crash reporting</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>app-native</code>
+      </td>
+      <td>
+        Sample app to test <code>sdk-native</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <span style="font-weight: 400;">Recently, Android Studio versions have a&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/issues/96#issuecomment-492327285"><span style="font-weight: 400;">bug</span></a><span style="font-weight: 400;"> which</span><span style="font-weight: 400;">&nbsp;you may encounter when building your project in Studio. If you see a build error such as <code>SIMPLE: Error configuring</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;please check your text view for the build Gradle output. If you see this error <code>CMake was unable to find a build program corresponding to "Ninja". CMAKE_MAKE_PROGRAM is not set</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;then you need to make <code>ninja</code></span><span style="font-weight: 400;">&nbsp;available in your&nbsp;</span><span style="font-weight: 400;">PATH</span><span style="font-weight: 400;">. If you are using <code>cmake</code></span><span style="font-weight: 400;">&nbsp;embedded in Studio, <code>ninja</code></span><span style="font-weight: 400;">&nbsp;may be found in&nbsp;the <code>&lt;sdk_location&gt;/cmake/&lt;cmake_version&gt;/bin</code></span><span style="font-weight: 400;">&nbsp;directory.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">There is a build step for the <code>sdk-native</code></span><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in <code>sdk-native/src/cpp_precompilation</code></span><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in <code>sdk-native/src/main/jniLibs/</code></span><span style="font-weight: 400;">&nbsp;that are externally built.</span>
+</p>
+<h2>Which Operating Systems are Supported?</h2>
+<p>
+  Our Android SDK should be able support Android based operating systems without
+  issues. It should also work without any major issues on devices that don't have
+  Google services, for example, on Huawei devices which have the HarmonyOS operating
+  system.
+</p>
+<h2>Is it Possible to Use Android SDK with Another Crash SDK?</h2>
+<p>
+  It should be fine to use Countly together with another crash SDK. If you would
+  like to track caught exception, you would just pass them to both SDKs. When catching
+  uncaught exceptions with both, there are some uncertainties. Although in Android
+  there can be only one uncaught exception handler, you can save the previous handler
+  and when receiving an uncaught exception, pass it also to the saved one. We can't
+  be certain how other SDKs are implemented or if the OS would give enough time
+  to propagate the exception through all handlers. Therefore, if you want to use
+  Countly with another crash SDK, we advise to initialize Countly as the last one.
+</p>
+<h2>
+  How Can I Tell Which Countly Android SDK Version I am Using?
+</h2>
+<p>
+  The Countly class has a public static string called
+  <code>COUNTLY_SDK_VERSION_STRING</code> that contains the current SDK version.
+  You can access it by calling <code>Countly.COUNTLY_SDK_VERSION_STRING</code>.
+  It would return something similar to "20.11.10".
 </p>
