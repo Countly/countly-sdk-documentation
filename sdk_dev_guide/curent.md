@@ -2533,3 +2533,46 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   After the URL is changed, all previously saved events and requests should be
   sent to the new url.
 </p>
+<h2>Heatmaps</h2>
+<p>
+  Heatmaps is a plugin, exclusive to Web SDK, that can display the amalgamation
+  of clicks and the scroll behavior of the users by attaching an overlay on the
+  website that the Countly has integrated. Click and scroll behavior information
+  is provided by the SDK
+  <a href="https://api.count.ly/reference/i#view-actions" target="_self">as showed in here</a>
+  as an event, internally, and send into the event queue,
+  <strong>if click or/and scroll tracking is enabled</strong>.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_scrolls']);
+Countly.q.push(['track_clicks']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_scrolls();
+Countly.track_clicks();</code></pre>
+  </div>
+</div>
+<p>
+  Then a user should be able to go to the Heatmaps section in their server and
+  click on a heatmap from the available list of views. When a user clicks any view
+  from that list the server generates a token and directs the user to that view.
+  Server would provide the token and the necessary scripts to load as the heatmaps
+  overlay, by setting the name property of the browser's window interface or the
+  URL hash property to an SDK recognizable message which then should be parsed
+  and used by the SDK to load the necessary scripts for the heatmaps overlay. Message
+  starts with 'cly:' and includes 'app_key','token','purpose' and 'url' properties
+  as a JSON object.
+</p>
+<p>
+  To prevent any XSS attempts, the SDK should provide an option to the developer
+  to give a list of trustable domains (a whitelist per se) for which the SDK would
+  load the provided scripts from and would reject to load scripts from domains
+  out of this list. By default the Countly server URL would be included in this
+  list. List should be provided by the user during init, under the 'heatmap_whitelist'
+  flag as an array od stings.
+</p>
