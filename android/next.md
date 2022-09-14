@@ -1071,7 +1071,7 @@ Countly.sharedInstance().setLocation(countryCode, city, latitude + "," + longitu
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
 <h2>Disabling Location</h2>
-<p>Als during init you can disable location:</p>
+<p>Also during init you can disable location:</p>
 <pre>config.setDisableLocation();</pre>
 <p>
   Users might want to opt-out of location tracking. To do so, call:
@@ -1589,7 +1589,7 @@ Countly.userData.save();</code></pre>
   Third, you must initialize countly in your apps Application onStart callback.
 </p>
 <p>If you do this, you will get the correct on start times.</p>
-<h2>App Time in Background/ Foreground</h2>
+<h2>App Time in Background / Foreground</h2>
 <p>
   Countly will record the time your users spend in the foreground and background.
   For this to work, your users need to be given any consent. You also need to provide
@@ -1769,7 +1769,7 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   cases,&nbsp;<a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
   be helpful.
 </p>
-<h2>Tamper Protection Tools</h2>
+<h2>Using Proguard</h2>
 <p>
   <span style="font-weight: 400;">Proguard obfuscates the OpenUDID &amp; Countly Messaging classes. If you use OpenUDID or Countly Messaging in your application, you will need to add the following lines to your Proguard rules file:</span>
 </p>
