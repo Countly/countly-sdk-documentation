@@ -167,6 +167,13 @@
   should not be sent to the server:
 </p>
 <pre>config.setCrashFilterCallback(<span>new </span>CrashFilterCallback() {<br>    <span>@Override<br></span><span>    </span><span>public boolean </span>filterCrash(String crash) {<br>        //returns true if the crash should be ignored<br>        <span>return </span>crash.contains(<span>"secret"</span>);<br>    }<br>})</pre>
+<h2>Recording all threads</h2>
+<p>
+  If you would like to record the state of all other threads during an uncaught
+  exception or during the recording of a handled exception, you can call this during
+  init:
+</p>
+<pre>config.setRecordAllThreadsWithCrash();</pre>
 <h2>Native C++ Crash Reporting</h2>
 <div class="callout callout--warning">
   <p>
@@ -213,15 +220,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <code>getApplicationContext()</code> is needed to determine a storage place for
   minidump files.
 </p>
-<h2>Recording all threads</h2>
-<p>
-  If you would like to record the state of all other threads during an uncaught
-  exception or during the recording of a handled exception, you can call this during
-  init:
-</p>
-<pre>config.setRecordAllThreadsWithCrash();</pre>
 <h2>Symbolication</h2>
-<h3>Overview</h3>
 <p>
   <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.12):</span>
 </p>
