@@ -452,14 +452,18 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <h2 class="p-rich_text_section">Additional project install option</h2>
 <p>
   To install the countly library after building it run <code>make install</code>
-  command.<br>
+  command. It installs the countly library on the system.&nbsp;<br>
   For example:
 </p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre"># assuming we are on project root
-cmake -DCOUNTLY_USE_CUSTOM_SHA256=1 -DCOUNTLY_USE_SQLITE=1 -DCOUNTLY_USE_CUSTOM_HTTP=1 -B build
+<pre class="notranslate notranslate"><code>mkdir build
 cd build
+cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DCOUNTLY_BUILD_TESTS=0 -DCOUNTLY_USE_SQLITE=0 -DCOUNTLY_USE_CUSTOM_HTTP=1 -DCOUNTLY_USE_CUSTOM_SHA256=1 -DBUILD_SHARED_LIBS=OFF ..
 make
-make install</pre>
+make install</code></pre>
+<p>
+  Configure the compiler
+  <span>to find the library/headers when building your app.</span>
+</p>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
