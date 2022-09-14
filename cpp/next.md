@@ -46,7 +46,8 @@ cmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launc
 <span class="pl-c1">cd</span> build
 make</pre>
   <p dir="auto">
-    To install the build library, check
+    In case you would also need to install the built library, check for more
+    information
     <a href="#additional-project-install-option" target="_self">here</a>.
   </p>
   <p dir="auto">
@@ -451,15 +452,28 @@ cly::Countly.getInstance().addEvent(event);</code></pre>
 <pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">cly::Countly&amp; countly = cly::Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
 <h2 class="p-rich_text_section">Additional project install option</h2>
 <p>
-  To install the countly library after building it run <code>make install</code>
-  command. It installs the countly library on the system.&nbsp;<br>
-  For example:
+  In some cases your project might need to install Countly globally one the system.
+  In those situation you would also want to run the&nbsp;<code>make install</code>command.
+  As per the description, it install the countly library on the system.&nbsp;
 </p>
-<pre class="notranslate notranslate"><code>mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DCOUNTLY_BUILD_TESTS=0 -DCOUNTLY_USE_SQLITE=0 -DCOUNTLY_USE_CUSTOM_HTTP=1 -DCOUNTLY_USE_CUSTOM_SHA256=1 -DBUILD_SHARED_LIBS=OFF ..
-make
+<p>For example:</p>
+<pre class="notranslate notranslate"><code>#make and enter the build folder<br>mkdir build
+cd build<br><br>#configure the SDK build
+cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DBUILD_SHARED_LIBS=OFF ..
+<br>#build the SDK<br>make<br><br>#install countly on the system
 make install</code></pre>
+<p>Or you can also configure it using the TUI:</p>
+<p>[the required script sample]</p>
+<p>&nbsp;</p>
+<p>
+  Explaining:<br>
+  * <code>CMAKE_INSTALL_PREFIX</code>
+</p>
+<p>
+  * <code>BUILD_SHARED_LIBS</code>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <p>
   Configure the compiler
   <span>to find the library/headers when building your app.</span>
