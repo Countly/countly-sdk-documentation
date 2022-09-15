@@ -660,10 +660,18 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 </p>
 <pre>&lt;<span>uses-permission </span><span>android</span><span>:name</span><span>="${applicationId}.CountlyPush.BROADCAST_PERMISSION" </span>/&gt;</pre>
 <p>
+  <strong>Additional Intent redirection checks</strong>
+</p>
+<p>
   You can set the additional intent redirection check to true for intent redirect
   security.
 </p>
 <pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;</pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks. More
+  info can be found
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+</p>
 <p>
   You can also set the allowed package and class names for intent redirection:
 </p>
