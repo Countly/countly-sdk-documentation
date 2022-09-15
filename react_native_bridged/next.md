@@ -1,13 +1,16 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0<br>
+  and it applies to version 22.02.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
+  <p class="callout__title">
+    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
+  </p>
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 21.11 and older, click
+    <a href="/hc/en-us/articles/6116239554841" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -87,13 +90,6 @@ if(!await Countly.isInitialized()) {
   commands in the rest of this document to send additional data and metrics to
   your server.
 </p>
-<div class="callout callout--info">
-  <p>
-    If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
-  </p>
-</div>
 <h2>Enable logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
@@ -211,7 +207,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code>and
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
-  <a href="https://search.maven.org/artifact/ly.count.android/sdk-native">page</a>, currently 20.11.6):
+  <a href="https://bintray.com/countly/maven/sdk-native">page</a>, currently 20.11.6):
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:LATEST_VERSION'    
@@ -298,7 +294,9 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   </li>
 </ul>
 <div class="callout callout--warning">
-  <strong>Data passed should be in UTF-8</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
+  </p>
   <p>
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
@@ -408,7 +406,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545215851033/001.png" alt="001.png">
+  <img src="https://count.ly/images/guide/1059a04-3.PNG">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -456,7 +454,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   To enable a temporary device ID <strong>after</strong> initialization, use the
   method below.
 </p>
-<pre>Countly.changeDeviceId(Countly."TemporaryDeviceID", ON_SERVER);</pre>
+<pre>Countly.changeDeviceId("TemporaryDeviceID", ON_SERVER);</pre>
 <p>
   <strong>Note:</strong> When passing the
   <code class="JavaScript">TemporaryDeviceID</code> for the
@@ -532,7 +530,9 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
 <div class="callout callout--info">
- <strong>Supported Platforms</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
+  </p>
   <p>
     Currently custom sound feature is only available for Android
   </p>
@@ -590,10 +590,15 @@ apply plugin: 'com.google.gms.google-services'
   follow the instructions from this URL:<br>
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
+<p>
+  You could set the additional intent redirection check true for intent redirect
+  security and&nbsp;set the allowed package and class names for intent redirection:
+</p>
+<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
   For iOS push notification please follow the instruction from this URL
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications</a>
+  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
 </p>
 <p>
   For React Native you can find
@@ -803,7 +808,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   You will need to call one function to do so.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigClearValues();</code></pre>
-<h1>User Feedback</h1>
+<h1>User feedback</h1>
 <p>
   There are a different ways of receiving feedback from your users: the Star-rating
   dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).
@@ -814,8 +819,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   system as well as leave a text comment. The Surveys widgets (Surveys and NPS®)
   allow for even more targeted feedback from users.
 </p>
-<h2>Ratings</h2>
-<h3>Star Rating Dialog</h3>
+<h2>Star rating dialog</h2>
 <p>
   The Star-rating integration provides a dialog for getting user feedback about
   an application. It contains a title, a simple message explaining its purpose,
@@ -835,12 +839,12 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   <code class="JavaScript">SetStarRatingDialogTexts</code> function.
 </p>
 <pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
-<h3>Rating Widget</h3>
+<h2>Rating widget</h2>
 <p>
   The rating widget displays a server-configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545190761113/002.png" alt="002.png">
+  <img src="https://count.ly/images/guide/ea55d24-072bb00-t1.png">
 </div>
 <p>
   All the text fields in the example above can be configured and replaced with
@@ -860,13 +864,13 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   the widget ID from your server, as shown below.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545218779033/003.png" alt="003.png">
+  <img src="https://count.ly/images/guide/f773cf4-2dd58c6-t2.png">
 </div>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
 </p>
 <pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
-<h2>Feedback Widget</h2>
+<h2>Feedback widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
@@ -1082,9 +1086,9 @@ Countly.endTrace(traceKey, customMetric);</pre>
 </ul>
 <p>
   Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also
-  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a>
+  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#consents" target="_self" rel="undefined">iOS Consents</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent-management" target="_self" rel="undefined">Android Consents</a>).
 </p>
 <p>
   Next we will go over the methods that are available in this SDK.
@@ -1258,7 +1262,9 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
 <div class="callout callout--info">
-  <strong>Minimum Countly SDK Version</strong>
+  <p class="callout__title">
+    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
+  </p>
   <p>
     This feature is only supported by the minimum SDK version 20.11.7.
   </p>
@@ -1281,7 +1287,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 Countly.setCustomMetrics(customMetric);</code></pre>
 <h2>Attribution analytics &amp; install campaigns</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
+  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
   allows you to measure the performance of your marketing campaign by attributing
   installs from specific campaigns. This feature is available for the Enterprise
   Edition.
@@ -1299,7 +1305,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
-  <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
+  <strong>For more information about how to set up your campaigns, please <a href="http://resources.count.ly/docs/referral-analytics">review this documentation</a>.</strong>
 </p>
 <p>Call the method below before initialization.</p>
 <pre>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.

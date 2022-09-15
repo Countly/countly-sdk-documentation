@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0<br>
+  and it applies to version 22.02.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
@@ -9,8 +9,8 @@
     <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
   </p>
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 21.11 and older, click
+    <a href="/hc/en-us/articles/6116239554841" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -406,7 +406,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545215851033/001.png" alt="001.png">
+  <img src="https://count.ly/images/guide/1059a04-3.PNG">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -454,7 +454,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   To enable a temporary device ID <strong>after</strong> initialization, use the
   method below.
 </p>
-<pre>Countly.changeDeviceId(Countly."TemporaryDeviceID", ON_SERVER);</pre>
+<pre>Countly.changeDeviceId("TemporaryDeviceID", ON_SERVER);</pre>
 <p>
   <strong>Note:</strong> When passing the
   <code class="JavaScript">TemporaryDeviceID</code> for the
@@ -590,6 +590,11 @@ apply plugin: 'com.google.gms.google-services'
   follow the instructions from this URL:<br>
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
+<p>
+  You could set the additional intent redirection check true for intent redirect
+  security and&nbsp;set the allowed package and class names for intent redirection:
+</p>
+<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
   For iOS push notification please follow the instruction from this URL
@@ -839,7 +844,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   The rating widget displays a server-configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545190761113/002.png" alt="002.png">
+  <img src="https://count.ly/images/guide/ea55d24-072bb00-t1.png">
 </div>
 <p>
   All the text fields in the example above can be configured and replaced with
@@ -859,7 +864,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   the widget ID from your server, as shown below.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545218779033/003.png" alt="003.png">
+  <img src="https://count.ly/images/guide/f773cf4-2dd58c6-t2.png">
 </div>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
