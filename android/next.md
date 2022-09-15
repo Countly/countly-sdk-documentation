@@ -604,11 +604,12 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   present in the system, Countly would try to get HMS token instead. It's possible
   to alter this behaviour by supplying HMS as a preferred provider:
 </p>
-<pre>CountlyPush.<span>init</span>(<span>this</span>, <br>    Countly.CountlyMessagingMode.<span>PRODUCTION</span>, <br>    Countly.CountlyMessagingProvider.<span>HMS</span>)</pre>
+<pre>CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)<br>.setProvider(Countly.CountlyMessagingProvider.<span>HMS</span>)<br>CountlyPush.init(countlyConfigPush);</pre>
 <h2>Integration</h2>
 <p>
   To have the best experience with push notifications, the SDK should be initialized
-  in the your Application subclass' "onCreate" method.&nbsp;<span style="font-weight: 400;">Don't forget that Android O and later models require the use of <code>NotificationChannel</code>s</span>.
+  in your Application subclass' "onCreate" method.
+  <span style="font-weight: 400;">Android O and later models require the use of <code>NotificationChannel</code>s</span>.
   Use <code>CountlyPush.CHANNEL_ID</code>&nbsp;for Countly-displayed notifications:
 </p>
 <pre><code class="java">public class App extends Application {
@@ -634,8 +635,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
                 .setLoggingEnabled(true)
                 .init(this, "http://try.count.ly", "APP_KEY");
 
-        CountlyPush.init(this, Countly.CountlyMessagingMode.PRODUCTION);
-
+        CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)<br>        CountlyPush.init(countlyConfigPush);<br>
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
                     @Override
@@ -653,12 +653,29 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
     }
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Please note second parameter in&nbsp;<code>CountlyPush.init()</code></span><span style="font-weight: 400;">&nbsp;call, it defines whether a particular device would be handled as a test setup or a production one. It's quite handy to separate test devices from production ones by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you could test your notifications before sending them to all your users.</span>
+  <span style="font-weight: 400;">Please note that the second parameter in <code>CountlyConfigPush()</code></span><span style="font-weight: 400;">&nbsp;call defines whether a particular device would be handled as a test setup or in production. It's quite handy to separate test devices from production ones by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you could test your notifications before sending them to all your users.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You should add this permision entry into your app manifest:<br></span>
 </p>
 <pre>&lt;<span>uses-permission </span><span>android</span><span>:name</span><span>="${applicationId}.CountlyPush.BROADCAST_PERMISSION" </span>/&gt;</pre>
+<p>
+  <strong>Additional Intent redirection checks</strong>
+</p>
+<p>
+  You can set the additional intent redirection check to true for intent redirect
+  security.
+</p>
+<pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;</pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks. More
+  info can be found
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+</p>
+<p>
+  You can also set the allowed package and class names for intent redirection:
+</p>
+<pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <p>
   Please follow provider-specific instructions for Firebase and / or Huawei PushKit
   below.
@@ -722,8 +739,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
         Countly.sharedInstance()
                 .setLoggingEnabled(true)
                 .init(this, "http://try.count.ly", "APP_KEY");
-
-        CountlyPush.init(this, Countly.CountlyMessagingMode.PRODUCTION);
+<br>        CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)<br>        CountlyPush.init(countlyConfigPush);
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
@@ -742,7 +758,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
     }
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Please note that in <code>CountlyPush.init()</code></span><span style="font-weight: 400;">&nbsp;you will also specify the mode of your token - test or production. It's quite handy to separate the test devices from production devices by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you may test your notifications before sending them to all your users.</span>
+  <span style="font-weight: 400;">Please note that in <code>CountlyConfigPush()</code></span><span style="font-weight: 400;">&nbsp;you will also specify the mode of your token - as test or production. It's quite handy to separate the test devices from production devices by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you may test your notifications before sending them to all your users in production.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
