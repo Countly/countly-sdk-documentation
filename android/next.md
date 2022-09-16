@@ -656,7 +656,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <span style="font-weight: 400;">Please note that the second parameter in <code>CountlyConfigPush()</code></span><span style="font-weight: 400;">&nbsp;call defines whether a particular device would be handled as a test setup or in production. It's quite handy to separate test devices from production ones by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you could test your notifications before sending them to all your users.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You should add this permision entry into your app manifest:<br></span>
+  <span style="font-weight: 400;">You should add this permission entry into your app manifest:<br></span>
 </p>
 <pre>&lt;<span>uses-permission </span><span>android</span><span>:name</span><span>="${applicationId}.CountlyPush.BROADCAST_PERMISSION" </span>/&gt;</pre>
 <p>
@@ -714,52 +714,6 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
 implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
-<p>
-  <span style="font-weight: 400;">Then add&nbsp;<code>CountlyPush.init()</code>&nbsp;call</span><span style="font-weight: 400;">&nbsp;to your <code>Application</code></span><span style="font-weight: 400;">&nbsp;subclass</span><span style="font-weight: 400;">. </span><span style="font-weight: 400;">Don't forget that Android O and later models require the use of <code>NotificationChannel</code>s</span><span style="font-weight: 400;">. Use <code>CountlyPush.CHANNEL_ID</code></span><span style="font-weight: 400;">&nbsp;for Countly-displayed notifications:</span>
-</p>
-<pre><code class="java">public class App extends Application {
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
-
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            if (notificationManager != null) {
-                // Create the NotificationChannel
-                NotificationChannel channel = new NotificationChannel(CountlyPush.CHANNEL_ID, getString(R.string.countly_hannel_name), NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription(getString(R.string.countly_channel_description));
-                notificationManager.createNotificationChannel(channel);
-            }
-        }
-
-        Countly.sharedInstance()
-                .setLoggingEnabled(true)
-                .init(this, "http://try.count.ly", "APP_KEY");
-<br>        CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)<br>        CountlyPush.init(countlyConfigPush);
-
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
-                    @Override
-                    public void onComplete(@NonNull Task&lt;InstanceIdResult&gt; task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-                        CountlyPush.onTokenRefresh(token);
-                    }
-                });
-    }
-}</code></pre>
-<p>
-  <span style="font-weight: 400;">Please note that in <code>CountlyConfigPush()</code></span><span style="font-weight: 400;">&nbsp;you will also specify the mode of your token - as test or production. It's quite handy to separate the test devices from production devices by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you may test your notifications before sending them to all your users in production.</span>
-</p>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
 </p>
