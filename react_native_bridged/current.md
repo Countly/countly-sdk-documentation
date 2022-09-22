@@ -406,7 +406,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/1059a04-3.PNG">
+  <img src="/hc/article_attachments/9545215851033/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
