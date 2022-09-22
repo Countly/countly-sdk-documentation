@@ -591,8 +591,9 @@ apply plugin: 'com.google.gms.google-services'
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
 <p>
-  You could set the additional intent redirection check true for intent redirect
-  security and&nbsp;set the allowed package and class names for intent redirection:
+  You can set the additional intent redirection check to true for providing intent
+  redirection security and to set the allowed package and class names for intent
+  redirection:
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
