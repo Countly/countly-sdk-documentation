@@ -591,8 +591,9 @@ apply plugin: 'com.google.gms.google-services'
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
 <p>
-  You could set the additional intent redirection check true for intent redirect
-  security and&nbsp;set the allowed package and class names for intent redirection:
+  You can set the additional intent redirection check to true for providing intent
+  redirection security and to set the allowed package and class names for intent
+  redirection:
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
@@ -844,7 +845,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   The rating widget displays a server-configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/ea55d24-072bb00-t1.png">
+  <img src="/hc/article_attachments/9545190761113/002.png" alt="002.png">
 </div>
 <p>
   All the text fields in the example above can be configured and replaced with
@@ -864,7 +865,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   the widget ID from your server, as shown below.
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/f773cf4-2dd58c6-t2.png">
+  <img src="/hc/article_attachments/9545218779033/003.png" alt="003.png">
 </div>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
