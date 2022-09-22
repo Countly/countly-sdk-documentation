@@ -808,7 +808,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   You will need to call one function to do so.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigClearValues();</code></pre>
-<h1>User feedback</h1>
+<h1>User Feedback</h1>
 <p>
   There are a different ways of receiving feedback from your users: the Star-rating
   dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).
@@ -819,7 +819,8 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   system as well as leave a text comment. The Surveys widgets (Surveys and NPS®)
   allow for even more targeted feedback from users.
 </p>
-<h2>Star rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star Rating Dialog</h3>
 <p>
   The Star-rating integration provides a dialog for getting user feedback about
   an application. It contains a title, a simple message explaining its purpose,
@@ -839,7 +840,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   <code class="JavaScript">SetStarRatingDialogTexts</code> function.
 </p>
 <pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
-<h2>Rating widget</h2>
+<h3>Rating Widget</h3>
 <p>
   The rating widget displays a server-configured widget to your user devices.
 </p>
@@ -870,7 +871,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   Then, call the function to show the widget popup using the widget ID below.
 </p>
 <pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
-<h2>Feedback widget</h2>
+<h3>Feedback Widget</h3>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
