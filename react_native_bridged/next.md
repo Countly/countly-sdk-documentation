@@ -1,13 +1,13 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0<br>
+  and it applies to version 22.02.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 21.11 and older, click
+    <a href="/hc/en-us/articles/6116239554841" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -456,7 +456,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   To enable a temporary device ID <strong>after</strong> initialization, use the
   method below.
 </p>
-<pre>Countly.changeDeviceId(Countly."TemporaryDeviceID", ON_SERVER);</pre>
+<pre>Countly.changeDeviceId("TemporaryDeviceID", ON_SERVER);</pre>
 <p>
   <strong>Note:</strong> When passing the
   <code class="JavaScript">TemporaryDeviceID</code> for the
@@ -590,6 +590,12 @@ apply plugin: 'com.google.gms.google-services'
   follow the instructions from this URL:<br>
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
+<p>
+  You can set the additional intent redirection check to true for providing intent
+  redirection security and to set the allowed package and class names for intent
+  redirection:
+</p>
+<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
   For iOS push notification please follow the instruction from this URL
