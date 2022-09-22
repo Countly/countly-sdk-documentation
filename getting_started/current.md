@@ -1,7 +1,7 @@
 <p>
   Countly provides various functionality in different SDKs targeted for mobile,
   web, desktop, server to server use cases. For a feature comparison in all SDKs,
- <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
 </p>
 <p>
   There are common concepts in all Countly SDKs, and this document is intended to
@@ -23,7 +23,7 @@
 </p>
 <p>
   Most Countly SDKs including,
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#ddevice-id" target="_blank" rel="noopener">iOS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#device-id" target="_blank" rel="noopener">iOS</a>,
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#device-id" target="_blank" rel="noopener">Android</a>,
   <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-#changing-a-device-id" target="_blank" rel="noopener">React Native</a>,
   <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#changing-a-device-id" target="_blank" rel="noopener">Flutter</a>,&nbsp;<a href="https://support.count.ly/hc/en-us/articles/ 360037441932-Web-analytics-JavaScript-#changing-device-id" target="_blank" rel="noopener">Web</a>&nbsp;offer
@@ -303,7 +303,7 @@
   section.
 </p>
 <p>
- <strong>Notes for native Android integration</strong>
+  <strong>Notes for native Android integration</strong>
 </p>
 <p>
   Due to the way the SDK is currently designed, integrating the SDK in a widget
@@ -316,7 +316,7 @@
   would be done with shared preferences.
 </p>
 <p>
- <strong>Notes for Flutter integration</strong>
+  <strong>Notes for Flutter integration</strong>
 </p>
 <p>
   If you have a Flutter app, there doesn't seem to be an easy way to integrate
@@ -436,7 +436,7 @@
   <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
 <p>
- <img src="/hc/article_attachments/9327717905689/010.png" alt="010.png">
+  <img src="/hc/article_attachments/9327717905689/010.png" alt="010.png">
 </p>
 <h1>How long does it take for my data to show up on Countly?</h1>
 <p>
@@ -446,7 +446,7 @@
   SDKs and the potential server-side calculations.
 </p>
 <p>
- <strong>SDK Side Processes</strong>
+  <strong>SDK Side Processes</strong>
 </p>
 <p>
   In some cases, there might just be a connection issue. Either the user is offline
@@ -465,7 +465,7 @@
   trigger happens.
 </p>
 <p>
- <strong>Server Side Processes</strong>
+  <strong>Server Side Processes</strong>
 </p>
 <p>
   In addition to this, there can be server-side calculations that can add additional
