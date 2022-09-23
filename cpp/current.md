@@ -1,5 +1,5 @@
 <p>
-  <span>This document will guide you through the process of SDK installation and it applies to version 22.06.0. </span>
+  <span>This document will guide you through the process of SDK installation and it applies to version 22.06.X. </span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -109,6 +109,66 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   To access the Countly Global Instance use the following code snippet:
 </p>
 <pre><code><span class="pl-c1">cly::Countly::getInstance<span>().</span></span></code></pre>
+<h1>Crash Reporting</h1>
+<p>
+  <span>The Countly SDK for C++ can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
+</p>
+<p>
+  In the SDK all crash-related functionalities can be browsed from the returned
+  interface on:
+</p>
+<pre><code class="java">countly.crash().</code></pre>
+<h2>Handled Exceptions</h2>
+<div class="callout callout--warning">
+  <p>This feature requires the minimum SDK version 22.06.1</p>
+</div>
+<p>
+  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span>To
+  log handled exceptions use the following code snippet:
+</p>
+<pre><code class="java"><span># any additional info can be provided as a segmentation<br>std::map&lt;std::string, std::any&gt; segmentation;<br>segmentation["any_key"] = "any_value";<br><br># should create the crashMetrics map<br>std::map&lt;std::string, std::any&gt; crashMetrics;<br># mandatory values<br>crashMetrics["_os"] = "Android"; # your OS info<br>crashMetrics["_app_version"] = "22.06.1"; # SDK version<br># any optional info<br>crashMetrics["_cpu"] = "armv7"; <br><br><span class="wysiwyg-color-black">countly.crash().recordException("title", "stackTrace", true, crashMetrics, segmentation);</span></span></code></pre>
+<p>recordException expects the parameters below:</p>
+<ul>
+  <li>
+    <code>title</code> - a string that describes the exception.
+  </li>
+  <li>
+    <code>stackTrace</code> - a string that describes the contents of the call
+    stack.
+  </li>
+  <li>
+    <code>fatal</code> - set true if the error is fatal.
+  </li>
+  <li>
+    <code>crashMetrics</code> - key/values contain device information e.g app
+    version, OS
+  </li>
+  <li>
+    <code>segments</code> - custom key/values to be reported.
+  </li>
+</ul>
+<p>
+  crashMetrics is a map that contains the core information about the crash you
+  want to capture and report. If it is not properly formed, your Countly server
+  would not be able to recognize and interpret your crash report and you would
+  not be able to observe the error from your server. There are two mandatory key-value
+  pairs that you need to fill when forming the crashMetrics object. These are _os
+  and _app_version keys. Any other keys are optional so you can add more key-value
+  pairs to form a detailed crash report from among the available options shown
+  below:
+</p>
+<pre><code class="java"><span>std::map&lt;std::string, std::any&gt; crashMetrics;<br># mandatory values<br>crashMetrics[<span class="hljs-string">"_os"</span>] = <span class="hljs-string">"Android"</span>; # your OS info<br>crashMetrics[<span class="hljs-string">"_app_version"</span>] = <span class="hljs-string">"22.06.1"</span>; # SDK version<br># optional values<br>crashMetrics[<span class="hljs-string">"_os_version"</span>] = <span class="hljs-string">"4.1"</span>;<br>crashMetrics[<span class="hljs-string">"_manufacture"</span>] = <span class="hljs-string">"Samsung"</span>; # may not be provided for ios or be constant, like Apple<br>crashMetrics[<span class="hljs-string">"_device"</span>] = <span class="hljs-string">"Galaxy S4"</span>; # model for Android, iPhone1,1 etc for iOS<br>crashMetrics[<span class="hljs-string">"_resolution"</span>] = <span class="hljs-string">"1900x1080"</span>; # SDK version<br>crashMetrics[<span class="hljs-string">"_cpu"</span>] = <span class="hljs-string">"armv7"</span>; # type of cpu used on device (for ios will be based on device)<br>crashMetrics[<span class="hljs-string">"_opengl"</span>] = <span class="hljs-string">"2.1"</span>; # version of open gl supported<br>crashMetrics[<span class="hljs-string">"_ram_current"</span>] = 1024; # in megabytes<br>crashMetrics[<span class="hljs-string">"_ram_total"</span>] = 4096; # in megabytes<br>crashMetrics[<span class="hljs-string">"_disk_current"</span>] = 3000; # in megabytes<br>crashMetrics[<span class="hljs-string">"_disk_total"</span>] = 10240; # in megabytes<br>crashMetrics[<span class="hljs-string">"_bat"</span>] = 99; # battery level from 0 to 100<br>crashMetrics[<span class="hljs-string">"_orientation"</span>] = <span class="hljs-string">"portrait"</span>; # in which device was held, landscape, portrait, etc<br>crashMetrics[<span class="hljs-string">"_root"</span>] = f<span class="hljs-string">alse</span>; # true if device is rooted/jailbroken, false or not provided if not<br>crashMetrics[<span class="hljs-string">"_online"</span>] = f<span class="hljs-string">alse</span>; # true if device is connected to the internet (WiFi or 3G), false or not provided if not connected<br>crashMetrics[<span class="hljs-string">"_muted"</span>] = f<span class="hljs-string">alse</span>; # true if volume is off, device is in muted state<br>crashMetrics[<span class="hljs-string">"_background"</span>] = f<span class="hljs-string">alse</span>; # true if app was in background when it crashed<br>crashMetrics[<span class="hljs-string">"_run"</span>] = 2000; # running time since app start in seconds</span></code></pre>
+<h2>Crash Breadcrumbs</h2>
+<div class="callout callout--warning">
+  <p>This feature requires the minimum SDK version 22.06.1</p>
+</div>
+<p>
+  Throughout your app, you can leave crash breadcrumbs. They are short string logs<span> that&nbsp;</span>would
+  ideally describe the previous steps that were taken in your app before the crash.
+  After a crash happens, they will be sent together with the crash report.
+</p>
+<p>The following command adds a crash breadcrumb:</p>
+<pre><code class="java">countly.crash().addBreadcrumb("breadcrumb");</code></pre>
 <h1>Events</h1>
 <p>
   <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
