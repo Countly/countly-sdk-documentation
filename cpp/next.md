@@ -114,7 +114,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   To access the Countly Global Instance use the following code snippet:
 </p>
 <pre><code><span class="pl-c1">cly::Countly::getInstance<span>().</span></span></code></pre>
-<h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
+<h1>Crash Reporting</h1>
 <p>
   <span>The Countly SDK for C++ can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
@@ -123,13 +123,13 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   interface on:
 </p>
 <pre><code class="java">countly.crash().</code></pre>
-<h2 id="handled-exceptions" class="anchor-heading">Handled exceptions</h2>
+<h2>Handled Exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span>To
-  log exceptions use the following code snippet:
+  log handled exceptions use the following code snippet:
 </p>
 <pre><code class="java">countly.crash().recordException("title", "stackTrace", true, crashMetrics, segmentation);</code></pre>
-<p>Here is the detail of the parameters:</p>
+<p>recordException expects the parameters below:</p>
 <ul>
   <li>
     <code>title</code> - a string that describes the exception.
@@ -151,13 +151,13 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </ul>
 <p>
   <strong>Note:</strong>
-  <span>In regard to crash metrics, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. Here is more information on <a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a> that you may use in your SDK.</span>
+  <span>In regard to crash metrics, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. Here is more information on <a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a> that you may use in your SDK while forming the crashMetrics.</span>
 </p>
-<h2 id="crash-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
+<h2>Crash Breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave crash breadcrumbs. They are short logs<span> that&nbsp;</span>would
-  describe the previous steps that were taken in your app before the crash. After
-  a crash happens, they will be sent together with the crash report.
+  Throughout your app, you can leave crash breadcrumbs. They are short string logs<span> that&nbsp;</span>would
+  ideally describe the previous steps that were taken in your app before the crash.
+  After a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre><code class="java">countly.crash().addBreadcrumb("breadcrumb");</code></pre>
