@@ -942,9 +942,24 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   <a href="/hc/en-us/articles/360037630571" target="_self" rel="undefined">User Profiles documentation</a>.
 </p>
 <p>
+  You can set the user data in bulk using
+  <code class="JavaScript">Countly.userDataBulk</code> or separately using
+  <code class="JavaScript">Countly.userData</code><br>
+  If you are using <code class="JavaScript">Countly.userDataBulk</code> then you
+  need to call <code class="JavaScript">Countly.userDataBulk.save()</code> manually
+  else data will not send to server but in case of
+  <code class="JavaScript">Countly.userData</code> it will automatically handle
+  this thing internally.<br>
   In order to set a user profile, use the code snippet below. After you send a
   user’s data, it can be found in your Dashboard under
-  <code class="JavaScript">Users &gt; User Profiles</code>.
+  <code class="JavaScript">Users &gt; User Profiles</code>.<br>
+  Using <code class="JavaScript">Countly.userDataBulk</code> you can set predefined
+  and custom user properties:
+</p>
+<pre>var options = {};<br>// Predefined user properties<br>options.name = "Name of User";<br>options.username = "Username";<br>options.email = "User Email";<br>options.organization = "User Organization";<br>options.phone = "User Contact number";<br>options.picture = "https://count.ly/images/logos/countly-logo.png";<br>options.picturePath = "";<br>options.gender = "Male";<br>options.byear = 1989;<br><br>// Custom User Properties<br>options.customeValueA = "Custom value A";<br>options.customeValueB = "Custom value B";<br>Countly.userDataBulk.setUserProperties(options);<br>Countly.userDataBulk.save();</pre>
+<p>
+  Or you can use <code class="javascript">Countly.setUserData()</code> to set predefined
+  user properties:
 </p>
 <pre><code class="javascript">// Example for setting user data
 var options = {};
@@ -961,7 +976,15 @@ Countly.setUserData(options);</code></pre>
 <p>
   Countly also supports custom user properties that you can attach for each user.
   In order to set or modify a user's data (e.g. increment, multiply, etc.), use
-  the code snippet below.
+  the code snippet below.<br>
+  Using <code class="JavaScript">Countly.userDataBulk</code> you can set the user
+  properties values and these values will be send to server in bulk on you call
+  <code class="JavaScript">Countly.userDataBulk.save()</code>:
+</p>
+<pre>Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),<br>Countly.userDataBulk.setProperty("increment", 5),<br>Countly.userDataBulk.increment("increment"),<br>Countly.userDataBulk.setProperty("incrementBy", 5),<br>Countly.userDataBulk.incrementBy("incrementBy", 10),<br>Countly.userDataBulk.setProperty("multiply", 5),<br>Countly.userDataBulk.multiply("multiply", 20),<br>Countly.userDataBulk.setProperty("saveMax", 5),<br>Countly.userDataBulk.saveMax("saveMax", 100),<br>Countly.userDataBulk.setProperty("saveMin", 5),<br>Countly.userDataBulk.saveMin("saveMin", 50),<br>Countly.userDataBulk.setOnce("setOnce", 200),<br>Countly.userDataBulk.pushUniqueValue("type", "morning"),<br>Countly.userDataBulk.pushValue("type", "morning"),<br>Countly.userDataBulk.pullValue("type", "morning")])<br>.then(values =&gt; {<br>// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed<br>Countly.userDataBulk.save();<br>})</pre>
+<p>
+  Using <code class="JavaScript">Countly.userData</code>&nbsp;you can set the user
+  properties individually:&nbsp;
 </p>
 <pre><code class="javascript">// examples for custom user properties
 Countly.userData.setProperty("keyName", "keyValue"); //set custom property
