@@ -211,7 +211,8 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code>and
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
-  <a href="https://search.maven.org/artifact/ly.count.android/sdk-native">page</a>, currently 20.11.6):
+  <a href="https://search.maven.org/artifact/ly.count.android/sdk-native">page</a>,
+  currently 20.11.6):
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:LATEST_VERSION'    
@@ -532,7 +533,7 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
 <div class="callout callout--info">
- <strong>Supported Platforms</strong>
+  <strong>Supported Platforms</strong>
   <p>
     Currently custom sound feature is only available for Android
   </p>
@@ -594,6 +595,23 @@ apply plugin: 'com.google.gms.google-services'
   You can set the additional intent redirection check to true for providing intent
   redirection security and to set the allowed package and class names for intent
   redirection:
+</p>
+<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
+<p>
+  <strong>Additional Intent redirection checks</strong>
+</p>
+<p>
+  By default additional intent redirection is enabled for intent redirect security,
+  you can disable the additional intent redirection:
+</p>
+<pre>Countly.configureIntentRedirectionCheck([], [], false);</pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks. More
+  info can be found
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+</p>
+<p>
+  You can also set the allowed package and class names for intent redirection:
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
