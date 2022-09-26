@@ -600,6 +600,11 @@ apply plugin: 'com.google.gms.google-services'
 <p>
   <strong>Additional Intent Redirection Checks</strong>
 </p>
+<div class="callout callout--warning">
+  <p>
+   This functionality is available since SDK version 22.02.2.
+  </p>
+</div>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
   you can disable the additional intent redirection:
