@@ -598,7 +598,7 @@ apply plugin: 'com.google.gms.google-services'
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <p>
-  <strong>Additional Intent redirection checks</strong>
+  <strong>Additional Intent Redirection Checks</strong>
 </p>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
