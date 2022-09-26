@@ -975,16 +975,15 @@ options.byear = 1919;
 Countly.setUserData(options);</code></pre>
 <p>
   Countly also supports custom user properties that you can attach for each user.
-  In order to set or modify a user's data (e.g. increment, multiply, etc.), use
-  the code snippet below.<br>
-  Using <code class="JavaScript">Countly.userDataBulk</code> you can set the user
-  properties values and these values will be send to server in bulk on you call
-  <code class="JavaScript">Countly.userDataBulk.save()</code>:
+  In order to set or modify a user's data (e.g. increment, multiply, etc.).<br>
+  Using <code class="JavaScript">Countly.userDataBulk</code> you can set the custom
+  user properties values and these values will be send to server in bulk when you
+  call <code class="JavaScript">Countly.userDataBulk.save()</code>:
 </p>
 <pre>Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),<br>Countly.userDataBulk.setProperty("increment", 5),<br>Countly.userDataBulk.increment("increment"),<br>Countly.userDataBulk.setProperty("incrementBy", 5),<br>Countly.userDataBulk.incrementBy("incrementBy", 10),<br>Countly.userDataBulk.setProperty("multiply", 5),<br>Countly.userDataBulk.multiply("multiply", 20),<br>Countly.userDataBulk.setProperty("saveMax", 5),<br>Countly.userDataBulk.saveMax("saveMax", 100),<br>Countly.userDataBulk.setProperty("saveMin", 5),<br>Countly.userDataBulk.saveMin("saveMin", 50),<br>Countly.userDataBulk.setOnce("setOnce", 200),<br>Countly.userDataBulk.pushUniqueValue("type", "morning"),<br>Countly.userDataBulk.pushValue("type", "morning"),<br>Countly.userDataBulk.pullValue("type", "morning")])<br>.then(values =&gt; {<br>// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed<br>Countly.userDataBulk.save();<br>})</pre>
 <p>
-  Using <code class="JavaScript">Countly.userData</code>&nbsp;you can set the user
-  properties individually:&nbsp;
+  Using <code class="JavaScript">Countly.userData</code> you can set the custom
+  user properties individually:&nbsp;
 </p>
 <pre><code class="javascript">// examples for custom user properties
 Countly.userData.setProperty("keyName", "keyValue"); //set custom property
