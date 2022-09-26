@@ -598,7 +598,7 @@ apply plugin: 'com.google.gms.google-services'
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <p>
-  <strong>Additional Intent redirection checks</strong>
+  <strong>Additional Intent Redirection Checks</strong>
 </p>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
@@ -616,8 +616,8 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instruction from this URL
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications</a>
+  For iOS push notification please follow the instructions from 
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
   For React Native you can find
