@@ -601,9 +601,7 @@ apply plugin: 'com.google.gms.google-services'
   <strong>Additional Intent Redirection Checks</strong>
 </p>
 <div class="callout callout--warning">
-  <p>
-   This functionality is available since SDK version 22.02.2.
-  </p>
+  <p>This functionality is available since SDK version 22.02.2.</p>
 </div>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
@@ -621,7 +619,7 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instructions from 
+  For iOS push notification please follow the instructions from
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
@@ -977,7 +975,22 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
   predefined user properties like this:
 </p>
-<pre>var options = {};<br><br>options.name = "Name of User";<br>options.username = "Username";<br>options.email = "User Email";<br>options.organization = "User Organization";<br>options.phone = "User Contact number";<br>options.picture = "https://count.ly/images/logos/countly-logo.png";<br>options.picturePath = "";<br>options.gender = "Male";<br>options.byear = 1989;<br><br>Countly.userDataBulk.setUserProperties(options);<br>// Unless you call this last function your data would not be sent to your server<br>Countly.userDataBulk.save();</pre>
+<pre><code class="javascript">
+var options = {};<br>
+options.name = "Name of User";
+options.username = "Username";
+options.email = "User Email";
+options.organization = "User Organization";
+options.phone = "User Contact number";
+options.picture = "https://count.ly/images/logos/countly-logo.png";
+options.picturePath = "";
+options.gender = "Male";
+options.byear = 1989;<br>
+Countly.userDataBulk.setUserProperties(options);
+// Unless you call this last function your data would not be sent to your server
+
+Countly.userDataBulk.save();
+</code></pre>
 <p>
   Or you can use <code class="javascript">Countly.setUserData()</code> to set predefined
   user properties:
@@ -1003,15 +1016,27 @@ Countly.setUserData(options);</code></pre>
   Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
   custom user properties like this:
 </p>
-<pre>var options = {};<br><br>options.customeValueA = "Custom value A";<br>options.customeValueB = "Custom value B";<br>// ...<br><br>Countly.userDataBulk.setUserProperties(options);<br>// Unless you call this last function your data would not be send to your server<br>Countly.userDataBulk.save();</pre>
+<pre><code class="javascript">var options = {};
+
+options.customeValueA = "Custom value A";
+options.customeValueB = "Custom value B";
+// ...
+
+Countly.userDataBulk.setUserProperties(options);
+
+// Unless you call this last function your data would not be send to your server
+
+Countly.userDataBulk.save();</code></pre>
 <p>
   Or you can use <code class="javascript">Countly.setUserData()</code> to set custom
   user properties:
 </p>
-<pre><code class="javascript">var options = {};<br>
+<pre><code class="javascript">var options = {};
+
 options.customeValueA = "nicola";
 options.customeValueB = "info@nicola.tesla";
-// ...<br>
+// ...
+
 Countly.setUserData(options);</code></pre>
 <h2>Modifying Data</h2>
 <p>
