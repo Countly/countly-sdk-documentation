@@ -264,7 +264,7 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">+ (void)login<br>{<br>  CLYDeviceIDType deviceIDType = [Countly.sharedInstance deviceIDType];<br>  if([deviceIDType isEqualToString:CLYDeviceIDTypeCustom])<br>  {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>  else {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>}
+    <pre><code class="objectivec">+ (void)login<br>{<br>  CLYDeviceIDType deviceIDType = [Countly.sharedInstance deviceIDType];<br>  if([deviceIDType isEqualToString:CLYDeviceIDTypeCustom])<br>  {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>  else {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: YES];<br>  }<br>}
 </code></pre>
   </div>
   <div class="tab is-hidden">
