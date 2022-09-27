@@ -601,9 +601,7 @@ apply plugin: 'com.google.gms.google-services'
   <strong>Additional Intent Redirection Checks</strong>
 </p>
 <div class="callout callout--warning">
-  <p>
-   This functionality is available since SDK version 22.02.2.
-  </p>
+  <p>This functionality is available since SDK version 22.02.2.</p>
 </div>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
@@ -621,8 +619,8 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instruction from this URL
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications</a>
+  For iOS push notification please follow the instructions from
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
   For React Native you can find
@@ -937,17 +935,67 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <h1>User Profiles</h1>
 <p>
   You can provide Countly any details you may have about your user or visitor.
-  This will allow you to track each specific user on the "User Profiles" tab, which
-  is available in Countly Enterprise Edition. For more details, please review the
+  This will allow you to track each specific user on the "User Profiles" tab, available
+  in Countly Enterprise Edition. For more information, please review the
   <a href="/hc/en-us/articles/360037630571" target="_self" rel="undefined">User Profiles documentation</a>.
 </p>
 <p>
-  In order to set a user profile, use the code snippet below. After you send a
-  user’s data, it can be found in your Dashboard under
+  User details can be sent to your Countly instance in two separate ways depending
+  on your needs and use case. The first option is to set the user data in bulk
+  by using <code class="JavaScript">Countly.userDataBulk</code> call. This allows
+  you to bundle up all your user detail information in a single request to the
+  server and helps minimize the traffic to your server. If you have access to multiple
+  user details of your visitors at a given time, using this method would be the
+  preferred option
+</p>
+<p>
+  The second option is using <code class="JavaScript">Countly.userData</code> calls
+  to send user details to your server as separate requests. This can be useful
+  in situations where you gain access to user information one at a time and you
+  would like to report that info to your server on the fly.
+</p>
+<p>
+  Using <code class="JavaScript">Countly.userDataBulk</code> call requires you
+  to call <code class="JavaScript">Countly.userDataBulk.save()</code> call,&nbsp;
+  manually, to trigger sending data to your server, as a signifier marking the
+  end of user details you want to record. In the case of
+  <code class="JavaScript">Countly.userData</code> though, you will not need to
+  use any other methods to initiate the data transmission. It will handle that
+  logic internally.<br>
+  Snippets below show examples of using these calls in various situations. After
+  you send a user’s data, it can be found in your Dashboard under
   <code class="JavaScript">Users &gt; User Profiles</code>.
 </p>
-<pre><code class="javascript">// Example for setting user data
-var options = {};
+<h2>Setting Predefined Values</h2>
+<p>
+  Predefined user properties are a set of default keys that are commonly used in
+  visitor data collection. You can see all of those values down below.
+</p>
+<p>
+  Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
+  predefined user properties like this:
+</p>
+<pre><code class="javascript">
+var options = {};<br>
+options.name = "Name of User";
+options.username = "Username";
+options.email = "User Email";
+options.organization = "User Organization";
+options.phone = "User Contact number";
+options.picture = "https://count.ly/images/logos/countly-logo.png";
+options.picturePath = "";
+options.gender = "Male";
+options.byear = 1989;<br>
+Countly.userDataBulk.setUserProperties(options);
+// Unless you call this last function your data would not be sent to your server
+
+Countly.userDataBulk.save();
+</code></pre>
+<p>
+  Or you can use <code class="javascript">Countly.setUserData()</code> to set predefined
+  user properties:
+</p>
+<pre><code class="javascript">var options = {};<br>
 options.name = "Nicola Tesla";
 options.username = "nicola";
 options.email = "info@nicola.tesla";
@@ -956,15 +1004,53 @@ options.phone = "+90 822 140 2546";
 options.picture = "http://www.trust.electric/images/people/nicola.png";
 options.picturePath = "";
 options.gender = "M";
-options.byear = 1919;
+options.byear = 1919;<br>
 Countly.setUserData(options);</code></pre>
+<h2>Setting Custom Values</h2>
 <p>
-  Countly also supports custom user properties that you can attach for each user.
-  In order to set or modify a user's data (e.g. increment, multiply, etc.), use
-  the code snippet below.
+  Custom user properties are any arbitrary values that you would like to store
+  under your user's profile. These values can be internal IDs, registration dates,
+  horoscopes, or any other value that is not included in the predefined user properties.
 </p>
-<pre><code class="javascript">// examples for custom user properties
-Countly.userData.setProperty("keyName", "keyValue"); //set custom property
+<p>
+  Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
+  custom user properties like this:
+</p>
+<pre><code class="javascript">var options = {};
+
+options.customeValueA = "Custom value A";
+options.customeValueB = "Custom value B";
+// ...
+
+Countly.userDataBulk.setUserProperties(options);
+
+// Unless you call this last function your data would not be send to your server
+
+Countly.userDataBulk.save();</code></pre>
+<p>
+  Or you can use <code class="javascript">Countly.setUserData()</code> to set custom
+  user properties:
+</p>
+<pre><code class="javascript">var options = {};
+
+options.customeValueA = "nicola";
+options.customeValueB = "info@nicola.tesla";
+// ...
+
+Countly.setUserData(options);</code></pre>
+<h2>Modifying Data</h2>
+<p>
+  Additionally, you can modify these custom values in various ways like increasing
+  a number, pushing new values to an array, etc.&nbsp; You can see the whole range
+  of operations below.<br>
+  Using the <code class="JavaScript">Countly.userDataBulk</code> :
+</p>
+<pre>Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),<br>Countly.userDataBulk.setProperty("increment", 5),<br>Countly.userDataBulk.increment("increment"),<br>Countly.userDataBulk.setProperty("incrementBy", 5),<br>Countly.userDataBulk.incrementBy("incrementBy", 10),<br>Countly.userDataBulk.setProperty("multiply", 5),<br>Countly.userDataBulk.multiply("multiply", 20),<br>Countly.userDataBulk.setProperty("saveMax", 5),<br>Countly.userDataBulk.saveMax("saveMax", 100),<br>Countly.userDataBulk.setProperty("saveMin", 5),<br>Countly.userDataBulk.saveMin("saveMin", 50),<br>Countly.userDataBulk.setOnce("setOnce", 200),<br>Countly.userDataBulk.pushUniqueValue("type", "morning"),<br>Countly.userDataBulk.pushValue("type", "morning"),<br>Countly.userDataBulk.pullValue("type", "morning")])<br>.then(values =&gt; {<br>// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed<br>Countly.userDataBulk.save();<br>})</pre>
+<p>
+  Using <code class="JavaScript">Countly.userData</code> you can modify the custom
+  user properties individually:&nbsp;
+</p>
+<pre><code class="javascript">Countly.userData.setProperty("keyName", "keyValue"); //set custom property
 Countly.userData.setOnce("keyName", 200); //set custom property only if property does not exist
 Countly.userData.increment("keyName"); //increment value in key by one
 Countly.userData.incrementBy("keyName", 10); //increment value in key by provided value
