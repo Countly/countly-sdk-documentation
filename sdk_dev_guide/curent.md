@@ -1704,44 +1704,19 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </div>
 <h2>Tracking Clicks</h2>
 <p>A sample click event:</p>
-<pre><code class="javascript">events=[
-          {
-              "key": "[CLY]_action",
-              "count": 1,
-              "segmentation": {
-                  "type": "click",
-                  "x": 120,
-                  "y": 200,
-                  "width": 1920,
-                  "height": 1200,
-                  "view":  "https://sth.com"
-              }
-          }
-]</code></pre>
+<pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"click",<br>    "x":120,<br>    "y":200,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
 <p>
   For click tracking it is better to set a cool-down period of 1 second after a
   click has been recorded to reduce the traffic before another click can be tracked.
 </p>
 <h2>Tracking Scrolls</h2>
 <p>A sample scroll event:</p>
-<pre><code class="javascript">events=[
-          {
-              "key": "[CLY]_action",
-              "count": 1,
-              "segmentation": {
-                  "type": "scroll",
-                  "y": 500, /* only y value. Shows the max scroll height */
-                  "width": 1920,
-                  "height": 1200,
-                  "view":  "https://sth.com"
-              }
-          }
-]</code></pre>
+<pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"scroll",<br>    "y":500,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
 <p>
   Scroll height must be stored internally in memory and with each new scroll within
   the same view this value must be referred to again to find the max scroll height.
   When a new view happens or the site is closed this max value must be recorded
-  as the 'y' value like shown.
+  as the 'y' value like shown. You would not record the 'x' value.
 </p>
 <h2>Consent</h2>
 <p>
