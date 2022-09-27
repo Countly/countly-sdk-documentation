@@ -242,9 +242,49 @@
 </p>
 <p>Here are a few sample login implementations of this flow:</p>
 <h2>Android</h2>
-<pre><span>public void </span><span>Login</span>() {<br>    <span>String newId </span>= <span>"SomeValue"</span>;<br>    <span>if </span>(<span>Countly</span>.<span>sharedInstance</span>().getDeviceIDType() == <span>DeviceId</span>.<span>Type</span>.<span>DEVELOPER_SUPPLIED</span>) {<br>        <span>// an ID was provided by the host app previously<br></span><span>        // we can assume that a device ID change with merge was executed previously<br></span><span>        // now we change it without merging<br></span><span>        </span><span>Countly</span>.<span>sharedInstance</span>().changeDeviceIdWithoutMerge(<span>DeviceId</span>.<span>Type</span>.<span>DEVELOPER_SUPPLIED</span>, <span>newId</span>);<br>    } <span>else </span>{<br>        <span>// SDK generated ID<br></span><span>        // we change device ID with merge so that data is combined<br></span><span>        </span><span>Countly</span>.<span>sharedInstance</span>().changeDeviceIdWithMerge(<span>newId</span>);<br>    }<br>}</pre>
+<pre><code class="java">
+<span>public void Login</span>() {
+<span>    String newId = "SomeValue"</span>;
+<span>    if (Countly.sharedInstance().deviceId().getType() == DeviceIdType.DEVELOPER_SUPPLIED</span>) {
+<span>        // an ID was provided by the host app previously</span>
+<span>        // we can assume that a device ID change with merge was executed previously</span>
+<span>        // now we change it without merging</span>
+<span>        Countly.sharedInstance().deviceId().changeWithoutMerge(newId</span>);
+<span>    } else {</span>
+<span>        // SDK generated ID</span>
+<span>        // we change device ID with merge so that data is combined</span>
+<span>        Countly.sharedInstance().deviceId().changeWithMerge(newId</span>);
+    }
+}
+</code></pre>
 <h2>iOS</h2>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">public static void login()<br> &nbsp;<wbr> &nbsp;<wbr>{<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>DeviceId.Type type = Countly.sharedInstance().getDeviceIDType();<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>if(type.equals(DeviceId.Type.DEVELOPER_SUPPLIED))<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithoutMerge(DeviceId.Type.DEVELOPER_SUPPLIED,<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>else<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>{<br>            Countly.sharedInstance().changeDeviceIdWithMerge(<span class="hljs-string">@"usersNewID"</span>);<br> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr> &nbsp;<wbr>}<br> &nbsp;<wbr> &nbsp;<wbr>}</pre>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">+ (void)login<br>{<br>  CLYDeviceIDType deviceIDType = [Countly.sharedInstance deviceIDType];<br>  if([deviceIDType isEqualToString:CLYDeviceIDTypeCustom])<br>  {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>  else {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>}
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">class func login() {<br>  let deviceIDType = Countly.sharedInstance.deviceID()<br>  if deviceIDType.isEqual(toString: CLYDeviceIDTypeCustom) {<br>  Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: false)<br>  } else {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: true)<br>  }<br>}</code></pre>
+  </div>
+</div>
+<h2>Web</h2>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Async</span>
+    <span class="tabs-link">Sync</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /* change ID without merge as current ID is Dev supplied, so not first login */<br>    Countly.q.push(['change_id', "newID", false]);<br>  } else {<br>    /* change ID with merge as current ID is not Dev supplied */<br>    Countly.q.push(['change_id', "newID", true]);<br>  }<br>}
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /* change ID without merge as current ID is Dev supplied, so not first login */<br>    Countly.change_id('newID', false);<br>  } else {<br>    /* change ID with merge as current ID is not Dev supplied */<br>    Countly.change_id('newID', true);<br>  }<br>}</code></pre>
+  </div>
+</div>
 <h1>
   Using the Countly SDK's with iOS and Android widgets and watches
 </h1>
