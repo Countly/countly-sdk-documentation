@@ -598,8 +598,7 @@ apply plugin: 'com.google.gms.google-services'
   <p>This functionality is available since SDK version 22.02.2.</p>
 </div>
 <p>
-  Google removed apps form Google Play which contains
-  <span>Intent Redirection issue, your app can allow malicious apps to access private app components or files due to intent redirection issue.<br>For push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
+  <span>Your app can allow malicious apps to access private app components or files due to Intent Redirection issue. Google removed apps form Google Play which contains Intent Redirection issue.<br>For push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
 </p>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
