@@ -663,6 +663,10 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <strong>Additional Intent redirection checks</strong>
 </p>
 <p>
+  Google removed apps form Google Play which contains
+  <span>Intent Redirection issue, your app can allow malicious apps to access private app components or files due to intent redirection issue.<br>For push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
+</p>
+<p>
   You can set the additional intent redirection check to true for intent redirect
   security.
 </p>
@@ -673,7 +677,13 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
 </p>
 <p>
-  You can also set the allowed package and class names for intent redirection:
+  If due to some reason activity name is not started with application package name
+  for e.g if you are using android build Flavors to create multiple apps with same
+  code base then you need to provide the additional allowed classes and packages
+  names for intent redirection.
+</p>
+<p>
+  You can set the allowed packages and classes names for intent redirection:
 </p>
 <pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <p>
