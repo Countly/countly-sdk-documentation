@@ -592,17 +592,15 @@ apply plugin: 'com.google.gms.google-services'
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
 <p>
-  You can set the additional intent redirection check to true for providing intent
-  redirection security and to set the allowed package and class names for intent
-  redirection:
-</p>
-<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
-<p>
   <strong>Additional Intent Redirection Checks</strong>
 </p>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.02.2.</p>
 </div>
+<p>
+  Google removed apps form Google Play which contains
+  <span>Intent Redirection issue, your app can allow malicious apps to access private app components or files due to intent redirection issue.<br>For push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
+</p>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
   you can disable the additional intent redirection:
@@ -614,7 +612,12 @@ apply plugin: 'com.google.gms.google-services'
   <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
 </p>
 <p>
-  You can also set the allowed package and class names for intent redirection:
+  If due to some reason activity name is not started with application package name
+  for e.g if you are using android build Flavors to create multiple apps with same
+  code base then you need to provide the additional allowed classes and packages
+  names for intent redirection.<br>
+  You can set the allowed packages and classes names for intent redirection using
+  this call:
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
