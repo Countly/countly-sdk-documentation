@@ -660,11 +660,10 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 </p>
 <pre>&lt;<span>uses-permission </span><span>android</span><span>:name</span><span>="${applicationId}.CountlyPush.BROADCAST_PERMISSION" </span>/&gt;</pre>
 <p>
-  <strong>Additional Intent redirection checks</strong>
+  <strong>Additional Intent Redirection checks</strong>
 </p>
 <p>
-  Google removed apps form Google Play which contains
-  <span>Intent Redirection issue, your app can allow malicious apps to access private app components or files due to intent redirection issue.<br>For push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
+  <span>Your app can allow malicious apps to access private app components or files due to Intent Redirection issue. Google removed apps form Google Play which contains Intent Redirection issue.<br>For push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
 </p>
 <p>
   You can set the additional intent redirection check to true for intent redirect
