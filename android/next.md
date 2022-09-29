@@ -1766,22 +1766,27 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
-  from specific campaigns. This feature is available for the Enterprise Edition.
-</p>
-<p>
-  <span style="font-weight: 400;">We highly recommend allowing Countly to listen to the&nbsp;</span><strong>INSTALL_REFERRER</strong><span style="font-weight: 400;">&nbsp;intent in order to receive more precise attribution on Android, something you may do by adding the following XML code to your&nbsp;</span><strong>AndroidManifest.xml</strong><span style="font-weight: 400;">&nbsp;file inside&nbsp;the </span><strong>application</strong><span style="font-weight: 400;">&nbsp;tag.</span>
-</p>
-<pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
-  &lt;intent-filter&gt;
-    &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-  &lt;/intent-filter&gt;
-&lt;/receiver&gt;</code></pre>
-<p>
-  <span style="font-weight: 400;">Note that modifying&nbsp;your </span><strong>AndroidManifest.xml</strong><span style="font-weight: 400;">&nbsp;file is the only thing you would need to do in order to start receiving data from your campaigns via the Attribution Analytics plugin.</span>
+  from specific campaigns. This feature is available for the Enterprise Edition,
+  but currently server side support for this is limited.
 </p>
 <p>
   <strong><span style="font-weight: 400;">For more information about how to set up your campaigns, please&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics"><span style="font-weight: 400;">review this documentation</span></a><span style="font-weight: 400;">.</span></strong>
 </p>
+<p>
+  <strong><span style="font-weight: 400;">To report install attribution, you would perform the following request:</span></strong>
+</p>
+<pre><span>Countly</span>.<span>sharedInstance</span>().attribution().recordDirectAttribution(<span>"countly"</span>, <span>"{'cid':'campaign_id', 'cuid':'campaign_user_id'}"</span>);</pre>
+<p>
+  <strong><span style="font-weight: 400;">In the place of "campaign_id" you would put your retrieved campaign ID value, and in place of "<span>campaign_user_id" you would put your campaign user ID.</span></span></strong>
+</p>
+<p>
+  <strong><span style="font-weight: 400;"><span>For information on how to get these install attribution values, we recommend looking into <a href="https://developer.android.com/reference/com/android/installreferrer/api/InstallReferrerClient" target="_blank" rel="noopener">"InstallReferrerClient".</a></span></span></strong><span style="font-weight: 400;"><span></span></span>
+</p>
+<p>
+  <strong><span style="font-weight: 400;"><span>If you would want to record the advertising ID of the user, you would execute the following code with the retrieved value:</span></span></strong>
+</p>
+<pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>attributionValues </span>= <span>new </span>HashMap&lt;&gt;();<br><span>attributionValues</span>.put(<span>AttributionIndirectKey</span>.<span>AdvertisingID</span>, "valid_advertising_id_value");<br><span>Countly</span>.<span>sharedInstance</span>().attribution().recordIndirectAttribution(<span>attributionValues</span>);</pre>
+<p>&nbsp;</p>
 <h2>Forcing HTTP POST</h2>
 <p>
   <span style="font-weight: 400;">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In case you would like an override so that HTTP POST is used in all cases, call the "setHttpPostForced" function after you call "init". You may use the same function later in the app’s life cycle to disable the override. This function must be called every time the app starts.</span>
