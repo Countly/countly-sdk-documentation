@@ -1390,11 +1390,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Starting from the <strong>SDK version 22.06.2</strong> you are able to automatically enroll your users to the A/B testing while fetching the remote config. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">While fetching Remote Config, SDK automatically enrolls the user to A/B testing but starting from the <strong>SDK version 22.06.2</strong> you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <h2>Automatic Remote Config</h2>
 <p>
-  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When Remote Config is enabled, the SDK will only try to fetch it once upon the SDK initialization, will receive the initial Remote Config and persistently store it.</span>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When Remote Config is enabled, the SDK will try to fetch it upon the SDK initialization, will receive the initial Remote Config and persistently store it. Changing device ID would trigger this behavior once more.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
@@ -1408,10 +1408,10 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// in your Countly init script
+    <pre><code class="javascript">// in your Countly init script<br>Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = true;
-
-//or provide a callback to be notified when configs are loaded
+<br>// OR<br>
+// provide a callback to be notified when configs are loaded<br>Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = function(err, remoteConfigs){
   if (!err) {
     //we have our remoteConfigs here
@@ -1420,20 +1420,16 @@ Countly.remote_config = function(err, remoteConfigs){
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
-  debug:false,
+    <pre><code class="javascript">// in your Countly init script<br>Countly.init({
   app_key:"YOUR_APP_KEY",
-  device_id:"1234-1234-1234-1234",
-  url: "https://try.count.ly",
-  remote_config: true //this will enable loading remote configuration
-});
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: true 
+});<br><br>// OR
 
-//or provide a callback to be notified when configs are loaded
+// provide a callback to be notified when configs are loaded
 Countly.init({
-  debug:false,
   app_key:"YOUR_APP_KEY",
-  device_id:"1234-1234-1234-1234",
-  url: "https://try.count.ly",
+  url: "https://try.count.ly",<br>  debug: true,
   remote_config: function(err, remoteConfigs){
     if (!err) {
       //we have our remoteConfigs here
@@ -1481,15 +1477,13 @@ Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
   keys as string. As a third parameter you can provide a callback function.
   <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
 </p>
-<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2
+<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2'
 Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
   if (!err) {
     console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
   }
 });</code></pre>
-<h2>
-  Accessing Remote Config Values<span style="font-weight: 400;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
-</h2>
+<h2>Accessing Remote Config Values</h2>
 <p>
   <span style="font-weight: 400;">You may call </span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the Remote Config object of a value for a specific key or all keys from your local storage.</span>
 </p>
