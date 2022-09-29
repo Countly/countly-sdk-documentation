@@ -1640,6 +1640,90 @@ end_sesson=1&amp;session_duration=30</code></pre>
   begin_session (with location - city, country, gps2)<br>
   end_session
 </p>
+<h1>Heatmaps</h1>
+<p>
+  Heatmaps is a plugin, exclusive to Web SDK, that can display the amalgamation
+  of click and the scroll behavior of the users by attaching an overlay on the
+  website that the Countly has integrated. Click and scroll behavior information
+  is provided by the SDK and recorded as an event, internally, then send into the
+  event queue, <strong>if click or/and scroll tracking is enabled</strong>. Automatic
+  click and scroll tracking should be able to be enabled after init:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_scrolls']);
+Countly.q.push(['track_clicks']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_scrolls();
+Countly.track_clicks();</code></pre>
+  </div>
+</div>
+<p>
+  A user should be able to go to the Heatmaps section in their server and click
+  on a heatmap from the available list of views. When a user clicks any view from
+  that list the server generates a token and directs the user to that view. Server
+  would provide the token and the necessary scripts to load as the heatmaps overlay,
+  by setting the name property of the browser's window interface or the URL hash
+  property to an SDK recognizable message which then should be parsed and used
+  by the SDK to load the necessary scripts for the heatmaps overlay. Message starts
+  with 'cly:' and includes 'app_key','token','purpose' and 'url' properties as
+  a JSON object.
+</p>
+<p>
+  To prevent any XSS attempts, the SDK should provide an option to the developer
+  to give a list of trustable domains (a whitelist per se) for which the SDK would
+  load the provided scripts from and would reject to load scripts from domains
+  out of this list. By default the Countly server URL would be included in this
+  list. List should be provided by the user during init, under the 'heatmap_whitelist'
+  flag as an array of stings.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com"];
+
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
+});</code></pre>
+  </div>
+</div>
+<h2>Tracking Clicks</h2>
+<p>A sample click event:</p>
+<pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"click",<br>    "x":120,<br>    "y":200,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
+<p>
+  For click tracking it is better to set a cool-down period of 1 second after a
+  click has been recorded to reduce the traffic before another click can be tracked.
+</p>
+<h2>Tracking Scrolls</h2>
+<p>A sample scroll event:</p>
+<pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"scroll",<br>    "y":500,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
+<p>
+  Scroll height must be stored internally in memory and with each new scroll within
+  the same view this value must be referred to again to find the max scroll height.
+  When a new view happens or the site is closed this max value must be recorded
+  as the 'y' value like shown. You would not record the 'x' value.
+</p>
+<h2>Consent</h2>
+<p>
+  Both click and scroll tracking is subject to provided consent, namely "clicks"
+  and "scrolls". If consents are enabled, user actions like clicks and scrolls
+  should only be collected if the consent is provided, else they should be ignored.
+</p>
 <h1>Remote Config</h1>
 <h2>Automatic Fetch</h2>
 <p>
