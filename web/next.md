@@ -76,7 +76,7 @@
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
@@ -102,7 +102,7 @@
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue or synchronously allowing the script to load before executing any functions.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
@@ -198,10 +198,10 @@ Countly.track_pageview();
 
 https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
 <p>
-  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;">&nbsp;to get this SDK directly from your Countly server.</span>
+  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As the third alternative option, you may download&nbsp;</span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;">&nbsp;from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
+  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Then you will be able to make event calls such as:</span>
@@ -398,7 +398,8 @@ Countly.init({
     true)
   </li>
   <li>
-    <strong>interval</strong> -&nbsp;<span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
+    <strong>interval</strong> -
+    <span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
   </li>
   <li>
     <strong>queue_size</strong> - maximum amount of queued requests to store
@@ -409,11 +410,12 @@ Countly.init({
     <span style="font-weight: 400;">set the time to wait in seconds after a failed connection to the server (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>inactivity_time</strong> -&nbsp;<span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
+    <strong>inactivity_time</strong> -
+    <span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
   </li>
   <li>
     <strong>session_update</strong> -
-    <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)&nbsp;</span>
+    <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
   <li>
     <strong>max_events</strong> -&nbsp;maximum amount of events to send in one
@@ -1390,11 +1392,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">While fetching Remote Config, SDK automatically enrolls the user to A/B testing but starting from the <strong>SDK version 22.06.2</strong> you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. Starting from the <strong>SDK version 22.06.2</strong> you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <h2>Automatic Remote Config</h2>
 <p>
-  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When Remote Config is enabled, the SDK will try to fetch it upon the SDK initialization, will receive the initial Remote Config and persistently store it. Changing device ID would trigger this behavior once more.</span>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific trigers. For example, after SDK initialization, changing device ID.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
@@ -1408,10 +1410,12 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// in your Countly init script<br>Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
+    <pre><code class="javascript">// in your Countly init script
+    Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = true;
 <br>// OR<br>
-// provide a callback to be notified when configs are loaded<br>Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
+// provide a callback to be notified when configs are loaded
+Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = function(err, remoteConfigs){
   if (!err) {
     //we have our remoteConfigs here
@@ -1456,7 +1460,8 @@ Countly.init({
 Countly.fetch_remote_config(function(err, remoteConfigs){
   if (!err) {
     console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
-  }<br>});<br><br>// or whole configuration object with no params<br>Countly.fetch_remote_config();</code></pre>
+  }<br>});<br><br>// or whole configuration object with no params
+Countly.fetch_remote_config();</code></pre>
 <h3>Fetch Specific Keys</h3>
 <p>
   Here the keys should be provided as string values in an array, as the first parameter
