@@ -681,9 +681,9 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 </p>
 <p>
   If, for some reason, the 'activity name' does not start with the 'application
-  package name' (for e.g if you are using Android Product Flavors to create multiple
-  apps with the same code base), then you need to provide the additional allowed
-  class and package names for Intent Redirection manually.
+  package name' (for e.g if you are using Android Product/Build Flavors to create
+  multiple apps with the same code base), then you need to provide the additional
+  allowed class and package names for Intent Redirection manually.
 </p>
 <p>
   You can set the allowed package and class names for Intent Redirection using
