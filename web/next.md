@@ -1411,7 +1411,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   </div>
   <div class="tab">
     <pre><code class="javascript">// in your Countly init script
-    Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
+Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = true;
 <br>// OR<br>
 // provide a callback to be notified when configs are loaded
@@ -1424,7 +1424,8 @@ Countly.remote_config = function(err, remoteConfigs){
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// in your Countly init script<br>Countly.init({
+    <pre><code class="javascript">// in your Countly init script
+Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",<br>  debug: true,
   remote_config: true 
@@ -1510,7 +1511,8 @@ var test = Countly.get_remote_config("test");</code><code class="javascript"></c
 <p>
   <span style="font-weight: 400;">If you would like to enroll user to A/B testing without going through the Remote Config API, instead you can use the call <em>enrollUserToAb&nbsp;</em>with keys (an array of string values) that you want to enroll the user to.</span>
 </p>
-<pre><span style="font-weight: 400;">// enrolling user for 'key1' and 'key2'<br>Countly.enrollUserToAb(["key1","key2"]);</span></pre>
+<pre><code class="javascript">// enrolling user for 'key1' and 'key2'
+Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 <h2>Consent</h2>
 <p>
   If consents are enabled, to fetch the Remote Config data you have to provide
