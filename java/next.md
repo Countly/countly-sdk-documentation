@@ -430,8 +430,10 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <p>
   <strong>Note:</strong> When this mode is enabled, SDK enters into a special mode
   where all features (Sessions, Events, Views, Crash, User properties, Consents)
-  will stop working. SDK keeps the data recorded during this mode in volatile memory
-  and when the application is closed the data will be lost.
+  will stop working. SDK stores all data recorded in a special queue. That queue
+  is stored only in memory and therefore would be cleared when the app stops. The
+  queue is being processed all the time, so on the closing of the application,
+  only data that wasn't sent yet will be lost.
 </p>
 <h3>Enabling Backend Mode</h3>
 <p>
