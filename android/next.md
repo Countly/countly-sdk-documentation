@@ -660,7 +660,14 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 </p>
 <pre>&lt;<span>uses-permission </span><span>android</span><span>:name</span><span>="${applicationId}.CountlyPush.BROADCAST_PERMISSION" </span>/&gt;</pre>
 <p>
-  <strong>Additional Intent redirection checks</strong>
+  <strong>Additional Intent Redirection checks</strong>
+</p>
+<p>
+  Intent Redirection Vulnerability is an issue that lets your app allow malicious
+  apps to access private app components or files. Google removes apps from Google
+  Play that is susceptible to Intent Redirection Vulnerability. For Push Notifications,
+  we are also using Intent Redirection in our SDK, so for that reason, we have
+  also implemented additional Intent Redirection protection.
 </p>
 <p>
   You can set the additional intent redirection check to true for intent redirect
@@ -673,7 +680,14 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
 </p>
 <p>
-  You can also set the allowed package and class names for intent redirection:
+  If, for some reason, the 'activity name' does not start with the 'application
+  package name' (for e.g if you are using Android Product/Build Flavors to create
+  multiple apps with the same code base), then you need to provide the additional
+  allowed class and package names for Intent Redirection manually.
+</p>
+<p>
+  You can set the allowed package and class names for Intent Redirection using
+  this call:
 </p>
 <pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <p>
