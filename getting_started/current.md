@@ -40,7 +40,7 @@
   remote configuration variables.
 </p>
 <p>
-  Most Countly SDKs send some user properties together with the session request&nbsp;
+  Most Countly SDKs send some user properties together with the session request
   triggered automatically when the app is launched, the user lands on a website,
   or manually in some cases such as server-to-server SDK usage. These properties,
   which we call default user properties, are metadata, including but not limited
