@@ -1,10 +1,10 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 21.11.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 22.06.X</span>
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11.X and older, click
-    <a href="/hc/en-us/articles/4409196247065" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 22.02.X and older, click
+    <a href="/hc/en-us/articles/11104014467737" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -26,7 +26,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:21.11.0'
+    compile 'ly.count.android:sdk:22.06.0'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
@@ -1931,6 +1931,28 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   <span style="font-weight: 400;">You may send direct requests to the server with custom key/value pairs of&nbsp;<code>Map&lt;String, String&gt;</code>.&nbsp; These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
 </p>
 <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>requestMap </span>= <span>new </span>HashMap&lt;&gt;();<br><span>requestMap</span>.put(<span>"city"</span>, <span>"Istanbul"</span>);<br><span>requestMap</span>.put(<span>"country_code"</span>, <span>"TR"</span>);<br><span>requestMap</span>.put(<span>"ip_address"</span>, <span>"41.0082,28.9784"</span>);<br><br><span>try </span>{<br>    <span>JSONObject event </span>= <span>new </span>JSONObject();<br>    <span>event</span>.putOpt(<span>"key"</span>, <span>"test"</span>);<br>    <span>event</span>.putOpt(<span>"count"</span>, <span>"5"</span>);<br>    <span>event</span>.putOpt(<span>"sum"</span>, <span>"2"</span>);<br>    <span>event</span>.putOpt(<span>"dur"</span>, <span>"2000"</span>);<br><br>    <span>JSONObject ffJson </span>= <span>new </span>JSONObject();<br>    <span>ffJson</span>.putOpt(<span>"type"</span>, <span>"FF"</span>);<br>    <span>ffJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>ffJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject skipJson </span>= <span>new </span>JSONObject();<br>    <span>skipJson</span>.putOpt(<span>"type"</span>, <span>"skip"</span>);<br>    <span>skipJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>skipJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject resumeJson </span>= <span>new </span>JSONObject();<br>    <span>resumeJson</span>.putOpt(<span>"type"</span>, <span>"resume_play"</span>);<br>    <span>resumeJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>resumeJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONArray trickPlay </span>= <span>new </span>JSONArray();<br>    <span>trickPlay</span>.put(<span>ffJson</span>);<br>    <span>trickPlay</span>.put(<span>skipJson</span>);<br>    <span>trickPlay</span>.put(<span>resumeJson</span>);<br><br>    <span>JSONObject segmentation </span>= <span>new </span>JSONObject();<br>    <span>segmentation</span>.putOpt(<span>"trickplay"</span>, <span>trickPlay</span>);<br>    <span>event</span>.putOpt(<span>"segmentation"</span>, <span>segmentation</span>);<br><br>    <span>JSONArray events </span>= <span>new </span>JSONArray();<br>    <span>events</span>.put(<span>event</span>);<br>    <span>requestMap</span>.put(<span>"events"</span>,<span>events</span>.toString());<br>} <span>catch </span>(<span>JSONException </span>e) {<br>    e.printStackTrace();<br>}<br><span>Countly</span>.<span>sharedInstance</span>().requestQueue().addDirectRequest(<span>requestMap</span>);<span style="font-weight: 400;"></span></pre>
+<h2>Explicit Storage Mode</h2>
+<p>
+  In some scenarios you might prefer your app to perform less writes to the devices
+  storage. This mode exists for these scenarios.
+</p>
+<p>
+  If this mode is enabled then the SDK's request queue and event queue will be
+  kept only in memory and will not be persisted to storage when changes occur.
+  For those changes to be persisted, the host app has to give an explicit signal.
+</p>
+<p>
+  Using this mode has a high risk of data loss and data duplication in case the
+  persistance synchronization is not implemented correctly.&nbsp;
+</p>
+<p>
+  This mode is enable during init with the following config option:
+</p>
+<pre><span>config</span>.enableExplicitStorageMode();</pre>
+<p>
+  To write the memory queues to storage you would use the following call:
+</p>
+<pre><span>Countly</span>.<span>sharedInstance</span>().requestQueue().esWriteCachesToPersistence();</pre>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
