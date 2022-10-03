@@ -1523,6 +1523,25 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <li>"i" - iOS</li>
   <li>"m" - macOS</li>
 </ul>
+<h2>Platform Specific Notes</h2>
+<h3>Additional Intent Redirection checks (Android)</h3>
+<p>
+  <span>To increase platform security and limit exploits, google has enforced additional requirements for push notification that require additional checks for push intents. More info can be found <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.</span>
+</p>
+<p>
+  <span>These additional checks should be optional and there should be a way to enable the during init/push setup. Something like this:</span>
+</p>
+<pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;<br><span></span></pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks.
+</p>
+<p>
+  As additional parameters there would a one or multiple allow lists to provide
+  details of what kind of packages or activities are allowed.
+  <span>There should be a way to enable the during init/push setup.</span>
+</p>
+<p>Providing that information could look something like this:</p>
+<pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <h1>Recording location</h1>
 <p>
   There are 4 location related parameters that can be set in a Countly SDK. It
