@@ -1021,6 +1021,12 @@ Countly.setUserData(options);</code></pre>
   horoscopes, or any other value that is not included in the predefined user properties.
 </p>
 <p>
+  <strong>Note:</strong> There is some inconsistency in underlying iOS and Android
+  code, for iOS it overwrites the last value for key on all push/pull user property
+  call. For now the work around is that you need to call the “Countly.userDataBulk.save();”
+  after every push/pull user property call.
+</p>
+<p>
   Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
   custom user properties like this:
 </p>
