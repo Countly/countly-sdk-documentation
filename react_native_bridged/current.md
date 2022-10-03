@@ -988,7 +988,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <h2>Setting Predefined Values</h2>
 <p>
   Predefined user properties are a set of default keys that are commonly used in
-  visitor data collection.&nbsp;
+  visitor data collection.
 </p>
 <p>
   Bellow you can see how this can be set using the regular user property access
