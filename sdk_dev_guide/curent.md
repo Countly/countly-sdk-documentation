@@ -1523,6 +1523,28 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <li>"i" - iOS</li>
   <li>"m" - macOS</li>
 </ul>
+<h2>
+  <span>Platform Specific Notes</span>
+</h2>
+<h3>
+  <span>Additional Intent Redirection checks (Android)<br></span>
+</h3>
+<p>
+  <span>Android apps can allow malicious apps to access private app components or files due to Intent Redirection issue. Google removed those apps form Google Play which contains Intent Redirection issue.<br>For Android push notifications we are also using intent redirection in Countly SDK, so for that we have also implemented additional intent redirection.</span>
+</p>
+<pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;<br><span></span></pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks. More
+  info can be found
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+</p>
+<p>
+  If due to some reason activity name is not started with application package name
+  for e.g if someone is using android build Flavors to create multiple apps with
+  same code base then they need to provide the additional allowed classes and packages
+  names for intent redirection.
+</p>
+<pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <h1>Recording location</h1>
 <p>
   There are 4 location related parameters that can be set in a Countly SDK. It
