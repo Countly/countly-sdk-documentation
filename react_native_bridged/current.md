@@ -978,7 +978,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   user property calls, for Android it will try to combine them. For now the work
   around is that you need to call the “Countly.userDataBulk.save();” after every
   push/pull user property call. This does eliminate some of the potential gains
-  of this mode, but it does result in the expeted result server-side.
+  of this mode, but it does result in the expected result server-side.
 </p>
 <p>
   Snippets below show examples of using these calls in various situations. After
