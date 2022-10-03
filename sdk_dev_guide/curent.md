@@ -1523,21 +1523,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <li>"i" - iOS</li>
   <li>"m" - macOS</li>
 </ul>
-<h2>
-  <span>Platform Specific Notes</span>
-</h2>
-<h3>
-  <span>Additional Intent Redirection checks (Android)<br></span>
-</h3>
+<h2>Platform Specific Notes</h2>
+<h3>Additional Intent Redirection checks (Android)</h3>
 <p>
-  <span>To increase platform security and limit exploits, google has enforced additional requirements for push notification that require additional checks for push intents. More info can be found <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;</span><span></span>
+  <span>To increase platform security and limit exploits, google has enforced additional requirements for push notification that require additional checks for push intents. More info can be found <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
   <span>These additional checks should be optional and there should be a way to enable the during init/push setup. Something like this:</span>
 </p>
 <pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;<br><span></span></pre>
 <p>
-  If these are enabled then the SDK will enforce additional security checks.&nbsp;
+  If these are enabled then the SDK will enforce additional security checks.
 </p>
 <p>
   As additional parameters there would a one or multiple allow lists to provide
