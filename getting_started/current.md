@@ -265,7 +265,7 @@
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">class func login() {<br>  let deviceIDType = Countly.sharedInstance.deviceID()<br>  if deviceIDType.isEqual(toString: CLYDeviceIDTypeCustom) {<br>  Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: false)<br>  } else {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: true)<br>  }<br>}</code></pre>
+    <pre><code class="swift">class func login() {<br>  let deviceIDType = Countly.sharedInstance.deviceIDType()<br>  if deviceIDType.isEqual(toString: CLYDeviceIDTypeCustom) {<br>  Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: false)<br>  } else {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: true)<br>  }<br>}</code></pre>
   </div>
 </div>
 <h2>Web</h2>
