@@ -1,11 +1,11 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0
+  and it applies to version 22.02.0
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/4409295642137" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 21.11 and older, click
+    <a href="/hc/en-us/articles/9667091699097" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -66,6 +66,14 @@ flutter run</code></pre>
   For more information on how to acquire your application key (appKey) and server
   URL, check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
+</p>
+<p>
+  To configure the SDK during init, a config object called "CountlyConfig" is used.
+  Configuration is done by creating such an object and then calling it's provided
+  function calls to enable functionality you need.<br>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#sdk-config-parameters-explained" target="_self">here</a>
+  for more detail about "CountlyConfig" functionalities.
 </p>
 <div class="callout callout--info">
   <p>
@@ -848,7 +856,8 @@ Countly.disableLocation();</code></pre>
   as leave a text comment. Feedback widgets (survey, nps) allow for even more textual
   feedback from users.
 </p>
-<h2>Star rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star Rating Dialog</h3>
 <p>
   Star rating integration provides a dialog for getting user's feedback about the
   application. It contains a title, simple message explaining what it is for, a
@@ -870,7 +879,7 @@ Countly.disableLocation();</code></pre>
 config.setStarRatingTextTitle("Custom title"); // Only available for Android
 config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
-<h2>Rating widget</h2>
+<h3>Rating Widget</h3>
 <p>
   Feedback widget shows a server configured widget to your user devices.
 </p>
@@ -906,7 +915,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   <code class="JavaScript">closeButtonText</code> and
   <code class="JavaScript">ratingWidgetCallback</code> are optional.
 </p>
-<h2>Feedback widget</h2>
+<h2>Feedback Widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
@@ -926,7 +935,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <pre><code class="JavaScript">FeedbackWidgetsResponse feedbackWidgetsResponse = await Countly.getAvailableFeedbackWidgets() ;</code></pre>
 <p>
   From the callback you would get
-  <code class="JavaScript">FeedbackWidgetsResponse</code> objec which contains
+  <code class="JavaScript">FeedbackWidgetsResponse</code> object which contains
   the list of all available widgets that apply to the current device id.
 </p>
 <p>The objects in the returned list look like this:</p>
@@ -957,9 +966,9 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   pass these callbacks if you want to perform some actions when widget appear or
   dismiss.
 </p>
-<h2>Feedback widget manual reporting</h2>
+<h3>Manual Reporting</h3>
 <p>
-  There might be some usecases where you might to use the native UI or a custom
+  There might be some use-cases where you might to use the native UI or a custom
   UI you have created instead of our webview solution. In those cases you would
   have to request all the widget related information and then report the result
   manually.
@@ -976,7 +985,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   Having the <code>CountlyPresentableFeedback</code> object of the widget you would
   want to display, you could use the '<code class="JavaScript">getFeedbackWidgetData</code>'&nbsp;
-  mehtod to retrieve the widget information with an optional 'onFinished' callback.<br>
+  method to retrieve the widget information with an optional 'onFinished' callback.<br>
   In case you want to use with callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
@@ -1007,16 +1016,39 @@ Map&lt;String, Object&gt; reportedResult = {};
 Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reportedResult);
 </code></pre>
 <p>
-  If the user would have closed the widget, you would report that by passaing a
+  If the user would have closed the widget, you would report that by passing a
   "null" reportedResult.
+</p>
+<p>
+  For more information regarding how to structure the reported result, you would
+  look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <p>
-  In order to set a user profile, use the code snippet below. After you send user
-  data, it can be viewed under the User Profiles menu.
+  Using the following calls, you can set key/value to the visitors user profile.
+  After you send user data, it can be viewed under the User Profiles menu.
 </p>
 <p>
   Note that this feature is available only for Enterprise Edition.
+</p>
+<h2>Setting User profile values during init</h2>
+<p>
+  We recommend to set the user properties during initialization. This way they
+  would be reflected when the session is started shortly.
+</p>
+<p>
+  Using the following call, you can set both the predefined and the custom user
+  properties during initialization:
+</p>
+<pre><code class="“JavaScript”">var userProperties = {<br>    ‘customProperty’: ‘custom Value’,<br>    ‘username’: ‘USER_NAME’,<br>    ‘email’: ‘USER_EMAIL’<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setUserProperties(userProperties); </code></pre>
+<h2>Setting Predefined Values</h2>
+<p>
+  If you want to set the user data after init, you can use
+  <code class="“JavaScript”">Countly.setUserData(USER_DATA);</code>
+</p>
+<p>
+  Using the call you can only set the following predefined keys.
 </p>
 <pre><code class="JavaScript">// example for setting user data
 Map&lt;String, Object&gt; options = {
@@ -1031,10 +1063,7 @@ Map&lt;String, Object&gt; options = {
     "byear": "1919",
 };
 Countly.setUserData(options);</code></pre>
-<p>
-  In order to modify a user's data (e.g increment, etc), the following code sample
-  can be used.
-</p>
+<p>&nbsp;</p>
 <h2>Modifying custom data</h2>
 <p>
   Additionally, you can do different manipulations on your custom data values,
@@ -1042,8 +1071,7 @@ Countly.setUserData(options);</code></pre>
   the same property.
 </p>
 <p>Below is the list of available methods:</p>
-<pre><code class="JavaScript">
-//set one custom properties
+<pre><code class="JavaScript">//set one custom properties
 Countly.setProperty("setProperty", "My Property");
 //increment used value by 1
 Countly.increment("increment");
@@ -1277,10 +1305,82 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   and
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">android</a>.
 </p>
-<h1>Other features</h1>
+<h1>Other Features and Notes</h1>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  To configure the SDK during init, a config object called "CountlyConfig" is used.
+  Configuration is done by creating such an object and then calling it's provided
+  function calls to enable functionality you need.<br>
+  Here is the list of functionalities "CountlyConfig" provided:
+</p>
+<ul>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#device-id-management" target="_self">Device Id</a> - </strong>A device ID is a unique identifier for your users. You may specify the device ID yourself or allow the SDK to generate it.<br></span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#enable-logging" target="_self">Enable Logging</a> -</strong>
+    To enable countly internal debugging logs<span></span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#automatic-crash-handling" target="_self" rel="undefined">Enable Crash Reporting</a> -</strong>
+    To enable uncaught crash reporting
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#parameter-tampering-protection" target="_self">Salt</a> -</strong>
+    Set the optional salt to be used for calculating the checksum of requested
+    data which will be sent with each request<span></span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#setting-an-event-queue-threshold" target="_self" rel="undefined">Event queue threshold</a> -</strong>
+    Set the threshold for event grouping. Event count that is bellow the threshold
+    will be sent on update ticks.<span></span>
+  </li>
+  <li>
+    <strong>Update Session Timer -</strong> Sets the interval for the automatic
+    session update calls
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#automatic-crash-report-segmentation" target="_self">Custom Crash Segment</a> -</strong>Set
+    custom crash segmentation which will be added to all recorded crashes
+  </li>
+  <li>
+    <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#user-consent" target="_self"><strong>User consent</strong></a>
+    - Set if consent should be required and give consents.
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#forcing-http-post" target="_self">Forcing HTTP POST</a> -<span> </span></strong><span>When set to</span><span>&nbsp;</span><strong>true</strong><span>, all requests made to the Countly server will be done using HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In some cases, if the data to be sent exceeds the 1800-character limit, the SDK uses the POST method.</span><span>&nbsp;The default value is&nbsp;<strong>false</strong>. </span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#star-rating-dialog" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs.</span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#application-performance-monitoring" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#set-user-location" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location.<br></span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#setting-max-queue-size-limit" target="_self">Max Queue Size Limit</a> - </strong>Set maximum size for the request queue.</span>
+  </li>
+  <li>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#manual-sessions" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#automatic-remote-config" target="_self">Automatic Remote Config</a> - </strong>If
+    enable, will automatically download newest remote config values.
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#direct-attribution" target="_self">Direct Attribution</a> -</strong>
+    Report direct user attribution
+  </li>
+  <li>
+    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#indirect-attribution" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
+    Report indirect user attribution
+  </li>
+</ul>
 <h2>Attribution</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
+  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition.
 </p>
@@ -1393,36 +1493,3 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   function:
 </p>
 <pre><code class="JavaScript">Countly.isInitialized();</code></pre>
-<h2>Optional parameters during initialization</h2>
-<p>
-  You can provide optional parameters that will be used during begin_session request.
-  They must be set right after the <code>init</code> function so that they are
-  set before the request is sent to the server. To set them, use the
-  <code>setOptionalParametersForInitialization</code> function. If you want to
-  set those optional parameters, this function has to be called every time the
-  app starts. If you don't want to set one off those values, leave that field
-  <code>null</code>.
-</p>
-<p>The optional parameters are:</p>
-<ul>
-  <li>Country code: ISO Country code for the user's country</li>
-  <li>City: Name of the user's city</li>
-  <li>
-    Location: Comma separate latitude and longitude values, for example "56.42345,123.45325"
-  </li>
-  <li>Your user’s IP address</li>
-</ul>
-<pre><code class="JavaScript">
-//setting optional parameters
-Map&lt;String, Object&gt; options = {
-    "city": "Tampa",
-    "country": "US",
-    "latitude": "28.006324",
-    "longitude": "-82.7166183",
-    "ipAddress": "255.255.255.255"
-};
-Countly.setOptionalParametersForInitialization(options);
-
-//and then call the below code
-Countly.init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
-</code></pre>
