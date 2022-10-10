@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.06.0.</span>
+  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.06.X.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -59,9 +59,24 @@
     </tr>
   </tbody>
 </table>
+<p>
+  If you want to get the Countly Web SDK codebase locally you can go to the github
+  repo <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
+  it inside your project folder by executing the lines:
+</p>
+<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
+</code></pre>
+<p>
+  Additionally to see example integrations of Countly Web SDK within some popular
+  front-end frameworks, you can reach our AngularJS and ReactJS examples from
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a>
+  and
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a>
+  respectively.
+</p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
@@ -87,7 +102,7 @@
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue or synchronously allowing the script to load before executing any functions.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
@@ -96,7 +111,7 @@
   Here you would also need to provide your application key and server URL. For
   more information on how to acquire your application key (APP_KEY) and server
   URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url%E2%80%9D.">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
   Also if you are planning to use Application Performance Monitoring (APM) there
   would be additional steps necessary for you to follow. For more information on
   APM and its integration please check
@@ -183,10 +198,10 @@ Countly.track_pageview();
 
 https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
 <p>
-  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;">&nbsp;to get this SDK directly from your Countly server.</span>
+  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As the third alternative option, you may download&nbsp;</span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;">&nbsp;from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
+  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Then you will be able to make event calls such as:</span>
@@ -225,6 +240,13 @@ function clickEvent(ob){
 &lt;input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
   </div>
 </div>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>SDK Logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enabling logging.
@@ -240,8 +262,9 @@ function clickEvent(ob){
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">//during initialization
-    Countly.debug = true;</code></pre>
+    <pre><code class="html">
+//during initialization
+Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="html">Countly.init({
@@ -375,7 +398,8 @@ Countly.init({
     true)
   </li>
   <li>
-    <strong>interval</strong> -&nbsp;<span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
+    <strong>interval</strong> -
+    <span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
   </li>
   <li>
     <strong>queue_size</strong> - maximum amount of queued requests to store
@@ -386,11 +410,12 @@ Countly.init({
     <span style="font-weight: 400;">set the time to wait in seconds after a failed connection to the server (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>inactivity_time</strong> -&nbsp;<span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
+    <strong>inactivity_time</strong> -
+    <span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
   </li>
   <li>
     <strong>session_update</strong> -
-    <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)&nbsp;</span>
+    <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
   <li>
     <strong>max_events</strong> -&nbsp;maximum amount of events to send in one
@@ -405,6 +430,10 @@ Countly.init({
   </li>
   <li>
     <strong>ignore_prefetch</strong> -<span style="font-weight: 400;">&nbsp;ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
+  </li>
+  <li>
+    <strong>heatmap_whitelist</strong> -
+    <span style="font-weight: 400;">Array of trusted domains (as string) that can trigger heatmap script loading. By default the SDK whitelists your server url.</span>
   </li>
   <li>
     <strong>force_post</strong> -
@@ -431,6 +460,14 @@ Countly.init({
   <li>
     <strong>remote_config</strong> -
     <span style="font-weight: 400;">enable automatic remote config fetching, provide the callback function to be notified when fetching is complete (default: false)</span>
+  </li>
+  <li>
+    <strong>rc_automatic_optin_for_ab</strong> -
+    <span style="font-weight: 400;">opts in the user for A/B testing while fetching the remote config (default: true)</span>
+  </li>
+  <li>
+    <strong>use_explicit_rc_api</strong> -
+    <span style="font-weight: 400;">set it to true to use the explicit remote config API (default: false)</span>
   </li>
   <li>
     <strong>namespace</strong> - h<span>ave a separate namespace for persistent data when using multiple trackers on the same domain</span>
@@ -1259,6 +1296,40 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
 }
 </code></pre>
 <h1>Heatmaps</h1>
+<p>
+  Heatmaps feature is a web exclusive plugin that helps you to visualize user interactions
+  on your website. Web SDK supports this functionality by providing user click
+  and scroll information to your server. Then from your server, you can trigger
+  Heatmaps overlay to visualize these click clusters and scroll zones on your website.
+</p>
+<p>
+  To display this overlay the SDK loads certain scripts from your server. To ensure
+  the source of these scripts and to enable these scripts to be loaded from somewhere
+  else other than your Countly server, the SDK offers a whitelisting option during
+  the initialization since SDK version 22.06.2. To whitelist domains other than
+  your Countly server you should provide an array of these domains, as String values,
+  under the 'heatmap_whitelist' flag during the initialization:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com"];
+
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
+});</code></pre>
+  </div>
+</div>
 <h2>Tracking Clicks</h2>
 <p>
   <span style="font-weight: 400;">This method will automatically track clicks on the last reported view and display them on the heatmap.</span>
@@ -1276,7 +1347,7 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://resources.count.ly/docs/view-analytics#section-troubleshooting">Troubleshooting guide</a>.</span>
+  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps#heatmaps-troubleshooting">Troubleshooting guide</a>.</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
@@ -1318,20 +1389,20 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
 </div>
 <h1>Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote configuration functionality is disabled by default and needs to be explicitly enabled.</span>
+  <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">When remote configuration is enabled, the SDK will only try to fetch it once upon SDK initialization and will receive the initially remote configuration and persistently store it.</span>
+  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. Starting from the <strong>SDK version 22.06.2</strong> you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
+</p>
+<h2>Automatic Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific trigers. For example, after SDK initialization, changing device ID.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In the event of one of the following sessions, assuming it would not be possible to load the remote configuration from storage, you will receive an error object in the callback, but you will still have the stored values of the cached remote configuration object.</span>
-</p>
-<h2>Enabling Remote Configuration</h2>
-<p>
-  <span style="font-weight: 400;">You may enable remote configuration by providing&nbsp;the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;">&nbsp;setting when initializing the SDK.</span>
+  <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you provide a callback, it will be called when remote configuration is initially loaded and reloaded if you change the device_id.</span>
+  <span style="font-weight: 400;">If you provide a callback, the callback will be called when the Remote Config is initially loaded and when it is reloaded if you change the device_id. This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1339,88 +1410,114 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//to enable remote configuration
-
-// in your Countly init script
+    <pre><code class="javascript">// in your Countly init script
+Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = true;
-
-//or provide a callback to be notified when configs are loaded
+<br>// OR<br>
+// provide a callback to be notified when configs are loaded
+Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = function(err, remoteConfigs){
-if (!err) {
-//we have our remoteConfigs here
-console.log(remoteConfigs);
-}
+  if (!err) {
+    //we have our remoteConfigs here
+    console.log(remoteConfigs);
+  }
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//to enable remote configuration
+    <pre><code class="javascript">// in your Countly init script
 Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    remote_config: true //this will enable loading remote configuration
-});
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: true 
+});<br><br>// OR
 
-//or provide a callback to be notified when configs are loaded
+// provide a callback to be notified when configs are loaded
 Countly.init({
-debug:false,
-app_key:"YOUR_APP_KEY",
-device_id:"1234-1234-1234-1234",
-url: "https://try.count.ly",
-remote_config: function(err, remoteConfigs){
-if (!err) {
-//we have our remoteConfigs here
-console.log(remoteConfigs);
-}
-}
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: function(err, remoteConfigs){
+    if (!err) {
+      //we have our remoteConfigs here
+      console.log(remoteConfigs);
+    }
+  }
 });</code></pre>
   </div>
 </div>
-<h2>
-  Receiving configuration values<span style="font-weight: 400;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
-</h2>
+<h2>Manual Remote Config</h2>
 <p>
-  <span style="font-weight: 400;">You receive the initially loaded remote configuration values in the provided callback, but if you&nbsp;need to get an updated version afterward, you can manually reload it.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span style="font-weight: 400;">If you want, you can manually fetch the Remote Config in order to receive the latest value anytime after the initialization. To do so you have to use the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;"> call. This method is also used for reloading the values for updating them according to the latest changes you made on your server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You may call&nbsp;</span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the remote config object of a value for a specific key.</span>
+  <span style="font-weight: 400;">By using this method, you can simply load the entire object or load some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large. This call will automatically save the fetched keys internally.</span>
+</p>
+<h3>Fetch All Keys</h3>
+<p>
+  Here you so not need to provide any parameters to the call but providing a callback
+  is the recommended practice.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load the whole configuration object with a callback
+Countly.fetch_remote_config(function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
+  }<br>});<br><br>// or whole configuration object with no params
+Countly.fetch_remote_config();</code></pre>
+<h3>Fetch Specific Keys</h3>
+<p>
+  Here the keys should be provided as string values in an array, as the first parameter
+  in <em>fetch_remote_config</em> call. You can provide a callback function as
+  a second parameter.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load specific keys only, as `key1` and `key2`
+Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});<br><br></code></pre>
+<h3>Fetch All Except Specific Keys</h3>
+<p>
+  Here the first parameter should be set to 'null' or 'undefined' and the keys
+  that you want to omit must be provided as the second parameter as an array of
+  keys as string. As a third parameter you can provide a callback function.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2'
+Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});</code></pre>
+<h2>Accessing Remote Config Values</h2>
+<p>
+  <span style="font-weight: 400;">You may call </span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the Remote Config object of a value for a specific key or all keys from your local storage.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This method should be called once the remote configurations have been successfully loaded, or it will simply return an empty object or undefined values.</span>
+  <span style="font-weight: 400;">This method should be called once the Remote Config have been successfully loaded, or it will simply return an empty object or undefined values.</span>
 </p>
-<pre><code class="javascript">//get whole remote config object
+<pre><code class="javascript">//get whole Remote Config object
 var remoteConfig = Countly.get_remote_config();
 
 //or get value for specific key like 'test'
-var test = Countly.get_remote_config("test");</code></pre>
-<h2>Reloading Configuration Values</h2>
+var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
+<h2>A/B Testing</h2>
 <p>
-  <span style="font-weight: 400;">Should you need to reload the remote config in order to receive the latest value, call&nbsp;the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;">&nbsp;method.</span>
+  <span style="font-weight: 400;">Enrolling your users when you fetch the Remote Config values is possible since <strong>SDK version 22.06.2.</strong></span>
 </p>
 <p>
-  <span style="font-weight: 400;">By using this method, you may reload the entire object or simply reload some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large.</span>
+  <span style="font-weight: 400;">To do so you have to set the use_explicit_rc_api flag to true during init (by default it is <em>false</em>). This will use the new Remote Config API and enroll your users to the A/B testing if they are eligible. However if you want to use the new API without enrolling your users automatically <em>rc_automatic_optin_for_ab&nbsp;</em>flag should be set to false during init (by default it is <em>true</em>).</span>
 </p>
-<pre><code class="javascript">//reload whole configuration object
-Countly.fetch_remote_config(function(err, remoteConfigs){
-    if (!err) {
-        console.log(remoteConfigs);
-    }
-});
-
-//reload specific keys only, as `key1` and `key2`
-Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
-if (!err) {
-console.log(remoteConfigs);
-}
-});
-
-//reload all key values except specific keys, as `key1` and `key2
-Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
-if (!err) {
-console.log(remoteConfigs);
-}
-});</code></pre>
+<p>
+  <span style="font-weight: 400;">If you would like to enroll user to A/B testing without going through the Remote Config API, instead you can use the call <em>enrollUserToAb&nbsp;</em>with keys (an array of string values) that you want to enroll the user to.</span>
+</p>
+<pre><code class="javascript">// enrolling user for 'key1' and 'key2'
+Countly.enrollUserToAb(["key1","key2"]);</code></pre>
+<h2>Consent</h2>
+<p>
+  If consents are enabled, to fetch the Remote Config data you have to provide
+  the 'remote-config' consent for this feature to work.
+</p>
 <h1>User Feedback</h1>
 <p>
   If you want to receive feedback from your users there are a couple of ways you
@@ -1628,6 +1725,60 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 <p>
   Note: Feedback widget's show policies are handled internally by the web sdk.
 </p>
+<h3>Manual Reporting</h3>
+<div class="callout callout--warning">
+  <p>
+    Manual Feedback Reporting feature is only available from SDK version 22.06.1
+    and up.
+  </p>
+</div>
+<p>
+  Reporting feedback widgets manually consists of 3 main steps:
+</p>
+<ol>
+  <li>
+    Fetching widget list from the server with 'get_available_feedback_widgets'
+  </li>
+  <li>
+    Fetching one widget's data from that list with 'getFeedbackWidgetData'
+  </li>
+  <li>
+    Reporting that single widget's results with 'reportFeedbackWidgetManually'
+  </li>
+</ol>
+<p>
+  At first step, by using the 'get_available_feedback_widgets' function, you can
+  fetch the list of available widgets from your server as an array of widget objects.
+  This function takes a callback as a parameter and this callback should have two
+  parameters, first one for the returned list and the second one for the error.
+  Inside your callback you should process this array of widget objects and pick
+  one object that you want to report the results for.
+</p>
+<p>
+  At second step, by using the 'getFeedbackWidgetData' function, you can fetch
+  the data of the widget of your choice. This functions has two parameters, first
+  one is the widget object obtained from the first step and the second one is a
+  callback with two parameters, one for the retrieved data and second one is for
+  the error. Inside your callback you can process the returned object and gather
+  information necessary for you to provide at the next step.
+</p>
+<p>
+  The third and last step is the part where you would report the results for the
+  widget of your choice by using the 'reportFeedbackWidgetManually' function. This
+  function takes three parameters, first the widget object obtained from the first
+  step, second the widget data from the second step and third the result object
+  that you want to report for your widget. This result object would have different
+  key/value pairs depending on the type of widget you are reporting about so you
+  can reach to an in-depth explanation on how to form this object from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">here</a>.
+</p>
+<p>
+  And example implementation of the mentioned concepts can be seen here:
+</p>
+<div>
+  <pre><span>&nbsp; &nbsp; </span><span>var </span><span></span><span>CountlyFeedbackWidget</span><span>;</span><br><span>  &nbsp; </span><span>var </span><span></span><span>CountlyWidgetData</span><span>;</span><br><br><span>&nbsp; &nbsp; </span><span>// an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating' &nbsp; &nbsp;</span><br><span>  &nbsp; </span><span>function </span><span></span><span>getFeedbackWidgetListAndReportResults</span><span>(</span><span>widgetType</span><span>) </span><span></span><span>{</span><br><span>  &nbsp; &nbsp; </span><span>// get the widget list</span><br><span>  &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>get_available_feedback_widgets</span><span>(</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>// callback function, 1st param is the feedback widget list</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>function</span><span></span><span>(</span><span>feedbackList</span><span>,</span><span></span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>log</span><span>(</span><span>err</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>return</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br>          <br>          // Go through the widget list and pick one with the same type you are looking for<br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>var </span><span></span><span>i</span><span></span><span>= </span><span></span><span>feedbackList</span><span>.</span><span>length</span><span></span><span>-</span><span></span><span>1</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>while</span><span></span><span>(</span><span>i</span><span>--</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>feedbackList</span><span>[</span><span>i</span><span>].</span><span>type</span><span></span><span>===</span><span></span><span>widgetType</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>CountlyFeedbackWidget</span><span></span><span>=</span><span></span><span>feedbackList</span><span>[</span><span>i</span><span>];</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>break</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br>  <br>          // if the widget exists continue<br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>CountlyFeedbackWidget</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// Get data with the widget object</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>getFeedbackWidgetData</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// callback function, 1st param is the feedback widget data</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>function</span><span></span><span>(</span><span>feedbackData</span><span>,</span><span></span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>log</span><span>(</span><span>err</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>return</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>CountlyWidgetData</span><span></span><span>=</span><span></span><span>feedbackData</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// report results according to the widget type. Results to report are different for each widget type</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'nps'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>{</span><span></span><span>rating</span><span>:</span><span></span><span>3</span><span>,</span><span></span><span>comment</span><span>:</span><span></span><span>"comment"</span><span></span><span>});</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>                else </span><span></span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'survey'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>var </span><span></span><span>widgetResponse</span><span></span><span>=</span><span></span><span>{};</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// form the key/value pairs according to data</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>widgetResponse</span><span>[</span><span>"answ-"</span><span></span><span>+</span><span></span><span>CountlyWidgetData</span><span>.</span><span>questions</span><span>[</span><span>0</span><span>].</span><span>id</span><span>]</span><span></span><span>=</span><span></span><span>CountlyWidgetData</span><span>.</span><span>questions</span><span>[</span><span>0</span><span>].</span><span>type</span><span></span><span>===</span><span></span><span>"rating"</span><span></span><span>?</span><span></span><span>3</span><span></span><span>:</span><span></span><span>"answer"</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>widgetResponse</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>                else </span><span></span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'rating'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>{</span><span></span><span>rating</span><span>:</span><span></span><span>3</span><span>,</span><span></span><span>comment</span><span>:</span><span></span><span>"comment"</span><span>,</span><span></span><span>email</span><span>:</span><span></span><span>"email"</span><span>,</span><span></span><span>contactMe</span><span>:</span><span></span><span>true</span><span></span><span>});</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>          else</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>error</span><span>(</span><span>"The widget type you are looking for does not exist"</span><span>)</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>})</span><br><span>  &nbsp; </span><span>}</span></pre>
+</div>
+<p>&nbsp;</p>
 <h1>User Profiles</h1>
 <h2>User Details</h2>
 <p>
@@ -1947,7 +2098,7 @@ Countly.opt_in();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#section-gdpr-consent-management">GDPR section</a>.</span>
+  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#disable-tracking-until-given-consent">following section</a>.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -1989,9 +2140,6 @@ Countly.require_consent = true;</code></pre>
 });</code></pre>
   </div>
 </div>
-<p>
-  <span style="font-weight: 400;">Next, you may select all the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#helper-methods" target="_self">helper methods</a>&nbsp;you will be using. They won't be tracking or sending anything to the server until consent is given.</span>
-</p>
 <h2>Features for Consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK provides different features for consent. You may check all the supported features for the current SDK by checking the&nbsp;</span><strong>Countly.features</strong><span style="font-weight: 400;">&nbsp;property. Here is a list containing all the properties with ex</span>planations:
@@ -2854,9 +3002,8 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   The default behavior of Countly Web SDK is to ignore bots crawling your site
   to provide you a more accurate user analytics data. However, Countly can't detect
   and block all bots crawling the internet as we use the userAgent string to detect
-  bots and spammy bots can hide by providing conventional
-  UserAgent. However, this is not the case for a bot that you have created your
-  own.
+  bots and spammy bots can hide by providing conventional UserAgent. However, this
+  is not the case for a bot that you have created your own.
 </p>
 <p>
   To include your bots to be also ignored by the Countly Web SDK you have to include

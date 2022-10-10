@@ -421,17 +421,16 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   </p>
 </div>
 <p>
-  Java SDK provides a special mode to transfer data to Countly Servers, called
-  the 'Backend Mode'. It is useful when users have their data stored in one data
-  store and want to transfer this data directly to the servers without storing
-  it persistently beforehand.&nbsp;With the help of this mode, users are able to
-  record and send data to their server without storing it locally.
+  The SDK provides a special mode to transfer data to your Countly Server, called
+  'Backend Mode'. This mode disables the regular API of the SDK and offers an alternative
+  interface to record user data. This alternative approach would be useful when
+  integrated in backend scenarios or when importing data into countly from a different
+  source.
 </p>
 <p>
-  <strong>Note:</strong> When this mode is enabled, SDK enters into a special mode
-  where all features (Sessions, Events, Views, Crash, User properties, Consents)
-  will stop working. SDK keeps the data recorded during this mode in volatile memory
-  and when the application is closed the data will be lost.
+  Data recorded with this mode is kept in memory queues and is not stored persistently.
+  This means that any data, that was not yet sent to the server when the app is
+  closed/killed, will be lost.
 </p>
 <h3>Enabling Backend Mode</h3>
 <p>

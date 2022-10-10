@@ -1,16 +1,13 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0<br>
+  and it applies to version 22.02.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/360037813231" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 21.11 and older, click
+    <a href="/hc/en-us/articles/6116239554841" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -90,6 +87,13 @@ if(!await Countly.isInitialized()) {
   commands in the rest of this document to send additional data and metrics to
   your server.
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>Enable logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
@@ -207,7 +211,8 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code>and
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
-  <a href="https://bintray.com/countly/maven/sdk-native">page</a>, currently 20.11.6):
+  <a href="https://search.maven.org/artifact/ly.count.android/sdk-native">page</a>,
+  currently 20.11.6):
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:LATEST_VERSION'    
@@ -294,9 +299,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   </li>
 </ul>
 <div class="callout callout--warning">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
@@ -454,7 +457,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   To enable a temporary device ID <strong>after</strong> initialization, use the
   method below.
 </p>
-<pre>Countly.changeDeviceId(Countly."TemporaryDeviceID", ON_SERVER);</pre>
+<pre>Countly.changeDeviceId("TemporaryDeviceID", ON_SERVER);</pre>
 <p>
   <strong>Note:</strong> When passing the
   <code class="JavaScript">TemporaryDeviceID</code> for the
@@ -530,9 +533,7 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Supported Platforms</span></strong>
-  </p>
+  <strong>Supported Platforms</strong>
   <p>
     Currently custom sound feature is only available for Android
   </p>
@@ -590,10 +591,44 @@ apply plugin: 'com.google.gms.google-services'
   follow the instructions from this URL:<br>
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
+<p>
+  <strong>Additional Intent Redirection Checks</strong>
+</p>
+<div class="callout callout--warning">
+  <p>This functionality is available since SDK version 22.02.2.</p>
+</div>
+<p>
+  Intent Redirection Vulnerability is an issue that lets your app allow malicious
+  apps to access private app components or files. Google removes apps from Google
+  Play that is susceptible to Intent Redirection Vulnerability. For Push Notifications,
+  we are also using Intent Redirection in our SDK, so for that reason, we have
+  also implemented additional Intent Redirection protection.
+</p>
+<p>
+  By default additional intent redirection is enabled for intent redirect security,
+  you can disable the additional intent redirection:
+</p>
+<pre>Countly.configureIntentRedirectionCheck([], [], false);</pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks. More
+  info can be found
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+</p>
+<p>
+  If, for some reason, the 'activity name' does not start with the 'application
+  package name' (for e.g if you are using Android Product/Build Flavors to create
+  multiple apps with the same code base), then you need to provide the additional
+  allowed class and package names for Intent Redirection manually.
+</p>
+<p>
+  You can set the allowed package and class names for Intent Redirection using
+  this call:
+</p>
+<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instruction from this URL
-  <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
+  For iOS push notification please follow the instructions from
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
   For React Native you can find
@@ -803,7 +838,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   You will need to call one function to do so.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigClearValues();</code></pre>
-<h1>User feedback</h1>
+<h1>User Feedback</h1>
 <p>
   There are a different ways of receiving feedback from your users: the Star-rating
   dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).
@@ -814,7 +849,8 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   system as well as leave a text comment. The Surveys widgets (Surveys and NPS®)
   allow for even more targeted feedback from users.
 </p>
-<h2>Star rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star Rating Dialog</h3>
 <p>
   The Star-rating integration provides a dialog for getting user feedback about
   an application. It contains a title, a simple message explaining its purpose,
@@ -834,7 +870,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   <code class="JavaScript">SetStarRatingDialogTexts</code> function.
 </p>
 <pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
-<h2>Rating widget</h2>
+<h3>Rating Widget</h3>
 <p>
   The rating widget displays a server-configured widget to your user devices.
 </p>
@@ -865,7 +901,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   Then, call the function to show the widget popup using the widget ID below.
 </p>
 <pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
-<h2>Feedback widget</h2>
+<h2>Feedback Widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
@@ -907,17 +943,64 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <h1>User Profiles</h1>
 <p>
   You can provide Countly any details you may have about your user or visitor.
-  This will allow you to track each specific user on the "User Profiles" tab, which
-  is available in Countly Enterprise Edition. For more details, please review the
+  This will allow you to track each specific user on the "User Profiles" tab, available
+  in Countly Enterprise Edition. For more information, please review the
   <a href="/hc/en-us/articles/360037630571" target="_self" rel="undefined">User Profiles documentation</a>.
 </p>
 <p>
-  In order to set a user profile, use the code snippet below. After you send a
-  user’s data, it can be found in your Dashboard under
+  User details can be sent to your Countly instance in two separate ways depending
+  on your needs and use case. The first option is to set the user data in bulk
+  by using <code class="JavaScript">Countly.userDataBulk</code> call. This allows
+  you to bundle up all your user detail information in a single request to the
+  server and helps minimize the traffic to your server. If you have access to multiple
+  user details of your visitors at a given time, using this method would be the
+  preferred option
+</p>
+<p>
+  The second option is using <code class="JavaScript">Countly.userData</code> calls
+  to send user details to your server as separate requests. This can be useful
+  in situations where you gain access to user information one at a time and you
+  would like to report that info to your server on the fly.
+</p>
+<p>
+  Using <code class="JavaScript">Countly.userDataBulk</code> call requires you
+  to call <code class="JavaScript">Countly.userDataBulk.save()</code> call,&nbsp;
+  manually, to trigger sending data to your server, as a signifier marking the
+  end of user details you want to record. In the case of
+  <code class="JavaScript">Countly.userData</code> though, you will not need to
+  use any other methods to initiate the data transmission. It will handle that
+  logic internally.
+</p>
+<p>
+  <strong>Note:</strong> There is some inconsistency in underlying iOS and Android
+  code when using the bulk mode. This problem surfaces when modifying the same
+  key multiple times. For iOS it keeps the last value for a key on all push/pull
+  user property calls, for Android it will try to combine them. For now the work
+  around is that you need to call the “Countly.userDataBulk.save();” after every
+  push/pull user property call. This does eliminate some of the potential gains
+  of this mode, but it does result in the expected result server-side.
+</p>
+<p>
+  Snippets below show examples of using these calls in various situations. After
+  you send a user’s data, it can be found in your Dashboard under
   <code class="JavaScript">Users &gt; User Profiles</code>.
 </p>
-<pre><code class="javascript">// Example for setting user data
-var options = {};
+<h2>Setting Predefined Values</h2>
+<p>
+  Predefined user properties are a set of default keys that are commonly used in
+  visitor data collection.
+</p>
+<p>
+  Bellow you can see how this can be set using the regular user property access
+  mode and using the bulk mode:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Regular mode</span>
+    <span class="tabs-link">Bulk mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">var options = {};<br>
 options.name = "Nicola Tesla";
 options.username = "nicola";
 options.email = "info@nicola.tesla";
@@ -926,15 +1009,74 @@ options.phone = "+90 822 140 2546";
 options.picture = "http://www.trust.electric/images/people/nicola.png";
 options.picturePath = "";
 options.gender = "M";
-options.byear = 1919;
+options.byear = 1919;<br>
 Countly.setUserData(options);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};<br>
+options.name = "Name of User";
+options.username = "Username";
+options.email = "User Email";
+options.organization = "User Organization";
+options.phone = "User Contact number";
+options.picture = "https://count.ly/images/logos/countly-logo.png";
+options.picturePath = "";
+options.gender = "Male";
+options.byear = 1989;<br>
+Countly.userDataBulk.setUserProperties(options);
+// Unless you call this last function your data would not be sent to your server
+
+Countly.userDataBulk.save();
+</code></pre>
+  </div>
+</div>
+<h2>Setting Custom Values</h2>
 <p>
-  Countly also supports custom user properties that you can attach for each user.
-  In order to set or modify a user's data (e.g. increment, multiply, etc.), use
-  the code snippet below.
+  Custom user properties are any arbitrary values that you would like to store
+  under your user's profile. These values can be internal IDs, registration dates,
+  horoscopes, or any other value that is not included in the predefined user properties.
 </p>
-<pre><code class="javascript">// examples for custom user properties
-Countly.userData.setProperty("keyName", "keyValue"); //set custom property
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Regular mode</span>
+    <span class="tabs-link">Bulk mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">var options = {};
+
+options.customeValueA = "nicola";
+options.customeValueB = "info@nicola.tesla";
+// ...
+
+Countly.setUserData(options);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};
+
+options.customeValueA = "Custom value A";
+options.customeValueB = "Custom value B";
+// ...
+
+Countly.userDataBulk.setUserProperties(options);
+
+// Unless you call this last function your data would not be send to your server
+
+Countly.userDataBulk.save();</code></pre>
+  </div>
+</div>
+<h2>Modifying Data</h2>
+<p>
+  Additionally, you can modify these custom values in various ways like increasing
+  a number, pushing new values to an array, etc.&nbsp; You can see the whole range
+  of operations below.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Regular mode</span>
+    <span class="tabs-link">Bulk mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.userData.setProperty("keyName", "keyValue"); //set custom property
 Countly.userData.setOnce("keyName", 200); //set custom property only if property does not exist
 Countly.userData.increment("keyName"); //increment value in key by one
 Countly.userData.incrementBy("keyName", 10); //increment value in key by provided value
@@ -945,6 +1087,28 @@ Countly.userData.setOnce("setOnce", 200);//insert value to array of unique value
 Countly.userData.pushUniqueValue("type", "morning");//insert value to array of unique values
 Countly.userData.pushValue("type", "morning");//insert value to array which can have duplicates
 Countly.userData.pullValue("type", "morning");//remove value from array</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),
+Countly.userDataBulk.setProperty("increment", 5),
+Countly.userDataBulk.increment("increment"),
+Countly.userDataBulk.setProperty("incrementBy", 5),
+Countly.userDataBulk.incrementBy("incrementBy", 10),
+Countly.userDataBulk.setProperty("multiply", 5),
+Countly.userDataBulk.multiply("multiply", 20),
+Countly.userDataBulk.setProperty("saveMax", 5),
+Countly.userDataBulk.saveMax("saveMax", 100),
+Countly.userDataBulk.setProperty("saveMin", 5),
+Countly.userDataBulk.saveMin("saveMin", 50),
+Countly.userDataBulk.setOnce("setOnce", 200),
+Countly.userDataBulk.pushUniqueValue("type", "morning"),
+Countly.userDataBulk.pushValue("type", "morning"),
+Countly.userDataBulk.pullValue("type", "morning")])
+.then(values =&gt; {
+// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed
+Countly.userDataBulk.save();<br>})</code></pre>
+  </div>
+</div>
 <h1>Application Performance Monitoring</h1>
 <p>
   The Performance Monitoring feature allows you to analyze your application's performance
@@ -1081,9 +1245,9 @@ Countly.endTrace(traceKey, customMetric);</pre>
 </ul>
 <p>
   Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also
-  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#consents" target="_self" rel="undefined">iOS Consents</a>
+  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent-management" target="_self" rel="undefined">Android Consents</a>).
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).
 </p>
 <p>
   Next we will go over the methods that are available in this SDK.
@@ -1257,9 +1421,7 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
+  <strong>Minimum Countly SDK Version</strong>
   <p>
     This feature is only supported by the minimum SDK version 20.11.7.
   </p>
@@ -1282,7 +1444,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 Countly.setCustomMetrics(customMetric);</code></pre>
 <h2>Attribution analytics &amp; install campaigns</h2>
 <p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure the performance of your marketing campaign by attributing
   installs from specific campaigns. This feature is available for the Enterprise
   Edition.
@@ -1300,7 +1462,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 	&lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
-  <strong>For more information about how to set up your campaigns, please <a href="http://resources.count.ly/docs/referral-analytics">review this documentation</a>.</strong>
+  <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
 </p>
 <p>Call the method below before initialization.</p>
 <pre>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
