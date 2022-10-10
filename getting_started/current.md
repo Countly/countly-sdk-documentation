@@ -494,22 +494,3 @@
   like "22.02.3". The first two numbers are what we are calling the major version
   and those are the ones that you should be paying attention to ("22.02.X").&nbsp;
 </p>
-<p>
-<h1>How to handle your Device ID</h1>
-</p>
-<p>&nbsp;</p>
-<p>
-  <span style="font-weight: 400;">Countly uses device ID information it receives from its SDKs to brand each device that visits your app or website to provide you meaningful analytics data out of the box. This default behavior considers the most common case of “1-device, 1-user” scenario and provides visitor information accordingly. Out of the box, Countly would recognize each device (or browser) that visits your app or website as a user with an SDK generated random UUID and record them under the User Profiles as a visitor. Device ID information of a device would be stored in the local storage of that device (this behavior is configurable) and unless it has been erased it would be used to recognize that device from that point on.</span>
-</p>
-<p>
-  <span style="font-weight: 400;"><img src="/hc/article_attachments/9659088195993/mceclip0.png" alt="mceclip0.png"></span>
-</p>
-<p>
-  <span style="font-weight: 400;">However, while “1-device, 1-user” is a common scenario, we can think of many situations where this would not hold up or it can lead to unwanted results. For example if a single user connects to your app/website from multiple devices, all of those connections would be recorded as separate visitors and would cause unnecessary increase in the number of user data recorded. Or if multiple users use the same device to reach your app/website all those users would be recorded as a single visitor and would reduce precision of the data you gather. To mitigate these problems Countly SDKs gives you the ability to change the device ID of a user to any value you deem appropriate. This action is called device ID merging and is a vital tool for obtaining user information as long as you know who is visiting your app/website accurately.</span>
-</p>
-<p>
-  <img src="/hc/article_attachments/9659045665049/mceclip1.png" alt="mceclip1.png">
-</p>
-<p>
-  <span style="font-weight: 400;">If you change the SDK generated device ID with a device ID of your choice during the authentication process, regardless of that user sharing their device with another user or using your site/app from multiple devices, you would always get information particular to their behavior and would prevent data duplication.</span>
-</p>
