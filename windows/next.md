@@ -288,45 +288,54 @@ await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pr
 </p>
 <h2>Timed events</h2>
 <p>
-  <span>It's possible to create timed events by defining a start and a stop moment.</span>
+  Timed events are events with extra time/duration information which you have to
+  handle manually. Timed events needs a call to start the event and another call
+  to end the event. First call is used to start an internal timer which would continue
+  counting until the second call is used to end the call. This second call would
+  end the timer, create an event with the given name and the with the duration
+  from the timer and send it to the event queue. If this second call has not been
+  called or if the app has been closed before calling it, no event would be created.
+  As the timer is stored at the memory of the device, if you close the app before
+  ending the event, you would have to start all over when you open the app later
+  again.
 </p>
-<pre><code class="java hljs">string eventName = <span class="hljs-string">"Some event"</span>;
+<pre><code class="java">string eventName = "Some event";
 
-<span class="hljs-comment">//start some event</span>
+//start some event with the event name "Some event"
 Countly.Instance.StartEvent(eventName);
-<span class="hljs-comment">//wait some time</span>
+//wait some time
 
-<span class="hljs-comment">//end the event </span>
+//end the event with the same event name "Some event"
 Countly.Instance.EndEvent(eventName);</code></pre>
 <p>
   <span>You may also provide additional information when ending an event. In that case, you can provide the segmentation, count, or sum values. The default values for those are "null", 1, and 0.</span>
 </p>
-<pre><code class="java hljs">string eventName = <span class="hljs-string">"Some event"</span>;
+<pre><code class="java">string eventName = "Some event";
 
-<span class="hljs-comment">//start some event</span>
+//start some event
 Countly.Instance.StartEvent(eventName);
-<span class="hljs-comment">//wait some time</span>
+//wait some time
 
 Segmentation segmentation = new Segmentation();
-segmentation.Add(<span class="hljs-string">"wall"</span>, <span class="hljs-string">"orange"</span>);
+segmentation.Add("wall", "orange");
 
-<span class="hljs-comment">//end the event while also providing segmentation information</span>
+//end the event while also providing segmentation information
 Countly.Instance.EndEvent(eventName, segmentation);
 </code></pre>
 <p>Here are other options to end timed events:</p>
-<pre><code class="java hljs"><span class="hljs-comment">//end the event while providing segmentation information and count</span>
-Countly.Instance.EndEvent("timed-event", segmentation, <span class="hljs-number">4</span>);<br><br><span class="hljs-comment">//end the event while providing segmentation information, count and sum</span>
-Countly.Instance.EndEvent("timed-event", segmentation, <span class="hljs-number">4, 10</span>);</code></pre>
+<pre><code class="java">//end the event while providing segmentation information and count
+Countly.Instance.EndEvent("timed-event", segmentation, 4);<br><br>//end the event while providing segmentation information, count and sum
+Countly.Instance.EndEvent("timed-event", segmentation, 4, 10);</code></pre>
 <p>
-  You may cancel the started timed event in case it is not relevant anymore:
+  You may cancel an already started timed event in case it is not needed anymore:
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">//start some event</span>
+<pre><code class="java">//start some event
 Countly.Instance.StartEvent(eventName);
-<span class="hljs-comment">//wait some time</span>
+//wait some time
 
-<span class="hljs-comment">//cancel the event </span>
+//cancel the event
 Countly.Instance.CancelEvent(eventName);</code></pre>
-<h2 id="consent" class="anchor-heading">Consent</h2>
+<h2>Consent</h2>
 <p>
   <span>This feature uses&nbsp;<code>Events</code>&nbsp;consent.&nbsp;</span><span>No additional events will be recorded if consent is required and not given.</span>
 </p>
