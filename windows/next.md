@@ -1,10 +1,10 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 21.11.0.
+  It applies to version 22.02.0.
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
+    To access the documentation for version 21.11 click&nbsp;<a href="/hc/en-us/articles/11428429151513">here.</a>
   </p>
 </div>
 <div>
