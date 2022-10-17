@@ -526,15 +526,29 @@
   variation of your site. This can be something like the background color you want
   to try or can be a new text for your page title.<br>
   <img src="/hc/article_attachments/9557847373337/mceclip3.png" alt="mceclip3.png"><br>
-  <br>
-  After this last step now you can publish your experiment and check its progress
-  whenever you want from the A/B Testing section on your server.<br>
+</p>
+<p>
+  After this step now you can publish your experiment and check its progress whenever
+  you want from the A/B Testing section on your server, but you would still need
+  to establish communication between your server and your app/website with the
+  help of the Countly SDK.
+</p>
+<p>
   Countly uses Remote Config functionality to communicate your experiment to your
-  website or app. So you would have to enable this functionality in your SDK integration,
-  most probably during the initialization, and use the delivered parameters (like
-  the background color) in your app/website in the appropriate place. If you were
-  able to integrate it properly, the Countly A/B Testing would handle the rest
-  and deliver the user experience, and so the parameters, properly without you
-  implementing any other complex internal logic.<br>
-  <br>
+  website or app. So you would have to enable this functionality in your SDK integration.
+  Most SDKs give you an option to automatically fetch the values you have set in
+  your test during the SDK initialization. Or if you would like to do it manually
+  you can fetch them according to your internal logic. When these values are fetched
+  most SDKs would automatically enroll the user into the A/B test if they are eligible.
+  Later you can use the delivered parameters (like the background color) in your
+  app/website in the appropriate place as they would be saved during the fetching.
+  Again most SDKs would give you an option to not enroll your user automatically
+  while fetching the remote config values. Instead, they would provide a call to
+  enroll your users manually according to your needs and internal logic.
+</p>
+<p>
+  To learn more about the remote configuration options you can implement with your
+  app or website, please check the remote config section of your respective SDK
+  from
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs">here</a>.
 </p>
