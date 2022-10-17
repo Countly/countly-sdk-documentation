@@ -387,43 +387,39 @@ Views
   Generally speaking, this way assigns a unique ID to a particular user who is
   the owner of that device.
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Pros</span>
-    <span class="tabs-link">Cons</span>
-  </div>
-  <div class="tab">
-    <ul>
-      <li>
-        This is the easiest and fastest implementation, with no additional
-        steps needed other than undertaking the default SDK implementation.
-      </li>
-    </ul>
-  </div>
-  <div class="tab is-hidden">
-    <ul>
-      <li>
-        If multiple different users use the same device, they will be identified
-        as a single user in the Countly dashboard and will have a single
-        profile under
-        <a href="https://count.ly/plugins/user-profiles" target="_blank" rel="noopener nofollow">User Profiles</a>.
-      </li>
-      <li>
-        If the same user uses multiple devices, each device will be identified
-        as a separate user in the Countly dashboard; hence the same user
-        will have separate user profiles.
-      </li>
-      <li>
-        Depending on the platform, if app storage is reset (erased) or the
-        app is uninstalled and re-installed again, this user may be identified
-        as a new user and a new user profile is created. This highly depends
-        on how the platform behaves. Check
-        <a href="https://support.count.ly/hc/en-us/articles/360037501352-Countly-Implementation-and-Technical-FAQ#in-which-situations-does-a-device-id-reset" target="_self">here</a>
-        to understand what happens in such cases.
-      </li>
-    </ul>
-  </div>
-</div>
+<p>
+  <strong>Pros</strong>
+</p>
+<ul>
+  <li>
+    This is the easiest and fastest implementation, with no additional steps
+    needed other than undertaking the default SDK implementation.
+  </li>
+</ul>
+<p>
+  <strong>Cons</strong>
+</p>
+<ul>
+  <li>
+    If multiple different users use the same device, they will be identified
+    as a single user in the Countly dashboard and will have a single profile
+    under
+    <a href="https://count.ly/plugins/user-profiles" target="_blank" rel="noopener nofollow">User Profiles</a>.
+  </li>
+  <li>
+    If the same user uses multiple devices, each device will be identified as
+    a separate user in the Countly dashboard; hence the same user will have separate
+    user profiles.
+  </li>
+  <li>
+    Depending on the platform, if app storage is reset (erased) or the app is
+    uninstalled and re-installed again, this user may be identified as a new
+    user and a new user profile is created. This highly depends on how the platform
+    behaves. Check
+    <a href="https://support.count.ly/hc/en-us/articles/360037501352-Countly-Implementation-and-Technical-FAQ#in-which-situations-does-a-device-id-reset" target="_self">here</a>
+    to understand what happens in such cases.
+  </li>
+</ul>
 <h2>Tracking Known Users</h2>
 <p>
   This method, as opposed to the first one, helps Countly identify and track users
@@ -449,29 +445,25 @@ Views
   to your customer (e.g. 1 Countly user = 1 company customer, regardless of the
   device or platform they use).
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Pros</span>
-    <span class="tabs-link">Cons</span>
-  </div>
-  <div class="tab">
-    <ul>
-      <li>
-        Each of your customers will be exactly 1 single user inside Countly
-        and have 1 user profile.
-      </li>
-    </ul>
-  </div>
-  <div class="tab is-hidden">
-    <ul>
-      <li>
-        If you do not know your user ID right away and would know it only
-        after the user authenticates, you would miss all the actions that
-        were made before authentication.
-      </li>
-    </ul>
-  </div>
-</div>
+<p>
+  <strong>Pros</strong>
+</p>
+<ul>
+  <li>
+    Each of your customers will be exactly 1 single user inside Countly and have
+    1 user profile.
+  </li>
+</ul>
+<p>
+  <strong>Cons</strong>
+</p>
+<ul>
+  <li>
+    If you do not know your user ID right away and would know it only after the
+    user authenticates, you would miss all the actions that were made before
+    authentication.
+  </li>
+</ul>
 <h2>Known User With Pre-Tracking</h2>
 <p>
   To tackle the problem of missing out on data before user authentication, it is
@@ -490,32 +482,28 @@ Views
   For the definition of the user, nothing changes - it still directly corresponds
   to your customer.
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Pros</span>
-    <span class="tabs-link">Cons</span>
-  </div>
-  <div class="tab">
-    <ul>
-      <li>
-        Each of your customers will be exactly 1 single user inside Countly
-        and have 1 user profile.
-      </li>
-      <li>
-        You will have the opportunity to be able to collect and visualize
-        data before the user authenticates, but only after authentication.
-      </li>
-    </ul>
-  </div>
-  <div class="tab is-hidden">
-    <ul>
-      <li>
-        If your user does not authenticate (and so be <em>known</em>), you
-        will never receive any data from this user.
-      </li>
-    </ul>
-  </div>
-</div>
+<p>
+  <strong>Pros</strong>
+</p>
+<ul>
+  <li>
+    Each of your customers will be exactly 1 single user inside Countly and have
+    1 user profile.
+  </li>
+  <li>
+    You will have the opportunity to be able to collect and visualize data before
+    the user authenticates, but only after authentication.
+  </li>
+</ul>
+<p>
+  <strong>Cons</strong>
+</p>
+<ul>
+  <li>
+    If your user does not authenticate (and so be <em>known</em>), you will never
+    receive any data from this user.
+  </li>
+</ul>
 <h2>Managing Anonymous and Known Users Together</h2>
 <p>
   It is also possible to collect data of both user states (before login/known and
@@ -606,40 +594,34 @@ Views
   can be reached from
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#handling-loginlogout-in-your-app" target="_self">here</a>
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Pros</span>
-    <span class="tabs-link">Cons</span>
-  </div>
-  <div class="tab">
-    <ul>
-      <li>
-        You get to track data for users both before and after authentication.
-      </li>
-    </ul>
-  </div>
-  <div class="tab is-hidden">
-    <ul>
-      <li>
-        In some cases, aggregated data may be skewed and may over-report
-        users and new users due to many anonymous users getting created.
-      </li>
-      <li>
-        Merging can be quite a performance-intensive process, especially
-        if the user that is merged has a lot of data or there are lots of
-        users to merge.
-      </li>
-      <li>
-        In some cases, the same user may have a user profile for both states:
-        a known user and an anonymous one.
-      </li>
-      <li>
-        It requires SDK integration and customization which is slightly more
-        difficult.
-      </li>
-    </ul>
-  </div>
-</div>
+<p>
+  <strong>Pros</strong>
+</p>
+<ul>
+  <li>
+    You get to track data for users both before and after authentication.
+  </li>
+</ul>
+<p>
+  <strong>Cons</strong>
+</p>
+<ul>
+  <li>
+    In some cases, aggregated data may be skewed and may over-report users and
+    new users due to many anonymous users getting created.
+  </li>
+  <li>
+    Merging can be quite a performance-intensive process, especially if the user
+    that is merged has a lot of data or there are lots of users to merge.
+  </li>
+  <li>
+    In some cases, the same user may have a user profile for both states: a known
+    user and an anonymous one.
+  </li>
+  <li>
+    It requires SDK integration and customization which is slightly more difficult.
+  </li>
+</ul>
 <h2>Other Known Strategies</h2>
 <p>
   We have seen our customers using their own different implementations, and one
