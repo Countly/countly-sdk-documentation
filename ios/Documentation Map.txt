@@ -1,12 +1,10 @@
-# Callouts
-    - Supported System Versions
-    - CocoaPods Support (Start of # CocoaPods)
-    - Event Names and Segmentation (End of # Recording Events)
+! Callout - Supported System Versions
 
 # Adding the SDK to the project 
 
 # SDK Integration
     - Minimal Setup
+    ! Callout - Verifying Your SDK Integration
     - Additional Features (PushNotifications, CrashReporting, AutoViewTracking)
     - Debug Mode
         . Logger Delegate
@@ -14,8 +12,7 @@
         . Default Device ID
         . Using a Custom Device ID
     - SDK Data Storage
-
-! Callout - Countly Code Generator
+    ! Callout - Countly Code Generator
 
 # Crash Reporting
     - Automatic Crash Handling
@@ -38,6 +35,7 @@
 # Events
     - Recording Events
     - Timed Events
+    ! Callout - Event Names and Segmentation
 
 # Sessions
     - Automatic Session Tracking
@@ -45,13 +43,18 @@
     - Update Session Period
 
 # View Tracking
-    - Automatic Views 
-    - Automatic View Exceptions
+    - Automatic Views
+        . Automatic View Exceptions
+            , Default Exceptions for Automatic View Tracking
+            , Custom Exceptions for Automatic View Tracking
+            , Customizing Auto View Tracking View Names
     - Manual View Recording
 
 # Device ID Management
     - Changing Device ID
-    - Temporary Device ID    
+    ! Callout - Consent Reset on Device ID Change
+    - Temporary Device ID
+    ! Callout - Consent Reset on Temporary Device ID Mode
     - Retrieving Current Device ID
     - Resetting Stored Device ID
 
@@ -63,7 +66,7 @@
     - Deep Links
     - Rich Media
     - Provisional Permission for Push Notifications (iOS 12+ only)
-    - How do Push Notifications Work in Countly    
+    - How Do Push Notifications Work in Countly
     - Advanced Setup
         . Test Mode
         . Disabling Alerts Shown by Notifications
@@ -87,8 +90,9 @@
 # User Feedback
     - Ratings
         . Star Rating dialog
-        . Ratings Widget
-    - Feedback Widgets
+        . Rating Widget
+        . Manual Rating Reporting
+    - Feedback Widget
     - NPS (Net Promoter Score) and Survey Widgets
         . Manual Reporting
 
@@ -128,12 +132,16 @@
     - Custom URLSessionConfiguration
     - Custom Metrics
     - Attribution
+        . IDFA Attribution
+        . Direct Attribution
+        . Indirect Attribution
     - watchOS Integration
     - Automatic Reference Counting (ARC)
     - App Transport Security (ATS)
     - Swift Projects
     - Updating the Countly iOS SDK
     - CocoaPods
+    ! Callout - CocoaPods Support
     - Carthage
     - Swift Package Manager (SPM)
     - Rebranding    

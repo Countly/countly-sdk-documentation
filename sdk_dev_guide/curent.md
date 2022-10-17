@@ -934,25 +934,25 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 44px;">
-      <td class="wysiwyg-text-align-center" style="width: 9.84283%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black; border-bottom: 1px solid black;" colspan="2">
         <span class="wysiwyg-font-size-small">Non-Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black; border-bottom: 1px solid black;">
         <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
         <span class="wysiwyg-font-size-small">Custom ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
         <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
         <span class="wysiwyg-font-size-small">URL Provided</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
         <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is not set</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
         <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is set</span>
       </td>
     </tr>
@@ -1196,7 +1196,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
       <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-&nbsp;</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #c8c0f0;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 22px; background-color: #c8c0f0; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">Uses Stored ID</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 83.303%; text-align: center; vertical-align: middle; padding: 2px; height: 22px; background-color: #fff2cc;">
@@ -1640,6 +1640,90 @@ end_sesson=1&amp;session_duration=30</code></pre>
   begin_session (with location - city, country, gps2)<br>
   end_session
 </p>
+<h1>Heatmaps</h1>
+<p>
+  Heatmaps is a plugin, exclusive to Web SDK, that can display the amalgamation
+  of click and the scroll behavior of the users by attaching an overlay on the
+  website that the Countly has integrated. Click and scroll behavior information
+  is provided by the SDK and recorded as an event, internally, then send into the
+  event queue, <strong>if click or/and scroll tracking is enabled</strong>. Automatic
+  click and scroll tracking should be able to be enabled after init:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['track_scrolls']);
+Countly.q.push(['track_clicks']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.track_scrolls();
+Countly.track_clicks();</code></pre>
+  </div>
+</div>
+<p>
+  A user should be able to go to the Heatmaps section in their server and click
+  on a heatmap from the available list of views. When a user clicks any view from
+  that list the server generates a token and directs the user to that view. Server
+  would provide the token and the necessary scripts to load as the heatmaps overlay,
+  by setting the name property of the browser's window interface or the URL hash
+  property to an SDK recognizable message which then should be parsed and used
+  by the SDK to load the necessary scripts for the heatmaps overlay. Message starts
+  with 'cly:' and includes 'app_key','token','purpose' and 'url' properties as
+  a JSON object.
+</p>
+<p>
+  To prevent any XSS attempts, the SDK should provide an option to the developer
+  to give a list of trustable domains (a whitelist per se) for which the SDK would
+  load the provided scripts from and would reject to load scripts from domains
+  out of this list. By default the Countly server URL would be included in this
+  list. List should be provided by the user during init, under the 'heatmap_whitelist'
+  flag as an array of stings.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com"];
+
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
+});</code></pre>
+  </div>
+</div>
+<h2>Tracking Clicks</h2>
+<p>A sample click event:</p>
+<pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"click",<br>    "x":120,<br>    "y":200,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
+<p>
+  For click tracking it is better to set a cool-down period of 1 second after a
+  click has been recorded to reduce the traffic before another click can be tracked.
+</p>
+<h2>Tracking Scrolls</h2>
+<p>A sample scroll event:</p>
+<pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"scroll",<br>    "y":500,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
+<p>
+  Scroll height must be stored internally in memory and with each new scroll within
+  the same view this value must be referred to again to find the max scroll height.
+  When a new view happens or the site is closed this max value must be recorded
+  as the 'y' value like shown. You would not record the 'x' value.
+</p>
+<h2>Consent</h2>
+<p>
+  Both click and scroll tracking is subject to provided consent, namely "clicks"
+  and "scrolls". If consents are enabled, user actions like clicks and scrolls
+  should only be collected if the consent is provided, else they should be ignored.
+</p>
 <h1>Remote Config</h1>
 <h2>Automatic Fetch</h2>
 <p>
@@ -1800,7 +1884,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>&nbsp;</p>
 <p>
-  <span>When recording the result manually, it should record an event with the internal key "[CLY]_star_rating". The event should have the following segmentation:</span>
+  <span>"recordRatingWidgetWithID" should record an event with the internal key "[CLY]_star_rating". The event should have the following segmentation:</span>
 </p>
 <ul>
   <li>
@@ -1810,10 +1894,10 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     <span>"app_version" - current app version</span>
   </li>
   <li>
-    <span>"rating" - provided rating result. In the range from 1 to 5.</span>
+    <span>"rating" - provided rating result. In the range from 1 to 5. (Mandatory)</span>
   </li>
   <li>
-    <span>"widget_id" - provided widget ID.</span>
+    <span>"widget_id" - provided widget ID. (Mandatory)</span>
   </li>
   <li>
     <span>"contactMe" - provided value.</span>
@@ -1826,7 +1910,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <p>
-  <span>Basic filtering on the provided values should be performed. Invalid widget ID's should not be accepted. Rating value should be clamped to the range of [1,5].</span><span></span>
+  <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].&nbsp;</span><span></span>
 </p>
 <h2>Feedback widgets</h2>
 <p>
@@ -1916,48 +2000,49 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     Retrieving a list of available widgets and picking one. This is the same
     as for automatic feedback widgets and reuses the same call to retrieve them.
   </li>
-  <li>Download widget data from the server.</li>
-  <li>Report the feedback result.</li>
+  <li>
+    Download widget data from the server (for that single widget).
+  </li>
+  <li>Report the feedback result (for that single widget).</li>
 </ol>
 <p>
-  As mentioned before, the first step uses "getAvailableFeedbackWidgets" which
-  is also used for automatic feedback widgets. After inspecting the returned list,
-  the developer would select one widget he would want to report, and he the use
-  the "CountlyFeedbackWidget<span>" object for it.</span>
+  As mentioned before, the first step uses "getAvailableFeedbackWidgets" function,
+  which is also used for automatic feedback widgets. After inspecting the returned
+  list, the developer would select one widget he would want to report from the
+  list of widgets, and then he would use this as the "CountlyFeedbackWidget<span>" object.</span>
 </p>
 <p>
-  <span>Second step uses the "CountlyFeedbackWidget" object and calls "getFeedbackWidgetData". That function call accepts the "CountlyFeedbackWidget" object and a callback. That callback returns 2 values - the retrieved "CountlyWidgetData" JSON and an error message string. The string is used in case there are some issues with this call. </span>
+  <span>Second step uses the "CountlyFeedbackWidget" object from the previous step and calls "getFeedbackWidgetData" function. This function call accepts the "CountlyFeedbackWidget" object and a callback. That callback returns 2 values - the retrieved "CountlyWidgetData" JSON and an error message string. The string is used in case there are some issues with this call. </span>
 </p>
 <p>
-  <span>The returned "CountlyWidgetData" JSON is the parsed response from making a server request. That request is done outside of the request queue. Using the widget ID and widget type information from the "CountlyFeedbackWidget" object, we construct a url similar to:</span>
+  <span>The returned "CountlyWidgetData" JSON is the response from making a server request. That request is done outside of the request queue (so a direct request). Using the <strong>widget ID</strong> and <strong>widget type</strong> information from the provided "CountlyFeedbackWidget" object, we construct a URL similar to:</span>
 </p>
-<pre>//for nps<br>/o/surveys/nps/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]<br><br>//for basic surveys<br>/o/surveys/survey/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]</pre>
+<pre>//for nps<br>/o/surveys/nps/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]<br><br>//for basic surveys<br>/o/surveys/survey/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]<br><br>//for rating widgets<br>/o/surveys/rating/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]</pre>
 <p>
-  Performing a request on that URL should return JSON describing the widget which
-  should be returned as a parsed JSON object.
+  Performing a request on that URL should return JSON describing the widget, which
+  should then be returned as <strong>a parsed JSON object</strong>.
 </p>
 <p>
   After this step, the developer has all the information he needs to create the
-  widget and all the information required to prepare a response to "report" the
-  filled widget. The feedback widgets support different question types, and their
-  filled-out responses are reported as segmentation to specific keys.
+  widget and all the information required to prepare a response (namely
+  <span>the "widgetResult" object</span> ) to "report" the filled widget.
 </p>
 <p>
-  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/900004340186">https://support.count.ly/hc/en-us/articles/900004340186]</a>
-  document to better understand how to interpret the JSON and fill out the response,
-  but at the end of it there would be a "<span>widgetResult</span>" segmentation
-  object.
+  The developer would look at (this)[<a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually</a>
+  document to better understand how to interpret the widget type and data to fill
+  out the "<span>widgetResult</span>" object. Depending on the type of the widget
+  being reported this object would have different key/value pairs.
 </p>
 <p>
   At the third step, the developer would call the "reportFeedbackWidgetManually"
-  function to report the result. This call requires 3 fields/values:
-  <span>"CountlyFeedbackWidget" object, "CountlyWidgetData" JSON and the "widgetResponse" segmentation object. If the "widgetResponse" is null then that means that the widget was closed without filling it out (this requires an event to be created).</span>
+  function to report the result. This call requires 3 fields/values/parameters:
+  <span>"CountlyFeedbackWidget" object from the first step, "CountlyWidgetData" object from the second step and the "widgetResult" object that has been formed and provided by the developer. If the "widgetResult" is set to "null" then that means that the widget was closed without filling it out (this still requires an event to be created).</span>
 </p>
 <p>
-  <span>"CountlyFeedbackWidget" object and "CountlyWidgetData" JSON are used to verify the correctness of the reported "widgetResult". For now, this step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
+  <span>"CountlyFeedbackWidget" object is used for obtaining widget id and type, while "CountlyWidgetData" object is used to verify the correctness of the reported "widgetResult". For now, this second step is optional, but might become mandatory in the future, therefore both fields should be required from the start.</span>
 </p>
 <p>
-  <span>The reported widget result should be recorded as an event and put into the event queue. It should have the "[CLY]_nps" or "[CLY]_survey" key if it's an nps or survey widget respectively. That event should have the following segmentation:&nbsp;<br></span>
+  <span>The reported widget result should be recorded as an <strong>event</strong> and must be put into the event queue. This event must have the "[CLY]_nps"(for nps), "[CLY]_survey"(for survey) or "[CLY]_star_rating"(for rating) key respective to the type of the reported widget. That event should have the following segmentation:&nbsp;<br></span>
 </p>
 <ul>
   <li>
@@ -1971,7 +2056,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <p>
-  <span>In addition to this segmentation which identifies the widget, the provided "widgetResult" should be merged into the event segmentation. If the "widgetResult" was provided null and the widget was reported as closed, you should add the following segmentation value:<br></span>
+  <span>In addition to this segmentation which identifies the widget, the contents of the provided "widgetResult" object should be merged into this event's segmentation. If the "widgetResult" was provided null and so the widget was reported as closed, you should additionally add the following segmentation value:<br></span>
 </p>
 <ul>
   <li>
