@@ -2636,3 +2636,66 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   After the URL is changed, all previously saved events and requests should be
   sent to the new url.
 </p>
+<h1>Markdown Linting</h1>
+<p>
+  To ensure the formatting of the code is uniform across all platforms, certain
+  linting tools can be used. Currently for markdown files "markdownlint" would
+  be used.
+</p>
+<h2>Installation</h2>
+<p>
+  You can add markdownlint to your project with the following line of code using
+  the npm:
+</p>
+<p>
+  <code>
+npm install markdownlint --save-dev
+</code>
+</p>
+<p>
+  Another way to add it to your project would be to download its extension in VSC.
+</p>
+<h2>Rules</h2>
+<p>
+  Markdownlint, has multiple rules that can be modified/defined from a config file
+  called ".markdownlint.json". This file must be created at the root of the project
+  and should have a structure similar to this:
+</p>
+<pre><code>{<br>    "MD001": true, /*Heading levels should increase one at a time*/<br>    "MD002": false, /*First heading should be h1*/<br>    "MD003": true, /*Use only one heading style in a document*/<br>    "MD004": true, /*Only one unordered list style should be used*/<br>    "MD005": true, /*List items should have same indentation at same level*/<br>    "MD006": true, /*Top level list items should not be indented*/<br>    "MD007": { "indent": 2 }, /*Indent level as space*/<br>    "MD009": false, /*No white space at the end*/<br>    "MD010": false, /*No hard tab indentation*/<br>    "MD011": true, /*link syntax should not be reversed like (a)[a.com]*/<br>    "MD012": { "maximum": 1 }, /*No more than 1 blank line*/<br>    "MD013": { "line_length": 300 }, /*Max line length*/<br>    "MD014": false, /*Dollar sign should not be used consecutively for shell commands*/<br>    "MD018": true, /*There should be a space after heading hash*/<br>    "MD019": true, /**There should not be multiple spaces after heading hash*/<br>    "MD020": true, /*Closed atx style heading should have 1 space inside hashes*/<br>    "MD021": true, /*Closed atx style heading should note have multiple space inside hashes*/<br>    "MD022": false, /*Before and after a heading should be a blank line*/<br>    "MD023": true, /*Heading should not be indented*/<br>    "MD024": true, /*No duplicate sibling headings*/<br>    "MD025": true, /*Only one h1*/<br>    "MD026": true, /*No punctuation at the end of a heading except '?'*/<br>    "MD027": true, /*No more than 1 space after blockquote symbol*/<br>    "MD028": true, /*No separation of blockquotes with a blank line*/<br>    "MD029": true, /*Ordered list should be ordered and start with  or 1*/<br>    "MD030": true, /*Only one space between the list marker and text*/<br>    "MD031": true, /*Before and after a fenced code block should be a blank line*/<br>    "MD032": false, /*Before and after a list should be a blank line*/<br>    "MD033": false, /*No raw HTML*/<br>    "MD034": false, /*URL should be surrounded with brackets*/<br>    "MD035": true, /*No inconsistent horizontal rules; ---, *** */<br>    "MD036": true, /*No emphasis instead of heading*/<br>    "MD037": true, /*No space between emphasis market and the text*/<br>    "MD038": true, /*No space between backtick and text*/<br>    "MD039": true, /*No space inside link text*/<br>    "MD040": true, /*Fenced code blocks should have a language declared*/<br>    "MD041": false, /*First line in a file should be h1*/<br>    "MD042": true, /*No empty links*/<br>    "MD043": false, /*Declare a heading structure*/<br>    "MD044": true, /*Proper names should have the correct capitalization*/<br>    "MD045": true, /*Images should have alt text*/<br>    "MD046": true, /*Use indent or code fence alone*/<br>    "MD047": true, /*Files should end with a single newline character */<br>    "MD048": true, /*Code fence style should be uniform*/<br>    "MD049": true, /*Emphasis style should be consistent*/<br>    "MD050": true, /*Strong style should be consistent*/<br>    "MD051": true, /*Link fragments should correspond to a heading*/<br>    "MD052": true, /*Reference links and images should use a label that is defined*/<br>    "MD053": true /* Link and image reference definitions should be needed*/<br>}
+</code></pre>
+<p>
+  To exclude certain files from being analyzed you can create a ".markdownlintignore"
+  at the project root and add directories that you want to exclude from the analysis:
+</p>
+<pre><code>// to exclude node_modules folder<br>/node_modules/
+</code></pre>
+<h2>Usage</h2>
+<p>
+  Then you can add the following text to your npm scripts in your package.json
+  file:
+</p>
+<p>
+  <code>"lintMD": "markdownlint **/*.md --fix"</code>
+</p>
+<p>
+  This way you can use the markdown linter with the following code at your project
+  root:
+</p>
+<p>
+  <code>npm run lintMD</code>
+</p>
+<p>
+  Instead, if you have only installed the VSC extension you can simply right click
+  on your markdown file and press 'Format Document' for ease of use. Or if you
+  want to automatically format when saving or pasting into a Markdown document,
+  configure Visual Studio Code's editor.formatOnSave or editor.formatOnPaste settings
+  like so:
+</p>
+<p>
+  <code>
+"[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+},
+</code>
+</p>
