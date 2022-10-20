@@ -1744,12 +1744,46 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   should only be collected if the consent is provided, else they should be ignored.
 </p>
 <h1>Remote Config</h1>
+<p>
+  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;"> for legacy remote config API</span>
+  includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
+  inside the request URL while fetching the remote config object <em>and</em> enrolling
+  the user to A/B testing automatically.
+</p>
+<p>
+  The latest API, on the other hand, fetches the remote config object while giving
+  us the ability to enroll the user in the A/B testing or not. This can be done
+  by utilizing 'method=rc' and 'oi=1'(opting in/enrolling the user) or 'oi=0'(opting
+  out/not enrolling the user) in the request URL.
+</p>
+<p>
+  There is also another API that is used for enrolling the user to A/B testing
+  for the selected remote config keys without fetching the remote config object.
+  This can be done by using the 'method=ab' in your request URL.
+</p>
+<p>Their usage can be seen below:</p>
+<pre><code>// legacy API
+o/sdk?method=fetch_remote_config&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys)
+
+// latest API for remote config
+o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)
+
+// enrolling users
+o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
+</code></pre>
+<p>
+  There are currently 2 init time config flag associated with these APIs:
+  <em>rcAutoOptinAb</em> (true by default) and <em>useExplicitRcApi</em> (false
+  by default). These flags enable users to change between APIs and control the
+  A/B testing enrolling process. <em>useExplicitRcApi</em> lets the user use the
+  latest API if it is set to true. <em>rcAutoOptinAb</em> decides if auto enrolling
+  (oi=1) must be on or not (oi=1) when using the latest API. Setting it to false
+  should automatically trigger the usage of the latest API and should log a warning
+  to the user.
+</p>
 <h2>Automatic Fetch</h2>
 <p>
   <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the&nbsp;</span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
@@ -1807,6 +1841,18 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   "c": "z",
 }
 </code></pre>
+<h2>A/B testing</h2>
+<p>
+  There should be a call to enroll users in the A/B testing without triggering
+  any other action. This call should be named something similar to
+  <em>enrollUserToAb</em> and should have one parameter named <em>keys</em>. This
+  parameter should be an array of string key values. If an empty array or no value
+  at all is provided the function should be terminated and should give an error
+  log to the developer. Else the <em>keys</em> should be stringified and added
+  to the request as 'keys=stringified_values_here'. The response can be parsed
+  and put out as a log. If all is good the response's result field should return
+  something like "Successfully enrolled the user to given keys".
+</p>
 <h2>Consents</h2>
 <p>
   <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
