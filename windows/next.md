@@ -1,6 +1,6 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 22.02.0.
+  It applies to version 22.02.X.
 </p>
 <div class="callout callout--info">
   <p>
@@ -187,7 +187,7 @@ await Countly.Instance.Init(cc);</code></pre>
   crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre><strong>Countly</strong>.AddBreadCrumb("breadcrumb");</pre>
+<pre><code>Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
 <h2 id="consent" class="anchor-heading">Consent</h2>
 <p>
   This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given.</span>
