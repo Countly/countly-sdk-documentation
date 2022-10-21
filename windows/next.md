@@ -1,6 +1,6 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 22.02.0.
+  It applies to version 22.02.X.
 </p>
 <div class="callout callout--info">
   <p>
