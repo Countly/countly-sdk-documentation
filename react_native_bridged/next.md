@@ -1,13 +1,13 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 22.02.0<br>
+  and it applies to version 22.06.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 21.11 and older, click
-    <a href="/hc/en-us/articles/6116239554841" target="_self" rel="undefined">here.</a>
+    To access the documentation for version 22.02.X and older, click
+    <a href="/hc/en-us/articles/11734029520665" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
