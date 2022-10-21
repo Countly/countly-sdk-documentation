@@ -918,7 +918,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   all available widgets for a user and another to display a chosen widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
-<pre><code class="javascript">CCountly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
+<pre><code class="javascript">Countly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
 <p>
   From the callback, get the list of all available widgets that apply to the current
   device ID.
@@ -937,7 +937,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <p>
   After you have decided which widget you want to display, call the function below.
 </p>
-<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("WidgetshownCallback");<br>},<br>function() {<br>  console.log("WidgetclosedCallabck");<br>})<br></code></pre>
+<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("WidgetshownCallback");<br>},<br>function() {<br>  console.log("WidgetclosedCallabck");<br>})<br></code></pre>
 <h1>User Profiles</h1>
 <p>
   You can provide Countly any details you may have about your user or visitor.
