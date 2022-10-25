@@ -419,7 +419,7 @@
   Some SDK's might have a "clear stored device ID" flag that can be set during
   init. If this is done then the SDK will clear it's stored value and will try
   to reacquire a device ID value and would behave like on the first init. It is
-  generally not advised to use this flag as it can cause user county inflation
+  generally not advised to use this flag as it can cause user count inflation
   issues.
 </p>
 <p>
