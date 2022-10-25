@@ -526,6 +526,6 @@
   Our guidelines are that the major version of your server should be the same or
   higher than the major version of the SDK you are using. Our versioning
   scheme for our server releases and SDKs has 3 numbers separated by dots, something
-  like "22.02.3". The first two numbers are what we call the major version
+  like "22.02.3". The first two numbers are what we are calling the major version
   and those are the ones that you should be paying attention to ("22.02.X").
 </p>
