@@ -1,6 +1,4 @@
-<h1>
-Sessions
-</h1>
+<h1>Sessions</h1>
 <p>
   <span style="font-weight: 400;">Session in its most basic definition is a group of interactions a user engages in your application/website in a given timeframe. It can be used to keep track of user specific state like user identity, views and events. Again, it can be seen as hits to the server by a single user, grouped in a certain way. Countly has a specific internal logic to group these hits and calls them as sessions.</span>
 </p>
@@ -128,12 +126,8 @@ Sessions
     if “session” consent was not provided, session tracking would not be working.
   </font>
 </p>
-<h1>
-Reporting "feature data" manually with events
-</h1>
-<h2>
-Views
-</h2>
+<h1>Reporting "feature data" manually with events</h1>
+<h2>Views</h2>
 <p>
   <span data-preserver-spaces="true">Currently, SDK doesn't have any direct mechanism to record views. You may record views by using&nbsp;<code><span class="pl-c1">RecordEvent</span></code>&nbsp;method.&nbsp;</span>
 </p>
@@ -357,35 +351,144 @@ Views
 <p>&nbsp;</p>
 <h1>Handling the Device ID in Your Integrations</h1>
 <p>
-  Countly tracks your users through an ID called the 'device ID'. This ID is normally
-  (by default) generated in the environment the Countly SDK has been integrated
-  into (e.g. a smartphone, a web browser, or a desktop application). But how you
-  handle this ID would depend on how you define a user in your platform specifically.
+  Countly tracks your users through an ID called the 'device ID'. This is attached
+  to every request (which contain events and other data) that is sent to the Countly
+  server. This ID consists of String characters.
+</p>
+<p>
+  This ID is normally (by default) generated in the environment the Countly SDK
+  has been integrated into (e.g. a smartphone, a web browser, or a desktop application).
+  But how you handle this ID would depend on how you define a user in your platform
+  specifically.
 </p>
 <p>
   What happens if there are several users and several devices that are used interchangeably?
   What happens if a user can log in and log out, hence transitioning between a
   known and an anonymous user? In such cases, you should experiment and decide
   on the correct user tracking strategy before going into production to minimize
-  the negative effects.
+  the negative effects. For an overview on how these different situations could
+  be handled, look bellow [link to "Different user tracking strategies"].
 </p>
-<h2>Default User Tracking</h2>
+<h2>Available mechanisms for interacting with device ID</h2>
 <p>
-  By default, Countly defines each device that connects to/uses your app or website
-  as a user. Here, the device can be a phone, browser, PC, or tablet.
+  Countly SDK's try to be configurable and flexible, and handling device ID's is
+  no exception.
+</p>
+<h3>Device ID during init</h3>
+<p>
+  Countly SDK's behave differently in the first on a device compared to subsequent
+  init's.
 </p>
 <p>
-  On your first init, when implementing a Countly SDK, Countly will generate a
-  random value (called <strong>device_id</strong>) to identify the user or use
-  some platform-specific value; for example, IDFV for
-  <a href="/hc/en-us/articles/360037753511" target="_self">iOS</a> and Advertising
-  ID for <a href="/hc/en-us/articles/360037754031" target="_self">Android</a>,
-  and then store it in the local storage. On consequent inits, the SDK would fetch
-  and use this same value as the device ID and would not generate a new one.
+  On your first init, when integrating a Countly SDK, Countly will try to acquire
+  a device ID. By default, Countly will generate a random value (for the
+  <strong>device_id</strong>) to identify the user or use some platform-specific
+  value; for example, IDFV for
+  <a href="/hc/en-us/articles/360037753511" target="_self">iOS</a>, and then store
+  it in the local storage.
+</p>
+<p>
+  On subsequent inits, the SDK would fetch and use this same value as the device
+  ID and would not generate a new one. By default, the SDK would ignore any provided
+  device ID values.
+</p>
+<p>&nbsp;</p>
+<p>
+  There are some configuration options during initialization. During the first
+  init, it is possible to do the following actions:
+</p>
+<ul>
+  <li>
+    provide a custom device ID - SDK will use the provided ID and will not generate
+    one
+  </li>
+  <li>
+    tell the SDK which device ID generation method to use - in some SDK's it
+    is possible to influence the ID generator and pick a specific method
+  </li>
+  <li>
+    enable temporary device ID mode - while in this mode, the SDK will not send
+    anything to the countly server until a device ID has been provided
+  </li>
+  <li>
+    provide a device ID with a url parameter - this exists only in the web SDK.
+    This provides a way to "inject" a device ID on a first run.
+  </li>
+</ul>
+<p>
+  Some SDK's might have a "clear stored device ID" flag that can be set during
+  init. If this is done then the SDK will clear it's stored value and will try
+  to reacquire a device ID value and would behave like on the first init. It is
+  generally not advised to use this flag as it can cause user county inflation
+  issues.
+</p>
+<p>
+  For a deeper overview in how the SDK would behave in different situations, have
+  a look at
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-id-management" target="_self">this</a>
+  table.
+</p>
+<h3>Changing device ID</h3>
+<p>
+  Countly SDK's provide two ways to change the device_id after the SDK initialization:
+</p>
+<p>
+  1. Change device_id without merging. That will simply end the session of the
+  old device_id, sync all the left data, and start a new session for the new device_id.
+</p>
+<p>
+  This is handy, for example, when multiple users use the same device and you want
+  to track them without sharing their data individually.
+</p>
+<p>
+  2. Change device_id with merging. This will create a new user with a new device_id,
+  and start a new session. Then, merge the data of the anonymous user with the
+  old device_id into this new ID. And afterward, delete the anonymous user with
+  the old device_id from Countly and only keep this user's information under the
+  new, developer given ID.
+</p>
+<p>
+  This is handy when, for example, you are firstly tracking an anonymous user with
+  a Countly generated device_id, but then the user authenticates so you retrieve
+  the ID for this user and change it in the SDK, allowing to merge both users on
+  the server. This means that everything that the anonymous user had, all events
+  and properties, will now be assigned to an identified user and the old user will
+  be deleted.
+</p>
+<p>
+  You can implement different strategies that utilize these two options with the
+  help of device ID type information. Most Countly SDKs provide calls to see the
+  current device ID and the device ID type. The main types you would like to check
+  for device ID management are to see if the ID was SDK generated or developer
+  supplied.
+</p>
+<h3>Offline / Temporary ID mode</h3>
+<p>
+  It is possible to launch the Countly SDK in an <em>offline/temporary ID </em>mode
+  during the first initialization. This&nbsp; mode can also enabled after initialization
+  with the use of special calls exposed by the SDK.
+</p>
+<p>
+  If this mode is enabled, no data will be sent to the server until a real device
+  ID value is provided by the host app. After that is done, all stored requests
+  will be marked as create by this device ID and then sent to the server and assigned
+  to this user.
+</p>
+<h3>Device ID type</h3>
+<p>
+  Most Countly SDKs provide calls to see the current device ID and the device ID
+  type. The main types you would like to check for device ID management are to
+  see if the ID was SDK generated or developer supplied.
+</p>
+<h2>Different user tracking strategies</h2>
+<h3>Default User Tracking</h3>
+<p>
+  Like mentioned in the "Device ID during init" section. With no additional configuration,
+  the SDK will generate a random device ID on the first init and then use it.
 </p>
 <p>
   Generally speaking, this way assigns a unique ID to a particular user who is
-  the owner of that device.
+  the owner of that device (phone, browser, PC, or tablet)
 </p>
 <p>
   <strong>Pros</strong>
@@ -413,14 +516,14 @@ Views
   </li>
   <li>
     Depending on the platform, if app storage is reset (erased) or the app is
-    uninstalled and re-installed again, this user may be identified as a new
-    user and a new user profile is created. This highly depends on how the platform
-    behaves. Check
+    uninstalled and re-installed again, this user most likely will be identified
+    as a new user and a new user profile is created. This highly depends on how
+    the platform behaves. Check
     <a href="https://support.count.ly/hc/en-us/articles/360037501352-Countly-Implementation-and-Technical-FAQ#in-which-situations-does-a-device-id-reset" target="_self">here</a>
     to understand what happens in such cases.
   </li>
 </ul>
-<h2>Tracking Known Users</h2>
+<h3>Tracking Known Users</h3>
 <p>
   This method, as opposed to the first one, helps Countly identify and track users
   if they are <em>known</em> to you. It is used when tracking the same user across
@@ -464,19 +567,16 @@ Views
     authentication.
   </li>
 </ul>
-<h2>Known User With Pre-Tracking</h2>
+<h3>Known User With Pre-Tracking</h3>
 <p>
   To tackle the problem of missing out on data before user authentication, it is
-  possible to launch the Countly SDK in an <em>offline mode.</em> In this case,
-  it will track data but will not send it until you provide your user ID and enable
-  the <em>online mode</em>.
+  possible to launch the Countly SDK in an <em>offline/temporary ID mode.</em>
+  This mode is described in the [Offline / Temporary ID mode] section.
 </p>
 <p>
-  This way, you can initialize the SDK in offline mode right when the app starts/user
-  connects and track everything needed; when the user finally authenticates, and
-  you get your user’s identifier, you can set it as <strong>device_id</strong>
-  and enable the online mode so the Countly SDK will start sending data. All previously
-  collected data in the offline mode will also be assigned to that user.
+  This way, you can track everything needed before knowing the users identity.
+  When the user finally authenticates, and you get your user’s identifier, and
+  use that to exit the Offline / Temporary ID mode
 </p>
 <p>
   For the definition of the user, nothing changes - it still directly corresponds
@@ -504,43 +604,15 @@ Views
     receive any data from this user.
   </li>
 </ul>
-<h2>Managing Anonymous and Known Users Together</h2>
+<h3>Managing Anonymous and Known Users Together</h3>
 <p>
   It is also possible to collect data of both user states (before login/known and
-  after login/known) and the SDK provides two ways to manage that by allowing to
-  change <strong>device_id</strong> <em>after</em> the SDK initialization:
-</p>
-<p>
-  <strong>1. </strong>Change <strong>device_id </strong>without merging. That will
-  simply end the session of the old <strong>device_id</strong>, sync all the left
-  data, and start a new session for the new <strong>device_id</strong>.
-</p>
-<p>
-  This is handy, for example, when multiple users use the same device and you want
-  to track them without sharing their data individually.
-</p>
-<p>
-  <strong>2.</strong> Change <strong>device_id</strong> with merging. This will
-  create a new user with a new <strong>device_id</strong>, and start a new session.
-  Then, merge the data of the anonymous user with the old
-  <strong>device_id</strong> into this new ID. And afterward, delete the anonymous
-  user with the old <strong>device_id</strong> from Countly and only keep this
-  user's information under the new, developer given ID.
-</p>
-<p>
-  This is handy when, for example, you are firstly tracking an anonymous user with
-  a Countly generated <strong>device_id</strong>, but then the user authenticates
-  so you retrieve the ID for this user and change it in the SDK, allowing to merge
-  both users on the server. This means that everything that the anonymous user
-  had, all events and properties, will now be assigned to an identified user and
-  the old user will be deleted.
+  after login/known) and manage the ID using the functionality discussed in [Changing
+  device ID] section.
 </p>
 <p>
   You can implement different strategies that utilize these two options with the
-  help of device ID type information. Most Countly SDKs provide calls to see the
-  current device ID and the device ID type. The main types you would like to check
-  for device ID management are to see if the ID was SDK generated or developer
-  supplied.
+  help of device ID type information discussed [device ID type section].
 </p>
 <p>
   So with this knowledge, for example, you can start tracking a user as anonymous
@@ -622,7 +694,7 @@ Views
     It requires SDK integration and customization which is slightly more difficult.
   </li>
 </ul>
-<h2>Other Known Strategies</h2>
+<h3>Other Known Strategies</h3>
 <p>
   We have seen our customers using their own different implementations, and one
   of them was quite effective, which is why we have included it here.&nbsp;This
@@ -648,7 +720,7 @@ Views
   that. You would need to consult Countly or make modifications yourself on certain
   SDKs.
 </p>
-<h2>Conclusion</h2>
+<h3>Conclusion</h3>
 <p>
   There are different user tracking strategies available. Each one has its own
   pros and cons. You need to understand what kind of data you want to collect and
