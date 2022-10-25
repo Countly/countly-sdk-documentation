@@ -367,14 +367,15 @@
   known and an anonymous user? In such cases, you should experiment and decide
   on the correct user tracking strategy before going into production to minimize
   the negative effects. For an overview on how these different situations could
-  be handled, look bellow [link to "Different user tracking strategies"].
+  be handled, look
+  <a href="#h_01GG7QB1WJQR1G8NX3EHP1ADG7" target="_self">bellow</a>.
 </p>
-<h2>Available mechanisms for interacting with device ID</h2>
+<h2>Available Mechanisms For Interacting With Device ID</h2>
 <p>
   Countly SDK's try to be configurable and flexible, and handling device ID's is
   no exception.
 </p>
-<h3>Device ID during init</h3>
+<h3>Device ID During Init</h3>
 <p>
   Countly SDK's behave differently in the first on a device compared to subsequent
   init's.
@@ -392,7 +393,6 @@
   ID and would not generate a new one. By default, the SDK would ignore any provided
   device ID values.
 </p>
-<p>&nbsp;</p>
 <p>
   There are some configuration options during initialization. During the first
   init, it is possible to do the following actions:
@@ -425,10 +425,10 @@
 <p>
   For a deeper overview in how the SDK would behave in different situations, have
   a look at
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-id-management" target="_self">this</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-id-state-management-during-init" target="_blank" rel="noopener">this</a>
   table.
 </p>
-<h3>Changing device ID</h3>
+<h3 id="h_01GG7QEZ64EJEE01S5NHXGW1QR">Changing Device ID</h3>
 <p>
   Countly SDK's provide two ways to change the device_id after the SDK initialization:
 </p>
@@ -462,7 +462,7 @@
   for device ID management are to see if the ID was SDK generated or developer
   supplied.
 </p>
-<h3>Offline / Temporary ID mode</h3>
+<h3 id="h_01GG7QKAWDG3P7QC5G691MS9R8">Offline / Temporary ID mode</h3>
 <p>
   It is possible to launch the Countly SDK in an <em>offline/temporary ID </em>mode
   during the first initialization. This&nbsp; mode can also enabled after initialization
@@ -474,13 +474,13 @@
   will be marked as create by this device ID and then sent to the server and assigned
   to this user.
 </p>
-<h3>Device ID type</h3>
+<h3 id="h_01GG7QHSKF855N2WREMQMW3ZPH">Device ID Type</h3>
 <p>
   Most Countly SDKs provide calls to see the current device ID and the device ID
   type. The main types you would like to check for device ID management are to
   see if the ID was SDK generated or developer supplied.
 </p>
-<h2>Different user tracking strategies</h2>
+<h2 id="h_01GG7QB1WJQR1G8NX3EHP1ADG7">Different user tracking strategies</h2>
 <h3>Default User Tracking</h3>
 <p>
   Like mentioned in the "Device ID during init" section. With no additional configuration,
@@ -571,7 +571,9 @@
 <p>
   To tackle the problem of missing out on data before user authentication, it is
   possible to launch the Countly SDK in an <em>offline/temporary ID mode.</em>
-  This mode is described in the [Offline / Temporary ID mode] section.
+  This mode is described in the
+  <a href="#h_01GG7QKAWDG3P7QC5G691MS9R8" target="_self">Offline / Temporary ID mode</a>
+  section.
 </p>
 <p>
   This way, you can track everything needed before knowing the users identity.
@@ -607,12 +609,15 @@
 <h3>Managing Anonymous and Known Users Together</h3>
 <p>
   It is also possible to collect data of both user states (before login/known and
-  after login/known) and manage the ID using the functionality discussed in [Changing
-  device ID] section.
+  after login/known) and manage the ID using the functionality discussed in the
+  above
+  <a href="#h_01GG7QEZ64EJEE01S5NHXGW1QR" target="_self">changing device ID</a>
+  section.
 </p>
 <p>
   You can implement different strategies that utilize these two options with the
-  help of device ID type information discussed [device ID type section].
+  help of device ID type information discussed
+  <a href="#h_01GG7QHSKF855N2WREMQMW3ZPH" target="_self">device ID type</a> section.
 </p>
 <p>
   So with this knowledge, for example, you can start tracking a user as anonymous
