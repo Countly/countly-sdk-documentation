@@ -482,18 +482,31 @@ Countly.Instance.Init(cc);</code></pre>
 </ul>
 <h2 id="setting-location" class="anchor-heading">Setting location</h2>
 <p>
-  <span>After SDK initialization, you can&nbsp;set location info.</span>
+  <span>During init, you can set</span><span>&nbsp;location info in the configuration:</span>
+</p>
+<pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<p>
+  <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
+</p>
+<p>
+  <span>Note that the IP address will only be updated if set through the init process.</span>
+</p>
+<p>
+  <span>Use</span><code>SetLocation</code>method<span>&nbsp;to disable or set the location at any time after the SDK Init call.</span>
+</p>
+<p>
+  <span>For example:</span>
 </p>
 <pre><code class="csharp">//set user location
 String gpsLocation = "63.445821, 10.898868";
 String ipAddress = "13.56.33.12";
-String country_code = null;
+String country_code = "us";
 String city = null;
 
 Countly.Instance.SetLocation(gpsLocation, ipAddress, country_code, city);</code></pre>
 <p>
-  If there are fields you don't want to set, set them to null. If you want to reset
-  a field, set it to an empty string.
+  If there are fields you don't want to set, set them to null. If you're going
+  to reset a field, set it to an empty string.
 </p>
 <p>
   If no location is provided, it will be approximated by using GeoIP.
