@@ -354,4 +354,40 @@
   questions and choose a random answer to every question. It the reports the results:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>JSONArray questions </span>= retrievedWidgetData.optJSONArray(<span>"questions"</span>);<br><br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>Random rnd </span>= <span>new </span>Random();<br><br>        <span>//iterate over all questions and set random answers<br></span><span>        </span><span>for </span>(<span>int </span>a = <span>0</span>; a &lt; <span>questions</span>.length(); a++) {<br>            <span>JSONObject </span>question = <span>null</span>;<br>            <span>try </span>{<br>                question = <span>questions</span>.getJSONObject(a);<br>            } <span>catch </span>(<span>JSONException </span>e) {<br>                e.printStackTrace();<br>            }<br>            <span>String wType </span>= question.optString(<span>"type"</span>);<br>            <span>String questionId </span>= question.optString(<span>"id"</span>);<br>            <span>String answerKey </span>= <span>"answ-" </span>+ <span>questionId</span>;<br>            <span>JSONArray choices </span>= question.optJSONArray(<span>"choices"</span>);<br><br>            <span>switch </span>(<span>wType</span>) {<br>                <span>//multiple answer question<br></span><span>                </span><span>case </span><span>"multi"</span>:<br>                    <span>StringBuilder sb </span>= <span>new </span>StringBuilder();<br><br>                    <span>for </span>(<span>int </span>b = <span>0</span>; b &lt; <span>choices</span>.length(); b++) {<br>                        <span>if </span>(b % <span>2 </span>== <span>0</span>) {//pick every other choice<br>                            <span>if </span>(b != <span>0</span>) {<br>                                <span>sb</span>.append(<span>","</span>);<br>                            }<br>                            <span>sb</span>.append(<span>choices</span>.optJSONObject(b).optString(<span>"key"</span>));<br>                        }<br>                    }<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>sb</span>.toString());<br>                    <span>break</span>;<br>                <span>//radio buttons<br></span><span>                </span><span>case </span><span>"radio"</span>:<br>                <span>//dropdown value selector<br></span><span>                </span><span>case </span><span>"dropdown"</span>:<br>                    <span>int </span><span>pick </span>= <span>rnd</span>.nextInt(<span>choices</span>.length());<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>choices</span>.optJSONObject(<span>pick</span>).optString(<span>"key"</span>));<span>//pick the key of random choice<br></span><span>                    </span><span>break</span>;<br>                <span>//text input field<br></span><span>                </span><span>case </span><span>"text"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>"Some random text"</span>);<br>                    <span>break</span>;<br>                <span>//rating picker<br></span><span>                </span><span>case </span><span>"rating"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>rnd</span>.nextInt(<span>11</span>));<span>//put a random rating<br></span><span>                    </span><span>break</span>;<br>            }<br>        }<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
-<p>&nbsp;</p>
+<h1>There Is No SDK That I Can Integrate for My Use Case, What Can I Do?</h1>
+<p>
+  Countly SDKs provide you with many options to track your users with the least
+  amount of code in a way that fits your use case. Behind the scene, the SDK would
+  do various tasks to gather information, reshape this information in a way the
+  Countly servers can understand, and prevent the possibility of data loss as much
+  as possible. With the help of the SDKs, you only need to write a single line
+  of code while the SDK does hundreds of lines of work behind the hood. However,
+  the core principles behind these operations are simple even though they are tedious.
+  So if you come across a situation where you can not integrate a Countly SDK into
+  your project, you can still be able to track your users and inform that information
+  to your Countly instance as long as you can send API calls following the core
+  rules and structures that is shared among all Countly SDKs.
+</p>
+<p>
+  To be able to track your users manually and to share this information you have
+  gathered with your Countly instance you will need to know three things:
+</p>
+<ol>
+  <li>What information is the server looking for?</li>
+  <li>What API endpoint you should use?</li>
+  <li>How should you structure your requests?</li>
+</ol>
+<p>
+  As long as you have the answers to these questions, you can track your users
+  and gather information in any way you want as long as you form and send correct
+  requests to your Countly server. Documentations that would be useful to find
+  the answers to these questions are the
+  <a href="https://support.count.ly/hc/en-us/articles/900005345483-Countly-Terminology" target="_blank" rel="noopener">Countly glossary</a>
+  to understand the Countly terminology, the
+  <a href="https://api.count.ly/reference/i#modifying-custom-user-data" target="_blank" rel="noopener">API documentation</a>
+  to see the endpoints and the data structure, the
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide" target="_blank" rel="noopener">SDK Development Guide</a>
+  to see the scope of the endpoints, and the specific documentation of the
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK</a>
+  of your platform to see the capabilities and the features.
+</p>
