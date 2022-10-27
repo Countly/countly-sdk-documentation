@@ -5,7 +5,7 @@
 <p>
   Click
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#android-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for version 22.02.X and older.
+  access the documentation for older SDK versions.
 </p>
 </div>
 <p>

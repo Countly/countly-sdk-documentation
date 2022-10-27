@@ -6,7 +6,7 @@
 <p>
   Click
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for version 21.11 and older.
+  access the documentation for older SDK versions.
 </p>
 </div>
 <p>

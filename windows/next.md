@@ -5,8 +5,8 @@
 <div class="callout callout--info">
 <p>
   Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#older-sdks-versions" target="_self" rel="undefined">here, </a>to
-  access the documentation for version 21.11 and older.
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#windows-sdk" target="_self" rel="undefined">here, </a>to
+  access the documentation for older SDK versions.
 </p>
 </div>
 <div>

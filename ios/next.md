@@ -6,7 +6,7 @@
 <p>
   Click
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#ios-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for version 21.11.0 and older.
+  access the documentation for older SDK versions.
 </p>
 <div class="callout callout--info">
     <strong>Supported System Versions</strong>
