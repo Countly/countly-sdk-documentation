@@ -464,39 +464,35 @@ Countly.Instance.Init(cc);</code></pre>
 <pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
 <h1>User Location</h1>
 <p>
-  <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
+  While integrating this SDK into your application, you might want to track your
+  user location. You could use this information to better know your app’s user
+  base. There are 4 fields that can be provided:
 </p>
 <ul>
+  <li>Country code (two-letter ISO standard).</li>
+  <li>City name (must be set together with the country code).</li>
   <li>
-    <span>Country code (two-letter ISO standard).</span>
+    Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325".
   </li>
-  <li>
-    <span>City name (must be set together with the country code).</span>
-  </li>
-  <li>
-    <span>Latitude and longitude values separated by a comma, e.g.</span><span>&nbsp;</span>"56.42345,123.45325".
-  </li>
-  <li>
-    <span>Your user’s IP address.</span>
-  </li>
+  <li>Your user’s IP address.</li>
 </ul>
 <h2>Setting Location</h2>
+<div class="callout callout--warning">
+  <p>
+    Note that the IP address will only be updated if it was set during the init
+    process.
+  </p>
+</div>
 <p>
-  <span>During init, you can set</span><span>&nbsp;location info in the configuration:</span>
+  During init, you can set location info in the configuration:
 </p>
 <pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
-  <span>After SDK initialization, this location info will be sent to the server at the start of the user session.</span>
+  After SDK initialization, this location info will be sent to the server at the
+  start of the user session. Use <code>SetLocation</code> method to disable or
+  set the location at any time after the SDK Init call.
 </p>
-<p>
-  <span>Note that the IP address will only be updated if set through the init process.</span>
-</p>
-<p>
-  <span>Use</span><code>SetLocation</code>method<span>&nbsp;to disable or set the location at any time after the SDK Init call.</span>
-</p>
-<p>
-  <span>For example:</span>
-</p>
+<p>For example:</p>
 <pre><code class="csharp">//set user location
 String gpsLocation = "63.445821, 10.898868";
 String ipAddress = "13.56.33.12";
@@ -513,7 +509,7 @@ Countly.Instance.SetLocation(gpsLocation, ipAddress, country_code, city);</code>
 </p>
 <h2>Disabling Location</h2>
 <p>
-  <span>Users might want to opt-out of location tracking. To do so call:</span>
+  Users might want to opt-out of location tracking. To do so call:
 </p>
 <pre><code class="csharp">//disable location tracking
 Countly.Instance.DisableLocation();</code></pre>
