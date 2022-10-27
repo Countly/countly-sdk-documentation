@@ -4,10 +4,11 @@
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">Github</a>.&nbsp;
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 21.11.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_self" rel="undefined">here.</a>
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#older-sdks-versions" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 21.11 and older.
+</p>
 </div>
 <p>
   The following are some of the key assumptions being considered while developing

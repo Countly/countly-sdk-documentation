@@ -5,10 +5,11 @@
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/7019114935961" target="_self" rel="undefined">here.</a>
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#cordova-sdk" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 20.11 and older.
+</p>
 </div>
 <p>
   <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.

@@ -3,10 +3,11 @@
   device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#older-sdks-versions" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 20.11 and older.
+</p>
 </div>
 <p>
   Countly NodeJS runs with the following node versions and up:

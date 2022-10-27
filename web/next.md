@@ -2,10 +2,11 @@
   <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.06.X.</span>
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 22.02.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="blank">here</a>.
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#older-sdks-versions" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 22.02.0 and older.
+</p>
 </div>
 <p>
   Countly can run with all browsers that supports ECMAScript 5. Minimum versions

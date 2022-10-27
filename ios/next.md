@@ -4,8 +4,9 @@
   <code>22.08.0</code>.
 </p>
 <p>
-  To access the documentation for older versions please click
-  <a href="https://support.count.ly/hc/en-us/articles/10017895289625">here</a>.
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#ios-sdk" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 21.11.0 and older.
 </p>
 <div class="callout callout--info">
     <strong>Supported System Versions</strong>

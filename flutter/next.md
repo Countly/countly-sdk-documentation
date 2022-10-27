@@ -3,10 +3,11 @@
   and it applies to version 22.02.0
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 21.11 and older, click
-    <a href="/hc/en-us/articles/9667091699097" target="_self" rel="undefined">here.</a>
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 21.11 and older.
+</p>
 </div>
 <p>
   This document includes the necessary information for integrating Countly Flutter

@@ -3,9 +3,11 @@
   It applies to version 22.02.X.
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 21.11 click&nbsp;<a href="/hc/en-us/articles/11428429151513">here.</a>
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#older-sdks-versions" target="_self" rel="undefined">here, </a>to
+  access the documentation for version 21.11 and older.
+</p>
 </div>
 <div>
   <p>The Countly Windows SDK implements the following flavors:</p>
