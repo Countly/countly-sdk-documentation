@@ -3,11 +3,11 @@
   device or server, like tracking your API. It applies to the SDK version 22.02.0.
 </p>
 <div class="callout callout--info">
-<p>
-  Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#nodejs-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for older SDK versions.
-</p>
+  <p>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#nodejs-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
+  </p>
 </div>
 <p>
   Countly NodeJS runs with the following node versions and up:
@@ -28,9 +28,8 @@
 </table>
 <p>
   If you want to get the Countly NodeJS SDK codebase locally you can go to the
-  github repo
-  <a href="https://github.com/Countly/countly-sdk-nodejs">here</a> and download
-  it inside your project folder by executing the lines:
+  github repo <a href="https://github.com/Countly/countly-sdk-nodejs">here</a>
+  and download it inside your project folder by executing the lines:
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>
