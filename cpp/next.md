@@ -3,8 +3,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 22.02 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="blank">here</a>.
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#c++-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>

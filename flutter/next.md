@@ -4,8 +4,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 21.11 and older, click
-    <a href="/hc/en-us/articles/9667091699097" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -1021,7 +1022,8 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 </p>
 <p>
   For more information regarding how to structure the reported result, you would
-  look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
+  look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <p>

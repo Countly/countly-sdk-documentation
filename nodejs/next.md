@@ -4,8 +4,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#nodejs-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -27,9 +28,8 @@
 </table>
 <p>
   If you want to get the Countly NodeJS SDK codebase locally you can go to the
-  github repo
-  <a href="https://github.com/Countly/countly-sdk-nodejs">here</a> and download
-  it inside your project folder by executing the lines:
+  github repo <a href="https://github.com/Countly/countly-sdk-nodejs">here</a>
+  and download it inside your project folder by executing the lines:
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>

@@ -4,8 +4,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 19.09-sdk2-rc, click
-    <a href="/hc/en-us/articles/4404187501465" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#java-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
