@@ -3,11 +3,11 @@
   and it applies to version 22.02.0
 </p>
 <div class="callout callout--info">
-<p>
-  Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for older SDK versions.
-</p>
+  <p>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
+  </p>
 </div>
 <p>
   This document includes the necessary information for integrating Countly Flutter
@@ -1022,7 +1022,8 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 </p>
 <p>
   For more information regarding how to structure the reported result, you would
-  look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
+  look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
 </p>
 <h1>User Profiles</h1>
 <p>
