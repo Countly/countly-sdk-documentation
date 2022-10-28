@@ -2,11 +2,11 @@
   <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 22.06.X</span>
 </p>
 <div class="callout callout--info">
-<p>
-  Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#android-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for older SDK versions.
-</p>
+  <p>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#android-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
+  </p>
 </div>
 <p>
   The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
