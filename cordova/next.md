@@ -5,11 +5,11 @@
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
-<p>
-  Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#cordova-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for older SDK versions.
-</p>
+  <p>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#cordova-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
+  </p>
 </div>
 <p>
   <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.
@@ -351,7 +351,7 @@ Countly.addCrashLog("My crash log from JavaScript");
   </li>
 </ul>
 <div class="callout callout--info">
-    <strong>Data passed should be in UTF-8</strong>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
@@ -523,7 +523,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-   <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
+  <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
