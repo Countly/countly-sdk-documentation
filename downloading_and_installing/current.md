@@ -515,6 +515,41 @@
     </tr>
   </tbody>
 </table>
+<h1>Sunsetted SDKs</h1>
+<p>
+  <span style="font-weight: 400;">This table includes a list of all SDKs that have been sunsetted by Countly.</span>
+</p>
+<table>
+  <tbody>
+    <tr>
+      <th>SDK name</th>
+      <th>Repository link</th>
+      <th>Documentation link</th>
+    </tr>
+    <tr>
+      <td>
+        <strong>IoT devices (Python)</strong>
+      </td>
+      <td>
+        <a href="https://github.com/Countly/countly-sdk-iot-python" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td>
+        <a href="https://support.count.ly/hc/en-us/articles/360037442772-IoT-devices-Python-" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>React Native (old)</strong>
+      </td>
+      <td>
+        <a href="https://github.com/Countly/countly-sdk-react-native" target="_self" rel="undefined">Click to get</a>
+      </td>
+      <td>
+        <a href="https://support.count.ly/hc/en-us/articles/360037443012-React-Native-unmaintained-" target="_self" rel="undefined">Click for documentation</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 <h1>Older SDK Versions</h1>
 <h2>iOS SDK</h2>
 <p>
@@ -608,38 +643,3 @@
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_self" rel="undefined">Version 19.09</a>
 </p>
-<h1>Sunsetted SDKs</h1>
-<p>
-  <span style="font-weight: 400;">This table includes a list of all SDKs that have been sunsetted by Countly.</span>
-</p>
-<table>
-  <tbody>
-    <tr>
-      <th>SDK name</th>
-      <th>Repository link</th>
-      <th>Documentation link</th>
-    </tr>
-    <tr>
-      <td>
-        <strong>IoT devices (Python)</strong>
-      </td>
-      <td>
-        <a href="https://github.com/Countly/countly-sdk-iot-python" target="_self" rel="undefined">Click to get</a>
-      </td>
-      <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037442772-IoT-devices-Python-" target="_self" rel="undefined">Click for documentation</a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <strong>React Native (old)</strong>
-      </td>
-      <td>
-        <a href="https://github.com/Countly/countly-sdk-react-native" target="_self" rel="undefined">Click to get</a>
-      </td>
-      <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037443012-React-Native-unmaintained-" target="_self" rel="undefined">Click for documentation</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
