@@ -665,7 +665,7 @@ apply plugin: 'com.google.gms.google-services'
 console.log(JSON.stringify(theNotification));
 });</pre>
 <p>
-  In order to listen to notification receive and click events, Place below code
+  In order to listen to notifications received and the click events, add the code below
   in <code>AppDelegate.m</code>
 </p>
 <p>Add header files</p>
