@@ -665,7 +665,7 @@ apply plugin: 'com.google.gms.google-services'
 console.log(JSON.stringify(theNotification));
 });</pre>
 <p>
-  In order to listen to notification receive and click events, Place below code
+  In order to listen to notifications received and the click events, add the code below
   in <code>AppDelegate.m</code>
 </p>
 <p>Add header files</p>
@@ -676,7 +676,7 @@ console.log(JSON.stringify(theNotification));
   <code class="JavaScript">[CountlyReactNative startObservingNotifications];</code>
   in <code>didFinishLaunchingWithOptions:</code> method
 </p>
-<pre><code class="JavaScript">// For push notification received and action callbacks.
+<pre><code class="JavaScript">// For received push notifications and action callbacks.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
   Before <code>@end</code> add these method
