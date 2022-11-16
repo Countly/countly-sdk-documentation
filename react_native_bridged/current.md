@@ -671,6 +671,13 @@ console.log(JSON.stringify(theNotification));
 <pre><code class="JavaScript">#import "CountlyReactNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;
 </code></pre>
 <p>
+  Add this call
+  <code class="JavaScript">[CountlyReactNative startObservingNotifications];</code>
+  in <code>didFinishLaunchingWithOptions:</code> method
+</p>
+<pre><code class="JavaScript">// For push notification received and action callbacks.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
+<p>
   Before <code>@end</code> add these method
 </p>
 <pre><code class="JavaScript">// Required for the notification event. You must call the completion handler after handling the remote notification.

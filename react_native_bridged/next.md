@@ -6,9 +6,8 @@
 </p>
 <div class="callout callout--info">
   <p>
-    Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#react-native-sdk" target="_self" rel="undefined">here, </a>to
-    access the documentation for older SDK versions.
+    To access the documentation for version 22.02.X and older, click
+    <a href="/hc/en-us/articles/11734029520665" target="_self" rel="undefined">here.</a>
   </p>
 </div>
 <p>
@@ -671,6 +670,13 @@ console.log(JSON.stringify(theNotification));
 <p>Add header files</p>
 <pre><code class="JavaScript">#import "CountlyReactNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;
 </code></pre>
+<p>
+  Add this call
+  <code class="JavaScript">[CountlyReactNative startObservingNotifications];</code>
+  in <code>didFinishLaunchingWithOptions:</code> method
+</p>
+<pre><code class="JavaScript">// For push notification received and action callbacks.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
   Before <code>@end</code> add these method
 </p>
@@ -1456,9 +1462,9 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   <strong>application</strong> tag.
 </p>
 <pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
-	&lt;intent-filter&gt;
-		&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-	&lt;/intent-filter&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+  &lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
   <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
