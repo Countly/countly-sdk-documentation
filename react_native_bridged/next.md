@@ -5,10 +5,11 @@
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p>
-    To access the documentation for version 22.02.X and older, click
-    <a href="/hc/en-us/articles/11734029520665" target="_self" rel="undefined">here.</a>
-  </p>
+<p>
+  Click
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#react-native-sdk" target="_self" rel="undefined">here, </a>to
+  access the documentation for older SDK versions.
+</p>
 </div>
 <p>
   This is the Countly SDK for React Native applications. It features bridging,
