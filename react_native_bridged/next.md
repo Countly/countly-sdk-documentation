@@ -5,11 +5,11 @@
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
-<p>
-  Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#react-native-sdk" target="_self" rel="undefined">here, </a>to
-  access the documentation for older SDK versions.
-</p>
+  <p>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#react-native-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
+  </p>
 </div>
 <p>
   This is the Countly SDK for React Native applications. It features bridging,
@@ -674,8 +674,12 @@ console.log(JSON.stringify(theNotification));
 <p>
   Add this call
   <code class="JavaScript">[CountlyReactNative startObservingNotifications];</code>
-  in <code>didFinishLaunchingWithOptions:</code> method
+  in <code>didFinishLaunchingWithOptions:</code> method to handle push notification
+  receive and action callbacks when SDK is not initialized.
 </p>
+<div class="callout callout--warning">
+  <p>This functionality is available since SDK version 22.06.1</p>
+</div>
 <pre><code class="JavaScript">// For push notification received and action callbacks.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
