@@ -28,10 +28,10 @@
 <pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:20.11.1"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
-	&lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
-	&lt;artifactId&gt;java&lt;/artifactId&gt;
-	&lt;version&gt;20.11.1&lt;/version&gt;
-	&lt;type&gt;pom&lt;/type&gt;
+  &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
+  &lt;artifactId&gt;java&lt;/artifactId&gt;
+  &lt;version&gt;20.11.1&lt;/version&gt;
+  &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 class="anchor-heading">SDK Integration</h1>
 <h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
@@ -71,19 +71,8 @@ Countly.init(targetFolder, config);</code></pre>
     random UUID string, as device id.
   </li>
 </ul>
-<h3 id="providing-the-application-key" class="anchor-heading">Providing the application key</h3>
 <p>
-  <span>Also called "AppKey" as shorthand. The application key is used to identify for which application this information is tracked. You receive this value by creating a new application in your Countly dashboard and accessing it in its application management screen.</span>
-</p>
-<p>
-  <span><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
-</p>
-<h3 id="providing-the-server-url" class="anchor-heading">Providing the server URL</h3>
-<p>
-  <span>If you are using Countly Enterprise Edition trial servers, use&nbsp;<code>https://try.count.ly</code>,&nbsp;<code>https://us-try.count.ly</code>&nbsp;or&nbsp;<code>https://asia-try.count.ly</code>&nbsp;It is basically the domain from which you are accessing your trial dashboard.</span>
-</p>
-<p>
-  <span>If you use both Community Edition and Enterprise Edition, use your own domain name or IP address, such as&nbsp;</span><a href="https://example.com/"><span>https://example.com</span></a><span>&nbsp;or&nbsp;</span><a href="https://ip/"><span>https://IP</span></a><span>&nbsp;(if SSL has been set up).</span>
+  <span>Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <div class="callout callout--info">
   <p>
