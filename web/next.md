@@ -76,7 +76,7 @@
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">To track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via the command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
@@ -102,19 +102,21 @@
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue or synchronously allowing the script to load before executing any functions.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue or synchronously allow the script to load before executing any functions.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
 </p>
 <p>
-  Here you would also need to provide your application key and server URL. For
+  Here you would also need to provide your application key and server URL. Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for
   more information on how to acquire your application key (APP_KEY) and server
-  URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
-  Also if you are planning to use Application Performance Monitoring (APM) there
-  would be additional steps necessary for you to follow. For more information on
-  APM and its integration please check
+  URL.
+</p>
+<p>
+  If you are planning to use Application Performance Monitoring (APM), you
+  would need to follow additional steps. For more information on APM and 
+  its integration, please check
   <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#application-performance-monitoring">here</a>.
 </p>
 <p>
@@ -135,8 +137,7 @@ Countly.q = Countly.q || [];
 // Provide your app key that you retrieved from Countly dashboard
 Countly.app_key = "YOUR_APP_KEY";
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
+// Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
 Countly.url = "https://yourdomain.com";
@@ -151,14 +152,14 @@ Countly.q.push(['track_pageview']);
 // Uncomment the following line to track web heatmaps (Enterprise Edition)
 // Countly.q.push(['track_clicks']);
 
-// Uncomment the following line to track web scrollmaps (Enterprise Edition)
+// Uncomment the following line to track web scroll maps (Enterprise Edition)
 // Countly.q.push(['track_scrolls']);
 
 // Load Countly script asynchronously
 (function() {
 var cly = document.createElement('script'); cly.type = 'text/javascript';
 cly.async = true;
-// Enter url of script here (see below for other option)
+// Enter URL of script here (see below for other option)
 cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
 cly.onload = function(){Countly.init()};
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
@@ -174,8 +175,7 @@ Countly.init({
 // provide your app key that you retrieved from Countly dashboard
 app_key: "YOUR_APP_KEY",
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
+// Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.  
  url: "http://yourdomain.com"
@@ -189,10 +189,10 @@ Countly.track_pageview();
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. There are two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should be using instead of the one above.</span>
+  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. Two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should use instead of the one above.</span>
 </p>
 <pre><code class="text">// Note: You should change 19.2.1 below to the version 
-// of the latest JS SDK to make sure you use latest version.
+// of the latest JS SDK to make sure you use the latest version.
 // Latest version is here: 
 // https://github.com/Countly/countly-sdk-web/releases
 
@@ -201,7 +201,7 @@ https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</co
   <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
+  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You only need to point to this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use case.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Then you will be able to make event calls such as:</span>
@@ -310,20 +310,20 @@ Countly.debug = true;</code></pre>
   and enable convenience methods like offline mode.
 </p>
 <p>
-  The default storage location of user specific data, except the session information,
-  is the local storage of your browser. Information stored here is persistent and
-  as long as it was not erased or overwritten it would stay on your device indefinitely.
-  However Countly gives you the option to change this behavior by selecting persistent
-  cookies as the main storage option or choosing not store any data at all, depending
-  on your needs. These storage options are mutually exclusive, meaning, only one
+  The default storage location of user-specific data, except the session information,
+  is your browser’s local storage. Information stored here is persistent, and
+  as long as it was not erased or overwritten, it will stay on your device indefinitely.
+  However, Countly allows you to change this behavior by selecting persistent
+  cookies as the main storage option or choosing not to store any data at all, depending
+  on your needs. These storage options are mutually exclusive, meaning only one
   option can be selected at a given time.
 </p>
 <p>
-  If cookies were selected as the main storage medium it must be known that persistent
+  If cookies were selected as the main storage medium, persistent
   cookies have an expiration date and the information stored in them would be rendered
-  obsolete after a while. Incase of the session information, it is stored in session
-  cookies and would expire when the tab or browser is closed. Lastly if you decide
-  to not store any information, all information would stay in memory and would
+  obsolete after a while. In case of the session information, it is stored in session
+  cookies and would expire when the tab or browser is closed. Lastly, if you decide
+  not to store any information, all information will stay in memory and would
   be gone when the memory is cleared.
 </p>
 <p>These options can be selected during the initialization:</p>
@@ -391,7 +391,7 @@ Countly.init({
     <strong>ip_address</strong> - (optional) IP address of your visitor
   </li>
   <li>
-    <strong>debug</strong> - output debug info into console (default: false)
+    <strong>debug</strong> - output debug info into the console (default: false)
   </li>
   <li>
     <strong>ignore_bots</strong> - option to ignore traffic from bots (default:
@@ -402,7 +402,7 @@ Countly.init({
     <span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
   </li>
   <li>
-    <strong>queue_size</strong> - maximum amount of queued requests to store
+    <strong>queue_size</strong> - the maximum amount of queued requests to store
     (default: 1000)
   </li>
   <li>
@@ -418,18 +418,18 @@ Countly.init({
     <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>max_events</strong> -&nbsp;maximum amount of events to send in one
+    <strong>max_events</strong> - maximum amount of events to send in one
     batch (default: 100)
   </li>
   <li>
-    <strong>max_logs</strong> -&nbsp;<span style="font-weight: 400;">maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
+    <strong>max_logs</strong> - <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
   <li>
     <strong>ignore_referrers</strong> - array with referrers to ignore (default:
     none)
   </li>
   <li>
-    <strong>ignore_prefetch</strong> -<span style="font-weight: 400;">&nbsp;ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
+    <strong>ignore_prefetch</strong> - <span style="font-weight: 400;">ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
   </li>
   <li>
     <strong>heatmap_whitelist</strong> -
@@ -483,7 +483,7 @@ Countly.init({
     <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
-    <span><strong>metrics</strong> -&nbsp;provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
+    <span><strong>metrics</strong> - provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
     <ul>
       <li>
         <span><strong>_os</strong> - the name of platform/operating system</span>
