@@ -108,15 +108,16 @@
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
 </p>
 <p>
-  Here you would also need to provide your application key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for
-  more information on how to acquire your application key (APP_KEY) and server
+  Here you would also need to provide your application key and server URL. Please
+  check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
 <p>
-  If you are planning to use Application Performance Monitoring (APM), you
-  would need to follow additional steps. For more information on APM and 
-  its integration, please check
+  If you are planning to use Application Performance Monitoring (APM), you would
+  need to follow additional steps. For more information on APM and its integration,
+  please check
   <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#application-performance-monitoring">here</a>.
 </p>
 <p>
@@ -311,20 +312,20 @@ Countly.debug = true;</code></pre>
 </p>
 <p>
   The default storage location of user-specific data, except the session information,
-  is your browser’s local storage. Information stored here is persistent, and
-  as long as it was not erased or overwritten, it will stay on your device indefinitely.
-  However, Countly allows you to change this behavior by selecting persistent
-  cookies as the main storage option or choosing not to store any data at all, depending
+  is your browser’s local storage. Information stored here is persistent, and as
+  long as it was not erased or overwritten, it will stay on your device indefinitely.
+  However, Countly allows you to change this behavior by selecting persistent cookies
+  as the main storage option or choosing not to store any data at all, depending
   on your needs. These storage options are mutually exclusive, meaning only one
   option can be selected at a given time.
 </p>
 <p>
-  If cookies were selected as the main storage medium, persistent
-  cookies have an expiration date and the information stored in them would be rendered
-  obsolete after a while. In case of the session information, it is stored in session
-  cookies and would expire when the tab or browser is closed. Lastly, if you decide
-  not to store any information, all information will stay in memory and would
-  be gone when the memory is cleared.
+  If cookies were selected as the main storage medium, persistent cookies have
+  an expiration date and the information stored in them would be rendered obsolete
+  after a while. In case of the session information, it is stored in session cookies
+  and would expire when the tab or browser is closed. Lastly, if you decide not
+  to store any information, all information will stay in memory and would be gone
+  when the memory is cleared.
 </p>
 <p>These options can be selected during the initialization:</p>
 <div class="tabs">
@@ -418,18 +419,20 @@ Countly.init({
     <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>max_events</strong> - maximum amount of events to send in one
-    batch (default: 100)
+    <strong>max_events</strong> - maximum amount of events to send in one batch
+    (default: 100)
   </li>
   <li>
-    <strong>max_logs</strong> - <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
+    <strong>max_logs</strong> -
+    <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
   <li>
     <strong>ignore_referrers</strong> - array with referrers to ignore (default:
     none)
   </li>
   <li>
-    <strong>ignore_prefetch</strong> - <span style="font-weight: 400;">ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
+    <strong>ignore_prefetch</strong> -
+    <span style="font-weight: 400;">ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
   </li>
   <li>
     <strong>heatmap_whitelist</strong> -
@@ -2723,22 +2726,22 @@ Countly.q = Countly.q || [];
 
 // initializing first instance, which will be global Countly
 Countly.init({
-	app_key: "YOUR_APP_KEY_1",
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_1",
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
-	key:"first_app"
+  key:"first_app"
 });
 
 // initialize second instance for another app 
 Countly.q.push(["init", {
-	app_key: "YOUR_APP_KEY_2", //must have different APP key
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_2", //must have different APP key
+  url: "https://try.count.ly" //your server goes here
 }])
 // report event to second app asynchronously by passing app key as first argument
 Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
-	key:"second_app"
+  key:"second_app"
 }]);
     </code></pre>
   </div>
@@ -2746,22 +2749,22 @@ Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
     <pre><code class="javascript">
 // initializing first instance, which will be global Countly
 Countly.init({
-	app_key: "YOUR_APP_KEY_1",
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_1",
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
-	key:"first_app"
+  key:"first_app"
 });
 
 // initialize second instance for another app
 var Countly2 = Countly.init({
-	app_key: "YOUR_APP_KEY_2", //must have different APP key
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_2", //must have different APP key
+  url: "https://try.count.ly" //your server goes here
 });
 // report event to second app
 Countly2.add_event({
-	key:"second_app"
+  key:"second_app"
 });
     
     </code></pre>
