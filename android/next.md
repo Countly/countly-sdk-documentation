@@ -1929,13 +1929,13 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.<span>sharedInstance</span>().flushRequestQueues();</pre>
 <h2>Direct Request</h2>
 <p>
-  <span style="font-weight: 400;">This feature allows you to create custom functionality or implemet features that the SDK might be lacking at that moment.</span>
+  <span style="font-weight: 400;">This feature allows you to create custom functionality or implement features that the SDK might be lacking at that moment.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This feature should not be used lightly as impropper usage can lead to problems.</span>
+  <span style="font-weight: 400;">This feature should not be used lightly as improper usage can lead to problems.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This exposes a call where you can provide custom key/value pairs with <code>Map&lt;String, String&gt;</code>. These will be added to a base request created by the SDK. The base parameters will have things like time related fields, device ID, app key, checksums, etc. These base parameters are protected fields and can't be overridden.</span>
+  <span style="font-weight: 400;">This exposes a call where you can provide custom key/value pairs with <code>Map&lt;String, String&gt;</code>. These will be added to a base request created by the SDK. The base parameters will have things like time-related fields, device ID, app key, checksums, etc. These base parameters are protected fields and can't be overridden.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If consent would be required then the SDK will make sure that any consent has been given. The SDK will not perform any additional consent checks. It is up to the developer to make sure that they have the right consent to record the information they are trying to record.</span>
