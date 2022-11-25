@@ -64,9 +64,10 @@ flutter run</code></pre>
     }
   });</code></pre>
 <p>
-  For more information on how to acquire your application key (appKey) and server
-  URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
+  Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.

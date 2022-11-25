@@ -61,9 +61,10 @@
 <p>
   Where ever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here you would also need to provide your application
-  key and server URL. For more information on how to acquire your application key
-  (APP_KEY) and server URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+  key and server URL. Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <p>Example basic setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
