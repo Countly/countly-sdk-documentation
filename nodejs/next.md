@@ -62,9 +62,10 @@
 <p>
   Wherever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here, you would also need to provide your application
-  key and server URL. For more information on how to acquire your application key
-  (APP_KEY) and server URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+  key and server URL. Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <p>Example basic setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
@@ -301,6 +302,106 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
   new provided ID.
 </p>
 <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
+<h1>Remote Config</h1>
+<p>
+  <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span><span style="font-weight: 400;"></span>
+</p>
+<h2>Automatic Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific triggers. For example, after SDK initialization, changing device ID.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you provide a callback, the callback will be called when the Remote Config is initially loaded and when it is reloaded if you change the device_id. This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// in your Countly init script
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: true 
+});<br><br>// OR
+
+// provide a callback to be notified when configs are loaded
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: function(err, remoteConfigs){
+    if (!err) {
+      //we have our remoteConfigs here
+      console.log(remoteConfigs);
+    }
+  }
+});</code></pre>
+<h2>Manual Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">If you want, you can manually fetch the Remote Config in order to receive the latest value anytime after the initialization. To do so you have to use the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;"> call. This method is also used for reloading the values for updating them according to the latest changes you made on your server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">By using this method, you can simply load the entire object or load some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large. This call will automatically save the fetched keys internally.</span>
+</p>
+<h3>Fetch All Keys</h3>
+<p>
+  Here you so not need to provide any parameters to the call but providing a callback
+  is the recommended practice.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load the whole configuration object with a callback
+Countly.fetch_remote_config(function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
+  }<br>});<br><br>// or whole configuration object with no params
+Countly.fetch_remote_config();</code></pre>
+<h3>Fetch Specific Keys</h3>
+<p>
+  Here the keys should be provided as string values in an array, as the first parameter
+  in <em>fetch_remote_config</em> call. You can provide a callback function as
+  a second parameter.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load specific keys only, as `key1` and `key2`
+Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});<br><br></code></pre>
+<h3>Fetch All Except Specific Keys</h3>
+<p>
+  Here the first parameter should be set to 'null' or 'undefined' and the keys
+  that you want to omit must be provided as the second parameter as an array of
+  keys as string. As a third parameter you can provide a callback function.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2'
+Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});</code></pre>
+<h2>Accessing Remote Config Values</h2>
+<p>
+  <span style="font-weight: 400;">You may call </span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the Remote Config object of a value for a specific key or all keys from your local storage.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This method should be called once the Remote Config have been successfully loaded, or it will simply return an empty object or undefined values.</span>
+</p>
+<pre><code class="javascript">//get whole Remote Config object
+var remoteConfig = Countly.get_remote_config();
+
+//or get value for specific key like 'test'
+var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
+<h2>A/B Testing</h2>
+<p>
+  While fetching Remote Config, the SDK will automatically enroll the user to A/B
+  testing. For more information on A/B testing please check
+  <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.
+</p>
+<h2>Consent</h2>
+<p>
+  If consents are enabled, to fetch the Remote Config data you have to provide
+  the 'remote-config' consent for this feature to work.
+</p>
 <h1>User feedback</h1>
 <p>
   If there is any way you can get some user feedback, there is not a simple method

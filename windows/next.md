@@ -70,7 +70,7 @@ cc.appVersion = "1.2.3";
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <p>
-  <span>In the </span><code>CountlyConfig</code><span>&nbsp;object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check&nbsp;<a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self" rel="undefined">here</a>.</span>
+  <span>In the </span><code>CountlyConfig</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   <strong>Note: </strong>The SDK targets multiple profiles. Therefore for some

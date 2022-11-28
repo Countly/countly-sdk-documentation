@@ -39,7 +39,7 @@
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.<span>sharedInstance</span>().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
-  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.</span>
+  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
@@ -1929,7 +1929,19 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.<span>sharedInstance</span>().flushRequestQueues();</pre>
 <h2>Direct Request</h2>
 <p>
-  <span style="font-weight: 400;">You may send direct requests to the server with custom key/value pairs of&nbsp;<code>Map&lt;String, String&gt;</code>.&nbsp; These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
+  <span style="font-weight: 400;">This feature allows you to create custom functionality or implement features that the SDK might be lacking at that moment.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This feature should not be used lightly as improper usage can lead to problems.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This exposes a call where you can provide custom key/value pairs with <code>Map&lt;String, String&gt;</code>. These will be added to a base request created by the SDK. The base parameters will have things like time-related fields, device ID, app key, checksums, etc. These base parameters are protected fields and can't be overridden.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If consent would be required then the SDK will make sure that any consent has been given. The SDK will not perform any additional consent checks. It is up to the developer to make sure that they have the right consent to record the information they are trying to record.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
 </p>
 <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>requestMap </span>= <span>new </span>HashMap&lt;&gt;();<br><span>requestMap</span>.put(<span>"city"</span>, <span>"Istanbul"</span>);<br><span>requestMap</span>.put(<span>"country_code"</span>, <span>"TR"</span>);<br><span>requestMap</span>.put(<span>"ip_address"</span>, <span>"41.0082,28.9784"</span>);<br><br><span>try </span>{<br>    <span>JSONObject event </span>= <span>new </span>JSONObject();<br>    <span>event</span>.putOpt(<span>"key"</span>, <span>"test"</span>);<br>    <span>event</span>.putOpt(<span>"count"</span>, <span>"5"</span>);<br>    <span>event</span>.putOpt(<span>"sum"</span>, <span>"2"</span>);<br>    <span>event</span>.putOpt(<span>"dur"</span>, <span>"2000"</span>);<br><br>    <span>JSONObject ffJson </span>= <span>new </span>JSONObject();<br>    <span>ffJson</span>.putOpt(<span>"type"</span>, <span>"FF"</span>);<br>    <span>ffJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>ffJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject skipJson </span>= <span>new </span>JSONObject();<br>    <span>skipJson</span>.putOpt(<span>"type"</span>, <span>"skip"</span>);<br>    <span>skipJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>skipJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject resumeJson </span>= <span>new </span>JSONObject();<br>    <span>resumeJson</span>.putOpt(<span>"type"</span>, <span>"resume_play"</span>);<br>    <span>resumeJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>resumeJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONArray trickPlay </span>= <span>new </span>JSONArray();<br>    <span>trickPlay</span>.put(<span>ffJson</span>);<br>    <span>trickPlay</span>.put(<span>skipJson</span>);<br>    <span>trickPlay</span>.put(<span>resumeJson</span>);<br><br>    <span>JSONObject segmentation </span>= <span>new </span>JSONObject();<br>    <span>segmentation</span>.putOpt(<span>"trickplay"</span>, <span>trickPlay</span>);<br>    <span>event</span>.putOpt(<span>"segmentation"</span>, <span>segmentation</span>);<br><br>    <span>JSONArray events </span>= <span>new </span>JSONArray();<br>    <span>events</span>.put(<span>event</span>);<br>    <span>requestMap</span>.put(<span>"events"</span>,<span>events</span>.toString());<br>} <span>catch </span>(<span>JSONException </span>e) {<br>    e.printStackTrace();<br>}<br><span>Countly</span>.<span>sharedInstance</span>().requestQueue().addDirectRequest(<span>requestMap</span>);<span style="font-weight: 400;"></span></pre>
 <h2>Explicit Storage Mode</h2>

@@ -85,7 +85,7 @@
   <strong>Note:</strong> Make sure you start Countly iOS SDK on the main thread.
 </p>
 <p>
-  <span style="font-weight: 400;">Set your app key and host on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. Make sure to use the </span><strong>App Key</strong><span style="font-weight: 400;"> (under top right cog &gt; Management &gt; Applications), not the API Key or App ID.</span>
+  <span style="font-weight: 400;">Set your app key and host on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If you are using the Countly Enterprise Edition trial servers, the <code>host</code></span><span style="font-weight: 400;"> should be <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or <code>https://asia-try.count.ly</code></span><span style="font-weight: 400;">. Stated simply, it should be the domain from which you are accessing your trial dashboard.</span>

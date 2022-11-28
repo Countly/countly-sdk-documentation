@@ -78,9 +78,10 @@ if(!await Countly.isInitialized()) {
   Countly.start(); // start session tracking
 }</code></pre>
 <p>
-  For more information on how to acquire your application key (appKey) and server
-  URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
+  Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <p>
   After <code class="JavaScript">init</code> and
@@ -665,12 +666,23 @@ apply plugin: 'com.google.gms.google-services'
 console.log(JSON.stringify(theNotification));
 });</pre>
 <p>
-  In order to listen to notification receive and click events, Place below code
-  in <code>AppDelegate.m</code>
+  In order to listen to notifications received and the click events, add the code
+  below in <code>AppDelegate.m</code>
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">#import "CountlyReactNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;
 </code></pre>
+<p>
+  Add this call
+  <code class="JavaScript">[CountlyReactNative startObservingNotifications];</code>
+  in <code>didFinishLaunchingWithOptions:</code> method to handle push notification
+  receive and action callbacks when SDK is not initialized.
+</p>
+<div class="callout callout--warning">
+  <p>This functionality is available since SDK version 22.06.1</p>
+</div>
+<pre><code class="JavaScript">// For push notification received and action callbacks.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
   Before <code>@end</code> add these method
 </p>
@@ -1456,9 +1468,9 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   <strong>application</strong> tag.
 </p>
 <pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
-	&lt;intent-filter&gt;
-		&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-	&lt;/intent-filter&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+  &lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
   <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
