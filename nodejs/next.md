@@ -684,7 +684,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     one event.
   </li>
   <li>
-    <strong>maxBreadcrumbCount</strong> - 100 entries. If the limits are exceeded,
+    <strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded,
     the oldest entry will be removed.<br>
     To limit the amount of breadcrumbs that can be recorded before the oldest
     one is deleted from the logs.
