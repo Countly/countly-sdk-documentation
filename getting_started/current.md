@@ -4,22 +4,23 @@
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
 </p>
 <p>
-  There are common concepts in all Countly SDKs, and this document is intended to
-  be a universal getting started guide without getting into the implementation
-  details of individual SDKs. To get more information on platform-specific
-  implementation,
+  There are common concepts in all Countly SDKs, and this document is intended
+  to be a universal getting started guide without getting into the implementation
+  details of individual SDKs. To get more information on platform-specific implementation,
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#officially-supported-sdks" target="_self">please refer to the documentation</a>
   of your SDK of choice.
 </p>
 <h1>User/device identification</h1>
 <p>
-  By default, Countly generates an anonymous identifier to uniquely identify a device or browser. The total users metric for any period is based on a unique number
-  of device ids the Countly Server receives requests from. Similarly, users list in
+  By default, Countly generates an anonymous identifier to uniquely identify a
+  device or browser. The total users metric for any period is based on a unique
+  number of device ids the Countly Server receives requests from. Similarly, users
+  list in
   <a href="/hc/en-us/articles/360037630571" target="_blank" rel="noopener">User Profiles</a>.
-  The section lists anonymous devices from which the Countly Server is receiving data.
-  All data originating from a single device, including sessions, events, views
-  and crashes, are grouped under these individual profiles since all the data is
-  tagged with the originating device id.
+  The section lists anonymous devices from which the Countly Server is receiving
+  data. All data originating from a single device, including sessions, events,
+  views and crashes, are grouped under these individual profiles since all the
+  data is tagged with the originating device id.
 </p>
 <p>
   Most Countly SDKs including,
@@ -53,10 +54,10 @@
 </p>
 <p>
   Custom user properties are similar in logic to default and reserved user properties,
-  in the sense that this information is stored at the user profile level. All the data
-  (sessions, events, views, crashes etc.) originating from a user will get tagged
-  with a historical snapshot of default, reserved, and custom user properties and
-  will be available to be used in reporting and features such as
+  in the sense that this information is stored at the user profile level. All the
+  data (sessions, events, views, crashes etc.) originating from a user will get
+  tagged with a historical snapshot of default, reserved, and custom user properties
+  and will be available to be used in reporting and features such as
   <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
   <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>,
@@ -67,8 +68,8 @@
 <p>
   Custom user properties consist of key-value pairs, where the value can be a string,
   number, boolean, or array. There are various modifiers available in the SDKs,
-  such as 'set', 'set once', 'push unique', 'increment', and 'multiply' to update these
-  as needed. For example, you can store account levels of your users in an
+  such as 'set', 'set once', 'push unique', 'increment', and 'multiply' to update
+  these as needed. For example, you can store account levels of your users in an
   <strong>accountType</strong>&nbsp;custom user property that can take values
   <strong>Basic</strong> or&nbsp;<strong>Premium</strong> to later on filter &amp;
   segment all reports based on the account type of your customers.
@@ -101,23 +102,23 @@
 </p>
 <ul>
   <li>
-    The Product team will want to check feature usage; they will need multiple events
-    that show how users interact with various application features
+    The Product team will want to check feature usage; they will need multiple
+    events that show how users interact with various application features
   </li>
   <li>
-    Customer experience &amp; success team will want to understand the paths users
-    go through (such as during onboarding) and get stuck in, and will need customized
-    events as milestone indicators
+    Customer experience &amp; success team will want to understand the paths
+    users go through (such as during onboarding) and get stuck in, and will need
+    customized events as milestone indicators
   </li>
   <li>
-    The Engineering team will want to get transactions &amp; statutes that are created
-    after users' interaction with the UI layer thus, they'll need events or event
-    segments that they can take advantage of
+    The Engineering team will want to get transactions &amp; statutes that are
+    created after users' interaction with the UI layer thus, they'll need events
+    or event segments that they can take advantage of
   </li>
   <li>
     CXOs and managers will want to see higher-level metrics or KPIs; thus this
-    higher-level data should exist either as dedicated events or as individual ones
-    to be used while constructing complex metrics using
+    higher-level data should exist either as dedicated events or as individual
+    ones to be used while constructing complex metrics using
     <a href="/hc/en-us/articles/360037639931" target="_blank" rel="noopener">Formulas</a>
   </li>
 </ul>
@@ -139,13 +140,14 @@
 <p>
   Segments are properties that add further detail and meaning to an event. Segments
   are important since most of the time you aren't only interested in how many times
-  some general action happened but also will need to dig deeper, filter
-  certain cases or group occurrences by different nuances of the action.
+  some general action happened but also will need to dig deeper, filter certain
+  cases or group occurrences by different nuances of the action.
 </p>
 <p>
   From our event sample in the above section, thanks to the Route Type event segment,
-  you can not only see overall journeys taking place but also see how many journeys were planned with the fastest, shortest or eco route types offered
-  in the app. Furthermore, plugins like
+  you can not only see overall journeys taking place but also see how many journeys
+  were planned with the fastest, shortest or eco route types offered in the app.
+  Furthermore, plugins like
   <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
   <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>&nbsp;and
@@ -157,8 +159,8 @@
     Filter events where <strong>Route Type = Eco</strong> using Drill
   </li>
   <li>
-    Construct 3 different funnels where the final step is the Journey event in all
-    but filtered to be <strong>Route Type = Eco</strong>,
+    Construct 3 different funnels where the final step is the Journey event in
+    all but filtered to be <strong>Route Type = Eco</strong>,
     <strong>Route Type = Fastest</strong> and
     <strong>Route Type = Shortest</strong>
   </li>
@@ -171,8 +173,8 @@
     <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications#sending-automated-push-notifications" target="_blank" rel="noopener">automated push notifications</a>)
   </li>
   <li>
-    Construct 2 formulas in which you calculate the average kilometers driven per
-    journey for <strong>Route Type = Shortest</strong> and
+    Construct 2 formulas in which you calculate the average kilometers driven
+    per journey for <strong>Route Type = Shortest</strong> and
     <strong>Route Type = Fastest</strong>
   </li>
 </ul>
@@ -197,13 +199,14 @@
   <strong>Acquiring the server URL</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">This is the domain from which you are accessing your Countly server. </span><span style="font-weight: 400;">During your SDK initialization you'll see a value such as 'url', 'server url' or  something similar that you need to fill in. You have to fill that value with the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span> <span style="font-weight: 400;"><a href="https://192.168.1.1">https://192.168.1.1</a> , if the SSL configuration is complete, or <a href="http://192.168.1.1" target="_self" rel="undefined">http://192.168.1.1</a> if there  is no SSL configuration.</span><span style="font-weight: 400;"> If there is a server name associated with your IP, that server name may also be used instead (e.g. <a href="https://countly.mycompany.com)." target="_self"  rel="undefined">https://countly.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">This is the domain from which you are accessing your Countly server. </span><span style="font-weight: 400;">During your SDK initialization you'll see a value such as 'url', 'server url' or something similar that you need to fill in. You have to fill that value with the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span>
+  <span style="font-weight: 400;"><a href="https://192.168.1.1">https://192.168.1.1</a> , if the SSL configuration is complete, or <a href="http://192.168.1.1" target="_self" rel="undefined">http://192.168.1.1</a> if there is no SSL configuration.</span><span style="font-weight: 400;"> If there is a server name associated with your IP, that server name may also be used instead (e.g. <a href="https://countly.mycompany.com)." target="_self" rel="undefined">https://countly.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
 </p>
 <h1>Handling login/logout in your app</h1>
 <p>
   For a lot of apps, there is a login option. This allows you to confirm the identity
-  of your users by cross-referencing them with your systems. That also adds
-  two complications. First, multiple users can use the same app on the same device.
+  of your users by cross-referencing them with your systems. That also adds two
+  complications. First, multiple users can use the same app on the same device.
   The generated data would need to be assigned to the relevant user; therefore,
   the device ID needs to be changed. Second, the same user can log in to multiple
   devices. Therefore you need to use the same device ID on all of that user's devices.
@@ -214,28 +217,30 @@
   The first time you initialize a Countly SDK, you would allow the SDK to generate
   the device ID. When the user logs in to your app, you will change the device
   ID to the new ID that you generate. If this is the first time the user logs in,
-  we recommend that you change the device ID with merging. You
-  would also want to change the device ID without merging on any follow-up logins. This way, you can assign the events
-  generated by the user before the first login to the user that logs in.
+  we recommend that you change the device ID with merging. You would also want
+  to change the device ID without merging on any follow-up logins. This way, you
+  can assign the events generated by the user before the first login to the user
+  that logs in.
 </p>
 <p>
   When a user logs out, you have 2 options. First, you would not change the device
-  ID. This way, you would also assign any follow-up events to the last user signed in, and those events would be sent as they happen. Second, if the
-  SDK supports temporary ID mode; you can enter that when logout happens. This
-  way, you would assign follow-up events to the user who would sign in next.
-  The downside to the temporary ID approach is that no events would be sent while
-  the user is not logged in. Both of these approaches not only solve a server-side
-  performance issue but also eliminates the issue with inflated user counts. We
-  recommend you choose the first logout option.
+  ID. This way, you would also assign any follow-up events to the last user signed
+  in, and those events would be sent as they happen. Second, if the SDK supports
+  temporary ID mode; you can enter that when logout happens. This way, you would
+  assign follow-up events to the user who would sign in next. The downside to the
+  temporary ID approach is that no events would be sent while the user is not logged
+  in. Both of these approaches not only solve a server-side performance issue but
+  also eliminates the issue with inflated user counts. We recommend you choose
+  the first logout option.
 </p>
 <p>
   A key SDK feature that allows you to do this is the ability to see the device
-  ID type. The 2 important things that you want to differentiate are if the ID is
-  generated by the SDK or if it's a custom ID provided by you. If the ID is generated
-  by the SDK, then, you can assume that the user has not logged in before and when
-  changing the device ID, you need to do that with merging. If the device ID is
-  a custom one, then you can assume that you have already changed the ID before
-  and need to perform the current change without merging.
+  ID type. The 2 important things that you want to differentiate are if the ID
+  is generated by the SDK or if it's a custom ID provided by you. If the ID is
+  generated by the SDK, then, you can assume that the user has not logged in before
+  and when changing the device ID, you need to do that with merging. If the device
+  ID is a custom one, then you can assume that you have already changed the ID
+  before and need to perform the current change without merging.
 </p>
 <p>Here are a few sample login implementations of this flow:</p>
 <h2>Android</h2>
@@ -294,13 +299,13 @@
 <p>
   To perform this cross-modality tracking, care must be given that tracking is
   performed with the same device ID across all of them. If the device ID to which
-  the event or session is attributed would not be the same across all devices
-  and modalities, then the same user would be counted as a separate person on one
-  of them.
+  the event or session is attributed would not be the same across all devices and
+  modalities, then the same user would be counted as a separate person on one of
+  them.
 </p>
 <p>
-  This also means that if the user's device ID changes, this change needs
-  to be synchronized across all modalities/apps.
+  This also means that if the user's device ID changes, this change needs to be
+  synchronized across all modalities/apps.
 </p>
 <p>This can be achieved in 2 general approaches:</p>
 <ol>
@@ -315,11 +320,12 @@
   </li>
   <li>
     Performing data recording at a central location and proxying data recording
-    from each non-app modality eliminates the need for synchronization as only one instance of the SDK is initialized and configured. Device ID changes
+    from each non-app modality eliminates the need for synchronization as only
+    one instance of the SDK is initialized and configured. Device ID changes
     are immediately taken into account when they happen. Since cross-device recording
-    is centralized, views and sessions must be recorded manually. The main
-    issue with this approach is that there will be times when the main app might
-    be out of reach for proxy recording or might not be running.
+    is centralized, views and sessions must be recorded manually. The main issue
+    with this approach is that there will be times when the main app might be
+    out of reach for proxy recording or might not be running.
   </li>
 </ol>
 <p>
@@ -332,10 +338,10 @@
 </p>
 <p>
   The general recommendation is to have Countly integrated into each separate modality
-  as that seems to present the least amount of issues. If the modalities 
-  used are from the same developer account, then an internal communication
-  channel should be available to them. If they are not on the same developer account, 
-  an outside synchronization mechanism will need to be used.
+  as that seems to present the least amount of issues. If the modalities used are
+  from the same developer account, then an internal communication channel should
+  be available to them. If they are not on the same developer account, an outside
+  synchronization mechanism will need to be used.
 </p>
 <p>
   For additional integration details, you would also have a look at
@@ -370,14 +376,15 @@
   of your ability, whether you see some data or not in your Countly server, you
   should normally verify your integration by checking if everything is working
   as expected, both on your Countly server and your app/website. To have the most
-  optimized verification process, we recommend you to go through the following steps
-  for these cases of integration validation and also for debugging if you are seeing
-  partial or no data at all on your server.
+  optimized verification process, we recommend you to go through the following
+  steps for these cases of integration validation and also for debugging if you
+  are seeing partial or no data at all on your server.
 </p>
 <h2>1. Check SDK logs</h2>
 <p>
   As part of the process of integration verification, you would want to enable
-  logging in to the SDK and have a look at the printed-out messages. If there were a warning, errors, or deprecation messages, it would indicate potential problems
+  logging in to the SDK and have a look at the printed-out messages. If there were
+  a warning, errors, or deprecation messages, it would indicate potential problems
   and action items that need to be fixed. Logging can be enabled during the SDK
   initialization, and the way you do that differs slightly from SDK to SDK. For
   specifics on how to enable it, you would want to check the documentation of the
@@ -402,7 +409,7 @@
 <p>
   Next, you would want to verify that your Countly server is receiving data from
   <span style="font-weight: 400;"><code>Utilities &gt; Request Logs</code></span>.
-  <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the  incorrect app type, sending duplicate requests, incorrectly set-up parameter tampering, etc.</span>
+  <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set-up parameter tampering, etc.</span>
 </p>
 <p>
   <img src="/hc/article_attachments/9327716734617/003.png" alt="003.png">
@@ -429,8 +436,8 @@
   In case it seems like some data is not being recorded, it can be due to some
   requests being rejected related to problems with the checksum or sometimes requests
   might be dropped if there are filtering rules set to do that. Sometimes filtering
-  rules target more things than planned by accident.&nbsp; For debugging
-  those issues and others, keep reading.
+  rules target more things than planned by accident.&nbsp; For debugging those
+  issues and others, keep reading.
 </p>
 <h2>5. Check the server for errors</h2>
 <p>
@@ -451,7 +458,7 @@
 </p>
 <h2>7. Check Filtering rules</h2>
 <p>
-  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu&gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules  that block events or any requests.</span>
+  <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu&gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules that block events or any requests.</span>
 </p>
 <p>
   <img src="/hc/article_attachments/9327774197657/007.png" alt="007.png">
@@ -473,7 +480,7 @@
 </p>
 <h2>10. Check time zone</h2>
 <p>
-  <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
+  <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Edit &gt; Select Time Zone</code></span>.</span>
 </p>
 <p>
   <img src="/hc/article_attachments/9327717905689/010.png" alt="010.png">
@@ -516,16 +523,16 @@
 </p>
 <h1>Is my SDK version compatible with my server?</h1>
 <p>
-  If you have checked your Countly server and SDK versions, you might
-  have noticed that they most likely do not match. Due to the way our development
-  is structured, our Countly server releases happen more often than any single
-  SDK. Usually, this will lead you to see that your server version is higher than
-  your SDK version, and that is fine.
+  If you have checked your Countly server and SDK versions, you might have noticed
+  that they most likely do not match. Due to the way our development is structured,
+  our Countly server releases happen more often than any single SDK. Usually, this
+  will lead you to see that your server version is higher than your SDK version,
+  and that is fine.
 </p>
 <p>
   Our guidelines are that the major version of your server should be the same or
-  higher than the major version of the SDK you are using. Our versioning
-  scheme for our server releases and SDKs has 3 numbers separated by dots, something
-  like "22.02.3". The first two numbers are what we are calling the major version
-  and those are the ones that you should be paying attention to ("22.02.X").
+  higher than the major version of the SDK you are using. Our versioning scheme
+  for our server releases and SDKs has 3 numbers separated by dots, something like
+  "22.02.3". The first two numbers are what we call the major version and those
+  are the ones that you should be paying attention to ("22.02.X").
 </p>
