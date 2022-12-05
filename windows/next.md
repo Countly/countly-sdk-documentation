@@ -752,3 +752,20 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
 </p>
+<h2>Is windows SDK compatible with .NET MAUI</h2>
+<p>
+  <span data-preserver-spaces="true">Yes, .NET MAUI is compatible with “.net standard 2.0". </span><span data-preserver-spaces="true">One of our Windows SDK flavors is targeting '.NET Standard' therefore you should be able to use our Windows SDK.</span>
+</p>
+<p>
+  <span data-preserver-spaces="true">For reporting native crashes use <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_self">this</a> class in your code that provides a handler that works on major platforms.&nbsp;</span>
+</p>
+<p>
+  <span data-preserver-spaces="true">Usage:</span>
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">MauiExceptions.UnhandledException += (sender, args) =&gt;
+ {
+   Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
+ };</pre>
+<p>
+  <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
+</p>
