@@ -96,7 +96,7 @@
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration,
-    you can learn about methods and verification from
+    you can learn about verification from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
@@ -3749,7 +3749,7 @@ config.eventSendThreshold = 1</code></pre>
   </p>
 </div>
 <p>
-  <span style="font-weight: 400;">You can integrate the Countly iOS SDK using CocoaPods. For more information, please see the </span><a href="https://cocoapods.org/pods/Countly"><span style="font-weight: 400;">Countly CocoaPods page</span></a><span style="font-weight: 400;">. Please ensure you have the latest version of CocoaPods and your local spec repo is updated. For Notification service extension targets, please ensure your Podfile uses something similar to the following sub specs:</span>
+  <span style="font-weight: 400;">You can integrate the Countly iOS SDK using CocoaPods. For more information, please see the </span><a href="https://cocoapods.org/pods/Countly"><span style="font-weight: 400;">Countly CocoaPods page</span></a><span style="font-weight: 400;">. Please ensure you have the latest version of CocoaPods and your local spec repo is updated. For Notification Service Extension targets, please ensure your Podfile uses something similar to the following sub specs:</span>
 </p>
 <pre><code class="ruby">target 'MyMainApp' do
   platform :ios,'10.0'
