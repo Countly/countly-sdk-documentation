@@ -1804,16 +1804,17 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <p>&nbsp;</p>
 <h2>Forcing HTTP POST</h2>
 <p>
-  <span style="font-weight: 400;">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In case you would like an override so that HTTP POST is used in all cases, call the "setHttpPostForced" function after you call "init". You may use the same function later in the app’s life cycle to disable the override. This function must be called every time the app starts.</span>
+  If the data sent to the server is short enough, the SDK will use HTTP GET requests.
+  To override that behavior so that HTTP POST requests are used in all cases, you
+  will need to set "setHttpPostForced" flag as true in your init config.
 </p>
-<pre><code class="java">//the init call before the override
-Countly.sharedInstance().init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
-  
-//enabling the override
-Countly.sharedInstance().setHttpPostForced(true);
-  
-//disabling the override
-Countly.sharedInstance().setHttpPostForced(false);</code></pre>
+<pre><code class="java">// enable it at your init config
+CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+config.setHttpPostForced(true);
+
+// or set it to false
+config.setHttpPostForced(false);
+</code></pre>
 <h2>Custom HTTP Header Values</h2>
 <p>
   <span style="font-weight: 400;">In case you would like to add custom header key/value pairs to each request sent to the Countly server, you may make the following call:</span>
