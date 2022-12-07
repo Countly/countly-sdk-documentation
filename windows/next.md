@@ -754,10 +754,35 @@ Countly.Instance.SetConsent(consent);</code></pre>
 </p>
 <h2>Is windows SDK compatible with .NET MAUI</h2>
 <p>
-  <span data-preserver-spaces="true">Yes, .NET MAUI is compatible with “.net standard 2.0". </span><span data-preserver-spaces="true">One of our Windows SDK flavors is targeting '.NET Standard' therefore you should be able to use our Windows SDK.</span>
+  <span data-preserver-spaces="true">Yes, .NET MAUI is compatible with “.net standard 2.0". </span><span data-preserver-spaces="true">One of our Windows SDK flavors is targeting '.NET Standard' therefore you should be able to use our Windows SDK.</span><span data-preserver-spaces="true"></span>
 </p>
 <p>
-  <span data-preserver-spaces="true">For reporting native crashes use <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_self">this</a> class in your code that provides a handler that works on major platforms.&nbsp;</span>
+  <span data-preserver-spaces="true">
+    On .NET MAUI app, when an exception is not caught 
+    <code>
+      App
+      <wbr>
+      Domain.
+      <wbr>
+      Unhandled
+      <wbr>
+      Exception
+    </code>
+     event occurs. But f
+  </span>
+  <span data-preserver-spaces="true">or android all exceptions will flow through <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> not through </span>
+  <span data-preserver-spaces="true">
+    <code>
+      AppDomain.CurrentDomain.Unhandled
+      <wbr>
+      Exception
+    </code>
+    . For iOS and Mac Catalyst we need to set UnwindNativeCode.<br>
+  </span>
+  <span data-preserver-spaces="true"></span>
+</p>
+<p>
+  <span data-preserver-spaces="true">For reporting native crashes use&nbsp;</span><a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener"><span data-preserver-spaces="true">this</span></a><span data-preserver-spaces="true"> class in your code that provides a handler that works on major platforms. To make exception handling correctly we are catching iOS and Android unhandled exceptions at lines </span><a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener"><span data-preserver-spaces="true">29&nbsp;</span></a><span data-preserver-spaces="true">and&nbsp;</span><a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener"><span data-preserver-spaces="true">40</span></a><span data-preserver-spaces="true">&nbsp;respectively. After catching we route all unhandled exceptions from multiple platforms through <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a> one event handler.</span>
 </p>
 <p>
   <span data-preserver-spaces="true">Usage:</span>
