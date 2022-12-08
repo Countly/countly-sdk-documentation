@@ -752,41 +752,43 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
 </p>
-<h2>Is windows SDK compatible with .NET MAUI</h2>
+<h2>Is Windows SDK Compatible With .Net Maui</h2>
 <p>
-  <span data-preserver-spaces="true">Yes, .NET MAUI is compatible with “.net standard 2.0". </span><span data-preserver-spaces="true">One of our Windows SDK flavors is targeting '.NET Standard' therefore you should be able to use our Windows SDK.</span><span data-preserver-spaces="true"></span>
+  .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
+  native mobile and desktop apps with C# and XAML. It is compatible with .NET 6
+  runtime (or rather .NET Core 5). All .NET Core versions (2.0 and above) are compatible
+  with .NET Standard 2.0 libraries.
 </p>
 <p>
-  <span data-preserver-spaces="true">
-    On .NET MAUI app, when an exception is not caught 
-    <code>
-      App
-      <wbr>
-      Domain.
-      <wbr>
-      Unhandled
-      <wbr>
-      Exception
-    </code>
-     event occurs. But f
-  </span>
-  <span data-preserver-spaces="true">or android all exceptions will flow through <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> not through </span>
-  <span data-preserver-spaces="true">
-    <code>
-      AppDomain.CurrentDomain.Unhandled
-      <wbr>
-      Exception
-    </code>
-    . For iOS and Mac Catalyst we need to set UnwindNativeCode.<br>
-  </span>
-  <span data-preserver-spaces="true"></span>
+  As one of our Windows SDK flavors targets '.NET Standard' you should be able
+  to use our Windows SDK in your .Net Maui applications without any hurdle.
 </p>
 <p>
-  <span data-preserver-spaces="true">For reporting native crashes use&nbsp;</span><a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener"><span data-preserver-spaces="true">this</span></a><span data-preserver-spaces="true"> class in your code that provides a handler that works on major platforms. To make exception handling correctly we are catching iOS and Android unhandled exceptions at lines </span><a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener"><span data-preserver-spaces="true">29&nbsp;</span></a><span data-preserver-spaces="true">and&nbsp;</span><a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener"><span data-preserver-spaces="true">40</span></a><span data-preserver-spaces="true">&nbsp;respectively. After catching we route all unhandled exceptions from multiple platforms through <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a> one event handler.</span>
+  However there a couple of issues to touch upon. On .NET MAUI applications, when
+  an uncaught exception happens the <code>AppDomain.UnhandledException</code> event
+  occurs. As it is a cross-platform framework this effects the each platform you
+  target differently and each one should need. For Android applications all exceptions
+  should go through the
+  <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> event
+  instead of the <code>AppDomain.CurrentDomain.UnhandledException</code> event.
+  And for iOS and Mac Catalyst, handling of the <code>UnwindNativeCode</code> value
+  is necessary.
 </p>
 <p>
-  <span data-preserver-spaces="true">Usage:</span>
+  So for reporting native crashes using
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener">this</a>
+  class in your project would provide a handler that would work on major platforms
+  with the mentioned logic. To handle uncaught exceptions correctly we catch iOS
+  and Android errors at lines
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener">29</a>
+  and
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener">40</a>
+  respectively. After catching them, we route all unhandled exceptions from different
+  platforms through
+  <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a>
+  event handler.
 </p>
+<p>Usage:</p>
 <pre class="c-mrkdwn__pre" data-stringify-type="pre">MauiExceptions.UnhandledException += (sender, args) =&gt;
  {
    Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
