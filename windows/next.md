@@ -752,3 +752,47 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
 </p>
+<h2>Is Windows SDK Compatible With .Net Maui</h2>
+<p>
+  .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
+  native mobile and desktop apps with C# and XAML. It is compatible with .NET 6
+  runtime (or rather .NET Core 5). All .NET Core versions (2.0 and above) are compatible
+  with .NET Standard 2.0 libraries.
+</p>
+<p>
+  As one of our Windows SDK flavors targets '.NET Standard' you should be able
+  to use our Windows SDK in your .Net Maui applications without any hurdle.
+</p>
+<p>
+  However there a couple of issues to touch upon. On .NET MAUI applications, when
+  an uncaught exception happens the <code>AppDomain.UnhandledException</code> event
+  occurs. As it is a cross-platform framework this effects the each platform you
+  target differently and each one should need. For Android applications all exceptions
+  should go through the
+  <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> event
+  instead of the <code>AppDomain.CurrentDomain.UnhandledException</code> event.
+  And for iOS and Mac Catalyst, handling of the <code>UnwindNativeCode</code> value
+  is necessary.
+</p>
+<p>
+  So for reporting native crashes using
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener">this</a>
+  class in your project would provide a handler that would work on major platforms
+  with the mentioned logic. To handle uncaught exceptions correctly we catch iOS
+  and Android errors at lines
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener">29</a>
+  and
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener">40</a>
+  respectively. After catching them, we route all unhandled exceptions from different
+  platforms through
+  <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a>
+  event handler.
+</p>
+<p>Usage:</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">MauiExceptions.UnhandledException += (sender, args) =&gt;
+ {
+   Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
+ };</pre>
+<p>
+  <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
+</p>
