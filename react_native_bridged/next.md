@@ -3,7 +3,7 @@
   and it applies to version 22.06.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
-</p>
+</p> 
 <div class="callout callout--info">
   <p>
     Click
