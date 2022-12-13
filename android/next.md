@@ -12,11 +12,11 @@
   The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
   17). You can take a look at our sample application in the
   <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
-  It should show how most of the functionalities can be used.
+  It shows how most of the functionalities can be used.
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it as follows:</span>
+  <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it, with the following code:</span>
 </p>
 <pre><code>buildscript {
     repositories {
@@ -31,7 +31,7 @@
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
-  Before you can use any functionality, you have to initiate the SDK. That is done
+  Before you can use any functionality, you have to initiate the SDK. That can be done
   either in your&nbsp;<code>Application</code> subclass (preferred), or from your
   main activity <code>onCreate</code> method.
 </p>
@@ -44,7 +44,7 @@
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
   Configuration is done by creating such an object and then calling it's provided
-  function calls to enable functionality you need. Afterward that config object
+  function calls to enable the functionality that you need. Afterwards, the particular config object
   is provided to the "init" method.<span style="font-weight: 400;"></span>
 </p>
 <div class="callout callout--info">
@@ -82,7 +82,7 @@
 </p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.ADVERTISING_ID);<br>Countly.sharedInstance().init(config);</code></pre>
 <p>
-  <span style="font-weight: 400;">In regard to the Google Advertising ID, please ensure you have Google Play services 4.0+ included in your project. Also, note that the Advertising ID silently falls back to OpenUDID in case it fails to get the Advertising ID when Google Play services are not available on a device.</span>
+  <span style="font-weight: 400;">In regard to the Google Advertising ID, please ensure you have Google Play services 4.0+ is included in your project. Also, note that the Advertising ID silently falls back to OpenUDID in case, it fails to get the Advertising ID when Google Play services are not available on a device.</span>
 </p>
 <p>You may also explicitly use OpenUDID:</p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
@@ -100,7 +100,7 @@
   </li>
   <li>
     Call&nbsp;<code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
-    onConfigurationChanged if you want to track orientation changes.
+    onConfigurationChanged if you want to track the orientation changes.
   </li>
 </ul>
 <p>
@@ -111,7 +111,7 @@
 </div>
 <h2>Required App Permissions</h2>
 <p>
-  <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any in your manifest file. Those calls should look something like this:</span>
+  <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any, in your manifest file. Those calls should look something like this:</span>
 </p>
 <pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
 <h1>Crash Reporting</h1>
@@ -460,7 +460,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <pre><code class="java">Countly.sharedInstance().views()</code></pre>
 <h2>Automatic Views</h2>
 <p>
-  <span style="font-weight: 400;">View tracking is a means to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
+  <span style="font-weight: 400;">View tracking is a way to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
 <pre><code class="java">config.setViewTracking(true);</code></pre>
 <p>
@@ -598,7 +598,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <strong>it's up to application developers to ensure correct dependencies are present</strong>
   (please refer to our
   <a href="https://github.com/Countly/countly-sdk-android/blob/master/app/build.gradle" target="_self">Demo app build.gradle</a>
-  for a reference).
+  for reference).
 </p>
 <p>
   By default Countly SDK uses FCM as push notification provider. If FCM is not
@@ -891,8 +891,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <div class="callout callout--warning">
   <p>
     If you would like to use a custom sound in your push notifications, they
-    must be present on the device. They may not be stored somewhere on the internet
-    and then linked from there.
+    must be present on the device. They cannot be linked from the internet.
   </p>
 </div>
 <p>
@@ -1056,7 +1055,7 @@ Countly.sharedInstance().setLocation(countryCode, city, latitude + "," + longitu
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
 <h2>Disabling Location</h2>
-<p>Also during init you can disable location:</p>
+<p>Also during init, you can disable location:</p>
 <pre>config.setDisableLocation();</pre>
 <p>
   Users might want to opt-out of location tracking. To do so, call:
@@ -1612,44 +1611,44 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
 <p>The current features are:</p>
 <p>
   * <code>sessions</code> - tracking when, how often and how long users use your
-  app
+  app.
 </p>
 <p>
-  * <code>events</code> - allow sending events to the server
+  * <code>events</code> - allow sending events to the server.
 </p>
 <p>
-  * <code>views</code> - allow the tracking of which views user visits
+  * <code>views</code> - allow the tracking of which views user visits.
 </p>
 <p>
-  * <code>location</code> - allow the sending of location information
+  * <code>location</code> - allow the sending of location information.
 </p>
 <p>
-  * <code>crashes</code> - allow the tracking of crashes, exceptions, and errors
+  * <code>crashes</code> - allow the tracking of crashes, exceptions, and errors.
 </p>
 <p>
   * <code>attribution</code> - allow tracking of which campaign did the user come
-  from
+  from.
 </p>
 <p>
   * <code>users</code> - allow the collecting/providing of user information, including
-  custom properties
+  custom properties.
 </p>
 <p>
-  * <code>push</code> - allow push notifications
+  * <code>push</code> - allow push notifications.
 </p>
 <p>
-  * <code>starRating</code> - allow their rating and feedback to be sent
+  * <code>starRating</code> - allow their rating and feedback to be sent.
 </p>
 <p>
-  * <code>apm</code> - allow usage of APM features and collection of APM related
+  * <code>apm</code> - allow usage of APM features and collection of APM related.
   data
 </p>
 <p>
-  * <code>feedback</code> - allow to show the survey and nps feedback widgets
+  * <code>feedback</code> - allow to show the survey and nps feedback widgets.
 </p>
 <p>
   * <code>remoteConfig</code> - allow to download remote config values from your
-  server
+  server.
 </p>
 <h2>Changing Consent</h2>
 <p>
