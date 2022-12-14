@@ -536,3 +536,38 @@
   "22.02.3". The first two numbers are what we call the major version and those
   are the ones that you should be paying attention to ("22.02.X").
 </p>
+<h1>FAQ</h1>
+<h2>How sessions are calculated?</h2>
+<p>
+  Session calculations like session duration, total session duration, and average
+  session duration depend on the data the SDK sends to the server. Session-related
+  signals the SDK sends to the server are namely begin session, session duration,
+  and end session requests. For the server to know the total duration of a session,
+  the session must be over/ended. This means that an end session request or a new
+  begin session request must come to the server after the initial begin session
+  request. This means that if a session abruptly ends, meaning if the SDK was not
+  able to send an end session request until the user opens the site/app again and
+  starts a new session, the total session duration would be unknown. This is a
+  technical limitation of the platforms/technologies the SDK runs at. Also, it
+  is good to mention that session duration requests have a role in real-time analytics
+  where the session duration request sent by the SDK would be summed up and displayed
+  in your dashboard with real-time session information.
+</p>
+<h2>Why do I sessions without any events?</h2>
+<p>
+  If you have enabled session tracking and checked your user's profile in your
+  instance you might realize there might be no events registered under a session.
+  This can happen if a user does not trigger an event you have implemented. Such
+  as a button click. A user can simply start a session by opening a site/app. If
+  the user closes the site/app without performing any actions which you have deemed
+  appropriate for sending an event, no events would be sent to your server.
+</p>
+<h2>Why do I have events without sessions?</h2>
+<p>
+  If you have not enabled automatic session tracking nor implemented a manual session
+  tracking logic, your users would not have sessions. But other Countly features
+  would still be available for you. This can be useful if you are not interested
+  in the duration a user interacts with your site and just want to relay specific
+  information about the user. So in this scenario, you can still send events to
+  your server and see them under the user's profile without sessions.
+</p>
