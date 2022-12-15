@@ -555,7 +555,7 @@ Countly.recordView("Dashboard");</code></pre>
 <p>
   Countly Flutter SDK comes with push notification capabilities embedded. For the
   flavor without the push notifications features (like Firebase libraries) please
-  check <a href="link">here</a>.
+  check <a href="https://github.com/Countly/countly-sdk-flutter-bridge/releases/tag/22.02.1-np">here</a>.
 </p>
 <h2>Integration</h2>
 <h3>Android setup</h3>
