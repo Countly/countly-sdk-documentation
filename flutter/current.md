@@ -550,6 +550,11 @@ Countly.recordView("Dashboard");</code></pre>
 </ul>
 <pre>DeviceIdType? deviceIdType = await Countly.getDeviceIDType();</pre>
 <h1>Push notifications</h1>
+<p>
+  Countly Flutter SDK comes with push notification capabilities embedded. For the
+  flavor without the push notifications features (like Firebase libraries) please
+  check <a href="https://pub.dev/packages/countly_flutter_np">here</a>.
+</p>
 <h2>Integration</h2>
 <h3>Android setup</h3>
 <p>
