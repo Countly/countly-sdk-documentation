@@ -436,7 +436,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <p>
   Countly Android SDK comes with built in automatic session tracking functionality.
   Only thing necessary for this functionality to work is to add the proper calls
-  to your activities after initializing the SDK. For more in formation you can
+  to your activities after initializing the SDK. For more information you can
   check
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#adding-callbacks" target="_self">here</a>.
 </p>
