@@ -560,6 +560,10 @@ Countly.recordView("Dashboard");</code></pre>
 <h2>Integration</h2>
 <h3>Android setup</h3>
 <p>
+  Step 1: For FCM credentials setup please follow the instruction from this URL
+  <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
+</p>
+<p>
   Step 2: Make sure you have <code>google-services.json</code> from
   <a href="https://firebase.google.com/">https://firebase.google.com/</a>
 </p>
