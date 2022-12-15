@@ -537,7 +537,7 @@
   are the ones that you should be paying attention to ("22.02.X").
 </p>
 <h1>FAQ</h1>
-<h2>How sessions are calculated?</h2>
+<h2>How are sessions calculated?</h2>
 <p>
   Session calculations like session duration, total session duration, and average
   session duration depend on the data the SDK sends to the server. Session-related
