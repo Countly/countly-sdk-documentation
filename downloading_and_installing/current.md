@@ -587,7 +587,8 @@
 </p>
 <h2>Node.js SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="_self" rel="undefined">Version 21.11</a>
+  <a href="https://support.count.ly/hc/en-us/articles/13579891019929" target="_blank" rel="noopener">Version 22.02</a>
+  -&nbsp;<a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="_self" rel="undefined">Version 21.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="_self" rel="undefined">Version 20.11</a>
 </p>
@@ -617,7 +618,8 @@
 </p>
 <h2>Windows SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/11428429151513" target="_self" rel="undefined">Version 21.11</a>
+  <a href="https://support.count.ly/hc/en-us/articles/13579863428377" target="_blank" rel="noopener">Version 22.02</a>
+  -&nbsp;<a href="https://support.count.ly/hc/en-us/articles/11428429151513" target="_self" rel="undefined">Version 21.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4413138651161" target="_self" rel="undefined">Version 20.11</a>
   -
