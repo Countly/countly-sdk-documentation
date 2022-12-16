@@ -599,6 +599,19 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 <pre><code class="java">String usedId = Countly.sharedInstance().getDeviceID();
 Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 <h1>Push Notifications</h1>
+<div class="callout callout--info">
+  <p>
+    For Android 13 (API 33) and higher you have to declare push notification
+    permissions in you app's manifest file. For related documentation you can
+    check
+    <a href="https://developer.android.com/develop/ui/views/notifications/notification-permission#declare">here</a>.
+  </p>
+  <p>
+    Also starting from Android 12 (API 31) notification trampoline is restricted.
+    For more information you can click
+    <a href="https://developer.android.com/about/versions/12/behavior-changes-12#notification-trampolines">here</a>.
+  </p>
+</div>
 <p>
   Countly supports FCM (Firebase Cloud Messaging) and Huawei Push Kit as push notification
   service providers.&nbsp;The SDK doesn't have any direct dependencies on FCM or
