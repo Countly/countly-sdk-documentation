@@ -639,7 +639,7 @@
   -
   <a href="https://support.count.ly/hc/en-us/articles/900007764903" target="_self" rel="undefined">Version 20.11.1</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900002413783" target="_self" rel="undefined">Version 19.09</a>&nbsp;
+  <a href="https://support.count.ly/hc/en-us/articles/900002413783" target="_self" rel="undefined">Version 19.09</a>
 </p>
 <h2>Java SDK</h2>
 <p>
