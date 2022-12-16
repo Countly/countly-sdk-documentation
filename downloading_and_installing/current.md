@@ -631,6 +631,8 @@
 </p>
 <h2>Unity SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/13578391556121" target="_blank" rel="noopener">Version 22.02</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_self" rel="undefined">Version 21.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4410908291737" target="_self" rel="undefined">Version 20.11.5</a>
