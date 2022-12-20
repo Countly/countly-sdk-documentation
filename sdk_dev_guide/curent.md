@@ -255,7 +255,7 @@
   The SDK versions decode to [year].[month].[minor release number]. The SDK major
   versions&nbsp; (year, month) should follow the server versions. Those are usually
   incremented twice a year during our major releases. Minor release numbers should
-  start ar "0". Major version numbers (year, month) should stay the same even if
+  start at "0". Major version numbers (year, month) should stay the same even if
   the SDK version is released a couple of months after the indicated date. If the
   servers version is released in October 2020 the major versions would be "20.10".
   The first version released by the SDK, that would be in sync with this server
