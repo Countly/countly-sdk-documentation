@@ -2,7 +2,7 @@
   This document will guide you through the process of Countly SDK installation
   and it applies to version 22.02.0
 </p>
-<div class="callout callout--info">
+<div class="callout callout--info"> 
   <p>
     Click
     <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
