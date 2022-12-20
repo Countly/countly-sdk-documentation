@@ -308,7 +308,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   <h2>Recording events</h2>
 </div>
 <p>
-  We will be recording an <strong>purchase</strong> event below. Here is a quick
+  We will be recording a <strong>purchase</strong> event below. Here is a quick
   summary of the information with which each usage will provide us:
 </p>
 <ul>
