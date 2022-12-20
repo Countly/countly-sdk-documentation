@@ -296,7 +296,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     duration of events.
   </li>
   <li>
-    <code class="JavaScript">segmentation</code> is a key-value pair, that can be
+    <code class="JavaScript">segmentation</code> is a map of key-value pairs, that can be
     used <code class="JavaScript">segmentation</code> to track additional information.
   </li>
 </ul>
