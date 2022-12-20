@@ -115,10 +115,10 @@ if(!await Countly.isInitialized()) {
 <pre>Countly.init(SERVER_URL, APP_KEY, DEVICE_ID)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
 <p>
-  For iOS: SDK data is stored in Application Support Directory in a file named "Countly.dat"
-  For Android: SDK data is stored in SharedPreferences. A SharedPreferences object
-  points to a file containing key-value pairs and provides simple methods to read
-  and write them.
+  For iOS: SDK data is stored in Application Support Directory in a file named
+  "Countly.dat" For Android: SDK data is stored in SharedPreferences. A SharedPreferences
+  object points to a file containing key-value pairs and provides simple methods
+  to read and write them.
 </p>
 <h1>Crash reporting</h1>
 <p>
@@ -129,7 +129,8 @@ if(!await Countly.isInitialized()) {
 <h2>Automatic crash handling</h2>
 <p>
   With this feature, the Countly SDK will generate a crash report if your application
-  crashes due to an exception and will send it to the Countly server for further inspection.
+  crashes due to an exception and will send it to the Countly server for further
+  inspection.
 </p>
 <p>
   If a crash report cannot be delivered to the server (e.g. no internet connection,
@@ -296,8 +297,8 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     duration of events.
   </li>
   <li>
-    <code class="JavaScript">segmentation</code> is a map of key-value pairs, that can be
-    used to track additional information.
+    <code class="JavaScript">segmentation</code> is a map of key-value pairs,
+    that can be used to track additional information.
   </li>
 </ul>
 <div class="callout callout--warning">
@@ -438,13 +439,14 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 </p>
 <pre>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</pre>
 <p>
-  You may either allow the device to be counted as a new device or merge it with the existing
-  data on the server. If <code class="JavaScript">onServer</code> is set to
-  <code class="JavaScript">true</code>, the old device ID on the server will be
-  replaced with the new one, and data associated with the old device ID will be
-  merged automatically. Otherwise, if <code class="JavaScript">onServer</code>
-  is set to <code class="JavaScript">false</code>, the device will be counted as
-  a new device on the server.
+  You may either allow the device to be counted as a new device or merge it with
+  the existing data on the server. If <code class="JavaScript">onServer</code>
+  is set to <code class="JavaScript">true</code>, the old device ID on the server
+  will be replaced with the new one, and data associated with the old device ID
+  will be merged automatically. Otherwise, if
+  <code class="JavaScript">onServer</code> is set to
+  <code class="JavaScript">false</code>, the device will be counted as a new device
+  on the server.
 </p>
 <h2>Temporary Device ID</h2>
 <p>
@@ -499,8 +501,9 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <h2>General Setup</h2>
 <p>
   First, when setting up Push for the React Native (Bridge) SDK, select the push
-  token mode. This allows you to choose either, test or production modes. Note that
-  the push token mode should be set before initialization. Use the method below.
+  token mode. This allows you to choose either, test or production modes. Note
+  that the push token mode should be set before initialization. Use the method
+  below.
 </p>
 <pre>// Important: call this method before init method
 Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");
@@ -1488,8 +1491,8 @@ Countly.enableAttribution();</pre>
 </p>
 <pre>Countly.recordAttributionID("IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM");</pre>
 <p>
-  For iOS 14+, due to the changes made by Apple regarding Application Tracking, you need to
-  ask the user for permission to track the Application.
+  For iOS 14+, due to the changes made by Apple regarding Application Tracking,
+  you need to ask the user for permission to track the Application.
 </p>
 <p>
   For IDFA you can use this Plugin, which also supports iOS 14+ changes for Application
