@@ -1309,85 +1309,105 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 </p>
 <pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordManualRating(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
 <h2>Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>
+    Starting from version 22.06.3, Feedback Widget API includes features for
+    Rating Widgets too. So you can display or report all widgets under the Feedback
+    Widget API calls.
+  </p>
+</div>
 <p>
-  It is possible to display 2 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey.</a>&nbsp;Both
-  widgets are shown as webviews.
+  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">rating</a>.
+  All widgets are shown as webviews and should be approached using the same methods.
 </p>
-<p>They both use the same code mechanisms.&nbsp;</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your
+    countly dashboard.
+  </p>
+</div>
 <p>
-  Before any feedback widgets can be shown, you need to create them in your countly
-  dashboard.
+  After you have created widgets at your dashboard you can reach their related
+  information as a list, corresponding to the current user's device ID, by providing
+  a callback to the getAvailableFeedbackWidgets method, which returns the list
+  as the first parameter and error as the second:
 </p>
+<pre>Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {<br>    @Override public void onFinished(List&lt;CountlyFeedbackWidget&gt; retrievedWidgets, String error) {<br>
+	// error handling here
+
+	// do something with the returned list here like pick a widget and then show that widget etc...
+<br>    }<br>});</pre>
+<p>The objects in the returned list would look like this:</p>
+<pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>}</pre>
+<p>Potential 'type' values are:</p>
+<pre>FeedbackWidgetType {survey, nps, rating}</pre>
 <p>
-  When the widgets are created, you need to use 2 calls in your SDK: one to get
-  all currently available widgets for this user and the second to display a chosen
-  widget.
-</p>
-<p>To get your available widget list, you would use:</p>
-<pre>Countly.<span>sharedInstance</span>().feedback().getAvailableFeedbackWidgets(<span>new </span>RetrieveFeedbackWidgets() {<br>    <span>@Override </span><span>public void </span>onFinished(List&lt;CountlyFeedbackWidget&gt; retrievedWidgets, String error) {<br><br>    }<br>});</pre>
-<p>
-  From the callback you would get the list of all available widgets that apply
-  to the current device id.
-</p>
-<p>The objects in the returned list look like this:</p>
-<pre><span>class </span>CountlyFeedbackWidget {<br>    <span>public </span>String <span>widgetId</span>;<br>    <span>public </span>FeedbackWidgetType <span>type</span>;<br>    <span>public </span>String <span>name</span>;<br>}</pre>
-<p>
-  To determine what kind of widget that is, you would check the "type" value. The
-  potential values are:
-</p>
-<pre>FeedbackWidgetType {<span>survey</span>, <span>nps</span>}</pre>
-<p>
-  You would then use the widget type and description (which is the same as provided
+  You would then use this information (which is same with the information provided
   in the dashboard) to decide which widget to show.
 </p>
 <p>
   After you have decided which widget you want to display, you would provide that
-  object to the following function:
+  object to the following function as the first parameter. Second parameter is
+  app context, third is the close button text (if null mo close buttom would be
+  shown) and third is a callback incase an error happens:
 </p>
-<pre>Countly.<span>sharedInstance</span>().feedback().presentFeedbackWidget(chosenWidget, context, <span>"Close"</span>, <span>new </span>FeedbackCallback() {<br>    <span>@Override </span><span>public void </span>onFinished(String error) {<br><br>    }<br>});</pre>
+<pre>Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
+    // maybe show a toast when the widget is closed
+<br>    @Override public void onFinished(String error) {<br>
+	// error handling here
+<br>    }<br>});</pre>
 <h3>Manual Reporting</h3>
 <p>
-  There might be some usecases where you might to use the native UI or a custom
-  UI you have created instead of our webview solution. In those cases you would
-  have to request all the widget related information and then report the result
-  manually.
+  There might be some cases where you might want to use the native UI or a custom
+  UI you have created instead of our webview solution. At those times you would
+  want to request all the information related to that widget and then report the
+  result manually.
 </p>
+<div class="callout callout--info">
+  <p>
+    For a sample integration, have a look at our
+    <a href="https://github.com/Countly/countly-sdk-android/blob/master/app/src/main/java/ly/count/android/demo/ActivityExampleFeedback.java#L232" target="_blank" rel="noopener">sample app</a>
+    at our github repo.
+  </p>
+</div>
 <p>
-  For a sample integration, have a look at our sample app in the repo.
+  Initial steps for manually reporing your widget results are same with the steps
+  you take to display a rating widget. First you would need to retrieve the available
+  widget list with the previously mentioned
+  <code>getAvailableFeedbackWidgets</code> method. After that you would have a
+  list of possible <code>CountlyFeedbackWidget</code> objects. You would pick the
+  widget you want to display and pass that widget object to the function below
+  as the first parameter. Secong paramater is a callback that would return the
+  widget data as first parameter and the error as second:
 </p>
+<pre>Countly.sharedInstance().feedback().getFeedbackWidgetData(chosenWidget, new RetrieveFeedbackWidgetData() {<br>    @Override public void onFinished(JSONObject retrievedWidgetData, String error) {<br><br>    }<br>}</pre>
 <p>
-  First you would need to retrieve the available widget list with the previously
-  mentioned `getAvailableFeedbackWidgets` call. After that you would have a list
-  of possible `CountlyFeedbackWidget` objects. You would pick the one widget you
-  would want to display.
+  Here the retrievedWidgetData would yield to a JSON Object with all of the information
+  you would need to present the widget by yourself.
 </p>
+<div class="callout callout--info">
+  <p>
+    For how this retrievedWidgetData would look like and in depth information
+    on this topic please check our detailed article
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">here</a>.
+  </p>
+</div>
 <p>
-  Having the `CountlyFeedbackWidget` object of the widget you would want to display,
-  you would use the following call to retrieve the widget information:
+  After you have collected the required information from your users with the help
+  of the <code>retrievedWidgetData</code> you have recieved, you would then package
+  the responses into a Map&lt;String, Object&gt;, and then pass it (reportedResult)
+  together with the widget object you picked from the retrieved widget list (widgetToReport)
+  and the <code>retrievedWidgetData</code> to report the feedback result with the
+  following call:
 </p>
-<pre>Countly.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span>RetrieveFeedbackWidgetData() {<br>    <span>@Override </span><span>public void </span>onFinished(JSONObject retrievedWidgetData, String error) {<br><br>    }<br>}</pre>
+<pre>//this contains the reported results<br>Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();<br><br>//<br>// You would fill out the results here. That step is not displayed in this sample check the detailed documentation linked above<br>//<br><br>//report the results to the SDK<br>Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);</pre>
 <p>
-  `retrievedWidgetData` would contain a JSON with all of the required information
-  to present the widget yourself.
-</p>
-<p>
-  After you have collected the required information from your users, you would
-  package the responses into a `Map&lt;String, Object&gt;` and then use it, the
-  widgetInformation and the widgetData to report the feedback result with the following
-  call:
-</p>
-<pre>//this contains the reported results<br>Map&lt;String, Object&gt; reportedResult = <span>new </span>HashMap&lt;&gt;();<br><br>//<br>// You would fill out the results here. That step is not displayed in this sample<br>//<br><br>//report the results to the SDK<br>Countly.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, reportedResult);</pre>
-<p>
-  If the user would have closed the widget, you would report that by passaing a
-  "null" reportedResult.
-</p>
-<p>
-  For more information regarding the returned data structure and how to structure
-  the response, you would look
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
+  If the user would have closed the widget, you would report that by passing a
+  "null" as the reportedResult.
 </p>
 <h1>User Profiles</h1>
 <p>
