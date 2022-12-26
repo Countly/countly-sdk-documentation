@@ -1,14 +1,14 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>22.08.0</code>.
+  <code>22.09.0</code>.
 </p>
 <p>
   Click
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#ios-sdk" target="_self" rel="undefined">here, </a>to
   access the documentation for older SDK versions.
 </p>
-<div class="callout callout--info"> 
+<div class="callout callout--info">
   <strong>Supported System Versions</strong>
   <p>
     The Countly iOS SDK supports minimum <code>Deployment Target</code>
