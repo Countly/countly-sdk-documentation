@@ -2057,7 +2057,11 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   }</pre>
 <p>
   <code>result</code> contains a JSON Array of widget Objects. The _id is used
-  to construct the web view url.
+  to construct the web view URL. Tags (the <code>tg</code> key) returns an Array
+  of String values. This is information provided by the creator of the widget and
+  can be used for various reasons. But the main goal is to provide versioning or
+  providing a whitelist of domains to present the widget and its implementation
+  is left to the developer.
 </p>
 <p>
   The idea is that the developer would retrieve this list of potential widgets
