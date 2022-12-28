@@ -1342,13 +1342,16 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 	// do something with the returned list here like pick a widget and then show that widget etc...
 <br>    }<br>});</pre>
 <p>The objects in the returned list would look like this:</p>
-<pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>}</pre>
-<p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
+<pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>    public List tags; <br>}</pre>
 <p>
-  You would then use this information (which is same with the information provided
-  in the dashboard) to decide which widget to show.
+  Here all the values are same with the values that can be seen at your Countly
+  server like the widget ID, widget type, widget name and the tags you have passed
+  while creating the widget. Tags can contain information that you would like to
+  have in order to keep track of the widget or to whitelist some URLs that you
+  want to display the widget at. Its usage is totally left to the developer.
 </p>
+<p>Also potential 'type' values are:</p>
+<pre>FeedbackWidgetType {survey, nps, rating}</pre>
 <p>
   After you have decided which widget you want to display, you would provide that
   object to the following function as the first parameter. Second parameter is
