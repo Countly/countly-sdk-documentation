@@ -153,6 +153,67 @@
   <strong>Note: '</strong>name', 'visit', 'start' and 'segment' are internal keys
   to record a view.
 </p>
+<h1>On returned feedback widget list</h1>
+<p>
+  When using feedback widget, whether automatically or in manual reporting, the developer has to fetch a list of available widgets from the Countly server for a specific user by using an SDK method named similar to <code>getAvailableFeedbackWidgets</code>. The returned list would look something like this:
+</p>
+<pre>{
+  "result":[
+      {
+        "_id":"614811419f030e44be07d82f",
+        "type":"rating",
+        "appearance":{
+          "position":"mleft",
+          "bg_color":"#fff",
+          "text_color":"#ddd",
+          "text":"Feedback"
+          },
+        "tg":["/"],
+        "name":"Leave us a feedback"
+      },
+      {
+        "_id":"614811419f030e44be07d839",
+        "type":"nps",
+        "name":"One response for all",
+        "tg":[]
+      },
+      {
+        "_id":"614811429f030e44be07d83d",
+        "type":"survey",
+        "appearance":{
+          "position":"bLeft",
+          "show":"uSubmit",
+          "color":"#0166D6",
+          "logo":null,
+          "submit":"Submit",
+          "previous":"Previous",
+          "next":"Next"
+          },
+        "name":"Product Feedback example",
+        "tg":[]
+      }
+    ]
+  }</pre>
+<p>
+Here the returned response is a JSON Object with a single key <code>result</code>. Value of that key is a JSON Array with widget Objects that are available to the user with a given device ID (this ID was used while forming the request for this list by the SDK and the developer does not need be concerned about it). There are 3 main archetype of widget objects that can be seen in this list, namely for nps, survey and rating widgets. The breakdown of the keys-value pairs of these objects is as follows:
+</p>
+<ul>
+  <li>
+    <code>_id_</code> - This is the widget ID from your dashboard
+  </li>
+  <li>
+    <code>type</code> - This is the widget type, either 'nps', 'survey' or 'rating'
+  </li>
+  <li>
+    <code>name</code> - This is the widget name from your dashboard
+  </li>
+    <li>
+    <code>tg</code> - This is an Array of String tag values from the widget creation (this would be an empty Array if no tags were assigned)
+  </li>
+    <li>
+    <code>appearance</code> - This is some UI information about the widget (currently only rating and survey widgets would have these values)
+  </li>
+</ul>
 <h1>Reporting a feedback widget manually</h1>
 <p>
   This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
