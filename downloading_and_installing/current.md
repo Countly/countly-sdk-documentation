@@ -436,8 +436,6 @@
     </tr>
   </tbody>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <h1>Community Supported SDKs</h1>
 <p>
   <span>These client libraries are developed and supported by the Countly community and not by Countly directly. Refer to the corresponding author for support and more information.</span>
@@ -517,7 +515,6 @@
     </tr>
   </tbody>
 </table>
-<p>&nbsp;</p>
 <h1>Sunsetted SDKs</h1>
 <p>
   <span style="font-weight: 400;">This table includes a list of all SDKs that have been sunsetted by Countly.</span>
@@ -553,4 +550,100 @@
     </tr>
   </tbody>
 </table>
-<p>&nbsp;</p>
+<h1>Documentation For Older SDK Versions</h1>
+<h2>iOS SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/10017895289625" target="_self" rel="undefined">Version 21.11.0</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4410229126809" target="_self" rel="undefined">Version 20.11.3</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900004099706" target="_self" rel="undefined">Version 20.11.0</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900004398263" target="_self" rel="undefined">Version 20.04.3</a>
+</p>
+<h2>Android SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/11104014467737" target="_self" rel="undefined">Version 22.02</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/11104063417241" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4409196247065" target="_self" rel="undefined">Version 20.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900004313263" target="_self" rel="undefined">Version 20.04</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/360038978452" target="_self" rel="undefined">Version 19.09</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/360038842151-Android-SDK-19-02-" target="_self" rel="undefined">Version 19.02</a>
+</p>
+<h2>Web SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="_self" rel="undefined">Version 22.02</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="_self" rel="undefined">Version 20.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900003463646" target="_self" rel="undefined">Version 20.04</a>
+</p>
+<h2>Node.js SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/13579891019929" target="_blank" rel="noopener">Version 22.02</a>
+  -&nbsp;<a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="_self" rel="undefined">Version 20.11</a>
+</p>
+<h2>Cordova SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/7019114935961" target="_self" rel="undefined">Version 20.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900004883663" target="_self" rel="undefined">Version 19.9.3</a>
+</p>
+<h2>React Native SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/11734029520665" target="_self" rel="undefined">Version 22.02</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/6116239554841" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/6505713479577" target="_self" rel="undefined">Version 20.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900003765726" target="_self" rel="undefined">Version 20.04</a>
+</p>
+<h2>Flutter SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/9667091699097" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4409295642137" target="_self" rel="undefined">Version 20.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900005264923" target="_self" rel="undefined">Version 20.04.2</a>
+</p>
+<h2>Windows SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/13579863428377" target="_blank" rel="noopener">Version 22.02</a>
+  -&nbsp;<a href="https://support.count.ly/hc/en-us/articles/11428429151513" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4413138651161" target="_self" rel="undefined">Version 20.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4403584269593" target="_self" rel="undefined">Version 20.05</a>
+</p>
+<h2>C++ SDKs</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="_self" rel="undefined">Version 22.02</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/9665186961945" target="_self" rel="undefined">Version 21.11</a>
+</p>
+<h2>Unity SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/13578391556121" target="_blank" rel="noopener">Version 22.02</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_self" rel="undefined">Version 21.11</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/4410908291737" target="_self" rel="undefined">Version 20.11.5</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900007764903" target="_self" rel="undefined">Version 20.11.1</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/900002413783" target="_self" rel="undefined">Version 19.09</a>
+</p>
+<h2>Java SDK</h2>
+<p>
+  <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_self" rel="undefined">Version 19.09</a>
+</p>

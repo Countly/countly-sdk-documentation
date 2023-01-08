@@ -255,7 +255,7 @@
   The SDK versions decode to [year].[month].[minor release number]. The SDK major
   versions&nbsp; (year, month) should follow the server versions. Those are usually
   incremented twice a year during our major releases. Minor release numbers should
-  start ar "0". Major version numbers (year, month) should stay the same even if
+  start at "0". Major version numbers (year, month) should stay the same even if
   the SDK version is released a couple of months after the indicated date. If the
   servers version is released in October 2020 the major versions would be "20.10".
   The first version released by the SDK, that would be in sync with this server
@@ -1523,6 +1523,25 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <li>"i" - iOS</li>
   <li>"m" - macOS</li>
 </ul>
+<h2>Platform Specific Notes</h2>
+<h3>Additional Intent Redirection checks (Android)</h3>
+<p>
+  <span>To increase platform security and limit exploits, google has enforced additional requirements for push notification that require additional checks for push intents. More info can be found <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.</span>
+</p>
+<p>
+  <span>These additional checks should be optional and there should be a way to enable the during init/push setup. Something like this:</span>
+</p>
+<pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;<br><span></span></pre>
+<p>
+  If these are enabled then the SDK will enforce additional security checks.
+</p>
+<p>
+  As additional parameters there would a one or multiple allow lists to provide
+  details of what kind of packages or activities are allowed.
+  <span>There should be a way to enable the during init/push setup.</span>
+</p>
+<p>Providing that information could look something like this:</p>
+<pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <h1>Recording location</h1>
 <p>
   There are 4 location related parameters that can be set in a Countly SDK. It
@@ -1725,12 +1744,46 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   should only be collected if the consent is provided, else they should be ignored.
 </p>
 <h1>Remote Config</h1>
+<p>
+  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;"> for legacy remote config API</span>
+  includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
+  inside the request URL while fetching the remote config object <em>and</em> enrolling
+  the user to A/B testing automatically.
+</p>
+<p>
+  The latest API, on the other hand, fetches the remote config object while giving
+  us the ability to enroll the user in the A/B testing or not. This can be done
+  by utilizing 'method=rc' and 'oi=1'(opting in/enrolling the user) or 'oi=0'(opting
+  out/not enrolling the user) in the request URL.
+</p>
+<p>
+  There is also another API that is used for enrolling the user to A/B testing
+  for the selected remote config keys without fetching the remote config object.
+  This can be done by using the 'method=ab' in your request URL.
+</p>
+<p>Their usage can be seen below:</p>
+<pre><code>// legacy API
+o/sdk?method=fetch_remote_config&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys)
+
+// latest API for remote config
+o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)
+
+// enrolling users
+o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
+</code></pre>
+<p>
+  There are currently 2 init time config flag associated with these APIs:
+  <em>rcAutoOptinAb</em> (true by default) and <em>useExplicitRcApi</em> (false
+  by default). These flags enable users to change between APIs and control the
+  A/B testing enrolling process. <em>useExplicitRcApi</em> lets the user use the
+  latest API if it is set to true. <em>rcAutoOptinAb</em> decides if auto enrolling
+  (oi=1) must be on or not (oi=1) when using the latest API. Setting it to false
+  should automatically trigger the usage of the latest API and should log a warning
+  to the user.
+</p>
 <h2>Automatic Fetch</h2>
 <p>
   <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the&nbsp;</span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
@@ -1788,6 +1841,18 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   "c": "z",
 }
 </code></pre>
+<h2>A/B testing</h2>
+<p>
+  There should be a call to enroll users in the A/B testing without triggering
+  any other action. This call should be named something similar to
+  <em>enrollUserToAb</em> and should have one parameter named <em>keys</em>. This
+  parameter should be an array of string key values. If an empty array or no value
+  at all is provided the function should be terminated and should give an error
+  log to the developer. Else the <em>keys</em> should be stringified and added
+  to the request as 'keys=stringified_values_here'. The response can be parsed
+  and put out as a log. If all is good the response's result field should return
+  something like "Successfully enrolled the user to given keys".
+</p>
 <h2>Consents</h2>
 <p>
   <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
@@ -2616,4 +2681,67 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   After the URL is changed, all previously saved events and requests should be
   sent to the new url.
+</p>
+<h1>Markdown Linting</h1>
+<p>
+  To ensure the formatting of the code is uniform across all platforms, certain
+  linting tools can be used. Currently for markdown files "markdownlint" would
+  be used.
+</p>
+<h2>Installation</h2>
+<p>
+  You can add markdownlint to your project with the following line of code using
+  the npm:
+</p>
+<p>
+  <code>
+npm install markdownlint --save-dev
+</code>
+</p>
+<p>
+  Another way to add it to your project would be to download its extension in VSC.
+</p>
+<h2>Rules</h2>
+<p>
+  Markdownlint, has multiple rules that can be modified/defined from a config file
+  called ".markdownlint.json". This file must be created at the root of the project
+  and should have a structure similar to this:
+</p>
+<pre><code>{<br>    "MD001": true, /*Heading levels should increase one at a time*/<br>    "MD002": false, /*First heading should be h1*/<br>    "MD003": true, /*Use only one heading style in a document*/<br>    "MD004": true, /*Only one unordered list style should be used*/<br>    "MD005": true, /*List items should have same indentation at same level*/<br>    "MD006": true, /*Top level list items should not be indented*/<br>    "MD007": { "indent": 2 }, /*Indent level as space*/<br>    "MD009": false, /*No white space at the end*/<br>    "MD010": false, /*No hard tab indentation*/<br>    "MD011": true, /*link syntax should not be reversed like (a)[a.com]*/<br>    "MD012": { "maximum": 1 }, /*No more than 1 blank line*/<br>    "MD013": { "line_length": 300 }, /*Max line length*/<br>    "MD014": false, /*Dollar sign should not be used consecutively for shell commands*/<br>    "MD018": true, /*There should be a space after heading hash*/<br>    "MD019": true, /**There should not be multiple spaces after heading hash*/<br>    "MD020": true, /*Closed atx style heading should have 1 space inside hashes*/<br>    "MD021": true, /*Closed atx style heading should note have multiple space inside hashes*/<br>    "MD022": false, /*Before and after a heading should be a blank line*/<br>    "MD023": true, /*Heading should not be indented*/<br>    "MD024": true, /*No duplicate sibling headings*/<br>    "MD025": true, /*Only one h1*/<br>    "MD026": true, /*No punctuation at the end of a heading except '?'*/<br>    "MD027": true, /*No more than 1 space after blockquote symbol*/<br>    "MD028": true, /*No separation of blockquotes with a blank line*/<br>    "MD029": true, /*Ordered list should be ordered and start with  or 1*/<br>    "MD030": true, /*Only one space between the list marker and text*/<br>    "MD031": true, /*Before and after a fenced code block should be a blank line*/<br>    "MD032": false, /*Before and after a list should be a blank line*/<br>    "MD033": false, /*No raw HTML*/<br>    "MD034": false, /*URL should be surrounded with brackets*/<br>    "MD035": true, /*No inconsistent horizontal rules; ---, *** */<br>    "MD036": true, /*No emphasis instead of heading*/<br>    "MD037": true, /*No space between emphasis market and the text*/<br>    "MD038": true, /*No space between backtick and text*/<br>    "MD039": true, /*No space inside link text*/<br>    "MD040": true, /*Fenced code blocks should have a language declared*/<br>    "MD041": false, /*First line in a file should be h1*/<br>    "MD042": true, /*No empty links*/<br>    "MD043": false, /*Declare a heading structure*/<br>    "MD044": true, /*Proper names should have the correct capitalization*/<br>    "MD045": true, /*Images should have alt text*/<br>    "MD046": true, /*Use indent or code fence alone*/<br>    "MD047": true, /*Files should end with a single newline character */<br>    "MD048": true, /*Code fence style should be uniform*/<br>    "MD049": true, /*Emphasis style should be consistent*/<br>    "MD050": true, /*Strong style should be consistent*/<br>    "MD051": true, /*Link fragments should correspond to a heading*/<br>    "MD052": true, /*Reference links and images should use a label that is defined*/<br>    "MD053": true /* Link and image reference definitions should be needed*/<br>}
+</code></pre>
+<p>
+  To exclude certain files from being analyzed you can create a ".markdownlintignore"
+  at the project root and add directories that you want to exclude from the analysis:
+</p>
+<pre><code>// to exclude node_modules folder<br>/node_modules/
+</code></pre>
+<h2>Usage</h2>
+<p>
+  Then you can add the following text to your npm scripts in your package.json
+  file:
+</p>
+<p>
+  <code>"lintMD": "markdownlint **/*.md --fix"</code>
+</p>
+<p>
+  This way you can use the markdown linter with the following code at your project
+  root:
+</p>
+<p>
+  <code>npm run lintMD</code>
+</p>
+<p>
+  Instead, if you have only installed the VSC extension you can simply right click
+  on your markdown file and press 'Format Document' for ease of use. Or if you
+  want to automatically format when saving or pasting into a Markdown document,
+  configure Visual Studio Code's editor.formatOnSave or editor.formatOnPaste settings
+  like so:
+</p>
+<p>
+  <code>
+"[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+},
+</code>
 </p>

@@ -6,8 +6,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/7019114935961" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#cordova-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -146,9 +147,10 @@ Countly.isInitialized().then((result) =&gt; {
             console.error(err);
         });</code></pre>
 <p>
-  For more information on how to acquire your application key (appKey) and server
-  URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.
+  Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <div class="callout callout--info">
   <p>
@@ -350,7 +352,7 @@ Countly.addCrashLog("My crash log from JavaScript");
   </li>
 </ul>
 <div class="callout callout--info">
-    <strong>Data passed should be in UTF-8</strong>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
@@ -522,7 +524,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-   <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
+  <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>

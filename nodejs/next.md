@@ -1,15 +1,17 @@
 <p>
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 22.02.0.
+  device or server, like tracking your API. It applies to the SDK version 22.06.0.
 </p>
+
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="blank">here</a>.
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#nodejs-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
-  Countly NodeJS runs with the following node versions and up:
+  Countly NodeJS runs with the following node versions, and up:
 </p>
 <table style="border-collapse: collapse; width: 100%;" border="1">
   <tbody>
@@ -27,9 +29,8 @@
 </table>
 <p>
   If you want to get the Countly NodeJS SDK codebase locally you can go to the
-  github repo
-  <a href="https://github.com/Countly/countly-sdk-nodejs">here</a> and download
-  it inside your project folder by executing the lines:
+  GitHub repo <a href="https://github.com/Countly/countly-sdk-nodejs">here</a>
+  and download it inside your project folder by executing the lines:
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>
@@ -53,17 +54,18 @@
   </div>
 </div>
 <p>
-  After this you can import and use Countly as you wish inside your project as
+  After this, you can import and use Countly as you wish inside your project as
   described below.
 </p>
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  Where ever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
-  and initialize Countly. Here you would also need to provide your application
-  key and server URL. For more information on how to acquire your application key
-  (APP_KEY) and server URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+  Wherever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
+  and initialize Countly. Here, you would also need to provide your application
+  key and server URL. Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <p>Example basic setup would look like this:</p>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
@@ -75,7 +77,7 @@ Countly.init({
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn about the verification methods from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
@@ -95,7 +97,7 @@ Countly.init({
 });</code></pre>
 <p>
   But sometimes you might want to see the logs only for a small time frame or some
-  particular operation. In those situations you can simply use setLoggingEnabled
+  particular operation. In those situations, you can simply use setLoggingEnabled
   function to turn the logs on or off as you wish, just like this:
 </p>
 <pre><code class="javascript">//to turn on the logs
@@ -132,7 +134,7 @@ Countly.init({
 </p>
 <pre><code class="javascript">Countly.track_errors()</code></pre>
 <p>
-  You can additionally add more segments or properties/values to track with error
+  You can additionally, add more segments or properties/values to track with error
   reports, by providing an object with key/values to add to error reports.
 </p>
 <pre><code class="javascript">Countly.track_errors({
@@ -144,7 +146,7 @@ Countly.init({
   exceptions to server too, so you can figure out how and even if you need to handle
   them later on. And optionally you can again provide custom segments to be used
   in the report (or use the ones provided with <strong>track_error</strong> method
-  as default ones)
+  as default ones).
 </p>
 <p>
   <strong>Countly.log_error(error, segments);</strong>
@@ -202,7 +204,7 @@ catch(ex){
   <strong>start_event</strong> and <strong>end_event</strong> methods.
 </p>
 <p>
-  Firstly you can start tracking event time by providing name of the event (which
+  First, you can start tracking event time by providing name of the event (which
   later on will be used as key for event object)
 </p>
 <pre><code class="javascript">Countly.start_event("timedEvent")</code></pre>
@@ -233,7 +235,7 @@ Countly.end_event({
 </p>
 <p>
   If <strong>noHeartBeat</strong> is true, then Countly SDK won't extend session
-  automatically, and you would need to do that manually.
+  automatically, and you will need to do that manually.
 </p>
 <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
 <h2>Extending a session</h2>
@@ -291,7 +293,7 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
 <p>
   In some cases, you may also need to change user's device ID in a way, that server
   will merge data of both user IDs (existing and new ID you provided) on the server,
-  eg when user used website without authenticating and have recorded some data,
+ for e.g., when user used website without authenticating and have recorded some data,
   and then authenticated and you want to change ID to your internal id of this
   user, to keep tracking it across multiple devices.
 </p>
@@ -300,6 +302,106 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
   new provided ID.
 </p>
 <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
+<h1>Remote Config</h1>
+<p>
+  <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span><span style="font-weight: 400;"></span>
+</p>
+<h2>Automatic Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific triggers. For example, after SDK initialization, changing device ID.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you provide a callback, the callback will be called when the Remote Config is initially loaded and when it is reloaded if you change the device_id. This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// in your Countly init script
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: true 
+});<br><br>// OR
+
+// provide a callback to be notified when configs are loaded
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: function(err, remoteConfigs){
+    if (!err) {
+      //we have our remoteConfigs here
+      console.log(remoteConfigs);
+    }
+  }
+});</code></pre>
+<h2>Manual Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">If you want, you can manually fetch the Remote Config in order to receive the latest value anytime after the initialization. To do so you have to use the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;"> call. This method is also used for reloading the values for updating them according to the latest changes you made on your server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">By using this method, you can simply load the entire object or load some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large. This call will automatically save the fetched keys internally.</span>
+</p>
+<h3>Fetch All Keys</h3>
+<p>
+  Here you so not need to provide any parameters to the call but providing a callback
+  is the recommended practice.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load the whole configuration object with a callback
+Countly.fetch_remote_config(function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
+  }<br>});<br><br>// or whole configuration object with no params
+Countly.fetch_remote_config();</code></pre>
+<h3>Fetch Specific Keys</h3>
+<p>
+  Here the keys should be provided as string values in an array, as the first parameter
+  in <em>fetch_remote_config</em> call. You can provide a callback function as
+  a second parameter.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load specific keys only, as `key1` and `key2`
+Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});<br><br></code></pre>
+<h3>Fetch All Except Specific Keys</h3>
+<p>
+  Here the first parameter should be set to 'null' or 'undefined' and the keys
+  that you want to omit must be provided as the second parameter as an array of
+  keys as string. As a third parameter you can provide a callback function.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2'
+Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});</code></pre>
+<h2>Accessing Remote Config Values</h2>
+<p>
+  <span style="font-weight: 400;">You may call </span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the Remote Config object of a value for a specific key or all keys from your local storage.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This method should be called once the Remote Config have been successfully loaded, or it will simply return an empty object or undefined values.</span>
+</p>
+<pre><code class="javascript">//get whole Remote Config object
+var remoteConfig = Countly.get_remote_config();
+
+//or get value for specific key like 'test'
+var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
+<h2>A/B Testing</h2>
+<p>
+  While fetching Remote Config, the SDK will automatically enroll the user to A/B
+  testing. For more information on A/B testing please check
+  <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.
+</p>
+<h2>Consent</h2>
+<p>
+  If consents are enabled, to fetch the Remote Config data you have to provide
+  the 'remote-config' consent for this feature to work.
+</p>
 <h1>User feedback</h1>
 <p>
   If there is any way you can get some user feedback, there is not a simple method
@@ -404,7 +506,7 @@ Countly.report_trace({
 <h2>Attribution</h2>
 <p>
   When using Countly attribution analytics, you can also report conversion to Countly
-  server, like for example when visitor purchased something or registered.
+  server, for e.g., when visitor purchased something or registered.
 </p>
 <p>
   Note: that conversion for each user may be reported only once, all other conversions
@@ -414,7 +516,7 @@ Countly.report_trace({
 Countly.report_conversion("MyCampaignID");</code></pre>
 <h2>Make raw request</h2>
 <p>
-  Sometimes if you are switching between users a lot, or changing some other data,
+   If you are switching between users a lot, or changing some other data,
   which is hard to handle over multiple processes, etc. You can simply make a raw
   request with all possible SDK parameters described in
   <a href="http://resources.count.ly/docs/i">API reference</a>
@@ -432,46 +534,46 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </p>
 <ul>
   <li>
-    <strong>app_key</strong> - mandatory, app key for your app created in Countly
+    <strong>app_key</strong> - mandatory, App key for your app created in Countly.
   </li>
   <li>
-    <strong>device_id</strong> - to identify a visitor, will be auto generated
-    if not provided
+    <strong>device_id</strong> - To identify a visitor, will be auto generated
+    if not provided.
   </li>
   <li>
-    <strong>url</strong> - your Countly server url (default: "https://cloud.count.ly"),
-    you must use your own server URL here
+    <strong>url</strong> - Your Countly server url (default: "https://cloud.count.ly"),
+    you must use your own server URL here.
   </li>
   <li>
-    <strong>app_version</strong> - (optional) the version of your app or website
+    <strong>app_version</strong> - (optional) The version of your app or website.
   </li>
   <li>
-    <strong>country_code</strong> - (optional) country code for your visitor
+    <strong>country_code</strong> - (optional) Country code for your visitor.
   </li>
   <li>
-    <strong>city</strong> - (optional) name of the city of your visitor
+    <strong>city</strong> - (optional) Name of the city of your visitor.
   </li>
   <li>
-    <strong>ip_address</strong> - (optional) ip address of your visitor
+    <strong>ip_address</strong> - (optional) IP address of your visitor.
   </li>
   <li>
-    <strong>debug</strong> - output debug info into console (default: false)
+    <strong>debug</strong> - output debug info into console (default: false).
   </li>
   <li>
     <strong>interval</strong> - set an interval how often to check if there is
-    any data to report and report it (default: 500 ms)
+    any data to report and report it (default: 500 ms).
   </li>
   <li>
     <strong>fail_timeout</strong> - set time in seconds to wait after failed
-    connection to server (default: 60 seconds)
+    connection to server (default: 60 seconds).
   </li>
   <li>
     <strong>session_update</strong> - how often in seconds should session be
-    extended (default: 60 seconds)
+    extended (default: 60 seconds).
   </li>
   <li>
     <strong>max_events</strong> - maximum amount of events to send in one batch
-    (default: 10)
+    (default: 10).
   </li>
   <li>
     <strong>force_post</strong> - force using post method for all requests (default:
@@ -479,20 +581,20 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   </li>
   <li>
     <strong>storage_path</strong> - where SDK would store data, including id,
-    queues, etc (default: "../data/")
+    queues, etc (default: "../data/").
   </li>
   <li>
     <strong>require_consent</strong> - pass true if you are implementing GDPR
     compatible consent management. It would prevent running any functionality
-    without proper consent (default: false)
+    without proper consent (default: false).
   </li>
   <li>
     <strong>remote_config</strong> - Enable automatic remote config fetching,
-    provide callback function to be notified when fetching done (default: false)
+    provide callback function to be notified when fetching done (default: false).
   </li>
   <li>
     <strong>http_options</strong> - function to get http options by reference
-    and overwrite them, before running each request
+    and overwrite them, before running each request.
   </li>
   <li>
     <strong>max_logs</strong> - maximum amount of breadcrumbs to store for crash
@@ -500,7 +602,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   </li>
   <li>
     <strong>metrics</strong> - provide for this user/device, or else will try
-    to collect what's possible
+    to collect what's possible.
   </li>
 </ul>
 <p>
@@ -529,7 +631,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 <p>
   Countly is highly customizable and let's you take a huge part at the control
   of the system in multiple ways. From customizing segmentation values to changing
-  event keys great liberty comes with the cost of great responsibility. As a sanity
+  event keys. Great liberty comes with the cost of great responsibility. As a sanity
   check measure Countly relies on internal limits to get a hold of the free flow
   of values, keys, character and more. These internal limits are again customizable
   at initialization and current limits and their default values are as follows:
@@ -600,7 +702,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   </li>
 </ul>
 <p>
-  To change these default values all you have to do is to set the properties during
+  To change these default values, all you have to do is to set the properties during
   the initialization:
 </p>
 <pre><code class="javascript">Countly.init({

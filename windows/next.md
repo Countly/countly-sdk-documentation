@@ -1,10 +1,12 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 21.11.0.
+  It applies to version 22.06.X.
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 20.11 click&nbsp;<a href="/hc/en-us/articles/4413138651161">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#windows-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <div>
@@ -32,7 +34,7 @@
   The project page can be found
   <a href="https://github.com/Countly/countly-sdk-windows/">here</a>
 </p>
-<h1 id="adding-the-sdk-to-the-project" class="anchor-heading">Adding the SDK to the project</h1>
+<h1>Adding the SDK to the Project</h1>
 <p>
   <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency in either your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
 </p>
@@ -50,12 +52,12 @@
     </p>
   </li>
 </ol>
-<h1 id="sdk-integration" class="anchor-heading" tabindex="-1">SDK Integration</h1>
+<h1>SDK Integration</h1>
 <p class="anchor-heading">
   Before you can use any Countly functionality, you need to call
   <code>Countly.Instance.Init</code> to initiate the SDK.
 </p>
-<h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
+<h2>Minimal Setup</h2>
 <p>
   <span>The shortest way to initiate the SDK is with this call:</span>
 </p>
@@ -68,7 +70,7 @@ cc.appVersion = "1.2.3";
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <p>
-  <span>In the </span><code>CountlyConfig</code><span>&nbsp;object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check&nbsp;<a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self" rel="undefined">here</a>.</span>
+  <span>In the </span><code>CountlyConfig</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   <strong>Note: </strong>The SDK targets multiple profiles. Therefore for some
@@ -78,11 +80,11 @@ Countly.Instance.Init(cc);</code></pre>
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn about the verification methods from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
+<h2>SDK Logging / Debug Mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
   To enable logging you need to do the following two steps:
@@ -109,7 +111,7 @@ Countly.Instance.Init(cc);</code></pre>
 <p>
   <img src="/hc/article_attachments/6537211113369/mceclip4.png" alt="mceclip4.png">
 </p>
-<h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
+<h2>SDK Data Storage</h2>
 <p>
   Cached requests and other SDK relevant information is stored in files in a named
   folder. All platform targets except .net40 call that folder "countly", .net40
@@ -127,8 +129,8 @@ Countly.Instance.Init(cc);</code></pre>
   change that by using this:
 </p>
 <pre><code class="csharp">Countly.SetCustomDataPath("C:\path\to\new\folder\");</code></pre>
-<h2 id="sdk-notes" class="anchor-heading" tabindex="-1">SDK notes</h2>
-<h3>Additional info for UWP project setup</h3>
+<h2>SDK Notes</h2>
+<h3>Additional Info for UWP Project Setup</h3>
 <p>
   It's possible to register an unhandled crash handler during SDK initialization.
   To do that, you need to provide a link to your application.
@@ -143,18 +145,18 @@ Countly.Instance.Init(cc);</code></pre>
 };
 
 await Countly.Instance.Init(cc);</code></pre>
-<h1 id="crash-reporting" class="anchor-heading" tabindex="-1">Crash reporting</h1>
+<h1>Crash Reporting</h1>
 <p>
   <span>The Countly SDK for Windows can collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
-<h2 id="automatic-crash-handling" class="anchor-heading">Automatic crash handling</h2>
+<h2>Automatic Crash Handling</h2>
 <p>
   Countly SDK has the ability to automatically collect crash reports which you
   can examine and resolve later on the server. You should subscribe to the unhandled
   exceptions handler manually. Exception details and device properties will be
   sent on the next app launch.
 </p>
-<h2 id="handled-exceptions" class="anchor-heading">Handled exceptions</h2>
+<h2>Handled Exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening.&nbsp;</span><span>To log exceptions use the following code snippet:</span>
 </p>
@@ -180,15 +182,15 @@ await Countly.Instance.Init(cc);</code></pre>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
 <pre><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
-<h2 id="crash-breadcrumbs" class="anchor-heading">Crash breadcrumbs</h2>
+<h2>Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave&nbsp;crash breadcrumbs<span>&nbsp;</span><span>Mandatory that </span>would
   describe previous steps that were taken in your app before the crash. After a
   crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre><strong>Countly</strong>.AddBreadCrumb("breadcrumb");</pre>
-<h2 id="consent" class="anchor-heading">Consent</h2>
+<pre><code>Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
+<h2>Consent</h2>
 <p>
   This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given.</span>
 </p>
@@ -221,7 +223,7 @@ await Countly.Instance.Init(cc);</code></pre>
     a key and value map. The accepted data types for the value are<span>&nbsp;</span><span>"String".&nbsp;</span>
   </li>
 </ul>
-<h2 id="recording-events" class="anchor-heading">Recording events</h2>
+<h2>Recording Events</h2>
 <p>
   <span>Here is a quick way to&nbsp;</span><span>record an event:</span>
 </p>
@@ -286,24 +288,57 @@ await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pr
 <p>
   <span>These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
-<h2 id="timed-events" class="anchor-heading">Timed events</h2>
+<h2>Timed Events</h2>
 <p>
-  <span>Currently, SDK doesn't have any direct mechanism to record timed Events. To record a timed event, you would have to calculate the duration of an event yourself. You could record the timestamp at the start of it and at the end, and then you would pass the calculated duration to Countly when you are recording the event.</span>
+  Timed events are events which gives you the ability to calculate the duration
+  it takes for the event to take place with respect to any arbitrary point you
+  choose. Timed events must be handled manually, where they need a call to start
+  the event and another call to end the event. First call is used to start an internal
+  timer which would continue counting until the second call is used to stop it
+  and record the duration. This second call would end the timer, create an event
+  with the given name and the with the duration from the timer and send it to the
+  event queue. If this second call has not been called or if the app has been closed
+  before calling it, no event would be created. As the timer is stored at the memory
+  of the device, if you close the app before ending the event, you would have to
+  start all over when you open the app later again.
 </p>
+<pre><code class="java">string eventName = "Some event";
+
+//start some event with the event name "Some event"
+Countly.Instance.StartEvent(eventName);
+//wait some time
+
+//end the event with the same event name "Some event"
+Countly.Instance.EndEvent(eventName);</code></pre>
 <p>
-  <span>Example:</span>
+  <span>You may also provide additional information when ending an event. In that case, you can provide the segmentation, count, or sum values. The default values for those are "null", 1, and 0.</span>
 </p>
-<pre><code class="java hljs"><span class="hljs-comment">//At the start of your planned event you would record the start timestamp</span>
-DateTime startTime = DateTime.UtcNow;
-...
-<span class="hljs-comment">//Some time would pass and you would determine that your planned event has ended and you would record how many seconds passed </span>
-<span class="hljs-keyword">double</span> duration = (DateTime.UtcNow - startTime).TotalSeconds; 
-<span class="hljs-comment">//Then you would pass this information when recording a Countly event</span>
-<strong>await</strong> <span>Countly.RecordEvent("purchase", 3, null, duration, null);</span></code></pre>
+<pre><code class="java">string eventName = "Some event";
+
+//start some event
+Countly.Instance.StartEvent(eventName);
+//wait some time
+
+Segmentation segmentation = new Segmentation();
+segmentation.Add("wall", "orange");
+
+//end the event while also providing segmentation information
+Countly.Instance.EndEvent(eventName, segmentation);
+</code></pre>
+<p>Here are other options to end timed events:</p>
+<pre><code class="java">//end the event while providing segmentation information and count
+Countly.Instance.EndEvent("timed-event", segmentation, 4);<br><br>//end the event while providing segmentation information, count and sum
+Countly.Instance.EndEvent("timed-event", segmentation, 4, 10);</code></pre>
 <p>
-  <span>You may provide segmentation, count, and sum while recording a timed event.</span>
+  You may cancel an already started timed event in case it is not needed anymore:
 </p>
-<h2 id="consent" class="anchor-heading">Consent</h2>
+<pre><code class="java">//start some event
+Countly.Instance.StartEvent(eventName);
+//wait some time
+
+//cancel the event
+Countly.Instance.CancelEvent(eventName);</code></pre>
+<h2>Consent</h2>
 <p>
   <span>This feature uses&nbsp;<code>Events</code>&nbsp;consent.&nbsp;</span><span>No additional events will be recorded if consent is required and not given.</span>
 </p>
@@ -311,7 +346,7 @@ DateTime startTime = DateTime.UtcNow;
   <span>When consent is removed, all previously started timed events will be cancelled.</span>
 </p>
 <h1>Sessions</h1>
-<h2>Manual sessions</h2>
+<h2>Manual Sessions</h2>
 <p>
   After you have initiated the SDK, call
   <code>Countly.Instance.SessionBegin()</code> when you want to start tracking
@@ -341,8 +376,8 @@ Countly.Instance.SessionEnd();
 //update the session manually
 int elapsedTime = 60;//elapsed time in seconds
 Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
-<h1>View tracking</h1>
-<h2 id="manual-view-recording" class="anchor-heading">Manual view recording</h2>
+<h1>View Tracking</h1>
+<h2>Manual View Recording</h2>
 <p>
   The SDK provides a call to record views in your application. More information
   about how to use them can be found
@@ -350,7 +385,7 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
   to provide the name for the view.
 </p>
 <pre><code class="csharp">Countly.Instance.RecordView("Some View");</code></pre>
-<h1 id="device-id-management" class="anchor-heading" tabindex="-1">Device ID management</h1>
+<h1>Device ID Management</h1>
 <p>
   To link events, sessions, crashes, etc to a user, a deviceId is used. It is usually
   generated by the SDK. It is then saved locally and then reused on every init
@@ -360,7 +395,7 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
   Ideally, the same device Id would be generated on the same device when using
   the same generation method. This way it would be possible to track users on reinstalls.
 </p>
-<h2 id="device-id-generation" class="anchor-heading">Device ID generation</h2>
+<h2>Device ID Generation</h2>
 <p>
   The SDK supports multiple ways for generating that ID, each with its pro's and
   cons and some limited to a specific compilation target:
@@ -403,7 +438,7 @@ cc.developerProvidedDeviceId = "use@email.com";
 
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
-<h2 id="changing-device-id" class="anchor-heading">Changing device ID</h2>
+<h2>Changing Device ID</h2>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
@@ -423,51 +458,60 @@ Countly.Instance.Init(cc);</code></pre>
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
-<h2 id="retrieving-current-device-id" class="anchor-heading">Retrieving current device ID</h2>
+<h2>Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.
 </p>
 <pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
-<h1>User location</h1>
+<h1>User Location</h1>
 <p>
-  <span>While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base. There are 4 fields that can be provided:</span>
+  While integrating this SDK into your application, you might want to track your
+  user location. You could use this information to better know your app’s user
+  base. There are 4 fields that can be provided:
 </p>
 <ul>
+  <li>Country code (two-letter ISO standard).</li>
+  <li>City name (must be set together with the country code).</li>
   <li>
-    <span>Country code (two-letter ISO standard).</span>
+    Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325".
   </li>
-  <li>
-    <span>City name (must be set together with the country code).</span>
-  </li>
-  <li>
-    <span>Latitude and longitude values separated by a comma, e.g.</span><span>&nbsp;</span>"56.42345,123.45325".
-  </li>
-  <li>
-    <span>Your user’s IP address.</span>
-  </li>
+  <li>Your user’s IP address.</li>
 </ul>
-<h2 id="setting-location" class="anchor-heading">Setting location</h2>
+<h2>Setting Location</h2>
+<div class="callout callout--warning">
+  <p>
+    Note that the IP address will only be updated if it was set during the init
+    process.
+  </p>
+</div>
 <p>
-  <span>After SDK initialization, you can&nbsp;set location info.</span>
+  During init, you can set location info in the configuration:
 </p>
+<pre>config.SetLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<p>
+  After SDK initialization, this location info will be sent to the server at the
+  start of the user session. Use <code>SetLocation</code> method to disable or
+  set the location at any time after the SDK Init call.
+</p>
+<p>For example:</p>
 <pre><code class="csharp">//set user location
 String gpsLocation = "63.445821, 10.898868";
 String ipAddress = "13.56.33.12";
-String country_code = null;
+String country_code = "us";
 String city = null;
 
 Countly.Instance.SetLocation(gpsLocation, ipAddress, country_code, city);</code></pre>
 <p>
-  If there are fields you don't want to set, set them to null. If you want to reset
-  a field, set it to an empty string.
+  If there are fields you don't want to set, set them to null. If you're going
+  to reset a field, set it to an empty string.
 </p>
 <p>
   If no location is provided, it will be approximated by using GeoIP.
 </p>
-<h2 id="disabling-location" class="anchor-heading" tabindex="-1">Disabling location</h2>
+<h2>Disabling Location</h2>
 <p>
-  <span>Users might want to opt-out of location tracking. To do so call:</span>
+  Users might want to opt-out of location tracking. To do so call:
 </p>
 <pre><code class="csharp">//disable location tracking
 Countly.Instance.DisableLocation();</code></pre>
@@ -480,7 +524,7 @@ Countly.Instance.DisableLocation();</code></pre>
     <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
   </p>
 </div>
-<h2 id="setting-predefined-values" class="anchor-heading">Setting predefined values</h2>
+<h2>Setting Predefined Values</h2>
 <p>
   The SDK allows you to upload specific data related to a user to the Countly server.
   You may set the following predefined data for a particular user:
@@ -522,14 +566,14 @@ Countly.Instance.DisableLocation();</code></pre>
 </p>
 <p>Example:</p>
 <pre><code>Countly.UserDetails.Name = "John";</code>// set name to John<br><code>Countly.UserDetails.Name = "null";</code> // remove name</pre>
-<h2 id="setting-custom-values" class="anchor-heading">Setting custom values</h2>
+<h2>Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
   even when you don’t want to send other user-related data.<span>&nbsp;<br></span>You
   can provide custom properties for user using <code>Custom</code> object
 </p>
 <pre><code>Countly.UserDetails.Custom.Add("city", "london");</code></pre>
-<h2 id="setting-custom-values" class="anchor-heading">Setting User picture</h2>
+<h2>Setting User Picture</h2>
 <p>
   Additionally, you can upload a picture of the user to the server. Accepted picture
   formats are .png, .gif and .jpeg and picture will be resized to maximal 150x150
@@ -540,7 +584,7 @@ Countly.Instance.DisableLocation();</code></pre>
   <strong>Note</strong>: dots (.) and dollar signs ($) in key names will be stripped
   out.
 </p>
-<h1>User consent</h1>
+<h1>User Consent</h1>
 <p>
   If you want to comply with GDPR or similar privacy requirements, there is functionality
   to manage user consent to features.
@@ -549,7 +593,7 @@ Countly.Instance.DisableLocation();</code></pre>
   More information about GDPR can be found
   <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
-<h2 id="setup-during-init" class="anchor-heading">Setup during init</h2>
+<h2>Setup During Init</h2>
 <p>
   By default the requirement for consent is disabled. To enable it, you have to
   do it with the CountlyConfig object by setting <code>consentRequired</code> to
@@ -614,7 +658,7 @@ cc.givenConsent = consent;
 
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
-<h2 id="changing-consent" class="anchor-heading">Changing consent</h2>
+<h2>Changing Consent</h2>
 <p>
   Consent can also be changed at any other moment in the app after init:
 </p>
@@ -626,7 +670,7 @@ consent.Add(ConsentFeatures.Location, true);
 
 //changing consent
 Countly.Instance.SetConsent(consent);</code></pre>
-<h1 class="anchor-heading" tabindex="-1">Other features and Notes</h1>
+<h1>Other Features and Notes</h1>
 <h2>SDK Config Parameters Explained</h2>
 <p>
   <span>To change the Configuration, update the values of parameters in the "<code class="csharp">CountlyConfig</code></span><strong><span>&nbsp;</span></strong><span>object. Here are the details of the optional parameters:</span><span></span>
@@ -664,8 +708,8 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
 </p>
-<h1 id="faq" class="anchor-heading" tabindex="-1">FAQ</h1>
-<h2 id="what-information-is-collected-by-the-sdk" class="anchor-heading">What information is collected by the SDK</h2>
+<h1>FAQ</h1>
+<h2>What Information Is Collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
@@ -707,4 +751,48 @@ Countly.Instance.SetConsent(consent);</code></pre>
 </p>
 <p>
   <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
+</p>
+<h2>Is Windows SDK Compatible With .Net Maui</h2>
+<p>
+  .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
+  native mobile and desktop apps with C# and XAML. It is compatible with .NET 6
+  runtime (or rather .NET Core 5). All .NET Core versions (2.0 and above) are compatible
+  with .NET Standard 2.0 libraries.
+</p>
+<p>
+  As one of our Windows SDK flavors targets '.NET Standard' you should be able
+  to use our Windows SDK in your .Net Maui applications without any hurdle.
+</p>
+<p>
+  However there a couple of issues to touch upon. On .NET MAUI applications, when
+  an uncaught exception happens the <code>AppDomain.UnhandledException</code> event
+  occurs. As it is a cross-platform framework this effects the each platform you
+  target differently and each one should need. For Android applications all exceptions
+  should go through the
+  <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> event
+  instead of the <code>AppDomain.CurrentDomain.UnhandledException</code> event.
+  And for iOS and Mac Catalyst, handling of the <code>UnwindNativeCode</code> value
+  is necessary.
+</p>
+<p>
+  So for reporting native crashes using
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener">this</a>
+  class in your project would provide a handler that would work on major platforms
+  with the mentioned logic. To handle uncaught exceptions correctly we catch iOS
+  and Android errors at lines
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener">29</a>
+  and
+  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener">40</a>
+  respectively. After catching them, we route all unhandled exceptions from different
+  platforms through
+  <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a>
+  event handler.
+</p>
+<p>Usage:</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">MauiExceptions.UnhandledException += (sender, args) =&gt;
+ {
+   Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
+ };</pre>
+<p>
+  <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
 </p>

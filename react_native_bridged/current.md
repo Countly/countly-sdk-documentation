@@ -1,13 +1,14 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 22.02.0<br>
+  and it applies to version 22.06.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 21.11 and older, click
-    <a href="/hc/en-us/articles/6116239554841" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#react-native-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -592,17 +593,18 @@ apply plugin: 'com.google.gms.google-services'
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
 <p>
-  You can set the additional intent redirection check to true for providing intent
-  redirection security and to set the allowed package and class names for intent
-  redirection:
-</p>
-<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
-<p>
   <strong>Additional Intent Redirection Checks</strong>
 </p>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.02.2.</p>
 </div>
+<p>
+  Intent Redirection Vulnerability is an issue that lets your app allow malicious
+  apps to access private app components or files. Google removes apps from Google
+  Play that is susceptible to Intent Redirection Vulnerability. For Push Notifications,
+  we are also using Intent Redirection in our SDK, so for that reason, we have
+  also implemented additional Intent Redirection protection.
+</p>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
   you can disable the additional intent redirection:
@@ -614,7 +616,14 @@ apply plugin: 'com.google.gms.google-services'
   <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
 </p>
 <p>
-  You can also set the allowed package and class names for intent redirection:
+  If, for some reason, the 'activity name' does not start with the 'application
+  package name' (for e.g if you are using Android Product/Build Flavors to create
+  multiple apps with the same code base), then you need to provide the additional
+  allowed class and package names for Intent Redirection manually.
+</p>
+<p>
+  You can set the allowed package and class names for Intent Redirection using
+  this call:
 </p>
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
@@ -656,12 +665,23 @@ apply plugin: 'com.google.gms.google-services'
 console.log(JSON.stringify(theNotification));
 });</pre>
 <p>
-  In order to listen to notification receive and click events, Place below code
+  In order to listen to notifications received and the click events, add the code below
   in <code>AppDelegate.m</code>
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">#import "CountlyReactNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;
 </code></pre>
+<p>
+  Add this call
+  <code class="JavaScript">[CountlyReactNative startObservingNotifications];</code>
+  in <code>didFinishLaunchingWithOptions:</code> method to handle push notification
+  receive and action callbacks when SDK is not initialized.
+</p>
+<div class="callout callout--warning">
+  <p>This functionality is available since SDK version 22.06.1</p>
+</div>
+<pre><code class="JavaScript">// For push notification received and action callbacks.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
   Before <code>@end</code> add these method
 </p>
@@ -910,15 +930,13 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   all available widgets for a user and another to display a chosen widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
-<pre><code class="javascript">Countly.getAvailableFeedbackWidgets().then((retrivedWidgets) =&gt; {
-},(err) =&gt; {
-});</code></pre>
+<pre><code class="javascript">Countly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
 <p>
   From the callback, get the list of all available widgets that apply to the current
   device ID.
 </p>
 <p>The objects in the returned list look like this:</p>
-<pre><code class="javascript">{ "WIDGET_TYPE" : "WIDGET_ID" }</code></pre>
+<pre><code class="javascript">{ <br>  "id"   : "WIDGET_ID",<br>  "type" : "WIDGET_TYPE",<br>  "name" : "WIDGET_NAME",<br>}</code></pre>
 <p>
   To determine what kind of widget that is, check the "type" value. The potential
   values are <code class="JavaScript">survey</code> and
@@ -931,7 +949,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <p>
   After you have decided which widget you want to display, call the function below.
 </p>
-<pre><code class="javascript">Countly.presentFeedbackWidget("WIDGET_TYPE", "WIDGET_ID", "CLOSE_BUTTON_TEXT");</code></pre>
+<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("WidgetshownCallback");<br>},<br>function() {<br>  console.log("WidgetclosedCallabck");<br>})<br></code></pre>
 <h1>User Profiles</h1>
 <p>
   You can provide Countly any details you may have about your user or visitor.
@@ -961,7 +979,18 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   end of user details you want to record. In the case of
   <code class="JavaScript">Countly.userData</code> though, you will not need to
   use any other methods to initiate the data transmission. It will handle that
-  logic internally.<br>
+  logic internally.
+</p>
+<p>
+  <strong>Note:</strong> There is some inconsistency in underlying iOS and Android
+  code when using the bulk mode. This problem surfaces when modifying the same
+  key multiple times. For iOS it keeps the last value for a key on all push/pull
+  user property calls, for Android it will try to combine them. For now the work
+  around is that you need to call the “Countly.userDataBulk.save();” after every
+  push/pull user property call. This does eliminate some of the potential gains
+  of this mode, but it does result in the expected result server-side.
+</p>
+<p>
   Snippets below show examples of using these calls in various situations. After
   you send a user’s data, it can be found in your Dashboard under
   <code class="JavaScript">Users &gt; User Profiles</code>.
@@ -969,14 +998,32 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <h2>Setting Predefined Values</h2>
 <p>
   Predefined user properties are a set of default keys that are commonly used in
-  visitor data collection. You can see all of those values down below.
+  visitor data collection.
 </p>
 <p>
-  Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
-  predefined user properties like this:
+  Bellow you can see how this can be set using the regular user property access
+  mode and using the bulk mode:
 </p>
-<pre><code class="javascript">
-var options = {};<br>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Regular mode</span>
+    <span class="tabs-link">Bulk mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">var options = {};<br>
+options.name = "Nicola Tesla";
+options.username = "nicola";
+options.email = "info@nicola.tesla";
+options.organization = "Trust Electric Ltd";
+options.phone = "+90 822 140 2546";
+options.picture = "http://www.trust.electric/images/people/nicola.png";
+options.picturePath = "";
+options.gender = "M";
+options.byear = 1919;<br>
+Countly.setUserData(options);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};<br>
 options.name = "Name of User";
 options.username = "Username";
 options.email = "User Email";
@@ -991,32 +1038,30 @@ Countly.userDataBulk.setUserProperties(options);
 
 Countly.userDataBulk.save();
 </code></pre>
-<p>
-  Or you can use <code class="javascript">Countly.setUserData()</code> to set predefined
-  user properties:
-</p>
-<pre><code class="javascript">var options = {};<br>
-options.name = "Nicola Tesla";
-options.username = "nicola";
-options.email = "info@nicola.tesla";
-options.organization = "Trust Electric Ltd";
-options.phone = "+90 822 140 2546";
-options.picture = "http://www.trust.electric/images/people/nicola.png";
-options.picturePath = "";
-options.gender = "M";
-options.byear = 1919;<br>
-Countly.setUserData(options);</code></pre>
+  </div>
+</div>
 <h2>Setting Custom Values</h2>
 <p>
   Custom user properties are any arbitrary values that you would like to store
   under your user's profile. These values can be internal IDs, registration dates,
   horoscopes, or any other value that is not included in the predefined user properties.
 </p>
-<p>
-  Using the <code class="JavaScript">Countly.userDataBulk</code> you can set the
-  custom user properties like this:
-</p>
-<pre><code class="javascript">var options = {};
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Regular mode</span>
+    <span class="tabs-link">Bulk mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">var options = {};
+
+options.customeValueA = "nicola";
+options.customeValueB = "info@nicola.tesla";
+// ...
+
+Countly.setUserData(options);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};
 
 options.customeValueA = "Custom value A";
 options.customeValueB = "Custom value B";
@@ -1027,30 +1072,21 @@ Countly.userDataBulk.setUserProperties(options);
 // Unless you call this last function your data would not be send to your server
 
 Countly.userDataBulk.save();</code></pre>
-<p>
-  Or you can use <code class="javascript">Countly.setUserData()</code> to set custom
-  user properties:
-</p>
-<pre><code class="javascript">var options = {};
-
-options.customeValueA = "nicola";
-options.customeValueB = "info@nicola.tesla";
-// ...
-
-Countly.setUserData(options);</code></pre>
+  </div>
+</div>
 <h2>Modifying Data</h2>
 <p>
   Additionally, you can modify these custom values in various ways like increasing
   a number, pushing new values to an array, etc.&nbsp; You can see the whole range
-  of operations below.<br>
-  Using the <code class="JavaScript">Countly.userDataBulk</code> :
+  of operations below.
 </p>
-<pre>Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),<br>Countly.userDataBulk.setProperty("increment", 5),<br>Countly.userDataBulk.increment("increment"),<br>Countly.userDataBulk.setProperty("incrementBy", 5),<br>Countly.userDataBulk.incrementBy("incrementBy", 10),<br>Countly.userDataBulk.setProperty("multiply", 5),<br>Countly.userDataBulk.multiply("multiply", 20),<br>Countly.userDataBulk.setProperty("saveMax", 5),<br>Countly.userDataBulk.saveMax("saveMax", 100),<br>Countly.userDataBulk.setProperty("saveMin", 5),<br>Countly.userDataBulk.saveMin("saveMin", 50),<br>Countly.userDataBulk.setOnce("setOnce", 200),<br>Countly.userDataBulk.pushUniqueValue("type", "morning"),<br>Countly.userDataBulk.pushValue("type", "morning"),<br>Countly.userDataBulk.pullValue("type", "morning")])<br>.then(values =&gt; {<br>// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed<br>Countly.userDataBulk.save();<br>})</pre>
-<p>
-  Using <code class="JavaScript">Countly.userData</code> you can modify the custom
-  user properties individually:&nbsp;
-</p>
-<pre><code class="javascript">Countly.userData.setProperty("keyName", "keyValue"); //set custom property
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Regular mode</span>
+    <span class="tabs-link">Bulk mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.userData.setProperty("keyName", "keyValue"); //set custom property
 Countly.userData.setOnce("keyName", 200); //set custom property only if property does not exist
 Countly.userData.increment("keyName"); //increment value in key by one
 Countly.userData.incrementBy("keyName", 10); //increment value in key by provided value
@@ -1061,6 +1097,28 @@ Countly.userData.setOnce("setOnce", 200);//insert value to array of unique value
 Countly.userData.pushUniqueValue("type", "morning");//insert value to array of unique values
 Countly.userData.pushValue("type", "morning");//insert value to array which can have duplicates
 Countly.userData.pullValue("type", "morning");//remove value from array</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),
+Countly.userDataBulk.setProperty("increment", 5),
+Countly.userDataBulk.increment("increment"),
+Countly.userDataBulk.setProperty("incrementBy", 5),
+Countly.userDataBulk.incrementBy("incrementBy", 10),
+Countly.userDataBulk.setProperty("multiply", 5),
+Countly.userDataBulk.multiply("multiply", 20),
+Countly.userDataBulk.setProperty("saveMax", 5),
+Countly.userDataBulk.saveMax("saveMax", 100),
+Countly.userDataBulk.setProperty("saveMin", 5),
+Countly.userDataBulk.saveMin("saveMin", 50),
+Countly.userDataBulk.setOnce("setOnce", 200),
+Countly.userDataBulk.pushUniqueValue("type", "morning"),
+Countly.userDataBulk.pushValue("type", "morning"),
+Countly.userDataBulk.pullValue("type", "morning")])
+.then(values =&gt; {
+// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed
+Countly.userDataBulk.save();<br>})</code></pre>
+  </div>
+</div>
 <h1>Application Performance Monitoring</h1>
 <p>
   The Performance Monitoring feature allows you to analyze your application's performance
@@ -1409,9 +1467,9 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   <strong>application</strong> tag.
 </p>
 <pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
-	&lt;intent-filter&gt;
-		&lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-	&lt;/intent-filter&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+  &lt;/intent-filter&gt;
 &lt;/receiver&gt;</code></pre>
 <p>
   <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>

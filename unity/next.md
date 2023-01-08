@@ -1,12 +1,13 @@
 <p>
-  <span>This document will guide you through the process of Countly SDK installation and it applies to version 22.02.0</span><br>
+  <span>This document will guide you through the process of Countly SDK installation and it applies to version 22.06.0</span><br>
   You can download the latest release from
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">Github</a>.&nbsp;
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 21.11.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#unity-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -62,12 +63,12 @@
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br><strong>AppKey</strong> = <span>COUNTLY_APP_KEY,</span><br><strong>ServerUrl</strong> = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</pre>
 <p>
-  <span>In the </span><code>CountlyConfiguration</code><span>&nbsp;object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check&nbsp;<a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self" rel="undefined">here</a>.</span>
+  <span>In the </span><code>CountlyConfiguration</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn about the verification methods from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>

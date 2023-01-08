@@ -3,8 +3,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 22.02 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="blank">here</a>.
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#c++-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -70,9 +71,10 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </p>
 <pre><span><code>cly::Countly&amp; countly = cly::<span class="pl-c1">Countly::getInstance</span>();<br>countly.<span class="pl-c1">setDeviceID</span>(<span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span>);<br>countly.s<span class="pl-c1">tart</span>(<span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span>, <span class="pl-c1">443, true</span>);</code></span></pre>
 <p>
-  Here you have to provide your appKey, and your Countly server URL. For more information
-  on how to acquire you application key (appKey) and server URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_blank" rel="noopener">here</a>.
+  Here you have to provide your appKey, and your Countly server URL. Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
 <p>
   The third parameter with type<code>int</code> is a virtual port number and it

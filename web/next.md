@@ -3,8 +3,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 22.02.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="blank">here</a>.
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#web-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -76,7 +77,7 @@
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at&nbsp;</span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;">&nbsp;and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">To track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via the command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
@@ -102,19 +103,22 @@
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the&nbsp;</span><strong>Countly.q</strong><span style="font-weight: 400;">&nbsp;queue or synchronously allowing the script to load before executing any functions.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. This would also allow to use Countly while the Countly script has not yet been loaded. This can be done by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
 </p>
 <p>
-  Here you would also need to provide your application key and server URL. For
-  more information on how to acquire your application key (APP_KEY) and server
-  URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
-  Also if you are planning to use Application Performance Monitoring (APM) there
-  would be additional steps necessary for you to follow. For more information on
-  APM and its integration please check
+  Here you would also need to provide your application key and server URL. Please
+  check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
+</p>
+<p>
+  If you are planning to use Application Performance Monitoring (APM), you would
+  need to follow additional steps. For more information on APM and its integration,
+  please check
   <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#application-performance-monitoring">here</a>.
 </p>
 <p>
@@ -135,8 +139,7 @@ Countly.q = Countly.q || [];
 // Provide your app key that you retrieved from Countly dashboard
 Countly.app_key = "YOUR_APP_KEY";
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
+// Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
 Countly.url = "https://yourdomain.com";
@@ -151,14 +154,14 @@ Countly.q.push(['track_pageview']);
 // Uncomment the following line to track web heatmaps (Enterprise Edition)
 // Countly.q.push(['track_clicks']);
 
-// Uncomment the following line to track web scrollmaps (Enterprise Edition)
+// Uncomment the following line to track web scroll maps (Enterprise Edition)
 // Countly.q.push(['track_scrolls']);
 
 // Load Countly script asynchronously
 (function() {
 var cly = document.createElement('script'); cly.type = 'text/javascript';
 cly.async = true;
-// Enter url of script here (see below for other option)
+// Enter URL of script here (see below for other option)
 cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
 cly.onload = function(){Countly.init()};
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
@@ -174,8 +177,7 @@ Countly.init({
 // provide your app key that you retrieved from Countly dashboard
 app_key: "YOUR_APP_KEY",
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
+// Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.  
  url: "http://yourdomain.com"
@@ -189,19 +191,19 @@ Countly.track_pageview();
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. There are two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should be using instead of the one above.</span>
+  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. Two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should use instead of the one above.</span>
 </p>
 <pre><code class="text">// Note: You should change 19.2.1 below to the version 
-// of the latest JS SDK to make sure you use latest version.
+// of the latest JS SDK to make sure you use the latest version.
 // Latest version is here: 
 // https://github.com/Countly/countly-sdk-web/releases
 
 https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
 <p>
-  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;">&nbsp;to get this SDK directly from your Countly server.</span>
+  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As the third alternative option, you may download&nbsp;</span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;">&nbsp;from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
+  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You only need to point to this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use case.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Then you will be able to make event calls such as:</span>
@@ -243,7 +245,7 @@ function clickEvent(ob){
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn about the verification methods from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
@@ -310,21 +312,21 @@ Countly.debug = true;</code></pre>
   and enable convenience methods like offline mode.
 </p>
 <p>
-  The default storage location of user specific data, except the session information,
-  is the local storage of your browser. Information stored here is persistent and
-  as long as it was not erased or overwritten it would stay on your device indefinitely.
-  However Countly gives you the option to change this behavior by selecting persistent
-  cookies as the main storage option or choosing not store any data at all, depending
-  on your needs. These storage options are mutually exclusive, meaning, only one
+  The default storage location of user-specific data, except the session information,
+  is your browser’s local storage. Information stored here is persistent, and as
+  long as it was not erased or overwritten, it will stay on your device indefinitely.
+  However, Countly allows you to change this behavior by selecting persistent cookies
+  as the main storage option or choosing not to store any data at all, depending
+  on your needs. These storage options are mutually exclusive, meaning only one
   option can be selected at a given time.
 </p>
 <p>
-  If cookies were selected as the main storage medium it must be known that persistent
-  cookies have an expiration date and the information stored in them would be rendered
-  obsolete after a while. Incase of the session information, it is stored in session
-  cookies and would expire when the tab or browser is closed. Lastly if you decide
-  to not store any information, all information would stay in memory and would
-  be gone when the memory is cleared.
+  If cookies were selected as the main storage medium, persistent cookies have
+  an expiration date and the information stored in them would be rendered obsolete
+  after a while. In case of the session information, it is stored in session cookies
+  and would expire when the tab or browser is closed. Lastly, if you decide not
+  to store any information, all information will stay in memory and would be gone
+  when the memory is cleared.
 </p>
 <p>These options can be selected during the initialization:</p>
 <div class="tabs">
@@ -391,17 +393,18 @@ Countly.init({
     <strong>ip_address</strong> - (optional) IP address of your visitor
   </li>
   <li>
-    <strong>debug</strong> - output debug info into console (default: false)
+    <strong>debug</strong> - output debug info into the console (default: false)
   </li>
   <li>
     <strong>ignore_bots</strong> - option to ignore traffic from bots (default:
     true)
   </li>
   <li>
-    <strong>interval</strong> -&nbsp;<span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
+    <strong>interval</strong> -
+    <span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
   </li>
   <li>
-    <strong>queue_size</strong> - maximum amount of queued requests to store
+    <strong>queue_size</strong> - the maximum amount of queued requests to store
     (default: 1000)
   </li>
   <li>
@@ -409,25 +412,28 @@ Countly.init({
     <span style="font-weight: 400;">set the time to wait in seconds after a failed connection to the server (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>inactivity_time</strong> -&nbsp;<span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
+    <strong>inactivity_time</strong> -
+    <span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
   </li>
   <li>
     <strong>session_update</strong> -
-    <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)&nbsp;</span>
+    <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>max_events</strong> -&nbsp;maximum amount of events to send in one
-    batch (default: 100)
+    <strong>max_events</strong> - maximum amount of events to send in one batch
+    (default: 100)
   </li>
   <li>
-    <strong>max_logs</strong> -&nbsp;<span style="font-weight: 400;">maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
+    <strong>max_logs</strong> -
+    <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
   <li>
     <strong>ignore_referrers</strong> - array with referrers to ignore (default:
     none)
   </li>
   <li>
-    <strong>ignore_prefetch</strong> -<span style="font-weight: 400;">&nbsp;ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
+    <strong>ignore_prefetch</strong> -
+    <span style="font-weight: 400;">ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
   </li>
   <li>
     <strong>heatmap_whitelist</strong> -
@@ -460,6 +466,14 @@ Countly.init({
     <span style="font-weight: 400;">enable automatic remote config fetching, provide the callback function to be notified when fetching is complete (default: false)</span>
   </li>
   <li>
+    <strong>rc_automatic_optin_for_ab</strong> -
+    <span style="font-weight: 400;">opts in the user for A/B testing while fetching the remote config (default: true)</span>
+  </li>
+  <li>
+    <strong>use_explicit_rc_api</strong> -
+    <span style="font-weight: 400;">set it to true to use the explicit remote config API (default: false)</span>
+  </li>
+  <li>
     <strong>namespace</strong> - h<span>ave a separate namespace for persistent data when using multiple trackers on the same domain</span>
   </li>
   <li>
@@ -473,7 +487,7 @@ Countly.init({
     <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
-    <span><strong>metrics</strong> -&nbsp;provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
+    <span><strong>metrics</strong> - provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
     <ul>
       <li>
         <span><strong>_os</strong> - the name of platform/operating system</span>
@@ -1379,20 +1393,20 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </div>
 <h1>Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote configuration functionality is disabled by default and needs to be explicitly enabled.</span>
+  <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">When remote configuration is enabled, the SDK will only try to fetch it once upon SDK initialization and will receive the initially remote configuration and persistently store it.</span>
+  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. Starting from the <strong>SDK version 22.06.2</strong> you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
+</p>
+<h2>Automatic Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific trigers. For example, after SDK initialization, changing device ID.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In the event of one of the following sessions, assuming it would not be possible to load the remote configuration from storage, you will receive an error object in the callback, but you will still have the stored values of the cached remote configuration object.</span>
-</p>
-<h2>Enabling Remote Configuration</h2>
-<p>
-  <span style="font-weight: 400;">You may enable remote configuration by providing&nbsp;the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;">&nbsp;setting when initializing the SDK.</span>
+  <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you provide a callback, it will be called when remote configuration is initially loaded and reloaded if you change the device_id.</span>
+  <span style="font-weight: 400;">If you provide a callback, the callback will be called when the Remote Config is initially loaded and when it is reloaded if you change the device_id. This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1400,88 +1414,114 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//to enable remote configuration
-
-// in your Countly init script
+    <pre><code class="javascript">// in your Countly init script
+Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = true;
-
-//or provide a callback to be notified when configs are loaded
+<br>// OR<br>
+// provide a callback to be notified when configs are loaded
+Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
 Countly.remote_config = function(err, remoteConfigs){
-if (!err) {
-//we have our remoteConfigs here
-console.log(remoteConfigs);
-}
+  if (!err) {
+    //we have our remoteConfigs here
+    console.log(remoteConfigs);
+  }
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//to enable remote configuration
+    <pre><code class="javascript">// in your Countly init script
 Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    remote_config: true //this will enable loading remote configuration
-});
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: true 
+});<br><br>// OR
 
-//or provide a callback to be notified when configs are loaded
+// provide a callback to be notified when configs are loaded
 Countly.init({
-debug:false,
-app_key:"YOUR_APP_KEY",
-device_id:"1234-1234-1234-1234",
-url: "https://try.count.ly",
-remote_config: function(err, remoteConfigs){
-if (!err) {
-//we have our remoteConfigs here
-console.log(remoteConfigs);
-}
-}
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",<br>  debug: true,
+  remote_config: function(err, remoteConfigs){
+    if (!err) {
+      //we have our remoteConfigs here
+      console.log(remoteConfigs);
+    }
+  }
 });</code></pre>
   </div>
 </div>
-<h2>
-  Receiving configuration values<span style="font-weight: 400;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
-</h2>
+<h2>Manual Remote Config</h2>
 <p>
-  <span style="font-weight: 400;">You receive the initially loaded remote configuration values in the provided callback, but if you&nbsp;need to get an updated version afterward, you can manually reload it.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span style="font-weight: 400;">If you want, you can manually fetch the Remote Config in order to receive the latest value anytime after the initialization. To do so you have to use the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;"> call. This method is also used for reloading the values for updating them according to the latest changes you made on your server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You may call&nbsp;</span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the remote config object of a value for a specific key.</span>
+  <span style="font-weight: 400;">By using this method, you can simply load the entire object or load some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large. This call will automatically save the fetched keys internally.</span>
+</p>
+<h3>Fetch All Keys</h3>
+<p>
+  Here you so not need to provide any parameters to the call but providing a callback
+  is the recommended practice.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load the whole configuration object with a callback
+Countly.fetch_remote_config(function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
+  }<br>});<br><br>// or whole configuration object with no params
+Countly.fetch_remote_config();</code></pre>
+<h3>Fetch Specific Keys</h3>
+<p>
+  Here the keys should be provided as string values in an array, as the first parameter
+  in <em>fetch_remote_config</em> call. You can provide a callback function as
+  a second parameter.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load specific keys only, as `key1` and `key2`
+Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});<br><br></code></pre>
+<h3>Fetch All Except Specific Keys</h3>
+<p>
+  Here the first parameter should be set to 'null' or 'undefined' and the keys
+  that you want to omit must be provided as the second parameter as an array of
+  keys as string. As a third parameter you can provide a callback function.
+  <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
+</p>
+<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2'
+Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
+  if (!err) {
+    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+  }
+});</code></pre>
+<h2>Accessing Remote Config Values</h2>
+<p>
+  <span style="font-weight: 400;">You may call </span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the Remote Config object of a value for a specific key or all keys from your local storage.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This method should be called once the remote configurations have been successfully loaded, or it will simply return an empty object or undefined values.</span>
+  <span style="font-weight: 400;">This method should be called once the Remote Config have been successfully loaded, or it will simply return an empty object or undefined values.</span>
 </p>
-<pre><code class="javascript">//get whole remote config object
+<pre><code class="javascript">//get whole Remote Config object
 var remoteConfig = Countly.get_remote_config();
 
 //or get value for specific key like 'test'
-var test = Countly.get_remote_config("test");</code></pre>
-<h2>Reloading Configuration Values</h2>
+var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
+<h2>A/B Testing</h2>
 <p>
-  <span style="font-weight: 400;">Should you need to reload the remote config in order to receive the latest value, call&nbsp;the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;">&nbsp;method.</span>
+  <span style="font-weight: 400;">Enrolling your users when you fetch the Remote Config values is possible since <strong>SDK version 22.06.2.</strong></span>
 </p>
 <p>
-  <span style="font-weight: 400;">By using this method, you may reload the entire object or simply reload some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large.</span>
+  <span style="font-weight: 400;">To do so you have to set the use_explicit_rc_api flag to true during init (by default it is <em>false</em>). This will use the new Remote Config API and enroll your users to the A/B testing if they are eligible. However if you want to use the new API without enrolling your users automatically <em>rc_automatic_optin_for_ab&nbsp;</em>flag should be set to false during init (by default it is <em>true</em>).</span>
 </p>
-<pre><code class="javascript">//reload whole configuration object
-Countly.fetch_remote_config(function(err, remoteConfigs){
-    if (!err) {
-        console.log(remoteConfigs);
-    }
-});
-
-//reload specific keys only, as `key1` and `key2`
-Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
-if (!err) {
-console.log(remoteConfigs);
-}
-});
-
-//reload all key values except specific keys, as `key1` and `key2
-Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
-if (!err) {
-console.log(remoteConfigs);
-}
-});</code></pre>
+<p>
+  <span style="font-weight: 400;">If you would like to enroll user to A/B testing without going through the Remote Config API, instead you can use the call <em>enrollUserToAb&nbsp;</em>with keys (an array of string values) that you want to enroll the user to.</span>
+</p>
+<pre><code class="javascript">// enrolling user for 'key1' and 'key2'
+Countly.enrollUserToAb(["key1","key2"]);</code></pre>
+<h2>Consent</h2>
+<p>
+  If consents are enabled, to fetch the Remote Config data you have to provide
+  the 'remote-config' consent for this feature to work.
+</p>
 <h1>User Feedback</h1>
 <p>
   If you want to receive feedback from your users there are a couple of ways you
@@ -2687,22 +2727,22 @@ Countly.q = Countly.q || [];
 
 // initializing first instance, which will be global Countly
 Countly.init({
-	app_key: "YOUR_APP_KEY_1",
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_1",
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
-	key:"first_app"
+  key:"first_app"
 });
 
 // initialize second instance for another app 
 Countly.q.push(["init", {
-	app_key: "YOUR_APP_KEY_2", //must have different APP key
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_2", //must have different APP key
+  url: "https://try.count.ly" //your server goes here
 }])
 // report event to second app asynchronously by passing app key as first argument
 Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
-	key:"second_app"
+  key:"second_app"
 }]);
     </code></pre>
   </div>
@@ -2710,22 +2750,22 @@ Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
     <pre><code class="javascript">
 // initializing first instance, which will be global Countly
 Countly.init({
-	app_key: "YOUR_APP_KEY_1",
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_1",
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
-	key:"first_app"
+  key:"first_app"
 });
 
 // initialize second instance for another app
 var Countly2 = Countly.init({
-	app_key: "YOUR_APP_KEY_2", //must have different APP key
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_2", //must have different APP key
+  url: "https://try.count.ly" //your server goes here
 });
 // report event to second app
 Countly2.add_event({
-	key:"second_app"
+  key:"second_app"
 });
     
     </code></pre>
@@ -2975,4 +3015,3 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   your bot as one of the bots to be ignored and the SDK would stop recording data
   for your bot.
 </p>
-<p>&nbsp;</p>
