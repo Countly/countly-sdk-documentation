@@ -1,7 +1,7 @@
 <p>
   <span>This document will guide you through the process of SDK installation and it applies to version 22.06.X. </span>
-</p> 
-<div class="callout callout--info"> 
+</p>
+<div class="callout callout--info">
   <p>
     Click
     <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#c++-sdk" target="_self" rel="undefined">here, </a>to

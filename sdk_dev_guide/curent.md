@@ -782,18 +782,22 @@ end_sesson=1&amp;session_duration=30</code></pre>
   </li>
   <li>
     "_idv" - the unique identifier of this view-session. This should be set to
-    the sha256 hash of the current timestamp (in ms), deviceID and view name
-    concatination.
+    the sha256 hash of the 10 digits random (ideally crypto safe) value, "_"
+    and timestamp in ms concatination.
   </li>
 </ul>
 <p>
   A sample event for reporting the first view would look like this:
 </p>
-<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>                <span>"segment"</span>: <span>"Android"</span>,<br>                <span>"visit"</span>: <span>1</span>,<br>                <span>"start"</span>: <span>1<br></span><span>        </span>}<br>    }<br>]</pre>
+<p>
+  A sample event for reporting the first view would look like this:
+</p>
+<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"</span>,<br>            <span>"visit"</span>: <span>1</span>,<br>            <span>"start"</span>: <span>1,<br>            "_idv": "f0e8f5db5e5d9e7b9a45d3916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
 <p>
   <span style="font-weight: 400;">Sample event for reporting this views duration:</span>
 </p>
-<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"<br></span><span>        </span>}<br>    }<br>]</pre>
+<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android",<br>            "_idv": "f0e8f5db5e17ad5ce5cf53916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
+<p>&nbsp;</p>
 <p>
   <span style="font-weight: 400;">Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
 </p>
