@@ -1309,13 +1309,6 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 </p>
 <pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordManualRating(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
 <h2>Feedback Widget</h2>
-<div class="callout callout--info">
-  <p>
-    Starting from version 22.06.3, Feedback Widget API includes features for
-    Rating Widgets too. So you can display or report all widgets under the Feedback
-    Widget API calls.
-  </p>
-</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
