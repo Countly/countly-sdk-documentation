@@ -1752,11 +1752,53 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </ol>
 <p>
   At first step, by using the 'get_available_feedback_widgets' function, you can
-  fetch the list of available widgets from your server as an array of widget objects.
+  fetch the list of available widgets from your server as an Array of widget Objects.
   This function takes a callback as a parameter and this callback should have two
   parameters, first one for the returned list and the second one for the error.
   Inside your callback you should process this array of widget objects and pick
-  one object that you want to report the results for.
+  one object that you want to report the results for. This array and the objects
+  that you can pick would look like this:
+</p>
+<pre>{
+  "result":[
+      {
+        "_id":"614811419f030e44be07d82f",
+        "type":"rating",
+        "appearance":{
+          "position":"mleft",
+          "bg_color":"#fff",
+          "text_color":"#ddd",
+          "text":"Feedback"
+          },
+        "tg":["/"],
+        "name":"Leave us a feedback"
+      },
+      {
+        "_id":"614811419f030e44be07d839",
+        "type":"nps",
+        "name":"One response for all",
+        "tg":[]
+      },
+      {
+        "_id":"614811429f030e44be07d83d",
+        "type":"survey",
+        "appearance":{
+          "position":"bLeft",
+          "show":"uSubmit",
+          "color":"#0166D6",
+          "logo":null,
+          "submit":"Submit",
+          "previous":"Previous",
+          "next":"Next"
+          },
+        "name":"Product Feedback example",
+        "tg":[]
+      }
+    ]
+  }</pre>
+<p>
+  Here you would want to pick a widget according to its type and name or any other
+  information you are looking for.
 </p>
 <p>
   At second step, by using the 'getFeedbackWidgetData' function, you can fetch
