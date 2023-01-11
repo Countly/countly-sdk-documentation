@@ -93,10 +93,10 @@ Countly.init(targetFolder, config);</code></pre>
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
-<h3 class="anchor-heading">Logger callback</h3>
+<h3>Logger callback</h3>
 <p>
-  <span>To listen to the SDK's internal logs, you can set</span><code>setLogListener</code><span> on the</span><code>Config</code><span>object. If set, SDK will forward its internal logs to this listener regardless of</span>
-  SDK's <code>logginLevel</code><span>.</span>
+  To listen to the SDK's internal logs, you can set</span><code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of
+  SDK's <code>loggingLevel</code> .
 </p>
 <pre><span><code class="java">config.setLoggingListener(this)</code></span></pre>
 <p>
