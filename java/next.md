@@ -93,6 +93,16 @@ Countly.init(targetFolder, config);</code></pre>
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<h3 class="anchor-heading">Logger callback</h3>
+<p>
+  <span>To listen to the SDK's internal logs, you can set</span><code>setLogListener</code><span> on the</span><code>Config</code><span>object. If set, SDK will forward its internal logs to this listener regardless of</span>
+  SDK's <code>logginLevel</code><span>.</span>
+</p>
+<pre><span><code class="java">config.setLoggingListener(this)</code></span></pre>
+<p>
+  <span>Example:</span>
+</p>
+<pre><code class="java"><span>public class Sample implements LogCallback {<br>  public static void </span><span>main</span>(<span>String</span>[] args) {<br>  <span>Config config </span>= <span>new </span>Config(<span>"http://YOUR.SERVER.COM"</span>, <span>"YOUR_APP_KEY"</span>)<br>                  .setLoggingLevel(<span>Config</span>.<span>LoggingLevel</span>.<span>DEBUG)<br></span>                  .enableFeatures(<span>Config</span>.<span>Feature</span>.<span>Events</span>, <span>Config</span>.<span>Feature</span>.<span>Sessions</span>, <span>Config</span>.<span>Feature</span>.<span>CrashReporting</span>, <span>Config</span>.<span>Feature</span>.<span>UserProfiles</span>)<br>                  .setDeviceIdStrategy(<span>Config</span>.<span>DeviceIdStrategy</span>.<span>UUID</span>)<br>                  .setLogListener(this);<br>  }<br><br><span>  @Override<br></span><span>  public void </span><span>LogHappened</span>(<span>String </span>logMessage, <span>Config</span>.<span>LoggingLevel </span>logLevel) {<br>  //print SDK's log here...<br>  }<br>}</code></pre>
 <h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
