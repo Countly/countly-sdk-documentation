@@ -777,18 +777,15 @@ end_sesson=1&amp;session_duration=30</code></pre>
     "1"
   </li>
   <li>
-    "start" - if the view was entered and it was the first view of a sessionm
+    "start" - if the view was entered and it was the first view of a session
     this property should be set with "1"
   </li>
   <li>
     "_idv" - the unique identifier of this view-session. This should be set to
-    the sha256 hash of the 10 digits random (ideally crypto safe) value, "_"
-    and timestamp in ms concatination.
+    the String concatination of 8 base64 characters created from 6 bytes of randomness
+    (ideally crypto safe) and timestamp in ms.
   </li>
 </ul>
-<p>
-  A sample event for reporting the first view would look like this:
-</p>
 <p>
   A sample event for reporting the first view would look like this:
 </p>
