@@ -18,7 +18,7 @@
 <h1>Adding the SDK to the Project</h1>
 <p dir="auto">
   Countly C++ SDK has been designed to work with very few dependencies in order
-  to run on most platforms. In order to build this SDK, you need:
+  to run on most platforms. To build this SDK, you need:
 </p>
 <ul dir="auto">
   <li>C++ compiler with C++14 support</li>
@@ -71,7 +71,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </p>
 <pre><span><code>cly::Countly&amp; countly = cly::<span class="pl-c1">Countly::getInstance</span>();<br>countly.<span class="pl-c1">setDeviceID</span>(<span class="pl-s"><span class="pl-pds">"</span>test-device-id<span class="pl-pds">"</span></span>);<br>countly.s<span class="pl-c1">tart</span>(<span class="pl-s"><span class="pl-pds">"</span>YOUR_APP_KEY<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>https://try.count.ly<span class="pl-pds">"</span></span>, <span class="pl-c1">443, true</span>);</code></span></pre>
 <p>
-  Here you have to provide your appKey, and your Countly server URL. Please check
+  Here, you have to provide your appKey, and your Countly server URL. Please check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
@@ -85,7 +85,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </p>
 <div class="callout callout--info">
   <p>
-    If you are in doubt about the correctness of your Countly SDK integration
+    If you are in doubt about the correctness of your Countly SDK integration,
     you can learn more about methods to verify it from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
@@ -152,8 +152,8 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
     <code>fatal</code> - set true if the error is fatal.
   </li>
   <li>
-    <code>crashMetrics</code> - key/values contain device information e.g app
-    version, OS
+    <code>crashMetrics</code> - key/values contain device information e.g., app
+    version, OS.
   </li>
   <li>
     <code>segments</code> - custom key/values to be reported.
@@ -166,8 +166,8 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   would not be able to observe the error from your server. There are two mandatory
   key-value pairs that you need to fill when forming the
   <code>crashMetrics</code> object. These are _os and _app_version keys. Any other
-  keys are optional so you can add more key-value pairs to form a detailed crash
-  report from among the available options shown below:
+  keys are optional, so you can add more key-value pairs to form a detailed crash
+  report from the available options shown below:
 </p>
 <pre><code class="java"><span>std::map&lt;std::string, std::any&gt; crashMetrics;<br><br>/* mandatory values */<br>crashMetrics[<span class="hljs-string">"_os"</span>] = <span class="hljs-string">"Android"</span>; /* your OS info */<br>crashMetrics[<span class="hljs-string">"_app_version"</span>] = <span class="hljs-string">"22.06.1"</span>; /* SDK version */<br><br>/* optional values */<br>crashMetrics[<span class="hljs-string">"_os_version"</span>] = <span class="hljs-string">"4.1"</span>;<br>crashMetrics[<span class="hljs-string">"_manufacture"</span>] = <span class="hljs-string">"Samsung"</span>; /* may not be provided for ios or be constant, like Apple */<br>crashMetrics[<span class="hljs-string">"_device"</span>] = <span class="hljs-string">"Galaxy S4"</span>; /* model for Android, iPhone1,1 etc for iOS */<br>crashMetrics[<span class="hljs-string">"_resolution"</span>] = <span class="hljs-string">"1900x1080"</span>; /* SDK version */<br>crashMetrics[<span class="hljs-string">"_cpu"</span>] = <span class="hljs-string">"armv7"</span>; /* type of cpu used on device (for ios will be based on device)*/<br>crashMetrics[<span class="hljs-string">"_opengl"</span>] = <span class="hljs-string">"2.1"</span>; /* version of open gl supported */<br>crashMetrics[<span class="hljs-string">"_ram_current"</span>] = 1024; /* in megabytes */<br>crashMetrics[<span class="hljs-string">"_ram_total"</span>] = 4096; /* in megabytes */<br>crashMetrics[<span class="hljs-string">"_disk_current"</span>] = 3000; /* in megabytes */<br>crashMetrics[<span class="hljs-string">"_disk_total"</span>] = 10240; /* in megabytes */<br>crashMetrics[<span class="hljs-string">"_bat"</span>] = 99; /* battery level from 0 to 100 */<br>crashMetrics[<span class="hljs-string">"_orientation"</span>] = <span class="hljs-string">"portrait"</span>; /* in which device was held, landscape, portrait, etc */<br>crashMetrics[<span class="hljs-string">"_root"</span>] = f<span class="hljs-string">alse</span>; /* true if device is rooted/jailbroken, false or not provided if not */<br>crashMetrics[<span class="hljs-string">"_online"</span>] = f<span class="hljs-string">alse</span>; /* true if device is connected to the internet (WiFi or 3G), false or not provided if not connected */<br>crashMetrics[<span class="hljs-string">"_muted"</span>] = f<span class="hljs-string">alse</span>; /* true if volume is off, device is in muted state */<br>crashMetrics[<span class="hljs-string">"_background"</span>] = f<span class="hljs-string">alse</span>; /* true if app was in background when it crashed */<br>crashMetrics[<span class="hljs-string">"_run"</span>] = 2000; /* running time since app start in seconds */</span></code></pre>
 <h2>Crash Breadcrumbs</h2>
