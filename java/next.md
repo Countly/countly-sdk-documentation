@@ -95,14 +95,9 @@ Countly.init(targetFolder, config);</code></pre>
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
 <h3>Logger callback</h3>
 <p>
-  To listen to the SDK's internal logs, you can set</span><code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of
-  SDK's <code>loggingLevel</code> .
+  To listen to the SDK's internal logs, you can set<code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
-<pre><span><code class="java">config.setLoggingListener(this)</code></span></pre>
-<p>
-  <span>Example:</span>
-</p>
-<pre><code class="java"><span>public class Sample implements LogCallback {<br>  public </span><span>Sample</span>() {<br>  <span>Config config </span>= <span>new </span>Config(<span>"http://YOUR.SERVER.COM"</span>, <span>"YOUR_APP_KEY"</span>)<br>                  .setLoggingLevel(<span>Config</span>.<span>LoggingLevel</span>.<span>DEBUG)<br></span>                  .enableFeatures(<span>Config</span>.<span>Feature</span>.<span>Events</span>, <span>Config</span>.<span>Feature</span>.<span>Sessions</span>, <span>Config</span>.<span>Feature</span>.<span>CrashReporting</span>, <span>Config</span>.<span>Feature</span>.<span>UserProfiles</span>)<br>                  .setDeviceIdStrategy(<span>Config</span>.<span>DeviceIdStrategy</span>.<span>UUID</span>)<br>                  .setLogListener(this);<br>  }<br><br><span>  @Override<br></span><span>  public void </span><span>LogHappened</span>(<span>String </span>logMessage, <span>Config</span>.<span>LoggingLevel </span>logLevel) {<br>  //print SDK's log here...<br>  }<br>}</code></pre>
+<pre><span><code class="java">config.setLogListener(new LogCallback() {<br>        @Override<br>        public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {<br>           //print log<br>        }<br>});</code></span></pre>
 <h2 id="sdk-data-storage" class="anchor-heading">SDK data storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
