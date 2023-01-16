@@ -782,8 +782,8 @@ end_sesson=1&amp;session_duration=30</code></pre>
   </li>
   <li>
     "_idv" - the unique identifier of this view-session. This should be set to
-    the sha256 hash of the 8 digits random (ideally crypto safe) value
-    and timestamp in ms concatenation.
+    the sha256 hash of the 10 digits random (ideally crypto safe) value, "_"
+    and timestamp in ms concatination.
   </li>
 </ul>
 <p>
