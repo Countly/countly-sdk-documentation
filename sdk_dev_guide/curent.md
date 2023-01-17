@@ -1980,17 +1980,15 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <h2>Feedback widgets</h2>
 <p>
   Showing feedback widgets or performing any of the feedback widget related features
-  require that the <code>feedback</code> consent is given (in case of the rating
-  widgets that would be <code>star-rating</code> consent).
+  require that the <code>feedback</code> consent is given.
 </p>
 <p>
-  Currently all 3 kinds of widgets, namely surveys, NPS and rating, are all supported
-  under the same API. They are shown using a very similar API and basically the
-  same processing. This is different from the previous implementation where rating
-  widgets and survey widgets (surveys/nps as in called feedback widgets) were handled
-  in distinct manners, hence the naming convention differences, as a rating can
-  also be seen as a form of feedback but was not included under the umbrella term
-  of the feedback widgets.
+  This API gives access to 3 kinds of widgets, namely surveys, NPS and rating.
+  They are shown using a very similar server API and basically the same processing.
+</p>
+<p>
+  This is also an alternative method to use rating widgets which are now also included
+  in this newer SDK API.
 </p>
 <h3>Automatic feedback widgets</h3>
 <p>
