@@ -169,8 +169,8 @@
     in your dashboard
   </li>
   <li>
-    widget type (type) - This describes the widget type.&nbsp; It would be either
-    'nps', 'survey' or 'rating'
+    widget type (type) - This describes the widget type.It would be either 'nps',
+    'survey' or 'rating'
   </li>
   <li>
     widget name (name) - This is the widget name from your dashboard
