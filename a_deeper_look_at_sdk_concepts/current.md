@@ -153,7 +153,47 @@
   <strong>Note: '</strong>name', 'visit', 'start' and 'segment' are internal keys
   to record a view.
 </p>
-<h1>Reporting a feedback widget manually</h1>
+<h1>Working with Feedback Widgets</h1>
+<h2>Interpreting Retrieved Feedback Widget Lists</h2>
+<p>
+  When working with feedback widgets, at some point the available feedback widget
+  list has to be retrieved from the Countly server. The SDK will expose a method
+  for that, and it will be named similar to
+  <code>getAvailableFeedbackWidgets</code>. The return value will be a list of
+  objects that describe the avaiable widgets. The objects will have the following
+  fields, the brackets contain their key in the retrieved JSON:
+</p>
+<ul>
+  <li>
+    widget id (_id) - This is the respective widget ID that you can also see
+    in your dashboard
+  </li>
+  <li>
+    widget type (type) - This describes the widget type.It would be either 'nps',
+    'survey' or 'rating'
+  </li>
+  <li>
+    widget name (name) - This is the widget name from your dashboard
+  </li>
+  <li>
+    widget tags (tg) - This is an Array of String tag values from the widget
+    creation (this would be an empty Array if no tags were assigned)
+  </li>
+  <li>
+    appearance information (appearance) - (not exposed in all SDK's) This is
+    some UI information about the widget (currently only rating and survey widgets
+    would have these values)
+  </li>
+</ul>
+<p>
+  In our Web SDK you would not receive a parsed result. Instead you would receive
+  the JSON as it would be returned from the server. The returned array would look
+  something like the following:
+</p>
+<div>
+  <pre><span>[</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811419f030e44be07d82f"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"rating"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"appearance"</span><span>:{</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"position"</span><span>:</span><span>"mleft"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"bg_color"</span><span>:</span><span>"#fff"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"text_color"</span><span>:</span><span>"#ddd"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"text"</span><span>:</span><span>"Feedback"</span><br><span>  &nbsp; &nbsp; },</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>"startPage"</span><span>],</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"Leave us a feedback"</span><br><span>  &nbsp;},</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811419f030e44be07d839"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"nps"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"One response for all"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>]</span><br><span>  &nbsp;},</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811429f030e44be07d83d"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"survey"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"appearance"</span><span>:{</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"position"</span><span>:</span><span>"bLeft"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"show"</span><span>:</span><span>"uSubmit"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"color"</span><span>:</span><span>"#0166D6"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"logo"</span><span>:</span><span>null</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"submit"</span><span>:</span><span>"Submit"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"previous"</span><span>:</span><span>"Previous"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"next"</span><span>:</span><span>"Next"</span><br><span>  &nbsp; &nbsp; },</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"Product Feedback example"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>]</span><br><span>  &nbsp;}</span><br><span>]</span></pre>
+</div>
+<h2>Reporting a feedback widget manually</h2>
 <p>
   This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
   <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>
@@ -229,7 +269,7 @@
   that has been created with respect to the type of widget that is being reported.
   More information on how to form this object is provided below.
 </p>
-<h2>Reporting NPS widgets manually</h2>
+<h3>Reporting NPS widgets manually</h3>
 <p>
   To report the results of an NPS widget manually, no information from the widget's
   data JSON is needed. These widgets can report only two pieces of information
@@ -241,18 +281,18 @@
   one with the key of "rating" and an int value and the other with the "comment"
   key and a String value.
 </p>
-<h3>Android sample code</h3>
+<h4>Android sample code</h4>
 <p>
   The following sample code would report the result of an NPS widget:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>segm</span>.put(<span>"rating"</span>, <span>3</span>);<span>//value from 0 to 10<br></span><span>        </span><span>segm</span>.put(<span>"comment"</span>, <span>"Filled out comment"</span>);<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
-<h3>Web sample code</h3>
+<h4>Web sample code</h4>
 <p>
   The following code shows what is the expected widgetResult objects looks like
   for NPS widget:
 </p>
 <pre>var widgetResult = {<br>         rating: 3, // between 0 to 10<br>         comment: "any comment" // string<br>    };</pre>
-<h2>Reporting Rating widgets manually</h2>
+<h3>Reporting Rating widgets manually</h3>
 <p>
   To report the results of a Rating widget manually, again no information from
   the obtained widget data is needed. These widgets has similar reporting capabilities
@@ -263,13 +303,13 @@
   <strong>contactMe</strong> Boolean (true or false) if the user gave consent to
   be contacted again or not.
 </p>
-<h3>Web sample code</h3>
+<h4>Web sample code</h4>
 <p>
   The following code shows what is the expected widgetResult objects looks like
   for Rating widget:
 </p>
 <pre>var widgetResult = {<br>         rating: 3, // between 1 to 5<br>         comment: "any comment", // string<br>         email: "email@any.mail", // string<br>         contactMe: true // boolean<br>    };</pre>
-<h2>Reporting Survey widgets manually</h2>
+<h3>Reporting Survey widgets manually</h3>
 <p>
   To report survey widgets manually, investigation of the widget data received
   from the second call is needed. Each question has a question type and depending
@@ -342,13 +382,15 @@
 </p>
 <p>It has the type "rating"</p>
 <p>You would provide any int value from 1 to 10 as the answer.</p>
-<h3>Android sample code</h3>
+<h4>Android sample code</h4>
 <p>
   The following sample code would go through all of the received Survey widgets
   questions and choose a random answer to every question. It the reports the results:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>JSONArray questions </span>= retrievedWidgetData.optJSONArray(<span>"questions"</span>);<br><br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>Random rnd </span>= <span>new </span>Random();<br><br>        <span>//iterate over all questions and set random answers<br></span><span>        </span><span>for </span>(<span>int </span>a = <span>0</span>; a &lt; <span>questions</span>.length(); a++) {<br>            <span>JSONObject </span>question = <span>null</span>;<br>            <span>try </span>{<br>                question = <span>questions</span>.getJSONObject(a);<br>            } <span>catch </span>(<span>JSONException </span>e) {<br>                e.printStackTrace();<br>            }<br>            <span>String wType </span>= question.optString(<span>"type"</span>);<br>            <span>String questionId </span>= question.optString(<span>"id"</span>);<br>            <span>String answerKey </span>= <span>"answ-" </span>+ <span>questionId</span>;<br>            <span>JSONArray choices </span>= question.optJSONArray(<span>"choices"</span>);<br><br>            <span>switch </span>(<span>wType</span>) {<br>                <span>//multiple answer question<br></span><span>                </span><span>case </span><span>"multi"</span>:<br>                    <span>StringBuilder sb </span>= <span>new </span>StringBuilder();<br><br>                    <span>for </span>(<span>int </span>b = <span>0</span>; b &lt; <span>choices</span>.length(); b++) {<br>                        <span>if </span>(b % <span>2 </span>== <span>0</span>) {//pick every other choice<br>                            <span>if </span>(b != <span>0</span>) {<br>                                <span>sb</span>.append(<span>","</span>);<br>                            }<br>                            <span>sb</span>.append(<span>choices</span>.optJSONObject(b).optString(<span>"key"</span>));<br>                        }<br>                    }<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>sb</span>.toString());<br>                    <span>break</span>;<br>                <span>//radio buttons<br></span><span>                </span><span>case </span><span>"radio"</span>:<br>                <span>//dropdown value selector<br></span><span>                </span><span>case </span><span>"dropdown"</span>:<br>                    <span>int </span><span>pick </span>= <span>rnd</span>.nextInt(<span>choices</span>.length());<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>choices</span>.optJSONObject(<span>pick</span>).optString(<span>"key"</span>));<span>//pick the key of random choice<br></span><span>                    </span><span>break</span>;<br>                <span>//text input field<br></span><span>                </span><span>case </span><span>"text"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>"Some random text"</span>);<br>                    <span>break</span>;<br>                <span>//rating picker<br></span><span>                </span><span>case </span><span>"rating"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>rnd</span>.nextInt(<span>11</span>));<span>//put a random rating<br></span><span>                    </span><span>break</span>;<br>            }<br>        }<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
-<h1>There Is No SDK That I Can Integrate for My Use Case, What Can I Do?</h1>
+<h1>
+  There Is No SDK That I Can Integrate for My Use Case. What are the options?
+</h1>
 <p>
   Countly SDKs provide you with many options to track your users with the least
   amount of code in a way that fits your use case. Behind the scene, the SDK would
@@ -455,8 +497,7 @@
   Some SDK's might have a "clear stored device ID" flag that can be set during
   init. If this is done then the SDK will clear it's stored value and will try
   to reacquire a device ID value and would behave like on the first init. It is
-  generally not advised to use this flag as it can cause user count inflation
-  issues.
+  generally not advised to use this flag as it can cause user count inflation issues.
 </p>
 <p>
   For a deeper overview in how the SDK would behave in different situations, have
