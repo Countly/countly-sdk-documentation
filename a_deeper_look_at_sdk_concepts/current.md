@@ -169,11 +169,11 @@
     in your dashboard
   </li>
   <li>
-    widget type (type)&nbsp; - This describes the widget type.&nbsp; It would
-    be either 'nps', 'survey' or 'rating'
+    widget type (type) - This describes the widget type.&nbsp; It would be either
+    'nps', 'survey' or 'rating'
   </li>
   <li>
-    widget name (name)- This is the widget name from your dashboard
+    widget name (name) - This is the widget name from your dashboard
   </li>
   <li>
     widget tags (tg) - This is an Array of String tag values from the widget
