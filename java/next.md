@@ -402,7 +402,12 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
-<h1 id="other-features" class="anchor-heading" tabindex="-1">Other features</h1>
+<h1 id="other-features" class="anchor-heading" tabindex="-1">Other features and Notes</h1>
+<h2>Log listener</h2>
+<p>
+  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
+</p>
+<pre><span><code class="java">config.setLogListener(new LogCallback() {<br>        @Override<br>        public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {<br>           //print log<br>        }<br>});</code></span></pre>
 <h2 id="backend-mode" class="anchor-heading" tabindex="-1">Backend Mode</h2>
 <div class="callout callout--info">
   <strong>Minimum Countly SDK Version</strong>
