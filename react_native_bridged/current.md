@@ -616,7 +616,7 @@ apply plugin: 'com.google.gms.google-services'
   <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
 </p>
 <p>
-  If, for some reason, the 'activity name' does not start with the 'application
+  If for some reason, the 'activity name' does not start with the 'application
   package name' (for e.g if you are using Android Product/Build Flavors to create
   multiple apps with the same code base), then you need to provide the additional
   allowed class and package names for Intent Redirection manually.
@@ -628,7 +628,18 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instructions from
+  By default push notification is enabled for iOS, to disable push notification
+  you need to define a “COUNTLY_EXCLUDE_PUSHNOTIFICATIONS” macro.<br>
+  The macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" can be defined in the project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment being used.<br>
+  For example, in Xcode, you can define this macro by going to the project settings,
+  selecting the build target, and then selecting the "Build Settings" tab. Under
+  "Apple LLVM - Preprocessing" you will find the "Preprocessor Macros" section,
+  where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the Debug
+  and/or Release fields.<br>
+  <br>
+  For iOS push notification integration please follow the instructions from
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
@@ -665,8 +676,8 @@ apply plugin: 'com.google.gms.google-services'
 console.log(JSON.stringify(theNotification));
 });</pre>
 <p>
-  In order to listen to notifications received and the click events, add the code below
-  in <code>AppDelegate.m</code>
+  In order to listen to notifications received and the click events, add the code
+  below in <code>AppDelegate.m</code>
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">#import "CountlyReactNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;

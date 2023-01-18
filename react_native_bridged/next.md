@@ -22,7 +22,7 @@
 <p>
   You can take a look at our sample application in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>.
-  It shows, how most of the functionalities can be used.
+  It should show how most of the functionalities can be used.
 </p>
 <h1>Adding the SDK to the project</h1>
 <p>
@@ -78,10 +78,9 @@ if(!await Countly.isInitialized()) {
   Countly.start(); // start session tracking
 }</code></pre>
 <p>
-  Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
-  for more information on how to acquire your application key (APP_KEY) and server
-  URL.
+  For more information on how to acquire your application key (appKey) and server
+  URL, check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>
 </p>
 <p>
   After <code class="JavaScript">init</code> and
@@ -92,7 +91,7 @@ if(!await Countly.isInitialized()) {
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about the verification methods from
+    you can learn about methods to verify it from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
@@ -115,10 +114,10 @@ if(!await Countly.isInitialized()) {
 <pre>Countly.init(SERVER_URL, APP_KEY, DEVICE_ID)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
 <p>
-  For iOS: SDK data is stored in Application Support Directory in a file named
-  "Countly.dat" For Android: SDK data is stored in SharedPreferences. A SharedPreferences
-  object points to a file containing key-value pairs and provides simple methods
-  to read and write them.
+  For iOS: SDK data is stored in Application Support Directory in file named "Countly.dat"
+  For Android: SDK data is stored in SharedPreferences. A SharedPreferences object
+  points to a file containing key-value pairs and provides simple methods to read
+  and write them.
 </p>
 <h1>Crash reporting</h1>
 <p>
@@ -129,13 +128,12 @@ if(!await Countly.isInitialized()) {
 <h2>Automatic crash handling</h2>
 <p>
   With this feature, the Countly SDK will generate a crash report if your application
-  crashes due to an exception and will send it to the Countly server for further
-  inspection.
+  crashes due to an exception and send it to the Countly server for further inspection.
 </p>
 <p>
   If a crash report cannot be delivered to the server (e.g. no internet connection,
   unavailable server, etc.), then the SDK stores the crash report locally in order
-  to send the report again, when the connection to server is restored.
+  to try again at a later time.
 </p>
 <p>
   You will need to call the following method before calling
@@ -190,7 +188,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
 <pre><code class="JavaScript">Countly.logException("STACK_TRACE_STRING", false, {"_facebook_version": "0.0.1"});</code></pre>
 <h2>Crash breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave crash breadcrumbs which would describe previous
+  Throughout your app you can leave crash breadcrumbs which would describe previous
   steps that were taken in your app before the crash. After a crash happens, they
   will be sent together with the crash report.
 </p>
@@ -207,7 +205,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
 </p>
 <p>
   As this feature is optional, you will need to do some changes in your react native
-  android project files, to make it available.
+  android project files in order to make it available.
 </p>
 <p>
   Go to
@@ -297,8 +295,8 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     duration of events.
   </li>
   <li>
-    <code class="JavaScript">segmentation</code> is a map of key-value pairs,
-    that can be used to track additional information.
+    <code class="JavaScript">segmentation</code> is a key-value pairs, we can
+    use <code class="JavaScript">segmentation</code> to track additional information.
   </li>
 </ul>
 <div class="callout callout--warning">
@@ -439,14 +437,13 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 </p>
 <pre>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</pre>
 <p>
-  You may either allow the device to be counted as a new device or merge it with
-  the existing data on the server. If <code class="JavaScript">onServer</code>
-  is set to <code class="JavaScript">true</code>, the old device ID on the server
-  will be replaced with the new one, and data associated with the old device ID
-  will be merged automatically. Otherwise, if
-  <code class="JavaScript">onServer</code> is set to
-  <code class="JavaScript">false</code>, the device will be counted as a new device
-  on the server.
+  You may either allow the device to be counted as a new device or merge existing
+  data on the server. If <code class="JavaScript">onServer</code> is set to
+  <code class="JavaScript">true</code>, the old device ID on the server will be
+  replaced with the new one, and data associated with the old device ID will be
+  merged automatically. Otherwise, if <code class="JavaScript">onServer</code>
+  is set to <code class="JavaScript">false</code>, the device will be counted as
+  a new device on the server.
 </p>
 <h2>Temporary Device ID</h2>
 <p>
@@ -501,9 +498,8 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <h2>General Setup</h2>
 <p>
   First, when setting up Push for the React Native (Bridge) SDK, select the push
-  token mode. This allows you to choose either, test or production modes. Note
-  that the push token mode should be set before initialization. Use the method
-  below.
+  token mode. This allows you to choose either test or production modes. Note that
+  the push token mode should be set before initialization. Use the method below.
 </p>
 <pre>// Important: call this method before init method
 Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");
@@ -540,13 +536,14 @@ Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channe
 <div class="callout callout--info">
   <strong>Supported Platforms</strong>
   <p>
-    Currently custom sound feature is only available for Android.
+    Currently custom sound feature is only available for Android
   </p>
 </div>
 <div class="callout callout--warning">
   <p>
     If you would like to use a custom sound in your push notifications, they
-    must be present on the device. They cannot be linked from the Internet.
+    must be present on the device. They may not be stored somewhere on the internet
+    and then linked from there.
   </p>
 </div>
 <h2>Android Setup</h2>
@@ -591,7 +588,7 @@ apply plugin: 'com.google.gms.google-services'
 </code></pre>
 <p>
   <strong>Note:</strong> You need to do some additional steps to handle multiple
-  messaging services. If you are using other plugins for push notifications, please
+  messaging services if you are using other plugins for push notifications, please
   follow the instructions from this URL:<br>
   <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
 </p>
@@ -619,7 +616,7 @@ apply plugin: 'com.google.gms.google-services'
   <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
 </p>
 <p>
-  If, for some reason, the 'activity name' does not start with the 'application
+  If for some reason, the 'activity name' does not start with the 'application
   package name' (for e.g if you are using Android Product/Build Flavors to create
   multiple apps with the same code base), then you need to provide the additional
   allowed class and package names for Intent Redirection manually.
@@ -631,7 +628,18 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instructions from
+  By default push notification is enabled for iOS, to disable push notification
+  you need to define a “COUNTLY_EXCLUDE_PUSHNOTIFICATIONS” macro.<br>
+  The macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" can be defined in the project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment being used.<br>
+  For example, in Xcode, you can define this macro by going to the project settings,
+  selecting the build target, and then selecting the "Build Settings" tab. Under
+  "Apple LLVM - Preprocessing" you will find the "Preprocessor Macros" section,
+  where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the Debug
+  and/or Release fields.<br>
+  <br>
+  For iOS push notification integration please follow the instructions from
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
@@ -930,7 +938,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 </p>
 <p>
   When the widgets are created, you need to use 2 calls in your SDK: one to get
-  all available widgets for a user and another to display, a chosen widget.
+  all available widgets for a user and another to display a chosen widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
 <pre><code class="javascript">Countly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
@@ -1237,23 +1245,23 @@ Countly.endTrace(traceKey, customMetric);</pre>
   <li>location - allows sending location information</li>
   <li>crashes - allows tracking crashes, exceptions, and errors</li>
   <li>
-    attribution - allows tracking from which campaign did the user come.
+    attribution - allows tracking from which campaign did the user come
   </li>
   <li>
     users - allows collecting and providing user information, including custom
-    properties.
+    properties
   </li>
-  <li>push - allows push notifications,</li>
+  <li>push - allows push notifications</li>
   <li>
-    star-rating - allows sending the results from Rating Feedback widgets.
+    star-rating - allows sending the results from Rating Feedback widgets
   </li>
   <li>
-    feedback - allows showing the results from Survey and NPS® Feedback widgets.
+    feedback - allows showing the results from Survey and NPS® Feedback widgets
   </li>
-  <li>apm - allows application performance monitoring.</li>
+  <li>apm - allows application performance monitoring</li>
   <li>
     <span>remote-config</span> - allows downloading remote config values from
-    your server.
+    your server
   </li>
 </ul>
 <p>
@@ -1413,9 +1421,9 @@ cp ./count.ly.cer ./android/app/src/main/assets/</pre>
   <strong>iOS</strong>
 </p>
 <pre>open ./ios/AwesomeProject.xcworkspace
-Right click on AwesomeProject and select `New Group` (ScreenShot 1).
-Name it `Resources`.
-Drag and Drop count.ly.cer file under that folder (ScreenShot 2).
+Right click on AwesomeProject and select `New Group` (ScreenShot 1)
+Name it `Resources`
+Drag and Drop count.ly.cer file under that folder (ScreenShot 2)
 Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <pre><img src="/hc/article_attachments/900002229303/Screenshot_2020-07-07_at_11.39.02_AM.png" alt="Screenshot_2020-07-07_at_11.39.02_AM.png">
 <img src="/hc/article_attachments/900001515963/ScreenShot_Pinned_Certificate_1.png" alt="ScreenShot_Pinned_Certificate_1.png"></pre>
@@ -1491,8 +1499,8 @@ Countly.enableAttribution();</pre>
 </p>
 <pre>Countly.recordAttributionID("IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM");</pre>
 <p>
-  For iOS 14+, due to the changes made by Apple regarding Application Tracking,
-  you need to ask the user for permission to track the Application.
+  For iOS 14+ due to Apple changes regarding Application Tracking, you need to
+  ask the user for permission to track the Application.
 </p>
 <p>
   For IDFA you can use this Plugin, which also supports iOS 14+ changes for Application
