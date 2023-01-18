@@ -3590,6 +3590,74 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
   </div>
 </div>
+<h2 id="direct-request" class="anchor-heading">Direct Request</h2>
+<p>
+  You may send direct requests to the server with custom key/value pairs. Direct
+  request function accepts dictionary with String values. You need to convert your
+  data(Dictionary/Array) to url encoded string.<br>
+  Here is the detailed example usage for iOS direct request:
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">- (void) sendDirectRequest {
+    NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
+    requestMap[@"city"] = @"Istanbul";
+    requestMap[@"country_code"] = @"TR";
+    requestMap[@"ip_address"] = @"41.0082,28.9784";
+
+    NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
+    event[@"key"] = @"test";
+    event[@"count"] = @"201";
+    event[@"sum"] =  @"2010";
+    event[@"dur"] = @"2010";
+
+    NSMutableDictionary *ffJson = [[NSMutableDictionary alloc] init];
+    ffJson[@"type"] = @"FF";
+    ffJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+    ffJson[@"end_time"] = [NSNumber numberWithInt:123456789];
+
+    
+    NSMutableDictionary *skipJson = [[NSMutableDictionary alloc] init];
+    skipJson[@"type"] = @"skip";
+    skipJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+    skipJson[@"end_time"] = [NSNumber numberWithInt:123456789];
+    
+    NSMutableDictionary *resumeJson = [[NSMutableDictionary alloc] init];
+    resumeJson[@"type"] = @"resume_play";
+    resumeJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+    resumeJson[@"end_time"] = [NSNumber numberWithInt:123456789];
+
+    NSMutableArray *trickPlay = [[NSMutableArray alloc] init];
+    [trickPlay addObject:ffJson];
+    [trickPlay addObject:skipJson];
+    [trickPlay addObject:resumeJson];
+    
+    
+    NSMutableDictionary *segmentation = [[NSMutableDictionary alloc] init];
+    segmentation[@"trickplay"] =  trickPlay;
+    event[@"segmentation"] = segmentation;
+
+    NSMutableArray *events = [[NSMutableArray alloc] init];
+    [events addObject:event];
+
+    NSString *eventsString = [self toString:events];
+    
+    requestMap[@"events"]  = eventsString.cly_URLEscaped;
+    [Countly.sharedInstance addDirectRequest:requestMap];   
+}
+
+- (NSString *) toString: (id) dictionaryOrArrayToOutput  {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
+                                                       options:0
+                                                         error:&amp;error];
+    NSString *jsonString = @"";
+    if (! jsonData) {
+        NSLog(@"Got an error: %@", error);
+        
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}</pre>
 <h2>watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
