@@ -8,12 +8,12 @@
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#ios-sdk" target="_self" rel="undefined">here, </a>to
   access the documentation for older SDK versions.
 </p>
-<div class="callout callout--info"> 
+<div class="callout callout--info">
   <strong>Supported System Versions</strong>
   <p>
     The Countly iOS SDK supports minimum <code>Deployment Target</code>
-    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it
-    requires Xcode 13.0+.
+    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
+    Xcode 13.0+.
   </p>
 </div>
 <h1>Adding the SDK to the project</h1>
@@ -23,8 +23,8 @@
 </p>
 <p>
   - Download the Countly iOS SDK source files directly from
-  <a href="https://www.github.com/countly/countly-sdk-ios">GitHub</a>, add 
-  all <code>.h</code> and <code>.m</code> files in the <code>countly-ios-sdk</code>
+  <a href="https://www.github.com/countly/countly-sdk-ios">GitHub</a>, add all
+  <code>.h</code> and <code>.m</code> files in the <code>countly-ios-sdk</code>
   folder of your project on Xcode.
 </p>
 <p>
@@ -254,9 +254,9 @@ func internalLog(_ log: String)
   <strong>Countly Code Generator</strong>
   <p>
     <a href="https://code.count.ly">The Countly Code Generator</a> can be used
-    to generate Countly iOS SDK code snippets effortlesly. You can provide
-    values for your events, user profiles, or just start with basic integration.
-    It will generate the necessary code for you.
+    to generate Countly iOS SDK code snippets effortlesly. You can provide values
+    for your events, user profiles, or just start with basic integration. It
+    will generate the necessary code for you.
   </p>
 </div>
 <h1>Crash Reporting</h1>
@@ -543,7 +543,7 @@ Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thr
   </div>
 </div>
 <p>
-   There is also another
+  There is also another
   <span style="font-weight: 400;"><code>shouldSendCrashReportCallback</code></span>
   block to be executed to decide whether the crash report detected by PLCrashReporter
   on the previous session should be sent to Countly Server or not. If not set,
@@ -1375,6 +1375,20 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <span style="font-weight: 400;">After you start Countly once with the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag while developing, you can remove that line. The <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is not meant for production. It is only for debugging purposes while performing development and not being able to delete and re-install the app.</span>
 </p>
 <h1>Push Notifications</h1>
+<p>
+  To disable push notifications altogether in order to avoid App Store Connect
+  warnings you need to define a “COUNTLY_EXCLUDE_PUSHNOTIFICATIONS” macro.
+</p>
+<p>
+  The macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" can be defined in the project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment being used.<br>
+  For example, in Xcode, you can define this macro by going to the project settings,
+  selecting the build target, and then selecting the "Build Settings" tab. Under
+  "Apple LLVM - Preprocessing" you will find the "Preprocessor Macros" section,
+  where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the Debug
+  and/or Release fields.
+</p>
 <h2>Setting up APNs Authentication</h2>
 <p>
   <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple using one of the following methods:</span></strong>
@@ -3221,10 +3235,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </div>
 <p>
   The new app key will be used for all the new requests after setting it. Requests
-  already queued previously, will keep using the old app key. Before switching to
-  new app key, this method suspends the SDK and resumes it immediately after the new key is set. The
-  new app key needs to be a non-zero length string, otherwise the method call is
-  ignored. <code>recordPushNotificationToken</code> and
+  already queued previously, will keep using the old app key. Before switching
+  to new app key, this method suspends the SDK and resumes it immediately after
+  the new key is set. The new app key needs to be a non-zero length string, otherwise
+  the method call is ignored. <code>recordPushNotificationToken</code> and
   <code>updateRemoteConfigWithCompletionHandler:</code> methods may need to be
   manually called again after the app key change.
 </p>
