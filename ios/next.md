@@ -1376,18 +1376,18 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 </p>
 <h1>Push Notifications</h1>
 <p>
-  To disable push notifications altogether in order to avoid App Store Connect
-  warnings you need to define a “COUNTLY_EXCLUDE_PUSHNOTIFICATIONS” macro.
+  To disable push notifications in your app and avoid App Store Connect warnings,
+  you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in your project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment you are using.
 </p>
 <p>
-  The macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" can be defined in the project's
-  preprocessor macros setting. The location of this setting will vary depending
-  on the development environment being used.<br>
-  For example, in Xcode, you can define this macro by going to the project settings,
-  selecting the build target, and then selecting the "Build Settings" tab. Under
-  "Apple LLVM - Preprocessing" you will find the "Preprocessor Macros" section,
-  where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the Debug
-  and/or Release fields.
+  For example, in Xcode, you can define this macro by navigating to the project
+  settings, selecting the build target, and then selecting the "Build Settings"
+  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
+  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
+  Debug and/or Release fields. This will exclude push notifications from the build
+  and avoid the App Store Connect warnings.
 </p>
 <h2>Setting up APNs Authentication</h2>
 <p>
