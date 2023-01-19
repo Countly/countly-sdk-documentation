@@ -3590,12 +3590,16 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
   </div>
 </div>
-<h2 id="direct-request" class="anchor-heading">Direct Request</h2>
+<h2>Direct Request</h2>
 <p>
-  You may send direct requests to the server with custom key/value pairs. Direct
-  request function accepts dictionary with String values. You need to convert your
-  data(Dictionary/Array) to url encoded string.<br>
-  Here is the detailed example usage for iOS direct request:
+  The <code>addDirectRequest</code> method allows you to send custom key/value
+  pairs directly to your Countly server. This method accepts a dictionary with
+  string key/value pairs as its parameter. In order to use this method effectively,
+  you will need to convert any data that you wish to send (such as dictionaries
+  or arrays) into a URL encoded string before passing it to the method.
+</p>
+<p>
+  Here is a detailed example usage of <code>addDirectRequest</code>:
 </p>
 <pre class="c-mrkdwn__pre" data-stringify-type="pre">- (void) sendDirectRequest {
     NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
