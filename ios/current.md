@@ -1451,7 +1451,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <img src="https://count.ly/images/guide/94d763b-push_p12.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;">&nbsp;section.</span>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
 </p>
 <div class="img-container">
   <img src="/hc/article_attachments/9520178138521/001.png" alt="001.png">
@@ -3821,25 +3821,25 @@ end</code></pre>
   <li>
     <p>
       <span class="wysiwyg-color-black">iOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>,&nbsp;<code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>, <code>Remote Config</code>, </span>
     </p>
   </li>
   <li>
     <p>
       <span class="wysiwyg-color-black">macOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>,&nbsp;<code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>, <code>Remote Config</code>, </span>
     </p>
   </li>
   <li>
     <p>
       <span class="wysiwyg-color-black">tvOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>, </span>
     </p>
   </li>
   <li>
     <p>
       <span class="wysiwyg-color-black">watchOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>, </span>
     </p>
   </li>
 </ul>
@@ -3984,89 +3984,56 @@ end</code></pre>
 </p>
 <ul>
   <li>
-    <span class="wysiwyg-color-black">Device Model</span>
+    <span>Device Model</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Screen Resolution</span>
+    <span>Screen Resolution</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Screen Density</span>
+    <span>Screen Density</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">OS Name</span>
+    <span>OS Name</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">OS Version</span>
+    <span>OS Version</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">App Version</span>
+    <span>App Version</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Locale Identifier</span>
+    <span>Locale Identifier</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Carrier</span>
+    <span>Carrier</span>
   </li>
 </ul>
 <p>
-  <span class="wysiwyg-color-black">Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS App Install Status</span>
+  Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS
+  App Install Status
 </p>
-<h2>
-  <span class="wysiwyg-color-black">Why are push notification action events not reported?</span>
-</h2>
+<h2>Why are push notification action events not reported?</h2>
 <p>
-  <span class="wysiwyg-color-black">Notification action event is recorded when a user interacts with the notification and system calls <code class="c-mrkdwn__code" data-stringify-type="code">didReceiveNotificationResponse:</code>&nbsp;method.</span>
+  Notification action event is recorded when a user interacts with the notification
+  and system calls <code>didReceiveNotificationResponse:</code> method.
 </p>
-<div class="c-message_kit__gutter">
-  <div class="c-message_kit__gutter__right" data-qa="message_content">
-    <div class="c-message_kit__blocks c-message_kit__blocks--rich_text">
-      <div class="c-message__message_blocks c-message__message_blocks--rich_text">
-        <div class="p-block_kit_renderer" data-qa="block-kit-renderer">
-          <div class="p-block_kit_renderer__block_wrapper p-block_kit_renderer__block_wrapper--first">
-            <div class="p-rich_text_block" dir="auto">
-              <div class="p-rich_text_section">
-                <span class="wysiwyg-color-black">If you tap on the notification, but still do not get any action events, please check for the following possible problem points:</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="threads_view_C1R2Y3A6R-1587640571.043600-1587729500.048800" class="c-virtual_list__item" data-qa="virtual-list-item">
-  <div class="p-threads_view__default_background">
-    <div class="c-message_kit__background c-message_kit__background--hovered c-message_kit__message c-message_kit__thread_message p-threads_view_reply" data-qa="message_container" data-qa-unprocessed="false" data-qa-placeholder="false">
-      <div class="c-message_kit__hover c-message_kit__hover--hovered" data-qa-hover="true">
-        <div class="c-message_kit__actions c-message_kit__actions--default">
-          <div class="c-message_kit__gutter">
-            <div class="c-message_kit__gutter__right" data-qa="message_content">
-              <div class="c-message_kit__blocks c-message_kit__blocks--rich_text">
-                <div class="c-message__message_blocks c-message__message_blocks--rich_text">
-                  <div class="p-block_kit_renderer" data-qa="block-kit-renderer">
-                    <div class="p-block_kit_renderer__block_wrapper p-block_kit_renderer__block_wrapper--first">
-                      <div class="p-rich_text_block" dir="auto">
-                        <div class="p-rich_text_section"></div>
-                        <ol>
-                          <li class="p-rich_text_section">
-                            <span class="wysiwyg-color-black">You are setting&nbsp;<code class="c-mrkdwn__code" data-stringify-type="code">UNUserNotificationCenter.currentNotificationCenter</code>'s&nbsp;delegate manually at some point, so Countly iOS SDK can not handle the notification.</span>
-                          </li>
-                          <li class="p-rich_text_section">
-                            <span class="wysiwyg-color-black"><code class="c-mrkdwn__code" data-stringify-type="code">requiresConsent</code> Flag is enabled on initial config, but consent for Push Notifications feature is not granted (Note that this has nothing to do with iOS notification permission).</span>
-                          </li>
-                          <li class="p-rich_text_section">
-                            <span class="wysiwyg-color-black">Notification is not coming from Countly and it does not have any value for<span style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">&nbsp;</span><code class="c-mrkdwn__code" style="color: #000000; font-size: 15px;" data-stringify-type="code">kCountlyPNKeyNotificationID     = @"i"</code><span style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">&nbsp; key in it</span></span>
-                          </li>
-                        </ol>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<p>
+  If you tap on the notification, but still do not get any action events, please
+  check for the following possible problem points:
+</p>
+<ol>
+  <li>
+    You are setting
+    <code>UNUserNotificationCenter.currentNotificationCenter</code>'s delegate
+    manually at some point, so Countly iOS SDK can not handle the notification.
+  </li>
+  <li>
+    <code>requiresConsent</code> Flag is enabled on initial config, but consent
+    for Push Notifications feature is not granted (Note that this has nothing
+    to do with iOS notification permission).
+  </li>
+  <li>
+    Notification is not coming from Countly and it does not have any value for
+    <code>kCountlyPNKeyNotificationID = @"i"</code> key in it
+  </li>
+</ol>
