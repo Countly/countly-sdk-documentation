@@ -281,7 +281,7 @@ func internalLog(_ log: String)
 </p>
 <h2>Handled Exceptions</h2>
 <p>
-  <span style="font-weight: 400;">You can manually record all exceptions, except for automatically reported unhandled exceptions and crashes:</span>
+  <span style="font-weight: 400;">The SDK provides functionality to manually report exceptions:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -300,7 +300,7 @@ Countly.sharedInstance().recordException(myException)</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">You can also manually pass fatality information at the time of the exception:</span>
+  <span style="font-weight: 400;">By default, the reported exception will be marked as "fatal". Though you may want to override it and record a non fatal exception:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -309,16 +309,16 @@ Countly.sharedInstance().recordException(myException)</code></pre>
   <div class="tab">
     <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
 
-[Countly.sharedInstance recordException:myException isFatal:YES];</code></pre>
+[Countly.sharedInstance recordException:myException isFatal:NO];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
 
-Countly.sharedInstance().recordException(myException, isFatal: true)</code></pre>
+Countly.sharedInstance().recordException(myException, isFatal: false)</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">You can also manually pass fatality information, stack trace and segmentation at the time of the exception:</span>
+  <span style="font-weight: 400;">There is also an extended call available where you can pass the fatality information, stack trace and segmentation:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -337,7 +337,8 @@ Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace:
 </div>
 <h2>Record Swift Error</h2>
 <p>
-  You<span style="font-weight: 400;"> can manually record swift errors. For manually recording Swift errors with an ability to pass custom stack trace:</span>
+  The SDK offers a call to
+  <span style="font-weight: 400;">record swift errors:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -351,7 +352,7 @@ Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace:
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">You can also manually pass fatality information, stack trace and segmentation at the time of the recording error:</span>
+  <span style="font-weight: 400;">There is also an extended version where you can pass fatality information, stack trace and segmentation:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
