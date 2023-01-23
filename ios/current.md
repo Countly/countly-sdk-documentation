@@ -281,7 +281,7 @@ func internalLog(_ log: String)
 </p>
 <h2>Handled Exceptions</h2>
 <p>
-  <span style="font-weight: 400;">You can manually record all handled exceptions, except for automatically reported unhandled exceptions and crashes:</span>
+  <span style="font-weight: 400;">You can manually record all exceptions, except for automatically reported unhandled exceptions and crashes:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -291,16 +291,34 @@ func internalLog(_ log: String)
   <div class="tab">
     <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
 
-[Countly.sharedInstance recordHandledException:myException];</code></pre>
+[Countly.sharedInstance recordException:myException];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
 
-Countly.sharedInstance().recordHandledException(myException)</code></pre>
+Countly.sharedInstance().recordException(myException)</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">You can also manually pass stack trace at the time of the handled exception:</span>
+  <span style="font-weight: 400;">You can also manually pass fatality information at the time of the exception:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
+
+[Countly.sharedInstance recordException:myException isFatal:YES];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+
+Countly.sharedInstance().recordException(myException, isFatal: true)</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">You can also manually pass fatality information, stack trace and segmentation at the time of the exception:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -309,13 +327,43 @@ Countly.sharedInstance().recordHandledException(myException)</code></pre>
   </div>
   <div class="tab">
     <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
-
-[Countly.sharedInstance recordHandledException:myException withStackTrace:[NSThread callStackSymbols]];</code></pre>
+<br>NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
-
-Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thread.callStackSymbols)</code></pre>
+<br>let segmentation : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]<br>
+Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
+  </div>
+</div>
+<h2>Record Swift Error</h2>
+<p>
+  You<span style="font-weight: 400;"> can manually record swift errors. For manually recording Swift errors with an ability to pass custom stack trace:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre>[Countly.sharedInstance recordError:@"ERROR_NAME" stackTrace:[NSThread callStackSymbols]];</pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().recordError("ERROR_NAME", stackTrace: Thread.callStackSymbols)<br></code><code class="swift"></code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">You can also manually pass fatality information, stack trace and segmentation at the time of the recording error:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+<br>let segmentation : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]<br>
+Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
   </div>
 </div>
 <h2>Crash Breadcrumbs</h2>
