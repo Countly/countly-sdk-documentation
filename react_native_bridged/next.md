@@ -631,7 +631,20 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instructions from
+  Push notifications are enabled by default for iOS, but if you wish to disable
+  them, you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the project's
+  preprocessor macros setting. The location of this setting may vary depending
+  on the development environment you are using.
+</p>
+<p>
+  For example, in Xcode, you can define this macro by navigating to the project
+  settings, selecting the build target, and then selecting the "Build Settings"
+  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
+  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
+  Debug and/or Release fields. This will exclude push notifications from the build.
+</p>
+<p>
+  For iOS push notification integration please follow the instructions from
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
