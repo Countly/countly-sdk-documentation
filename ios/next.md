@@ -318,7 +318,7 @@ Countly.sharedInstance().recordException(myException, isFatal: false)</code></pr
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">There is also an extended call available where you can pass the fatality information, stack trace and segmentation:</span>
+  <span style="font-weight: 400;">There is also an extended call where you can pass the fatality information, stack trace and segmentation:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
