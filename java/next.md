@@ -447,11 +447,15 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <h3>Recording Data</h3>
 <p>
-  <span data-preserver-spaces="true">Users have to provide a device id, and optionally, the time in milliseconds every time they record any data. The device id is mandatory, so you can not set it null or not provide it while recording data.</span>
+  <span data-preserver-spaces="true">Users have to provide a device id, and optionally, the time in milliseconds every time they record any data. The device id is mandatory, so you can not set it to null or not provide it while recording data.</span>
 </p>
-<p>
-  <strong>Note</strong>:<span data-preserver-spaces="true">&nbsp;If the provided timestamp is null or less than 1, SDK updates its value to the current time in milliseconds.</span>
-</p>
+<div class="callout callout--info">
+  <strong>Providing Timestamp</strong>
+  <p data-pm-slice="1 1 []">
+    While recording data, provide a timestamp only if you want to specify a 'past'
+    time. Otherwise, pass null SDK will generate the timestamp itself.
+  </p>
+</div>
 <h4>Recording an event</h4>
 <p>
   <span data-preserver-spaces="true">You may record as many events as you want.</span>
