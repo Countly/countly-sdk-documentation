@@ -36,9 +36,10 @@
 <h1 class="anchor-heading">SDK Integration</h1>
 <h2 id="minimal-setup" class="anchor-heading">Minimal Setup</h2>
 <p>
-  To start Countly SDK, you need to create a config class and pass it to the
-  <code>init</code> method. To that method, you also pass the path where countly
-  can store its things.
+  Before you can use any functionality, you have to initiate the SDK.&nbsp;
+</p>
+<p>
+  The shortest way to initiate the SDK is with this code snippet:
 </p>
 <pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
                 .enableTestMode()
@@ -50,37 +51,8 @@ File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Countly.init(targetFolder, config);</code></pre>
 <p>
-  In our <code>Config</code> instance we:
+  <span>In the<code>Config</code>object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check </span><a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a><span>.</span>
 </p>
-<ul>
-  <li>
-    Told SDK not to use HTTPS (note http:// in URL) and to send data to Countly
-    server located at
-    <a href="http://YOUR.SERVER.COM.">http://YOUR.SERVER.COM.</a> We also specified
-    the app key (YOUR_APP_KEY).
-  </li>
-  <li>
-    Enabled test mode (read - crash whenever in an inconsistent state, don't
-    forget to disable it in Production!).
-  </li>
-  <li>
-    Set logging level to DEBUG to make sure everything works as expected.
-  </li>
-  <li>
-    Enabled crash reporting feature and tell SDK to use UUID strategy, that is
-    random UUID string, as device id.
-  </li>
-</ul>
-<p>
-  <span>Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
-</p>
-<div class="callout callout--info">
-  <p>
-    If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
-  </p>
-</div>
 <h2 id="enabling-logging" class="anchor-heading">SDK logging / debug mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
