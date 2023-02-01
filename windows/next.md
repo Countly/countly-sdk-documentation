@@ -26,8 +26,9 @@
   </ol>
 </div>
 <p>
-  The Countly GitHub page for this SDK contains also sample projects. You can download them to test the basic functionality of this SDK and make
-  sure that you are using it correctly, in case you encounter any problems in your application.
+  The Countly GitHub page for this SDK contains also sample projects. You can download
+  them to test the basic functionality of this SDK and make sure that you are using
+  it correctly, in case you encounter any problems in your application.
 </p>
 <p>
   The project page can be found
