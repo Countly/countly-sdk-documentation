@@ -8,12 +8,12 @@
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#ios-sdk" target="_self" rel="undefined">here, </a>to
   access the documentation for older SDK versions.
 </p>
-<div class="callout callout--info"> 
+<div class="callout callout--info">
   <strong>Supported System Versions</strong>
   <p>
     The Countly iOS SDK supports minimum <code>Deployment Target</code>
-    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it
-    requires Xcode 13.0+.
+    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
+    Xcode 13.0+.
   </p>
 </div>
 <h1>Adding the SDK to the project</h1>
@@ -23,8 +23,8 @@
 </p>
 <p>
   - Download the Countly iOS SDK source files directly from
-  <a href="https://www.github.com/countly/countly-sdk-ios">GitHub</a>, add 
-  all <code>.h</code> and <code>.m</code> files in the <code>countly-ios-sdk</code>
+  <a href="https://www.github.com/countly/countly-sdk-ios">GitHub</a>, add all
+  <code>.h</code> and <code>.m</code> files in the <code>countly-ios-sdk</code>
   folder of your project on Xcode.
 </p>
 <p>
@@ -254,9 +254,9 @@ func internalLog(_ log: String)
   <strong>Countly Code Generator</strong>
   <p>
     <a href="https://code.count.ly">The Countly Code Generator</a> can be used
-    to generate Countly iOS SDK code snippets effortlesly. You can provide
-    values for your events, user profiles, or just start with basic integration.
-    It will generate the necessary code for you.
+    to generate Countly iOS SDK code snippets effortlesly. You can provide values
+    for your events, user profiles, or just start with basic integration. It
+    will generate the necessary code for you.
   </p>
 </div>
 <h1>Crash Reporting</h1>
@@ -281,7 +281,7 @@ func internalLog(_ log: String)
 </p>
 <h2>Handled Exceptions</h2>
 <p>
-  <span style="font-weight: 400;">You can manually record all handled exceptions, except for automatically reported unhandled exceptions and crashes:</span>
+  <span style="font-weight: 400;">The SDK provides functionality to manually report exceptions:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -291,16 +291,34 @@ func internalLog(_ log: String)
   <div class="tab">
     <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
 
-[Countly.sharedInstance recordHandledException:myException];</code></pre>
+[Countly.sharedInstance recordException:myException];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
 
-Countly.sharedInstance().recordHandledException(myException)</code></pre>
+Countly.sharedInstance().recordException(myException)</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">You can also manually pass stack trace at the time of the handled exception:</span>
+  <span style="font-weight: 400;">By default, the reported exception will be marked as "fatal". Though you may want to override it and record a non fatal exception:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
+
+[Countly.sharedInstance recordException:myException isFatal:NO];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+
+Countly.sharedInstance().recordException(myException, isFatal: false)</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">There is also an extended call where you can pass the fatality information, stack trace and segmentation:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -309,13 +327,44 @@ Countly.sharedInstance().recordHandledException(myException)</code></pre>
   </div>
   <div class="tab">
     <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
-
-[Countly.sharedInstance recordHandledException:myException withStackTrace:[NSThread callStackSymbols]];</code></pre>
+<br>NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
-
-Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thread.callStackSymbols)</code></pre>
+<br>let segmentation : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]<br>
+Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
+  </div>
+</div>
+<h2>Record Swift Error</h2>
+<p>
+  The SDK offers a call to
+  <span style="font-weight: 400;">record swift errors:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre>[Countly.sharedInstance recordError:@"ERROR_NAME" stackTrace:[NSThread callStackSymbols]];</pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().recordError("ERROR_NAME", stackTrace: Thread.callStackSymbols)<br></code><code class="swift"></code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">There is also an extended version where you can pass fatality information, stack trace and segmentation:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+<br>let segmentation : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]<br>
+Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
   </div>
 </div>
 <h2>Crash Breadcrumbs</h2>
@@ -543,7 +592,7 @@ Countly.sharedInstance().recordHandledException(myException, withStackTrace: Thr
   </div>
 </div>
 <p>
-   There is also another
+  There is also another
   <span style="font-weight: 400;"><code>shouldSendCrashReportCallback</code></span>
   block to be executed to decide whether the crash report detected by PLCrashReporter
   on the previous session should be sent to Countly Server or not. If not set,
@@ -1375,6 +1424,20 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <span style="font-weight: 400;">After you start Countly once with the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag while developing, you can remove that line. The <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is not meant for production. It is only for debugging purposes while performing development and not being able to delete and re-install the app.</span>
 </p>
 <h1>Push Notifications</h1>
+<p>
+  To disable push notifications in your app and avoid App Store Connect warnings,
+  you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in your project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment you are using.
+</p>
+<p>
+  For example, in Xcode, you can define this macro by navigating to the project
+  settings, selecting the build target, and then selecting the "Build Settings"
+  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
+  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
+  Debug and/or Release fields. This will exclude push notifications from the build
+  and avoid the App Store Connect warnings.
+</p>
 <h2>Setting up APNs Authentication</h2>
 <p>
   <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple using one of the following methods:</span></strong>
@@ -1437,7 +1500,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <img src="https://count.ly/images/guide/94d763b-push_p12.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;">&nbsp;section.</span>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
 </p>
 <div class="img-container">
   <img src="/hc/article_attachments/9520178138521/001.png" alt="001.png">
@@ -3221,10 +3284,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </div>
 <p>
   The new app key will be used for all the new requests after setting it. Requests
-  already queued previously, will keep using the old app key. Before switching to
-  new app key, this method suspends the SDK and resumes it immediately after the new key is set. The
-  new app key needs to be a non-zero length string, otherwise the method call is
-  ignored. <code>recordPushNotificationToken</code> and
+  already queued previously, will keep using the old app key. Before switching
+  to new app key, this method suspends the SDK and resumes it immediately after
+  the new key is set. The new app key needs to be a non-zero length string, otherwise
+  the method call is ignored. <code>recordPushNotificationToken</code> and
   <code>updateRemoteConfigWithCompletionHandler:</code> methods may need to be
   manually called again after the app key change.
 </p>
@@ -3590,6 +3653,78 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
   </div>
 </div>
+<h2>Direct Request</h2>
+<p>
+  The <code>addDirectRequest</code> method allows you to send custom key/value
+  pairs directly to your Countly server. This method accepts a dictionary with
+  string key/value pairs as its parameter. In order to use this method effectively,
+  you will need to convert any data that you wish to send (such as dictionaries
+  or arrays) into a URL encoded string before passing it to the method.
+</p>
+<p>
+  Here is a detailed example usage of <code>addDirectRequest</code>:
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">- (void) sendDirectRequest {
+    NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
+    requestMap[@"city"] = @"Istanbul";
+    requestMap[@"country_code"] = @"TR";
+    requestMap[@"ip_address"] = @"41.0082,28.9784";
+
+    NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
+    event[@"key"] = @"test";
+    event[@"count"] = @"201";
+    event[@"sum"] =  @"2010";
+    event[@"dur"] = @"2010";
+
+    NSMutableDictionary *ffJson = [[NSMutableDictionary alloc] init];
+    ffJson[@"type"] = @"FF";
+    ffJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+    ffJson[@"end_time"] = [NSNumber numberWithInt:123456789];
+
+
+    NSMutableDictionary *skipJson = [[NSMutableDictionary alloc] init];
+    skipJson[@"type"] = @"skip";
+    skipJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+    skipJson[@"end_time"] = [NSNumber numberWithInt:123456789];
+
+    NSMutableDictionary *resumeJson = [[NSMutableDictionary alloc] init];
+    resumeJson[@"type"] = @"resume_play";
+    resumeJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+    resumeJson[@"end_time"] = [NSNumber numberWithInt:123456789];
+
+    NSMutableArray *trickPlay = [[NSMutableArray alloc] init];
+    [trickPlay addObject:ffJson];
+    [trickPlay addObject:skipJson];
+    [trickPlay addObject:resumeJson];
+
+
+    NSMutableDictionary *segmentation = [[NSMutableDictionary alloc] init];
+    segmentation[@"trickplay"] =  trickPlay;
+    event[@"segmentation"] = segmentation;
+
+    NSMutableArray *events = [[NSMutableArray alloc] init];
+    [events addObject:event];
+
+    NSString *eventsString = [self toString:events];
+
+    requestMap[@"events"]  = eventsString.cly_URLEscaped;
+    [Countly.sharedInstance addDirectRequest:requestMap];   
+}
+
+- (NSString *) toString: (id) dictionaryOrArrayToOutput  {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
+                                                       options:0
+                                                         error:&amp;error];
+    NSString *jsonString = @"";
+    if (! jsonData) {
+        NSLog(@"Got an error: %@", error);
+
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
+}</pre>
 <h2>watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
@@ -3807,25 +3942,25 @@ end</code></pre>
   <li>
     <p>
       <span class="wysiwyg-color-black">iOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>,&nbsp;<code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>, <code>Remote Config</code>, </span>
     </p>
   </li>
   <li>
     <p>
       <span class="wysiwyg-color-black">macOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>,&nbsp;<code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>, <code>Remote Config</code>, </span>
     </p>
   </li>
   <li>
     <p>
       <span class="wysiwyg-color-black">tvOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>, </span>
     </p>
   </li>
   <li>
     <p>
       <span class="wysiwyg-color-black">watchOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>,&nbsp;</span>
+      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>, </span>
     </p>
   </li>
 </ul>
@@ -3970,89 +4105,56 @@ end</code></pre>
 </p>
 <ul>
   <li>
-    <span class="wysiwyg-color-black">Device Model</span>
+    <span>Device Model</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Screen Resolution</span>
+    <span>Screen Resolution</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Screen Density</span>
+    <span>Screen Density</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">OS Name</span>
+    <span>OS Name</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">OS Version</span>
+    <span>OS Version</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">App Version</span>
+    <span>App Version</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Locale Identifier</span>
+    <span>Locale Identifier</span>
   </li>
   <li>
-    <span class="wysiwyg-color-black">Carrier</span>
+    <span>Carrier</span>
   </li>
 </ul>
 <p>
-  <span class="wysiwyg-color-black">Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS App Install Status</span>
+  Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS
+  App Install Status
 </p>
-<h2>
-  <span class="wysiwyg-color-black">Why are push notification action events not reported?</span>
-</h2>
+<h2>Why are push notification action events not reported?</h2>
 <p>
-  <span class="wysiwyg-color-black">Notification action event is recorded when a user interacts with the notification and system calls <code class="c-mrkdwn__code" data-stringify-type="code">didReceiveNotificationResponse:</code>&nbsp;method.</span>
+  Notification action event is recorded when a user interacts with the notification
+  and system calls <code>didReceiveNotificationResponse:</code> method.
 </p>
-<div class="c-message_kit__gutter">
-  <div class="c-message_kit__gutter__right" data-qa="message_content">
-    <div class="c-message_kit__blocks c-message_kit__blocks--rich_text">
-      <div class="c-message__message_blocks c-message__message_blocks--rich_text">
-        <div class="p-block_kit_renderer" data-qa="block-kit-renderer">
-          <div class="p-block_kit_renderer__block_wrapper p-block_kit_renderer__block_wrapper--first">
-            <div class="p-rich_text_block" dir="auto">
-              <div class="p-rich_text_section">
-                <span class="wysiwyg-color-black">If you tap on the notification, but still do not get any action events, please check for the following possible problem points:</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="threads_view_C1R2Y3A6R-1587640571.043600-1587729500.048800" class="c-virtual_list__item" data-qa="virtual-list-item">
-  <div class="p-threads_view__default_background">
-    <div class="c-message_kit__background c-message_kit__background--hovered c-message_kit__message c-message_kit__thread_message p-threads_view_reply" data-qa="message_container" data-qa-unprocessed="false" data-qa-placeholder="false">
-      <div class="c-message_kit__hover c-message_kit__hover--hovered" data-qa-hover="true">
-        <div class="c-message_kit__actions c-message_kit__actions--default">
-          <div class="c-message_kit__gutter">
-            <div class="c-message_kit__gutter__right" data-qa="message_content">
-              <div class="c-message_kit__blocks c-message_kit__blocks--rich_text">
-                <div class="c-message__message_blocks c-message__message_blocks--rich_text">
-                  <div class="p-block_kit_renderer" data-qa="block-kit-renderer">
-                    <div class="p-block_kit_renderer__block_wrapper p-block_kit_renderer__block_wrapper--first">
-                      <div class="p-rich_text_block" dir="auto">
-                        <div class="p-rich_text_section"></div>
-                        <ol>
-                          <li class="p-rich_text_section">
-                            <span class="wysiwyg-color-black">You are setting&nbsp;<code class="c-mrkdwn__code" data-stringify-type="code">UNUserNotificationCenter.currentNotificationCenter</code>'s&nbsp;delegate manually at some point, so Countly iOS SDK can not handle the notification.</span>
-                          </li>
-                          <li class="p-rich_text_section">
-                            <span class="wysiwyg-color-black"><code class="c-mrkdwn__code" data-stringify-type="code">requiresConsent</code> Flag is enabled on initial config, but consent for Push Notifications feature is not granted (Note that this has nothing to do with iOS notification permission).</span>
-                          </li>
-                          <li class="p-rich_text_section">
-                            <span class="wysiwyg-color-black">Notification is not coming from Countly and it does not have any value for<span style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">&nbsp;</span><code class="c-mrkdwn__code" style="color: #000000; font-size: 15px;" data-stringify-type="code">kCountlyPNKeyNotificationID     = @"i"</code><span style="color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">&nbsp; key in it</span></span>
-                          </li>
-                        </ol>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<p>
+  If you tap on the notification, but still do not get any action events, please
+  check for the following possible problem points:
+</p>
+<ol>
+  <li>
+    You are setting
+    <code>UNUserNotificationCenter.currentNotificationCenter</code>'s delegate
+    manually at some point, so Countly iOS SDK can not handle the notification.
+  </li>
+  <li>
+    <code>requiresConsent</code> Flag is enabled on initial config, but consent
+    for Push Notifications feature is not granted (Note that this has nothing
+    to do with iOS notification permission).
+  </li>
+  <li>
+    Notification is not coming from Countly and it does not have any value for
+    <code>kCountlyPNKeyNotificationID = @"i"</code> key in it
+  </li>
+</ol>
