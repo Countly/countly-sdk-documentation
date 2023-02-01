@@ -539,17 +539,24 @@
 <h1>Where To Find SDK Logs?</h1>
 <h2>For Apple Devices</h2>
 <p>Open and run the application using Xcode.</p>
+<p>Open output (highlighted with "1" in screenshot)</p>
 <p>
-  Open output and type 'countly' in the filter and you can see the logs output
-  there.
+  Type 'countly' in the filter (highlighted with "2" in screenshot) and you can
+  see the logs output there.
+</p>
+<p>
+  <img src="/hc/article_attachments/9327717836441/011.png" alt="011.png">
 </p>
 <h2>For Android Devices</h2>
 <p>Open android studio.</p>
 <p>Run the application.</p>
 <p>
-  Open Logcat (highlighted with no 1 in screenshot) on android studio.
+  Open Logcat (highlighted with "1" in screenshot) on android studio.
 </p>
 <p>
-  Type 'countly' in the filter (highlighted with no 2 in screenshot) and you can
+  Type 'countly' in the filter (highlighted with "2" in screenshot) and you can
   see the logs output there.
+</p>
+<p>
+  <img src="/hc/article_attachments/9327717836441/012.png" alt="012.png">
 </p>
