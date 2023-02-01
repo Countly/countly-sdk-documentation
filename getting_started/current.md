@@ -536,14 +536,14 @@
   "22.02.3". The first two numbers are what we call the major version and those
   are the ones that you should be paying attention to ("22.02.X").
 </p>
-<h1>WHERE TO FIND SDK LOGS?</h1>
-<h2>FOR APPLE DEVICES</h2>
+<h1>Where To Find SDK Logs?</h1>
+<h2>For Apple Devices</h2>
 <p>Open and run the application using Xcode.</p>
 <p>
   Open output and type 'countly' in the filter and you can see the logs output
   there.
 </p>
-<h2>FOR ANDROID DEVICES</h2>
+<h2>For Android Devices</h2>
 <p>Open android studio.</p>
 <p>Run the application.</p>
 <p>
