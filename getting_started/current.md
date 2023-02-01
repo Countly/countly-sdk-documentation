@@ -536,43 +536,20 @@
   "22.02.3". The first two numbers are what we call the major version and those
   are the ones that you should be paying attention to ("22.02.X").
 </p>
-<h1>Where to find SDK logs?</h1>
-<h2>For iOS devices</h2>
+<h1>WHERE TO FIND SDK LOGS?</h1>
+<h2>FOR APPLE DEVICES</h2>
+<p>Open and run the application using Xcode.</p>
 <p>
-  To find SDK logs on iOS devices, you need to run the application using Xcode.
+  Open output and type 'countly' in the filter and you can see the logs output
+  there.
+</p>
+<h2>FOR ANDROID DEVICES</h2>
+<p>Open android studio.</p>
+<p>Run the application.</p>
+<p>
+  Open Logcat (highlighted with no 1 in screenshot) on android studio.
 </p>
 <p>
-  First we run the application using npm by running the following code at the root
-  folder of the application:
-</p>
-<p>
-  <code>npm start</code>
-</p>
-<p>
-  Then we open the project using Xcode. We can do this by double tapping on this
-  file <code>Runner.xcworkspace</code> that is located in the iOS folder of the
-  application.
-</p>
-<p>Then press the play icon at the top left of your Xcode.</p>
-<p>
-  When the application starts running, you will see the logs under the output part
-  of your Xcode.
-</p>
-<h2>For android devices</h2>
-<p>
-  To find SDK logs on android devices, you need to run the application while android
-  studio is open.
-</p>
-<p>
-  First we open the application root folder on android studio.
-</p>
-<p>
-  Then we run the application by running the following code at the root folder
-  of the application:
-</p>
-<p>
-  <code>npx react-native run-android</code>
-</p>
-<p>
-  Then we open Logcat on android studio and we will see the logs output there.
+  Type 'countly' in the filter (highlighted with no 2 in screenshot) and you can
+  see the logs output there.
 </p>
