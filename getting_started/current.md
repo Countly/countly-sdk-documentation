@@ -537,26 +537,37 @@
   are the ones that you should be paying attention to ("22.02.X").
 </p>
 <h1>Where To Find SDK Logs?</h1>
-<h2>For Apple Devices</h2>
-<p>Open and run the application using Xcode.</p>
-<p>Open output (highlighted with "1" in screenshot)</p>
 <p>
-  Type 'countly' in the filter (highlighted with "2" in screenshot) and you can
-  see the logs output there.
+  This documentation is about finding the logs your SDK is generating. You should
+  make sure you have enabled SDK logs before this step. To enable logs in your
+  SDK please refer to the 'SDK Logging' or 'Debug Mode' section of your respective
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK's documentation</a>.
+</p>
+<h2>For Apple Devices</h2>
+<p>Run your application using the Xcode.</p>
+<p>Open the Output tab (annotation 1).</p>
+<p>
+  Type 'countly' in the filter (annotation 2) to see the SDK log output.
 </p>
 <p>
-  <img src="/hc/article_attachments/9327717836441/011.png" alt="011.png">
+  <img src="/hc/article_attachments/15118442175001" alt="011.png">
 </p>
 <h2>For Android Devices</h2>
-<p>Open android studio.</p>
-<p>Run the application.</p>
+<p>Run your application using the Android Studio.</p>
+<p>Open the Logcat tab (annotation 1) at Android Studio.</p>
 <p>
-  Open Logcat (highlighted with "1" in screenshot) on android studio.
+  Type 'countly' in the filter (annotation 2) to see the SDK log output.
 </p>
 <p>
-  Type 'countly' in the filter (highlighted with "2" in screenshot) and you can
-  see the logs output there.
+  <img src="/hc/article_attachments/15118494687769" alt="012.png">
+</p>
+<h2>For WEB</h2>
+<p>Open your site in a browser.</p>
+<p>Open the developer tools (usually by pressing F12).</p>
+<p>Select Console (annotation 1).</p>
+<p>
+  Make sure that all log levels are enabled (annotation 2) to see the SDK log output.
 </p>
 <p>
-  <img src="/hc/article_attachments/9327717836441/012.png" alt="012.png">
+  <img src="/hc/article_attachments/15118442322201" alt="013.png">
 </p>
