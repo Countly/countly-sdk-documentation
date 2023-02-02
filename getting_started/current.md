@@ -536,3 +536,40 @@
   "22.02.3". The first two numbers are what we call the major version and those
   are the ones that you should be paying attention to ("22.02.X").
 </p>
+<h1>Finding SDK Logs</h1>
+<p>
+  Ensure you have enabled SDK logs before proceeding with the this process. For
+  guidance on how to enable logs, refer to the
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK documentation's</a>
+  "Logging" or "Debug Mode" section.
+</p>
+<h2>Apple Devices:</h2>
+<ol>
+  <li>Launch your application through Xcode.</li>
+  <li>Access the Output tab (annotated as 1).</li>
+  <li>Filter the logs by typing in "countly" (annotated as 2).</li>
+</ol>
+<p>
+  <img src="/hc/article_attachments/15118442175001" alt="011.png">
+</p>
+<h2>Android Devices</h2>
+<ol>
+  <li>Run your application on Android Studio.</li>
+  <li>Open the Logcat tab (annotated as 1).</li>
+  <li>Filter the logs by typing in "countly" (annotated as 2).</li>
+</ol>
+<p>
+  <img src="/hc/article_attachments/15118494687769" alt="012.png">
+</p>
+<h2>Web:</h2>
+<ol>
+  <li>Open your website in a browser.</li>
+  <li>Open the developer tools (typically by pressing F12).</li>
+  <li>Select the Console tab (annotated as 1).</li>
+  <li>
+    Enable all log levels to view the SDK logs (annotated as 2).
+  </li>
+</ol>
+<p>
+  <img src="/hc/article_attachments/15118442322201" alt="013.png">
+</p>
