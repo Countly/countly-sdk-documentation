@@ -550,7 +550,7 @@
   <li>Filter the logs by typing in "countly" (annotated as 2).</li>
 </ol>
 <p>
-  <img src="/hc/article_attachments/15118442175001" alt="011.png">
+  <img src="/hc/article_attachments/15147181998745" alt="011.png">
 </p>
 <h2>Android Devices</h2>
 <ol>
@@ -559,7 +559,7 @@
   <li>Filter the logs by typing in "countly" (annotated as 2).</li>
 </ol>
 <p>
-  <img src="/hc/article_attachments/15118494687769" alt="012.png">
+  <img src="/hc/article_attachments/15147181671321" alt="012.png">
 </p>
 <h2>Web:</h2>
 <ol>
@@ -571,5 +571,5 @@
   </li>
 </ol>
 <p>
-  <img src="/hc/article_attachments/15118442322201" alt="013.png">
+  <img src="/hc/article_attachments/15147181662489" alt="013.png">
 </p>

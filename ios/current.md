@@ -3911,13 +3911,6 @@ end</code></pre>
 <p>
   <span style="font-weight: 400;">You can integrate the Countly iOS SDK using Swift Package Manager (SPM) using https://github.com/Countly/countly-sdk-ios.git repository URL.</span>
 </p>
-<h2>Rebranding</h2>
-<p>
-  <span style="font-weight: 400;">If you would like to rebrand the Countly iOS SDK or make it white-label, you can use this rebranding script:</span>
-</p>
-<p>
-  <a href="https://gist.github.com/erkanyildiz/4ee00b4326bb666fac636ef74bbd8450">https://gist.github.com/erkanyildiz/4ee00b4326bb666fac636ef74bbd8450</a>
-</p>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
 </h1>
