@@ -3,19 +3,20 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 22.02.X and older, click
-    <a href="/hc/en-us/articles/11104014467737" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#android-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
   The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
   17). You can take a look at our sample application in the
   <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
-  It should show how most of the functionalities can be used.
+  It shows how most of the functionalities can be used.
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it as follows:</span>
+  <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it, with the following code:</span>
 </p>
 <pre><code>buildscript {
     repositories {
@@ -30,7 +31,7 @@
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
-  Before you can use any functionality, you have to initiate the SDK. That is done
+  Before you can use any functionality, you have to initiate the SDK. That can be done
   either in your&nbsp;<code>Application</code> subclass (preferred), or from your
   main activity <code>onCreate</code> method.
 </p>
@@ -38,18 +39,18 @@
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.<span>sharedInstance</span>().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
-  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.</span>
+  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
   Configuration is done by creating such an object and then calling it's provided
-  function calls to enable functionality you need. Afterward that config object
+  function calls to enable the functionality that you need. Afterwards, the particular config object
   is provided to the "init" method.<span style="font-weight: 400;"></span>
 </p>
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn about the verification methods from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
@@ -81,7 +82,7 @@
 </p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.ADVERTISING_ID);<br>Countly.sharedInstance().init(config);</code></pre>
 <p>
-  <span style="font-weight: 400;">In regard to the Google Advertising ID, please ensure you have Google Play services 4.0+ included in your project. Also, note that the Advertising ID silently falls back to OpenUDID in case it fails to get the Advertising ID when Google Play services are not available on a device.</span>
+  <span style="font-weight: 400;">In regard to the Google Advertising ID, please ensure you have Google Play services 4.0+ included in your project. Also, note that the Advertising ID silently falls back to OpenUDID in case, it fails to get the Advertising ID when Google Play services are not available on a device.</span>
 </p>
 <p>You may also explicitly use OpenUDID:</p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
@@ -99,7 +100,7 @@
   </li>
   <li>
     Call&nbsp;<code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
-    onConfigurationChanged if you want to track orientation changes.
+    onConfigurationChanged if you want to track the orientation changes.
   </li>
 </ul>
 <p>
@@ -110,7 +111,7 @@
 </div>
 <h2>Required App Permissions</h2>
 <p>
-  <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any in your manifest file. Those calls should look something like this:</span>
+  <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any, in your manifest file. Those calls should look something like this:</span>
 </p>
 <pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
 <h1>Crash Reporting</h1>
@@ -431,6 +432,14 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 </p>
 <pre><code class="java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
 <h1>Sessions</h1>
+<h2>Automatic Sessions</h2>
+<p>
+  Countly Android SDK comes with built in automatic session tracking functionality.
+  Only thing necessary for this functionality to work is to add the proper calls
+  to your activities after initializing the SDK. For more information you can
+  check
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#adding-callbacks" target="_self">here</a>.
+</p>
 <h2>Manual Sessions</h2>
 <p>
   Sometimes it might be preferable to control the session manually instead of relying
@@ -459,7 +468,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <pre><code class="java">Countly.sharedInstance().views()</code></pre>
 <h2>Automatic Views</h2>
 <p>
-  <span style="font-weight: 400;">View tracking is a means to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
+  <span style="font-weight: 400;">View tracking is a way to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
 <pre><code class="java">config.setViewTracking(true);</code></pre>
 <p>
@@ -590,6 +599,19 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 <pre><code class="java">String usedId = Countly.sharedInstance().getDeviceID();
 Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
 <h1>Push Notifications</h1>
+<div class="callout callout--info">
+  <p>
+    For Android 13 (API 33) and higher you have to declare push notification
+    permissions in you app's manifest file. For related documentation you can
+    check
+    <a href="https://developer.android.com/develop/ui/views/notifications/notification-permission#declare">here</a>.
+  </p>
+  <p>
+    Also starting from Android 12 (API 31) notification trampoline is restricted.
+    For more information you can click
+    <a href="https://developer.android.com/about/versions/12/behavior-changes-12#notification-trampolines">here</a>.
+  </p>
+</div>
 <p>
   Countly supports FCM (Firebase Cloud Messaging) and Huawei Push Kit as push notification
   service providers.&nbsp;The SDK doesn't have any direct dependencies on FCM or
@@ -597,7 +619,7 @@ Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
   <strong>it's up to application developers to ensure correct dependencies are present</strong>
   (please refer to our
   <a href="https://github.com/Countly/countly-sdk-android/blob/master/app/build.gradle" target="_self">Demo app build.gradle</a>
-  for a reference).
+  for reference).
 </p>
 <p>
   By default Countly SDK uses FCM as push notification provider. If FCM is not
@@ -890,8 +912,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <div class="callout callout--warning">
   <p>
     If you would like to use a custom sound in your push notifications, they
-    must be present on the device. They may not be stored somewhere on the internet
-    and then linked from there.
+    must be present on the device. They cannot be linked from the internet.
   </p>
 </div>
 <p>
@@ -1055,7 +1076,7 @@ Countly.sharedInstance().setLocation(countryCode, city, latitude + "," + longitu
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
 <h2>Disabling Location</h2>
-<p>Also during init you can disable location:</p>
+<p>Also during init, you can disable location:</p>
 <pre>config.setDisableLocation();</pre>
 <p>
   Users might want to opt-out of location tracking. To do so, call:
@@ -1611,44 +1632,44 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
 <p>The current features are:</p>
 <p>
   * <code>sessions</code> - tracking when, how often and how long users use your
-  app
+  app.
 </p>
 <p>
-  * <code>events</code> - allow sending events to the server
+  * <code>events</code> - allow sending events to the server.
 </p>
 <p>
-  * <code>views</code> - allow the tracking of which views user visits
+  * <code>views</code> - allow the tracking of which views user visits.
 </p>
 <p>
-  * <code>location</code> - allow the sending of location information
+  * <code>location</code> - allow the sending of location information.
 </p>
 <p>
-  * <code>crashes</code> - allow the tracking of crashes, exceptions, and errors
+  * <code>crashes</code> - allow the tracking of crashes, exceptions, and errors.
 </p>
 <p>
   * <code>attribution</code> - allow tracking of which campaign did the user come
-  from
+  from.
 </p>
 <p>
   * <code>users</code> - allow the collecting/providing of user information, including
-  custom properties
+  custom properties.
 </p>
 <p>
-  * <code>push</code> - allow push notifications
+  * <code>push</code> - allow push notifications.
 </p>
 <p>
-  * <code>starRating</code> - allow their rating and feedback to be sent
+  * <code>starRating</code> - allow their rating and feedback to be sent.
 </p>
 <p>
-  * <code>apm</code> - allow usage of APM features and collection of APM related
+  * <code>apm</code> - allow usage of APM features and collection of APM related.
   data
 </p>
 <p>
-  * <code>feedback</code> - allow to show the survey and nps feedback widgets
+  * <code>feedback</code> - allow to show the survey and nps feedback widgets.
 </p>
 <p>
   * <code>remoteConfig</code> - allow to download remote config values from your
-  server
+  server.
 </p>
 <h2>Changing Consent</h2>
 <p>
@@ -1803,16 +1824,17 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <p>&nbsp;</p>
 <h2>Forcing HTTP POST</h2>
 <p>
-  <span style="font-weight: 400;">If the data sent to the server is short enough, the SDK will use HTTP GET requests. In case you would like an override so that HTTP POST is used in all cases, call the "setHttpPostForced" function after you call "init". You may use the same function later in the app’s life cycle to disable the override. This function must be called every time the app starts.</span>
+  If the data sent to the server is short enough, the SDK will use HTTP GET requests.
+  To override that behavior so that HTTP POST requests are used in all cases, you
+  will need to set "setHttpPostForced" flag as true in your init config.
 </p>
-<pre><code class="java">//the init call before the override
-Countly.sharedInstance().init(this, "https://YOUR_SERVER", "YOUR_APP_KEY", "YOUR_DEVICE_ID")
-  
-//enabling the override
-Countly.sharedInstance().setHttpPostForced(true);
-  
-//disabling the override
-Countly.sharedInstance().setHttpPostForced(false);</code></pre>
+<pre><code class="java">// enable it at your init config
+CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+config.setHttpPostForced(true);
+
+// or set it to false
+config.setHttpPostForced(false);
+</code></pre>
 <h2>Custom HTTP Header Values</h2>
 <p>
   <span style="font-weight: 400;">In case you would like to add custom header key/value pairs to each request sent to the Countly server, you may make the following call:</span>
@@ -1928,7 +1950,19 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.<span>sharedInstance</span>().flushRequestQueues();</pre>
 <h2>Direct Request</h2>
 <p>
-  <span style="font-weight: 400;">You may send direct requests to the server with custom key/value pairs of&nbsp;<code>Map&lt;String, String&gt;</code>.&nbsp; These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
+  <span style="font-weight: 400;">This feature allows you to create custom functionality or implement features that the SDK might be lacking at that moment.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This feature should not be used lightly as improper usage can lead to problems.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This exposes a call where you can provide custom key/value pairs with <code>Map&lt;String, String&gt;</code>. These will be added to a base request created by the SDK. The base parameters will have things like time-related fields, device ID, app key, checksums, etc. These base parameters are protected fields and can't be overridden.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If consent would be required then the SDK will make sure that any consent has been given. The SDK will not perform any additional consent checks. It is up to the developer to make sure that they have the right consent to record the information they are trying to record.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
 </p>
 <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>requestMap </span>= <span>new </span>HashMap&lt;&gt;();<br><span>requestMap</span>.put(<span>"city"</span>, <span>"Istanbul"</span>);<br><span>requestMap</span>.put(<span>"country_code"</span>, <span>"TR"</span>);<br><span>requestMap</span>.put(<span>"ip_address"</span>, <span>"41.0082,28.9784"</span>);<br><br><span>try </span>{<br>    <span>JSONObject event </span>= <span>new </span>JSONObject();<br>    <span>event</span>.putOpt(<span>"key"</span>, <span>"test"</span>);<br>    <span>event</span>.putOpt(<span>"count"</span>, <span>"5"</span>);<br>    <span>event</span>.putOpt(<span>"sum"</span>, <span>"2"</span>);<br>    <span>event</span>.putOpt(<span>"dur"</span>, <span>"2000"</span>);<br><br>    <span>JSONObject ffJson </span>= <span>new </span>JSONObject();<br>    <span>ffJson</span>.putOpt(<span>"type"</span>, <span>"FF"</span>);<br>    <span>ffJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>ffJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject skipJson </span>= <span>new </span>JSONObject();<br>    <span>skipJson</span>.putOpt(<span>"type"</span>, <span>"skip"</span>);<br>    <span>skipJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>skipJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject resumeJson </span>= <span>new </span>JSONObject();<br>    <span>resumeJson</span>.putOpt(<span>"type"</span>, <span>"resume_play"</span>);<br>    <span>resumeJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>resumeJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONArray trickPlay </span>= <span>new </span>JSONArray();<br>    <span>trickPlay</span>.put(<span>ffJson</span>);<br>    <span>trickPlay</span>.put(<span>skipJson</span>);<br>    <span>trickPlay</span>.put(<span>resumeJson</span>);<br><br>    <span>JSONObject segmentation </span>= <span>new </span>JSONObject();<br>    <span>segmentation</span>.putOpt(<span>"trickplay"</span>, <span>trickPlay</span>);<br>    <span>event</span>.putOpt(<span>"segmentation"</span>, <span>segmentation</span>);<br><br>    <span>JSONArray events </span>= <span>new </span>JSONArray();<br>    <span>events</span>.put(<span>event</span>);<br>    <span>requestMap</span>.put(<span>"events"</span>,<span>events</span>.toString());<br>} <span>catch </span>(<span>JSONException </span>e) {<br>    e.printStackTrace();<br>}<br><span>Countly</span>.<span>sharedInstance</span>().requestQueue().addDirectRequest(<span>requestMap</span>);<span style="font-weight: 400;"></span></pre>
 <h2>Explicit Storage Mode</h2>
