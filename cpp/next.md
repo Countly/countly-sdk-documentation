@@ -43,7 +43,7 @@ make <span class="pl-c"># you might want to add something like -j8 to paralleliz
 <p dir="auto">The cmake build flow is pretty straightforward:</p>
 <div class="highlight highlight-source-shell position-relative overflow-auto">
   <pre><span class="pl-c"># assuming we are on project root again</span>
-cmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launch a TUI, configure the build as you see fit</span>
+ccmake -B build <span class="pl-c1">.</span> <span class="pl-c"># this will launch a TUI, configure the build as you see fit</span>
 <span class="pl-c1">cd</span> build
 make</pre>
   <p dir="auto">
