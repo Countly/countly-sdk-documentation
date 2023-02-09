@@ -24,7 +24,21 @@
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>.
   It shows, how most of the functionalities can be used.
 </p>
-<h1>Adding the SDK to the project</h1>
+<p>
+  To setup the sample application, clone the sample
+  <a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>,
+  ensure that npm and react native cli is installed properly (if not, you can use
+  the instructions under
+  <a href="#AddingTheSDKToAProject">Adding the SDK to a project</a> to install).
+  Then run the following commands from the root folder.
+</p>
+<pre><code class="shell">npm install                         # Install dependencies
+cd ios                              # Move to ios directory
+pod install                         # Download and install pods
+cd ../                              # Move to parent directory
+react-native run-android # OR       # Run the android project
+react-native run-ios                # Run the iOS project</code></pre>
+<h1 id="AddingTheSDKToAProject">Adding the SDK to the project</h1>
 <p>
   In order to use the React Native SDK, please use the following commands to create
   a new React Native application.
