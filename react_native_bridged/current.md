@@ -17,62 +17,31 @@
   rather than having those functionalities as React Native code.
 </p>
 <p>
-  <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.
+  <strong>Supported Platforms:</strong> This SDK supports iOS and Android platforms.
 </p>
 <p>
-  You can take a look at our sample application in the
-  <a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>.
-  It shows, how most of the functionalities can be used.
-</p>
-<p>
-  To setup the sample application, clone the sample
-  <a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>,
-  ensure that npm and react native cli is installed properly (if not, you can use
-  the instructions under
-  <a href="#AddingTheSDKToAProject">Adding the SDK to a project</a> to install).
-  Then run the following commands from the root folder.
+  You can take a look at our example application in
+  <a href="https://github.com/Countly/countly-sdk-rnb-example.git" target="_blank" rel="noopener">this Github repo</a>.
+  It shows, how the majority of the SDK functionality can be used. After you have
+  cloned the repo, then run the following commands from the root folder:
 </p>
 <pre><code class="shell">npm install                         # Install dependencies
 cd ios                              # Move to ios directory
-pod install                         # Download and install pods
+pod install                         # Download and install pods<br>
 cd ../                              # Move to parent directory
 react-native run-android # OR       # Run the android project
 react-native run-ios                # Run the iOS project</code></pre>
-<h1 id="AddingTheSDKToAProject">Adding the SDK to the project</h1>
-<p>
-  In order to use the React Native SDK, please use the following commands to create
-  a new React Native application.
-</p>
-<pre><code class="shell">npm install -g react-native-cli     # Install React Native
-react-native init AwesomeProject    # Create a new project
-
-cd AwesomeProject                   # Go to that directory
-react-native run-android # OR       # Run the android project
-react-native run-ios                # Run the iOS project
-
-# New terminal
-adb reverse tcp:8081 tcp:8081       # Link Android port
-npm start                           # Run the build server</code></pre>
+<h1>Adding the SDK to the project</h1>
 <p>
   Run the following snippet in the root directory of your React Native project
-  to install the npm dependencies and link <strong>native libraries</strong>.
-  <strong>Note: </strong>use the latest SDK version currently available, not specifically
-  the one shown in the sample below.
+  to install the npm dependencies and link <strong>native libraries</strong>.&nbsp;
 </p>
 <pre># Include the Countly Class in the file that you want to use.
 npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git
 # OR 
-npm install --save countly-sdk-react-native-bridge@20.11.0
+npm install --save countly-sdk-react-native-bridge@latest
 
 # Linking the library to your app
-
-# react-native &lt; 0.60. For both Android and iOS
-react-native link countly-sdk-react-native-bridge
-cd node_modules/countly-sdk-react-native-bridge/ios/
-pod install 
-cd ../../../
-
-# react-native &gt;= 0.60 for iOS (Android will autolink)
 cd ios 
 pod install
 cd ..</pre>
