@@ -553,7 +553,7 @@
   where the session duration request sent by the SDK would be summed up and displayed
   in your dashboard with real-time session information.
 </p>
-<h2>Why do I sessions without any events?</h2>
+<h2>Why do I have sessions without any events?</h2>
 <p>
   If you have enabled session tracking and checked your user's profile in your
   instance you might realize there might be no events registered under a session.
