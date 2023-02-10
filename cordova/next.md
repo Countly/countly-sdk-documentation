@@ -1255,6 +1255,42 @@ Countly.removeAllConsent();
 </p>
 <pre><code class="javascript">// sending data with salt
 Countly.enableParameterTamperingProtection("salt");</code></pre>
+<h2>Using Proguard</h2>
+<p>
+  Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
+  in your application, find
+  <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
+  <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
+</p>
+<pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
+<p>
+  If Proguard is not already configured then first, enable shrinking and obfuscation
+  in the build file. Find <strong class="ib cf">build.gradle</strong> file which
+  sits inside <strong class="ib cf">/android/app/</strong> folder and adds lines
+  in bold.
+</p>
+<pre><code class="JavaScript">android {
+&nbsp; &nbsp; buildTypes {
+&nbsp; &nbsp; &nbsp; &nbsp; release {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables code shrinking, obfuscation, and optimization for only
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // your project's release build type.
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; minifyEnabled true
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables resource shrinking, which is performed by the
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Android Gradle plugin.
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shrinkResources true
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Includes the default ProGuard rules files that are packaged with
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // the Android Gradle plugin. To learn more, go to the section about
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // R8 configuration files.
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; proguardFiles getDefaultProguardFile(
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-android-optimize.txt'),
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-rules.pro'
+&nbsp; &nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; }
+...
+}
+</code></pre>
 <h1>Other features</h1>
 <h2>Forcing HTTP POST</h2>
 <p>
