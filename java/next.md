@@ -36,7 +36,7 @@
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  Before you can use any functionality, you have to initiate the SDK.&nbsp;
+  Before you can use any functionality, you have to initiate the SDK.
 </p>
 <p>
   The shortest way to initiate the SDK is with this code snippet:
@@ -51,8 +51,19 @@ File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Countly.init(targetFolder, config);</code></pre>
 <p>
-  <span>In the<code>Config</code>object, you provide appKey and your Countly server URL. For more information on how to acquire you application key (appKey) and server URL, check </span><a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a><span>.</span>
+  This code will initiate the SDK in test mode with logging enabled. Here you would
+  also need to provide your application key and server URL. Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about the verification methods from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>SDK Logging / Debug Mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
