@@ -2,7 +2,7 @@
   This document will guide you through the process of Countly SDK installation
   and it applies to version 22.02.0
 </p>
-<div class="callout callout--info"> 
+<div class="callout callout--info">
   <p>
     Click
     <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#flutter-sdk" target="_self" rel="undefined">here, </a>to
@@ -437,8 +437,8 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <pre><code class="JavaScript">Countly.stop();</code></pre>
 <h2 id="manual-sessions" class="anchor-heading">Manual sessions</h2>
 <p>
-  Sometimes, it might be preferable to control the session manually instead of relying
-  on the SDK.
+  Sometimes, it might be preferable to control the session manually instead of
+  relying on the SDK.
 </p>
 <p>It can be enabled during init with:</p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);</code><br>config.enableManualSessionHandling();</pre>
@@ -1266,13 +1266,12 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 </p>
 <h2>Using Proguard</h2>
 <p>
-  Proguard obfuscates the OpenUDID &amp; Countly Messaging classes. If you use
-  OpenUDID or Countly Messaging in your application, find
+  Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
+  in your application, find
   <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
   <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
 </p>
-<pre><code class="JavaScript">-keep class org.openudid.** { *; }
--keep class ly.count.android.sdk.** { *; }</code></pre>
+<pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
 <p>
   If Proguard is not already configured then first, enable shrinking and obfuscation
   in the build file. Find <strong class="ib cf">build.gradle</strong> file which
@@ -1443,9 +1442,9 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 </p>
 <pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>Countly.recordIndirectAttribution(attributionValues);</code></pre>
 <p>
-  In case you would be accessing IDFA for ios, for iOS 14+ due to the changes made by Apple,
-  regarding Application Tracking, you need to ask the user for permission to track
-  the Application.
+  In case you would be accessing IDFA for ios, for iOS 14+ due to the changes made
+  by Apple, regarding Application Tracking, you need to ask the user for permission
+  to track the Application.
 </p>
 <h2>Forcing HTTP POST</h2>
 <p>
