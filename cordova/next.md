@@ -1,4 +1,4 @@
-<p>
+<p> 
   This document will guide you through the process of Countly SDK installation
   and it applies to version 21.11.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
