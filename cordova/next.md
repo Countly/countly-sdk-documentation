@@ -1260,7 +1260,7 @@ Countly.enableParameterTamperingProtection("salt");</code></pre>
   Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
   in your application, find
   <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
-  <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
+  <strong class="ib cf">/android/app/</strong> folder and add the following lines:
 </p>
 <pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
 <p>
