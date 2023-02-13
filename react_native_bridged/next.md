@@ -1427,6 +1427,51 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
   Note that <code class="JavaScript">count.ly.cer</code> is the name of the file.
   Replace this file with the one you have.
 </p>
+<h2>Using Proguard</h2>
+<p>
+  If you are using Countly Messaging in your Android application, it is recommended
+  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
+  the instructions below:
+</p>
+<ol>
+  <li>
+    <p>
+      Locate the app/proguard-rules.pro file within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines to the file:</p>
+  </li>
+</ol>
+<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
+</code></pre>
+<ol start="3">
+  <li>
+    <p>
+      If Proguard is not yet configured, you must first enable shrinking and
+      obfuscation in the build file. To do so, locate the build.gradle file
+      within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines in bold to the build.gradle file:</p>
+  </li>
+</ol>
+<pre><code>...
+
+buildTypes {
+        release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
+            ...
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+...</code></pre>
+<p>
+  By following these steps, the Countly Messaging classes will be obfuscated using
+  Proguard and your application will be better protected against reverse engineering.
+</p>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
 <div class="callout callout--info">
