@@ -1255,6 +1255,51 @@ Countly.removeAllConsent();
 </p>
 <pre><code class="javascript">// sending data with salt
 Countly.enableParameterTamperingProtection("salt");</code></pre>
+<h2>Using Proguard</h2>
+<p>
+  If you are using Countly Messaging in your Android application, it is recommended
+  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
+  the instructions below:
+</p>
+<ol>
+  <li>
+    <p>
+      Locate the app/proguard-rules.pro file within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines to the file:</p>
+  </li>
+</ol>
+<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
+</code></pre>
+<ol start="3">
+  <li>
+    <p>
+      If Proguard is not yet configured, you must first enable shrinking and
+      obfuscation in the build file. To do so, locate the build.gradle file
+      within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines in bold to the build.gradle file:</p>
+  </li>
+</ol>
+<pre><code>...
+
+buildTypes {
+        release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
+            ...
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+...</code></pre>
+<p>
+  By following these steps, the Countly Messaging classes will be obfuscated using
+  Proguard and your application will be better protected against reverse engineering.
+</p>
 <h1>Other features</h1>
 <h2>Forcing HTTP POST</h2>
 <p>
