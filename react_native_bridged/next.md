@@ -1429,40 +1429,49 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 </p>
 <h2>Using Proguard</h2>
 <p>
-  Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
-  in your application, find
-  <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
-  <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
+  If you are using Countly Messaging in your Android application, it is recommended
+  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
+  the instructions below:
 </p>
-<pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
-<p>
-  If Proguard is not already configured then first, enable shrinking and obfuscation
-  in the build file. Find <strong class="ib cf">build.gradle</strong> file which
-  sits inside <strong class="ib cf">/android/app/</strong> folder and adds lines
-  in bold.
-</p>
-<pre><code class="JavaScript">android {
-&nbsp; &nbsp; buildTypes {
-&nbsp; &nbsp; &nbsp; &nbsp; release {
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables code shrinking, obfuscation, and optimization for only
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // your project's release build type.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; minifyEnabled true
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables resource shrinking, which is performed by the
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Android Gradle plugin.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shrinkResources true
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Includes the default ProGuard rules files that are packaged with
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // the Android Gradle plugin. To learn more, go to the section about
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // R8 configuration files.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; proguardFiles getDefaultProguardFile(
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-android-optimize.txt'),
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-rules.pro'
-&nbsp; &nbsp; &nbsp; &nbsp; }
-&nbsp; &nbsp; }
-...
-}
+<ol>
+  <li>
+    <p>
+      Locate the app/proguard-rules.pro file within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines to the file:</p>
+  </li>
+</ol>
+<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
 </code></pre>
+<ol start="3">
+  <li>
+    <p>
+      If Proguard is not yet configured, you must first enable shrinking and
+      obfuscation in the build file. To do so, locate the build.gradle file
+      within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines in bold to the build.gradle file:</p>
+  </li>
+</ol>
+<pre><code>...
+
+buildTypes {
+        release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
+            ...
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+...</code></pre>
+<p>
+  By following these steps, the Countly Messaging classes will be obfuscated using
+  Proguard and your application will be better protected against reverse engineering.
+</p>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
 <div class="callout callout--info">
