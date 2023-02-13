@@ -16,7 +16,7 @@
 <p>
   <strong>Supported Platforms:</strong> Windows, GNU/Linux, and Mac OS X.
 </p>
-<h1>Adding the SDK to the Project</h1>
+<h1 id="AddingTheSdkToTheProject">Adding the SDK to the Project</h1>
 <p>
   Countly C++ SDK has been designed to work with very few dependencies in order
   to run on most platforms. To build this SDK, you need:
@@ -101,7 +101,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2>SDK Logging / Debug Mode</h2>
+<h2>SDK Logging</h2>
 <p>
   The first thing you should do while integrating our SDK is to enable logging.
   If logging is enabled, then our SDK will print out debug messages about its internal
@@ -127,14 +127,14 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 </div>
 <h2>SDK Data Storage</h2>
 <p>
-  In its unconfigured state, the SDK stores everything in memory. However, you
-  may want to use SQLite as a persistent storage option. In that case, you must
-  build the SDK with the COUNTLY_USE_SQLITE option, as explained above, and add
-  the following code to define your SQLite database.
+  In its unconfigured state, the SDK stores everything in memory.
 </p>
-<div>
-  <pre><code>cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
-</div>
+<p>
+  There is an alternative SDK configuration option where the SDK will try to save
+  data peristently with SQLite. In that case you would provide a path and filename
+  where the database would be located. More information on that can be found
+  <a href="#SettingUpSQLiteStorage">here</a>.
+</p>
 <h2>SDK Notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
@@ -550,6 +550,18 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
 </p>
+<h2 id="SettingUpSQLiteStorage">Setting Up SQLite Storage</h2>
+<p>
+  In case you need persistent storage, you would need to build the SDK with that
+  option enabled. In that case, you must build the SDK with the COUNTLY_USE_SQLITE
+  option, as explained <a href="#AddingTheSdkToTheProject">here</a>.
+</p>
+<p>
+  You would also need to provide a path where the database file could be stored.
+</p>
+<div>
+  <pre><code>cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
+</div>
 <h2>Setting Custom SHA-256</h2>
 <p>
   C++ SDK allows users to set a custom SHA-256 method for calculating the checksum
