@@ -1875,6 +1875,42 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   to handle those custom values, they will be ignored.
 </p>
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
+<h2>Log Listener</h2>
+<p>
+  Android SDK lets you handle its internal logs by allowing you to provide a callback
+  to listen to its log output. This callback must be put inside the Countly config
+  object with the help of the <code>setLogListener()</code> method. This callback
+  should return two parameters: first, the String log message, and second, the
+  log level enum. Using these two pieces of information, you should be able to
+  do anything you see fit with these logs.
+</p>
+<p>An example usage:</p>
+<pre><code>
+ CountlyConfig config = (new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL))
+            .setLoggingEnabled(true)
+            .setLogListener(new ModuleLog.LogCallback() {
+                @Override public void LogHappened(String logMessage, ModuleLog.LogLevel logLevel) {
+                    // do something according to the log level
+                    switch (logLevel) {
+                        case Verbose:
+                            // do something
+                            break;
+                        case Debug:
+                            // do something
+                            break;
+                        case Info:
+                            // do something
+                            break;
+                        case Warning:
+                            // do something
+                            break;
+                        case Error:
+                            // do something
+                            break;
+                    }
+                }
+            });
+</code></pre>
 <h2>Receiving and Showing Badge Numbers from Push Notifications</h2>
 <p>
   <span style="font-weight: 400;">While showing badges isn't supported natively for versions before Android O, there are some devices and launchers that support it. Therefore, you may want to implement such a feature in your app. However, not all devices will support badges.</span>
