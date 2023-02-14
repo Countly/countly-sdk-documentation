@@ -2,7 +2,7 @@
   This document explains how to install Countly SDK for Windows desktop applications.
   It applies to version 22.06.X.
 </p>
-<div class="callout callout--info"> 
+<div class="callout callout--info">
   <p>
     Click
     <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#windows-sdk" target="_self" rel="undefined">here, </a>to
