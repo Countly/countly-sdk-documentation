@@ -2009,6 +2009,15 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   to data loss.
 </p>
 <p>
+  Enabling Explicit Storage Mode and periodically storing the queues to the storage
+  can cause a problem of having two separate queues for events or requests in your
+  application. In such scenarios, the SDK will always prioritize processing the
+  queue in memory first, and only when it is empty will it process the queues in
+  the storage. This can result in data duplication and data loss if not implemented
+  correctly. Therefore, it's crucial to ensure that synchronization between the
+  queues in memory and the ones in storage is done correctly to avoid such issues.
+</p>
+<p>
   We recommend using Explicit Storage Mode only in scenarios where reducing the
   frequency of writes to storage is critical to the performance of your app. In
   other scenarios, we recommend using the default storage behavior provided by
