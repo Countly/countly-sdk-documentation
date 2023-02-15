@@ -2003,6 +2003,12 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 </p>
 <pre><code>Countly.sharedInstance().esWriteCacheToStorage();</code></pre>
 <p>
+  If Explicit Storage Mode is enabled, all events will be saved in your device's
+  memory. After each modification of the queues until the
+  <code>esWriteCacheToStorage</code> is called, these events will be susceptible
+  to data loss.
+</p>
+<p>
   We recommend using Explicit Storage Mode only in scenarios where reducing the
   frequency of writes to storage is critical to the performance of your app. In
   other scenarios, we recommend using the default storage behavior provided by
