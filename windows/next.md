@@ -28,7 +28,7 @@
 <p>
   The Countly GitHub page for this SDK contains also sample projects. You should
   be able to download them to test the basic functionality of this SDK and make
-  sure you are using it correctly in case you encounter any problems in your application
+  sure you are using it correctly. In case you encounter any problems in your application,
 </p>
 <p>
   The project page can be found
@@ -36,7 +36,7 @@
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency in either your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
+  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency, either in your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
 </p>
 <ol>
   <li>
@@ -86,7 +86,7 @@ Countly.Instance.Init(cc);</code></pre>
 </div>
 <h2>SDK Logging / Debug Mode</h2>
 <p>
-  <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
+  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
   To enable logging you need to do the following two steps:
 </p>
 <p>
@@ -290,8 +290,8 @@ await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pr
 </p>
 <h2>Timed Events</h2>
 <p>
-  Timed events are events which gives you the ability to calculate the duration
-  it takes for the event to take place with respect to any arbitrary point you
+  Timed events are the events which gives you the ability to calculate the duration
+  required by an event to take place with respect to any arbitrary point, you
   choose. Timed events must be handled manually, where they need a call to start
   the event and another call to end the event. First call is used to start an internal
   timer which would continue counting until the second call is used to stop it
@@ -406,14 +406,14 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
     uses the OS-provided CPU id info to generate a hash that is used as an id.
     It should be possible to generate the same id on a reinstall if the CPU stays
     the same. On virtual machines and Windows 10 devices are not guaranteed to
-    be unique and generate the same id and therefore device id conflicts
+    be unique and generate the same id and therefore device id conflicts.
   </li>
   <li>
     <strong>multipleWindowsFields</strong> - [net35, net40] uses multiple OS-provided
     fields (CPU id, disk serial number, windows serial number, windows username,
     mac address) to generate a hash that would be used as the device Id. This
     method should regenerate the same id on a reinstall, provided those source
-    fields do not change
+    fields do not change.
   </li>
   <li>
     <strong>windowsGUID</strong> - [all platforms] generates a random GUID that
@@ -617,7 +617,7 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <p>
   Consent for features is not persistent and will have to be set every time while
-  initializing countly. Therefore the storage and persistence of given consent
+  initializing countly. Therefore, the storage and persistence of given consent
   fall on the SDK integrator.
 </p>
 <p>
