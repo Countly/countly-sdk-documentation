@@ -430,10 +430,16 @@ Countly.init(targetFolder, config);</code></pre>
 </p>
 <h3>Recording Data</h3>
 <p>
-  <span data-preserver-spaces="true">Users have to provide a device id, and optionally, the time in milliseconds every time they record any data. The device id is mandatory, so you can not set it null or not provide it while recording data.</span>
+  In order to record data using the SDK, users are required to provide a device
+  ID and may optionally include a timestamp, specified in milliseconds. It is important
+  to note that the device ID is a mandatory field and cannot be set to null or
+  omitted.
 </p>
 <p>
-  <strong>Note</strong>:<span data-preserver-spaces="true">&nbsp;If the provided timestamp is null or less than 1, SDK updates its value to the current time in milliseconds.</span>
+  It is also worth noting that if a timestamp value is not provided or is less
+  than 1, the SDK will automatically update the value to the current time, specified
+  in milliseconds. This ensures that all recorded data is accurately timestamped
+  and prevents data duplication.
 </p>
 <h4>Recording an Event</h4>
 <p>
