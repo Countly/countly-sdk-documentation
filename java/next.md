@@ -458,7 +458,6 @@ Countly.init(targetFolder, config);</code></pre>
   in milliseconds. This ensures that all recorded data is accurately timestamped
   and prevents data duplication.
 </p>
-</div>
 <h4>Recording an event</h4>
 <p>
   <span data-preserver-spaces="true">You may record as many events as you want.</span>
