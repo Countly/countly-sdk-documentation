@@ -85,13 +85,10 @@
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">npm</span>
-    <span class="tabs-link">bower</span> <span class="tabs-link">yarn</span>
+    <span class="tabs-link">yarn</span>
   </div>
   <div class="tab">
     <pre><code class="shell">npm install countly-sdk-web</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">bower install countly-sdk-web</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="shell">yarn add countly-sdk-web</code></pre>
