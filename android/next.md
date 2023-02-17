@@ -31,9 +31,9 @@
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
-  Before you can use any functionality, you have to initiate the SDK. That can be done
-  either in your&nbsp;<code>Application</code> subclass (preferred), or from your
-  main activity <code>onCreate</code> method.
+  Before you can use any functionality, you have to initiate the SDK. That can
+  be done either in your&nbsp;<code>Application</code> subclass (preferred), or
+  from your main activity <code>onCreate</code> method.
 </p>
 <h2>Minimal Setup</h2>
 <p>The shortest way to initiate the SDK is with this call:</p>
@@ -44,8 +44,8 @@
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
   Configuration is done by creating such an object and then calling it's provided
-  function calls to enable the functionality that you need. Afterwards, the particular config object
-  is provided to the "init" method.<span style="font-weight: 400;"></span>
+  function calls to enable the functionality that you need. Afterwards, the particular
+  config object is provided to the "init" method.<span style="font-weight: 400;"></span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -436,8 +436,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <p>
   Countly Android SDK comes with built in automatic session tracking functionality.
   Only thing necessary for this functionality to work is to add the proper calls
-  to your activities after initializing the SDK. For more information you can
-  check
+  to your activities after initializing the SDK. For more information you can check
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#adding-callbacks" target="_self">here</a>.
 </p>
 <h2>Manual Sessions</h2>
@@ -1801,6 +1800,243 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">here</a>.
 </p>
 <h1>Other Features and Notes</h1>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you set values in your Countly config object:
+</p>
+<ul>
+  <li>
+    <strong>setContext(Context context)</strong> - Mandatory. Sets Android context.
+  </li>
+  <li>
+    <strong>setServerURL(String serverURL)</strong> - Mandatory. Sets the URL
+    of the Countly server to submit data to.
+  </li>
+  <li>
+    <strong>setAppKey(String appKey)</strong> - Mandatory. Sets the app key for
+    the application being tracked.
+  </li>
+  <li>
+    <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
+    device the app is running on. Null means that Countly will use OpenUDID or
+    Google Advertising ID.
+  </li>
+  <li>
+    <strong>setIdMode(DeviceId.Type idMode)</strong> - Deprecated. Use setIdMode(DeviceIdType
+    idMode) instead.
+  </li>
+  <li>
+    <strong>setIdMode(DeviceIdType idMode)</strong> - Sets the device ID generation
+    strategy Countly should use (OpenUDID or Google Advertising ID).
+  </li>
+  <li>
+    <strong>setStarRatingSessionLimit(int starRatingLimit)</strong> - Sets the
+    limit after how many sessions the automatic star rating dialog is shown.
+  </li>
+  <li>
+    <strong>setStarRatingCallback(StarRatingCallback starRatingCallback)</strong>
+    - Sets the callback function that will be called from the automatic star
+    rating dialog.
+  </li>
+  <li>
+    <strong>setStarRatingTextTitle(String starRatingTextTitle)</strong> - Sets
+    the title text for the star rating dialogs.
+  </li>
+  <li>
+    <strong>setStarRatingTextMessage(String starRatingTextMessage)</strong> -
+    Sets the message text for the star rating dialogs.
+  </li>
+  <li>
+    <strong>setStarRatingTextDismiss(String starRatingTextDismiss)</strong> -
+    Sets the dismiss button text for the star rating dialogs.
+  </li>
+  <li>
+    <strong>setLoggingEnabled(boolean enabled)</strong> - Enables or disables
+    internal debugging logs.
+  </li>
+  <li>
+    <strong>enableCrashReporting()</strong> - Enables uncaught crash reporting.
+  </li>
+  <li>
+    <strong>setViewTracking(boolean enable)</strong> - Enables or disables automatic
+    view tracking.
+  </li>
+  <li>
+    <strong>setAutoTrackingUseShortName(boolean enable)</strong> - Enables or
+    disables the use of short names for automatic activity tracking.
+  </li>
+  <li>
+    <strong>setAutomaticViewSegmentation(Map&lt;String, Object&gt; segmentation)</strong>
+    - Sets the automatic view segmentation.
+  </li>
+  <li>
+    <strong>setAutoTrackingExceptions(Class[] exceptions)</strong> - Sets activities
+    to be excluded from automatic view tracking.
+  </li>
+  <li>
+    <strong>addCustomNetworkRequestHeaders(Map&lt;String, String&gt; customHeaderValues)</strong>
+    - Adds custom header key/value pairs to each request.
+  </li>
+  <li>
+    <strong>setPushIntentAddMetadata(boolean enable)</strong> - Enables or disables
+    adding metadata to push intents.
+  </li>
+  <li>
+    <strong>setRemoteConfigAutomaticDownload(boolean enabled, RemoteConfig.RemoteConfigCallback callback)</strong>
+    - If enabled, automatically downloads the newest remote config values.
+  </li>
+  <li>
+    <strong>setRequiresConsent(boolean shouldRequireConsent)</strong> - Set if
+    consent should be required.
+  </li>
+  <li>
+    <strong>setConsentEnabled(String[] featureNames)</strong> - Sets which features
+    are enabled in case consent is required.
+  </li>
+  <li>
+    <strong>setHttpPostForced(boolean isForced)</strong> - Set the override for
+    forcing to use HTTP POST for all connections to the server.
+  </li>
+  <li>
+    <strong>enableTemporaryDeviceIdMode()</strong> - Enable temporary device
+    ID mode.
+  </li>
+  <li>
+    <strong>setCrashFilterCallback(CrashFilterCallback callback)</strong> - Set
+    crash filter callback.
+  </li>
+  <li>
+    <strong>setParameterTamperingProtectionSalt(String salt)</strong> - Set parameter
+    tampering protection salt.
+  </li>
+  <li>
+    <strong>setTrackOrientationChanges(boolean shouldTrackOrientation)</strong>
+    - Set track orientation changes.
+  </li>
+  <li>
+    <strong>setRecordAllThreadsWithCrash()</strong> - Set record all threads
+    with crash.
+  </li>
+  <li>
+    <strong>setEnableAttribution()</strong> - Enables or disables attribution.
+  </li>
+  <li>
+    <strong>enablePublicKeyPinning()</strong> - Allows public key pinning by
+    providing a list of SSL certificates.
+  </li>
+  <li>
+    <strong>enableCertificatePinning()</strong> - Allows certificate pinning
+    by providing a list of SSL certificates.
+  </li>
+  <li>
+    <strong>setShouldIgnoreAppCrawlers()</strong> - Specifies if the Countly
+    SDK should ignore app crawlers.
+  </li>
+  <li>
+    <strong>setAppCrawlerNames()</strong> - Specifies the names of app crawlers
+    to be ignored.
+  </li>
+  <li>
+    <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
+    grouping.
+  </li>
+  <li>
+    <strong>enableManualSessionControl()</strong> - Enables manual session control.
+  </li>
+  <li>
+    <strong>setCustomCrashSegment()</strong> - Sets custom crash segmentation
+    information to be added to all recorded crashes.
+  </li>
+  <li>
+    <strong>setRecordAllThreadsWithCrash()</strong> - Sets record all threads
+    with crash.
+  </li>
+  <li>
+    <strong>checkForNativeCrashDumps(boolean checkForDumps)</strong> - Set the
+    check for native crash dumps.
+  </li>
+  <li>
+    <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
+    for the automatic session update calls (min value 1 sec, max value 10 min).
+  </li>
+  <li>
+    <strong>setCountlyStore(CountlyStore store)</strong> - Sets the Countly store
+    for use during testing.
+  </li>
+  <li>
+    <strong>setDisableUpdateSessionRequests(boolean disable)</strong> - Disables
+    periodic session time updates.
+  </li>
+  <li>
+    <strong>setIfStarRatingDialogIsCancellable(boolean isCancellable)</strong>
+    - Sets if the star rating dialog is cancellable.
+  </li>
+  <li>
+    <strong>setIfStarRatingShownAutomatically(boolean isShownAutomatically)</strong>
+    - Sets if the star rating should be shown automatically.
+  </li>
+  <li>
+    <strong>setStarRatingDisableAskingForEachAppVersion(boolean disableAsking)</strong>
+    - Sets if the star rating is shown only once per app lifetime.
+  </li>
+  <li>
+    <strong>setApplication(Application application)</strong> - Sets the link
+    to the application class.
+  </li>
+  <li>
+    <strong>setRecordAppStartTime(boolean recordAppStartTime)</strong> - Enables
+    the recording of the app start time.
+  </li>
+  <li>
+    <strong>setDisableLocation()</strong> - Disables location tracking.
+  </li>
+  <li>
+    <strong>setLocation(String country_code, String city, String gpsCoordinates, String ipAddress)</strong>
+    - Sets location parameters.
+  </li>
+  <li>
+    <strong>setMetricOverride(Map&lt;String, String&gt; providedMetricOverride)</strong>
+    - Sets the metrics you want to override or additional custom metrics you
+    want to provide.
+  </li>
+  <li>
+    <strong>setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
+    - Overrides the app start timestamp.
+  </li>
+  <li>
+    <strong>enableManualAppLoadedTrigger()</strong> - Enables manual trigger
+    of the moment when the app has finished loading.
+  </li>
+  <li>
+    <strong>enableManualForegroundBackgroundTriggerAPM()</strong> - Enables manual
+    control of triggers.
+  </li>
+  <li>
+    <strong>setLogListener(ModuleLog.LogCallback logCallback)</strong> - Adds
+    a log callback that duplicates all logs done by the SDK.
+  </li>
+  <li>
+    <strong>setMaxRequestQueueSize(int newMaxSize)</strong> - Sets the new maximum
+    size for the request queue.
+  </li>
+  <li>
+    <strong>setDirectAttribution(String campaignType, String campaignData)</strong>
+    - Reports direct user attribution.
+  </li>
+  <li>
+    <strong>setIndirectAttribution(Map&lt;String, String&gt; attributionValues)</strong>
+    - Reports indirect user attribution.
+  </li>
+  <li>
+    <strong>setUserProperties(Map&lt;String, Object&gt; userProperties)</strong>
+    - Provides user properties that would be sent as soon as possible.
+  </li>
+  <li>
+    <strong>enableExplicitStorageMode()</strong> - If this mode is enabled then
+    the SDK not write the request and event queues to disk until the explicit
+    write signal is given.
+  </li>
+</ul>
 <h2>Setting Event Queue Threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
