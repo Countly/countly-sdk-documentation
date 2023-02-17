@@ -594,6 +594,8 @@
 </p>
 <h2>Cordova SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/7019114935961" target="_self" rel="undefined">Version 21.11</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/7019114935961" target="_self" rel="undefined">Version 20.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/900004883663" target="_self" rel="undefined">Version 19.9.3</a>
