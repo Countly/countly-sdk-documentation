@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0<br>
+  and it applies to version 22.09.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
