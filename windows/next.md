@@ -290,8 +290,8 @@ await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pr
 </p>
 <h2>Timed Events</h2>
 <p>
-  Timed events are the events which gives you the ability to calculate the duration
-  required by an event to take place with respect to any arbitrary point, you
+  Timed events are events which gives you the ability to calculate the duration
+  it takes for the event to take place with respect to any arbitrary point you
   choose. Timed events must be handled manually, where they need a call to start
   the event and another call to end the event. First call is used to start an internal
   timer which would continue counting until the second call is used to stop it
