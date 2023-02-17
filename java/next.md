@@ -64,7 +64,7 @@ Countly.init(targetFolder, config);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2>SDK Logging / Debug Mode</h2>
+<h2>SDK Logging Mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
 </p>
