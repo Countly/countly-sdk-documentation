@@ -71,7 +71,7 @@ cordova platform remove ios</code></pre>
 <pre><code class="shell">cordova platform add android
 cordova platform add ios</code></pre>
 <p>
-  It's important that you make sure you build it with Cordova, as Cordova links
+  It's important that you make sure you build it with Cordova, as Cordova link
   folders very well.
 </p>
 <pre><code class="shell">cordova build android
@@ -331,10 +331,10 @@ Countly.addCrashLog("My crash log from JavaScript");
 </p>
 <ul>
   <li>
-    <code>key</code> identifies the event
+    <code>key</code> identifies the event.
   </li>
   <li>
-    <code>count</code> is the number of times this event occurred
+    <code>count</code> is the number of times this event occurred.
   </li>
   <li>
     <code>sum</code> is an overall numerical data set tied to an event. For example,
@@ -586,7 +586,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   Later, when the real device ID is set using
   <code>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code> method, all requests
   which have been kept on hold until that point will start with the real device
-  ID
+  ID.
 </p>
 <h2>Retrieving current device ID</h2>
 <p>
@@ -670,7 +670,7 @@ Countly.getCurrentDeviceId(function(deviceId){
 </p>
 <h2>Enabling push</h2>
 <p>
-  First, when setting up push for the Cordova SDK, you would first select the push
+  First, when setting up push for the Cordova SDK, you would select the push
   token mode. This would allow you to choose either test or production modes, push
   token mode should be set before init.
 </p>
@@ -1180,7 +1180,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>
   If consent is removed, but the appropriate function can't be called before the
   app closes, it should be done at next app start so that any relevant server side
-  features could be disabled (like reverse geo ip for location)
+  features could be disabled (like reverse geo ip for location).
 </p>
 <p>
   Feature names in the Android SDK are stored as static fields in the class called
