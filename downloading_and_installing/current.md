@@ -565,6 +565,8 @@
 </p>
 <h2>Android SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/15806696414745" target="_self" rel="undefined">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/11104014467737" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/11104063417241" target="_blank" rel="noopener">Version 21.11</a>
