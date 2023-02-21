@@ -27,7 +27,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:22.06.0'
+    compile 'ly.count.android:sdk:22.09.0'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
@@ -78,14 +78,10 @@
 </p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code></pre>
 <p>
-  <span style="font-weight: 400;">You may rely on the Google Advertising ID for device ID generation.</span>
-</p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.ADVERTISING_ID);<br>Countly.sharedInstance().init(config);</code></pre>
-<p>
   <span style="font-weight: 400;">In regard to the Google Advertising ID, please ensure you have Google Play services 4.0+ included in your project. Also, note that the Advertising ID silently falls back to OpenUDID in case, it fails to get the Advertising ID when Google Play services are not available on a device.</span>
 </p>
 <p>You may also explicitly use OpenUDID:</p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceId.Type.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
+<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceIdType.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
 <h2>Adding callbacks</h2>
 <p>
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities:</span>
@@ -202,7 +198,7 @@
 <p>
   <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://search.maven.org/artifact/ly.count.android/sdk"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 20.11.12):</span>
 </p>
-<pre><code class="java">// build gradle file 
+<pre><code class="java">// build gradle file
 
 repositories {
     mavenCentral()
@@ -226,13 +222,13 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.12):</span>
 </p>
 <h3>Automatic symbol file upload</h3>
-<pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin 
+<pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin
 
 buildscript {
     repositories {
         mavenCentral()
     }
-    // for LATEST_VERSION check https://search.maven.org/artifact/ly.count.android/sdk
+    // for LATEST_VERSION check <https://search.maven.org/artifact/ly.count.android/sdk>
     dependencies {
         classpath group: 'ly.count.android', 'name': 'sdk-plugin', 'version': 'LATEST_VERSION'
     }
@@ -241,7 +237,7 @@ buildscript {
   <span style="font-weight: 400;">Then you will need to configure a Gradle Countly block for the plugin:</span>
 </p>
 <pre><code class="java">countly {
-    server "https://YOUR_SERVER" 
+    server "https://YOUR_SERVER"
     app_key "YOUR_APP_KEY"  
 }</code></pre>
 <p>
@@ -268,7 +264,7 @@ buildscript {
     if (task.name.startsWith('assemble')) {
         //this would upload your Java mapping file
         task.dependsOn('uploadJaveSymbols')
-        
+
         //this would upload your native (c++) symbols
         task.dependsOn('uploadNativeSymbols')
     }
@@ -296,8 +292,8 @@ buildscript {
   // BUILD_TYPE could be debug or release
   nativeObjectFilesDir "intermediates/merged_native_libs/BUILD_TYPE"
   
-  // path for breakpad tool dump_syms executable 
-  dumpSymsPath "/usr/bin/dump_syms" // note that will be saved with the upload and can be checked in the UI noteNative "sdk-plugin automatic upload of breakpad symbols" } 
+  // path for breakpad tool dump_syms executable
+  dumpSymsPath "/usr/bin/dump_syms" // note that will be saved with the upload and can be checked in the UI noteNative "sdk-plugin automatic upload of breakpad symbols" }
   </code></pre>
 <p>
   <span style="font-weight: 400;">It is possible that two of these properties will need to be configured manually: <code>dumpSymsPath</code></span><span style="font-weight: 400;">&nbsp;and <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">. The plugin assumes you will run the task after a release build. To test it for debug builds, please change <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">&nbsp;to <code>"intermediates/cmake/debug/obj"</code></span><span style="font-weight: 400;">&nbsp;(or to wherever your build process puts .so files under the build directory).</span>
@@ -395,7 +391,7 @@ Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99,
 Countly.sharedInstance().events().startEvent(eventName);
 //wait some time
 
-//end the event 
+//end the event
 Countly.sharedInstance().events().endEvent(eventName);</code></pre>
 <p>
   <span style="font-weight: 400;">You may also provide additional information when ending an event. However, in that case, you have to provide the segmentation, count, and sum. The default values for those are "null", 1 and 0.</span>
@@ -418,7 +414,7 @@ Countly.sharedInstance().events().endEvent(eventName, segmentation, 4, 34);
 <pre><code class="java">//start some event<br>Countly.sharedInstance().events().startEvent(eventName);
 //wait some time
 
-//cancel the event 
+//cancel the event
 Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <h2>Past Events</h2>
 <p>
@@ -530,7 +526,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   (merged) into user profile with device id you specified in the following method
   call:
 </p>
-<pre><code class="java">Countly.sharedInstance().changeDeviceIdWithMerge("new device ID")</code></pre>
+<pre><code class="java">Countly.sharedInstance().deviceId().changeWithMerge("new device ID")</code></pre>
 <p>
   In other circumstances, you might want to track information about another separate
   user that starts using your app (changing apps account), or your app enters a
@@ -538,13 +534,9 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   out). In that case, you can change the current device ID to a new one without
   merging their data. You would call:
 </p>
-<pre><code class="java">Countly.sharedInstance().changeDeviceIdWithoutMerge(DeviceId.Type.OPEN_UDID, null)</code></pre>
+<pre><code class="java">Countly.sharedInstance().deviceId().changeWithoutMerge("new device ID")</code></pre>
 <p>
   Doing it this way, will not merge the previously acquired data with the new id.
-</p>
-<p>
-  You can also set Advertising ID as your device ID generation strategy or even
-  supply your own string with <code>DeviceId.Type.DEVELOPER_SPECIFIED</code> type.
 </p>
 <p>
   Do note that every time you change your deviceId without a merge, it will be
@@ -582,7 +574,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 </p>
 <pre>countlyConfig.enableTemporaryDeviceIdMode();</pre>
 <p>To enable temporary id after init, you would call:</p>
-<pre>Countly.sharedInstance().enableTemporaryIdMode();</pre>
+<pre>Countly.sharedInstance().deviceId().enableTemporaryIdMode();</pre>
 <p>
   To exit temporary id mode, you would call either "changeDeviceIdWithoutMerge"
   or "changeDeviceIdWithMerge" or init the SDK with a developer supplied device
@@ -595,8 +587,8 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   The id type is an enum with the possible values of: "DEVELOPER_SUPPLIED", "OPEN_UDID",
   "ADVERTISING_ID".
 </p>
-<pre><code class="java">String usedId = Countly.sharedInstance().getDeviceID();
-Type idType = Countly.sharedInstance().getDeviceIDType();</code></pre>
+<pre><code class="java">String usedId = Countly.sharedInstance().deviceId().getID();
+Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
 <h1>Push Notifications</h1>
 <div class="callout callout--info">
   <p>
@@ -994,7 +986,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   <span style="font-weight: 400;">You may also completely disable the push notification handling made by the Countly SDK. To do so, just add <code>true</code></span><span style="font-weight: 400;">&nbsp;to the end of your <code>initMessaging()</code></span><span style="font-weight: 400;">call:</span>
 </p>
 <pre><code class="java">Countly.sharedInstance()
-    .init(this, "YOUR_SERVER", "APP_KEY", null, DeviceId.Type.ADVERTISING_ID)
+    .init(this, "YOUR_SERVER", "APP_KEY", null, DeviceIdType.ADVERTISING_ID)
     .initMessaging(this, CountlyActivity.class, "PROJECT_NUMBER", Countly.CountlyMessagingMode.TEST, true);
 
 </code></pre>
@@ -1096,7 +1088,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">Automatic value download happens when the SDK is initiated or when the device ID is changed. You have to call <code>setRemoteConfigAutomaticDownload</code></span><span style="font-weight: 400;">&nbsp;before init to enable it. As an optional value, you may provide a callback to be informed when the request is finished.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().setRemoteConfigAutomaticDownload(true, new RemoteConfig.RemoteConfigCallback() {
+<pre><code class="java">Countly.sharedInstance().setRemoteConfigAutomaticDownload(true, new RemoteConfigCallback() {
             @Override
             public void callback(String error) {
                 if(error == null) {
@@ -1115,7 +1107,7 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
 </p>
 <h2>Manual Remote Config</h2>
 <p>
-  <span style="font-weight: 400;">There are three ways for manually requesting a remote config update: * Manually updating everything * Manually updating specific keys * Manually updating everything except specific keys.</span>
+  <span style="font-weight: 400;">There are three ways for manually requesting a remote config update: *Manually updating everything* Manually updating specific keys * Manually updating everything except specific keys.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Each of these requests also has a callback. If the callback returns a non-null value, the request will encounter an error and fail.</span>
@@ -1292,7 +1284,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
 </p>
 <pre><code class="java">String widgetId = "xxxxx";
 String closeButtonText = "Close";
-Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, activity, new FeedbackRatingCallback() {
+Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButtonText, activity, new FeedbackRatingCallback() {
   @Override
   public void callback(String error) {
     if(error != null){
@@ -1306,7 +1298,7 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
   in the rating widget. In case you do that, you would then report that rating
   result manually. To do that you would use the following call:
 </p>
-<pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordManualRating(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
+<pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.<span>sharedInstance</span>().ratings().recordRatingWidgetWithID(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
 <h2>Feedback Widget</h2>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -1329,9 +1321,9 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
   as the first parameter and error as the second:
 </p>
 <pre>Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {<br>    @Override public void onFinished(List&lt;CountlyFeedbackWidget&gt; retrievedWidgets, String error) {<br>
-	// error handling here
+ // error handling here
 
-	// do something with the returned list here like pick a widget and then show that widget etc...
+ // do something with the returned list here like pick a widget and then show that widget etc...
 <br>    }<br>});</pre>
 <p>The objects in the returned list would look like this:</p>
 <pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>    public String[] tags; <br>}</pre>
@@ -1353,7 +1345,7 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 <pre>Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
     // maybe show a toast when the widget is closed
 <br>    @Override public void onFinished(String error) {<br>
-	// error handling here
+ // error handling here
 <br>    }<br>});</pre>
 <h3>Manual Reporting</h3>
 <p>
@@ -1418,7 +1410,6 @@ Countly.sharedInstance().ratings().showFeedbackPopup(widgetId, closeButtonText, 
 Map&lt;String, String&gt; predefinedFields = new HashMap&lt;&gt;();
 Countly.userData.setUserData(predefinedFields);
 Countly.userData.save()
-
 
 //Update the user profile using predefined and custom fields
 Map&lt;String, String&gt; predefinedFields = new HashMap&lt;&gt;();
@@ -1650,19 +1641,19 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
   app.
 </p>
 <p>
-  * <code>events</code> - allow sending events to the server.
+  *<code>events</code> - allow sending events to the server.
 </p>
 <p>
   * <code>views</code> - allow the tracking of which views user visits.
 </p>
 <p>
-  * <code>location</code> - allow the sending of location information.
+  *<code>location</code> - allow the sending of location information.
 </p>
 <p>
   * <code>crashes</code> - allow the tracking of crashes, exceptions, and errors.
 </p>
 <p>
-  * <code>attribution</code> - allow tracking of which campaign did the user come
+  *<code>attribution</code> - allow tracking of which campaign did the user come
   from.
 </p>
 <p>
@@ -1670,13 +1661,13 @@ Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code>
   custom properties.
 </p>
 <p>
-  * <code>push</code> - allow push notifications.
+  *<code>push</code> - allow push notifications.
 </p>
 <p>
   * <code>starRating</code> - allow their rating and feedback to be sent.
 </p>
 <p>
-  * <code>apm</code> - allow usage of APM features and collection of APM related.
+  *<code>apm</code> - allow usage of APM features and collection of APM related.
   data
 </p>
 <p>
@@ -1793,8 +1784,8 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <p>
   <span style="font-weight: 400;">Proguard obfuscates the OpenUDID &amp; Countly Messaging classes. If you use OpenUDID or Countly Messaging in your application, you will need to add the following lines to your Proguard rules file:</span>
 </p>
-<pre><code class="java">-keep class org.openudid.** { *; }
--keep class ly.count.android.sdk.** { *; }</code></pre>
+<pre><code class="java">-keep class org.openudid.**{ *; }
+-keep class ly.count.android.sdk.** {*; }</code></pre>
 <p>
   More info can be found
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">here</a>.
@@ -1820,10 +1811,6 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
     <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
     device the app is running on. Null means that Countly will use OpenUDID or
     Google Advertising ID.
-  </li>
-  <li>
-    <strong>setIdMode(DeviceId.Type idMode)</strong> - Deprecated. Use setIdMode(DeviceIdType
-    idMode) instead.
   </li>
   <li>
     <strong>setIdMode(DeviceIdType idMode)</strong> - Sets the device ID generation
@@ -1882,7 +1869,7 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
     adding metadata to push intents.
   </li>
   <li>
-    <strong>setRemoteConfigAutomaticDownload(boolean enabled, RemoteConfig.RemoteConfigCallback callback)</strong>
+    <strong>setRemoteConfigAutomaticDownload(boolean enabled, RemoteConfigCallback callback)</strong>
     - If enabled, automatically downloads the newest remote config values.
   </li>
   <li>
@@ -2204,16 +2191,16 @@ registerReceiver(messageReceiver, filter);</code></pre>
   <span style="font-weight: 400;">Currently, the SDK ignores crawlers by default. If you would like to change this setting, use <code>ifShouldIgnoreCrawlers</code></span><span style="font-weight: 400;">. If you would like to check if the current device was detected as a crawler, use <code>isDeviceAppCrawler</code></span><span style="font-weight: 400;">. Detection is done in the init function, meaning you would have to add the crawler names before that and perform the check after.</span>
 </p>
 <pre><code class="java">//set that the sdk should ignore app crawlers
-Countly.sharedInstance().ifShouldIgnoreCrawlers(true);
+Countly.sharedInstance().requestQueue().ifShouldIgnoreCrawlers(true);
 
 //set that the sdk should not ignore app crawlers
-Countly.sharedInstance().ifShouldIgnoreCrawlers(false);
+Countly.sharedInstance().requestQueue().ifShouldIgnoreCrawlers(false);
 
 //add another app crawler device name to ignore
 Countly.sharedInstance().addAppCrawlerName("App crawler");
 
 //returns true if this device is detected as a app crawler and false otherwise
-Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
+Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
 <h2>Interacting with the Internal Request Queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -2226,7 +2213,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 <p>
   You can force the SDK to try to send the requests immediately:
 </p>
-<pre>//Doing internally stored requests<br>Countly.<span>sharedInstance</span>().doStoredRequests();</pre>
+<pre>//Doing internally stored requests<br>Countly.<span>sharedInstance</span>().requestQueue().attemptToSendStoredRequests();</pre>
 <p>
   This way the SDK will not wait for its internal triggers and it will try to empty
   the queue on demand.
@@ -2235,7 +2222,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   There are some circumstances where you would want to delete all stored requests.
   Then you would call:
 </p>
-<pre><span>//Delete all stored requests in queue<br></span>Countly.<span>sharedInstance</span>().flushRequestQueues();</pre>
+<pre><span>//Delete all stored requests in queue<br></span>Countly.<span>sharedInstance</span>().requestQueue().flushQueues();</pre>
 <h2>Direct Request</h2>
 <p>
   <span style="font-weight: 400;">This feature allows you to create custom functionality or implement features that the SDK might be lacking at that moment.</span>
@@ -2283,7 +2270,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   to the server, it is stored locally.
 </p>
 <p>
-  * When sending any network requests to the server, the following things are sent
+  *When sending any network requests to the server, the following things are sent
   in addition of the main data:<br>
   - Timestamp of when the request is creted<br>
   - Current hour<br>
@@ -2297,7 +2284,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   and duration
 </p>
 <p>
-  * If sessions are used then also device metrics are collected which contains:<br>
+  *If sessions are used then also device metrics are collected which contains:<br>
   - Device model<br>
   - Device type (phone, tablet, etc)<br>
   - Screen resolution<br>
@@ -2310,7 +2297,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 </p>
 <p>* The current device orientation</p>
 <p>
-  * When generating a device ID, if no custom ID is provided, the SDK will use:<br>
+  *When generating a device ID, if no custom ID is provided, the SDK will use:<br>
   - Secure.ANDROID_ID as the default ID and advertising id as a fallback devices
   ID
 </p>
@@ -2321,7 +2308,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   button the user has clicked on&nbsp;
 </p>
 <p>
-  * If automatic view tracking is enabled, it will collect:<br>
+  *If automatic view tracking is enabled, it will collect:<br>
   - activity class name&nbsp;
 </p>
 <p>
@@ -2329,7 +2316,7 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   time of the widgets completion
 </p>
 <p>
-  * When events are recorded, the time of when the event is recorded, will be collected
+  *When events are recorded, the time of when the event is recorded, will be collected
 </p>
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
