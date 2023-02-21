@@ -31,9 +31,9 @@
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
-  Before you can use any functionality, you have to initiate the SDK. That can be done
-  either in your&nbsp;<code>Application</code> subclass (preferred), or from your
-  main activity <code>onCreate</code> method.
+  Before you can use any functionality, you have to initiate the SDK. That can
+  be done either in your&nbsp;<code>Application</code> subclass (preferred), or
+  from your main activity <code>onCreate</code> method.
 </p>
 <h2>Minimal Setup</h2>
 <p>The shortest way to initiate the SDK is with this call:</p>
@@ -44,8 +44,8 @@
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
   Configuration is done by creating such an object and then calling it's provided
-  function calls to enable the functionality that you need. Afterwards, the particular config object
-  is provided to the "init" method.<span style="font-weight: 400;"></span>
+  function calls to enable the functionality that you need. Afterwards, the particular
+  config object is provided to the "init" method.<span style="font-weight: 400;"></span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -436,8 +436,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <p>
   Countly Android SDK comes with built in automatic session tracking functionality.
   Only thing necessary for this functionality to work is to add the proper calls
-  to your activities after initializing the SDK. For more information you can
-  check
+  to your activities after initializing the SDK. For more information you can check
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#adding-callbacks" target="_self">here</a>.
 </p>
 <h2>Manual Sessions</h2>
@@ -1984,10 +1983,13 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
 <h2>Explicit Storage Mode</h2>
 <p>
   The Explicit Storage Mode is a feature that allows you to control the frequency
-  of writes to your device's storage. With this mode enabled, the Countly SDK's
-  request and event queues will be stored only in memory and will not be automatically
-  persisted to storage when changes occur. Instead, the host app must explicitly
-  signal when the queues should be persisted to storage.
+  of writes to your device's storage.
+</p>
+<p>
+  With this mode enabled, the Countly SDK's request and event queues will be stored
+  only in memory and will not be automatically persisted to storage when changes
+  occur. Instead, the host app must explicitly signal when the queues should be
+  persisted to storage.
 </p>
 <p>
   Please note that using this mode increases the risk of data loss and data duplication
@@ -1997,23 +1999,36 @@ Countly.sharedInstance().isDeviceAppCrawler();f</code></pre>
   To enable Explicit Storage Mode during initialization, use the following configuration
   option:
 </p>
-<pre><code>Countly.sharedInstance().setExplicitStorageMode(true);</code></pre>
+<pre><code>config.enableExplicitStorageMode();</code></pre>
 <p>
   To write the memory queues to storage, use the following method:
 </p>
-<pre><code>Countly.sharedInstance().esWriteCacheToStorage();</code></pre>
+<pre><code>Countly.sharedInstance().requestQueue().esWriteCachesToPersistence();</code></pre>
 <p>
-  If Explicit Storage Mode is enabled, all events will be saved in your device's
-  memory. After each modification of the queues until the
-  <code>esWriteCacheToStorage</code> is called, these events will be susceptible
-  to data loss.
+  If you want know if any writes were performed, you can also use the following
+  variant. It allows you to set a callback that would inform you if anything was
+  written to storage. If your memory cache state would be the same as your perisent
+  storage state, no writes would be performed.
+</p>
+<pre><span>Countly</span>.<span>sharedInstance</span>().requestQueue().esWriteCachesToPersistence(<span>new </span><span>ExplicitStorageCallback</span>() {<br>    <span>@Override </span><span>public void </span><span>WriteToStorageFinished</span>(<span>boolean </span>writeWasPerformed) {<br>        <span>if </span>(writeWasPerformed) {<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Memory cache ouf of sync with persistent storage. New state was written to storage."</span>);<br>        } <span>else </span>{<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Memory cache matches persistent storage. No writes were performed."</span>);<br>        }<br>    }<br>});</pre>
+<p>
+  Like mentioned before, inpropper usage can lead to data loss or data duplication.
 </p>
 <p>
-  If the persistent queue was out of sync and the queue in memory is lost due
-  to an event such as an app restart, the SDK will check the persistent storage
-  the next time it reads the queues. In this scenario, the SDK will copy the information
-  from storage to the queue in memory, and the SDK will continue processing the
-  queues from memory.
+  Data loss can occur when you have recorded new data and there is no or slow connection
+  to your server. If your app would crash or exit before the SDK is able to send
+  that data or before you had the ability to call
+  <code>esWriteCacheToStorage</code> , that information would be lost.
+</p>
+<p>
+  Data duplication can occur when you have recorded data and have called
+  <code>esWriteCacheToStorage</code> before it is sent to your server. This would
+  then persist the "full" queues to storage. After this point the data would have
+  been successfully sent to your server, but then no call would be made to
+  <code>esWriteCacheToStorage</code> before the app crashes or exits. During the
+  next init of the SDK it would then load the persistent state from storage to
+  memory and try sending those requests. When that would happen, the SDK would
+  attempt to send requests that were already successfully sent to the server.
 </p>
 <p>
   We recommend using Explicit Storage Mode only in scenarios where reducing the
