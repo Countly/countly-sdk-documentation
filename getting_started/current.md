@@ -405,14 +405,14 @@
 <p>
   <span style="font-weight: 400;">Also, check if requests fail or are successfully sent to the server because if they fail, maybe the server is not reachable from this specific network, or you made a mistake when providing the URL to the server.</span>
 </p>
-<h2>2. Check Request Logs</h2>
+<h2>2. Check Incoming Data Logs</h2>
 <p>
   Next, you would want to verify that your Countly server is receiving data from
-  <span style="font-weight: 400;"><code>Utilities &gt; Request Logs</code></span>.
+  <span style="font-weight: 400;"><code>Utilities &gt; Incoming Data Logs</code></span>.
   <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set-up parameter tampering, etc.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327716734617/003.png" alt="003.png">
+  <img src="/hc/article_attachments/15755017229977" alt="003.png">
 </p>
 <h2>3. Make sure you have the correct configuration</h2>
 <p>
@@ -538,8 +538,8 @@
 </p>
 <h1>Finding SDK Logs</h1>
 <p>
-  Ensure you have enabled SDK logs before proceeding with the this process. For
-  guidance on how to enable logs, refer to the
+  Ensure you have enabled SDK logs before proceeding with this process. For guidance
+  on how to enable logs, refer to the
   <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK documentation's</a>
   "Logging" or "Debug Mode" section.
 </p>
@@ -561,7 +561,7 @@
 <p>
   <img src="/hc/article_attachments/15147181671321" alt="012.png">
 </p>
-<h2>Web:</h2>
+<h2>Web browser:</h2>
 <ol>
   <li>Open your website in a browser.</li>
   <li>Open the developer tools (typically by pressing F12).</li>
