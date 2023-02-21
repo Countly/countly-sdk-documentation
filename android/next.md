@@ -2212,26 +2212,60 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>requestMap </span>= <span>new </span>HashMap&lt;&gt;();<br><span>requestMap</span>.put(<span>"city"</span>, <span>"Istanbul"</span>);<br><span>requestMap</span>.put(<span>"country_code"</span>, <span>"TR"</span>);<br><span>requestMap</span>.put(<span>"ip_address"</span>, <span>"41.0082,28.9784"</span>);<br><br><span>try </span>{<br>    <span>JSONObject event </span>= <span>new </span>JSONObject();<br>    <span>event</span>.putOpt(<span>"key"</span>, <span>"test"</span>);<br>    <span>event</span>.putOpt(<span>"count"</span>, <span>"5"</span>);<br>    <span>event</span>.putOpt(<span>"sum"</span>, <span>"2"</span>);<br>    <span>event</span>.putOpt(<span>"dur"</span>, <span>"2000"</span>);<br><br>    <span>JSONObject ffJson </span>= <span>new </span>JSONObject();<br>    <span>ffJson</span>.putOpt(<span>"type"</span>, <span>"FF"</span>);<br>    <span>ffJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>ffJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject skipJson </span>= <span>new </span>JSONObject();<br>    <span>skipJson</span>.putOpt(<span>"type"</span>, <span>"skip"</span>);<br>    <span>skipJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>skipJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONObject resumeJson </span>= <span>new </span>JSONObject();<br>    <span>resumeJson</span>.putOpt(<span>"type"</span>, <span>"resume_play"</span>);<br>    <span>resumeJson</span>.putOpt(<span>"start_time"</span>, <span>123456789</span>);<br>    <span>resumeJson</span>.putOpt(<span>"end_time"</span>, <span>123456789</span>);<br><br>    <span>JSONArray trickPlay </span>= <span>new </span>JSONArray();<br>    <span>trickPlay</span>.put(<span>ffJson</span>);<br>    <span>trickPlay</span>.put(<span>skipJson</span>);<br>    <span>trickPlay</span>.put(<span>resumeJson</span>);<br><br>    <span>JSONObject segmentation </span>= <span>new </span>JSONObject();<br>    <span>segmentation</span>.putOpt(<span>"trickplay"</span>, <span>trickPlay</span>);<br>    <span>event</span>.putOpt(<span>"segmentation"</span>, <span>segmentation</span>);<br><br>    <span>JSONArray events </span>= <span>new </span>JSONArray();<br>    <span>events</span>.put(<span>event</span>);<br>    <span>requestMap</span>.put(<span>"events"</span>,<span>events</span>.toString());<br>} <span>catch </span>(<span>JSONException </span>e) {<br>    e.printStackTrace();<br>}<br><span>Countly</span>.<span>sharedInstance</span>().requestQueue().addDirectRequest(<span>requestMap</span>);<span style="font-weight: 400;"></span></pre>
 <h2>Explicit Storage Mode</h2>
 <p>
-  In some scenarios you might prefer your app to perform less writes to the devices
-  storage. This mode exists for these scenarios.
+  The Explicit Storage Mode is a feature that allows you to control the frequency
+  of writes to your device's storage.
 </p>
 <p>
-  If this mode is enabled then the SDK's request queue and event queue will be
-  kept only in memory and will not be persisted to storage when changes occur.
-  For those changes to be persisted, the host app has to give an explicit signal.
+  With this mode enabled, the Countly SDK's request and event queues will be stored
+  only in memory and will not be automatically persisted to storage when changes
+  occur. Instead, the host app must explicitly signal when the queues should be
+  persisted to storage.
 </p>
 <p>
-  Using this mode has a high risk of data loss and data duplication in case the
-  persistance synchronization is not implemented correctly.&nbsp;
+  Please note that using this mode increases the risk of data loss and data duplication
+  if persistence synchronization is not implemented correctly.
 </p>
 <p>
-  This mode is enable during init with the following config option:
+  To enable Explicit Storage Mode during initialization, use the following configuration
+  option:
 </p>
-<pre><span>config</span>.enableExplicitStorageMode();</pre>
+<pre><code>config.enableExplicitStorageMode();</code></pre>
 <p>
-  To write the memory queues to storage you would use the following call:
+  To write the memory queues to storage, use the following method:
 </p>
-<pre><span>Countly</span>.<span>sharedInstance</span>().requestQueue().esWriteCachesToPersistence();</pre>
+<pre><code>Countly.sharedInstance().requestQueue().esWriteCachesToPersistence();</code></pre>
+<p>
+  If you want know if any writes were performed, you can also use the following
+  variant. It allows you to set a callback that would inform you if anything was
+  written to storage. If your memory cache state would be the same as your perisent
+  storage state, no writes would be performed.
+</p>
+<pre><span>Countly</span>.<span>sharedInstance</span>().requestQueue().esWriteCachesToPersistence(<span>new </span><span>ExplicitStorageCallback</span>() {<br>    <span>@Override </span><span>public void </span><span>WriteToStorageFinished</span>(<span>boolean </span>writeWasPerformed) {<br>        <span>if </span>(writeWasPerformed) {<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Memory cache ouf of sync with persistent storage. New state was written to storage."</span>);<br>        } <span>else </span>{<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Memory cache matches persistent storage. No writes were performed."</span>);<br>        }<br>    }<br>});</pre>
+<p>
+  Like mentioned before, inpropper usage can lead to data loss or data duplication.
+</p>
+<p>
+  Data loss can occur when you have recorded new data and there is no or slow connection
+  to your server. If your app would crash or exit before the SDK is able to send
+  that data or before you had the ability to call
+  <code>esWriteCacheToStorage</code> , that information would be lost.
+</p>
+<p>
+  Data duplication can occur when you have recorded data and have called
+  <code>esWriteCacheToStorage</code> before it is sent to your server. This would
+  then persist the "full" queues to storage. After this point the data would have
+  been successfully sent to your server, but then no call would be made to
+  <code>esWriteCacheToStorage</code> before the app crashes or exits. During the
+  next init of the SDK it would then load the persistent state from storage to
+  memory and try sending those requests. When that would happen, the SDK would
+  attempt to send requests that were already successfully sent to the server.
+</p>
+<p>
+  We recommend using Explicit Storage Mode only in scenarios where reducing the
+  frequency of writes to storage is critical to the performance of your app. In
+  other scenarios, we recommend using the default storage behavior provided by
+  the Countly SDK.
+</p>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
