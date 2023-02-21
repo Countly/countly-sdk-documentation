@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 22.06.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 22.09.X</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -70,18 +70,13 @@
   <span style="font-weight: 400;">One of the first things you'll need to decide is which device ID generation strategy to use. There are several options defined below:</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is OpenUDID (don't forget to finish setting up OpenUDID as described below).</span>
+  <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is OpenUDID.</span>
 </p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>Countly.sharedInstance().init(config);</code></pre>
 <p>
   <span style="font-weight: 400;">You may specify the device ID by yourself if you have one (it has to be unique for each device). It may be an email or some other internal ID used by your other systems.</span>
 </p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code></pre>
-<p>
-  <span style="font-weight: 400;">In regard to the Google Advertising ID, please ensure you have Google Play services 4.0+ included in your project. Also, note that the Advertising ID silently falls back to OpenUDID in case, it fails to get the Advertising ID when Google Play services are not available on a device.</span>
-</p>
-<p>You may also explicitly use OpenUDID:</p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setIdMode(DeviceIdType.OPEN_UDID);<br>Countly.sharedInstance().init(config);</code></pre>
+<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code><code class="java"></code></pre>
 <h2>Adding callbacks</h2>
 <p>
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities:</span>
@@ -228,7 +223,7 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    // for LATEST_VERSION check <https://search.maven.org/artifact/ly.count.android/sdk>
+    // for LATEST_VERSION check &lt;https://search.maven.org/artifact/ly.count.android/sdk&gt;
     dependencies {
         classpath group: 'ly.count.android', 'name': 'sdk-plugin', 'version': 'LATEST_VERSION'
     }
@@ -553,8 +548,8 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   same deviceId even if the user logs out or to have a predetermined deviceId for
   when the users on the specific device logs out. The first method would not inflate
   the user count, but not viable for single device, multiple users use case. The
-  second would create a "multiuser" id for every device and possibly slightly inflate
-  the user count.
+  second would create a "multi-user" id for every device and possibly slightly
+  inflate the user count.
 </p>
 <h2>Temporary Device ID</h2>
 <p>
@@ -981,19 +976,6 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
 <p>
   <span style="font-weight: 400;">A deeper guide on how to configure your application to use deep links may be found&nbsp;</span><a href="https://developer.android.com/training/app-links/deep-linking.html"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
-<h2>Receiving Data Only Notifications</h2>
-<p>
-  <span style="font-weight: 400;">You may also completely disable the push notification handling made by the Countly SDK. To do so, just add <code>true</code></span><span style="font-weight: 400;">&nbsp;to the end of your <code>initMessaging()</code></span><span style="font-weight: 400;">call:</span>
-</p>
-<pre><code class="java">Countly.sharedInstance()
-    .init(this, "YOUR_SERVER", "APP_KEY", null, DeviceIdType.ADVERTISING_ID)
-    .initMessaging(this, CountlyActivity.class, "PROJECT_NUMBER", Countly.CountlyMessagingMode.TEST, true);
-
-</code></pre>
-<p>
-  <span style="font-weight: 400;">This parameter effectively disables any UI interactions and <code>Activity</code></span><span style="font-weight: 400;">&nbsp;instantiation from the Countly SDK. To enable the custom processing of push notifications, you may either register your own <code>WakefulBroadcastReceiver</code></span><span style="font-weight: 400;">&nbsp;or use&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#push-notifications"><span style="font-weight: 400;">our example with the broadcast action</span></a><span style="font-weight: 400;">. Once you have switched off the default push notification UI, please make sure to call <code>CountlyMessaging.recordMessageOpen(id)</code></span>whenever
-  a push notification is delivered to your device, and&nbsp;<code>CountlyMessaging.recordMessageAction(id, index)</code><span style="font-weight: 400;">, </span><span style="font-weight: 400;">whenever a user positively reacts to your notification. <code>id</code></span><span style="font-weight: 400;">&nbsp;is a message ID string you may receive from&nbsp;the <code>c.i</code></span><span style="font-weight: 400;">&nbsp;key of the push notification payload. <code>index</code></span><span style="font-weight: 400;">&nbsp;is optional and used to identify the type of action as follows: 0 for the tap on the notification in drawer, 1 for tap on first button of rich push, 2 for tap on the second button if there is any.</span>
-</p>
 <h2>Handling Push Callbacks</h2>
 <p>
   <span style="font-weight: 400;">When receiving a push notification, the user may click the notification directly or they may click the button. When a user clicks anywhere on the push notification, an intent is launched to open the provided link. This may be a web page URL or a deep link. If you have configured your app, so that opening this intent will open an activity of your app, it should be possible to track which button was pressed.</span>
@@ -1086,19 +1068,9 @@ Countly.sharedInstance().disableLocation();</code></pre>
   <span style="font-weight: 400;">There are two ways of acquiring remote config data: automatic download or manual request. Automatic remote config has been disabled by default and, therefore, without developer intervention, no remote config values will be requested.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Automatic value download happens when the SDK is initiated or when the device ID is changed. You have to call <code>setRemoteConfigAutomaticDownload</code></span><span style="font-weight: 400;">&nbsp;before init to enable it. As an optional value, you may provide a callback to be informed when the request is finished.</span>
+  <span style="font-weight: 400;">Automatic value download happens when the SDK is initiated or when the device ID is changed. You have to call <code>setRemoteConfigAutomaticDownload</code></span><span style="font-weight: 400;"> on the configuration object that you will provide during init to enable it. As an optional value, you may provide a callback to be informed when the request is finished.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().setRemoteConfigAutomaticDownload(true, new RemoteConfigCallback() {
-            @Override
-            public void callback(String error) {
-                if(error == null) {
-                    Toast.makeText(activity, "Automatic remote config download has completed", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(activity, "Automatic remote config download encountered a problem, " + error, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code></pre>
+<pre><code class="java"><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setRemoteConfigAutomaticDownload(<span>true</span>, <span>new </span><span>RemoteConfigCallback</span>() {<br>    <span>@Override </span><span>public void </span><span>callback</span>(<span>String </span>error) {<br>        <span>if </span>(error == <span>null</span>) {<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Automatic remote config download has completed. " </span>+ <span>Countly</span>.<span>sharedInstance</span>().remoteConfig().getAllValues());<br>        } <span>else </span>{<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Automatic remote config download encountered a problem, " </span>+ error);<br>        }<br>    }<br>});<br><span>Countly</span>.<span>sharedInstance</span>().init(<span>config</span>);</code></pre>
 <p>
   <span style="font-weight: 400;">If the callback returns a non-null value, you can expect that the request failed and no values were updated.</span>
 </p>
@@ -1618,8 +1590,7 @@ Countly.userData.save();</code></pre>
 <p>
   <span style="font-weight: 400;">The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code></span><span style="font-weight: 400;">&nbsp;with <code>true</code></span><span style="font-weight: 400;">&nbsp;before initializing Countly.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().setRequiresConsent(true);
-Countly.sharedInstance().init(appC, COUNTLY_SERVER_URL, COUNTLY_APP_KEY);</code></pre>
+<pre><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setRequiresConsent(<span>true</span>);<br><span>Countly</span>.<span>sharedInstance</span>().init(<span>config</span>);</pre>
 <p>
   <span style="font-weight: 400;">By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
 </p>
@@ -1731,7 +1702,7 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <p>
   <span style="font-weight: 400;">You may set the optional <code>salt</code></span><span style="font-weight: 400;">&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field. You will need to set exactly the same <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server. If&nbsp;the <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server is set, all requests would be checked for the validity of the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field before being processed.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().enableParameterTamperingProtection("salt");</code></pre>
+<pre><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setParameterTamperingProtectionSalt(<span>"salt"</span>);<br><span>Countly</span>.<span>sharedInstance</span>().init(<span>config</span>);</pre>
 <h2>SSL Certificate Pinning</h2>
 <p>
   <span>Public key and certificate pinning are techniques that improve communication security by eliminating the threat of&nbsp;</span><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a><span>&nbsp;in SSL connections.&nbsp;</span>
@@ -1782,10 +1753,9 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 </p>
 <h2>Using Proguard</h2>
 <p>
-  <span style="font-weight: 400;">Proguard obfuscates the OpenUDID &amp; Countly Messaging classes. If you use OpenUDID or Countly Messaging in your application, you will need to add the following lines to your Proguard rules file:</span>
+  <span style="font-weight: 400;">Proguard obfuscates the Messaging classes. If you use Countly Messaging in your application, you will need to add the following lines to your Proguard rules file:</span>
 </p>
-<pre><code class="java">-keep class org.openudid.**{ *; }
--keep class ly.count.android.sdk.** {*; }</code></pre>
+<pre><code class="java">-keep class ly.count.android.sdk.** {*; }</code></pre>
 <p>
   More info can be found
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">here</a>.
@@ -2190,17 +2160,17 @@ registerReceiver(messageReceiver, filter);</code></pre>
 <p>
   <span style="font-weight: 400;">Currently, the SDK ignores crawlers by default. If you would like to change this setting, use <code>ifShouldIgnoreCrawlers</code></span><span style="font-weight: 400;">. If you would like to check if the current device was detected as a crawler, use <code>isDeviceAppCrawler</code></span><span style="font-weight: 400;">. Detection is done in the init function, meaning you would have to add the crawler names before that and perform the check after.</span>
 </p>
-<pre><code class="java">//set that the sdk should ignore app crawlers
-Countly.sharedInstance().requestQueue().ifShouldIgnoreCrawlers(true);
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);<br><br>//set that the sdk should ignore app crawlers
+config.setShouldIgnoreAppCrawlers(true);
 
 //set that the sdk should not ignore app crawlers
-Countly.sharedInstance().requestQueue().ifShouldIgnoreCrawlers(false);
+config.setShouldIgnoreAppCrawlers(false);
 
-//add another app crawler device name to ignore
-Countly.sharedInstance().addAppCrawlerName("App crawler");
+//add app crawler device names to ignore
+config.setAppCrawlerNames(new String[] { "App Crawler" });
 
 //returns true if this device is detected as a app crawler and false otherwise
-Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
+Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 <h2>Interacting with the Internal Request Queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -2270,7 +2240,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
   to the server, it is stored locally.
 </p>
 <p>
-  *When sending any network requests to the server, the following things are sent
+  * When sending any network requests to the server, the following things are sent
   in addition of the main data:<br>
   - Timestamp of when the request is creted<br>
   - Current hour<br>
@@ -2284,7 +2254,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
   and duration
 </p>
 <p>
-  *If sessions are used then also device metrics are collected which contains:<br>
+  * If sessions are used then also device metrics are collected which contains:<br>
   - Device model<br>
   - Device type (phone, tablet, etc)<br>
   - Screen resolution<br>
@@ -2297,7 +2267,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
 </p>
 <p>* The current device orientation</p>
 <p>
-  *When generating a device ID, if no custom ID is provided, the SDK will use:<br>
+  * When generating a device ID, if no custom ID is provided, the SDK will use:<br>
   - Secure.ANDROID_ID as the default ID and advertising id as a fallback devices
   ID
 </p>
@@ -2308,7 +2278,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
   button the user has clicked on&nbsp;
 </p>
 <p>
-  *If automatic view tracking is enabled, it will collect:<br>
+  * If automatic view tracking is enabled, it will collect:<br>
   - activity class name&nbsp;
 </p>
 <p>
@@ -2316,7 +2286,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();f</code></pre>
   time of the widgets completion
 </p>
 <p>
-  *When events are recorded, the time of when the event is recorded, will be collected
+  * When events are recorded, the time of when the event is recorded, will be collected
 </p>
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
