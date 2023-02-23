@@ -345,7 +345,6 @@ Countly.init({
   </div>
 </div>
 <h2>SDK Notes</h2>
-
 <p>
   <span style="font-weight: 400;">Note that the Countly web SDK automatically captures UTM tags and stores them as user properties together with the corresponding user. This will make users segmentable in all the places around the dashboard, where granular data is used and segmentation capabilities are provided.</span>
 </p>
