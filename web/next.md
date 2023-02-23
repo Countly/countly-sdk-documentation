@@ -345,22 +345,7 @@ Countly.init({
   </div>
 </div>
 <h2>SDK Notes</h2>
-<h3>
-  Why aren’t I able to see AngularJS errors on the Countly dashboard?
-</h3>
-<p>
-  AngularJs swallows errors by default. You will need to extend Angular's
-  <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>. For
-  more information,
-  <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
-</p>
-<h3>Generate custom SDK code snippets</h3>
-<p>
-  <a href="http://code.count.ly/">Countly Code Generator</a> may be used to generate
-  custom SDK code snippets simply and quickly. You may provide values for your
-  event, or user profile or just start with basic integration, and this service
-  will generate the necessary code for you to use in your favorite IDE.
-</p>
+
 <h3>Setup Properties</h3>
 <p>
   Here are the properties you may set up upon Countly initialization:
@@ -3086,4 +3071,11 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   'CountlySiteBot' in your userAgent string. This enables your SDK to recognize
   your bot as one of the bots to be ignored and the SDK would stop recording data
   for your bot.
+</p>
+<h2>Why aren’t I able to see AngularJS errors on the Countly dashboard?</h2>
+<p>
+  AngularJs swallows errors by default. You will need to extend Angular's
+  <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>. For
+  more information,
+  <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
 </p>
