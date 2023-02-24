@@ -71,7 +71,7 @@ cordova platform remove ios</code></pre>
 <pre><code class="shell">cordova platform add android
 cordova platform add ios</code></pre>
 <p>
-  It's important that you make sure you build it with Cordova, as Cordova link
+  It's important that you make sure you build it with Cordova, as Cordova links
   folders very well.
 </p>
 <pre><code class="shell">cordova build android
