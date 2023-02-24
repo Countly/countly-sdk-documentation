@@ -3376,7 +3376,17 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </div>
 <h2>Setting Maximum Request Queue Size</h2>
 <p>
-  You can specify the <code>storedRequestsLimit</code> on the <code>CountlyConfig</code> object before starting Countly. It is used to limit the number of requests  in the request queue when there is a Countly Server connection problem. If your Countly Server is down, queued requests can reach excessive numbers, causing delivery problems to the server and requests stored on the device. To prevent this from happening, the Countly iOS SDK will only store requests up to the <code>storedRequestsLimit</code>. If the number of stored requests reaches the <code>storedRequestsLimit</code>, the Countly iOS SDK will start to drop the oldest requests, storing the newest ones in their place. If the <code>storedRequestsLimit</code> is not explicitly set, the default setting will be at <strong>1,000</strong>.
+  You can specify the <code>storedRequestsLimit</code> on the
+  <code>CountlyConfig</code> object before starting Countly. It is used to limit
+  the number of requests in the request queue when there is a Countly Server connection
+  problem. If your Countly Server is down, queued requests can reach excessive
+  numbers, causing delivery problems to the server and requests stored on the device.
+  To prevent this from happening, the Countly iOS SDK will only store requests
+  up to the <code>storedRequestsLimit</code>. If the number of stored requests
+  reaches the <code>storedRequestsLimit</code>, the Countly iOS SDK will start
+  to drop the oldest requests, storing the newest ones in their place. If the
+  <code>storedRequestsLimit</code> is not explicitly set, the default setting will
+  be at <strong>1,000</strong>.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
