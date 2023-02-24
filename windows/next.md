@@ -26,9 +26,9 @@
   </ol>
 </div>
 <p>
-  The Countly GitHub page for this SDK contains also sample projects. You can download
-  them to test the basic functionality of this SDK and make sure that you are using
-  it correctly, in case you encounter any problems in your application.
+  The Countly GitHub page for this SDK contains also sample projects. You should
+  be able to download them to test the basic functionality of this SDK and make
+  sure you are using it correctly. In case you encounter any problems in your application,
 </p>
 <p>
   The project page can be found
@@ -36,7 +36,7 @@
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency in either your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
+  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency, either in your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
 </p>
 <ol>
   <li>
@@ -86,7 +86,7 @@ Countly.Instance.Init(cc);</code></pre>
 </div>
 <h2>SDK Logging / Debug Mode</h2>
 <p>
-  <span>The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
+  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
   To enable logging you need to do the following two steps:
 </p>
 <p>
@@ -404,9 +404,9 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
   <li>
     <strong>cpuId</strong> - [net35, net40] (we recommend against using this)
     uses the OS-provided CPU id info to generate a hash that is used as an id.
-    Usually, it is possible to generate the same id on a reinstall if the CPU
-    stays the same. On virtual machines and Windows 10 devices are not guaranteed
-    to be unique and generate the same id and therefore device id conflicts
+    It should be possible to generate the same id on a reinstall if the CPU stays
+    the same. On virtual machines and Windows 10 devices are not guaranteed to
+    be unique and generate the same id and therefore device id conflicts.
   </li>
   <li>
     <strong>multipleWindowsFields</strong> - [net35, net40] uses multiple OS-provided
@@ -617,7 +617,7 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <p>
   Consent for features is not persistent and will have to be set every time while
-  initializing countly. Therefore the storage and persistence of given consent
+  initializing countly. Therefore, the storage and persistence of given consent
   fall on the SDK integrator.
 </p>
 <p>

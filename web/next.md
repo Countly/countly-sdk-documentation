@@ -2938,6 +2938,45 @@ Countly.max_stack_trace_line_length = 300;
 });</code></pre>
   </div>
 </div>
+<h2>Setting Maximum Request Queue Size</h2>
+<p>
+  When you initialize Countly, you can specify a value for the queue_size flag.
+  This flag limits the number of requests that can be stored in the request queue
+  when the Countly server is unavailable or experiencing connection problems.
+</p>
+<p>
+  If the server is down, requests sent to it will be queued on the device. If the
+  number of queued requests becomes excessive, it can cause problems with delivering
+  the requests to the server, and can also take up valuable storage space on the
+  device. To prevent this from happening, the queue_size flag limits the number
+  of requests that can be stored in the queue.
+</p>
+<p>
+  If the number of requests in the queue reaches the queue_size limit, the oldest
+  requests in the queue will be dropped, and the newest requests will take their
+  place. This ensures that the queue doesn't become too large, and that the most
+  recent requests are prioritized for delivery.
+</p>
+<p>
+  If you do not specify a value for the queue_size flag, the default setting of
+  1,000 will be used.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.queue_size = 5000;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    queue_size: 5000
+});</code></pre>
+  </div>
+</div>
 <h2>UTM Tags</h2>
 <p>
   If you are providing possible users links to your website, and if you would like
