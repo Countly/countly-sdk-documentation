@@ -291,15 +291,15 @@ await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pr
 <h2>Timed Events</h2>
 <p>
   Timed events are events which gives you the ability to calculate the duration
-  it takes for the event to take place with respect to any arbitrary point you
-  choose. Timed events must be handled manually, where they need a call to start
-  the event and another call to end the event. First call is used to start an internal
-  timer which would continue counting until the second call is used to stop it
-  and record the duration. This second call would end the timer, create an event
-  with the given name and the with the duration from the timer and send it to the
-  event queue. If this second call has not been called or if the app has been closed
+  it takes for an event to take place with respect to any arbitrary point you choose.
+  Timed events must be handled manually, where they need a call to start the event
+  and another call to end the event. First call is used to start an internal timer
+  which would continue counting until the second call is used to stop it and record
+  the duration. This second call would end the timer, create an event with the
+  given name and the with the duration from the timer and send it to the event
+  queue. If this second call has not been called or if the app has been closed
   before calling it, no event would be created. As the timer is stored at the memory
-  of the device, if you close the app before ending the event, you would have to
+  of the device, if you close the app before ending the event, you will have to
   start all over when you open the app later again.
 </p>
 <pre><code class="java">string eventName = "Some event";

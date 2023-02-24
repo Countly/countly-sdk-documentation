@@ -3,8 +3,9 @@
 </p>
 <div class="callout callout--info">
   <p>
-    To access the documentation for version 22.02.0 and older, click
-    <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="blank">here</a>.
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#web-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -76,7 +77,7 @@
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">In order to track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">To track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via the command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
@@ -84,13 +85,10 @@
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">npm</span>
-    <span class="tabs-link">bower</span> <span class="tabs-link">yarn</span>
+    <span class="tabs-link">yarn</span>
   </div>
   <div class="tab">
     <pre><code class="shell">npm install countly-sdk-web</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">bower install countly-sdk-web</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="shell">yarn add countly-sdk-web</code></pre>
@@ -102,19 +100,22 @@
 <h1>SDK Integration</h1>
 <h2>Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. It may also be used if the Countly script has not yet been loaded by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue or synchronously allowing the script to load before executing any functions.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. This would also allow to use Countly while the Countly script has not yet been loaded. This can be done by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
 </p>
 <p>
-  Here you would also need to provide your application key and server URL. For
-  more information on how to acquire your application key (APP_KEY) and server
-  URL, please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
-  Also if you are planning to use Application Performance Monitoring (APM) there
-  would be additional steps necessary for you to follow. For more information on
-  APM and its integration please check
+  Here you would also need to provide your application key and server URL. Please
+  check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
+</p>
+<p>
+  If you are planning to use Application Performance Monitoring (APM), you would
+  need to follow additional steps. For more information on APM and its integration,
+  please check
   <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#application-performance-monitoring">here</a>.
 </p>
 <p>
@@ -135,8 +136,7 @@ Countly.q = Countly.q || [];
 // Provide your app key that you retrieved from Countly dashboard
 Countly.app_key = "YOUR_APP_KEY";
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
+// Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
 Countly.url = "https://yourdomain.com";
@@ -151,17 +151,17 @@ Countly.q.push(['track_pageview']);
 // Uncomment the following line to track web heatmaps (Enterprise Edition)
 // Countly.q.push(['track_clicks']);
 
-// Uncomment the following line to track web scrollmaps (Enterprise Edition)
+// Uncomment the following line to track web scroll maps (Enterprise Edition)
 // Countly.q.push(['track_scrolls']);
 
 // Load Countly script asynchronously
 (function() {
 var cly = document.createElement('script'); cly.type = 'text/javascript';
 cly.async = true;
-// Enter url of script here (see below for other option)
+// Enter URL of script here (see below for other option)
 cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
 cly.onload = function(){Countly.init()};
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+var s = document.getElementsByTagName['script'](0); s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
   </div>
@@ -174,8 +174,7 @@ Countly.init({
 // provide your app key that you retrieved from Countly dashboard
 app_key: "YOUR_APP_KEY",
 
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
+// Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.  
  url: "http://yourdomain.com"
@@ -189,19 +188,19 @@ Countly.track_pageview();
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. There are two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should be using instead of the one above.</span>
+  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. Two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should use instead of the one above.</span>
 </p>
-<pre><code class="text">// Note: You should change 19.2.1 below to the version 
-// of the latest JS SDK to make sure you use latest version.
-// Latest version is here: 
+<pre><code class="text">// Note: You should change 19.2.1 below to the version
+// of the latest JS SDK to make sure you use the latest version.
+// Latest version is here:
 // https://github.com/Countly/countly-sdk-web/releases
 
-https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
+<https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>>
 <p>
   <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You would only need to point this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use-case.</span>
+  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You only need to point to this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use case.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Then you will be able to make event calls such as:</span>
@@ -216,7 +215,7 @@ https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</co
 //send event on button click
 function clickEvent(ob){
   Countly.q.push(['add_event',{
-    key:"asyncButtonClick", 
+    key:"asyncButtonClick",
     segmentation: {
       "id": ob.id
     }
@@ -230,7 +229,7 @@ function clickEvent(ob){
   //send event on button click
   function clickEvent(ob){
     Countly.add_event({
-      key:"buttonClick", 
+      key:"buttonClick",
       segmentation: {
         "id": ob.id
       }
@@ -243,7 +242,7 @@ function clickEvent(ob){
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about methods to verify it from
+    you can learn about the verification methods from
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
@@ -310,21 +309,21 @@ Countly.debug = true;</code></pre>
   and enable convenience methods like offline mode.
 </p>
 <p>
-  The default storage location of user specific data, except the session information,
-  is the local storage of your browser. Information stored here is persistent and
-  as long as it was not erased or overwritten it would stay on your device indefinitely.
-  However Countly gives you the option to change this behavior by selecting persistent
-  cookies as the main storage option or choosing not store any data at all, depending
-  on your needs. These storage options are mutually exclusive, meaning, only one
+  The default storage location of user-specific data, except the session information,
+  is your browser’s local storage. Information stored here is persistent, and as
+  long as it was not erased or overwritten, it will stay on your device indefinitely.
+  However, Countly allows you to change this behavior by selecting persistent cookies
+  as the main storage option or choosing not to store any data at all, depending
+  on your needs. These storage options are mutually exclusive, meaning only one
   option can be selected at a given time.
 </p>
 <p>
-  If cookies were selected as the main storage medium it must be known that persistent
-  cookies have an expiration date and the information stored in them would be rendered
-  obsolete after a while. Incase of the session information, it is stored in session
-  cookies and would expire when the tab or browser is closed. Lastly if you decide
-  to not store any information, all information would stay in memory and would
-  be gone when the memory is cleared.
+  If cookies were selected as the main storage medium, persistent cookies have
+  an expiration date and the information stored in them would be rendered obsolete
+  after a while. In case of the session information, it is stored in session cookies
+  and would expire when the tab or browser is closed. Lastly, if you decide not
+  to store any information, all information will stay in memory and would be gone
+  when the memory is cleared.
 </p>
 <p>These options can be selected during the initialization:</p>
 <div class="tabs">
@@ -391,7 +390,7 @@ Countly.init({
     <strong>ip_address</strong> - (optional) IP address of your visitor
   </li>
   <li>
-    <strong>debug</strong> - output debug info into console (default: false)
+    <strong>debug</strong> - output debug info into the console (default: false)
   </li>
   <li>
     <strong>ignore_bots</strong> - option to ignore traffic from bots (default:
@@ -402,7 +401,7 @@ Countly.init({
     <span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
   </li>
   <li>
-    <strong>queue_size</strong> - maximum amount of queued requests to store
+    <strong>queue_size</strong> - the maximum amount of queued requests to store
     (default: 1000)
   </li>
   <li>
@@ -418,18 +417,20 @@ Countly.init({
     <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
   <li>
-    <strong>max_events</strong> -&nbsp;maximum amount of events to send in one
-    batch (default: 100)
+    <strong>max_events</strong> - maximum amount of events to send in one batch
+    (default: 100)
   </li>
   <li>
-    <strong>max_logs</strong> -&nbsp;<span style="font-weight: 400;">maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
+    <strong>max_logs</strong> -
+    <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
   <li>
     <strong>ignore_referrers</strong> - array with referrers to ignore (default:
     none)
   </li>
   <li>
-    <strong>ignore_prefetch</strong> -<span style="font-weight: 400;">&nbsp;ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
+    <strong>ignore_prefetch</strong> -
+    <span style="font-weight: 400;">ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
   </li>
   <li>
     <strong>heatmap_whitelist</strong> -
@@ -483,7 +484,7 @@ Countly.init({
     <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
-    <span><strong>metrics</strong> -&nbsp;provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
+    <span><strong>metrics</strong> - provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
     <ul>
       <li>
         <span><strong>_os</strong> - the name of platform/operating system</span>
@@ -784,10 +785,23 @@ catch(ex){
 </div>
 <h2>Timed Events</h2>
 <p>
-  <span style="font-weight: 400;">You may report time or duration with every event by providing the&nbsp;<strong>dur</strong>&nbsp;property of the event’s object. However, if you would like, you may also let the Web SDK track the duration of some specific events for you. You may use the&nbsp;<strong>start_event</strong>&nbsp;and&nbsp;<strong>end_event</strong>&nbsp;methods.</span>
+  All events contain an optional duration property that can be set manually or
+  with the help of the Countly web SDK's convenience functions. There are three
+  methods available to use to calculate the duration property: start_event, cancel_event,
+  and end_event.
 </p>
 <p>
-  <span style="font-weight: 400;">Firstly, you may start tracking an event time by providing the name of the event (which later on will be used as the key for the event object).</span>
+  The expected usage of these methods involves calling start_event for a specific
+  event when it begins and then calling end_event to calculate the duration and
+  create the event. In case you need to cancel a previously-called start_event,
+  you can call cancel_event. However, it's important to note that these methods
+  operate on the memory layer and shouldn't be used to calculate durations in situations
+  where a browser restart occurs.
+</p>
+<p>
+  The start_event method is used to initiate an internal timer within the SDK for
+  a given event name. This timer works by taking the current timestamp and storing
+  it in memory.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -802,7 +816,27 @@ catch(ex){
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Countly will internally mark the start of the event and will wait until you end the event using the&nbsp;<strong>end_event</strong>&nbsp;method, setting up&nbsp;the <strong>dur</strong>&nbsp;property based on how much time has passed since&nbsp;the <strong>start_event</strong>&nbsp;for the same event name was selected.</span>
+  The cancel_event method erases the timestamp associated with a given event name
+  if a start_event was previously called for that event.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['cancel_event', 'timedEvent']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.cancel_event("timedEvent")</code></pre>
+  </div>
+</div>
+<p>
+  The end_event method calculates the duration value for the given event name by
+  finding the time difference between when the start_event was called and the current
+  time. It then creates an event for the given name with the calculated duration
+  and adds it to the event queue. You can also pass an event object to this method,
+  and in that case, it will use the key value as the event name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1428,7 +1462,7 @@ Countly.remote_config = function(err, remoteConfigs){
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",<br>  debug: true,
-  remote_config: true 
+  remote_config: true
 });<br><br>// OR
 
 // provide a callback to be notified when configs are loaded
@@ -1606,7 +1640,7 @@ Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
 //to show multiple rating widgets with an array of different widget IDs
 Countly.q.push([
     'initializeRatingWidgets',
-    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
+    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass']
 ]);
 
 </code></pre>
@@ -1708,7 +1742,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
       console.log(err);
         return;
     }
-    
+
     //The available feedback types are nps and survey, decide which one to show
     var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
     
@@ -1748,11 +1782,53 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </ol>
 <p>
   At first step, by using the 'get_available_feedback_widgets' function, you can
-  fetch the list of available widgets from your server as an array of widget objects.
+  fetch the list of available widgets from your server as an Array of widget Objects.
   This function takes a callback as a parameter and this callback should have two
   parameters, first one for the returned list and the second one for the error.
   Inside your callback you should process this array of widget objects and pick
-  one object that you want to report the results for.
+  one object that you want to report the results for. This array and the objects
+  that you can pick would look like this:
+</p>
+<pre>{
+  "result":[
+      {
+        "_id":"614811419f030e44be07d82f",
+        "type":"rating",
+        "appearance":{
+          "position":"mleft",
+          "bg_color":"#fff",
+          "text_color":"#ddd",
+          "text":"Feedback"
+          },
+        "tg":["/"],
+        "name":"Leave us a feedback"
+      },
+      {
+        "_id":"614811419f030e44be07d839",
+        "type":"nps",
+        "name":"One response for all",
+        "tg":[]
+      },
+      {
+        "_id":"614811429f030e44be07d83d",
+        "type":"survey",
+        "appearance":{
+          "position":"bLeft",
+          "show":"uSubmit",
+          "color":"#0166D6",
+          "logo":null,
+          "submit":"Submit",
+          "previous":"Previous",
+          "next":"Next"
+          },
+        "name":"Product Feedback example",
+        "tg":[]
+      }
+    ]
+  }</pre>
+<p>
+  Here you would want to pick a widget according to its type and name or any other
+  information you are looking for.
 </p>
 <p>
   At second step, by using the 'getFeedbackWidgetData' function, you can fetch
@@ -1800,7 +1876,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     "organization": "Countly",
     "phone": "+37112345678",
     //Web URL to picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg",
     "gender": "M",
     "byear": 1987, //birth year
     "custom":{
@@ -1818,7 +1894,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     "organization": "Countly",
     "phone": "+37112345678",
     //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg",
     "gender": "M",
     "byear": 1987, //birth year
     "custom":{
@@ -1993,11 +2069,11 @@ function syncScripts() {
         recursiveScriptMaker(scripts[i], function() {
             i++;
             if(i &lt; scripts.length) {
-                loopScriptList(scripts);   
+                loopScriptList(scripts);
             }
-        }); 
+        });
     }
-    loopScriptList(scripts);      
+    loopScriptList(scripts);
 }
 function recursiveScriptMaker(source, callback ) {
     var script = document.createElement('script');
@@ -2006,7 +2082,7 @@ function recursiveScriptMaker(source, callback ) {
         callback();
     }
     script.src = source;
-    document.getElementsByTagName('head')[0].appendChild(script);
+    document.getElementsByTagName['head'](0).appendChild(script);
 }<code></code></code></pre>
 <p>
   After that, you need to call a method to start reporting 'loading' and 'network'
@@ -2285,7 +2361,7 @@ cly.async = true;
 // Enter url of script here (see below for other option)
 cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
 cly.onload = function(){Countly.init()};
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+var s = document.getElementsByTagName['script'](0); s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
   </div>
@@ -2554,14 +2630,14 @@ if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
   
   //provide countly initialization parameters
   Countly.app_key = "YOUR_APP_KEY";
-  Countly.url = "http://yourdomain.com"; 
+  Countly.url = "http://yourdomain.com";
   
   //track views or anything else you want to track
   Countly.q.push(['track_pageview']);
   
   //function to initialize Countly
   function InitializeCountly(device_id) {
-    
+
     //assign passed device_id
     Countly.device_id = device_id;
     
@@ -2723,22 +2799,22 @@ Countly.q = Countly.q || [];
 
 // initializing first instance, which will be global Countly
 Countly.init({
-	app_key: "YOUR_APP_KEY_1",
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_1",
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
-	key:"first_app"
+  key:"first_app"
 });
 
-// initialize second instance for another app 
+// initialize second instance for another app
 Countly.q.push(["init", {
-	app_key: "YOUR_APP_KEY_2", //must have different APP key
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_2", //must have different APP key
+  url: "https://try.count.ly" //your server goes here
 }])
 // report event to second app asynchronously by passing app key as first argument
 Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
-	key:"second_app"
+  key:"second_app"
 }]);
     </code></pre>
   </div>
@@ -2746,24 +2822,24 @@ Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
     <pre><code class="javascript">
 // initializing first instance, which will be global Countly
 Countly.init({
-	app_key: "YOUR_APP_KEY_1",
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_1",
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
-	key:"first_app"
+  key:"first_app"
 });
 
 // initialize second instance for another app
 var Countly2 = Countly.init({
-	app_key: "YOUR_APP_KEY_2", //must have different APP key
-	url: "https://try.count.ly" //your server goes here
+  app_key: "YOUR_APP_KEY_2", //must have different APP key
+  url: "https://try.count.ly" //your server goes here
 });
 // report event to second app
 Countly2.add_event({
-	key:"second_app"
+  key:"second_app"
 });
-    
+
     </code></pre>
   </div>
 </div>
@@ -2972,7 +3048,7 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 </ol>
 <p>A simple implementation would look something like this:</p>
 <div>
-  <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>o</span><span>)[</span><span>0</span><span>];</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
+  <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>[</span><span>o</span><span>](</span><span>0</span><span>);</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
 </div>
 <div class="callout callout--info">
   <p>
@@ -3011,4 +3087,3 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   your bot as one of the bots to be ignored and the SDK would stop recording data
   for your bot.
 </p>
-<p>&nbsp;</p>

@@ -85,13 +85,10 @@
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">npm</span>
-    <span class="tabs-link">bower</span> <span class="tabs-link">yarn</span>
+    <span class="tabs-link">yarn</span>
   </div>
   <div class="tab">
     <pre><code class="shell">npm install countly-sdk-web</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="shell">bower install countly-sdk-web</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="shell">yarn add countly-sdk-web</code></pre>
@@ -788,10 +785,23 @@ catch(ex){
 </div>
 <h2>Timed Events</h2>
 <p>
-  <span style="font-weight: 400;">You may report time or duration with every event by providing the&nbsp;<strong>dur</strong>&nbsp;property of the event’s object. However, if you would like, you may also let the Web SDK track the duration of some specific events for you. You may use the&nbsp;<strong>start_event</strong>&nbsp;and&nbsp;<strong>end_event</strong>&nbsp;methods.</span>
+  All events contain an optional duration property that can be set manually or
+  with the help of the Countly web SDK's convenience functions. There are three
+  methods available to use to calculate the duration property: start_event, cancel_event,
+  and end_event.
 </p>
 <p>
-  <span style="font-weight: 400;">Firstly, you may start tracking an event time by providing the name of the event (which later on will be used as the key for the event object).</span>
+  The expected usage of these methods involves calling start_event for a specific
+  event when it begins and then calling end_event to calculate the duration and
+  create the event. In case you need to cancel a previously-called start_event,
+  you can call cancel_event. However, it's important to note that these methods
+  operate on the memory layer and shouldn't be used to calculate durations in situations
+  where a browser restart occurs.
+</p>
+<p>
+  The start_event method is used to initiate an internal timer within the SDK for
+  a given event name. This timer works by taking the current timestamp and storing
+  it in memory.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -806,7 +816,27 @@ catch(ex){
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Countly will internally mark the start of the event and will wait until you end the event using the&nbsp;<strong>end_event</strong>&nbsp;method, setting up&nbsp;the <strong>dur</strong>&nbsp;property based on how much time has passed since&nbsp;the <strong>start_event</strong>&nbsp;for the same event name was selected.</span>
+  The cancel_event method erases the timestamp associated with a given event name
+  if a start_event was previously called for that event.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['cancel_event', 'timedEvent']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.cancel_event("timedEvent")</code></pre>
+  </div>
+</div>
+<p>
+  The end_event method calculates the duration value for the given event name by
+  finding the time difference between when the start_event was called and the current
+  time. It then creates an event for the given name with the calculated duration
+  and adds it to the event queue. You can also pass an event object to this method,
+  and in that case, it will use the key value as the event name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
