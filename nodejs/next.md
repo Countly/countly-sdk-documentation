@@ -503,31 +503,6 @@ Countly.report_trace({
     }
 });</code></pre>
 <h1>Other features and notes</h1>
-<h2>Attribution</h2>
-<p>
-  When using Countly attribution analytics, you can also report conversion to Countly
-  server, for e.g., when visitor purchased something or registered.
-</p>
-<p>
-  Note: that conversion for each user may be reported only once, all other conversions
-  will be ignored for this same user
-</p>
-<pre><code class="javascript">//or provide campaign id yourself
-Countly.report_conversion("MyCampaignID");</code></pre>
-<h2>Make raw request</h2>
-<p>
-   If you are switching between users a lot, or changing some other data,
-  which is hard to handle over multiple processes, etc. You can simply make a raw
-  request with all possible SDK parameters described in
-  <a href="http://resources.count.ly/docs/i">API reference</a>
-</p>
-<pre><code class="javascript">Countly.request({
-  app_key:"somekey", 
-  devide_id:"someid", 
-  events:"[{'key':'val','count':1}]", 
-  metrics:"{'_os':'Linux'}",
-  begin_session:1
-});</code></pre>
 <h2>SDK Config Parameters Explained</h2>
 <p>
   Here are the properties you can setup on Countly initialization
@@ -714,5 +689,60 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     max_breadcrumb_count: 80,
     max_stack_trace_lines_per_thread: 50,
     max_stack_trace_line_length: 300
+});</code></pre>
+<h2>Setting Maximum Request Queue Size</h2>
+<p>
+  When you initialize Countly, you can specify a value for the queueSize flag.
+  This flag limits the number of requests that can be stored in the request queue
+  when the Countly server is unavailable or experiencing connection problems.
+</p>
+<p>
+  If the server is down, requests sent to it will be queued on the device. If the
+  number of queued requests becomes excessive, it can cause problems with delivering
+  the requests to the server, and can also take up valuable storage space on the
+  device. To prevent this from happening, the queueSize flag limits the number
+  of requests that can be stored in the queue.
+</p>
+<p>
+  If the number of requests in the queue reaches the queueSize limit, the oldest
+  requests in the queue will be dropped, and the newest requests will take their
+  place. This ensures that the queue doesn't become too large, and that the most
+  recent requests are prioritized for delivery.
+</p>
+<p>
+  If you do not specify a value for the queueSize flag, the default setting of
+  1,000 will be used.
+</p>
+<div class="javascript">
+  <pre><code class="">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    queueSize: 5000
+});</code></pre>
+</div>
+<h2>Attribution</h2>
+<p>
+  When using Countly attribution analytics, you can also report conversion to Countly
+  server, for e.g., when visitor purchased something or registered.
+</p>
+<p>
+  Note: that conversion for each user may be reported only once, all other conversions
+  will be ignored for this same user
+</p>
+<pre><code class="javascript">//or provide campaign id yourself
+Countly.report_conversion("MyCampaignID");</code></pre>
+<h2>Make raw request</h2>
+<p>
+   If you are switching between users a lot, or changing some other data,
+  which is hard to handle over multiple processes, etc. You can simply make a raw
+  request with all possible SDK parameters described in
+  <a href="http://resources.count.ly/docs/i">API reference</a>
+</p>
+<pre><code class="javascript">Countly.request({
+  app_key:"somekey", 
+  devide_id:"someid", 
+  events:"[{'key':'val','count':1}]", 
+  metrics:"{'_os':'Linux'}",
+  begin_session:1
 });</code></pre>
 <p>&nbsp;</p>

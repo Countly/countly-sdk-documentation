@@ -2001,6 +2001,30 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   this, call:
 </p>
 <pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h2>Setting Maximum Request Queue Size</h2>
+<p>
+  When you initialize Countly, you can specify a value for the setMaxRequestQueueSize
+  flag. This flag limits the number of requests that can be stored in the request
+  queue when the Countly server is unavailable or experiencing connection problems.
+</p>
+<p>
+  If the server is down, requests sent to it will be queued on the device. If the
+  number of queued requests becomes excessive, it can cause problems with delivering
+  the requests to the server, and can also take up valuable storage space on the
+  device. To prevent this from happening, the setMaxRequestQueueSize flag limits
+  the number of requests that can be stored in the queue.
+</p>
+<p>
+  If the number of requests in the queue reaches the setMaxRequestQueueSize limit,
+  the oldest requests in the queue will be dropped, and the newest requests will
+  take their place. This ensures that the queue doesn't become too large, and that
+  the most recent requests are prioritized for delivery.
+</p>
+<p>
+  If you do not specify a value for the setMaxRequestQueueSize flag, the default
+  setting of 1,000 will be used.
+</p>
+<pre><code class="Java">config.setMaxRequestQueueSize(5000);</code></pre>
 <h2>Checking If the SDK Has Been Initialized</h2>
 <p>
   <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
