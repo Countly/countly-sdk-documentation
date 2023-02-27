@@ -550,74 +550,75 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
 </p>
-<h2 id="SettingUpSQLiteStorage">Setting Up SQLite Storage</h2>
+<h2>Setting Request Queue Threshold</h2>
 <p>
-  In case you need persistent storage, you would need to build the SDK with that
-  option enabled. In that case, you must build the SDK with the COUNTLY_USE_SQLITE
-  option, as explained <a href="#AddingTheSdkToTheProject">here</a>.
+  Before SDK init, you may
+  <span>limit the number of requests that the system can store internally. The default value is <strong>1000.</strong></span><br>
+  Example:
+</p>
+<pre><code>cly::Counlty.getInstance().<span>setMaxRequestQueueSize</span>(100);</code></pre>
+<p>
+  <span>The system processes these requests after every session duration interval has passed. If the request queue size reaches its limit, SDK removes the oldest request from the queue. </span>
+  <span><strong>Note:</strong> You can not set the request queue size after SDK initialization.</span>
+</p>
+<h2>Build SDK with SQLite</h2>
+<p>
+  <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">By default, C++ SDK stores all data in volatile memory. If you want to store data, persistently enable SQLite while building SDK.</span>
 </p>
 <p>
-  You would also need to provide a path where the database file could be stored.
+  <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">1. Build SQLite</span>
 </p>
+<div class="highlight highlight-source-shell position-relative overflow-auto">
+  <pre><span class="pl-c"># assuming we are on project root</span>
+<span class="pl-c1">cd</span> vendor/sqlite
+cmake -D BUILD_SHARED_LIBS=1 -B build <span class="pl-c1">.</span> <span class="pl-c"># out of source build, we don't like clutter :)</span>
+<span class="pl-c"># we define `BUILD_SHARED_LIBS` because sqlite's cmake file compiles statically by default for some reason</span>
+<span class="pl-c1">cd</span> build
+make <span class="pl-c"># you might want to add something like -j8 to parallelize the build process</span></pre>
+</div>
+<p dir="auto">
+  2. Build SDK with the option <span><code>COUNTLY_USE_SQLITE</code> </span><strong>ON</strong>
+  for persistent storage.
+</p>
+<div class="highlight highlight-source-shell position-relative overflow-auto">
+  <div class="highlight highlight-source-shell position-relative overflow-auto">
+    <pre>cmake -DCOUNTLY_USE_SQLITE=1 -B build <span class="pl-c1">.</span> <span class="pl-c"># or do it interactively with cmake</span>
+<span class="pl-c1">cd</span> build
+make</pre>
+  </div>
+</div>
 <div>
-  <pre><code>cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
+  <h2>Setting Custom SHA-256</h2>
+  <p>
+    C++ SDK allows users to set a custom SHA-256 method
+    <span>for calculating the checksum of request data.</span>
+  </p>
+  <p>
+    <span>To use the custom SHA-256 feature, follow the following steps:</span>
+  </p>
+  <p>
+    <span>1. Build the Countly C++ SDK executable with the <code>COUNTLY_USE_CUSTOM_SHA256</code> option.</span>
+  </p>
+  <div class="highlight highlight-source-shell notranslate position-relative overflow-auto">
+    <pre>cmake -DCOUNTLY_USE_SQLITE=1 -DCOUNTLY_USE_CUSTOM_SHA256=1 -B build</pre>
+  </div>
+  <p>
+    <span>2. Set custom SHA-256 method <code>setSha256</code></span>
+  </p>
+  <p>For example:</p>
+  <pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">cly::Countly&amp; countly = cly::Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
+  <h1>FAQ</h1>
+  <h2>What Information is Collected by the SDK</h2>
+  <p>
+    There are some data that is collected by SDK to perform their functions and
+    implement the required features. Before any of it is sent to the server,
+    it is stored locally.
+  </p>
+  <p>
+    * When sending any network requests to the server, the following things are
+    sent in addition to the main data:<br>
+    - Timestamp of when the request is created<br>
+    - SDK version<br>
+    - SDK name
+  </p>
 </div>
-<h2>Setting Custom SHA-256</h2>
-<p>
-  C++ SDK allows users to set a custom SHA-256 method for calculating the checksum
-  of request data.
-</p>
-<p>
-  To use the custom SHA-256 feature follow the following steps:
-</p>
-<p>
-  1. Build the Countly C++ SDK executable with the
-  <code>COUNTLY_USE_CUSTOM_SHA256</code> option.
-</p>
-<div class="highlight highlight-source-shell notranslate position-relative overflow-auto">
-  <pre>cmake -DCOUNTLY_USE_SQLITE=1 -DCOUNTLY_USE_CUSTOM_SHA256=1 -B build</pre>
-</div>
-<p>
-  2. Set custom SHA-256 method <code>setSha256</code>
-</p>
-<p>For example:</p>
-<pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">cly::Countly&amp; countly = cly::Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
-<h2 class="p-rich_text_section">Additional project install option</h2>
-<p>
-  In some cases your project might need to install Countly globally one the system.
-  In those situation you would also want to run the <code>make install</code>command.
-  As per the description, it install the countly library on the system.
-</p>
-<p>For example:</p>
-<pre class="notranslate notranslate"><code>#configure the SDK build
-cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DBUILD_SHARED_LIBS=OFF -B build
-<br>cd build<br>#build the SDK
-make
-<br>#install countly on the system
-make install</code></pre>
-<ul>
-  <li>
-    <code>CMAKE_INSTALL_PREFIX</code><br>
-    Install directory used by install. If “make install” is invoked or INSTALL
-    is built, this directory is prepended onto all install directories. This
-    variable defaults to '/usr/local' on UNIX and 'c:/Program Files' on Windows.
-  </li>
-  <li>
-    <code>BUILD_SHARED_LIBS</code><br>
-    If present and true, this will cause all libraries to be built shared unless
-    the library was explicitly added as a static library.
-  </li>
-</ul>
-<h1>FAQ</h1>
-<h2>What Information is Collected by the SDK</h2>
-<p>
-  There are some data that is collected by SDK to perform their functions and implement
-  the required features. Before any of it is sent to the server, it is stored locally.
-</p>
-<p>
-  * When sending any network requests to the server, the following things are sent
-  in addition to the main data:<br>
-  - Timestamp of when the request is created<br>
-  - SDK version<br>
-  - SDK name
-</p>
