@@ -579,6 +579,16 @@ Countly.recordView("Dashboard");</code></pre>
   Step 5: Add the following line in file
   <code>android/app/src/main/AndroidManifest.xml</code> inside
   <code>application</code> tag.
+  <!-- just before the closing application tag or do something like this:
+  <application ...>
+    ...
+        <service android:name="ly.count.dart.countly_flutter.CountlyMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+   -->
 </p>
 <pre><code class="xml">&lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
     &lt;intent-filter&gt;
@@ -587,25 +597,30 @@ Countly.recordView("Dashboard");</code></pre>
 &lt;/service&gt;
 </code></pre>
 <p>
+  <!-- should be step 6 -->
   Step 7: Use the latest version from this link
   <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
+  <!-- No idea what above link is for -->
   and this link
   <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
 </p>
 <p>
+  <!-- should be step 7 -->
   Step 6: Add the following line in file <code>android/build.gradle</code>
 </p>
 <pre><code class="JavaScript">buildscript {
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.2'
+        classpath 'com.google.gms:google-services:4.3.2' <!-- update to 4.3.10 -->
     }
 }
 </code></pre>
 <p>
+  <!-- should be step 8 -->
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="JavaScript">dependencies {
-    implementation 'ly.count.android:sdk:20.04'
+    implementation 'ly.count.android:sdk:20.04' <!-- update to 22.02.1 -->
+    <!-- Link to latest version: https://mvnrepository.com/artifact/com.google.firebase/firebase-messaging -->
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 // Add this at the bottom of the file
@@ -622,10 +637,13 @@ Countly.disablePushNotifications();</code></pre>
   For iOS push notification please follow the instruction from this URL
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x#section-push-notifications</a>
 </p>
+<!-- For the below file, we are told where to find it, but not what to do with it. Seems like the file is not needed in this page. Rather it is needed in the above link. While on the above link, I could not find the file. -->
 <p>
   For Flutter you can find <code>CountlyNotificationService.h/m</code> file under
   <code>Pods/Development Pods/Countly/{PROJECT_NAME}/ios/.symlinks/plugins/countly_flutter/ios/Classes/CountlyiOS/CountlyNotificationService.h/m</code><br>
   <br>
+  <!-- above line is too long. breaks the screen -->
+  <!-- Also, couldn't find this path "Pods/Development Pods" any where -->
   <strong>Pro Tips to find the files from deep hierarchy:<br></strong>
 </p>
 <ul>
@@ -633,10 +651,12 @@ Countly.disablePushNotifications();</code></pre>
     You can filter the files in the navigator using a shortcut ⌥⌘J (Option-Command-J),
     in the filter box type "CountlyNotificationService" and it will show the
     related files only.
+    <!-- Option-Command-J does nothing on my xcode -->
   </li>
   <li>
     You can find the file using the shortcut ⇧⌘O (Shift-Command-O) and then navigate
     to that file using the shortcut ⇧⌘J (Shift-Command-J)<br>
+    <!-- Shift-Command-O opens a filter box but the file is not found and Shift-Command-J does not seem to do anything. -->
     <br>
   </li>
 </ul>
@@ -652,6 +672,7 @@ Countly.disablePushNotifications();</code></pre>
 </p>
 <pre><code class="JavaScript">// Set messaging mode for push notifications
 Countly.pushTokenType(Countly.messagingMode["TEST"]);</code></pre>
+<!-- Should be Countly.pushTokenType(Countly.messagingMode["TEST"]!); -->
 <p>
   When you are finally ready to initialise Countly push, you would call this:
 </p>
@@ -666,6 +687,7 @@ Countly.askForNotificationPermission();</code></pre>
 <p>
   In order to listen to notification receive and click events, Place below code
   in <code>AppDelegate.swift</code>&nbsp;
+<!-- when you say "Place below code in AppDelegate.swift", I assume that the "AppDelegate.swift" file is in my root folder or root ios folder. Either I have eye problem or there is no file like that. -->
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">import countly_flutter

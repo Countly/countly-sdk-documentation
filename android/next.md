@@ -714,6 +714,8 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
 <p>Select Cloud Messaging tab</p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
+  <!-- Above image is out of date. For new firebase accounts, Firebase Cloud Messaging API (Legacy) is Disabled -->
+  <!-- We should add how to setup using Firebase Cloud Messaging API (V1) -->
 </div>
 <p>
   <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
@@ -735,6 +737,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
+<!-- Link to latest version: https://mvnrepository.com/artifact/com.google.firebase/firebase-messaging -->
 implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
@@ -746,6 +749,7 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
 &lt;/service&gt;
 </code></pre>
 <p>... and add a class for it as well:</p>
+<!-- Can we let flutter users know that we should skip this or add "not needed for flutter projects". Because I tried to implement it. -->
 <pre><code class="java">public class DemoFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "DemoMessagingService";
 
