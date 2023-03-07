@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 20.11.X
+  and it applies to version 22.09.X
 </p>
 <div class="callout callout--info">
   <p>
@@ -25,12 +25,12 @@
 </p>
 <pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:20.11.1"<br></span><span>}</span></pre>
+<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:22.09.0"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;20.11.1&lt;/version&gt;
+  &lt;version&gt;22.09.0&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1>SDK Integration</h1>
@@ -190,23 +190,33 @@ Countly.init(targetFolder, config);</code></pre>
     occurred +<span>&nbsp;</span><span>the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
-<strong>1. Event key and count</strong>
+<p>
+  <strong>1. Event key and count</strong>
+</p>
 <pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).record();</code></pre>
-<strong>2. Event key, count, and sum</strong>
+<p>
+  <strong>2. Event key, count, and sum</strong>
+</p>
 <pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(20.3).record();</code></pre>
-<strong>3. Event key and count with segmentation(s)</strong>
+<p>
+  <strong>3. Event key and count with segmentation(s)</strong>
+</p>
 <pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
 segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
 
 Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSegmentation(segmentation).record();</code></pre>
-<strong>4. Event key, count, and sum with segmentation(s)</strong>
+<p>
+  <strong>4. Event key, count, and sum with segmentation(s)</strong>
+</p>
 <pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
 segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
 
 Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setSegmentation(segmentation).record();</code></pre>
-<strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
+<p>
+  <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
+</p>
 <pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
 segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
@@ -392,12 +402,6 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 </p>
 <pre><span><code class="java">config.setLogListener(new LogCallback() {<br>        @Override<br>        public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {<br>           //print log<br>        }<br>});</code></span></pre>
 <h2>Backend Mode</h2>
-<div class="callout callout--info">
-  <strong>Minimum Countly SDK Version</strong>
-  <p>
-    The minimum SDK version requirement for this feature is 20.11.2.
-  </p>
-</div>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
   'Backend Mode'. This mode disables the regular API of the SDK and offers an alternative
