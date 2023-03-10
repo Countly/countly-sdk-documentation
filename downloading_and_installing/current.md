@@ -639,6 +639,8 @@
 </p>
 <h2>C++ SDKs</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/16413408161817" target="_blank" rel="noopener">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/9665186961945" target="_blank" rel="noopener">Version 21.11</a>
