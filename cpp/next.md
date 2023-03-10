@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of SDK installation and it applies
-  to version 22.06.X.
+  to version 22.09.X.
 </p>
 <div class="callout callout--info">
   <p>
@@ -557,11 +557,17 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   option, as explained <a href="#AddingTheSdkToTheProject">here</a>.
 </p>
 <p>
-  You would also need to provide a path where the database file could be stored.
+  You would also need to provide a path before initialization where the database
+  file could be stored.
 </p>
 <div>
   <pre><code>cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
 </div>
+<p>
+  Building your SDK with SQLite would enable event and request queues to be stored
+  persistently in your device. SDK would also try to rebuild the database file,
+  repacking it into a minimal amount of disk space (SQLite Vacuum) every initialization.
+</p>
 <h2>Setting Custom SHA-256</h2>
 <p>
   C++ SDK allows users to set a custom SHA-256 method for calculating the checksum
