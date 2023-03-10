@@ -377,7 +377,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <p>
   To set standard properties, call respective methods of <code>UserEditor</code>:
 </p>
-<pre><code class="java">Countly.user(getApplicationContext()).edit()
+<pre><code class="java">Countly.api().user().edit()
         .setName("Firstname Lastname")
         .setUsername("nickname")
         .setEmail("test@test.com")
@@ -389,13 +389,31 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   To set custom properties, call set(). To send modification operations, call the
   corresponding method:
 </p>
-<pre><code class="java">Countly.user(getApplicationContext()).edit()
+<pre><code class="java">Countly.api().user().edit()
         .set("mostFavoritePet", "dog")
         .inc("phoneCalls", 1)
         .pushUnique("tags", "fan")
         .pushUnique("skill", "singer")
         .commit();</code></pre>
 <h1>Other Features and Notes</h1>
+<h2>Custom Metrics</h2>
+<div class="callout callout--warning">
+  <p>This functionality is available since SDK version 22.09.1.</p>
+</div>
+<p>
+  During some specific circumstances, like beginning a session or requesting remote
+  config, the SDK is sending device metrics.
+</p>
+<p>
+  It is possible for you to either override the sent metrics (like the application
+  version for some specific variant) or provide either your own custom metrics.
+  If you are providing your own custom metrics, you would need your own custom
+  plugin server-side which would interpret it appropriately. If there is no plugin
+  to handle those custom values, they will be ignored.
+</p>
+<div>
+  <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>metricOverride </span>= <span>new </span>HashMap&lt;&gt;();<br><span>metricOverride</span>.put(<span>"SomeKey"</span>, <span>"123"</span>);<br><span>metricOverride</span>.put(<span>"_locale"</span>, <span>"xx_yy"</span>);<br><br><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>)<br>    .setMetricOverride(<span>metricOverride</span>);<br><br><span>Countly</span>.<span>init</span>(targetFolder, <span>config</span>);</pre>
+</div>
 <h2>Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
