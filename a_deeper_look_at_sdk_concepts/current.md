@@ -810,3 +810,63 @@
   Make sure you know the options and then you would be able to find the best way
   that fits you with all its trade-offs.
 </p>
+<h1>Setting Custom User Metrics</h1>
+<p>
+  User metrics are sent when starting a session or requesting remote config.&nbsp;Some
+  SDK's expose functionality to override the SDK set metric values or provide custom
+  ones.
+</p>
+<p>
+  Not all keys are used by all SDK's. Here is a list of metric keys used by Countly:
+</p>
+<ul>
+  <li>
+    <span><strong>_os</strong> - the name of platform/operating system</span>
+  </li>
+  <li>
+    <span><strong>_os_version</strong> - version of platform/operating system</span>
+  </li>
+  <li>
+    <span><strong>_app_version</strong> - sets the application version. For some platforms this is retrieved from app configuration</span><span></span>
+  </li>
+  <li>
+    <span><strong>_device</strong> - device model name</span>
+  </li>
+  <li>
+    <span><strong>_device_type</strong> - Sets what kind of device is using the app. The potantial values are: "console", "mobile", "tablet", "smarttv", "wearable", "embedded", "desktop"</span>
+  </li>
+  <li>
+    <span><strong>_resolution</strong> - screen resolution of the device</span>
+  </li>
+  <li>
+    <span><strong>_density</strong> - screen density of the device</span>
+  </li>
+  <li>
+    <span><strong>_locale</strong> - locale or language of the device in ISO format</span>
+  </li>
+  <li>
+    <span><strong>_store</strong> - (Mobile SDK) a source where the user came from&nbsp;</span>
+  </li>
+  <li>
+    <span><strong>_carrier</strong> - (Mobile SDK) carrier or operator used for connection</span><span></span>
+  </li>
+  <li>
+    <span><strong>_has_watch</strong> - (iOS SDK)&nbsp;</span>
+  </li>
+  <li>
+    <div>
+      <div>
+        <span><strong>_installed_watch_app</strong> - (iOS SDK)&nbsp;</span>
+      </div>
+    </div>
+  </li>
+  <li>
+    <span><strong>_browser</strong> - (Web SDK) browser name</span>
+  </li>
+  <li>
+    <span><strong>_browser_version</strong> - (Web SDK) browser version</span>
+  </li>
+  <li>
+    <span><strong>_ua</strong> - (Web SDK) user agent string</span>
+  </li>
+</ul>

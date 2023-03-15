@@ -2,7 +2,6 @@
   This documentation shows how to use Countly NodeJS SDK to track your nodejs running
   device or server, like tracking your API. It applies to the SDK version 22.06.0.
 </p>
-
 <div class="callout callout--info">
   <p>
     Click
@@ -293,9 +292,9 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
 <p>
   In some cases, you may also need to change user's device ID in a way, that server
   will merge data of both user IDs (existing and new ID you provided) on the server,
- for e.g., when user used website without authenticating and have recorded some data,
-  and then authenticated and you want to change ID to your internal id of this
-  user, to keep tracking it across multiple devices.
+  for e.g., when user used website without authenticating and have recorded some
+  data, and then authenticated and you want to change ID to your internal id of
+  this user, to keep tracking it across multiple devices.
 </p>
 <p>
   This call will merge any data recorded for current ID and save it as user with
@@ -576,8 +575,9 @@ Countly.report_trace({
     logs (default: 100)
   </li>
   <li>
-    <strong>metrics</strong> - provide for this user/device, or else will try
-    to collect what's possible.
+    <strong>metrics</strong> - provide metrics override or custom metrics for
+    this user. For more information on the specific metric keys used by Countly,
+    check <a href="XXXXXXXXXXXXXXXXXXXXXXXXXX" target="_self">here</a>.
   </li>
 </ul>
 <p>
@@ -733,9 +733,9 @@ Countly.report_trace({
 Countly.report_conversion("MyCampaignID");</code></pre>
 <h2>Make raw request</h2>
 <p>
-   If you are switching between users a lot, or changing some other data,
-  which is hard to handle over multiple processes, etc. You can simply make a raw
-  request with all possible SDK parameters described in
+  If you are switching between users a lot, or changing some other data, which
+  is hard to handle over multiple processes, etc. You can simply make a raw request
+  with all possible SDK parameters described in
   <a href="http://resources.count.ly/docs/i">API reference</a>
 </p>
 <pre><code class="javascript">Countly.request({
