@@ -416,7 +416,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="XXXXXXXXXXXXXXXX" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
 <h2>Log Listener</h2>
 <p>
