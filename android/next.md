@@ -1954,7 +1954,8 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   <li>
     <strong>setMetricOverride(Map&lt;String, String&gt; providedMetricOverride)</strong>
     - Sets the metrics you want to override or additional custom metrics you
-    want to provide.
+    want to provide. For more information on this, check
+    <a href="#h_01GVJB16Q86TAX1AJ0QZZ5VR9N" target="_self">here</a>.
   </li>
   <li>
     <strong>setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
@@ -2079,7 +2080,7 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 <p>
   <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
 </p>
-<h2>Custom Metrics</h2>
+<h2 id="h_01GVJB16Q86TAX1AJ0QZZ5VR9N">Custom Metrics</h2>
 <p>
   During some specific circumstances, like beginning a session or requesting remote
   config, the SDK is sending device metrics.
@@ -2092,6 +2093,10 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   to handle those custom values, they will be ignored.
 </p>
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
+<p>
+  For more information on the specific metric keys used by Countly, check
+  <a href="XXXXXXXXXXXXXXXX" target="_self">here</a>.
+</p>
 <h2>Log Listener</h2>
 <p>
   Android SDK lets you handle its internal logs by allowing you to provide a callback

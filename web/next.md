@@ -2332,42 +2332,7 @@ localStorage.setItem("consents", JSON.stringify(response));
     <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
-    <span><strong>metrics</strong> - provide metrics for this user, otherwise, it will try to collect everything which is possible</span>
-    <ul>
-      <li>
-        <span><strong>_os</strong> - the name of platform/operating system</span>
-      </li>
-      <li>
-        <span><strong>_os_version</strong> - version of platform/operating system</span>
-      </li>
-      <li>
-        <span><strong>_device</strong> - device model name</span>
-      </li>
-      <li>
-        <span><strong>_resolution</strong> - screen resolution of the device</span>
-      </li>
-      <li>
-        <span><strong>_carrier</strong> - carrier or operator used for connection</span>
-      </li>
-      <li>
-        <span><strong>_density</strong> - screen density of the device</span>
-      </li>
-      <li>
-        <span><strong>_locale</strong> - locale or language of the device in ISO format</span>
-      </li>
-      <li>
-        <span><strong>_store</strong> - a source where the user came from</span>
-      </li>
-      <li>
-        <span><strong>_browser</strong> - browser name</span>
-      </li>
-      <li>
-        <span><strong>_browser_version</strong> - browser version</span>
-      </li>
-      <li>
-        <span><strong>_ua</strong> - user agent string</span>
-      </li>
-    </ul>
+    <span><strong>metrics</strong> - provide metrics override or custom metrics for this user. For more information on the specific metric keys used by Countly, check <a href="XXXXXXXXXXXXXXXXXXXXXXXXXX" target="_self">here</a>.</span><span></span>
   </li>
 </ul>
 <p>
@@ -3110,7 +3075,9 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   your bot as one of the bots to be ignored and the SDK would stop recording data
   for your bot.
 </p>
-<h2>Why aren’t I able to see AngularJS errors on the Countly dashboard?</h2>
+<h2>
+  Why aren’t I able to see AngularJS errors on the Countly dashboard?
+</h2>
 <p>
   AngularJs swallows errors by default. You will need to extend Angular's
   <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>. For
