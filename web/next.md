@@ -2332,7 +2332,7 @@ localStorage.setItem("consents", JSON.stringify(response));
     <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
-    <span><strong>metrics</strong> - provide metrics override or custom metrics for this user. For more information on the specific metric keys used by Countly, check <a href="XXXXXXXXXXXXXXXXXXXXXXXXXX" target="_self">here</a>.</span><span></span>
+    <span><strong>metrics</strong> - provide metrics override or custom metrics for this user. For more information on the specific metric keys used by Countly, check <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.</span><span></span>
   </li>
 </ul>
 <p>

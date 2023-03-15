@@ -1490,9 +1490,9 @@ buildTypes {
 <pre><code class="JavaScript">var customMetric = {"key": "value"};
 Countly.setCustomMetrics(customMetric);</code></pre>
 <p>
-  For overriding default metrics, keys should be one of the below String value's:
+  For more information on the specific metric keys used by Countly, check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
-<pre>"_device"<br>"_device_type"<br>"_os"<br>"_os_version"<br>"_app_version"<br>"_carrier"<br>"_resolution"<br>"_density"<br>"_locale"</pre>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>

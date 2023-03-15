@@ -2095,7 +2095,7 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="XXXXXXXXXXXXXXXX" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
 <h2>Log Listener</h2>
 <p>
