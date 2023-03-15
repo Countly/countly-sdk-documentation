@@ -414,6 +414,10 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <div>
   <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>metricOverride </span>= <span>new </span>HashMap&lt;&gt;();<br><span>metricOverride</span>.put(<span>"SomeKey"</span>, <span>"123"</span>);<br><span>metricOverride</span>.put(<span>"_locale"</span>, <span>"xx_yy"</span>);<br><br><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>)<br>    .setMetricOverride(<span>metricOverride</span>);<br><br><span>Countly</span>.<span>init</span>(targetFolder, <span>config</span>);</pre>
 </div>
+<p>
+  For more information on the specific metric keys used by Countly, check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+</p>
 <h2>Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
