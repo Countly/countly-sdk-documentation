@@ -66,7 +66,7 @@ Countly.init(targetFolder, config);</code></pre>
 </div>
 <h2>SDK Logging Mode</h2>
 <p>
-  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
+  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
 </p>
 <p>
   Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
@@ -76,6 +76,16 @@ Countly.init(targetFolder, config);</code></pre>
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<p>
+  In case you want to forward the SDK logs to your own logging mechanism, you would
+  have a look at the
+  <a href="#h_01GVR02HH6X27TPH3MS6TE08AT" target="_self">log listener section</a>.
+</p>
+<p>
+  This logging level would have no influence over the log listener. That would
+  always receive all the printed logs event if the logging level would be set to
+  "OFF".
+</p>
 <h2>SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
@@ -418,7 +428,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
-<h2>Log Listener</h2>
+<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
