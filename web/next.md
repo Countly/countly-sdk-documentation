@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 22.06.X.</span>
+  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 23.02.X.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -1132,9 +1132,9 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   To display this overlay the SDK loads certain scripts from your server. To ensure
   the source of these scripts and to enable these scripts to be loaded from somewhere
   else other than your Countly server, the SDK offers a whitelisting option during
-  the initialization since SDK version 22.06.2. To whitelist domains other than
-  your Countly server you should provide an array of these domains, as String values,
-  under the 'heatmap_whitelist' flag during the initialization:
+  the initialization. To whitelist domains other than your Countly server you should
+  provide an array of these domains, as String values, under the 'heatmap_whitelist'
+  flag during the initialization:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1218,7 +1218,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. Starting from the <strong>SDK version 22.06.2</strong> you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. But you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <h2>Automatic Remote Config</h2>
 <p>
@@ -1328,9 +1328,6 @@ var remoteConfig = Countly.get_remote_config();
 //or get value for specific key like 'test'
 var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
 <h2>A/B Testing</h2>
-<p>
-  <span style="font-weight: 400;">Enrolling your users when you fetch the Remote Config values is possible since <strong>SDK version 22.06.2.</strong></span>
-</p>
 <p>
   <span style="font-weight: 400;">To do so you have to set the use_explicit_rc_api flag to true during init (by default it is <em>false</em>). This will use the new Remote Config API and enroll your users to the A/B testing if they are eligible. However if you want to use the new API without enrolling your users automatically <em>rc_automatic_optin_for_ab&nbsp;</em>flag should be set to false during init (by default it is <em>true</em>).</span>
 </p>
@@ -1552,12 +1549,6 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   Note: Feedback widget's show policies are handled internally by the web sdk.
 </p>
 <h3>Manual Reporting</h3>
-<div class="callout callout--warning">
-  <p>
-    Manual Feedback Reporting feature is only available from SDK version 22.06.1
-    and up.
-  </p>
-</div>
 <p>
   Reporting feedback widgets manually consists of 3 main steps:
 </p>

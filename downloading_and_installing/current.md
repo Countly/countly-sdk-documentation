@@ -581,6 +581,8 @@
 </p>
 <h2>Web SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/16640702657817" target="_blank" rel="noopener">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="_blank" rel="noopener">Version 21.11</a>
