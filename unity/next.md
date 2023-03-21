@@ -10,6 +10,7 @@
     access the documentation for older SDK versions.
   </p>
 </div>
+// adding this comment here. please remove it when you are done mr goswami
 <p>
   The following are some of the key assumptions being considered while developing
   the SDK. Please take into account the following <strong>before</strong> integrating
