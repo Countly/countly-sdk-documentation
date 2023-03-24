@@ -1,16 +1,14 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 21.11.0<br>
+  and it applies to version 22.09.0<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-cordova" target="_self" rel="undefined">Github repo</a>
 </p>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <span class="wysiwyg-font-size-large"><strong>Older documentation</strong></span>
-  </p>
   <p>
-    To access the documentation for version 20.11 and older, click
-    <a href="/hc/en-us/articles/7019114935961" target="_self" rel="undefined">here.</a>
+    Click
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#cordova-sdk" target="_self" rel="undefined">here, </a>to
+    access the documentation for older SDK versions.
   </p>
 </div>
 <p>
@@ -139,7 +137,7 @@ ionic cordova build ios</code></pre>
 <pre><code class="javascript">// initialize
 Countly.isInitialized().then((result) =&gt; {
             if(result  != "true") {
-                Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+                Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
                     Countly.start();
                 },(err) =&gt; {
                     console.error(err);
@@ -149,10 +147,18 @@ Countly.isInitialized().then((result) =&gt; {
             console.error(err);
         });</code></pre>
 <p>
-  For more information on how to acquire your application key (appKey) and server
-  URL, check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url" target="_self">here</a>.
+  Please check
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  for more information on how to acquire your application key (APP_KEY) and server
+  URL.
 </p>
+<div class="callout callout--info">
+  <p>
+    If you are in doubt about the correctness of your Countly SDK integration
+    you can learn about methods to verify it from
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+  </p>
+</div>
 <h2>Enable logging</h2>
 <p>
   If logging is enabled then our sdk will print out debug messages about it's internal
@@ -346,9 +352,7 @@ Countly.addCrashLog("My crash log from JavaScript");
   </li>
 </ul>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Data passed should be in UTF-8</span></strong>
-  </p>
+  <strong>Data passed should be in UTF-8</strong>
   <p>
     All data passed to Countly server via SDK or API should be in UTF-8.
   </p>
@@ -520,7 +524,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-   <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
+  <img src="/hc/article_attachments/9518530316441/001.png" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -653,15 +657,6 @@ Countly.getCurrentDeviceId(function(deviceId){
 <p>
   <span style="font-weight: 400;"><img src="/hc/article_attachments/7912645823513/Screenshot_2022-06-27_at_5.35.43_PM.png" alt="Screenshot_2022-06-27_at_5.35.43_PM.png"></span>
 </p>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This COUNTLY_EXCLUDE_PUSHNOTIFICATIONS is only supported by the minimum SDK
-    version 20.11.3.
-  </p>
-</div>
 <p>
   There are no additional steps required for iOS,everything is set up for you by
   the Countly Cordova SDK.
@@ -871,7 +866,7 @@ Countly.setRemoteConfigAutomaticDownload(function(r){
 }, function(r){
   alert(r);
 });</code></pre>
-<h1>User feedback</h1>
+<h1>User Feedback</h1>
 <p>
   There are two ways of getting feedback from your users: Star rating dialog, feedback
   widget.
@@ -880,7 +875,8 @@ Countly.setRemoteConfigAutomaticDownload(function(r){
   Star rating dialog allows users to give feedback as a rating from 1 to 5. The
   feedback widget allows to get the same 1 to 5 rating and also a text comment.
 </p>
-<h2>Star rating dialog</h2>
+<h2>Ratings</h2>
+<h3>Star Rating Dialog</h3>
 <p>
   Star rating integration provides a dialog for getting user's feedback about the
   application. It contains a title, simple message explaining what it is for, a
@@ -903,7 +899,7 @@ countly.askForStarRating(Function(ratingResult){
   console.log(ratingResult);
 });</code></pre>
 <div></div>
-<h2>Rating widget</h2>
+<h3>Rating Widget</h3>
 <p>
   Feedback widget shows a server configured widget to your user devices.
 </p>
@@ -1048,14 +1044,6 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
   In the end always call Countly.userData.save() to send them to the server.
 </p>
 <h1>Application Performance Monitoring</h1>
-<div class="callout callout--info">
-  <p class="callout__title">
-    <strong><span class="wysiwyg-font-size-large">Minimum Countly SDK Version</span></strong>
-  </p>
-  <p>
-    This feature is only supported by the minimum SDK version 20.4.0.
-  </p>
-</div>
 <p>
   Performance Monitoring feature allows you to analyze your application's performance
   on various aspects. For more details please see
@@ -1079,7 +1067,7 @@ Countly.userData.pullValue("pullValue", "morning");</code></pre>
   <code>init</code>.
 </p>
 <pre><code class="javascript">// Example of appLoadingFinished
-Countly.init("https://try.count.ly", "YOUR_API_KEY").then((result) =&gt; {
+Countly.init("https://try.count.ly", "YOUR_APP_KEY").then((result) =&gt; {
   Countly.appLoadingFinished();
 },(err) =&gt; {
   onsole.error(err);
@@ -1254,6 +1242,51 @@ Countly.removeAllConsent();
 </p>
 <pre><code class="javascript">// sending data with salt
 Countly.enableParameterTamperingProtection("salt");</code></pre>
+<h2>Using Proguard</h2>
+<p>
+  If you are using Countly Messaging in your Android application, it is recommended
+  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
+  the instructions below:
+</p>
+<ol>
+  <li>
+    <p>
+      Locate the app/proguard-rules.pro file within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines to the file:</p>
+  </li>
+</ol>
+<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
+</code></pre>
+<ol start="3">
+  <li>
+    <p>
+      If Proguard is not yet configured, you must first enable shrinking and
+      obfuscation in the build file. To do so, locate the build.gradle file
+      within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines in bold to the build.gradle file:</p>
+  </li>
+</ol>
+<pre><code>...
+
+buildTypes {
+        release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
+            ...
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+...</code></pre>
+<p>
+  By following these steps, the Countly Messaging classes will be obfuscated using
+  Proguard and your application will be better protected against reverse engineering.
+</p>
 <h1>Other features</h1>
 <h2>Forcing HTTP POST</h2>
 <p>

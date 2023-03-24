@@ -17,48 +17,31 @@
   rather than having those functionalities as React Native code.
 </p>
 <p>
-  <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.
+  <strong>Supported Platforms:</strong> This SDK supports iOS and Android platforms.
 </p>
 <p>
-  You can take a look at our sample application in the
-  <a href="https://github.com/Countly/countly-sdk-react-native-bridge/tree/master/example" target="_self" rel="undefined">Github repo</a>.
-  It shows, how most of the functionalities can be used.
+  You can take a look at our example application in
+  <a href="https://github.com/Countly/countly-sdk-rnb-example.git" target="_blank" rel="noopener">this Github repo</a>.
+  It shows, how the majority of the SDK functionality can be used. After you have
+  cloned the repo, then run the following commands from the root folder:
 </p>
+<pre><code class="shell">npm install                         # Install dependencies
+cd ios                              # Move to ios directory
+pod install                         # Download and install pods<br>
+cd ../                              # Move to parent directory
+react-native run-android # OR       # Run the android project
+react-native run-ios                # Run the iOS project</code></pre>
 <h1>Adding the SDK to the project</h1>
 <p>
-  In order to use the React Native SDK, please use the following commands to create
-  a new React Native application.
-</p>
-<pre><code class="shell">npm install -g react-native-cli     # Install React Native
-react-native init AwesomeProject    # Create a new project
-
-cd AwesomeProject                   # Go to that directory
-react-native run-android # OR       # Run the android project
-react-native run-ios                # Run the iOS project
-
-# New terminal
-adb reverse tcp:8081 tcp:8081       # Link Android port
-npm start                           # Run the build server</code></pre>
-<p>
   Run the following snippet in the root directory of your React Native project
-  to install the npm dependencies and link <strong>native libraries</strong>.
-  <strong>Note: </strong>use the latest SDK version currently available, not specifically
-  the one shown in the sample below.
+  to install the npm dependencies and link <strong>native libraries</strong>.&nbsp;
 </p>
 <pre># Include the Countly Class in the file that you want to use.
 npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git
 # OR 
-npm install --save countly-sdk-react-native-bridge@20.11.0
+npm install --save countly-sdk-react-native-bridge@latest
 
 # Linking the library to your app
-
-# react-native &lt; 0.60. For both Android and iOS
-react-native link countly-sdk-react-native-bridge
-cd node_modules/countly-sdk-react-native-bridge/ios/
-pod install 
-cd ../../../
-
-# react-native &gt;= 0.60 for iOS (Android will autolink)
 cd ios 
 pod install
 cd ..</pre>
@@ -631,7 +614,20 @@ apply plugin: 'com.google.gms.google-services'
 <pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
-  For iOS push notification please follow the instructions from
+  Push notifications are enabled by default for iOS, but if you wish to disable
+  them, you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the project's
+  preprocessor macros setting. The location of this setting may vary depending
+  on the development environment you are using.
+</p>
+<p>
+  For example, in Xcode, you can define this macro by navigating to the project
+  settings, selecting the build target, and then selecting the "Build Settings"
+  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
+  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
+  Debug and/or Release fields. This will exclude push notifications from the build.
+</p>
+<p>
+  For iOS push notification integration please follow the instructions from
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#push-notifications">here</a>
 </p>
 <p>
@@ -1431,6 +1427,51 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
   Note that <code class="JavaScript">count.ly.cer</code> is the name of the file.
   Replace this file with the one you have.
 </p>
+<h2>Using Proguard</h2>
+<p>
+  If you are using Countly Messaging in your Android application, it is recommended
+  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
+  the instructions below:
+</p>
+<ol>
+  <li>
+    <p>
+      Locate the app/proguard-rules.pro file within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines to the file:</p>
+  </li>
+</ol>
+<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
+</code></pre>
+<ol start="3">
+  <li>
+    <p>
+      If Proguard is not yet configured, you must first enable shrinking and
+      obfuscation in the build file. To do so, locate the build.gradle file
+      within the /android/app/ folder.
+    </p>
+  </li>
+  <li>
+    <p>Add the following lines in bold to the build.gradle file:</p>
+  </li>
+</ol>
+<pre><code>...
+
+buildTypes {
+        release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
+            ...
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+...</code></pre>
+<p>
+  By following these steps, the Countly Messaging classes will be obfuscated using
+  Proguard and your application will be better protected against reverse engineering.
+</p>
 <h1>Other features</h1>
 <h2>Custom Metrics</h2>
 <div class="callout callout--info">
@@ -1449,9 +1490,9 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <pre><code class="JavaScript">var customMetric = {"key": "value"};
 Countly.setCustomMetrics(customMetric);</code></pre>
 <p>
-  For overriding default metrics, keys should be one of the below String value's:
+  For more information on the specific metric keys used by Countly, check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
-<pre>"_device"<br>"_device_type"<br>"_os"<br>"_os_version"<br>"_app_version"<br>"_carrier"<br>"_resolution"<br>"_density"<br>"_locale"</pre>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>
