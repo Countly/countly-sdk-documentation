@@ -1237,7 +1237,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>and with <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
+  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1245,11 +1245,18 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//change and merge on server<br>[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
-<br>//no replace and merge on server, device will be counted as new<br>[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
+    <pre><code class="objectivec">//change and merge on server
+[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
+
+//no replace and merge on server, device will be counted as new
+[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//replace and merge on server<br>Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")<br><br>//no replace and merge on server, device will be counted as new<br>Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
+    <pre><code class="swift">//replace and merge on server
+Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
+
+//no replace and merge on server, device will be counted as new
+Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
   </div>
 </div>
 <div class="callout callout--warning">
@@ -1258,10 +1265,6 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span style="font-weight: 400;">If device ID is changed without merging and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
-<p>
-  <strong>Note:</strong> To switch back to the default device ID, you can pass
-  <code>CLYDefaultDeviceID</code>.
-</p>
 <h2>Temporary Device ID</h2>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
