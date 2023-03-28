@@ -48,7 +48,7 @@
   <span data-preserver-spaces="true">This SDK uses the </span><strong><span data-preserver-spaces="true">Newtonsoft Json</span></strong><span data-preserver-spaces="true"> package internally and it is required for the SDK to work. </span>
 </p>
 <p>
-  <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that (2018 and 2019) you would have to install this package in the project manually. </span>
+  <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that, (2018 and 2019) you have to install this package in the project manually. </span>
 </p>
 <p>
   <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/hc/article_attachments/6537960964505/image-newtonsoft.png" alt="image-newtonsoft.png"></span>
@@ -89,7 +89,7 @@
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true,<br>DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
 <p>
-  <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
+  <span>You may let Countly SDK handle the initial device ID on its own. If needed in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
@@ -194,7 +194,7 @@
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
 <h2 class="anchor-heading">Crash breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave crash breadcrumbs. They are shory logs<span>&nbsp;that </span>would
+  Throughout your app, you can leave crash breadcrumbs. They are short logs<span>&nbsp;that </span>would
   describe the previous steps that were taken in your app before the crash. After
   a crash happens, they will be sent together with the crash report.
 </p>
@@ -202,7 +202,7 @@
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  This feature uses <code>Crashes</code><span> consent. No additinal crash logs will be recorded if consent is required and not given.</span>
+  This feature uses <code>Crashes</code><span> consent. No additional crash logs will be recorded if consent is required and not given.</span>
 </p>
 <h1>Events</h1>
 <p>
@@ -360,7 +360,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   The Unity SDK handles the session automatically. After calling the
   <strong>Init</strong> method, the SDK starts the session automatically and extending
-  the session after every 60 seconds. This value is configurable during initialization.
+  the session after every 60 seconds. This value is configured during initialization.
   It cannot be modified after initialization.
 </p>
 <p>
@@ -745,7 +745,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <h2 class="anchor-heading">Consent</h2>
 <p>
-  <span>This feature requires<code>RemoteConfig</code> consent. If consent is required and not give, no remote config information will be downloaded and stored.</span>
+  <span>This feature requires<code>RemoteConfig</code> consent. If consent is required and not given, no remote config information will be downloaded and stored.</span>
 </p>
 <p>
   If consent was given and then is removed, locally stored remote config information
