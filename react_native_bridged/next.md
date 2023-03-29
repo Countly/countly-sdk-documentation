@@ -48,16 +48,19 @@ cd ..</pre>
 <h1>SDK Integration</h1>
 <h2>Minimal setup</h2>
 <p>
-  We will need to call two methods (<code class="JavaScript">init</code> and
-  <code class="JavaScript">start</code>) in order to set up our SDK. These methods
-  should only be called once during the app's lifecycle and should be done as early
-  as possible. Your main app component's
+  We will need to call two methods (<code class="JavaScript">initWithConfig</code>
+  and <code class="JavaScript">start</code>) in order to set up our SDK. These
+  methods should only be called once during the app's lifecycle and should be done
+  as early as possible. Your main app component's
   <code class="JavaScript">componentDidMount</code>method may be a good place.
 </p>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
+import Countly from 'countly-sdk-react-native-bridge/CountlyConfig';
 
 if(!await Countly.isInitialized()) {
-  await Countly.init("https://try.count.ly", "YOUR_APP_KEY"); // Initialize the countly SDK.
+  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+  // create Countly config object
+  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
   Countly.start(); // start session tracking
 }</code></pre>
 <p>
@@ -67,7 +70,7 @@ if(!await Countly.isInitialized()) {
   URL.
 </p>
 <p>
-  After <code class="JavaScript">init</code> and
+  After <code class="JavaScript">initWithConfig</code> and
   <code class="JavaScript">start</code> have been called once, you may use the
   commands in the rest of this document to send additional data and metrics to
   your server.
@@ -79,6 +82,12 @@ if(!await Countly.isInitialized()) {
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
+<h2>Init (Deprecated)</h2>
+<p>
+  Please avoid using <code class="JavaScript">init</code> method as that is deprecated.
+</p>
+<pre>countly.init(SERVER_KEY, APP_KEY, DEVICE_ID); // DO NOT USE!
+// Use countlyConfig.initWithConfig instead</pre>
 <h2>Enable logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
@@ -86,16 +95,16 @@ if(!await Countly.isInitialized()) {
   state and encountered problems.
 </p>
 <p>
-  Call <code class="JavaScript">setLoggingEnabled</code> on the config class to
+  Call <code class="JavaScript">setLoggingEnabled</code> on the config object to
   enable logging:
 </p>
-<pre><code class="hljs coffeescript">Countly.setLoggingEnabled(true); // Enable countly internal debugging logs</code></pre>
+<pre><code class="hljs coffeescript">countlyConfig.setLoggingEnabled(true); // Enable countly internal debugging logs</code></pre>
 <h2>Device ID</h2>
 <p>
   You may provide your own custom device ID when initializing the SDK using the
   method below.
 </p>
-<pre>Countly.init(SERVER_URL, APP_KEY, DEVICE_ID)</pre>
+<pre>countlyConfig.setDeviceId(DEVICE_ID)</pre>
 <h2 class="anchor-heading">SDK data storage</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in a file named
@@ -122,11 +131,12 @@ if(!await Countly.isInitialized()) {
 </p>
 <p>
   You will need to call the following method before calling
-  <code class="JavaScript">init</code> in order to activate automatic crash reporting.
+  <code class="JavaScript">initWithConfig</code> in order to activate automatic
+  crash reporting.
 </p>
 <pre><code class="javascript">// Using Countly crash reports
-Countly.enableCrashReporting();
-Countly.init(...);</code></pre>
+countlyConfig.enableCrashReporting();
+Countly.initWithConfig(...);</code></pre>
 <h2>Automatic crash report segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
@@ -439,7 +449,9 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <p>
   To enable this when initializing the SDK, use the method below.
 </p>
-<pre>Countly.init(SERVER_URL, APP_KEY, "TemporaryDeviceID")</pre>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig(SERVER_URL, APP_KEY);
+countlyConfig.setDeviceId("TemporaryDeviceID");
+await Countly.initWithConfig(countlyConfig);</code></pre>
 <p>
   To enable a temporary device ID <strong>after</strong> initialization, use the
   method below.
@@ -488,15 +500,15 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   that the push token mode should be set before initialization. Use the method
   below.
 </p>
-<pre>// Important: call this method before init method
-Countly.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");
+<pre>// Important: call this method before initWithConfig method
+countlyConfig.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description");
 // Countly.messagingMode.DEVELOPMENT
 // Countly.messagingMode.PRODUCTION
 // Countly.messagingMode.ADHOC</pre>
 <p>
   When you are ready to initialize Countly Push, call
   <code class="JavaScript">Countly.askForNotificationPermission()</code> after
-  <code class="JavaScript">init</code>, using the method below.
+  <code class="JavaScript">initWithConfig</code>, using the method below.
 </p>
 <pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only support Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");
 // This method will ask for permission, 
@@ -595,7 +607,7 @@ apply plugin: 'com.google.gms.google-services'
   By default additional intent redirection is enabled for intent redirect security,
   you can disable the additional intent redirection:
 </p>
-<pre>Countly.configureIntentRedirectionCheck([], [], false);</pre>
+<pre>countlyConfig.configureIntentRedirectionCheck([], [], false);</pre>
 <p>
   If these are enabled then the SDK will enforce additional security checks. More
   info can be found
@@ -611,7 +623,7 @@ apply plugin: 'com.google.gms.google-services'
   You can set the allowed package and class names for Intent Redirection using
   this call:
 </p>
-<pre><span>Countly.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
+<pre><span>countlyConfig.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);</span></pre>
 <h2>iOS Setup</h2>
 <p>
   Push notifications are enabled by default for iOS, but if you wish to disable
@@ -721,12 +733,13 @@ console.log(JSON.stringify(theNotification));
 <p>
   If your app has a different way of detecting location, you may send this information
   to the Countly Server by using the
-  <code class="JavaScript">setLocationInit</code> or<code class="JavaScript">setLocation</code>
+  <code class="JavaScript">countlyConfig.setLocation</code> or<code class="JavaScript">Countly.setLocation</code>
   methods.
 </p>
 <p>
-  We recommend using the <code class="JavaScript">setLocationInit</code> method
-  before initialization to sent location. This includes:
+  We recommend using the
+  <code class="JavaScript">countlyConfig.setLocation</code> method before initialization
+  to send location. This includes:
 </p>
 <ul>
   <li>
@@ -745,14 +758,14 @@ console.log(JSON.stringify(theNotification));
     or IPv6 formats
   </li>
 </ul>
-<pre><code class="javascript">// Example for setLocationInit
+<pre><code class="javascript">// Example for countlyConfig.setLocation
 var countryCode = "us";
 var city = "Houston";
 var latitude = "29.634933";
 var longitude = "-95.220255";
 var ipAddress = "103.238.105.167";
 
-Countly.setLocationInit(countryCode, city, latitude + "," + longitude, ipAddress);</code></pre>
+countlyConfig.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);</code></pre>
 <p>
   Geolocation recording methods may also be called at any time after the Countly
   SDK has started. To do so, use the <code class="JavaScript">setLocation</code>
@@ -877,10 +890,9 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <pre><code class="javascript">Countly.showStarRating();</code></pre>
 <p>
   The star-rating dialog's title, message, and dismiss button text may be customized
-  either through the <code class="JavaScript">init</code> function or the
-  <code class="JavaScript">SetStarRatingDialogTexts</code> function.
+  through the <code class="JavaScript">setStarRatingDialogTexts</code> method.
 </p>
-<pre><code class="javascript">Countly.SetStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
+<pre><code class="javascript">countlyConfig.setStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");</code></pre>
 <h3>Rating Widget</h3>
 <p>
   The rating widget displays a server-configured widget to your user devices.
@@ -1131,7 +1143,7 @@ Countly.userDataBulk.save();<br>})</code></pre>
   First, you need to enable the Performance Monitoring feature:
 </p>
 <pre><code class="javascript">// Enable APM features.
-Countly.enableApm();</code></pre>
+countlyConfig.enableApm();</code></pre>
 <p>
   With this, the Countly SDK will start measuring some performance traces automatically,
   including app foreground time, app background time. Additionally, custom traces
@@ -1141,10 +1153,10 @@ Countly.enableApm();</code></pre>
 <p>
   For the app start time to be recorded, you need to call the
   <code class="JavaScript">appLoadingFinished</code> method. Make sure this method
-  is called after <code class="JavaScript">init</code>.
+  is called after <code class="JavaScript">initWithConfig</code>.
 </p>
 <pre><code class="javascript">// Example of appLoadingFinished
-await Countly.init("https://try.count.ly", "YOUR_APP_KEY");
+await Countly.initWithConfig(countlyConfig);
 Countly.appLoadingFinished();</code></pre>
 <p>
   This calculates and records the app launch time for performance monitoring. It
@@ -1270,23 +1282,23 @@ Countly.endTrace(traceKey, customMetric);</pre>
     </tr>
     <tr>
       <td>
-        <code class="JavaScript">setRequiresConsent</code>
+        <code class="JavaScript">countlyConfig.setRequiresConsent</code>
       </td>
       <td>boolean</td>
       <td>
         <p>
           The requirement for checking consent is disabled by default.
           To enable it, you will have to call
-          <code class="JavaScript">setRequiresConsent</code>with
+          <code class="JavaScript">countlyConfig.setRequiresConsent</code>with
           <code class="JavaScript">true</code>before initializing Countly.
           You may also pass a consent flag as true or false when you call
-          <code class="JavaScript">init</code>.
+          <code class="JavaScript">initWithConfig</code>.
         </p>
       </td>
     </tr>
     <tr>
       <td>
-        <code class="JavaScript">giveConsentInit</code>
+        <code class="JavaScript">countlyConfig.giveConsent</code>
       </td>
       <td>string array of strings</td>
       <td>
@@ -1299,7 +1311,7 @@ Countly.endTrace(traceKey, customMetric);</pre>
     </tr>
     <tr>
       <td>
-        <code class="JavaScript">giveConsent</code>
+        <code class="JavaScript">Countly.giveConsent</code>
       </td>
       <td>string array of strings</td>
       <td>
@@ -1343,18 +1355,18 @@ Countly.endTrace(traceKey, customMetric);</pre>
 Countly.setRequiresConsent(true);
 
 // for a single feature
-Countly.giveConsentInit("events");
-Countly.giveConsent("events");
-Countly.removeConsent("events");
+countlyConfig.giveConsent(["events"]); // before init
+Countly.giveConsent("events"); // after init
+Countly.removeConsent("events"); // after init
 
 // for a subset of features
-Countly.giveConsentInit(["events", "views", "star-rating", "crashes"]);
-Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
-Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
+countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]); // before init
+Countly.giveConsent(["events", "views", "star-rating", "crashes"]); // after init
+Countly.removeConsent(["events", "views", "star-rating", "crashes"]); // after init
 
 // for all available features
-Countly.giveAllConsent();
-Countly.removeAllConsent();</code></pre>
+Countly.giveAllConsent(); // after init
+Countly.removeAllConsent(); // after init</code></pre>
 <p>
   The string values corresponding to the features that will be used in the
   <code class="JavaScript">giveConsent</code> or
@@ -1375,7 +1387,7 @@ Countly.removeAllConsent();</code></pre>
   field before being processed.
 </p>
 <pre><code class="javascript hljs">// sending data with salt
-Countly.enableParameterTamperingProtection("salt");</code></pre>
+countlyConfig.enableParameterTamperingProtection("salt");</code></pre>
 <p>
   Make sure not to use salt on the Countly server and not on the SDK side, otherwise,
   Countly won't accept any incoming requests.
@@ -1572,9 +1584,9 @@ Countly.enableAttribution(); // Enable to measure your marketing campaign perfor
   If the data sent to the server is short enough, the SDK will use HTTP GET requests.
   In the event you would like an override so that HTTP POST may be used in all
   cases, call the <code class="JavaScript">setHttpPostForced</code> function after
-  you have called <code class="JavaScript">init</code>. You may use the same function
-  later in the app’s life cycle to disable the override. This function has to be
-  called every time the app starts, using the method below.
+  you have called <code class="JavaScript">initWithConfig</code>. You may use the
+  same function later in the app’s life cycle to disable the override. This function
+  has to be called every time the app starts, using the method below.
 </p>
 <pre><code class="javascript">  
 // enabling the override
@@ -1582,10 +1594,10 @@ Countly.setHttpPostForced(true);
   
 // disabling the override
 Countly.setHttpPostForced(false);</code></pre>
-<h2>Checking if init has been called</h2>
+<h2>Checking if initWithConfig has been called</h2>
 <p>
-  In the event you would like to check if init has been called, use the function
-  below.
+  In the event you would like to check if initWithConfig has been called, use the
+  function below.
 </p>
 <pre><code class="javascript">Countly.isInitialized().then(result =&gt; console.log(result)); // true or false
 </code></pre>
@@ -1600,7 +1612,7 @@ Countly.setHttpPostForced(false);</code></pre>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
   Events get grouped together. All the requests contain the same app key which
-  is provided in the <code class="JavaScript">init</code> function.
+  is provided in the <code class="JavaScript">initWithConfig</code> function.
 </p>
 <p>
   There are two ways to interact with the app key in the request queue at the moment.
