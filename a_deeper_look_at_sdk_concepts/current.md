@@ -160,7 +160,7 @@
   list has to be retrieved from the Countly server. The SDK will expose a method
   for that, and it will be named similar to
   <code>getAvailableFeedbackWidgets</code>. The return value will be a list of
-  objects that describe the avaiable widgets. The objects will have the following
+  objects that describe the available widgets. The objects will have the following
   fields, the brackets contain their key in the retrieved JSON:
 </p>
 <ul>
@@ -833,7 +833,7 @@
     <span><strong>_device</strong> - device model name</span>
   </li>
   <li>
-    <span><strong>_device_type</strong> - Sets what kind of device is using the app. The potantial values are: "console", "mobile", "tablet", "smarttv", "wearable", "embedded", "desktop"</span>
+    <span><strong>_device_type</strong> - Sets what kind of device is using the app. The potential values are: "console", "mobile", "tablet", "smarttv", "wearable", "embedded", "desktop"</span>
   </li>
   <li>
     <span><strong>_resolution</strong> - screen resolution of the device</span>
@@ -870,3 +870,139 @@
     <span><strong>_ua</strong> - (Web SDK) user agent string</span>
   </li>
 </ul>
+<h1>Preparing Your App for Symbolication</h1>
+<p>
+  <span style="font-weight: 400;">This section will guide you through the Android, iOS, and JavaScript symbolication processes.</span>
+</p>
+<h2>Android</h2>
+<p>
+  <span style="font-weight: 400;">Android's official tool for code shrinking and obfuscation is called ProGuard. A detailed description of its usage can be found&nbsp;<a href="https://developer.android.com/studio/build/shrink-code.html" target="_blank" rel="noopener">here</a>. There is also a paid tool with additional features called&nbsp;<a href="https://www.guardsquare.com/en/dexguard" target="_blank" rel="noopener">DexGuard</a>. Both ProGuard and DexGuard can be used for Countly crash symbolication. Currently, we do not support any other Android obfuscation libraries.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you are using Android Studio for development, the mapping files will not be produced when you make instant runs. For them to appear, you will either need to generate a signed APK or choose the <strong>Build APK</strong>&nbsp;option.</span>
+</p>
+<div class="img-container wysiwyg-text-align-center">
+  <img src="https://archive.count.ly/images/guide/e31d5d2-3.png">
+</div>
+<p>
+  <span style="font-weight: 400;">After the build is complete, the symbol file called <code>mapping.txt</code></span><span style="font-weight: 400;">&nbsp;can be found under <code>&lt;module-name&gt;/build/outputs/mapping/release/</code></span><span style="font-weight: 400;">&nbsp;or <code>&lt;module-name&gt;/build/outputs/mapping/debug/</code></span><span style="font-weight: 400;">, depending on how you initiate the build process.</span>
+</p>
+<h3>ProGuard Rules</h3>
+<p>
+  <span style="font-weight: 400;">You have the option of adding some rules to ProGuard (or DexGuard) and modifying how it runs. These rules should be added in the <strong>proguard-rules.pro</strong>&nbsp;file.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you are deciding to use ProGuard, you have to keep in mind that it will rename the function and class names. Therefore, it will break the code that is using reflection if you don't take steps to stop this from happening. You may find more information on the ProGuard </span><a href="https://www.guardsquare.com/en/proguard/manual/introduction" target="_blank" rel="noopener">manual</a><span style="font-weight: 400;">.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">At the very least, you should include these lines in your ProGuard rule file:</span>
+</p>
+<pre><code class="text">-keep class org.openudid.** { *; }
+-renamesourcefileattribute SourceFile
+-keepattributes SourceFile,LineNumberTable</code></pre>
+<p>
+  <span style="font-weight: 400;">The first one is needed to prevent <code>openudid</code> from breaking, and Countly uses it for generating user IDs. The second and third rules are needed to add source file and line number information to your Android stack traces.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The ProGuard rule file should be named <strong>proguard-rules.pro</strong>, and it is usually located in the root of your module. More information </span><a href="https://developer.android.com/studio/build/shrink-code.html#keep-code" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">.</span>
+</p>
+<h2>iOS</h2>
+<p>
+  <span class="wysiwyg-color-black" style="font-weight: 400;">The symbol file is a dSYM file for iOS.</span>
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">A dSYM file is Apple's standard Mach-O file which contains debug symbols for a given build.</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">It includes debug symbols for all architectures used for the build (e.g. armv7, arm64).</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">Its size may vary depending on the original source code and libraries used in the project.</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">It is a file-like folder structure, and actual dSYM data is in the binary </span><span style="font-weight: 400;">file </span><code>AppName.app.dSYM/Contents/Resources/DWARF/AppName</code>.
+  </li>
+</ul>
+<h3>dSYM Location</h3>
+<p>
+  <span style="font-weight: 400;">First of all, for each executable target (main app, extensions, and Cocoa Touch Frameworks) in the project, a separate dSYM file is generated when the project is built. The dSYM location depends on build settings. By default, it is defined by <code>$DWARF_DSYM_FOLDER_PATH</code>&nbsp;Xcode Environment Variable.</span>
+</p>
+<p>
+  An example location is:
+  <code>~/Library/Developer/Xcode/DerivedData/AppName-abcdef0123456789/Build/Products/Release-iphoneos/AppName.app.dSYM</code>
+</p>
+<p>
+  <span style="font-weight: 400;">In addition, if you use the <code>Product &gt; Archive</code></span><span style="font-weight: 400;"> option in Xcode to create the <code>.xcarchive</code></span><span style="font-weight: 400;"> of your app, you may find a dSYM already created inside the <code>.xcarchive</code></span><span style="font-weight: 400;">. By default, its location is: <code>~/Library/Developer/Xcode/Archives/YYYY-MM-DD/AppName DD-MM-YYYY, HH.mm.xcarchive/dSYMs</code></span>
+</p>
+<h3>Automatic dSYM Upload</h3>
+<p>
+  For automatic dSYM, please see the Countly iOS SDK documentation
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#symbolication" target="_self" rel="undefined">here</a>.
+</p>
+<h2>JavaScript</h2>
+<p>
+  In order to symbolicate errors, we need a source map file. We will try to lay
+  out how you can produce a source map file for builds that use webpack, you can
+  also consult your build tool's documentation on how to generate one for your
+  builds.
+</p>
+<p>
+  So, for this demonstration, we will use the
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/samples/symbolication" target="_self">sample frontend application</a>
+  that is available in the Countly web SDK repository. It is a simple project with
+  just one source file <code>src/index.js</code> that imports a third party dependency,
+  the Countly SDK, and binds a couple of buttons to throw errors.
+</p>
+<pre>import Countly from "countly-sdk-web"<br><br>Countly.init({<br>  app_key: "YOUR_APP_KEY",<br>  app_version: "1.0",<br>  url: "https://try.count.ly",<br>  debug: true<br>});<br><br>//track sessions automatically<br>Countly.track_sessions();<br><br>//track pageviews automatically<br>Countly.track_pageview();<br><br>//track any clicks to webpages automatically<br>Countly.track_clicks();<br><br>//track link clicks automatically<br>Countly.track_links();<br><br>//track form submissions automatically<br>Countly.track_forms();<br><br>//track javascript errors<br>Countly.track_errors();<br><br>//let's cause some errors<br>function cause_error(){<br>  undefined_function();<br>}<br><br>window.onload = function() {<br>  document.getElementById("handled_error").onclick = function handled_error(){<br>    Countly.add_log('Pressed handled button'); <br>    try {<br>      cause_error();<br>    } catch(err){<br>      Countly.log_error(err)<br>    }<br>  };<br><br>  document.getElementById("unhandled_error").onclick = function unhandled_error(){<br>    Countly.add_log('Pressed unhandled button'); <br>    cause_error();<br>  };<br>}</pre>
+<p>
+  We also have a webpack configuration that takes this source file, resolves its
+  import, and minifies the resulting file, creating a single minified file
+  <strong>dist/main.js</strong>. Also note that we've set the
+  <a href="https://webpack.js.org/configuration/devtool/" target="_self">devtool</a>
+  option to
+  <span><code>hidden-source-map</code> which means webpack will generate a source map file but will not reference it in the <strong>main.js</strong> file. This is typically ideal for production environments where you don't need to inspect the underlying code in the browser. You might want to go with <code>source-map</code> in development environments, it <em>will</em> reference the source map file in <strong>main.js</strong>&nbsp;and ease debugging in the browser.<br></span>
+</p>
+<pre>const path = require('path');
+const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  plugins: [new webpack.ProgressPlugin()],
+  devtool: "hidden-source-map",
+
+  module: {
+    rules: [{
+      test: /\.(js|jsx)$/,
+      include: [path.resolve(__dirname, 'src')],
+      loader: 'babel-loader'
+    }]
+  },
+
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
+
+  output: {
+    devtoolModuleFilenameTemplate: '[resource-path]',
+    devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]'
+  }
+};
+</pre>
+<p>
+  Here is a screenshot of how you would run the webpack with npx and use the webpack
+  package that would be installed along with your project.
+</p>
+<p>
+  <img src="/hc/article_attachments/900006013246/1612759824.png" alt="1612759824.png">
+</p>
+<p>
+  Then, you can see that webpack produced<strong> themain.js</strong>&nbsp;file
+  along with its source map file <strong>main.js.map</strong>. Now, we just need
+  to upload that source map file to our Countly instance.
+</p>
+<p>
+  <img src="/hc/article_attachments/900006014086/1612759876.png" alt="1612759876.png">
+</p>
