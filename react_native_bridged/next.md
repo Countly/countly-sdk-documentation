@@ -1348,22 +1348,20 @@ Countly.endTrace(traceKey, customMetric);</pre>
 
 Countly.setRequiresConsent(true);
 
+// Config time
+// for a list of features
+countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);
+
+// Post config time
 // for a single feature
-// before init
-countlyConfig.giveConsent(["events"]);
-// after init
 Countly.giveConsent("events");
 Countly.removeConsent("events");
 
 // for a subset of features
-// before init
-countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);
-// after init
 Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
 Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 
 // for all available features
-// after init
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
 <p>
