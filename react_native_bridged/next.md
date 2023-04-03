@@ -82,12 +82,6 @@ if(!await Countly.isInitialized()) {
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2>Init (Deprecated)</h2>
-<p>
-  Please avoid using <code class="JavaScript">init</code> method as that is deprecated.
-</p>
-<pre>countly.init(SERVER_KEY, APP_KEY, DEVICE_ID); // DO NOT USE!
-// Use countlyConfig.initWithConfig instead</pre>
 <h2>Enable logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
@@ -136,7 +130,7 @@ if(!await Countly.isInitialized()) {
 </p>
 <pre><code class="javascript">// Using Countly crash reports
 countlyConfig.enableCrashReporting();
-Countly.initWithConfig(...);</code></pre>
+Countly.initWithConfig(countlyConfig);</code></pre>
 <h2>Automatic crash report segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
@@ -299,8 +293,8 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   <p>
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
-  <h2>Recording events</h2>
 </div>
+<h2>Recording events</h2>
 <p>
   We will be recording a <strong>purchase</strong> event below. Here is a quick
   summary of the information with which each usage will provide us:
@@ -1355,18 +1349,23 @@ Countly.endTrace(traceKey, customMetric);</pre>
 Countly.setRequiresConsent(true);
 
 // for a single feature
-countlyConfig.giveConsent(["events"]); // before init
-Countly.giveConsent("events"); // after init
-Countly.removeConsent("events"); // after init
+// before init
+countlyConfig.giveConsent(["events"]);
+// after init
+Countly.giveConsent("events");
+Countly.removeConsent("events");
 
 // for a subset of features
-countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]); // before init
-Countly.giveConsent(["events", "views", "star-rating", "crashes"]); // after init
-Countly.removeConsent(["events", "views", "star-rating", "crashes"]); // after init
+// before init
+countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);
+// after init
+Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
+Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 
 // for all available features
-Countly.giveAllConsent(); // after init
-Countly.removeAllConsent(); // after init</code></pre>
+// after init
+Countly.giveAllConsent();
+Countly.removeAllConsent();</code></pre>
 <p>
   The string values corresponding to the features that will be used in the
   <code class="JavaScript">giveConsent</code> or
