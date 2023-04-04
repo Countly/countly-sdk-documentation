@@ -1,7 +1,7 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>22.09.0</code>.
+  <code>23.02.0</code>.
 </p>
 <p>
   Click
