@@ -306,7 +306,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
 </div>
-<h2>Recording events</h2>
+<h2>Recording Events</h2>
 <p>
   We will be recording a <strong>purchase</strong> event below. Here is a quick
   summary of the information with which each usage will provide us:
@@ -1305,7 +1305,7 @@ Countly.endTrace(traceKey, customMetric);</pre>
   and
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).
 </p>
-<h2>Setup during init</h2>
+<h2>Setup During Init</h2>
 <pre><code class="javascript">// Usage examples
 // for a list of features
 const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
