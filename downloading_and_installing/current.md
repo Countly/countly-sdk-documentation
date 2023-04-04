@@ -72,18 +72,6 @@
     </tr>
     <tr>
       <td>
-        <strong>Cordova SDK</strong> (JavaScript)
-        <em>with Icenium, MeteorJS, Ionic support</em>
-      </td>
-      <td>
-        <a href="https://github.com/Countly/countly-sdk-cordova" target="_blank" rel="noopener">Click to get</a>
-      </td>
-      <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813011-Cordova" target="_blank" rel="noopener">Click for documentation</a>
-      </td>
-    </tr>
-    <tr>
-      <td>
         <strong>React Native SDK</strong> (JavaScript)
       </td>
       <td>
@@ -225,30 +213,6 @@
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 135.137px; height: 22px;">Cordova</td>
-      <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 53.3px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 50.075px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 92.675px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 66.2625px; height: 22px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
-      </td>
-    </tr>
-    <tr style="height: 22px;">
       <td style="width: 135.137px; height: 22px;">Web</td>
       <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
@@ -343,9 +307,7 @@
       <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
-        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
-      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">-</td>
       <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
@@ -367,9 +329,7 @@
       <td class="wysiwyg-text-align-center" style="width: 63.8px; height: 22px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">
-        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
-      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">-</td>
       <td class="wysiwyg-text-align-center" style="width: 51.925px; height: 22px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
@@ -415,9 +375,7 @@
       <td class="wysiwyg-text-align-center" style="width: 63.8px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 91.975px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large"><span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span></span>
-      </td>
+      <td class="wysiwyg-text-align-center" style="width: 91.975px; height: 22px;">-</td>
       <td class="wysiwyg-text-align-center" style="width: 51.925px;">
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
@@ -436,6 +394,8 @@
     </tr>
   </tbody>
 </table>
+<p>&nbsp;</p>
+<!--Added for better spacing-->
 <h1>Community Supported SDKs</h1>
 <p>
   <span>These client libraries are developed and supported by the Countly community and not by Countly directly. Refer to the corresponding author for support and more information.</span>
@@ -515,6 +475,8 @@
     </tr>
   </tbody>
 </table>
+<p>&nbsp;</p>
+<!--Added for better spacing-->
 <h1>Sunsetted SDKs</h1>
 <p>
   <span style="font-weight: 400;">This table includes a list of all SDKs that have been sunsetted by Countly.</span>
@@ -548,8 +510,27 @@
         <a href="https://support.count.ly/hc/en-us/articles/360037443012-React-Native-unmaintained-" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
+    <tr>
+      <td>
+        <strong>Cordova SDK (JavaScript)</strong>
+      </td>
+      <td>
+        <a href="https://github.com/Countly/countly-sdk-cordova" target="_blank" rel="noopener">Click to get</a>
+      </td>
+      <td>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813011-Cordova" target="_blank" rel="noopener">22.09</a>
+        -
+        <a href="https://support.count.ly/hc/en-us/articles/15669961053721" target="_blank" rel="noopener">21.11</a>
+        -
+        <a href="https://support.count.ly/hc/en-us/articles/7019114935961" target="_blank" rel="noopener">20.11</a>
+        -
+        <a href="https://support.count.ly/hc/en-us/articles/900004883663" target="_blank" rel="noopener">19.9.3</a>
+      </td>
+    </tr>
   </tbody>
 </table>
+<p>&nbsp;</p>
+<!--Added for better spacing-->
 <h1>Documentation For Older SDK Versions</h1>
 <h2>iOS SDK</h2>
 <p>
@@ -598,14 +579,6 @@
   <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="_blank" rel="noopener">Version 21.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="_blank" rel="noopener">Version 20.11</a>
-</p>
-<h2>Cordova SDK</h2>
-<p>
-  <a href="https://support.count.ly/hc/en-us/articles/15669961053721" target="_blank" rel="noopener">Version 21.11</a>
-  -
-  <a href="https://support.count.ly/hc/en-us/articles/7019114935961" target="_blank" rel="noopener">Version 20.11</a>
-  -
-  <a href="https://support.count.ly/hc/en-us/articles/900004883663" target="_blank" rel="noopener">Version 19.9.3</a>
 </p>
 <h2>React Native SDK</h2>
 <p>
@@ -663,5 +636,5 @@
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/16286959845145" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_blank" rel="noopener">Version 19.09</a>  
+  <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_blank" rel="noopener">Version 19.09</a>
 </p>
