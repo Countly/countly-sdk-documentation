@@ -2749,28 +2749,3 @@ npm install markdownlint --save-dev
 },
 </code>
 </p>
-<h1>Best practices for SDK integration</h1>
-<h2>SDK integration to constantly running platforms</h2>
-<p>
-  SDK integration to constantly running platforms like servers share the same principles
-  with other platforms integrations. However, due to the continuous activity on
-  these platforms, the conventional session logic becomes moot. In return, these
-  devices can continuously send session update requests to your countly server
-  and impact the performance of your server.
-</p>
-<p>
-  As these devices are usually in the minority, their working principles can hinder
-  your Countly instance due to the Data Point (DP) omission of session update requests
-  would render the load on your server undetectable from your DP dashboard. To
-  mitigate this problem we recommend reducing the frequency of your session update
-  requests to the bare minimum.
-</p>
-<p>
-  While this can be changed concerning the number of devices you have, as a general
-  rule of thumb we recommend a 4-hour session update request interval. This value
-  should be set at the init configuration object of your SDK and should also be
-  changed at your server's Management &gt; Settings &gt; API &gt; Data Limits &gt;
-  Maximal Session Duration section. You can reach the SDK-specific configuration
-  settings from the corresponding documentation of your SDK
-  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">here</a>
-</p>

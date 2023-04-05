@@ -536,3 +536,27 @@
   "22.02.3". The first two numbers are what we call the major version and those
   are the ones that you should be paying attention to ("22.02.X").
 </p>
+<h1>Best practices for SDK integration</h1>
+<h2>SDK integration to constantly running platforms</h2>
+<p>
+  SDK integration to constantly running platforms, like servers or OSes, shares
+  the same principles with other platforms; however, due to the continuous activity
+  on these platforms, the conventional session logic becomes moot because sessions
+  would not end unless the device restarts.
+</p>
+<p>
+  Your Countly instance can become unresponsive due to constant load on your server
+  coming from the session update requests from those platforms the SDK was implemented.
+  Due to the Data Point (DP) omission of session update requests, the load on your
+  server would be undetectable from your DP dashboard. To mitigate this problem,
+  we recommend reducing the frequency of your session update requests to the bare
+  minimum.
+</p>
+<p>
+  We recommend a 4-hour session update request interval as a general rule of thumb.
+  This value should be set at the init configuration object of your SDK and should
+  also be changed at your server's Management &gt; Settings &gt; API &gt; Data
+  Limits &gt; Maximal Session Duration section. You can reach the SDK-specific
+  configuration settings from the corresponding documentation of your SDK
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">here</a>
+</p>
