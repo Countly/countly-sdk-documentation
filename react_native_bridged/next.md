@@ -1268,6 +1268,22 @@ Countly.endTrace(traceKey, customMetric);</pre>
   <a href="https://resources.count.ly/docs/compliance-hub">Compliance Hub plugin</a>
   documentation.
 </p>
+<h2>Setup During Init</h2>
+<p>
+  <span>The requirement for consent is disabled by default. To enable it, you will have to call&nbsp;<code>setRequiresConsent</code></span><span>&nbsp;with&nbsp;<code>true</code></span><span>&nbsp;before initializing Countly.</span>
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+<br>// Enable consent requirement
+Countly.setRequiresConsent(true);<br>// Give consent for a list of features
+countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);
+
+await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config</code></pre>
+<p>
+  <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.&nbsp;</span>
+</p>
+<p>
+  <span>Since the React Native Bridge SDK employs our iOS and Android SDKs, it is recommended to review their relevant documentation on this topic first for understanding its limitation and use case (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a> and <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).</span>
+</p>
 <p>
   Currently, available features with consent control are as follows:
 </p>
@@ -1299,46 +1315,21 @@ Countly.endTrace(traceKey, customMetric);</pre>
     your server.
   </li>
 </ul>
-<p>
-  Since the React Native Bridge SDK employs our iOS and Android SDKs, you may also
-  be interested in reviewing their relevant documentation on this topic (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a>
-  and
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).
-</p>
-<h2>Setup During Init</h2>
-<pre><code class="javascript">// Usage examples
-// for a list of features
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-
-// The requirement for checking consent is disabled by default.
-// To enable it, you will have to call
-Countly.setRequiresConsent(true);
-countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);
-// Give consent<br>
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.</code></pre>
 <h2>Changing Consent</h2>
-<pre><code class="javascript">// Usage examples
-// To add/remove consent for a single feature (string parameter),
-// use this method.
+<p>
+  <span>There are 3 ways of changing feature consent:</span>
+</p>
+<pre><code class="javascript">// To add/remove consent for a single feature (string parameter)
 Countly.giveConsent("events");
 Countly.removeConsent("events");
 
-// To add/remove consent for a subset of features (array of strings parameter),
-// use this method.
+// To add/remove consent for a subset of features (array of strings parameters)
 Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
 Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 
 // To add/remove consent for all available features
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
-<p>
-  The string values corresponding to the features that will be used in the
-  <code class="JavaScript">giveConsent</code> or
-  <code class="JavaScript">removeConsent</code> methods may be found
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#exposing-available-features-for-consent" target="_self">here</a>.
-  In addition, please review our platform SDK documents if the feature is applicable
-  or not for that platform.
-</p>
 <h1>Security and privacy</h1>
 <h2>Parameter tampering protection</h2>
 <p>
