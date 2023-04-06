@@ -1466,77 +1466,67 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>
-<h2>Attribution analytics &amp; install campaigns</h2>
+<h2>Attribution</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
-  allows you to measure the performance of your marketing campaign by attributing
-  installs from specific campaigns. This feature is available for the Enterprise
-  Edition.
+  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
+  allows you to measure your marketing campaign performance by attributing installs
+  from specific campaigns. This feature is available for the Enterprise Edition.
 </p>
 <p>
-  For version 20.11.4 and greater we highly recommend allowing Countly to listen
-  to the <strong>INSTALL_REFERRER</strong> intent in order to receive more precise
-  attribution on Android, something you may do by adding the following XML code
-  to your <strong>AndroidManifest.xml</strong> file inside the
-  <strong>application</strong> tag.
+  <span>There are 2 forms of attribution: direct Attribution and indirect Attribution.</span><span></span>
 </p>
-<pre><code class="xml">&lt;receiver android:name="ly.count.android.sdk.ReferrerReceiver" android:exported="true"&gt;
-  &lt;intent-filter&gt;
-    &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
-  &lt;/intent-filter&gt;
-&lt;/receiver&gt;</code></pre>
-<p>
-  <strong>For more information about how to set up your campaigns, please <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">review this documentation</a>.</strong>
-</p>
-<p>Call the method below before initialization.</p>
-<pre>// Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
-Countly.enableAttribution();</pre>
-<p>
-  For iOS 14+ use the
-  <code class="JavaScript">recordAttributionID("IDFA")</code> function instead
-  of <code class="JavaScript">Countly.enableAttribution()</code>
-</p>
-<p>
-  You can use <code class="JavaScript">Countly.recordAttributionID</code> function
-  to specify IDFA for campaign attribution
-</p>
-<pre>Countly.recordAttributionID("IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM");</pre>
-<p>
-  For iOS 14+, due to the changes made by Apple regarding Application Tracking,
-  you need to ask the user for permission to track the Application.
-</p>
-<p>
-  For IDFA you can use this Plugin, which also supports iOS 14+ changes for Application
-  tracking permission:
-  <a href="https://github.com/ijunaid/react-native-advertising-id.git">https://github.com/ijunaid/react-native-advertising-id.git</a>
-</p>
-<p>
-  Here is how to use this plugin with the Countly attribution feature:
-</p>
-<div>
-  <pre>npm install --save <a href="https://github.com/ijunaid/react-native-advertising-id.git">https://github.com/ijunaid/react-native-advertising-id.git</a>
-
-cd ./ios
-pod install
-
-<strong>NSUserTrackingUsageDescription</strong>
-Add "Privacy - Tracking Usage Description" in your ios info.plist file.
-
-<strong>#Example Code for Countly attribution feature to support iOS 14+.</strong>
-
-import RNAdvertisingId from 'react-native-advertising-id';
-
-if (Platform.OS.match("ios")) {
-RNAdvertisingId.getAdvertisingId()
-.then(response =&gt; {
-Countly.recordAttributionID(response.advertisingId);
-})
-.catch(error =&gt; console.error(error));
-}
-else {
-Countly.enableAttribution(); // Enable to measure your marketing campaign performance by attributing installs from specific campaigns.
-}</pre>
+<h3>
+  <span>Direct Attribution</span>
+</h3>
+<div class="callout callout--info">
+  <p>
+    Currently, direct attribution is only available for Android.
+  </p>
 </div>
+<p>
+  You can pass "Campaign type" and "Campaign data". The "type" determines for what
+  purpose the attribution data is provided. Depending on the type, the expected
+  data will differ, but usually that will be a string representation of a JSON
+  object.
+</p>
+<p>
+  <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
+</p>
+<pre><code class="JavaScript">const campaignData = 'JSON_STRING';<br>const config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('CAMPAIGN_TYPE', campaignData);</code><span><br></span></pre>
+<p>
+  You can also use <code>recordDirectAttribution</code> function to manually report
+  attribution later:
+</p>
+<pre><code class="JavaScript">const campaignData = 'JSON_STRING';<br>Countly.recordDirectAttribution('CAMPAIGN_TYPE', campaignData);</code></pre>
+<p>
+  Currently this feature is limited and accepts data only in a specific format
+  and for a single type. That type is "countly". It will be used to record install
+  attribution. The data also needs to be formatted in a specific way. Either with
+  the campaign id or with the campaign id and campaign user id.
+</p>
+<pre><code class="JavaScript">const campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>Countly.recordDirectAttribution('countly', campaignData);</code></pre>
+<h3>
+  <span>Indirect Attribution</span>
+</h3>
+<p>
+  This feature would be used to report things like advertising ID's. For each platform
+  those would be different values. For the most popular keys we have a class with
+  predefined values to use, it is called "AttributionKey".
+</p>
+<p>
+  <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
+</p>
+<pre><code class="JavaScript">const attributionValues = {};<br>if(Platform.OS.match('ios')){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>} else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>const config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
+<p>
+  You can also use <code>recordIndirectAttribution</code> function to manually
+  report attribution later
+</p>
+<pre><code class="JavaScript">const attributionValues = {};<br>if(Platform.OS.match('ios')){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>} else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>Countly.recordIndirectAttribution(attributionValues);</code></pre>
+<p>
+  In case you would be accessing IDFA for ios, for iOS 14+ due to the changes made
+  by Apple, regarding Application Tracking, you need to ask the user for permission
+  to track the Application.
+</p>
 <h2>Forcing HTTP POST</h2>
 <p>
   If the data sent to the server is short enough, the SDK will use HTTP GET requests.
