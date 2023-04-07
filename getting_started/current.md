@@ -245,9 +245,9 @@
 <p>Here are a few sample login implementations of this flow:</p>
 <h2>Android</h2>
 <pre><code class="java">
-<span>public void Login</span>() {
+<span>public void Login</span>() {<br>    if (<span>Countly.sharedInstance().deviceId() == newId</span>) {<br>        return;<br>    }
 <span>    String newId = "SomeValue"</span>;
-<span>    if (Countly.sharedInstance().deviceId().getType() == DeviceIdType.DEVELOPER_SUPPLIED</span>) {
+<span>    if (Countly.sharedInstance().deviceId().getType().getID() == DeviceIdType.DEVELOPER_SUPPLIED</span>) {
 <span>        // an ID was provided by the host app previously</span>
 <span>        // we can assume that a device ID change with merge was executed previously</span>
 <span>        // now we change it without merging</span>
@@ -266,11 +266,11 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">+ (void)login<br>{<br>  CLYDeviceIDType deviceIDType = [Countly.sharedInstance deviceIDType];<br>  if([deviceIDType isEqualToString:CLYDeviceIDTypeCustom])<br>  {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>  else {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: YES];<br>  }<br>}
+    <pre><code class="objectivec">+ (void)login<br>{<br>  if([[Countly sharedInstance].deviceID isEqualToString:usersNewID]) {<br>    return;<br>  }<br>  CLYDeviceIDType deviceIDType = [Countly.sharedInstance deviceIDType];<br>  if([deviceIDType isEqualToString:CLYDeviceIDTypeCustom])<br>  {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: NO];<br>  }<br>  else {<br>    [Countly.sharedInstance setNewDeviceID:@"usersNewID" onServer: YES];<br>  }<br>}
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">class func login() {<br>  let deviceIDType = Countly.sharedInstance.deviceIDType()<br>  if deviceIDType.isEqual(toString: CLYDeviceIDTypeCustom) {<br>  Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: false)<br>  } else {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: true)<br>  }<br>}</code></pre>
+    <pre><code class="swift">class func login() {<br>  if Countly.sharedInstance().deviceID() == "usersNewID" {<br>    return;<br>  }<br>  let deviceIDType = Countly.sharedInstance.deviceIDType()<br>  if deviceIDType.isEqual(toString: CLYDeviceIDTypeCustom) {<br>  Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: false)<br>  } else {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: true)<br>  }<br>}</code></pre>
   </div>
 </div>
 <h2>Web</h2>
