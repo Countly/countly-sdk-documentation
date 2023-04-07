@@ -1166,6 +1166,7 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
   on user consent. More information about GDPR
   <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">can be found here.</a>
 </p>
+<h2>Setup During Init</h2>
 <p>
   By default the requirement for consent is disabled. To enable it, you have to
   call <code>setRequiresConsent</code> with true, before initializing Countly.
@@ -1220,34 +1221,32 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
     remote-config - allows downloading remote config values from your server
   </li>
 </ul>
-<h2>Giving consents</h2>
-<p>
-  To give consent for features, you can use the <code>setConsentEnabled</code>of
-  <code>CountlyConfig</code> class or <code>giveConsent</code> after
-  <code>init</code> by passing the feature names as an Array.<br>
-  We recommend using the<code>setConsentEnabled</code>of
-  <code>CountlyConfig</code> because some features require consents before
-  <code>init</code>
-</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"]);<br></code><code class="JavaScript">Countly.giveConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
-<h2>Removing consents</h2>
+<h2>Changing Consent</h2>
 <p>
   If the end-user changes his/her mind about consents at a later time, you will
   need to reflect this in the Countly SDK using the <code>removeConsent</code>method:
 </p>
 <pre><code class="JavaScript">Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
-<h2>Giving all consents</h2>
 <p>
   If you would like to give consent for all the features, you can use the
   <code>giveAllConsent</code> method:
 </p>
 <pre><code class="JavaScript">Countly.giveAllConsent();</code></pre>
-<h2>Removing all consents</h2>
 <p>
   If you would like to remove consent for all the features, you can use the
   <code>removeAllConsent</code> method:
 </p>
 <pre><code class="JavaScript">Countly.removeAllConsent();</code></pre>
+<h2>Feature Groups</h2>
+<p>
+  To give consent for a group of features, you can use the
+  <code>setConsentEnabled</code>of <code>CountlyConfig</code> class or
+  <code>giveConsent</code> after <code>init</code> by passing the feature names
+  as an Array. We recommend using the<code>setConsentEnabled</code>of
+  <code>CountlyConfig</code> because some features require consents before
+  <code>init</code>
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"]);<br>Countly.giveConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
 <h1>Security and privacy</h1>
 <h2>Parameter tampering protection</h2>
 <p>
