@@ -573,3 +573,18 @@
 <p>
   <img src="/hc/article_attachments/15147181662489" alt="013.png">
 </p>
+<h1>What can Countly SDKs track or capture?</h1>
+<p>
+  Countly SDKs operate on two modalities while tracking user behavior: automatic
+  and manual. Each Countly SDK has certain things it can track automatically depending
+  on the platform it runs on and its configuration, like session or view information.
+  As these tracking options differ from SDK to SDK best way to check what can be
+  tracked automatically is to refer to its documentation. Things beyond the reach
+  of the platform the SDK runs on can not be tracked automatically.
+</p>
+<p>
+  Conversely, what can be tracked manually is limited by what the developer who
+  implements the SDK can capture or gather. Any data you can reach and grab can
+  be tracked by Countly as long as the developer configures the SDK to do so. The
+  primary constraint will again be the platform the SDK runs on and its limitations.
+</p>
