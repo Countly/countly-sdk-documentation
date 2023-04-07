@@ -3919,7 +3919,10 @@ end</code></pre>
 <pre><code class="text">github "Countly/countly-sdk-ios"</code></pre>
 <h2>Swift Package Manager (SPM)</h2>
 <p>
-  <span style="font-weight: 400;">You can integrate the Countly iOS SDK using Swift Package Manager (SPM) using https://github.com/Countly/countly-sdk-ios.git repository URL.</span>
+  You can integrate the Countly iOS SDK with Swift Package Manager (SPM) using
+  https://github.com/Countly/countly-sdk-ios.git repository URL. Open your XCode
+  and go to File &gt; Add Packages and enter the URL into the search bar. From
+  here you can add the package by targeting the master branch.
 </p>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
