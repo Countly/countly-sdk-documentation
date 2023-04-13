@@ -1,6 +1,6 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 22.06.X.
+  It applies to version 23.02.X.
 </p>
 <div class="callout callout--info">
   <p>
@@ -22,7 +22,6 @@
       <span>.NET Portable, Version=4.5</span>
     </li>
     <li>.NET Framework, Version=v3.5</li>
-    <li>.NET Framework, Version=v4.0, Profile=Client</li>
   </ol>
 </div>
 <p>
