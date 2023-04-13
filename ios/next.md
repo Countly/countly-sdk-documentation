@@ -167,7 +167,11 @@
 </div>
 <p>
   Internal logging works only for Development environment where
-  <code>DEBUG</code> flag is set in target's Build settings.
+  <code>DEBUG</code> flag is set in target's Build settings. But if you still can
+  not see the SDK logs you have to make sure your XCode is configured correctly
+  by going to Product &gt; Scheme &gt; Edit Scheme in your XCode and selecting
+  Run from the menu at the left-hand side. There you should click on Arguments
+  tab and make sure "OS_ACTIVITY_MODE" argument is set to "disable".
 </p>
 <h3>Logger Delegate</h3>
 <p>
