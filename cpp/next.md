@@ -112,6 +112,12 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   to enable logging:
 </p>
 <pre><span class="pl-k"><code>void <span class="pl-en">printLog(cly::Countly::LogLevel level, const string&amp; msg) {...}<br>...<br><br>void (*logger_function)(cly::Countly::LogLevel level, const std::string&amp; message);<br>logger_function = printLog;<br>cly::Countly::getInstance().setLogger(logger_function);</span></code></span></pre>
+<div class="callout callout--info">
+  <p>
+    For more information on where to find the SDK logs you can check the documentation
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  </p>
+</div>
 <h2>Device ID</h2>
 <p>
   All tracked information is tied to a "device ID", which is used as a unique identifier

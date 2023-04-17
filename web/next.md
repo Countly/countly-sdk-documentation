@@ -273,6 +273,12 @@ Countly.debug = true;</code></pre>
 });</code></pre>
   </div>
 </div>
+<div class="callout callout--info">
+  <p>
+    For more information on where to find the SDK logs you can check the documentation
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  </p>
+</div>
 <h2>Device ID</h2>
 <p>
   All tracked information is tied to a "device ID". A device ID is a unique identifier

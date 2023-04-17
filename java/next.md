@@ -86,6 +86,12 @@ Countly.init(targetFolder, config);</code></pre>
   always receive all the printed logs event if the logging level would be set to
   "OFF".
 </p>
+<div class="callout callout--info">
+  <p>
+    For more information on where to find the SDK logs you can check the documentation
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  </p>
+</div>
 <h2>SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
