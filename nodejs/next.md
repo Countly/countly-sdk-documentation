@@ -107,12 +107,6 @@ Countly.setLoggingEnabled(true);
 
 //to turn off the logs
 Countly.setLoggingEnabled(false);</code></pre>
-<div class="callout callout--info">
-  <p>
-    For more information on where to find the SDK logs you can check the documentation
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
-  </p>
-</div>
 <h2>SDK Data Storage</h2>
 <p>
   Countly stores information like requests, events and device ID locally as JSON
