@@ -56,12 +56,18 @@
 </div>
 <h2>SDK Logging</h2>
 <p>
-  <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Androids internal log calls.</span>
+  <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Android's internal log calls.</span>
 </p>
 <p>
   Call&nbsp;<code>setLoggingEnabled</code>&nbsp;on the config class to enable logging:
 </p>
 <pre><code>CountlyConfig config = (<span>new </span>CountlyConfig(appC, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));<br>config.setLoggingEnabled(<span>true</span>);</code></pre>
+<div class="callout callout--info">
+  <p>
+    For more information on where to find the SDK logs you can check the documentation
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  </p>
+</div>
 <h2>Device ID</h2>
 <p>
   <span style="font-weight: 400;">All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
