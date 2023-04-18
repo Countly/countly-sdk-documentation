@@ -90,6 +90,10 @@ if(!await Countly.isInitialized()) {
   enable logging:
 </p>
 <pre><code class="hljs coffeescript">Countly.setLoggingEnabled(true); // Enable countly internal debugging logs</code></pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   You may provide your own custom device ID when initializing the SDK using the

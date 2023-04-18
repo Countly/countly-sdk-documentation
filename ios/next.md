@@ -173,6 +173,10 @@
   Run from the menu at the left-hand side. There you should click on Arguments
   tab and make sure "OS_ACTIVITY_MODE" argument is set to "disable".
 </p>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h3>Logger Delegate</h3>
 <p>
   For receiving the Countly iOS SDK's internal logs even in production builds,

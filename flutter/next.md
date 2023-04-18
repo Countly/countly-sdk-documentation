@@ -93,6 +93,10 @@ flutter run</code></pre>
   We advise doing this while implementing Countly features in your application.
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLoggingEnabled(true);</code></pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   When the SDK is initialized for the first time and no device ID is provided,
