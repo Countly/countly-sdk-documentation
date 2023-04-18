@@ -244,21 +244,49 @@
 </p>
 <p>Here are a few sample login implementations of this flow:</p>
 <h2>Android</h2>
-<pre><code class="java">
-<span>public void Login</span>() {<br>    if (<span>Countly.sharedInstance().deviceId() == newId</span>) {<br>        return;<br>    }
-<span>    String newId = "SomeValue"</span>;
-<span>    if (Countly.sharedInstance().deviceId().getType().getID() == DeviceIdType.DEVELOPER_SUPPLIED</span>) {
-<span>        // an ID was provided by the host app previously</span>
-<span>        // we can assume that a device ID change with merge was executed previously</span>
-<span>        // now we change it without merging</span>
-<span>        Countly.sharedInstance().deviceId().changeWithoutMerge(newId</span>);
-<span>    } else {</span>
-<span>        // SDK generated ID</span>
-<span>        // we change device ID with merge so that data is combined</span>
-<span>        Countly.sharedInstance().deviceId().changeWithMerge(newId</span>);
-    }
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Java</span>
+    <span class="tabs-link">Kotlin</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">public void Login() {
+  String newId = "SomeValue";
+  if (Countly.sharedInstance().deviceId().getID().equals(newId)) {
+    return;
+  }
+  if (Countly.sharedInstance().deviceId().getType() == DeviceIdType.DEVELOPER_SUPPLIED) {
+    // an ID was provided by the host app previously
+    // we can assume that a device ID change with merge was executed previously
+    // now we change it without merging
+    Countly.sharedInstance().deviceId().changeWithoutMerge(newId);
+  } else {
+    // SDK generated ID
+    // we change device ID with merge so that data is combined
+    Countly.sharedInstance().deviceId().changeWithMerge(newId);
+  }
 }
 </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="kotlin">fun Login() {
+  val newId = "SomeValue"
+  if (Countly.sharedInstance().deviceId().id == newId) {
+    return
+  }
+  if (Countly.sharedInstance().deviceId().type == DEVELOPER_SUPPLIED) {
+    // an ID was provided by the host app previously
+    // we can assume that a device ID change with merge was executed previously
+    // now we change it without merging
+    Countly.sharedInstance().deviceId().changeWithoutMerge(newId)
+  } else {
+    // SDK generated ID
+    // we change device ID with merge so that data is combined
+    Countly.sharedInstance().deviceId().changeWithMerge(newId)
+  }
+}</code></pre>
+  </div>
+</div>
 <h2>iOS</h2>
 <div class="tabs">
   <div class="tabs-menu">
@@ -280,11 +308,11 @@
     <span class="tabs-link">Sync</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /* change ID without merge as current ID is Dev supplied, so not first login */<br>    Countly.q.push(['change_id', "newID", false]);<br>  } else {<br>    /* change ID with merge as current ID is not Dev supplied */<br>    Countly.q.push(['change_id', "newID", true]);<br>  }<br>}
+    <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /*change ID without merge as current ID is Dev supplied, so not first login*/<br>    Countly.q.push(['change_id', "newID", false]);<br>  } else {<br>    /*change ID with merge as current ID is not Dev supplied*/<br>    Countly.q.push(['change_id', "newID", true]);<br>  }<br>}
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /* change ID without merge as current ID is Dev supplied, so not first login */<br>    Countly.change_id('newID', false);<br>  } else {<br>    /* change ID with merge as current ID is not Dev supplied */<br>    Countly.change_id('newID', true);<br>  }<br>}</code></pre>
+    <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /*change ID without merge as current ID is Dev supplied, so not first login*/<br>    Countly.change_id('newID', false);<br>  } else {<br>    /*change ID with merge as current ID is not Dev supplied*/<br>    Countly.change_id('newID', true);<br>  }<br>}</code></pre>
   </div>
 </div>
 <h1>
