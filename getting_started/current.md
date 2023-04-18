@@ -250,10 +250,12 @@
     <span class="tabs-link">Kotlin</span>
   </div>
   <div class="tab">
-    <pre><code class="java">
-public void Login() {<br>  String newId = "SomeValue";<br>  if (Countly.sharedInstance().deviceId() == newId) {<br>    return;<br>  }
-
-  if (Countly.sharedInstance().deviceId().getType().getID() == DeviceIdType.DEVELOPER_SUPPLIED) {
+    <pre><code class="java">public void Login() {
+  String newId = "SomeValue";
+  if (Countly.sharedInstance().deviceId().getID().equals(newId)) {
+    return;
+  }
+  if (Countly.sharedInstance().deviceId().getType() == DeviceIdType.DEVELOPER_SUPPLIED) {
     // an ID was provided by the host app previously
     // we can assume that a device ID change with merge was executed previously
     // now we change it without merging
@@ -267,13 +269,12 @@ public void Login() {<br>  String newId = "SomeValue";<br>  if (Countly.sharedIn
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="kotlin">
-fun login() {
+    <pre><code class="kotlin">fun Login() {
   val newId = "SomeValue"
-  if (Countly.sharedInstance().deviceId() == newId) {
+  if (Countly.sharedInstance().deviceId().id == newId) {
     return
-  }<br>
-  if (Countly.sharedInstance().deviceId().getType().getID() == DeviceIdType.DEVELOPER_SUPPLIED) {
+  }
+  if (Countly.sharedInstance().deviceId().type == DEVELOPER_SUPPLIED) {
     // an ID was provided by the host app previously
     // we can assume that a device ID change with merge was executed previously
     // now we change it without merging
