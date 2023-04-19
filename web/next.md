@@ -1932,7 +1932,7 @@ Countly.report_trace({
 
     // Set boomerang script source either locally or from CDN
     boomerangScript.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/boomerang.min.js';
-    countlyBoomerangScript.src = '../../plugin/boomerang/countly_boomerang.js';
+    countlyBoomerangScript.src = '../../plugin/boomerang/countly_boomerang.js'; // should change according to your project structure
 
     // Append boomerang script to the head
     document.getElementsByTagName('head')[0].appendChild(boomerangScript);
@@ -1980,7 +1980,7 @@ Countly.q.push(["track_performance", {
 <p>
   To automatically report traces you will need to include 2 additional files in
   your project similar to async implementation but here you add them directly after
-  declaring the Countly script like this:
+  declaring the Countly script like this with the correct paths according to your project structure:
 </p>
 <pre>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;
 &lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;</pre>
