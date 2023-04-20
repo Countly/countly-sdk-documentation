@@ -584,32 +584,35 @@ Countly.recordView("Dashboard");</code></pre>
   <code>android/app/src/main/AndroidManifest.xml</code> inside
   <code>application</code> tag.
 </p>
-<pre><code class="xml">&lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
-    &lt;intent-filter&gt;
-        &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
-    &lt;/intent-filter&gt;
-&lt;/service&gt;
+<pre><code class="xml">&lt;application ...&gt;
+...
+   &lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
+     &lt;intent-filter&gt;
+       &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
+     &lt;/intent-filter&gt;
+   &lt;/service&gt;
+&lt;/application&gt;
 </code></pre>
-<p>
-  Step 7: Use the latest version from this link
-  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
-  and this link
-  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
-</p>
 <p>
   Step 6: Add the following line in file <code>android/build.gradle</code>
 </p>
 <pre><code class="JavaScript">buildscript {
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.2'
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 </code></pre>
 <p>
+  You can get the latest version from this link
+  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
+  and this link
+  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
+</p>
+<p>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="JavaScript">dependencies {
-    implementation 'ly.count.android:sdk:20.04'
+    implementation 'ly.count.android:sdk:22.02.1'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 // Add this at the bottom of the file
