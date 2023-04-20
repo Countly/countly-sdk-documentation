@@ -582,9 +582,44 @@
   tracked automatically is to refer to its documentation. Things beyond the reach
   of the platform the SDK runs on can not be tracked automatically.
 </p>
+<p>Some automatically tracked user actions are:</p>
+<ul>
+  <li>Clicks</li>
+  <li>Page name / URL</li>
+  <li>Scrolls</li>
+  <li>Sessions</li>
+  <li>Link clicks</li>
+</ul>
+<p>
+  And many more user actions can be tracked automatically; all of which can be
+  checked from the documentation of the SDK you are using.
+</p>
 <p>
   Conversely, what can be tracked manually is limited by what the developer who
   implements the SDK can capture or gather. Any data you can reach and grab can
   be tracked by Countly as long as the developer configures the SDK to do so. The
   primary constraint will again be the platform the SDK runs on and its limitations.
+</p>
+<p>
+  The standard method of user tracking in Countly is events. Events can be used
+  to track user actions everywhere the platforms permit access to that information.
+  Some common use cases for utilizing events would look like this:
+</p>
+<ul>
+  <li>
+    If a user sees a pop-up (developer can send a pop-up shown event when they
+    present the pop-up)
+  </li>
+  <li>
+    If a user clicks a button (developer can send a button clicked event with
+    button name when the user clicks the button)
+  </li>
+  <li>
+    If a user bought an item (developer can send the purchase information as
+    a purchase event when the user completes the purchase)
+  </li>
+</ul>
+<p>
+  And many more user actions can be tracked as long as the developer has access
+  to the information they want to track.
 </p>
