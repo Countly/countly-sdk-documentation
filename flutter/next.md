@@ -1166,6 +1166,30 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
   on user consent. More information about GDPR
   <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">can be found here.</a>
 </p>
+<p>
+  Currently, available features with consent control are as follows:
+</p>
+<ul>
+  <li>
+    sessions - tracking when, how often and how long users use your app.
+  </li>
+  <li>events - allow sending events to the server.</li>
+  <li>views - allow tracking which views user visits.</li>
+  <li>location - allow sending location information.</li>
+  <li>crashes - allow tracking crashes, exceptions and errors.</li>
+  <li>
+    attribution - allow tracking from which campaign did user come.
+  </li>
+  <li>
+    users - allow collecting/providing user information, including custom properties.
+  </li>
+  <li>push - allow push notifications</li>
+  <li>star-rating - allow sending their rating and feedback</li>
+  <li>apm - allow application performance monitoring</li>
+  <li>
+    remote-config - allows downloading remote config values from your server
+  </li>
+</ul>
 <h2>Setup During Init</h2>
 <p>
   By default the requirement for consent is disabled. To enable it, you have to
@@ -1197,30 +1221,6 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
   app closes, it should be done at next app start so that any relevant server-side
   features could be disabled (like reverse geo ip for location)
 </p>
-<p>
-  Currently, available features with consent control are as follows:
-</p>
-<ul>
-  <li>
-    sessions - tracking when, how often and how long users use your app.
-  </li>
-  <li>events - allow sending events to the server.</li>
-  <li>views - allow tracking which views user visits.</li>
-  <li>location - allow sending location information.</li>
-  <li>crashes - allow tracking crashes, exceptions and errors.</li>
-  <li>
-    attribution - allow tracking from which campaign did user come.
-  </li>
-  <li>
-    users - allow collecting/providing user information, including custom properties.
-  </li>
-  <li>push - allow push notifications</li>
-  <li>star-rating - allow sending their rating and feedback</li>
-  <li>apm - allow application performance monitoring</li>
-  <li>
-    remote-config - allows downloading remote config values from your server
-  </li>
-</ul>
 <h2>Changing Consent</h2>
 <p>
   If the end-user changes his/her mind about consents at a later time, you will
@@ -1233,12 +1233,6 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
 </p>
 <pre><code class="JavaScript">Countly.giveAllConsent();</code></pre>
 <p>
-  If you would like to remove consent for all the features, you can use the
-  <code>removeAllConsent</code> method:
-</p>
-<pre><code class="JavaScript">Countly.removeAllConsent();</code></pre>
-<h2>Feature Groups</h2>
-<p>
   To give consent for a group of features, you can use the
   <code>setConsentEnabled</code>of <code>CountlyConfig</code> class or
   <code>giveConsent</code> after <code>init</code> by passing the feature names
@@ -1247,6 +1241,11 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
   <code>init</code>
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"]);<br>Countly.giveConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+<p>
+  If you would like to remove consent for all the features, you can use the
+  <code>removeAllConsent</code> method:
+</p>
+<pre><code class="JavaScript">Countly.removeAllConsent();</code></pre>
 <h1>Security and privacy</h1>
 <h2>Parameter tampering protection</h2>
 <p>
