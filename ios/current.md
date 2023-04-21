@@ -54,7 +54,7 @@
   <div class="tab">
     <pre><code class="objectivec">#import "Countly.h"
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     CountlyConfig* config = CountlyConfig.new;
     config.appKey = @"YOUR_APP_KEY";
@@ -69,13 +69,12 @@
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
-
 {
     let config: CountlyConfig = CountlyConfig()
     config.appKey = "YOUR_APP_KEY"
     config.host = "https://YOUR_COUNTLY_SERVER"
     Countly.sharedInstance().start(with: config)
-
+    
     // your code
 
     return true
@@ -114,7 +113,7 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     CountlyConfig* config = CountlyConfig.new;
     config.appKey = @"YOUR_APP_KEY";
@@ -335,7 +334,7 @@ Countly.sharedInstance().recordException(myException, isFatal: false)</code></pr
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSException*myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
+    <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
 <br>NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -368,7 +367,7 @@ Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace:
     <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary*segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+    <pre><code class="objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
@@ -419,42 +418,41 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 <h3>Default Crash Report Information</h3>
 <pre><code>- Exception Info:
   * Exception Name
-  *Exception Description
+  * Exception Description
   * Stack Trace
   * Binary Images
 
 - Device Static Info:
-  - Device Type
-  - Device Architecture
-  - Resolution
-  - Total RAM
-  - Total Disk
+  * Device Type
+  * Device Architecture
+  * Resolution
+  * Total RAM
+  * Total Disk
 
 - Device Dynamic Info:
-  - Used RAM
-  - Used Disk
-  - Battery Level
-  - Connection Type
-  - Device Orientation
+  * Used RAM
+  * Used Disk
+  * Battery Level
+  * Connection Type
+  * Device Orientation
 
 - OS Info:
-  - OS Name
-  - OS Version
-  - OpenGL ES Version
-  - Jailbrake State
+  * OS Name
+  * OS Version
+  * OpenGL ES Version
+  * Jailbrake State
 
 - App Info:
-  - App Version
-  - App Build Number
-  - Executable Name
-  - Time Since App Launch
-  - Background State
+  * App Version
+  * App Build Number
+  * Executable Name
+  * Time Since App Launch
+  * Background State
 
 - Custom Info:
-  - Crash logs recorded using `recordCrashLog:` method
-  - Crash segmentation specified in `crashSegmentation` property
+  * Crash logs recorded using `recordCrashLog:` method
+  * Crash segmentation specified in `crashSegmentation` property
 </code></pre>
-
 <h3>Custom Crash Segmentation</h3>
 <p>
   <span style="font-weight: 400;">If you would like to use custom crash segmentation, you can set the optional <code>crashSegmentation</code></span>
@@ -1517,7 +1515,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">#import "Countly.h"
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //Start Countly with CLYPushNotifications feature as follows
     CountlyConfig* config = CountlyConfig.new;
@@ -1526,6 +1524,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     config.features = @[CLYPushNotifications];
 //  config.pushTestMode = CLYPushTestModeDevelopment;
     [Countly.sharedInstance startWithConfig:config];
+
 
     //Ask for user's permission for Push Notifications (not necessarily here)
     //You can do this later at any point in the app after starting Countly
@@ -1538,7 +1537,6 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
-
 {
     //Start Countly with CLYPushNotifications feature as follows
     let config: CountlyConfig = CountlyConfig()
@@ -1596,7 +1594,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-<pre><code class="objectivec">- (BOOL)application:(UIApplication*)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt;*)options
+    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt; *)options
 {
     //handle URL here to navigate to custom views
 
@@ -1621,7 +1619,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application openURL:(NSURL*)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
+    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
 {
     //handle URL here to navigate to custom views
 
@@ -1748,7 +1746,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent* _Nonnull))contentHandler
+    <pre><code class="objectivec">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
 {
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
@@ -2269,7 +2267,7 @@ else // if value exists, you can use it as you see fit
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigWithCompletionHandler:^(NSError *error)
+    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigWithCompletionHandler:^(NSError * error)
 {
     if (!error)
     {
@@ -2305,7 +2303,7 @@ else // if value exists, you can use it as you see fit
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-<pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigOnlyForKeys:@[@"key1", @"key2"] completionHandler:^(NSError* error)
+    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigOnlyForKeys:@[@"key1", @"key2"] completionHandler:^(NSError * error)
 {
     if (!error)
     {
@@ -2340,7 +2338,7 @@ else // if value exists, you can use it as you see fit
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigExceptForKeys:@[@"key3", @"key4"] completionHandler:^(NSError *error)
+    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigExceptForKeys:@[@"key3", @"key4"] completionHandler:^(NSError * error)
 {
     if (!error)
     {
@@ -2540,7 +2538,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </div>
   <div class="tab">
     <pre><code class="objectivec">
-[Countly.sharedInstance getFeedbackWidgets:^(NSArray *feedbackWidgets, NSError* error)
+[Countly.sharedInstance getFeedbackWidgets:^(NSArray * feedbackWidgets, NSError * error)
 {
     if (error)
     {
@@ -2596,7 +2594,7 @@ Countly.sharedInstance().getFeedbackWidgets
   </div>
   <div class="tab">
     <pre><code class="objectivec">
-        CountlyFeedbackWidget *aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+        CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
         [aFeedbackWidget present];
     </code></pre>
   </div>
@@ -2615,7 +2613,7 @@ Countly.sharedInstance().getFeedbackWidgets
   </div>
   <div class="tab">
     <pre><code class="objectivec">
-CountlyFeedbackWidget* aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
 [aFeedbackWidget presentWithAppearBlock:^
 {
     NSLog(@"Appeared!");
@@ -2651,8 +2649,8 @@ andDismiss:
   </div>
   <div class="tab">
     <pre><code class="objectivec">
-CountlyFeedbackWidget *aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-[aFeedbackWidget getWidgetData:^(NSDictionary* widgetData, NSError * error)
+CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
 {
     if (error)
     {
@@ -3622,7 +3620,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSString*campaignData = @"{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}";
+    <pre><code class="objectivec">NSString* campaignData = @"{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}";
 [Countly.sharedInstance recordDirectAttributionWithCampaignType:@"countly" andCampaignData:campaignData];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -3663,7 +3661,7 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   Here is a detailed example usage of <code>addDirectRequest</code>:
 </p>
 <pre class="c-mrkdwn__pre" data-stringify-type="pre">- (void) sendDirectRequest {
-NSMutableDictionary*requestMap = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
     requestMap[@"city"] = @"Istanbul";
     requestMap[@"country_code"] = @"TR";
     requestMap[@"ip_address"] = @"41.0082,28.9784";
@@ -3710,11 +3708,11 @@ NSMutableDictionary*requestMap = [[NSMutableDictionary alloc] init];
 }
 
 - (NSString *) toString: (id) dictionaryOrArrayToOutput  {
-NSError*error;
+    NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
                                                        options:0
                                                          error:&amp;error];
-NSString*jsonString = @"";
+    NSString *jsonString = @"";
     if (! jsonData) {
         NSLog(@"Got an error: %@", error);
 
@@ -3723,7 +3721,6 @@ NSString*jsonString = @"";
     }
     return jsonString;
 }</pre>
-
 <h2>watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
@@ -3773,7 +3770,7 @@ NSString*jsonString = @"";
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CountlyConfig*config = CountlyConfig.new;
+    <pre><code class="objectivec">CountlyConfig* config = CountlyConfig.new;
 config.appKey = @"YOUR_APP_KEY";
 config.host = @"https://YOUR_COUNTLY_SERVER";
 [Countly.sharedInstance startWithConfig:config];</code></pre>
@@ -3992,7 +3989,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">You can check for <code>kCountlySDKVersion</code> constant in Countly iOS SDK source. It is defined as <code>NSString*const kCountlySDKVersion = @"18.08";</code></span>
+  <span class="wysiwyg-color-black">You can check for <code>kCountlySDKVersion</code> constant in Countly iOS SDK source. It is defined as <code>NSString* const kCountlySDKVersion = @"18.08";</code></span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">What is the difference between Default properties and Custom properties of User Profiles?</span>
@@ -4043,7 +4040,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
 </h2>
 <p>
-<span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#manually-handling-notifications">Handling Notifications Manually</a> section.</span>
+  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#manually-handling-notifications">Handling Notifications Manually</a> section.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>
