@@ -2311,7 +2311,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 </div>
 <p>
   You can make your SDK fetch some configurations you have set in your Countly
-  server by setting <code>enableServerConfiguration</code> to true during init:
+  server by setting <code>enableServerConfiguration</code> during init:
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
 <h1>FAQ</h1>
