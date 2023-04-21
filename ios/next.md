@@ -1,7 +1,7 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>23.02.0</code>.
+  <code>23.02.X</code>.
 </p>
 <p>
   Click
@@ -3910,6 +3910,29 @@ end</code></pre>
   and go to File &gt; Add Packages and enter the URL into the search bar. From
   here you can add the package by targeting the master branch.
 </p>
+<h2>Server Configuration</h2>
+<div class="callout callout--warning">
+  <p>This is an experimental feature!</p>
+</div>
+<div class="callout callout--info">
+  <p>This is available from SDK version 23.02.2</p>
+</div>
+<p>
+  You can make your SDK fetch some configurations you have set in your Countly
+  server by setting <code>enableServerConfiguration</code> to true during init:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.enableServerConfiguration = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableServerConfiguration = true</code></pre>
+  </div>
+</div>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
 </h1>
