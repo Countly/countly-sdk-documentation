@@ -56,12 +56,16 @@
 </div>
 <h2>SDK Logging</h2>
 <p>
-  <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Androids internal log calls.</span>
+  <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Android's internal log calls.</span>
 </p>
 <p>
   Call&nbsp;<code>setLoggingEnabled</code>&nbsp;on the config class to enable logging:
 </p>
 <pre><code>CountlyConfig config = (<span>new </span>CountlyConfig(appC, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));<br>config.setLoggingEnabled(<span>true</span>);</code></pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   <span style="font-weight: 400;">All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
@@ -223,7 +227,7 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    // for LATEST_VERSION check &lt;https://search.maven.org/artifact/ly.count.android/sdk&gt;
+    // for LATEST_VERSION check &lt;<https://search.maven.org/artifact/ly.count.android/sdk&gt;>
     dependencies {
         classpath group: 'ly.count.android', 'name': 'sdk-plugin', 'version': 'LATEST_VERSION'
     }
@@ -735,7 +739,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
-implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
+implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
 </p>
@@ -745,7 +749,10 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
     &lt;/intent-filter&gt;
 &lt;/service&gt;
 </code></pre>
-<p>... and add a class for it as well:</p>
+<p>
+  ... and add a class for it as well (for Flutter and React-Native project this
+  step is not needed as the SDK adds the service files implicitly):
+</p>
 <pre><code class="java">public class DemoFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "DemoMessagingService";
 
@@ -1954,7 +1961,8 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   <li>
     <strong>setMetricOverride(Map&lt;String, String&gt; providedMetricOverride)</strong>
     - Sets the metrics you want to override or additional custom metrics you
-    want to provide.
+    want to provide. For more information on this, check
+    <a href="#h_01GVJB16Q86TAX1AJ0QZZ5VR9N" target="_self">here</a>.
   </li>
   <li>
     <strong>setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
@@ -2001,6 +2009,30 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   this, call:
 </p>
 <pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h2>Setting Maximum Request Queue Size</h2>
+<p>
+  When you initialize Countly, you can specify a value for the setMaxRequestQueueSize
+  flag. This flag limits the number of requests that can be stored in the request
+  queue when the Countly server is unavailable or experiencing connection problems.
+</p>
+<p>
+  If the server is down, requests sent to it will be queued on the device. If the
+  number of queued requests becomes excessive, it can cause problems with delivering
+  the requests to the server, and can also take up valuable storage space on the
+  device. To prevent this from happening, the setMaxRequestQueueSize flag limits
+  the number of requests that can be stored in the queue.
+</p>
+<p>
+  If the number of requests in the queue reaches the setMaxRequestQueueSize limit,
+  the oldest requests in the queue will be dropped, and the newest requests will
+  take their place. This ensures that the queue doesn't become too large, and that
+  the most recent requests are prioritized for delivery.
+</p>
+<p>
+  If you do not specify a value for the setMaxRequestQueueSize flag, the default
+  setting of 1,000 will be used.
+</p>
+<pre><code class="Java">config.setMaxRequestQueueSize(5000);</code></pre>
 <h2>Checking If the SDK Has Been Initialized</h2>
 <p>
   <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
@@ -2055,7 +2087,7 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 <p>
   <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
 </p>
-<h2>Custom Metrics</h2>
+<h2 id="h_01GVJB16Q86TAX1AJ0QZZ5VR9N">Custom Metrics</h2>
 <p>
   During some specific circumstances, like beginning a session or requesting remote
   config, the SDK is sending device metrics.
@@ -2068,6 +2100,10 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   to handle those custom values, they will be ignored.
 </p>
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
+<p>
+  For more information on the specific metric keys used by Countly, check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+</p>
 <h2>Log Listener</h2>
 <p>
   Android SDK lets you handle its internal logs by allowing you to provide a callback
@@ -2266,6 +2302,18 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   other scenarios, we recommend using the default storage behavior provided by
   the Countly SDK.
 </p>
+<h2>Server Configuration</h2>
+<div class="callout callout--warning">
+  <p>This is an experimental feature!</p>
+</div>
+<div class="callout callout--info">
+  <p>This is available from SDK version 22.09.4</p>
+</div>
+<p>
+  You can make your SDK fetch some configurations you have set in your Countly
+  server by setting <code>enableServerConfiguration</code> during init:
+</p>
+<pre><code class="java">config.enableServerConfiguration()</code></pre>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
@@ -2274,7 +2322,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   to the server, it is stored locally.
 </p>
 <p>
-  * When sending any network requests to the server, the following things are sent
+  *When sending any network requests to the server, the following things are sent
   in addition of the main data:<br>
   - Timestamp of when the request is creted<br>
   - Current hour<br>
@@ -2288,7 +2336,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   and duration
 </p>
 <p>
-  * If sessions are used then also device metrics are collected which contains:<br>
+  *If sessions are used then also device metrics are collected which contains:<br>
   - Device model<br>
   - Device type (phone, tablet, etc)<br>
   - Screen resolution<br>
@@ -2301,7 +2349,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 </p>
 <p>* The current device orientation</p>
 <p>
-  * When generating a device ID, if no custom ID is provided, the SDK will use:<br>
+  *When generating a device ID, if no custom ID is provided, the SDK will use:<br>
   - Secure.ANDROID_ID as the default ID and advertising id as a fallback devices
   ID
 </p>
@@ -2312,7 +2360,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   button the user has clicked on&nbsp;
 </p>
 <p>
-  * If automatic view tracking is enabled, it will collect:<br>
+  *If automatic view tracking is enabled, it will collect:<br>
   - activity class name&nbsp;
 </p>
 <p>
@@ -2320,7 +2368,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   time of the widgets completion
 </p>
 <p>
-  * When events are recorded, the time of when the event is recorded, will be collected
+  *When events are recorded, the time of when the event is recorded, will be collected
 </p>
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
