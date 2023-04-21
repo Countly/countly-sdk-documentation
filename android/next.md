@@ -739,7 +739,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
-implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
+implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
 </p>
@@ -749,7 +749,10 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
     &lt;/intent-filter&gt;
 &lt;/service&gt;
 </code></pre>
-<p>... and add a class for it as well:</p>
+<p>
+  ... and add a class for it as well (for Flutter and React-Native project this
+  step is not needed as the SDK adds the service files implicitly):
+</p>
 <pre><code class="java">public class DemoFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "DemoMessagingService";
 
