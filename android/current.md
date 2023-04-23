@@ -227,7 +227,7 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    // for LATEST_VERSION check &lt;<https://search.maven.org/artifact/ly.count.android/sdk&gt;>
+    // for LATEST_VERSION check &lt;https://search.maven.org/artifact/ly.count.android/sdk&gt;
     dependencies {
         classpath group: 'ly.count.android', 'name': 'sdk-plugin', 'version': 'LATEST_VERSION'
     }
@@ -2322,7 +2322,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   to the server, it is stored locally.
 </p>
 <p>
-  *When sending any network requests to the server, the following things are sent
+  * When sending any network requests to the server, the following things are sent
   in addition of the main data:<br>
   - Timestamp of when the request is creted<br>
   - Current hour<br>
@@ -2336,7 +2336,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   and duration
 </p>
 <p>
-  *If sessions are used then also device metrics are collected which contains:<br>
+  * If sessions are used then also device metrics are collected which contains:<br>
   - Device model<br>
   - Device type (phone, tablet, etc)<br>
   - Screen resolution<br>
@@ -2349,7 +2349,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 </p>
 <p>* The current device orientation</p>
 <p>
-  *When generating a device ID, if no custom ID is provided, the SDK will use:<br>
+  * When generating a device ID, if no custom ID is provided, the SDK will use:<br>
   - Secure.ANDROID_ID as the default ID and advertising id as a fallback devices
   ID
 </p>
@@ -2360,7 +2360,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   button the user has clicked on&nbsp;
 </p>
 <p>
-  *If automatic view tracking is enabled, it will collect:<br>
+  * If automatic view tracking is enabled, it will collect:<br>
   - activity class name&nbsp;
 </p>
 <p>
@@ -2368,7 +2368,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   time of the widgets completion
 </p>
 <p>
-  *When events are recorded, the time of when the event is recorded, will be collected
+  * When events are recorded, the time of when the event is recorded, will be collected
 </p>
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
