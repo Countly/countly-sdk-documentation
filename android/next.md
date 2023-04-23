@@ -2302,6 +2302,18 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   other scenarios, we recommend using the default storage behavior provided by
   the Countly SDK.
 </p>
+<h2>Server Configuration</h2>
+<div class="callout callout--warning">
+  <p>This is an experimental feature!</p>
+</div>
+<div class="callout callout--info">
+  <p>This is available from SDK version 22.09.4</p>
+</div>
+<p>
+  You can make your SDK fetch some configurations you have set in your Countly
+  server by setting <code>enableServerConfiguration</code> during init:
+</p>
+<pre><code class="java">config.enableServerConfiguration()</code></pre>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
