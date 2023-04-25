@@ -1221,7 +1221,7 @@ config.setConsentEnabled(["location", "sessions", "attribution", "push", "events
   push notifications. You are expected to handle receiving consent from end-users
   using proper UIs depending on your app's context. You are also expected to store
   them either locally or remotely. Following this step, you will need to call the
-  <code>giveConsentInit</code> method on each app launch depending on the permissions
+  <code>giveConsent</code> method on each app launch depending on the permissions
   you managed to get from the end-users.
 </p>
 <p>Ideally you would give consent during initialization.</p>
