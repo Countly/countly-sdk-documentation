@@ -56,12 +56,16 @@
 </div>
 <h2>SDK Logging</h2>
 <p>
-  <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Androids internal log calls.</span>
+  <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Android's internal log calls.</span>
 </p>
 <p>
   Call&nbsp;<code>setLoggingEnabled</code>&nbsp;on the config class to enable logging:
 </p>
 <pre><code>CountlyConfig config = (<span>new </span>CountlyConfig(appC, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));<br>config.setLoggingEnabled(<span>true</span>);</code></pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   <span style="font-weight: 400;">All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
@@ -735,7 +739,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
-implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
+implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
 </p>
@@ -745,7 +749,10 @@ implementation 'com.google.firebase:firebase-messaging:22.0.0'</code></pre>
     &lt;/intent-filter&gt;
 &lt;/service&gt;
 </code></pre>
-<p>... and add a class for it as well:</p>
+<p>
+  ... and add a class for it as well (for Flutter and React-Native project this
+  step is not needed as the SDK adds the service files implicitly):
+</p>
 <pre><code class="java">public class DemoFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "DemoMessagingService";
 
@@ -2295,6 +2302,18 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   other scenarios, we recommend using the default storage behavior provided by
   the Countly SDK.
 </p>
+<h2>Server Configuration</h2>
+<div class="callout callout--warning">
+  <p>This is an experimental feature!</p>
+</div>
+<div class="callout callout--info">
+  <p>This is available from SDK version 22.09.4</p>
+</div>
+<p>
+  You can make your SDK fetch some configurations you have set in your Countly
+  server by setting <code>enableServerConfiguration</code> during init:
+</p>
+<pre><code class="java">config.enableServerConfiguration()</code></pre>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>

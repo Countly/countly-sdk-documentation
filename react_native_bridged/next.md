@@ -98,6 +98,10 @@ if(!await Countly.isInitialized()) {
   countlyConfig.setLoggingEnabled(true); // Enable countly internal debugging logs
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
   </code></pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   You may provide your own custom device ID when initializing the SDK using the

@@ -93,6 +93,10 @@ flutter run</code></pre>
   We advise doing this while implementing Countly features in your application.
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLoggingEnabled(true);</code></pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   When the SDK is initialized for the first time and no device ID is provided,
@@ -580,32 +584,35 @@ Countly.recordView("Dashboard");</code></pre>
   <code>android/app/src/main/AndroidManifest.xml</code> inside
   <code>application</code> tag.
 </p>
-<pre><code class="xml">&lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
-    &lt;intent-filter&gt;
-        &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
-    &lt;/intent-filter&gt;
-&lt;/service&gt;
+<pre><code class="xml">&lt;application ...&gt;
+...
+   &lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
+     &lt;intent-filter&gt;
+       &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
+     &lt;/intent-filter&gt;
+   &lt;/service&gt;
+&lt;/application&gt;
 </code></pre>
-<p>
-  Step 7: Use the latest version from this link
-  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
-  and this link
-  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
-</p>
 <p>
   Step 6: Add the following line in file <code>android/build.gradle</code>
 </p>
 <pre><code class="JavaScript">buildscript {
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.2'
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 </code></pre>
 <p>
+  You can get the latest version from this link
+  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
+  and this link
+  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
+</p>
+<p>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="JavaScript">dependencies {
-    implementation 'ly.count.android:sdk:20.04'
+    implementation 'ly.count.android:sdk:22.02.1'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 // Add this at the bottom of the file
@@ -1162,39 +1169,9 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
 <h1>User consent</h1>
 <p>
   For compatibility with data protection regulations, such as GDPR, the Countly
-  iOS SDK allows developers to enable/disable any feature at any time depending
+  Flutter SDK allows developers to enable/disable any feature at any time depending
   on user consent. More information about GDPR
-  <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">can be found here.</a>
-</p>
-<p>
-  By default the requirement for consent is disabled. To enable it, you have to
-  call <code>setRequiresConsent</code> with true, before initializing Countly.
-</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setRequiresConsent(true);</code></pre>
-<p>
-  By default, no consent is given. That means that if no consent is enabled, Countly
-  will not work and no network requests, related to features, will be sent. When
-  the consent status of a feature is changed, that change will be sent to the Countly
-  server.
-</p>
-<p>
-  The Countly SDK does not persistently store the status of given consents except
-  push notifications. You are expected to handle receiving consent from end-users
-  using proper UIs depending on your app's context. You are also expected to store
-  them either locally or remotely. Following this step, you will need to call the<code>giveConsent/giveConsentInit</code>
-  method on each app launch depending on the permissions you managed to get from
-  the end-users.
-</p>
-<p>
-  The ideal location for giving consent is after <code>Countly.init</code> and
-  before <code>Countly.start()</code>. Consent for features can be given and revoked
-  at any time, but if it is given after<code>Countly.start()</code> , some features
-  might work partially.
-</p>
-<p>
-  If consent is removed, but the appropriate function can't be called before the
-  app closes, it should be done at next app start so that any relevant server-side
-  features could be disabled (like reverse geo ip for location)
+  <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
 </p>
 <p>
   Currently, available features with consent control are as follows:
@@ -1220,34 +1197,54 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
     remote-config - allows downloading remote config values from your server
   </li>
 </ul>
-<h2>Giving consents</h2>
+<h2>Setup During Init</h2>
 <p>
-  To give consent for features, you can use the <code>setConsentEnabled</code>of
-  <code>CountlyConfig</code> class or <code>giveConsent</code> after
-  <code>init</code> by passing the feature names as an Array.<br>
-  We recommend using the<code>setConsentEnabled</code>of
-  <code>CountlyConfig</code> because some features require consents before
-  <code>init</code>
+  By default the requirement for consent is disabled. To enable it, you have to
+  call <code>setRequiresConsent</code> with true, before initializing Countly.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"]);<br></code><code class="JavaScript">Countly.giveConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
-<h2>Removing consents</h2>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setRequiresConsent(true);</code></pre>
 <p>
-  If the end-user changes his/her mind about consents at a later time, you will
-  need to reflect this in the Countly SDK using the <code>removeConsent</code>method:
+  By default, no consent is given. That means that if no consent is enabled, Countly
+  will not work and no network requests, related to features, will be sent. When
+  the consent status of a feature is changed, that change will be sent to the Countly
+  server.
 </p>
-<pre><code class="JavaScript">Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
-<h2>Giving all consents</h2>
 <p>
-  If you would like to give consent for all the features, you can use the
-  <code>giveAllConsent</code> method:
+  To give consent during initialization, you have to call
+  <code class="JavaScript">setConsentEnabled</code>on the config object with an
+  array of consent values.
 </p>
-<pre><code class="JavaScript">Countly.giveAllConsent();</code></pre>
-<h2>Removing all consents</h2>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"])</code></pre>
 <p>
-  If you would like to remove consent for all the features, you can use the
-  <code>removeAllConsent</code> method:
+  The Countly SDK does not persistently store the status of given consents except
+  push notifications. You are expected to handle receiving consent from end-users
+  using proper UIs depending on your app's context. You are also expected to store
+  them either locally or remotely. Following this step, you will need to call the
+  <code>giveConsentInit</code> method on each app launch depending on the permissions
+  you managed to get from the end-users.
 </p>
-<pre><code class="JavaScript">Countly.removeAllConsent();</code></pre>
+<p>Ideally you would give consent during initialization.</p>
+<h2>Changing Consent</h2>
+<p>
+  The end-user can change their mind about consents at a later time.
+</p>
+<p>
+  To reflect these changes in the Countly SDK, you can use the
+  <code>removeConsent</code> or <code class="JavaScript">giveConsent</code> methods.
+</p>
+<pre><code class="JavaScript">//give consent values after init
+Countly.giveConsent(["events", "views", "star-rating", "crashes"]);<br><br>//remove consent values after init
+Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
+</code></pre>
+<p>
+  You can also either give or remove consent to all possible SDK features:
+</p>
+<pre><code class="JavaScript">//give consent to all features
+Countly.giveAllConsent();
+
+//remove consent from all features
+Countly.removeAllConsent();</code></pre>
 <h1>Security and privacy</h1>
 <h2>Parameter tampering protection</h2>
 <p>
