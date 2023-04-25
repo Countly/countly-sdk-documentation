@@ -57,9 +57,8 @@ cd ..</pre>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
 import Countly from 'countly-sdk-react-native-bridge/CountlyConfig';
 
-if(!await Countly.isInitialized()) {
+if(!await Countly.isInitialized()) {<br>  // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // create Countly config object
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
   Countly.start(); // start session tracking
 }</code></pre>
@@ -92,9 +91,8 @@ if(!await Countly.isInitialized()) {
   Call <code class="JavaScript">setLoggingEnabled</code> on the config object to
   enable logging:
 </p>
-<pre><code class="hljs coffeescript">
-  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // create Countly config object
+<pre><code class="hljs coffeescript">  // create Countly config object
+  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>  // ... 
   countlyConfig.setLoggingEnabled(true); // Enable countly internal debugging logs
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
   </code></pre>
@@ -107,8 +105,8 @@ if(!await Countly.isInitialized()) {
   You may provide your own custom device ID when initializing the SDK using the
   method below.
 </p>
-<pre>  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // create Countly config object
+<pre>  // create Countly config object<br>  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+  // ...
   countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </pre>
@@ -141,9 +139,9 @@ if(!await Countly.isInitialized()) {
   <code class="JavaScript">initWithConfig</code> in order to activate automatic
   crash reporting.
 </p>
-<pre><code class="javascript">
+<pre><code class="javascript">  // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // create Countly config object
+  // ...
   countlyConfig.enableCrashReporting(); // Enable crash reports
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
@@ -459,9 +457,9 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <p>
   To enable this when initializing the SDK, use the method below.
 </p>
-<pre><code class="javascript">
+<pre><code class="javascript">  // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // create Countly config object
+  //...
   countlyConfig.setDeviceId("TemporaryDeviceID"); // Set temporary device ID
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
@@ -513,8 +511,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   that the push token mode should be set before initialization. Use the method
   below.
 </p>
-<pre>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-// create Countly config object
+<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 countlyConfig.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description"); // Set push token type
 // Countly.messagingMode.DEVELOPMENT
 // Countly.messagingMode.PRODUCTION
@@ -623,8 +620,8 @@ apply plugin: 'com.google.gms.google-services'
   By default additional intent redirection is enabled for intent redirect security,
   you can disable the additional intent redirection:
 </p>
-<pre>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-// create Countly config object
+<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// ...
 countlyConfig.configureIntentRedirectionCheck([], [], false); // Disable intent redirection security
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </pre>
@@ -643,8 +640,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   You can set the allowed package and class names for Intent Redirection using
   this call:
 </p>
-<pre>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-// create Countly config object
+<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
 countlyConfig.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);
 // configure redirection check
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
@@ -783,9 +779,9 @@ console.log(JSON.stringify(theNotification));
     or IPv6 formats
   </li>
 </ul>
-<pre><code class="javascript">// Example for countlyConfig.setLocation
+<pre><code class="javascript">// create Countly config object
 const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-// create Countly config object
+//...
 var countryCode = "us";
 var city = "Houston";
 var latitude = "29.634933";
@@ -922,8 +918,7 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   The star-rating dialog's title, message, and dismiss button text may be customized
   through the <code class="JavaScript">setStarRatingDialogTexts</code> method.
 </p>
-<pre><code class="javascript">
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
 countlyConfig.setStarRatingDialogTexts("Custom title", "Custom message", "Custom dismiss button text");
 // Set dialog texts
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
@@ -1177,8 +1172,7 @@ Countly.userDataBulk.save();<br>})</code></pre>
 <p>
   First, you need to enable the Performance Monitoring feature:
 </p>
-<pre><code class="javascript">
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
 countlyConfig.enableApm(); // Enable APM features.
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
@@ -1193,8 +1187,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   <code class="JavaScript">appLoadingFinished</code> method. Make sure this method
   is called after <code class="JavaScript">initWithConfig</code>.
 </p>
-<pre><code class="javascript">// Example of appLoadingFinished
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 Countly.appLoadingFinished(); // Call the appLoadingFinished method</code></pre>
 <p>
@@ -1272,22 +1265,6 @@ Countly.endTrace(traceKey, customMetric);</pre>
   <a href="https://resources.count.ly/docs/compliance-hub">Compliance Hub plugin</a>
   documentation.
 </p>
-<h2>Setup During Init</h2>
-<p>
-  <span>The requirement for consent is disabled by default. To enable it, you will have to call&nbsp;<code>setRequiresConsent</code></span><span>&nbsp;with&nbsp;<code>true</code></span><span>&nbsp;before initializing Countly.</span>
-</p>
-<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-<br>// Enable consent requirement
-Countly.setRequiresConsent(true);<br>// Give consent for a list of features
-countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);
-
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config</code></pre>
-<p>
-  <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.&nbsp;</span>
-</p>
-<p>
-  <span>Since the React Native Bridge SDK employs our iOS and Android SDKs, it is recommended to review their relevant documentation on this topic first for understanding its limitation and use case (<a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-consent" target="_self" rel="undefined">iOS Consents</a> and <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#user-consent" target="_self" rel="undefined">Android Consents</a>).</span>
-</p>
 <p>
   Currently, available features with consent control are as follows:
 </p>
@@ -1319,9 +1296,35 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
     your server.
   </li>
 </ul>
+<h2>Setup During Init</h2>
+<p>
+  <span>The requirement for consent is disabled by default. To enable it, you will have to call&nbsp;<code>setRequiresConsent</code></span><span>&nbsp;with&nbsp;<code>true</code></span><span>&nbsp;before initializing Countly.</span>
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// Enable consent requirement
+Countly.setRequiresConsent(true);</code></pre>
+<p>
+  <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.&nbsp;</span>
+</p>
+<p>
+  <span>To give consent during initialization, you have to call&nbsp;<code class="JavaScript">setConsentEnabled</code>on the config object with an array of consent values.</span>
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");</code><br>countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);</pre>
+<p>
+  The Countly SDK does not persistently store the status of given consents except
+  push notifications. You are expected to handle receiving consent from end-users
+  using proper UIs depending on your app's context. You are also expected to store
+  them either locally or remotely. Following this step, you will need to call the<span>&nbsp;</span><code>giveConsent</code><span>&nbsp;</span>method
+  on each app launch depending on the permissions you managed to get from the end-users.
+</p>
+<p>Ideally you would give consent during initialization.</p>
 <h2>Changing Consent</h2>
 <p>
-  <span>There are 3 ways of changing feature consent:</span>
+  The end-user can change their mind about consents at a later time.
+</p>
+<p>
+  To reflect these changes in the Countly SDK, you can use the removeConsent or
+  giveConsent methods.
 </p>
 <pre><code class="javascript">// To add/remove consent for a single feature (string parameter)
 Countly.giveConsent("events");
@@ -1329,9 +1332,11 @@ Countly.removeConsent("events");
 
 // To add/remove consent for a subset of features (array of strings parameters)
 Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
-Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
-
-// To add/remove consent for all available features
+Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pre>
+<p>
+  You can also either give or remove consent to all possible SDK features:
+</p>
+<pre><code class="javascript">// To add/remove consent for all available features
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
 <h1>Security and privacy</h1>
@@ -1345,8 +1350,7 @@ Countly.removeAllConsent();</code></pre>
   be checked for the validity of <code class="JavaScript">&amp;checksum</code>
   field before being processed.
 </p>
-<pre><code class="javascript hljs">
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+<pre><code class="javascript hljs">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
 countlyConfig.enableParameterTamperingProtection("salt"); // Enable tamper protection salt
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
@@ -1471,22 +1475,11 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>
 <h2>Attribution</h2>
-<p>
-  <a href="https://count.ly/attribution-analytics">Countly Attribution Analytics</a>
-  allows you to measure your marketing campaign performance by attributing installs
-  from specific campaigns. This feature is available for the Enterprise Edition.
-</p>
+<p>This feature is available for the Enterprise Edition.</p>
 <p>
   <span>There are 2 forms of attribution: direct Attribution and indirect Attribution.</span><span></span>
 </p>
-<h3>
-  <span>Direct Attribution</span>
-</h3>
-<div class="callout callout--info">
-  <p>
-    Currently, direct attribution is only available for Android.
-  </p>
-</div>
+<h3>Direct Attribution</h3>
 <p>
   You can pass "Campaign type" and "Campaign data". The "type" determines for what
   purpose the attribution data is provided. Depending on the type, the expected
@@ -1509,9 +1502,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   the campaign id or with the campaign id and campaign user id.
 </p>
 <pre><code class="JavaScript">const campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>Countly.recordDirectAttribution('countly', campaignData);</code></pre>
-<h3>
-  <span>Indirect Attribution</span>
-</h3>
+<h3>Indirect Attribution</h3>
 <p>
   This feature would be used to report things like advertising ID's. For each platform
   those would be different values. For the most popular keys we have a class with
