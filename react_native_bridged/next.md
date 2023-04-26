@@ -443,23 +443,23 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <p>
   To enable this when initializing the SDK, use the method below.
 </p>
-<pre>Countly.init(SERVER_URL, APP_KEY, "TemporaryDeviceID")</pre>
+<pre>Countly.init(SERVER_URL, APP_KEY, Countly.TemporaryDeviceIDString)</pre>
 <p>
   To enable a temporary device ID <strong>after</strong> initialization, use the
   method below.
 </p>
-<pre>Countly.changeDeviceId("TemporaryDeviceID", ON_SERVER);</pre>
+<pre>Countly.changeDeviceId(Countly.TemporaryDeviceIDString, ON_SERVER);</pre>
 <p>
-  <strong>Note:</strong> When passing the
-  <code class="JavaScript">TemporaryDeviceID</code> for the
-  <code class="JavaScript">deviceID</code> parameter, the argument for the
+  <strong>Note:</strong> When passing
+  <code class="JavaScript"><span>Countly.TemporaryDeviceIDString</span></code>&nbsp;for
+  the <code class="JavaScript">deviceID</code> parameter, the argument for the
   <code class="JavaScript">onServer</code>parameter does not matter.
 </p>
 <p>
   As long as the device ID value is
-  <code class="JavaScript">TemporaryDeviceID</code>, the SDK will be in temporary
-  device ID mode and all requests will be on hold, but they will be persistently
-  stored.
+  <code class="JavaScript"><span>Countly.TemporaryDeviceIDString</span></code>,
+  the SDK will be in temporary device ID mode and all requests will be on hold,
+  but they will be persistently stored.
 </p>
 <p>
   When in temporary device ID mode, method calls for presenting feedback widgets
