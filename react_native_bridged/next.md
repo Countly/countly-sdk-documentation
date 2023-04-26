@@ -758,7 +758,7 @@ console.log(JSON.stringify(theNotification));
 </code></pre>
 <h3>Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is the example of how data will receive in push callbacks:<img src="/hc/article_attachments/7830011337369/Screenshot_2022-06-24_at_7.04.23_PM.png" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
+  Here is an example of how data will received in push callbacks:<img src="/hc/article_attachments/17931838199193" alt="004.png"><br>
   <br>
   Data Received for Android platform:
 </p>
