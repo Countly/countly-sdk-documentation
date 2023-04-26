@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 22.06.X<br>
+  and it applies to version 23.02.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
@@ -632,9 +632,6 @@ apply plugin: 'com.google.gms.google-services'
 <p>
   <strong>Additional Intent Redirection Checks</strong>
 </p>
-<div class="callout callout--warning">
-  <p>This functionality is available since SDK version 22.02.2.</p>
-</div>
 <p>
   Intent Redirection Vulnerability is an issue that lets your app allow malicious
   apps to access private app components or files. Google removes apps from Google
@@ -735,9 +732,6 @@ console.log(JSON.stringify(theNotification));
   in <code>didFinishLaunchingWithOptions:</code> method to handle push notification
   receive and action callbacks when SDK is not initialized.
 </p>
-<div class="callout callout--warning">
-  <p>This functionality is available since SDK version 22.06.1</p>
-</div>
 <pre><code class="JavaScript">// For push notification received and action callbacks.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
