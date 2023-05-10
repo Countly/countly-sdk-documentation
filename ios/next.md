@@ -3558,51 +3558,6 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2>Attribution</h2>
-<h3>IDFA Attribution</h3>
-<p>
-  <span style="font-weight: 400;">You can use <code>attributionID</code> property on <code>CountlyConfig</code></span><span style="font-weight: 400;"> object to specify IDFA for campaign attribution before starting the SDK. If set, it will be sent with every <code>begin_session</code></span><span style="font-weight: 400;"> request.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.attributionID = @"IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM";</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.attributionID = "IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM"</code></pre>
-  </div>
-</div>
-<p>
-  You can also use
-  <span style="font-weight: 400;"><code>recordAttributionID:</code> method to specify it later:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordAttributionID:@"IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordAttributionID("IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM")</code></pre>
-  </div>
-</div>
-<p>
-  This method overrides
-  <span style="font-weight: 400;"><code>attributionID</code></span> property specified
-  on initial configuration, and sends an immediate request.
-</p>
-<p>
-  For obtaining IDFA please see:
-  <a href="https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc">https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc</a>
-</p>
-<p>
-  And for App Tracking Transparency permission required on iOS 14.5+ please see:
-  <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
-</p>
 <h3>Direct Attribution</h3>
 <p>
   You can record direct attribution with campaign type and data.<br>
@@ -3649,6 +3604,14 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
   </div>
 </div>
+<p>
+  For obtaining IDFA please see:
+  <a href="https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc">https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc</a>
+</p>
+<p>
+  And for App Tracking Transparency permission required on iOS 14.5+ please see:
+  <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
+</p>
 <h2>Direct Request</h2>
 <p>
   The <code>addDirectRequest</code> method allows you to send custom key/value
