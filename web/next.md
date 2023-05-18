@@ -2894,7 +2894,7 @@ Countly2.add_event({
     <li>- rating widget response (reported as event)</li>
   </ul>
   <li>
-    <strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed
+    <strong>maxSegmentationValues</strong> - 100 dev entries. Entries that exceed
     this limit will be removed.<br>
     To set the maximum amount of custom segmentation that can be recorded in
     one event.
