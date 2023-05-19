@@ -144,7 +144,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <h1>Crash Reporting</h1>
 <p>
   The Countly SDK for C++ can collect
-  <a style="background-color: #ffffff;" href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics">Crash Reports</a>,
+  <a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics">Crash Reports</a>,
   which you may examine and resolve later on the server.
 </p>
 <p>
