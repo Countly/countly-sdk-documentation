@@ -2328,14 +2328,16 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 </p>
 <pre><code class="java">Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(RCVariantCallback completionCallback)</code></pre>
 <p>
-  You can provide a RCVariantCallback (which is optional), to be called when the
+  You can provide an RCVariantCallback (which is optional) to be called when the
   fetching process ends. Depending on the situation, this would return a RequestResponse
-  Enum (SUCCESS, NETWORK_ISSUE, or ERROR). A sample usage would be like this:
+  Enum (SUCCESS, NETWORK_ISSUE, or ERROR) as the first parameter and a String error
+  as the second parameter if there was an error (null otherwise). A sample usage
+  would be like this:
 </p>
 <pre><code class="java">
 Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(new RCVariantCallback() {
     @Override
-    public void callback(RequestResponse result) {
+    public void callback(RequestResponse result, String error) {
         if (result == RequestResponse.SUCCESS) {
             // do sth after the success
         } else {
