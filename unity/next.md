@@ -80,6 +80,10 @@
   Set <code>EnableConsoleLogging</code> on the config object to enable logging:
 </p>
 <pre>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};</pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2 id="device-id" class="anchor-heading">Device ID</h2>
 <p>
   <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>

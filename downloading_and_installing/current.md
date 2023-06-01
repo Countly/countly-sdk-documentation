@@ -584,6 +584,8 @@
 </p>
 <h2>React Native SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/17931615262745" target="_blank" rel="noopener">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/11734029520665" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/6116239554841" target="_blank" rel="noopener">Version 21.11</a>
@@ -616,6 +618,8 @@
 </p>
 <h2>C++ SDKs</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/18695404412185" target="_blank" rel="noopener">Version 22.09</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/16413408161817" target="_blank" rel="noopener">Version 22.06</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="_blank" rel="noopener">Version 22.02</a>

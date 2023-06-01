@@ -273,6 +273,10 @@ Countly.debug = true;</code></pre>
 });</code></pre>
   </div>
 </div>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2>Device ID</h2>
 <p>
   All tracked information is tied to a "device ID". A device ID is a unique identifier
@@ -1347,9 +1351,9 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   can do that in Countly. To get a rating or suggestion from users you can use
   rating widgets, which gives users flexibility to give a rating, leave a comment
   or reach you with an e-mail. Another way the users can leave feedback is through
-  the feedback widgets (survey, nps). With the help of these widgets you can ask
-  your customers multiple questions and learn about their opinions and preferences
-  in detail.
+  the feedback widgets (survey, nps, ratings). With the help of these widgets you
+  can ask your customers multiple questions and learn about their opinions and
+  preferences in detail.
 </p>
 <h2>Ratings</h2>
 <p>
@@ -1429,7 +1433,7 @@ Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
 //to show multiple rating widgets with an array of different widget IDs
 Countly.q.push([
     'initializeRatingWidgets',
-    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass'] 
+    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass']
 ]);
 
 </code></pre>
@@ -1478,10 +1482,12 @@ Countly.recordRatingWidgetWithID({
 </div>
 <h2>Feedback Widget</h2>
 <p>
-  There are two types of surveys available - NPS and Basic survey.
+  There are three kinds of feedback widgets available. Namely NPS, survey and ratings
+  widgets. Before any feedback widget can be shown, you need to create them in
+  your countly dashboard first.
 </p>
 <p>
-  Both NPS and Survey use the same API to fetch feedbacks from the server as well
+  All three widgets use the same API to fetch feedbacks from the server as well
   as to display them to the end user. By default, the created widget will be appended
   to the end of the html document. In some scenarios you might prefer to have the
   widget injected in a specific element. For those scenarios we have added optional
@@ -1500,49 +1506,51 @@ Countly.recordRatingWidgetWithID({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
+    <pre><code class="javascript">//Fetch user's feedback widgets from the server
 Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
-<br>//Surveys feedback callback function
+<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     if (err) {
         console.log(err);
         return;
     }
   
-    //The available feedback types are nps and survey, decide which one to show
-    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+    //The available feedback types are nps, survey and rating, decide which one to show
+    // for example loop through the array and pick where countlyPresentableFeedback[i].type === 'nps'
+    var countlyFeedbackWidget = countlyPresentableFeedback[0];
 
     //Define the element ID and the class name
     var selectorId = "targetIdSelector";
     var selectorClass = "targetClassSelector";
 
     //Display the feedback widget to the end user
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass);
 
 }
-</span></span></code></pre>
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//Fetch user's NPS and Survey feedbacks from the server
+    <pre><code class="javascript">//Fetch user's feedback widgets from the server
 Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
-<br>//Surveys feedback callback function
+<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     if (err) {
       console.log(err);
         return;
     }
-    
-    //The available feedback types are nps and survey, decide which one to show
-    var c<span>ountlyFeedbackWidget = countlyPresentableFeedback[0];
+
+    //The available feedback types are nps, survey and rating, decide which one to show
+    // for example loop through the array and pick where countlyPresentableFeedback[i].type === 'nps'
+    var countlyFeedbackWidget = countlyPresentableFeedback[0];
     
     //Define the element ID and the class name
     var selectorId = "targetIdSelector";
     var selectorClass = "targetClassSelector";
     
     //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(c<span>ountlyFeedbackWidget, selectorId, selectorClass);
+    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass);
 }
-</span></span></code></pre>
+</code></pre>
   </div>
 </div>
 <p>
@@ -1572,7 +1580,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   one object that you want to report the results for. This array and the objects
   that you can pick would look like this:
 </p>
-<pre>{
+<pre><code class="javascript">{
   "result":[
       {
         "_id":"614811419f030e44be07d82f",
@@ -1608,10 +1616,11 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
         "tg":[]
       }
     ]
-  }</pre>
+  }</code></pre>
 <p>
   Here you would want to pick a widget according to its type and name or any other
-  information you are looking for.
+  information you are looking for. For more information on this data please check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#interpreting-retrieved-feedback-widget-lists" target="_blank" rel="noopener">here</a>.
 </p>
 <p>
   At second step, by using the 'getFeedbackWidgetData' function, you can fetch
@@ -1634,10 +1643,61 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 <p>
   And example implementation of the mentioned concepts can be seen here:
 </p>
-<div>
-  <pre><span>&nbsp; &nbsp; </span><span>var </span><span></span><span>CountlyFeedbackWidget</span><span>;</span><br><span>  &nbsp; </span><span>var </span><span></span><span>CountlyWidgetData</span><span>;</span><br><br><span>&nbsp; &nbsp; </span><span>// an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating' &nbsp; &nbsp;</span><br><span>  &nbsp; </span><span>function </span><span></span><span>getFeedbackWidgetListAndReportResults</span><span>(</span><span>widgetType</span><span>) </span><span></span><span>{</span><br><span>  &nbsp; &nbsp; </span><span>// get the widget list</span><br><span>  &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>get_available_feedback_widgets</span><span>(</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>// callback function, 1st param is the feedback widget list</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>function</span><span></span><span>(</span><span>feedbackList</span><span>,</span><span></span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>log</span><span>(</span><span>err</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>return</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br>          <br>          // Go through the widget list and pick one with the same type you are looking for<br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>var </span><span></span><span>i</span><span></span><span>= </span><span></span><span>feedbackList</span><span>.</span><span>length</span><span></span><span>-</span><span></span><span>1</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>while</span><span></span><span>(</span><span>i</span><span>--</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>feedbackList</span><span>[</span><span>i</span><span>].</span><span>type</span><span></span><span>===</span><span></span><span>widgetType</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>CountlyFeedbackWidget</span><span></span><span>=</span><span></span><span>feedbackList</span><span>[</span><span>i</span><span>];</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>break</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br>  <br>          // if the widget exists continue<br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>CountlyFeedbackWidget</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// Get data with the widget object</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>getFeedbackWidgetData</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// callback function, 1st param is the feedback widget data</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>function</span><span></span><span>(</span><span>feedbackData</span><span>,</span><span></span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>err</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>log</span><span>(</span><span>err</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>return</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>CountlyWidgetData</span><span></span><span>=</span><span></span><span>feedbackData</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// report results according to the widget type. Results to report are different for each widget type</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'nps'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>{</span><span></span><span>rating</span><span>:</span><span></span><span>3</span><span>,</span><span></span><span>comment</span><span>:</span><span></span><span>"comment"</span><span></span><span>});</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>                else </span><span></span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'survey'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>var </span><span></span><span>widgetResponse</span><span></span><span>=</span><span></span><span>{};</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>// form the key/value pairs according to data</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>widgetResponse</span><span>[</span><span>"answ-"</span><span></span><span>+</span><span></span><span>CountlyWidgetData</span><span>.</span><span>questions</span><span>[</span><span>0</span><span>].</span><span>id</span><span>]</span><span></span><span>=</span><span></span><span>CountlyWidgetData</span><span>.</span><span>questions</span><span>[</span><span>0</span><span>].</span><span>type</span><span></span><span>===</span><span></span><span>"rating"</span><span></span><span>?</span><span></span><span>3</span><span></span><span>:</span><span></span><span>"answer"</span><span>;</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>widgetResponse</span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>                else </span><span></span><span>if</span><span></span><span>(</span><span>CountlyWidgetData</span><span>.</span><span>type</span><span></span><span>===</span><span></span><span>'rating'</span><span>)</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>Countly</span><span>.</span><span>reportFeedbackWidgetManually</span><span>(</span><span>CountlyFeedbackWidget</span><span>,</span><span></span><span>CountlyWidgetData</span><span>,</span><span></span><span>{</span><span></span><span>rating</span><span>:</span><span></span><span>3</span><span>,</span><span></span><span>comment</span><span>:</span><span></span><span>"comment"</span><span>,</span><span></span><span>email</span><span>:</span><span></span><span>"email"</span><span>,</span><span></span><span>contactMe</span><span>:</span><span></span><span>true</span><span></span><span>});</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>);</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}<br></span><span></span><span>          else</span><span></span><span>{</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>console</span><span>.</span><span>error</span><span>(</span><span>"The widget type you are looking for does not exist"</span><span>)</span><br><span>  &nbsp; &nbsp; &nbsp; &nbsp; </span><span>}</span><br><span>  &nbsp; &nbsp; &nbsp; </span><span>})</span><br><span>  &nbsp; </span><span>}</span></pre>
-</div>
-<p>&nbsp;</p>
+<pre><code class="javascript">
+    var CountlyFeedbackWidget;
+    var CountlyWidgetData;
+    // an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'
+    function getFeedbackWidgetListAndDoThings(widgetType) {
+      // get the widget list
+      Countly.get_available_feedback_widgets(
+        // callback function, 1st param is the feedback widget list
+        function (feedbackList, err) {
+          if (err) { // error handling
+            console.log(err);
+            return;
+          }
+
+          // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
+          var i = feedbackList.length - 1;
+          while (i--) {
+            if (feedbackList[i].type === widgetType) {
+              CountlyFeedbackWidget = feedbackList[i];
+              break;
+            }
+          }
+
+          // if the widget object is found
+          if (CountlyFeedbackWidget) {
+            // Get data with the widget object
+            Countly.getFeedbackWidgetData(CountlyFeedbackWidget,
+              // callback function, 1st param is the feedback widget data
+              function (feedbackData, err) {
+                if (err) { // error handling
+                  console.log(err);
+                  return;
+                }
+
+                CountlyWidgetData = feedbackData;
+                // record data according to the widget type
+                if (CountlyWidgetData.type === 'nps') {
+                  Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
+                } else if (CountlyWidgetData.type === 'survey') {
+                  var widgetResponse = {};
+                  // form the key/value pairs according to data
+                  widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
+                  Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, widgetResponse);
+                } else if (CountlyWidgetData.type === 'rating') {
+                  Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
+                }
+              }
+
+            );
+          } else {
+            console.error("The widget type you are looking for does not exist")
+          }
+        })
+    }
+       </code></pre>
 <h1>User Profiles</h1>
 <h2>User Details</h2>
 <p>
@@ -2834,7 +2894,7 @@ Countly2.add_event({
     <li>- rating widget response (reported as event)</li>
   </ul>
   <li>
-    <strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed
+    <strong>maxSegmentationValues</strong> - 100 dev entries. Entries that exceed
     this limit will be removed.<br>
     To set the maximum amount of custom segmentation that can be recorded in
     one event.
@@ -3074,4 +3134,35 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   <code>$exceptionHandler</code> to call <code>Countly.log_error()</code>. For
   more information,
   <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
+</p>
+<h2>Incognito mode and ad blockers</h2>
+<p>
+  Incognito mode prevents the browser from storing cookies and other site data.
+  Cookies are small files that websites use to track user activity, remember preferences,
+  and provide personalized experiences. In incognito mode, cookies are not saved.
+  This means that any information our SDK saves in the browser's local storage
+  would be gone the next time the user opens their incognito browser. These things
+  include things like device ID and event/request queues. Each time a person visits
+  a Countly integrated website in incognito mode, they would be perceived as a
+  new user. This can be mitigated by having an authentication page on your website.
+</p>
+<p>
+  Ad blockers employ various techniques to identify and block unwanted requests,
+  such as analyzing URL patterns, known tracking domains, or specific JavaScript
+  code snippets. They can also detect and block requests made to known analytics
+  or tracking services, making it possible for them to block requests made to the
+  Countly server from our SDKs. This can result in incomplete or missing data,
+  as the blocked requests may not reach the Countly server for processing. This
+  is a possibility, but not all ad blockers would be blocking our requests, depending
+  on their filter settings.
+</p>
+<p>
+  To mitigate this issue to a certain extent, you can enable force using the POST
+  method for all requests with the SDK. Switching to a POST request can make it
+  slightly harder for ad blockers to detect and block the request, as the parameters
+  are sent in the request body instead of the URL. However, it doesn't make the
+  request invisible or immune to blocking. Ad blockers can still analyze network
+  traffic and inspect the request headers and payload, so if your server is Countly
+  hosted and the domain name is in the filter of the ad blocker, it would still
+  be blocked.
 </p>

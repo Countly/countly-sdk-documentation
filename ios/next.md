@@ -1,7 +1,7 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>23.02.0</code>.
+  <code>23.02.X</code>.
 </p>
 <p>
   Click
@@ -167,7 +167,15 @@
 </div>
 <p>
   Internal logging works only for Development environment where
-  <code>DEBUG</code> flag is set in target's Build settings.
+  <code>DEBUG</code> flag is set in target's Build settings. But if you still can
+  not see the SDK logs you have to make sure your XCode is configured correctly
+  by going to Product &gt; Scheme &gt; Edit Scheme in your XCode and selecting
+  Run from the menu at the left-hand side. There you should click on Arguments
+  tab and make sure "OS_ACTIVITY_MODE" argument is set to "disable".
+</p>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
 </p>
 <h3>Logger Delegate</h3>
 <p>
@@ -1234,11 +1242,10 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 <h1>Device ID Management</h1>
 <h2>Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>setNewDeviceID:onServer</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
 </p>
 <p>
-  If the<code>onServer</code> bool is set,
-  <span style="font-weight: 400;">the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span>
+  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1246,43 +1253,26 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewDeviceID:@"new_device_id" onServer:YES];
-//replace and merge on server</code></pre>
+    <pre><code class="objectivec">//change and merge on server
+[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
+
+//no replace and merge on server, device will be counted as new
+[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setNewDeviceID("new_device_id", onServer:true)
-//replace and merge on server</code></pre>
+    <pre><code class="swift">//replace and merge on server
+Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
+
+//no replace and merge on server, device will be counted as new
+Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
   </div>
 </div>
 <div class="callout callout--warning">
   <strong>Consent Reset on Device ID Change</strong>
   <p>
-    <span style="font-weight: 400;">If device ID is changed without merging (<code>onServer</code> set to <code>NO</code>) and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
+    <span style="font-weight: 400;">If device ID is changed without merging and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
-<p>
-  Otherwise, if <code>onServer</code> bool is <strong>not</strong> set,
-  <span style="font-weight: 400;">the device will be counted as a new device on the server.</span>
-  And given all consents will be cancelled.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewDeviceID:@"new_device_id" onServer:NO];
-//no replace and merge on server, device will be counted as new</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setNewDeviceID("new_device_id", onServer:false)
-//no replace and merge on server, device will be counted as new</code></pre>
-  </div>
-</div>
-<p>
-  <strong>Note:</strong> To switch back to the default device ID, you can pass
-  <code>CLYDefaultDeviceID</code>.
-</p>
 <h2>Temporary Device ID</h2>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
@@ -1303,7 +1293,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 </div>
 <p>
   Or by passing as an argument for <code>deviceID</code> parameter on
-  <code>setNewDeviceID:onServer</code>method any time:
+  <code>changeDeviceIDWithoutMerge:</code>any time:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1311,17 +1301,12 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewDeviceID:CLYTemporaryDeviceID onServer:NO];<br></code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithoutMerge:CLYTemporaryDeviceID];<br></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setNewDeviceID(CLYTemporaryDeviceID, onServer:false)<br></code></pre>
+    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithoutMerge(CLYTemporaryDeviceID)</code></pre>
   </div>
 </div>
-<p>
-  <strong>Note:</strong> When passing <code>CLYTemporaryDeviceID</code> for
-  <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
-  does not matter.
-</p>
 <p>
   As long as the device ID value is <code>CLYTemporaryDeviceID</code>, the SDK
   will be in temporary device ID mode and all requests will be on hold, but they
@@ -1333,25 +1318,26 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 </p>
 <p>
   Later, when the real device ID is set using
-  <code>setNewDeviceID:onServer</code> method, all requests which have been kept
-  on hold until that point will start with the real device ID:
+  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;</span>method,
+  all requests which have been kept on hold until that point will start with the
+  real device ID:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
+    <span class="tabs-link">Swift</span><span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;"></span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewDeviceID:@"real_device_id" onServer:NO];<br></code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];<br><br>[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setNewDeviceID("real_device_id", onServer:false)</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")<br><br>Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
   </div>
 </div>
 <p>
   <strong>Note:</strong> When setting real device ID while the current device ID
-  is <code>CLYTemporaryDeviceID</code>, argument for the <code>onServer</code>
-  parameter does not matter.
+  is <code>CLYTemporaryDeviceID</code>, with merge or without merge&nbsp;does not
+  matter.
 </p>
 <div class="callout callout--warning">
   <strong>Consent Reset on Temporary Device ID Mode</strong>
@@ -1406,7 +1392,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 </p>
 <h2>Resetting Stored Device ID</h2>
 <p>
-  <span style="font-weight: 400;">In order to handle device ID changes for logged-in and logged-out users, the device ID specified in the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object of the <code>deviceID</code></span><span style="font-weight: 400;"> property (or the default device ID, if not specified) will be persistently stored as well as the device ID passed to the <code>setNewDeviceID:onServer</code></span><span style="font-weight: 400;">method at any time upon the first app launch. By this point, until you delete and re-install the app, the Countly iOS SDK will continue to use the stored device ID and ignore the <code>deviceID</code></span><span style="font-weight: 400;"> property. So, if you set the <code>deviceID</code></span><span style="font-weight: 400;"> property to something different upon future app launches during development, it will have no effect. In this case, you can set the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object in order to reset the stored device ID. This will reset the initially stored device ID and the Countly iOS SDK will work as if it is the first app launch.</span>
+  <span style="font-weight: 400;">In order to handle device ID changes for logged-in and logged-out users, the device ID specified in the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object of the <code>deviceID</code></span><span style="font-weight: 400;"> property (or the default device ID, if not specified) will be persistently stored as well as the device ID passed to the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code> </span><span style="font-weight: 400;">method at any time upon the first app launch. By this point, until you delete and re-install the app, the Countly iOS SDK will continue to use the stored device ID and ignore the <code>deviceID</code></span><span style="font-weight: 400;"> property. So, if you set the <code>deviceID</code></span><span style="font-weight: 400;"> property to something different upon future app launches during development, it will have no effect. In this case, you can set the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object in order to reset the stored device ID. This will reset the initially stored device ID and the Countly iOS SDK will work as if it is the first app launch.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3572,51 +3558,6 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2>Attribution</h2>
-<h3>IDFA Attribution</h3>
-<p>
-  <span style="font-weight: 400;">You can use <code>attributionID</code> property on <code>CountlyConfig</code></span><span style="font-weight: 400;"> object to specify IDFA for campaign attribution before starting the SDK. If set, it will be sent with every <code>begin_session</code></span><span style="font-weight: 400;"> request.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.attributionID = @"IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM";</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.attributionID = "IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM"</code></pre>
-  </div>
-</div>
-<p>
-  You can also use
-  <span style="font-weight: 400;"><code>recordAttributionID:</code> method to specify it later:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordAttributionID:@"IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordAttributionID("IDFA_VALUE_YOU_GET_FROM_THE_SYSTEM")</code></pre>
-  </div>
-</div>
-<p>
-  This method overrides
-  <span style="font-weight: 400;"><code>attributionID</code></span> property specified
-  on initial configuration, and sends an immediate request.
-</p>
-<p>
-  For obtaining IDFA please see:
-  <a href="https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc">https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc</a>
-</p>
-<p>
-  And for App Tracking Transparency permission required on iOS 14.5+ please see:
-  <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
-</p>
 <h3>Direct Attribution</h3>
 <p>
   You can record direct attribution with campaign type and data.<br>
@@ -3663,6 +3604,14 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
   </div>
 </div>
+<p>
+  For obtaining IDFA please see:
+  <a href="https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc">https://developer.apple.com/documentation/adsupport/asidentifiermanager/1614151-advertisingidentifier?language=objc</a>
+</p>
+<p>
+  And for App Tracking Transparency permission required on iOS 14.5+ please see:
+  <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
+</p>
 <h2>Direct Request</h2>
 <p>
   The <code>addDirectRequest</code> method allows you to send custom key/value
@@ -3919,8 +3868,34 @@ end</code></pre>
 <pre><code class="text">github "Countly/countly-sdk-ios"</code></pre>
 <h2>Swift Package Manager (SPM)</h2>
 <p>
-  <span style="font-weight: 400;">You can integrate the Countly iOS SDK using Swift Package Manager (SPM) using https://github.com/Countly/countly-sdk-ios.git repository URL.</span>
+  You can integrate the Countly iOS SDK with Swift Package Manager (SPM) using
+  https://github.com/Countly/countly-sdk-ios.git repository URL. Open your XCode
+  and go to File &gt; Add Packages and enter the URL into the search bar. From
+  here you can add the package by targeting the master branch.
 </p>
+<h2>Server Configuration</h2>
+<div class="callout callout--warning">
+  <p>This is an experimental feature!</p>
+</div>
+<div class="callout callout--info">
+  <p>This is available from SDK version 23.02.2</p>
+</div>
+<p>
+  You can make your SDK fetch some configurations you have set in your Countly
+  server by setting <code>enableServerConfiguration</code> to true during init:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.enableServerConfiguration = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableServerConfiguration = true</code></pre>
+  </div>
+</div>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
 </h1>
@@ -4001,7 +3976,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <code>setNewDeviceID:onServer</code> method ( Ex: <code>[Countly.sharedInstance setNewDeviceID:@"user123@example.com" onServer:YES];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
+  <span class="wysiwyg-color-black">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <span style="font-weight: 400;"><code>changeDeviceIDWithMerge:</code></span>method ( Ex: <code>[Countly.sharedInstance changeDeviceIDWithMerge:@"user123@example.com"];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
 </p>
 <h2>
   <span class="wysiwyg-color-black">Why are events not displayed on Countly Server dashboard?</span>
