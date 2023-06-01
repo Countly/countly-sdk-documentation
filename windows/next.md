@@ -10,11 +10,10 @@
   </p>
 </div>
 <div>
-  <p>The Countly Windows SDK implements the following flavors:</p>
+  <p>
+    The Countly Windows SDK implements the following explicit flavors:
+  </p>
   <ol>
-    <li>
-      <span>Universal Windows Platform</span>
-    </li>
     <li>
       <span>.NET Standard, Version=2.0</span>
     </li>
@@ -40,10 +39,10 @@
 <ol>
   <li>
     In Solution Explorer, right-click<span>&nbsp;</span><strong>References</strong><span>&nbsp;</span>and
-    choose<span>&nbsp;</span><strong>Manage NuGet Packages</strong>.<img src="/hc/article_attachments/6536931626649/image-NuGet-packages.png" alt="image-NuGet-packages.png">
+    choose<span>&nbsp;</span><strong>Manage NuGet Packages</strong>.<img src="/guide-media/01GVCYFBRGSZYF4M2CSKYHNDKH" alt="image-NuGet-packages.png">
   </li>
   <li>
-    <span>Choose "nuget.org" as the&nbsp;</span><strong>Package source</strong><span>, select the&nbsp;</span><strong>Browse</strong><span>&nbsp;tab, search for&nbsp;</span><strong>Countly</strong><span>, select that package in the list, and select&nbsp;</span><strong>Install</strong><span>:<img src="/hc/article_attachments/6537196195481/mceclip0.png" alt="mceclip0.png"></span>
+    <span>Choose "nuget.org" as the&nbsp;</span><strong>Package source</strong><span>, select the&nbsp;</span><strong>Browse</strong><span>&nbsp;tab, search for&nbsp;</span><strong>Countly</strong><span>, select that package in the list, and select&nbsp;</span><strong>Install</strong><span>:<img src="/guide-media/01GVCYFDE9NW6731PFC2C4BMPW" alt="mceclip0.png"></span>
   </li>
   <li>
     <p>
@@ -102,13 +101,13 @@ Countly.Instance.Init(cc);</code></pre>
   <li>"Define DEBUG constant" is checked</li>
 </ul>
 <p>
-  <img src="/hc/article_attachments/6537183236249/mceclip1.png" alt="mceclip1.png">
+  <img src="/guide-media/01GVCPMRRT2Q54RB6JHN86D4C0" alt="mceclip1.png">
 </p>
 <p>
   Log messages written in the application will show up in 'Output' windows.
 </p>
 <p>
-  <img src="/hc/article_attachments/6537211113369/mceclip4.png" alt="mceclip4.png">
+  <img src="/guide-media/01GVBACGEX9MG9X2GKY88G83GS" alt="mceclip4.png">
 </p>
 <h2>SDK Data Storage</h2>
 <p>
@@ -150,10 +149,15 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <h2>Automatic Crash Handling</h2>
 <p>
-  Countly SDK has the ability to automatically collect crash reports which you
-  can examine and resolve later on the server. You should subscribe to the unhandled
-  exceptions handler manually. Exception details and device properties will be
-  sent on the next app launch.
+  Automatic crash handling is possible if the project type / platform target supports
+  a unhandled exception handler.
+</p>
+<p>
+  In that case you would subscribe to that and report the collected errors/exception
+  to the Countly SDK.
+</p>
+<p>
+  Exception details and device properties would be sent on the next app launch.
 </p>
 <h2>Handled Exceptions</h2>
 <p>
@@ -401,14 +405,14 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
 </p>
 <ul>
   <li>
-    <strong>cpuId</strong> - [net35, net40] (we recommend against using this)
+    <strong>cpuId</strong> - [net35, net45] (we recommend against using this)
     uses the OS-provided CPU id info to generate a hash that is used as an id.
     It should be possible to generate the same id on a reinstall if the CPU stays
     the same. On virtual machines and Windows 10 devices are not guaranteed to
     be unique and generate the same id and therefore device id conflicts.
   </li>
   <li>
-    <strong>multipleWindowsFields</strong> - [net35, net40] uses multiple OS-provided
+    <strong>multipleWindowsFields</strong> - [net35, net45] uses multiple OS-provided
     fields (CPU id, disk serial number, windows serial number, windows username,
     mac address) to generate a hash that would be used as the device Id. This
     method should regenerate the same id on a reinstall, provided those source
