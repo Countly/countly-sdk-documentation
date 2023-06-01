@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 22.09.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.02.X</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -27,7 +27,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:22.09.0'
+    compile 'ly.count.android:sdk:23.2.0'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
@@ -498,7 +498,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508351988121/001.png" alt="001.png">
+  <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
 </div>
 <h1>Device ID Management</h1>
 <p>
@@ -723,7 +723,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508421820313/002.png" alt="002.png">
+  <img src="/guide-media/01GVBGCTGJRS36EX7J6YHXZ2B4" alt="002.png">
 </div>
 <h4>Integrating FCM into Your App</h4>
 <p>
@@ -868,20 +868,20 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   </li>
 </ul>
 <p>
-  <img src="/hc/article_attachments/900003139063/Screenshot_2020-08-25_at_15.52.49.png" alt="Screenshot_2020-08-25_at_15.52.49.png">
+  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
 </p>
 <p>
   Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
   My Apps:
 </p>
 <p>
-  <img src="/hc/article_attachments/900003139103/Screenshot_2020-08-25_at_15.49.12.png" alt="Screenshot_2020-08-25_at_15.49.12.png">
+  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
 </p>
 <p>
   Copy your App ID &amp; the secret and paste it into Countly dashboard :
 </p>
 <p>
-  <img src="/hc/article_attachments/900003139143/Screenshot_2020-08-25_at_16.04.29.png" alt="Screenshot_2020-08-25_at_16.04.29.png">
+  <img src="/guide-media/01GVD4Q3DR7YRWKN6931KFPG9V" alt="Screenshot_2020-08-25_at_16.04.29.png">
 </p>
 <h4>Integrating HMS into Your App</h4>
 <p>
@@ -1241,7 +1241,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508502169241/003.png" alt="003.png">
+  <img src="/guide-media/01GVCPN579JDD7DNJBCW5T5HHM" alt="003.png">
 </div>
 <p>
   <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
@@ -1256,7 +1256,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508523082649/004.png" alt="004.png">
+  <img src="/guide-media/01GVD4NEYK3AQ1W94DSN7NSS1V" alt="004.png">
 </div>
 <p>
   <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
@@ -1380,21 +1380,26 @@ Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButt
   <span style="font-weight: 400;">Available with Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information. User Profiles may contain any information you either collect or is collected automatically by the Countly SDK.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You may send user-related information to Countly and let the Countly dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span style="font-weight: 400;">this documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You may send user-related information to Countly and let the Countly dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">this documentation</a><span style="font-weight: 400;">.</span><span style="font-weight: 400;"></span>
 </p>
 <p>
-  <span style="font-weight: 400;">You must call the <code>Countly.userData.setUserData</code></span><span style="font-weight: 400;">&nbsp;function in order to provide information regarding the current user. You may call this function by providing a bundle of only the predefined fields, or you may call this function while also providing a second bundle of fields with your custom keys. After you have provided the user profile information, you must save it by calling <code>Countly.userData.save()</code></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You would call </span>
+  <code>Countly.sharedInstance().userProfile().</code>to see the available functionality
+  for modifying user properties.
 </p>
-<pre><code class="java">//Update the user profile using only predefined fields
-Map&lt;String, String&gt; predefinedFields = new HashMap&lt;&gt;();
-Countly.userData.setUserData(predefinedFields);
-Countly.userData.save()
+<p>
+  <span style="font-weight: 400;">The usual workflow would include calling <code>Countly.sharedInstance().userProfile().setProperty(key, value)</code></span><span style="font-weight: 400;">function in order to provide information regarding the current user. These can either be the predefined fields or any custom fields you would want to set. After you have provided the user profile information, you must save it by calling <code>Countly.userData.save()</code></span><span style="font-weight: 400;">. This would then create a request and send it to the server.</span>
+</p>
+<pre><code class="java">// Update the user profile with multiple values
+Map&lt;String, Object&gt; userInformation = new HashMap&lt;&gt;();<br>// Set user information<br>// ...<br>
+Countly.sharedInstance().userProfile().setProperties(userInformation);
+Countly.sharedInstance().userProfile().save();
 
-//Update the user profile using predefined and custom fields
-Map&lt;String, String&gt; predefinedFields = new HashMap&lt;&gt;();
-Map&lt;String, String&gt; customFields = new HashMap&lt;&gt;();
-Countly.userData.setUserData(predefinedFields, customFields);
-Countly.userData.save()</code></pre>
+//Update the user profile by setting multiple values in a map
+Map&lt;String, String&gt; setValues = new HashMap&lt;&gt;();
+// Set user information in the map<br>// ...
+Countly.sharedInstance().userProfile().setProperties(setValues);
+Countly.sharedInstance().userProfile().save();</code></pre>
 <p>The keys for predefined user data fields are as follows:</p>
 <table>
   <tbody>
@@ -1464,31 +1469,32 @@ Countly.userData.save()</code></pre>
   <span style="font-weight: 400;">You will find the list of available methods below:</span>
 </p>
 <pre><code class="java">//set one custom properties
-Countly.userData.setProperty("test", "test");
+Countly.sharedInstance().userProfile().setProperty("test", "test");
 //increment used value by 1
-Countly.userData.increment("used");
+Countly.sharedInstance().userProfile().increment("used");
 //increment used value by provided value
-Countly.userData.incrementBy("used", 2);
+Countly.sharedInstance().userProfile().incrementBy("used", 2);
 //multiply value by provided value
-Countly.userData.multiply("used", 3);
+Countly.sharedInstance().userProfile().multiply("used", 3);
 //save maximal value
-Countly.userData.saveMax("highscore", 300);
+Countly.sharedInstance().userProfile().saveMax("highscore", 300);
 //save minimal value
-Countly.userData.saveMin("best_time",60);
+Countly.sharedInstance().userProfile().saveMin("best_time",60);
 //set value if it does not exist
-Countly.userData.setOnce("tag", "test");
+Countly.sharedInstance().userProfile().setOnce("tag", "test");
 //insert value to array of unique values
-Countly.userData.pushUniqueValue("type", "morning");
+Countly.sharedInstance().userProfile().pushUnique("type", "morning");
 //insert value to array which can have duplocates
-Countly.userData.pushValue("type", "morning");
+Countly.sharedInstance().userProfile().push("type", "morning");
 //remove value from array
-Countly.userData.pullValue("type", "morning");
+Countly.sharedInstance().userProfile().pull("type", "morning");
 
 //send provided values to server
-Countly.userData.save();</code></pre>
+Countly.sharedInstance().userProfile().save();</code></pre>
 <p>
-  In the end, always call <strong>Countly.userData.save()</strong> to send them
-  to the server.
+  In the end, always call
+  <strong>Countly.sharedInstance().userProfile().save()</strong> to send them to
+  the server.
 </p>
 <h2>Orientation Tracking</h2>
 <p>

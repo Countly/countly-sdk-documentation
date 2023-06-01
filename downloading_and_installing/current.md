@@ -608,6 +608,8 @@
 </p>
 <h2>Windows SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/19142855719705" target="_blank" rel="noopener">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/13579863428377" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/11428429151513" target="_blank" rel="noopener">Version 21.11</a>
