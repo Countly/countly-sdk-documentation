@@ -3135,3 +3135,34 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   more information,
   <a href="https://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm">see this blog post</a>.
 </p>
+<h2>Incognito mode and ad blockers</h2>
+<p>
+  Incognito mode prevents the browser from storing cookies and other site data.
+  Cookies are small files that websites use to track user activity, remember preferences,
+  and provide personalized experiences. In incognito mode, cookies are not saved.
+  This means that any information our SDK saves in the browser's local storage
+  would be gone the next time the user opens their incognito browser. These things
+  include things like device ID and event/request queues. Each time a person visits
+  a Countly integrated website in incognito mode, they would be perceived as a
+  new user. This can be mitigated by having an authentication page on your website.
+</p>
+<p>
+  Ad blockers employ various techniques to identify and block unwanted requests,
+  such as analyzing URL patterns, known tracking domains, or specific JavaScript
+  code snippets. They can also detect and block requests made to known analytics
+  or tracking services, making it possible for them to block requests made to the
+  Countly server from our SDKs. This can result in incomplete or missing data,
+  as the blocked requests may not reach the Countly server for processing. This
+  is a possibility, but not all ad blockers would be blocking our requests, depending
+  on their filter settings.
+</p>
+<p>
+  To mitigate this issue to a certain extent, you can enable force using the POST
+  method for all requests with the SDK. Switching to a POST request can make it
+  slightly harder for ad blockers to detect and block the request, as the parameters
+  are sent in the request body instead of the URL. However, it doesn't make the
+  request invisible or immune to blocking. Ad blockers can still analyze network
+  traffic and inspect the request headers and payload, so if your server is Countly
+  hosted and the domain name is in the filter of the ad blocker, it would still
+  be blocked.
+</p>
