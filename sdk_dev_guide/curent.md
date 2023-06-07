@@ -1795,126 +1795,303 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <h1>Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;"> for legacy remote config API</span>
-  includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
-  inside the request URL while fetching the remote config object <em>and</em> enrolling
-  the user to A/B testing automatically.
+  A/B testing and Remote Config are different features, but their SDK-related integration
+  is interlinked.
 </p>
 <p>
-  The latest API, on the other hand, fetches the remote config object while giving
-  us the ability to enroll the user in the A/B testing or not. This can be done
-  by utilizing 'method=rc' and 'oi=1'(opting in/enrolling the user) or 'oi=0'(opting
-  out/not enrolling the user) in the request URL.
+  The SDK's core utility for Remote Config and A/B testing is fetching some values
+  from the Server. Only the Server decides which values to serve.
 </p>
 <p>
-  There is also another API that is used for enrolling the user to A/B testing
-  for the selected remote config keys without fetching the remote config object.
-  This can be done by using the 'method=ab' in your request URL.
-</p>
-<p>Their usage can be seen below:</p>
-<pre><code>// legacy API
-o/sdk?method=fetch_remote_config&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys)
-
-// latest API for remote config
-o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)
-
-// enrolling users
-o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
-</code></pre>
-<p>
-  There are currently 2 init time config flag associated with these APIs:
-  <em>rcAutoOptinAb</em> (true by default) and <em>useExplicitRcApi</em> (false
-  by default). These flags enable users to change between APIs and control the
-  A/B testing enrolling process. <em>useExplicitRcApi</em> lets the user use the
-  latest API if it is set to true. <em>rcAutoOptinAb</em> decides if auto enrolling
-  (oi=1) must be on or not (oi=1) when using the latest API. Setting it to false
-  should automatically trigger the usage of the latest API and should log a warning
-  to the user.
-</p>
-<h2>Automatic Fetch</h2>
-<p>
-  <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
+  Users can participate in AB tests. For that to happen, they must enroll in those
+  tests (keys) with specific requests.
 </p>
 <p>
-  <span style="font-weight: 400;">There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
+  All of these calls should be behind a "RemoteConfig" interface if possible. If
+  that is impossible, all function calls should start with "RemoteConfig."
+</p>
+<h2>Remote Config API</h2>
+<p>
+  Downloaded remote config values have to be stored persistently.
+</p>
+<h3>Consent</h3>
+<p>
+  This feature depends on the "remote-config" consent if consents are enabled.
 </p>
 <p>
-  e.g. <code>config.enableRemoteConfig = true;</code>
-</p>
-<h2>Manual Fetch</h2>
-<p>
-  <span style="font-weight: 400;">There should be a method/function to fetch the remote config manually anytime the developer would like. Just like with automatic fetch, this method will fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. This method should take a callback argument to inform the developer about the results of manually fetching the remote config. Callback on initial config should not be affected by manual fetchings, as it is for automatic fetchings only.</span>
+  When it is given, it would trigger RC values to download (if enabled).
 </p>
 <p>
-  e.g. <code>updateRemoteConfig(callback(){ })</code>
+  When it is removed, the RC storage structure should be cleared.
 </p>
-<h2>Getting Values</h2>
+<h3>Data Structures, Notes</h3>
+<h4>RCDownloadCallback</h4>
 <p>
-  <span style="font-weight: 400;">There should be a method to get remote config values for a given key. It will return the value for a given key. If the key does not exist, or the remote config has yet to be fetched, this method should return nil or null or however the platform handles the absence of values. If the server is not reachable, this method should return the last fetched and locally stored value if available.</span>
+  The <code>RCDownloadCallback</code> callback is called when RC values are downloaded.
+  Its return values:
+</p>
+<ul>
+  <li>
+    Result/error: Enum (<code>RequestResult</code>)
+  </li>
+  <li>Error message: String. "null" if there is no error.</li>
+  <li>
+    Full Update: Boolean ("true" - all values updated, "false" - a subset of
+    values updated)
+  </li>
+  <li>
+    Updated values: Map&lt;String, Object&gt; (the whole downloaded RC set, the
+    delta)
+  </li>
+</ul>
+<pre><code>RCDownloadCallback {
+  void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, Object&gt; downloadedValues)
+}</code><code></code></pre>
+<h4>RCData</h4>
+<p>
+  RCData Class is returned when retrieving downloaded values. The
+  <code><span>isCurrentUsersData</span></code> field indicates if it is the cached
+  data of the previous user or an up-to-date value of the current user:
+</p>
+<pre><code>Class RCData {
+  Object value;
+  Boolean <span>isCurrentUsersData</span>;
+}</code></pre>
+<h4>Other Enums</h4>
+<p>RequestResult:</p>
+<pre><code>Enum RequestResult { Error, Success, NetworkIssue }</code></pre>
+<h4>Automatic download triggers</h4>
+<p>
+  Certain events and features can trigger the download/re-download or caching/erasure
+  of RC values if automatic RC triggers are enabled:&nbsp;
 </p>
 <p>
-  e.g. <code>remoteConfigValueForKey(key)</code>
-</p>
-<h2>Keys and Omit Keys</h2>
-<p>
-  <span style="font-weight: 400;">There should be 2 additional methods for manual fetching: one for specifying which keys will be updated and one for specifying which keys will be ignored.</span>
+  <strong>SDK Init</strong> -&nbsp;We download the RC values at init.
 </p>
 <p>
-  <span style="font-weight: 400;">These methods should take an array of keys as an argument, in addition to callbacks, and send requests with <code>keys=</code></span><span style="font-weight: 400;">&nbsp;or <code>omit_keys=</code></span><span style="font-weight: 400;">&nbsp;query strings. For the result of these requests, only the keys in the response should be updated in local storage, not a complete overwrite as with an automatic or standard manual fetch.</span>
+  <strong>Temp ID </strong>- Entering temp ID mode should clear the RC cache. Coming
+  out of temp ID mode should download RC values again.
 </p>
 <p>
-  e.g. <code>updateRemoteConfigForKeysOnly(keys, callback(){ })</code> e.g.
-  <code>updateRemoteConfigExceptKeys(keys, callback(){ })</code>
+  <strong>Consent&nbsp;</strong>- Receiving "remote-config" consent should trigger
+  RC values to download. Removing that consent should clear the stored values.
 </p>
 <p>
-  <span style="font-weight: 400;">Example case: Local storage reflecting server as is (after an automatic or manual fetch):</span>
+  <strong>Device ID Change</strong> -&nbsp;Changing the device ID without merge
+  should clear cached RC values. And re-download them for the new ID.
+</p>
+<h4>Value Caching Mechanism</h4>
+<p>
+  The value caching mechanism tracks which values belong to which user in case
+  of a device ID change.
+</p>
+<p>
+  If the device ID was changed, but the RC values were not re-downloaded or partially
+  re-downloaded, this mechanism shows to which user (current or previous) the values
+  belong.
+</p>
+<h3>Init Time Configuration</h3>
+<p>
+  Config flag enables RC values to be downloaded automatically on specific automatic
+  triggers. Disabled by default.
+</p>
+<pre><code>config.enableRemoteConfigAutomaticTriggers()</code></pre>
+<p>
+  Registering the callback function that would be called when the RC is downloaded.
+  This can be called multiple times, all callbacks would be notified.
+</p>
+<pre><code>config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)</code></pre>
+<p>
+  Enable/disable caching of previous user's RC values. It is disabled by default.
+  If enabled, old values must be kept after the device ID change, and the metadata
+  must be updated to show <code><span>isCurrentUsersData</span></code>&nbsp;as
+  false .&nbsp;
+</p>
+<pre><code>config.enableRemoteConfigValueCaching()</code></pre>
+<p>
+  All cached values must be cleared when receiving results for the next full update.
+  In case of a partial update only the downloaded values must be updated and the
+  rest would still have their <code><span>isCurrentUsersData</span></code>&nbsp;as
+  false.
+</p>
+<h3>Usage</h3>
+<p>
+  SDK fetches all or a partial amount of RC keys from the Server.
+</p>
+<p>Downloaded values are saved persistently.</p>
+<h4 id="downloading-values" class="anchor-heading">Downloading Keys Manually</h4>
+<p>
+  Downloading has three modes: fetch all keys, fetch given keys, or fetch except
+  given keys:
+</p>
+<p>
+  "Download all keys" makes the main API call without optional parameters and stores
+  the downloaded values:
+</p>
+<pre><code>Countly.RemoteConfigDownloadKeys(RCDownloadCallback callback)</code></pre>
+<p>
+  "Download given keys" makes the main API call with the optional parameter 'keys.'
+  The developer should provide these keys as String Array. Then these values must
+  be passed as params to the request URL (&amp;keys=["key1", "key2"...])
+</p>
+<pre><code>Countly.RemoteConfigDownloadSpecificKeys(String[] keys, RCDownloadCallback callback)</code></pre>
+<p>
+  "Download except for given keys" makes the main API call with the optional parameter
+  'omit_keys.' The developer should provide these keys as String Array. Then these
+  values must be passed as params to the request URL (&amp;omit_keys=["key1", "key2"...])
+</p>
+<pre><code>Countly.RemoteConfigDownloadOmittingKeys(String[] omitKeys, RCDownloadCallback callback)</code></pre>
+<p>All of those calls target the following server endpoint:</p>
+<pre><code>o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)</code></pre>
+<p>
+  When working correctly returns a JSON Object of key-value pairs like this:
 </p>
 <pre><code>{
-  "a": "x",
-  "b": "y",
-  "c": "z",
+  "key1": "val1",
+  "key2": "val2"
+  ....
+}</code></pre>
+<h4>Add/Remove Download Callback listeners</h4>
+<p>Dev should be able to register new callbacks:</p>
+<pre><code>Countly.RemoteConfigRegisterDownloadCallback(RCDownloadCallback callback)</code></pre>
+<p>Or remove a registered callback:</p>
+<pre><code>Countly.RemoteConfigRemoveDownloadCallback(RCDownloadCallback callback)</code></pre>
+<h4>Getting values</h4>
+<p>
+  Gets the map that contains all values from the storage, it returns Map&lt;String,
+  RCData&gt;.
+</p>
+<pre><code>Countly.RemoteConfigGetAllKeys()</code></pre>
+<p>
+  Gets values for a specific key from the map of all values downloaded. It returns
+  a RCData. If the value doesn't exist then&nbsp;
+</p>
+<pre><code>Countly.RemoteConfigGetKey(String key)</code></pre>
+<h4>Clear All Values</h4>
+<p>A call to wipe the persistently stored RC values.</p>
+<pre><code>Countly.RemoteConfigClearAll()</code></pre>
+<h2>A/B testing API</h2>
+<h3>Consent, Data structures, Notes</h3>
+<p>This feature depends on the "remote-config" consent.</p>
+<p>When it is given, nothing should be done.</p>
+<p>When it is removed, nothing should be done.</p>
+<h3>Usage</h3>
+<p>
+  To enroll a user into a AB tests there should be a call that takes a list of
+  keys that were used in the app. This would indicate that if any of those were
+  used for an AB test, that the user should be enrolled in them
+</p>
+<p>
+  <code>Countly.RemoteConfigEnrollIntoABTestsForKeys(String[] keys)</code>
+</p>
+<p>
+  A user can be enrolled to some keys (["key1","key2"...]) with this API:
+</p>
+<pre><code>o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id</code></pre>
+<p>This should return a JSON Object like this:</p>
+<pre><code>{"result": "Successfully enrolled in ab tests"}</code></pre>
+<p>
+  There should be a call that would remove the user from any AB tests that would
+  involve the given keys.
+</p>
+<pre><code>Countly.RemoteConfigExitABTestsForKeys(String[] keys)</code></pre>
+<p>
+  To remove a user from some or all A/B tests, the following API is used:
+</p>
+<pre><code>o/sdk?method=ab_opt_out&amp;app_key="APP_KEY"&amp;device_id=DEVICE_ID (optional param: keys)</code></pre>
+<p>
+  If optional parameter with keys (["key1","key2"...]) is not provided, the user
+  is removed from all experiments.
+</p>
+<h2>A/B Testing Variant control API</h2>
+<p>
+  The indended use for this API is only for app testing. It is not intended to
+  be used in production environments. The function names have a "Testing" prefix
+  to indicate that they should be only used for testing.
+</p>
+<p>Downloaded variant values are stored only in memory.</p>
+<h3>Consent, Data structures, Notes</h3>
+<p>This feature depends on the "remote-config" consent.</p>
+<p>When it is given, nothing should be done.</p>
+<p>
+  When it is removed, the variant storage structure should be cleared.
+</p>
+<p>&nbsp;</p>
+<p>
+  The <code>RCVariantCallback</code> callback is called when AB variants are downloaded.
+  Its return values:
+</p>
+<ul>
+  <li>
+    Result/error: Enum&nbsp;(<code>RequestResult</code>). This enums values are
+    described in the RemoteConfig section.
+  </li>
+  <li>Error message: String. "null" if there is no error.</li>
+</ul>
+<pre><code>RCVariantCallback {
+  void callback(RequestResult rResult, String error)
+}</code></pre>
+<h3>Init time configuration</h3>
+<p>There are no init time configuration options.</p>
+<h3>Usage</h3>
+<h4>Download variant information</h4>
+<p>
+  Initiate the network request for fetching the variant values from the server.
+  The end result would be stored in memory.
+</p>
+<pre><code>Countly.RemoteConfig.TestingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
+<p>The main server API endpoint:</p>
+<pre><code>o/sdk?method=ab_fetch_variants&amp;app_key="APP_KEY"&amp;device_id=DEVICE_ID</code></pre>
+<p>This would return a JSON Object like this:</p>
+<pre><code>{
+  "key1": [
+    {
+      "name": "variant1",
+      "value": "value1"
+    },
+    {
+      "name": "variant2",
+      "value": "value2"
+    }
+  ],
+  "key2": [
+    {
+      "name": "variant1",
+      "value": "value1"
+    }
+  ]
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Calling update for specified keys only:</span>
+  Here this object should be parsed into a Map&lt;String, String[]&gt; like this
+  and saved into memory:
 </p>
-<pre><code>updateRemoteConfigForKeysOnly(["a"], callback(){ });
-</code></pre>
-<p>Response:</p>
 <pre><code>{
-  "a": "xx",
-}
-</code></pre>
-<p>Local storage:</p>
-<pre><code>{
-  "a": "xx",
-  "b": "y",
-  "c": "z",
-}
-</code></pre>
-<h2>A/B testing</h2>
+  "key1": ["variant1", "variant2"],
+  "key2": ["variant1"]
+}</code></pre>
+<h4>Get All Variants</h4>
 <p>
-  There should be a call to enroll users in the A/B testing without triggering
-  any other action. This call should be named something similar to
-  <em>enrollUserToAb</em> and should have one parameter named <em>keys</em>. This
-  parameter should be an array of string key values. If an empty array or no value
-  at all is provided the function should be terminated and should give an error
-  log to the developer. Else the <em>keys</em> should be stringified and added
-  to the request as 'keys=stringified_values_here'. The response can be parsed
-  and put out as a log. If all is good the response's result field should return
-  something like "Successfully enrolled the user to given keys".
+  A call that returns all variant information (stored in memory) parsed as Map&lt;String,
+  String[]&gt;.
 </p>
-<h2>Consents</h2>
+<pre><code>Countly.RemoteConfig.TestingGetAllVariants()</code></pre>
+<h4>Get Variants For Key</h4>
 <p>
-  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
+  Returns variant information (stored in memory) for a specific key. The return
+  type is String[]. If there is no entry for that key, it returns 'null'.
 </p>
-<h2>Device ID Change</h2>
+<pre><code>Countly.RemoteConfig.TestingGetVariantsForKey(String valueKey)</code></pre>
+<h4>Enroll User Into Variant</h4>
 <p>
-  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
+  Dev should provide the key and the variant strings for that to happen:
 </p>
-<h2>Salt</h2>
+<pre><code>Countly.RemoteConfig.TestingEnrollIntoVariant(String keyName, String variantName, RCVariantCallback completionCallback)</code><code></code></pre>
 <p>
-  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
+  A user can be enrolled into a variant, and a key is given with this API:
 </p>
+<pre><code>o/sdk?method=ab_enroll_variant&amp;app_key="APP_KEY"&amp;key=...&amp;variant=..&amp;device_id=DEVICE_ID</code></pre>
+<p>This should return a JSON Object like this:</p>
+<pre><code>{"result": "success"}</code></pre>
 <h1>User feedback</h1>
 <h2>Star Rating</h2>
 <p>
@@ -2958,5 +3135,128 @@ npm install markdownlint --save-dev
   used. The SDK will still try to get a up to date version of the config. Once
   the up to date version has been acquired, it is stored persistently and the SDK
   reconfigures itself to reflect the new configuration.
+</p>
+<h1>Legacy Features</h1>
+<h2>Remote Config (Legacy)</h2>
+<p>
+  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;"> for legacy remote config API</span>
+  includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
+  inside the request URL while fetching the remote config object <em>and</em> enrolling
+  the user to A/B testing automatically.
+</p>
+<p>
+  The latest API, on the other hand, fetches the remote config object while giving
+  us the ability to enroll the user in the A/B testing or not. This can be done
+  by utilizing 'method=rc' and 'oi=1'(opting in/enrolling the user) or 'oi=0'(opting
+  out/not enrolling the user) in the request URL.
+</p>
+<p>
+  There is also another API that is used for enrolling the user to A/B testing
+  for the selected remote config keys without fetching the remote config object.
+  This can be done by using the 'method=ab' in your request URL.
+</p>
+<p>Their usage can be seen below:</p>
+<pre><code>// legacy API
+o/sdk?method=fetch_remote_config&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys)
+
+// latest API for remote config
+o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)
+
+// enrolling users
+o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
+</code></pre>
+<p>
+  There are currently 2 init time config flag associated with these APIs:
+  <em>rcAutoOptinAb</em> (true by default) and <em>useExplicitRcApi</em> (false
+  by default). These flags enable users to change between APIs and control the
+  A/B testing enrolling process. <em>useExplicitRcApi</em> lets the user use the
+  latest API if it is set to true. <em>rcAutoOptinAb</em> decides if auto enrolling
+  (oi=1) must be on or not (oi=1) when using the latest API. Setting it to false
+  should automatically trigger the usage of the latest API and should log a warning
+  to the user.
+</p>
+<h2>Automatic Fetch</h2>
+<p>
+  <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
+</p>
+<p>
+  e.g. <code>config.enableRemoteConfig = true;</code>
+</p>
+<h2>Manual Fetch</h2>
+<p>
+  <span style="font-weight: 400;">There should be a method/function to fetch the remote config manually anytime the developer would like. Just like with automatic fetch, this method will fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. This method should take a callback argument to inform the developer about the results of manually fetching the remote config. Callback on initial config should not be affected by manual fetchings, as it is for automatic fetchings only.</span>
+</p>
+<p>
+  e.g. <code>updateRemoteConfig(callback(){ })</code>
+</p>
+<h2>Getting Values</h2>
+<p>
+  <span style="font-weight: 400;">There should be a method to get remote config values for a given key. It will return the value for a given key. If the key does not exist, or the remote config has yet to be fetched, this method should return nil or null or however the platform handles the absence of values. If the server is not reachable, this method should return the last fetched and locally stored value if available.</span>
+</p>
+<p>
+  e.g. <code>remoteConfigValueForKey(key)</code>
+</p>
+<h2>Keys and Omit Keys</h2>
+<p>
+  <span style="font-weight: 400;">There should be 2 additional methods for manual fetching: one for specifying which keys will be updated and one for specifying which keys will be ignored.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">These methods should take an array of keys as an argument, in addition to callbacks, and send requests with <code>keys=</code></span><span style="font-weight: 400;">&nbsp;or <code>omit_keys=</code></span><span style="font-weight: 400;">&nbsp;query strings. For the result of these requests, only the keys in the response should be updated in local storage, not a complete overwrite as with an automatic or standard manual fetch.</span>
+</p>
+<p>
+  e.g. <code>updateRemoteConfigForKeysOnly(keys, callback(){ })</code> e.g.
+  <code>updateRemoteConfigExceptKeys(keys, callback(){ })</code>
+</p>
+<p>
+  <span style="font-weight: 400;">Example case: Local storage reflecting server as is (after an automatic or manual fetch):</span>
+</p>
+<pre><code>{
+  "a": "x",
+  "b": "y",
+  "c": "z",
+}</code></pre>
+<p>
+  <span style="font-weight: 400;">Calling update for specified keys only:</span>
+</p>
+<pre><code>updateRemoteConfigForKeysOnly(["a"], callback(){ });
+</code></pre>
+<p>Response:</p>
+<pre><code>{
+  "a": "xx",
+}
+</code></pre>
+<p>Local storage:</p>
+<pre><code>{
+  "a": "xx",
+  "b": "y",
+  "c": "z",
+}
+</code></pre>
+<h2>A/B testing</h2>
+<p>
+  There should be a call to enroll users in the A/B testing without triggering
+  any other action. This call should be named something similar to
+  <em>enrollUserToAb</em> and should have one parameter named <em>keys</em>. This
+  parameter should be an array of string key values. If an empty array or no value
+  at all is provided the function should be terminated and should give an error
+  log to the developer. Else the <em>keys</em> should be stringified and added
+  to the request as 'keys=stringified_values_here'. The response can be parsed
+  and put out as a log. If all is good the response's result field should return
+  something like "Successfully enrolled the user to given keys".
+</p>
+<h2>Consents</h2>
+<p>
+  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
+</p>
+<h2>Device ID Change</h2>
+<p>
+  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
+</p>
+<h2>Salt</h2>
+<p>
+  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
 </p>
 <p>&nbsp;</p>
