@@ -1814,11 +1814,16 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   Downloaded remote config values have to be stored persistently.
 </p>
-<h3>Data Structures, Notes, Consent</h3>
+<h3>Consent</h3>
+<p>This feature depends on the "remote-config" consent.</p>
 <p>
-  SDKs should utilize these or similar data types to convey information about the
-  RC and AB fetching.
+  When it is given, it would trigger automatic triggers (if enabled).
 </p>
+<p>
+  When it is removed, the RC storage structure should be cleared.
+</p>
+<h3>Data Structures, Notes</h3>
+<h4>RCDownloadCallback</h4>
 <p>
   The <code>RCDownloadCallback</code> callback is called when RC values are downloaded.
   Its return values:
@@ -1840,6 +1845,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <pre><code>RCDownloadCallback {
   void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, Object&gt; downloadedValues)
 }</code><code></code></pre>
+<h4>RCValue</h4>
 <p>
   RCValue Class is returned when retrieving downloaded values. The timestamp value
   indicates when the value was downloaded. The valueState field indicates if it
@@ -1850,11 +1856,12 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   Long timestamp;
   RCValueState valueState;
 }</code></pre>
+<h4>Other Enums</h4>
 <p>RCValueState:</p>
 <pre><code>Enum RCValueState { Cached, CurrentUser, NoValue }</code></pre>
 <p>RequestResult:</p>
 <pre><code>Enum RequestResult { Error, Success, NetworkIssue }</code></pre>
-<p>&nbsp;</p>
+<h4>Automatic download triggers</h4>
 <p>
   Certain events and features can trigger the download/re-download or caching/erasure
   of RC values if automatic RC triggers are enabled:&nbsp;
@@ -1874,14 +1881,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <strong>Device ID Change</strong> -&nbsp;Changing the device ID without merge
   should clear cached RC values. And re-download them for the new ID.
 </p>
-<p>&nbsp;</p>
-<p>This feature depends on the "remote-config" consent.</p>
-<p>
-  When it is given, it would trigger automatic triggers (if enabled).
-</p>
-<p>
-  When it is removed, the RC storage structure should be cleared.
-</p>
+<h4>Value Caching Mechanism</h4>
 <h3>Init Time Configuration</h3>
 <p>
   Config flag enables RC values to be downloaded automatically on specific automatic
@@ -1943,12 +1943,6 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   "key2": "val2"
   ....
 }</code></pre>
-<p>&nbsp;</p>
-<p>Downloading on Automatic Triggers</p>
-<p>
-  If this was enabled during init then the SDK will begin the same process as "Download
-  all values" call in the manual section.
-</p>
 <h4>Add/Remove Download Callback listeners</h4>
 <p>Dev should be able to register new callbacks:</p>
 <pre><code>Countly.RemoteConfigRegisterDownloadCallback(RCDownloadCallback callback)</code></pre>
