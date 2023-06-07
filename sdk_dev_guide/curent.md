@@ -1803,21 +1803,23 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   from the Server. Only the Server decides which values to serve.
 </p>
 <p>
-  Users can participate in AB tests. For that to happen, they have to enroll into
-  those tests with specific requests.
+  Users can participate in AB tests. For that to happen, they must enroll in those
+  tests (keys) with specific requests.
 </p>
 <p>
-  If possible, all of these calls should be behind a "RemoteConfig" interface.
-  If that is not possible then all function calls should start with "RemoteConfig".<code></code>
+  All of these calls should be behind a "RemoteConfig" interface if possible. If
+  that is impossible, all function calls should start with "RemoteConfig."
 </p>
 <h2>Remote Config API</h2>
 <p>
   Downloaded remote config values have to be stored persistently.
 </p>
 <h3>Consent</h3>
-<p>This feature depends on the "remote-config" consent.</p>
 <p>
-  When it is given, it would trigger automatic triggers (if enabled).
+  This feature depends on the "remote-config" consent if consents are enabled.
+</p>
+<p>
+  When it is given, it would trigger RC values to download (if enabled).
 </p>
 <p>
   When it is removed, the RC storage structure should be cleared.
@@ -1845,20 +1847,17 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <pre><code>RCDownloadCallback {
   void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, Object&gt; downloadedValues)
 }</code><code></code></pre>
-<h4>RCValue</h4>
+<h4>RCData</h4>
 <p>
-  RCValue Class is returned when retrieving downloaded values. The timestamp value
-  indicates when the value was downloaded. The valueState field indicates if it
-  is a cached or a up to date value:
+  RCData Class is returned when retrieving downloaded values. The
+  <code><span>isCurrentUsersData</span></code> field indicates if it is the cached
+  data of the previous user or an up-to-date value of the current user:
 </p>
-<pre><code>Class RCValue {
+<pre><code>Class RCData {
   Object value;
-  Long timestamp;
-  RCValueState valueState;
+  Boolean <span>isCurrentUsersData</span>;
 }</code></pre>
 <h4>Other Enums</h4>
-<p>RCValueState:</p>
-<pre><code>Enum RCValueState { Cached, CurrentUser, NoValue }</code></pre>
 <p>RequestResult:</p>
 <pre><code>Enum RequestResult { Error, Success, NetworkIssue }</code></pre>
 <h4>Automatic download triggers</h4>
@@ -1882,6 +1881,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   should clear cached RC values. And re-download them for the new ID.
 </p>
 <h4>Value Caching Mechanism</h4>
+<p>
+  The value caching mechanism tracks which values belong to which user in case
+  of a device ID change.
+</p>
+<p>
+  If the device ID was changed, but the RC values were not re-downloaded or partially
+  re-downloaded, this mechanism shows to which user (current or previous) the values
+  belong.
+</p>
 <h3>Init Time Configuration</h3>
 <p>
   Config flag enables RC values to be downloaded automatically on specific automatic
@@ -1896,43 +1904,43 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   Enable/disable caching of previous user's RC values. It is disabled by default.
   If enabled, old values must be kept after the device ID change, and the metadata
-  must be updated to the "Cached" state.&nbsp;
+  must be updated to show <code><span>isCurrentUsersData</span></code>&nbsp;as
+  false .&nbsp;
 </p>
 <pre><code>config.enableRemoteConfigValueCaching()</code></pre>
 <p>
   All cached values must be cleared when receiving results for the next full update.
   In case of a partial update only the downloaded values must be updated and the
-  rest would still have their "Cached" state.
+  rest would still have their <code><span>isCurrentUsersData</span></code>&nbsp;as
+  false.
 </p>
 <h3>Usage</h3>
 <p>
   SDK fetches all or a partial amount of RC keys from the Server.
 </p>
 <p>Downloaded values are saved persistently.</p>
-<h4 id="downloading-values" class="anchor-heading">Downloading Values Manually</h4>
+<h4 id="downloading-values" class="anchor-heading">Downloading Keys Manually</h4>
 <p>
-  Downloading has three modes: fetch all values, fetch given values, or fetch except
-  given values:
+  Downloading has three modes: fetch all keys, fetch given keys, or fetch except
+  given keys:
 </p>
 <p>
-  "Download all values" makes the main API call without optional parameters and
-  stores the downloaded values:
+  "Download all keys" makes the main API call without optional parameters and stores
+  the downloaded values:
 </p>
-<pre><code>Countly.RemoteConfigDownloadValues(RCDownloadCallback callback)</code></pre>
+<pre><code>Countly.RemoteConfigDownloadKeys(RCDownloadCallback callback)</code></pre>
 <p>
-  "Download given values" makes the main API call with the optional parameter 'keys.'
+  "Download given keys" makes the main API call with the optional parameter 'keys.'
   The developer should provide these keys as String Array. Then these values must
   be passed as params to the request URL (&amp;keys=["key1", "key2"...])
 </p>
-<pre><code>Countly.RemoteConfigDownloadSpecificValue(String[] keys, RCDownloadCallback callback)</code></pre>
+<pre><code>Countly.RemoteConfigDownloadSpecificKeys(String[] keys, RCDownloadCallback callback)</code></pre>
 <p>
-  "Download except for given values" makes the main API call with the optional
-  parameter 'omit_keys.' The developer should provide these keys as String Array.
-  Then these values must be passed as params to the request URL (&amp;omit_keys=["key1",
-  "key2"...])
+  "Download except for given keys" makes the main API call with the optional parameter
+  'omit_keys.' The developer should provide these keys as String Array. Then these
+  values must be passed as params to the request URL (&amp;omit_keys=["key1", "key2"...])
 </p>
-<pre><code>Countly.RemoteConfigDownloadOmittingValues(String[] omitKeys, RCDownloadCallback callback)</code></pre>
-<p>&nbsp;</p>
+<pre><code>Countly.RemoteConfigDownloadOmittingKeys(String[] omitKeys, RCDownloadCallback callback)</code></pre>
 <p>All of those calls target the following server endpoint:</p>
 <pre><code>o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)</code></pre>
 <p>
@@ -1951,17 +1959,17 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <h4>Getting values</h4>
 <p>
   Gets the map that contains all values from the storage, it returns Map&lt;String,
-  RCValue&gt;.
+  RCData&gt;.
 </p>
-<pre><code>Countly.RemoteConfigGetAllValues()</code></pre>
+<pre><code>Countly.RemoteConfigGetAllKeys()</code></pre>
 <p>
   Gets values for a specific key from the map of all values downloaded. It returns
-  a RCValue. If the value doesn't exist then&nbsp;
+  a RCData. If the value doesn't exist then&nbsp;
 </p>
-<pre><code>Countly.RemoteConfigGetValue(String key)</code></pre>
+<pre><code>Countly.RemoteConfigGetKey(String key)</code></pre>
 <h4>Clear All Values</h4>
 <p>A call to wipe the persistently stored RC values.</p>
-<pre><code>Countly.RemoteConfigClearAllValues()</code></pre>
+<pre><code>Countly.RemoteConfigClearAll()</code></pre>
 <h2>A/B testing API</h2>
 <h3>Consent, Data structures, Notes</h3>
 <p>This feature depends on the "remote-config" consent.</p>
