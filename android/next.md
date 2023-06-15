@@ -498,7 +498,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508351988121/001.png" alt="001.png">
+  <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
 </div>
 <h1>Device ID Management</h1>
 <p>
@@ -723,7 +723,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508421820313/002.png" alt="002.png">
+  <img src="/guide-media/01GVBGCTGJRS36EX7J6YHXZ2B4" alt="002.png">
 </div>
 <h4>Integrating FCM into Your App</h4>
 <p>
@@ -868,20 +868,20 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   </li>
 </ul>
 <p>
-  <img src="/hc/article_attachments/900003139063/Screenshot_2020-08-25_at_15.52.49.png" alt="Screenshot_2020-08-25_at_15.52.49.png">
+  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
 </p>
 <p>
   Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
   My Apps:
 </p>
 <p>
-  <img src="/hc/article_attachments/900003139103/Screenshot_2020-08-25_at_15.49.12.png" alt="Screenshot_2020-08-25_at_15.49.12.png">
+  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
 </p>
 <p>
   Copy your App ID &amp; the secret and paste it into Countly dashboard :
 </p>
 <p>
-  <img src="/hc/article_attachments/900003139143/Screenshot_2020-08-25_at_16.04.29.png" alt="Screenshot_2020-08-25_at_16.04.29.png">
+  <img src="/guide-media/01GVD4Q3DR7YRWKN6931KFPG9V" alt="Screenshot_2020-08-25_at_16.04.29.png">
 </p>
 <h4>Integrating HMS into Your App</h4>
 <p>
@@ -1241,7 +1241,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508502169241/003.png" alt="003.png">
+  <img src="/guide-media/01GVCPN579JDD7DNJBCW5T5HHM" alt="003.png">
 </div>
 <p>
   <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
@@ -1256,7 +1256,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508523082649/004.png" alt="004.png">
+  <img src="/guide-media/01GVD4NEYK3AQ1W94DSN7NSS1V" alt="004.png">
 </div>
 <p>
   <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
@@ -2326,19 +2326,18 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   You can fetch a map of all A/B testing parameters (keys) and variants associated
   with it:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(RCVariantCallback completionCallback)</code></pre>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
 <p>
   You can provide an RCVariantCallback (which is optional) to be called when the
   fetching process ends. Depending on the situation, this would return a RequestResponse
-  Enum (SUCCESS, NETWORK_ISSUE, or ERROR) as the first parameter and a String error
-  as the second parameter if there was an error (null otherwise). A sample usage
+  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
+  as the second parameter if there was an error ("null" otherwise). A sample usage
   would be like this:
 </p>
-<pre><code class="java">
-Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(new RCVariantCallback() {
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(new RCVariantCallback() {
     @Override
     public void callback(RequestResponse result, String error) {
-        if (result == RequestResponse.SUCCESS) {
+        if (result == RequestResponse.Success) {
             // do sth after the success
         } else {
             // do sth after failure
@@ -2358,10 +2357,9 @@ Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(new RCVar
   with all variants under that parameter. The parameter would be the key, and its
   value would be a String Array of variants. For example:
 </p>
-<pre><code class="java">
-{
-  "param_1" : ["variant_1", "variant_2"],
-  "param_2" : ["variant_3"]
+<pre><code class="java">{
+  "key_1" : ["variant_1", "variant_2"],
+  "key_2" : ["variant_3"]
 }
 </code></pre>
 <p>Or instead you can get the variants of a specific key:</p>
@@ -2371,8 +2369,7 @@ Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(new RCVar
   key. If no variants were present for a key, it would return an empty array. A
   typical result would look like this:
 </p>
-<pre><code class="java">
-["variant_1", "variant_2"]
+<pre><code class="java">["variant_1", "variant_2"]
 </code></pre>
 <h3>Enrolling For a Variant</h3>
 <p>
@@ -2380,7 +2377,7 @@ Countly.sharedInstance().remoteConfig().testingFetchVariantInformation(new RCVar
   would like to enroll the user to a specific variant. To do this, you can use
   the following method:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().testingEnrollIntoVariant(String valueKey, String variantName, RCVariantCallback completionCallback)</code></pre>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingEnrollIntoVariant(String keyName, String variantName, RCVariantCallback completionCallback)</code></pre>
 <p>
   Here the 'valueKey' would be the parameter of your A/B test, and 'variantName'
   is the variant you have fetched and selected to enroll for. The RCVariantCallback
