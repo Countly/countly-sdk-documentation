@@ -1068,19 +1068,121 @@ Countly.sharedInstance().disableLocation();</code></pre>
 </p>
 <h1>Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   Once downloaded, Remote config values will be saved persistently and available
   on your device between app restarts unless they are erased.
 </p>
-<h2>Automatic Remote Config Triggers</h2>
 <p>
-  <span style="font-weight: 400;">Two ways of acquiring remote config data are enabling automatic download triggers or manual requests. Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.<br>Automatic value downloads (triggers) happen at several places if enabled. These are:</span>
+  <span style="font-weight: 400;">The two ways of acquiring remote config data are enabling automatic download triggers or manual requests.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If a full download of remote config values is performed then the previous list of values is replaced with the new one. If a partial download is performed then only the retrieved keys are updated, and values that are not part of that download stay as they were. It is possible that a previously valid key will return no value after a full download.</span>
+</p>
+<h2>Manually Downloading Remote Config</h2>
+<p>
+  <span style="font-weight: 400;">There are three ways for manually triggering remote config value download</span><span style="font-weight: 400;">:</span>
 </p>
 <ul>
   <li>
-    <span style="font-weight: 400;">when the SDK is initiated </span>
+    <span style="font-weight: 400;">Manually downloading all keys</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">Manually downloading specific keys</span>
+  </li>
+  <li>Manually downloading omitting (everything except) keys.</li>
+</ul>
+<p>
+  <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback, which would be triggered when the download attempt has finished.</span>
+</p>
+<p>
+  <span style="font-weight: 400;"><code class="java">DowloadAllKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().DowloadAllKeys(new RCDownloadCallback() {
+   @Override
+    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
+        if (rResult == RequestResult.Success) {
+            // do sth
+        } else {
+            // do sth
+        }
+    }
+});</code></pre>
+<p>
+  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="java">DownloadSpecificKeys</code> downloads fresh values for the wanted keys. Those are provided with a String array.</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().DownloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
+    @Override
+    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
+        if (rResult == RequestResult.Success) {
+            // do sth
+        } else {
+            // do sth
+        }
+    }
+});</code></pre>
+<p>
+  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="java">DownloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a string array.</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().DownloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
+    @Override
+    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
+        if (rResult == RequestResult.Success) {
+            // do sth
+        } else {
+            // do sth
+        }
+    }
+});</code></pre>
+<p>
+  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a simple manual request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+</p>
+<h2>Getting Stored Remote Config Values</h2>
+<p>
+  To get a stored value, call <code class="java">GetValue</code> with the specified
+  key returns an RCData object that contains the value of the key and the metadata
+  about the value's owner. If value in RCData was <code>null</code>
+  <span style="font-weight: 400;">then no value was found or the value was <code>null</code>.</span>
+  &nbsp;
+</p>
+<pre><code class="java">Object value_1 = Countly.sharedInstance().remoteConfig().GetValue("key_1").value;
+Object value_2 = Countly.sharedInstance().remoteConfig().GetValue("key_2").value;
+Object value_3 = Countly.sharedInstance().remoteConfig().GetValue("key_3").value;
+Object value_4 = Countly.sharedInstance().remoteConfig().GetValue("key_4").value;
+
+int int_value = (int) value_1;
+double double_value = (double) value_2;
+JSONArray jArray = (JSONArray) value_3;
+JSONObject jobj = (JSONObject) value_4;</code></pre>
+<p>
+  If you wanted to get all values at the same time you can use
+  <code class="java">GetAllValues</code> which returns a Map&lt;String, RCData&gt;.
+  <span style="font-weight: 400;">The SDK has no knowledge of the returned value type, and therefore, it will return the <code>Object</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
+  or just a simple value, such as <code>int</code>.
+</p>
+<pre><code class="java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().GetAllValues();<br>
+int int_value = (int) allValues["key_1"] ;
+double double_value = (double) allValues["key_2"];
+JSONArray jArray = (JSONArray) allValues["key_3"];
+JSONObject jobj = (JSONObject) allValues["key_4"];</code></pre>
+<p>...</p>
+<pre><code class="java">Class RCData {
+  Object value;
+  Boolean isCurrentUsersData;
+}</code></pre>
+<h2>Enrolling and Exiting AB tests</h2>
+<p>...</p>
+<h2>Automatic Remote Config Triggers</h2>
+<p>
+  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">when the SDK has finished initializing</span>
   </li>
   <li>
     <span style="font-weight: 400;">after the device ID is changed without merging</span>
@@ -1089,38 +1191,35 @@ Countly.sharedInstance().disableLocation();</code></pre>
     <span style="font-weight: 400;">when user gets out of temp ID mode</span>
   </li>
   <li>
-    <span style="font-weight: 400;">when 'remote-config' consent is given (if consents are enabled)</span>
+    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
   </li>
 </ul>
 <p>
-  <span style="font-weight: 400;">These triggers would also erase the currently saved remote config values in these scenarios:</span>
-</p>
-<ul>
-  <li>
-    <span style="font-weight: 400;">when the consent is removed (if consents are enabled)</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when the device ID is changed without merging</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when the user enters the temp ID mode</span>
-  </li>
-</ul>
-<p>
-  You have to call <code class="java">enableRemoteConfigAutomaticTriggers</code>
-  on the configuration object you will provide during init to enable it. Also,
-  you may provide callback functions to be informed when the request is finished
-  with <code class="java">remoteConfigRegisterGlobalCallback</code>&nbsp;(You can
-  register multiple callbacks by calling this method numerous times). Another thing
-  you can do is enable value caching with the
-  <code class="java">enableRemoteConfigValueCaching</code> flag. If all values
-  were not updated, you would have metadata indicating if a value belongs to the
-  old or current user.
+  To enable the automatic triggers, you have to call
+  <code class="java">enableRemoteConfigAutomaticTriggers</code> on the configuration
+  object you will provide during init to enable it.
 </p>
 <pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
-config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback); // optional
-config.enableRemoteConfigValueCaching(); // optional
+Countly.sharedInstance().init(config);
+</code></pre>
+<p>
+  RCDownloadCallback is called when the remote config download request is finished,
+  and it would have t
+</p>
+<h2>Clearing Stored Values</h2>
+<p>
+  <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().clearAll();</code></pre>
+<h2>Global Download Callbacks</h2>
+<p>
+  Also, you may provide callback functions to be informed when the request is finished
+  with <code class="java">remoteConfigRegisterGlobalCallback</code> (You can register
+  multiple callbacks by calling this method numerous times).&nbsp;
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback); 
 Countly.sharedInstance().init(config);
 </code></pre>
 <p>
@@ -1150,91 +1249,18 @@ Countly.sharedInstance().init(config);
 }
 </code></pre>
 <p>
-  <span style="font-weight: 400;"><code class="java">downloadedValues</code> would be the downloaded remote config data where the keys are remote config keys, and their value is stored in RCData class with metadata showing to which user data belongs. The data owner will always be the current user if caching is not enabled.</span>
+  <span style="font-weight: 400;"><code class="java">downloadedValues</code> would be the downloaded remote config data where the keys are remote config keys, and their value is stored in RCData class with metadata showing to which user data belongs. The data owner will always be the current user if caching is not enabled.</span><code class="java"></code>
 </p>
-<pre><code class="java">Class RCData {
-  Object value;
-  Boolean isCurrentUsersData;
-}
-</code></pre>
+<h2>Caching Remote Config Values</h2>
 <p>
-  <span style="font-weight: 400;">When performing an automatic update, all locally stored values are replaced with the ones received (all locally stored values are deleted and replaced by new ones). It is possible that a previously valid key will return no value after an update.</span>
+  Another thing you can do is enable value caching with the
+  <code class="java">enableRemoteConfigValueCaching</code> flag. If all values
+  were not updated, you would have metadata indicating if a value belongs to the
+  old or current user.
 </p>
-<h2>Manually Downloading Remote Config</h2>
-<p>
-  <span style="font-weight: 400;">There are three ways for manually requesting a remote config update: *Manually downloading everything* Manually downloading specific keys * Manually downloading everything except specific keys.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback, working the same way mentioned above.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Functionally, the manual update for </span><span style="font-weight: 400;">everything: <code class="java">DowloadAllKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatic update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones). The advantage is that you can make the request whenever it is desirable. It has a callback to let you know when it has finished.</span>
-</p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().DowloadAllKeys(new RCDownloadCallback() {
-   @Override
-    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
-        if (rResult == RequestResult.Success) {
-            // do sth
-        } else {
-            // do sth
-        }
-    }
-});</code></pre>
-<p>
-  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="java">DownloadSpecificKeys</code></span><span style="font-weight: 400;">&nbsp;with the list of keys you would like to be updated. That list is an array with the string values of those keys. It has a callback to let you know when the request has finished.</span>
-</p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().DownloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
-    @Override
-    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
-        if (rResult == RequestResult.Success) {
-            // do sth
-        } else {
-            // do sth
-        }
-    }
-});</code></pre>
-<p>
-  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="java">DownloadOmittingKeys</code></span><span style="font-weight: 400;">. The key list is an array with string values of the keys. It has a callback to let you know when the request has finished.</span>
-</p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().DownloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
-    @Override
-    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
-        if (rResult == RequestResult.Success) {
-            // do sth
-        } else {
-            // do sth
-        }
-    }
-});</code></pre>
-<p>
-  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a simple manual request and will update all the values. This means it will also erase all keys not returned by the server.</span>
-</p>
-<h2>Getting Stored Remote Config Values</h2>
-<p>
-  To get a stored value, call <code class="java">GetValue</code> with the specified
-  key returns an RCData object that contains the value of the key and the metadata
-  about the value's owner. If value in RCData was <code>null</code>
-  <span style="font-weight: 400;">then no value was found.</span> &nbsp;Or if you
-  wanted to get all values you can use <code class="java">GetAllValues</code> which
-  returns a Map&lt;String, RCData&gt;.
-  <span style="font-weight: 400;">&nbsp;The SDK has no knowledge of the returned value type, and therefore, it will return the <code>Object</code></span>
-  <span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
-  or just a simple value, such as <code>int</code>.
-</p>
-<pre><code class="java">Object value_1 = Countly.sharedInstance().remoteConfig().GetValue("key_1").value;
-Object value_2 = Countly.sharedInstance().remoteConfig().GetValue("key_2").value;
-Object value_3 = Countly.sharedInstance().remoteConfig().GetValue("key_3").value;
-Object value_4 = Countly.sharedInstance().remoteConfig().GetValue("key_4").value;
-Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().GetAllValues();<br>
-int int_value = (int) value_1;
-double double_value = (double) value_2;
-JSONArray jArray = (JSONArray) value_3;
-JSONObject jobj = (JSONObject) value_4;</code></pre>
-<h2>Clearing Stored Values</h2>
-<p>
-  <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
-</p>
-<pre><code class="java">Countly.sharedInstance()remoteConfig().clearAll();</code></pre>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.enableRemoteConfigValueCaching();
+Countly.sharedInstance().init(config);</code></pre>
 <h1>User Feedback</h1>
 <p>
   <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
