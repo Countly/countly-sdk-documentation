@@ -1100,13 +1100,13 @@ Countly.sharedInstance().disableLocation();</code></pre>
   <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><code class="java">DowloadAllKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
+  <span style="font-weight: 400;"><code class="java">dowloadAllKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="java">DownloadSpecificKeys</code> to downloads new values for the wanted keys. Those are provided with a String array.</span>
+  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="java">downloadSpecificKeys</code> to downloads new values for the wanted keys. Those are provided with a String array.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="java">DownloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
+  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="java">downloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1115,7 +1115,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
     <span class="tabs-link">Omit Keys</span>
   </div>
   <div class="tab">
-    <pre><code class="java">Countly.sharedInstance().remoteConfig().DowloadAllKeys(new RCDownloadCallback() {
+    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadAllKeys(new RCDownloadCallback() {
     @Override
     public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
         if (rResult == RequestResult.Success) {
@@ -1127,7 +1127,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 });</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">Countly.sharedInstance().remoteConfig().DownloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
+    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
     @Override
     public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
         if (rResult == RequestResult.Success) {
@@ -1139,7 +1139,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 });</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">Countly.sharedInstance().remoteConfig().DownloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
+    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
     @Override
     public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
         if (rResult == RequestResult.Success) {
@@ -1156,16 +1156,16 @@ Countly.sharedInstance().disableLocation();</code></pre>
 </p>
 <h2>Getting Stored Remote Config Values</h2>
 <p>
-  To get a stored value, call <code class="java">GetValue</code> with the specified
+  To get a stored value, call <code class="java">getValue</code> with the specified
   key. This returns an RCData object that contains the value of the key and the
   metadata about that value's owner. If value in RCData was <code>null</code>
   <span style="font-weight: 400;">then no value was found or the value was <code>null</code>.</span>
   &nbsp;
 </p>
-<pre><code class="java">Object value_1 = Countly.sharedInstance().remoteConfig().GetValue("key_1").value;
-Object value_2 = Countly.sharedInstance().remoteConfig().GetValue("key_2").value;
-Object value_3 = Countly.sharedInstance().remoteConfig().GetValue("key_3").value;
-Object value_4 = Countly.sharedInstance().remoteConfig().GetValue("key_4").value;
+<pre><code class="java">Object value_1 = Countly.sharedInstance().remoteConfig().getValue("key_1").value;
+Object value_2 = Countly.sharedInstance().remoteConfig().getValue("key_2").value;
+Object value_3 = Countly.sharedInstance().remoteConfig().getValue("key_3").value;
+Object value_4 = Countly.sharedInstance().remoteConfig().getValue("key_4").value;
 
 int int_value = (int) value_1;
 double double_value = (double) value_2;
@@ -1173,11 +1173,11 @@ JSONArray jArray = (JSONArray) value_3;
 JSONObject jobj = (JSONObject) value_4;</code></pre>
 <p>
   If you want to get all values together you can use
-  <code class="java">GetAllValues</code> which returns a Map&lt;String, RCData&gt;.
+  <code class="java">getAllValues</code> which returns a Map&lt;String, RCData&gt;.
   <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the <code>Object</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
   or just a simple value, such as <code>int</code>.
 </p>
-<pre><code class="java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().GetAllValues();<br>
+<pre><code class="java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().getAllValues();<br>
 int int_value = (int) allValues["key_1"] ;
 double double_value = (double) allValues["key_2"];
 JSONArray jArray = (JSONArray) allValues["key_3"];
