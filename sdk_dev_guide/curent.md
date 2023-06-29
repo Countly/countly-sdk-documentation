@@ -1845,7 +1845,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   </li>
 </ul>
 <pre><code>RCDownloadCallback {
-  void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, Object&gt; downloadedValues)
+  void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues)
 }</code><code></code></pre>
 <h4>RCData</h4>
 <p>
