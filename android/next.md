@@ -1152,7 +1152,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as an update all request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
 <h2>Getting Stored Remote Config Values</h2>
 <p>
@@ -1195,8 +1195,11 @@ JSONObject jobj = (JSONObject) allValues["key_4"];</code></pre>
 <h2>Enrolling and Exiting A/B tests</h2>
 <p>
   You can enroll your users into into A/B tests for certain keys or remove them
-  from some or all existing A/B tests available. To enroll a user into the A/B
-  tests for the given keys you use the following method:
+  from some or all existing A/B tests available.
+</p>
+<p>
+  To enroll a user into the A/B tests for the given keys you use the following
+  method:
 </p>
 <pre><code class="java">Countly.sharedInstance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
 <p>
@@ -1283,7 +1286,7 @@ Countly.sharedInstance().init(config);
   <code class="java">downloadedValues</code> would be the downloaded remote config
   data where the keys are remote config keys, and their value is stored in RCData
   class with metadata showing to which user data belongs. The data owner will always
-  be the current user if caching is not enabled.
+  be the current user.
 </p>
 <h2>Caching Remote Config Values</h2>
 <p>
