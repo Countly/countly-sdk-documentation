@@ -27,7 +27,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:23.2.0'
+    compile 'ly.count.android:sdk:23.6.0'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
