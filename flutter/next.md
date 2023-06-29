@@ -649,7 +649,7 @@ Countly.disablePushNotifications();</code></pre>
 </ul>
 <p>You can drag and drop the file from Pod to Compile Sources.</p>
 <div class="img-container">
-  <img src="/hc/article_attachments/900005820306/Flutter_iOS_Notifications.png" alt="Flutter_iOS_Notifications.png">
+  <img src="/guide-media/01GVCKG6BTNK2EK9JYCG3SR73X" alt="Flutter_iOS_Notifications.png">
 </div>
 <h2>Enabling push</h2>
 <p>
@@ -707,7 +707,7 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 </code></pre>
 <h3>Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is the example of how data will receive in push callbacks:<img src="/hc/article_attachments/7830011337369/Screenshot_2022-06-24_at_7.04.23_PM.png" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
+  Here is the example of how data will receive in push callbacks:<img src="/guide-media/01GVDG0K4G51KAKZJZVZHNYQ4A" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
   <br>
   Data Received for Android platform:
 </p>
@@ -842,7 +842,7 @@ Countly.disableLocation();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as an update all request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
 <h2>Getting Stored Remote Config Values</h2>
 <p>
@@ -881,8 +881,11 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
 <h2>Enrolling and Exiting A/B tests</h2>
 <p>
   You can enroll your users into into A/B tests for certain keys or remove them
-  from some or all existing A/B tests available. To enroll a user into the A/B
-  tests for the given keys you use the following method:
+  from some or all existing A/B tests available.
+</p>
+<p>
+  To enroll a user into the A/B tests for the given keys you use the following
+  method:
 </p>
 <pre>Countly.instance.remoteConfig.enrollIntoABTestsForKeys(List&lt;String&gt; keys);</pre>
 <p>
@@ -966,7 +969,7 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
   <code class="dart">downloadedValues</code> would be the downloaded remote config
   data where the keys are remote config keys, and their value is stored in RCData
   class with metadata showing to which user data belongs. The data owner will always
-  be the current user if caching is not enabled.
+  be the current user.
 </p>
 <h2>Caching Remote Config Values</h2>
 <p>
@@ -1015,7 +1018,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   Feedback widget shows a server configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9519364331417/001.png" alt="001.png">
+  <img src="/guide-media/01GVCPN6ZAEC0RG337CY2T0KZE" alt="001.png">
 </div>
 <p>
   It's possible to configure any of the shown text fields and replace them with
@@ -1036,7 +1039,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   you first have to get the widget ID from your server:
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9519388544793/002.png" alt="002.png">
+  <img src="/guide-media/01GV9ZW7Z8EYHZ4A7EX066G6T6" alt="002.png">
 </div>
 <p>
   Using that you can call the function to show the widget popup:
