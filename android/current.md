@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 22.09.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.06.X</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -27,7 +27,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:22.09.0'
+    compile 'ly.count.android:sdk:23.6.0'
 }</code></pre>
 <h1>SDK Integration</h1>
 <p>
@@ -498,7 +498,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508351988121/001.png" alt="001.png">
+  <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
 </div>
 <h1>Device ID Management</h1>
 <p>
@@ -723,7 +723,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508421820313/002.png" alt="002.png">
+  <img src="/guide-media/01GVBGCTGJRS36EX7J6YHXZ2B4" alt="002.png">
 </div>
 <h4>Integrating FCM into Your App</h4>
 <p>
@@ -868,20 +868,20 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   </li>
 </ul>
 <p>
-  <img src="/hc/article_attachments/900003139063/Screenshot_2020-08-25_at_15.52.49.png" alt="Screenshot_2020-08-25_at_15.52.49.png">
+  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
 </p>
 <p>
   Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
   My Apps:
 </p>
 <p>
-  <img src="/hc/article_attachments/900003139103/Screenshot_2020-08-25_at_15.49.12.png" alt="Screenshot_2020-08-25_at_15.49.12.png">
+  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
 </p>
 <p>
   Copy your App ID &amp; the secret and paste it into Countly dashboard :
 </p>
 <p>
-  <img src="/hc/article_attachments/900003139143/Screenshot_2020-08-25_at_16.04.29.png" alt="Screenshot_2020-08-25_at_16.04.29.png">
+  <img src="/guide-media/01GVD4Q3DR7YRWKN6931KFPG9V" alt="Screenshot_2020-08-25_at_16.04.29.png">
 </p>
 <h4>Integrating HMS into Your App</h4>
 <p>
@@ -1068,93 +1068,236 @@ Countly.sharedInstance().disableLocation();</code></pre>
 </p>
 <h1>Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user profile. For more details, please see the&nbsp;</span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
-</p>
-<h2>Automatic Remote Config</h2>
-<p>
-  <span style="font-weight: 400;">There are two ways of acquiring remote config data: automatic download or manual request. Automatic remote config has been disabled by default and, therefore, without developer intervention, no remote config values will be requested.</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Automatic value download happens when the SDK is initiated or when the device ID is changed. You have to call <code>setRemoteConfigAutomaticDownload</code></span><span style="font-weight: 400;"> on the configuration object that you will provide during init to enable it. As an optional value, you may provide a callback to be informed when the request is finished.</span>
-</p>
-<pre><code class="java"><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setRemoteConfigAutomaticDownload(<span>true</span>, <span>new </span><span>RemoteConfigCallback</span>() {<br>    <span>@Override </span><span>public void </span><span>callback</span>(<span>String </span>error) {<br>        <span>if </span>(error == <span>null</span>) {<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Automatic remote config download has completed. " </span>+ <span>Countly</span>.<span>sharedInstance</span>().remoteConfig().getAllValues());<br>        } <span>else </span>{<br>            <span>Log</span>.<span>d</span>(<span>Countly</span>.<span>TAG</span>, <span>"Automatic remote config download encountered a problem, " </span>+ error);<br>        }<br>    }<br>});<br><span>Countly</span>.<span>sharedInstance</span>().init(<span>config</span>);</code></pre>
-<p>
-  <span style="font-weight: 400;">If the callback returns a non-null value, you can expect that the request failed and no values were updated.</span>
+  Once downloaded, Remote config values will be saved persistently and available
+  on your device between app restarts unless they are erased.
 </p>
 <p>
-  <span style="font-weight: 400;">When performing an automatic update, all locally stored values are replaced with the ones received (all locally stored values are deleted and replaced by new ones). It is possible that a previously valid key will return no value after an update.</span>
-</p>
-<h2>Manual Remote Config</h2>
-<p>
-  <span style="font-weight: 400;">There are three ways for manually requesting a remote config update: *Manually updating everything* Manually updating specific keys * Manually updating everything except specific keys.</span>
+  <span style="font-weight: 400;">The two ways of acquiring remote config data are enabling automatic download triggers or manual requests.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Each of these requests also has a callback. If the callback returns a non-null value, the request will encounter an error and fail.</span>
+  If a full download of remote config values is performed, the previous list of
+  values is replaced with the new one. If a partial download is performed, only
+  the retrieved keys are updated, and values that are not part of that download
+  stay as they were. A previously valid key may return no value after a full download.
+</p>
+<h2>Manually Downloading Remote Config</h2>
+<p>
+  There are three ways to trigger remote config value download manually:
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">Manually downloading all keys</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">Manually downloading specific keys</span>
+  </li>
+  <li>Manually downloading, omitting (everything except) keys.</li>
+</ul>
+<p>
+  <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Functionally, the manual update for </span><span style="font-weight: 400;">everything&nbsp;<code>remoteConfigUpdate</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatic update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones). The advantage is that you can make the request whenever it is desirable for you. It has a callback to let you know when it has finished.</span>
+  <span style="font-weight: 400;"><code class="java">dowloadAllKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfigUpdate(new RemoteConfig.RemoteConfigCallback() {
-            @Override
-            public void callback(String error) {
-                if(error == null) {
-                    Toast.makeText(activity, "Update finished", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });</code></pre>
 <p>
-  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code>updateRemoteConfigForKeysOnly</code></span><span style="font-weight: 400;">&nbsp;with the list of keys you would like to be updated. That list is an array with the string values of those keys. It has a callback to let you know when the request has finished.</span>
+  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="java">downloadSpecificKeys</code> to downloads new values for the wanted keys. Those are provided with a String array.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().updateRemoteConfigForKeysOnly(new String[]{"aa", "dd"}, new RemoteConfig.RemoteConfigCallback() {
-            @Override
-            public void callback(String error) {
-                if(error == null) {
-                    Toast.makeText(activity, "Update with inclusion finished", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });</code></pre>
 <p>
-  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code>updateRemoteConfigExceptKeys</code></span><span style="font-weight: 400;">. The key list is an array with string values of the keys. It has a callback to let you know when the request has finished.</span>
+  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="java">downloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().updateRemoteConfigExceptKeys(new String[]{"aa", "dd"}, new RemoteConfig.RemoteConfigCallback() {
-            @Override
-            public void callback(String error) {
-                if (error == null) {
-                    Toast.makeText(activity, "Update with exclusion finished", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(activity, "Error: " + error, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });</code></pre>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">All Keys</span>
+    <span class="tabs-link">Certain Keys</span>
+    <span class="tabs-link">Omit Keys</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadAllKeys(new RCDownloadCallback() {
+    @Override
+    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
+        if (rResult == RequestResult.Success) {
+            // do sth
+        } else {
+            // do sth
+        }
+    }
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
+    @Override
+    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
+        if (rResult == RequestResult.Success) {
+            // do sth
+        } else {
+            // do sth
+        }
+    }
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
+    @Override
+    public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
+        if (rResult == RequestResult.Success) {
+            // do sth
+        } else {
+            // do sth
+        }
+    }
+});</code></pre>
+  </div>
+</div>
 <p>
-  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a simple manual request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2>Accessing Remote Config Values</h2>
+<h2>Getting Stored Remote Config Values</h2>
 <p>
-  To request a stored value, call <code>getRemoteConfigValueForKey</code>&nbsp;with
-  the specified key. If it returns <code>null</code>
-  <span style="font-weight: 400;">then no value was found. The SDK has no knowledge of the returned value type, and therefore, it will return the <code>Object</code></span>
-  <span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
-  or just a simple value, such as <code>int</code>.
+  To get a stored value, call <code class="java">getValue</code> with the specified
+  key. This returns an RCData object that contains the value of the key and the
+  metadata about that value's owner. If value in RCData was <code>null</code>
+  <span style="font-weight: 400;">then no value was found or the value was <code>null</code>.</span>
+  &nbsp;
 </p>
-<pre><code class="java">Object value_1 = Countly.sharedInstance().getRemoteConfigValueForKey("aa");
-Object value_2 = Countly.sharedInstance().getRemoteConfigValueForKey("bb");
-Object value_3 = Countly.sharedInstance().getRemoteConfigValueForKey("cc");
-Object value_4 = Countly.sharedInstance().getRemoteConfigValueForKey("dd");
+<pre><code class="java">Object value_1 = Countly.sharedInstance().remoteConfig().getValue("key_1").value;
+Object value_2 = Countly.sharedInstance().remoteConfig().getValue("key_2").value;
+Object value_3 = Countly.sharedInstance().remoteConfig().getValue("key_3").value;
+Object value_4 = Countly.sharedInstance().remoteConfig().getValue("key_4").value;
 
 int int_value = (int) value_1;
 double double_value = (double) value_2;
 JSONArray jArray = (JSONArray) value_3;
 JSONObject jobj = (JSONObject) value_4;</code></pre>
+<p>
+  If you want to get all values together you can use
+  <code class="java">getAllValues</code> which returns a Map&lt;String, RCData&gt;.
+  <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the <code>Object</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
+  or just a simple value, such as <code>int</code>.
+</p>
+<pre><code class="java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().getAllValues();<br>
+int int_value = (int) allValues["key_1"] ;
+double double_value = (double) allValues["key_2"];
+JSONArray jArray = (JSONArray) allValues["key_3"];
+JSONObject jobj = (JSONObject) allValues["key_4"];</code></pre>
+<p>
+  RCData object has two keys: value (Object) and isCurrentUsersData (Boolean).
+  Value holds the data sent from the server for the key that the RCData object
+  belongs to. The isCurrentUsersData is only false when there was a device ID change,
+  but somehow (or intentionally) a remote config value was not updated.
+</p>
+<pre><code class="java">Class RCData {
+  Object value;
+  Boolean isCurrentUsersData;
+}</code></pre>
+<h2>Enrolling and Exiting A/B tests</h2>
+<p>
+  You can enroll your users into into A/B tests for certain keys or remove them
+  from some or all existing A/B tests available.
+</p>
+<p>
+  To enroll a user into the A/B tests for the given keys you use the following
+  method:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
+<p>
+  Here the keys array is the mandatory parameter for this method to work. Instead
+  if you want to remove users from A/B tests of certain keys you can use the following
+  function:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().exitABTestsForKeys(String[] keys);</code></pre>
+<p>
+  Here if no keys are provided it would remove the user from all A/B tests instead.
+</p>
+<h2>Automatic Remote Config Triggers</h2>
+<p>
+  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">when the SDK has finished initializing</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">after the device ID is changed without merging</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+  </li>
+</ul>
+<p>
+  To enable the automatic triggers, you have to call
+  <code class="java">enableRemoteConfigAutomaticTriggers</code> on the configuration
+  object you will provide during init.
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
+Countly.sharedInstance().init(config);
+</code></pre>
 <h2>Clearing Stored Values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfigClearValues();</code></pre>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().clearAll();</code></pre>
+<h2>Global Download Callbacks</h2>
+<p>
+  Also, you may provide callback functions to be informed when the request is finished
+  with <code class="java">remoteConfigRegisterGlobalCallback</code> (You can register
+  multiple callbacks by calling this method numerous times).&nbsp;
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback);
+Countly.sharedInstance().init(config);
+</code></pre>
+<p>
+  RCDownloadCallback is called when the remote config download request is finished,
+  and it would have the following parameters:
+</p>
+<ul>
+  <li>
+    <code class="java">rResult</code>: RequestResult Enum (either
+    <span class="hljs-built_in">Error</span><span>, Success or NetworkIssue</span>)
+  </li>
+  <li>
+    <code class="java">error</code>: String (error message. "null" if there is
+    no error)
+  </li>
+  <li>
+    <code class="java">fullValueUpdate</code>: boolean ("true" - all values updated,
+    "false" - a subset of values updated)
+  </li>
+  <li>
+    <code class="java">downloadedValues</code>: Map&lt;String, RCData&gt; (the
+    whole downloaded remote config values)
+  </li>
+</ul>
+<pre><code class="java">RCDownloadCallback {
+  void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues)
+}
+</code></pre>
+<p>
+  <code class="java">downloadedValues</code> would be the downloaded remote config
+  data where the keys are remote config keys, and their value is stored in RCData
+  class with metadata showing to which user data belongs. The data owner will always
+  be the current user.
+</p>
+<h2>Caching Remote Config Values</h2>
+<p>
+  Another thing you can do is to enable value caching with the
+  <code class="java">enableRemoteConfigValueCaching</code> flag. If all values
+  were not updated, you would have metadata indicating if a value belongs to the
+  old or current user.
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.enableRemoteConfigValueCaching();
+Countly.sharedInstance().init(config);</code></pre>
 <h1>User Feedback</h1>
 <p>
   <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
@@ -1241,7 +1384,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508502169241/003.png" alt="003.png">
+  <img src="/guide-media/01GVCPN579JDD7DNJBCW5T5HHM" alt="003.png">
 </div>
 <p>
   <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
@@ -1256,7 +1399,7 @@ Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</co
   <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9508523082649/004.png" alt="004.png">
+  <img src="/guide-media/01GVD4NEYK3AQ1W94DSN7NSS1V" alt="004.png">
 </div>
 <p>
   <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
@@ -1380,21 +1523,26 @@ Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButt
   <span style="font-weight: 400;">Available with Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information. User Profiles may contain any information you either collect or is collected automatically by the Countly SDK.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You may send user-related information to Countly and let the Countly dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span style="font-weight: 400;">this documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You may send user-related information to Countly and let the Countly dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">this documentation</a><span style="font-weight: 400;">.</span><span style="font-weight: 400;"></span>
 </p>
 <p>
-  <span style="font-weight: 400;">You must call the <code>Countly.userData.setUserData</code></span><span style="font-weight: 400;">&nbsp;function in order to provide information regarding the current user. You may call this function by providing a bundle of only the predefined fields, or you may call this function while also providing a second bundle of fields with your custom keys. After you have provided the user profile information, you must save it by calling <code>Countly.userData.save()</code></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You would call </span>
+  <code>Countly.sharedInstance().userProfile().</code>to see the available functionality
+  for modifying user properties.
 </p>
-<pre><code class="java">//Update the user profile using only predefined fields
-Map&lt;String, String&gt; predefinedFields = new HashMap&lt;&gt;();
-Countly.userData.setUserData(predefinedFields);
-Countly.userData.save()
+<p>
+  <span style="font-weight: 400;">The usual workflow would include calling <code>Countly.sharedInstance().userProfile().setProperty(key, value)</code></span><span style="font-weight: 400;">function in order to provide information regarding the current user. These can either be the predefined fields or any custom fields you would want to set. After you have provided the user profile information, you must save it by calling <code>Countly.userData.save()</code></span><span style="font-weight: 400;">. This would then create a request and send it to the server.</span>
+</p>
+<pre><code class="java">// Update the user profile with multiple values
+Map&lt;String, Object&gt; userInformation = new HashMap&lt;&gt;();<br>// Set user information<br>// ...<br>
+Countly.sharedInstance().userProfile().setProperties(userInformation);
+Countly.sharedInstance().userProfile().save();
 
-//Update the user profile using predefined and custom fields
-Map&lt;String, String&gt; predefinedFields = new HashMap&lt;&gt;();
-Map&lt;String, String&gt; customFields = new HashMap&lt;&gt;();
-Countly.userData.setUserData(predefinedFields, customFields);
-Countly.userData.save()</code></pre>
+//Update the user profile by setting multiple values in a map
+Map&lt;String, String&gt; setValues = new HashMap&lt;&gt;();
+// Set user information in the map<br>// ...
+Countly.sharedInstance().userProfile().setProperties(setValues);
+Countly.sharedInstance().userProfile().save();</code></pre>
 <p>The keys for predefined user data fields are as follows:</p>
 <table>
   <tbody>
@@ -1464,31 +1612,32 @@ Countly.userData.save()</code></pre>
   <span style="font-weight: 400;">You will find the list of available methods below:</span>
 </p>
 <pre><code class="java">//set one custom properties
-Countly.userData.setProperty("test", "test");
+Countly.sharedInstance().userProfile().setProperty("test", "test");
 //increment used value by 1
-Countly.userData.increment("used");
+Countly.sharedInstance().userProfile().increment("used");
 //increment used value by provided value
-Countly.userData.incrementBy("used", 2);
+Countly.sharedInstance().userProfile().incrementBy("used", 2);
 //multiply value by provided value
-Countly.userData.multiply("used", 3);
+Countly.sharedInstance().userProfile().multiply("used", 3);
 //save maximal value
-Countly.userData.saveMax("highscore", 300);
+Countly.sharedInstance().userProfile().saveMax("highscore", 300);
 //save minimal value
-Countly.userData.saveMin("best_time",60);
+Countly.sharedInstance().userProfile().saveMin("best_time",60);
 //set value if it does not exist
-Countly.userData.setOnce("tag", "test");
+Countly.sharedInstance().userProfile().setOnce("tag", "test");
 //insert value to array of unique values
-Countly.userData.pushUniqueValue("type", "morning");
+Countly.sharedInstance().userProfile().pushUnique("type", "morning");
 //insert value to array which can have duplocates
-Countly.userData.pushValue("type", "morning");
+Countly.sharedInstance().userProfile().push("type", "morning");
 //remove value from array
-Countly.userData.pullValue("type", "morning");
+Countly.sharedInstance().userProfile().pull("type", "morning");
 
 //send provided values to server
-Countly.userData.save();</code></pre>
+Countly.sharedInstance().userProfile().save();</code></pre>
 <p>
-  In the end, always call <strong>Countly.userData.save()</strong> to send them
-  to the server.
+  In the end, always call
+  <strong>Countly.sharedInstance().userProfile().save()</strong> to send them to
+  the server.
 </p>
 <h2>Orientation Tracking</h2>
 <p>
@@ -2314,6 +2463,77 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   server by setting <code>enableServerConfiguration</code> during init:
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
+<h2>A/B Testing Variant Information</h2>
+<p>
+  You can access all the A/B test variants for your Countly application within
+  your mobile app. This information can be useful while testing your app with different
+  variants. There are four calls you can use for downloading, accessing, and enrolling
+  for your variants.
+</p>
+<h3>Downloading Test Variants</h3>
+<p>
+  You can download a map of all A/B testing parameters (keys) and variants associated
+  with it:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().TestingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
+<p>
+  You can provide an RCVariantCallback (which is optional) to be called when the
+  fetching process ends. Depending on the situation, this would return a RequestResponse
+  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
+  as the second parameter if there was an error ("null" otherwise). A sample usage
+  would be like this:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().TestingDownloadVariantInformation(new RCVariantCallback() {
+    @Override
+    public void callback(RequestResponse result, String error) {
+        if (result == RequestResponse.Success) {
+            // do sth after the success
+        } else {
+            // do sth after failure
+        }
+    }
+});
+</code></pre>
+<h3>Accessing Fetched Test Variants</h3>
+<p>
+  When test variants are downloaded, they are saved to the memory. If the memory
+  is erased, you must download the variants again. So a common flow is to use the
+  fetched values right after fetching them. To access all fetched values, you can
+  use:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingGetAllVariants()</code></pre>
+<p>
+  This would return a Map&lt;String, String[]&gt; where a test's parameter is associated
+  with all variants under that parameter. The parameter would be the key, and its
+  value would be a String Array of variants. For example:
+</p>
+<pre><code class="java">{
+  "key_1" : ["variant_1", "variant_2"],
+  "key_2" : ["variant_3"]
+}
+</code></pre>
+<p>Or instead you can get the variants of a specific key:</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingGetVariantsForKey(String valueKey)</code></pre>
+<p>
+  This would only return a String Array (String[]) of variants for that specific
+  key. If no variants were present for a key, it would return an empty array. A
+  typical result would look like this:
+</p>
+<pre><code class="java">["variant_1", "variant_2"]
+</code></pre>
+<h3>Enrolling For a Variant</h3>
+<p>
+  After fetching A/B testing parameters and variants from your server, next you
+  would like to enroll the user to a specific variant. To do this, you can use
+  the following method:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingEnrollIntoVariant(String keyName, String variantName, RCVariantCallback completionCallback)</code></pre>
+<p>
+  Here the 'valueKey' would be the parameter of your A/B test, and 'variantName'
+  is the variant you have fetched and selected to enroll for. The RCVariantCallback
+  callback function is optional and works the same way as explained above in the
+  Downloading Test Variants section.
+</p>
 <h1>FAQ</h1>
 <h2>What Information is Collected by the SDK</h2>
 <p>
