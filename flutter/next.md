@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.2.0
+  and it applies to version 23.6.0
 </p>
 <div class="callout callout--info">
   <p>
@@ -1166,10 +1166,13 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 <p>
   Note that this feature is available only for Enterprise Edition.
 </p>
+<p>
+  <span>You would call&nbsp;</span><span></span><code>Countly.instance.userProfile.</code><span>to see the available functionality for modifying user properties.</span>
+</p>
 <h2>Setting User profile values during init</h2>
 <p>
-  We recommend to set the user properties during initialization. This way they
-  would be reflected when the session is started shortly.
+  If possible set user properties during initialization. This way they would be
+  reflected when the session is started shortly.
 </p>
 <p>
   Using the following call, you can set both the predefined and the custom user
@@ -1177,16 +1180,19 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 </p>
 <pre><code class="“JavaScript”">var userProperties = {<br>    ‘customProperty’: ‘custom Value’,<br>    ‘username’: ‘USER_NAME’,<br>    ‘email’: ‘USER_EMAIL’<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setUserProperties(userProperties); </code></pre>
-<h2>Setting Predefined Values</h2>
+<h2 id="setting-user-profile-values-during-init" class="anchor-heading">Setting User profile values</h2>
+<p>Ther following calls can be used after init.</p>
 <p>
-  If you want to set the user data after init, you can use
-  <code class="“JavaScript”">Countly.setUserData(USER_DATA);</code>
+  If you want to set a single property, you can call
+  <code class="“JavaScript”">Countly.userProfile.setUserProperty(key, value)</code>
 </p>
+<pre>Countly.instance.userProfile.setProperty('specialProperty', 'value');<br>Countly.instance.userProfile.save();</pre>
 <p>
-  Using the call you can only set the following predefined keys.
+  If you want to set multiple properties at the same time, you can use:
+  <code class="“JavaScript”">Countly.userProfile.setUserProperties(userProperties)</code>
 </p>
 <pre><code class="JavaScript">// example for setting user data
-Map&lt;String, Object&gt; options = {
+Map&lt;String, Object&gt; userProperties= {
     "name": "Nicola Tesla",
     "username": "nicola",
     "email": "info@nicola.tesla",
@@ -1195,10 +1201,18 @@ Map&lt;String, Object&gt; options = {
     "picture": "http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg",
     "picturePath": "",
     "gender": "M", // "F"
-    "byear": "1919",
+    "byear": "1919",<br>    "special_value": "something special"
 };
-Countly.setUserData(options);</code></pre>
-<p>&nbsp;</p>
+Countly.instance.setUserProperties(userProperties);<br>Countly.instance.userProfile.save();</code></pre>
+<p>
+  After you have provided the user profile information, you must save it by calling
+  <code class="“JavaScript”">Countly.userProfile.save()</code>. This would then
+  create a request and send it to the server.
+</p>
+<p>
+  If you changed your mind and want to clear the currently prepared values, call
+  <code class="“JavaScript”">Countly.userProfile.clear()</code>before calling "save".
+</p>
 <h2>Modifying custom data</h2>
 <p>
   Additionally, you can do different manipulations on your custom data values,
@@ -1206,27 +1220,25 @@ Countly.setUserData(options);</code></pre>
   the same property.
 </p>
 <p>Below is the list of available methods:</p>
-<pre><code class="JavaScript">//set one custom properties
-Countly.setProperty("setProperty", "My Property");
-//increment used value by 1
-Countly.increment("increment");
+<pre><code class="JavaScript">//increment used value by 1
+Countly.instance.increment("increment");
 //increment used value by provided value
-Countly.incrementBy("incrementBy", 10);
+Countly.instance.incrementBy("incrementBy", 10);
 //multiply value by provided value
-Countly.multiply("multiply", 20);
+Countly.instance.multiply("multiply", 20);
 //save maximal value
-Countly.saveMax("saveMax", 100);
+Countly.instance.saveMax("saveMax", 100);
 //save minimal value
-Countly.saveMin("saveMin", 50);
+Countly.instance.saveMin("saveMin", 50);
 //set value if it does not exist
-Countly.setOnce("setOnce", 200);
+Countly.instance.setOnce("setOnce", 200);
 
 //insert value to array of unique values
-Countly.pushUniqueValue("type", "morning");;
+Countly.instance.pushUnique("type", "morning");;
 //insert value to array which can have duplocates
-Countly.pushValue("type", "morning");
+Countly.instance.push("type", "morning");
 //remove value from array
-Countly.pullValue("type", "morning");
+Countly.instance.pull("type", "morning");
 </code></pre>
 <h1>Application Performance Monitoring</h1>
 <p>
