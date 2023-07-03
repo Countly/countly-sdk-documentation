@@ -310,7 +310,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   report which views a user has visited with the duration of that visit. To report
   a screen from your app to the Countly server, you can use the following method:
 </p>
-<pre><span style="font-weight: 400;"><code>std::string&amp; viewID = cly::Countly::getInstance().views()("Home Scene");</code></span></pre>
+<pre><span style="font-weight: 400;"><code>std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");</code></span></pre>
 <p>
   While tracking views manually, you may add your custom segmentation to those
   views like this:
