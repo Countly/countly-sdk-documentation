@@ -1900,27 +1900,14 @@ Countly.report_trace({
 <h3>Asynchronous Implementation</h3>
 <p>
   To use automatic device traces in your async Countly implementation you will
-  need to initialize Countly with a config object where <code>apm</code> flag set
-  to <code>true</code>. This would ensure that the correct script load order is
-  established. You can add two additional flags to the this config object. First
-  one is the BoomerangJS script source path as <code>boomSrc</code> and the second
-  is the countly_boomerang script source path as <code>clyBoomSrc</code>. If not
-  provided the SDK would use the latest CDN scripts as the source:
+  need to set <code>apm</code> flag to <code>true</code> in Countly object. This
+  would ensure that the correct script load order is established. You can provide
+  two additional flags to the Countly object. First one is the BoomerangJS script
+  source path as <code>boomSrc</code> and the second is the countly_boomerang script
+  source path as <code>clyBoomSrc</code>. If not provided the SDK would use the
+  latest CDN scripts as the source:
 </p>
-<pre><code class="javascript">// ...async Countly init script
-// init Countly
-(function () {
-  var cly = document.createElement('script');
-  cly.type = 'text/javascript';
-  cly.async = true;
-  // provide the correct path according to your project structure
-  cly.src = '../../lib/countly.js';
-  cly.onload = function () {
-    Countly.init({apm:true}); // This would use the latest scripts from CDN
-  };
-  var s = document.getElementsByTagName['script'](0);
-  s.parentNode.insertBefore(cly, s);
-})();</code></pre>
+<pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "YOUR_SERVER_URL";<br>Countly.apm = true;<br>// Countly.boomSRC = "../somewhere/boomerang.min.js";<br>// Countly.clyBoomSRC = "../somewhere/countly_boomerang.js";<br>// ...</code></pre>
 <p>
   Also, in your Countly init script you need to call a method to start reporting
   'loading' and 'network' traces automatically. This method accepts a BoomerangJS
