@@ -1900,20 +1900,27 @@ Countly.report_trace({
 <h3>Asynchronous Implementation</h3>
 <p>
   To use automatic device traces in your async Countly implementation you will
-  need to set <code>loadAPMScriptsAsync</code> flag to <code>true</code> in
-  Countly object. This would ensure that the correct script load order is established.
+  need to set <code>loadAPMScriptsAsync</code> flag to <code>true</code> in Countly
+  object. This would ensure that the correct script load order is established.
   You can provide two additional flags to the Countly object. First one is the
-  BoomerangJS script source path as <code>customSourceBoomerang</code> and
-  the second is the countly_boomerang script source path as
+  BoomerangJS script source path as <code>customSourceBoomerang</code> and the
+  second is the countly_boomerang script source path as
   <code>customSourceCountlyBoomerang</code>. If not provided the SDK would use
   the latest CDN scripts as the source:
 </p>
 <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "YOUR_SERVER_URL";<br>Countly.loadAPMScriptsAsync = true;<br>// Countly.customSourceBoomerang = "../somewhere/boomerang.min.js";<br>// Countly.customSourceCountlyBoomerang = "../somewhere/countly_boomerang.js";<br>// ...</code></pre>
 <p>
   Also, in your Countly init script you need to call a method to start reporting
-  'loading' and 'network' traces automatically. This method accepts a BoomerangJS
-  config object (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on BoomerangJS</a>)
-  as an optional second parameter. By default the SDK would use this configuration:
+  'loading' and 'network' traces automatically:
+</p>
+<pre><code class="javascript">// enables APM
+Countly.q.push(["track_performance"]);</code></pre>
+<p>
+  This method accepts a BoomerangJS config object (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on BoomerangJS</a>)
+  as an optional second parameter. If you are familiar with it, you can modify
+  it on your own depending on your needs (you can find the used files
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
+  By default the SDK would use this configuration:
 </p>
 <pre><code class="javascript">{
     //page load timing
@@ -1936,14 +1943,6 @@ Countly.report_trace({
         afterOnload: true
     }
 }</code></pre>
-<p>
-  If you are familiar with it, you can modify it on your own depending on your
-  needs (you can find the used files
-  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
-  In case you are not, you can simply use the method below without the config object:
-</p>
-<pre><code class="javascript">// enables APM
-Countly.q.push(["track_performance"]);</code></pre>
 <h3>Synchronous Implementation</h3>
 <p>
   To automatically report traces you will need to include 2 additional files in
