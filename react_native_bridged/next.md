@@ -532,16 +532,23 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
 </p>
 <h2>General Setup</h2>
 <p>
-  First, when setting up Push for the React Native (Bridge) SDK, select the push
-  token mode. This allows you to choose either, test or production modes. Note
-  that the push token mode should be set before initialization. Use the method
-  below.
+  First, when setting up Push for the React Native (Bridge) SDK (targeting iOS
+  devices), set the push token mode. This allows you to choose either, test or
+  production modes. Note that the push token mode should be set before initialization.
+  Use the method below.
 </p>
-<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-countlyConfig.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description"); // Set push token type
+<pre>// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+countlyConfig.setPushTokenType(Countly.messagingMode.DEVELOPMENT);
+// Set push token type NB: ONLY FOR iOS
+// Example values:
 // Countly.messagingMode.DEVELOPMENT
 // Countly.messagingMode.PRODUCTION
 // Countly.messagingMode.ADHOC
+countlyConfig.setPushNotificationChannelInformation("Channel Name", "Channel Description");
+// Method to set the push channel name and description. NB: ONLY FOR ANDROID
+countlyConfig.setPushNotificationAccentColor("#000000");
+// Set notification accent color. NB: ONLY FOR ANDROID
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </pre>
 <p>
