@@ -538,10 +538,10 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
   </div>
   <div class="tab">
     <p>
-      First, when setting up Push for the React Native (Bridge) SDK (targeting iOS
-      devices), set the push token mode. This allows you to choose either, test or
-      production modes. Note that the push token mode should be set before initialization.
-      Use the method below.
+      First, when setting up Push for the React Native (Bridge) SDK (targeting
+      iOS devices), set the push token mode. This allows you to choose either,
+      test or production modes. Note that the push token mode should be set
+      before initialization. Use the method below.
     </p>
     <pre><code class="javascript">// create Countly config object
 const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
