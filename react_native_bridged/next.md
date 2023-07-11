@@ -531,39 +531,59 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
   native code), we need to provide different instructions for these two platforms.
 </p>
 <h2>General Setup</h2>
+<p>
+  iOS and Android has different implementations. For iOS, set the push token mode.
+  This allows you to choose either, test or production modes. Note that the push
+  token mode should be set before initialization.
+</p>
+<div class="callout callout--warning">
+  <p>
+    countlyConfig.setPushTokenType and countlyConfig.setPushNotificationChannelInformation
+    requires the minimum SDK version of 23.2.4. For previous versions, use countlyConfig.pushTokenType
+  </p>
+</div>
+<p>
+  For more customization, checkout the
+  <a href="#push-notification-customization" target="_self">customization</a> section.
+</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">iOS</span>
     <span class="tabs-link">Android</span>
   </div>
   <div class="tab">
-    <p>
-      First, when setting up Push for the React Native (Bridge) SDK (targeting
-      iOS devices), set the push token mode. This allows you to choose either,
-      test or production modes. Note that the push token mode should be set
-      before initialization. Use the method below.
-    </p>
-    <pre><code class="javascript">// create Countly config object
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+    <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// create Countly config object
 countlyConfig.setPushTokenType(Countly.messagingMode.DEVELOPMENT);
 // Example values:
 // Countly.messagingMode.DEVELOPMENT
 // Countly.messagingMode.PRODUCTION
 // Countly.messagingMode.ADHOC
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
+await Countly.initWithConfig(countlyConfig);
+// Initialize the countly SDK with config.
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// create Countly config object
-const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+    <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// create Countly config object
 countlyConfig.setPushNotificationChannelInformation("Channel Name", "Channel Description");
 // Method to set the push channel name and description.
-countlyConfig.setPushNotificationAccentColor("#000000");
-// Set notification accent color.
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
+await Countly.initWithConfig(countlyConfig);
+// Initialize the countly SDK with config.
     </code></pre>
   </div>
 </div>
+<h3>Push Notification Customization</h3>
+<p>To customize accent color</p>
+<div class="callout callout--warning">
+  <p>
+    countlyConfig.setPushNotificationAccentColor was added in this SDK version
+    of 23.2.4.
+  </p>
+</div>
+<pre><code class="javascript">countlyConfig.setPushNotificationAccentColor("#000000");
+// Set notification accent color.
+  </code></pre>
 <p>
   When you are ready to initialize Countly Push, call
   <code class="JavaScript">Countly.askForNotificationPermission()</code> after
