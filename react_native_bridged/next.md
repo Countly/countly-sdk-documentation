@@ -532,68 +532,76 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
 </p>
 <h2>General Setup</h2>
 <p>
-  iOS and Android has different implementations. For iOS, set the push token mode.
-  This allows you to choose either, test or production modes. Note that the push
-  token mode should be set before initialization.
+  Android and iOS devices require different setups to enable the push notifications.
+  Android uses the <code>setPushNotificationChannelInformation</code>, whereas
+  iOS uses the <code>setPushTokenType</code> method on the CountlyConfig object.
+  Both of these methods must be called before initializing the SDK.
 </p>
 <div class="callout callout--warning">
   <p>
-    countlyConfig.setPushTokenType and countlyConfig.setPushNotificationChannelInformation
-    requires the minimum SDK version of 23.2.4. For previous versions, use countlyConfig.pushTokenType
+    <code>setPushTokenType</code> and
+    <code>setPushNotificationChannelInformation</code> methods require the minimum
+    SDK version of 23.2.4.
+  </p>
+  <p>
+    For previous versions, please use <code>pushTokenType</code> instead.
   </p>
 </div>
-<p>
-  For more customization, checkout the
-  <a href="#push-notification-customization" target="_self">customization</a> section.
-</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">iOS</span>
     <span class="tabs-link">Android</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-// create Countly config object
+    <pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// Set the token types: DEVELOPMENT, PRODUCTION or ADHOC
 countlyConfig.setPushTokenType(Countly.messagingMode.DEVELOPMENT);
-// Example values:
-// Countly.messagingMode.DEVELOPMENT
-// Countly.messagingMode.PRODUCTION
-// Countly.messagingMode.ADHOC
-await Countly.initWithConfig(countlyConfig);
 // Initialize the countly SDK with config.
+await Countly.initWithConfig(countlyConfig);
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-// create Countly config object
-countlyConfig.setPushNotificationChannelInformation("Channel Name", "Channel Description");
+    <pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // Method to set the push channel name and description.
-await Countly.initWithConfig(countlyConfig);
+countlyConfig.setPushNotificationChannelInformation("Channel Name", "Channel Description");
 // Initialize the countly SDK with config.
+await Countly.initWithConfig(countlyConfig);
     </code></pre>
   </div>
 </div>
-<h3>Push Notification Customization</h3>
-<p>To customize accent color</p>
-<div class="callout callout--warning">
-  <p>
-    countlyConfig.setPushNotificationAccentColor was added in this SDK version
-    of 23.2.4.
-  </p>
-</div>
-<pre><code class="javascript">countlyConfig.setPushNotificationAccentColor("#000000");
-// Set notification accent color.
-  </code></pre>
 <p>
   When you are ready to initialize Countly Push, call
   <code class="JavaScript">Countly.askForNotificationPermission()</code> after
-  <code class="JavaScript">initWithConfig</code>, using the method below.
+  <code class="JavaScript">initWithConfig</code>, using the method below. This
+  method will ask for permission, and send push token to Countly server.
 </p>
-<pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only support Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");
-// This method will ask for permission, 
-// and send push token to countly server.</pre>
+<pre>Countly.askForNotificationPermission();</pre>
+<h3>Push Notification Customization</h3>
 <p>
-  With an option parameter of custom sound path for push notifications.<br>
+  Currently you can customize the accent color of your push notifications for both
+  platforms and for Android devices you can also decide on the sound of the notifications.
+</p>
+<div class="callout callout--warning">
+  <p>
+    <code>setPushNotificationAccentColor</code> requires the minimum SDK version
+    of 23.2.4.
+  </p>
+</div>
+<p>
+  You can provide a color in hexadecimal color system to the CountlyConfig object
+  with the <code>setPushNotificationAccentColor</code> method before the SDK initialization.
+</p>
+<pre><code class="javascript">// Set notification accent color
+countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
+<p>
+  To use a custom sound for your notifications in Android you should provide a
+  path to your sound file and pass it as the first parameter of the
+  <code>askForNotificationPermission</code> method.
+</p>
+<pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only supported for Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");</pre>
+<p>
   We will use this custom sound path to create a soundUri and set the sound of
   notification channel.
 </p>
@@ -749,7 +757,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   You can drag and drop both .h and .m files from Pod to Compile Sources.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/4404577440025/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
+  <img src="/guide-media/01GVDFZ17C5QDJTNSY6AKV01ZY" alt="Countly_RN_PUSH.png">
 </div>
 <h2>Handling push callbacks</h2>
 <p>
@@ -798,7 +806,7 @@ console.log(JSON.stringify(theNotification));
 </code></pre>
 <h3>Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is an example of how data will received in push callbacks:<img src="/hc/article_attachments/17931838199193" alt="004.png"><br>
+  Here is an example of how data will received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
   <br>
   Data Received for Android platform:
 </p>
