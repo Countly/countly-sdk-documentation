@@ -580,8 +580,9 @@ await Countly.initWithConfig(countlyConfig);
 <pre>Countly.askForNotificationPermission();</pre>
 <h3>Push Notification Customization</h3>
 <p>
-  Currently you can customize the accent color of your push notifications for both
-  platforms and for Android devices you can also decide on the sound of the notifications.
+  Currently, push notification customization is only supported for Android devices.
+  You can only select the accent color of your notifications and provide a custom
+  notification sound.
 </p>
 <div class="callout callout--warning">
   <p>
@@ -757,7 +758,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   You can drag and drop both .h and .m files from Pod to Compile Sources.
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVDFZ17C5QDJTNSY6AKV01ZY" alt="Countly_RN_PUSH.png">
+  <img src="/hc/article_attachments/4404577440025/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
 </div>
 <h2>Handling push callbacks</h2>
 <p>
@@ -806,7 +807,7 @@ console.log(JSON.stringify(theNotification));
 </code></pre>
 <h3>Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is an example of how data will received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
+  Here is an example of how the data will be received in push callbacks:<img src="/hc/article_attachments/17931838199193" alt="004.png"><br>
   <br>
   Data Received for Android platform:
 </p>
