@@ -413,7 +413,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <a href="http://resources.count.ly/docs/view-analytics">here</a>.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545215851033/001.png" alt="001.png">
+  <img src="/guide-media/01GV9ZW9XVCXCTTKN1DT3684EV" alt="001.png">
 </div>
 <h1>Device ID management</h1>
 <p>
@@ -532,31 +532,91 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
 </p>
 <h2>General Setup</h2>
 <p>
-  First, when setting up Push for the React Native (Bridge) SDK, select the push
-  token mode. This allows you to choose either, test or production modes. Note
-  that the push token mode should be set before initialization. Use the method
-  below.
+  Android and iOS devices require different setups to enable the push notifications.
+  Android uses the <code>setPushNotificationChannelInformation</code>, whereas
+  iOS uses the <code>setPushTokenType</code> method on the CountlyConfig object.
+  Both of these methods must be called before initializing the SDK.
 </p>
-<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-countlyConfig.pushTokenType(Countly.messagingMode.DEVELOPMENT, "Channel Name", "Channel Description"); // Set push token type
-// Countly.messagingMode.DEVELOPMENT
-// Countly.messagingMode.PRODUCTION
-// Countly.messagingMode.ADHOC
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-</pre>
+<div class="callout callout--warning">
+  <p>
+    <code>setPushTokenType</code> and
+    <code>setPushNotificationChannelInformation</code> methods require the minimum
+    SDK version of 23.2.4.
+  </p>
+  <p>
+    For previous versions, please use <code>pushTokenType</code> instead.
+  </p>
+</div>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">iOS</span>
+    <span class="tabs-link">Android</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// Set the token types: DEVELOPMENT, PRODUCTION or ADHOC
+countlyConfig.setPushTokenType(Countly.messagingMode.DEVELOPMENT);
+// Initialize the countly SDK with config.
+await Countly.initWithConfig(countlyConfig);
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// Method to set the push channel name and description.
+countlyConfig.setPushNotificationChannelInformation("Channel Name", "Channel Description");
+// Initialize the countly SDK with config.
+await Countly.initWithConfig(countlyConfig);
+    </code></pre>
+  </div>
+</div>
 <p>
   When you are ready to initialize Countly Push, call
   <code class="JavaScript">Countly.askForNotificationPermission()</code> after
-  <code class="JavaScript">initWithConfig</code>, using the method below.
+  <code class="JavaScript">initWithConfig</code>, using the method below. This
+  method will ask for permission, and send push token to Countly server.
 </p>
-<pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only support Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");
-// This method will ask for permission, 
-// and send push token to countly server.</pre>
+<pre>Countly.askForNotificationPermission();</pre>
+<h3>Push Notification Customization</h3>
+<h4>Notification Accent Color</h4>
+<div class="callout callout--warning">
+  <p>
+    <code>setPushNotificationAccentColor</code> requires the minimum SDK version
+    of 23.2.4.
+  </p>
+</div>
 <p>
-  With an option parameter of custom sound path for push notifications.<br>
+  Currently, push notification customization is only supported for Android devices.
+  You can only select the accent color of your notifications and provide a custom
+  notification sound.
+</p>
+<p>
+  You can provide a color in hexadecimal color system to the CountlyConfig object
+  with the <code>setPushNotificationAccentColor</code> method before the SDK initialization.
+</p>
+<pre><code class="javascript">// Set notification accent color
+countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
+<h4>Custom Sound</h4>
+<p>
+  Currently custom sound feature is only available for Android.
+</p>
+<p>
+  To use a custom sound for your notifications in Android you should provide a
+  path to your sound file and pass it as the first parameter of the
+  <code>askForNotificationPermission</code> method.
+</p>
+<pre>// CUSTOM_SOUND_PATH is an optional parameter and currently only supported for Android.<br>Countly.askForNotificationPermission("CUSTOM_SOUND_PATH");</pre>
+<p>
   We will use this custom sound path to create a soundUri and set the sound of
   notification channel.
 </p>
+<div class="callout callout--warning">
+  <p>
+    If you would like to use a custom sound in your push notifications, they
+    must be present on the device. They cannot be linked from the Internet.
+  </p>
+</div>
 <p>
   We recommend to add the custom sound file in your Android project res/raw folder.
   Always create a "raw" folder by right clicking on Resources (res) folder and
@@ -571,18 +631,6 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
-<div class="callout callout--info">
-  <strong>Supported Platforms</strong>
-  <p>
-    Currently custom sound feature is only available for Android.
-  </p>
-</div>
-<div class="callout callout--warning">
-  <p>
-    If you would like to use a custom sound in your push notifications, they
-    must be present on the device. They cannot be linked from the Internet.
-  </p>
-</div>
 <h2>Android Setup</h2>
 <p>
   Step 1: For FCM credentials setup please follow the instruction from this URL
@@ -709,7 +757,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   You can drag and drop both .h and .m files from Pod to Compile Sources.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/4404577440025/Countly_RN_PUSH.png" alt="Countly_RN_PUSH.png">
+  <img src="/guide-media/01GVDFZ17C5QDJTNSY6AKV01ZY" alt="Countly_RN_PUSH.png">
 </div>
 <h2>Handling push callbacks</h2>
 <p>
@@ -758,7 +806,7 @@ console.log(JSON.stringify(theNotification));
 </code></pre>
 <h3>Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is an example of how data will received in push callbacks:<img src="/hc/article_attachments/17931838199193" alt="004.png"><br>
+  Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
   <br>
   Data Received for Android platform:
 </p>
@@ -948,7 +996,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   The rating widget displays a server-configured widget to your user devices.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545190761113/002.png" alt="002.png">
+  <img src="/guide-media/01GVBACKYF3R6V3D0P9N98GCEV" alt="002.png">
 </div>
 <p>
   All the text fields in the example above can be configured and replaced with
@@ -968,7 +1016,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   the widget ID from your server, as shown below.
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545218779033/003.png" alt="003.png">
+  <img src="/guide-media/01GVB67MNKYRCSYQMHPBJHA3VM" alt="003.png">
 </div>
 <p>
   Then, call the function to show the widget popup using the widget ID below.
@@ -1411,12 +1459,12 @@ Right click on AwesomeProject and select `New Group` (ScreenShot 1).
 Name it `Resources`.
 Drag and Drop count.ly.cer file under that folder (ScreenShot 2).
 Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
-<pre><img src="/hc/article_attachments/900002229303/Screenshot_2020-07-07_at_11.39.02_AM.png" alt="Screenshot_2020-07-07_at_11.39.02_AM.png">
-<img src="/hc/article_attachments/900001515963/ScreenShot_Pinned_Certificate_1.png" alt="ScreenShot_Pinned_Certificate_1.png"></pre>
+<pre><img src="/guide-media/01GVCPK3524DAMTR4N4RQTENRJ" alt="Screenshot_2020-07-07_at_11.39.02_AM.png">
+<img src="/guide-media/01GVAYMBW370WBR1NJBQ83ZFT1" alt="ScreenShot_Pinned_Certificate_1.png"></pre>
 <p>
-  <img src="/hc/article_attachments/900001515983/Screenshot_Pinned_Certificate_2.png" alt="Screenshot_Pinned_Certificate_2.png">
+  <img src="/guide-media/01GVDFYEK5674YH9AZFB15ZPYF" alt="Screenshot_Pinned_Certificate_2.png">
 </p>
-<pre><img src="/hc/article_attachments/900002229363/Screenshot_2020-07-07_at_11.39.40_AM.png" alt="Screenshot_2020-07-07_at_11.39.40_AM.png"></pre>
+<pre><img src="/guide-media/01GVB664B0Z9XWSW87KCMCPD36" alt="Screenshot_2020-07-07_at_11.39.40_AM.png"></pre>
 <p>
   <strong>JavaScript</strong>
 </p>
