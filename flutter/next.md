@@ -1648,3 +1648,62 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   function:
 </p>
 <pre><code class="JavaScript">Countly.isInitialized();</code></pre>
+<h2>A/B Testing Variant Information</h2>
+<p>
+  You can access all the A/B test variants for your Countly application within
+  your mobile app. This information can be useful while testing your app with different
+  variants. There are four calls you can use for fetching, accessing, and enrolling
+  for your variants.
+</p>
+<h3>Fetching Test Variants</h3>
+<p>
+  You can fetch a map of all A/B testing parameters (keys) and variants associated
+  with it:
+</p>
+<pre><code class="java">Countly.instance.remoteConfig.testingDownloadVariantInformation((rResult, error){<br>    // do sth<br>})</code></pre>
+<p>
+  You can provide an callback (which is optional) to be called when the fetching
+  process ends. Depending on the situation, this would return a RequestResponse
+  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
+  as the second parameter if there was an error ("null" otherwise).
+</p>
+<h3>Accessing Fetched Test Variants</h3>
+<p>
+  When test variants are fetched, they are saved to the memory. If the memory is
+  erased, you must fetch the variants again. So a common flow is to use the fetched
+  values right after fetching them. To access all fetched values, you can use:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingGetAllVariants()</code></pre>
+<p>
+  This would return a Future&lt;Map&lt;String, List&lt;String&gt;&gt;&gt; where
+  a test's parameter is associated with all variants under that parameter. The
+  parameter would be the key, and its value would be a String List of variants.
+  For example:
+</p>
+<pre><code class="java">{
+  "key_1" : ["variant_1", "variant_2"],
+  "key_2" : ["variant_3"]
+}
+</code></pre>
+<p>Or instead you can get the variants of a specific key:</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingGetVariantsForKey(String valueKey)</code></pre>
+<p>
+  This would only return a Future&lt;List&lt;String&gt;&gt; of variants for that
+  specific key. If no variants were present for a key, it would return an empty
+  list. A typical result would look like this:
+</p>
+<pre><code class="java">["variant_1", "variant_2"]
+</code></pre>
+<h3>Enrolling For a Variant</h3>
+<p>
+  After fetching A/B testing parameters and variants from your server, you next
+  would like to enroll the user to a specific variant. To do this, you can use
+  the following method:
+</p>
+<pre><code class="java">Countly.instance.remoteConfig.testingEnrollIntoVariant(String keyName, String variantName, void Function(RequestResult, String?)? callback)</code></pre>
+<p>
+  Here the 'valueKey' would be the parameter of your A/B test, and 'variantName'
+  is the variant you have fetched and selected to enroll for. The callback function
+  is optional and works the same way as explained above in the Fetching Test Variants
+  section.
+</p>
