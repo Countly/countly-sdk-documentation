@@ -2428,7 +2428,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </code></pre>
   </div>
 </div>
-<h2>Download Callbacks</h2>
+<h2>Global Download Callbacks</h2>
 <p>
   Also, you may provide callback functions to be informed when the request is finished
   with <code class="objectivec">remoteConfigRegisterGlobalCallback</code>method
