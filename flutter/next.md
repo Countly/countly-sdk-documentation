@@ -933,9 +933,9 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
 <pre>Countly.instance.remoteConfig.clearAll();</pre>
 <h2>Global Download Callbacks</h2>
 <p>
-  Also, you may provide callback functions to be informed when the request is finished
-  with <code class="dart">remoteConfigRegisterGlobalCallback</code> (You can register
-  multiple callbacks by calling this method numerous times).&nbsp;
+  Also, you may provide a global callback function to be informed when the remote
+  config download request is finished with
+  <code class="dart">remoteConfigRegisterGlobalCallback</code> during the SDK initialization:
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..remoteConfigRegisterGlobalCallback((rResult, error, fullValueUpdate, downloadedValues) {<br>    if (error != null) {<br>      // do sth<br>    }<br>  })
 </code></pre>
@@ -971,6 +971,19 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
   class with metadata showing to which user data belongs. The data owner will always
   be the current user.
 </p>
+<p>
+  You can also register (or remove) callbacks to do different things after the
+  SDK initialization. You can register these callbacks multiple times:
+</p>
+<pre><code class="dart">// register a callback
+Countly.instance.remoteConfig.registerDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
+   // do sth
+});
+
+// remove a callback
+Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
+   // do sth
+});</code></pre>
 <h2>Caching Remote Config Values</h2>
 <p>
   Another thing you can do is to enable value caching with the
