@@ -2202,7 +2202,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre>[Countly.sharedInstance.remoteConfig downloadKeys:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadKeys:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">Countly.sharedInstance().remoteConfig.downloadKeys { response, error, fullValueUpdate, downloadedValues in
@@ -2220,7 +2220,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre>[Countly.sharedInstance.remoteConfig downloadSpecificKeys:NSArray *keys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadSpecificKeys:NSArray *keys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">Countly.sharedInstance().remoteConfig.downloadSpecificKeys(keys, completionHandler: { response, error, fullValueUpdate, downloadedValues in<br>   //...<br>})
@@ -2236,7 +2236,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre>[Countly.sharedInstance.remoteConfig downloadOmittingKeys:NSArray *omitKeys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadOmittingKeys:NSArray *omitKeys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">Countly.sharedInstance.remoteConfig.downloadOmittingKeys(omitKeys, completionHandler: { response, error, fullValueUpdate, downloadedValues in<br>   //...<br>})
@@ -2261,7 +2261,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">id value_1 = [Countly.sharedInstance.remoteConfig getValue:@"key_1"].value;<br>id value_2 = [Countly.sharedInstance.remoteConfig getValue:@"key_2"].value;<br>id value_3 = [Countly.sharedInstance.remoteConfig getValue:@"key_3"].value;<br>id value_4 = [Countly.sharedInstance.remoteConfig getValue:@"key_4"].value;<br><br>int intValue = [value_1 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_1 intValue] : 0;<br>double doubleValue = [value_2 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_2 doubleValue] : 0.0;<br>NSArray *jArray = [value_3 isKindOfClass:[NSArray class]] ? (NSArray*)value_3 : @[];<br>NSDictionary *jObj = [value_4 isKindOfClass:[NSDictionary class]] ? (NSDictionary*)value_4 : @{};</code></pre>
+    <pre><code class="objectivec">id value_1 = [Countly.sharedInstance.remoteConfig getValue:@"key_1"].value;<br>id value_2 = [Countly.sharedInstance.remoteConfig getValue:@"key_2"].value;<br>id value_3 = [Countly.sharedInstance.remoteConfig getValue:@"key_3"].value;<br>id value_4 = [Countly.sharedInstance.remoteConfig getValue:@"key_4"].value;<br><br>int intValue = [value_1 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_1 intValue] : 0;<br>double doubleValue = [value_2 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_2 doubleValue] : 0.0;<br>NSArray *jArray = [value_3 isKindOfClass:[NSArray class]] ? (NSArray*)value_3 : @[];<br>NSDictionary *jObj = [value_4 isKindOfClass:[NSDictionary class]] ? (NSDictionary*)value_4 : @{};</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let value_1 = Countly.sharedInstance().remoteConfig.getValue("key_1")?.value
@@ -2289,7 +2289,7 @@ let jObj = value_4 as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">NSDictionary&lt;NSString*, CountlyRCData*&gt; *allValues = [Countly.sharedInstance.remoteConfig getAllValues];<br><br>int intValue = [(NSNumber *)allValues[@"key_1"] intValue];<br>double doubleValue = [(NSNumber *)allValues[@"key_2"] doubleValue];<br>NSArray*jArray = (NSArray *)allValues[@"key_3"];<br>NSDictionary*jObj = (NSDictionary *)allValues[@"key_4"];</code></pre>
+    <pre><code class="objectivec">NSDictionary&lt;NSString*, CountlyRCData*&gt; *allValues = [Countly.sharedInstance.remoteConfig getAllValues];<br><br>int intValue = [(NSNumber *)allValues[@"key_1"] intValue];<br>double doubleValue = [(NSNumber *)allValues[@"key_2"] doubleValue];<br>NSArray*jArray = (NSArray *)allValues[@"key_3"];<br>NSDictionary*jObj = (NSDictionary *)allValues[@"key_4"];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let allValues = Countly.sharedInstance().remoteConfig.getAllValues()<br>
@@ -2312,7 +2312,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">@interface CountlyRCData : NSObject
+    <pre><code class="objectivec">@interface CountlyRCData : NSObject
 
 @property (nonatomic) id value;
 @property (nonatomic) BOOL isCurrentUsersData;
@@ -2340,7 +2340,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2359,7 +2359,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2393,7 +2393,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </ul>
 <p>
   To enable the automatic triggers, you have to call
-  <code class="dart">enableRemoteConfigAutomaticTriggers</code> on the configuration
+  <code class="objectivec">enableRemoteConfigAutomaticTriggers</code> on the configuration
   object you will provide during init.
 </p>
 <div class="tabs">
@@ -2402,7 +2402,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">config.enableRemoteConfigAutomaticTriggers = YES;
+    <pre><code class="objectivec">config.enableRemoteConfigAutomaticTriggers = YES;
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2420,7 +2420,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">[Countly.sharedInstance.remoteConfig clearAll];
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig clearAll];
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2428,11 +2428,11 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </code></pre>
   </div>
 </div>
-<h2>Global Download Callbacks</h2>
+<h2>Download Callbacks</h2>
 <p>
   Also, you may provide callback functions to be informed when the request is finished
-  with <code class="dart">remoteConfigRegisterGlobalCallback</code> (You can register
-  multiple callbacks by calling this method numerous times).&nbsp;
+  with <code class="objectivec">remoteConfigRegisterGlobalCallback</code>method
+  during SDK initialization:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2440,7 +2440,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="dart">[config remoteConfigRegisterGlobalCallback:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>    // ...<br>}]
+    <pre><code class="objectivec">[config remoteConfigRegisterGlobalCallback:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>    // ...<br>}]
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2455,19 +2455,19 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </p>
 <ul>
   <li>
-    <code class="dart">response</code>: CLYRequestResult Enum (either CLYResponseError<span>, CLYResponseSuccess or CLYResponseNetworkIssue</span>)
+    <code class="objectivec">response</code>: CLYRequestResult Enum (either CLYResponseError<span>, CLYResponseSuccess or CLYResponseNetworkIssue</span>)
   </li>
   <li>
-    <code class="dart">error</code>: NSError (error message. "null" if there
-    is no error)
+    <code class="objectivec">error</code>: NSError (error message. "null" if
+    there is no error)
   </li>
   <li>
-    <code class="dart">fullValueUpdate</code>: BOOL ("true" - all values updated,
-    "false" - a subset of values updated)
+    <code class="objectivec">fullValueUpdate</code>: BOOL ("true" - all values
+    updated, "false" - a subset of values updated)
   </li>
   <li>
-    <code class="dart">downloadedValues</code>: NSDictionary&lt;NSString *,CountlyRCData
-    *&gt; (the whole downloaded remote config values)
+    <code class="objectivec">downloadedValues</code>: NSDictionary&lt;NSString
+    *,CountlyRCData*&gt; (the whole downloaded remote config values)
   </li>
 </ul>
 <div class="tabs">
@@ -2476,7 +2476,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">typedef void (^RCDownloadCallback)(CLYRequestResult response, NSError *_Nullable error, BOOL fullValueUpdate, NSDictionary&lt;NSString*, CountlyRCData *&gt;* downloadedValues);
+    <pre><code class="objectivec">typedef void (^RCDownloadCallback)(CLYRequestResult response, NSError *_Nullable error, BOOL fullValueUpdate, NSDictionary&lt;NSString*, CountlyRCData *&gt;* downloadedValues);
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2485,15 +2485,48 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
   </div>
 </div>
 <p>
-  <code class="dart">downloadedValues</code> would be the downloaded remote config
-  data where the keys are remote config keys, and their value is stored in CountlyRCData
-  class with metadata showing to which user data belongs. The data owner will always
-  be the current user if caching is not enabled.
+  <code class="objectivec">downloadedValues</code> would be the downloaded remote
+  config data where the keys are remote config keys, and their value is stored
+  in CountlyRCData class with metadata showing to which user data belongs. The
+  data owner will always be the current user if caching is not enabled.
 </p>
+<p>
+  You can also register (or remove) RCDownloadCallback to do different things after
+  the SDK initialization. You can register callbacks multiple times:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">// register a callback
+[Countly.sharedInstance.remoteConfig registerDownloadCallback:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData*&gt; * _Nonnull downloadedValues) {
+   //...
+}];
+
+// remove a callback
+[Countly.sharedInstance.remoteConfig removeDownloadCallback:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData*&gt; * _Nonnull downloadedValues) {
+   //...
+}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">// register a callback
+Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, fullValueUpdate, downloadedValues in
+   //...
+}
+
+// remove a callback
+Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, fullValueUpdate, downloadedValues in
+   //...
+}
+</code></pre>
+  </div>
+</div>
 <h2>Caching Remote Config Values</h2>
 <p>
   Another thing you can do is to enable value caching with the
-  <code class="dart">enableRemoteConfigValueCaching</code> flag. If all values
+  <code class="objectivec">enableRemoteConfigValueCaching</code> flag. If all values
   were not updated, you would have metadata indicating if a value belongs to the
   old or current user.
 </p>
@@ -2503,7 +2536,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective-c">config.enableRemoteConfigValueCaching = YES;
+    <pre><code class="objectivec">config.enableRemoteConfigValueCaching = YES;
 </code></pre>
   </div>
   <div class="tab is-hidden">
