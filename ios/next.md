@@ -2491,7 +2491,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
   data owner will always be the current user if caching is not enabled.
 </p>
 <p>
-  You can also register (or remove) RCDownloadCallback to do different things after
+  You can also register (or remove) RCDownloadCallbacks to do different things after
   the SDK initialization. You can register callbacks multiple times:
 </p>
 <div class="tabs">
