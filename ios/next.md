@@ -2162,14 +2162,39 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
 </p>
 <h1>Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">The Remote Config feature allows you to change the behavior and appearance of your applications at any time, without sending an update to the App Store by creating or updating custom key-value pairs on your Countly Server. You can also create conditions to get different values depending on user criteria. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
-</p>
-<h2>Setting up Remote Config</h2>
-<p>
-  <span style="font-weight: 400;">Here is how you can utilize the Remote Config feature in your iOS apps:</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First, you will need to enable the Remote Config feature upon initial configuration:</span>
+  Once downloaded, Remote config values will be saved persistently and available
+  on your device between app restarts unless they are erased.
+</p>
+<p>
+  <span style="font-weight: 400;">The two ways of acquiring remote config data are enabling automatic download triggers or manual requests.</span>
+</p>
+<p>
+  If a full download of remote config values is performed, the previous list of
+  values is replaced with the new one. If a partial download is performed, only
+  the retrieved keys are updated, and values that are not part of that download
+  stay as they were. A previously valid key may return no value after a full download.
+</p>
+<h2>Manually Downloading Remote Config</h2>
+<p>
+  There are three ways to trigger remote config value download manually:
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">Manually downloading all keys</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">Manually downloading specific keys</span>
+  </li>
+  <li>Manually downloading, omitting (everything except) keys.</li>
+</ul>
+<p>
+  <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
+</p>
+<p>
+  <span style="font-weight: 400;"><code class="java">downloadKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2177,89 +2202,137 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enableRemoteConfig = YES;</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadKeys:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enableRemoteConfig = true</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">The Countly iOS SDK will automatically fetch the Remote Config keys and values from the Countly Server when launched.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You can also set a completion block on the initial configuration object to be informed about the remote config fetching process results, either with success or failure:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.remoteConfigCompletionHandler = ^(NSError * error)
-{
-    if (!error)
-    {
-        NSLog(@"Remote Config is ready to use!");
-    }
-    else
-    {
-        NSLog(@"There was an error while fetching Remote Config:\n%@", error);
-    }
-};</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.remoteConfigCompletionHandler =
-{ (error : Error?) in
-    if (error == nil)
-    {
-        print("Remote Config is ready to use!")
-    }
-    else
-    {
-        print("There was an error while fetching Remote Config:\n\(error!.localizedDescription)")
-    }
-}</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Once fetched, you can access the Remote Config values using the <code>remoteConfigValueForKey</code></span><span style="font-weight: 400;"> method:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">id value = [Countly.sharedInstance remoteConfigValueForKey:@"foo"];
-
-if (value) // if value exists, you can use it as you see fit
-{
-        NSLog(@"Value %@", [value description]);
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.downloadKeys { response, error, fullValueUpdate, downloadedValues in
+   //...
 }
-else //if value does not exist, you can set your default fallback value
-{
-    value = @"Default Value";
-}</code></pre>
+</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="dart">downloadSpecificKeys</code> to downloads new values for the wanted keys. Those are provided with a String array.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadSpecificKeys:NSArray *keys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">var value : Any? = Countly.sharedInstance().remoteConfigValue(forKey:"foo")
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.downloadSpecificKeys(keys, completionHandler: { response, error, fullValueUpdate, downloadedValues in<br>   //...<br>})
+</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="dart">downloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadOmittingKeys:NSArray *omitKeys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance.remoteConfig.downloadOmittingKeys(omitKeys, completionHandler: { response, error, fullValueUpdate, downloadedValues in<br>   //...<br>})
+</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as an update all request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+</p>
+<h2>Getting Stored Remote Config Values</h2>
+<p>
+  To get a stored value, call <code class="dart">getValue</code> with the specified
+  key. This returns an CountlyRCData object that contains the value of the key
+  and the metadata about that value's owner. If value in CountlyRCData was
+  <code>null</code>
+  <span style="font-weight: 400;">then no value was found or the value was <code>null</code>.</span>
+  &nbsp;
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">id value_1 = [Countly.sharedInstance.remoteConfig getValue:@"key_1"].value;<br>id value_2 = [Countly.sharedInstance.remoteConfig getValue:@"key_2"].value;<br>id value_3 = [Countly.sharedInstance.remoteConfig getValue:@"key_3"].value;<br>id value_4 = [Countly.sharedInstance.remoteConfig getValue:@"key_4"].value;<br><br>int intValue = [value_1 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_1 intValue] : 0;<br>double doubleValue = [value_2 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_2 doubleValue] : 0.0;<br>NSArray *jArray = [value_3 isKindOfClass:[NSArray class]] ? (NSArray*)value_3 : @[];<br>NSDictionary *jObj = [value_4 isKindOfClass:[NSDictionary class]] ? (NSDictionary*)value_4 : @{};</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let value_1 = Countly.sharedInstance().remoteConfig.getValue("key_1")?.value
+let value_2 = Countly.sharedInstance().remoteConfig.getValue("key_2")?.value
+let value_3 = Countly.sharedInstance().remoteConfig.getValue("key_3")?.value
+let value_4 = Countly.sharedInstance().remoteConfig.getValue("key_4")?.value
 
-if (value == nil) //if value does not exist, you can set your default fallback value
-{
-        value = "default value"
+let intValue = value_1 as? Int ?? 0
+let doubleValue = value_2 as? Double ?? 0.0
+let jArray = value_3 as? [Any] ?? []
+let jObj = value_4 as? [String: Any] ?? [:]
+</code></pre>
+  </div>
+</div>
+<p>
+  If you want to get all values together you can use
+  <code class="dart">getAllValues</code> which returns an NSDictionary&lt;NSString
+  *, CountlyRCData*&gt;.
+  <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the <code>Any</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
+  or just a simple value, such as <code>NSNumber</code>.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSDictionary&lt;NSString*, CountlyRCData*&gt; *allValues = [Countly.sharedInstance.remoteConfig getAllValues];<br><br>int intValue = [(NSNumber *)allValues[@"key_1"] intValue];<br>double doubleValue = [(NSNumber *)allValues[@"key_2"] doubleValue];<br>NSArray*jArray = (NSArray *)allValues[@"key_3"];<br>NSDictionary*jObj = (NSDictionary *)allValues[@"key_4"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let allValues = Countly.sharedInstance().remoteConfig.getAllValues()<br>
+let intValue = (allValues["key_1"] as? NSNumber)?.intValue ?? 0
+let doubleValue = (allValues["key_2"] as? NSNumber)?.doubleValue ?? 0.0
+let jArray = allValues["key_3"] as? [Any] ?? []
+let jObj = allValues["key_4"] as? [String: Any] ?? [:]
+</code></pre>
+  </div>
+</div>
+<p>
+  CountlyRCData object has two keys: value (Any) and isCurrentUsersData (Bool).
+  Value holds the data sent from the server for the key that the CountlyRCData
+  object belongs to. The isCurrentUsersData is only false when there was a device
+  ID change, but somehow (or intentionally) a remote config value was not updated.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">@interface CountlyRCData : NSObject
+
+@property (nonatomic) id value;
+@property (nonatomic) BOOL isCurrentUsersData;
+
+@end
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">class CountlyRCData {
+    var value: Any
+    var isCurrentUsersData: Bool
 }
-else // if value exists, you can use it as you see fit
-{
-        print("value \(String(describing: value))")
-}</code></pre>
+</code></pre>
   </div>
 </div>
+<h2>Enrolling and Exiting A/B tests</h2>
 <p>
-  <span style="font-weight: 400;">The Remote Config values are stored locally on the device. This means you can access the latest fetched values even while the Countly Server is not reachable. If the Remote Config was never retrieved from the Countly Server before or after the given key was not defined, this method will return as <code>nil</code></span><span style="font-weight: 400;">, meaning you can fall back to your desired default value.</span>
-</p>
-<h2>Manual Remote Config</h2>
-<p>
-  <span style="font-weight: 400;">You can also trigger the fetching and updating of Remote Config values anytime you would like:</span>
+  You can enroll your users into into A/B tests for certain keys or remove them
+  from some or all existing A/B tests available. To enroll a user into the A/B
+  tests for the given keys you use the following method:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2267,35 +2340,18 @@ else // if value exists, you can use it as you see fit
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigWithCompletionHandler:^(NSError * error)
-{
-    if (!error)
-    {
-        NSLog(@"Remote Config is updated and ready to use!");
-    }
-    else
-    {
-        NSLog(@"There is an error while updating Remote Config:\n%@", error);
-    }
-}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().updateRemoteConfig
-{ (error : Error?) in
-    if (error == nil)
-    {
-        print("Remote Config is updated and ready to use!")
-    }
-    else
-    {
-        print("There was an error while fetching Remote Config:\n\(error!.localizedDescription)")
-    }
-}</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.enrollIntoABTests(forKeys: keys as [String])
+</code></pre>
   </div>
 </div>
-<h2>Filtered Value Update</h2>
 <p>
-  <span style="font-weight: 400;">You can also trigger partial updates for the Remote Config values you would like at any time. Adhere to the following in order to only update the values for the keys specified by you:</span>
+  Here the keys array is the mandatory parameter for this method to work. Instead
+  if you want to remove users from A/B tests of certain keys you can use the following
+  function:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2303,34 +2359,42 @@ else // if value exists, you can use it as you see fit
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigOnlyForKeys:@[@"key1", @"key2"] completionHandler:^(NSError * error)
-{
-    if (!error)
-    {
-        NSLog(@"Remote Config is updated only for given keys and ready to use!");
-    }
-    else
-    {
-        NSLog(@"There is an error while updating Remote Config:\n%@", error);
-    }
-}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().updateRemoteConfigOnly(forKeys:["key1","key2"])
-{ (error : Error?) in
-    if (error == nil)
-    {
-        print("Remote Config is updated only for given keys ready to use!")
-    }
-    else
-    {
-        print("There was an error while fetching Remote Config:\n\(error!.localizedDescription)")
-    }
-}</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.exitABTestsForKeys(forKeys: keys as [String])
+</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">To update the values, except for the keys specified by you, adhere to the following:</span>
+  Here if no keys are provided it would remove the user from all A/B tests instead.
+</p>
+<h2>Automatic Remote Config Triggers</h2>
+<p>
+  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">when the SDK has finished initializing</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">after the device ID is changed without merging</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+  </li>
+</ul>
+<p>
+  To enable the automatic triggers, you have to call
+  <code class="objectivec">enableRemoteConfigAutomaticTriggers</code> on the configuration
+  object you will provide during init.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2338,30 +2402,146 @@ else // if value exists, you can use it as you see fit
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance updateRemoteConfigExceptForKeys:@[@"key3", @"key4"] completionHandler:^(NSError * error)
-{
-    if (!error)
-    {
-        NSLog(@"Remote Config is updated except for given keys and ready to use !");
-    }
-    else
-    {
-        NSLog(@"There is an error while updating Remote Config:\n%@", error);
-    }
+    <pre><code class="objectivec">config.enableRemoteConfigAutomaticTriggers = YES;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableRemoteConfigAutomaticTriggers = true
+</code></pre>
+  </div>
+</div>
+<h2>Clearing Stored Values</h2>
+<p>
+  <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig clearAll];
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.clearAll()
+</code></pre>
+  </div>
+</div>
+<h2>Global Download Callbacks</h2>
+<p>
+  Also, you may provide callback functions to be informed when the request is finished
+  with <code class="objectivec">remoteConfigRegisterGlobalCallback</code>method
+  during SDK initialization:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config remoteConfigRegisterGlobalCallback:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>    // ...<br>}]
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.remoteConfigRegisterGlobalCallback { response, error, fullValueUpdate, downloadedValues in
+    // ...
+}</code></pre>
+  </div>
+</div>
+<p>
+  RCDownloadCallback is called when the remote config download request is finished,
+  and it would have the following parameters:
+</p>
+<ul>
+  <li>
+    <code class="objectivec">response</code>: CLYRequestResult Enum (either CLYResponseError<span>, CLYResponseSuccess or CLYResponseNetworkIssue</span>)
+  </li>
+  <li>
+    <code class="objectivec">error</code>: NSError (error message. "null" if
+    there is no error)
+  </li>
+  <li>
+    <code class="objectivec">fullValueUpdate</code>: BOOL ("true" - all values
+    updated, "false" - a subset of values updated)
+  </li>
+  <li>
+    <code class="objectivec">downloadedValues</code>: NSDictionary&lt;NSString
+    *,CountlyRCData*&gt; (the whole downloaded remote config values)
+  </li>
+</ul>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">typedef void (^RCDownloadCallback)(CLYRequestResult response, NSError *_Nullable error, BOOL fullValueUpdate, NSDictionary&lt;NSString*, CountlyRCData *&gt;* downloadedValues);
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">typealias RCDownloadCallback = (CLYRequestResult, Error?, Bool, [String: CountlyRCData]?) -&gt; Void
+</code></pre>
+  </div>
+</div>
+<p>
+  <code class="objectivec">downloadedValues</code> would be the downloaded remote
+  config data where the keys are remote config keys, and their value is stored
+  in CountlyRCData class with metadata showing to which user data belongs. The
+  data owner will always be the current user if caching is not enabled.
+</p>
+<p>
+  You can also register (or remove) RCDownloadCallbacks to do different things after
+  the SDK initialization. You can register callbacks multiple times:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">// register a callback
+[Countly.sharedInstance.remoteConfig registerDownloadCallback:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData*&gt; * _Nonnull downloadedValues) {
+   //...
+}];
+
+// remove a callback
+[Countly.sharedInstance.remoteConfig removeDownloadCallback:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData*&gt; * _Nonnull downloadedValues) {
+   //...
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().updateRemoteConfigExcept(forKeys:["key3","key4"])
-{ (error : Error?) in
-    if (error == nil)
-    {
-        print("Remote Config is updated except for given keys ready to use!")
-    }
-    else
-    {
-        print("There was an error while fetching Remote Config:\n\(error!.localizedDescription)")
-    }
-}</code></pre>
+    <pre><code class="swift">// register a callback
+Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, fullValueUpdate, downloadedValues in
+   //...
+}
+
+// remove a callback
+Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, fullValueUpdate, downloadedValues in
+   //...
+}
+</code></pre>
+  </div>
+</div>
+<h2>Caching Remote Config Values</h2>
+<p>
+  Another thing you can do is to enable value caching with the
+  <code class="objectivec">enableRemoteConfigValueCaching</code> flag. If all values
+  were not updated, you would have metadata indicating if a value belongs to the
+  old or current user.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.enableRemoteConfigValueCaching = YES;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableRemoteConfigValueCaching = true
+</code></pre>
   </div>
 </div>
 <h1>User Feedback</h1>
