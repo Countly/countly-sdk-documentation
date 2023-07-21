@@ -1248,9 +1248,9 @@ Countly.sharedInstance().init(config);
 <pre><code class="java">Countly.sharedInstance().remoteConfig().clearAll();</code></pre>
 <h2>Global Download Callbacks</h2>
 <p>
-  Also, you may provide callback functions to be informed when the request is finished
-  with <code class="java">remoteConfigRegisterGlobalCallback</code> (You can register
-  multiple callbacks by calling this method numerous times).&nbsp;
+  Also, you may provide a global callback function to be informed when the remote
+  config download request is finished with
+  <code class="java">remoteConfigRegisterGlobalCallback</code> during the SDK initialization:
 </p>
 <pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback);
@@ -1288,6 +1288,15 @@ Countly.sharedInstance().init(config);
   class with metadata showing to which user data belongs. The data owner will always
   be the current user.
 </p>
+<p>
+  You can also register (or remove) callbacks to do different things after the
+  SDK initialization. You can register these callbacks multiple times:
+</p>
+<pre><code class="java">// register a callback
+Countly.sharedInstance().remoteConfig().registerDownloadCallback(RCDownloadCallback callback);
+
+// remove a callback
+Countly.sharedInstance().remoteConfig().removeDownloadCallback(RCDownloadCallback callback);</code></pre>
 <h2>Caching Remote Config Values</h2>
 <p>
   Another thing you can do is to enable value caching with the
