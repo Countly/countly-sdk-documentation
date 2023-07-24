@@ -4076,6 +4076,118 @@ end</code></pre>
     <pre><code class="swift">config.enableServerConfiguration = true</code></pre>
   </div>
 </div>
+<h2>A/B Testing Variant Information</h2>
+<p>
+  You can access all the A/B test variants for your Countly application within
+  your mobile app. This information can be useful while testing your app with different
+  variants. There are four calls you can use for fetching, accessing, and enrolling
+  for your variants.
+</p>
+<h3>Fetching Test Variants</h3>
+<p>
+  You can fetch a map of all A/B testing parameters (keys) and variants associated
+  with it:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig testingDownloadVariantInformation:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error) {
+   // do sth
+}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.testingDownloadVariantInformation({ response, error in
+   // do something
+})</code></pre>
+  </div>
+</div>
+<p>
+  You can provide an callback (which is optional) to be called when the fetching
+  process ends. Depending on the situation, this would return a RequestResponse
+  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
+  as the second parameter if there was an error ("null" otherwise).
+</p>
+<h3>Accessing Fetched Test Variants</h3>
+<p>
+  When test variants are fetched, they are saved to the memory. If the memory is
+  erased, you must fetch the variants again. So a common flow is to use the fetched
+  values right after fetching them. To access all fetched values, you can use:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSDictionary*allVariants = [Countly.sharedInstance.remoteConfig testingGetAllVariants];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let allVariants = Countly.sharedInstance().remoteConfig.testingGetAllVariants()
+</code></pre>
+  </div>
+</div>
+<p>
+  This would return a dictionary where a test's parameter is associated with all
+  variants under that parameter. The parameter would be the key, and its value
+  would be a String Array of variants. For example:
+</p>
+<pre><code class="java">{
+  "key_1" : ["variant_1", "variant_2"],
+  "key_2" : ["variant_3"]
+}
+</code></pre>
+<p>Or instead you can get the variants of a specific key:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSArray* variants = [Countly.sharedInstance.remoteConfig testingGetVariantsForKey:key];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let variants = Countly.sharedInstance().remoteConfig.testingGetVariants(for: key) as NSArray
+</code></pre>
+  </div>
+</div>
+<p>
+  This would only return a String array of variants for that specific key. If no
+  variants were present for a key, it would return an empty array. A typical result
+  would look like this:
+</p>
+<pre><code class="java">["variant_1", "variant_2"]
+</code></pre>
+<h3>Enrolling For a Variant</h3>
+<p>
+  After fetching A/B testing parameters and variants from your server, you next
+  would like to enroll the user to a specific variant. To do this, you can use
+  the following method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig testingEnrollIntoVariant:key variantName:variantName completionHandler:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error) {
+   // do sth
+}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().remoteConfig.testingEnroll(intoVariant: key, variantName: variantName) { response, error in
+   // do sth
+}</code></pre>
+  </div>
+</div>
+<p>
+  Here the 'valueKey' would be the parameter of your A/B test, and 'variantName'
+  is the variant you have fetched and selected to enroll for. The callback function
+  is optional and works the same way as explained above in the Fetching Test Variants
+  section.
+</p>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
 </h1>
