@@ -1846,9 +1846,10 @@ Countly.report_orientatio("portrait");</code></pre>
   website's performance data and report it as a performance trace.
 </p>
 <p>
-  You can reach to example implementations of APM from the following links:<br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/mpa/index.html">Async Apm Example</a><br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html">Sync Apm Example</a>
+  You can reach to example implementations of APM with BoomerangJS from the following
+  links:<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm_async.html" target="_blank" rel="noopener">Async Apm Example</a><br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html" target="_blank" rel="noopener">Sync Apm Example</a>
 </p>
 <h2>Custom Traces</h2>
 <p>
@@ -1890,53 +1891,38 @@ Countly.report_trace({
   provide the 'duration' key and its value in apm_metrics, otherwise custom traces
   won't be recorded.
 </p>
-<h2>Automatic Performance Monitoring</h2>
+<h2>Automatic Device Traces</h2>
 <p>
   Automatic trace reporting has two different implementation depending on if you
-  are using Countly synchronously or asynchronously.
+  are using Countly synchronously or asynchronously. Normally we would like Countly
+  script to load first and BoomerangJS related scripts right after.&nbsp;
 </p>
 <h3>Asynchronous Implementation</h3>
 <p>
-  To automatically report traces you will need to control the loading sequence
-  of Countly script and the boomerang.js related scripts as boomerang.js depends
-  on Countly to be initialized first. So instead of defining the scripts at the
-  head tag seperately you should use the code snippet provided below, first thing
-  inside your Countly init script:
+  To use automatic device traces in your async Countly implementation you will
+  need to set <code>loadAPMScriptsAsync</code> flag to <code>true</code> in Countly
+  object. This would ensure that the correct script load order is established.
+  You can provide two additional flags to the Countly object. First one is the
+  BoomerangJS script source path as <code>customSourceBoomerang</code> and the
+  second is the countly_boomerang script source path as
+  <code>customSourceCountlyBoomerang</code>. If not provided the SDK would use
+  the latest CDN scripts as the source:
 </p>
-<pre><code class="javascript">syncScripts();
-function syncScripts() {
-    // please provide the correct path to these files according to your project structure
-    var scripts = ['../plugin/boomerang/boomerang.min.js', '../plugin/boomerang/countly_boomerang.js'];
-    var i = 0;
-    function loopScriptList(scripts) {
-        recursiveScriptMaker(scripts[i], function() {
-            i++;
-            if(i &lt; scripts.length) {
-                loopScriptList(scripts);   
-            }
-        }); 
-    }
-    loopScriptList(scripts);      
-}
-function recursiveScriptMaker(source, callback ) {
-    var script = document.createElement('script');
-    script.onload = function() {
-        console.log('Successfully loaded the source: ' + source)
-        callback();
-    }
-    script.src = source;
-    document.getElementsByTagName('head')[0].appendChild(script);
-}<code></code></code></pre>
+<pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "YOUR_SERVER_URL";<br>Countly.loadAPMScriptsAsync = true;<br>// Countly.customSourceBoomerang = "../somewhere/boomerang.min.js";<br>// Countly.customSourceCountlyBoomerang = "../somewhere/countly_boomerang.js";<br>// ...</code></pre>
 <p>
-  After that, you need to call a method to start reporting 'loading' and 'network'
-  traces automatically. This method accepts boomerang initialization config (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on BoomerangJS</a>)
-  as a parameter, so if you are familiar with it, you can modify it on your own
-  depending on your needs (you can find the used files
-  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
-  In case you are not, you may follow this pattern:
+  Also, in your Countly init script you need to call a method to start reporting
+  'loading' and 'network' traces automatically:
 </p>
-<pre><code class="javascript">//automatically report traces
-Countly.q.push(["track_performance", {
+<pre><code class="javascript">// enables APM
+Countly.q.push(["track_performance"]);</code></pre>
+<p>
+  This method accepts a BoomerangJS config object (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on BoomerangJS</a>)
+  as an optional second parameter. If you are familiar with it, you can modify
+  it on your own depending on your needs (you can find the used files
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
+  By default the SDK would use this configuration:
+</p>
+<pre><code class="javascript">{
     //page load timing
     RT:{},
     //required for automated networking traces
@@ -1956,41 +1942,23 @@ Countly.q.push(["track_performance", {
         monitorInteractions: true,
         afterOnload: true
     }
-}]);</code></pre>
+}</code></pre>
 <h3>Synchronous Implementation</h3>
 <p>
   To automatically report traces you will need to include 2 additional files in
-  your project similar to async implementation but here you add them directly after
-  declaring the Countly script like this:
+  your project directly after declaring the Countly script like this with the correct
+  paths according to your project structure:
 </p>
-<pre>&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;</pre>
+<pre>// Option 1: You can provide local paths<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;
+&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br><br>// Option 2: Or you can use CDN for path<br>&lt;script type='text/javascript' src="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt; <br>&lt;script type='text/javascript' src="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/countly_boomerang.js"&gt;&lt;/script&gt;</pre>
 <p>
   After that, you would call a method to start reporting 'loading' and 'network'
-  traces automatically. An example pattern inside your Countly init script would
-  be like this:
+  traces automatically. You can optionally provide here a BoomerangJS config object
+  if you are familiar with it as mentioned above at Async implementation. Default
+  usage inside your Countly init script would be like this:
 </p>
 <pre><code class="javascript">//automatically report traces
-Countly.track_performance({
-    //page load timing
-    RT:{},
-    //required for automated networking traces
-    instrument_xhr: true,
-    captureXhrRequestResponse: true,
-    AutoXHR: {
-        alwaysSendXhr: true,
-        monitorFetch: true,
-        captureXhrRequestResponse: true
-    },
-    //required for screen freeze traces
-    Continuity: {
-        enabled: true,
-        monitorLongTasks: true,
-        monitorPageBusy: true,
-        monitorFrameRate: true,
-        monitorInteractions: true,
-        afterOnload: true
-    }
-});</code></pre>
+Countly.track_performance();</code></pre>
 <h1>User Consent</h1>
 <h2>Opt In / Opt Out</h2>
 <p>
