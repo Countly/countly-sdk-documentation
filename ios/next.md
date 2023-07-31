@@ -4105,16 +4105,17 @@ end</code></pre>
   </div>
 </div>
 <p>
-  You can provide an callback (which is optional) to be called when the fetching
-  process ends. Depending on the situation, this would return a RequestResponse
-  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
-  as the second parameter if there was an error ("null" otherwise).
+  You must provide a callback to be called when the fetching process ends. Depending
+  on the situation, this would return a RequestResponse Enum (Success, NetworkIssue,
+  or Error) as the first parameter and a String error as the second parameter if
+  there was an error ("null" otherwise).
 </p>
 <h3>Accessing Fetched Test Variants</h3>
 <p>
-  When test variants are fetched, they are saved to the memory. If the memory is
-  erased, you must fetch the variants again. So a common flow is to use the fetched
-  values right after fetching them. To access all fetched values, you can use:
+  When test variants are fetched, they are stored in memory. As it is not stored
+  persistently if the memory is erased (like in the case of an app restart), you
+  must fetch the variants again. So a common flow is to use the fetched values
+  right after fetching them. To access all fetched values, you can use:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4185,7 +4186,7 @@ end</code></pre>
 <p>
   Here the 'valueKey' would be the parameter of your A/B test, and 'variantName'
   is the variant you have fetched and selected to enroll for. The callback function
-  is optional and works the same way as explained above in the Fetching Test Variants
+  is mandatory and works the same way as explained above in the Fetching Test Variants
   section.
 </p>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
