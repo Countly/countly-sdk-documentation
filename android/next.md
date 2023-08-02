@@ -2464,9 +2464,6 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 <div class="callout callout--warning">
   <p>This is an experimental feature!</p>
 </div>
-<div class="callout callout--info">
-  <p>This is available from SDK version 22.09.4</p>
-</div>
 <p>
   You can make your SDK fetch some configurations you have set in your Countly
   server by setting <code>enableServerConfiguration</code> during init:
