@@ -1,10 +1,10 @@
 <p>
   <span style="font-weight: 400;">Would you like to develop a new SDK for Countly? Then this guide is for you. Before starting, bear in mind that there are a lot of SDKs that Countly has already developed. Please check whether the SDK you are going to develop is not already available.</span>
 </p>
-<h1>
+<h1 id="01H821RTQ1G58MJXF4JFX5HVF5">
   <span style="font-weight: 400;">Integration</span>
 </h1>
-<h2>Initialization</h2>
+<h2 id="01H821RTQ15HRMMKHQY49NFYV8">Initialization</h2>
 <p>
   <span style="font-weight: 400;">To start making requests to the server, SDK needs 3 things: the URL of the server where you will be making requests, the app_key of the app for which you will be reporting, and your current device_id to uniquely identify this device.</span>
 </p>
@@ -18,7 +18,7 @@
   <strong>Device ID</strong> -
   <span style="font-weight: 400;">A device ID is required to uniquely identify a device or user. If you have some unique user ID which you can retrieve, you may use it. If not, you may provide platform-specific device identification (as Advertising identifier in Google Play Services on Android) or use existing implementations (as OpenUDID). More info about device ID is described <a href="#h_01GYC4S9JM2F2WDDFSBEF2TBJ0" target="_self">here</a>.</span>
 </p>
-<h2>Init configuration</h2>
+<h2 id="01H821RTQ1NM9W4N116BKF3FAW">Init configuration</h2>
 <p>
   The SDK should take a config (short for configuration) object during initialisation.
   In that config object should all the init specic fields added. All initial configuration
@@ -42,7 +42,7 @@
   For more information of what values can be sent to the server, look
   <a href="https://api.count.ly/reference/i#additional-parameters">here</a>.
 </p>
-<h2>Logging / debug mode</h2>
+<h2 id="01H821RTQ1QTT7ZCDHN207MS9W">Logging / debug mode</h2>
 <p>
   The SDK should have a logging mode flag. If that is enabled, the SDK should print
   logs to the console.
@@ -86,7 +86,23 @@
     </tr>
   </tbody>
 </table>
-<h3>Log levels</h3>
+<h3 id="01H822TC8FN7N2AHT7C6TJKR95">Log Messages</h3>
+<p>
+  <span>No two places should have the same log message. This means that all messages should be unique. Knowing the log message and the sdk version it should be unambiguous to know which line printed that message.</span><br>
+  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called. If the function called is part of the public API of the SDK, that log should include the function name.</span>
+</p>
+<pre><span>[ModuleName] functionName, Some message</span></pre>
+<p>
+  <span>If there is a message tag/group mechanism on the platform then the tag name "Countly" should be used. If there is no tag/group mechanism available then the name "Countly" should be added to each message.</span>
+</p>
+<pre><span>[Countly] [ModuleName] functionName, Some message</span></pre>
+<p>
+  <span>All calls, that can be called by developers, should produce a log message to indicate what is being called.</span><span></span>
+</p>
+<p>
+  <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span><span>The goal is to have a good enough log coverage so that it's easy to understand what was happening with the SDK and how it was used when a SDK integrator provides his logs.</span>
+</p>
+<h3 id="01H821RTQ1T2MJ9CRTCBM50ADE">Log levels</h3>
 <p>When implementing logs, the SDK should follow these levels:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li>
@@ -114,14 +130,6 @@
   </li>
 </ul>
 <p>
-  <span>No two places should have the same log message. This means that all messages should be unique. Knowing the log message and the sdk version it should be unambiguous to know which line printed that message.</span><br>
-  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called. If the function called is part of the public API of the SDK, that log should include the function name.</span>
-</p>
-<p>
-  <span>All calls, that can be called by developers, should produce a log message to indicate what is being called.</span><span></span>
-</p>
-<p>
-  <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span><span>The goal is to have a good enough log coverage so that it's easy to understand what was happening with the SDK and how it was used when a SDK integrator provides his logs.</span><br>
   <span>By using log levels "info" and above it should be clear what the dev was doing with the SDK and what was the call order. </span><span>"Debug" and above should give us a good enough look into the SDK's internal state and a good overview of it's configuration.</span>
 </p>
 <p>
@@ -141,7 +149,7 @@
 <p>
   <span>For example, if there are only 3 levels "error", "info", "debug". "Error" and "Warning" would be printed in the error "channel" and "debug" and "verbose" would be printed in the "debug" channel".</span>
 </p>
-<pre><span>E: [Error] Countly issue bla bla<br>E: [Warning] You are trying to use this feature in a deprecated way</span></pre>
+<pre><span>E: [Error] [Countly] [ModuleName] functionName, Countly issue bla bla<br>E: [Warning] [Countly] [ModuleName] functionName, You are trying to use this feature in a deprecated way</span></pre>
 <p>
   Depending on the function call, the function parameters should also be printed,
   for example event keys or for simple numerical values.
@@ -150,7 +158,7 @@
   For functions which receive a callback, a bool is enough to indicate if a callback
   was or wasn't provided.
 </p>
-<h3>Log listener</h3>
+<h3 id="01H821RTQ1ZGEREGB01N0H966G">Log listener</h3>
 <p>
   In some cases there might be situations where a integrated SDK is not behaving
   as expected in a release build which is used by clients. In those cases it would
@@ -166,7 +174,7 @@
   log level of that message so that it can be used as a indication of the message
   importance.
 </p>
-<h2>Countly Code Generator</h2>
+<h2 id="01H821RTQ1C5CTQK92KYAD4GBH">Countly Code Generator</h2>
 <p>
   If you would like to understand how SDKs work by generating mobile or web code
   for events, user profiles, crash reporting, and all other features that come
@@ -174,8 +182,8 @@
   <a href="http://code.count.ly">Countly Code Generator</a>, which is a point and
   click service that builds the necessary code for you.
 </p>
-<h1>SDK storage and Requests</h1>
-<h2>Making Requests</h2>
+<h1 id="01H821RTQ18DVPGH41Y03VD7G4">SDK storage and Requests</h1>
+<h2 id="01H821RTQ1ZMTGHAF6MHDX41MD">Making Requests</h2>
 <p>
   <span style="font-weight: 400;">The Countly server is a simple HTTP based REST API server and all SDK requests should be made to&nbsp;</span><strong>/i</strong><span style="font-weight: 400;">&nbsp;endpoint with two required parameters:&nbsp;</span><strong>app_key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>device_id</strong><span style="font-weight: 400;">.</span>
 </p>
@@ -215,12 +223,12 @@
   <span style="font-weight: 400;">In cases where some devices may be offline, etc., and requests should be queued, it is highly recommended you add a timestamp to each request, displaying when it was created.</span>
 </p>
 <div class="callout callout--info">
-  <h3 class="callout__title">Encoding URI components</h3>
+  <h3 id="01H821RTQ1M9DQRPT8FJ9TTBFK" class="callout__title">Encoding URI components</h3>
   <p>
     <span style="font-weight: 400;">Due to the possible use of the ‘&amp;’ and ‘?’ symbols in encoded JSON strings, SDKs should encode uri components before adding them to the request and sending it to the server.</span>
   </p>
 </div>
-<h3>Using GET or POST</h3>
+<h3 id="01H821RTQ1D25TAE687RNRS3NR">Using GET or POST</h3>
 <p>
   <span style="font-weight: 400;">By default, the preferred method is to make GET requests for the Countly servers. However, there may be some length limitation for GET requests based on specific platform or server settings. Thus, the best practice is to make a POST request when the data reaches over 2,000 characters for a single request.</span>
 </p>
@@ -233,7 +241,7 @@
 <p>
   <span style="font-weight: 400;">When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
 </p>
-<h3>SDK Metadata</h3>
+<h3 id="01H821RTQ1KQ1PR0XHNZXCWCYD">SDK Metadata</h3>
 <p>
   <span style="font-weight: 400;">The SDK should send the following metadata with every request.</span>
 </p>
@@ -268,14 +276,14 @@
   No zeroes should be added to the second number (indicating the month) in case
   the release happens before October.
 </p>
-<h2>Storage</h2>
+<h2 id="01H821RTQ2YX94108QAANP2R8J">Storage</h2>
 <p>
   <span style="font-weight: 400;">Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span style="font-weight: 400;"></span>
 </p>
-<h2>Request queue</h2>
+<h2 id="01H821RTQ2YD4C2V3AD4RKRJXA">Request queue</h2>
 <p>
   <span style="font-weight: 400;">In some cases, users might be offline, thus they are not able to make requests to the server. In other cases, the server may be down or in maintenance, thus unable to accept requests. In both cases, the SDK should handle queuing and persistently storing requests made to the Countly server and should wait for a successful response from the server before removing a request from the queue.</span>
 </p>
@@ -335,27 +343,27 @@
   it means the request was successfully delivered to the server and can be removed
   from the queue.
 </p>
-<h3>Queue size limit</h3>
+<h3 id="01H821RTQ2CA0ARFHWBSS89BZH">Queue size limit</h3>
 <p>
   <span style="font-weight: 400;">We need to limit the queue size so that it doesn’t overflow, and so that syncing up won’t take too long if some specific server is down for too long. This limit would be in the number of stored queries, and this limit should be available for the end-user to change as the SDK settings.</span>
 </p>
 <p>
   <span style="font-weight: 400;">In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span style="font-weight: 400;">.</span>
 </p>
-<h2>Event queue</h2>
+<h2 id="01H821RTQ2GJ97A0QH0FE86ZBM">Event queue</h2>
 <p>
   Similary to the request queue, each SDK should also have the event queue. It
   is used for the purposes of combining multiple events together and decreasing
   the total request amount.
 </p>
 <p>This queue is also FIFO, and has a maximum size.</p>
-<h2>Other storage</h2>
+<h2 id="01H821RTQ20F1BWE1KPCXYJZ5A">Other storage</h2>
 <p>
   Some other features might also require storage to store some things persistently
   (remote config, etc).
 </p>
 <p>Those would have their own storage format.</p>
-<h2>Recording time of data</h2>
+<h2 id="01H821RTQ28RTWMDKM06XPTM50">Recording time of data</h2>
 <p>
   <span style="font-weight: 400;">To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
 </p>
@@ -404,7 +412,7 @@ function getUniqueMsTimestamp(){
 <p>
   <span style="font-weight: 400;">If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
 </p>
-<h1>General SDK structure overview</h1>
+<h1 id="01H821RTQ2JRCPX43EYJ7PABWB">General SDK structure overview</h1>
 <p>
   <span style="font-weight: 400;">Depending on the SDK’s environment/language there could be a different set of features supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app type may not be providing telecom operator information.</span>
 </p>
@@ -415,13 +423,13 @@ function getUniqueMsTimestamp(){
 <p>
   <span style="font-weight: 400;">Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
 </p>
-<h2>Initialization</h2>
+<h2 id="01H821RTQ2D8GVP71K49AQ5KB3">Initialization</h2>
 <p>
   <span style="font-weight: 400;">In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method which accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
 </p>
 <pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
 </code></pre>
-<h1>Crash reporting</h1>
+<h1 id="01H821RTQ20M61EKN76EY6RJ84">Crash reporting</h1>
 <p>
   <span style="font-weight: 400;">On some platforms the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and just as with other similar functions, this is also optional. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
 </p>
@@ -447,8 +455,8 @@ function getUniqueMsTimestamp(){
   </li>
   <li>Countly.add_breadcrumb(string log)</li>
 </ul>
-<h2>Symbolication (WIP)</h2>
-<h1>Events</h1>
+<h2 id="01H821RTQ27DWNCPTRG2126NA2">Symbolication (WIP)</h2>
+<h1 id="01H821RTQ2JN3F965RM2VT8A2G">Events</h1>
 <p>
   <span style="font-weight: 400;">Events (or custom events) are the basic Countly reporting tool that reports when something has happened in the app. Someone clicked a button, performed a specific action, etc. All of these examples could be recorded as an event.</span>
 </p>
@@ -497,7 +505,7 @@ function getUniqueMsTimestamp(){
   <strong>Note</strong>: <strong>count</strong> value defaults to 1 internally
   if not specified.
 </p>
-<h2>Internal Events</h2>
+<h2 id="01H821RTQ2TT1GSM7YTBEN4F21">Internal Events</h2>
 <p>
   <span>The call for recording events should support recording Countly internal events. If consent is required then the ability to record them should be governed only by their respective feature consents. The ability to record internal events is in no way influenced by the " event" consent. If consent for some feature is given and "recordEvent" is used to record that features internal event, it should be recorded even if no "event" consent is given. If for some feature consent is not given and </span><span>"recordEvent" is used to record it's internal event, it should not be recorded even if "event" consent is given. If no consent is required, they should be recorded as well.</span>
 </p>
@@ -545,7 +553,7 @@ function getUniqueMsTimestamp(){
   <li>dev calls "recordEvent('[CLY]_view')</li>
   <li>event is recorded</li>
 </ol>
-<h2>Timed Events</h2>
+<h2 id="01H821RTQ26ND225EPAXZPHS8B">Timed Events</h2>
 <p>
   <span style="font-weight: 400;">In short, you may report time with the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property in an event. It is good practice to allow the user to measure some periods internally using the SDK API. For that purpose, the SDK needs to provide the methods below:</span>
 </p>
@@ -566,7 +574,7 @@ function getUniqueMsTimestamp(){
 <p>
   <span style="font-weight: 400;">If not, the following calls should be ignored: 1. events which have already started 2. events which have attempted to start again 3. events which have already ended 4. events which have attempted to end. Otherwise, they will provide an informative error.</span>
 </p>
-<h1>Device metrics</h1>
+<h1 id="01H821RTQ2TZF21BH3ZSR8XHNW">Device metrics</h1>
 <p>
   <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference/i#metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
 </p>
@@ -635,7 +643,7 @@ function getUniqueMsTimestamp(){
     <strong>Windows Phone</strong> for Windows Phone
   </li>
 </ul>
-<h1>Session flow</h1>
+<h1 id="01H821RTQ2PBMNS9Y0ASD9A6E7">Session flow</h1>
 <p>
   For SDK's to track use sessions, there are 3 kinds of calls:
 </p>
@@ -664,7 +672,7 @@ function getUniqueMsTimestamp(){
     This includes also the periodic update requests
   </li>
 </ul>
-<h2>Automatic session tracking</h2>
+<h2 id="01H821RTQ2DTYYJPMQ33PBQ6PG">Automatic session tracking</h2>
 <p>
   Automatic tracking should be done according to the platforms lifecycle. For apps
   that have a visual component (not command line or server call tracking), sessions
@@ -672,7 +680,7 @@ function getUniqueMsTimestamp(){
   starting the session when the app comes into foreground and ending the it goes
   to the background.
 </p>
-<h2>Manual session tracking (WIP)</h2>
+<h2 id="01H821RTQ23WZFKH76EXFHN456">Manual session tracking (WIP)</h2>
 <p>
   <span style="font-weight: 400;">Most of the official SDKs implement automatic session handling, meaning SDK users don't need to separately bother with session calls. However, it is good practice to provide a way to disable automatic session handling and allow SDK users to make session calls themselves through methods such as:</span>
 </p>
@@ -684,27 +692,27 @@ function getUniqueMsTimestamp(){
 <p>
   <span style="font-weight: 400;">Here is the documentation showing how you may&nbsp;</span><a href="https://api.count.ly/reference/i#session"><span style="font-weight: 400;">report sessions through our API</span></a><span style="font-weight: 400;">.</span>
 </p>
-<h2>Session API</h2>
+<h2 id="01H821RTQ2EHYPRRZ9H9CPZH7T">Session API</h2>
 <p>
   All these session requets are built uppon the base request which includes all
   the base params, therefore those won't be explicitly mentioned.
 </p>
-<h3>Starting a session</h3>
+<h3 id="01H821RTQ2GGYNVHKPW17BBMW4">Starting a session</h3>
 <p>
   <span style="font-weight: 400;">The SDK should then send the </span><strong>begin_session=1</strong><span style="font-weight: 400;"> param. This same request should also contain metrics parameters with the maximum metrics described on </span><a href="https://api.count.ly/reference/i"><span style="font-weight: 400;">/i page</span></a><span style="font-weight: 400;">, which may be collected from this SDK-specific environment/language. It might look something like:<br></span>
 </p>
 <pre><span style="font-weight: 400;">"&amp;begin_session=1&amp;metrics={...}"</span></pre>
-<h3>Session update</h3>
+<h3 id="01H821RTQ37TYR08W9RYQWN3KQ">Session update</h3>
 <p>
   <span style="font-weight: 400;">Each minute of the session should be extended by sending the <strong>session_duration</strong> param with the number of seconds that passed since the previous session request (begin_session or session_duration, whichever was last). It might look something like:</span>
 </p>
 <pre><span style="font-weight: 400;">"&amp;session_duration=60"</span></pre>
-<h3>Ending a session</h3>
+<h3 id="01H821RTQ3MYH265462NQMHNBT">Ending a session</h3>
 <p>
   <span style="font-weight: 400;">The SDK should send the </span><strong>end_session=1</strong><span style="font-weight: 400;"> param, including the <strong>session_duration</strong> parameter with how many seconds passed since the last session request (begin_session or session_duration, whichever was last). It might look something like this:</span>
 </p>
 <pre><span style="font-weight: 400;">"&amp;end_session=1&amp;session_duration=15"</span></pre>
-<h3>Sample uses</h3>
+<h3 id="01H821RTQ3T4K0EMQWE7D4JWEZ">Sample uses</h3>
 <p>
   <span style="font-weight: 400;">Here are a few example requests generated by different session lengths:</span>
 </p>
@@ -724,7 +732,7 @@ end_session=1&amp;session_duration=30</code></pre>
 end_sesson=1&amp;session_duration=30</code></pre>
   </div>
 </div>
-<h2>Session cooldown</h2>
+<h2 id="01H821RTQ3ZVV6YVP2FHVE6DKE">Session cooldown</h2>
 <p>
   <span style="font-weight: 400;">In some cases, it is difficult to know for sure if a session has ended, such as with web analytics when a user is leaving the page, and whether they will visit another page or not. This is why there is a small&nbsp;</span><em><span style="font-weight: 400;">cooldown</span></em><span style="font-weight: 400;">&nbsp;time of 15 seconds. If the end_session request is sent and then the begin_session request is sent within 15 seconds, it will be counted as the same session, and the session duration will extend this session instead of applying it to the new one.</span>
 </p>
@@ -737,11 +745,11 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <p>
   <span style="font-weight: 400;">The 15-second cooldown is a default value and may be configured on the server, so don't rely on it being 15 seconds.</span>
 </p>
-<h1>View tracking</h1>
+<h1 id="01H821RTQ3A76M4SDM49BZPAYH">View tracking</h1>
 <p>
   <span style="font-weight: 400;">Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually.&nbsp;</span>
 </p>
-<h2>
+<h2 id="01H821RTQ3WPFFJBM5CP953JA6">
   <span style="font-weight: 400;">View structure</span>
 </h2>
 <p>
@@ -799,7 +807,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <p>
   <span style="font-weight: 400;">Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
 </p>
-<h2>
+<h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
   <span style="font-weight: 400;">View manual reporting</span>
 </h2>
 <p>
@@ -1478,7 +1486,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
   </tbody>
 </table>
-<h2>Changing device ID</h2>
+<h2 id="01H821RTQ48YFVRR5TMTJTZ3R0">Changing device ID</h2>
 <p>
   <span style="font-weight: 400;">In addition to initialization, developers may need to change the device ID while the app is running. For example, when an end-user signs out and another end-user signs in. In this case, the Countly SDK needs to provide a way to change the device ID at any point while the app is running. </span>
 </p>
@@ -1491,7 +1499,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <p>
   <span style="font-weight: 400;">When changing device ID, it has to be done to a valid value. It should not be possible to make the SDK regenerate a new device ID by providing an invalid value. If an invalid value (empty or null) is provided, the request is ignored and it prints a warning.</span>
 </p>
-<h3>
+<h3 id="01H821RTQ4XQDC3C24T8G7AAZX">
   <span style="font-weight: 400;">Changing ID without merging</span>
 </h3>
 <p>
@@ -1510,7 +1518,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     <span style="font-weight: 400;">Begin a new session with the new device ID</span><span style="font-weight: 400;"></span><span style="font-weight: 400;"></span>
   </li>
 </ul>
-<h3>
+<h3 id="01H821RTQ4RPFFQJ9YFTNCNNQ1">
   <span style="font-weight: 400;">Changing ID with merging</span>
 </h3>
 <p>
@@ -1530,7 +1538,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     <span style="font-weight: 400;">No need to end and restart the current session or clear started timed-events</span>
   </li>
 </ul>
-<h2>Retrieving the current device ID and Type</h2>
+<h2 id="01H821RTQ4Z7ZBN3SE64VW17GM">Retrieving the current device ID and Type</h2>
 <p>
   There should be a call that returns the currently used device ID. It would be
   named similar to "GetDeviceId()".
@@ -1546,14 +1554,14 @@ end_sesson=1&amp;session_duration=30</code></pre>
   or by changing the device ID after init.<br>
   * TEMPORARY_ID - the SDK is in the temporary ID mode.
 </p>
-<h2>Temporary ID mode (WIP)</h2>
+<h2 id="01H821RTQ4RSS9KH1YZHVSFRMJ">Temporary ID mode (WIP)</h2>
 <p>
   It's a mode that the SDK can enter. While in it, no requests, that are created
   under it, would be sent to the server. All data would be recorded under a temporary
   ID tag. Once a real device ID is acquired, that temporary tag would be replaced
   with the new device ID and they would be sent to the server.
 </p>
-<h1>Push Notifications</h1>
+<h1 id="01H821RTQ4N0QMR49CM619Z3ZE">Push Notifications</h1>
 <p>
   <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference/i#push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
 </p>
@@ -1561,7 +1569,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <span style="font-weight: 400;">From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
 </p>
 <pre><code class="text">Countly.enable_push()</code></pre>
-<h2>Actioned events</h2>
+<h2 id="01H821RTQ5E9ADZZBRH6FWGQNX">Actioned events</h2>
 <p>
   When recording actioned events, one of the segmentation values recorded is the
   platform value. It is recorded with the key "p". The platform is then recorded
@@ -1573,8 +1581,8 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <li>"i" - iOS</li>
   <li>"m" - macOS</li>
 </ul>
-<h2>Platform Specific Notes</h2>
-<h3>Additional Intent Redirection checks (Android)</h3>
+<h2 id="01H821RTQ5YWFTQ776SZWR9RSB">Platform Specific Notes</h2>
+<h3 id="01H821RTQ5M2PDNV8VA4BQEM3P">Additional Intent Redirection checks (Android)</h3>
 <p>
   <span>To increase platform security and limit exploits, google has enforced additional requirements for push notification that require additional checks for push intents. More info can be found <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.</span>
 </p>
@@ -1592,7 +1600,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <p>Providing that information could look something like this:</p>
 <pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
-<h1>Recording location</h1>
+<h1 id="01H821RTQ54ZMXGFNVRVMWY99P">Recording location</h1>
 <p>
   There are 4 location related parameters that can be set in a Countly SDK. It
   is "country code" (in ISO format), "city", "location_gps" (GPS coordinates),
@@ -1709,7 +1717,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
   begin_session (with location - city, country, gps2)<br>
   end_session
 </p>
-<h1>Heatmaps</h1>
+<h1 id="01H821RTQ5R9W3JXKNXAFAMQJT">Heatmaps</h1>
 <p>
   Heatmaps is a plugin, exclusive to Web SDK, that can display the amalgamation
   of click and the scroll behavior of the users by attaching an overlay on the
@@ -1771,14 +1779,14 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 });</code></pre>
   </div>
 </div>
-<h2>Tracking Clicks</h2>
+<h2 id="01H821RTQ5AF7MR50N4HJJHRRF">Tracking Clicks</h2>
 <p>A sample click event:</p>
 <pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"click",<br>    "x":120,<br>    "y":200,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
 <p>
   For click tracking it is better to set a cool-down period of 1 second after a
   click has been recorded to reduce the traffic before another click can be tracked.
 </p>
-<h2>Tracking Scrolls</h2>
+<h2 id="01H821RTQ5JNSJJKK1B8DX3WJ4">Tracking Scrolls</h2>
 <p>A sample scroll event:</p>
 <pre>{<br>  "key":"[CLY]_action",<br>  "count":1,<br>  "segmentation":{<br>    "type":"scroll",<br>    "y":500,<br>    "width":1920,<br>    "height":1200,<br>    "view":"https://sth.com"<br>  }<br>}</pre>
 <p>
@@ -1787,13 +1795,13 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   When a new view happens or the site is closed this max value must be recorded
   as the 'y' value like shown. You would not record the 'x' value.
 </p>
-<h2>Consent</h2>
+<h2 id="01H821RTQ5FPAQS3EGH55622S9">Consent</h2>
 <p>
   Both click and scroll tracking is subject to provided consent, namely "clicks"
   and "scrolls". If consents are enabled, user actions like clicks and scrolls
   should only be collected if the consent is provided, else they should be ignored.
 </p>
-<h1>Remote Config</h1>
+<h1 id="01H821RTQ5EJN3V9GAP9FE6BK6">Remote Config</h1>
 <p>
   A/B testing and Remote Config are different features, but their SDK-related integration
   is interlinked.
@@ -1810,11 +1818,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   All of these calls should be behind a "RemoteConfig" interface if possible. If
   that is impossible, all function calls should start with "RemoteConfig."
 </p>
-<h2>Remote Config API</h2>
+<h2 id="01H821RTQ5NCG4G3EGFYK9M2B9">Remote Config API</h2>
 <p>
   Downloaded remote config values have to be stored persistently.
 </p>
-<h3>Consent</h3>
+<h3 id="01H821RTQ5XR9Z3SNTGFMEWVFE">Consent</h3>
 <p>
   This feature depends on the "remote-config" consent if consents are enabled.
 </p>
@@ -1824,8 +1832,8 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   When it is removed, the RC storage structure should be cleared.
 </p>
-<h3>Data Structures, Notes</h3>
-<h4>RCDownloadCallback</h4>
+<h3 id="01H821RTQ5FJAHQV06KB98665R">Data Structures, Notes</h3>
+<h4 id="01H821RTQ5B9DV6XNVZG6Y4K3J">RCDownloadCallback</h4>
 <p>
   The <code>RCDownloadCallback</code> callback is called when RC values are downloaded.
   Its return values:
@@ -1847,7 +1855,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <pre><code>RCDownloadCallback {
   void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues)
 }</code><code></code></pre>
-<h4>RCData</h4>
+<h4 id="01H821RTQ5RG6SJ3G7MPTGQTC7">RCData</h4>
 <p>
   RCData Class is returned when retrieving downloaded values. The
   <code><span>isCurrentUsersData</span></code> field indicates if it is the cached
@@ -1857,10 +1865,10 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   Object value;
   Boolean <span>isCurrentUsersData</span>;
 }</code></pre>
-<h4>Other Enums</h4>
+<h4 id="01H821RTQ50TZ9KN1AT95AFYE3">Other Enums</h4>
 <p>RequestResult:</p>
 <pre><code>Enum RequestResult { Error, Success, NetworkIssue }</code></pre>
-<h4>Automatic download triggers</h4>
+<h4 id="01H821RTQ5JJ2K18R0TP1E444F">Automatic download triggers</h4>
 <p>
   Certain events and features can trigger the download/re-download or caching/erasure
   of RC values if automatic RC triggers are enabled:&nbsp;
@@ -1880,7 +1888,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <strong>Device ID Change</strong> -&nbsp;Changing the device ID without merge
   should clear cached RC values. And re-download them for the new ID.
 </p>
-<h4>Value Caching Mechanism</h4>
+<h4 id="01H821RTQ5Q5HTHJA5V4H05D70">Value Caching Mechanism</h4>
 <p>
   The value caching mechanism tracks which values belong to which user in case
   of a device ID change.
@@ -1890,7 +1898,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   re-downloaded, this mechanism shows to which user (current or previous) the values
   belong.
 </p>
-<h3>Init Time Configuration</h3>
+<h3 id="01H821RTQ5ES887SBRTBRD4XSJ">Init Time Configuration</h3>
 <p>
   Config flag enables RC values to be downloaded automatically on specific automatic
   triggers. Disabled by default.
@@ -1914,7 +1922,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   rest would still have their <code><span>isCurrentUsersData</span></code>&nbsp;as
   false.
 </p>
-<h3>Usage</h3>
+<h3 id="01H821RTQ5SS6X6T28B80XFSBX">Usage</h3>
 <p>
   SDK fetches all or a partial amount of RC keys from the Server.
 </p>
@@ -1951,12 +1959,12 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   "key2": "val2"
   ....
 }</code></pre>
-<h4>Add/Remove Download Callback listeners</h4>
+<h4 id="01H821RTQ5SM62RASYDYGQB164">Add/Remove Download Callback listeners</h4>
 <p>Dev should be able to register new callbacks:</p>
 <pre><code>Countly.RemoteConfigRegisterDownloadCallback(RCDownloadCallback callback)</code></pre>
 <p>Or remove a registered callback:</p>
 <pre><code>Countly.RemoteConfigRemoveDownloadCallback(RCDownloadCallback callback)</code></pre>
-<h4>Getting values</h4>
+<h4 id="01H821RTQ5CCWNJQ3DKFA72GM3">Getting values</h4>
 <p>
   Gets the map that contains all values from the storage, it returns Map&lt;String,
   RCData&gt;.
@@ -1967,15 +1975,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   a RCData. If the value doesn't exist then&nbsp;
 </p>
 <pre><code>Countly.RemoteConfigGetKey(String key)</code></pre>
-<h4>Clear All Values</h4>
+<h4 id="01H821RTQ58T3FQCAYZEFRR9T2">Clear All Values</h4>
 <p>A call to wipe the persistently stored RC values.</p>
 <pre><code>Countly.RemoteConfigClearAll()</code></pre>
-<h2>A/B testing API</h2>
-<h3>Consent, Data structures, Notes</h3>
+<h2 id="01H821RTQ5HSKPYE5WM477Y3D8">A/B testing API</h2>
+<h3 id="01H821RTQ5AD78Z5HMACAPMCTQ">Consent, Data structures, Notes</h3>
 <p>This feature depends on the "remote-config" consent.</p>
 <p>When it is given, nothing should be done.</p>
 <p>When it is removed, nothing should be done.</p>
-<h3>Usage</h3>
+<h3 id="01H821RTQ5KNF0AWWEQDFPYRH5">Usage</h3>
 <p>
   To enroll a user into a AB tests there should be a call that takes a list of
   keys that were used in the app. This would indicate that if any of those were
@@ -2003,14 +2011,14 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   If optional parameter with keys (["key1","key2"...]) is not provided, the user
   is removed from all experiments.
 </p>
-<h2>A/B Testing Variant control API</h2>
+<h2 id="01H821RTQ5T6J0CK0BXDEXMHAD">A/B Testing Variant control API</h2>
 <p>
   The indended use for this API is only for app testing. It is not intended to
   be used in production environments. The function names have a "Testing" prefix
   to indicate that they should be only used for testing.
 </p>
 <p>Downloaded variant values are stored only in memory.</p>
-<h3>Consent, Data structures, Notes</h3>
+<h3 id="01H821RTQ5Z4XV1DNJQH48J0G1">Consent, Data structures, Notes</h3>
 <p>This feature depends on the "remote-config" consent.</p>
 <p>When it is given, nothing should be done.</p>
 <p>
@@ -2031,10 +2039,10 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <pre><code>RCVariantCallback {
   void callback(RequestResult rResult, String error)
 }</code></pre>
-<h3>Init time configuration</h3>
+<h3 id="01H821RTQ6ABMG23H27TC54FHZ">Init time configuration</h3>
 <p>There are no init time configuration options.</p>
-<h3>Usage</h3>
-<h4>Download variant information</h4>
+<h3 id="01H821RTQ6MP3FM0CCD8KZD2RB">Usage</h3>
+<h4 id="01H821RTQ6Z2Z3971EDEPH2JF8">Download variant information</h4>
 <p>
   Initiate the network request for fetching the variant values from the server.
   The end result would be stored in memory.
@@ -2069,19 +2077,19 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   "key1": ["variant1", "variant2"],
   "key2": ["variant1"]
 }</code></pre>
-<h4>Get All Variants</h4>
+<h4 id="01H821RTQ6KPQT2CMYCCPJA67B">Get All Variants</h4>
 <p>
   A call that returns all variant information (stored in memory) parsed as Map&lt;String,
   String[]&gt;.
 </p>
 <pre><code>Countly.RemoteConfig.TestingGetAllVariants()</code></pre>
-<h4>Get Variants For Key</h4>
+<h4 id="01H821RTQ6GK838Q42W091ZT1B">Get Variants For Key</h4>
 <p>
   Returns variant information (stored in memory) for a specific key. The return
   type is String[]. If there is no entry for that key, it returns 'null'.
 </p>
 <pre><code>Countly.RemoteConfig.TestingGetVariantsForKey(String valueKey)</code></pre>
-<h4>Enroll User Into Variant</h4>
+<h4 id="01H821RTQ6XV5YDRKJJRJ9ZXAS">Enroll User Into Variant</h4>
 <p>
   Dev should provide the key and the variant strings for that to happen:
 </p>
@@ -2092,8 +2100,8 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <pre><code>o/sdk?method=ab_enroll_variant&amp;app_key="APP_KEY"&amp;key=...&amp;variant=..&amp;device_id=DEVICE_ID</code></pre>
 <p>This should return a JSON Object like this:</p>
 <pre><code>{"result": "success"}</code></pre>
-<h1>User feedback</h1>
-<h2>Star Rating</h2>
+<h1 id="01H821RTQ689TVKC3WBTZ610X7">User feedback</h1>
+<h2 id="01H821RTQ6WTDZPVQ9GDX3M5QR">Star Rating</h2>
 <p>
   <span style="font-weight: 400;">If possible, the SDK should provide a simple 1 through 5 star-rating interface for receiving user feedback about the application. The interface will have a simple message explaining its purpose, a 1 through 5-star meter for receiving users’ ratings, and a dismiss button, in case the user does not wish to give a rating. This star rating has nothing to do with App Store/Google Play Store ratings and reviews. It is just for getting brief feedback from users to be displayed on the Countly dashboard.</span>
 </p>
@@ -2151,8 +2159,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   dialog to be displayed only once per app lifetime, instead of for each new version.
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingDisableAskingForEachAppVersion = false;</code></pre>
-<h2>Rating widgets</h2>
-<h3>Automatic rating widgets</h3>
+<h2 id="01H821RTQ6HKZAR27VX54Z2JJS">Rating widgets</h2>
+<h3 id="01H821RTQ680XHC86VDS4JDWSW">Automatic rating widgets</h3>
 <p>
   Automatic widgets are integrated with custom html. That is either injected into
   the page (web) or shown in a webView (mobile).
@@ -2164,7 +2172,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   It takes the ID of the widget, the custom close button text and a callback.
 </p>
-<h3>Manual rating widgets</h3>
+<h3 id="01H821RTQ68DR1MX4PC2FMA1NV">Manual rating widgets</h3>
 <p>
   In case a developer wants to use their custom UI, they can report the result
   manually.
@@ -2204,7 +2212,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].&nbsp;</span><span></span>
 </p>
-<h2>Feedback widgets</h2>
+<h2 id="01H821RTQ6567XRJNZ6A13JYVE">Feedback widgets</h2>
 <p>
   Showing feedback widgets or performing any of the feedback widget related features
   require that the <code>feedback</code> consent is given.
@@ -2217,7 +2225,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   This is also an alternative method to use rating widgets which are now also included
   in this newer SDK API.
 </p>
-<h3>Automatic feedback widgets</h3>
+<h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Automatic feedback widgets</h3>
 <p>
   First step to showing a feedback widget is getting a list of the available widgets
   for this device ID. That would be done with a function named similar to
@@ -2350,7 +2358,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     during the closing of the widget, this callback would return an error message.
   </li>
 </ol>
-<h3>Manual feedback widgets</h3>
+<h3 id="01H821RTQ6VMWG2GBHZHBYZ4DB">Manual feedback widgets</h3>
 <p>Manual feedback widget reporting has 3 steps:</p>
 <ol>
   <li>
@@ -2464,7 +2472,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   This way the event is sent as soon as possible to the server and marks the widget
   as "completed" for that specific user.
 </p>
-<h1>User Profiles</h1>
+<h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
 </p>
@@ -2481,7 +2489,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
 </p>
-<h2>Modifying custom data properties</h2>
+<h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying custom data properties</h2>
 <p>
   <span style="font-weight: 400;">You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
 </p>
@@ -2509,7 +2517,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <a href="https://api.count.ly/reference/i#modifying-custom-user-data" target="_self">more information</a>
   on how to report this data to the server.
 </p>
-<h2>Orientation changes</h2>
+<h2 id="01H821RTQ68NQXPHR6Q6M4NJ1Y">Orientation changes</h2>
 <p>
   This feature sends an event of the current orientation. It is sent when the first
   screen loads and every time the orientation changes.
@@ -2528,7 +2536,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   for that value is "mode" and the value is "portrait" if the current orientation
   is portrait mode or "landscape" if the current orientation is landscape mode.
 </p>
-<h1>Application Performance Monitoring</h1>
+<h1 id="01H821RTQ60H46MJ0HFB6WB60D">Application Performance Monitoring</h1>
 <p>
   Countly server supports multiple metrics for performance monitoring. They are
   divided into 3 groups:
@@ -2538,7 +2546,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <li>Network request traces</li>
   <li>Device traces</li>
 </ul>
-<h2>Trace / Metric keys</h2>
+<h2 id="01H821RTQ6N7TWRG1FZXQ9E9HW">Trace / Metric keys</h2>
 <p>
   In some of the exposed functionality, developers can provide the metric key for
   identifying the tracked thing. There are some requirements that the key must
@@ -2553,7 +2561,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   can't start with "$". Those values should still be accepted. But the SDK should
   print a warning that the server will strip those characters.
 </p>
-<h2>API Calls</h2>
+<h2 id="01H821RTQ6X2624ZK1FKJ1GC26">API Calls</h2>
 <p>
   Currently, there is no batching functionality for APM requests. Every APM data
   point/trace should be put in the request queue immediately after it is acquired.
@@ -2565,7 +2573,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   So a basic request would look similar to:
 </p>
 <pre>/i<span style="font-weight: 400;">?app_key=app_key<br>  &amp;device_id=device_id<br>  &amp;dow=dow<br>  &amp;hour=hour<br>  &amp;timestamp=timestamp<br>  &amp;apm={ _apm_params }</span></pre>
-<h2>Custom traces</h2>
+<h2 id="01H821RTQ6P6YVK5A07RH9Z0CE">Custom traces</h2>
 <p>
   These are used as a tool to measure the performance of some running task. At
   the basic level, this function is similar to timed events. The default metric
@@ -2576,14 +2584,14 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>&nbsp;Sample custom trace API request:</p>
 <pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"forLoopProfiling_1",<br>        "apm_metrics":{"duration": 10, “memory”: 200}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=15847000900000</span></pre>
-<h2>Network traces</h2>
+<h2 id="01H821RTQ6VQ552GKTX5Q8TBZX">Network traces</h2>
 <p>Sample network trace request:</p>
 <pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"network",<br>        "name":"/count.ly/about",<br>        "apm_metrics":{"response_time":1330,"response_payload_size":120, "response_code": 300, "request_payload_size": 70}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=1584698900000</span></pre>
-<h2>Device traces</h2>
+<h2 id="01H821RTQ6BNZHZNM8AHTV8BZP">Device traces</h2>
 <p>Sample device trace request:</p>
 <pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"</span><span style="font-weight: 400;">app_start</span><span style="font-weight: 400;">",<br>        "apm_metrics":{"duration": 15000}, <br>        "stz": 1584698900, <br>        "etz": 1584699900}<br>  &amp;timestamp=1584698900</span></pre>
 <p>&nbsp;</p>
-<h1>User consent</h1>
+<h1 id="01H821RTQ72HHY8E4AD9NCYE8E">User consent</h1>
 <p>
   <span style="font-weight: 400;">GDPR compatibility is about dividing the SDK functionality into different features and allowing SDK integrators to ask for consent when using these features. Once consent has been given, only then may the SDK send newly collected (after consent is given) data to the server.</span>
 </p>
@@ -2604,7 +2612,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     <span style="font-weight: 400;">if consent is required, it has to explicitly be given for each targeted feature</span>
   </li>
 </ol>
-<h2>Initial Configuration</h2>
+<h2 id="01H821RTQ7CS4N3G4Q9AXQC904">Initial Configuration</h2>
 <p>
   During SDK init there should be a flag (e.g. <code>requiresConsent</code>) to
   inform the SDK that it requires consent before doing anything.
@@ -2615,7 +2623,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">Init should also have a function to provide an array consent that is given during startup.</span>
 </p>
-<h2>Exposing Available Features for Consent</h2>
+<h2 id="01H821RTQ7K4X2AC3391381E95">Exposing Available Features for Consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK should expose all the features it supports for consent in the form of a method, static properties, or constant strings. The developer may check which features are available during development or when creating a consent form UI.&nbsp;</span>
 </p>
@@ -2693,7 +2701,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">Note that the available features may change depending on the platform.</span>
 </p>
-<h2>Feature Grouping (optional)</h2>
+<h2 id="01H821RTQ78JF1ANB1K482NQE0">Feature Grouping (optional)</h2>
 <p>
   <span style="font-weight: 400;">The SDK may also provide features grouping, allowing existing features to be put into groups and the use of these groups to give, cancel, and check consent.</span>
 </p>
@@ -2704,7 +2712,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     activity:["sessions","events","views"],
     interaction:["scrolls","clicks","forms"]
 });</code></pre>
-<h2>Giving Consent</h2>
+<h2 id="01H821RTQ715V2V2RKC9SYBFYE">Giving Consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK initial consent should be sent through the config object.</span>
 </p>
@@ -2728,14 +2736,14 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">If someone attempts to give consent for a second time, the SDK should ignore it as the consent is already given and nothing changes.</span>
 </p>
-<h2>Checking Consent Status</h2>
+<h2 id="01H821RTQ7XHKNWRBHN0ZW49N9">Checking Consent Status</h2>
 <p>
   <span style="font-weight: 400;">There should also be a method to check the current consent status for the SDK, returning true if consent was given, and false if not. Checking status for groups should return <code>true</code>&nbsp;</span><span style="font-weight: 400;">only if all the underlying features return true.</span>
 </p>
 <p>
   <span style="font-weight: 400;">This check should also return <code>true</code> if consent is not required.</span>
 </p>
-<h2>Removing Consent</h2>
+<h2 id="01H821RTQ7AM6MBCDYTFAZ0HK4">Removing Consent</h2>
 <p>
   <span style="font-weight: 400;">The SDK also needs to provide a method to remove consents. It should support the same parameter options as the consent giving method.</span>
 </p>
@@ -2754,7 +2762,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <strong><span style="font-weight: 400;">Both giving consent and removing consent may be combined in a single request as well. If, for example, consent was given for crashes but removed from users, then the request should contain&nbsp;</span>consent={"crashes":true,"users":false}</strong>.
 </p>
-<h2>Common Flow with Required Consent</h2>
+<h2 id="01H821RTQ77ER5XPWMCADD7NFX">Common Flow with Required Consent</h2>
 <p>
   1) The Developer sets <code>requiresConsent</code> upon initial configuration:
   <code>config.requiresConsent = true;</code>.
@@ -2791,8 +2799,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   10)&nbsp;<span style="font-weight: 400;">The Countly SDK checks if feature names or groups have already been passed to the <code>removeConsent</code></span><span style="font-weight: 400;">&nbsp;method, and it ignores all repetitive calls. Or, it attempts to cancel consents never given at all.</span>
 </p>
-<h1>Security and privacy</h1>
-<h2>Parameter tampering</h2>
+<h1 id="01H821RTQ7SM8P0181NDD3MSZV">Security and privacy</h1>
+<h2 id="01H821RTQ7RN8GPAY3305Q19XS">Parameter tampering</h2>
 <p>
   <span style="font-weight: 400;">This is one of the preventive measures of Countly. If someone in the middle intercepts the request, it would be possible to change the data in the request and make another request with other data to the server or simply make random requests to the server through the retrieved <code>app_key</code></span><span style="font-weight: 400;">.</span>
 </p>
@@ -2808,8 +2816,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
 </p>
-<h1>Other features</h1>
-<h2>Attribution</h2>
+<h1 id="01H821RTQ7GNGHSMJGP10YQXWZ">Other features</h1>
+<h2 id="01H821RTQ7QP861SSC3JS3V236">Attribution</h2>
 <p>
   Attribution allows attributing installs from specific campaigns.
 </p>
@@ -2824,7 +2832,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   These values should be sent when they are provided in a separate request.
 </p>
 <p>This requires attribution consent.</p>
-<h3>Direct attribution</h3>
+<h3 id="01H821RTQ74RBDQVEDWMWWV9Z8">Direct attribution</h3>
 <p>
   With this the dev is able to provide 2 String values: "Campaign type" and "Campaign
   data". The "type" determines for what purpose the attribution data is provided.
@@ -2864,7 +2872,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <pre><span>"&amp;campaign_id=[PROVIDED_CAMPAIGN_ID]"</span></pre>
 <p>The param for the campaign user ID should be added as:</p>
 <pre><span>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</span></pre>
-<h3>&nbsp;</h3>
+<h3 id="01H821RTQ70RH73P1MGMEX249G">&nbsp;</h3>
 <p>
   If the provided type is "_special_test" then the second special case will be
   executed. If the provided data is not null or empty then it will be processed.&nbsp;
@@ -2874,7 +2882,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   set to the parameter "attribution_data" and then sent.
 </p>
 <pre>"&amp;<span>attribution_data=[ENCODED_CAMPAIGN_DATA]"</span></pre>
-<h3>Indirect attribution</h3>
+<h3 id="01H821RTQ7Z09FDXQE62YBGFVC">Indirect attribution</h3>
 <p>
   With this the dev is able to provide a map/dictionary of String to String values.
   This allows multiple values to be provided.
@@ -2925,7 +2933,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <pre><span>&amp;aid=</span><span>{"idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
 <p>Or:</p>
 <pre><span>&amp;aid=</span><span>{"rndid":[SOME_OTHER_ID_VALUE]</span><span>}</span></pre>
-<h2>SDK internal limits</h2>
+<h2 id="01H821RTQ7AZ6J858BHP4883ZC">SDK internal limits</h2>
 <p>The SDK should have the following limits:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -3003,7 +3011,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   Crash information like PLC crashes for iOS and native Android crashes do not
   have any limits applied to them.
 </p>
-<h2>Changing the server URL</h2>
+<h2 id="01H821RTQ8PWHE34M7R8RFAT3S">Changing the server URL</h2>
 <p>
   This feature adds the ability to change the server URL after the SDK is initialised.
 </p>
@@ -3015,13 +3023,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   After the URL is changed, all previously saved events and requests should be
   sent to the new url.
 </p>
-<h1>Markdown Linting</h1>
+<h1 id="01H821RTQ8VNSA06563GDH4XKC">Markdown Linting</h1>
 <p>
   To ensure the formatting of the code is uniform across all platforms, certain
   linting tools can be used. Currently for markdown files "markdownlint" would
   be used.
 </p>
-<h2>Installation</h2>
+<h2 id="01H821RTQ8ZRB2WX665K2M5CCY">Installation</h2>
 <p>
   You can add markdownlint to your project with the following line of code using
   the npm:
@@ -3034,7 +3042,7 @@ npm install markdownlint --save-dev
 <p>
   Another way to add it to your project would be to download its extension in VSC.
 </p>
-<h2>Rules</h2>
+<h2 id="01H821RTQ8S380YYHHCXXAJ548">Rules</h2>
 <p>
   Markdownlint, has multiple rules that can be modified/defined from a config file
   called ".markdownlint.json". This file must be created at the root of the project
@@ -3048,7 +3056,7 @@ npm install markdownlint --save-dev
 </p>
 <pre><code>// to exclude node_modules folder<br>/node_modules/
 </code></pre>
-<h2>Usage</h2>
+<h2 id="01H821RTQ8Y1HXSY2HDDK8AGD1">Usage</h2>
 <p>
   Then you can add the following text to your npm scripts in your package.json
   file:
@@ -3078,12 +3086,12 @@ npm install markdownlint --save-dev
 },
 </code>
 </p>
-<h1>Experimental</h1>
+<h1 id="01H821RTQ83FE200Z8NARD5GCJ">Experimental</h1>
 <p>
   This section describes features that are under development and in a prototype
   phase
 </p>
-<h2>SDK Server Configuration</h2>
+<h2 id="01H821RTQ8TP1A38587C72MW4T">SDK Server Configuration</h2>
 <div class="p-rich_text_section">
   Server UI url for the UI (Management -&gt; SDK):<br>
   <a class="c-link" href="https://xxx.count.ly/dashboard#/manage/sdk/configurations" target="_blank" rel="noopener" data-stringify-link="https://arturs.count.ly/dashboard#/manage/sdk/configurations" data-sk="tooltip_parent">https://xxx.count.ly/dashboard#/manage/sdk/configurations</a>
@@ -3136,8 +3144,8 @@ npm install markdownlint --save-dev
   the up to date version has been acquired, it is stored persistently and the SDK
   reconfigures itself to reflect the new configuration.
 </p>
-<h1>Legacy Features</h1>
-<h2>Remote Config (Legacy)</h2>
+<h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
+<h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>
   <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;"> for legacy remote config API</span>
   includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
@@ -3175,7 +3183,7 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
   should automatically trigger the usage of the latest API and should log a warning
   to the user.
 </p>
-<h2>Automatic Fetch</h2>
+<h2 id="01H821RTQ843R82K27AE6V09V9">Automatic Fetch</h2>
 <p>
   <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
 </p>
@@ -3185,21 +3193,21 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
 <p>
   e.g. <code>config.enableRemoteConfig = true;</code>
 </p>
-<h2>Manual Fetch</h2>
+<h2 id="01H821RTQ8QMZHEBPQTH1TEENH">Manual Fetch</h2>
 <p>
   <span style="font-weight: 400;">There should be a method/function to fetch the remote config manually anytime the developer would like. Just like with automatic fetch, this method will fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. This method should take a callback argument to inform the developer about the results of manually fetching the remote config. Callback on initial config should not be affected by manual fetchings, as it is for automatic fetchings only.</span>
 </p>
 <p>
   e.g. <code>updateRemoteConfig(callback(){ })</code>
 </p>
-<h2>Getting Values</h2>
+<h2 id="01H821RTQ8PZJWW6459JAM8D6W">Getting Values</h2>
 <p>
   <span style="font-weight: 400;">There should be a method to get remote config values for a given key. It will return the value for a given key. If the key does not exist, or the remote config has yet to be fetched, this method should return nil or null or however the platform handles the absence of values. If the server is not reachable, this method should return the last fetched and locally stored value if available.</span>
 </p>
 <p>
   e.g. <code>remoteConfigValueForKey(key)</code>
 </p>
-<h2>Keys and Omit Keys</h2>
+<h2 id="01H821RTQ822HR5EB6F9TYDR0T">Keys and Omit Keys</h2>
 <p>
   <span style="font-weight: 400;">There should be 2 additional methods for manual fetching: one for specifying which keys will be updated and one for specifying which keys will be ignored.</span>
 </p>
@@ -3235,7 +3243,7 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
   "c": "z",
 }
 </code></pre>
-<h2>A/B testing</h2>
+<h2 id="01H821RTQ8H0HJ4EBGMH3XX2FB">A/B testing</h2>
 <p>
   There should be a call to enroll users in the A/B testing without triggering
   any other action. This call should be named something similar to
@@ -3247,15 +3255,15 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
   and put out as a log. If all is good the response's result field should return
   something like "Successfully enrolled the user to given keys".
 </p>
-<h2>Consents</h2>
+<h2 id="01H821RTQ8VYEGXZA4K0QJ6Q5R">Consents</h2>
 <p>
   <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
 </p>
-<h2>Device ID Change</h2>
+<h2 id="01H821RTQ8QPZMM69K8HYBPQW7">Device ID Change</h2>
 <p>
   <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
 </p>
-<h2>Salt</h2>
+<h2 id="01H821RTQ8P17JFY9MQTQP11AG">Salt</h2>
 <p>
   <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
 </p>
