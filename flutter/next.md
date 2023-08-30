@@ -445,7 +445,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   relying on the SDK.
 </p>
 <p>It can be enabled during init with:</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);</code><br>config.enableManualSessionHandling();</pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);</code> config.enableManualSessionHandling();</pre>
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
   <li>Begin session</li>
@@ -457,7 +457,8 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   <li>End session (also updates duration)</li>
 </ul>
 <p>The approprate call to do that are:</p>
-<pre>Countly.beginSession();<br>Countly.updateSession();<br>Countly.endSession();</pre>
+<pre>Countly.beginSession();<br>Countly.updateSession();
+Countly.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View tracking</h1>
 <h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual view recording</h2>
 <p>
@@ -466,22 +467,33 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   using <code>Countly.instance.views.startView</code>&nbsp;function. This function
   returns the unique view id for that view.
 </p>
-<pre><code class="JavaScript">// record a view on your application<br>Countly.instance.views.startView("HomePage");
+<pre><code class="JavaScript">// record a view on your application
+Countly.instance.views.startView("HomePage");
 const String viewId = await Countly.instance.views.startView("Dashboard");</code></pre>
 <p>
   While manually tracking views, you may want to add custom segmentation to them.
 </p>
-<pre><code class="JavaScript">Map&lt;String, Object&gt; segments = {<br>  "Cats": 123,<br>  "Moons": 9.98,<br>  "Moose": "Deer"<br>};<br>Countly.instance.views.startView("HomePage", segments);</code></pre>
+<pre><code class="JavaScript">Map&lt;String, Object&gt; segments = {
+  "Cats": 123,
+  "Moons": 9.98,
+  "Moose": "Deer"
+};
+Countly.instance.views.startView("HomePage", segments);</code></pre>
 <p>
   You can manually stop views in your application either using the id or the name.
   Below you can see two ways of stopping a view.
 </p>
-<pre><code class="JavaScript">// stop a view on your application<br>Countly.instance.views.stopViewWithName("HomePage");<br>Countly.instance.views.stopViewWithID(viewID);<br>// adding custom segments<br>Countly.instance.views.stopViewWithName("HomePage", segments);</code></pre>
+<pre><code class="JavaScript">// stop a view on your application
+Countly.instance.views.stopViewWithName("HomePage");
+Countly.instance.views.stopViewWithID(viewID);
+// adding custom segments
+Countly.instance.views.stopViewWithName("HomePage", segments);</code></pre>
 <p>
   Similarly, you can pause and resume views in your application. Below you can
   see examples of pausing and resuming views using the ID.
 </p>
-<pre><code class="JavaScript">// pause and resume a view on your application<br>Countly.instance.views.pauseView(viewID);
+<pre><code class="JavaScript">// pause and resume a view on your application
+Countly.instance.views.pauseView(viewID);
 Countly.instance.views.resumeView(viewID);</code></pre>
 <p>
   You can set global segmentation values that will be recorded with all views.
@@ -489,7 +501,11 @@ Countly.instance.views.resumeView(viewID);</code></pre>
   see the two ways of setting global segmentation values using
   <code>setGlobalViewSegmentation</code>&nbsp;method.
 </p>
-<pre><code class="JavaScript">// set global segmentation at initialization<br>const CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setGlobalViewSegmentation(segments);<br><br>// set global segmentation after initialization
+<pre><code class="JavaScript">// set global segmentation at initialization
+const CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setGlobalViewSegmentation(segments);
+
+// set global segmentation after initialization
 Countly.instance.views.setGlobalViewSegmentation(segments);</code></pre>
 <p>
   You can update the global segmentation values using
@@ -501,7 +517,9 @@ Countly.instance.views.updateGlobalViewSegmentation(segments);</code></pre>
   To stop all views, use the&nbsp;<code>Countly.instance.views.stopAllViews</code>&nbsp;method.
 </p>
 <pre><code class="JavaScript">// stop all views
-Countly.instance.views.stopAllViews();<br>// stop all view with segmentation<br>Countly.instance.views.stopAllViews(segments);</code></pre>
+Countly.instance.views.stopAllViews();
+// stop all view with segmentation
+Countly.instance.views.stopAllViews(segments);</code></pre>
 <h1 id="h_01H930GAQ65W1S9T2R1K2EQQFJ">Device ID management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
