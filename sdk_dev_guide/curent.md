@@ -1905,6 +1905,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <pre><code>config.enableRemoteConfigAutomaticTriggers()</code></pre>
 <p>
+  There should be a config flag that would automatically enroll a user to available
+  experiments while RC values are downloaded. Disabled by default.
+</p>
+<pre><code>config.enrollABOnRCDownload()</code></pre>
+<p>
   Registering the callback function that would be called when the RC is downloaded.
   This can be called multiple times, all callbacks would be notified.
 </p>
@@ -1949,7 +1954,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   values must be passed as params to the request URL (&amp;omit_keys=["key1", "key2"...])
 </p>
 <pre><code>Countly.RemoteConfigDownloadOmittingKeys(String[] omitKeys, RCDownloadCallback callback)</code></pre>
-<p>All of those calls target the following server endpoint:</p>
+<p>
+  All of those calls target the following server endpoint, but if auto enrolling
+  flag is set (<code>enrollABOnRCDownload</code>) then the opt in parameter must
+  be set to 1 and added the the url formed (like '&amp;oi=1'):
+</p>
 <pre><code>o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)</code></pre>
 <p>
   When working correctly returns a JSON Object of key-value pairs like this:
