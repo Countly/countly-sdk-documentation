@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.6.0
+  and it applies to version 23.8.X
 </p>
 <div class="callout callout--info">
   <p>
