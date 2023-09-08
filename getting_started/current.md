@@ -1,6 +1,6 @@
 <p>
   Countly provides various functionality in different SDKs targeted for mobile,
-  web, desktop, server to server use cases. For a feature comparison in all SDKs,
+  web, desktop, server- to server use cases. For a feature comparison in all SDKs,
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
 </p>
 <p>
@@ -10,7 +10,7 @@
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#officially-supported-sdks" target="_self">please refer to the documentation</a>
   of your SDK of choice.
 </p>
-<h1>User/device identification</h1>
+<h1 id="h_01H9TAJ96Y6X7CBJ6KKGH1WBR4">User/device identification</h1>
 <p>
   By default, Countly generates an anonymous identifier to uniquely identify a
   device or browser. The total users metric for any period is based on a unique
@@ -34,7 +34,7 @@
   For an in-depth analysis of different device/user identification strategies
   <a href="https://medium.com/@countly_dev/tracking-users-in-countly-80bbe4ed0ad6" target="_self">please check out this post</a>.
 </p>
-<h1>Deciding on custom user properties</h1>
+<h1 id="h_01H9TAJ96Z57GV2JS211FY9FBY">Deciding on custom user properties</h1>
 <p>
   User properties play an important role not only in reporting but also in various
   other cases such as personalizing push notifications and creating conditional
@@ -74,7 +74,7 @@
   <strong>Basic</strong> or&nbsp;<strong>Premium</strong> to later on filter &amp;
   segment all reports based on the account type of your customers.
 </p>
-<h1>Events</h1>
+<h1 id="h_01H9TAJ96ZG4YT7D7YDRQB0QVK">Events</h1>
 <p>
   An "event" in Countly generally represents one of the following:
 </p>
@@ -136,7 +136,7 @@
 <p>
   Now let's dive into event segments and strategies you can follow.
 </p>
-<h1>Deciding on event segments</h1>
+<h1 id="h_01H9TAJ96ZRTGZRJ1X9M5M2MZ5">Deciding on event segments</h1>
 <p>
   Segments are properties that add further detail and meaning to an event. Segments
   are important since most of the time you aren't only interested in how many times
@@ -182,7 +182,7 @@
   As you can tell from the above reporting examples, event segment selection is
   an important part of your success with reporting &amp; visualization in Countly.
 </p>
-<h1>Acquiring your application key and server url</h1>
+<h1 id="h_01H9TAJ96Z275RY4N8VQ4GK5DR">Acquiring your application key and server url</h1>
 <p>
   <strong>Acquiring the application key</strong>
 </p>
@@ -193,7 +193,7 @@
   <span style="font-weight: 400;"><strong>Note:&nbsp;</strong>Ensure you are using the App Key (found under Management -&gt; Applications) and not the API Key. Entering the API Key will not work.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327716473881/001.png" alt="001.png">
+  <img src="/guide-media/01GVC1KFSK5GH4QF3XNTMWRWXE" alt="001.png">
 </p>
 <p>
   <strong>Acquiring the server URL</strong>
@@ -202,7 +202,7 @@
   <span style="font-weight: 400;">This is the domain from which you are accessing your Countly server. </span><span style="font-weight: 400;">During your SDK initialization you'll see a value such as 'url', 'server url' or something similar that you need to fill in. You have to fill that value with the IP or hostname of your server. For example, if you have Countly installed on 192.168.1.1, then inside the SDK you will need to write </span>
   <span style="font-weight: 400;"><a href="https://192.168.1.1">https://192.168.1.1</a> , if the SSL configuration is complete, or <a href="http://192.168.1.1" target="_self" rel="undefined">http://192.168.1.1</a> if there is no SSL configuration.</span><span style="font-weight: 400;"> If there is a server name associated with your IP, that server name may also be used instead (e.g. <a href="https://countly.mycompany.com)." target="_self" rel="undefined">https://countly.mycompany.com)</a></span><span style="font-weight: 400;">.</span>
 </p>
-<h1>Handling login/logout in your app</h1>
+<h1 id="h_01H9TAJ96ZGF2XVHABZ14FAPG3">Handling login/logout in your app</h1>
 <p>
   For a lot of apps, there is a login option. This allows you to confirm the identity
   of your users by cross-referencing them with your systems. That also adds two
@@ -243,7 +243,7 @@
   before and need to perform the current change without merging.
 </p>
 <p>Here are a few sample login implementations of this flow:</p>
-<h2>Android</h2>
+<h2 id="h_01H9TAJ96ZAM1RE4F15RGP91P7">Android</h2>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Java</span>
@@ -287,7 +287,7 @@
 }</code></pre>
   </div>
 </div>
-<h2>iOS</h2>
+<h2 id="h_01H9TAJ96Z4G8XWTKHDK311EG1">iOS</h2>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
@@ -301,7 +301,7 @@
     <pre><code class="swift">class func login() {<br>  let deviceIDType = Countly.sharedInstance.deviceIDType()<br>  if deviceIDType.isEqual(toString: CLYDeviceIDTypeCustom) {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: false)<br>  } else {<br>    Countly.sharedInstance.setNewDeviceID("usersNewID", onServer: true)<br>  }<br>}</code></pre>
   </div>
 </div>
-<h2>Web</h2>
+<h2 id="h_01H9TAJ96ZWTR3MM257ANZYXYE">Web</h2>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Async</span>
@@ -315,7 +315,7 @@
     <pre><code class="javascript">function login() {<br>  if(Countly.get_device_id_type() === Countly.DeviceIdType.DEVELOPER_SUPPLIED) {<br>    /*change ID without merge as current ID is Dev supplied, so not first login*/<br>    Countly.change_id('newID', false);<br>  } else {<br>    /*change ID with merge as current ID is not Dev supplied*/<br>    Countly.change_id('newID', true);<br>  }<br>}</code></pre>
   </div>
 </div>
-<h1>
+<h1 id="h_01H9TAJ96ZYTHED4SEW8PX684H">
   Using the Countly SDK's with iOS and Android widgets and watches
 </h1>
 <p>
@@ -398,7 +398,7 @@
   platform languages and integrate the native Countly SDK's. In that case, the
   recommendations from the previous sections would apply.
 </p>
-<h1>How to validate your Countly integration?</h1>
+<h1 id="h_01H9TAJ96ZTXAC4RTD1WFH6QH7">How to validate your Countly integration?</h1>
 <p>
   After you have integrated the Countly SDK into your app or website, to the best
   of your ability, whether you see some data or not in your Countly server, you
@@ -408,7 +408,7 @@
   steps for these cases of integration validation and also for debugging if you
   are seeing partial or no data at all on your server.
 </p>
-<h2>1. Check SDK logs</h2>
+<h2 id="h_01H9TAJ96Z8RXNKWZCGVZPKHZ5">1. Check SDK logs</h2>
 <p>
   As part of the process of integration verification, you would want to enable
   logging in to the SDK and have a look at the printed-out messages. If there were
@@ -425,7 +425,7 @@
   location of that would change depending on the platform and SDK.
 </p>
 <p>
-  <img src="/hc/article_attachments/9327716376601/002.png" alt="002.png">
+  <img src="/guide-media/01GVBGCQ4HAR5Z4K4MVEK32NR5" alt="002.png">
 </p>
 <p>
   <span style="font-weight: 400;">Check if requests are being created - this means you need to check whether you are calling SDK methods to actually send information to the server and that the SDK has been implemented correctly.</span>
@@ -433,23 +433,23 @@
 <p>
   <span style="font-weight: 400;">Also, check if requests fail or are successfully sent to the server because if they fail, maybe the server is not reachable from this specific network, or you made a mistake when providing the URL to the server.</span>
 </p>
-<h2>2. Check Incoming Data Logs</h2>
+<h2 id="h_01H9TAJ96Z8NHMX9B51XS2H4BH">2. Check Incoming Data Logs</h2>
 <p>
   Next, you would want to verify that your Countly server is receiving data from
   <span style="font-weight: 400;"><code>Utilities &gt; Incoming Data Logs</code></span>.
   <span style="font-weight: 400;">Should there be an issue, the request logs usually state what this problem is about, why the request was not processed, or why incoming data may be incorrect - such as sending data for the incorrect app type, sending duplicate requests, incorrectly set-up parameter tampering, etc.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/15755017229977" alt="003.png">
+  <img src="/guide-media/01GSPV01NM0J5M7QS37M1ZX7RH" alt="003.png">
 </p>
-<h2>3. Make sure you have the correct configuration</h2>
+<h2 id="h_01H9TAJ96ZRGMH3QNVP8BFSNH2">3. Make sure you have the correct configuration</h2>
 <p>
   Here the most important thing is to verify if your 'app_key' and 'URL' values
   are entered correctly. For more information on making sure that you are using
   your correct 'app_key' and server URL, you can check out the following section
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
 </p>
-<h2>4. Check your Countly server</h2>
+<h2 id="h_01H9TAJ96ZE6A8S59Q8AXM6R1T">4. Check your Countly server</h2>
 <p>
   If you have checked your SDK logs and everything seems to be working fine in
   your app or website, it is time to check Countly if the planned data is recorded
@@ -458,7 +458,7 @@
   Countly server. If it is, you are good to go, and you can stop here on the list.
 </p>
 <p>
-  <img src="/hc/article_attachments/9327773628825/004.png" alt="004.png">
+  <img src="/guide-media/01GVCKHJW3QZ4DTYW225P9Z0N8" alt="004.png">
 </p>
 <p>
   In case it seems like some data is not being recorded, it can be due to some
@@ -467,14 +467,14 @@
   rules target more things than planned by accident.&nbsp; For debugging those
   issues and others, keep reading.
 </p>
-<h2>5. Check the server for errors</h2>
+<h2 id="h_01H9TAJ96ZEV8R3WZQSVTNMYKV">5. Check the server for errors</h2>
 <p>
   <span style="font-weight: 400;">Check <code>Management &gt; Logs &gt; Api Log</code></span><span style="font-weight: 400;"> for errors. Chances are, if there is a problem/bug with a specific plugin processing information, there would be new errors in the logs.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327773899289/005.png" alt="005.png">
+  <img src="/guide-media/01GVE6545N52SYETHG37K09YRG" alt="005.png">
 </p>
-<h2>6. Check plugins</h2>
+<h2 id="h_01H9TAJ96ZG0RZB6YGF18RBEEV">6. Check plugins</h2>
 <p>
   Some plugins that might be necessary to process data and provide functionalities
   you want might not be activated, or you might have accidentally disabled them.
@@ -482,38 +482,38 @@
   <span style="font-weight: 400;"><code>Management &gt; Feature Management<br></code></span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327717115161/006.png" alt="006.png">
+  <img src="/guide-media/01GVDG0MQC6JS6JCMA3VRHH5X8" alt="006.png">
 </p>
-<h2>7. Check Filtering rules</h2>
+<h2 id="h_01H9TAJ96Z6AX0WEQJBX49WNJG">7. Check Filtering rules</h2>
 <p>
   <span style="font-weight: 400;">Events or requests may be blocked. In this case, check <code>Main menu&gt; Utilities &gt; Filtering rules</code></span><span style="font-weight: 400;"> to see whether there are any rules that block events or any requests.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327774197657/007.png" alt="007.png">
+  <img src="/guide-media/01GVBGCRTDDND3BXXKN0XDP6ZA" alt="007.png">
 </p>
-<h2>8. Check event limits</h2>
+<h2 id="h_01H9TAJ96ZXP3SPFJ8DCEQRNKE">8. Check event limits</h2>
 <p>
   <span style="font-weight: 400;">The event name limit may be exceeded (the limit is 100, by default), and may be adjusted under <code>Management &gt; Settings &gt; API &gt; Data Limits&gt; Max unique event key</code>.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327774290713/008.png" alt="008.png">
+  <img src="/guide-media/01GVCTF7AJCPNWYSMZKS7TYZ6R" alt="008.png">
 </p>
-<h2>9. Check checksum</h2>
+<h2 id="h_01H9TAJ96ZBPWZ6DJ7M8GSTR7Y">9. Check checksum</h2>
 <p>
   Some
   <span>SDKs provide an option to send a checksum along the request data to prevent data breach by a middleman. If you have a set a salt for checksum in your SDK but did not set it at your server or typed it wrongly, and vise versa, you should check your salt value from <span style="font-weight: 400;"><code>Management &gt; Applications &gt; Salt for checksum</code></span>.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327717836441/009.png" alt="009.png">
+  <img src="/guide-media/01GVD4ND93MEXXJD0199N3ZHEZ" alt="009.png">
 </p>
-<h2>10. Check time zone</h2>
+<h2 id="h_01H9TAJ96ZPX2F603JFFQAYE6Y">10. Check time zone</h2>
 <p>
   <span style="font-weight: 400;">Your time zone may be different from the application’s time zone, explaining why it takes some time for you to be able to see events on the graph, something which should be available to you without delay. You can edit your time zone from <span><code>Management &gt; Applications &gt; Edit &gt; Select Time Zone</code></span>.</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9327717905689/010.png" alt="010.png">
+  <img src="/guide-media/01GVAYP7QTW87W4Y1V2NT3Y3JF" alt="010.png">
 </p>
-<h1>How long does it take for my data to show up on Countly?</h1>
+<h1 id="h_01H9TAJ96Z6HCA14SFFCB0DYBW">How long does it take for my data to show up on Countly?</h1>
 <p>
   When you are checking Countly and sending events from your app or website, you
   might realize that sometimes there is a delay for the data to show up there.
@@ -549,7 +549,7 @@
   can take minutes up to hours to process before showing up on Countly. But most
   data would show up within seconds after reaching your Countly Server.
 </p>
-<h1>Is my SDK version compatible with my server?</h1>
+<h1 id="h_01H9TAJ96ZXG42TN1MVBMV1CMM">Is my SDK version compatible with my server?</h1>
 <p>
   If you have checked your Countly server and SDK versions, you might have noticed
   that they most likely do not match. Due to the way our development is structured,
@@ -564,32 +564,32 @@
   "22.02.3". The first two numbers are what we call the major version and those
   are the ones that you should be paying attention to ("22.02.X").
 </p>
-<h1>Finding SDK Logs</h1>
+<h1 id="h_01H9TAJ96ZZCWFTWPDR6EGF0C7">Finding SDK Logs</h1>
 <p>
   Ensure you have enabled SDK logs before proceeding with this process. For guidance
   on how to enable logs, refer to the
   <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK documentation's</a>
   "Logging" or "Debug Mode" section.
 </p>
-<h2>Apple Devices:</h2>
+<h2 id="h_01H9TAJ96Z0C5R479HPY5M9QZ3">Apple Devices:</h2>
 <ol>
   <li>Launch your application through Xcode.</li>
   <li>Access the Output tab (annotated as 1).</li>
   <li>Filter the logs by typing in "countly" (annotated as 2).</li>
 </ol>
 <p>
-  <img src="/hc/article_attachments/15147181998745" alt="011.png">
+  <img src="/guide-media/01GVB6856FZT71BBAFJE754S09" alt="011.png">
 </p>
-<h2>Android Devices</h2>
+<h2 id="h_01H9TAJ96Z8C1QZYVVMTZAHBFW">Android Devices</h2>
 <ol>
   <li>Run your application on Android Studio.</li>
   <li>Open the Logcat tab (annotated as 1).</li>
   <li>Filter the logs by typing in "countly" (annotated as 2).</li>
 </ol>
 <p>
-  <img src="/hc/article_attachments/15147181671321" alt="012.png">
+  <img src="/guide-media/01GVCKJ63A47W3426P5ABTF8T1" alt="012.png">
 </p>
-<h2>Web browser:</h2>
+<h2 id="h_01H9TAJ96ZJVR40PBH3XJPWJ73">Web browser:</h2>
 <ol>
   <li>Open your website in a browser.</li>
   <li>Open the developer tools (typically by pressing F12).</li>
@@ -599,5 +599,5 @@
   </li>
 </ol>
 <p>
-  <img src="/hc/article_attachments/15147181662489" alt="013.png">
+  <img src="/guide-media/01GVBGM81XJNKR008JE3E1EF2B" alt="013.png">
 </p>
