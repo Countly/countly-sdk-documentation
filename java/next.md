@@ -406,6 +406,27 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
         .pushUnique("skill", "singer")
         .commit();</code></pre>
 <h1>Other Features and Notes</h1>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you set values in your Countly config object:
+</p>
+<ul>
+  <li>
+    <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
+    for the automatic session update calls. The delay can not be smaller than 1 sec.
+  </li>
+  <li>
+    <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
+    grouping.
+  </li>
+</ul>
+<h2>Setting Event Queue Threshold</h2>
+<p>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
+</p>
+<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
 <h2>Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
