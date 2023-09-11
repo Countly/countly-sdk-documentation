@@ -413,7 +413,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <ul>
   <li>
     <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
-    for the automatic session update calls (min value 1 sec, max value 10 min).
+    for the automatic session update calls. The delay can not be smaller than 1 sec.
   </li>
   <li>
     <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
