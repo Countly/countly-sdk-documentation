@@ -18,8 +18,6 @@
   understand how most functionalities work.
 </p>
 <h1>Adding the SDK to the Project</h1>
-</p>
-<h1>Adding the SDK to the Project</h1>
 <p>
   SDK is hosted on MavenCentral, more info can be found
   <a href="https://search.maven.org/artifact/ly.count.sdk/java" target="_self" rel="undefined">here</a>
