@@ -28,6 +28,7 @@ All subtitles presented in an orderly fashion. Ex:
   * Second Subtitle
 
 ***
+
 This represents:
 
 h1: Main Title
@@ -82,6 +83,8 @@ Each SDK document starts with an introductory text that includes:
   * (Symbol extraction)
   * (Automatic upload script)
 
+***
+
 **Events**
 
 * (Intro with event field overview (sum, count, duration, segmentation). Mention allowed data types for segmentation)
@@ -90,11 +93,15 @@ Each SDK document starts with an introductory text that includes:
 * Past Events
 * Consent
 
+***
+
 **Sessions**
 
 * Automatic Session Tracking
 * Manual Sessions
 * Consent
+
+***
 
 **View Tracking**
 
@@ -105,6 +112,8 @@ Each SDK document starts with an introductory text that includes:
 * Simultaneous View Tracking
 * Consent
 
+***
+
 **Device ID Management**
 
 * Device ID Generation (should describe all the ways the ID is generated (when no custom id is provided by the dev) and what platform information is used to do that)
@@ -112,6 +121,8 @@ Each SDK document starts with an introductory text that includes:
 * Temporary Device ID
 * Retrieving Current Device ID (should include also a way to retrieve the current ID type)
 * Consent
+
+***
 
 **Push Notifications**
 
@@ -127,6 +138,8 @@ Each SDK document starts with an introductory text that includes:
   * Handling ‘onReceive’ Events
 * Consent
 
+***
+
 **User Location**
 
 * (intro of used location values and location tracking)
@@ -134,11 +147,15 @@ Each SDK document starts with an introductory text that includes:
 * Disabling Location (during init and after init)
 * Consent
 
+***
+
 **Heatmaps**
 
 * Tracking Clicks
 * Tracking Scrolls
 * Consent
+
+***
 
 **Remote Config**
 
@@ -154,6 +171,8 @@ Each SDK document starts with an introductory text that includes:
 * Clearing Stored Values
 * Consent
 
+***
+
 **User Feedback**
 
 * Ratings
@@ -166,6 +185,8 @@ Each SDK document starts with an introductory text that includes:
   * Manual Reporting
 * Consent
 
+***
+
 **User Profiles**
 
 * Setting Predefined Values
@@ -176,6 +197,8 @@ Each SDK document starts with an introductory text that includes:
 * Modifying Data
 * Orientation Tracking
 * Consent
+
+***
 
 **Application Performance Monitoring**
 
@@ -188,6 +211,8 @@ Each SDK document starts with an introductory text that includes:
 * App Time in Background / Foreground
 * Consent
 
+***
+
 **User Consent**
 
 * (Intro about consent in general)
@@ -195,12 +220,16 @@ Each SDK document starts with an introductory text that includes:
 * Changing Consent
 * Feature Groups
 
+***
+
 **Security and Privacy**
 
 * Parameter Tamper Protection
 * SSL Certificate Pinning
 * Using a Self-Signed Server Certificate
 * (Tamper protection tools)
+
+***
 
 **Other Features and Notes**
 
@@ -218,6 +247,8 @@ Each SDK document starts with an introductory text that includes:
 * Custom Metrics
 * Log Listener
 * Testing
+
+***
 
 **FAQ**
 
