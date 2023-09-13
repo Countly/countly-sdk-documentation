@@ -10,9 +10,12 @@
   </p>
 </div>
 <p>
-  The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
-  as a dependency to your project and initializing SDK. Once those are done, you'll
-  have basic analytics on your server like users, sessions, devices, etc.
+  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
+  reach the Countly Java SDK
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
+  Also, you can inspect the sample application
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Sample.java" target="_blank" rel="noopener noreferrer">here</a> to
+  understand how most functionalities work.
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
