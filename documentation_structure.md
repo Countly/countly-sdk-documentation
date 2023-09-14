@@ -3,7 +3,7 @@
 This file gives information about the documentation structure that each SDK should strive to adhere.
 
 * It outlines the major titles and subtitles
-* It shows the order in which the concent should be presented
+* It shows the order in which the content should be presented
 * It clarifies the header tags for titles
 
 ## General Rules
