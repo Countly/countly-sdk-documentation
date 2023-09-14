@@ -61,13 +61,16 @@ Each SDK document starts with an introductory text that includes:
 This should contain the core integration information about the SDK, including a short MVP setup
 
 * Minimal Setup (mandatory fields and other useful information)
-* SDK Logging / Debug Mode (this should mention also where the SDK logs can be found)
 * Required App Permissions (if needed)
 * Required Callbacks (if needed)
 * (Other things if needed)
 * Countly Code Generator
 
 ***
+
+**SDK Logging** / **Debug Mode** (this should mention also where the SDK logs can be found)
+  * (general description on how to do it)
+  * Log Listener
 
 **Crash Reporting**
 
@@ -187,42 +190,36 @@ This should contain the core integration information about the SDK, including a 
   * Enrollment on Action (the explicit call)
 * Consent
 
-
-* Updating Remote Config
-  * Automatic Remote Config Triggers
-  * Manual Remote Config
-    * (Update “all”)
-    * (Update “except keys”)
-    * (Update “for keys only”)
-* Accessing Remote Config Values
-* A/B Testing
-* Clearing Stored Values
-* Consent
-
 ***
 
 **User Feedback**
 
-* Ratings
-  * Star Rating Dialog
-  * Rating Widget
-  * Manual Rating Reporting
+* (Intro)
+* Star Rating Dialog
 * Feedback Widget
   * (NPS)
   * (Surveys)
+  * (Rating)
+  * Getting Available Widgets
+  * Presenting A Widget
   * Manual Reporting
+    * (link to advanced article)
+    * Getting Feedback Widget Data
+    * Reporting Widget Result Manually
 * Consent
 
 ***
 
 **User Profiles**
 
-* Setting Predefined Values
-* Setting Custom Values
+* (Intro, expected flow (save))
+* Setting User Properties
+  * Custom Values
+  * Predefined Values
 * Setting User Picture
   * (picture upload)
   * (setting picture url)
-* Modifying Data
+* User Property Modificators
 * Orientation Tracking
 * Consent
 
@@ -230,6 +227,7 @@ This should contain the core integration information about the SDK, including a 
 
 **Application Performance Monitoring**
 
+* (Intro)
 * (setup / enabling)
 * Custom Traces
 * Network Traces
@@ -244,8 +242,9 @@ This should contain the core integration information about the SDK, including a 
 **User Consent**
 
 * (Intro about consent in general)
-* Setup During Init
-* Changing Consent
+* Feature Names
+* Setup During Init (including give all)
+* Changing Consent (including give, remove all)
 * Feature Groups
 
 ***
@@ -255,31 +254,42 @@ This should contain the core integration information about the SDK, including a 
 * Parameter Tamper Protection
 * SSL Certificate Pinning
 * Using a Self-Signed Server Certificate
-* (Tamper protection tools)
+* (Tamper protection tools, if needed for the platform)
 
 ***
 
 **Other Features and Notes**
 
-* (Other features, configuration options)
 * SDK Config Parameters Explained (should explain all init time SDK parameters)
-* SDK Internal Limits
 * Setting Event Queue Threshold
 * Setting Maximum Request Queue Size
 * Checking If the SDK Has Been Initialized
+* SDK Internal Limits
 * Attribution
   * Direct Attribution
   * Indirect Attribution
+* Multi Instancing (if the SDK supports it)
 * Forcing HTTP POST
 * Custom HTTP Header Values
 * Custom Metrics
-* Log Listener
+* Interacting with the Internal Request Queue
+* Direct Request
+* Explicit Storage Mode
+* Server Configuration
+* A/B Testing Variant Information
+  * Fetching Test Variants
+  * Accessing Fetched Test Variants
+  * Enrolling For a Variant
+* Changing Server URL and App Key
 * Testing
-
+* (Other features, configuration options)
+  
 ***
 
 **FAQ**
-* What Information is Collected by the SDK
-* Where Does the SDK Store the Data (where is it stored and what mechanism is it using)
+* Where Does the SDK Store the Data? (where is it stored and what mechanism is it using)
+* How can I tell what SDK version I am Using?
 
-* What Information Is Collected by the SDK (should mention every user and device related information that is collected by the SDK during its operation. Data should be described at a high granularity so that it can be used for GDPR reports.)
+* What Information Is Collected by the SDK? (should mention every user and device related information that is collected by the SDK during its operation. Data should be described at a high granularity so that it can be used for GDPR reports.)
+
+* (Other potential questions depending on the SDK)
