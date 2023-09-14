@@ -62,19 +62,20 @@ This should contain the core integration information about the SDK, including a 
 
 * Minimal Setup (mandatory fields and other useful information)
 * SDK Logging / Debug Mode (this should mention also where the SDK logs can be found)
-* Device ID (link to generation methods, mentioned default)
-* Required App Permissions
-  * Countly Code Generator
-  * (Other things)
+* Required App Permissions (if needed)
+* Required Callbacks (if needed)
+* (Other things if needed)
+* Countly Code Generator
 
 ***
 
 **Crash Reporting**
 
-* Automatic Crash Handling
-* Automatic Crash Report Segmentation
+* (Intro)
+* Automatic Crash Handling (how do we enable it, what needs to be done)
 * Handled Exceptions
 * Crash Breadcrumbs
+* Automatic Crash Report Segmentation
 * Crash Filtering
 * Consent
 * Native C++ Crash Reporting
@@ -98,35 +99,44 @@ This should contain the core integration information about the SDK, including a 
 
 **Sessions**
 
+* (Intro)
 * Automatic Session Tracking
 * Manual Sessions
+  * Hybrid Mode
 * Consent
 
 ***
 
 **View Tracking**
 
+* (Intro)
 * Automatic Views (if applicable)(Including info of how the automatic view name is acquired)
   * Automatic View Segmentation
   * Automatic View Exceptions
 * Manual View Recording (should include information about manual view segmentation)
-* Simultaneous View Tracking
+  * Auto Stopped Views
+  * Regular Views
+  * Stopping Views
+  * Simultaneous View Tracking
+* Global View Segmentation
 * Consent
 
 ***
 
 **Device ID Management**
 
-* Device ID Generation (should describe all the ways the ID is generated (when no custom id is provided by the dev) and what platform information is used to do that)
+* (Intro)
+* Retrieving Current Device ID (should include also a way to retrieve the current ID type)
 * Changing Device ID  (should describe ways to do it with and without merge)
 * Temporary Device ID
-* Retrieving Current Device ID (should include also a way to retrieve the current ID type)
+* Device ID Generation (should describe all the ways the ID is generated (when no custom id is provided by the dev) and what platform information is used to do that)
 * Consent
 
 ***
 
 **Push Notifications**
 
+* (Intro)
 * Integration (steps required to integrate and setup push for the project)
 * Enabling Push (describes how to enable and configure push in the SDK)
 * Removing Push and It’s Dependencies
@@ -152,6 +162,7 @@ This should contain the core integration information about the SDK, including a 
 
 **Heatmaps**
 
+* (Intro)
 * Tracking Clicks
 * Tracking Scrolls
 * Consent
@@ -160,7 +171,23 @@ This should contain the core integration information about the SDK, including a 
 
 **Remote Config**
 
-* (Intro (slightly note AB testing))
+* (Intro (slightly note AB testing), small overview of the flow)
+* Downloading values
+  * Automatic Remote Config Triggers (what they are and how to disable them)
+  * Manual Calls
+    * (Update “all”)
+    * (Update “except keys”)
+    * (Update “for keys only”)
+* Accessing values (We don't mention the 'GetAndEnroll' call)
+* Clearing Stored Values
+* Global Download Callbacks (how to register and unregister)
+* A/B Testing
+  * Enrollment on Download
+  * Enrollment on Access (we mention the 'GetAndEnroll' call)
+  * Enrollment on Action (the explicit call)
+* Consent
+
+
 * Updating Remote Config
   * Automatic Remote Config Triggers
   * Manual Remote Config
