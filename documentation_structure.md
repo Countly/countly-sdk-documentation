@@ -41,27 +41,28 @@ h3: Second Subtitle
 
 Each SDK document starts with an introductory text that includes:
 
-* the current SDK version
-* supported platform versions
-* link to previous versions doc
+* the current SDK version and the SDK name
+* link to the archived doc page
+* minimum platform, langauge requirements, supported platform versions
 * SDK repo location
 * example app location
-* other things to note (like what is they should know prior to implementation)
 
 ***
 
 **Adding the SDK to the Project** 
 
-* (How should that be done, where can the library be found)
+* (How should that be done, where can the library be found, how is the dependency added to their project)
+* other things to note (like what is they should know prior to implementation)
 
 ***
 
 **SDK Integration**
 
+This should contain the core integration information about the SDK, including a short MVP setup
+
 * Minimal Setup (mandatory fields and other useful information)
 * SDK Logging / Debug Mode (this should mention also where the SDK logs can be found)
 * Device ID (link to generation methods, mentioned default)
-* SDK Data Storage (where is it stored and what mechanism is it using)
 * Required App Permissions
   * Countly Code Generator
   * (Other things)
@@ -251,5 +252,7 @@ Each SDK document starts with an introductory text that includes:
 ***
 
 **FAQ**
+* What Information is Collected by the SDK
+* Where Does the SDK Store the Data (where is it stored and what mechanism is it using)
 
 * What Information Is Collected by the SDK (should mention every user and device related information that is collected by the SDK during its operation. Data should be described at a high granularity so that it can be used for GDPR reports.)
