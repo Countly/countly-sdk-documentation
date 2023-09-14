@@ -261,20 +261,21 @@ This should contain the core integration information about the SDK, including a 
 **Other Features and Notes**
 
 * SDK Config Parameters Explained (should explain all init time SDK parameters)
-* Setting Event Queue Threshold
-* Setting Maximum Request Queue Size
+* SDK storage and Requests
+  * Setting Event Queue Threshold
+  * Setting Maximum Request Queue Size
+  * Forcing HTTP POST
+  * Custom HTTP Header Values
+  * Interacting with the Internal Request Queue
+  * Direct Request
+  * Explicit Storage Mode
 * Checking If the SDK Has Been Initialized
 * SDK Internal Limits
 * Attribution
   * Direct Attribution
   * Indirect Attribution
 * Multi Instancing (if the SDK supports it)
-* Forcing HTTP POST
-* Custom HTTP Header Values
 * Custom Metrics
-* Interacting with the Internal Request Queue
-* Direct Request
-* Explicit Storage Mode
 * Server Configuration
 * A/B Testing Variant Information
   * Fetching Test Variants
