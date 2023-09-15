@@ -14,7 +14,7 @@
   reach the Countly Java SDK
   <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
   Also, you can inspect the sample application
-  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Sample.java" target="_blank" rel="noopener noreferrer">here</a> to
+  <a href="https://github.com/Countly/countly-sdk-java/tree/master/app-java/src/main/java/ly/count/java/demo" target="_blank" rel="noopener noreferrer">here</a> to
   understand how most functionalities work.
 </p>
 <h1>Adding the SDK to the Project</h1>
