@@ -29,7 +29,7 @@
   folder under Assest. There is also 'CountlyEntryPoint.cs' script in Example folder,
   and this script shows how most of the functionality can be used.
 </p>
-<h1>Adding the SDK to the project</h1>
+<h1 id="h_01HABTZ314WVHKW01D3RTT1RYX">Adding the SDK to the project</h1>
 <p>
   Download the Unity package from
   <a href="https://github.com/Countly/countly-sdk-unity/releases" target="_blank" rel="noopener">GitHub</a>
@@ -42,7 +42,7 @@
   need to import all the files in the package.
 </p>
 <p class="wysiwyg-text-align-center">
-  <img src="/hc/article_attachments/4404570305433/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
+  <img src="/guide-media/01GVC1JBG025D3FBPJYN3EJR9V" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <p>
   <span data-preserver-spaces="true">This SDK uses the </span><strong><span data-preserver-spaces="true">Newtonsoft Json</span></strong><span data-preserver-spaces="true"> package internally and it is required for the SDK to work. </span>
@@ -51,10 +51,10 @@
   <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that (2018 and 2019) you would have to install this package in the project manually. </span>
 </p>
 <p>
-  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/hc/article_attachments/6537960964505/image-newtonsoft.png" alt="image-newtonsoft.png"></span>
+  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/guide-media/01GVDG0BAGCD7VJ9EYNK3GS32F" alt="image-newtonsoft.png"></span>
 </p>
-<h1>SDK Integration</h1>
-<h2>Minimal Setup</h2>
+<h1 id="h_01HABTZ3143Z9ZY3H02CEV868Z">SDK Integration</h1>
+<h2 id="h_01HABTZ314XCMNWWK698JR773J">Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.&nbsp;
 </p>
@@ -92,7 +92,7 @@
   <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
-<h2 class="anchor-heading">SDK data storage</h2>
+<h2 id="h_01HABTZ314QNCDAQT0SC5NETCG" class="anchor-heading">SDK data storage</h2>
 <p>
   Countly SDK s<span>tore data that are meant for your app's use only, within an internal storage volume. If your game saves in external storage, SDK will store data within external storage. You may need to add permission to store data on an SD card. Please read the </span><a href="#require-app-permissions" target="_self" rel="undefined">Required app permissions</a>
   section for more information.
@@ -135,12 +135,12 @@
 <p>
   <span class="c-message_attachment__text" data-qa="message_attachment_text"><span dir="auto">When configuring your app, make sure that it has permission to access the internet.</span></span>
 </p>
-<h2 class="c-message_attachment__row">SDK notes</h2>
+<h2 id="h_01HABTZ31446VPCP3M6Y0PWMNY" class="c-message_attachment__row">SDK notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
 <pre>Countly.Instance.</pre>
-<h1 class="anchor-heading" tabindex="-1">Crash reporting</h1>
+<h1 id="h_01HABTZ31464JJFMECCZEH8F4C" class="anchor-heading" tabindex="-1">Crash reporting</h1>
 <p>
   <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
 </p>
@@ -149,13 +149,13 @@
   interface on:
 </p>
 <pre>countly.CrashReports.</pre>
-<h2>Automatic crash handling</h2>
+<h2 id="h_01HABTZ314AT5KAJCM51D304ZV">Automatic crash handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
   to the Countly server. To report uncaught exceptions/crashes automatically, enable
   <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
 </p>
-<h2 class="anchor-heading">Handled exceptions</h2>
+<h2 id="h_01HABTZ314W6CP02BBBHB6FBKJ" class="anchor-heading">Handled exceptions</h2>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime.</span><span>You may also log these handled exceptions to monitor how and when they are happening. </span>To
   log exception use the following code snippet:
@@ -192,7 +192,7 @@
 </p>
 <pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, null, false); </pre>
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
-<h2 class="anchor-heading">Crash breadcrumbs</h2>
+<h2 id="h_01HABTZ314FEB9WM3P718TVMHY" class="anchor-heading">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs. They are shory logs<span>&nbsp;that </span>would
   describe the previous steps that were taken in your app before the crash. After
@@ -200,11 +200,11 @@
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ3140XGZJY6K0J169K5Q" class="anchor-heading">Consent</h2>
 <p>
   This feature uses <code>Crashes</code><span> consent. No additinal crash logs will be recorded if consent is required and not given.</span>
 </p>
-<h1>Events</h1>
+<h1 id="h_01HABTZ3149D9QF1CGYMK66JRV">Events</h1>
 <p>
   <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
@@ -246,7 +246,7 @@
     <span style="font-weight: 400;">"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
 </ul>
-<h2>Recording events</h2>
+<h2 id="h_01HABTZ314FCF1V827B38D1TEA">Recording events</h2>
 <p>
   <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
 </p>
@@ -306,7 +306,7 @@
 <p>
   <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
-<h2>Timed events</h2>
+<h2 id="h_01HABTZ314NDJQTBAS03YREYZ7">Timed events</h2>
 <p>
   <span>It's possible to create timed events by defining a start and a stop moment.</span>
 </p>
@@ -346,15 +346,15 @@ Countly.Instance.Events.StartEvent(eventName);
 
 <span class="hljs-comment">//cancel the event </span>
 Countly.Instance.Events.CancelEvent(eventName);</code></pre>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ315TW0Q6G8BFK19SDTM" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature uses <code>Events</code> consent. </span><span>No additional events will be recorded if consent is required and not given.</span>
 </p>
 <p>
   <span>When consent is removed, all previously started timed events will be canceled.</span>
 </p>
-<h1>Sessions</h1>
-<h2>
+<h1 id="h_01HABTZ315HHZYGQ0HX865WJ5M">Sessions</h1>
+<h2 id="h_01HABTZ3158ADXT4BY5W6G7GWT">
   <span style="font-weight: 400;">Automatic session tracking&nbsp;</span>
 </h2>
 <p>
@@ -368,7 +368,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   into the background. A session would be started again when the app comes to the
   foreground.
 </p>
-<h3>
+<h3 id="h_01HABTZ315VFW4RZCBGE17PX0G">
   <span style="font-weight: 400;">Disable automatic session tracking&nbsp;</span>
 </h3>
 <p>
@@ -386,7 +386,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
     session related to sessions and users would all be empty
   </li>
 </ul>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ315Y9VYNGNW2XBFGREJ" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires<code>Sessions</code> consent. Sessions and metrics will not be recorded if consent is required and not given.</span>
 </p>
@@ -398,8 +398,8 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   If consent was removed and then given, and automatic sessions were enabled, a
   session will automatically be started.<span></span>
 </p>
-<h1>View tracking</h1>
-<h2>Manual view recording</h2>
+<h1 id="h_01HABTZ315E40XEHJHRMQMW0J6">View tracking</h1>
+<h2 id="h_01HABTZ31504DKRD8DBNE1W400">Manual view recording</h2>
 <p>
   The Countly Unity SDK supports manual view (screen) tracking. With this feature,
   you can report what views a user did and for how long. Thus, whenever there is
@@ -423,15 +423,15 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ315ECG69VS4DKTX0W2N" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires<code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
 </p>
-<h1 class="anchor-heading" tabindex="-1">Device ID management</h1>
+<h1 id="h_01HABTZ315QACRZ219TTBZS5ZN" class="anchor-heading" tabindex="-1">Device ID management</h1>
 <p>
   <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
-<h2>Device ID generation</h2>
+<h2 id="h_01HABTZ315MARV8KKQMHM9EZBB">Device ID generation</h2>
 <p>
   <span>If no device ID is provided the first time the SDK is initialised, the SDK will generate a unique device ID. The source of that id is</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code>which is a value exposed by Unity. It should be unique for every device.</span>
 </p>
@@ -456,7 +456,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span><span></span>
 </p>
-<h2>Changing device ID</h2>
+<h2 id="h_01HABTZ3151FMVABED60J1FB2Y">Changing device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
   any of the following two methods to changing the Device ID, depending on your
@@ -487,7 +487,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.<br></span>
 </p>
-<h2 class="anchor-heading">Retrieving current device ID&nbsp;</h2>
+<h2 id="h_01HABTZ315MW7E9560TS40F65Z" class="anchor-heading">Retrieving current device ID&nbsp;</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.&nbsp;
@@ -505,14 +505,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   </li>
 </ul>
 <pre><code class="java hljs">DeviceIdType type = Countly.Instance.Device.DeviceIdType;</code></pre>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ315T6Z5NV8QWZVYMSCG" class="anchor-heading">Consent</h2>
 <p>No consent is required to change device ID.</p>
 <p>
   If device ID is changed without merging and consent was enabled, all previously
   given consent will be removed. This means that all features will cease to function
   until new consent has been given again for that new device ID.
 </p>
-<h1>Push notifications</h1>
+<h1 id="h_01HABTZ3157PQZHXH7YT210DJQ">Push notifications</h1>
 <p>
   <span>The Unity SKD uses FCM and APNs as push notification providers for Android and iOS platforms respectively, and it doesn't support the Huawei Push Kit push service.<br></span>
 </p>
@@ -522,7 +522,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Note that SDK doesn't support Deep linking, </span><span>Data only push, and </span><span>Rich push notifications yet. You can send text push notifications only.</span>
 </p>
-<h2>Integration</h2>
+<h2 id="h_01HABTZ3152EEE6CDNGW0B29J7">Integration</h2>
 <p>
   <strong><span class="wysiwyg-font-size-large">Android</span></strong>
 </p>
@@ -558,7 +558,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   1. In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
   <strong>Other Settings</strong> section, add the
-  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
+  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/guide-media/01GV9ZT9T72NE430KKRJMGNE4X" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
 </p>
 <p>
   2. After exporting the <strong>iOS</strong> project, open the project in
@@ -566,7 +566,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   For further information regarding iOS app configuring refer to
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#configuring-ios-app" target="_self" rel="undefined">iOS Documentation.</a>
 </p>
-<h2>
+<h2 id="h_01HABTZ3154KW34FPCX7AEJM86">
   <span>Enabling push</span>
 </h2>
 <p>
@@ -593,7 +593,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
     <span><code>ProductionToken</code> - use this mode for the production builds.</span><span></span>
   </li>
 </ul>
-<h2>Removing push and its dependencies</h2>
+<h2 id="h_01HABTZ315RJBF6DFEK5VPM8C0">Removing push and its dependencies</h2>
 <p>
   <span>By default, push dependencies are part of the SDK. You may remove them, and add them back after removing them.<br>Don't forget to change notification mode to <code>None</code>, after removing push notification dependencies from SDK.<br></span>
 </p>
@@ -615,7 +615,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>To</span>&nbsp;add them back after removing<span>, re-import the Unity package and add back the <strong>"COUNTLY_ENABLE_IOS_PUSH"</strong> symbol.</span>
 </p>
-<h2>
+<h2 id="h_01HABTZ315MGGW3YG4RHS97BVY">
   <span>Customizing push messages</span>
 </h2>
 <p>
@@ -627,7 +627,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span><strong>Note</strong>: The Notification channel name and description can be updated through the <strong>strings.xml</strong> file located in the <strong>Assets\Plugins\Android\Notifications\res\values </strong>folder.</span>
 </p>
-<h2>Handling push callbacks</h2>
+<h2 id="h_01HABTZ315PX7MATCGB1H307YY">Handling push callbacks</h2>
 <p>
   <span>In order to listen to notification receive and click events, implement <code>INotificationListener</code> interface and its members' methods <code>OnNotificationClicked</code> and <code>OnNotificationReceived</code> into your class.&nbsp;</span><span><br></span>
 </p>
@@ -656,7 +656,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>For more information, check the sample app on <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener">Github</a>.&nbsp;<br></span>
 </p>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ315P5G15ZP38X4DMB3X" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires<code>Push</code> consent. No push notifications will be received if consent is required and not given.</span>
 </p>
@@ -714,7 +714,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>These actions will erase the cached location data from the device and the server.</span><span></span>
 </p>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ316DN526NN0V577XVCQ" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires<code>Location</code> consent. If consent is not given and is required, no location information will be recorded. No reverse geo IP will be performed server side. SDK will behave as if location tracking is disabled.</span>
 </p>
@@ -733,7 +733,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   the SDK stores the updated config locally.
 </p>
 <pre><strong>await</strong> Countly.Instance.RemoteConfigs.Update();</pre>
-<h2>Accessing remote config values</h2>
+<h2 id="h_01HABTZ3164Y5JMBXVP1JCMWNK">Accessing remote config values</h2>
 <p>
   To access the stored config,&nbsp; call
   <code>Countly.Instance.RemoteConfigs.Configs</code>. It will return
@@ -743,7 +743,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against</span><span> a key</span><span>. The developer then needs to cast it to the appropriate type.&nbsp;</span>
 </p>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ316D1SCDFXWV0VMDARS" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires<code>RemoteConfig</code> consent. If consent is required and not give, no remote config information will be downloaded and stored.</span>
 </p>
@@ -751,14 +751,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   If consent was given and then is removed, locally stored remote config information
   will be cleared.
 </p>
-<h1>User feedback</h1>
-<h2>Ratings</h2>
+<h1 id="h_01HABTZ3167DDCYDQ3N6QSRZ6D">User feedback</h1>
+<h2 id="h_01HABTZ316A3KZFNEG63TSS6GT">Ratings</h2>
 <p>
   <span class="wysiwyg-color-black">Rating is a customer satisfaction tool that collects direct user feedback. For more details</span>,
   please see the
   <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
-<h3>Manual rating reporting</h3>
+<h3 id="h_01HABTZ316HVHCHJC1E6QCK9BW">Manual rating reporting</h3>
 <p>
   <span>When a user rates your application, you can report it to the Countly server.</span><span></span>
 </p>
@@ -780,15 +780,15 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
     <span><strong>rating -</strong> (int) v</span><span>alue from 0 to 5 that will be set as the rating value.</span><span></span>
   </li>
 </ul>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ316JXD672PVFWMTVEMP" class="anchor-heading">Consent</h2>
 <p>
   If consent is required, recording star rating requires<code>StarRating</code><span>consent. If consent is required and not give, it will not be possible to record star rating.</span><span></span>
 </p>
-<h1>User profiles</h1>
+<h1 id="h_01HABTZ3164RBD3AC31PH330W9">User profiles</h1>
 <p>
   <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
 </p>
-<h2>Setting predefined values</h2>
+<h2 id="h_01HABTZ316D6XXE1MP0RMYV6ZV">Setting predefined values</h2>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
   the Countly server. You may set the following predefined data for a particular
@@ -826,7 +826,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <p>Example:</p>
 <pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel(name: "Full Name", username: "username", email: "useremail@email.com", organization: "Organization", phone: "222-222-222", pictureUrl: "http://webresizer.com/images2/bird1_after.jpg", gender: "M", birthYear: "1986", null);<br><strong>await</strong> Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
-<h2>Setting custom values</h2>
+<h2 id="h_01HABTZ316PCFDVF0EJGXMABY9">Setting custom values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
   even when you don’t want to send other user-related data. You first need to create
@@ -837,14 +837,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <p>Example:</p>
 <pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel( <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Height", "5.8" }, <br>    { "Mole", "Lower Left Cheek" } <br>    });<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SetCustomUserDetailsAsync(userDetails);</code></pre>
-<h2>Setting User picture</h2>
+<h2 id="h_01HABTZ3166RSMTP5JC3Y2PVZC">Setting User picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
   the methods listed below.
 </p>
 <p>Example:</p>
 <pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel(name: "Full Name", username: "username", email: "useremail@email.com", organization: "Organization", phone: "222-222-222", pictureUrl: "http://webresizer.com/images2/bird1_after.jpg", gender: "M", birthYear: "1986", null);<br><strong>await</strong> Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
-<h2>Modifying data</h2>
+<h2 id="h_01HABTZ3160SY1KJCM2G1JPYK0">Modifying data</h2>
 <p>
   <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
 </p>
@@ -894,7 +894,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <p>Example:</p>
 <pre><code><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
-<h2 class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ316445B91Y1ZHCS6DGK" class="anchor-heading">Consent</h2>
 <p>
   This feature requires<code>User</code><span>consent. If consent is required and not given, it will not be possible to record user profile information.</span>
 </p>
@@ -905,7 +905,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   More information about GDPR can be found<span>&nbsp;</span><a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
-<h2>Setup during init</h2>
+<h2 id="h_01HABTZ3166JHBX2JCSEG70T78">Setup during init</h2>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
@@ -984,7 +984,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   </li>
 </ul>
 <pre><code class="hljs-comment">// Give consent to all features</code><br><code>Countly.Instance.Consent.GiveConsentAll();</code><br><code class="hljs-comment">// Remove consent from all features</code><br><code>Countly.Instance.Consent.RemoveAllConsent();</code></pre>
-<h2>
+<h2 id="h_01HABTZ316CNJB7T2VB4A5ASSW">
   <span style="font-weight: 400;">Feature groups</span>
 </h2>
 <p>
@@ -999,14 +999,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>Example:</p>
 <pre><code class="java">// prepare array of groups</code><br><code>string[] groupName = new string[]{ "User-Consents", "Events-Consents" };</code><br><code class="java">// give consent to groups</code><br><code>Countly.Instance.Consent.GiveConsentToGroup(groupName);</code><br><code class="java">// remove consent of groups </code><br><code>Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
 <p>&nbsp;</p>
-<h1>Security and privacy</h1>
+<h1 id="h_01HABTZ316AYQFEVA6BEXF711V">Security and privacy</h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter tamper protection</h2>
 <p>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
 </p>
 <pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
-<h1>Other features</h1>
-<h2>Setting event queue threshold</h2>
+<h1 id="h_01HABTZ317YY21TT4G68H4VJM4">Other features</h1>
+<h2 id="h_01HABTZ317H3267A1KQP4QR3JQ">Setting event queue threshold</h2>
 <p>
   In SDK configuration, you may limit the number of events that can be recorded
   internally by the system before they can all be sent together in one request.&nbsp;<br>
@@ -1108,8 +1108,8 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span><strong>MaxStackTraceLineLength -&nbsp;</strong>(int) Limits how many characters are allowed per stack trace line. The default value is&nbsp;<strong>200</strong>.</span>
 </p>
-<h1>FAQ</h1>
-<h2>What information is collected by the SDK</h2>
+<h1 id="h_01HABTZ317XR3J5CQFVNJ7Y5HF">FAQ</h1>
+<h2 id="h_01HABTZ317MXPDKQRBZ7X0R93D">What information is collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
@@ -1126,7 +1126,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   - SDK name
 </p>
 <p>
-  * If sessions are used then it would record the session start time, end time,
+  *If sessions are used then it would record the session start time, end time,
   and duration
 </p>
 <p>
@@ -1140,7 +1140,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   <span>- Locale identifier</span>
 </p>
 <p>
-  <span></span><span>* When generating a device ID, if no custom ID is provided, the SDK will use:</span><br>
+  <span></span><span>*When generating a device ID, if no custom ID is provided, the SDK will use:</span><br>
   <span>- Android: md5 of ANDROID_ID&nbsp;<br></span><span>- iOS: I</span><span>t will be vendor id and </span><span>advertising id as a fallback<br></span><span>- Windows stores apps: It will be advertising id<br></span><span>- Windows Standalone: It will be hash from the concatenation of strings taken from computer system hardware classes.</span><span></span>
 </p>
 <p>
@@ -1150,7 +1150,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   button the user has clicked on&nbsp;
 </p>
 <p>
-  * When events are recorded, the following information collected:<br>
+  *When events are recorded, the following information collected:<br>
   - Time of event<br>
   - Current hour<br>
   - Current day of week
