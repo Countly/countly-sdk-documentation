@@ -982,6 +982,12 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
   from some or all existing A/B tests available.
 </p>
 <p>
+  You can enroll into the A/B tests automatically whenever you download RC values
+  from the server. To do so you have to set the following flag at the config object
+  during initialization:
+</p>
+<pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)<br>..<span>enrollABOnRCDownload();</span></pre>
+<p>
   To enroll a user into the A/B tests for the given keys you use the following
   method:
 </p>
@@ -1763,19 +1769,79 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   variants. There are four calls you can use for fetching, accessing, and enrolling
   for your variants.
 </p>
-<h3 id="h_01H930GAQ8YY8WZQ0CGX7FKCNN">Fetching Test Variants</h3>
+<h3 id="h_01H930GAQ8YY8WZQ0CGX7FKCNN">Fetching Experiment Information</h3>
+<p>
+  You can fetch information about the A/B tests in your server including test name,
+  description and the current variant:
+</p>
+<pre><code class="java">Countly.instance.remoteConfig.<span>testingDownloadExperimentInformation((rResult, error){<br>    // do sth<br>})</span></code></pre>
+<p>
+  You can provide a callback (which is optional) to be called when the fetching
+  process ends. Depending on the situation, this would return a RequestResponse
+  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
+  as the second parameter if there was an error ("null" otherwise).
+</p>
+<h3 id="01HACJ8D2KAWMSF7NW2MKG1E1F">Fetching Test Variants</h3>
 <p>
   You can fetch a map of all A/B testing parameters (keys) and variants associated
   with it:
 </p>
 <pre><code class="java">Countly.instance.remoteConfig.testingDownloadVariantInformation((rResult, error){<br>    // do sth<br>})</code></pre>
 <p>
-  You can provide an callback (which is optional) to be called when the fetching
+  You can provide a callback (which is optional) to be called when the fetching
   process ends. Depending on the situation, this would return a RequestResponse
   Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
   as the second parameter if there was an error ("null" otherwise).
 </p>
-<h3 id="h_01H930GAQ8QWZEM4GGGF8Z35VE">Accessing Fetched Test Variants</h3>
+<h3 id="h_01H930GAQ8QWZEM4GGGF8Z35VE">Accessing Fetched Experiment Information</h3>
+<p>
+  After fetching the experiment information the SDK saves it in the RAM, so if
+  the memory is erased, you must fetch the information again. You can access this
+  information through this call:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().<span>testingGetAllExperimentInfo</span>()</code></pre>
+<p>
+  This would return a Future&lt;Map&lt;String, ExperimentInformation&gt;&gt; where
+  the keys are experiment IDs as String and the values are the ExperimentInformation
+  Class which contains information about the experiment with that ID. This Class'
+  structure is like this:
+</p>
+<pre><code>class ExperimentInformation {
+   // same ID as used in the map
+   String experimentID;
+   // the name of the experiment
+   String experimentName;
+   // the description of the experiment
+   String experimentDescription;
+   // the name of the currently assigned variant for this user (e.g., 'Control Group', 'Variant A')
+   String currentVariant;
+   // variant information for this experiment
+   Map&lt;String, Map&lt;String, Object?&gt;&gt; variants;
+}</code></pre>
+<p>
+  So an example data structure you might get at the end would look something similar
+  to this:
+</p>
+<pre><code>{
+   some_exp_ID: {
+     experimentID: some_ID,
+     experimentName: some_name,
+     experimentDescription: some description,
+     currentVariant: variant_name,
+     variants: {
+       Control Group: {
+         key_1: val,
+         key_2: val,
+       },
+       Variant A: {
+         key_1: val,
+         key_2: val,
+       }
+     }
+   }
+}
+</code></pre>
+<h3 id="01HACJK2TYGXHP5KPX4MTZJSQ1">Accessing Fetched Test Variants</h3>
 <p>
   When test variants are fetched, they are saved to the memory. If the memory is
   erased, you must fetch the variants again. So a common flow is to use the fetched
