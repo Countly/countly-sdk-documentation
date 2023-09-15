@@ -430,7 +430,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   Automatic sessions tracks user activity with respect to the app visibility. Basically
   it handles making certain requests to the server to inform it about the user
   session. Automatic sessions are enabled by default and SDK handles the necessary
-  calls (by sending start session, update session and end session requests ) to
+  calls (by sending start session, update session and end session requests) to
   track a session automatically.<br>
   This is how it works:
 </p>
