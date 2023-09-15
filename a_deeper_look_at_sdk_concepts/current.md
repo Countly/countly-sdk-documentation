@@ -1,4 +1,4 @@
-<h1>Sessions</h1>
+<h1 id="h_01HABT18WSGG477SSMB4BGB04K">Sessions</h1>
 <p>
   <span style="font-weight: 400;">Session in its most basic definition is a group of interactions a user engages in your application/website in a given timeframe. It can be used to keep track of user specific state like user identity, views and events. Again, it can be seen as hits to the server by a single user, grouped in a certain way. Countly has a specific internal logic to group these hits and calls them as sessions.</span>
 </p>
@@ -15,7 +15,7 @@
   <span style="font-weight: 400;">In case a user becomes active just at the end of the inactivity timer or just at the end of the session, Countly servers provide a grace period to extend the session instead of terminating it. This “session cooldown” value is 15 seconds by default and can be changed from the Countly dashboard under the settings section:</span>
 </p>
 <p>
-  <img src="/hc/article_attachments/9291005248537/001.png" alt="001.png">
+  <img src="/guide-media/01GVBGKPGGWB79MAQ25JJBXCN9" alt="001.png">
 </p>
 <p align="justify">
   <font face="Arial, serif">
@@ -33,7 +33,7 @@
 </p>
 <p align="justify">
   <font face="Arial, serif">
-    <img src="/hc/article_attachments/9291007294617/002.png" alt="002.png">
+    <img src="/guide-media/01GVCKHHAJASX64PZQ27KP9DD7" alt="002.png">
   </font>
 </p>
 <p align="justify">
@@ -55,7 +55,7 @@
 </p>
 <p align="justify">
   <font face="Arial, serif">
-    <img src="/hc/article_attachments/9291008662425/003.png" alt="003.png">
+    <img src="/guide-media/01GV9ZW670RZWB810F4EGKE57T" alt="003.png">
   </font>
 </p>
 <p align="justify">&nbsp;</p>
@@ -126,8 +126,8 @@
     if “session” consent was not provided, session tracking would not be working.
   </font>
 </p>
-<h1>Reporting "feature data" manually with events</h1>
-<h2>Views</h2>
+<h1 id="h_01HABT18WSV43CFW5YDA5G0BNP">Reporting "feature data" manually with events</h1>
+<h2 id="h_01HABT18WSXVTMVFRN0SFX427D">Views</h2>
 <p>
   <span data-preserver-spaces="true">Currently, SDK doesn't have any direct mechanism to record views. You may record views by using&nbsp;<code><span class="pl-c1">RecordEvent</span></code>&nbsp;method.&nbsp;</span>
 </p>
@@ -153,8 +153,8 @@
   <strong>Note: '</strong>name', 'visit', 'start' and 'segment' are internal keys
   to record a view.
 </p>
-<h1>Working with Feedback Widgets</h1>
-<h2>Interpreting Retrieved Feedback Widget Lists</h2>
+<h1 id="h_01HABT18WTFWFNKVPJJ6G6DEM4">Working with Feedback Widgets</h1>
+<h2 id="h_01HABT18WTEHRZTAQ49GRGNBP1">Interpreting Retrieved Feedback Widget Lists</h2>
 <p>
   When working with feedback widgets, at some point the available feedback widget
   list has to be retrieved from the Countly server. The SDK will expose a method
@@ -193,7 +193,7 @@
 <div>
   <pre><span>[</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811419f030e44be07d82f"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"rating"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"appearance"</span><span>:{</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"position"</span><span>:</span><span>"mleft"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"bg_color"</span><span>:</span><span>"#fff"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"text_color"</span><span>:</span><span>"#ddd"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"text"</span><span>:</span><span>"Feedback"</span><br><span>  &nbsp; &nbsp; },</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>"startPage"</span><span>],</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"Leave us a feedback"</span><br><span>  &nbsp;},</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811419f030e44be07d839"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"nps"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"One response for all"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>]</span><br><span>  &nbsp;},</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811429f030e44be07d83d"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"survey"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"appearance"</span><span>:{</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"position"</span><span>:</span><span>"bLeft"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"show"</span><span>:</span><span>"uSubmit"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"color"</span><span>:</span><span>"#0166D6"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"logo"</span><span>:</span><span>null</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"submit"</span><span>:</span><span>"Submit"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"previous"</span><span>:</span><span>"Previous"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"next"</span><span>:</span><span>"Next"</span><br><span>  &nbsp; &nbsp; },</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"Product Feedback example"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>]</span><br><span>  &nbsp;}</span><br><span>]</span></pre>
 </div>
-<h2>Reporting a feedback widget manually</h2>
+<h2 id="h_01HABT18WT0D08H8DR2BAD77T2">Reporting a feedback widget manually</h2>
 <p>
   This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
   <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>
@@ -269,7 +269,7 @@
   that has been created with respect to the type of widget that is being reported.
   More information on how to form this object is provided below.
 </p>
-<h3>Reporting NPS widgets manually</h3>
+<h3 id="h_01HABT18WVCY6BTEXM9TW7XJ0B">Reporting NPS widgets manually</h3>
 <p>
   To report the results of an NPS widget manually, no information from the widget's
   data JSON is needed. These widgets can report only two pieces of information
@@ -281,18 +281,18 @@
   one with the key of "rating" and an int value and the other with the "comment"
   key and a String value.
 </p>
-<h4>Android sample code</h4>
+<h4 id="h_01HABT18WVKNM54RJC97S4KQ5T">Android sample code</h4>
 <p>
   The following sample code would report the result of an NPS widget:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>segm</span>.put(<span>"rating"</span>, <span>3</span>);<span>//value from 0 to 10<br></span><span>        </span><span>segm</span>.put(<span>"comment"</span>, <span>"Filled out comment"</span>);<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
-<h4>Web sample code</h4>
+<h4 id="h_01HABT18WV01YQA39M5CJN18WP">Web sample code</h4>
 <p>
   The following code shows what is the expected widgetResult objects looks like
   for NPS widget:
 </p>
 <pre>var widgetResult = {<br>         rating: 3, // between 0 to 10<br>         comment: "any comment" // string<br>    };</pre>
-<h3>Reporting Rating widgets manually</h3>
+<h3 id="h_01HABT18WVQRSQ4RQS28P4QN9R">Reporting Rating widgets manually</h3>
 <p>
   To report the results of a Rating widget manually, again no information from
   the obtained widget data is needed. These widgets has similar reporting capabilities
@@ -303,13 +303,13 @@
   <strong>contactMe</strong> Boolean (true or false) if the user gave consent to
   be contacted again or not.
 </p>
-<h4>Web sample code</h4>
+<h4 id="h_01HABT18WV70HE6GXMF0X9V2AN">Web sample code</h4>
 <p>
   The following code shows what is the expected widgetResult objects looks like
   for Rating widget:
 </p>
 <pre>var widgetResult = {<br>         rating: 3, // between 1 to 5<br>         comment: "any comment", // string<br>         email: "email@any.mail", // string<br>         contactMe: true // boolean<br>    };</pre>
-<h3>Reporting Survey widgets manually</h3>
+<h3 id="h_01HABT18WVWCX0W68RGB0FJ1KK">Reporting Survey widgets manually</h3>
 <p>
   To report survey widgets manually, investigation of the widget data received
   from the second call is needed. Each question has a question type and depending
@@ -382,13 +382,13 @@
 </p>
 <p>It has the type "rating"</p>
 <p>You would provide any int value from 1 to 10 as the answer.</p>
-<h4>Android sample code</h4>
+<h4 id="h_01HABT18WV5DA061HYZ3FYBCD3">Android sample code</h4>
 <p>
   The following sample code would go through all of the received Survey widgets
   questions and choose a random answer to every question. It the reports the results:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>JSONArray questions </span>= retrievedWidgetData.optJSONArray(<span>"questions"</span>);<br><br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>Random rnd </span>= <span>new </span>Random();<br><br>        <span>//iterate over all questions and set random answers<br></span><span>        </span><span>for </span>(<span>int </span>a = <span>0</span>; a &lt; <span>questions</span>.length(); a++) {<br>            <span>JSONObject </span>question = <span>null</span>;<br>            <span>try </span>{<br>                question = <span>questions</span>.getJSONObject(a);<br>            } <span>catch </span>(<span>JSONException </span>e) {<br>                e.printStackTrace();<br>            }<br>            <span>String wType </span>= question.optString(<span>"type"</span>);<br>            <span>String questionId </span>= question.optString(<span>"id"</span>);<br>            <span>String answerKey </span>= <span>"answ-" </span>+ <span>questionId</span>;<br>            <span>JSONArray choices </span>= question.optJSONArray(<span>"choices"</span>);<br><br>            <span>switch </span>(<span>wType</span>) {<br>                <span>//multiple answer question<br></span><span>                </span><span>case </span><span>"multi"</span>:<br>                    <span>StringBuilder sb </span>= <span>new </span>StringBuilder();<br><br>                    <span>for </span>(<span>int </span>b = <span>0</span>; b &lt; <span>choices</span>.length(); b++) {<br>                        <span>if </span>(b % <span>2 </span>== <span>0</span>) {//pick every other choice<br>                            <span>if </span>(b != <span>0</span>) {<br>                                <span>sb</span>.append(<span>","</span>);<br>                            }<br>                            <span>sb</span>.append(<span>choices</span>.optJSONObject(b).optString(<span>"key"</span>));<br>                        }<br>                    }<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>sb</span>.toString());<br>                    <span>break</span>;<br>                <span>//radio buttons<br></span><span>                </span><span>case </span><span>"radio"</span>:<br>                <span>//dropdown value selector<br></span><span>                </span><span>case </span><span>"dropdown"</span>:<br>                    <span>int </span><span>pick </span>= <span>rnd</span>.nextInt(<span>choices</span>.length());<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>choices</span>.optJSONObject(<span>pick</span>).optString(<span>"key"</span>));<span>//pick the key of random choice<br></span><span>                    </span><span>break</span>;<br>                <span>//text input field<br></span><span>                </span><span>case </span><span>"text"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>"Some random text"</span>);<br>                    <span>break</span>;<br>                <span>//rating picker<br></span><span>                </span><span>case </span><span>"rating"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>rnd</span>.nextInt(<span>11</span>));<span>//put a random rating<br></span><span>                    </span><span>break</span>;<br>            }<br>        }<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
-<h1>
+<h1 id="h_01HABT18WV676C95X2768C5PN5">
   There Is No SDK That I Can Integrate for My Use Case. What are the options?
 </h1>
 <p>
@@ -427,7 +427,7 @@
   <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK</a>
   of your platform to see the capabilities and the features.
 </p>
-<h1>Handling the Device ID in Your Integrations</h1>
+<h1 id="h_01HABT18WVPPB1PX9J7MG2ZSCT">Handling the Device ID in Your Integrations</h1>
 <p>
   Countly tracks your users through an ID called the 'device ID'. This is attached
   to every request (which contain events and other data) that is sent to the Countly
@@ -448,12 +448,12 @@
   be handled, look
   <a href="#h_01GG7QB1WJQR1G8NX3EHP1ADG7" target="_self">bellow</a>.
 </p>
-<h2>Available Mechanisms For Interacting With Device ID</h2>
+<h2 id="h_01HABT18WV7K7Z4RJB5B82AZTY">Available Mechanisms For Interacting With Device ID</h2>
 <p>
   Countly SDK's try to be configurable and flexible, and handling device ID's is
   no exception.
 </p>
-<h3>Device ID During Init</h3>
+<h3 id="h_01HABT18WVX6YTM8WK5145BPY1">Device ID During Init</h3>
 <p>
   Countly SDK's behave differently in the first on a device compared to subsequent
   init's.
@@ -558,7 +558,7 @@
   see if the ID was SDK generated or developer supplied.
 </p>
 <h2 id="h_01GG7QB1WJQR1G8NX3EHP1ADG7">Different user tracking strategies</h2>
-<h3>Default User Tracking</h3>
+<h3 id="h_01HABT18WWTB0FRGMQMW22JND2">Default User Tracking</h3>
 <p>
   Like mentioned in the "Device ID during init" section. With no additional configuration,
   the SDK will generate a random device ID on the first init and then use it.
@@ -600,7 +600,7 @@
     to understand what happens in such cases.
   </li>
 </ul>
-<h3>Tracking Known Users</h3>
+<h3 id="h_01HABT18WW2EQPJV5HVB9PYDBJ">Tracking Known Users</h3>
 <p>
   This method, as opposed to the first one, helps Countly identify and track users
   if they are <em>known</em> to you. It is used when tracking the same user across
@@ -644,7 +644,7 @@
     authentication.
   </li>
 </ul>
-<h3>Known User With Pre-Tracking</h3>
+<h3 id="h_01HABT18WW4680K69GS1P5NFN0">Known User With Pre-Tracking</h3>
 <p>
   To tackle the problem of missing out on data before user authentication, it is
   possible to launch the Countly SDK in an <em>offline/temporary ID mode.</em>
@@ -683,7 +683,7 @@
     receive any data from this user.
   </li>
 </ul>
-<h3>Managing Anonymous and Known Users Together</h3>
+<h3 id="h_01HABT18WW14G16YGGDEW9NAC5">Managing Anonymous and Known Users Together</h3>
 <p>
   It is also possible to collect data of both user states (before login/known and
   after login/known) and manage the ID using the functionality discussed in the
@@ -776,7 +776,7 @@
     It requires SDK integration and customization which is slightly more difficult.
   </li>
 </ul>
-<h3>Other Known Strategies</h3>
+<h3 id="h_01HABT18WWEGJEHHSQPARRPB9F">Other Known Strategies</h3>
 <p>
   We have seen our customers using their own different implementations, and one
   of them was quite effective, which is why we have included it here.&nbsp;This
@@ -802,7 +802,7 @@
   that. You would need to consult Countly or make modifications yourself on certain
   SDKs.
 </p>
-<h3>Conclusion</h3>
+<h3 id="h_01HABT18WWG9VJE5WPSSJWKNVD">Conclusion</h3>
 <p>
   There are different user tracking strategies available. Each one has its own
   pros and cons. You need to understand what kind of data you want to collect and
@@ -810,7 +810,7 @@
   Make sure you know the options and then you would be able to find the best way
   that fits you with all its trade-offs.
 </p>
-<h1>Setting Custom User Metrics</h1>
+<h1 id="h_01HABT18WWYQ2QYPZY3GHZBA9B">Setting Custom User Metrics</h1>
 <p>
   User metrics are sent when starting a session or requesting remote config.&nbsp;Some
   SDK's expose functionality to override the SDK set metric values or provide custom
@@ -870,11 +870,11 @@
     <span><strong>_ua</strong> - (Web SDK) user agent string</span>
   </li>
 </ul>
-<h1>Preparing Your App for Symbolication</h1>
+<h1 id="h_01HABT18WWS0TZ37FZX1FW3ECS">Preparing Your App for Symbolication</h1>
 <p>
   <span style="font-weight: 400;">This section will guide you through the Android, iOS, and JavaScript symbolication processes.</span>
 </p>
-<h2>Android</h2>
+<h2 id="h_01HABT18WWB8BGBKK00RD3PA1W">Android</h2>
 <p>
   <span style="font-weight: 400;">Android's official tool for code shrinking and obfuscation is called ProGuard. A detailed description of its usage can be found&nbsp;<a href="https://developer.android.com/studio/build/shrink-code.html" target="_blank" rel="noopener">here</a>. There is also a paid tool with additional features called&nbsp;<a href="https://www.guardsquare.com/en/dexguard" target="_blank" rel="noopener">DexGuard</a>. Both ProGuard and DexGuard can be used for Countly crash symbolication. Currently, we do not support any other Android obfuscation libraries.</span>
 </p>
@@ -887,7 +887,7 @@
 <p>
   <span style="font-weight: 400;">After the build is complete, the symbol file called <code>mapping.txt</code></span><span style="font-weight: 400;">&nbsp;can be found under <code>&lt;module-name&gt;/build/outputs/mapping/release/</code></span><span style="font-weight: 400;">&nbsp;or <code>&lt;module-name&gt;/build/outputs/mapping/debug/</code></span><span style="font-weight: 400;">, depending on how you initiate the build process.</span>
 </p>
-<h3>ProGuard Rules</h3>
+<h3 id="h_01HABT18WW4ZW13QKAAV1GZSBB">ProGuard Rules</h3>
 <p>
   <span style="font-weight: 400;">You have the option of adding some rules to ProGuard (or DexGuard) and modifying how it runs. These rules should be added in the <strong>proguard-rules.pro</strong>&nbsp;file.</span>
 </p>
@@ -906,7 +906,7 @@
 <p>
   <span style="font-weight: 400;">The ProGuard rule file should be named <strong>proguard-rules.pro</strong>, and it is usually located in the root of your module. More information </span><a href="https://developer.android.com/studio/build/shrink-code.html#keep-code" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">.</span>
 </p>
-<h2>iOS</h2>
+<h2 id="h_01HABT18WWQ6R5BYSGCNXTKTGY">iOS</h2>
 <p>
   <span class="wysiwyg-color-black" style="font-weight: 400;">The symbol file is a dSYM file for iOS.</span>
 </p>
@@ -924,7 +924,7 @@
     <span style="font-weight: 400;">It is a file-like folder structure, and actual dSYM data is in the binary </span><span style="font-weight: 400;">file </span><code>AppName.app.dSYM/Contents/Resources/DWARF/AppName</code>.
   </li>
 </ul>
-<h3>dSYM Location</h3>
+<h3 id="h_01HABT18WW3S1CDQA8S8D7XWB1">dSYM Location</h3>
 <p>
   <span style="font-weight: 400;">First of all, for each executable target (main app, extensions, and Cocoa Touch Frameworks) in the project, a separate dSYM file is generated when the project is built. The dSYM location depends on build settings. By default, it is defined by <code>$DWARF_DSYM_FOLDER_PATH</code>&nbsp;Xcode Environment Variable.</span>
 </p>
@@ -935,12 +935,12 @@
 <p>
   <span style="font-weight: 400;">In addition, if you use the <code>Product &gt; Archive</code></span><span style="font-weight: 400;"> option in Xcode to create the <code>.xcarchive</code></span><span style="font-weight: 400;"> of your app, you may find a dSYM already created inside the <code>.xcarchive</code></span><span style="font-weight: 400;">. By default, its location is: <code>~/Library/Developer/Xcode/Archives/YYYY-MM-DD/AppName DD-MM-YYYY, HH.mm.xcarchive/dSYMs</code></span>
 </p>
-<h3>Automatic dSYM Upload</h3>
+<h3 id="h_01HABT18WWB2RYD1XCT9HESD1D">Automatic dSYM Upload</h3>
 <p>
   For automatic dSYM, please see the Countly iOS SDK documentation
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#symbolication" target="_self" rel="undefined">here</a>.
 </p>
-<h2>JavaScript</h2>
+<h2 id="h_01HABT18WWMW9E0W66Z9QMN1P7">JavaScript</h2>
 <p>
   In order to symbolicate errors, we need a source map file. We will try to lay
   out how you can produce a source map file for builds that use webpack, you can
@@ -996,7 +996,7 @@ module.exports = {
   package that would be installed along with your project.
 </p>
 <p>
-  <img src="/hc/article_attachments/900006013246/1612759824.png" alt="1612759824.png">
+  <img src="/guide-media/01GVBGJPE1FSBDCNJNEARRF63E" alt="1612759824.png">
 </p>
 <p>
   Then, you can see that webpack produced<strong> themain.js</strong>&nbsp;file
@@ -1004,5 +1004,5 @@ module.exports = {
   to upload that source map file to our Countly instance.
 </p>
 <p>
-  <img src="/hc/article_attachments/900006014086/1612759876.png" alt="1612759876.png">
+  <img src="/guide-media/01GVCKG7Q5YKKS920QD1T2RG8Y" alt="1612759876.png">
 </p>
