@@ -2370,6 +2370,14 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 <p>
   Here if no keys are provided it would remove the user from all A/B tests instead.
 </p>
+<p>
+  You can also enroll to A/B tests while getting RC values from storage. You can
+  use <code>getValueAndEnroll</code> while getting a single value and
+  <code>getAllValuesAndEnroll</code> while getting all values to enroll to the
+  keys that exist. If no value was stored for those keys these functions would
+  not enroll the user. Both of these functions works the same way with their non-enrolling
+  variants, namely; <code>getValue</code> and <code>getAllValues</code>.
+</p>
 <h2>Automatic Remote Config Triggers</h2>
 <p>
   <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
