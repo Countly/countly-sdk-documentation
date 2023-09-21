@@ -14,8 +14,8 @@
   reach the Countly Java SDK
   <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
   Also, you can inspect the sample application
-  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a> to
-  understand how most functionalities work.
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
+  to understand how most functionalities work.
 </p>
 <h1>Adding the SDK to the Project</h1>
 <p>
@@ -142,10 +142,11 @@ Countly.instance().init(config);</code></pre>
 </ul>
 <h2>Recording Events</h2>
 <p>
-  The standard way of recording events is through your <code>Countly</code> instance:<code class="java"></code>
+  The standard way of recording events is through your <code>Countly</code> instance's
+  <code>events</code> interface:
 </p>
 <div>
-  <pre>Map&lt;String, Object&gt; segmentation = <span>new </span>HashMap&lt;String, Object&gt;() {{<br>    put(<span>"Time Spent"</span>, <span>60</span>);<br>    put(<span>"Retry Attempts"</span>, <span>60</span>);<br>}};<br><br><code class="java">Countly.instance().events().recordEvent("purchase", 2, 19.98, segmentation, 35);</code></pre>
+  <pre><code class="java">Map&lt;String, Object&gt; segmentation = <span>new </span>HashMap&lt;String, Object&gt;() {{<br>    put(<span>"Time Spent"</span>, <span>60</span>);<br>    put(<span>"Retry Attempts"</span>, <span>60</span>);<br>}};<br><br>Countly.instance().events().recordEvent("purchase", 2, 19.98, segmentation, 35);</code></pre>
 </div>
 <p>
   The example above results in a new event being recorded in the current session.
@@ -413,7 +414,8 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
 <ul>
   <li>
     <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
-    for the automatic session update calls. The delay can not be smaller than 1 sec.
+    for the automatic session update calls. The delay can not be smaller than
+    1 sec.
   </li>
   <li>
     <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
@@ -449,7 +451,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
-<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
+<h2>Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
