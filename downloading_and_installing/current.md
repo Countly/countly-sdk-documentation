@@ -534,15 +534,17 @@
 <h1 id="h_01H9QCP8G72897X5YK7YMZAZ8K">Documentation For Older SDK Versions</h1>
 <h2 id="h_01H9QCP8G7Y97Y1T51TGGNDMNP">iOS SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/15917842316313" target="_blank" rel="noopener">Version 22.09.0</a>
+  <a href="https://countly.zendesk.com/hc/en-us/articles/23224275572121" target="_blank" rel="noopener">Version 23.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/13896615805337" target="_blank" rel="noopener">Version 22.06.0</a>
+  <a href="https://support.count.ly/hc/en-us/articles/15917842316313" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/10017895289625" target="_blank" rel="noopener">Version 21.11.0</a>
+  <a href="https://support.count.ly/hc/en-us/articles/13896615805337" target="_blank" rel="noopener">Version 22.06</a>
+  -
+  <a href="https://support.count.ly/hc/en-us/articles/10017895289625" target="_blank" rel="noopener">Version 21.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4410229126809" target="_blank" rel="noopener">Version 20.11.3</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900004099706" target="_blank" rel="noopener">Version 20.11.0</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900004099706" target="_blank" rel="noopener">Version 20.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/900004398263" target="_blank" rel="noopener">Version 20.04.3</a>
 </p>
