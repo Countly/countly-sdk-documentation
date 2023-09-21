@@ -733,7 +733,7 @@ Countly.Instance.SetConsent(consent);</code></pre>
   and duration
 </p>
 <p>
-  *If sessions are used then also device metrics are collected which contains:<br>
+  * If sessions are used then also device metrics are collected which contains:<br>
   - Screen resolution<br>
   - Screen density<br>
   - OS name<br>

@@ -42,16 +42,16 @@
   need to import all the files in the package.
 </p>
 <p class="wysiwyg-text-align-center">
-  <img src="/guide-media/01GVC1JBG025D3FBPJYN3EJR9V" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
+  <img src="/hc/article_attachments/4404570305433/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <p>
   <span data-preserver-spaces="true">This SDK uses the </span><strong><span data-preserver-spaces="true">Newtonsoft Json</span></strong><span data-preserver-spaces="true"> package internally and it is required for the SDK to work. </span>
 </p>
 <p>
-  <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that (2018 and 2019) you would have to install this package in the project manually. </span>
+  <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that, (2018 and 2019) you have to install this package in the project manually. </span>
 </p>
 <p>
-  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/guide-media/01GVDG0BAGCD7VJ9EYNK3GS32F" alt="image-newtonsoft.png"></span>
+  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/hc/article_attachments/6537960964505/image-newtonsoft.png" alt="image-newtonsoft.png"></span>
 </p>
 <h1 id="h_01HABTZ3143Z9ZY3H02CEV868Z">SDK Integration</h1>
 <h2 id="h_01HABTZ314XCMNWWK698JR773J">Minimal Setup</h2>
@@ -80,6 +80,10 @@
   Set <code>EnableConsoleLogging</code> on the config object to enable logging:
 </p>
 <pre>CountlyConfiguration config = new CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};</pre>
+<p>
+  For more information on where to find the SDK logs you can check the documentation
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+</p>
 <h2 id="device-id" class="anchor-heading">Device ID</h2>
 <p>
   <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
@@ -89,7 +93,7 @@
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true,<br>DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
 <p>
-  <span>You may let Countly SDK handles the initial device ID on its own. Then if in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
+  <span>You may let Countly SDK handle the initial device ID on its own. If needed in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
 </p>
 <pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 id="h_01HABTZ314QNCDAQT0SC5NETCG" class="anchor-heading">SDK data storage</h2>
@@ -194,7 +198,7 @@
 <pre>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;{<br>{ "Action", "click"}<br>};<br><br><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, LogType.Exception, segmentation, false); </pre>
 <h2 id="h_01HABTZ314FEB9WM3P718TVMHY" class="anchor-heading">Crash breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave crash breadcrumbs. They are shory logs<span>&nbsp;that </span>would
+  Throughout your app, you can leave crash breadcrumbs. They are short logs<span>&nbsp;that </span>would
   describe the previous steps that were taken in your app before the crash. After
   a crash happens, they will be sent together with the crash report.
 </p>
@@ -202,7 +206,7 @@
 <pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
 <h2 id="h_01HABTZ3140XGZJY6K0J169K5Q" class="anchor-heading">Consent</h2>
 <p>
-  This feature uses <code>Crashes</code><span> consent. No additinal crash logs will be recorded if consent is required and not given.</span>
+  This feature uses <code>Crashes</code><span> consent. No additional crash logs will be recorded if consent is required and not given.</span>
 </p>
 <h1 id="h_01HABTZ3149D9QF1CGYMK66JRV">Events</h1>
 <p>
@@ -360,7 +364,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   The Unity SDK handles the session automatically. After calling the
   <strong>Init</strong> method, the SDK starts the session automatically and extending
-  the session after every 60 seconds. This value is configurable during initialization.
+  the session after every 60 seconds. This value is configured during initialization.
   It cannot be modified after initialization.
 </p>
 <p>
@@ -558,7 +562,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   1. In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
   <strong>Other Settings</strong> section, add the
-  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/guide-media/01GV9ZT9T72NE430KKRJMGNE4X" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
+  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
 </p>
 <p>
   2. After exporting the <strong>iOS</strong> project, open the project in
@@ -745,7 +749,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <h2 id="h_01HABTZ316D1SCDFXWV0VMDARS" class="anchor-heading">Consent</h2>
 <p>
-  <span>This feature requires<code>RemoteConfig</code> consent. If consent is required and not give, no remote config information will be downloaded and stored.</span>
+  <span>This feature requires<code>RemoteConfig</code> consent. If consent is required and not given, no remote config information will be downloaded and stored.</span>
 </p>
 <p>
   If consent was given and then is removed, locally stored remote config information
@@ -1005,24 +1009,8 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
 </p>
 <pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
-<h1 id="h_01HABTZ317YY21TT4G68H4VJM4">Other features</h1>
-<h2 id="h_01HABTZ317H3267A1KQP4QR3JQ">Setting event queue threshold</h2>
-<p>
-  In SDK configuration, you may limit the number of events that can be recorded
-  internally by the system before they can all be sent together in one request.&nbsp;<br>
-  Example:
-</p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
-<p>
-  Once the threshold limit is reached, the system groups all recorded events and
-  sends them to the server.
-</p>
-<h2 id="checking-if-init-has-been-called" class="anchor-heading">Checking if the SDK has been initialized</h2>
-<p>
-  <span>In case you would like to check if init has been called, you may use the following property:</span>
-</p>
-<pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
-<h2 id="checking-if-init-has-been-called" class="anchor-heading">SDK config parameters explained</h2>
+<h1 id="h_01HABTZ317YY21TT4G68H4VJM4">Other Features</h1>
+<h2>SDK Config Parameters Explained</h2>
 <p>
   <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the optional parameters:</span><span></span>
 </p>
@@ -1108,8 +1096,48 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span><strong>MaxStackTraceLineLength -&nbsp;</strong>(int) Limits how many characters are allowed per stack trace line. The default value is&nbsp;<strong>200</strong>.</span>
 </p>
-<h1 id="h_01HABTZ317XR3J5CQFVNJ7Y5HF">FAQ</h1>
-<h2 id="h_01HABTZ317MXPDKQRBZ7X0R93D">What information is collected by the SDK</h2>
+<h2>Setting Event Queue Threshold</h2>
+<p>
+  In SDK configuration, you may limit the number of events that can be recorded
+  internally by the system before they can all be sent together in one request.&nbsp;<br>
+  Example:
+</p>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<p>
+  Once the threshold limit is reached, the system groups all recorded events and
+  sends them to the server.
+</p>
+<h2>Setting Maximum Request Queue Size</h2>
+<p>
+  When you initialize Countly, you can specify a value for the StoredRequestLimit
+  flag. This flag limits the number of requests that can be stored in the request
+  queue when the Countly server is unavailable or experiencing connection problems.
+</p>
+<p>
+  If the server is down, requests sent to it will be queued on the device. If the
+  number of queued requests becomes excessive, it can cause problems with delivering
+  the requests to the server, and can also take up valuable storage space on the
+  device. To prevent this from happening, the StoredRequestLimit flag limits
+  the number of requests that can be stored in the queue.
+</p>
+<p>
+  If the number of requests in the queue reaches the StoredRequestLimit limit,
+  the oldest requests in the queue will be dropped, and the newest requests will
+  take their place. This ensures that the queue doesn't become too large, and that
+  the most recent requests are prioritized for delivery.
+</p>
+<p>
+  If you do not specify a value for the StoredRequestLimit flag, the default
+  setting of 1,000 will be used.
+</p>
+<pre><code class="Java">StoredRequestLimit = 5000;</code></pre>
+<h2>Checking if the SDK has been initialized</h2>
+<p>
+  <span>In case you would like to check if init has been called, you may use the following property:</span>
+</p>
+<pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
+<h1>FAQ</h1>
+<h2>What information is collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
@@ -1126,7 +1154,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   - SDK name
 </p>
 <p>
-  *If sessions are used then it would record the session start time, end time,
+  * If sessions are used then it would record the session start time, end time,
   and duration
 </p>
 <p>
@@ -1140,7 +1168,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   <span>- Locale identifier</span>
 </p>
 <p>
-  <span></span><span>*When generating a device ID, if no custom ID is provided, the SDK will use:</span><br>
+  <span></span><span>* When generating a device ID, if no custom ID is provided, the SDK will use:</span><br>
   <span>- Android: md5 of ANDROID_ID&nbsp;<br></span><span>- iOS: I</span><span>t will be vendor id and </span><span>advertising id as a fallback<br></span><span>- Windows stores apps: It will be advertising id<br></span><span>- Windows Standalone: It will be hash from the concatenation of strings taken from computer system hardware classes.</span><span></span>
 </p>
 <p>
@@ -1150,7 +1178,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   button the user has clicked on&nbsp;
 </p>
 <p>
-  *When events are recorded, the following information collected:<br>
+  * When events are recorded, the following information collected:<br>
   - Time of event<br>
   - Current hour<br>
   - Current day of week
