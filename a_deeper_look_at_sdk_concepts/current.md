@@ -137,7 +137,7 @@
 <ul>
   <li>
     <strong><span data-preserver-spaces="true">key-</span></strong><span>&nbsp;</span><code class="java">[CLY]_view</code><span>&nbsp;</span>is
-    predefined by SDK, do not change it while recroding a view.<span data-preserver-spaces="true"><br></span>
+    predefined by SDK, do not change it while recording a view.<span data-preserver-spaces="true"><br></span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">segmentation- </span></strong><span data-preserver-spaces="true">A map where you can provide the view's name and other information related to views. </span><span data-preserver-spaces="true">You may also provide&nbsp;</span><span data-preserver-spaces="true">custom data for your view to track additional information. It is a mandatory field, you may not set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">.</span><span data-preserver-spaces="true"></span>
