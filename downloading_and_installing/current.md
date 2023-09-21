@@ -534,7 +534,7 @@
 <h1 id="h_01H9QCP8G72897X5YK7YMZAZ8K">Documentation For Older SDK Versions</h1>
 <h2 id="h_01H9QCP8G7Y97Y1T51TGGNDMNP">iOS SDK</h2>
 <p>
-  <a href="https://countly.zendesk.com/hc/en-us/articles/23224275572121" target="_blank" rel="noopener">Version 23.06</a>
+  <a href="/hc/en-us/articles/23224275572121" target="_blank" rel="noopener">Version 23.06</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/15917842316313" target="_blank" rel="noopener">Version 22.09</a>
   -
@@ -550,6 +550,8 @@
 </p>
 <h2 id="h_01H9QCP8G73H5RWXFK9P9W6F7Q">Android SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/23228065459353" target="_self" rel="undefined">Version 23.6</a>
+  -
   <a href="/hc/en-us/articles/20128936020633" target="_self" rel="undefined">Version 22.09</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/15806696414745" target="_self" rel="undefined">Version 22.06</a>

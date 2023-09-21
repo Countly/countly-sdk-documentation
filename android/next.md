@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.06.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.08.X</span>
 </p>
 <div class="callout callout--info">
   <p>
