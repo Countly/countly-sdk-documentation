@@ -10,9 +10,12 @@
   </p>
 </div>
 <p>
-  The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
-  as a dependency to your project and initializing SDK. Once those are done, you'll
-  have basic analytics on your server like users, sessions, devices, etc.
+  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
+  reach the Countly Java SDK
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
+  Also, you can inspect the sample application
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a> to
+  understand how most functionalities work.
 </p>
 <h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
@@ -406,7 +409,28 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
         .pushUnique("skill", "singer")
         .commit();</code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
-<h2 id="h_01HABV0K6D17J2B0MN04S1G5H7">Custom Metrics</h2>
+<h2>SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you set values in your Countly config object:
+</p>
+<ul>
+  <li>
+    <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
+    for the automatic session update calls. The delay can not be smaller than 1 sec.
+  </li>
+  <li>
+    <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
+    grouping.
+  </li>
+</ul>
+<h2>Setting Event Queue Threshold</h2>
+<p>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
+</p>
+<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h2>Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
 </div>

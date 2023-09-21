@@ -139,7 +139,7 @@ Countly.app_key = "YOUR_APP_KEY";
 // Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
-Countly.url = "<https://yourdomain.com>";
+Countly.url = "https://yourdomain.com";
 
 // Start pushing function calls to queue
 // Track sessions automatically (recommended)
@@ -159,9 +159,9 @@ Countly.q.push(['track_pageview']);
 var cly = document.createElement('script'); cly.type = 'text/javascript';
 cly.async = true;
 // Enter URL of script here (see below for other option)
-cly.src = '<https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js>';
+cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
 cly.onload = function(){Countly.init()};
-var s = document.getElementsByTagName['script'](0); s.parentNode.insertBefore(cly, s);
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
   </div>
@@ -177,7 +177,7 @@ app_key: "YOUR_APP_KEY",
 // Provide your server IP or name.
 // If you use your own server, make sure you have https enabled if you use
 // https below.  
- url: "<http://yourdomain.com>"
+ url: "http://yourdomain.com"
 
 });
 // track sessions automatically
@@ -190,12 +190,12 @@ Countly.track_pageview();
 <p>
   <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. Two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should use instead of the one above.</span>
 </p>
-<pre><code class="text">// Note: You should change 19.2.1 below to the version
+<pre><code class="text">// Note: You should change 19.2.1 below to the version 
 // of the latest JS SDK to make sure you use the latest version.
-// Latest version is here:
+// Latest version is here: 
 // https://github.com/Countly/countly-sdk-web/releases
 
-<https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js></code></pre>
+https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
 <p>
   <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
 </p>
@@ -215,7 +215,7 @@ Countly.track_pageview();
 //send event on button click
 function clickEvent(ob){
   Countly.q.push(['add_event',{
-    key:"asyncButtonClick",
+    key:"asyncButtonClick", 
     segmentation: {
       "id": ob.id
     }
@@ -229,7 +229,7 @@ function clickEvent(ob){
   //send event on button click
   function clickEvent(ob){
     Countly.add_event({
-      key:"buttonClick",
+      key:"buttonClick", 
       segmentation: {
         "id": ob.id
       }
@@ -1193,7 +1193,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVD4RVE1CE6DH744PPPNTY00" alt="001.png">
+  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2 id="h_01HABTQ438184HFAE37E78K9VP">Tracking Scrolls</h2>
 <p>
@@ -1215,7 +1215,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVAYP9A9YBWPDTJK815SX5JD" alt="002.png">
+  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
 </div>
 <h1 id="h_01HABTQ438YJDHDMKPS8X3YK99">Remote Config</h1>
 <p>
@@ -1258,13 +1258,13 @@ Countly.remote_config = function(err, remoteConfigs){
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",<br>  debug: true,
-  remote_config: true
+  remote_config: true 
 });<br><br>// OR
 
 // provide a callback to be notified when configs are loaded
 Countly.init({
   app_key:"YOUR_APP_KEY",
-  url: "<https://try.count.ly>",<br>  debug: true,
+  url: "https://try.count.ly",<br>  debug: true,
   remote_config: function(err, remoteConfigs){
     if (!err) {
       //we have our remoteConfigs here
@@ -1719,7 +1719,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     "organization": "Countly",
     "phone": "+37112345678",
     //Web URL to picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg",
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
     "gender": "M",
     "byear": 1987, //birth year
     "custom":{
@@ -1737,7 +1737,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     "organization": "Countly",
     "phone": "+37112345678",
     //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg",
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
     "gender": "M",
     "byear": 1987, //birth year
     "custom":{
@@ -2123,7 +2123,7 @@ Countly.app_key = "YOUR_APP_KEY";
 // or asia-try.count.ly for EE trial server.
 // If you use your own server, make sure you have https enabled if you use
 // https below.
-Countly.url = "<https://yourdomain.com>";
+Countly.url = "https://yourdomain.com";
 
 //require consent before tracking anything
 Countly.require_consent = true; //this true means consent is required
@@ -2170,9 +2170,9 @@ localStorage.setItem("consents", JSON.stringify(response));
 var cly = document.createElement('script'); cly.type = 'text/javascript';
 cly.async = true;
 // Enter url of script here (see below for other option)
-cly.src = '<https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js>';
+cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
 cly.onload = function(){Countly.init()};
-var s = document.getElementsByTagName['script'](0); s.parentNode.insertBefore(cly, s);
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
   </div>
@@ -2184,7 +2184,7 @@ var s = document.getElementsByTagName['script'](0); s.parentNode.insertBefore(cl
 //initializing countly with params and passing require_consent config as true
 Countly.init({
 app_key: "YOUR_APP_KEY",
-url: "<https://try.count.ly>", //your server goes here
+url: "https://try.count.ly", //your server goes here
 debug:true,
 require_consent: true //this true means consent is required
 });
@@ -2427,7 +2427,7 @@ Countly.collect_from_forms(document, true);</code></pre>
 &lt;p&gt;&lt;input type="text" name="e" value="myemail@mydomain.com"&gt;&lt;/p&gt;
   
 &lt;!-- ignore this input --&gt;
-&lt;p&gt;&lt;input type="text" name="e" value="<notmyemail@notmydomain.com>" class="cly_user_ignore"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type="text" name="e" value="notmyemail@notmydomain.com" class="cly_user_ignore"&gt;&lt;/p&gt;
 
 &lt;!-- get customfield by class --&gt;
 &lt;p&gt;&lt;input type="text" name="custom" id="custom" value="value" class="cly_user_key1"&gt;&lt;/p&gt;
@@ -2435,7 +2435,7 @@ Countly.collect_from_forms(document, true);</code></pre>
 &lt;p&gt;&lt;input id="submit-form" type="submit" value="Submit"&gt;&lt;/p&gt;
 
 &lt;/form&gt;</code></pre>
-<h3 id="h_01HABTQ439RDEE90BNYGTB48WB">Collect User Data From Facebook</h3>
+<h3>Collect User Data From Facebook</h3>
 <p>
   <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
 </p>
@@ -2598,14 +2598,14 @@ if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
   
   //provide countly initialization parameters
   Countly.app_key = "YOUR_APP_KEY";
-  Countly.url = "<http://yourdomain.com>";
+  Countly.url = "http://yourdomain.com"; 
   
   //track views or anything else you want to track
   Countly.q.push(['track_pageview']);
   
   //function to initialize Countly
   function InitializeCountly(device_id) {
-
+    
     //assign passed device_id
     Countly.device_id = device_id;
     
@@ -2768,14 +2768,14 @@ Countly.q = Countly.q || [];
 // initializing first instance, which will be global Countly
 Countly.init({
   app_key: "YOUR_APP_KEY_1",
-  url: "<https://try.count.ly>" //your server goes here
+  url: "https://try.count.ly" //your server goes here
 })
 // report event to first app
 Countly.add_event({
   key:"first_app"
 });
 
-// initialize second instance for another app
+// initialize second instance for another app 
 Countly.q.push(["init", {
   app_key: "YOUR_APP_KEY_2", //must have different APP key
   url: "https://try.count.ly" //your server goes here
@@ -2801,13 +2801,13 @@ Countly.add_event({
 // initialize second instance for another app
 var Countly2 = Countly.init({
   app_key: "YOUR_APP_KEY_2", //must have different APP key
-  url: "<https://try.count.ly>" //your server goes here
+  url: "https://try.count.ly" //your server goes here
 });
 // report event to second app
 Countly2.add_event({
   key:"second_app"
 });
-
+    
     </code></pre>
   </div>
 </div>
@@ -3055,7 +3055,7 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 </ol>
 <p>A simple implementation would look something like this:</p>
 <div>
-  <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>[</span><span>o</span><span>](</span><span>0</span><span>);</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
+  <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>o</span><span>)[</span><span>0</span><span>];</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
 </div>
 <div class="callout callout--info">
   <p>

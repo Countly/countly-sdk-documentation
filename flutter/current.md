@@ -40,7 +40,7 @@ flutter run</code></pre>
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^23.6.0
+  countly_flutter: ^23.8.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -427,19 +427,18 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
 <h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic session tracking</h2>
 <p>
-  To start recording an automatic session tracking you would call:
-</p>
-<pre><code class="JavaScript">Countly.start();</code></pre>
-<p>
-  <code class="JavaScript">Countly.start();</code> will handle the start session,
-  update session and end session automatically.<br>
+  Automatic sessions tracks user activity with respect to the app visibility. Basically
+  it handles making certain requests to the server to inform it about the user
+  session. Automatic sessions are enabled by default and SDK handles the necessary
+  calls (by sending start session, update session and end session requests) to
+  track a session automatically.<br>
   This is how it works:
 </p>
 <ul>
   <li>
-    <strong>Start/Begin session Request:</strong> It is sent on
-    <code class="JavaScript">Countly.start();</code> call and when the app comes
-    back to the foreground from the background, and it includes basic metrics.
+    <strong>Start/Begin session Request:</strong> It is sent to the server when
+    the app comes back to the foreground from the background, and it includes
+    basic metrics.
   </li>
   <li>
     <strong>Update Session Request:</strong> It automatically sends a periodical
@@ -450,30 +449,26 @@ Timer timer = Timer(new Duration(seconds: 5), () {
     when the app goes to the background or terminates.
   </li>
 </ul>
-<p>
-  If you want to end automatic session tracking you would call:
-</p>
-<pre><code class="JavaScript">Countly.stop();</code></pre>
 <h2 id="manual-sessions" class="anchor-heading">Manual sessions</h2>
 <p>
   Sometimes, it might be preferable to control the session manually instead of
   relying on the SDK.
 </p>
 <p>It can be enabled during init with:</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);</code> config.enableManualSessionHandling();</pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br></code>config.enableManualSessionHandling();</pre>
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
-  <li>Begin session</li>
+  <li>Begin session (Starts a session)</li>
   <li>
-    Update session duration. By default, you would call this every 60 seconds
+    Update session duration (By default, you would call this every 60 seconds
     after beginning a session so that it is not closed server side. If you would
-    want to increase that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
+    want to increase that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration)</span>
   </li>
-  <li>End session (also updates duration)</li>
+  <li>End session (Ends and updates duration)</li>
 </ul>
-<p>The approprate call to do that are:</p>
-<pre>Countly.beginSession();<br>Countly.updateSession();
-Countly.endSession();</pre>
+<p>You can use the 'sessions interface' to make these calls:</p>
+<pre>Countly.instance.sessions.beginSession();<br>Countly.instance.sessions.updateSession();
+Countly.instance.sessions.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View tracking</h1>
 <h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual view recording</h2>
 <p>You can manually track views in your application.</p>

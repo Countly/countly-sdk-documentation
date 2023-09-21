@@ -31,7 +31,7 @@ pod install                         # Download and install pods<br>
 cd ../                              # Move to parent directory
 react-native run-android # OR       # Run the android project
 react-native run-ios                # Run the iOS project</code></pre>
-<h1>Adding the SDK to the project</h1>
+<h1 id="h_01HAVQNJQQY6AYCGY7TW5TR2GC">Adding the SDK to the project</h1>
 <p>
   Run the following snippet in the root directory of your React Native project
   to install the npm dependencies and link <strong>native libraries</strong>.&nbsp;
@@ -45,8 +45,8 @@ npm install --save countly-sdk-react-native-bridge@latest
 cd ios 
 pod install
 cd ..</pre>
-<h1>SDK Integration</h1>
-<h2>Minimal setup</h2>
+<h1 id="h_01HAVQNJQQBPYNQ7D6ACZTPEMM">SDK Integration</h1>
+<h2 id="h_01HAVQNJQQQAZSCX41W0SPS5P3">Minimal setup</h2>
 <p>
   We will need to call two methods (<code class="JavaScript">initWithConfig</code>
   and <code class="JavaScript">start</code>) in order to set up our SDK. These
@@ -81,7 +81,7 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2>Enable logging</h2>
+<h2 id="h_01HAVQNJQQ1QSEBM46DBK2DR77">Enable logging</h2>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
   logging is enabled, then our SDK will print out debug messages about its internal
@@ -100,7 +100,7 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
 </p>
-<h2>Device ID</h2>
+<h2 id="h_01HAVQNJQQE2NNR8AVVZD1EHNT">Device ID</h2>
 <p>
   You may provide your own custom device ID when initializing the SDK using the
   method below.
@@ -110,20 +110,20 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
   countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </pre>
-<h2 class="anchor-heading">SDK data storage</h2>
+<h2 id="h_01HAVQNJQQMT24JF8S477H9WJB" class="anchor-heading">SDK data storage</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in a file named
   "Countly.dat" For Android: SDK data is stored in SharedPreferences. A SharedPreferences
   object points to a file containing key-value pairs and provides simple methods
   to read and write them.
 </p>
-<h1>Crash reporting</h1>
+<h1 id="h_01HAVQNJQQ54VGN5SK3J9YZYCN">Crash reporting</h1>
 <p>
   The Countly SDK has the ability to collect
   <a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics">crash reports</a>,
   which you may examine and resolve later on the server.
 </p>
-<h2>Automatic crash handling</h2>
+<h2 id="h_01HAVQNJQQ8BMDZBKTHKSMAHQQ">Automatic crash handling</h2>
 <p>
   With this feature, the Countly SDK will generate a crash report if your application
   crashes due to an exception and will send it to the Countly server for further
@@ -145,7 +145,7 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
   countlyConfig.enableCrashReporting(); // Enable crash reports
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
-<h2>Automatic crash report segmentation</h2>
+<h2 id="h_01HAVQNJQQH45W0XT6VXNT2VG0">Automatic crash report segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
   which specific library or framework version you used in your app. You may then
@@ -155,7 +155,7 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
 <p>Use the following function for this purpose:</p>
 <pre><code class="JavaScript">var segment = {"Key": "Value"};
 Countly.setCustomCrashSegments(segment);</code></pre>
-<h2>Handled exceptions</h2>
+<h2 id="h_01HAVQNJQQP9T6KQT0Y0PRW5RF">Handled exceptions</h2>
 <p>
   You might catch an exception or similar error during your app’s runtime.
 </p>
@@ -189,7 +189,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <strong>4. Manually report fatal exception with segmentation</strong>
 </p>
 <pre><code class="JavaScript">Countly.logException("STACK_TRACE_STRING", false, {"_facebook_version": "0.0.1"});</code></pre>
-<h2>Crash breadcrumbs</h2>
+<h2 id="h_01HAVQNJQQW9G8MJHFW3EAR78S">Crash breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs which would describe previous
   steps that were taken in your app before the crash. After a crash happens, they
@@ -197,7 +197,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
 </p>
 <p>Following the command adds crash breadcrumb:</p>
 <pre><code class="JavaScript">Countly.addCrashLog(String record) </code></pre>
-<h2>Native C++ Crash Reporting</h2>
+<h2 id="h_01HAVQNJQQ8E0Y6GS98ZT7P1NP">Native C++ Crash Reporting</h2>
 <p>
   If you have C++ libraries in your React Native Android app, the React Native
   Bridge SDK allows you to record possible crashes in your Countly server by integrating
@@ -271,7 +271,7 @@ D/Countly (124): Checking for native crash dumps
 D/Countly (124): Native crash folder exists, checking for dumps
 D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
-<h1>Events</h1>
+<h1 id="h_01HAVQNJQR1DMRFF2T44003S59">Events</h1>
 <p>
   An <a href="http://resources.count.ly/docs/custom-events">Event</a> is any type
   of action that you can send to a Countly instance, e.g. purchases, changed settings,
@@ -308,7 +308,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
     All data passed to the Countly server via the SDK or API should be in UTF-8.
   </p>
 </div>
-<h2>Recording Events</h2>
+<h2 id="h_01HAVQNJQR1RXEQ6KYGTMJFJDP">Recording Events</h2>
 <p>
   We will be recording a <strong>purchase</strong> event below. Here is a quick
   summary of the information with which each usage will provide us:
@@ -358,7 +358,7 @@ Countly.sendEvent(event);</code></pre>
   those examples and use Country, app_version, game_level, time_of_day, and any
   other segmentation that will provide you with valuable insights.
 </p>
-<h2>Timed events</h2>
+<h2 id="h_01HAVQNJQRBRHVK5WF42VPFZF2">Timed events</h2>
 <p>
   It's possible to create timed events by defining a start and a stop moment.
 </p>
@@ -397,7 +397,7 @@ Countly.startEvent(eventName);
 
 //cancel the event 
 Countly.cancelEvent(eventName);</code></pre>
-<h1>View tracking</h1>
+<h1 id="h_01HAVQNJQR7VTSADNK0KZGAE8H">View tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
 <pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
 <p>
@@ -415,7 +415,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <div class="img-container">
   <img src="/guide-media/01GV9ZW9XVCXCTTKN1DT3684EV" alt="001.png">
 </div>
-<h1>Device ID management</h1>
+<h1 id="h_01HAVQNJQR4M6EJ5WS9HRBX2Q4">Device ID management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
@@ -434,7 +434,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2>Changing device ID with and without merge</h2>
+<h2 id="h_01HAVQNJQR1HPTNTJ711DVNFD1">Changing device ID with and without merge</h2>
 <p>
   You may configure or change the device ID anytime using the method below.
 </p>
@@ -449,7 +449,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <code class="JavaScript">false</code>, the device will be counted as a new device
   on the server.
 </p>
-<h2>Temporary Device ID</h2>
+<h2 id="h_01HAVQNJQRHVERZJ1YR7QJHMVG">Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode for keeping all requests on hold until
   the real device ID is set later.
@@ -490,7 +490,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   method, all requests which have been kept on hold until that point will start
   with the real device ID.
 </p>
-<h2>Retrieving the device id</h2>
+<h2 id="h_01HAVQNJQREEYRDZ2HNBMRZ7HF">Retrieving the device id</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.
@@ -522,7 +522,7 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
 } else if(deviceIdType == DeviceIdType.TEMPORARY_ID) {
   //the SDK is in temporary ID mode
 }</span></span></code></pre>
-<h1>Push Notifications</h1>
+<h1 id="h_01HAVQNJQR5GW08NR6A2P814QT">Push Notifications</h1>
 <p>
   Please first check our
   <a href="/hc/en-us/articles/360037270012" target="_self" rel="undefined">Push Notifications documentation</a>
@@ -530,7 +530,7 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
   differently (from how you can send them externally to how they are handled in
   native code), we need to provide different instructions for these two platforms.
 </p>
-<h2>General Setup</h2>
+<h2 id="h_01HAVQNJQRSZVS0Y9J8WZ1AW2D">General Setup</h2>
 <p>
   Android and iOS devices require different setups to enable the push notifications.
   Android uses the <code>setPushNotificationChannelInformation</code>, whereas
@@ -578,8 +578,8 @@ await Countly.initWithConfig(countlyConfig);
   method will ask for permission, and send push token to Countly server.
 </p>
 <pre>Countly.askForNotificationPermission();</pre>
-<h3>Push Notification Customization</h3>
-<h4>Notification Accent Color</h4>
+<h3 id="h_01HAVQNJQRF1EPT9FZ5YETHTBN">Push Notification Customization</h3>
+<h4 id="h_01HAVQNJQRGAKZN0PZZM9ENZB5">Notification Accent Color</h4>
 <div class="callout callout--warning">
   <p>
     <code>setPushNotificationAccentColor</code> requires the minimum SDK version
@@ -597,7 +597,7 @@ await Countly.initWithConfig(countlyConfig);
 </p>
 <pre><code class="javascript">// Set notification accent color
 countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
-<h4>Custom Sound</h4>
+<h4 id="h_01HAVQNJQSDNA1SBTY0ZWKREJV">Custom Sound</h4>
 <p>
   Currently custom sound feature is only available for Android.
 </p>
@@ -631,7 +631,7 @@ countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#custom-notification-sound</a>
 </p>
-<h2>Android Setup</h2>
+<h2 id="h_01HAVQNJQSDMY43FAAN5D1GQ74">Android Setup</h2>
 <p>
   Step 1: For FCM credentials setup please follow the instruction from this URL
   <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#getting-fcm-credentials</a>.
@@ -716,7 +716,7 @@ countlyConfig.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.de
 // configure redirection check
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </pre>
-<h2>iOS Setup</h2>
+<h2 id="h_01HAVQNJQSZ2E3RWEEZ9QEAB02">iOS Setup</h2>
 <p>
   Push notifications are enabled by default for iOS, but if you wish to disable
   them, you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in the project's
@@ -759,7 +759,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <div class="img-container">
   <img src="/guide-media/01GVDFZ17C5QDJTNSY6AKV01ZY" alt="Countly_RN_PUSH.png">
 </div>
-<h2>Handling push callbacks</h2>
+<h2 id="h_01HAVQNJQSJT44XRDEHJX0SZYC">Handling push callbacks</h2>
 <p>
   To register a Push Notification callback after initialising the SDK, use the
   method below.
@@ -804,7 +804,7 @@ console.log(JSON.stringify(theNotification));
   completionHandler(0);
 }
 </code></pre>
-<h3>Data Structure Received in Push Callbacks</h3>
+<h3 id="h_01HAVQNJQS165PB76SXZHC84PV">Data Structure Received in Push Callbacks</h3>
 <p>
   Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
   <br>
@@ -813,12 +813,12 @@ console.log(JSON.stringify(theNotification));
 <pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
 <p>Data Received for iOS platform:</p>
 <pre>{<br> "c": {<br>  "i": "62b5b945cabedb0870e9f217",<br>  "l": "https:\/\/www.google.com\/",<br>  "e": {<br>   "dt": "mobile",<br>   "cc": "TR"<br>  },<br>  "a": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png"<br> },<br> "aps": {<br>  "mutable-content": 1,<br>  "alert": {<br>   "title": "title",<br>   "subtitle": "subtitle",<br>   "body": "Message"<br>  },<br>  "badge": 1,<br>  "sound": "custom"<br> },<br> "Key": "value"<br>}</pre>
-<h1>User Location</h1>
+<h1 id="h_01HAVQNJQSHA4P0WW2K60R3SNV">User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
   By default, the Countly Server uses the GeoIP database to deduce a user's location.
 </p>
-<h2>Set User Location</h2>
+<h2 id="h_01HAVQNJQS3NHED2YPDARB5V33">Set User Location</h2>
 <p>
   If your app has a different way of detecting location, you may send this information
   to the Countly Server by using the
@@ -874,7 +874,7 @@ var ipAddress = "103.238.105.167";
 
 Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
-<h2>Disable Location</h2>
+<h2 id="h_01HAVQNJQSVG65ZFJZ335BTARP">Disable Location</h2>
 <p>
   To erase any cached location data from the device and stop further location tracking,
   use the following method. Note that if after disabling location, the
@@ -883,14 +883,14 @@ Countly.setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </p>
 <pre><code class="javascript">//disable location tracking
 Countly.disableLocation();</code></pre>
-<h1>Remote Config</h1>
+<h1 id="h_01HAVQNJQSE9AD9KM7WS7R68J8">Remote Config</h1>
 <p>
   Remote config allows you to modify how your app functions or looks by requesting
   key-value pairs from your Countly server. The returned values may be modified
   based on the user profile. For more details, please see the
   <a href="https://resources.count.ly/docs/remote-config">Remote Config documentation</a>.
 </p>
-<h2>Manual Remote Config download</h2>
+<h2 id="h_01HAVQNJQS9RY5XN2RG153BG79">Manual Remote Config download</h2>
 <p>
   There are three ways for manually requesting a remote config update:
 </p>
@@ -938,7 +938,7 @@ console.log(data);
   will update all the values. This means it will also erase all keys not returned
   by the server.
 </p>
-<h2>Getting Remote Config values</h2>
+<h2 id="h_01HAVQNJQSN1VVTHGZSWR9JDAC">Getting Remote Config values</h2>
 <p>
   To request a stored value, call
   <code class="JavaScript">getRemoteConfigValueForKey</code> or
@@ -950,13 +950,13 @@ console.log(data);
 });
 
 var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
-<h2>Clearing Stored Remote Config values</h2>
+<h2 id="h_01HAVQNJQSRE44ZND5CQ1WZKAK">Clearing Stored Remote Config values</h2>
 <p>
   At some point, you might like to erase all the values downloaded from the server.
   You will need to call one function to do so.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigClearValues();</code></pre>
-<h1>User Feedback</h1>
+<h1 id="h_01HAVQNJQS2ZB1K5WM9YA34TX9">User Feedback</h1>
 <p>
   There are a different ways of receiving feedback from your users: the Star-rating
   dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).
@@ -967,8 +967,8 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
   system as well as leave a text comment. The Surveys widgets (Surveys and NPS®)
   allow for even more targeted feedback from users.
 </p>
-<h2>Ratings</h2>
-<h3>Star Rating Dialog</h3>
+<h2 id="h_01HAVQNJQSE7TGN56S5RGJVDE4">Ratings</h2>
+<h3 id="h_01HAVQNJQSSQ0PHR4FQPFXXTC3">Star Rating Dialog</h3>
 <p>
   The Star-rating integration provides a dialog for getting user feedback about
   an application. It contains a title, a simple message explaining its purpose,
@@ -991,7 +991,7 @@ countlyConfig.setStarRatingDialogTexts("Custom title", "Custom message", "Custom
 // Set dialog texts
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
-<h3>Rating Widget</h3>
+<h3 id="h_01HAVQNJQSMBF7NN8CPH9R6W2Z">Rating Widget</h3>
 <p>
   The rating widget displays a server-configured widget to your user devices.
 </p>
@@ -1022,7 +1022,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   Then, call the function to show the widget popup using the widget ID below.
 </p>
 <pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
-<h2>Feedback Widget</h2>
+<h2 id="h_01HAVQNJQS4TRX89X6GSGWQGGV">Feedback Widget</h2>
 <p>
   It is possible to display 2 kinds of Surveys widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
@@ -1059,7 +1059,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   After you have decided which widget you want to display, call the function below.
 </p>
 <pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("WidgetshownCallback");<br>},<br>function() {<br>  console.log("WidgetclosedCallabck");<br>})<br></code></pre>
-<h1>User Profiles</h1>
+<h1 id="h_01HAVQNJQSW54CC0XFHA30BPC8">User Profiles</h1>
 <p>
   You can provide Countly any details you may have about your user or visitor.
   This will allow you to track each specific user on the "User Profiles" tab, available
@@ -1104,7 +1104,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   you send a user’s data, it can be found in your Dashboard under
   <code class="JavaScript">Users &gt; User Profiles</code>.
 </p>
-<h2>Setting Predefined Values</h2>
+<h2 id="h_01HAVQNJQSBR8S36NF4KQ8X0D3">Setting Predefined Values</h2>
 <p>
   Predefined user properties are a set of default keys that are commonly used in
   visitor data collection.
@@ -1149,7 +1149,7 @@ Countly.userDataBulk.save();
 </code></pre>
   </div>
 </div>
-<h2>Setting Custom Values</h2>
+<h2 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Setting Custom Values</h2>
 <p>
   Custom user properties are any arbitrary values that you would like to store
   under your user's profile. These values can be internal IDs, registration dates,
@@ -1183,7 +1183,7 @@ Countly.userDataBulk.setUserProperties(options);
 Countly.userDataBulk.save();</code></pre>
   </div>
 </div>
-<h2>Modifying Data</h2>
+<h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">Modifying Data</h2>
 <p>
   Additionally, you can modify these custom values in various ways like increasing
   a number, pushing new values to an array, etc.&nbsp; You can see the whole range
@@ -1228,7 +1228,7 @@ Countly.userDataBulk.pullValue("type", "morning")])
 Countly.userDataBulk.save();<br>})</code></pre>
   </div>
 </div>
-<h1>Application Performance Monitoring</h1>
+<h1 id="h_01HAVQNJQT2HD7EVT4QTCXGG6G">Application Performance Monitoring</h1>
 <p>
   The Performance Monitoring feature allows you to analyze your application's performance
   on various aspects. For more details, please review the
@@ -1249,7 +1249,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   including app foreground time, app background time. Additionally, custom traces
   and network traces can be manually recorded.
 </p>
-<h2>App Start Time</h2>
+<h2 id="h_01HAVQNJQTH9C8YR2B0MZV0S4F">App Start Time</h2>
 <p>
   For the app start time to be recorded, you need to call the
   <code class="JavaScript">appLoadingFinished</code> method. Make sure this method
@@ -1267,7 +1267,7 @@ Countly.appLoadingFinished(); // Call the appLoadingFinished method</code></pre>
   monitoring. Note that the app launch time can be recorded only once per app launch.
   So, the second and following calls to this method will be ignored.
 </p>
-<h2>Custom trace</h2>
+<h2 id="h_01HAVQNJQT9NWPZS7ADXQ5E170">Custom trace</h2>
 <p>
   You may also measure any operation you want and record it using custom traces.
   First, you need to start a trace by using the
@@ -1303,7 +1303,7 @@ Countly.endTrace(traceKey, customMetric);</pre>
   started, using the <code class="objectivec">clearAllTraces()</code>method:
 </p>
 <pre>Countly.clearAllTraces(traceKey);</pre>
-<h2>Network trace</h2>
+<h2 id="h_01HAVQNJQTQGM8NFD1KBVYVCA6">Network trace</h2>
 <p>
   You may record manual network traces using the
   <code class="JavaScript">recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime)</code>
@@ -1325,7 +1325,7 @@ Countly.endTrace(traceKey, customMetric);</pre>
   timestamp in milliseconds for the ending time of the request
 </p>
 <pre>Countly.recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</pre>
-<h1>User consent</h1>
+<h1 id="h_01HAVQNJQTPBHA4HKBXA3SJG7Z">User consent</h1>
 <p>
   Being compliant with GDPR and other data privacy regulations, Countly provides
   ways to toggle different Countly tracking features on or off depending on a user's
@@ -1364,7 +1364,7 @@ Countly.endTrace(traceKey, customMetric);</pre>
     your server.
   </li>
 </ul>
-<h2>Setup During Init</h2>
+<h2 id="h_01HAVQNJQT9EZ8R01NCM6ENW9Z">Setup During Init</h2>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to call&nbsp;<code>setRequiresConsent</code></span><span>&nbsp;with&nbsp;<code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
@@ -1386,7 +1386,7 @@ Countly.setRequiresConsent(true);</code></pre>
   on each app launch depending on the permissions you managed to get from the end-users.
 </p>
 <p>Ideally you would give consent during initialization.</p>
-<h2>Changing Consent</h2>
+<h2 id="h_01HAVQNJQTN2M47W4JY10SZVY9">Changing Consent</h2>
 <p>
   The end-user can change their mind about consents at a later time.
 </p>
@@ -1407,8 +1407,8 @@ Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pr
 <pre><code class="javascript">// To add/remove consent for all available features
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
-<h1>Security and privacy</h1>
-<h2>Parameter tampering protection</h2>
+<h1 id="h_01HAVQNJQTD0RS47PZ0SX4ZW1X">Security and privacy</h1>
+<h2 id="h_01HAVQNJQTMSE0N9EHEDS3P8M8">Parameter tampering protection</h2>
 <p>
   You can set optional <code class="JavaScript">salt</code> to be used for calculating
   checksum of request data, which will be sent with each request using
@@ -1426,7 +1426,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   Make sure not to use salt on the Countly server and not on the SDK side, otherwise,
   Countly won't accept any incoming requests.
 </p>
-<h2>Pinned Certificate (Call this method before initialization)</h2>
+<h2 id="h_01HAVQNJQTDBG5DJ85J2ERN6QH">Pinned Certificate (Call this method before initialization)</h2>
 <p>
   <strong>Terminal</strong>
 </p>
@@ -1473,7 +1473,7 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
   Note that <code class="JavaScript">count.ly.cer</code> is the name of the file.
   Replace this file with the one you have.
 </p>
-<h2>Using Proguard</h2>
+<h2 id="h_01HAVQNJQT8NSPAFD2CXGXET30">Using Proguard</h2>
 <p>
   If you are using Countly Messaging in your Android application, it is recommended
   to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
@@ -1518,8 +1518,8 @@ buildTypes {
   By following these steps, the Countly Messaging classes will be obfuscated using
   Proguard and your application will be better protected against reverse engineering.
 </p>
-<h1>Other features</h1>
-<h2>Custom Metrics</h2>
+<h1 id="h_01HAVQNJQTVQ1CQD7VGBYY6HFV">Other features</h1>
+<h2 id="h_01HAVQNJQTXCW1K0039GTD0Z3R">Custom Metrics</h2>
 <div class="callout callout--info">
   <strong>Minimum Countly SDK Version</strong>
   <p>
@@ -1542,12 +1542,12 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>
-<h2>Attribution</h2>
+<h2 id="h_01HAVQNJQTHCHN59TAVZC63NAD">Attribution</h2>
 <p>This feature is available for the Enterprise Edition.</p>
 <p>
   <span>There are 2 forms of attribution: direct Attribution and indirect Attribution.</span><span></span>
 </p>
-<h3>Direct Attribution</h3>
+<h3 id="h_01HAVQNJQT0P9MZH69BJ1MFRCG">Direct Attribution</h3>
 <p>
   You can pass "Campaign type" and "Campaign data". The "type" determines for what
   purpose the attribution data is provided. Depending on the type, the expected
@@ -1570,7 +1570,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   the campaign id or with the campaign id and campaign user id.
 </p>
 <pre><code class="JavaScript">const campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>Countly.recordDirectAttribution('countly', campaignData);</code></pre>
-<h3>Indirect Attribution</h3>
+<h3 id="h_01HAVQNJQT4EARSVPB4XZCBT39">Indirect Attribution</h3>
 <p>
   This feature would be used to report things like advertising ID's. For each platform
   those would be different values. For the most popular keys we have a class with
@@ -1590,7 +1590,7 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   by Apple, regarding Application Tracking, you need to ask the user for permission
   to track the Application.
 </p>
-<h2>Forcing HTTP POST</h2>
+<h2 id="h_01HAVQNJQTRAKGYDMT0NB7GVNA">Forcing HTTP POST</h2>
 <p>
   If the data sent to the server is short enough, the SDK will use HTTP GET requests.
   In the event you would like an override so that HTTP POST may be used in all
@@ -1605,21 +1605,21 @@ Countly.setHttpPostForced(true);
   
 // disabling the override
 Countly.setHttpPostForced(false);</code></pre>
-<h2>Checking if initWithConfig has been called</h2>
+<h2 id="h_01HAVQNJQT7R2VAJH48J0ZV642">Checking if initWithConfig has been called</h2>
 <p>
   In the event you would like to check if initWithConfig has been called, use the
   function below.
 </p>
 <pre><code class="javascript">Countly.isInitialized().then(result =&gt; console.log(result)); // true or false
 </code></pre>
-<h2>Checking if onStart has been called</h2>
+<h2 id="h_01HAVQNJQTK5KKKK5GV1YJRHEB">Checking if onStart has been called</h2>
 <p>
   For some applications, there might be a use case where the developer would like
   to check if the Countly SDK onStart function has been called. To do so, use the
   call below.
 </p>
 <pre><code class="javascript">Countly.hasBeenCalledOnStart().then(result =&gt; console.log(result)); // true or false </code></pre>
-<h2>Interacting with the internal request queue</h2>
+<h2 id="h_01HAVQNJQTKPQPAY8MBKTP66DE">Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
   Events get grouped together. All the requests contain the same app key which
@@ -1646,7 +1646,7 @@ Countly.removeDifferentAppKeysFromQueue();</pre>
   In the request queue, if there are any requests whose app key is different than
   the current app key, these requests will be removed from the request queue.
 </p>
-<h2>Setting an event queue threshold</h2>
+<h2 id="h_01HAVQNJQVEMEHN5ZF3DTYNG84">Setting an event queue threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
   event count reaches a threshold. By default it is 10. If you would like to change
