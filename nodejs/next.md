@@ -33,7 +33,7 @@
 </p>
 <pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>
-<h1>Adding the SDK to the project</h1>
+<h1 id="h_01HABTSEDFXYDEN0QDRY7DEVR7">Adding the SDK to the project</h1>
 <p>
   You can reach Countly NodeJS SDK npm package
   <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a>. To add it
@@ -56,8 +56,8 @@
   After this, you can import and use Countly as you wish inside your project as
   described below.
 </p>
-<h1>SDK Integration</h1>
-<h2>Minimal Setup</h2>
+<h1 id="h_01HABTSEDFJ0AZN0699VJPKZJX">SDK Integration</h1>
+<h2 id="h_01HABTSEDFVJHWVBK7YJKB7CSZ">Minimal Setup</h2>
 <p>
   Wherever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here, you would also need to provide your application
@@ -80,7 +80,7 @@ Countly.init({
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
-<h2>SDK Logging</h2>
+<h2 id="h_01HABTSEDFSJWTK0GZKKTYSBMK">SDK Logging</h2>
 <p>
   If you encounter a problem or want to see if everything is working smoothly just
   turning on the logs during the initialization is all you really need. You can
@@ -107,7 +107,7 @@ Countly.setLoggingEnabled(true);
 
 //to turn off the logs
 Countly.setLoggingEnabled(false);</code></pre>
-<h2>SDK Data Storage</h2>
+<h2 id="h_01HABTSEDFRBJ54MX797V7QV2K">SDK Data Storage</h2>
 <p>
   Countly stores information like requests, events and device ID locally as JSON
   objects before using it to ensure data consistency. Default location of this
@@ -123,7 +123,7 @@ Countly.init({
     // by default it is "../data/"
     storage_path: "../your_storage/path" 
 });</code></pre>
-<h1>Crash reporting</h1>
+<h1 id="h_01HABTSEDF3VWA2BT8QJQH6NJ7">Crash reporting</h1>
 <p>
   Countly also provides a way to track NodeJS errors on your server.
 </p>
@@ -163,8 +163,8 @@ catch(ex){
   be then combined in single log and reported to server too.
 </p>
 <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
-<h1>Events</h1>
-<h2>Adding an event</h2>
+<h1 id="h_01HABTSEDFRP0KEF7CKVC9F0EN">Events</h1>
+<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Adding an event</h2>
 <p>
   An event is a way to track any custom actions or other data you want to track
   from your website. You can also provide segments to be able to view breakdown
@@ -195,7 +195,7 @@ catch(ex){
     All data passed to Countly instance via SDK or API should be in UTF-8.
   </p>
 </div>
-<h2>Timed Events</h2>
+<h2 id="h_01HABTSEDFJK3D4ZZ1SGQT5N3E">Timed Events</h2>
 <p>
   You can report time or duration with every event by providing
   <strong>dur</strong> property of the events object. But if you want, you can
@@ -226,8 +226,8 @@ Countly.end_event({
     "key2": "value2"
   }
 });</code></pre>
-<h1>Session</h1>
-<h2>Beginning a session</h2>
+<h1 id="h_01HABTSEDFMAR3E3AT8DGSRZ98">Session</h1>
+<h2 id="h_01HABTSEDF4A4P0ZKPFN0MNXYR">Beginning a session</h2>
 <p>
   This method would allow you to control sessions manually. Use it only, if you
   don't call track_sessions method.
@@ -237,7 +237,7 @@ Countly.end_event({
   automatically, and you will need to do that manually.
 </p>
 <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
-<h2>Extending a session</h2>
+<h2 id="h_01HABTSEDFV69Z7DB61R3HYK5N">Extending a session</h2>
 <p>
   By default (if <strong>noHeartBeat</strong> was not provided in
   <strong>begin_session</strong>) Countly SDK will extend session itself, but if
@@ -246,7 +246,7 @@ Countly.end_event({
   <strong>session_duration</strong> call, whatever was the last one.
 </p>
 <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
-<h2>Ending a session</h2>
+<h2 id="h_01HABTSEDFZ22Z8Q8SH0DDMRGS">Ending a session</h2>
 <p>
   When visitor is leaving your app or website, you should end his session with
   this method, optionally providing amount of seconds since last
@@ -254,7 +254,7 @@ Countly.end_event({
   was the last one.
 </p>
 <pre><code class="javascript">Countly.end_session(sec)</code></pre>
-<h1>View tracking</h1>
+<h1 id="h_01HABTSEDGBS3Z9EX21HVYSCVS">View tracking</h1>
 <p>
   This method allows you to track different parts of your application, called views.
   You can track how much time is spent on each part of the application.
@@ -278,7 +278,7 @@ Countly.end_event({
 </ul>
 <pre><code class="javascript">//Provide view segments
 Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
-<h1>Device ID management</h1>
+<h1 id="h_01HABTSEDGC162BVG9Y5PZY0YE">Device ID management</h1>
 <p>
   In some cases you may want to change the ID of the user/device that you provided
   or Countly generated automatically, for example, when user was changed.
@@ -301,11 +301,11 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
   new provided ID.
 </p>
 <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
-<h1>Remote Config</h1>
+<h1 id="h_01HABTSEDG6E0VY2C0FHBGVMGV">Remote Config</h1>
 <p>
   <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span><span style="font-weight: 400;"></span>
 </p>
-<h2>Automatic Remote Config</h2>
+<h2 id="h_01HABTSEDGR7ACMEZQA35GFTTW">Automatic Remote Config</h2>
 <p>
   <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific triggers. For example, after SDK initialization, changing device ID.</span>
 </p>
@@ -333,14 +333,14 @@ Countly.init({
     }
   }
 });</code></pre>
-<h2>Manual Remote Config</h2>
+<h2 id="h_01HABTSEDGQV4P1MM5W7HABRCE">Manual Remote Config</h2>
 <p>
   <span style="font-weight: 400;">If you want, you can manually fetch the Remote Config in order to receive the latest value anytime after the initialization. To do so you have to use the </span><em><span style="font-weight: 400;">fetch_remote_config</span></em><span style="font-weight: 400;"> call. This method is also used for reloading the values for updating them according to the latest changes you made on your server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">By using this method, you can simply load the entire object or load some specific keys or omit some specific keys in order to decrease the amount of data transfer needed, assuming the values for some of the keys are large. This call will automatically save the fetched keys internally.</span>
 </p>
-<h3>Fetch All Keys</h3>
+<h3 id="h_01HABTSEDGVWNJFBFXNFD5AS9K">Fetch All Keys</h3>
 <p>
   Here you so not need to provide any parameters to the call but providing a callback
   is the recommended practice.
@@ -352,7 +352,7 @@ Countly.fetch_remote_config(function(err, remoteConfigs){
     console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
   }<br>});<br><br>// or whole configuration object with no params
 Countly.fetch_remote_config();</code></pre>
-<h3>Fetch Specific Keys</h3>
+<h3 id="h_01HABTSEDG5EKWQAJS4ZBJFDN9">Fetch Specific Keys</h3>
 <p>
   Here the keys should be provided as string values in an array, as the first parameter
   in <em>fetch_remote_config</em> call. You can provide a callback function as
@@ -365,7 +365,7 @@ Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
     console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
   }
 });<br><br></code></pre>
-<h3>Fetch All Except Specific Keys</h3>
+<h3 id="h_01HABTSEDG0NX9JDM5XT7CGHTB">Fetch All Except Specific Keys</h3>
 <p>
   Here the first parameter should be set to 'null' or 'undefined' and the keys
   that you want to omit must be provided as the second parameter as an array of
@@ -378,7 +378,7 @@ Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
     console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
   }
 });</code></pre>
-<h2>Accessing Remote Config Values</h2>
+<h2 id="h_01HABTSEDG68FV1AGWAMPM9XP7">Accessing Remote Config Values</h2>
 <p>
   <span style="font-weight: 400;">You may call </span><em><span style="font-weight: 400;">get_remote_config</span></em><span style="font-weight: 400;"> each time you would like to receive the Remote Config object of a value for a specific key or all keys from your local storage.</span>
 </p>
@@ -390,18 +390,18 @@ var remoteConfig = Countly.get_remote_config();
 
 //or get value for specific key like 'test'
 var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
-<h2>A/B Testing</h2>
+<h2 id="h_01HABTSEDGWZWG88ZMC5YAZY9G">A/B Testing</h2>
 <p>
   While fetching Remote Config, the SDK will automatically enroll the user to A/B
   testing. For more information on A/B testing please check
   <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.
 </p>
-<h2>Consent</h2>
+<h2 id="h_01HABTSEDGB39R2HAXPYK2AM4G">Consent</h2>
 <p>
   If consents are enabled, to fetch the Remote Config data you have to provide
   the 'remote-config' consent for this feature to work.
 </p>
-<h1>User feedback</h1>
+<h1 id="h_01HABTSEDG3ZAZTK7ARF28M1FH">User feedback</h1>
 <p>
   If there is any way you can get some user feedback, there is not a simple method
   to report collected data to Countly.
@@ -415,8 +415,8 @@ Countly.report_feedback({
     comment: "Very good"
 });</code></pre>
 <p>&nbsp;</p>
-<h1>User profiles</h1>
-<h2>User details</h2>
+<h1 id="h_01HABTSEDG0TDK1PCNWM8QENG0">User profiles</h1>
+<h2 id="h_01HABTSEDG9HV99DN895KFJRCY">User details</h2>
 <p>
   If you have any details about the user/visitor, you can provide Countly with
   that information. This will allow you track each and specific user on "User Profiles"
@@ -440,7 +440,7 @@ Countly.report_feedback({
       ...
     }
  });</code></pre>
-<h2>Modifying custom data</h2>
+<h2 id="h_01HABTSEDGZJXM38TNGRZDK69F">Modifying custom data</h2>
 <p>
   Additionally you can do different manipulations on custom data values, like increment
   current value on server or store array of values under same property.
@@ -457,7 +457,7 @@ Countly.userData.push(key, value) //add value to key as array element
 Countly.userData.push_unique(key, value) //add value to key as array element, but only store unique values in array
 Countly.userData.pull(key, value) //remove value from array under property with key as name
 Countly.userData.save() //send userData to server</code></pre>
-<h1>Application Performance Monitoring</h1>
+<h1 id="h_01HABTSEDGD3AXBPQCKMA0PN95">Application Performance Monitoring</h1>
 <p>
   You can report a trace using <strong>report_trace</strong> method. Contents of
   it depend on which trace you report.
@@ -501,7 +501,7 @@ Countly.report_trace({
         duration: 1000,
     }
 });</code></pre>
-<h1>Other features and notes</h1>
+<h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other features and notes</h1>
 <h2>SDK Config Parameters Explained</h2>
 <p>
   Here are the properties you can setup on Countly initialization
@@ -602,7 +602,7 @@ Countly.report_trace({
         _device: "aws-server"
     }
 });</code></pre>
-<h2>SDK Internal Limits</h2>
+<h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
   Countly is highly customizable and let's you take a huge part at the control
   of the system in multiple ways. From customizing segmentation values to changing
