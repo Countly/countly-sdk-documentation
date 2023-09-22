@@ -451,7 +451,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
-<h2>Log Listener</h2>
+<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
