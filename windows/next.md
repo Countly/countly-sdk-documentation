@@ -594,7 +594,7 @@ Countly.Instance.DisableLocation();</code></pre>
 </p>
 <p>
   More information about GDPR can be found
-  <a href="https://countly.com/blog/4-years-of-gdpr">here</a>.
+  <a href="https://medium.com/countly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
 <h2 id="h_01HABTXQFAP9PK4A5DBEXYNBK5">Setup During Init</h2>
 <p>
