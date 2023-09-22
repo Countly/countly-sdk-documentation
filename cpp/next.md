@@ -5,7 +5,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#c-sdks" target="_blank" rel="noopener">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G88SRA8VHG55Z077GD" target="_blank" rel="noopener">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -57,7 +57,7 @@ make</code></pre>
   <p>
     In case you would also need to install the built library, check for more
     information
-    <a href="#additional-project-install-option" target="_self">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/4416163384857-C-#h_01HABV267WA5KC2F54SAK5YC1F" target="_self">here</a>.
   </p>
   <p>
     Build with the option <code>COUNTLY_BUILD_TESTS</code> and
@@ -83,7 +83,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <pre><code>cly::Countly&amp; countly = cly::Countly::getInstance();<br>countly.setDeviceID(<span class="pl-s"><span class="pl-pds">"test-device-id<span class="pl-pds">");<br>countly.start(<span class="pl-s"><span class="pl-pds">"YOUR_APP_KEY<span class="pl-pds">", <span class="pl-s"><span class="pl-pds">"https://try.count.ly<span class="pl-pds">", 443, true);</span></span></span></span></span></span></span></span></span></code></pre>
 <p>
   Here, you have to provide your appKey, and your Countly server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -99,7 +99,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   <p>
     If you are in doubt about the correctness of your Countly SDK integration,
     you can learn more about methods to verify it from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HABV267SRYX26E90FHT1N4S3">SDK Logging</h2>
