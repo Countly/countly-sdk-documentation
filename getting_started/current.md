@@ -2,7 +2,7 @@
   Countly provides various functionality in different SDKs targeted for mobile,
   web, desktop, and server-to-server use cases. For a feature comparison in all
   SDKs,
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#feature-comparison" target="_self">please check this table</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-Installing-SDKs#h_01H9QCP8G52MSJGQZCFGV0HMWM" target="_self">please check this table</a>.
 </p>
 <p>
   There are common concepts in all Countly SDKs, and this document is intended
@@ -25,12 +25,12 @@
 </p>
 <p>
   Most Countly SDKs, including
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#device-id" target="_blank" rel="noopener">iOS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#device-id" target="_blank" rel="noopener">Android</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-#changing-a-device-id" target="_blank" rel="noopener">React Native</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#changing-a-device-id" target="_blank" rel="noopener">Flutter</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RP2DPTREKXC0Q8T6QA" target="_blank" rel="noopener">iOS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#h_01HAVQDM5TPKRQAZGXW73GBM90" target="_blank" rel="noopener">Android</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-#h_01HAVQNJQR4M6EJ5WS9HRBX2Q4" target="_blank" rel="noopener">React Native</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ682G16Z7M570XKSPD" target="_blank" rel="noopener">Flutter</a>,
   and
-  <a href="https://support.count.ly/hc/en-us/articles/%20360037441932-Web-analytics-JavaScript-#changing-device-id" target="_blank" rel="noopener">Web</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#h_01HABTQ438HCZ8FJVAE34W49KP" target="_blank" rel="noopener">Web</a>,
   offer a mechanism to change/update this default device id for cases where you
   already have a better identifier, such as an email address or account id or you
   get this information at some point in user journey such as after user logs into
@@ -63,7 +63,7 @@
   tagged with a historical snapshot of default, reserved, and custom user properties
   and will be available to be used in reporting and features such as
   <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
-  <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
+  <a href="/hc/en-us/articles/360037997052" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>,
   <a href="/hc/en-us/articles/900000812986" target="_blank" rel="noopener">Retention</a>,
   and
@@ -153,7 +153,7 @@
   were planned with the fastest, shortest, or eco route types offered in the app.
   Furthermore, plugins like
   <a href="/hc/en-us/articles/360037270112" target="_blank" rel="noopener">Cohorts</a>,
-  <a href="/hc/en-us/articles/360036862312" target="_blank" rel="noopener">Funnels</a>,
+  <a href="/hc/en-us/articles/360037997052" target="_blank" rel="noopener">Funnels</a>,
   <a href="/hc/en-us/articles/360037260972" target="_blank" rel="noopener">Drill</a>,
   and
   <a href="/hc/en-us/articles/360037639931" target="_blank" rel="noopener">Formulas</a>
@@ -452,7 +452,7 @@
   Here the most important thing is to verify if your 'app_key' and 'URL' values
   are entered correctly. For more information on making sure that you are using
   your correct 'app_key' and server URL, you can check out the following section
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>.
 </p>
 <h2 id="h_01HABSX9KX0S0QZQRNRBDXMADX">4. Check your Countly server</h2>
 <p>
