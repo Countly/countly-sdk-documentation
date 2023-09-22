@@ -5,7 +5,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#nodejs-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7S1YR45QYHX6DQJ4D" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -62,7 +62,7 @@
   Wherever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here, you would also need to provide your application
   key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -77,7 +77,7 @@ Countly.init({
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HABTSEDFSJWTK0GZKKTYSBMK">SDK Logging</h2>
@@ -502,7 +502,7 @@ Countly.report_trace({
     }
 });</code></pre>
 <h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other features and notes</h1>
-<h2>SDK Config Parameters Explained</h2>
+<h2 id="h_01HAXVDTRGE7AP3385T2HSWWT0">SDK Config Parameters Explained</h2>
 <p>
   Here are the properties you can setup on Countly initialization
 </p>
@@ -577,7 +577,8 @@ Countly.report_trace({
   <li>
     <strong>metrics</strong> - provide metrics override or custom metrics for
     this user. For more information on the specific metric keys used by Countly,
-    check <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+    check
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
   </li>
 </ul>
 <p>
@@ -690,7 +691,7 @@ Countly.report_trace({
     max_stack_trace_lines_per_thread: 50,
     max_stack_trace_line_length: 300
 });</code></pre>
-<h2>Setting Maximum Request Queue Size</h2>
+<h2 id="h_01HAXVDTRGNHGD4SW5XH7NBE8W">Setting Maximum Request Queue Size</h2>
 <p>
   When you initialize Countly, you can specify a value for the queueSize flag.
   This flag limits the number of requests that can be stored in the request queue
@@ -720,7 +721,7 @@ Countly.report_trace({
     queueSize: 5000
 });</code></pre>
 </div>
-<h2>Attribution</h2>
+<h2 id="h_01HAXVDTRK5DCMFC9FKEDKD529">Attribution</h2>
 <p>
   When using Countly attribution analytics, you can also report conversion to Countly
   server, for e.g., when visitor purchased something or registered.
@@ -731,12 +732,12 @@ Countly.report_trace({
 </p>
 <pre><code class="javascript">//or provide campaign id yourself
 Countly.report_conversion("MyCampaignID");</code></pre>
-<h2>Make raw request</h2>
+<h2 id="h_01HAXVDTRKE32GSAT0EJ4MF7G1">Make raw request</h2>
 <p>
   If you are switching between users a lot, or changing some other data, which
   is hard to handle over multiple processes, etc. You can simply make a raw request
   with all possible SDK parameters described in
-  <a href="http://resources.count.ly/docs/i">API reference</a>
+  <a href="https://api.count.ly/reference/i">API reference</a>
 </p>
 <pre><code class="javascript">Countly.request({
   app_key:"somekey", 
