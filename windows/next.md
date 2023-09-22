@@ -5,7 +5,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#windows-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G8HMBBT2NPHFJPJ3KX" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -68,7 +68,7 @@ cc.appVersion = "1.2.3";
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <p>
-  <span>In the </span><code>CountlyConfig</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
+  <span>In the </span><code>CountlyConfig</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   <strong>Note: </strong>The SDK targets multiple profiles. Therefore for some
@@ -79,7 +79,7 @@ Countly.Instance.Init(cc);</code></pre>
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HABTXQF7QV573QQXWM8HWVX3">SDK Logging / Debug Mode</h2>
@@ -594,7 +594,7 @@ Countly.Instance.DisableLocation();</code></pre>
 </p>
 <p>
   More information about GDPR can be found
-  <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
+  <a href="https://countly.com/blog/4-years-of-gdpr">here</a>.
 </p>
 <h2 id="h_01HABTXQFAP9PK4A5DBEXYNBK5">Setup During Init</h2>
 <p>
