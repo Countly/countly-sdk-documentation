@@ -1234,7 +1234,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   If you want to use it without a callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
+<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);<br>String? error = result[1];<br>if (error == null) {<br>   Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>}</code></pre>
 <p>
   <code>retrievedWidgetData</code> would contain a Map with all of the required
   information to present the widget yourself.
