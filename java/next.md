@@ -423,6 +423,121 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
     <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
     grouping.
   </li>
+  <li>
+    <strong>setSdkPlatform(String platform)</strong> - Sets the SDK platform
+    if it is used in multiple platforms. Default value is OS name.
+  </li>
+  <li>
+    <strong>setRequiresConsent(boolean requiresConsent)</strong> - Enable GDPR
+    compliance by disallowing SDK to record any data until corresponding consent
+    calls are made. Default is false.
+  </li>
+  <li>
+    <strong>setNetworkImportantRequestCooldown(int milliseconds)&nbsp;</strong>-
+    Set read timeout in seconds for HTTP requests SDK sends to Countly server.
+    Default is 5000 milliseconds.
+  </li>
+  <li>
+    <strong>setNetworkRequestCooldown(int milliseconds)&nbsp;</strong>- Set how
+    long to wait between requests in seconds. Default is 1000 milliseconds.
+  </li>
+  <li>
+    <strong>setNetworkReadTimeout(int seconds)</strong> - Set read timeout in
+    seconds for HTTP requests SDK sends to Countly server. Default is 30 seconds.
+  </li>
+  <li>
+    <div>
+      <strong>setMetricOverride(Map&lt;String, String&gt; metricOverride)</strong>
+      - Mechanism for overriding metrics that are sent together with "begin
+      session" requests and remote.
+    </div>
+  </li>
+  <li>
+    <strong>configsetNetworkConnectTimeout(int seconds)</strong> - Set connection
+    timeout in seconds for HTTP requests SDK sends to Countly server. Default
+    is 30 seconds.
+  </li>
+  <li>
+    <div>
+      <strong>setApplicationVersion(String version)</strong> - Change application
+      version reported to Countly server.
+    </div>
+  </li>
+  <li>
+    <strong>setApplicationName(String name)&nbsp;</strong>- Change application
+    name reported to Countly server.
+  </li>
+  <li>
+    <div>
+      <strong>setLoggingLevel(LoggingLevel loggingLevel)</strong> - Logging
+      level for Countly SDK. Default is OFF.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableParameterTamperingProtection(String salt)</strong> - Enable
+      parameter tampering protection.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setRequestQueueMaxSize(int requestQueueMaxSize)</strong> - In
+      backend mode set the in memory request queue size. Default is 1000.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setUsePOST(boolean usePOST)</strong> - Force usage of POST method
+      for all requests. Default is false.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableUsePOST()</strong> - Force usage of POST method for all
+      requests.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setCustomDeviceId(String customDeviceId)&nbsp;</strong>- Set
+      device id to specific string and strategy to
+      <code>DeviceIdStrategy.CUSTOM_ID</code>.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setDeviceIdStrategy(DeviceIdStrategy strategy)</strong> - Change
+      the device id strategy.&nbsp;
+    </div>
+  </li>
+  <li>
+    <strong>setDeviceIdStrategy(DeviceIdStrategy strategy, String customDeviceId)</strong>
+    - Change the device id strategy and custom device id.&nbsp;
+  </li>
+  <li>
+    <div>
+      <strong>setFeatures(Config.Feature... features)</strong> - Set enabled
+      features.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setLogListener(LogCallback logCallback)</strong> - Add a log
+      callback that will duplicate all logs done by the SDK.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableFeatures(Config.Feature... features)</strong> - Enable
+      one or many features.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>disableFeatures(Config.Feature... features)</strong> - Disable
+      one or many features.
+    </div>
+  </li>
 </ul>
 <h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
 <p>
