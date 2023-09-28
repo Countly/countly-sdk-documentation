@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.8.X
+  and it applies to version 22.09.X
 </p>
 <div class="callout callout--info">
   <p>
@@ -28,12 +28,12 @@
 </p>
 <pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:23.8.0"<br></span><span>}</span></pre>
+<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:22.09.0"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;23.8.0&lt;/version&gt;
+  &lt;version&gt;22.09.0&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1>SDK Integration</h1>
@@ -44,13 +44,15 @@
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")                
                 .enableTestMode()
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
 
-Countly.instance().init(config);</code></pre>
+File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Countly.init(targetFolder, config);</code></pre>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
@@ -73,7 +75,7 @@ Countly.instance().init(config);</code></pre>
   Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
   the config object to enable logging:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
