@@ -398,13 +398,19 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <div>
   <pre>Countly.<span>instance</span>().feedback().constructFeedbackWidgetUrl(chosenWidget, (constructedUrl, error) -&gt; { <br><span>    // handle error and the constructed url<br></span>});</pre>
 </div>
-<h3>&nbsp;</h3>
 <h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created. At those times you would want to request all the information
   related to that widget and then report the result manually.
 </p>
+<div class="callout callout--info">
+  <p>
+    For a sample integration, have a look at our
+    <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener">sample code</a>
+    at our github repo.
+  </p>
+</div>
 <p>
   Initial steps for manually reporting your widget results, first you would need
   to retrieve the available widget list with the
