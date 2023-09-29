@@ -347,6 +347,100 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
+<h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
+<p>
+  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
+</p>
+<h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<p>
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey</a>
+  and
+  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">rating</a>.
+  All widgets have their generated URL to be shown in a web viewer and should be
+  approached using the same methods.
+</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
+  </p>
+</div>
+<p>
+  After you have created widgets at your dashboard you can reach their related
+  information as a list, corresponding to the current user's device ID, by providing
+  a callback to the getAvailableFeedbackWidgets method, which returns the list
+  as the first parameter and error as the second:
+</p>
+<div>
+  <pre>Countly.<span>instance</span>().feedback().getAvailableFeedbackWidgets((retrievedWidgets, error) -&gt; {<br>    <span>// handle error<br></span><span>    // do something with the returned list here like pick a widget and then show that widget etc...<br></span>});</pre>
+</div>
+<p>The objects in the returned list would look like this:</p>
+<pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>    public String[] tags; <br>}</pre>
+<p>
+  Here all the values are same with the values that can be seen at your Countly
+  server like the widget ID, widget type, widget name and the tags you have passed
+  while creating the widget. Tags can contain information that you would like to
+  have in order to keep track of the widget you have created. Its usage is totally
+  left to the developer.
+</p>
+<p>Potential 'type' values are:</p>
+<pre>FeedbackWidgetType {survey, nps, rating}</pre>
+<p>
+  After you have decided which widget you want to show, you would provide that
+  object to the following function as the first parameter. Second is a callback
+  with constructed url to show and error message in case an error occurred:
+</p>
+<div>
+  <pre>Countly.<span>instance</span>().feedback().constructFeedbackWidgetUrl(chosenWidget, (constructedUrl, error) -&gt; { <br><span>    // handle error and the constructed url<br></span>});</pre>
+</div>
+<h3>&nbsp;</h3>
+<h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
+<p>
+  There might be some cases where you might want to use the native UI or a custom
+  UI you have created. At those times you would want to request all the information
+  related to that widget and then report the result manually.
+</p>
+<p>
+  Initial steps for manually reporting your widget results, first you would need
+  to retrieve the available widget list with the
+  <code>getAvailableFeedbackWidgets</code> method. After that you would have a
+  list of possible <code>CountlyFeedbackWidget</code> objects. You would pick the
+  widget you want to display and pass that widget object to the function below
+  as the first parameter. Second parameter is a callback that would return the
+  widget data as first parameter and the error as second:
+</p>
+<div>
+  <pre>Countly.<span>instance</span>().feedback().getFeedbackWidgetData(chosenWidget, (retrievedWidgetData, error) -&gt; {<br>    <span>// handle data and error here<br></span>});</pre>
+</div>
+<p>
+  Here the retrievedWidgetData would yield to a JSON Object with all of the information
+  you would need to present the widget by yourself.
+</p>
+<div class="callout callout--info">
+  <p>
+    For how this retrievedWidgetData would look like and in depth information
+    on this topic please check our detailed article
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
+  </p>
+</div>
+<p>
+  After you have collected the required information from your users with the help
+  of the <code>retrievedWidgetData</code> you have received, you would then package
+  the responses into a Map&lt;String, Object&gt;, and then pass it (reportedResult)
+  together with the widget object you picked from the retrieved widget list (widgetToReport)
+  and the <code>retrievedWidgetData</code> to report the feedback result with the
+  following call:
+</p>
+<pre>//this contains the reported results<br>Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();<br><br>//<br>// You would fill out the results here. That step is not displayed in this sample check the detailed documentation linked above<br>//<br><br>//report the results to the SDK<br>Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);</pre>
+<p>
+  If the user would have closed the widget, you would report that by passing a
+  "null" as the reportedResult.
+</p>
 <h1 id="h_01HABV0K6C4TX8B97XNK8XWNVA">User Profiles</h1>
 <p>
   <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a>
