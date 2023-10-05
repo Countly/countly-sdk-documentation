@@ -422,6 +422,69 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
     <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
     grouping.
   </li>
+  <li>
+    <strong>setSdkPlatform(String platform)</strong> - Sets the SDK platform
+    if it is used in multiple platforms. Default value is OS name.
+  </li>
+  <li>
+    <strong>setRequiresConsent(boolean requiresConsent)</strong> - Enable GDPR
+    compliance by disallowing SDK to record any data until corresponding consent
+    calls are made. Default is false.
+  </li>
+  <li>
+    <div>
+      <strong>setMetricOverride(Map&lt;String, String&gt; metricOverride)</strong>
+      - Mechanism for overriding metrics that are sent together with "begin
+      session" requests and remote.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setApplicationVersion(String version)</strong> - Change application
+      version reported to Countly server.
+    </div>
+  </li>
+  <li>
+    <strong>setApplicationName(String name)&nbsp;</strong>- Change application
+    name reported to Countly server.
+  </li>
+  <li>
+    <div>
+      <strong>setLoggingLevel(LoggingLevel loggingLevel)</strong> - Logging
+      level for Countly SDK. Default is OFF.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableParameterTamperingProtection(String salt)</strong> - Enable
+      parameter tampering protection.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setRequestQueueMaxSize(int requestQueueMaxSize)</strong> - In
+      backend mode set the in memory request queue size. Default is 1000.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableUsePOST()</strong> - Force usage of POST method for all
+      requests.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setCustomDeviceId(String customDeviceId)&nbsp;</strong>- Set
+      device id to specific string and strategy to
+      <code>DeviceIdStrategy.CUSTOM_ID</code>.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setLogListener(LogCallback logCallback)</strong> - Add a log
+      callback that will duplicate all logs done by the SDK.
+    </div>
+  </li>
 </ul>
 <h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
 <p>
