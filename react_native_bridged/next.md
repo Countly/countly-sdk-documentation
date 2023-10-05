@@ -1013,19 +1013,21 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
 <h2 id="h_01HAVQNJQS4TRX89X6GSGWQGGV">Feedback Widget</h2>
 <p>
-  It is possible to display 2 kinds of Surveys widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">NPS</a>
+  It is possible to display 3 kinds of Feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener noreferrer">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener noreferrer">Surveys</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">Surveys</a>.
-  Both widgets are shown as webviews and they both use the same code methods.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener noreferrer">Rating</a>.
+  All widgets are shown as webviews and they use the same methods to present them.
 </p>
 <p>
-  Before any Surveys widget can be shown, you need to create them in your Countly
+  Before any Feedback widget can be shown, you need to create them in your Countly
   Dashboard.
 </p>
 <p>
-  When the widgets are created, you need to use 2 calls in your SDK: one to get
-  all available widgets for a user and another to display, a chosen widget.
+  When the widgets are created, you need to use 2 calls in your SDK to show them:
+  one to get all available widgets for a user and another to display, a chosen
+  widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
 <pre><code class="javascript">Countly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
@@ -1034,11 +1036,10 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   device ID.
 </p>
 <p>The objects in the returned list look like this:</p>
-<pre><code class="javascript">{ <br>  "id"   : "WIDGET_ID",<br>  "type" : "WIDGET_TYPE",<br>  "name" : "WIDGET_NAME",<br>}</code></pre>
+<pre><code class="javascript">{ <br>  "id"   : "WIDGET_ID",<br>  "type" : "WIDGET_TYPE",<br>  "name" : "WIDGET_NAME",<br>  "tag"  : "WIDGET_TAG"<br>}</code></pre>
 <p>
   To determine what kind of widget that is, check the "type" value. The potential
-  values are <code class="JavaScript">survey</code> and
-  <code class="JavaScript">nps</code>.
+  values are <code>survey</code>, <code>nps</code> and <code>rating</code>.
 </p>
 <p>
   Then use the widget type and description (which is the same as provided in the
@@ -1047,7 +1048,74 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   After you have decided which widget you want to display, call the function below.
 </p>
-<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("WidgetshownCallback");<br>},<br>function() {<br>  console.log("WidgetclosedCallabck");<br>})<br></code></pre>
+<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("Widgetshown");<br>},<br>function() {<br>  console.log("Widgetclosed");<br>})<br></code></pre>
+<h3 id="h_01HBZPWR8E1BF4J850A5VB9BGJ">Manual Reporting</h3>
+<div class="callout callout--warning">
+  <p>This feature is available from version 23.6.2 and upwards.</p>
+</div>
+<p>
+  If you have a custom UI where you collect user feedback or you already have some
+  feedback data in your system you can report that information to specific feedback
+  widgets that you have created in your dashboard through the SDK manually.
+</p>
+<p>This processes consists of three steps:</p>
+<ul>
+  <li>
+    Retrieving the list of available widgets and picking one. This is the same
+    initial step while using the feedback widgets and reuses the same call to
+    retrieve them.
+  </li>
+  <li>
+    Download widget data from the server (here you would use a widget you pick
+    at step one).
+  </li>
+  <li>
+    Report the feedback result (for that single widget according to the data
+    from the previous step).
+  </li>
+</ul>
+<p>To get your available widget list, use the call below.</p>
+<pre><code class="javascript">// with callback
+Countly.feedback.getAvailableFeedbackWidgets(function(retrivedWidgets, error){
+  if (error != null) {
+    console.log("Error : " + error);
+  }
+  else {
+    console.log(retrivedWidgets)
+  }
+});
+
+//OR async
+Object response = await Countly.feedback.getAvailableFeedbackWidgets();
+if (!response.error) {
+  // pick a widget from response.values array
+  const widgetInfo = response.values[0];
+}</code></pre>
+<p>To download the widget data use:</p>
+<pre><code class="javascript">// with callback
+Countly.feedback.getFeedbackWidgetData(widget,function(retrivedWidgetData, error){
+  if (error != null) {
+    console.log("Error : " + error);
+  }
+  else {
+    console.log(retrivedWidgetData)
+  }
+});
+
+//OR async
+Object response = await Countly.feedback.getFeedbackWidgetData(widget);
+if (!response.error) {
+// check the response.data Object to learn what is needed to be reported
+  const widgetData = response.data;
+}</code></pre>
+<p>
+  Then after these two steps you would need to create a widgetResult Object and
+  pass it to the function below with the other information you have gathered so
+  far. You can check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">this</a>
+  in-depth guide to learn how to form this object:
+</p>
+<pre><code class="javascript">Countly.feedback.reportFeedbackWidgetManually(widgetInfo, widgetData, widgetResult);</code></pre>
 <h1 id="h_01HAVQNJQSW54CC0XFHA30BPC8">User Profiles</h1>
 <p>
   You can provide Countly any details you may have about your user or visitor.
