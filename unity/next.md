@@ -161,7 +161,7 @@
 </p>
 <h2 id="h_01HABTZ314W6CP02BBBHB6FBKJ" class="anchor-heading">Handled exceptions</h2>
 <p>
-  <span>You might catch an exception or similar error during your app’s runtime.</span><span>You may also log these handled exceptions to monitor how and when they are happening. </span>To
+  <span>You might catch an exception or similar error during your app’s runtime.</span><span> You may also log these handled exceptions to monitor how and when they are happening. </span>To
   log exception use the following code snippet:
 </p>
 <pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, null, false); </pre>
