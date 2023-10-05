@@ -5,7 +5,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#nodejs-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7S1YR45QYHX6DQJ4D" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -62,7 +62,7 @@
   Wherever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here, you would also need to provide your application
   key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -77,7 +77,7 @@ Countly.init({
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HABTSEDFSJWTK0GZKKTYSBMK">SDK Logging</h2>
@@ -121,7 +121,7 @@ Countly.init({
     app_key: "YOUR-APP-KEY",
     url: "https://your_server_url/",
     // by default it is "../data/"
-    storage_path: "../your_storage/path"
+    storage_path: "../your_storage/path" 
 });</code></pre>
 <h1 id="h_01HABTSEDF3VWA2BT8QJQH6NJ7">Crash reporting</h1>
 <p>
@@ -171,9 +171,9 @@ catch(ex){
   of action by provided segment values.
 </p>
 <p>
-  An event consists of Javascript object with keys: *key - the name of the event
-(mandatory)* count - number of events (default: 1) *sum - sum to report with
-event (optional)* dur - duration to report with event (optional) * segmentation
+  An event consists of Javascript object with keys: * key - the name of the event
+  (mandatory) * count - number of events (default: 1) * sum - sum to report with
+  event (optional) * dur - duration to report with event (optional) * segmentation
   - an object with key/value pairs to report with event as segments
 </p>
 <p>
@@ -319,13 +319,13 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",<br>  debug: true,
-  remote_config: true
+  remote_config: true 
 });<br><br>// OR
 
 // provide a callback to be notified when configs are loaded
 Countly.init({
   app_key:"YOUR_APP_KEY",
-  url: "<https://try.count.ly>",<br>  debug: true,
+  url: "https://try.count.ly",<br>  debug: true,
   remote_config: function(err, remoteConfigs){
     if (!err) {
       //we have our remoteConfigs here
@@ -431,7 +431,7 @@ Countly.report_feedback({
     "organization": "Countly",
     "phone": "+37112345678",
     //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg",
+    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
     "gender": "M",
     "byear": 1987, //birth year
     "custom":{
@@ -502,32 +502,7 @@ Countly.report_trace({
     }
 });</code></pre>
 <h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other features and notes</h1>
-<h2 id="h_01HABTSEDHZZAJA1X7XRMTNH9J">Attribution</h2>
-<p>
-  When using Countly attribution analytics, you can also report conversion to Countly
-  server, for e.g., when visitor purchased something or registered.
-</p>
-<p>
-  Note: that conversion for each user may be reported only once, all other conversions
-  will be ignored for this same user
-</p>
-<pre><code class="javascript">//or provide campaign id yourself
-Countly.report_conversion("MyCampaignID");</code></pre>
-<h2 id="h_01HABTSEDH5N54GNAMR98FR416">Make raw request</h2>
-<p>
-  If you are switching between users a lot, or changing some other data, which
-  is hard to handle over multiple processes, etc. You can simply make a raw request
-  with all possible SDK parameters described in
-  <a href="http://resources.count.ly/docs/i">API reference</a>
-</p>
-<pre><code class="javascript">Countly.request({
-  app_key:"somekey",
-  devide_id:"someid",
-  events:"[{'key':'val','count':1}]",
-  metrics:"{'_os':'Linux'}",
-  begin_session:1
-});</code></pre>
-<h2 id="h_01HABTSEDHCWKY52FZT5W4X6MS">SDK Config Parameters Explained</h2>
+<h2 id="h_01HAXVDTRGE7AP3385T2HSWWT0">SDK Config Parameters Explained</h2>
 <p>
   Here are the properties you can setup on Countly initialization
 </p>
@@ -600,8 +575,10 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     logs (default: 100)
   </li>
   <li>
-    <strong>metrics</strong> - provide for this user/device, or else will try
-    to collect what's possible.
+    <strong>metrics</strong> - provide metrics override or custom metrics for
+    this user. For more information on the specific metric keys used by Countly,
+    check
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
   </li>
 </ul>
 <p>
@@ -713,5 +690,60 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     max_breadcrumb_count: 80,
     max_stack_trace_lines_per_thread: 50,
     max_stack_trace_line_length: 300
+});</code></pre>
+<h2 id="h_01HAXVDTRGNHGD4SW5XH7NBE8W">Setting Maximum Request Queue Size</h2>
+<p>
+  When you initialize Countly, you can specify a value for the queueSize flag.
+  This flag limits the number of requests that can be stored in the request queue
+  when the Countly server is unavailable or experiencing connection problems.
+</p>
+<p>
+  If the server is down, requests sent to it will be queued on the device. If the
+  number of queued requests becomes excessive, it can cause problems with delivering
+  the requests to the server, and can also take up valuable storage space on the
+  device. To prevent this from happening, the queueSize flag limits the number
+  of requests that can be stored in the queue.
+</p>
+<p>
+  If the number of requests in the queue reaches the queueSize limit, the oldest
+  requests in the queue will be dropped, and the newest requests will take their
+  place. This ensures that the queue doesn't become too large, and that the most
+  recent requests are prioritized for delivery.
+</p>
+<p>
+  If you do not specify a value for the queueSize flag, the default setting of
+  1,000 will be used.
+</p>
+<div class="javascript">
+  <pre><code class="">Countly.init({
+    app_key:"YOUR_APP_KEY",
+    url: "https://try.count.ly",
+    queueSize: 5000
+});</code></pre>
+</div>
+<h2 id="h_01HAXVDTRK5DCMFC9FKEDKD529">Attribution</h2>
+<p>
+  When using Countly attribution analytics, you can also report conversion to Countly
+  server, for e.g., when visitor purchased something or registered.
+</p>
+<p>
+  Note: that conversion for each user may be reported only once, all other conversions
+  will be ignored for this same user
+</p>
+<pre><code class="javascript">//or provide campaign id yourself
+Countly.report_conversion("MyCampaignID");</code></pre>
+<h2 id="h_01HAXVDTRKE32GSAT0EJ4MF7G1">Make raw request</h2>
+<p>
+  If you are switching between users a lot, or changing some other data, which
+  is hard to handle over multiple processes, etc. You can simply make a raw request
+  with all possible SDK parameters described in
+  <a href="https://api.count.ly/reference/i">API reference</a>
+</p>
+<pre><code class="javascript">Countly.request({
+  app_key:"somekey", 
+  devide_id:"someid", 
+  events:"[{'key':'val','count':1}]", 
+  metrics:"{'_os':'Linux'}",
+  begin_session:1
 });</code></pre>
 <p>&nbsp;</p>

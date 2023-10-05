@@ -1,11 +1,11 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 22.09.X
+  and it applies to version 23.8.X
 </p>
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#java-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G8QD0W9EMHT11F2N8P" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -17,7 +17,7 @@
   <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
   to understand how most functionalities work.
 </p>
-<h1 id="h_01HC03JE5W5HGVDBXD52GXCADJ">Adding the SDK to the Project</h1>
+<h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
   SDK is hosted on MavenCentral, more info can be found
   <a href="https://search.maven.org/artifact/ly.count.sdk/java" target="_self" rel="undefined">here</a>
@@ -28,35 +28,35 @@
 </p>
 <pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:22.09.0"<br></span><span>}</span></pre>
+<pre>dependencies <span>{<br></span><span> </span>implementation <span>"ly.count.sdk:java:23.8.0"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;22.09.0&lt;/version&gt;
+  &lt;version&gt;23.8.0&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
-<h1 id="h_01HC03JE5W3C0BAZ970VXHJMYH">SDK Integration</h1>
-<h2 id="h_01HC03JE5WSWY198Y0PVE5E6JK">Minimal Setup</h2>
+<h1 id="h_01HABV0K6CDY5FSWH5QBHTT79R">SDK Integration</h1>
+<h2 id="h_01HABV0K6C4H1G71VV85BDXV91">Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.
 </p>
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
                 .enableTestMode()
                 .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
 
-File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+Countly.instance().init(config);</code></pre>
 
 Countly.init(targetFolder, config);</code></pre>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -64,10 +64,10 @@ Countly.init(targetFolder, config);</code></pre>
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HC03JE5W9VF0FFS2BJ7H8KKE">SDK Logging Mode</h2>
+<h2 id="h_01HABV0K6C1TBRCQBZJ45PE13H">SDK Logging Mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
 </p>
@@ -75,8 +75,7 @@ Countly.init(targetFolder, config);</code></pre>
   Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
   the config object to enable logging:
 </p>
-<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
-                .setLoggingLevel(Config.LoggingLevel.DEBUG)
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)                         .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
 <p>
@@ -89,7 +88,7 @@ Countly.init(targetFolder, config);</code></pre>
   always receive all the printed logs event if the logging level would be set to
   "OFF".
 </p>
-<h2 id="h_01HC03JE5W9M2WBMVZEADM17M3">SDK Data Storage</h2>
+<h2 id="h_01HABV0K6C4TED33TF2K40S71H">SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
   <code>InternalConfig</code>, <code>SessionImpl</code>,
@@ -97,8 +96,8 @@ Countly.init(targetFolder, config);</code></pre>
   <code>TimedEvents</code>. All those are stored in device memory, in binary form,
   in separate files with filenames prefixed with <code>[CLY]_</code>.
 </p>
-<h2 id="h_01HC03JE5W0Y7GK040TN071681">SDK Notes</h2>
-<h3 id="h_01HC03JE5W0WRP58QRFN0C56W1">Test Mode</h3>
+<h2 id="h_01HABV0K6CHWK7XBEWV8ZM5SB7">SDK Notes</h2>
+<h3 id="h_01HABV0K6C87QCRAFK9DD0PYT4">Test Mode</h3>
 <p>
   To ensure correct SDK behavior, please use
   <code>Config.enableTestMode()</code> when your app is in development and testing.
@@ -109,7 +108,7 @@ Countly.init(targetFolder, config);</code></pre>
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
-<h1 id="h_01HC03JE5W7B8VF95YP9K7DB11">Events</h1>
+<h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   Events in Countly represent some meaningful event user performed in your application
   within a <code>Session</code>. Please avoid recording everything like all taps
@@ -142,7 +141,7 @@ Countly.init(targetFolder, config);</code></pre>
     like {"category": "Pants", "size": "M"}.
   </li>
 </ul>
-<h2 id="h_01HC03JE5WZECPCKJFWZ00SK81">Recording Events</h2>
+<h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
 <p>
   The standard way of recording events is through your <code>Countly</code> instance's
   <code>events</code> interface:
@@ -232,7 +231,7 @@ Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", se
 <p>
   <span>Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
-<h2 id="h_01HC03JE5WB1FNRGD5JC6PY94P">Timed Events</h2>
+<h2 id="h_01HABV0K6CAY109S796CY5P6DZ">Timed Events</h2>
 <p>
   There is also a special type of <code>Event</code> supported by Countly - timed
   events. Timed events help you to track long continuous interactions when keeping
@@ -282,8 +281,8 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   event for it to be recorded. Without <code>endEvent("LevelTime")</code> call,
   nothing will happen.
 </p>
-<h1 id="h_01HC03JE5W71WZ9296Q6SMP35S">Sessions</h1>
-<h2 id="h_01HC03JE5W7F68XFE6EAM9YPHS">Manual Sessions</h2>
+<h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
+<h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
   Session in Countly is a single app launch or several app launches if the time
   between them is less than 30 seconds (by default). Of course, you can override
@@ -311,11 +310,11 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
     in this request as well.
   </li>
 </ul>
-<h1 id="h_01HC03JE5W0JRDXS2G5PQWTEWH">Device ID Management</h1>
+<h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
-<h2 id="h_01HC03JE5WPKV0SKMY6FZKFHR0">Changing Device ID</h2>
+<h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
   any of the following two methods to changing the Device ID, depending on your
@@ -341,17 +340,17 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
-<h2 id="h_01HC03JE5W1AZ2MT91T5AVDEQ0">Retrieving Current Device ID</h2>
+<h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
-<h1 id="h_01HC03JE5W612RK3VPXK3CM8V0">User Profiles</h1>
+<h1 id="h_01HABV0K6C4TX8B97XNK8XWNVA">User Profiles</h1>
 <p>
   <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a>
 </p>
-<h2 id="h_01HC03JE5WKWGM70Q8K72WMMP1">Setting Predefined Values</h2>
+<h2 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h2>
 <p>
   The Countly Java SDK allows you to upload specific data related to a user to
   the Countly server. You may set the following predefined data for a particular
@@ -397,7 +396,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
         .setOrg("Tester")
         .setPhone("+123456789")
         .commit();</code></pre>
-<h2 id="h_01HC03JE5W3478QJQRKA01DACD">Setting Custom Values</h2>
+<h2 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h2>
 <p>
   To set custom properties, call set(). To send modification operations, call the
   corresponding method:
@@ -408,8 +407,8 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
         .pushUnique("tags", "fan")
         .pushUnique("skill", "singer")
         .commit();</code></pre>
-<h1 id="h_01HC03JE5W59DJVC1MYAJZT4AM">Other Features and Notes</h1>
-<h2 id="h_01HC03JE5WYC0AETHZZ1YYRE5K">SDK Config Parameters Explained</h2>
+<h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
+<h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
   These are the methods that lets you set values in your Countly config object:
 </p>
@@ -424,14 +423,14 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
     grouping.
   </li>
 </ul>
-<h2 id="h_01HC03JE5WQ6BYYYA2WJKKWN1W">Setting Event Queue Threshold</h2>
+<h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
 <pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
-<h2 id="h_01HC03JE5XJRWZ2TDKXPMAFNZC">Custom Metrics</h2>
+<h2 id="h_01HAXVT7C5G91JJG8FSCXH3CJV">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
 </div>
@@ -451,14 +450,14 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
 <h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
 <pre><span><code class="java">config.setLogListener(new LogCallback() {<br>        @Override<br>        public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {<br>           //print log<br>        }<br>});</code></span></pre>
-<h2 id="h_01HC03JE5XPTQNR59815B63GWS">Backend Mode</h2>
+<h2 id="h_01HABV0K6D57PGC01NJ1V3QYSB">Backend Mode</h2>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
   'Backend Mode'. This mode disables the regular API of the SDK and offers an alternative
@@ -471,7 +470,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   This means that any data, that was not yet sent to the server when the app is
   closed/killed, will be lost.
 </p>
-<h3 id="h_01HC03JE5XSFT38ZCJCDFEBER8">Enabling Backend Mode</h3>
+<h3 id="h_01HABV0K6D46WXJ4FAWTKQF7HX">Enabling Backend Mode</h3>
 <p>
   To enable Backend Mode you should create a config class and call
   <code class="java">enableBackendMode</code>on this object, and later you should
@@ -489,7 +488,7 @@ Countly.init(targetFolder, config);</code></pre>
   <code class="java">setRequestQueueMaxSize</code> on the
   <code class="java">Config</code>object before the SDK init.
 </p>
-<h3 id="h_01HC03JE5XXA2S2TZTGAMMZ31W">Recording Data</h3>
+<h3 id="h_01HABV0K6DB0KK25C4P7GV0WVW">Recording Data</h3>
 <p>
   In order to record data using the SDK, users are required to provide a device
   ID and may optionally include a timestamp, specified in milliseconds. It is important
@@ -502,7 +501,7 @@ Countly.init(targetFolder, config);</code></pre>
   in milliseconds. This ensures that all recorded data is accurately timestamped
   and prevents data duplication.
 </p>
-<h4 id="h_01HC03JE5X7HAT473RTJB635EE">Recording an Event</h4>
+<h4 id="h_01HABV0K6DTND55NRZ3SEGS3JP">Recording an Event</h4>
 <p>
   <span data-preserver-spaces="true">You may record as many events as you want.</span>
 </p>
@@ -535,7 +534,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
   not be recorded if any of these two parameters is null or empty.&nbsp;
 </p>
-<h4 id="h_01HC03JE5XP0S9DQCFAQ5G1TH3">Recording a View</h4>
+<h4 id="h_01HABV0K6DRZ993XGKMFF29MGF">Recording a View</h4>
 <p>
   <span data-preserver-spaces="true">You may record views by providing the view details in segmentation with a timestamp.</span>
 </p>
@@ -562,7 +561,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note:&nbsp;</strong>Device ID and 'name' both are mandatory. The view
   will not be recorded if any of these two parameters is null or empty.
 </p>
-<h4 id="h_01HC03JE5XGWXGC6PR740HV00A">Recording a Crash</h4>
+<h4 id="h_01HABV0K6D86BYQ81T2VGYZJKM">Recording a Crash</h4>
 <p>
   <span>To report exceptions provide the following detail:</span>
 </p>
@@ -583,7 +582,7 @@ Countly.init(targetFolder, config);</code></pre>
     <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
-    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#crash-reporting" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
+    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ20M61EKN76EY6RJ84" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -601,7 +600,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
   be recorded if it is null.
 </p>
-<h4 id="h_01HC03JE5XV7EE9VGC17T10K8J">Recording Sessions</h4>
+<h4 id="h_01HABV0K6DTQ7W3AVREGG1KVHP">Recording Sessions</h4>
 <p>
   <span>To start a session please provide the following details:</span>
 </p>
@@ -627,7 +626,7 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
   are predefined metrics keys. To know more about metrics, click
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-metrics" target="_self">here.</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ2TZF21BH3ZSR8XHNW" target="_self">here.</a>
 </p>
 <p>
   <span>To update or end a session please provide the following details:</span>
@@ -655,7 +654,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
   provided a value that is less than 0.
 </p>
-<h4 id="h_01HC03JE5X9QD1DKTW49HXDCYW">Recording User Properties</h4>
+<h4 id="h_01HABV0K6EF1ZF35KQD5VVSN6X">Recording User Properties</h4>
 <p>
   If you want to record some user information the SDK lets you do so by passing
   data as user details and custom properties.&nbsp;
@@ -743,7 +742,7 @@ Countly.init(targetFolder, config);</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4 id="h_01HC03JE5XVACWR7SV0VBWZXVA">Recording Direct Requests</h4>
+  <h4 id="h_01HABV0K6ECC7ZMFD74ME9HEWZ">Recording Direct Requests</h4>
   <p>
     The SDK allows you to record direct requests to the server. To record a request
     you should provide the request data along with the device id and timestamp.
@@ -770,7 +769,7 @@ Countly.init(targetFolder, config);</code></pre>
   <p>
     <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true"> 'sdk_name', 'sdk_version', and 'checksum256' are protected by default and their values will not be overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
   </p>
-  <h3 id="h_01HC03JE5X98Q3AV4HFA008NZT">Getting the Request Queue Size</h3>
+  <h3 id="h_01HABV0K6EKZG5YRJH47E2DY3Q">Getting the Request Queue Size</h3>
   <p>
     <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>

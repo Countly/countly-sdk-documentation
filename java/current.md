@@ -5,14 +5,17 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#java-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G8QD0W9EMHT11F2N8P" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
 <p>
-  The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
-  as a dependency to your project and initializing SDK. Once those are done, you'll
-  have basic analytics on your server like users, sessions, devices, etc.
+  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
+  reach the Countly Java SDK
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
+  Also, you can inspect the sample application
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
+  to understand how most functionalities work.
 </p>
 <h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
@@ -53,7 +56,7 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -61,7 +64,7 @@ Countly.init(targetFolder, config);</code></pre>
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HABV0K6C1TBRCQBZJ45PE13H">SDK Logging Mode</h2>
@@ -406,7 +409,29 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
         .pushUnique("skill", "singer")
         .commit();</code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
-<h2 id="h_01HABV0K6D17J2B0MN04S1G5H7">Custom Metrics</h2>
+<h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you set values in your Countly config object:
+</p>
+<ul>
+  <li>
+    <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
+    for the automatic session update calls. The delay can not be smaller than
+    1 sec.
+  </li>
+  <li>
+    <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
+    grouping.
+  </li>
+</ul>
+<h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
+<p>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
+</p>
+<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h2 id="h_01HAXVT7C5G91JJG8FSCXH3CJV">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
 </div>
@@ -426,7 +451,7 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
 <h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
 <p>
@@ -558,7 +583,7 @@ Countly.init(targetFolder, config);</code></pre>
     <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
-    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#crash-reporting" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
+    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ20M61EKN76EY6RJ84" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -602,7 +627,7 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
   are predefined metrics keys. To know more about metrics, click
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-metrics" target="_self">here.</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ2TZF21BH3ZSR8XHNW" target="_self">here.</a>
 </p>
 <p>
   <span>To update or end a session please provide the following details:</span>
