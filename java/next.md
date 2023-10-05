@@ -137,24 +137,18 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
   <li>
     <code>segmentation</code> - some data associated with the event. Optional.
-    It's a Map&lt;String, String&gt; which can be filled with arbitrary data
+    It's a Map&lt;String, Object&gt; which can be filled with arbitrary data
     like {"category": "Pants", "size": "M"}.
   </li>
 </ul>
 <h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
 <p>
-  The standard way of recording events is through your <code>Session</code> instance:
+  The standard way of recording events is through your <code>Countly</code> instance's
+  <code>events</code> interface:
 </p>
-<pre><code class="java">Countly.session().event('purchase')
-                    .setCount(2)
-                    .setSum(19.98)
-                    .setDuration(35)
-                    .addSegments("category", "pants", "size", "M")
-                .record();</code></pre>
-<p>
-  Please note the last method in that call chain, <code>.record()</code> call is
-  required for the event to be recorded.
-</p>
+<div>
+  <pre><code class="java">Map&lt;String, Object&gt; segmentation = <span>new </span>HashMap&lt;String, Object&gt;() {{<br>    put(<span>"Time Spent"</span>, <span>60</span>);<br>    put(<span>"Retry Attempts"</span>, <span>60</span>);<br>}};<br><br>Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
+</div>
 <p>
   The example above results in a new event being recorded in the current session.
   The event won't be sent to the server right away. Instead, Countly SDK will wait
@@ -205,35 +199,35 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).record();</code></pre>
+<pre><code class="java hljs">Countly.instance().events().recordEvent("purchase", 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(20.3).record();</code></pre>
+<pre><code class="java hljs">Countly.instance().events().recordEvent("purchase", 1, 20.3);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
-segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", 1.0);
 
-Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSegmentation(segmentation).record();</code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
-segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", 1.0);
 
-Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setSegmentation(segmentation).record();</code></pre>
+Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", segmentation, 1, 34.5</span>);<br></code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">1.0</span>);
 
-Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setDuration(5.3).setSegmentation(segmentation).record();;</code></pre>
+Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", segmentation, 1, 34.5, 5.3</span>);<br></code></pre>
 <p>
   <span>Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
@@ -247,18 +241,24 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <ul>
   <li>
     User starts playing a level "37" of your game, you call
-    <code>Countly.session().timedEvent("LevelTime").addSegment("level", "37")</code>
-    to start tracking how much time a user spends on this level.
+    <code>Countly.instance().events().startEvent("LevelTime")</code> to start
+    tracking how much time a user spends on this level. Also keep your segmentation
+    values in a map like&nbsp;
+  </li>
+</ul>
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-string">37</span>);</code></pre>
+<ul>
+  <li>
+    <span data-preserver-spaces="true">Then, something happens when the user is at that level; for example, the user buys some coins. Along with the regular "Purchase" event, you decide you want to segment the "LevelTime" event with purchase information. While ending the event, you also pass the sum value as the purchase amount to the function call.</span>
   </li>
   <li>
-    Then something happens when the user is at that level, for example, the user
-    bought some coins. Along with regular "Purchase" event, you decide you want
-    to segment the "LevelTime" event with purchase information:
-    <code>Countly.session().timedEvent("LevelTime").setSum(9.99)</code>.
+    <span data-preserver-spaces="true">Once the user stops playing, you need to stop this event and call:</span>
+    <code>Countly.instance().events().endEvent("LevelTime",segmentation, 1, 9.99)</code>
   </li>
   <li>
-    Once the user stopped playing, you need to stop recording this event:
-    <code>Countly.session().timedEvent("LevelTime").endAndRecord()</code>
+    If you decide to cancel the event you can call:
+    <code>Countly.instance().events().cancelEvent("LevelTime")</code>
   </li>
 </ul>
 <p>Once this event is sent to the server, you'll see:</p>
@@ -278,8 +278,8 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 </ul>
 <p>
   With timed events, there is one thing to keep in mind: you have to end timed
-  event for it to be recorded. Without <code>endAndRecord()</code> call, nothing
-  will happen.
+  event for it to be recorded. Without <code>endEvent("LevelTime")</code> call,
+  nothing will happen.
 </p>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
