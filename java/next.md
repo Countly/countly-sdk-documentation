@@ -51,8 +51,7 @@
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
 
 Countly.instance().init(config);</code></pre>
-
-Countly.init(targetFolder, config);</code></pre>
+<p>Countly.init(targetFolder, config);</p>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
@@ -75,7 +74,7 @@ Countly.init(targetFolder, config);</code></pre>
   Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
   the config object to enable logging:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)                         .setLoggingLevel(Config.LoggingLevel.DEBUG)
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)                         <br>                .setLoggingLevel(Config.LoggingLevel.DEBUG)
                 .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
                 .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
 <p>
@@ -219,7 +218,7 @@ Countly.instance().events().recordEvent("purchase", segmentation, 1);</code></pr
 segmentation.put("country", "Germany");
 segmentation.put("app_version", 1.0);
 
-Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", segmentation, 1, 34.5</span>);<br></code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5);<br></code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
@@ -227,7 +226,7 @@ Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", se
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
 segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">1.0</span>);
 
-Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", segmentation, 1, 34.5, 5.3</span>);<br></code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);<br></code></pre>
 <p>
   <span>Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
