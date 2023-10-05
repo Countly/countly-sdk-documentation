@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.02.X<br>
+  and it applies to version 23.6.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
@@ -23,7 +23,7 @@
   You can take a look at our example application in
   <a href="https://github.com/Countly/countly-sdk-rnb-example.git" target="_blank" rel="noopener">this Github repo</a>.
   It shows, how the majority of the SDK functionality can be used. After you have
-  cloned the repo, then run the following commands from the root folder:
+  cloned the repo, run the following commands from the root folder:
 </p>
 <pre><code class="shell">npm install                         # Install dependencies
 cd ios                              # Move to ios directory
@@ -58,7 +58,7 @@ cd ..</pre>
   <code class="JavaScript">componentDidMount</code>method may be a good place.
 </p>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
-import Countly from 'countly-sdk-react-native-bridge/CountlyConfig';
+import CountlyConfig from 'countly-sdk-react-native-bridge/CountlyConfig';
 
 if(!await Countly.isInitialized()) {<br>  // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
@@ -67,58 +67,41 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
 }</code></pre>
 <p>
   Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3" target="_blank" rel="noopener noreferrer">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
 <p>
-  After <code class="JavaScript">initWithConfig</code> and
-  <code class="JavaScript">start</code> have been called once, you may use the
-  commands in the rest of this document to send additional data and metrics to
-  your server.
+  After <code class="JavaScript">initWithConfig</code> has been called once, you
+  may use the commands in the rest of this document to send additional data and
+  metrics to your server.
 </p>
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
-<h2 id="h_01HAVQNJQQ1QSEBM46DBK2DR77">Enable logging</h2>
+<h1 id="h_01HAVQNJQQ1QSEBM46DBK2DR77">SDK logging</h1>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
   logging is enabled, then our SDK will print out debug messages about its internal
   state and encountered problems.
 </p>
 <p>
-  Call <code class="JavaScript">setLoggingEnabled</code> on the config object to
+  Call <code class="javascript">setLoggingEnabled</code> on the config object to
   enable logging:
 </p>
-<pre><code class="hljs coffeescript">  // create Countly config object
-  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>  // ...
+<pre><code class="javascript">  // create Countly config object
+  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+  // ...
   countlyConfig.setLoggingEnabled(true); // Enable countly internal debugging logs
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
   </code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
-</p>
-<h2 id="h_01HAVQNJQQE2NNR8AVVZD1EHNT">Device ID</h2>
-<p>
-  You may provide your own custom device ID when initializing the SDK using the
-  method below.
-</p>
-<pre>  // create Countly config object<br>  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // ...
-  countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
-  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-</pre>
-<h2 id="h_01HAVQNJQQMT24JF8S477H9WJB" class="anchor-heading">SDK data storage</h2>
-<p>
-  For iOS: SDK data is stored in Application Support Directory in a file named
-  "Countly.dat" For Android: SDK data is stored in SharedPreferences. A SharedPreferences
-  object points to a file containing key-value pairs and provides simple methods
-  to read and write them.
 </p>
 <h1 id="h_01HAVQNJQQ54VGN5SK3J9YZYCN">Crash reporting</h1>
 <p>
@@ -1592,30 +1575,78 @@ buildTypes {
   By following these steps, the Countly Messaging classes will be obfuscated using
   Proguard and your application will be better protected against reverse engineering.
 </p>
-<h1 id="h_01HAVQNJQTVQ1CQD7VGBYY6HFV">Other features</h1>
-<h2 id="h_01HAVQNJQTXCW1K0039GTD0Z3R">Custom Metrics</h2>
-<div class="callout callout--info">
-  <strong>Minimum Countly SDK Version</strong>
-  <p>
-    This feature is only supported by the minimum SDK version 20.11.7.
-  </p>
-</div>
+<h1 id="h_01HAVQNJQTVQ1CQD7VGBYY6HFV">Other Features and Notes</h1>
+<h2 id="h_01HBZGC0M48MT2JRYM9N89SJ8P">SDK Config Parameters Explained</h2>
 <p>
-  For overriding default metrics or adding extra ones that are sent with begin_session
-  requests, you can use pass 'customMetric' Object to the function
-  <code>Countly.setCustomMetrics(customMetric)</code>, 'customMetric' should be
-  an Object with keys and values that are both Strings only. Note that the custom
-  metrics should be set before initialization.
+  You may provide your own custom device ID when initializing the SDK using the
+  method below.
 </p>
-<pre><code class="JavaScript">var customMetric = {"key": "value"};
-Countly.setCustomMetrics(customMetric);</code></pre>
+<pre>  // create Countly config object<br>  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+  // ...
+  countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
+  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
+</pre>
+<h2 id="h_01HBZGC0M4JG8E6DCYCD04HQTJ">SDK Storage and Requests</h2>
 <p>
-  For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+  For iOS: SDK data is stored in Application Support Directory in a file named
+  "Countly.dat" For Android: SDK data is stored in SharedPreferences. A SharedPreferences
+  object points to a file containing key-value pairs and provides simple methods
+  to read and write them.
 </p>
-<p>Example to override 'Carrier' and 'App Version'</p>
-<pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
-Countly.setCustomMetrics(customMetric);</code></pre>
+<h3 id="h_01HAVQNJQVEMEHN5ZF3DTYNG84">Setting Event Queue Threshold</h3>
+<p>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
+</p>
+<pre>Countly.setEventSendThreshold(6);</pre>
+<h3 id="h_01HAVQNJQTRAKGYDMT0NB7GVNA">Forcing HTTP POST</h3>
+<p>
+  If the data sent to the server is short enough, the SDK will use HTTP GET requests.
+  In the event you would like an override so that HTTP POST may be used in all
+  cases, call the <code class="JavaScript">setHttpPostForced</code> function after
+  you have called <code class="JavaScript">initWithConfig</code>. You may use the
+  same function later in the app’s life cycle to disable the override. This function
+  has to be called every time the app starts, using the method below.
+</p>
+<pre><code class="javascript">// enabling the override
+Countly.setHttpPostForced(true);
+  
+// disabling the override
+Countly.setHttpPostForced(false);</code></pre>
+<h3 id="h_01HAVQNJQTKPQPAY8MBKTP66DE">Interacting with the Internal Request Queue</h3>
+<p>
+  When recording events or activities, the requests don't always get sent immediately.
+  Events get grouped together. All the requests contain the same app key which
+  is provided in the <code class="JavaScript">initWithConfig</code> function.
+</p>
+<p>
+  There are two ways to interact with the app key in the request queue at the moment.
+</p>
+<p>
+  1. You can replace all requests with a different app key with the current app
+  key:
+</p>
+<pre>//Replaces all requests with a different app key with the current app key.
+Countly.replaceAllAppKeysInQueueWithCurrentAppKey();</pre>
+<p>
+  In the request queue, if there are any requests whose app key is different than
+  the current app key, these requests app key will be replaced with the current
+  app key. 2. You can remove all requests with a different app key in the request
+  queue:
+</p>
+<pre>//Removes all requests with a different app key in request queue.
+Countly.removeDifferentAppKeysFromQueue();</pre>
+<p>
+  In the request queue, if there are any requests whose app key is different than
+  the current app key, these requests will be removed from the request queue.
+</p>
+<h2 id="01HBZGDQ57D82CFMYJH2FBXWEQ">Checking If the SDK Has Been Initialized</h2>
+<p>
+  In the event you would like to check if initWithConfig has been called, use the
+  function below.
+</p>
+<pre><code class="javascript">Countly.isInitialized().then(result =&gt; console.log(result)); // true or false</code></pre>
 <h2 id="h_01HAVQNJQTHCHN59TAVZC63NAD">Attribution</h2>
 <p>This feature is available for the Enterprise Edition.</p>
 <p>
@@ -1664,66 +1695,28 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   by Apple, regarding Application Tracking, you need to ask the user for permission
   to track the Application.
 </p>
-<h2 id="h_01HAVQNJQTRAKGYDMT0NB7GVNA">Forcing HTTP POST</h2>
+<h2 id="h_01HAVQNJQTXCW1K0039GTD0Z3R">Custom Metrics</h2>
+<div class="callout callout--info">
+  <strong>Minimum Countly SDK Version</strong>
+  <p>
+    This feature is only supported by the minimum SDK version 20.11.7.
+  </p>
+</div>
 <p>
-  If the data sent to the server is short enough, the SDK will use HTTP GET requests.
-  In the event you would like an override so that HTTP POST may be used in all
-  cases, call the <code class="JavaScript">setHttpPostForced</code> function after
-  you have called <code class="JavaScript">initWithConfig</code>. You may use the
-  same function later in the app’s life cycle to disable the override. This function
-  has to be called every time the app starts, using the method below.
+  For overriding default metrics or adding extra ones that are sent with begin_session
+  requests, you can use pass 'customMetric' Object to the function
+  <code>Countly.setCustomMetrics(customMetric)</code>, 'customMetric' should be
+  an Object with keys and values that are both Strings only. Note that the custom
+  metrics should be set before initialization.
 </p>
-<pre><code class="javascript">  
-// enabling the override
-Countly.setHttpPostForced(true);
-  
-// disabling the override
-Countly.setHttpPostForced(false);</code></pre>
-<h2 id="h_01HAVQNJQT7R2VAJH48J0ZV642">Checking if initWithConfig has been called</h2>
+<pre><code class="JavaScript">var customMetric = {"key": "value"};
+Countly.setCustomMetrics(customMetric);</code></pre>
 <p>
-  In the event you would like to check if initWithConfig has been called, use the
-  function below.
+  For more information on the specific metric keys used by Countly, check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
 </p>
-<pre><code class="javascript">Countly.isInitialized().then(result =&gt; console.log(result)); // true or false
-</code></pre>
-<h2 id="h_01HAVQNJQTK5KKKK5GV1YJRHEB">Checking if onStart has been called</h2>
-<p>
-  For some applications, there might be a use case where the developer would like
-  to check if the Countly SDK onStart function has been called. To do so, use the
-  call below.
-</p>
-<pre><code class="javascript">Countly.hasBeenCalledOnStart().then(result =&gt; console.log(result)); // true or false </code></pre>
-<h2 id="h_01HAVQNJQTKPQPAY8MBKTP66DE">Interacting with the internal request queue</h2>
-<p>
-  When recording events or activities, the requests don't always get sent immediately.
-  Events get grouped together. All the requests contain the same app key which
-  is provided in the <code class="JavaScript">initWithConfig</code> function.
-</p>
-<p>
-  There are two ways to interact with the app key in the request queue at the moment.
-</p>
-<p>
-  1. You can replace all requests with a different app key with the current app
-  key:
-</p>
-<pre>//Replaces all requests with a different app key with the current app key.
-Countly.replaceAllAppKeysInQueueWithCurrentAppKey();</pre>
-<p>
-  In the request queue, if there are any requests whose app key is different than
-  the current app key, these requests app key will be replaced with the current
-  app key. 2. You can remove all requests with a different app key in the request
-  queue:
-</p>
-<pre>//Removes all requests with a different app key in request queue.
-Countly.removeDifferentAppKeysFromQueue();</pre>
-<p>
-  In the request queue, if there are any requests whose app key is different than
-  the current app key, these requests will be removed from the request queue.
-</p>
-<h2 id="h_01HAVQNJQVEMEHN5ZF3DTYNG84">Setting an event queue threshold</h2>
-<p>
-  Events get grouped together and are sent either every minute or after the unsent
-  event count reaches a threshold. By default it is 10. If you would like to change
-  this, call:
-</p>
-<pre>Countly.setEventSendThreshold(6);</pre>
+<p>Example to override 'Carrier' and 'App Version'</p>
+<pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
+Countly.setCustomMetrics(customMetric);</code></pre>
+<h2 id="01HBZGNE148R4FSFYFTJMWP20Q">&nbsp;</h2>
+<p>&nbsp;</p>
