@@ -433,29 +433,11 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
     calls are made. Default is false.
   </li>
   <li>
-    <strong>setNetworkImportantRequestCooldown(int milliseconds)&nbsp;</strong>-
-    Set read timeout in seconds for HTTP requests SDK sends to Countly server.
-    Default is 5000 milliseconds.
-  </li>
-  <li>
-    <strong>setNetworkRequestCooldown(int milliseconds)&nbsp;</strong>- Set how
-    long to wait between requests in seconds. Default is 1000 milliseconds.
-  </li>
-  <li>
-    <strong>setNetworkReadTimeout(int seconds)</strong> - Set read timeout in
-    seconds for HTTP requests SDK sends to Countly server. Default is 30 seconds.
-  </li>
-  <li>
     <div>
       <strong>setMetricOverride(Map&lt;String, String&gt; metricOverride)</strong>
       - Mechanism for overriding metrics that are sent together with "begin
       session" requests and remote.
     </div>
-  </li>
-  <li>
-    <strong>configsetNetworkConnectTimeout(int seconds)</strong> - Set connection
-    timeout in seconds for HTTP requests SDK sends to Countly server. Default
-    is 30 seconds.
   </li>
   <li>
     <div>
@@ -487,12 +469,6 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   </li>
   <li>
     <div>
-      <strong>setUsePOST(boolean usePOST)</strong> - Force usage of POST method
-      for all requests. Default is false.
-    </div>
-  </li>
-  <li>
-    <div>
       <strong>enableUsePOST()</strong> - Force usage of POST method for all
       requests.
     </div>
@@ -506,36 +482,8 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   </li>
   <li>
     <div>
-      <strong>setDeviceIdStrategy(DeviceIdStrategy strategy)</strong> - Change
-      the device id strategy.&nbsp;
-    </div>
-  </li>
-  <li>
-    <strong>setDeviceIdStrategy(DeviceIdStrategy strategy, String customDeviceId)</strong>
-    - Change the device id strategy and custom device id.&nbsp;
-  </li>
-  <li>
-    <div>
-      <strong>setFeatures(Config.Feature... features)</strong> - Set enabled
-      features.
-    </div>
-  </li>
-  <li>
-    <div>
       <strong>setLogListener(LogCallback logCallback)</strong> - Add a log
       callback that will duplicate all logs done by the SDK.
-    </div>
-  </li>
-  <li>
-    <div>
-      <strong>enableFeatures(Config.Feature... features)</strong> - Enable
-      one or many features.
-    </div>
-  </li>
-  <li>
-    <div>
-      <strong>disableFeatures(Config.Feature... features)</strong> - Disable
-      one or many features.
     </div>
   </li>
 </ul>
