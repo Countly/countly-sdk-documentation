@@ -43,7 +43,7 @@ Each SDK document starts with an introductory text that includes:
 
 * the current SDK version and the SDK name
 * link to the archived doc page
-* minimum platform, langauge requirements, supported platform versions
+* minimum platform, language requirements, supported platform versions
 * SDK repo location
 * example app location
 
