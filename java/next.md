@@ -568,7 +568,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   </li>
   <li>
     <div>
-      <strong>enableForcedPost()</strong> - Force usage of POST method for all
+      <strong>enableForcedHTTPPost()</strong> - Force usage of POST method for all
       requests.
     </div>
   </li>
