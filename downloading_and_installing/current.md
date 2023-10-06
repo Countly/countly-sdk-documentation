@@ -654,6 +654,8 @@
 </p>
 <h2 id="h_01H9QCP8G8QD0W9EMHT11F2N8P">Java SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/23736736982425/" target="_blank" rel="noopener">Version 22.09</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/16286959845145" target="_blank" rel="noopener">Version 20.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_blank" rel="noopener">Version 19.09</a>
