@@ -44,15 +44,16 @@
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-                .enableTestMode()
-                .setLoggingLevel(Config.LoggingLevel.DEBUG)
-                .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-                .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .enableTestMode()
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
 
 Countly.instance().init(config);</code></pre>
-
-Countly.init(targetFolder, config);</code></pre>
+<p>Countly.init(targetFolder, config);</p>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
@@ -75,9 +76,12 @@ Countly.init(targetFolder, config);</code></pre>
   Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
   the config object to enable logging:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");<br><br>Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)                         .setLoggingLevel(Config.LoggingLevel.DEBUG)
-                .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-                .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
 <p>
   In case you want to forward the SDK logs to your own logging mechanism, you would
   have a look at the
@@ -219,7 +223,7 @@ Countly.instance().events().recordEvent("purchase", segmentation, 1);</code></pr
 segmentation.put("country", "Germany");
 segmentation.put("app_version", 1.0);
 
-Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", segmentation, 1, 34.5</span>);<br></code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5);<br></code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
@@ -227,7 +231,7 @@ Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", se
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
 segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">1.0</span>);
 
-Countly.instance().events().recordEvent(<span class="hljs-string">"purchase", segmentation, 1, 34.5, 5.3</span>);<br></code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);<br></code></pre>
 <p>
   <span>Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
@@ -490,23 +494,23 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   To set standard properties, call respective methods of <code>UserEditor</code>:
 </p>
 <pre><code class="java">Countly.api().user().edit()
-        .setName("Firstname Lastname")
-        .setUsername("nickname")
-        .setEmail("test@test.com")
-        .setOrg("Tester")
-        .setPhone("+123456789")
-        .commit();</code></pre>
+  .setName("Firstname Lastname")
+  .setUsername("nickname")
+  .setEmail("test@test.com")
+  .setOrg("Tester")
+  .setPhone("+123456789")
+  .commit();</code></pre>
 <h2 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h2>
 <p>
   To set custom properties, call set(). To send modification operations, call the
   corresponding method:
 </p>
 <pre><code class="java">Countly.api().user().edit()
-        .set("mostFavoritePet", "dog")
-        .inc("phoneCalls", 1)
-        .pushUnique("tags", "fan")
-        .pushUnique("skill", "singer")
-        .commit();</code></pre>
+  .set("mostFavoritePet", "dog")
+  .inc("phoneCalls", 1)
+  .pushUnique("tags", "fan")
+  .pushUnique("skill", "singer")
+  .commit();</code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
@@ -640,8 +644,9 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   pass it to the <code>init</code> method.
 </p>
 <pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
-                .enableBackendMode()<br>                .setRequestQueueMaxSize(<span>500</span>)
-                .setLoggingLevel(Config.LoggingLevel.DEBUG);
+  .enableBackendMode()
+  .setRequestQueueMaxSize(<span>500</span>)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG);
 
 Countly.init(targetFolder, config);</code></pre>
 <p>
@@ -837,7 +842,12 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>For example:</p>
-<pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();<br>userDetail.put("name", "Full Name");<br>userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");<br><br>//custom detail<br>userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
+<pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();
+userDetail.put("name", "Full Name");
+userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");
+
+//custom detail
+userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
 <p>
   <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
 </p>
