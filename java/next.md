@@ -44,7 +44,7 @@
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
   .enableTestMode()
@@ -53,7 +53,6 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
 
 Countly.instance().init(config);</code></pre>
-<p>Countly.init(targetFolder, config);</p>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
@@ -73,10 +72,10 @@ Countly.instance().init(config);</code></pre>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
 </p>
 <p>
-  Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
-  the config object to enable logging:
+  Set <code class="java">setLoggingLevel</code> on the config object to enable
+  logging:
 </p>
-<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
   .setLoggingLevel(Config.LoggingLevel.DEBUG)
@@ -95,7 +94,7 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
 <h2 id="h_01HABV0K6C4TED33TF2K40S71H">SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
-  <code>InternalConfig</code>, <code>SessionImpl</code>,
+  <code>InternalConfig</code>, <code>SessionImpl</code>, <code>EventQueue</code>,
   <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code> &amp;
   <code>TimedEvents</code>. All those are stored in device memory, in binary form,
   in separate files with filenames prefixed with <code>[CLY]_</code>.
@@ -151,7 +150,12 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <code>events</code> interface:
 </p>
 <div>
-  <pre><code class="java">Map&lt;String, Object&gt; segmentation = <span>new </span>HashMap&lt;String, Object&gt;() {{<br>    put(<span>"Time Spent"</span>, <span>60</span>);<br>    put(<span>"Retry Attempts"</span>, <span>60</span>);<br>}};<br><br>Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
+  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;() {
+  put("Time Spent", 60);
+  put("Retry Attempts", 60);
+};
+
+Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
 </div>
 <p>
   The example above results in a new event being recorded in the current session.
@@ -228,8 +232,8 @@ Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5);<br><
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
 <pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
-segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">1.0</span>);
+segmentation.put("country", "Germany");
+segmentation.put("app_version", 1.0);
 
 Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);<br></code></pre>
 <p>
@@ -251,7 +255,7 @@ Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);
   </li>
 </ul>
 <pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
-segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-string">37</span>);</code></pre>
+segmentation.put("level", 37);</code></pre>
 <ul>
   <li>
     <span data-preserver-spaces="true">Then, something happens when the user is at that level; for example, the user buys some coins. Along with the regular "Purchase" event, you decide you want to segment the "LevelTime" event with purchase information. While ending the event, you also pass the sum value as the purchase amount to the function call.</span>
@@ -330,14 +334,14 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><code class="java hljs">Countly.<span>session</span>().changeDeviceIdWithMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.session().changeDeviceIdWithMerge("New Device Id");</code></pre>
 <p class="anchor-heading">
   <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><code class="java hljs">Countly.<span>session</span>().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.session().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
@@ -349,7 +353,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.&nbsp;
 </p>
-<pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
+<pre><code class="java hljs">Countly.session().getDeviceId()</code></pre>
 <h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
 <p>
   <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets.</span>
@@ -380,10 +384,18 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   as the first parameter and error as the second:
 </p>
 <div>
-  <pre>Countly.<span>instance</span>().feedback().getAvailableFeedbackWidgets((retrievedWidgets, error) -&gt; {<br>    <span>// handle error<br></span><span>    // do something with the returned list here like pick a widget and then show that widget etc...<br></span>});</pre>
+  <pre><code class="java hljs">Countly.instance().feedback().getAvailableFeedbackWidgets((retrievedWidgets, error) -&gt; {
+  // handle error
+  // do something with the returned list here like pick a widget and then show that widget etc...
+});</code></pre>
 </div>
 <p>The objects in the returned list would look like this:</p>
-<pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>    public String[] tags; <br>}</pre>
+<pre><code class="java hljs">class CountlyFeedbackWidget {
+  public String widgetId;
+  public FeedbackWidgetType type;
+  public String name;
+  public String[] tags;
+}</code></pre>
 <p>
   Here all the values are same with the values that can be seen at your Countly
   server like the widget ID, widget type, widget name and the tags you have passed
@@ -392,14 +404,17 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   left to the developer.
 </p>
 <p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
+<pre><code class="java hljs">FeedbackWidgetType {survey, nps, rating}</code></pre>
 <p>
   After you have decided which widget you want to show, you would provide that
   object to the following function as the first parameter. Second is a callback
   with constructed url to show and error message in case an error occurred:
 </p>
 <div>
-  <pre>Countly.<span>instance</span>().feedback().constructFeedbackWidgetUrl(chosenWidget, (constructedUrl, error) -&gt; { <br><span>    // handle error and the constructed url<br></span>});</pre>
+  <pre><code class="java hljs">Countly.instance().feedback().constructFeedbackWidgetUrl(chosenWidget, (constructedUrl, error) -&gt; {
+  // handle error and the constructed url
+});
+</code></pre>
 </div>
 <h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
 <p>
@@ -424,7 +439,9 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   widget data as first parameter and the error as second:
 </p>
 <div>
-  <pre>Countly.<span>instance</span>().feedback().getFeedbackWidgetData(chosenWidget, (retrievedWidgetData, error) -&gt; {<br>    <span>// handle data and error here<br></span>});</pre>
+  <pre><code class="java hljs">Countly.instance().feedback().getFeedbackWidgetData(chosenWidget, (retrievedWidgetData, error) -&gt; {
+  // handle data and error here
+});</code></pre>
 </div>
 <p>
   Here the retrievedWidgetData would yield to a JSON Object with all of the information
@@ -445,7 +462,16 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   and the <code>retrievedWidgetData</code> to report the feedback result with the
   following call:
 </p>
-<pre>//this contains the reported results<br>Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();<br><br>//<br>// You would fill out the results here. That step is not displayed in this sample check the detailed documentation linked above<br>//<br><br>//report the results to the SDK<br>Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);</pre>
+<pre><code class="java hljs">//this contains the reported results
+Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();
+
+//
+// You would fill out the results here. That step is not displayed in this sample check the detailed documentation linked above
+//
+
+//report the results to the SDK
+Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);
+</code></pre>
 <p>
   If the user would have closed the widget, you would report that by passing a
   "null" as the reportedResult.
@@ -493,7 +519,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
 <p>
   To set standard properties, call respective methods of <code>UserEditor</code>:
 </p>
-<pre><code class="java">Countly.api().user().edit()
+<pre><code class="java hljs">Countly.api().user().edit()
   .setName("Firstname Lastname")
   .setUsername("nickname")
   .setEmail("test@test.com")
@@ -505,7 +531,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   To set custom properties, call set(). To send modification operations, call the
   corresponding method:
 </p>
-<pre><code class="java">Countly.api().user().edit()
+<pre><code class="java hljs">Countly.api().user().edit()
   .set("mostFavoritePet", "dog")
   .inc("phoneCalls", 1)
   .pushUnique("tags", "fan")
@@ -613,7 +639,15 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   to handle those custom values, they will be ignored.
 </p>
 <div>
-  <pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>metricOverride </span>= <span>new </span>HashMap&lt;&gt;();<br><span>metricOverride</span>.put(<span>"SomeKey"</span>, <span>"123"</span>);<br><span>metricOverride</span>.put(<span>"_locale"</span>, <span>"xx_yy"</span>);<br><br><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>)<br>    .setMetricOverride(<span>metricOverride</span>);<br><br><span>Countly</span>.<span>init</span>(targetFolder, <span>config</span>);</pre>
+  <pre><code class="java hljs">Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();
+metricOverride.put("SomeKey", "123");
+metricOverride.put("_locale", "xx_yy");
+
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY)
+  .setMetricOverride(metricOverride);
+  
+Countly.init(targetFolder, config);
+</code></pre>
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
@@ -623,7 +657,13 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
-<pre><span><code class="java">config.setLogListener(new LogCallback() {<br>        @Override<br>        public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {<br>           //print log<br>        }<br>});</code></span></pre>
+<pre><code class="java hljs">config.setLogListener(new LogCallback() {
+  @Override
+  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
+    //print log
+  }
+});
+</code></pre>
 <h2 id="h_01HABV0K6D57PGC01NJ1V3QYSB">Backend Mode</h2>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
@@ -643,7 +683,7 @@ segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-str
   <code class="java">enableBackendMode</code>on this object, and later you should
   pass it to the <code>init</code> method.
 </p>
-<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
+<pre><code class="java hljs">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
   .enableBackendMode()
   .setRequestQueueMaxSize(<span>500</span>)
   .setLoggingLevel(Config.LoggingLevel.DEBUG);
@@ -697,7 +737,13 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java">Map&lt;String, String&gt; segment = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"Time Spent"</span>, <span>"60"</span>);<br>put(<span>"Retry Attempts"</span>, <span>"60"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordEvent(<span>"device-id"</span>, <span>"Event Key"</span>, <span>1</span>, <span>10.5</span>, <span>5</span>, segment, <span>1646640780130L</span>);</code></pre>
+<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;() {{
+  put("Time Spent", "60");
+  put("Retry Attempts", "60");
+}};
+
+Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
+</code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
   not be recorded if any of these two parameters is null or empty.&nbsp;
@@ -724,7 +770,14 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>put(<span>"visit"</span>, <span>"1"</span>);<br>put(<span>"segment"</span>, <span>"Windows"</span>);<br>put(<span>"start"</span>, <span>"1"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordView(<span>"device-id"</span>, <span>"SampleView"</span>, segmentation, <span>1646640780130L</span>);</code></pre>
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
+  put("visit", "1");
+  put("segment", "Windows");
+  put("start", "1");
+}};
+
+Countly.backendMode().recordView("device-id", "SampleView", segmentation, 1646640780130L);
+</code></pre>
 <p>
   <strong>Note:&nbsp;</strong>Device ID and 'name' both are mandatory. The view
   will not be recorded if any of these two parameters is null or empty.
@@ -757,13 +810,38 @@ Countly.init(targetFolder, config);</code></pre>
     <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
   </li>
 </ul>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br>Map&lt;String, String&gt; crashDetails = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Windows 11"</span>);<br>    put(<span>"_os_version"</span>, <span>"11.202"</span>);<br>    put(<span>"_logs"</span>, <span>"main page"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, "message", "stacktrace", segmentation, crashDetails, null);</code></pre>
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
+  put("login page", "authenticate request");
+}};
+
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
+  put("_os", "Windows 11");
+  put("_os_version", "11.202");
+  put("_logs", "main page");
+}};
+
+Countly.backendMode().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
+</code></pre>
 <p>
   You may also pass an instance of an exception instead of the message and the
   stack trace to record a crash.
 </p>
 <p>For example:</p>
-<pre><code class="java">Map&lt;String, String&gt; segmentation = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"login page"</span>, <span>"authenticate request"</span>);<br>}};<br>Map&lt;String, String&gt; crashDetails = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Windows 11"</span>);<br>    put(<span>"_os_version"</span>, <span>"11.202"</span>);<br>    put(<span>"_logs"</span>, <span>"main page"</span>);<br>}};<br><span>try </span>{<br><span>    int </span>a = <span>10 </span>/ <span>0</span>;<br>} <span>catch </span>(Exception e) {<br>    Countly.<span>backendMode</span>().recordException(<span>"device-id"</span>, e, segmentation, crashDetails, null);<br>}</code></pre>
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
+  put("login page", "authenticate request");
+}};
+
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
+  put("_os", "Windows 11");
+  put("_os_version", "11.202");
+  put("_logs", "main page");
+}};
+
+try {
+  int a = 10 / 0;
+} catch(Exception e) {
+  Countly.backendMode().recordException("device-id", e, segmentation, crashDetails, null);
+}</code></pre>
 <p>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
   be recorded if it is null.
@@ -790,7 +868,21 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java">Map&lt;String, String&gt; metrics = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"_os"</span>, <span>"Android"</span>);<br>    put(<span>"_os_version"</span>, <span>"10"</span>);<br>    put(<span>"_app_version"</span>, <span>"1.2"</span>);<br>}};<br>Map&lt;String, String&gt; location = <span>new </span>HashMap&lt;String, String&gt;() {{<br>    put(<span>"ip_address"</span>, <span>"192.168.1.1"</span>);<br>    put(<span>"city"</span>, <span>"Lahore"</span>);<br>    put(<span>"country_code"</span>, <span>"PK"</span>);<br>    put(<span>"location"</span>, <span>"31.5204,74.3587"</span>);<br>}};<br><br>Countly.<span>backendMode</span>().sessionBegin(<span>"device-id"</span>, metrics, location, <span>1646640780130L</span>);</code><code class="java"></code><code class="java"></code></pre>
+<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;() {{
+  put("_os", "Android");
+  put("_os_version", "10");
+  put("_app_version", "1.2");
+}};
+
+Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
+  put("ip_address", "192.168.1.1");
+  put("city", "Lahore");
+  put("country_code", "PK");
+  put("location", "31.5204,74.3587");
+}};
+
+Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130L);
+</code></pre>
 <p>
   <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
   are predefined metrics keys. To know more about metrics, click
@@ -815,9 +907,13 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <span data-preserver-spaces="true">Session update:</span>
 </p>
-<pre><code class="java">double duration = 60;<br>Countly.<span>backendMode</span>().sessionUpdate(<span>"device-id"</span>, duration, null);</code></pre>
+<pre><code class="java hljs">double duration = 60;
+Countly.backendMode().sessionUpdate("device-id", duration, null);
+</code></pre>
 <p>Session end:</p>
-<pre><code class="java">double duration = 20;<br>Countly.<span>backendMode</span>().sessionEnd(<span>"device-id"</span>, duration, 1223456767L);</code></pre>
+<pre><code class="java hljs">double duration = 20;
+Countly.backendMode().sessionEnd("device-id", duration, 1223456767L);
+</code></pre>
 <p>
   <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
   provided a value that is less than 0.
@@ -842,19 +938,34 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>For example:</p>
-<pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();
+<pre><code class="java hljs">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();
 userDetail.put("name", "Full Name");
-userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");
+userDetail.put("username", "username1");
+userDetail.put("email", "user@gmail.com");
+userDetail.put("organization", "Countly");
+userDetail.put("phone", "000-111-000");
+userDetail.put("gender", "M");
+userDetail.put("byear", "1991");
 
 //custom detail
-userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
+userDetail.put("hair", "black");
+userDetail.put("height", 5.9);
+userDetail.put("marks", "{$inc: 1}");
+
+Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+</code></pre>
 <p>
   <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
 </p>
 <p>
   <span>For example:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; operation = new HashMap&lt;&gt;();<br>userDetail.put("fav-colors", "{$push: black}");<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code></pre>
+<pre><code class="java hljs">Map&lt;String, Object&gt; operation = new HashMap&lt;&gt;();
+userDetail.put("fav-colors", "{$push: black}");
+userDetail.put("marks", "{$inc: 1}");
+
+Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+</code></pre>
 <p>
   The keys for predefined <span>modification operation</span>s are as follows:
 </p>
@@ -935,7 +1046,13 @@ userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail
     </li>
   </ul>
   <p>For example:</p>
-  <pre><code class="java">Map&lt;String, String&gt; requestData = <span>new </span>HashMap&lt;&gt;();<br>requestData.put(<span>"device_id"</span>, <span>"device-id-2"</span>);<br>requestData.put(<span>"timestamp"</span>, <span>"1646640780130"</span>);<br>requestData.put(<span>"key-name"</span>, <span>"data"</span>);<br><br>Countly.<span>backendMode</span>().recordDirectRequest("device-id-1", requestData, <span>1646640780130L</span>);</code></pre>
+  <pre><code class="java hljs">Map&lt;String, String&gt; requestData = new HashMap&lt;&gt;();
+requestData.put("device_id", "device-id-2");
+requestData.put("timestamp", "1646640780130");
+requestData.put("key-name", "data");
+
+Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780130L);
+</code></pre>
   <p>
     <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
   </p>
@@ -946,7 +1063,7 @@ userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail
   <p>
     <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>
-  <pre><span><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></span></pre>
+  <pre><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></pre>
   <p>
     It will return the number of requests in the memory request queue.
   </p>
