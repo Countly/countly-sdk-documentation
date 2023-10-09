@@ -150,10 +150,10 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <code>events</code> interface:
 </p>
 <div>
-  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;() {{
+  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;() {
   put("Time Spent", 60);
   put("Retry Attempts", 60);
-}};
+};
 
 Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
 </div>
@@ -384,7 +384,7 @@ segmentation.put("level", 37);</code></pre>
   as the first parameter and error as the second:
 </p>
 <div>
-  <pre><code class="java hljs"> Countly.instance().feedback().getAvailableFeedbackWidgets((retrievedWidgets, error) -&gt; {
+  <pre><code class="java hljs">Countly.instance().feedback().getAvailableFeedbackWidgets((retrievedWidgets, error) -&gt; {
   // handle error
   // do something with the returned list here like pick a widget and then show that widget etc...
 });</code></pre>
