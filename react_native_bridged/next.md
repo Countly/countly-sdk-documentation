@@ -384,30 +384,14 @@ Countly.startEvent(eventName);
 //cancel the event
 Countly.cancelEvent(eventName);</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
-<h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic session tracking</h2>
+<h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic Session Tracking</h2>
 <p>
   Automatic sessions tracks user activity with respect to the app visibility.
   It handles making certain requests to the server to inform it about the user
   session. Automatic sessions are enabled by default and SDK handles the necessary
   calls (by sending start session, update session and end session requests) to
   track a session automatically.<br>
-  This is how it works:
 </p>
-<ul>
-  <li>
-    <strong>Start/Begin session Request:</strong> It is sent to the server when
-    the app comes back to the foreground from the background, and it includes
-    basic metrics.
-  </li>
-  <li>
-    <strong>Update Session Request:</strong> It automatically sends a periodical
-    (60 sec by default) update session request while the app is in the foreground.
-  </li>
-  <li>
-    <strong>End Session Request:</strong> It is sent at the end of a session
-    when the app goes to the background or terminates.
-  </li>
-</ul>
 <h1 id="h_01HAVQNJQR7VTSADNK0KZGAE8H">View tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
 <pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
