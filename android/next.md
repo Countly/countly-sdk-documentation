@@ -4,7 +4,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#android-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G73H5RWXFK9P9W6F7Q" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -39,7 +39,7 @@
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.<span>sharedInstance</span>().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
-  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
+  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
@@ -51,7 +51,7 @@
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HAVQDM5S6PHPV8SAQ32HDXXT">SDK Logging</h2>
@@ -64,7 +64,7 @@
 <pre><code>CountlyConfig config = (<span>new </span>CountlyConfig(appC, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));<br>config.setLoggingEnabled(<span>true</span>);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
 <h2 id="h_01HAVQDM5SCJ6J2H4ATE3WMFV1">Device ID</h2>
 <p>
@@ -102,7 +102,7 @@
   <span style="font-weight: 400;">If the "onStart" and "onStop" calls are not added, some functionalities will not work, e.g. automatic sessions will not be tracked. The Countly "onStart" has to be called in the activities "onStart" function, it cannot be called in "onCreate" or in any other place, otherwise, the application will receive exceptions.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/283f96f-activity_lifecycle.png">
+  <img src="https://archive.count.ly/images/guide/283f96f-activity_lifecycle.png">
 </div>
 <h2 id="h_01HAVQDM5SZSAZR4ZRD4Q1F1RR">Required App Permissions</h2>
 <p>
@@ -111,7 +111,7 @@
 <pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
 <h1 id="h_01HAVQDM5SSRZASQPBFV5YG0QV">Crash Reporting</h1>
 <p>
-  <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
+  <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/4404213566105"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
 </p>
 <p>
   In the SDK all crash-related functionality can be browsed from the returned interface
@@ -195,7 +195,7 @@
   <img src="https://count.ly/images/guide/7cbb985-breakpad.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://search.maven.org/artifact/ly.count.android/sdk"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 20.11.12):</span>
+  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://central.sonatype.com/artifact/ly.count.android/sdk/versions"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 23.8.3-RC1):</span>
 </p>
 <pre><code class="java">// build gradle file
 
@@ -302,7 +302,7 @@ buildscript {
 </p>
 <h1 id="h_01HAVQDM5T91A747VG56537NN9">Events</h1>
 <p>
-  <span style="font-weight: 400;">An</span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">&nbsp;event</span></a><span style="font-weight: 400;">&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the Android SDK to the Countly instance by default.</span>
+  <span style="font-weight: 400;">An</span><a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events"><span style="font-weight: 400;">&nbsp;event</span></a><span style="font-weight: 400;">&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the Android SDK to the Countly instance by default.</span>
 </p>
 <p>
   All data passed to the Countly server via the SDK or API should be in UTF-8.
@@ -432,7 +432,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   Countly Android SDK comes with built in automatic session tracking functionality.
   Only thing necessary for this functionality to work is to add the proper calls
   to your activities after initializing the SDK. For more information you can check
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#adding-callbacks" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5SXG0Q4MRTDYXJRA8H" target="_self">here</a>.
 </p>
 <h2 id="h_01HAVQDM5TBV8FDMH3JE23ZPQB">Manual Sessions</h2>
 <p>
@@ -495,7 +495,7 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 </p>
 <pre>Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().recordView(<span>"Better view"</span>, viewSegmentation);</pre>
 <p>
-  <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
   <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
@@ -1068,7 +1068,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 </p>
 <h1 id="h_01HAVQDM5VZMRFC551YX1JQSZR">Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   Once downloaded, Remote config values will be saved persistently and available
@@ -1441,10 +1441,10 @@ Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButt
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">rating</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">rating</a>.
   All widgets are shown as webviews and should be approached using the same methods.
 </p>
 <div class="callout callout--warning">
@@ -1519,7 +1519,7 @@ Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButt
   <p>
     For how this retrievedWidgetData would look like and in depth information
     on this topic please check our detailed article
-    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener">here</a>.
   </p>
 </div>
 <p>
@@ -1757,6 +1757,7 @@ Countly.sharedInstance().userProfile().save();</code></pre>
 </p>
 <p>
   More information about GDPR can be found
+  <!-- broken link -->
   <a href="https://blog.count.ly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
 <h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
@@ -2206,6 +2207,7 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <pre><code class="java">Countly.sharedInstance().isInitialized();</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
+  <!-- can't find recent link -->
   <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
   from specific campaigns. This feature is available for the Enterprise Edition,
@@ -2268,7 +2270,7 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
 <pre>//provide custom metric values<br>Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();<br>metricOverride.put("SomeKey", "123");<br>metricOverride.put("_app_version", "custom_version-123");<br><br>setMetricOverride(metricOverride);</pre>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
 <h2 id="h_01HAVQDM5W9DMJ3Y6NXNCCVW0J">Log Listener</h2>
 <p>
@@ -2666,7 +2668,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
       </td>
       <td>
         Module needed for
-        <a href="https://resources.count.ly/docs/countly-sdk-for-android#section-native-c-crash-reporting">Native C++ crash reporting</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
       </td>
     </tr>
     <tr>
