@@ -1006,7 +1006,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
 <h1 id="h_01HABTZ317YY21TT4G68H4VJM4">Other Features</h1>
-<h2>SDK Config Parameters Explained</h2>
+<h2 id="h_01HCHSPK9JJC6GC35NHZJQ4F4Y">SDK Config Parameters Explained</h2>
 <p>
   <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the optional parameters:</span><span></span>
 </p>
@@ -1092,7 +1092,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span><strong>MaxStackTraceLineLength -&nbsp;</strong>(int) Limits how many characters are allowed per stack trace line. The default value is&nbsp;<strong>200</strong>.</span>
 </p>
-<h2>Setting Event Queue Threshold</h2>
+<h2 id="h_01HCHSPK9K615SPYZP2NF2KXN0">Setting Event Queue Threshold</h2>
 <p>
   In SDK configuration, you may limit the number of events that can be recorded
   internally by the system before they can all be sent together in one request.&nbsp;<br>
@@ -1103,7 +1103,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
 </p>
-<h2>Setting Maximum Request Queue Size</h2>
+<h2 id="h_01HCHSPK9KGDDVYABV77TPEDFM">Setting Maximum Request Queue Size</h2>
 <p>
   When you initialize Countly, you can specify a value for the StoredRequestLimit
   flag. This flag limits the number of requests that can be stored in the request
@@ -1113,8 +1113,8 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   If the server is down, requests sent to it will be queued on the device. If the
   number of queued requests becomes excessive, it can cause problems with delivering
   the requests to the server, and can also take up valuable storage space on the
-  device. To prevent this from happening, the StoredRequestLimit flag limits
-  the number of requests that can be stored in the queue.
+  device. To prevent this from happening, the StoredRequestLimit flag limits the
+  number of requests that can be stored in the queue.
 </p>
 <p>
   If the number of requests in the queue reaches the StoredRequestLimit limit,
@@ -1123,17 +1123,17 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   the most recent requests are prioritized for delivery.
 </p>
 <p>
-  If you do not specify a value for the StoredRequestLimit flag, the default
-  setting of 1,000 will be used.
+  If you do not specify a value for the StoredRequestLimit flag, the default setting
+  of 1,000 will be used.
 </p>
 <pre><code class="Java">StoredRequestLimit = 5000;</code></pre>
-<h2>Checking if the SDK has been initialized</h2>
+<h2 id="h_01HCHSPK9K9CM6204WD2Z06WTZ">Checking if the SDK has been initialized</h2>
 <p>
   <span>In case you would like to check if init has been called, you may use the following property:</span>
 </p>
 <pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
-<h1>FAQ</h1>
-<h2>What information is collected by the SDK</h2>
+<h1 id="h_01HCHSPK9KVEWVKRB0CRY25S8K">FAQ</h1>
+<h2 id="h_01HCHSPK9KTK4V1CCZXVND2TSV">What information is collected by the SDK</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
