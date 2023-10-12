@@ -293,7 +293,7 @@ segmentation.put("level", 37);</code></pre>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
   Session in Countly is a single app launch or several app launches if the time
-  between them is less than 30 seconds (by default). Of course, you can override
+  between them is less than 60 seconds (by default). Of course, you can override
   this behavior.
 </p>
 <p>
