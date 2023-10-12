@@ -1,5 +1,5 @@
 <p>
-  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.06.0</span><br>
+  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.06.x</span><br>
   You can download the latest release from
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">Github</a>.&nbsp;
 </p>
