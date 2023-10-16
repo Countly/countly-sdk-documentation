@@ -202,7 +202,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
   <a href="https://central.sonatype.com/artifact/ly.count.android/sdk-native/versions">page</a>,
-  currently 23.8.3-RC1):
+  currently 23.8.0):
 </p>
 <pre><code class="shell">dependencies {
     implementation 'ly.count.android:sdk-native:LATEST_VERSION'
