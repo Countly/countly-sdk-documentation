@@ -292,9 +292,9 @@ segmentation.put("level", 37);</code></pre>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
-  Session in Countly is a single app launch or several app launches if the time
-  between them is less than 60 seconds (by default). Of course, you can override
-  this behavior.
+  In Countly Java SDK, a session starts with the launch of an application. This 
+  can occur upon a single instance of an app launch or multiple launches within 
+  a predefined time frame, typically set at 60 seconds by default.
 </p>
 <p>
   <code>Session</code> lifecycle methods include:
