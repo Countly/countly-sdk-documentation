@@ -642,6 +642,8 @@
 </p>
 <h2 id="h_01H9QCP8G8GY2M2KEKK3CSKY3F">Unity SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/23969854903961" target="_blank" rel="noopener">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/13578391556121" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_blank" rel="noopener">Version 21.11</a>
@@ -654,6 +656,8 @@
 </p>
 <h2 id="h_01H9QCP8G8QD0W9EMHT11F2N8P">Java SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/23736736982425/" target="_blank" rel="noopener">Version 22.09</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/16286959845145" target="_blank" rel="noopener">Version 20.11</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_blank" rel="noopener">Version 19.09</a>
