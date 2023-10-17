@@ -33,7 +33,7 @@
         <a href="https://github.com/Countly/countly-sdk-ios">Click to get</a>
       </td>
       <td>
-        <a href="https://resources.count.ly/docs/countly-sdk-for-ios-and-os-x">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -124,7 +124,7 @@
         <a href="http://github.com/countly/countly-sdk-unity">Click to get</a>
       </td>
       <td>
-        <a href="https://resources.count.ly/docs/countly-sdk-for-unity">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity">Click for documentation</a>
       </td>
     </tr>
     <tr>
