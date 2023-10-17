@@ -383,6 +383,16 @@ Countly.startEvent(eventName);
 
 //cancel the event
 Countly.cancelEvent(eventName);</code></pre>
+<h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
+<h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic Session Tracking</h2>
+<p>
+  This is enabled by default and tracks the users session with respect to the app
+  visibility.
+</p>
+<p>
+  The SDK will automatically handle all required requests (begin session, update
+  session and end session).
+</p>
 <h1 id="h_01HAVQNJQR7VTSADNK0KZGAE8H">View tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
 <pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
@@ -792,7 +802,6 @@ console.log(JSON.stringify(theNotification));
   completionHandler(0);
 }
 </code></pre>
-
 <h3 id="h_01HAVQNJQS165PB76SXZHC84PV">Data Structure Received in Push Callbacks</h3>
 <p>
   Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
