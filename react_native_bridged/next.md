@@ -386,11 +386,12 @@ Countly.cancelEvent(eventName);</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
 <h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic Session Tracking</h2>
 <p>
-  Automatic sessions track user activity with respect to the app visibility.
-  It handles making certain requests to the server to inform it about the user
-  session. Automatic sessions are enabled by default and SDK handles the necessary
-  calls (by sending start session, update session and end session requests) to
-  track a session automatically.<br>
+  This is enabled by default and tracks the users session with respect to the app
+  visibility.
+</p>
+<p>
+  The SDK will automatically handle all required requests (begin session, update
+  session and end session).
 </p>
 <h1 id="h_01HAVQNJQR7VTSADNK0KZGAE8H">View tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
