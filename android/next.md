@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.08.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.8.X</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -27,7 +27,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:23.6.0'
+    compile 'ly.count.android:sdk:23.8.3'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -51,7 +51,7 @@
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener">here</a>.
   </p>
 </div>
 <h2 id="h_01HAVQDM5S6PHPV8SAQ32HDXXT">SDK Logging</h2>
@@ -195,7 +195,7 @@
   <img src="https://count.ly/images/guide/7cbb985-breakpad.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://central.sonatype.com/artifact/ly.count.android/sdk/versions"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 23.8.3-RC1):</span>
+  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://central.sonatype.com/artifact/ly.count.android/sdk/versions"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 23.8.3):</span>
 </p>
 <pre><code class="java">// build gradle file
 
@@ -218,7 +218,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
 </p>
 <h2 id="h_01HAVQDM5TVAQT2CSB5JN46Y1P">Symbolication</h2>
 <p>
-  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 20.11.12):</span>
+  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 23.8.3):</span>
 </p>
 <h3 id="h_01HAVQDM5TDW9QZDBDY4PWKSBV">Automatic symbol file upload</h3>
 <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin
@@ -2206,14 +2206,8 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 <pre><code class="java">Countly.sharedInstance().isInitialized();</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
-  <!-- can't find recent link -->
-  <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
-  allows you to measure your marketing campaign performance by attributing installs
-  from specific campaigns. This feature is available for the Enterprise Edition,
-  but currently server side support for this is limited.
-</p>
-<p>
-  <strong><span style="font-weight: 400;">For more information about how to set up your campaigns, please&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics"><span style="font-weight: 400;">review this documentation</span></a><span style="font-weight: 400;">.</span></strong>
+  This feature is available for the Enterprise Edition, but currently server side
+  support for this is limited.
 </p>
 <p>
   <strong><span style="font-weight: 400;">To report install attribution, you would perform the following request:</span></strong>
