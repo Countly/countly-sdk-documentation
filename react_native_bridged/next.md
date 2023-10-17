@@ -259,11 +259,12 @@ D/Countly (124): Crash dump folder contains [1] files
 D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588990.dmp]</code></pre>
 <h1 id="h_01HAVQNJQR1DMRFF2T44003S59">Events</h1>
 <p>
-  An <a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events">Event</a> is any type
-  of action that you can send to a Countly instance, e.g. purchases, changed settings,
-  view enabled, and so on. This way it's possible to get much more information
-  from your application compared to what is sent from the SDK to the Countly instance
-  by default.
+  An
+  <a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events">Event</a>
+  is any type of action that you can send to a Countly instance, e.g. purchases,
+  changed settings, view enabled, and so on. This way it's possible to get much
+  more information from your application compared to what is sent from the SDK
+  to the Countly instance by default.
 </p>
 <p>
   Here are the detail about properties which we can use with event:
@@ -792,7 +793,6 @@ console.log(JSON.stringify(theNotification));
   completionHandler(0);
 }
 </code></pre>
-
 <h3 id="h_01HAVQNJQS165PB76SXZHC84PV">Data Structure Received in Push Callbacks</h3>
 <p>
   Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
@@ -1289,7 +1289,6 @@ Countly.userDataBulk.save();<br>})</code></pre>
 <p>
   The Performance Monitoring feature allows you to analyze your application's performance
   on various aspects. For more details, please review the
-  <!-- name changed from "Performance Monitoring" to just "Performance" -->
   <a href="https://support.count.ly/hc/en-us/articles/4734457847705-Performance" target="_self">Performance Monitoring documentation</a>.
 </p>
 <p>
