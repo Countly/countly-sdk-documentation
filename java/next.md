@@ -95,7 +95,10 @@ Countly.instance().init(config);</code></pre>
 </p>
 <h1 id="h_01HD19HWGTN49PGHRQ8WPA2RA6">SDK Logging / Debug Mode</h1>
 <p>
-  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then the Countly Java SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
+  The first thing you should do while integrating our SDK is enable logging. If
+  logging is enabled, the Countly Java SDK will print out debug messages about
+  its internal state and encountered problems. The SDK will print these debug messages
+  to the console.
 </p>
 <p>
   Set <code class="java">setLoggingLevel</code> on the config object to enable
@@ -108,9 +111,8 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
   .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
 <p>
-  This logging level would have no influence over the log listener. That would
-  always receive all the printed logs event if the logging level would be set to
-  "OFF".
+  This logging level would not influence the log listener. That will always receive
+  all the printed logs event if the logging level is "OFF."
 </p>
 <h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
 <p>
