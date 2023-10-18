@@ -293,6 +293,15 @@ segmentation.put("level", 37);</code></pre>
   nothing will happen.
 </p>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
+<p>
+  A session is a collection of user activities occurring within a specified period
+  on your application or website. Countly can track user-specific states like views,
+  events, and user identification. The Countly Java SDK offers a single primary
+  function, which is manual session tracking for tracking sessions in your application.
+  A "begin session" signal initiates the session flow. A "session duration" signal,
+  which can be changed or extended, typically occurs every 60 seconds. Finally,
+  an "end session" signal concludes the session.
+</p>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
   In Countly Java SDK, a session starts with the launch of an application. This
