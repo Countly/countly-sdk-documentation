@@ -875,7 +875,48 @@ Countly.disableLocation();</code></pre>
   the retrieved keys are updated, and values that are not part of that download
   stay as they were. A previously valid key may return no value after a full download.
 </p>
-<h2 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Downloading Remote Config</h2>
+<div>
+  <h2 id="h_01HD1KQCFTNES9EPJAT0DWT0HJ">
+    <span>Downloading values</span>
+  </h2>
+  <h3 id="h_01H930GAQ7BDR4FWH4NCATN7B4">Automatic Remote Config Triggers</h3>
+  <p>
+    <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+  </p>
+  <p>
+    <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+  </p>
+  <ul>
+    <li>
+      <span style="font-weight: 400;">when the SDK has finished initializing</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">after the device ID is changed without merging</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">when user gets out of temp ID mode</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+    </li>
+  </ul>
+  <p>
+    To enable the automatic triggers, you have to call
+    <code class="dart">enableRemoteConfigAutomaticTriggers</code> on the configuration
+    object you will provide during init.
+  </p>
+  <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
+  ..enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
+</code></pre>
+  <p>
+    Another thing you can do is to enable value caching with the
+    <code class="dart">enableRemoteConfigValueCaching</code> flag. If all values
+    were not updated, you would have metadata indicating if a value belongs to
+    the old or current user.
+  </p>
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..enableRemoteConfigValueCaching(); </pre>
+</div>
+<h3 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Calls</h3>
 <p>
   There are three ways to trigger remote config value download manually:
 </p>
@@ -937,7 +978,7 @@ Countly.disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2 id="h_01H930GAQ6RZ7GPKM5ZP097RKA">Getting Stored Remote Config Values</h2>
+<h2 id="h_01HD1KX616GDFGTV2AR8BSWWG9">Accessing Values</h2>
 <p>
   To get a stored value, call <code class="dart">getValue</code> with the specified
   key. This returns an Future&lt;RCData&gt; object that contains the value of the
@@ -971,69 +1012,7 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
   Object value;
   Boolean isCurrentUsersData;
 }</code></pre>
-<h2 id="h_01H930GAQ6KZKGR0NMP6QM2JW6">Enrolling and Exiting A/B tests</h2>
-<p>
-  You can enroll your users into into A/B tests for certain keys or remove them
-  from some or all existing A/B tests available.
-</p>
-<p>
-  You can enroll into the A/B tests automatically whenever you download RC values
-  from the server. To do so you have to set the following flag at the config object
-  during initialization:
-</p>
-<pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)<br>..<span>enrollABOnRCDownload();</span></pre>
-<p>
-  To enroll a user into the A/B tests for the given keys you use the following
-  method:
-</p>
-<pre>Countly.instance.remoteConfig.enrollIntoABTestsForKeys(List&lt;String&gt; keys);</pre>
-<p>
-  Here the keys array is the mandatory parameter for this method to work. Instead
-  if you want to remove users from A/B tests of certain keys you can use the following
-  function:
-</p>
-<pre>Countly.instance.remoteConfig.exitABTestsForKeys(List&lt;String&gt; keys);</pre>
-<p>
-  Here if no keys are provided it would remove the user from all A/B tests instead.
-</p>
-<p>
-  You can also enroll to A/B tests while getting RC values from storage. You can
-  use <code>getValueAndEnroll</code> while getting a single value and
-  <code>getAllValuesAndEnroll</code> while getting all values to enroll to the
-  keys that exist. If no value was stored for those keys these functions would
-  not enroll the user. Both of these functions works the same way with their non-enrolling
-  variants, namely; <code>getValue</code> and <code>getAllValues</code>.
-</p>
-<h2 id="h_01H930GAQ7BDR4FWH4NCATN7B4">Automatic Remote Config Triggers</h2>
-<p>
-  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
-</p>
-<ul>
-  <li>
-    <span style="font-weight: 400;">when the SDK has finished initializing</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">after the device ID is changed without merging</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
-  </li>
-</ul>
-<p>
-  To enable the automatic triggers, you have to call
-  <code class="dart">enableRemoteConfigAutomaticTriggers</code> on the configuration
-  object you will provide during init.
-</p>
-<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
-  ..enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
-</code></pre>
-<h2 id="h_01H930GAQ7VZ2139R099HXTNFP">Clearing Stored Values</h2>
+<h2 id="01HD1KQVYS1NHR0ZFMJ12AVP0P">Clearing Stored Values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
@@ -1091,14 +1070,53 @@ Countly.instance.remoteConfig.registerDownloadCallback((rResult, error, fullValu
 Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
    // do sth
 });</code></pre>
-<h2 id="h_01H930GAQ7TD98AFCP06W313FP">Caching Remote Config Values</h2>
+<h2 id="h_01H930GAQ6KZKGR0NMP6QM2JW6">A/B Testing</h2>
 <p>
-  Another thing you can do is to enable value caching with the
-  <code class="dart">enableRemoteConfigValueCaching</code> flag. If all values
-  were not updated, you would have metadata indicating if a value belongs to the
-  old or current user.
+  You can enroll your users into into A/B tests for certain keys or remove them
+  from some or all existing A/B tests available.
 </p>
-<pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..enableRemoteConfigValueCaching(); </pre>
+<div>
+  <h3 id="h_01HD1KX616DPMYXJCCRQ01XAFQ">
+    <span>&nbsp;</span><span>Enrollment on Download</span>
+  </h3>
+  <p>
+    You can enroll into the A/B tests automatically whenever you download RC
+    values from the server. To do so you have to set the following flag at the
+    config object during initialization:
+  </p>
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)<br>..<span>enrollABOnRCDownload();</span></pre>
+  <h3 id="h_01HD1KX6164ZKKCQS4B15G1NC5">
+    <span>&nbsp;</span><span>Enrollment on Access</span>
+  </h3>
+  <div class="callout callout--warning">
+    <p>Available starting from version 23.8.3</p>
+  </div>
+  <p>
+    <span>You can also enroll to A/B tests while getting RC values from storage. You can use <code>getValueAndEnroll</code> while getting a single value and <code>getAllValuesAndEnroll</code> while getting all values to enroll to the keys that exist. If no value was stored for those keys these functions would not enroll the user. Both of these functions works the same way with their non-enrolling variants, namely; <code>getValue</code> and <code>getAllValues</code>.</span>
+  </p>
+  <h3 id="h_01HD1KX6170D1FV7M4HHS1NGTE">
+    <span>&nbsp;</span><span>Enrollment on Action</span>
+  </h3>
+  <p>
+    To enroll a user into the A/B tests for the given keys you use the following
+    method:
+  </p>
+  <pre>Countly.instance.remoteConfig.enrollIntoABTestsForKeys(List&lt;String&gt; keys);</pre>
+  <p>
+    Here the keys array is the mandatory parameter for this method to work.
+  </p>
+  <h3 id="h_01HD1KX617T07K6KD77Q4THRCC">
+    <span>&nbsp;</span><span>Exiting A/B Tests</span>
+  </h3>
+</div>
+<p>
+  If you want to remove users from A/B tests of certain keys you can use the following
+  function:
+</p>
+<pre>Countly.instance.remoteConfig.exitABTestsForKeys(List&lt;String&gt; keys);</pre>
+<p>
+  Here if no keys are provided it would remove the user from all A/B tests instead.
+</p>
 <h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User feedback</h1>
 <p>
   There are a couple ways of receiving feedback from your users: star-rating dialog,
