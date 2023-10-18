@@ -1304,6 +1304,9 @@ Countly.sharedInstance().remoteConfig().removeDownloadCallback(RCDownloadCallbac
 config.enrollABOnRCDownload ();
 Countly.sharedInstance().init(config);</code></pre>
 <h3 id="h_01HC2A5JDVP2RCW9RJ4VD9FSET">Enrollment on Access</h3>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
 <p>
   You can enroll to A/B tests while getting RC values from storage. You can use
   <code>getValueAndEnroll</code> while getting a single value and
