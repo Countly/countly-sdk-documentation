@@ -569,6 +569,16 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   .pushUnique("tags", "fan")
   .pushUnique("skill", "singer")
   .commit();</code></pre>
+<h1 id="h_01HD1H1HNJVYBP0PNP0YSMFZY6">Security and Privacy</h1>
+<h2 id="h_01HD1H1HNJM6EBH29WE8AJSF80">Parameter Tamper Protection</h2>
+<p>
+  You may set the optional <code>salt</code> to be used for calculating the checksum
+  of requested data, which will be sent with each request, using the
+  <code>&amp;checksum</code> field. You will need to set the same salt on the Countly
+  server. If the salt on the Countly server is selected, all requests will be checked
+  for the validity of the <code>&amp;checksum</code> field before being processed.
+</p>
+<pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);</pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
