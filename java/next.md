@@ -318,6 +318,38 @@ segmentation.put("level", 37);</code></pre>
     in this request as well.
   </li>
 </ul>
+<h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
+<p>
+  <span data-preserver-spaces="true">You can track views of your application by the Java SDK. By views, you can also create </span><a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener"><span data-preserver-spaces="true">flows</span></a><span data-preserver-spaces="true">&nbsp;to see view transitions.</span>
+</p>
+<h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
+  <span data-preserver-spaces="true">Manual View Reporting</span>
+</h2>
+<p>
+  The Countly Java SDK provides manual reporting of views. View reporting functions
+  can track and decide whether or not the view is the first. They end the previous
+  views if they are still ongoing. You can use the below functions to report views:
+</p>
+<p>This function automatically starts the view tracking,</p>
+<pre><span data-preserver-spaces="true">Countly.instance().view(String name);</span></pre>
+<p>or you can begin the view manually,</p>
+<pre><span data-preserver-spaces="true">Countly.instance().view(String name, boolean start);</span></pre>
+<p>
+  You can also stop views manually by
+  <code class="java">stop(boolean lastView)</code>. You can manage whether or not
+  the view is the last. However, the Java SDK can automatically decide whether
+  the view is the latest.
+</p>
+<pre><code class="java">View view = Countly.instance().view("logout_page");
+view.stop(true);</code></pre>
+<p>
+  You can start views manually by
+  <code class="java">start(boolean firstView)</code>. You can manage whether or
+  not the view is the first view. However, the Java SDK can automatically decide
+  whether the view is the first view.
+</p>
+<pre><code class="java">View view = Countly.instance().view("login_page")
+view.start(true);</code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
