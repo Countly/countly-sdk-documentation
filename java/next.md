@@ -142,7 +142,9 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <li>
     <code>segmentation</code> - some data associated with the event. Optional.
     It's a Map&lt;String, Object&gt; which can be filled with arbitrary data
-    like {"category": "Pants", "size": "M"}.
+    like {"category": "Pants", "size": "M"}. The valid data types for segmentation
+    are: "String", "Integer", "Double", "Boolean", "BigDecimal", "Long" and "Float".
+    All other types will be ignored.
   </li>
 </ul>
 <h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
