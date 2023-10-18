@@ -113,7 +113,8 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
 </p>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
-  Events in Countly represent some meaningful event user performed in your application
+  <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
+  in Countly represent some meaningful event user performed in your application
   within a <code>Session</code>. Please avoid recording everything like all taps
   or clicks users performed. In case you do, it will be very hard to extract valuable
   information from generated analytics.
@@ -292,8 +293,8 @@ segmentation.put("level", 37);</code></pre>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
-  In Countly Java SDK, a session starts with the launch of an application. This 
-  can occur upon a single instance of an app launch or multiple launches within 
+  In Countly Java SDK, a session starts with the launch of an application. This
+  can occur upon a single instance of an app launch or multiple launches within
   a predefined time frame, typically set at 60 seconds by default.
 </p>
 <p>
@@ -356,7 +357,7 @@ segmentation.put("level", 37);</code></pre>
 <pre><code class="java hljs">Countly.session().getDeviceId()</code></pre>
 <h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets.</span>
+  <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
 </p>
 <p>
   <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
@@ -478,7 +479,7 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 </p>
 <h1 id="h_01HABV0K6C4TX8B97XNK8XWNVA">User Profiles</h1>
 <p>
-  <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a>
+  <span>For information about User Profiles, review&nbsp;</span><a href="/hc/en-us/articles/4403281285913">this documentation</a>
 </p>
 <h2 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h2>
 <p>
