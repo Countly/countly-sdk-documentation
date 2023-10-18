@@ -26,9 +26,15 @@
   To add it, you first have to add the MavenCentral repository. For Gradle you
   would do it something like this:
 </p>
-<pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
+<pre>buildscript {
+  repositories {
+    mavenCentral()
+  }
+}</pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span> </span>implementation <span>"ly.count.sdk:java:23.8.0"<br></span><span>}</span></pre>
+<pre>dependencies {
+  implementation "ly.count.sdk:java:23.8.0"
+}</pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
@@ -67,30 +73,6 @@ Countly.instance().init(config);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HABV0K6C1TBRCQBZJ45PE13H">SDK Logging Mode</h2>
-<p>
-  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
-</p>
-<p>
-  Set <code class="java">setLoggingLevel</code> on the config object to enable
-  logging:
-</p>
-<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
-
-Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .setLoggingLevel(Config.LoggingLevel.DEBUG)
-  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
-<p>
-  In case you want to forward the SDK logs to your own logging mechanism, you would
-  have a look at the
-  <a href="#h_01GVR02HH6X27TPH3MS6TE08AT" target="_self">log listener section</a>.
-</p>
-<p>
-  This logging level would have no influence over the log listener. That would
-  always receive all the printed logs event if the logging level would be set to
-  "OFF".
-</p>
 <h2 id="h_01HABV0K6C4TED33TF2K40S71H">SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
@@ -111,6 +93,35 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
+<h1 id="h_01HD19HWGTN49PGHRQ8WPA2RA6">SDK Logging / Debug Mode</h1>
+<p>
+  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then the Countly Java SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
+</p>
+<p>
+  Set <code class="java">setLoggingLevel</code> on the config object to enable
+  logging:
+</p>
+<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<p>
+  This logging level would have no influence over the log listener. That would
+  always receive all the printed logs event if the logging level would be set to
+  "OFF".
+</p>
+<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
+<p>
+  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
+</p>
+<pre><code class="java hljs">config.setLogListener(new LogCallback() {
+  @Override
+  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
+    //print log
+  }
+});</code></pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
@@ -665,17 +676,6 @@ Countly.init(targetFolder, config);
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
-<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
-<p>
-  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
-</p>
-<pre><code class="java hljs">config.setLogListener(new LogCallback() {
-  @Override
-  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
-    //print log
-  }
-});
-</code></pre>
 <h2 id="h_01HABV0K6D57PGC01NJ1V3QYSB">Backend Mode</h2>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
