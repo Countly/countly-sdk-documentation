@@ -1753,6 +1753,9 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   the current app key, these requests will be removed from the request queue.
 </p>
 <h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
 <p>
   If you are concerned about your app being used sparsely over a long time frame,
   old requests inside the request queue might not be important. If, for any reason,

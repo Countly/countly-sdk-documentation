@@ -4189,6 +4189,35 @@ end</code></pre>
   is mandatory and works the same way as explained above in the Fetching Test Variants
   section.
 </p>
+<h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
+<p>
+  If you are concerned about your app being used sparsely over a long time frame,
+  old requests inside the request queue might not be important. If, for any reason,
+  you don't want to get data older than a certain timeframe, you can configure
+  the SDK to drop old requests:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.setRequestDropAgeHours(10);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.setRequestDropAgeHours(10)</code></pre>
+  </div>
+</div>
+<p>
+  By using the <code>setRequestDropAgeHours</code> method while configuring the
+  SDK initialization options, you can set a timeframe (in hours) after which the
+  requests would be removed from the request queue. For example, by setting this
+  option to 10, the SDK would ensure that no request older than 10 hours would
+  be sent to the server.
+</p>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
 </h1>

@@ -2540,6 +2540,24 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   callback function is optional and works the same way as explained above in the
   Downloading Test Variants section.
 </p>
+<h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
+<p>
+  If you are concerned about your app being used sparsely over a long time frame,
+  old requests inside the request queue might not be important. If, for any reason,
+  you don't want to get data older than a certain timeframe, you can configure
+  the SDK to drop old requests:
+</p>
+<pre><code class="java">config.setRequestDropAgeHours(10)</code></pre>
+<p>
+  By using the <code>setRequestDropAgeHours</code> method while configuring the
+  SDK initialization options, you can set a timeframe (in hours) after which the
+  requests would be removed from the request queue. For example, by setting this
+  option to 10, the SDK would ensure that no request older than 10 hours would
+  be sent to the server.
+</p>
 <h1 id="h_01HAVQDM5WK09GD0427C636XGW">FAQ</h1>
 <h2 id="h_01HAVQDM5WG0QKAZZWKRMNWTB7">What Information is Collected by the SDK</h2>
 <p>
