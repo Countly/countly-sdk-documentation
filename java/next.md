@@ -388,7 +388,7 @@ view.start(true);</code></pre>
 <pre><code class="java hljs">Countly.session().getDeviceId()</code></pre>
 <h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets.</span>
+  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets. Look at here to see detailed information about <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-" target="_blank" rel="noopener noreferrer">feedbacks</a>.</span>
 </p>
 <p>
   <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
@@ -409,6 +409,7 @@ view.start(true);</code></pre>
     Countly dashboard.
   </p>
 </div>
+<h3 id="h_01HD3PX5GQ390KDHFCH1FD6ER9">Getting Available Widgets</h3>
 <p>
   After you have created widgets at your dashboard you can reach their related
   information as a list, corresponding to the current user's device ID, by providing
@@ -437,6 +438,7 @@ view.start(true);</code></pre>
 </p>
 <p>Potential 'type' values are:</p>
 <pre><code class="java hljs">FeedbackWidgetType {survey, nps, rating}</code></pre>
+<h3 id="h_01HD3PXZPF49C292RN6EHXF4DB">Presenting A Widget</h3>
 <p>
   After you have decided which widget you want to show, you would provide that
   object to the following function as the first parameter. Second is a callback
@@ -452,7 +454,9 @@ view.start(true);</code></pre>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created. At those times you would want to request all the information
-  related to that widget and then report the result manually.
+  related to that widget and then report the result manually. You can see more
+  information about manual reporting from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -461,6 +465,7 @@ view.start(true);</code></pre>
     at our github repo.
   </p>
 </div>
+<h4 id="h_01HD3PHEFBGA26HTB82MS2ZE1W">Getting Feedback Widget Data</h4>
 <p>
   Initial steps for manually reporting your widget results, first you would need
   to retrieve the available widget list with the
@@ -486,6 +491,7 @@ view.start(true);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
+<h4 id="h_01HD3PPXTPFRV8246MBB7W1F47">Reporting Widget Result Manually</h4>
 <p>
   After you have collected the required information from your users with the help
   of the <code>retrievedWidgetData</code> you have received, you would then package
