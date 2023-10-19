@@ -877,7 +877,7 @@ Countly.disableLocation();</code></pre>
 </p>
 <div>
   <h2 id="h_01HD1KQCFTNES9EPJAT0DWT0HJ">
-    <span>Downloading values</span>
+    <span>Downloading Values</span>
   </h2>
   <h3 id="h_01H930GAQ7BDR4FWH4NCATN7B4">Automatic Remote Config Triggers</h3>
   <p>
