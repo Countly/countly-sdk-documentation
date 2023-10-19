@@ -2177,7 +2177,70 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
   the retrieved keys are updated, and values that are not part of that download
   stay as they were. A previously valid key may return no value after a full download.
 </p>
-<h2 id="h_01HAVHW0RRRC868GCFYXSND84J">Manually Downloading Remote Config</h2>
+<h2 id="h_01HD1JFPK6JV13N5JHST2SFHPM">Downloading Values</h2>
+<div>
+  <h3 id="h_01HD1JFSP96MQNGMVX29270QRN">
+    <span>Automatic Remote Config Triggers</span>
+  </h3>
+  <p>
+    <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+  </p>
+  <p>
+    <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+  </p>
+  <ul>
+    <li>
+      <span style="font-weight: 400;">when the SDK has finished initializing</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">after the device ID is changed without merging</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">when user gets out of temp ID mode</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+    </li>
+  </ul>
+  <p>
+    To enable the automatic triggers, you have to call
+    <code class="objectivec">enableRemoteConfigAutomaticTriggers</code> on the
+    configuration object you will provide during init.
+  </p>
+  <div class="tabs">
+    <div class="tabs-menu">
+      <span class="tabs-link is-active">Objective-C</span>
+      <span class="tabs-link">Swift</span>
+    </div>
+    <div class="tab">
+      <pre><code class="objectivec">config.enableRemoteConfigAutomaticTriggers = YES;
+</code></pre>
+    </div>
+    <div class="tab is-hidden">
+      <pre><code class="swift">config.enableRemoteConfigAutomaticTriggers = true</code></pre>
+    </div>
+  </div>
+</div>
+<p>
+  Another thing you can do is to enable value caching with the
+  <code class="objectivec">enableRemoteConfigValueCaching</code> flag. If all values
+  were not updated, you would have metadata indicating if a value belongs to the
+  old or current user.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.enableRemoteConfigValueCaching = YES;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableRemoteConfigValueCaching = true</code></pre>
+  </div>
+</div>
+<h3 id="h_01HAVHW0RRRC868GCFYXSND84J">Manual Calls</h3>
 <p>
   There are three ways to trigger remote config value download manually:
 </p>
@@ -2246,7 +2309,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
 <p>
   <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as an update all request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2 id="h_01HAVHW0RR987ER0TK146JA159">Getting Stored Remote Config Values</h2>
+<h2 id="h_01HD1JPJG42365WYPKQT7WFA11">Accessing Values</h2>
 <p>
   To get a stored value, call <code class="dart">getValue</code> with the specified
   key. This returns an CountlyRCData object that contains the value of the key
@@ -2328,97 +2391,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RRZF9G66QEC4X5ZKGB">Enrolling and Exiting A/B tests</h2>
-<p>
-  You can enroll your users into into A/B tests for certain keys or remove them
-  from some or all existing A/B tests available. To enroll a user into the A/B
-  tests for the given keys you use the following method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.enrollIntoABTests(forKeys: keys as [String])
-</code></pre>
-  </div>
-</div>
-<p>
-  Here the keys array is the mandatory parameter for this method to work. Instead
-  if you want to remove users from A/B tests of certain keys you can use the following
-  function:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.exitABTestsForKeys(forKeys: keys as [String])
-</code></pre>
-  </div>
-</div>
-<p>
-  Here if no keys are provided it would remove the user from all A/B tests instead.
-</p>
-<p>
-  You can also enroll to A/B tests while getting RC values from storage. You can
-  use <code>getValueAndEnroll</code> while getting a single value and
-  <code>getAllValuesAndEnroll</code> while getting all values to enroll to the
-  keys that exist. If no value was stored for those keys these functions would
-  not enroll the user. Both of these functions works the same way with their non-enrolling
-  variants, namely; <code>getValue</code> and <code>getAllValues</code>.
-</p>
-<h2 id="h_01HAVHW0RRV2ZSMX428AQ3XXBM">Automatic Remote Config Triggers</h2>
-<p>
-  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
-</p>
-<ul>
-  <li>
-    <span style="font-weight: 400;">when the SDK has finished initializing</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">after the device ID is changed without merging</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
-  </li>
-</ul>
-<p>
-  To enable the automatic triggers, you have to call
-  <code class="objectivec">enableRemoteConfigAutomaticTriggers</code> on the configuration
-  object you will provide during init.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.enableRemoteConfigAutomaticTriggers = YES;
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.enableRemoteConfigAutomaticTriggers = true
-</code></pre>
-  </div>
-</div>
-<h2 id="h_01HAVHW0RR0197C5EBER2FVY0X">Clearing Stored Values</h2>
+<h2 id="01HD1JH3R29EMPWD00YEEYSDHE">Clearing Stored Values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
@@ -2436,7 +2409,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RRPEBQBXAJYZ4YTTP1">Global Download Callbacks</h2>
+<h2 id="01HD1JK8Y931787C8YXQYK4D1A">Global Download Callbacks</h2>
 <p>
   Also, you may provide callback functions to be informed when the request is finished
   with <code class="objectivec">remoteConfigRegisterGlobalCallback</code>method
@@ -2531,25 +2504,92 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
 </code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RRC18XJXE2N7R89CT0">Caching Remote Config Values</h2>
+<h2 id="h_01HAVHW0RRC18XJXE2N7R89CT0">A/B Testing</h2>
 <p>
-  Another thing you can do is to enable value caching with the
-  <code class="objectivec">enableRemoteConfigValueCaching</code> flag. If all values
-  were not updated, you would have metadata indicating if a value belongs to the
-  old or current user.
+  You can enroll your users into into A/B tests for certain keys or remove them
+  from some or all existing A/B tests available.
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.enableRemoteConfigValueCaching = YES;
+<div>
+  <h3 id="h_01HD1JPJG4G9TFTF6M42SCGPFP">
+    <span>Enrollment on Download</span>
+  </h3>
+  <p>
+    You can enroll to available experiments when downloading the Remote Config
+    values automatically. To do this you should call
+    <code>enrollABOnRCDownload</code> method on the configuration object you
+    pass for the initialization:
+  </p>
+  <pre><code class="objectivec">config.enrollABOnRCDownload= YES;</code></pre>
+  <div>
+    <div>
+      <h3 id="h_01HD1JPQ091MP8WRBZMBMZC3HD">
+        <span>Enrollment on Access</span>
+      </h3>
+      <div class="callout callout--warning">
+        <p>Available starting from version 23.8.3</p>
+      </div>
+      <p>
+        <span>You can also enroll to A/B tests while getting RC values from storage. You can use <code>getValueAndEnroll</code> while getting a single value and <code>getAllValuesAndEnroll</code> while getting all values to enroll to the keys that exist. If no value was stored for those keys these functions would not enroll the user. Both of these functions works the same way with their non-enrolling variants, namely; <code>getValue</code> and <code>getAllValues</code>.</span>
+      </p>
+      <div>
+        <div>
+          <h3 id="h_01HD1JPTMT7XGM3KW1WBE97VBN">
+            <span>Enrollment on Action</span>
+          </h3>
+          <p>
+            To enroll a user into the A/B tests for the given keys you
+            use the following method:
+          </p>
+          <div class="tabs">
+            <div class="tabs-menu">
+              <span class="tabs-link is-active">Objective-C</span>
+              <span class="tabs-link">Swift</span>
+            </div>
+            <div class="tab">
+              <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];
 </code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.enableRemoteConfigValueCaching = true
+            </div>
+            <div class="tab is-hidden">
+              <pre><code class="swift">Countly.sharedInstance().remoteConfig.enrollIntoABTests(forKeys: keys as [String])
 </code></pre>
+            </div>
+          </div>
+          <p>
+            Here the keys array is the mandatory parameter for this method
+            to work.
+          </p>
+          <div>
+            <div>
+              <h3 id="h_01HD1JPX82PR2HXKMZ2E68YATS">
+                <span>Exiting A/B Tests</span>
+              </h3>
+              <p>
+                If you want to remove users from A/B tests of certain
+                keys you can use the following function:
+              </p>
+              <div class="tabs">
+                <div class="tabs-menu">
+                  <span class="tabs-link is-active">Objective-C</span>
+                  <span class="tabs-link">Swift</span>
+                </div>
+                <div class="tab">
+                  <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];
+</code></pre>
+                </div>
+                <div class="tab is-hidden">
+                  <pre><code class="swift">Countly.sharedInstance().remoteConfig.exitABTestsForKeys(forKeys: keys as [String])
+</code></pre>
+                </div>
+              </div>
+              <p>
+                Here if no keys are provided it would remove the
+                user from all A/B tests instead.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <h1 id="h_01HAVHW0RRN4E332BBZ3TVDDPF">User Feedback</h1>

@@ -27,7 +27,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-    compile 'ly.count.android:sdk:23.8.3'
+    implementation 'ly.count.android:sdk:23.8.0'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -1083,7 +1083,47 @@ Countly.sharedInstance().disableLocation();</code></pre>
   the retrieved keys are updated, and values that are not part of that download
   stay as they were. A previously valid key may return no value after a full download.
 </p>
-<h2 id="h_01HAVQDM5V9WNQ3X02ZRF07QCM">Manually Downloading Remote Config</h2>
+<h2 id="h_01HC28ZP7GHQCAFNGW4DMFQ7S5">Downloading Values</h2>
+<h3 id="h_01HAVQDM5VYSTANWQYMYJJ9PKD">Automatic Remote Config Triggers</h3>
+<p>
+  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+</p>
+<ul>
+  <li>
+    <span style="font-weight: 400;">when the SDK has finished initializing</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">after the device ID is changed without merging</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
+  </li>
+  <li>
+    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+  </li>
+</ul>
+<p>
+  To enable the automatic triggers, you have to call
+  <code class="java">enableRemoteConfigAutomaticTriggers</code> on the configuration
+  object you will provide during init.
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
+Countly.sharedInstance().init(config);
+</code></pre>
+<p>
+  Another thing you can do is to enable value caching with the
+  <code class="java">enableRemoteConfigValueCaching</code> flag. If all values
+  were not updated, you would have metadata indicating if a value belongs to the
+  old or current user.
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.enableRemoteConfigValueCaching();
+Countly.sharedInstance().init(config);</code></pre>
+<h3 id="h_01HAVQDM5V9WNQ3X02ZRF07QCM">Manual Calls</h3>
 <p>
   There are three ways to trigger remote config value download manually:
 </p>
@@ -1154,7 +1194,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2 id="h_01HAVQDM5VD64KDJDNB99P6DW8">Getting Stored Remote Config Values</h2>
+<h2 id="h_01HAVQDM5VD64KDJDNB99P6DW8">Accessing Values</h2>
 <p>
   To get a stored value, call <code class="java">getValue</code> with the specified
   key. This returns an RCData object that contains the value of the key and the
@@ -1178,10 +1218,10 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
   or just a simple value, such as <code>int</code>.
 </p>
 <pre><code class="java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().getAllValues();<br>
-int int_value = (int) allValues["key_1"] ;
-double double_value = (double) allValues["key_2"];
-JSONArray jArray = (JSONArray) allValues["key_3"];
-JSONObject jobj = (JSONObject) allValues["key_4"];</code></pre>
+int int_value = (int) allValues["key_1"].value ;
+double double_value = (double) allValues["key_2"].value;
+JSONArray jArray = (JSONArray) allValues["key_3"].value;
+JSONObject jobj = (JSONObject) allValues["key_4"].value;</code></pre>
 <p>
   RCData object has two keys: value (Object) and isCurrentUsersData (Boolean).
   Value holds the data sent from the server for the key that the RCData object
@@ -1192,69 +1232,12 @@ JSONObject jobj = (JSONObject) allValues["key_4"];</code></pre>
   Object value;
   Boolean isCurrentUsersData;
 }</code></pre>
-<h2 id="h_01HAVQDM5VQYSTXC19GAHEJRJH">Enrolling and Exiting A/B tests</h2>
-<p>
-  You can enroll your users into into A/B tests for certain keys or remove them
-  from some or all existing A/B tests available.
-</p>
-<p>
-  To enroll a user into the A/B tests for the given keys you use the following
-  method:
-</p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
-<p>
-  Here the keys array is the mandatory parameter for this method to work. Instead
-  if you want to remove users from A/B tests of certain keys you can use the following
-  function:
-</p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().exitABTestsForKeys(String[] keys);</code></pre>
-<p>
-  Here if no keys are provided it would remove the user from all A/B tests instead.
-</p>
-<p>
-  You can also enroll to A/B tests while getting RC values from storage. You can
-  use <code>getValueAndEnroll</code> while getting a single value and
-  <code>getAllValuesAndEnroll</code> while getting all values to enroll to the
-  keys that exist. If no value was stored for those keys these functions would
-  not enroll the user. Both of these functions works the same way with their non-enrolling
-  variants, namely; <code>getValue</code> and <code>getValues</code>.
-</p>
-<h2 id="h_01HAVQDM5VYSTANWQYMYJJ9PKD">Automatic Remote Config Triggers</h2>
-<p>
-  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
-</p>
-<ul>
-  <li>
-    <span style="font-weight: 400;">when the SDK has finished initializing</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">after the device ID is changed without merging</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
-  </li>
-</ul>
-<p>
-  To enable the automatic triggers, you have to call
-  <code class="java">enableRemoteConfigAutomaticTriggers</code> on the configuration
-  object you will provide during init.
-</p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
-config.enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
-Countly.sharedInstance().init(config);
-</code></pre>
-<h2 id="h_01HAVQDM5VXZ64P5JBPDDD02TR">Clearing Stored Values</h2>
+<h2 id="01HC28ZGER22N7H4R30JN622TG">Clearing Stored Values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().remoteConfig().clearAll();</code></pre>
-<h2 id="h_01HAVQDM5VJ8A6M4CDBTJYPXM7">Global Download Callbacks</h2>
+<h2 id="01HC292DJC2JTQ8GWVZGB4E9R9">Global Download Callbacks</h2>
 <p>
   Also, you may provide a global callback function to be informed when the remote
   config download request is finished with
@@ -1305,17 +1288,53 @@ Countly.sharedInstance().remoteConfig().registerDownloadCallback(RCDownloadCallb
 
 // remove a callback
 Countly.sharedInstance().remoteConfig().removeDownloadCallback(RCDownloadCallback callback);</code></pre>
-<h2 id="h_01HAVQDM5VJ7SZNGV8G39ZJEAB">Caching Remote Config Values</h2>
+<h2 id="h_01HC29WSH81A3XXAQ8V2CJBTK6">A/B Testing</h2>
 <p>
-  Another thing you can do is to enable value caching with the
-  <code class="java">enableRemoteConfigValueCaching</code> flag. If all values
-  were not updated, you would have metadata indicating if a value belongs to the
-  old or current user.
+  Your users' participation in A/B tests can be coupled with or decoupled from
+  the Remote Config feature in multiple ways. Possible ways to enroll or remove
+  your users for A/B tests are listed below.
+</p>
+<h3 id="h_01HAVQDM5VQYSTXC19GAHEJRJH">Enrollment on Download</h3>
+<p>
+  You can enroll to available experiments when downloading the Remote Config values
+  automatically. To do this you should call <code>enrollABOnRCDownload</code> method
+  on the CountlyConfig object you pass for the initialization:
 </p>
 <pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
-config.enableRemoteConfigValueCaching();
+config.enrollABOnRCDownload ();
 Countly.sharedInstance().init(config);</code></pre>
-<h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
+<h3 id="h_01HC2A5JDVP2RCW9RJ4VD9FSET">Enrollment on Access</h3>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
+<p>
+  You can enroll to A/B tests while getting RC values from storage. You can use
+  <code>getValueAndEnroll</code> while getting a single value and
+  <code>getAllValuesAndEnroll</code> while getting all values to enroll to the
+  keys that exist. If no value was stored for those keys these functions would
+  not enroll the user. Both of these functions works the same way with their non-enrolling
+  variants mentioned above, namely; <code>getValue</code> and
+  <code>getValues</code>.
+</p>
+<h3 id="h_01HC2A664CBKM7TFJQEW3MQ3BM">Enrollment on Action</h3>
+<p>
+  To enroll a user into the A/B tests for the given keys you use the following
+  method:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
+<p>
+  Here the keys array is the mandatory parameter for this method to work.
+</p>
+<h3 id="h_01HC2A74SSYYG84AZ4TC081E67">Exiting A/B Tests</h3>
+<p>
+  If you want to remove users from A/B tests of certain keys you can use the following
+  function:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().exitABTestsForKeys(String[] keys);</code></pre>
+<p>
+  Here if no keys are provided it would remove the user from all A/B tests instead.
+</p>
+<h1 id="01HC29WEYDQWW3351APKG4219Q">User Feedback</h1>
 <p>
   <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
 </p>
