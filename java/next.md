@@ -1160,4 +1160,97 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
   <p>
     It will return the number of requests in the memory request queue.
   </p>
+  <h1 id="h_01HD3EHQ4A3HMEJSF4YP4CBZ8P">FAQ</h1>
+  <h2 id="h_01HD3EJBRFM3FJ0F1P3K172TZV">
+    <span>Where Does the SDK Store the Data?</span>
+  </h2>
+  <p>
+    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the given&nbsp;</span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
+  </p>
+  <h2 id="h_01HD3F2TTEZ5KF3H2MDYA7CF9B">
+    <span>What Information Is Collected by the SDK?</span>
+  </h2>
+  <p>
+    The data that SDKs gather to carry out their tasks and implement the necessary
+    functionalities is mentioned in the following description. It is saved locally
+    before any of it is transferred to the server.
+  </p>
+  <p>
+    When sending any requests to the server, the followings are sent in addition
+    of the main data:
+  </p>
+  <ul>
+    <li>Timestamp of when the request is created as 'timestamp'</li>
+    <li>Current hour as 'hour'</li>
+    <li>Current day of week as 'dow'</li>
+    <li>Current timezone as 'tz'</li>
+    <li>SDK version as 'sdk_version'</li>
+    <li>SDK name as 'sdk_name'</li>
+    <li>App version as 'av' if exists</li>
+    <li>Remaining requests in the queue as 'rr'</li>
+  </ul>
+  <p>
+    If sessions are used then it would record the session start time, end time
+    and duration
+  </p>
+  <p>
+    If sessions are used then also device metrics are collected which contains:
+  </p>
+  <ul>
+    <li>Device name as '_device'</li>
+    <li>OS name as '_os'</li>
+    <li>OS version as '_os_version'</li>
+    <li>Screen resolution as '_resolution'</li>
+    <li>Locale as '_locale'</li>
+    <li>App version as '_app_version'</li>
+  </ul>
+  <p>
+    When generating a device ID, if no custom ID is provided, the SDK will use:
+  </p>
+  <ul>
+    <li>java.util.UUID to generate new device ID with prefix 'CLY_'</li>
+  </ul>
+  <p>
+    If feedback widgets are used, it will collect the users input and time of
+    the widgets completion
+  </p>
+  <p>
+    When events are recorded, the time of when the event is recorded, will be
+    collected
+  </p>
+  <p>
+    If the consent feature is used, the SDK will collect and send what consent
+    has been given to the SDK or removed from the SDK
+  </p>
+  <p>
+    If crash tracking is enabled, it will collect the following information at
+    the time of the crash:
+  </p>
+  <ul>
+    <li>Device name as '_device'</li>
+    <li>OS name as '_os'</li>
+    <li>OS version as '_os_version'</li>
+    <li>Screen resolution as '_resolution'</li>
+    <li>App version as '_app_version'</li>
+    <li>Device manufacturer as '_manufacture'</li>
+    <li>CPU name as '_cpu'</li>
+    <li>OpenGL versin as '_opengl'</li>
+    <li>Ram available as '_ram_current'</li>
+    <li>Ram total as '_ram_total'</li>
+    <li>Available disk space as '_disk_current'</li>
+    <li>Total disk space as '_disk_total'</li>
+    <li>Battery level as '_bat'</li>
+    <li>Device running time as '_run'</li>
+    <li>Device orientation as '_orientation'</li>
+    <li>If network connection as '_online'</li>
+    <li>If device is muted as '_muted'</li>
+    <li>Error stack trace as '_error'</li>
+    <li>Name of error as '_name'</li>
+    <li>Whether or not is error fatal as '_nonfatal'</li>
+  </ul>
+  <p>
+    Any other information like data in custom events, location, user profile
+    information or other manual requests depends on what the developer decides
+    to provide and is not collected by the SDK itself.
+  </p>
 </div>
