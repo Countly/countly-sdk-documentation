@@ -1770,6 +1770,25 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   In the request queue, if there are any requests whose app key is different than
   the current app key, these requests will be removed from the request queue.
 </p>
+<h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
+<p>
+  If you are concerned about your app being used sparsely over a long time frame,
+  old requests inside the request queue might not be important. If, for any reason,
+  you don't want to get data older than a certain timeframe, you can configure
+  the SDK to drop old requests:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setRequestDropAgeHours(10); // a positive integer indicating hours</code></pre>
+<p>
+  By using the <code>setRequestDropAgeHours</code> method while configuring the
+  SDK initialization options, you can set a timeframe (in hours) after which the
+  requests would be removed from the request queue. For example, by setting this
+  option to 10, the SDK would ensure that no request older than 10 hours would
+  be sent to the server.
+</p>
 <h2 id="h_01H930GAQ8GF1RMBD9MPWBBZ5J">Setting an event queue threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
