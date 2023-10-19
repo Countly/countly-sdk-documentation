@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly JS tracker and use Countly to track your web page in detail. It applies to the SDK version 23.6.X.</span>
+  <span style="font-weight: 400;">This documentation shows how to install the Countly Web SDK and use it to track your web page in detail. It applies to the SDK version 23.6.X.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -61,7 +61,7 @@
   </tbody>
 </table>
 <p>
-  If you want to get the Countly Web SDK codebase locally you can go to the github
+  If you want to get the Countly Web SDK codebase locally you can go to the GitHub
   repo <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
   it inside your project folder by executing the lines:
 </p>
@@ -77,10 +77,10 @@
 </p>
 <h1 id="h_01HABTQ436ACJV96Q5P2MMNGWZ">Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">To track your web server pages, you will need the Countly JavaScript tracking library. This library comes ready &amp; automatically hosted on your Countly server (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via the command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">To track your web pages, you will need the Countly Web SDK (also known as the Countly JavaScript tracking library). It is automatically hosted on your Countly server as a minified UMD file (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via the command line. This library also works well with mobile applications that consist of HTML5 views.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the library (however, you should not have to as it already comes ready):</span>
+  <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the SDK:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -94,16 +94,37 @@
     <pre><code class="shell">yarn add countly-sdk-web</code></pre>
   </div>
 </div>
+<p>You can also reach the SDK through CDN:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Latest</span>
+    <span class="tabs-link">Specific Version</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// latest non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
+
+// latest minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">// 23.6.0 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@23.6.0/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
+
+// 23.6.0 minified (<span>JSDelivr&nbsp;</span>or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@23.6.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a> or <a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/23.6.0/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
+  </div>
+</div>
 <p>
-  <span style="font-weight: 400;">Before we begin, the following information is meant for those who have examined our mobile SDKs - we can tell that events or tags that are used in mobile SDKs are quite similar to those we use in JavaScript code. For example, it's possible to modify custom property values of user details with modification commands, such as inc, mul, max, or min. Likewise, any event can be easily sent with segmentation.</span>
+  <span style="font-weight: 400;">Lastly as an alternative option, you may download <a href="https://github.com/Countly/countly-sdk-web/tree/master/lib">countly.min.js</a> from our GitHub repository and upload it to any server from where you would like to host it.</span>
 </p>
 <h1 id="h_01HABTQ436KQ0HD0G5NXFBZQR7">SDK Integration</h1>
 <h2 id="h_01HABTQ4360WX3SY413Z3ZSAWZ">Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK asynchronously without blocking content loading. This would also allow to use Countly while the Countly script has not yet been loaded. This can be done by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK synchronously or asynchronously. However the asynchronous usage would benefit from working without blocking content loading. This would also allow you to use Countly while the Countly script has not yet been loaded. This can be done by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Inserting asynchronous code before closing the head tag is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag.</span>
+  <span style="font-weight: 400;">Inserting asynchronous code before closing the "<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head" target="_blank" rel="noopener noreferrer">head tags</a>" of your website is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag. Main logic here is to make the Countly load as soon as possible to start collecting data.</span>
 </p>
 <p>
   Here you would also need to provide your application key and server URL. Please
@@ -111,12 +132,6 @@
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
-</p>
-<p>
-  If you are planning to use Application Performance Monitoring (APM), you would
-  need to follow additional steps. For more information on APM and its integration,
-  please check
-  <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#application-performance-monitoring">here</a>.
 </p>
 <p>
   <span style="font-weight: 400;">An example setup would look like this:</span>
@@ -147,12 +162,6 @@ Countly.q.push(['track_sessions']);
 
 //track web page views automatically (recommended)
 Countly.q.push(['track_pageview']);
-
-// Uncomment the following line to track web heatmaps (Enterprise Edition)
-// Countly.q.push(['track_clicks']);
-
-// Uncomment the following line to track web scroll maps (Enterprise Edition)
-// Countly.q.push(['track_scrolls']);
 
 // Load Countly script asynchronously
 (function() {
@@ -188,65 +197,15 @@ Countly.track_pageview();
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. Two options available here: using Cloudflare (CDNjs) or JSDelivr (both of which are highly available CDNs). If you would like to use CDNjs, here is the line you should use instead of the one above.</span>
-</p>
-<pre><code class="text">// Note: You should change 19.2.1 below to the version 
-// of the latest JS SDK to make sure you use the latest version.
-// Latest version is here: 
-// https://github.com/Countly/countly-sdk-web/releases
-
-https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/19.2.1/countly.min.js</code></pre>
-<p>
-  <span style="font-weight: 400;">As an alternative, you may also use<code>/sdk/web/countly.min.js</code></span><span style="font-weight: 400;"> to get this SDK directly from your Countly server.</span>
+  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. As</span><span style="font-weight: 400;"> an alternative, you may also use one of the methods mentioned at the previous section.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">As the third alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our Github repository and upload it to any server from where you would like to host it. You only need to point to this minified JS tracker lib in your small code above. This should ideally be done if none of the above-mentioned methods work in your specific use case.</span>
+  <span style="font-weight: 400;">If </span>you are in doubt about the correctness
+  of your Countly SDK integration you can learn about the verification methods
+  from
+  <a style="background-color: #ffffff;" href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
 </p>
-<p>
-  <span style="font-weight: 400;">Then you will be able to make event calls such as:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="html">&lt;script type='text/javascript'&gt;
-//send event on button click
-function clickEvent(ob){
-  Countly.q.push(['add_event',{
-    key:"asyncButtonClick", 
-    segmentation: {
-      "id": ob.id
-    }
-  }]);
-}
-&lt;/script&gt;
-&lt;input type="button" id="asyncTestButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="html">&lt;script type='text/javascript'&gt;
-  //send event on button click
-  function clickEvent(ob){
-    Countly.add_event({
-      key:"buttonClick", 
-      segmentation: {
-        "id": ob.id
-      }
-    });
-  }
-&lt;/script&gt;
-&lt;input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button"&gt;</code></pre>
-  </div>
-</div>
-<div class="callout callout--info">
-  <p>
-    If you are in doubt about the correctness of your Countly SDK integration
-    you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
-  </p>
-</div>
-<h2 id="h_01HABTQ437271440T3QZN3DCSN">SDK Logging</h2>
+<h1 id="h_01HABTQ437271440T3QZN3DCSN">SDK Logging</h1>
 <p>
   The first thing you should do while integrating our SDK is enabling logging.
   If logging is enabled, then our SDK will print out debug messages about its internal
@@ -261,8 +220,7 @@ function clickEvent(ob){
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">
-//during initialization
+    <pre><code class="html">//during initialization
 Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -276,81 +234,6 @@ Countly.debug = true;</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
-</p>
-<h2 id="h_01HABTQ437GSRJXPJBXHH8Q4Q1">Device ID</h2>
-<p>
-  All tracked information is tied to a "device ID". A device ID is a unique identifier
-  for your users. One of the first things you'll need to decide is which device
-  ID generation strategy to use. The easiest method is letting the Countly SDK
-  seamlessly handle the device ID on its own.
-</p>
-<p>
-  Or you may specify the device ID by yourself if you have one (it has to be unique
-  for each device). It may be an email or some other internal ID used by your other
-  systems:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="html">//during initialization
-    Countly.device_id = "1234-1234-1234-1234";</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="html">Countly.init({
-    device_id: "1234-1234-1234-1234",
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly"
-});</code></pre>
-  </div>
-</div>
-<h2 id="h_01HABTQ437DGBA97G3DTYD27AV">SDK Data Storage</h2>
-<p>
-  Countly Web SDK stores various information like device ID, request queue, session
-  information and more in your device. This helps Countly to provide data consistency
-  and enable convenience methods like offline mode.
-</p>
-<p>
-  The default storage location of user-specific data, except the session information,
-  is your browser’s local storage. Information stored here is persistent, and as
-  long as it was not erased or overwritten, it will stay on your device indefinitely.
-  However, Countly allows you to change this behavior by selecting persistent cookies
-  as the main storage option or choosing not to store any data at all, depending
-  on your needs. These storage options are mutually exclusive, meaning only one
-  option can be selected at a given time.
-</p>
-<p>
-  If cookies were selected as the main storage medium, persistent cookies have
-  an expiration date and the information stored in them would be rendered obsolete
-  after a while. In case of the session information, it is stored in session cookies
-  and would expire when the tab or browser is closed. Lastly, if you decide not
-  to store any information, all information will stay in memory and would be gone
-  when the memory is cleared.
-</p>
-<p>These options can be selected during the initialization:</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
-Countly.storage = "localstorage";</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
-Countly.init({
-  app_key:"YOUR_APP_KEY",
-  url: "https://try.count.ly",
-  storage: "localstorage"
-});</code></pre>
-  </div>
-</div>
-<h2 id="h_01HABTQ437N4XE1VX5TYHS5DQP">SDK Notes</h2>
-<p>
-  <span style="font-weight: 400;">Note that the Countly web SDK automatically captures UTM tags and stores them as user properties together with the corresponding user. This will make users segmentable in all the places around the dashboard, where granular data is used and segmentation capabilities are provided.</span>
 </p>
 <h1 id="h_01HABTQ4378NGJPGEYQX8X1CWZ">Crash Reporting</h1>
 <p>
@@ -2385,6 +2268,48 @@ Countly.ip_address = "83.140.15.1";</code></pre>
 });</code></pre>
   </div>
 </div>
+<h2 id="h_01HABTQ437DGBA97G3DTYD27AV">SDK Storage and Requests</h2>
+<p>
+  Countly Web SDK stores various information like device ID, request queue, session
+  information and more in your device. This helps Countly to provide data consistency
+  and enable convenience methods like offline mode.
+</p>
+<p>
+  The default storage location of user-specific data, except the session information,
+  is your browser’s local storage. Information stored here is persistent, and as
+  long as it was not erased or overwritten, it will stay on your device indefinitely.
+  However, Countly allows you to change this behavior by selecting persistent cookies
+  as the main storage option or choosing not to store any data at all, depending
+  on your needs. These storage options are mutually exclusive, meaning only one
+  option can be selected at a given time.
+</p>
+<p>
+  If cookies were selected as the main storage medium, persistent cookies have
+  an expiration date and the information stored in them would be rendered obsolete
+  after a while. In case of the session information, it is stored in session cookies
+  and would expire when the tab or browser is closed. Lastly, if you decide not
+  to store any information, all information will stay in memory and would be gone
+  when the memory is cleared.
+</p>
+<p>These options can be selected during the initialization:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+Countly.storage = "localstorage";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  storage: "localstorage"
+});</code></pre>
+  </div>
+</div>
 <h2 id="h_01HABTQ439T5M3FN6CV6HHG2TX">Automatically Fill User Data</h2>
 <p>
   <span style="font-weight: 400;">In most cases, you won’t know anything about your users, yet you will still want to try to collect any data possible. We provide 2 helper methods for this exact reason.</span>
@@ -2435,7 +2360,7 @@ Countly.collect_from_forms(document, true);</code></pre>
 &lt;p&gt;&lt;input id="submit-form" type="submit" value="Submit"&gt;&lt;/p&gt;
 
 &lt;/form&gt;</code></pre>
-<h3>Collect User Data From Facebook</h3>
+<h3 id="h_01HBMZRWK6244VCE4TEHVCWP2V">Collect User Data From Facebook</h3>
 <p>
   <span style="font-weight: 400;">If your website uses the Facebook JavaScript SDK, you may use this helper method to automatically collect user data from their Facebook accounts. Select the method right after Facebook SDK initialization and optionally set the object with custom properties and graph paths for values on where to receive them.</span>
 </p>
