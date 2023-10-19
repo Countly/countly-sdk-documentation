@@ -709,13 +709,26 @@ Countly.instance().init(config);</code></pre>
     </div>
   </li>
 </ul>
-<h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
+<h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
+<h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
 <pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h3 id="h_01HD3JE2GZ6PJDBWN1XWQ51JVV">Setting Maximum Request Queue Size</h3>
+<p>
+  The request queue is flushed when the session timer delay exceeds. If network
+  or server are not reachable, If the number of requests in the queue reaches the
+  setRequestQueueMaxSize limit, the oldest requests in the queue will be dropped,
+  and the newest requests will take their place. by default request queue size
+  is 1000. You can change this by:
+</p>
+<pre>config.setRequestQueueMaxSize(<span>56</span>);</pre>
+<h3 id="h_01HD3JPGMZP46HZAJHZSPN59F2">Forcing HTTP POST</h3>
+<p>You can force HTTP POST request for all requests by:</p>
+<pre>config.enableForcedHTTPPost();</pre>
 <h2 id="h_01HAXVT7C5G91JJG8FSCXH3CJV">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
@@ -746,17 +759,6 @@ Countly.init(targetFolder, config);
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
-<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
-<p>
-  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
-</p>
-<pre><code class="java hljs">config.setLogListener(new LogCallback() {
-  @Override
-  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
-    //print log
-  }
-});
-</code></pre>
 <h2 id="h_01HABV0K6D57PGC01NJ1V3QYSB">Backend Mode</h2>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
