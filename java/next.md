@@ -579,6 +579,57 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   for the validity of the <code>&amp;checksum</code> field before being processed.
 </p>
 <pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);</pre>
+<h2 id="h_01HD3AN5VQ2S4HA7SC696QPBSS">SSL Certificate Pinning</h2>
+<p>
+  <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener noreferrer">Man-in-the-middle attacks (MiM)</a>
+  in SSL connections turn difficult with the use of public key and certificate
+  pinning, resulting in improved communication security. Countly SDK will make
+  sure that a connection is established with one of the public keys or one of the
+  certificates supplied when you offer it with a list of valid SSL certificates
+  using either <code>config.addPublicKeyPin()</code> or
+  <code>config.addCertificatePin()</code>. While public key pinning is better because
+  certificates can be rotated and expire while public keys are not (as long as
+  you don't change your CA), using full certificate pinning is slightly safer.
+  Pinning is done during init through the Config object and <code>.pem</code> format
+  is required. To get the current public key or whole certificate from your server,
+  you can use one of these snippets (replace xxx.server.ly with your server name):
+</p>
+<pre>//get the public key
+openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
+
+//get the list of certificates
+openssl s_client -connect xxx.server.ly:443 -showcerts</pre>
+<p>
+  In the certificate case, the first entry would be the certificate for your server
+  (what you need to enter into SDK configuration), and the rest would be the chain
+  of trust to the root certificate authority.
+</p>
+<p>Here is an example of public key and certificate pinning:</p>
+<pre><code class="java">String publicKeyPem = "-----BEGIN PUBLIC KEY-----\n" +
+  "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf\n" +
+  "9Cnzj4p4WGeKLs1Pt8QuKUpRKfFLfRYC9AIKjbJTWit\n" +
+  "+CqvjWYzvQwECAwEAAQ==\n" +
+  "-----END PUBLIC KEY-----";
+  
+String certificatePem = "-----BEGIN CERTIFICATE-----\n" +
+  "MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL\n" +
+  "MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC\n" +
+  "VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx\n" +
+  "NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD\n" +
+  "TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu\n" +
+  "ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j\n" +
+  "V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj\n" +
+  "gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA\n" +
+  "FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE\n" +
+  "CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS\n" +
+  "BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE\n" +
+  "BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju\n" + 
+  "Wm7DCfrPNGVwFWUQOmsPue9rZBgO\n" +<br>  "-----END CERTIFICATE-----";
+  
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
+config.addPublicKeyPin(publicKeyPem);
+config.addCertificatePin(certificatePin);
+Countly.instance().init(config);</code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
