@@ -354,6 +354,12 @@ view.start(true);</code></pre>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
+<h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.
+</p>
+<pre><code class="java hljs">Countly.instance().getDeviceId()</code></pre>
 <h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
@@ -366,27 +372,29 @@ view.start(true);</code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><code class="java hljs">Countly.session().changeDeviceIdWithMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.instance().changeDeviceIdWithMerge("New Device Id");</code></pre>
 <p class="anchor-heading">
   <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><code class="java hljs">Countly.session().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.instance().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
-<h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
+<h2 id="h_01HD3QC31PBFGVZSRG6906NQGS">Device ID Generation</h2>
 <p>
-  You may want to see what device id Countly is assigning for the specific device.
-  For that, you may use the following calls.&nbsp;
+  When initializing Countly, If no custom ID is provided, the Countly Java SDK
+  generates a unique device ID. The SDK uses a random UUID string for the device
+  ID generation. For example, after you init the SDK without providing a custom
+  id, this call will return something like this:
 </p>
-<pre><code class="java hljs">Countly.session().getDeviceId()</code></pre>
-<h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
+<pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
   <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets. Look at here to see detailed information about <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-" target="_blank" rel="noopener noreferrer">feedbacks</a>.</span>
 </p>
