@@ -93,7 +93,7 @@ Countly.instance().init(config);</code></pre>
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
-<h1 id="h_01HD19HWGTN49PGHRQ8WPA2RA6">SDK Logging / Debug Mode</h1>
+<h1 id="h_01HD19HWGTN49PGHRQ8WPA2RA6">SDK Logging Mode</h1>
 <p>
   The first thing you should do while integrating our SDK is enable logging. If
   logging is enabled, the Countly Java SDK will print out debug messages about
@@ -174,8 +174,8 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
     <code>segmentation</code> - some data associated with the event. Optional.
     It's a Map&lt;String, Object&gt; which can be filled with arbitrary data
     like {"category": "Pants", "size": "M"}. The valid data types for segmentation
-    are: "String", "Integer", "Double", "Boolean", "BigDecimal", "Long" and "Float".
-    All other types will be ignored.
+    are: "String", "Integer", "Double", "Boolean", "Long" and "Float". All other
+    types will be ignored.
   </li>
 </ul>
 <h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
@@ -325,19 +325,13 @@ segmentation.put("level", 37);</code></pre>
 </p>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
 <p>
-  A session is a collection of user activities occurring within a specified period
-  on your application or website. Countly can track user-specific states like views,
-  events, and user identification. The Countly Java SDK offers a single primary
-  function, which is manual session tracking for tracking sessions in your application.
-  A "begin session" signal initiates the session flow. A "session duration" signal,
-  which can be changed or extended, typically occurs every 60 seconds. Finally,
-  an "end session" signal concludes the session.
+  Session tracking is a tool to track the specific time period that the end user
+  is using the application. It is a timeframe with a start and end.
 </p>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
-  In Countly Java SDK, a session starts with the launch of an application. This
-  can occur upon a single instance of an app launch or multiple launches within
-  a predefined time frame, typically set at 60 seconds by default.
+  Session tracking does not happen automatically. It has to be started. After that
+  the elapsed session duration will be sent every 60 seconds.
 </p>
 <p>
   <code>Session</code> lifecycle methods include:
@@ -352,7 +346,7 @@ segmentation.put("level", 37);</code></pre>
     <code>session.update()</code> can be called to send a session duration update
     to the server along with any events, user properties, and any other data
     types supported by Countly SDK. Called each Config.sendUpdateEachSeconds
-    seconds in auto session mode.
+    seconds automatically. It can also be called more often manually.
   </li>
   <li>
     <code>session.end()</code>&nbsp;must be called to mark the end of the session.
