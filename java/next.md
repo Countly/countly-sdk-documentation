@@ -367,26 +367,26 @@ segmentation.put("level", 37);</code></pre>
   can track and decide whether or not the view is the first. They end the previous
   views if they are still ongoing. You can use the below functions to report views:
 </p>
-<p>This function automatically starts the view tracking,</p>
+<p>
+  Calling this function will retrieve a view with the given name. If such a view
+  does not exist, the SDK will create it internally and immedietelly start it,
+</p>
 <pre><span data-preserver-spaces="true">Countly.instance().view(String name);</span></pre>
-<p>or you can begin the view manually,</p>
+<p>
+  If you want to signify that the recorded view is the first view in the session,
+  you would set the "start" parameter to "true".,
+</p>
 <pre><span data-preserver-spaces="true">Countly.instance().view(String name, boolean start);</span></pre>
 <p>
-  You can also stop views manually by
-  <code class="java">stop(boolean lastView)</code>. You can manage whether or not
-  the view is the last. However, the Java SDK can automatically decide whether
-  the view is the latest.
+  You can stop views by <code class="java">stop(boolean lastView)</code>on the
+  stored or retrieved View object.
+</p>
+<p>
+  You can specifiy if that view was the last one by providing "true" to the boolean
+  parameter.
 </p>
 <pre><code class="java">View view = Countly.instance().view("logout_page");
-view.stop(true);</code></pre>
-<p>
-  You can start views manually by
-  <code class="java">start(boolean firstView)</code>. You can manage whether or
-  not the view is the first view. However, the Java SDK can automatically decide
-  whether the view is the first view.
-</p>
-<pre><code class="java">View view = Countly.instance().view("login_page")
-view.start(true);</code></pre>
+view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
@@ -658,58 +658,7 @@ Countly.instance().user().edit().commit();</code></pre>
   server. If the salt on the Countly server is selected, all requests will be checked
   for the validity of the <code>&amp;checksum</code> field before being processed.
 </p>
-<pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);</pre>
-<h2 id="h_01HD3AN5VQ2S4HA7SC696QPBSS">SSL Certificate Pinning</h2>
-<p>
-  <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener noreferrer">Man-in-the-middle attacks (MiM)</a>
-  in SSL connections turn difficult with the use of public key and certificate
-  pinning, resulting in improved communication security. Countly SDK will make
-  sure that a connection is established with one of the public keys or one of the
-  certificates supplied when you offer it with a list of valid SSL certificates
-  using either <code>config.addPublicKeyPin()</code> or
-  <code>config.addCertificatePin()</code>. While public key pinning is better because
-  certificates can be rotated and expire while public keys are not (as long as
-  you don't change your CA), using full certificate pinning is slightly safer.
-  Pinning is done during init through the Config object and <code>.pem</code> format
-  is required. To get the current public key or whole certificate from your server,
-  you can use one of these snippets (replace xxx.server.ly with your server name):
-</p>
-<pre>//get the public key
-openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
-
-//get the list of certificates
-openssl s_client -connect xxx.server.ly:443 -showcerts</pre>
-<p>
-  In the certificate case, the first entry would be the certificate for your server
-  (what you need to enter into SDK configuration), and the rest would be the chain
-  of trust to the root certificate authority.
-</p>
-<p>Here is an example of public key and certificate pinning:</p>
-<pre><code class="java">String publicKeyPem = "-----BEGIN PUBLIC KEY-----\n" +
-  "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf\n" +
-  "9Cnzj4p4WGeKLs1Pt8QuKUpRKfFLfRYC9AIKjbJTWit\n" +
-  "+CqvjWYzvQwECAwEAAQ==\n" +
-  "-----END PUBLIC KEY-----";
-  
-String certificatePem = "-----BEGIN CERTIFICATE-----\n" +
-  "MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL\n" +
-  "MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC\n" +
-  "VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx\n" +
-  "NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD\n" +
-  "TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu\n" +
-  "ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j\n" +
-  "V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj\n" +
-  "gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA\n" +
-  "FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE\n" +
-  "CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS\n" +
-  "BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE\n" +
-  "BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju\n" + 
-  "Wm7DCfrPNGVwFWUQOmsPue9rZBgO\n" +<br>  "-----END CERTIFICATE-----";
-  
-Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
-config.addPublicKeyPin(publicKeyPem);
-config.addCertificatePin(certificatePin);
-Countly.instance().init(config);</code></pre>
+<pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);<code class="java"></code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
@@ -1247,7 +1196,7 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
     <span>Where Does the SDK Store the Data?</span>
   </h2>
   <p>
-    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the given&nbsp;</span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
+    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the directory given with </span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
   </p>
   <h2 id="h_01HD3F2TTEZ5KF3H2MDYA7CF9B">
     <span>What Information Is Collected by the SDK?</span>
@@ -1285,12 +1234,6 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
     <li>Screen resolution as '_resolution'</li>
     <li>Locale as '_locale'</li>
     <li>App version as '_app_version'</li>
-  </ul>
-  <p>
-    When generating a device ID, if no custom ID is provided, the SDK will use:
-  </p>
-  <ul>
-    <li>java.util.UUID to generate new device ID with prefix 'CLY_'</li>
   </ul>
   <p>
     If feedback widgets are used, it will collect the users input and time of
