@@ -26,9 +26,15 @@
   To add it, you first have to add the MavenCentral repository. For Gradle you
   would do it something like this:
 </p>
-<pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
+<pre>buildscript {
+  repositories {
+    mavenCentral()
+  }
+}</pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span> </span>implementation <span>"ly.count.sdk:java:23.8.0"<br></span><span>}</span></pre>
+<pre>dependencies {
+  implementation "ly.count.sdk:java:23.8.0"
+}</pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
@@ -67,30 +73,6 @@ Countly.instance().init(config);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HABV0K6C1TBRCQBZJ45PE13H">SDK Logging Mode</h2>
-<p>
-  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
-</p>
-<p>
-  Set <code class="java">setLoggingLevel</code> on the config object to enable
-  logging:
-</p>
-<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
-
-Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .setLoggingLevel(Config.LoggingLevel.DEBUG)
-  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
-<p>
-  In case you want to forward the SDK logs to your own logging mechanism, you would
-  have a look at the
-  <a href="#h_01GVR02HH6X27TPH3MS6TE08AT" target="_self">log listener section</a>.
-</p>
-<p>
-  This logging level would have no influence over the log listener. That would
-  always receive all the printed logs event if the logging level would be set to
-  "OFF".
-</p>
 <h2 id="h_01HABV0K6C4TED33TF2K40S71H">SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
@@ -111,9 +93,59 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
+<h1 id="h_01HD19HWGTN49PGHRQ8WPA2RA6">SDK Logging Mode</h1>
+<p>
+  The first thing you should do while integrating our SDK is enable logging. If
+  logging is enabled, the Countly Java SDK will print out debug messages about
+  its internal state and encountered problems. The SDK will print these debug messages
+  to the console.
+</p>
+<p>
+  Set <code class="java">setLoggingLevel</code> on the config object to enable
+  logging:
+</p>
+<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<p>
+  This logging level would not influence the log listener. That will always receive
+  all the printed logs event if the logging level is "OFF."
+</p>
+<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
+<p>
+  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
+</p>
+<pre><code class="java hljs">config.setLogListener(new LogCallback() {
+  @Override
+  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
+    //print log
+  }
+});</code></pre>
+<h1 id="h_01HD1AJNNA11E9NMY0K0S5B3XN">Crash Reporting</h1>
+<p>
+  The Countly Java SDK has the ability to collect
+  <a href="/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
+  which you may examine and resolve later on the server. The SDK can collect unhandled
+  exceptions by default if the consent for crash reporting is given.
+</p>
+<h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
+<p>
+  You may catch an exception during application runtime. You might report with
+  these functions:
+</p>
+<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal);</code></pre>
+<p>
+  If you want to add additional information like segmentation, logs, or names of
+  exceptions to inspect it in a detailed way later on, you can use the below function.
+</p>
+<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal, String name, Map&lt;String, String&gt; segments, String... logs);</code></pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
-  Events in Countly represent some meaningful event user performed in your application
+  <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
+  in Countly represent some meaningful event user performed in your application
   within a <code>Session</code>. Please avoid recording everything like all taps
   or clicks users performed. In case you do, it will be very hard to extract valuable
   information from generated analytics.
@@ -141,7 +173,9 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <li>
     <code>segmentation</code> - some data associated with the event. Optional.
     It's a Map&lt;String, Object&gt; which can be filled with arbitrary data
-    like {"category": "Pants", "size": "M"}.
+    like {"category": "Pants", "size": "M"}. The valid data types for segmentation
+    are: "String", "Integer", "Double", "Boolean", "Long" and "Float". All other
+    types will be ignored.
   </li>
 </ul>
 <h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
@@ -290,11 +324,14 @@ segmentation.put("level", 37);</code></pre>
   nothing will happen.
 </p>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
+<p>
+  Session tracking is a tool to track the specific time period that the end user
+  is using the application. It is a timeframe with a start and end.
+</p>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
-  In Countly Java SDK, a session starts with the launch of an application. This 
-  can occur upon a single instance of an app launch or multiple launches within 
-  a predefined time frame, typically set at 60 seconds by default.
+  Session tracking does not happen automatically. It has to be started. After that
+  the elapsed session duration will be sent every 60 seconds.
 </p>
 <p>
   <code>Session</code> lifecycle methods include:
@@ -309,7 +346,7 @@ segmentation.put("level", 37);</code></pre>
     <code>session.update()</code> can be called to send a session duration update
     to the server along with any events, user properties, and any other data
     types supported by Countly SDK. Called each Config.sendUpdateEachSeconds
-    seconds in auto session mode.
+    seconds automatically. It can also be called more often manually.
   </li>
   <li>
     <code>session.end()</code>&nbsp;must be called to mark the end of the session.
@@ -356,7 +393,7 @@ segmentation.put("level", 37);</code></pre>
 <pre><code class="java hljs">Countly.session().getDeviceId()</code></pre>
 <h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets.</span>
+  <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
 </p>
 <p>
   <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
@@ -478,7 +515,7 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 </p>
 <h1 id="h_01HABV0K6C4TX8B97XNK8XWNVA">User Profiles</h1>
 <p>
-  <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a>
+  <span>For information about User Profiles, review&nbsp;</span><a href="/hc/en-us/articles/4403281285913">this documentation</a>
 </p>
 <h2 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h2>
 <p>
@@ -653,17 +690,6 @@ Countly.init(targetFolder, config);
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
-<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
-<p>
-  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
-</p>
-<pre><code class="java hljs">config.setLogListener(new LogCallback() {
-  @Override
-  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
-    //print log
-  }
-});
-</code></pre>
 <h2 id="h_01HABV0K6D57PGC01NJ1V3QYSB">Backend Mode</h2>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
