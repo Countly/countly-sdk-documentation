@@ -875,7 +875,48 @@ Countly.disableLocation();</code></pre>
   the retrieved keys are updated, and values that are not part of that download
   stay as they were. A previously valid key may return no value after a full download.
 </p>
-<h2 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Downloading Remote Config</h2>
+<div>
+  <h2 id="h_01HD1KQCFTNES9EPJAT0DWT0HJ">
+    <span>Downloading Values</span>
+  </h2>
+  <h3 id="h_01H930GAQ7BDR4FWH4NCATN7B4">Automatic Remote Config Triggers</h3>
+  <p>
+    <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
+  </p>
+  <p>
+    <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
+  </p>
+  <ul>
+    <li>
+      <span style="font-weight: 400;">when the SDK has finished initializing</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">after the device ID is changed without merging</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">when user gets out of temp ID mode</span>
+    </li>
+    <li>
+      <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+    </li>
+  </ul>
+  <p>
+    To enable the automatic triggers, you have to call
+    <code class="dart">enableRemoteConfigAutomaticTriggers</code> on the configuration
+    object you will provide during init.
+  </p>
+  <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
+  ..enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
+</code></pre>
+  <p>
+    Another thing you can do is to enable value caching with the
+    <code class="dart">enableRemoteConfigValueCaching</code> flag. If all values
+    were not updated, you would have metadata indicating if a value belongs to
+    the old or current user.
+  </p>
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..enableRemoteConfigValueCaching(); </pre>
+</div>
+<h3 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Calls</h3>
 <p>
   There are three ways to trigger remote config value download manually:
 </p>
@@ -937,7 +978,7 @@ Countly.disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
-<h2 id="h_01H930GAQ6RZ7GPKM5ZP097RKA">Getting Stored Remote Config Values</h2>
+<h2 id="h_01HD1KX616GDFGTV2AR8BSWWG9">Accessing Values</h2>
 <p>
   To get a stored value, call <code class="dart">getValue</code> with the specified
   key. This returns an Future&lt;RCData&gt; object that contains the value of the
@@ -971,55 +1012,7 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
   Object value;
   Boolean isCurrentUsersData;
 }</code></pre>
-<h2 id="h_01H930GAQ6KZKGR0NMP6QM2JW6">Enrolling and Exiting A/B tests</h2>
-<p>
-  You can enroll your users into into A/B tests for certain keys or remove them
-  from some or all existing A/B tests available.
-</p>
-<p>
-  To enroll a user into the A/B tests for the given keys you use the following
-  method:
-</p>
-<pre>Countly.instance.remoteConfig.enrollIntoABTestsForKeys(List&lt;String&gt; keys);</pre>
-<p>
-  Here the keys array is the mandatory parameter for this method to work. Instead
-  if you want to remove users from A/B tests of certain keys you can use the following
-  function:
-</p>
-<pre>Countly.instance.remoteConfig.exitABTestsForKeys(List&lt;String&gt; keys);</pre>
-<p>
-  Here if no keys are provided it would remove the user from all A/B tests instead.
-</p>
-<h2 id="h_01H930GAQ7BDR4FWH4NCATN7B4">Automatic Remote Config Triggers</h2>
-<p>
-  <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
-</p>
-<ul>
-  <li>
-    <span style="font-weight: 400;">when the SDK has finished initializing</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">after the device ID is changed without merging</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when user gets out of temp ID mode</span>
-  </li>
-  <li>
-    <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
-  </li>
-</ul>
-<p>
-  To enable the automatic triggers, you have to call
-  <code class="dart">enableRemoteConfigAutomaticTriggers</code> on the configuration
-  object you will provide during init.
-</p>
-<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
-  ..enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
-</code></pre>
-<h2 id="h_01H930GAQ7VZ2139R099HXTNFP">Clearing Stored Values</h2>
+<h2 id="01HD1KQVYS1NHR0ZFMJ12AVP0P">Clearing Stored Values</h2>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
@@ -1077,14 +1070,53 @@ Countly.instance.remoteConfig.registerDownloadCallback((rResult, error, fullValu
 Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
    // do sth
 });</code></pre>
-<h2 id="h_01H930GAQ7TD98AFCP06W313FP">Caching Remote Config Values</h2>
+<h2 id="h_01H930GAQ6KZKGR0NMP6QM2JW6">A/B Testing</h2>
 <p>
-  Another thing you can do is to enable value caching with the
-  <code class="dart">enableRemoteConfigValueCaching</code> flag. If all values
-  were not updated, you would have metadata indicating if a value belongs to the
-  old or current user.
+  You can enroll your users into into A/B tests for certain keys or remove them
+  from some or all existing A/B tests available.
 </p>
-<pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..enableRemoteConfigValueCaching(); </pre>
+<div>
+  <h3 id="h_01HD1KX616DPMYXJCCRQ01XAFQ">
+    <span>&nbsp;</span><span>Enrollment on Download</span>
+  </h3>
+  <p>
+    You can enroll into the A/B tests automatically whenever you download RC
+    values from the server. To do so you have to set the following flag at the
+    config object during initialization:
+  </p>
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)<br>..<span>enrollABOnRCDownload();</span></pre>
+  <h3 id="h_01HD1KX6164ZKKCQS4B15G1NC5">
+    <span>&nbsp;</span><span>Enrollment on Access</span>
+  </h3>
+  <div class="callout callout--warning">
+    <p>Available starting from version 23.8.3</p>
+  </div>
+  <p>
+    <span>You can also enroll to A/B tests while getting RC values from storage. You can use <code>getValueAndEnroll</code> while getting a single value and <code>getAllValuesAndEnroll</code> while getting all values to enroll to the keys that exist. If no value was stored for those keys these functions would not enroll the user. Both of these functions works the same way with their non-enrolling variants, namely; <code>getValue</code> and <code>getAllValues</code>.</span>
+  </p>
+  <h3 id="h_01HD1KX6170D1FV7M4HHS1NGTE">
+    <span>&nbsp;</span><span>Enrollment on Action</span>
+  </h3>
+  <p>
+    To enroll a user into the A/B tests for the given keys you use the following
+    method:
+  </p>
+  <pre>Countly.instance.remoteConfig.enrollIntoABTestsForKeys(List&lt;String&gt; keys);</pre>
+  <p>
+    Here the keys array is the mandatory parameter for this method to work.
+  </p>
+  <h3 id="h_01HD1KX617T07K6KD77Q4THRCC">
+    <span>&nbsp;</span><span>Exiting A/B Tests</span>
+  </h3>
+</div>
+<p>
+  If you want to remove users from A/B tests of certain keys you can use the following
+  function:
+</p>
+<pre>Countly.instance.remoteConfig.exitABTestsForKeys(List&lt;String&gt; keys);</pre>
+<p>
+  Here if no keys are provided it would remove the user from all A/B tests instead.
+</p>
 <h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User feedback</h1>
 <p>
   There are a couple ways of receiving feedback from your users: star-rating dialog,
@@ -1234,7 +1266,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   If you want to use it without a callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget) {<br>    error = result[1];<br>    if(error == null) {<br>       Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>    }<br>}</code></pre>
+<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);<br>String? error = result[1];<br>if (error == null) {<br>   Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>}</code></pre>
 <p>
   <code>retrievedWidgetData</code> would contain a Map with all of the required
   information to present the widget yourself.
@@ -1738,6 +1770,25 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   In the request queue, if there are any requests whose app key is different than
   the current app key, these requests will be removed from the request queue.
 </p>
+<h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.3</p>
+</div>
+<p>
+  If you are concerned about your app being used sparsely over a long time frame,
+  old requests inside the request queue might not be important. If, for any reason,
+  you don't want to get data older than a certain timeframe, you can configure
+  the SDK to drop old requests:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setRequestDropAgeHours(10); // a positive integer indicating hours</code></pre>
+<p>
+  By using the <code>setRequestDropAgeHours</code> method while configuring the
+  SDK initialization options, you can set a timeframe (in hours) after which the
+  requests would be removed from the request queue. For example, by setting this
+  option to 10, the SDK would ensure that no request older than 10 hours would
+  be sent to the server.
+</p>
 <h2 id="h_01H930GAQ8GF1RMBD9MPWBBZ5J">Setting an event queue threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
@@ -1758,19 +1809,79 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   variants. There are four calls you can use for fetching, accessing, and enrolling
   for your variants.
 </p>
-<h3 id="h_01H930GAQ8YY8WZQ0CGX7FKCNN">Fetching Test Variants</h3>
+<h3 id="h_01H930GAQ8YY8WZQ0CGX7FKCNN">Fetching Experiment Information</h3>
+<p>
+  You can fetch information about the A/B tests in your server including test name,
+  description and the current variant:
+</p>
+<pre><code class="java">Countly.instance.remoteConfig.<span>testingDownloadExperimentInformation((rResult, error){<br>    // do sth<br>})</span></code></pre>
+<p>
+  You can provide a callback (which is optional) to be called when the fetching
+  process ends. Depending on the situation, this would return a RequestResponse
+  Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
+  as the second parameter if there was an error ("null" otherwise).
+</p>
+<h3 id="01HACJ8D2KAWMSF7NW2MKG1E1F">Fetching Test Variants</h3>
 <p>
   You can fetch a map of all A/B testing parameters (keys) and variants associated
   with it:
 </p>
 <pre><code class="java">Countly.instance.remoteConfig.testingDownloadVariantInformation((rResult, error){<br>    // do sth<br>})</code></pre>
 <p>
-  You can provide an callback (which is optional) to be called when the fetching
+  You can provide a callback (which is optional) to be called when the fetching
   process ends. Depending on the situation, this would return a RequestResponse
   Enum (Success, NetworkIssue, or Error) as the first parameter and a String error
   as the second parameter if there was an error ("null" otherwise).
 </p>
-<h3 id="h_01H930GAQ8QWZEM4GGGF8Z35VE">Accessing Fetched Test Variants</h3>
+<h3 id="h_01H930GAQ8QWZEM4GGGF8Z35VE">Accessing Fetched Experiment Information</h3>
+<p>
+  After fetching the experiment information the SDK saves it in the RAM, so if
+  the memory is erased, you must fetch the information again. You can access this
+  information through this call:
+</p>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().<span>testingGetAllExperimentInfo</span>()</code></pre>
+<p>
+  This would return a Future&lt;Map&lt;String, ExperimentInformation&gt;&gt; where
+  the keys are experiment IDs as String and the values are the ExperimentInformation
+  Class which contains information about the experiment with that ID. This Class'
+  structure is like this:
+</p>
+<pre><code>class ExperimentInformation {
+   // same ID as used in the map
+   String experimentID;
+   // the name of the experiment
+   String experimentName;
+   // the description of the experiment
+   String experimentDescription;
+   // the name of the currently assigned variant for this user (e.g., 'Control Group', 'Variant A')
+   String currentVariant;
+   // variant information for this experiment
+   Map&lt;String, Map&lt;String, Object?&gt;&gt; variants;
+}</code></pre>
+<p>
+  So an example data structure you might get at the end would look something similar
+  to this:
+</p>
+<pre><code>{
+   some_exp_ID: {
+     experimentID: some_ID,
+     experimentName: some_name,
+     experimentDescription: some description,
+     currentVariant: variant_name,
+     variants: {
+       Control Group: {
+         key_1: val,
+         key_2: val,
+       },
+       Variant A: {
+         key_1: val,
+         key_2: val,
+       }
+     }
+   }
+}
+</code></pre>
+<h3 id="01HACJK2TYGXHP5KPX4MTZJSQ1">Accessing Fetched Test Variants</h3>
 <p>
   When test variants are fetched, they are saved to the memory. If the memory is
   erased, you must fetch the variants again. So a common flow is to use the fetched

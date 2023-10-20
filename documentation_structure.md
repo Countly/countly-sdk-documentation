@@ -188,7 +188,7 @@ This should contain the core integration information about the SDK, including a 
   * Enrollment on Download
   * Enrollment on Access (we mention the 'GetAndEnroll' call)
   * Enrollment on Action (the explicit call)
-  * Exiting AB test
+  * Exiting A/B Tests
 * Consent
 
 ***

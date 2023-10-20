@@ -1060,9 +1060,6 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </p>
 <pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("Widgetshown");<br>},<br>function() {<br>  console.log("Widgetclosed");<br>})<br></code></pre>
 <h3 id="h_01HBZPWR8E1BF4J850A5VB9BGJ">Manual Reporting</h3>
-<div class="callout callout--warning">
-  <p>This feature is available from version 23.6.2 and upwards.</p>
-</div>
 <p>
   If you have a custom UI where you collect user feedback or you already have some
   feedback data in your system you can report that information to specific feedback
@@ -1098,8 +1095,8 @@ Countly.feedback.getAvailableFeedbackWidgets(function(retrivedWidgets, error){
 //OR async
 Object response = await Countly.feedback.getAvailableFeedbackWidgets();
 if (!response.error) {
-  // pick a widget from response.values array
-  const widgetInfo = response.values[0];
+  // pick a widget from response.data array
+  const widgetInfo = response.data[0];
 }</code></pre>
 <p>To download the widget data use:</p>
 <pre><code class="javascript">// with callback
