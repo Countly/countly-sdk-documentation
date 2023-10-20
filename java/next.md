@@ -355,10 +355,48 @@ segmentation.put("level", 37);</code></pre>
     in this request as well.
   </li>
 </ul>
+<h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
+<p>
+  <span data-preserver-spaces="true">You can track views of your application by the Java SDK. By views, you can also create </span><a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener"><span data-preserver-spaces="true">flows</span></a><span data-preserver-spaces="true">&nbsp;to see view transitions.</span>
+</p>
+<h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
+  <span data-preserver-spaces="true">Manual View Reporting</span>
+</h2>
+<p>
+  The Countly Java SDK provides manual reporting of views. View reporting functions
+  can track and decide whether or not the view is the first. They end the previous
+  views if they are still ongoing. You can use the below functions to report views:
+</p>
+<p>
+  Calling this function will retrieve a view with the given name. If such a view
+  does not exist, the SDK will create it internally and immedietelly start it,
+</p>
+<pre><span data-preserver-spaces="true">Countly.instance().view(String name);</span></pre>
+<p>
+  If you want to signify that the recorded view is the first view in the session,
+  you would set the "start" parameter to "true".,
+</p>
+<pre><span data-preserver-spaces="true">Countly.instance().view(String name, boolean start);</span></pre>
+<p>
+  You can stop views by <code class="java">stop(boolean lastView)</code>on the
+  stored or retrieved View object.
+</p>
+<p>
+  You can specifiy if that view was the last one by providing "true" to the boolean
+  parameter.
+</p>
+<pre><code class="java">View view = Countly.instance().view("logout_page");
+view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
+<h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
+<p>
+  You may want to see what device id Countly is assigning for the specific device.
+  For that, you may use the following calls.
+</p>
+<pre><code class="java hljs">Countly.instance().getDeviceId()</code></pre>
 <h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
@@ -371,27 +409,29 @@ segmentation.put("level", 37);</code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><code class="java hljs">Countly.session().changeDeviceIdWithMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.instance().changeDeviceIdWithMerge("New Device Id");</code></pre>
 <p class="anchor-heading">
   <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><code class="java hljs">Countly.session().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.instance().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
-<h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
+<h2 id="h_01HD3QC31PBFGVZSRG6906NQGS">Device ID Generation</h2>
 <p>
-  You may want to see what device id Countly is assigning for the specific device.
-  For that, you may use the following calls.&nbsp;
+  When initializing Countly, If no custom ID is provided, the Countly Java SDK
+  generates a unique device ID. The SDK uses a random UUID string for the device
+  ID generation. For example, after you init the SDK without providing a custom
+  id, this call will return something like this:
 </p>
-<pre><code class="java hljs">Countly.session().getDeviceId()</code></pre>
-<h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
+<pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
   <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
 </p>
@@ -414,6 +454,7 @@ segmentation.put("level", 37);</code></pre>
     Countly dashboard.
   </p>
 </div>
+<h3 id="h_01HD3PX5GQ390KDHFCH1FD6ER9">Getting Available Widgets</h3>
 <p>
   After you have created widgets at your dashboard you can reach their related
   information as a list, corresponding to the current user's device ID, by providing
@@ -442,6 +483,7 @@ segmentation.put("level", 37);</code></pre>
 </p>
 <p>Potential 'type' values are:</p>
 <pre><code class="java hljs">FeedbackWidgetType {survey, nps, rating}</code></pre>
+<h3 id="h_01HD3PXZPF49C292RN6EHXF4DB">Presenting A Widget</h3>
 <p>
   After you have decided which widget you want to show, you would provide that
   object to the following function as the first parameter. Second is a callback
@@ -457,7 +499,9 @@ segmentation.put("level", 37);</code></pre>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created. At those times you would want to request all the information
-  related to that widget and then report the result manually.
+  related to that widget and then report the result manually. You can see more
+  information about manual reporting from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -466,6 +510,7 @@ segmentation.put("level", 37);</code></pre>
     at our github repo.
   </p>
 </div>
+<h4 id="h_01HD3PHEFBGA26HTB82MS2ZE1W">Getting Feedback Widget Data</h4>
 <p>
   Initial steps for manually reporting your widget results, first you would need
   to retrieve the available widget list with the
@@ -491,6 +536,7 @@ segmentation.put("level", 37);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
+<h4 id="h_01HD3PPXTPFRV8246MBB7W1F47">Reporting Widget Result Manually</h4>
 <p>
   After you have collected the required information from your users with the help
   of the <code>retrievedWidgetData</code> you have received, you would then package
@@ -515,9 +561,24 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 </p>
 <h1 id="h_01HABV0K6C4TX8B97XNK8XWNVA">User Profiles</h1>
 <p>
-  <span>For information about User Profiles, review&nbsp;</span><a href="/hc/en-us/articles/4403281285913">this documentation</a>
+  For information about User Profiles, review
+  <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
+  You can access user via <code>Countly.instance().user()</code> and you can edit
+  and push changes by this call; <code>edit().commit()</code>
 </p>
-<h2 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h2>
+<h2 id="h_01HD3M0EYQAERWFGMRVZXQ2RR1">Setting User Properties</h2>
+<h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
+<p>
+  To set custom properties, call set(). To send modification operations, call the
+  corresponding method:
+</p>
+<pre><code class="java hljs">Countly.instance().user().edit()
+  .set("mostFavoritePet", "dog")
+  .inc("phoneCalls", 1)
+  .pushUnique("tags", "fan")
+  .pushUnique("skill", "singer")
+  .commit();</code></pre>
+<h3 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h3>
 <p>
   The Countly Java SDK allows you to upload specific data related to a user to
   the Countly server. You may set the following predefined data for a particular
@@ -556,24 +617,48 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <p>
   To set standard properties, call respective methods of <code>UserEditor</code>:
 </p>
-<pre><code class="java hljs">Countly.api().user().edit()
+<pre><code class="java hljs">Countly.instance().user().edit()
   .setName("Firstname Lastname")
   .setUsername("nickname")
   .setEmail("test@test.com")
   .setOrg("Tester")
   .setPhone("+123456789")
   .commit();</code></pre>
-<h2 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h2>
+<h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
+<p>You can either upload a profile picture by this call:</p>
+<pre>Countly.instance().user().edit().setPicture(byte[])</pre>
+<p>or you can provide a picture url to set:</p>
+<pre>Countly.instance().user().edit().setPicturePath(String)</pre>
+<h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
+<p>Here is the list of property modificators:</p>
+<pre><code class="java">//set a custom property
+Countly.instance().user().edit().set("money", 1000);
+//increment age by 1
+Countly.instance().user().edit().inc("money", 50);
+//multiply money with 2
+Countly.instance().user().edit().mul("money", 2);
+//save maximum value
+Countly.instance().user().edit().max("score", 400);
+//save minimum value
+Countly.instance().user().edit().min("time", 60);
+//add property to array which can have unique values
+Countly.instance().user().edit().pushUnique("currency", "dollar");
+//add property to array which can be duplicate
+Countly.instance().user().edit().push("currency", "dollar");
+//remove value from array
+Countly.instance().user().edit().pull("currency","dollar");
+//commit changes
+Countly.instance().user().edit().commit();</code></pre>
+<h1 id="h_01HD1H1HNJVYBP0PNP0YSMFZY6">Security and Privacy</h1>
+<h2 id="h_01HD1H1HNJM6EBH29WE8AJSF80">Parameter Tamper Protection</h2>
 <p>
-  To set custom properties, call set(). To send modification operations, call the
-  corresponding method:
+  You may set the optional <code>salt</code> to be used for calculating the checksum
+  of requested data, which will be sent with each request, using the
+  <code>&amp;checksum</code> field. You will need to set the same salt on the Countly
+  server. If the salt on the Countly server is selected, all requests will be checked
+  for the validity of the <code>&amp;checksum</code> field before being processed.
 </p>
-<pre><code class="java hljs">Countly.api().user().edit()
-  .set("mostFavoritePet", "dog")
-  .inc("phoneCalls", 1)
-  .pushUnique("tags", "fan")
-  .pushUnique("skill", "singer")
-  .commit();</code></pre>
+<pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);<code class="java"></code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
@@ -653,13 +738,26 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
     </div>
   </li>
 </ul>
-<h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
+<h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
+<h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
 <pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h3 id="h_01HD3JE2GZ6PJDBWN1XWQ51JVV">Setting Maximum Request Queue Size</h3>
+<p>
+  The request queue is flushed when the session timer delay exceeds. If network
+  or server are not reachable, If the number of requests in the queue reaches the
+  setRequestQueueMaxSize limit, the oldest requests in the queue will be dropped,
+  and the newest requests will take their place. by default request queue size
+  is 1000. You can change this by:
+</p>
+<pre>config.setRequestQueueMaxSize(<span>56</span>);</pre>
+<h3 id="h_01HD3JPGMZP46HZAJHZSPN59F2">Forcing HTTP POST</h3>
+<p>You can force HTTP POST request for all requests by:</p>
+<pre>config.enableForcedHTTPPost();</pre>
 <h2 id="h_01HAXVT7C5G91JJG8FSCXH3CJV">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
@@ -1092,5 +1190,92 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
   <pre><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></pre>
   <p>
     It will return the number of requests in the memory request queue.
+  </p>
+  <h1 id="h_01HD3EHQ4A3HMEJSF4YP4CBZ8P">FAQ</h1>
+  <h2 id="h_01HD3EJBRFM3FJ0F1P3K172TZV">
+    <span>Where Does the SDK Store the Data?</span>
+  </h2>
+  <p>
+    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the directory given with </span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
+  </p>
+  <h2 id="h_01HD3F2TTEZ5KF3H2MDYA7CF9B">
+    <span>What Information Is Collected by the SDK?</span>
+  </h2>
+  <p>
+    The data that SDKs gather to carry out their tasks and implement the necessary
+    functionalities is mentioned in the following description. It is saved locally
+    before any of it is transferred to the server.
+  </p>
+  <p>
+    When sending any requests to the server, the followings are sent in addition
+    of the main data:
+  </p>
+  <ul>
+    <li>Timestamp of when the request is created as 'timestamp'</li>
+    <li>Current hour as 'hour'</li>
+    <li>Current day of week as 'dow'</li>
+    <li>Current timezone as 'tz'</li>
+    <li>SDK version as 'sdk_version'</li>
+    <li>SDK name as 'sdk_name'</li>
+    <li>App version as 'av' if exists</li>
+    <li>Remaining requests in the queue as 'rr'</li>
+  </ul>
+  <p>
+    If sessions are used then it would record the session start time, end time
+    and duration
+  </p>
+  <p>
+    If sessions are used then also device metrics are collected which contains:
+  </p>
+  <ul>
+    <li>Device name as '_device'</li>
+    <li>OS name as '_os'</li>
+    <li>OS version as '_os_version'</li>
+    <li>Screen resolution as '_resolution'</li>
+    <li>Locale as '_locale'</li>
+    <li>App version as '_app_version'</li>
+  </ul>
+  <p>
+    If feedback widgets are used, it will collect the users input and time of
+    the widgets completion
+  </p>
+  <p>
+    When events are recorded, the time of when the event is recorded, will be
+    collected
+  </p>
+  <p>
+    If the consent feature is used, the SDK will collect and send what consent
+    has been given to the SDK or removed from the SDK
+  </p>
+  <p>
+    If crash tracking is enabled, it will collect the following information at
+    the time of the crash:
+  </p>
+  <ul>
+    <li>Device name as '_device'</li>
+    <li>OS name as '_os'</li>
+    <li>OS version as '_os_version'</li>
+    <li>Screen resolution as '_resolution'</li>
+    <li>App version as '_app_version'</li>
+    <li>Device manufacturer as '_manufacture'</li>
+    <li>CPU name as '_cpu'</li>
+    <li>OpenGL versin as '_opengl'</li>
+    <li>Ram available as '_ram_current'</li>
+    <li>Ram total as '_ram_total'</li>
+    <li>Available disk space as '_disk_current'</li>
+    <li>Total disk space as '_disk_total'</li>
+    <li>Battery level as '_bat'</li>
+    <li>Device running time as '_run'</li>
+    <li>Device orientation as '_orientation'</li>
+    <li>If network connection as '_online'</li>
+    <li>If device is muted as '_muted'</li>
+    <li>Error stack trace as '_error'</li>
+    <li>Name of error as '_name'</li>
+    <li>Whether or not is error fatal as '_nonfatal'</li>
+  </ul>
+  <p>
+    Any other information like data in custom events, location, user profile
+    information or other manual requests depends on what the developer decides
+    to provide and is not collected by the SDK itself.
   </p>
 </div>
