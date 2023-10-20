@@ -1,20 +1,23 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 22.09.X
+  and it applies to version 23.8.X
 </p>
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#java-sdk" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G8QD0W9EMHT11F2N8P" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
 <p>
-  The process of setting up Countly Java SDK includes 2 simple steps: adding SDK
-  as a dependency to your project and initializing SDK. Once those are done, you'll
-  have basic analytics on your server like users, sessions, devices, etc.
+  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
+  reach the Countly Java SDK
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
+  Also, you can inspect the sample application
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
+  to understand how most functionalities work.
 </p>
-<h1>Adding the SDK to the Project</h1>
+<h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
   SDK is hosted on MavenCentral, more info can be found
   <a href="https://search.maven.org/artifact/ly.count.sdk/java" target="_self" rel="undefined">here</a>
@@ -25,35 +28,36 @@
 </p>
 <pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies <span>{<br></span><span>    </span>implementation <span>"ly.count.sdk:java:22.09.0"<br></span><span>}</span></pre>
+<pre>dependencies <span>{<br></span><span> </span>implementation <span>"ly.count.sdk:java:23.8.0"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;22.09.0&lt;/version&gt;
+  &lt;version&gt;23.8.0&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
-<h1>SDK Integration</h1>
-<h2>Minimal Setup</h2>
+<h1 id="h_01HABV0K6CDY5FSWH5QBHTT79R">SDK Integration</h1>
+<h2 id="h_01HABV0K6C4H1G71VV85BDXV91">Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.
 </p>
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
-                .enableTestMode()
-                .setLoggingLevel(Config.LoggingLevel.DEBUG)
-                .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-                .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
-File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .enableTestMode()
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
 
-Countly.init(targetFolder, config);</code></pre>
+Countly.instance().init(config);</code></pre>
+<p>Countly.init(targetFolder, config);</p>
 <p>
   This code will initiate the SDK in test mode with logging enabled. Here you would
   also need to provide your application key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -61,10 +65,10 @@ Countly.init(targetFolder, config);</code></pre>
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2>SDK Logging Mode</h2>
+<h2 id="h_01HABV0K6C1TBRCQBZJ45PE13H">SDK Logging Mode</h2>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
 </p>
@@ -72,10 +76,12 @@ Countly.init(targetFolder, config);</code></pre>
   Set<span> <code class="java">setLoggingLevel</code></span><span>&nbsp;</span>on
   the config object to enable logging:
 </p>
-<pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
-                .setLoggingLevel(Config.LoggingLevel.DEBUG)
-                .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-                .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<pre><code class="java">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
 <p>
   In case you want to forward the SDK logs to your own logging mechanism, you would
   have a look at the
@@ -86,7 +92,7 @@ Countly.init(targetFolder, config);</code></pre>
   always receive all the printed logs event if the logging level would be set to
   "OFF".
 </p>
-<h2>SDK Data Storage</h2>
+<h2 id="h_01HABV0K6C4TED33TF2K40S71H">SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
   <code>InternalConfig</code>, <code>SessionImpl</code>,
@@ -94,8 +100,8 @@ Countly.init(targetFolder, config);</code></pre>
   <code>TimedEvents</code>. All those are stored in device memory, in binary form,
   in separate files with filenames prefixed with <code>[CLY]_</code>.
 </p>
-<h2>SDK Notes</h2>
-<h3>Test Mode</h3>
+<h2 id="h_01HABV0K6CHWK7XBEWV8ZM5SB7">SDK Notes</h2>
+<h3 id="h_01HABV0K6C87QCRAFK9DD0PYT4">Test Mode</h3>
 <p>
   To ensure correct SDK behavior, please use
   <code>Config.enableTestMode()</code> when your app is in development and testing.
@@ -106,7 +112,7 @@ Countly.init(targetFolder, config);</code></pre>
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
-<h1>Events</h1>
+<h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   Events in Countly represent some meaningful event user performed in your application
   within a <code>Session</code>. Please avoid recording everything like all taps
@@ -135,24 +141,18 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
   <li>
     <code>segmentation</code> - some data associated with the event. Optional.
-    It's a Map&lt;String, String&gt; which can be filled with arbitrary data
+    It's a Map&lt;String, Object&gt; which can be filled with arbitrary data
     like {"category": "Pants", "size": "M"}.
   </li>
 </ul>
-<h2>Recording Events</h2>
+<h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
 <p>
-  The standard way of recording events is through your <code>Session</code> instance:
+  The standard way of recording events is through your <code>Countly</code> instance's
+  <code>events</code> interface:
 </p>
-<pre><code class="java">Countly.session().event('purchase')
-                    .setCount(2)
-                    .setSum(19.98)
-                    .setDuration(35)
-                    .addSegments("category", "pants", "size", "M")
-                .record();</code></pre>
-<p>
-  Please note the last method in that call chain, <code>.record()</code> call is
-  required for the event to be recorded.
-</p>
+<div>
+  <pre><code class="java">Map&lt;String, Object&gt; segmentation = <span>new </span>HashMap&lt;String, Object&gt;() {{<br>    put(<span>"Time Spent"</span>, <span>60</span>);<br>    put(<span>"Retry Attempts"</span>, <span>60</span>);<br>}};<br><br>Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
+</div>
 <p>
   The example above results in a new event being recorded in the current session.
   The event won't be sent to the server right away. Instead, Countly SDK will wait
@@ -203,39 +203,39 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).record();</code></pre>
+<pre><code class="java hljs">Countly.instance().events().recordEvent("purchase", 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="java hljs">Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(20.3).record();</code></pre>
+<pre><code class="java hljs">Countly.instance().events().recordEvent("purchase", 1, 20.3);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
-segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", 1.0);
 
-Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSegmentation(segmentation).record();</code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
-segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", 1.0);
 
-Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setSegmentation(segmentation).record();</code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5);<br></code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java hljs">HashMap&lt;String, String&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
 segmentation.put(<span class="hljs-string">"country"</span>, <span class="hljs-string">"Germany"</span>);
-segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">"1.0"</span>);
+segmentation.put(<span class="hljs-string">"app_version"</span>, <span class="hljs-string">1.0</span>);
 
-Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1).setSum(34.5).setDuration(5.3).setSegmentation(segmentation).record();;</code></pre>
+Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);<br></code></pre>
 <p>
   <span>Those are only a few examples of what you can do with events. You may extend those examples and use Country, app_version, game_level, time_of_day, and any other segmentation that will provide you with valuable insights.</span>
 </p>
-<h2>Timed Events</h2>
+<h2 id="h_01HABV0K6CAY109S796CY5P6DZ">Timed Events</h2>
 <p>
   There is also a special type of <code>Event</code> supported by Countly - timed
   events. Timed events help you to track long continuous interactions when keeping
@@ -245,18 +245,24 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <ul>
   <li>
     User starts playing a level "37" of your game, you call
-    <code>Countly.session().timedEvent("LevelTime").addSegment("level", "37")</code>
-    to start tracking how much time a user spends on this level.
+    <code>Countly.instance().events().startEvent("LevelTime")</code> to start
+    tracking how much time a user spends on this level. Also keep your segmentation
+    values in a map like&nbsp;
+  </li>
+</ul>
+<pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+segmentation.put(<span class="hljs-string">"level"</span>, <span class="hljs-string">37</span>);</code></pre>
+<ul>
+  <li>
+    <span data-preserver-spaces="true">Then, something happens when the user is at that level; for example, the user buys some coins. Along with the regular "Purchase" event, you decide you want to segment the "LevelTime" event with purchase information. While ending the event, you also pass the sum value as the purchase amount to the function call.</span>
   </li>
   <li>
-    Then something happens when the user is at that level, for example, the user
-    bought some coins. Along with regular "Purchase" event, you decide you want
-    to segment the "LevelTime" event with purchase information:
-    <code>Countly.session().timedEvent("LevelTime").setSum(9.99)</code>.
+    <span data-preserver-spaces="true">Once the user stops playing, you need to stop this event and call:</span>
+    <code>Countly.instance().events().endEvent("LevelTime",segmentation, 1, 9.99)</code>
   </li>
   <li>
-    Once the user stopped playing, you need to stop recording this event:
-    <code>Countly.session().timedEvent("LevelTime").endAndRecord()</code>
+    If you decide to cancel the event you can call:
+    <code>Countly.instance().events().cancelEvent("LevelTime")</code>
   </li>
 </ul>
 <p>Once this event is sent to the server, you'll see:</p>
@@ -276,11 +282,11 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 </ul>
 <p>
   With timed events, there is one thing to keep in mind: you have to end timed
-  event for it to be recorded. Without <code>endAndRecord()</code> call, nothing
-  will happen.
+  event for it to be recorded. Without <code>endEvent("LevelTime")</code> call,
+  nothing will happen.
 </p>
-<h1>Sessions</h1>
-<h2>Manual Sessions</h2>
+<h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
+<h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
   Session in Countly is a single app launch or several app launches if the time
   between them is less than 30 seconds (by default). Of course, you can override
@@ -308,11 +314,11 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
     in this request as well.
   </li>
 </ul>
-<h1>Device ID Management</h1>
+<h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
-<h2>Changing Device ID</h2>
+<h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
   any of the following two methods to changing the Device ID, depending on your
@@ -338,17 +344,117 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 <p>
   <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
-<h2>Retrieving Current Device ID</h2>
+<h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.&nbsp;
 </p>
 <pre><code class="java hljs">Countly.<span>session</span>().getDeviceId()</code></pre>
-<h1>User Profiles</h1>
+<h1 id="h_01HAVQDM5V3Y4YRMCBYQH911M2">User Feedback</h1>
+<p>
+  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
+</p>
+<h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<p>
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey</a>
+  and
+  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">rating</a>.
+  All widgets have their generated URL to be shown in a web viewer and should be
+  approached using the same methods.
+</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
+  </p>
+</div>
+<p>
+  After you have created widgets at your dashboard you can reach their related
+  information as a list, corresponding to the current user's device ID, by providing
+  a callback to the getAvailableFeedbackWidgets method, which returns the list
+  as the first parameter and error as the second:
+</p>
+<div>
+  <pre>Countly.<span>instance</span>().feedback().getAvailableFeedbackWidgets((retrievedWidgets, error) -&gt; {<br>    <span>// handle error<br></span><span>    // do something with the returned list here like pick a widget and then show that widget etc...<br></span>});</pre>
+</div>
+<p>The objects in the returned list would look like this:</p>
+<pre>class CountlyFeedbackWidget {<br>    public String widgetId;<br>    public FeedbackWidgetType type;<br>    public String name;<br>    public String[] tags; <br>}</pre>
+<p>
+  Here all the values are same with the values that can be seen at your Countly
+  server like the widget ID, widget type, widget name and the tags you have passed
+  while creating the widget. Tags can contain information that you would like to
+  have in order to keep track of the widget you have created. Its usage is totally
+  left to the developer.
+</p>
+<p>Potential 'type' values are:</p>
+<pre>FeedbackWidgetType {survey, nps, rating}</pre>
+<p>
+  After you have decided which widget you want to show, you would provide that
+  object to the following function as the first parameter. Second is a callback
+  with constructed url to show and error message in case an error occurred:
+</p>
+<div>
+  <pre>Countly.<span>instance</span>().feedback().constructFeedbackWidgetUrl(chosenWidget, (constructedUrl, error) -&gt; { <br><span>    // handle error and the constructed url<br></span>});</pre>
+</div>
+<h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
+<p>
+  There might be some cases where you might want to use the native UI or a custom
+  UI you have created. At those times you would want to request all the information
+  related to that widget and then report the result manually.
+</p>
+<div class="callout callout--info">
+  <p>
+    For a sample integration, have a look at our
+    <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener">sample code</a>
+    at our github repo.
+  </p>
+</div>
+<p>
+  Initial steps for manually reporting your widget results, first you would need
+  to retrieve the available widget list with the
+  <code>getAvailableFeedbackWidgets</code> method. After that you would have a
+  list of possible <code>CountlyFeedbackWidget</code> objects. You would pick the
+  widget you want to display and pass that widget object to the function below
+  as the first parameter. Second parameter is a callback that would return the
+  widget data as first parameter and the error as second:
+</p>
+<div>
+  <pre>Countly.<span>instance</span>().feedback().getFeedbackWidgetData(chosenWidget, (retrievedWidgetData, error) -&gt; {<br>    <span>// handle data and error here<br></span>});</pre>
+</div>
+<p>
+  Here the retrievedWidgetData would yield to a JSON Object with all of the information
+  you would need to present the widget by yourself.
+</p>
+<div class="callout callout--info">
+  <p>
+    For how this retrievedWidgetData would look like and in depth information
+    on this topic please check our detailed article
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
+  </p>
+</div>
+<p>
+  After you have collected the required information from your users with the help
+  of the <code>retrievedWidgetData</code> you have received, you would then package
+  the responses into a Map&lt;String, Object&gt;, and then pass it (reportedResult)
+  together with the widget object you picked from the retrieved widget list (widgetToReport)
+  and the <code>retrievedWidgetData</code> to report the feedback result with the
+  following call:
+</p>
+<pre>//this contains the reported results<br>Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();<br><br>//<br>// You would fill out the results here. That step is not displayed in this sample check the detailed documentation linked above<br>//<br><br>//report the results to the SDK<br>Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);</pre>
+<p>
+  If the user would have closed the widget, you would report that by passing a
+  "null" as the reportedResult.
+</p>
+<h1 id="h_01HABV0K6C4TX8B97XNK8XWNVA">User Profiles</h1>
 <p>
   <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a>
 </p>
-<h2>Setting Predefined Values</h2>
+<h2 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h2>
 <p>
   The Countly Java SDK allows you to upload specific data related to a user to
   the Countly server. You may set the following predefined data for a particular
@@ -388,25 +494,110 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   To set standard properties, call respective methods of <code>UserEditor</code>:
 </p>
 <pre><code class="java">Countly.api().user().edit()
-        .setName("Firstname Lastname")
-        .setUsername("nickname")
-        .setEmail("test@test.com")
-        .setOrg("Tester")
-        .setPhone("+123456789")
-        .commit();</code></pre>
-<h2>Setting Custom Values</h2>
+  .setName("Firstname Lastname")
+  .setUsername("nickname")
+  .setEmail("test@test.com")
+  .setOrg("Tester")
+  .setPhone("+123456789")
+  .commit();</code></pre>
+<h2 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h2>
 <p>
   To set custom properties, call set(). To send modification operations, call the
   corresponding method:
 </p>
 <pre><code class="java">Countly.api().user().edit()
-        .set("mostFavoritePet", "dog")
-        .inc("phoneCalls", 1)
-        .pushUnique("tags", "fan")
-        .pushUnique("skill", "singer")
-        .commit();</code></pre>
-<h1>Other Features and Notes</h1>
-<h2>Custom Metrics</h2>
+  .set("mostFavoritePet", "dog")
+  .inc("phoneCalls", 1)
+  .pushUnique("tags", "fan")
+  .pushUnique("skill", "singer")
+  .commit();</code></pre>
+<h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
+<h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you set values in your Countly config object:
+</p>
+<ul>
+  <li>
+    <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
+    for the automatic session update calls. The delay can not be smaller than
+    1 sec.
+  </li>
+  <li>
+    <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
+    grouping.
+  </li>
+  <li>
+    <strong>setSdkPlatform(String platform)</strong> - Sets the SDK platform
+    if it is used in multiple platforms. Default value is OS name.
+  </li>
+  <li>
+    <strong>setRequiresConsent(boolean requiresConsent)</strong> - Enable GDPR
+    compliance by disallowing SDK to record any data until corresponding consent
+    calls are made. Default is false.
+  </li>
+  <li>
+    <div>
+      <strong>setMetricOverride(Map&lt;String, String&gt; metricOverride)</strong>
+      - Mechanism for overriding metrics that are sent together with "begin
+      session" requests and remote.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setApplicationVersion(String version)</strong> - Change application
+      version reported to Countly server.
+    </div>
+  </li>
+  <li>
+    <strong>setApplicationName(String name)&nbsp;</strong>- Change application
+    name reported to Countly server.
+  </li>
+  <li>
+    <div>
+      <strong>setLoggingLevel(LoggingLevel loggingLevel)</strong> - Logging
+      level for Countly SDK. Default is OFF.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableParameterTamperingProtection(String salt)</strong> - Enable
+      parameter tampering protection.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setRequestQueueMaxSize(int requestQueueMaxSize)</strong> - In
+      backend mode set the in memory request queue size. Default is 1000.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>enableForcedHTTPPost()</strong> - Force usage of POST method
+      for all requests.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setCustomDeviceId(String customDeviceId)&nbsp;</strong>- Set
+      device id to specific string and strategy to
+      <code>DeviceIdStrategy.CUSTOM_ID</code>.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>setLogListener(LogCallback logCallback)</strong> - Add a log
+      callback that will duplicate all logs done by the SDK.
+    </div>
+  </li>
+</ul>
+<h2 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h2>
+<p>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
+</p>
+<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<h2 id="h_01HAXVT7C5G91JJG8FSCXH3CJV">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>
 </div>
@@ -426,14 +617,14 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
 <h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
 <pre><span><code class="java">config.setLogListener(new LogCallback() {<br>        @Override<br>        public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {<br>           //print log<br>        }<br>});</code></span></pre>
-<h2>Backend Mode</h2>
+<h2 id="h_01HABV0K6D57PGC01NJ1V3QYSB">Backend Mode</h2>
 <p>
   The SDK provides a special mode to transfer data to your Countly Server, called
   'Backend Mode'. This mode disables the regular API of the SDK and offers an alternative
@@ -446,15 +637,16 @@ Countly.session().events(<span class="hljs-string">"purchase"</span>).setCount(1
   This means that any data, that was not yet sent to the server when the app is
   closed/killed, will be lost.
 </p>
-<h3>Enabling Backend Mode</h3>
+<h3 id="h_01HABV0K6D46WXJ4FAWTKQF7HX">Enabling Backend Mode</h3>
 <p>
   To enable Backend Mode you should create a config class and call
   <code class="java">enableBackendMode</code>on this object, and later you should
   pass it to the <code>init</code> method.
 </p>
 <pre><code class="java">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
-                .enableBackendMode()<br>                .setRequestQueueMaxSize(<span>500</span>)
-                .setLoggingLevel(Config.LoggingLevel.DEBUG);
+  .enableBackendMode()
+  .setRequestQueueMaxSize(<span>500</span>)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG);
 
 Countly.init(targetFolder, config);</code></pre>
 <p>
@@ -464,7 +656,7 @@ Countly.init(targetFolder, config);</code></pre>
   <code class="java">setRequestQueueMaxSize</code> on the
   <code class="java">Config</code>object before the SDK init.
 </p>
-<h3>Recording Data</h3>
+<h3 id="h_01HABV0K6DB0KK25C4P7GV0WVW">Recording Data</h3>
 <p>
   In order to record data using the SDK, users are required to provide a device
   ID and may optionally include a timestamp, specified in milliseconds. It is important
@@ -477,7 +669,7 @@ Countly.init(targetFolder, config);</code></pre>
   in milliseconds. This ensures that all recorded data is accurately timestamped
   and prevents data duplication.
 </p>
-<h4>Recording an Event</h4>
+<h4 id="h_01HABV0K6DTND55NRZ3SEGS3JP">Recording an Event</h4>
 <p>
   <span data-preserver-spaces="true">You may record as many events as you want.</span>
 </p>
@@ -510,7 +702,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
   not be recorded if any of these two parameters is null or empty.&nbsp;
 </p>
-<h4>Recording a View</h4>
+<h4 id="h_01HABV0K6DRZ993XGKMFF29MGF">Recording a View</h4>
 <p>
   <span data-preserver-spaces="true">You may record views by providing the view details in segmentation with a timestamp.</span>
 </p>
@@ -537,7 +729,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note:&nbsp;</strong>Device ID and 'name' both are mandatory. The view
   will not be recorded if any of these two parameters is null or empty.
 </p>
-<h4>Recording a Crash</h4>
+<h4 id="h_01HABV0K6D86BYQ81T2VGYZJKM">Recording a Crash</h4>
 <p>
   <span>To report exceptions provide the following detail:</span>
 </p>
@@ -558,7 +750,7 @@ Countly.init(targetFolder, config);</code></pre>
     <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
-    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#crash-reporting" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
+    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ20M61EKN76EY6RJ84" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -576,7 +768,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
   be recorded if it is null.
 </p>
-<h4>Recording Sessions</h4>
+<h4 id="h_01HABV0K6DTQ7W3AVREGG1KVHP">Recording Sessions</h4>
 <p>
   <span>To start a session please provide the following details:</span>
 </p>
@@ -602,7 +794,7 @@ Countly.init(targetFolder, config);</code></pre>
 <p>
   <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
   are predefined metrics keys. To know more about metrics, click
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-metrics" target="_self">here.</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ2TZF21BH3ZSR8XHNW" target="_self">here.</a>
 </p>
 <p>
   <span>To update or end a session please provide the following details:</span>
@@ -630,7 +822,7 @@ Countly.init(targetFolder, config);</code></pre>
   <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
   provided a value that is less than 0.
 </p>
-<h4>Recording User Properties</h4>
+<h4 id="h_01HABV0K6EF1ZF35KQD5VVSN6X">Recording User Properties</h4>
 <p>
   If you want to record some user information the SDK lets you do so by passing
   data as user details and custom properties.&nbsp;
@@ -650,7 +842,12 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>For example:</p>
-<pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();<br>userDetail.put("name", "Full Name");<br>userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");<br><br>//custom detail<br>userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
+<pre><code class="java">Map&lt;String, Object&gt; userDetail = new HashMap&lt;&gt;();
+userDetail.put("name", "Full Name");
+userDetail.put("username", "username1");<br>userDetail.put("email", "user@gmail.com");<br>userDetail.put("organization", "Countly");<br>userDetail.put("phone", "000-111-000");<br>userDetail.put("gender", "M");<br>userDetail.put("byear", "1991");
+
+//custom detail
+userDetail.put("hair", "black");<br>userDetail.put("height", 5.9);<br>userDetail.put("marks", "{$inc: 1}");<br><br>Countly.<span>backendMode</span>().recordUserProperties(<span>"device-id"</span>, userDetail, <span>0</span>);</code><code class="java"></code></pre>
 <p>
   <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
 </p>
@@ -718,7 +915,7 @@ Countly.init(targetFolder, config);</code></pre>
       </tr>
     </tbody>
   </table>
-  <h4>Recording Direct Requests</h4>
+  <h4 id="h_01HABV0K6ECC7ZMFD74ME9HEWZ">Recording Direct Requests</h4>
   <p>
     The SDK allows you to record direct requests to the server. To record a request
     you should provide the request data along with the device id and timestamp.
@@ -745,7 +942,7 @@ Countly.init(targetFolder, config);</code></pre>
   <p>
     <strong><span data-preserver-spaces="true">Note:</span></strong><span data-preserver-spaces="true"> 'sdk_name', 'sdk_version', and 'checksum256' are protected by default and their values will not be overridden by 'requestData'.</span><span data-preserver-spaces="true"></span>
   </p>
-  <h3>Getting the Request Queue Size</h3>
+  <h3 id="h_01HABV0K6EKZG5YRJH47E2DY3Q">Getting the Request Queue Size</h3>
   <p>
     <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>
