@@ -26,15 +26,9 @@
   To add it, you first have to add the MavenCentral repository. For Gradle you
   would do it something like this:
 </p>
-<pre>buildscript {
-  repositories {
-    mavenCentral()
-  }
-}</pre>
+<pre>buildscript <span>{<br></span><span>    </span>repositories <span>{<br></span><span>        </span>mavenCentral()<br>    <span>}<br></span><span>}</span></pre>
 <p>The dependency can be added as:</p>
-<pre>dependencies {
-  implementation "ly.count.sdk:java:23.8.0"
-}</pre>
+<pre>dependencies <span>{<br></span><span> </span>implementation <span>"ly.count.sdk:java:23.8.0"<br></span><span>}</span></pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
@@ -73,6 +67,30 @@ Countly.instance().init(config);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
+<h2 id="h_01HABV0K6C1TBRCQBZJ45PE13H">SDK Logging Mode</h2>
+<p>
+  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. These debug messages will be printed to the console.</span>
+</p>
+<p>
+  Set <code class="java">setLoggingLevel</code> on the config object to enable
+  logging:
+</p>
+<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
+
+Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
+  .setLoggingLevel(Config.LoggingLevel.DEBUG)
+  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
+  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+<p>
+  In case you want to forward the SDK logs to your own logging mechanism, you would
+  have a look at the
+  <a href="#h_01GVR02HH6X27TPH3MS6TE08AT" target="_self">log listener section</a>.
+</p>
+<p>
+  This logging level would have no influence over the log listener. That would
+  always receive all the printed logs event if the logging level would be set to
+  "OFF".
+</p>
 <h2 id="h_01HABV0K6C4TED33TF2K40S71H">SDK Data Storage</h2>
 <p>
   Countly SDK stores serialized versions of the following classes:
@@ -93,59 +111,9 @@ Countly.instance().init(config);</code></pre>
   specifically turned off). Without having test mode on during development you
   may encounter some important issues with data consistency in production.
 </p>
-<h1 id="h_01HD19HWGTN49PGHRQ8WPA2RA6">SDK Logging Mode</h1>
-<p>
-  The first thing you should do while integrating our SDK is enable logging. If
-  logging is enabled, the Countly Java SDK will print out debug messages about
-  its internal state and encountered problems. The SDK will print these debug messages
-  to the console.
-</p>
-<p>
-  Set <code class="java">setLoggingLevel</code> on the config object to enable
-  logging:
-</p>
-<pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
-
-Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .setLoggingLevel(Config.LoggingLevel.DEBUG)
-  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
-<p>
-  This logging level would not influence the log listener. That will always receive
-  all the printed logs event if the logging level is "OFF."
-</p>
-<h2 id="h_01GVR02HH6X27TPH3MS6TE08AT">Log Listener</h2>
-<p>
-  To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
-</p>
-<pre><code class="java hljs">config.setLogListener(new LogCallback() {
-  @Override
-  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
-    //print log
-  }
-});</code></pre>
-<h1 id="h_01HD1AJNNA11E9NMY0K0S5B3XN">Crash Reporting</h1>
-<p>
-  The Countly Java SDK has the ability to collect
-  <a href="/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
-  which you may examine and resolve later on the server. The SDK can collect unhandled
-  exceptions by default if the consent for crash reporting is given.
-</p>
-<h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
-<p>
-  You may catch an exception during application runtime. You might report with
-  these functions:
-</p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal);</code></pre>
-<p>
-  If you want to add additional information like segmentation, logs, or names of
-  exceptions to inspect it in a detailed way later on, you can use the below function.
-</p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal, String name, Map&lt;String, String&gt; segments, String... logs);</code></pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
-  <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
-  in Countly represent some meaningful event user performed in your application
+  Events in Countly represent some meaningful event user performed in your application
   within a <code>Session</code>. Please avoid recording everything like all taps
   or clicks users performed. In case you do, it will be very hard to extract valuable
   information from generated analytics.
@@ -173,9 +141,7 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <li>
     <code>segmentation</code> - some data associated with the event. Optional.
     It's a Map&lt;String, Object&gt; which can be filled with arbitrary data
-    like {"category": "Pants", "size": "M"}. The valid data types for segmentation
-    are: "String", "Integer", "Double", "Boolean", "Long" and "Float". All other
-    types will be ignored.
+    like {"category": "Pants", "size": "M"}.
   </li>
 </ul>
 <h2 id="h_01HABV0K6CDJHPP9HBQG26BZYR">Recording Events</h2>
@@ -324,14 +290,11 @@ segmentation.put("level", 37);</code></pre>
   nothing will happen.
 </p>
 <h1 id="h_01HABV0K6C1HY4JZZHKT5A83DD">Sessions</h1>
-<p>
-  Session tracking is a tool to track the specific time period that the end user
-  is using the application. It is a timeframe with a start and end.
-</p>
 <h2 id="h_01HABV0K6CR39VT9PG99M1M0WX">Manual Sessions</h2>
 <p>
-  Session tracking does not happen automatically. It has to be started. After that
-  the elapsed session duration will be sent every 60 seconds.
+  In Countly Java SDK, a session starts with the launch of an application. This
+  can occur upon a single instance of an app launch or multiple launches within
+  a predefined time frame, typically set at 60 seconds by default.
 </p>
 <p>
   <code>Session</code> lifecycle methods include:
@@ -346,7 +309,7 @@ segmentation.put("level", 37);</code></pre>
     <code>session.update()</code> can be called to send a session duration update
     to the server along with any events, user properties, and any other data
     types supported by Countly SDK. Called each Config.sendUpdateEachSeconds
-    seconds automatically. It can also be called more often manually.
+    seconds in auto session mode.
   </li>
   <li>
     <code>session.end()</code>&nbsp;must be called to mark the end of the session.
@@ -367,26 +330,26 @@ segmentation.put("level", 37);</code></pre>
   can track and decide whether or not the view is the first. They end the previous
   views if they are still ongoing. You can use the below functions to report views:
 </p>
-<p>
-  Calling this function will retrieve a view with the given name. If such a view
-  does not exist, the SDK will create it internally and immedietelly start it,
-</p>
+<p>This function automatically starts the view tracking,</p>
 <pre><span data-preserver-spaces="true">Countly.instance().view(String name);</span></pre>
-<p>
-  If you want to signify that the recorded view is the first view in the session,
-  you would set the "start" parameter to "true".,
-</p>
+<p>or you can begin the view manually,</p>
 <pre><span data-preserver-spaces="true">Countly.instance().view(String name, boolean start);</span></pre>
 <p>
-  You can stop views by <code class="java">stop(boolean lastView)</code>on the
-  stored or retrieved View object.
-</p>
-<p>
-  You can specifiy if that view was the last one by providing "true" to the boolean
-  parameter.
+  You can also stop views manually by
+  <code class="java">stop(boolean lastView)</code>. You can manage whether or not
+  the view is the last. However, the Java SDK can automatically decide whether
+  the view is the latest.
 </p>
 <pre><code class="java">View view = Countly.instance().view("logout_page");
-view.stop(true);</code><code class="java"></code></pre>
+view.stop(true);</code></pre>
+<p>
+  You can start views manually by
+  <code class="java">start(boolean firstView)</code>. You can manage whether or
+  not the view is the first view. However, the Java SDK can automatically decide
+  whether the view is the first view.
+</p>
+<pre><code class="java">View view = Countly.instance().view("login_page")
+view.start(true);</code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
@@ -433,7 +396,7 @@ view.stop(true);</code><code class="java"></code></pre>
 <pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
 <h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
+  <span style="font-weight: 400;">You can receive feedback from your users with nps, survey and rating feedback widgets. Look at here to see detailed information about <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-" target="_blank" rel="noopener noreferrer">feedbacks</a>.</span>
 </p>
 <p>
   <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
@@ -627,8 +590,11 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
 <pre>Countly.instance().user().edit().setPicture(byte[])</pre>
-<p>or you can provide a picture url to set:</p>
+<p>or you can provide a picture url or local file path to set:</p>
 <pre>Countly.instance().user().edit().setPicturePath(String)</pre>
+<div class="callout callout--warning">
+  <p>Only JPG,JPEG files are supported by the Java SDK.</p>
+</div>
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
 <pre><code class="java">//set a custom property
@@ -658,7 +624,58 @@ Countly.instance().user().edit().commit();</code></pre>
   server. If the salt on the Countly server is selected, all requests will be checked
   for the validity of the <code>&amp;checksum</code> field before being processed.
 </p>
-<pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);<code class="java"></code></pre>
+<pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);</pre>
+<h2 id="h_01HD3AN5VQ2S4HA7SC696QPBSS">SSL Certificate Pinning</h2>
+<p>
+  <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener noreferrer">Man-in-the-middle attacks (MiM)</a>
+  in SSL connections turn difficult with the use of public key and certificate
+  pinning, resulting in improved communication security. Countly SDK will make
+  sure that a connection is established with one of the public keys or one of the
+  certificates supplied when you offer it with a list of valid SSL certificates
+  using either <code>config.addPublicKeyPin()</code> or
+  <code>config.addCertificatePin()</code>. While public key pinning is better because
+  certificates can be rotated and expire while public keys are not (as long as
+  you don't change your CA), using full certificate pinning is slightly safer.
+  Pinning is done during init through the Config object and <code>.pem</code> format
+  is required. To get the current public key or whole certificate from your server,
+  you can use one of these snippets (replace xxx.server.ly with your server name):
+</p>
+<pre>//get the public key
+openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
+
+//get the list of certificates
+openssl s_client -connect xxx.server.ly:443 -showcerts</pre>
+<p>
+  In the certificate case, the first entry would be the certificate for your server
+  (what you need to enter into SDK configuration), and the rest would be the chain
+  of trust to the root certificate authority.
+</p>
+<p>Here is an example of public key and certificate pinning:</p>
+<pre><code class="java">String publicKeyPem = "-----BEGIN PUBLIC KEY-----\n" +
+  "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf\n" +
+  "9Cnzj4p4WGeKLs1Pt8QuKUpRKfFLfRYC9AIKjbJTWit\n" +
+  "+CqvjWYzvQwECAwEAAQ==\n" +
+  "-----END PUBLIC KEY-----";
+  
+String certificatePem = "-----BEGIN CERTIFICATE-----\n" +
+  "MIICUTCCAfugAwIBAgIBADANBgkqhkiG9w0BAQQFADBXMQswCQYDVQQGEwJDTjEL\n" +
+  "MAkGA1UECBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMC\n" +
+  "VU4xFDASBgNVBAMTC0hlcm9uZyBZYW5nMB4XDTA1MDcxNTIxMTk0N1oXDTA1MDgx\n" +
+  "NDIxMTk0N1owVzELMAkGA1UEBhMCQ04xCzAJBgNVBAgTAlBOMQswCQYDVQQHEwJD\n" +
+  "TjELMAkGA1UEChMCT04xCzAJBgNVBAsTAlVOMRQwEgYDVQQDEwtIZXJvbmcgWWFu\n" +
+  "ZzBcMA0GCSqGSIb3DQEBAQUAA0sAMEgCQQCp5hnG7ogBhtlynpOS21cBewKE/B7j\n" +
+  "V14qeyslnr26xZUsSVko36ZnhiaO/zbMOoRcKK9vEcgMtcLFuQTWDl3RAgMBAAGj\n" +
+  "gbEwga4wHQYDVR0OBBYEFFXI70krXeQDxZgbaCQoR4jUDncEMH8GA1UdIwR4MHaA\n" +
+  "FFXI70krXeQDxZgbaCQoR4jUDncEoVukWTBXMQswCQYDVQQGEwJDTjELMAkGA1UE\n" +
+  "CBMCUE4xCzAJBgNVBAcTAkNOMQswCQYDVQQKEwJPTjELMAkGA1UECxMCVU4xFDAS\n" +
+  "BgNVBAMTC0hlcm9uZyBZYW5nggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEE\n" +
+  "BQADQQA/ugzBrjjK9jcWnDVfGHlk3icNRq0oV7Ri32z/+HQX67aRfgZu7KWdI+Ju\n" + 
+  "Wm7DCfrPNGVwFWUQOmsPue9rZBgO\n" +<br>  "-----END CERTIFICATE-----";
+  
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
+config.addPublicKeyPin(publicKeyPem);
+config.addCertificatePin(certificatePin);
+Countly.instance().init(config);</code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
@@ -1196,7 +1213,7 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
     <span>Where Does the SDK Store the Data?</span>
   </h2>
   <p>
-    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the directory given with </span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
+    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the given&nbsp;</span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
   </p>
   <h2 id="h_01HD3F2TTEZ5KF3H2MDYA7CF9B">
     <span>What Information Is Collected by the SDK?</span>
@@ -1234,6 +1251,12 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
     <li>Screen resolution as '_resolution'</li>
     <li>Locale as '_locale'</li>
     <li>App version as '_app_version'</li>
+  </ul>
+  <p>
+    When generating a device ID, if no custom ID is provided, the SDK will use:
+  </p>
+  <ul>
+    <li>java.util.UUID to generate new device ID with prefix 'CLY_'</li>
   </ul>
   <p>
     If feedback widgets are used, it will collect the users input and time of
