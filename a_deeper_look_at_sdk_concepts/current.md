@@ -1006,18 +1006,10 @@ module.exports = {
 <p>
   <img src="/guide-media/01GVCKG7Q5YKKS920QD1T2RG8Y" alt="1612759876.png">
 </p>
-<h1 id="h_01HDNHXZ2Y30VG0D1TKCYPHJXT">SSL Certificate Pinning</h1>
+<h1 id="h_01HDNHXZ2Y30VG0D1TKCYPHJXT">Acquiring public key or certificate for SSL pinning</h1>
 <p>
-  <span>Public key and certificate pinning are techniques that improve communication security by eliminating the threat of </span><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a><span> in SSL connections. </span>
+  <span>You can use the "<a href="https://www.openssl.org/source/">openssl</a>" command line utility to get this information.</span>
 </p>
-<p>
-  Using whole certificate pinning is somewhat safer, but public key pinning is
-  preferred since certificates can be rotated and expire while public keys don't
-  (assuming you don't change your CA).
-</p>
-<h2 id="h_01HDNJ69STK196RBGK6160TR76">
-  <span>How to acquire a public key or a certificate?</span>
-</h2>
 <p>
   <span>To get the current public key or whole certificate from your server you can use one of these snippets (replace xxx.server.ly with your server name):</span>
 </p>
@@ -1027,7 +1019,9 @@ openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
 #get the list of certificates
 openssl s_client -connect xxx.server.ly:443 -showcerts
 </code></pre>
-<h2 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Solution steps for issues you may encounter</h2>
+<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">
+  Understanding common problems when the SSL certificate is rejected
+</h1>
 <p>
   In case of some issues, sometimes a good way of exploring the cause of the problem
   further is the same openssl certificate command:
