@@ -1006,3 +1006,38 @@ module.exports = {
 <p>
   <img src="/guide-media/01GVCKG7Q5YKKS920QD1T2RG8Y" alt="1612759876.png">
 </p>
+<h1 id="h_01HDNHXZ2Y30VG0D1TKCYPHJXT">SSL Certificate Pinning</h1>
+<p>
+  <span>Public key and certificate pinning are techniques that improve communication security by eliminating the threat of </span><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a><span> in SSL connections. </span>
+</p>
+<p>
+  Using whole certificate pinning is somewhat safer, but public key pinning is
+  preferred since certificates can be rotated and expire while public keys don't
+  (assuming you don't change your CA).
+</p>
+<h2 id="h_01HDNJ69STK196RBGK6160TR76">
+  <span>How to acquire a public key or a certificate?</span>
+</h2>
+<p>
+  <span>To get the current public key or whole certificate from your server you can use one of these snippets (replace xxx.server.ly with your server name):</span>
+</p>
+<pre><code lang="bash">#get the public key
+openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
+
+#get the list of certificates
+openssl s_client -connect xxx.server.ly:443 -showcerts
+</code></pre>
+<h2 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Solution steps for issues you may encounter</h2>
+<p>
+  In case of some issues, sometimes a good way of exploring the cause of the problem
+  further is the same openssl certificate command:
+</p>
+<pre><code lang="bash">openssl s_client -connect xxx.server.ly:443 -showcerts</code></pre>
+<p>It's error codes can sometimes lead you to a solution.</p>
+<p>
+  A common issue, which can be encountered is that the server's certificate does
+  not contain the full chain of trust in it and it shows only 1 entry. In such
+  cases,
+  <a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
+  be helpful.
+</p>
