@@ -1906,10 +1906,8 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   Pinning is done during init through the CountlyConfig object.
 </p>
 <p>
-  <span>To get the current public key or whole certificate from your server you can use one of these snippets (replace try.count.ly with your server name):</span>
+  <span>To acquire the public key or the certificate, you can look at <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
 </p>
-<pre>//get the public key<br>openssl s_client -connect <span>try</span>.count.ly:<span>443 | openssl x509 -pubkey -noout
-<br>//get the list of certificates<br>openssl s_client -connect <span>try</span>.count.ly:<span>443 </span>-showcerts</span></pre>
 <p>
   In the certificate case, the first entry would be the certificate for your server
   (what you need to enter into SDK configuration) and the rest would be the chain
@@ -1928,20 +1926,12 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
 </p>
 <p>
   In case you encounter some other certificate or SSL related exception,
-  <a href="https://developer.android.com/training/articles/security-ssl" target="_blank" rel="noopener">here </a>is
+  <a href="https://developer.android.com/privacy-and-security/security-ssl" target="_blank" rel="noopener noreferrer">here </a>is
   a list of the common reasons for issues.
 </p>
 <p>
-  In case of those issues, sometimes a good way of exploring the cause of the problem
-  further is the same openssl certificate command:
-</p>
-<pre>openssl s_client -connect <span>try</span>.count.ly:<span>443 </span>-showcerts</pre>
-<p>It's error codes can sometimes lead you to a solution.</p>
-<p>
-  A common issue, which can be encountered is that the server's certificate does
-  not contain the full chain of trust in it and it shows only 1 entry. In such
-  cases,&nbsp;<a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
-  be helpful.
+  In case of those issues, please have a look at
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNJK8PAE5GEQWRFDS4KD6S6" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HAVQDM5WB4SK90KZYJE329MK">Using Proguard</h2>
 <p>
