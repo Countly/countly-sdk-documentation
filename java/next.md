@@ -627,11 +627,9 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
 <pre>Countly.instance().user().edit().setPicture(byte[])</pre>
-<p>or you can provide a picture url or local file path to set:</p>
+<p>or you can provide a picture url or local file path to set (only JPG, JPEG files are supported by the Java SDK):</p>
 <pre>Countly.instance().user().edit().setPicturePath(String)</pre>
-<div class="callout callout--warning">
-  <p>Only JPG, JPEG files are supported by the Java SDK.</p>
-</div>
+
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
 <pre><code class="java">//set a custom property
