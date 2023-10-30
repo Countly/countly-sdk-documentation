@@ -1035,7 +1035,7 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
   <a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
   be helpful.
 </p>
-<h1 id="h_01HDZY2VYR54AX1CZKP46A98EJ">Establishing Communication with Web View</h1>
+<h1 id="h_01HDZY2VYR54AX1CZKP46A98EJ">Tracking Events in a Web View</h1>
 <p>
   Incase you are using a web view in your application, you can establish communication
   between the web view and the native application. This will allow you to send
@@ -1048,11 +1048,30 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
   them to the native application. The native application can then send this information
   to Countly.
 </p>
+<h2 id="h_01HE01VEM5PTGQFQBKG1WHE8KP">SDKs in Webview and Native App</h2>
+<p>
+  There are two scnearios which can shape the nature of this communication:
+</p>
+<p>
+  The first is when there is a <strong>single SDK</strong>, running in the native
+  application. In this case, the web view would be sending information(events)
+  to the native application and the native application would be using this information
+  to send events.
+</p>
+<p>
+  The second scenario is when there are <strong>two SDKs</strong> present. One
+  in the native SDK and second inside the web view. In this case, the native application
+  would send the current device ID to the web view and the web view would use this
+  device ID to send events directly to the server. In this scenario if session
+  tracking is desired it should only be done in the native application.
+</p>
 <p>
   Here we will demonstrate two methods to establish communication between the web
-  view and the native application. Each for a different platform.
+  view and the native application. Each for different platforms and multiple and
+  singular SDK scenarios.
 </p>
-<h2 id="h_01HDZY2VYRXV4301CSARPRFPZP">Android</h2>
+<h2 id="h_01HE01VEM5HHNMVD0P9VNHMNZD">Platforms Specific Settings</h2>
+<h3 id="h_01HDZY2VYRXV4301CSARPRFPZP">Android</h3>
 <p>
   There are three things that need to be done to establish communication between
   the web view and the native application on Androuid:
@@ -1065,7 +1084,10 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
   </li>
   <li>And to initialize the port to send and receive messages</li>
 </ul>
-<p>Here is an example of how to send events from webview:</p>
+<h4 id="h_01HE01VEM5C8W6S7JDQ0EP2SB1">Single SDK</h4>
+<p>
+  Here is an example of how to send events from webview to the native application:
+</p>
 <pre><code>  // Enable JavaScript in the web view
   webView.getSettings().setJavaScriptEnabled(true);
   
@@ -1112,3 +1134,7 @@ onmessage = function (e) {
   }
 }
 </code></pre>
+<h4 id="h_01HE01VEM6E57VHMF45PPMFH4Z">Multiple SDKs</h4>
+<h3 id="h_01HE01VEM6H1VRDJNDHJ0A2Z1K">iOS</h3>
+<h4 id="h_01HE01VEM6FSYT0K9AVPGBKPY7">Single SDK</h4>
+<h4 id="h_01HE01VEM66DCF7MNQJ1YPH0XE">Multiple SDKs</h4>
