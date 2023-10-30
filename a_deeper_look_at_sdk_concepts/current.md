@@ -1035,3 +1035,80 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
   <a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
   be helpful.
 </p>
+<h1 id="h_01HDZY2VYR54AX1CZKP46A98EJ">Establishing Communication with Web View</h1>
+<p>
+  Incase you are using a web view in your application, you can establish communication
+  between the web view and the native application. This will allow you to send
+  data from the web view to the native application and vice versa.
+</p>
+<p>
+  This can be used to track information that happens inside the web view and send
+  it to the native application. For example, if you have a web view that is used
+  to display a web page, you can track the page views inside the web view and send
+  them to the native application. The native application can then send this information
+  to Countly.
+</p>
+<p>
+  Here we will demonstrate two methods to establish communication between the web
+  view and the native application. Each for a different platform.
+</p>
+<h2 id="h_01HDZY2VYRXV4301CSARPRFPZP">Android</h2>
+<p>
+  There are three things that need to be done to establish communication between
+  the web view and the native application on Androuid:
+</p>
+<ul>
+  <li>To enable JavaScript in the web view</li>
+  <li>
+    Set <code>WebViewClient</code> and initalize the ports
+    <code>onPageFinished</code> callback
+  </li>
+  <li>And to initialize the port to send and receive messages</li>
+</ul>
+<p>Here is an example of how to send events from webview:</p>
+<pre><code>  // Enable JavaScript in the web view
+  webView.getSettings().setJavaScriptEnabled(true);
+  
+  // Set WebViewClient and initialize the ports onPageFinished callback
+  webView.setWebViewClient(new WebViewClient() {
+    @Override
+  public void onPageFinished(WebView view, String url) {
+    initPort(view);
+  }
+});
+
+// Initialize the port to send and receive messages
+private void initPort(@NonNull WebView webView) {
+  final WebMessagePort[] channel=webView.createWebMessageChannel();
+  
+  port=channel[0];
+  port.setWebMessageCallback(new WebMessagePort.WebMessageCallback() {
+    @Override
+    public void onMessage(WebMessagePort port, WebMessage message) {
+      Countly.sharedInstance().L.w("[Countly, onMessage] "+message);
+      
+      Countly.sharedInstance().events().recordEvent(message.getData());
+    }
+  });
+  
+  webView.postWebMessage(new WebMessage("", new WebMessagePort[]{channel[1]}),
+  Uri.EMPTY);
+}</code></pre>
+<p>
+  Then on the web view side, you can send messages to the native application using
+  the <code>postMessage</code> function. Here is an example of how to do this:
+</p>
+<pre><code>var port;
+// Send Message to mobile
+function sendMessage() {
+  port.postMessage("Event from web " + Math.random());
+}
+
+onmessage = function (e) {
+  port = e.ports[0];
+
+  port.onmessage = function (f) {
+    parse(f.data);
+  }
+}
+</code></pre>
