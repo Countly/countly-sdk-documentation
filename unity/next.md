@@ -250,7 +250,7 @@
 <p>
   <span>Here is a quick way to </span><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">record an event:</span>
 </p>
-<pre><strong>public</strong> async Task ReportCustomEventAsync(string key, IDictionary&lt;string, object&gt; segmentation = null, int? count = 1, double? sum = null, double? duration = null)</pre>
+<pre><strong>public</strong> async Task RecordEventAsync(string key, IDictionary&lt;string, object&gt; segmentation = null, int? count = 1, double? sum = 0, double? duration = null);</pre>
 <p>
   <span style="font-weight: 400;">Based on the example below of an event recording a <strong>purchase</strong>, h</span><span style="font-weight: 400;">ere is a quick summary of the information for each usage:</span>
 </p>
@@ -280,29 +280,29 @@
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="java"><strong>await</strong> countly.Events.ReportCustomEventAsync("purchase", count: 1);</code></pre>
+<pre><code class="java"><strong>await</strong> countly.Events.RecordEventAsync("purchase", count: 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="java"><strong>await</strong> countly.Events.ReportCustomEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
+<pre><code class="java"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
 <pre><code class="java">Dictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;<br>{<br>{ "country", "Germany" },<br>{ "app_version", "1.0" }<br>};
 
-<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);<br></code></pre>
+<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);<br></code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
 <pre><code class="java">Dictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;<br>{<br>{ "country", "Germany" },<br>{ "app_version", "1.0" }<br>};
 
-<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
+<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
 <pre><code class="java">Dictionary&lt;string, object&gt; segmentation = new Dictionary&lt;string, object&gt;<br>{<br>{ "country", "Germany" },<br>{ "app_version", "1.0" }<br>};
 
-<strong>await</strong> countly.Events.ReportCustomEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);<br></code></pre>
+<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);<br></code></pre>
 <p>
   <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
 </p>
@@ -468,14 +468,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><strong>await</strong> countly.Device.ChangeDeviceIdAndMergeSessionDataAsync("New Device Id");</pre>
+<pre><strong>await</strong> countly.Device.ChangeDeviceIdWithMerge("New Device Id");</pre>
 <p class="anchor-heading">
   <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><strong>await</strong> countly.Device.ChangeDeviceIDAndEndCurrentSessionAsync("New Device Id");</pre>
+<pre><strong>await</strong> countly.Device.ChangeDeviceIdWithoutMerge("New Device Id");</pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
@@ -829,14 +829,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <h2 id="h_01HABTZ316PCFDVF0EJGXMABY9">Setting custom values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
-  even when you don’t want to send other user-related data. You first need to create
-  an instance of the class <code>CountlyUserDetailsModel</code>. All the parameters
-  expected in the constructor remain the same. You can leave all parameters as
-  <strong>null</strong> and just provide the custom data segment for sending custom
-  data to the Countly server.
+  even when you don’t want to send other user-related data. To achieve this, you
+  can generate a custom data segment using a
+  <code>Dictionary&lt;string, object&gt;</code>. You can leave all the parameters
+  in the constructor as null and simply provide your custom data. This allows you
+  to easily send your specific data to Countly servers without unnecessary steps.
 </p>
 <p>Example:</p>
-<pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel( <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Height", "5.8" }, <br>    { "Mole", "Lower Left Cheek" } <br>    });<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SetCustomUserDetailsAsync(userDetails);</code></pre>
+<pre><code>Dictionary&lt;string, object&gt; userDetails = <strong>new</strong> Dictionary&lt;string, object&gt; { <br>    { "Height", "5.8" }, <br>    { "Mole", "Lower Left Cheek" } <br>    };<br><span>Countly.Instance</span>.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <h2 id="h_01HABTZ3166RSMTP5JC3Y2PVZC">Setting User picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
