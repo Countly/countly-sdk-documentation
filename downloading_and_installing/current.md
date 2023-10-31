@@ -96,7 +96,7 @@
     </tr>
     <tr>
       <td>
-        <strong>Windows Phone &amp; Windows SDK</strong> (C#)
+        <strong>Windows SDK</strong> (C#)
       </td>
       <td>
         <a href="https://github.com/Countly/countly-sdk-windows">Click to get</a>
@@ -389,7 +389,7 @@
         <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 66.2625px;">
-        <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
     </tr>
   </tbody>
