@@ -1906,16 +1906,10 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   Pinning is done during init through the CountlyConfig object.
 </p>
 <p>
-  <span>To acquire the public key or the certificate, you can look at <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
+  <span>For more information on how to acquire the public key or the certificate, have a look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
 </p>
 <p>
-  In the certificate case, the first entry would be the certificate for your server
-  (what you need to enter into SDK configuration) and the rest would be the chain
-  of trust to the root certificate authority.
-</p>
-<p>
-  Here is an example of public key pinning for the <strong>try.count.ly</strong>
-  server.
+  Here is an example of public key pinning for a example server.
 </p>
 <pre><span>//sample certificate for the countly try server<br></span>String[] certificates = <span>new </span>String[] {<br>    <span>"MIIGnjCCBYagAwIBAgIRAN73cVA7Y1nD+S8rToAqBpQwDQYJKoZIhvcNAQELBQAwgY8xCzAJ"<br></span><span>        </span>+ <span>"BgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1"<br></span><span>        </span>+ <span>"NhbGZvcmQxGDAWBgNVBAoTD1NlY3RpZ28gTGltaXRlZDE3MDUGA1UEAxMuU2VjdGln"<br></span><span>        </span>+ <span>"byBSU0EgRG9tYWluIFZhbGlkYXRpb24gU2VjdXJlIFNlcnZlciBDQTAeFw0yMDA2MD"<br></span><span>        </span>+ <span>"EwMDAwMDBaFw0yMjA5MDMwMDAwMDBaMBUxEzARBgNVBAMMCiouY291bnQubHkwggEi"<br></span><span>        </span>+ <span>"MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCl9zmATVRwrGRtRQJcmBmA+zc/ZL"<br></span><span>        </span>+ <span>"io3YfkwXO2w8u9lnw60J4JpPNn9OnGcxdM+sqbXKU3jTdjY4j3yaA6NlWibq2jU2x6"<br></span><span>        </span>+ <span>"HT2sS+I5gFFE/6tO53WqjoMk48i3FkyoJDittwtQrVaRGcP8RjJH0pfXaP+JLrLAgg"<br></span><span>        </span>+ <span>"HuW3tCFqYzkWi3uLGVjQbSIRNiXsM3FI0UMEa/x1I3U4hLjMjH28KagZbZLWnHOvks"<br></span><span>        </span>+ <span>"AvGLg3xQkS+GSQ+6ARZ2/bGh5O9q4hCCCk0/PpwAXmrOnWtwrNuwHcCDOvuB22JxLd"<br></span><span>        </span>+ <span>"t8jQDYrjwtJIvq4Yut8FQPv/75SKoETWWHyxe0x5NsB34UwA/BAgMBAAGjggNsMIID"<br></span><span>        </span>+ <span>"aDAfBgNVHSMEGDAWgBSNjF7EVK2K4Xfpm/mbBeG4AY1h4TAdBgNVHQ4EFgQU8uf/ND"<br></span><span>        </span>+ <span>"Rt8cu+AwARVIGXPMfxGbQwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwHQYD"<br></span><span>        </span>+ <span>"VR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMEkGA1UdIARCMEAwNAYLKwYBBAGyMQ"<br></span><span>        </span>+ <span>"ECAgcwJTAjBggrBgEFBQcCARYXaHR0cHM6Ly9zZWN0aWdvLmNvbS9DUFMwCAYGZ4EM"<br></span><span>        </span>+ <span>"AQIBMIGEBggrBgEFBQcBAQR4MHYwTwYIKwYBBQUHMAKGQ2h0dHA6Ly9jcnQuc2VjdG"<br></span><span>        </span>+ <span>"lnby5jb20vU2VjdGlnb1JTQURvbWFpblZhbGlkYXRpb25TZWN1cmVTZXJ2ZXJDQS5j"<br></span><span>        </span>+ <span>"cnQwIwYIKwYBBQUHMAGGF2h0dHA6Ly9vY3NwLnNlY3RpZ28uY29tMB8GA1UdEQQYMB"<br></span><span>        </span>+ <span>"aCCiouY291bnQubHmCCGNvdW50Lmx5MIIB9AYKKwYBBAHWeQIEAgSCAeQEggHgAd4A"<br></span><span>        </span>+ <span>"dQBGpVXrdfqRIDC1oolp9PN9ESxBdL79SbiFq/L8cP5tRwAAAXJwTJ0kAAAEAwBGME"<br></span><span>        </span>+ <span>"QCIEErTN/aGJ8LV9brGklKeGAXMg1EN/FUxXDu13kNfXhcAiBrKMYe+W4flPyuLNm5"<br></span><span>        </span>+ <span>"jp6FJwtUTZPNpZ+TmM40dRdwjQB0AN+lXqtogk8fbK3uuF9OPlrqzaISpGpejjsSwC"<br></span><span>        </span>+ <span>"BEXCpzAAABcnBMncsAAAQDAEUwQwIfEYSpsSDtKpmj9ZmRWsx73G622N74v09JDjzP"<br></span><span>        </span>+ <span>"bkg9RQIgUelIqSwqu69JanH7losrqTTsjwNv+3QJBNJ6GxJKkh0AdgBvU3asMfAxGd"<br></span><span>        </span>+ <span>"iZAKRRFf93FRwR2QLBACkGjbIImjfZEwAAAXJwTJ0YAAAEAwBHMEUCIQCMBaaQAoua"<br></span><span>        </span>+ <span>"97R+z2zONMUq1XsDP5aoAiutZG4XxuQ6wAIgW1p6XS3az4CCqjwbDKxL9qEnw8fWd+"<br></span><span>        </span>+ <span>"yLx2skviSsTS0AdwApeb7wnjk5IfBWc59jpXflvld9nGAK+PlNXSZcJV3HhAAAAXJw"<br></span><span>        </span>+ <span>"TJ1PAAAEAwBIMEYCIQDg1YFbJPPKDIyrFZJ9rtrUklkh2k/wpgwjDuIp7tPtOgIhAL"<br></span><span>        </span>+ <span>"dZl9s/qISsFm2E64ruYbdE4HKR1ZJ0zbIXOZcds7XXMA0GCSqGSIb3DQEBCwUAA4IB"<br></span><span>        </span>+ <span>"AQB2Ar1h2X/S4qsVlw0gEbXO//6Rj8mTB4BFW6c5r84n0vTwvA78h003eX00y0ymxO"<br></span><span>        </span>+ <span>"i5hkqB8gd1IUSWP1R1ijYtBVPdFi+SsMjUsB5NKquQNlWpo0GlFjRlcXnDC6R6toN2"<br></span><span>        </span>+ <span>"QixJb47VM40Vmn2g0ZuMGfy1XoQKvIyRosT92jGm1YcF+nLEHBDr+89apZ8sUpFfWo"<br></span><span>        </span>+ <span>"AnCom+8sBGwje6zP10eBbprHyzM8snvdwo/QNLAzLcvVNKP+Sr4H7HKzec3g1+THI0"<br></span><span>        </span>+ <span>"M72TzoguJcOZQEI6Pd+FIP5Xad53rq4jCtRGwYrsieH49a3orBnkkJvUKni+mtkxMb"<br></span><span>        </span>+ <span>"PTJ7eeMmX9g/0h"<br></span>};<br><br>CountlyConfig countlyConfig = <span>new </span>CountlyConfig(getApplicationContext(), <span>"c4608d0a021b1cef0f8cb031f51200e9cbe48dd4"</span>, <span>"https://try.count.ly"</span>);<br>countlyConfig.enablePublicKeyPinning(certificates);<br>Countly.<span>sharedInstance</span>().init(countlyConfig);</pre>
 <p>
@@ -1925,12 +1919,7 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   is wrong.
 </p>
 <p>
-  In case you encounter some other certificate or SSL related exception,
-  <a href="https://developer.android.com/privacy-and-security/security-ssl" target="_blank" rel="noopener noreferrer">here </a>is
-  a list of the common reasons for issues.
-</p>
-<p>
-  In case of those issues, please have a look at
+  In case you still have issues, have a look
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNJK8PAE5GEQWRFDS4KD6S6" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HAVQDM5WB4SK90KZYJE329MK">Using Proguard</h2>
