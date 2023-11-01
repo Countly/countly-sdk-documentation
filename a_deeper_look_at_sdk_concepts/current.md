@@ -1094,9 +1094,7 @@ SSL-Session:
     Verify return code: 0 (ok)
 ---
 </code></pre>
-<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">
-  <span>Common SSL certificate problems</span>
-</h1>
+<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
 <p>
   <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
 </p>
