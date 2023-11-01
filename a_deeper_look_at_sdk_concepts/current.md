@@ -1041,8 +1041,59 @@ UwIDAQAB
 -----END PUBLIC KEY-----
 </code></pre>
 <p>
-  <span>In the certificate case, the first entry would be the certificate for your server (what you need to enter into SDK configuration) and the rest would be the chain of trust to the root certificate authority.</span>
+  <span>In the certificate case, the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> entry between these tags, tags included, would be the certificate for your server (what you need to enter into SDK configuration) and the rest would be the chain of trust to the root certificate authority.</span>
 </p>
+<pre><code lang="bash">CONNECTED(00000003)
+depth=2 O = Digital Signature Trust Co., CN = DST Root CA X3
+verify return:1
+depth=1 C = US, O = Let's Encrypt, CN = Let's Encrypt Authority X3
+verify return:1
+depth=0 CN = xxx.server.ly
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=xxx.server.ly
+   i:/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
+-----BEGIN CERTIFICATE-----
+MIIEKDCCAxCgAwIBAgISA+z3u2fRWjX3pN/gVx3hU69zMA0GCSqGSIb3DQEBCwUA
+MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbm...
+-----END CERTIFICATE-----
+ 1 s:/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
+   i:/O=Digital Signature Trust Co./CN=DST Root CA X3
+-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIQAqxcJmoA5OoRVjRk4VSSbzAN...
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=/CN=xxx.server.ly
+issuer=/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Server Temp Key: ECDH, P-256, 256 bits
+---
+SSL handshake has read 3072 bytes and written 460 bytes
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: B049D3E8126B5421704F7F793EBF78E2B595A7B4820341F169F5C394D177697A4
+    Session-ID-ctx:
+    Master-Key: 05F08C1C9B9E5EDC01A3A51DA3B656E715E1173186C3167EDC758BFBB7603A80
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1642277969
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+---
+</code></pre>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">
   <span>Common SSL certificate problems</span>
 </h1>
