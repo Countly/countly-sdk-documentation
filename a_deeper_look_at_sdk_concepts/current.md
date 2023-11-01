@@ -1017,11 +1017,38 @@ module.exports = {
 openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
 
 #get the list of certificates
-openssl s_client -connect xxx.server.ly:443 -showcerts
+openssl s_client -connect xxx.server.ly:443 -showcerts</code><code lang="bash"></code><code lang="bash"></code></pre>
+<p>
+  <span>To retrieve a public key, a sample output would look like this. The public key for <code>xxx.server.ly</code> is returned in pem format, as can be seen. Between <code>-----BEGIN PUBLIC KEY-----</code> and </span>
+</p>
+<p>
+  <span><code>-----END PUBLIC KEY-----</code> entries are parts of the whole public key, and these tags should be included when copied.<br></span>
+</p>
+<pre><code lang="bash">depth=2 C = CC, O = XXX Server Service, CN = X1 Z1
+verify return:1
+depth=1 C = CC, O = XXX Server Service, CN = Y2 Z34
+verify return:1
+depth=0 CN = *.xxx.server.ly
+verify return:1
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqBv1G1nbGTlZa5ARZYSy
+x+ZfVZLaWJlHrIm8crPjj6X/LXfPj/K/bBeVwB2VrpEfLr/vJsv4AC3Dp+YZzchv
+zOQUBIiJW0xZ3DXaV9arok9vUk1Srdphr6AO8gixS8Hv7Jnd6B+GszZxtE1tTxjg
+5mzm67V1gg0dKSEKEvX49YdVsjj6HKSzqK8J1GS/gllgUuACZMMtxi3L9eBtOkZZ
+ihgtHLuL5kf6i5sKb0nZUvCh5cxInNnDE3NohzHacC0p8Uah4WvnJ6nNLFD76xYG
+fEn98nqOp9Lw+T4UWuH9A5D+uR4L/6rcHvNvqGlgKX0uZkKuyZnhVdjXeunQzwmX
+UwIDAQAB
+-----END PUBLIC KEY-----
 </code></pre>
+<p>
+  <span>In the certificate case, the first entry would be the certificate for your server (what you need to enter into SDK configuration) and the rest would be the chain of trust to the root certificate authority.</span>
+</p>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">
-  Understanding common problems when the SSL certificate is rejected
+  <span>Common SSL certificate problems</span>
 </h1>
+<p>
+  <span>In case you encounter some other certificate or SSL related exception,&nbsp;</span><a class="c-link" href="https://developer.android.com/privacy-and-security/security-ssl" target="_blank" rel="noopener noreferrer" data-stringify-link="https://developer.android.com/privacy-and-security/security-ssl" data-sk="tooltip_parent">here<span>&nbsp;</span></a><span>is a list of the common reasons for issues.</span>
+</p>
 <p>
   In case of some issues, sometimes a good way of exploring the cause of the problem
   further is the same openssl certificate command:
