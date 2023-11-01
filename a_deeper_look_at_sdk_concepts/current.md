@@ -1098,14 +1098,17 @@ SSL-Session:
   <span>Common SSL certificate problems</span>
 </h1>
 <p>
-  <span>In case you encounter some other certificate or SSL related exception,&nbsp;</span><a class="c-link" href="https://developer.android.com/privacy-and-security/security-ssl" target="_blank" rel="noopener noreferrer" data-stringify-link="https://developer.android.com/privacy-and-security/security-ssl" data-sk="tooltip_parent">here<span>&nbsp;</span></a><span>is a list of the common reasons for issues.</span>
+  <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
 </p>
 <p>
-  In case of some issues, sometimes a good way of exploring the cause of the problem
-  further is the same openssl certificate command:
+  To investigate those issues further, sometimes a good way of exploring the cause
+  of the problem is the same openssl certificate command:
 </p>
 <pre><code lang="bash">openssl s_client -connect xxx.server.ly:443 -showcerts</code></pre>
-<p>It's error codes can sometimes lead you to a solution.</p>
+<p>Example output might look like this:</p>
+<pre><code lang="bash">0056931101000000:error:10080002:BIO routines:BIO_lookup_ex:system lib:crypto/bio/bio_addr.c:738:nodename nor servname provided, or not known
+connect:errno=0</code></pre>
+<p>It's error codes may lead to a solution.</p>
 <p>
   A common issue, which can be encountered is that the server's certificate does
   not contain the full chain of trust in it and it shows only 1 entry. In such
