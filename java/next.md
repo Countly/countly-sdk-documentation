@@ -431,6 +431,89 @@ view.stop(true);</code><code class="java"></code></pre>
   id, this call will return something like this:
 </p>
 <pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
+<p>
+  <span>Remote config allows you to modify the app by requesting key-value pairs from the Countly server. The returned values can be changed based on the users. For more details, please see the&nbsp;</span><span>Remote Config <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">documentation</a></span>.&nbsp;
+  It is accessible through
+  <code lang="java">Countly.instance().remoteConfig()</code> interface.
+</p>
+<h2 id="h_01HE5J5B7V469TP7BF10DRHXSR">Downloading values</h2>
+<h3 id="h_01HE5J61AFXNSTEKVR62NR56X7">
+  <span>Automatic Remote Config Triggers</span>
+</h3>
+<p>
+  <span>Automatic remote config triggers are disabled by default so there is no need for disable action. If you enable it by <code lang="java">enableRemoteConfigAutomaticTriggers</code>:</span>
+</p>
+<pre><code lang="java">Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
+config.enableRemoteConfigAutomaticTriggers();
+...</code></pre>
+<p>
+  Remote configs are going to be downloaded from scratch in these triggers:
+</p>
+<ul>
+  <li>
+    <span>Just after initialization of the Countly Java SDK</span>
+  </li>
+  <li>
+    <span>After a device id change</span>
+  </li>
+</ul>
+<h3 id="h_01HE5JSPP4G9YCH8HY4QAZ7RE4">Manuel Calls</h3>
+<p>
+  There are three ways to do remote config value download manually:
+</p>
+<ul>
+  <li>
+    <span>Manually downloading all keys</span>
+  </li>
+  <li>
+    <span>Manually downloading specific keys</span>
+  </li>
+  <li>Manually downloading, omitting (everything except) keys.</li>
+</ul>
+<p>
+  <span>Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
+</p>
+<p>
+  <span><code class="java">dowloadAllKeys</code></span><span>&nbsp;is</span><span>&nbsp;the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
+</p>
+<p>
+  <span>Or you might only want to update specific key values. To do so, you will need to call&nbsp;<code class="java">downloadSpecificKeys</code>&nbsp;to downloads new values for the wanted keys. Those are provided with a String array.</span>
+</p>
+<p>
+  <span>Or you might want to update all the values except a few defined keys. To do so,&nbsp; call&nbsp;<code class="java">downloadOmittingKeys</code>&nbsp;would update all values except the provided keys</span><span>. The keys are provided with a String array.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">All Keys</span>
+    <span class="tabs-link">Include Keys</span>
+    <span class="tabs-link">Omit Keys</span>
+  </div>
+  <div class="tab">
+    <pre><code lang="java">Countly.instance().remoteConfig().downloadAllKeys((requestResult, error, fullValueUpdate, downloadedValues) -&gt; {
+  if(requestResult.equals(RequestResult.Success){
+    //do sth
+  }
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code lang="java">Countly.instance().remoteConfig().downloadSpecificKeys(String[] keysToInclude, (requestResult, error, fullValueUpdate, downloadedValues) -&gt; {
+  if(requestResult.equals(RequestResult.Success){
+    //do sth
+  }
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code lang="java">Countly.instance().remoteConfig().downloadOmittingKeys(String[] keysToOmit, (requestResult, error, fullValueUpdate, downloadedValues) -&gt; {
+  if(requestResult.equals(RequestResult.Success){
+    //do sth
+  }
+});</code></pre>
+  </div>
+</div>
+<p>
+  <span>When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a&nbsp;<code class="java">dowloadAllKeys</code>&nbsp;request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+</p>
 <h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
   <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
@@ -474,7 +557,6 @@ view.stop(true);</code><code class="java"></code></pre>
   public String name;
   public String[] tags;
 }</code></pre>
-
 <p>
   Here all the values are same with the values that can be seen at your Countly
   server like the widget ID, widget type, widget name and the tags you have passed
@@ -628,9 +710,11 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
 <pre>Countly.instance().user().edit().setPicture(byte[])</pre>
-<p>or you can provide a picture url or local file path to set (only JPG, JPEG files are supported by the Java SDK):</p>
+<p>
+  or you can provide a picture url or local file path to set (only JPG, JPEG files
+  are supported by the Java SDK):
+</p>
 <pre>Countly.instance().user().edit().setPicturePath(String)</pre>
-
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
 <pre><code class="java">//set a custom property
