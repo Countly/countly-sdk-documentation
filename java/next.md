@@ -474,6 +474,7 @@ view.stop(true);</code><code class="java"></code></pre>
   public String name;
   public String[] tags;
 }</code></pre>
+
 <p>
   Here all the values are same with the values that can be seen at your Countly
   server like the widget ID, widget type, widget name and the tags you have passed
