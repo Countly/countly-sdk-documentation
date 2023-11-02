@@ -218,24 +218,25 @@ Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);
 </p>
 <ul>
   <li>
-    Usage 1: how many times the <strong>purchase</strong> event
-    occurred.
+    Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times the <strong>purchase</strong> event
-    occurred + the total amount of those purchases.
+    Usage 2: how many times the <strong>purchase</strong> event occurred + the
+    total amount of those purchases.
   </li>
   <li>
-    Usage 3: how many times the <strong>purchase</strong> event
-    occurred + from which countries and application versions those purchases were made.
+    Usage 3: how many times the <strong>purchase</strong> event occurred + from
+    which countries and application versions those purchases were made.
   </li>
   <li>
-    Usage 4: how many times the <strong>purchase</strong> event
-    occurred + the total amount, both of which are also available, segmented into countries and application versions.
+    Usage 4: how many times the <strong>purchase</strong> event occurred + the
+    total amount, both of which are also available, segmented into countries
+    and application versions.
   </li>
   <li>
-    Usage 5: how many times the <strong>purchase</strong> event
-    occurred + the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.
+    Usage 5: how many times the <strong>purchase</strong> event occurred + the
+    total amount, both of which are also available, segmented into countries
+    and application versions + the total duration of those events.
   </li>
 </ul>
 <p>
@@ -357,7 +358,10 @@ segmentation.put("level", 37);</code></pre>
 </ul>
 <h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
 <p>
-  You can track views of your application by the Java SDK. By views, you can also create ><a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener">flows</a> to see view transitions.
+  You can track views of your application by the Java SDK. By views, you can also
+  create
+  <a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener">flows</a>
+  to see view transitions.
 </p>
 <h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
   <span data-preserver-spaces="true">Manual View Reporting</span>
@@ -389,7 +393,11 @@ segmentation.put("level", 37);</code></pre>
 view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
-  A device ID is a unique identifier for your users.You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.
+  A device ID is a unique identifier for your users.You may specify the device
+  ID yourself or allow the SDK to generate it. When providing one yourself, keep
+  in mind that it has to be unique for all users. Some potential sources for such
+  an id may be the users username, email or some other internal ID used by your
+  other systems.
 </p>
 <h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
@@ -433,7 +441,11 @@ view.stop(true);</code><code class="java"></code></pre>
 <pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
 <h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
 <p>
-  Remote config allows you to modify the app by requesting key-value pairs from the Countly server. The returned values can be changed based on the users. For more details, please see the Remote Config <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">documentation</a>. It is accessible through
+  Remote config allows you to modify the app by requesting key-value pairs from
+  the Countly server. The returned values can be changed based on the users. For
+  more details, please see the Remote Config
+  <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">documentation</a>.
+  It is accessible through
   <code class="java">Countly.instance().remoteConfig()</code> interface. Remote
   config values are stored when downloaded unless they are deleted. Also, if values
   downloaded with full update, stored values are overwritten by newly downloaded
@@ -910,8 +922,8 @@ Countly.instance().user().edit().commit();</code></pre>
     </div>
   </li>
   <li>
-    <strong>setApplicationName(String name) </strong>- Change application
-    name reported to Countly server.
+    <strong>setApplicationName(String name) </strong>- Change application name
+    reported to Countly server.
   </li>
   <li>
     <div>
@@ -1192,8 +1204,7 @@ try {
     <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty data will not be recorded.</span>
   </li>
   <li>
-    <strong>metrics - </strong>It is a map that contains device
-    and app information<span data-preserver-spaces="true"> as key-value pairs. </span>
+    <strong>metrics - </strong>It is a map that contains device and app information<span data-preserver-spaces="true"> as key-value pairs. </span>
     It can be null or empty<span> and the accepted data type for the pairs is </span><span>"String".</span>
   </li>
   <li>
