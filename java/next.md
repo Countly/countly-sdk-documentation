@@ -231,7 +231,8 @@ Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);
   </li>
   <li>
     Usage 4: how many times the <strong>purchase</strong><span> </span>event
-    occurred + <span>the total amount, both of which are also available, segmented into countries and application versions.</span>
+    occurred +
+    <span>the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
   <li>
     Usage 5: how many times the <strong>purchase</strong><span> </span>event
@@ -285,7 +286,7 @@ Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);
     User starts playing a level "37" of your game, you call
     <code>Countly.instance().events().startEvent("LevelTime")</code> to start
     tracking how much time a user spends on this level. Also keep your segmentation
-    values in a map like 
+    values in a map like
   </li>
 </ul>
 <pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
@@ -357,7 +358,7 @@ segmentation.put("level", 37);</code></pre>
 </ul>
 <h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
 <p>
-  <span data-preserver-spaces="true">You can track views of your application by the Java SDK. By views, you can also create </span><a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener"><span data-preserver-spaces="true">flows</span></a><span data-preserver-spaces="true">& ;to see view transitions.</span>
+  <span data-preserver-spaces="true">You can track views of your application by the Java SDK. By views, you can also create </span><a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener"><span data-preserver-spaces="true">flows</span></a><span data-preserver-spaces="true">&amp; ;to see view transitions.</span>
 </p>
 <h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
   <span data-preserver-spaces="true">Manual View Reporting</span>
@@ -389,7 +390,7 @@ segmentation.put("level", 37);</code></pre>
 view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
-  <span>A device ID is a unique identifier for your users.& ;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
+  <span>A device ID is a unique identifier for your users.&amp; ;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
 <h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
@@ -433,8 +434,8 @@ view.stop(true);</code><code class="java"></code></pre>
 <pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
 <h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
 <p>
-  <span>Remote config allows you to modify the app by requesting key-value pairs from the Countly server. The returned values can be changed based on the users. For more details, please see the& ;</span><span>Remote Config <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">documentation</a></span>.& ;
-  It is accessible through
+  <span>Remote config allows you to modify the app by requesting key-value pairs from the Countly server. The returned values can be changed based on the users. For more details, please see the&amp; ;</span><span>Remote Config <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">documentation</a></span>.&amp;
+  ; It is accessible through
   <code class="java">Countly.instance().remoteConfig()</code> interface. Remote
   config values are stored when downloaded unless they are deleted. Also, if values
   downloaded with full update, stored values are overwritten by newly downloaded
@@ -484,7 +485,7 @@ config.enableRemoteConfigAutomaticTriggers();
   <span>Or downloading values of only specific keys might be needed. To do so, calling <code class="java">downloadSpecificKeys</code> to download new values for the specific keys would update only those keys which are provided with a String array.</span>
 </p>
 <p>
-  <span>Or downloading values of only a few keys might not be needed. To do so, calling <code class="java">downloadOmittingKeys</code>& ;would update all values except the provided keys</span><span>. The keys are provided with a String array.</span>
+  <span>Or downloading values of only a few keys might not be needed. To do so, calling <code class="java">downloadOmittingKeys</code>&amp; ;would update all values except the provided keys</span><span>. The keys are provided with a String array.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -911,7 +912,7 @@ Countly.instance().user().edit().commit();</code></pre>
     </div>
   </li>
   <li>
-    <strong>setApplicationName(String name)& ;</strong>- Change application
+    <strong>setApplicationName(String name)&amp; ;</strong>- Change application
     name reported to Countly server.
   </li>
   <li>
@@ -940,8 +941,8 @@ Countly.instance().user().edit().commit();</code></pre>
   </li>
   <li>
     <div>
-      <strong>setCustomDeviceId(String customDeviceId) </strong>- Set
-      device id to specific string and strategy to
+      <strong>setCustomDeviceId(String customDeviceId) </strong>- Set device
+      id to specific string and strategy to
       <code>DeviceIdStrategy.CUSTOM_ID</code>.
     </div>
   </li>
@@ -1117,8 +1118,8 @@ Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment,
 Countly.backendMode().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
 <p>
-  <strong>Note: </strong>Device ID and 'name' both are mandatory. The view
-  will not be recorded if any of these two parameters is null or empty.
+  <strong>Note: </strong>Device ID and 'name' both are mandatory. The view will
+  not be recorded if any of these two parameters is null or empty.
 </p>
 <h4 id="h_01HABV0K6D86BYQ81T2VGYZJKM">Recording a Crash</h4>
 <p>
@@ -1129,11 +1130,11 @@ Countly.backendMode().recordView("device-id", "SampleView", segmentation, 164664
     <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, and if it is null or not provided no data will be recorded. </span>
   </li>
   <li>
-    <strong>message -</strong> 
+    <strong>message -</strong>
     <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
   </li>
   <li>
-    <strong>stacktrace -</strong> 
+    <strong>stacktrace -</strong>
     <span>A string that describes the contents of the call stack</span>. It
     <span data-preserver-spaces="true">is mandatory, and should not be null or empty.</span>
   </li>
