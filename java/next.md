@@ -77,7 +77,7 @@ Countly.instance().init(config);</code></pre>
 <p>
   Countly SDK stores serialized versions of the following classes:
   <code>InternalConfig</code>, <code>SessionImpl</code>, <code>EventQueue</code>,
-  <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code> &amp;
+  <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code>
   <code>TimedEvents</code>. All those are stored in device memory, in binary form,
   in separate files with filenames prefixed with <code>[CLY]_</code>.
 </p>
@@ -495,7 +495,7 @@ config.enableRemoteConfigAutomaticTriggers();
   <span>Or downloading values of only specific keys might be needed. To do so, calling <code class="java">downloadSpecificKeys</code> to download new values for the specific keys would update only those keys which are provided with a String array.</span>
 </p>
 <p>
-  <span>Or downloading values of only a few keys might not be needed. To do so, calling <code class="java">downloadOmittingKeys</code>&amp; ;would update all values except the provided keys</span><span>. The keys are provided with a String array.</span>
+  <span>Or downloading values of only a few keys might not be needed. To do so, calling <code class="java">downloadOmittingKeys</code> would update all values except the provided keys</span><span>. The keys are provided with a String array.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -879,9 +879,9 @@ Countly.instance().user().edit().commit();</code></pre>
 <p>
   You may set the optional <code>salt</code> to be used for calculating the checksum
   of requested data, which will be sent with each request, using the
-  <code>&amp;checksum</code> field. You will need to set the same salt on the Countly
+  <code>checksum</code> field. You will need to set the same salt on the Countly
   server. If the salt on the Countly server is selected, all requests will be checked
-  for the validity of the <code>&amp;checksum</code> field before being processed.
+  for the validity of the <code>checksum</code> field before being processed.
 </p>
 <pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);<code class="java"></code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
