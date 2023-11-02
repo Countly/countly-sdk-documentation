@@ -962,6 +962,22 @@ Countly.instance().user().edit().commit();</code></pre>
       callback that will duplicate all logs done by the SDK.
     </div>
   </li>
+  <li>
+    <strong>enrollABOnRCDownload()&nbsp;</strong>- Enables A/B tests enrollment
+    when remote config keys downloaded
+  </li>
+  <li>
+    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)&nbsp;</strong>-
+    Register a callback to be called when remote config values is downloaded
+  </li>
+  <li>
+    <strong>enableRemoteConfigValueCaching()</strong> - Enable caching of remote
+    config values
+  </li>
+  <li>
+    <strong>enableRemoteConfigAutomaticTriggers()</strong> - Enable automatic
+    download of remote config values on triggers
+  </li>
 </ul>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
 <h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
