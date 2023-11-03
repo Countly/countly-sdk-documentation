@@ -1148,59 +1148,35 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
 <ul>
   <li>To enable JavaScript in the web view</li>
   <li>
-    Set <code>WebViewClient</code> and initialize the ports
-    <code>onPageFinished</code> callback
+    Add a JavaScript Interface that expects a message (on sends an event with
+    it)
   </li>
-  <li>And to initialize the port to send and receive messages</li>
+  <li>
+    Use the method that sends a message to native side at the web app
+  </li>
 </ul>
 <p>
-  Here is an example of how to send events from WebView to the native application:
+  Here is an example of how to send events from WebView to the native application
+  assuming you have set a WebView:
 </p>
-<pre><code>  // Enable JavaScript in the web view
-  webView.getSettings().setJavaScriptEnabled(true);
-  
-  // Set WebViewClient and initialize the ports onPageFinished callback
-  webView.setWebViewClient(new WebViewClient() {
-    @Override
-  public void onPageFinished(WebView view, String url) {
-    initPort(view);
-  }
-});
-
-// Initialize the port to send and receive messages
-private void initPort(@NonNull WebView webView) {
-  final WebMessagePort[] channel=webView.createWebMessageChannel();
-  
-  port=channel[0];
-  port.setWebMessageCallback(new WebMessagePort.WebMessageCallback() {
-    @Override
-    public void onMessage(WebMessagePort port, WebMessage message) {
-      Countly.sharedInstance().L.w("[Countly, onMessage] "+message);
-      
-      Countly.sharedInstance().events().recordEvent(message.getData());
-    }
-  });
-  
-  webView.postWebMessage(new WebMessage("", new WebMessagePort[]{channel[1]}),
-  Uri.EMPTY);
-}</code></pre>
+<pre><span>// for example you have set up a WebView like this<br>private WebView webView;<br></span>webView = findViewById(R.id.webview);<br>WebSettings webSettings = webView.getSettings();<br>webSettings.setJavaScriptEnabled(true); // Enable JS here<br>webSettings.setDomStorageEnabled(true);<br>webView.addJavascriptInterface(new JSBridge(), "JSBridge"); // Add JS Interface<br>webView.setWebViewClient(new WebViewClient());</pre>
+<p>
+  We will need a class where we provide a method at JS we can use to send a message:
+</p>
+<div>
+  <pre><span>// Define the class we will add with JS Interface<br>class </span><span>JSBridge </span>{<br>    <span>@JavascriptInterface<br></span><span>    </span><span>public void </span><span>showMessageInNative</span>(<span>String key</span>) { // method that will get message <br><span>        </span><span>Countly</span>.<span>sharedInstance</span>().events().recordEvent(<span>key</span>)<span>; // record an event with message<br></span><span>    </span>}<br>}</pre>
+</div>
 <p>
   Then on the web view side, you can send messages to the native application using
-  the <code>postMessage</code> function. Here is an example of how to do this:
+  the method we created in our class at native side. Here is an example of how
+  to do this:
 </p>
-<pre><code>var port;
-// Send Message to mobile
-function sendMessage() {
-  port.postMessage("Event from web " + Math.random());
-}
-
-onmessage = function (e) {
-  port = e.ports[0];
-
-  port.onmessage = function (f) {
-    parse(f.data);
-  }
-}</code></pre>
+<pre>// create a function that uses the JSBridge we have declared at native side<br>function sendMessage(message) {<br>  JSBridge.showMessageInNative(message);<br>}</pre>
+<p>
+  Calling this method with a message you provide would result in that message to
+  be used as a key of an event and recorded at the native side by the SDK running
+  there.
+</p>
 <h3 id="h_01HE01VEM6H1VRDJNDHJ0A2Z1K">iOS</h3>
 <h4 id="01HEAAX5QBHWXE0ES9Y9NMH4GZ">Tracking Events from the WebView</h4>
 <h4 id="01HEAAXF77XNR21YXRT9FF2FZ6">Tracking Events from the Native App</h4>
