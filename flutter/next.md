@@ -1105,8 +1105,16 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
   <p>
     Here the keys array is the mandatory parameter for this method to work.
   </p>
+  <div class="callout callout--warning">
+    <p>Available starting from version 23.8.4</p>
+  </div>
+  <p>
+    To enroll a user into the A/B experiment using experiment ID, you use the
+    following method:
+  </p>
+  <pre>Countly.instance.remoteConfig.testingEnrollIntoABExperiment(String expID);</pre>
   <h3 id="h_01HD1KX617T07K6KD77Q4THRCC">
-    <span>&nbsp;</span><span>Exiting A/B Tests</span>
+    <span>Exiting A/B Tests</span>
   </h3>
 </div>
 <p>
@@ -1117,30 +1125,14 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
 <p>
   Here if no keys are provided it would remove the user from all A/B tests instead.
 </p>
-<div>
-  <h3 id="01HEABENDJANSC79TV7KZCRRGG">
-    <span>Enroll in AB Experiment with ID</span>
-  </h3>
-  <div class="callout callout--warning">
-    <p>Available starting from version 23.8.4</p>
-  </div>
-  <p>
-    To enroll a user into the A/B experiment using experiment ID, you use the
-    following method:
-  </p>
-  <pre>Countly.instance.remoteConfig.testingEnrollIntoABExperiment('EXPERIMENT_ID');</pre>
-  <h3 id="01HEABENDJ6EBW5WR7RCWY658D">
-    <span>&nbsp;</span><span>Exiting A/B Experiment with ID</span>
-  </h3>
-  <div class="callout callout--warning">
-    <p>Available starting from version 23.8.4</p>
-  </div>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.8.4</p>
 </div>
 <p>
   If you want to remove users from A/B experiment using experiment ID, you can
   use the following function:
 </p>
-<pre>Countly.instance.remoteConfig.testingExitABExperiment('EXPERIMENT_ID');</pre>
+<pre>Countly.instance.remoteConfig.testingExitABExperiment(String expID);</pre>
 <h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User feedback</h1>
 <p>
   There are a couple ways of receiving feedback from your users: star-rating dialog,
