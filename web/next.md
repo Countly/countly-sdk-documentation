@@ -1379,6 +1379,12 @@ Countly.recordRatingWidgetWithID({
   to inject the feedback widget in a specific element, you can do so by specifying
   the element ID or the class name.
 </p>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.6.3</p>
+  <p>
+    You can also add custom segmentation while presenting a widget.
+  </p>
+</div>
 <p>
   To use feedback widgets, you need to give "feedback" consent (in case consent
   is required).
@@ -1398,17 +1404,26 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
         return;
     }
   
-    //The available feedback types are nps, survey and rating, decide which one to show
-    // for example loop through the array and pick where countlyPresentableFeedback[i].type === 'nps'
+    // Decide which which widget to show. Here the first rating widget is selected. 
+    var i = countlyPresentableFeedback.length;
     var countlyFeedbackWidget = countlyPresentableFeedback[0];
+    while (i--) {
+      // You can change 'rating' to 'nps' or 'survey'. Or you can create your own logic here.
+      if (countlyPresentableFeedback[i].type === 'rating') {
+        countlyFeedbackWidget = countlyPresentableFeedback[i];
+        break;
+      }
+    }
 
     //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
+    const selectorId = "targetIdSelector";
+    const selectorClass = "targetClassSelector";
+
+    // Define the segmentation (optional)
+    const segmentation = { page: "home_page" };
 
     //Display the feedback widget to the end user
-    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass);
-
+    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
   </div>
@@ -1418,20 +1433,30 @@ Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
 <br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     if (err) {
-      console.log(err);
+        console.log(err);
         return;
     }
 
-    //The available feedback types are nps, survey and rating, decide which one to show
-    // for example loop through the array and pick where countlyPresentableFeedback[i].type === 'nps'
+    // Decide which which widget to show. Here the first rating widget is selected. 
+    var i = countlyPresentableFeedback.length;
     var countlyFeedbackWidget = countlyPresentableFeedback[0];
+    while (i--) {
+      // You can change 'rating' to 'nps' or 'survey'. Or you can create your own logic here.
+      if (countlyPresentableFeedback[i].type === 'rating') {
+        countlyFeedbackWidget = countlyPresentableFeedback[i];
+        break;
+      }
+    }
     
     //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
+    const selectorId = "targetIdSelector";
+    const selectorClass = "targetClassSelector";
+
+    // Define the segmentation (optional)
+    const segmentation = { page: "home_page" };
     
     //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass);
+    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
   </div>
