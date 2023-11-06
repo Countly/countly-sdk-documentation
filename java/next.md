@@ -77,7 +77,7 @@ Countly.instance().init(config);</code></pre>
 <p>
   Countly SDK stores serialized versions of the following classes:
   <code>InternalConfig</code>, <code>SessionImpl</code>, <code>EventQueue</code>,
-  <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code> &amp;
+  <code>RequestImpl</code>, <code>CrashImpl</code>, <code>UserImpl</code>
   <code>TimedEvents</code>. All those are stored in device memory, in binary form,
   in separate files with filenames prefixed with <code>[CLY]_</code>.
 </p>
@@ -214,28 +214,29 @@ Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);
   </li>
 </ul>
 <p>
-  <span>We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span>&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
+  <span>We have provided an example of recording a <strong>purchase</strong> event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
 <ul>
   <li>
-    Usage 1: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
-    occurred.
+    Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
-    occurred + the total amount of those purchases.
+    Usage 2: how many times the <strong>purchase</strong> event occurred + the
+    total amount of those purchases.
   </li>
   <li>
-    Usage 3: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
-    occurred +<span>&nbsp;</span><span>from which countries and application versions those purchases were made.</span>
+    Usage 3: how many times the <strong>purchase</strong> event occurred + from
+    which countries and application versions those purchases were made.
   </li>
   <li>
-    Usage 4: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
-    occurred +&nbsp;<span>the total amount, both of which are also available, segmented into countries and application versions.</span>
+    Usage 4: how many times the <strong>purchase</strong> event occurred + the
+    total amount, both of which are also available, segmented into countries
+    and application versions.
   </li>
   <li>
-    Usage 5: how many times the&nbsp;<strong>purchase</strong><span>&nbsp;</span>event
-    occurred +<span>&nbsp;</span><span>the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
+    Usage 5: how many times the <strong>purchase</strong> event occurred + the
+    total amount, both of which are also available, segmented into countries
+    and application versions + the total duration of those events.
   </li>
 </ul>
 <p>
@@ -285,7 +286,7 @@ Countly.instance().events().recordEvent("purchase", segmentation, 1, 34.5, 5.3);
     User starts playing a level "37" of your game, you call
     <code>Countly.instance().events().startEvent("LevelTime")</code> to start
     tracking how much time a user spends on this level. Also keep your segmentation
-    values in a map like&nbsp;
+    values in a map like
   </li>
 </ul>
 <pre><code class="java hljs">HashMap&lt;String, Object&gt; segmentation = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
@@ -349,7 +350,7 @@ segmentation.put("level", 37);</code></pre>
     seconds automatically. It can also be called more often manually.
   </li>
   <li>
-    <code>session.end()</code>&nbsp;must be called to mark the end of the session.
+    <code>session.end()</code> must be called to mark the end of the session.
     All the data recorded since the last <code>session.update()</code> or since
     <code>session.begin()</code> in case no updates have been sent yet, is sent
     in this request as well.
@@ -357,7 +358,10 @@ segmentation.put("level", 37);</code></pre>
 </ul>
 <h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
 <p>
-  <span data-preserver-spaces="true">You can track views of your application by the Java SDK. By views, you can also create </span><a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener"><span data-preserver-spaces="true">flows</span></a><span data-preserver-spaces="true">&nbsp;to see view transitions.</span>
+  You can track views of your application by the Java SDK. By views, you can also
+  create
+  <a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener">flows</a>
+  to see view transitions.
 </p>
 <h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
   <span data-preserver-spaces="true">Manual View Reporting</span>
@@ -389,7 +393,11 @@ segmentation.put("level", 37);</code></pre>
 view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
-  <span>A device ID is a unique identifier for your users.&nbsp;</span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
+  A device ID is a unique identifier for your users.You may specify the device
+  ID yourself or allow the SDK to generate it. When providing one yourself, keep
+  in mind that it has to be unique for all users. Some potential sources for such
+  an id may be the users username, email or some other internal ID used by your
+  other systems.
 </p>
 <h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
@@ -431,6 +439,220 @@ view.stop(true);</code><code class="java"></code></pre>
   id, this call will return something like this:
 </p>
 <pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
+<p>
+  Remote config allows you to modify the app by requesting key-value pairs from
+  the Countly server. The returned values can be changed based on the users. For
+  more details, please see the Remote Config
+  <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">documentation</a>.
+  It is accessible through
+  <code class="java">Countly.instance().remoteConfig()</code> interface. Remote
+  config values are stored when downloaded unless they are deleted. Also, if values
+  downloaded with full update, stored values are overwritten by newly downloaded
+  values.;
+</p>
+<h2 id="h_01HE5J5B7V469TP7BF10DRHXSR">Downloading values</h2>
+<h3 id="h_01HE5J61AFXNSTEKVR62NR56X7">
+  <span>Automatic Remote Config Triggers</span>
+</h3>
+<p>
+  <span>Automatic remote config triggers are disabled by default so there is no need for disable action. If you enable it by <code class="java">enableRemoteConfigAutomaticTriggers</code>, the remote config values are going to be fully updated.</span>
+</p>
+<pre><code class="java">Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
+config.enableRemoteConfigAutomaticTriggers();
+...</code></pre>
+<p>
+  Remote configs are going to be downloaded from scratch in these triggers:
+</p>
+<ul>
+  <li>
+    <span>Just after initialization of the Countly Java SDK</span>
+  </li>
+  <li>
+    <span>After a device id change</span>
+  </li>
+</ul>
+<h3 id="h_01HE5JSPP4G9YCH8HY4QAZ7RE4">Manual Calls</h3>
+<p>There are three ways to trigger remote config value download manually:</p>
+<ul>
+  <li>
+    <span>Manually downloading all keys</span>
+  </li>
+  <li>
+    <span>Manually downloading specific keys</span>
+  </li>
+  <li>Manually downloading, omitting (everything except) keys.</li>
+</ul>
+<p>
+  <span>Each of these calls also has an optional RCDownloadCallback callback parameter which would be called when the download has finished.</span>
+</p>
+<p>
+  <code class="java">dowloadAllKeys</code> is the same as the automatic update
+  - it replaces all stored values with the ones from the server (all locally stored
+  values are deleted and replaced with new ones).
+</p>
+<p>
+  <span>Or downloading values of only specific keys might be needed. To do so, calling <code class="java">downloadSpecificKeys</code> to download new values for the specific keys would update only those keys which are provided with a String array.</span>
+</p>
+<p>
+  <span>Or downloading values of only a few keys might not be needed. To do so, calling <code class="java">downloadOmittingKeys</code> would update all values except the provided keys</span><span>. The keys are provided with a String array.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">All Keys</span>
+    <span class="tabs-link">Include Keys</span>
+    <span class="tabs-link">Omit Keys</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">Countly.instance().remoteConfig().downloadAllKeys((requestResult, error, fullValueUpdate, downloadedValues) -&gt; {
+  if(requestResult.equals(RequestResult.Success){
+    //do sth
+  }
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">Countly.instance().remoteConfig().downloadSpecificKeys(String[] keysToInclude, (requestResult, error, fullValueUpdate, downloadedValues) -&gt; {
+  if(requestResult.equals(RequestResult.Success){
+    //do sth
+  }
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">Countly.instance().remoteConfig().downloadOmittingKeys(String[] keysToOmit, (requestResult, error, fullValueUpdate, downloadedValues) -&gt; {
+  if(requestResult.equals(RequestResult.Success){
+    //do sth
+  }
+});</code></pre>
+  </div>
+</div>
+<p>
+  <span>When making requests with an "keysToInclude" or "keysToOmit" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+</p>
+<h2 id="h_01HE7DEWNAQGDF1X2QGS367TJ4">
+  <span>Accessing Values</span>
+</h2>
+<p>
+  There is two way to access remote config values. Either all values can be gathered,
+  or a value can be obtained for a specific key.
+</p>
+<pre><code class="java">//Which will return map of all stored remote config values
+Map&lt;String,RCData&gt; allValues = Countly.instance().remoteConfig().getValues();
+Object valueOfKey = allValues.get("key").value;</code></pre>
+<p>
+  <span>RCData looks like this:</span>
+</p>
+<pre><code class="java">class RCData {
+  //value that is downloaded from the server for that key
+  Object value;
+  //metadata about ownership of the value
+  //it is false when device id changed but that key's value is not updated
+  boolean isCurrentUsersData;
+}</code></pre>
+<p>
+  <span>Why value is in Object class? Because all data types supported by JSON can be a stored. For example it can be a JSONArray, JSONObject, Integer, Boolean, Float, String, Double, Long. So it is needed to cast to appropriate data type. If value is null then there is no value for that key found.</span>
+</p>
+<p>
+  <span>To get a value's of a specific key:</span>
+</p>
+<pre><code class="java">RCData data = Countly.instance().remoteConfig().getValue("key");
+RCData data1 = Countly.instance().remoteConfig().getValue("key1");
+RCData data2 = Countly.instance().remoteConfig().getValue("key2");
+JSONObject json = (JSONObject) data.value;
+JSONArray jArray = (JSONArray) data1.value;
+Integer intValue = (Integer) data2.value;
+</code></pre>
+<h2 id="h_01HE7FERK1CT5SPCGQCTY041M7">Clearing Stored Values</h2>
+<p>
+  Clearing the remote config values might be needed at some case, so by this call
+  you can clean the remote config values:
+</p>
+<pre><code class="java">Countly.instance().remoteConfig().clearAll();</code></pre>
+<h2 id="h_01HE7FM8E24B9GWXGN0MG709BN">Global Download Callbacks</h2>
+<p>
+  A callback function might be needed after remote config values downloaded. Remote
+  config download callback functions can be registered during initialization of
+  Countly or via remoteConfig interface.
+</p>
+<pre><code class="java">//during initialization
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
+config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback);
+...</code></pre>
+<p>
+  RCDownloadCallback is called when the remote config download request is finished,
+  and it would have the following parameters:
+</p>
+<ul>
+  <li>
+    <code class="java">rResult</code>: RequestResult Enum (either Error, Success
+    or NetworkIssue)
+  </li>
+  <li>
+    <code class="java">error</code>: String (error message. "null" if there is
+    no error)
+  </li>
+  <li>
+    <code class="java">fullValueUpdate</code>: boolean ("true" - all values updated,
+    "false" - a subset of values updated)
+  </li>
+  <li>
+    <code class="java">downloadedValues</code>: Map&lt;String, RCData&gt; (the
+    whole downloaded remote config values from server)
+  </li>
+</ul>
+<pre><code class="java">RCDownloadCallback {
+  void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues);
+}</code></pre>
+<p>
+  Via remoteConfig interface, already registered callback can be also removed
+</p>
+<pre><code class="java">//register a download callback
+Countly.instance().remoteConfig().registerDownloadCallback(RCDownloadCallback callback);
+<br>//remove already registered download callback
+Countly.instance().remoteConfig().removeDownloadCallback(RCDownloadCallback callback);</code></pre>
+<h2 id="h_01HE7H1PHM3HJ82YDSYJWQZKNH">A/B Testing</h2>
+<p>
+  User's participation in <a href="/hc/en-us/articles/4416496362393">A/B</a> tests
+  can be accessed from the Remote Config feature in multiple ways. Possible ways
+  to enroll or remove your users for A/B tests are listed below.
+</p>
+<h3 id="h_01HE7H4D2C4N6AZ55RTSKGTGXY">Enrollment on Download</h3>
+<p>
+  Enrollment to A/B tests can be done automatically when downloading remote config
+  values. This can be enabled on the initialization of the Countly.
+</p>
+<pre><code class="java">//during initialization
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory);
+config.enrollABOnRCDownload();
+...</code></pre>
+<h3 id="h_01HE7H4GRQCW16QGRYCT87CNJV">Enrollment on Access</h3>
+<p>
+  A/B tests can be enrolled while getting remote config values from storage. If
+  there is no key exists functions does not enroll user to A/B tests:
+</p>
+<pre><code class="java">//This call returns RCData, works same way with non-enrolling variant getValue 
+Countly.instance().remoteConfig().getValueAndEnroll(String key); 
+  
+//This call returns Map&lt;String,RCData&gt;, works same way with non-enrolling variant getValues 
+Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
+<h3 id="h_01HE7H4MM8SJG3K0RAXPW0QTV5">Enrollment on Action</h3>
+<p>
+  To enroll a user into the A/B tests for the given keys following method should
+  be used:
+</p>
+<pre><code class="java">Countly.instance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
+<p>
+  Keys array is the required parameter. If it is not given this function does nothing.
+</p>
+<h3 id="h_01HE7H4RATY8ZTBVN7VJJNMA40">Exiting A/B Tests</h3>
+<p>
+  To remove users from A/B tests of certain keys, following function should be
+  used:
+</p>
+<pre><code class="java">Countly.instance().remoteConfig().exitABTestsForKeys(String[] keys);</code></pre>
+<p>
+  Keys array is the required parameter. If it is not given, user is going to be
+  removed from all tests.
+</p>
 <h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
   <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
@@ -627,9 +849,11 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
 <pre>Countly.instance().user().edit().setPicture(byte[])</pre>
-<p>or you can provide a picture url or local file path to set (only JPG, JPEG files are supported by the Java SDK):</p>
+<p>
+  or you can provide a picture url or local file path to set (only JPG, JPEG files
+  are supported by the Java SDK):
+</p>
 <pre>Countly.instance().user().edit().setPicturePath(String)</pre>
-
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
 <pre><code class="java">//set a custom property
@@ -655,9 +879,9 @@ Countly.instance().user().edit().commit();</code></pre>
 <p>
   You may set the optional <code>salt</code> to be used for calculating the checksum
   of requested data, which will be sent with each request, using the
-  <code>&amp;checksum</code> field. You will need to set the same salt on the Countly
+  <code>checksum</code> field. You will need to set the same salt on the Countly
   server. If the salt on the Countly server is selected, all requests will be checked
-  for the validity of the <code>&amp;checksum</code> field before being processed.
+  for the validity of the <code>checksum</code> field before being processed.
 </p>
 <pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);<code class="java"></code></pre>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
@@ -698,8 +922,8 @@ Countly.instance().user().edit().commit();</code></pre>
     </div>
   </li>
   <li>
-    <strong>setApplicationName(String name)&nbsp;</strong>- Change application
-    name reported to Countly server.
+    <strong>setApplicationName(String name) </strong>- Change application name
+    reported to Countly server.
   </li>
   <li>
     <div>
@@ -727,8 +951,8 @@ Countly.instance().user().edit().commit();</code></pre>
   </li>
   <li>
     <div>
-      <strong>setCustomDeviceId(String customDeviceId)&nbsp;</strong>- Set
-      device id to specific string and strategy to
+      <strong>setCustomDeviceId(String customDeviceId) </strong>- Set device
+      id to specific string and strategy to
       <code>DeviceIdStrategy.CUSTOM_ID</code>.
     </div>
   </li>
@@ -737,6 +961,22 @@ Countly.instance().user().edit().commit();</code></pre>
       <strong>setLogListener(LogCallback logCallback)</strong> - Add a log
       callback that will duplicate all logs done by the SDK.
     </div>
+  </li>
+  <li>
+    <strong>enrollABOnRCDownload()&nbsp;</strong>- Enables A/B tests enrollment
+    when remote config keys downloaded
+  </li>
+  <li>
+    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)&nbsp;</strong>-
+    Register a callback to be called when remote config values is downloaded
+  </li>
+  <li>
+    <strong>enableRemoteConfigValueCaching()</strong> - Enable caching of remote
+    config values
+  </li>
+  <li>
+    <strong>enableRemoteConfigAutomaticTriggers()</strong> - Enable automatic
+    download of remote config values on triggers
   </li>
 </ul>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
@@ -839,7 +1079,7 @@ Countly.init(targetFolder, config);</code></pre>
   <span data-preserver-spaces="true">You may record as many events as you want.</span>
 </p>
 <p>
-  <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.&nbsp;</span>
+  <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.</span>
 </p>
 <ul>
   <li>
@@ -849,16 +1089,16 @@ Countly.init(targetFolder, config);</code></pre>
     <strong><span data-preserver-spaces="true">key-</span></strong><span data-preserver-spaces="true"> This is the main property which would be the identifier/name for that event. It is mandatory and it can not be empty or null.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">count -</span></strong><span data-preserver-spaces="true">&nbsp;A whole positive numerical number value that marks how many times this event has happened. It is optional and if it is provided and its value is less than&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">, SDK will automatically set it to&nbsp;</span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">.</span>
+    <strong><span data-preserver-spaces="true">count -</span></strong><span data-preserver-spaces="true"> A whole positive numerical number value that marks how many times this event has happened. It is optional and if it is provided and its value is less than </span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">, SDK will automatically set it to </span><strong><span data-preserver-spaces="true">1</span></strong><span data-preserver-spaces="true">.</span>
   </li>
   <li>
     <strong><span data-preserver-spaces="true">sum -</span></strong><span data-preserver-spaces="true"> This value will be summed up across all events in the dashboard. It is optional you may set it <strong>null</strong>.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">duration -&nbsp;</span></strong><span data-preserver-spaces="true">This value is used for recording and tracking the duration of events. Set it to&nbsp;</span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true">&nbsp;if you don't want to report any duration.</span>
+    <strong><span data-preserver-spaces="true">duration - </span></strong><span data-preserver-spaces="true">This value is used for recording and tracking the duration of events. Set it to </span><strong><span data-preserver-spaces="true">0</span></strong><span data-preserver-spaces="true"> if you don't want to report any duration.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your events to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map that consists of key and value pairs. The accepted data types for the values are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong><span data-preserver-spaces="true">segmentation - </span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your events to track additional information. It is not a mandatory field, so you may set it to </span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true"> or </span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map that consists of key and value pairs. The accepted data types for the values are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
 </ul>
 <p>Example:</p>
@@ -871,27 +1111,27 @@ Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment,
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
-  not be recorded if any of these two parameters is null or empty.&nbsp;
+  not be recorded if any of these two parameters is null or empty.;
 </p>
 <h4 id="h_01HABV0K6DRZ993XGKMFF29MGF">Recording a View</h4>
 <p>
   <span data-preserver-spaces="true">You may record views by providing the view details in segmentation with a timestamp.</span>
 </p>
 <p>
-  <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.&nbsp;</span>
+  <span data-preserver-spaces="true">There are a couple of values that can be set when recording an event.</span>
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty data will not be recorded.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">name -</span></strong><span data-preserver-spaces="true">&nbsp;It is the name of the view and it must not be empty or null.</span>
+    <strong><span data-preserver-spaces="true">name -</span></strong><span data-preserver-spaces="true"> It is the name of the view and it must not be empty or null.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong><span data-preserver-spaces="true">segmentation - </span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, you may set it to </span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true"> or leave it </span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs and the accepted data types are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">timestamp -</span></strong><span data-preserver-spaces="true">&nbsp;It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
+    <strong><span data-preserver-spaces="true">timestamp -</span></strong><span data-preserver-spaces="true"> It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
   </li>
 </ul>
 <p>Example:</p>
@@ -904,8 +1144,8 @@ Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment,
 Countly.backendMode().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
 <p>
-  <strong>Note:&nbsp;</strong>Device ID and 'name' both are mandatory. The view
-  will not be recorded if any of these two parameters is null or empty.
+  <strong>Note: </strong>Device ID and 'name' both are mandatory. The view will
+  not be recorded if any of these two parameters is null or empty.
 </p>
 <h4 id="h_01HABV0K6D86BYQ81T2VGYZJKM">Recording a Crash</h4>
 <p>
@@ -913,22 +1153,22 @@ Countly.backendMode().recordView("device-id", "SampleView", segmentation, 164664
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, and if it is null or not provided no data will be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, and if it is null or not provided no data will be recorded. </span>
   </li>
   <li>
-    <strong>message -</strong>&nbsp;
+    <strong>message -</strong>
     <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
   </li>
   <li>
-    <strong>stacktrace -</strong>&nbsp;
+    <strong>stacktrace -</strong>
     <span>A string that describes the contents of the call stack</span>. It
     <span data-preserver-spaces="true">is mandatory, and should not be null or empty.</span>
   </li>
   <li>
-    <strong><span data-preserver-spaces="true">segmentation -&nbsp;</span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">.&nbsp;It is a map of key/value pairs and the accepted data types are&nbsp;"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    <strong><span data-preserver-spaces="true">segmentation - </span></strong><span data-preserver-spaces="true">A map where you can provide custom data for your view to track additional information. It is not a mandatory field, so you may set it to </span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true"> or leave it </span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs and the accepted data types are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
-    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ20M61EKN76EY6RJ84" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
+    <strong>crashDetail - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to </span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true"> or leave it </span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs. To know more about crash parameters, <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ20M61EKN76EY6RJ84" target="_self">click here</a>.</span><span data-preserver-spaces="true"></span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -977,15 +1217,14 @@ try {
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true">&nbsp;Device id is mandatory, if it is null or empty data will not be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty data will not be recorded.</span>
   </li>
   <li>
-    <strong>metrics -<span>&nbsp;</span></strong>It is a map that contains device
-    and app information<span data-preserver-spaces="true"> as key-value pairs.&nbsp;</span>
+    <strong>metrics - </strong>It is a map that contains device and app information<span data-preserver-spaces="true"> as key-value pairs. </span>
     It can be null or empty<span> and the accepted data type for the pairs is </span><span>"String".</span>
   </li>
   <li>
-    <strong>location - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to&nbsp;</span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true">&nbsp;or leave it&nbsp;</span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs and the accepted keys are "city", "country_code", "ip_address", and "location".</span>
+    <strong>location - </strong><span data-preserver-spaces="true">It is not a mandatory field, so you may set it to </span><strong><span data-preserver-spaces="true">null</span></strong><span data-preserver-spaces="true"> or leave it </span><strong><span data-preserver-spaces="true">empty</span></strong><span data-preserver-spaces="true">. It is a map of key/value pairs and the accepted keys are "city", "country_code", "ip_address", and "location".</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -1009,7 +1248,7 @@ Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
 Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130L);
 </code></pre>
 <p>
-  <strong>Note:&nbsp;</strong>In above example '_os', '_os_version' and '_app_version'
+  <strong>Note:</strong> In above example '_os', '_os_version' and '_app_version'
   are predefined metrics keys. To know more about metrics, click
   <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ2TZF21BH3ZSR8XHNW" target="_self">here.</a>
 </p>
@@ -1018,7 +1257,7 @@ Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no action will be taken.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no action will be taken.</span>
   </li>
   <li>
     <strong>duration - </strong>It is the duration of a session, you may pass
@@ -1046,16 +1285,16 @@ Countly.backendMode().sessionEnd("device-id", duration, 1223456767L);
 <h4 id="h_01HABV0K6EF1ZF35KQD5VVSN6X">Recording User Properties</h4>
 <p>
   If you want to record some user information the SDK lets you do so by passing
-  data as user details and custom properties.&nbsp;
+  data as user details and custom properties.
 </p>
 <ul>
   <li>
-    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no data will be recorded.&nbsp;</span>
+    <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, if it is null or empty no data will be recorded.</span>
   </li>
   <li>
     <strong>userProperties -</strong>
     <span>It is a map of key/value pairs</span> and it should not be null or
-    empty<span>. The accepted data types as a value are&nbsp;</span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+    empty<span>. The accepted data types as a value are </span><span>"String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
   </li>
   <li>
     <strong>timestamp -</strong>
@@ -1159,7 +1398,7 @@ Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
   </p>
   <ul>
     <li>
-      <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, so if it is null or empty no data will be recorded.&nbsp;</span>
+      <strong><span data-preserver-spaces="true">deviceID -</span></strong><span data-preserver-spaces="true"> Device id is mandatory, so if it is null or empty no data will be recorded.</span>
     </li>
     <li>
       <strong>requestData -</strong> <span>It is a map of key/value pairs</span>
@@ -1197,7 +1436,7 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
     <span>Where Does the SDK Store the Data?</span>
   </h2>
   <p>
-    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the directory given with </span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true">&nbsp;parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
+    <span data-preserver-spaces="true">The Countly Java SDK stores data in a directory/file structure. All SDK-related files are stored inside the directory given with </span><strong><span data-preserver-spaces="true">sdkStorageRootDirectory</span></strong><span data-preserver-spaces="true"> parameter to the Config class during init. The SDK creates files for sessions, users, event queues, requests, crashes, and JSON storage to keep the device ID, migration version, etc.</span>
   </p>
   <h2 id="h_01HD3F2TTEZ5KF3H2MDYA7CF9B">
     <span>What Information Is Collected by the SDK?</span>
