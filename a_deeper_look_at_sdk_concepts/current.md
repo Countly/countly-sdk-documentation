@@ -1010,24 +1010,121 @@ module.exports = {
 <p>
   <span>You can use the "<a href="https://www.openssl.org/source/">openssl</a>" command line utility to get this information.</span>
 </p>
+<h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
+  <span>Acquiring the SSL public key from a server</span>
+</h2>
 <p>
-  <span>To get the current public key or whole certificate from your server you can use one of these snippets (replace xxx.server.ly with your server name):</span>
+  <span>To get the current public key from your server you can use the following snippet (replace xxx.server.ly with your server name):</span>
 </p>
 <pre><code lang="bash">#get the public key
 openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
-
-#get the list of certificates
+</code></pre>
+<p>That command would produce output similar to the following:</p>
+<pre><code lang="bash">depth=2 C = CC, O = XXX Server Service, CN = X1 Z1
+verify return:1
+depth=1 C = CC, O = XXX Server Service, CN = Y2 Z34
+verify return:1
+depth=0 CN = *.xxx.server.ly
+verify return:1
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqBv1G1nbGTlZa5ARZYSy
+x+ZfVZLaWJlHrIm8crPjj6X/LXfPj/K/bBeVwB2VrpEfLr/vJsv4AC3Dp+YZzchv
+zOQUBIiJW0xZ3DXaV9arok9vUk1Srdphr6AO8gixS8Hv7Jnd6B+GszZxtE1tTxjg
+5mzm67V1gg0dKSEKEvX49YdVsjj6HKSzqK8J1GS/gllgUuACZMMtxi3L9eBtOkZZ
+ihgtHLuL5kf6i5sKb0nZUvCh5cxInNnDE3NohzHacC0p8Uah4WvnJ6nNLFD76xYG
+fEn98nqOp9Lw+T4UWuH9A5D+uR4L/6rcHvNvqGlgKX0uZkKuyZnhVdjXeunQzwmX
+UwIDAQAB
+-----END PUBLIC KEY-----
+</code></pre>
+<p>
+  <span>The public key for <code>xxx.server.ly</code> is returned in the pem format, its bytes are between the <code>-----BEGIN PUBLIC KEY-----</code> and</span><code style="font-size: 15px;">-----END PUBLIC KEY-----</code>
+  tags. You would not copy the tags and just the characters between them when providing
+  this information to the SDK. Remember to not add any newlines when providing
+  this to the SDK.
+</p>
+<h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
+  <span>Acquiring the SSL certificate information from a server</span>
+</h2>
+<p>
+  <span>To get the whole certificate from your server you can use the following snippets (replace xxx.server.ly with your server name):</span>
+</p>
+<pre><code lang="bash">#get the list of certificates
 openssl s_client -connect xxx.server.ly:443 -showcerts
 </code></pre>
-<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">
-  Understanding common problems when the SSL certificate is rejected
-</h1>
 <p>
-  In case of some issues, sometimes a good way of exploring the cause of the problem
-  further is the same openssl certificate command:
+  The command would produce output similar to the following (for improving readability,
+  the certificate related bytes are cut short):
+</p>
+<pre><code lang="bash">CONNECTED(00000003)
+depth=2 O = Digital Signature Trust Co., CN = DST Root CA X3
+verify return:1
+depth=1 C = US, O = Let's Encrypt, CN = Let's Encrypt Authority X3
+verify return:1
+depth=0 CN = xxx.server.ly
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=xxx.server.ly
+   i:/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
+-----BEGIN CERTIFICATE-----
+MIIEKDCCAxCgAwIBAgISA+z3u2fRWjX3pN/gVx3hU69zMA0GCSqGSIb3DQEBCwUA
+MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbm...
+-----END CERTIFICATE-----
+ 1 s:/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
+   i:/O=Digital Signature Trust Co./CN=DST Root CA X3
+-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIQAqxcJmoA5OoRVjRk4VSSbzAN...
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=/CN=xxx.server.ly
+issuer=/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Server Temp Key: ECDH, P-256, 256 bits
+---
+SSL handshake has read 3072 bytes and written 460 bytes
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: B049D3E8126B5421704F7F793EBF78E2B595A7B4820341F169F5C394D177697A4
+    Session-ID-ctx:
+    Master-Key: 05F08C1C9B9E5EDC01A3A51DA3B656E715E1173186C3167EDC758BFBB7603A80
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1642277969
+    Timeout   : 7200 (sec)
+    Verify return code: 0 (ok)
+---
+</code></pre>
+<p>
+  <span>The produced output would contain information about multiple certificates, it shows the certificate chain of trust to the respective root certificate authority. The specific certificate information for your server would be at the top and that is the one you would need to copy.</span>
+</p>
+<p>
+  <span>You would copy the string/bytes between the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
+</p>
+<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
+<p>
+  <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
+</p>
+<p>
+  Sometimes a good way of exploring the cause of the problem is the same openssl
+  certificate command:
 </p>
 <pre><code lang="bash">openssl s_client -connect xxx.server.ly:443 -showcerts</code></pre>
-<p>It's error codes can sometimes lead you to a solution.</p>
+<p>Example output might look like this:</p>
+<pre><code lang="bash">0056931101000000:error:10080002:BIO routines:BIO_lookup_ex:system lib:crypto/bio/bio_addr.c:738:nodename nor servname provided, or not known
+connect:errno=0</code></pre>
+<p>Its error codes may lead to a solution.</p>
 <p>
   A common issue, which can be encountered is that the server's certificate does
   not contain the full chain of trust in it and it shows only 1 entry. In such
