@@ -1070,38 +1070,6 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
   view and the native application. Each for different platforms and multiple and
   singular SDK scenarios.
 </p>
-<h2 id="h_01HEADFCRX3BVR8QZNKQZY3B0T">Enabling Web SDK inside a Flutter Web App</h2>
-<p>
-  One of the ways to execute Javascript in Dart is to use Dart:js library (another
-  way would be to use its superset, the 'js' library). Using this library you can
-  use the Countly methods inside your Dart code. However it depends on you defining
-  the functions you will use before hand. So an example strategy to use Web SDK
-  inside a Flutter Web App would go through there steps:
-</p>
-<ul>
-  <li>Add a new '.js' file in 'web' folder of your project</li>
-  <li>Inside that file set some methods to call later:</li>
-</ul>
-<div>
-  <pre><span>// lets say inside the my_methods.js file you have created<br>function</span><span> </span><span>sendEvent</span><span>(</span><span>key</span><span>) {</span><br><span>  &nbsp; </span><span>Countly</span><span>.</span><span>add_event</span><span>({key: key</span><span>});</span><br><span>}</span></pre>
-</div>
-<ul>
-  <li>
-    At the 'head' tag of index.html add this file and countly script as a source:
-  </li>
-</ul>
-<pre>&lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js' defer&gt;&lt;/script&gt;<br>&lt;script src="<span>my_methods.js</span>" defer&gt;&lt;/script&gt;<br>&lt;body&gt;<br>&lt;script&gt;<br>// ... Flutter related code here<br><br>// initialize Countly<br><span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span>   // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span><br>&lt;/script&gt;<br>&lt;/body&gt;</pre>
-<ul>
-  <li>Now in flutter import dart:js</li>
-  <li>
-    And use js.context.callMethod('method_name',['args']) to call those methods:
-  </li>
-</ul>
-<pre>import 'dart:js' as js; // import the library<br><br>// ... your other code here<br><br>// lets say you have a button that triggers this function:<br>void webEvent() {<br>   js.context.callMethod('sendEvent',['some_key']); // call the method from <span>my_methods.js</span><br>}</pre>
-<p>
-  Now you should be able to send an event with a key you want in your code. You
-  can change things according to your own project inspiring from these basic principles.
-</p>
 <h2 id="h_01HE01VEM5HHNMVD0P9VNHMNZD">Tracking Depending on the Native Platform</h2>
 <h3 id="h_01HDZY2VYRXV4301CSARPRFPZP">Android</h3>
 <h4 id="h_01HEA8VVYTFHXHE7K8VZ6CTVWT">Tracking Events from the WebView</h4>
@@ -1259,3 +1227,35 @@ function sendMessage(param) {
   }
 }
 </code></pre>
+<h1 id="h_01HEADFCRX3BVR8QZNKQZY3B0T">Using Web SDK inside a Flutter Web App</h1>
+<p>
+  One of the ways to execute Javascript in Dart is to use Dart:js library (another
+  way would be to use its superset, the 'js' library). Using this library you can
+  use the Countly methods inside your Dart code. However it depends on you defining
+  the functions you will use before hand. So an example strategy to use Web SDK
+  inside a Flutter Web App would go through there steps:
+</p>
+<ul>
+  <li>Add a new '.js' file in 'web' folder of your project</li>
+  <li>Inside that file set some methods to call later:</li>
+</ul>
+<div>
+  <pre><span>// lets say inside the my_methods.js file you have created<br>function</span><span> </span><span>sendEvent</span><span>(</span><span>key</span><span>) {</span><br><span>  &nbsp; </span><span>Countly</span><span>.</span><span>add_event</span><span>({key: key</span><span>});</span><br><span>}</span></pre>
+</div>
+<ul>
+  <li>
+    At the 'head' tag of index.html add this file and countly script as a source:
+  </li>
+</ul>
+<pre>&lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js' defer&gt;&lt;/script&gt;<br>&lt;script src="<span>my_methods.js</span>" defer&gt;&lt;/script&gt;<br>&lt;body&gt;<br>&lt;script&gt;<br>// ... Flutter related code here<br><br>// initialize Countly<br><span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span>   // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span><br>&lt;/script&gt;<br>&lt;/body&gt;</pre>
+<ul>
+  <li>Now in flutter import dart:js</li>
+  <li>
+    And use js.context.callMethod('method_name',['args']) to call those methods:
+  </li>
+</ul>
+<pre>import 'dart:js' as js; // import the library<br><br>// ... your other code here<br><br>// lets say you have a button that triggers this function:<br>void webEvent() {<br>   js.context.callMethod('sendEvent',['some_key']); // call the method from <span>my_methods.js</span><br>}</pre>
+<p>
+  Now you should be able to send an event with a key you want in your code. You
+  can change things according to your own project inspiring from these basic principles.
+</p>
