@@ -473,15 +473,15 @@ config.enableRemoteConfigAutomaticTriggers();
   </li>
 </ul>
 <h3 id="h_01HE5JSPP4G9YCH8HY4QAZ7RE4">Manual Calls</h3>
-<p>There are three ways of manual downloading:</p>
+<p>There are three ways to trigger remote config value download manually:</p>
 <ul>
   <li>
-    <span>Download all keys</span>
+    <span>Manually downloading all keys</span>
   </li>
   <li>
-    <span>Download specific keys</span>
+    <span>Manually downloading specific keys</span>
   </li>
-  <li>Download omitting (everything except) keys.</li>
+  <li>Manually downloading, omitting (everything except) keys.</li>
 </ul>
 <p>
   <span>Each of these calls also has an optional RCDownloadCallback callback parameter which would be called when the download has finished.</span>
