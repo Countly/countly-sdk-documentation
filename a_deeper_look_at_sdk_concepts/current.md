@@ -1107,24 +1107,24 @@ SSL-Session:
 ---
 </code></pre>
 <p>
-  <span>The produced output would contain information about multiple certificates, they are showing the certificate chain of trust to the respective root certificate authority. The specific cert information for your server would be at the top and that is the one you would need to copy.</span>
+  <span>The produced output would contain information about multiple certificates, it shows the certificate chain of trust to the respective root certificate authority. The specific certificate information for your server would be at the top and that is the one you would need to copy.</span>
 </p>
 <p>
-  <span>You would copy the string/bytes betwrrn the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
+  <span>You would copy the string/bytes betweenn the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
 </p>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
 <p>
   <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
 </p>
 <p>
-  To investigate those issues further, sometimes a good way of exploring the cause
-  of the problem is the same openssl certificate command:
+  Sometimes a good way of exploring the cause of the problem is the same openssl
+  certificate command:
 </p>
 <pre><code lang="bash">openssl s_client -connect xxx.server.ly:443 -showcerts</code></pre>
 <p>Example output might look like this:</p>
 <pre><code lang="bash">0056931101000000:error:10080002:BIO routines:BIO_lookup_ex:system lib:crypto/bio/bio_addr.c:738:nodename nor servname provided, or not known
 connect:errno=0</code></pre>
-<p>It's error codes may lead to a solution.</p>
+<p>Its error codes may lead to a solution.</p>
 <p>
   A common issue, which can be encountered is that the server's certificate does
   not contain the full chain of trust in it and it shows only 1 entry. In such
