@@ -1110,7 +1110,7 @@ SSL-Session:
   <span>The produced output would contain information about multiple certificates, it shows the certificate chain of trust to the respective root certificate authority. The specific certificate information for your server would be at the top and that is the one you would need to copy.</span>
 </p>
 <p>
-  <span>You would copy the string/bytes betweenn the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
+  <span>You would copy the string/bytes between the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
 </p>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
 <p>
