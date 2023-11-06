@@ -472,7 +472,7 @@ config.enableRemoteConfigAutomaticTriggers();
     <span>After a device id change</span>
   </li>
 </ul>
-<h3 id="h_01HE5JSPP4G9YCH8HY4QAZ7RE4">Manuel Calls</h3>
+<h3 id="h_01HE5JSPP4G9YCH8HY4QAZ7RE4">Manual Calls</h3>
 <p>There are three ways of manual downloading:</p>
 <ul>
   <li>
