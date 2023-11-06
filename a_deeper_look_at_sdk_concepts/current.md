@@ -1132,3 +1132,227 @@ connect:errno=0</code></pre>
   <a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
   be helpful.
 </p>
+<h1 id="h_01HDZY2VYR54AX1CZKP46A98EJ">Tracking Events in a Web View</h1>
+<p>
+  Incase you are using a web view in your application, you can establish communication
+  between the web view and the native application. This will allow you to send
+  data from the web view to the native application and vice versa.
+</p>
+<p>
+  This can be used to track information that happens inside the web view and send
+  it to the native application. For example, if you have a web view that is used
+  to display a web page, you can track the page views inside the web view and send
+  them to the native application. The native application can then send this information
+  to Countly.
+</p>
+<h2 id="h_01HE01VEM5PTGQFQBKG1WHE8KP">Tracking from Host or Child</h2>
+<p>
+  There are two scenarios which can shape the nature of this communication:
+</p>
+<p>
+  The first is when you want to track everything from the SDK&nbsp;running in the
+  native application. In this case, the web view would be sending information(events)
+  to the native application and the native application would be using this information
+  to send events.
+</p>
+<p>
+  The second scenario is when you want to track events happening inside the web
+  view from an SDK running inside the web app on that view. In this case, the native
+  application would send the current device ID to the web view and the web view
+  would use this device ID to send events directly to the server. In this scenario
+  if session tracking is desired it should only be done in the native application.
+</p>
+<p>
+  Here we will demonstrate two methods to establish communication between the web
+  view and the native application. Each for different platforms and multiple and
+  singular SDK scenarios.
+</p>
+<h2 id="h_01HE01VEM5HHNMVD0P9VNHMNZD">Tracking Depending on the Native Platform</h2>
+<h3 id="h_01HDZY2VYRXV4301CSARPRFPZP">Android</h3>
+<h4 id="h_01HEA8VVYTFHXHE7K8VZ6CTVWT">Tracking Events from the WebView</h4>
+<p>
+  To track events happening inside the web app, that the user is interacting with
+  through the WebView, with the SDK running on that web app (it is assumed to be
+  Web SDK here) you would need to send device ID of the user to that SDK from the
+  native app and you would need to modify the init configuration of the SDK running
+  on that web app.&nbsp;
+</p>
+<p>
+  Assuming you have already created a WebView in your native application, next
+  you would need to enable the JavaScript and local storage access on that WebView:
+</p>
+<div>
+  <pre><span>// for example<br>private WebView webView;<br>webView </span>= findViewById(<span>R</span>.<span>id</span>.<span>webview</span>)<span>;<br></span><span>WebSettings webSettings </span>= <span>webView</span>.getSettings()<span>;<br></span><span>webSettings</span>.setJavaScriptEnabled(<span>true</span>)<span>; // Enable JS<br>webSettings.setDomStorageEnabled(true); // Enable local storage access<br></span><span>webView</span>.setWebViewClient(<span>new </span>WebViewClient())<span>;</span></pre>
+</div>
+<p>
+  Then you would need to load the URL of the web app by adding device ID to the
+  search query:
+</p>
+<div>
+  <pre><span>String deviceID </span>= <span>Countly</span>.<span>sharedInstance</span>().deviceId().getID()<span>; // get device ID<br></span><span>webView</span>.loadUrl(<span>"https://your.web.app.address?cly_device_id=" </span>+ <span>deviceID</span>)<span>;</span></pre>
+</div>
+<p>
+  This way when the SDK is initialized inside the WebView it would use the device
+  ID you provided. During the initialization of the SDK of your web app you would
+  need to set 'clear_stored_id' to true or set the 'storage' to 'none':
+</p>
+<div>
+  <pre><span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span>   // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span></pre>
+</div>
+<p id="h_01HEA9PTY20MT5R1TE5XF0YVD2">
+  From this point on all events you send with the web SDK on that web app would
+  be registered for the same user that was using the native app. A key point here
+  is to not track sessions with the Web SDK if you are already tracking it at the
+  native app.
+</p>
+<h4 id="h_01HE01VEM5C8W6S7JDQ0EP2SB1">Tracking Events from the Native App</h4>
+<p>
+  There are three things that need to be done to establish communication between
+  the web view and the native application on Android:
+</p>
+<ul>
+  <li>To enable JavaScript in the web view</li>
+  <li>
+    Add a JavaScript Interface that expects a message (on sends an event with
+    it)
+  </li>
+  <li>
+    Use the method that sends a message to native side at the web app
+  </li>
+</ul>
+<p>
+  Here is an example of how to send events from WebView to the native application
+  assuming you have set a WebView:
+</p>
+<pre><span>// for example you have set up a WebView like this<br>private WebView webView;<br></span>webView = findViewById(R.id.webview);<br>WebSettings webSettings = webView.getSettings();<br>webSettings.setJavaScriptEnabled(true); // Enable JS here<br>webSettings.setDomStorageEnabled(true);<br>webView.addJavascriptInterface(new JSBridge(), "JSBridge"); // Add JS Interface<br>webView.setWebViewClient(new WebViewClient());</pre>
+<p>
+  We will need a class where we provide a method at JS we can use to send a message:
+</p>
+<div>
+  <pre><span>// Define the class we will add with JS Interface<br>class </span><span>JSBridge </span>{<br>    <span>@JavascriptInterface<br></span><span>    </span><span>public void </span><span>showMessageInNative</span>(<span>String key</span>) { // method that will get message <br><span>        </span><span>Countly</span>.<span>sharedInstance</span>().events().recordEvent(<span>key</span>)<span>; // record an event with message<br></span><span>    </span>}<br>}</pre>
+</div>
+<p>
+  Then on the web view side, you can send messages to the native application using
+  the method we created in our class at native side. Here is an example of how
+  to do this:
+</p>
+<pre>// create a function that uses the JSBridge we have declared at native side<br>function sendMessage(message) {<br>  JSBridge.showMessageInNative(message);<br>}</pre>
+<p>
+  Calling this method with a message you provide would result in that message to
+  be used as a key of an event and recorded at the native side by the SDK running
+  there.
+</p>
+<h3 id="h_01HE01VEM6H1VRDJNDHJ0A2Z1K">iOS</h3>
+<h4 id="01HEAAX5QBHWXE0ES9Y9NMH4GZ">Tracking Events from the WebView</h4>
+<p>
+  To track events inside the WebView the only thing you need to do at the native
+  side is to pass the device ID of the user:
+</p>
+<pre><code>// Lets assume you have a WebView like this
+import UIKit
+import WebKit
+class ViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
+  var webView: WKWebView!<br>
+  override func loadView() {
+    let webConfiguration = WKWebViewConfiguration()
+    webView = WKWebView(frame: .zero, configuration: webConfiguration)
+    webView.configuration.preferences.javaScriptEnabled = true
+    webView.uiDelegate = self
+    view = webView
+  }
+  override func viewDidLoad() {
+    super.viewDidLoad()<br>    <br>    // get device ID
+    let id = <span class="hljs-selector-tag">Countly</span><span class="hljs-selector-class">.sharedInstance</span><span>()</span><span class="hljs-selector-class">.deviceID</span><span>()</span><br>    <br>    // your web app url + device ID
+    let myURL = URL(string:"https://your.app.url?cly_devide_id=" + id)
+    let myRequest = URLRequest(url: myURL!)
+    webView.load(myRequest)
+  }
+}</code></pre>
+<p>At your web app initialize the SDK like this:</p>
+<pre><code>// Making sure that SDK does not try to use the device ID from storage
+<span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span> // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span>
+</code></pre>
+<p>
+  Now you can use the SDK inside the web app as normal and all events would be
+  registered under the user from the native app. Session tracking should not be
+  enabled inside the web app if it was enabled at the native side.
+</p>
+<h4 id="01HEAAXF77XNR21YXRT9FF2FZ6">Tracking Events from the Native App</h4>
+<p>
+  To track events from your native app you can use a simple userContentController
+  and pass a message from the WebView which then you can use for sending events
+  or more:
+</p>
+<pre><code>// Lets assume you have a WebView like this
+import UIKit
+import WebKit
+class ViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
+  <br>  // Controller logic here
+  func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    // You can create an event with message from JS side here
+    print(message.body)<br>    <span class="hljs-selector-tag">Countly</span><span class="hljs-selector-class">.sharedInstance</span><span>()</span><span class="hljs-selector-class">.recordEvent</span><span>(message.body</span><span>)</span>
+  }<br>
+  var webView: WKWebView!
+  var webHandler: String = "jsHandler" // handler name. We will use this at WebView<br>
+  override func loadView() {
+    let webConfiguration = WKWebViewConfiguration()
+    webView = WKWebView(frame: .zero, configuration: webConfiguration)
+    webView.configuration.preferences.javaScriptEnabled = true
+    
+    // Assign controller here
+    let contentController = WKUserContentController()
+    webView.configuration.userContentController = contentController
+    webView.configuration.userContentController.add(self, name: webHandler)
+  
+    webView.uiDelegate = self
+    view = webView
+  }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let myURL = URL(string:"https://your.app.url") // your web app url
+    let myRequest = URLRequest(url: myURL!)
+    webView.load(myRequest)
+  }
+}</code></pre>
+<p>At your web app create a function like this:</p>
+<pre><code>// You can call this function inside your web app to send a message to your native app
+function sendMessage(param) {
+  try {
+    window.webkit.messageHandlers.jsHandler.postMessage(param); // we send message here
+  } catch (error) {
+    // log or sth else
+  }
+}
+</code></pre>
+<h1 id="h_01HEADFCRX3BVR8QZNKQZY3B0T">Using Web SDK inside a Flutter Web App</h1>
+<p>
+  One of the ways to execute Javascript in Dart is to use Dart:js library (another
+  way would be to use its superset, the 'js' library). Using this library you can
+  use the Countly methods inside your Dart code. However it depends on you defining
+  the functions you will use before hand. So an example strategy to use Web SDK
+  inside a Flutter Web App would go through there steps:
+</p>
+<ul>
+  <li>Add a new '.js' file in 'web' folder of your project</li>
+  <li>Inside that file set some methods to call later:</li>
+</ul>
+<div>
+  <pre><span>// lets say inside the my_methods.js file you have created<br>function</span><span> </span><span>sendEvent</span><span>(</span><span>key</span><span>) {</span><br><span>  &nbsp; </span><span>Countly</span><span>.</span><span>add_event</span><span>({key: key</span><span>});</span><br><span>}</span></pre>
+</div>
+<ul>
+  <li>
+    At the 'head' tag of index.html add this file and countly script as a source:
+  </li>
+</ul>
+<pre>&lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js' defer&gt;&lt;/script&gt;<br>&lt;script src="<span>my_methods.js</span>" defer&gt;&lt;/script&gt;<br>&lt;body&gt;<br>&lt;script&gt;<br>// ... Flutter related code here<br><br>// initialize Countly<br><span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span>   // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span><br>&lt;/script&gt;<br>&lt;/body&gt;</pre>
+<ul>
+  <li>Now in flutter import dart:js</li>
+  <li>
+    And use js.context.callMethod('method_name',['args']) to call those methods:
+  </li>
+</ul>
+<pre>import 'dart:js' as js; // import the library<br><br>// ... your other code here<br><br>// lets say you have a button that triggers this function:<br>void webEvent() {<br>   js.context.callMethod('sendEvent',['some_key']); // call the method from <span>my_methods.js</span><br>}</pre>
+<p>
+  Now you should be able to send an event with a key you want in your code. You
+  can change things according to your own project inspiring from these basic principles.
+</p>
