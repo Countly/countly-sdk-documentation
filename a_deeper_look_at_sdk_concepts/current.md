@@ -1010,20 +1010,16 @@ module.exports = {
 <p>
   <span>You can use the "<a href="https://www.openssl.org/source/">openssl</a>" command line utility to get this information.</span>
 </p>
+<h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
+  <span>Acquiring the SSL public key from a server</span>
+</h2>
 <p>
-  <span>To get the current public key or whole certificate from your server you can use one of these snippets (replace xxx.server.ly with your server name):</span>
+  <span>To get the current public key from your server you can use the following snippet (replace xxx.server.ly with your server name):</span>
 </p>
 <pre><code lang="bash">#get the public key
 openssl s_client -connect xxx.server.ly:443 | openssl x509 -pubkey -noout
-
-#get the list of certificates
-openssl s_client -connect xxx.server.ly:443 -showcerts</code><code lang="bash"></code><code lang="bash"></code></pre>
-<p>
-  <span>To retrieve a public key, a sample output would look like this. The public key for <code>xxx.server.ly</code> is returned in pem format, as can be seen. Between <code>-----BEGIN PUBLIC KEY-----</code> and </span>
-</p>
-<p>
-  <span><code>-----END PUBLIC KEY-----</code> entries are parts of the whole public key, and these tags should be included when copied.<br></span>
-</p>
+</code></pre>
+<p>That command would produce output similar to the following:</p>
 <pre><code lang="bash">depth=2 C = CC, O = XXX Server Service, CN = X1 Z1
 verify return:1
 depth=1 C = CC, O = XXX Server Service, CN = Y2 Z34
@@ -1041,7 +1037,23 @@ UwIDAQAB
 -----END PUBLIC KEY-----
 </code></pre>
 <p>
-  <span>In the certificate case, the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> entry between these tags, tags included, would be the certificate for your server (what you need to enter into SDK configuration) and the rest would be the chain of trust to the root certificate authority.</span>
+  <span>The public key for <code>xxx.server.ly</code> is returned in the pem format, its bytes are between the <code>-----BEGIN PUBLIC KEY-----</code> and</span><code style="font-size: 15px;">-----END PUBLIC KEY-----</code>
+  tags. You would not copy the tags and just the characters between them when providing
+  this information to the SDK. Remember to not add any newlines when providing
+  this to the SDK.
+</p>
+<h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
+  <span>Acquiring the SSL certificate information from a server</span>
+</h2>
+<p>
+  <span>To get the whole certificate from your server you can use the following snippets (replace xxx.server.ly with your server name):</span>
+</p>
+<pre><code lang="bash">#get the list of certificates
+openssl s_client -connect xxx.server.ly:443 -showcerts
+</code></pre>
+<p>
+  The command would produce output similar to the following (for improving readability,
+  the certificate related bytes are cut short):
 </p>
 <pre><code lang="bash">CONNECTED(00000003)
 depth=2 O = Digital Signature Trust Co., CN = DST Root CA X3
@@ -1094,6 +1106,12 @@ SSL-Session:
     Verify return code: 0 (ok)
 ---
 </code></pre>
+<p>
+  <span>The produced output would contain information about multiple certificates, they are showing the certificate chain of trust to the respective root certificate authority. The specific cert information for your server would be at the top and that is the one you would need to copy.</span>
+</p>
+<p>
+  <span>You would copy the string/bytes betwrrn the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
+</p>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
 <p>
   <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
