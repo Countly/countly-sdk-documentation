@@ -1179,4 +1179,83 @@ openssl s_client -connect xxx.server.ly:443 -showcerts
 </p>
 <h3 id="h_01HE01VEM6H1VRDJNDHJ0A2Z1K">iOS</h3>
 <h4 id="01HEAAX5QBHWXE0ES9Y9NMH4GZ">Tracking Events from the WebView</h4>
+<p>
+  To track events inside the WebView the only thing you need to do at the native
+  side is to pass the device ID of the user:
+</p>
+<pre><code>// Lets assume you have a WebView like this
+import UIKit
+import WebKit
+class ViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
+  var webView: WKWebView!<br>
+  override func loadView() {
+    let webConfiguration = WKWebViewConfiguration()
+    webView = WKWebView(frame: .zero, configuration: webConfiguration)
+    webView.configuration.preferences.javaScriptEnabled = true
+    webView.uiDelegate = self
+    view = webView
+  }
+  override func viewDidLoad() {
+    super.viewDidLoad()<br>    <br>    // get device ID
+    let id = <span class="hljs-selector-tag">Countly</span><span class="hljs-selector-class">.sharedInstance</span><span>()</span><span class="hljs-selector-class">.deviceID</span><span>()</span><br>    <br>    // your web app url + device ID
+    let myURL = URL(string:"https://your.app.url?cly_devide_id=" + id)
+    let myRequest = URLRequest(url: myURL!)
+    webView.load(myRequest)
+  }
+}</code></pre>
+<p>At your web app initialize the SDK like this:</p>
+<pre><code>// Making sure that SDK does not try to use the device ID from storage
+<span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span> // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span>
+</code></pre>
+<p>
+  Now you can use the SDK inside the web app as normal and all events would be
+  registered under the user from the native app. Session tracking should not be
+  enabled inside the web app if it was enabled at the native side.
+</p>
 <h4 id="01HEAAXF77XNR21YXRT9FF2FZ6">Tracking Events from the Native App</h4>
+<p>
+  To track events from your native app you can use a simple userContentController
+  and pass a message from the WebView which then you can use for sending events
+  or more:
+</p>
+<pre><code>// Lets assume you have a WebView like this
+import UIKit
+import WebKit
+class ViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
+  <br>  // Controller logic here
+  func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    // You can create an event with message from JS side here
+    print(message.body)<br>    <span class="hljs-selector-tag">Countly</span><span class="hljs-selector-class">.sharedInstance</span><span>()</span><span class="hljs-selector-class">.recordEvent</span><span>(message.body</span><span>)</span>
+  }<br>
+  var webView: WKWebView!
+  var webHandler: String = "jsHandler" // handler name. We will use this at WebView<br>
+  override func loadView() {
+    let webConfiguration = WKWebViewConfiguration()
+    webView = WKWebView(frame: .zero, configuration: webConfiguration)
+    webView.configuration.preferences.javaScriptEnabled = true
+    
+    // Assign controller here
+    let contentController = WKUserContentController()
+    webView.configuration.userContentController = contentController
+    webView.configuration.userContentController.add(self, name: webHandler)
+  
+    webView.uiDelegate = self
+    view = webView
+  }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let myURL = URL(string:"https://your.app.url") // your web app url
+    let myRequest = URLRequest(url: myURL!)
+    webView.load(myRequest)
+  }
+}</code></pre>
+<p>At your web app create a function like this:</p>
+<pre><code>// You can call this function inside your web app to send a message to your native app
+function sendMessage(param) {
+  try {
+    window.webkit.messageHandlers.jsHandler.postMessage(param); // we send message here
+  } catch (error) {
+    // log or sth else
+  }
+}
+</code></pre>
