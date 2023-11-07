@@ -278,10 +278,14 @@ This should contain the core integration information about the SDK, including a 
 * Multi Instancing (if the SDK supports it)
 * Custom Metrics
 * Server Configuration
-* A/B Testing Variant Information
-  * Fetching Test Variants
-  * Accessing Fetched Test Variants
-  * Enrolling For a Variant
+* A/B Experiment Testing
+  * Variant Level Control
+    * Downloading
+    * Accessing
+  * Experiment Level Control
+    * Downloading
+    * Accessing
+    * Enrolling / Exiting
 * Changing Server URL and App Key
 * Testing
 * (Other features, configuration options)
