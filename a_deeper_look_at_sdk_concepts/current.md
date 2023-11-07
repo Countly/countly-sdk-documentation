@@ -1132,16 +1132,16 @@ connect:errno=0</code></pre>
   <a href="https://serverfault.com/questions/875297/verify-return-code-21-unable-to-verify-the-first-certificate-lets-encrypt-apa" target="_blank" rel="noopener">this</a>&nbsp;may
   be helpful.
 </p>
-<h1 id="h_01HDZY2VYR54AX1CZKP46A98EJ">Tracking Events in a Web View</h1>
+<h1 id="h_01HDZY2VYR54AX1CZKP46A98EJ">Tracking Events in a WebView</h1>
 <p>
-  Incase you are using a web view in your application, you can establish communication
-  between the web view and the native application. This will allow you to send
-  data from the web view to the native application and vice versa.
+  Incase you are using a WebView in your application, you can establish communication
+  between the WebView and the native application. This will allow you to send data
+  from the WebView to the native application and vice versa.
 </p>
 <p>
-  This can be used to track information that happens inside the web view and send
-  it to the native application. For example, if you have a web view that is used
-  to display a web page, you can track the page views inside the web view and send
+  This can be used to track information that happens inside the WebView and send
+  it to the native application. For example, if you have a WebView that is used
+  to display a web page, you can track the page views inside the WebView and send
   them to the native application. The native application can then send this information
   to Countly.
 </p>
@@ -1150,22 +1150,22 @@ connect:errno=0</code></pre>
   There are two scenarios which can shape the nature of this communication:
 </p>
 <p>
-  The first is when you want to track everything from the SDK&nbsp;running in the
-  native application. In this case, the web view would be sending information(events)
-  to the native application and the native application would be using this information
+  The first is when you want to track everything from the SDK running in the native
+  application. In this case, the WebView would be sending information(events) to
+  the native application and the native application would be using this information
   to send events.
 </p>
 <p>
-  The second scenario is when you want to track events happening inside the web
-  view from an SDK running inside the web app on that view. In this case, the native
-  application would send the current device ID to the web view and the web view
-  would use this device ID to send events directly to the server. In this scenario
-  if session tracking is desired it should only be done in the native application.
+  The second scenario is when you want to track events happening inside the WebView
+  from an SDK running inside the web app on that view. In this case, the native
+  application would send the current device ID to the WebView and the WebView would
+  use this device ID to send events directly to the server. In this scenario if
+  session tracking is desired it should only be done in the native application.
 </p>
 <p>
-  Here we will demonstrate two methods to establish communication between the web
-  view and the native application. Each for different platforms and multiple and
-  singular SDK scenarios.
+  Here we will demonstrate two methods to establish communication between the WebView
+  and the native application. Each for different platforms and scenarios mentioned
+  above.
 </p>
 <h2 id="h_01HE01VEM5HHNMVD0P9VNHMNZD">Tracking Depending on the Native Platform</h2>
 <h3 id="h_01HDZY2VYRXV4301CSARPRFPZP">Android</h3>
@@ -1208,12 +1208,12 @@ connect:errno=0</code></pre>
 <h4 id="h_01HE01VEM5C8W6S7JDQ0EP2SB1">Tracking Events from the Native App</h4>
 <p>
   There are three things that need to be done to establish communication between
-  the web view and the native application on Android:
+  the WebView and the native application on Android:
 </p>
 <ul>
-  <li>To enable JavaScript in the web view</li>
+  <li>To enable JavaScript in the WebView</li>
   <li>
-    Add a JavaScript Interface that expects a message (on sends an event with
+    Add a JavaScript Interface that expects a message (and sends an event with
     it)
   </li>
   <li>
@@ -1226,17 +1226,18 @@ connect:errno=0</code></pre>
 </p>
 <pre><span>// for example you have set up a WebView like this<br>private WebView webView;<br></span>webView = findViewById(R.id.webview);<br>WebSettings webSettings = webView.getSettings();<br>webSettings.setJavaScriptEnabled(true); // Enable JS here<br>webSettings.setDomStorageEnabled(true);<br>webView.addJavascriptInterface(new JSBridge(), "JSBridge"); // Add JS Interface<br>webView.setWebViewClient(new WebViewClient());</pre>
 <p>
-  We will need a class where we provide a method at JS we can use to send a message:
+  We will need a class where we define the method we will use to send a message
+  from web app:
 </p>
 <div>
-  <pre><span>// Define the class we will add with JS Interface<br>class </span><span>JSBridge </span>{<br>    <span>@JavascriptInterface<br></span><span>    </span><span>public void </span><span>showMessageInNative</span>(<span>String key</span>) { // method that will get message <br><span>        </span><span>Countly</span>.<span>sharedInstance</span>().events().recordEvent(<span>key</span>)<span>; // record an event with message<br></span><span>    </span>}<br>}</pre>
+  <pre><span>// Define the class we will add with JS Interface<br>class </span><span>JSBridge </span>{<br>    <span>@JavascriptInterface<br></span><span>    </span><span>public void </span><span>communicate</span>(<span>String key</span>) { // method that will get message <br><span>        </span><span>Countly</span>.<span>sharedInstance</span>().events().recordEvent(<span>key</span>)<span>; // record an event with message<br></span><span>    </span>}<br>}</pre>
 </div>
 <p>
-  Then on the web view side, you can send messages to the native application using
+  Then on the WebView side, you can send messages to the native application using
   the method we created in our class at native side. Here is an example of how
   to do this:
 </p>
-<pre>// create a function that uses the JSBridge we have declared at native side<br>function sendMessage(message) {<br>  JSBridge.showMessageInNative(message);<br>}</pre>
+<pre>// create a function that uses the JSBridge we have declared at native side<br>function sendMessage(message) {<br>  JSBridge.<span>communicate</span>(message);<br>}</pre>
 <p>
   Calling this method with a message you provide would result in that message to
   be used as a key of an event and recorded at the native side by the SDK running
@@ -1270,7 +1271,7 @@ class ViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
 }</code></pre>
 <p>At your web app initialize the SDK like this:</p>
 <pre><code>// Making sure that SDK does not try to use the device ID from storage
-<span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span> // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span>
+<span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span>   // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span>
 </code></pre>
 <p>
   Now you can use the SDK inside the web app as normal and all events would be
@@ -1326,11 +1327,11 @@ function sendMessage(param) {
 </code></pre>
 <h1 id="h_01HEADFCRX3BVR8QZNKQZY3B0T">Using Web SDK inside a Flutter Web App</h1>
 <p>
-  One of the ways to execute Javascript in Dart is to use Dart:js library (another
+  One of the ways to execute JavaScript in Dart is to use Dart:js library (another
   way would be to use its superset, the 'js' library). Using this library you can
   use the Countly methods inside your Dart code. However it depends on you defining
   the functions you will use before hand. So an example strategy to use Web SDK
-  inside a Flutter Web App would go through there steps:
+  inside a Flutter Web App would go through these steps:
 </p>
 <ul>
   <li>Add a new '.js' file in 'web' folder of your project</li>
@@ -1341,10 +1342,10 @@ function sendMessage(param) {
 </div>
 <ul>
   <li>
-    At the 'head' tag of index.html add this file and countly script as a source:
+    At the 'head' tag of index.html add this file and Countly script as a source:
   </li>
 </ul>
-<pre>&lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js' defer&gt;&lt;/script&gt;<br>&lt;script src="<span>my_methods.js</span>" defer&gt;&lt;/script&gt;<br>&lt;body&gt;<br>&lt;script&gt;<br>// ... Flutter related code here<br><br>// initialize Countly<br><span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><span>,</span><br><span> &nbsp; </span><span>clear_stored_id</span><span>: </span><span>true</span><span>,<br></span>   // OR you can use:<br><span> &nbsp; </span><span>// storage: "none"</span><br><span>});</span><br>&lt;/script&gt;<br>&lt;/body&gt;</pre>
+<pre>&lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js' defer&gt;&lt;/script&gt;<br>&lt;script src="<span>my_methods.js</span>" defer&gt;&lt;/script&gt;<br>&lt;body&gt;<br>&lt;script&gt;<br>// ... Flutter related code here<br><br>// initialize Countly<br><span>Countly</span><span>.</span><span>init</span><span>({</span><br><span> &nbsp; </span><span>app_key</span><span>: </span><span>"YOUR_APP_KEY"</span><span>,</span><br><span> &nbsp; </span><span>url</span><span>: </span><span>"https://xxx.count.ly"</span><br><span>});</span><br>&lt;/script&gt;<br>&lt;/body&gt;</pre>
 <ul>
   <li>Now in flutter import dart:js</li>
   <li>
