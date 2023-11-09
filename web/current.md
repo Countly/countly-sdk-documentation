@@ -1379,6 +1379,12 @@ Countly.recordRatingWidgetWithID({
   to inject the feedback widget in a specific element, you can do so by specifying
   the element ID or the class name.
 </p>
+<div class="callout callout--warning">
+  <p>Available starting from version 23.6.3</p>
+  <p>
+    You can also add custom segmentation while presenting a widget.
+  </p>
+</div>
 <p>
   To use feedback widgets, you need to give "feedback" consent (in case consent
   is required).
@@ -1398,17 +1404,23 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
         return;
     }
   
-    //The available feedback types are nps, survey and rating, decide which one to show
-    // for example loop through the array and pick where countlyPresentableFeedback[i].type === 'nps'
-    var countlyFeedbackWidget = countlyPresentableFeedback[0];
+    // Decide which which widget to show. Here the first rating widget is selected. 
+    const widgetType = "rating";
+    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
+    if (!countlyFeedbackWidget) {
+      console.error(`[Countly] No ${widgetType} widget found`);
+      return;
+    }
 
-    //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
+    //Define the element ID and the class name (optional, pass undefined if you don't use)
+    const selectorId = "targetIdSelector";
+    const selectorClass = "targetClassSelector";
+
+    // Define the segmentation (optional)
+    const segmentation = { page: "home_page" };
 
     //Display the feedback widget to the end user
-    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass);
-
+    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
   </div>
@@ -1418,20 +1430,27 @@ Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
 <br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     if (err) {
-      console.log(err);
+        console.log(err);
         return;
     }
 
-    //The available feedback types are nps, survey and rating, decide which one to show
-    // for example loop through the array and pick where countlyPresentableFeedback[i].type === 'nps'
-    var countlyFeedbackWidget = countlyPresentableFeedback[0];
+    // Decide which which widget to show. Here the first rating widget is selected. 
+    const widgetType = "rating";
+    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
+    if (!countlyFeedbackWidget) {
+      console.error(`[Countly] No ${widgetType} widget found`);
+      return;
+    }
     
-    //Define the element ID and the class name
-    var selectorId = "targetIdSelector";
-    var selectorClass = "targetClassSelector";
+    //Define the element ID and the class name (optional, pass undefined if you don't use)
+    const selectorId = "targetIdSelector";
+    const selectorClass = "targetClassSelector";
+
+    // Define the segmentation (optional)
+    const segmentation = { page: "home_page" };
     
     //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass);
+    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
   </div>
@@ -1527,8 +1546,6 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   And example implementation of the mentioned concepts can be seen here:
 </p>
 <pre><code class="javascript">
-    var CountlyFeedbackWidget;
-    var CountlyWidgetData;
     // an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'
     function getFeedbackWidgetListAndDoThings(widgetType) {
       // get the widget list
@@ -1541,43 +1558,36 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
           }
 
           // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
-          var i = feedbackList.length - 1;
-          while (i--) {
-            if (feedbackList[i].type === widgetType) {
-              CountlyFeedbackWidget = feedbackList[i];
-              break;
-            }
+          const countlyFeedbackWidget = feedbackList.find(widget => widget.type === widgetType);
+          if (!countlyFeedbackWidget) {
+            console.error(`[Countly] No ${widgetType} widget found`);
+            return;
           }
 
-          // if the widget object is found
-          if (CountlyFeedbackWidget) {
-            // Get data with the widget object
-            Countly.getFeedbackWidgetData(CountlyFeedbackWidget,
-              // callback function, 1st param is the feedback widget data
-              function (feedbackData, err) {
-                if (err) { // error handling
-                  console.log(err);
-                  return;
-                }
-
-                CountlyWidgetData = feedbackData;
-                // record data according to the widget type
-                if (CountlyWidgetData.type === 'nps') {
-                  Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
-                } else if (CountlyWidgetData.type === 'survey') {
-                  var widgetResponse = {};
-                  // form the key/value pairs according to data
-                  widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
-                  Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, widgetResponse);
-                } else if (CountlyWidgetData.type === 'rating') {
-                  Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
-                }
+          // Get data with the widget object
+          Countly.getFeedbackWidgetData(CountlyFeedbackWidget,
+            // callback function, 1st param is the feedback widget data
+            function (feedbackData, err) {
+              if (err) { // error handling
+                console.error(err);
+                return;
               }
 
-            );
-          } else {
-            console.error("The widget type you are looking for does not exist")
-          }
+              const CountlyWidgetData = feedbackData;
+              // record data according to the widget type
+              if (CountlyWidgetData.type === 'nps') {
+                Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
+              } else if (CountlyWidgetData.type === 'survey') {
+                var widgetResponse = {};
+                // form the key/value pairs according to data
+                widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
+                Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, widgetResponse);
+              } else if (CountlyWidgetData.type === 'rating') {
+                Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
+              }
+            }
+
+          );
         })
     }
        </code></pre>
