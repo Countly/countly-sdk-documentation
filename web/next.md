@@ -1412,7 +1412,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
       return;
     }
 
-    //Define the element ID and the class name
+    //Define the element ID and the class name (optional, pass undefined if you don't use)
     const selectorId = "targetIdSelector";
     const selectorClass = "targetClassSelector";
 
@@ -1442,7 +1442,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
       return;
     }
     
-    //Define the element ID and the class name
+    //Define the element ID and the class name (optional, pass undefined if you don't use)
     const selectorId = "targetIdSelector";
     const selectorClass = "targetClassSelector";
 
