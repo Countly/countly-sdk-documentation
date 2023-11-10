@@ -393,7 +393,7 @@ segmentation.put("level", 37);</code></pre>
 view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
-  A device ID is a unique identifier for your users.You may specify the device
+  A device ID is a unique identifier for your users. You may specify the device
   ID yourself or allow the SDK to generate it. When providing one yourself, keep
   in mind that it has to be unique for all users. Some potential sources for such
   an id may be the users username, email or some other internal ID used by your
@@ -402,8 +402,8 @@ view.stop(true);</code><code class="java"></code></pre>
 <h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id and device id type Countly is assigning for
-  the specific device. For that, you may use the following calls. (Current device
-  id types are 'DEVELOPER_SUPPLIED', 'SDK_GENERATED')
+  the specific device. For that, you may use the following calls. Current device
+  id types are 'DEVELOPER_SUPPLIED', 'SDK_GENERATED'.
 </p>
 <pre><code class="java hljs">Countly.instance().deviceId().getID() // will return String
 Countly.instance().deviceId().getType() // will return DeviceIdType enum</code></pre>
