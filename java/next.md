@@ -393,7 +393,7 @@ segmentation.put("level", 37);</code></pre>
 view.stop(true);</code><code class="java"></code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
-  A device ID is a unique identifier for your users.You may specify the device
+  A device ID is a unique identifier for your users. You may specify the device
   ID yourself or allow the SDK to generate it. When providing one yourself, keep
   in mind that it has to be unique for all users. Some potential sources for such
   an id may be the users username, email or some other internal ID used by your
@@ -401,10 +401,12 @@ view.stop(true);</code><code class="java"></code></pre>
 </p>
 <h2 id="h_01HABV0K6C0RVYQ6JWPQ2EXR55">Retrieving Current Device ID</h2>
 <p>
-  You may want to see what device id Countly is assigning for the specific device.
-  For that, you may use the following calls.
+  You may want to see what device id and device id type Countly is assigning for
+  the specific device. For that, you may use the following calls. Current device
+  id types are 'DEVELOPER_SUPPLIED', 'SDK_GENERATED'.
 </p>
-<pre><code class="java hljs">Countly.instance().getDeviceId()</code></pre>
+<pre><code class="java hljs">Countly.instance().deviceId().getID() // will return String
+Countly.instance().deviceId().getType() // will return DeviceIdType enum</code></pre>
 <h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
@@ -417,14 +419,14 @@ view.stop(true);</code><code class="java"></code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><code class="java hljs">Countly.instance().changeDeviceIdWithMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.instance().deviceId().changeWithMerge("New Device Id");</code></pre>
 <p class="anchor-heading">
   <strong>Changing Device ID without server merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><code class="java hljs">Countly.instance().changeDeviceIdWithoutMerge("New Device Id");</code></pre>
+<pre><code class="java hljs">Countly.instance().deviceId().changeWithoutMerge("New Device Id");</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
@@ -438,7 +440,7 @@ view.stop(true);</code><code class="java"></code></pre>
   ID generation. For example, after you init the SDK without providing a custom
   id, this call will return something like this:
 </p>
-<pre><code class="java">Countly.instance().getDeviceId(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<pre><code class="java">Countly.instance().deviceId().getID(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
 <h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
 <p>
   Remote config allows you to modify the app by requesting key-value pairs from
@@ -473,7 +475,9 @@ config.enableRemoteConfigAutomaticTriggers();
   </li>
 </ul>
 <h3 id="h_01HE5JSPP4G9YCH8HY4QAZ7RE4">Manual Calls</h3>
-<p>There are three ways to trigger remote config value download manually:</p>
+<p>
+  There are three ways to trigger remote config value download manually:
+</p>
 <ul>
   <li>
     <span>Manually downloading all keys</span>
