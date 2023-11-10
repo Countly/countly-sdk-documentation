@@ -383,7 +383,7 @@
         <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 50.075px;">
-        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large"><span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span></span>
+        <span class="wysiwyg-color-green110 wysiwyg-font-size-x-large">●</span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 92.675px;">
         <span class="wysiwyg-font-size-x-large wysiwyg-color-red110">●</span>
@@ -658,6 +658,8 @@
 </p>
 <h2 id="h_01H9QCP8G8QD0W9EMHT11F2N8P">Java SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/25060385136921" target="_blank" rel="noopener">Version 23.8</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/23736736982425/" target="_blank" rel="noopener">Version 22.09</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/16286959845145" target="_blank" rel="noopener">Version 20.11</a>
