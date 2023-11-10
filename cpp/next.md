@@ -113,19 +113,6 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   to enable logging:
 </p>
 <pre><span class="pl-k"><code>void <span class="pl-en">printLog(cly::Countly::LogLevel level, const string&amp; msg) {...}<br>...<br><br>void (*logger_function)(cly::Countly::LogLevel level, const std::string&amp; message);<br>logger_function = printLog;<br>cly::Countly::getInstance().setLogger(logger_function);</span></code></span></pre>
-<h2 id="h_01HABV267SVS9TC2XB52AKRA5Q">Device ID</h2>
-<p>
-  All tracked information is tied to a "device ID", which is used as a unique identifier
-  of your users.
-</p>
-<p>
-  You have to specify the device ID by yourself (it has to be unique for each of
-  your users). It may be an email or some other internal ID used in your system's
-  internal logic.
-</p>
-<div>
-  <pre><code>cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</code></pre>
-</div>
 <h2 id="h_01HABV267SDXWCVYFV9RFGC08K">SDK Data Storage</h2>
 <p>
   In its unconfigured state, the SDK stores everything in memory.
@@ -349,8 +336,11 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
 </p>
 <p>
   In the C++ SDK the device ID is not persistent and has to be provided every time
-  you start the SDK.
+  you start the SDK:
 </p>
+<div>
+  <pre><code>cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</code></pre>
+</div>
 <h2 id="h_01HABV267VM3R87G2CHE26ZBND">Changing Device ID</h2>
 <p>
   In case your application authenticates users, you might want to change the initial
