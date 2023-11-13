@@ -42,7 +42,7 @@
   need to import all the files in the package.
 </p>
 <p class="wysiwyg-text-align-center">
-  <img src="/hc/article_attachments/4404570305433/Screenshot_2021-03-09_at_6.02.04_PM.png" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
+  <img src="/guide-media/01GVC1JBG025D3FBPJYN3EJR9V" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <p>
   <span data-preserver-spaces="true">This SDK uses the </span><strong><span data-preserver-spaces="true">Newtonsoft Json</span></strong><span data-preserver-spaces="true"> package internally and it is required for the SDK to work. </span>
@@ -51,7 +51,7 @@
   <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that, (2018 and 2019) you have to install this package in the project manually. </span>
 </p>
 <p>
-  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/hc/article_attachments/6537960964505/image-newtonsoft.png" alt="image-newtonsoft.png"></span>
+  <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json&nbsp;</span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows&nbsp;</span></strong><span data-preserver-spaces="true">=&gt;&nbsp;</span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/guide-media/01GVDG0BAGCD7VJ9EYNK3GS32F" alt="image-newtonsoft.png"></span>
 </p>
 <h1 id="h_01HABTZ3143Z9ZY3H02CEV868Z">SDK Integration</h1>
 <h2 id="h_01HABTZ314XCMNWWK698JR773J">Minimal Setup</h2>
@@ -84,18 +84,6 @@
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
 </p>
-<h2 id="device-id" class="anchor-heading">Device ID</h2>
-<p>
-  <span>All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
-</p>
-<p>
-  <span>You may specify the device ID by yourself if you have one (it has to be unique for each of your users). It may be an email or some other internal ID used by your other systems.</span>
-</p>
-<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true,<br>DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
-<p>
-  <span>You may let Countly SDK handle the initial device ID on its own. If needed in the future you can change this ID with an appropriate call. Then you would use the following config:</span>
-</p>
-<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 id="h_01HABTZ314QNCDAQT0SC5NETCG" class="anchor-heading">SDK data storage</h2>
 <p>
   Countly SDK s<span>tore data that are meant for your app's use only, within an internal storage volume. If your game saves in external storage, SDK will store data within external storage. You may need to add permission to store data on an SD card. Please read the </span><a href="#require-app-permissions" target="_self" rel="undefined">Required app permissions</a>
@@ -431,31 +419,10 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>A device ID is a unique identifier for your users. </span><span>You may specify the device ID yourself or allow the SDK to generate it. When providing one yourself, keep in mind that it has to be unique for all users. Some potential sources for such an id may be the users username, email or some other internal ID used by your other systems.</span>
 </p>
-<h2 id="h_01HABTZ315MARV8KKQMHM9EZBB">Device ID generation</h2>
 <p>
-  <span>If no device ID is provided the first time the SDK is initialised, the SDK will generate a unique device ID. The source of that id is</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code>which is a value exposed by Unity. It should be unique for every device.</span>
+  You can provide a device ID during initialization like this:
 </p>
-<p>
-  <span>Here are the underlying mechanisms used to generate that value for some platforms:</span>
-</p>
-<p>
-  <span><strong>IOS:</strong> on pre-iOS7 devices, it will return a hash of the MAC address. On iOS7 devices, it will be</span>
-</p>
-<p>
-  <span><code class="java">UIDevice identifierForVendor</code> or, if that fails for any reason,</span>
-</p>
-<p>
-  <span><code class="java">ASIdentifierManager advertisingIdentifier</code></span>
-</p>
-<p>
-  <span>&nbsp;<strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code>&nbsp;returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;different value&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;</span>
-</p>
-<p>
-  <span><strong>Windows Store Apps:</strong> uses <code class="java">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
-</p>
-<p>
-  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span><span></span>
-</p>
+<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration<br>{<br>AppKey = <span>COUNTLY_APP_KEY,</span><br>ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>EnableConsoleLogging = true,<br>DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 id="h_01HABTZ3151FMVABED60J1FB2Y">Changing device ID</h2>
 <p>
   The SDK allows you to change the Device ID at any point in time. You can use
@@ -505,6 +472,31 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   </li>
 </ul>
 <pre><code class="java hljs">DeviceIdType type = Countly.Instance.Device.DeviceIdType;</code></pre>
+<h2 id="h_01HABTZ315MARV8KKQMHM9EZBB">Device ID generation</h2>
+<p>
+  <span>If no device ID is provided the first time the SDK is initialised, the SDK will generate a unique device ID. The source of that id is</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code>which is a value exposed by Unity. It should be unique for every device.</span>
+</p>
+<p>
+  <span>Here are the underlying mechanisms used to generate that value for some platforms:</span>
+</p>
+<p>
+  <span><strong>IOS:</strong> on pre-iOS7 devices, it will return a hash of the MAC address. On iOS7 devices, it will be</span>
+</p>
+<p>
+  <span><code class="java">UIDevice identifierForVendor</code> or, if that fails for any reason,</span>
+</p>
+<p>
+  <span><code class="java">ASIdentifierManager advertisingIdentifier</code></span>
+</p>
+<p>
+  <span>&nbsp;<strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code>&nbsp;returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;different value&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;</span>
+</p>
+<p>
+  <span><strong>Windows Store Apps:</strong> uses <code class="java">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
+</p>
+<p>
+  <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span><span></span>
+</p>
 <h2 id="h_01HABTZ315T6Z5NV8QWZVYMSCG" class="anchor-heading">Consent</h2>
 <p>No consent is required to change device ID.</p>
 <p>
@@ -558,7 +550,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   1. In Unity, go to <strong>Player Settings.&nbsp;</strong>In the
   <strong>Other Settings</strong> section, add the
-  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/hc/article_attachments/900004317706/Screenshot_2020-10-27_at_4.07.16_PM.png" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
+  <span><strong>"COUNTLY_ENABLE_IOS_PUSH"&nbsp; </strong>symbol in </span><strong>Scripting Define Symbols.</strong><strong><img src="/guide-media/01GV9ZT9T72NE430KKRJMGNE4X" alt="Screenshot_2020-10-27_at_4.07.16_PM.png"></strong>
 </p>
 <p>
   2. After exporting the <strong>iOS</strong> project, open the project in

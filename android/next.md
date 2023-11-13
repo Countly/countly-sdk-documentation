@@ -66,21 +66,6 @@
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
-<h2 id="h_01HAVQDM5SCJ6J2H4ATE3WMFV1">Device ID</h2>
-<p>
-  <span style="font-weight: 400;">All tracked information is tied to a "device ID". A device ID is a unique identifier for your users.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">One of the first things you'll need to decide is which device ID generation strategy to use. There are several options defined below:</span>
-</p>
-<p>
-  <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is OpenUDID.</span>
-</p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>Countly.sharedInstance().init(config);</code></pre>
-<p>
-  <span style="font-weight: 400;">You may specify the device ID by yourself if you have one (it has to be unique for each device). It may be an email or some other internal ID used by your other systems.</span>
-</p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5SXG0Q4MRTDYXJRA8H">Adding callbacks</h2>
 <p>
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities:</span>
@@ -502,18 +487,19 @@ config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
 </div>
 <h1 id="h_01HAVQDM5TMQ1QR8F433J3B5P3">Device ID Management</h1>
 <p>
-  When the SDK is initialized the first time and no custom device ID is provided,
-  a random one will be generated. For most use cases that is enough as it provides
-  a random identity to one of your apps users.
+  <span style="font-weight: 400;">All tracked information is tied to a "device ID". A device ID is a unique identifier for your users. When the SDK is initialized the first time and no custom device ID is provided, a random one will be generated. For most use cases that is enough as it provides a random identity to one of your apps users.</span>
 </p>
 <p>
-  To solve other potential use cases, we provide 3 ways to handle your device id:
+  <span style="font-weight: 400;">One of the first things you'll need to decide is which device ID generation strategy to use. There are several options defined below:</span>
 </p>
-<ul>
-  <li>Changing device ID with merge</li>
-  <li>Changing device ID without merge</li>
-  <li>Using a temporary ID</li>
-</ul>
+<p>
+  <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is OpenUDID.</span>
+</p>
+<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>Countly.sharedInstance().init(config);</code></pre>
+<p>
+  <span style="font-weight: 400;">You may specify the device ID by yourself if you have one (it has to be unique for each device). It may be an email or some other internal ID used by your other systems.</span>
+</p>
+<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5TPKRQAZGXW73GBM90">Changing Device ID</h2>
 <p>
   In case your application authenticates users, you might want to change the ID

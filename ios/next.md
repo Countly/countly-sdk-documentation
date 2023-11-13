@@ -224,34 +224,6 @@ func internalLog(_ log: String)
 </code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RNMQBCZXP93RANEXPG">Device ID</h2>
-<h3 id="h_01HAVHW0RN58EYPJM0G8GZ6WYV">Default Device ID</h3>
-<p>
-  <span style="font-weight: 400;">On iOS, iPadOS, and tvOS, the default device ID is the Identifier For Vendor (IDFV). On watchOS and macOS, it is a persistently stored random <code>NSUUID</code></span><span style="font-weight: 400;"> string.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You can configure the device ID using the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object and helper methods:</span>
-</p>
-<h3 id="h_01HAVHW0RNB31NG545ZAQ0N7GM">Using a Custom Device ID</h3>
-<p>
-  <span style="font-weight: 400;">If you would like to use a custom device ID, you can set the <code>deviceID</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. If the <code>deviceID</code></span><span style="font-weight: 400;"> property is not set explicitly, a </span><a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#default-device-id" target="_self">default device ID</a><span style="font-weight: 400;"> will be used depending on the platform.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.deviceID = @"customDeviceID";  //Optional custom device ID</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.deviceID = "customDeviceID"  //Optional custom device ID</code></pre>
-  </div>
-</div>
-<p>
-  <strong>Note:</strong>
-  <span style="font-weight: 400;">Once set, the device ID will be persistently stored on the device after the first app launch, and the <code>deviceID</code></span><span style="font-weight: 400;"> property will be ignored on the following app launches, until the app is deleted and re-installed or a <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is set. For further details, please check the </span><a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#resetting-stored-device-id" target="_self" rel="undefined">Resetting Stored Device ID</a><span style="font-weight: 400;"> section.</span>
-</p>
 <h2 id="h_01HAVHW0RNPY4C22J98XT6T4NN">SDK Data Storage</h2>
 <p>
   The Countly iOS SDK uses <code>NSUserDefaults</code> and a simple data file named
@@ -1240,6 +1212,29 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
   </div>
 </div>
 <h1 id="h_01HAVHW0RPRWDT82DVYT4ABT9V">Device ID Management</h1>
+<p>
+  <span style="font-weight: 400;">On iOS, iPadOS, and tvOS, the default device ID is the Identifier For Vendor (IDFV). On watchOS and macOS, it is a persistently stored random <code>NSUUID</code></span><span style="font-weight: 400;"> string.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">If you would like to use a custom device ID, you can set the <code>deviceID</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. If the <code>deviceID</code></span><span style="font-weight: 400;"> property is not set explicitly, a </span>default
+  device ID<span style="font-weight: 400;"> will be used depending on the platform.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.deviceID = @"customDeviceID";  //Optional custom device ID</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.deviceID = "customDeviceID"  //Optional custom device ID</code></pre>
+  </div>
+</div>
+<p>
+  <strong>Note:</strong>
+  <span style="font-weight: 400;">Once set, the device ID will be persistently stored on the device after the first app launch, and the <code>deviceID</code></span><span style="font-weight: 400;"> property will be ignored on the following app launches, until the app is deleted and re-installed or a <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is set. For further details, please check the </span><a href="/hc/en-us/articles/4409195031577#h_01HAVHW0RPQ7A17R8H6RZCMWXP">Resetting Stored Device ID</a><span style="font-weight: 400;"> section below.</span>
+</p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <p>
   <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
