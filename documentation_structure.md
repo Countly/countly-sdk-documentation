@@ -63,7 +63,7 @@ This should contain the core integration information about the SDK, including a 
 * Minimal Setup (mandatory fields and other useful information)
 * Required App Permissions (if needed)
 * Required Callbacks (if needed)
-* (Other things if needed)
+* (Other things if needed. This should cover rare platform specific topics)
 * Countly Code Generator
 
 ***
