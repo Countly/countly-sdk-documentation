@@ -45,7 +45,8 @@
   <img src="/guide-media/01GVC1JBG025D3FBPJYN3EJR9V" alt="Screenshot_2021-03-09_at_6.02.04_PM.png" width="435" height="719">
 </p>
 <p>
-  <span data-preserver-spaces="true">This SDK uses the </span><strong><span data-preserver-spaces="true">Newtonsoft Json</span></strong><span data-preserver-spaces="true"> package internally and it is required for the SDK to work. </span>
+  This SDK uses the <strong>Newtonsoft Json</strong> package internally and it
+  is required for the SDK to work.
 </p>
 <p>
   <span data-preserver-spaces="true">Since Unity version 2020 this package is added to your project automatically by Unity. For versions before that, (2018 and 2019) you have to install this package in the project manually. </span>
@@ -108,21 +109,21 @@
 </div>
 <h2 id="require-app-permissions" class="anchor-heading">Required App Permissions</h2>
 <p>
-  If you expect the game to be saved
-  <span>on an SD card or any other type of external storage</span>, set
-  <strong>Write Permission</strong><span>&nbsp;</span><span>to 'External (SDCard). This can be found in your Android platform settings under 'Other Settings'.</span>
+  If you expect the game to be saved on an SD card or any other type of external
+  storage, set <strong>Write Permission</strong> to 'External (SDCard). This can
+  be found in your Android platform settings under 'Other Settings'.
 </p>
 <p>
-  <span class="c-message_attachment__text" data-qa="message_attachment_text"><span dir="auto">When configuring your app, make sure that it has permission to access the internet.</span></span><span class="c-message_attachment__text" data-qa="message_attachment_text"></span>
+  When configuring your app, make sure that it has permission to access the internet.
 </p>
-<h2 id="h_01HABTZ31446VPCP3M6Y0PWMNY" class="c-message_attachment__row">SDK Notes</h2>
+<h2 id="h_01HABTZ31446VPCP3M6Y0PWMNY">SDK Notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
 <pre>Countly.Instance.</pre>
 <h1 id="enabling-logging" class="anchor-heading">SDK Logging / Debug Mode</h1>
 <p>
-  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.&nbsp;</span>
+  <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
 </p>
 <p>
   Set <code>EnableConsoleLogging</code> on the config object to enable logging:
