@@ -505,7 +505,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes.<br>For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span><span></span>
 </p>
-<h2 id="01HFBV5WMBJ3KZN2F8PZ72FVCF" class="anchor-heading">Consent</h2>
+<h2 id="h_01HABTZ315T6Z5NV8QWZVYMSCG" class="anchor-heading">Consent</h2>
 <p>No consent is required to change device ID.</p>
 <p>
   If device ID is changed without merging and consent was enabled, all previously
