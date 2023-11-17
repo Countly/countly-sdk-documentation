@@ -1030,8 +1030,7 @@ Countly.sharedInstance().endSession()</code></pre>
 <h1 id="h_01HAVHW0RPKXBCWY438V198Q6A">View Tracking</h1>
 <h2 id="h_01HAVHW0RP2Z0AZS62NM78RMHH">Automatic Views</h2>
 <p>
-  <span style="font-weight: 400;">For Countly Auto View Tracking, you will need to specify <code>CLYAutoViewTracking</code> in <code>features</code></span>
-  <span style="font-weight: 400;"> array on the </span><code>CountlyConfig</code><span style="font-weight: 400;"> object before starting Countly.</span>
+  <span style="font-weight: 400;">To enable automatic view tracking, you will need to </span><span style="font-weight: 400;">set the <code>enableAutomaticViewTracking</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1039,37 +1038,19 @@ Countly.sharedInstance().endSession()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.features = @[CLYAutoViewTracking];</code></pre>
+    <pre><code class="objectivec">config.enableAutomaticViewTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.features = [CLYAutoViewTracking]</code></pre>
+    <pre><code class="swift">config.enableAutomaticViewTracking = true</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">After this step, the Countly iOS SDK will automatically track appeared and disappeared views. It simply intercepts the <code>viewDidAppear:</code></span><span style="font-weight: 400;"> method of the <code>UIViewController</code></span><span style="font-weight: 400;">class and reports which view is displayed with the view's name and duration. If the view controller's <code>title</code></span><span style="font-weight: 400;"> property is set, the reported view's name will be the value of the <code>title</code></span><span style="font-weight: 400;"> property. Otherwise, it will be the view controller's class name.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You can temporarily enable or disable Auto View Tracking using the <code>isAutoViewTrackingActive</code> property.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">Countly.sharedInstance.isAutoViewTrackingActive = NO;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance.isAutoViewTrackingActive = false</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">If the Auto View Tracking feature is not enabled upon initial configuration, enabling or disabling this property at a later time will have no effect. It will always be disabled.</span>
+  <span style="font-weight: 400;">After this step, the Countly iOS SDK will automatically track views by simply intercepting the <code>viewDidAppear:</code></span><span style="font-weight: 400;"> method of the <code>UIViewController</code></span><span style="font-weight: 400;">class and reporting which view is displayed with the view name and duration. If the view controller's <code>title</code></span><span style="font-weight: 400;"> property is set, it would be reported as the view name</span><span style="font-weight: 400;">. Otherwise, the view name will be the view controller's class name.</span>
 </p>
 <h3 id="h_01HAVHW0RPV53JK8JRKCCWRH3Q">Automatic View Exceptions</h3>
 <h4 id="h_01HAVHW0RP6JNX0Y3PV09EPE1G">Default Exceptions for Automatic View Tracking</h4>
 <p>
-  <span style="font-weight: 400;">Following system view controllers will be excluded by default from auto tracking, as they are not visible views but rather structural controllers:</span>
+  <span style="font-weight: 400;">Following system view controllers will be excluded by default from automatic view tracking, as they are not visible to the user but rather structural controllers:</span>
 </p>
 <pre><code>UINavigationController
 UIAlertController
@@ -1112,7 +1093,7 @@ UIKeyCommandDiscoverabilityHUDViewController
 </code></pre>
 <h4 id="h_01HAVHW0RPGY5061NGG4PNY0N8">Custom Exceptions for Automatic View Tracking</h4>
 <p>
-  <span style="font-weight: 400;">In addition to these default exceptions, you can manually add your own exception view controllers using the <code>addExceptionForAutoViewTracking:</code></span><span style="font-weight: 400;">method by passing the view controller class name or title:</span>
+  <span style="font-weight: 400;">In addition to these default exceptions, you can manually set an exclusion list of the view controllers you don't want to track by using the <code>automaticViewTrackingExclusionList</code> array on the <code>CountlyConfig</code> object before starting Countly</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1120,45 +1101,14 @@ UIKeyCommandDiscoverabilityHUDViewController
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance addExceptionForAutoViewTracking:NSStringFromClass(MyViewController.class)];
-//or
-[Countly.sharedInstance addExceptionForAutoViewTracking:@"MyViewControllerTitle"];</code></pre>
+    <pre><code class="objectivec">config.automaticViewTrackingExclusionList = @[NSStringFromClass(MyViewController.class), @"MyViewControllerName"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().addException(forAutoViewTracking:String.init(utf8String: object_getClassName(MyViewController.self))!)
-
-//or
-
-Countly.sharedInstance().addException(forAutoViewTracking:"MyViewControllerTitle")</code></pre>
+    <pre><code class="objectivec">config.automaticViewTrackingExclusionList = [NSStringFromClass(MyViewController.class), "MyViewControllerName"];</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Added view controller class name or titles will be ignored by Auto View Tracking and their appearances and disappearances will not be reported. Adding an already added view controller class name or title a second time will have no effect.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Furthermore, you can manually remove added exception view controllers using the <code>removeExceptionForAutoViewTracking</code></span><span style="font-weight: 400;"> method by passing the view controller class name or title:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance removeExceptionForAutoViewTracking:NSStringFromClass(MyViewController.class)];
-//or
-[Countly.sharedInstance removeExceptionForAutoViewTracking:@"MyViewControllerTitle"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().removeException(forAutoViewTracking:String.init(utf8String: object_getClassName(MyViewController.self))!)
-
-//or
-
-Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTitle")</code></pre>
-  </div>
-</div>
-<p>
-  Removing an already removed (or not yet added) view controller class name or
-  title again will have no effect.
+  <span style="font-weight: 400;">View controller class names or titles from this list will be ignored by automatic view tracking and their appearances will not be reported. Adding an already excluded view controller class name or title a second time will have no effect.</span>
 </p>
 <h4 id="h_01HAVHW0RPH12WWV3P3X6N8WKS">Customizing Auto View Tracking View Names</h4>
 <p>
@@ -1171,15 +1121,32 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol. @interface MyViewController : UIViewController @end //and implement <code>countlyAutoViewTrackingName</code> method to return custom view name to be used by Auto View Tracking. - (NSString *)countlyAutoViewTrackingName { return @"This is overridden custom view name"; }</code></pre>
+    <pre><code class="objectivec">//Make your view controller to conform CountlyAutoViewTrackingName protocol.
+@interface MyViewController : UIViewController @end 
+//and implement countlyAutoViewTrackingName method to return custom view name to be used by Auto View Tracking.
+- (NSString *)countlyAutoViewTrackingName { return @"This is overridden custom view name"; }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//Make your view controller to conform <code>CountlyAutoViewTrackingName</code> protocol. class MyViewController: UIViewController, CountlyAutoViewTrackingName //and implement <code>countlyAutoViewTrackingName</code> function to return custom view name to be used by Auto View Tracking. func countlyAutoViewTrackingName() -&gt; String { return "This is overridden custom view name" }</code></pre>
+    <pre><code class="swift">//Make your view controller to conform CountlyAutoViewTrackingName protocol. 
+class MyViewController: UIViewController, CountlyAutoViewTrackingName 
+//and implement countlyAutoViewTrackingName function to return custom view name to be used by Auto View Tracking.
+func countlyAutoViewTrackingName() -&gt; String { return "This is overridden custom view name" }</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RPC3YZRVR3TADBQ0QF">Manual View Recording</h2>
+<div class="callout callout--warning">
+  <p>
+    Please be aware that if auto view tracking is enabled, manual view tracking
+    will not be taken into account.
+  </p>
+</div>
 <p>
-  <span style="font-weight: 400;">In addition to Auto View Tracking, you can manually record the appearance of a view using the <code>recordView:</code></span><span style="font-weight: 400;">method with the view's name:</span>
+  If you want to have full control over your view tracking you can use manual view
+  recording methods.
+</p>
+<h3 id="h_01HFDVX9G293G57VFBANCB4GN6">Auto Stopped Views</h3>
+<p>
+  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use <code>startAutoStoppedView:</code></span><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1187,17 +1154,14 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordView:@"MyView"];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordView("MyView")</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.startAutoStoppedView("MyView")</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">When you record another view at a later time, the duration of the previous view will be calculated, and the view tracking event will be recorded automatically.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while recording views:</span>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1205,10 +1169,232 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordView:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordView("MyView", segmentation: ["key": "value"])</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.startAutoStoppedView("MyView", segmentation: ["key": "value"])</code></pre>
+  </div>
+</div>
+<h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
+<p>
+  You can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views startView:@"MyView"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.startView("MyView")</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views startView:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.startView("MyView", segmentation: ["key": "value"])</code></pre>
+  </div>
+</div>
+<h3 id="h_01HFDVY8YAXBP812A870NAZ6Q2">Stopping Views</h3>
+<p>
+  If there are multiple views with the same name (they would have different identifiers)
+  but if you try to stop one with that name the SDK would close one of those randomly.
+</p>
+<p>
+  You can stop view tracking by its name using
+  <span style="font-weight: 400;"><code>stopViewWithName:</code></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithName("MyView")</code></pre>
+  </div>
+</div>
+<p>
+  This function allows you to manually stop the tracking of a view identified by
+  its name.<span style="font-weight: 400;"><br>You can also specify the custom segmentation key-value pairs while stopping views:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithName("MyView", segmentation: ["key": "value"])</code></pre>
+  </div>
+</div>
+<p>
+  You can also stop view tracking by its unique idetifier using
+  <span style="font-weight: 400;"><code>stopViewWithID:</code></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID")</code></pre>
+  </div>
+</div>
+<p>
+  This function allows you to manually stop the tracking of a view identified by
+  its <span>unique identifier.</span><br>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID", segmentation: ["key": "value"])</code></pre>
+  </div>
+</div>
+<p>
+  You can stop all views tracking using
+  <span style="font-weight: 400;"><code>stopAllViews:</code></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopAllViews:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.stopAllViews(["key": "value"])</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;"><span>This function stops the tracking of all views.</span><br></span>
+</p>
+<h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Simultaneous View Tracking</h3>
+<p>
+  <span style="font-weight: 400;"></span>The iOS SDK allows you to start multiple
+  views at the same time. If you are starting multiple views at the same time it
+  might be necessary for you to pause some views while others are still continuing.
+  This can be achieved by using the unique identifier you get while starting a
+  view.
+</p>
+<p>
+  You can pause view tracking by its unique identifier using <span style="font-weight: 400;"><code>pauseViewWithID:</code></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views pauseViewWithID:@"VIEW_ID"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.pauseViewWithID("VIEW_ID")</code></pre>
+  </div>
+</div>
+<p>
+  <span>This function temporarily pauses the tracking of a view identified by its unique identifier.</span><br>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views pauseViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.pauseViewWithID("VIEW_ID", segmentation: ["key": "value"])</code></pre>
+  </div>
+</div>
+<p>
+  You can resume view tracking by its unique identifier using<span style="font-weight: 400;"> <code>resumeViewWithID:</code></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views resumeViewWithID:@"VIEW_ID"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.resumeViewWithID("VIEW_ID")</code></pre>
+  </div>
+</div>
+<p>
+  This function resumes the tracking of a previously paused view identified by
+  its unique identifier.<br>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views resumeViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.resumeViewWithID("VIEW_ID", segmentation: ["key": "value"])</code><code class="swift"></code></pre>
+  </div>
+</div>
+<div class="tabs">
+  <div class="tabs-menu">
+    <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
+    <p>
+      You can set global segmentation for views by using<span style="font-weight: 400;"> <code>setGlobalViewSegmentation:</code></span>
+    </p>
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views setGlobalViewSegmentation:@{@"key": @"value"}"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.setGlobalViewSegmentation(["key": "value"])</code></pre>
+  </div>
+</div>
+<p>
+  You can also update global segmentation values for views by using<span style="font-weight: 400;"> <code>updateGlobalViewSegmentation:</code></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.views updateGlobalViewSegmentation:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().views.updateGlobalViewSegmentation(["key": "value"])</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVHW0RPRWDT82DVYT4ABT9V">Device ID Management</h1>
@@ -1237,7 +1423,7 @@ Countly.sharedInstance().removeException(forAutoViewTracking:"MyViewControllerTi
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
@@ -1313,7 +1499,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;</span>method,
+  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span> method,
   all requests which have been kept on hold until that point will start with the
   real device ID:
 </p>
