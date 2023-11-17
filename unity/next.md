@@ -1067,6 +1067,28 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
 </p>
+<h2 id="01HFEMPN4D6V1PJ7R9WC6WZ17H">Custom Metrics</h2>
+<p>
+  In certain situations, such as beginning a session or requesting remote config,
+  the SDK sends device metrics. You have the flexibility to override the sent metrics,
+  such as the operating system for a specific variant, or to provide your own custom
+  metrics by using <code>SetMetricOverride</code>.
+</p>
+<p>Example:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// overriding default metrics
+  <br>Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; overridenMetrics = <span class="hljs-keyword">new</span> Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt;
+        {
+            { <span class="hljs-string">"_os"</span>, <span class="hljs-string">"CustomOS"</span> }
+        };<br>configuration.SetMetricOverride(overridenMetrics);<br><br>// providing custom metrics
+  <br>Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; customMetrics = <span class="hljs-keyword">new</span> Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt;
+        {
+            { <span class="hljs-string">"customMetric"</span>, <span class="hljs-string">"CustomValue"</span> }
+        };<br>configuration.SetMetricOverride(customMetrics);</code></pre>
+<p class="anchor-heading">
+  For more information about metric keys, you can refer
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B">here</a>
+  for a comprehensive list and descriptions of available metrics.
+</p>
 <h2 id="sdk-internal-limits" class="anchor-heading">SDK Internal Limits</h2>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
