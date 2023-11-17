@@ -1146,7 +1146,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <h3 id="h_01HFDVX9G293G57VFBANCB4GN6">Auto Stopped Views</h3>
 <p>
-  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use <code>startAutoStoppedView:</code></span><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.&nbsp;</span>
+  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use <code>startAutoStoppedView:</code></span><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1301,10 +1301,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
   views at the same time. If you are starting multiple views at the same time it
   might be necessary for you to pause some views while others are still continuing.
   This can be achieved by using the unique identifier you get while starting a
-  view.&nbsp;
+  view.
 </p>
 <p>
-  You can pause view tracking by its unique identifier using<span style="font-weight: 400;">&nbsp;<code>pauseViewWithID:</code></span>
+  You can pause view tracking by its unique identifier using <span style="font-weight: 400;"><code>pauseViewWithID:</code></span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1423,7 +1423,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
@@ -1499,7 +1499,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;</span>method,
+  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span> method,
   all requests which have been kept on hold until that point will start with the
   real device ID:
 </p>
