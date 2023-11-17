@@ -11,17 +11,22 @@
   </p>
 </div>
 <p>
-  The following are some of the key assumptions being considered while developing
-  the SDK. Please take into account the following <strong>before</strong> integrating
-  this SDK:
+  During the development of the SDK, several crucial assumptions are being considered.
+  <strong>Before</strong> incorporating this SDK, it is essential to be mindful
+  of the following factors: the scripting version relies on the equivalent of .NET
+  4.x, and the API Compatibility Level is aligned with the equivalent of .NET 4.x.
 </p>
-<ol>
-  <li>Scripting version is based on .NET 4.x equivalent</li>
-  <li>API Compatibility Level is based on .NET 4.x equivalent</li>
-  <li>
-    SDK is tested on IOS, Android, Windows, UWP, Linux and Mac OSX
-  </li>
-</ol>
+<p>
+  SDK has undergone thorough validation to ensure functionality across various
+  platforms, such as Android, iOS, Windows, UWP, Linux, and Mac OSX. Notably, this
+  compatibility extends to LTS (Long-Term Support) versions, including 2020.X,
+  2021.X, 2022.X, and 2023.X, underscoring its robustness and adaptability across
+  diverse operating and development environments.
+</p>
+<p>
+  Ongoing support is maintained through these LTS iterations, ensuring sustained
+  performance and reliability.
+</p>
 <p>
   To look at our sample application, download the sample project from
   <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>
