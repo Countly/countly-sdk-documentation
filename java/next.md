@@ -1111,7 +1111,7 @@ Countly.init(targetFolder, config);</code></pre>
   put("Retry Attempts", "60");
 }};
 
-Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
+Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
@@ -1145,7 +1145,7 @@ Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment,
   put("start", "1");
 }};
 
-Countly.backendMode().recordView("device-id", "SampleView", segmentation, 1646640780130L);
+Countly.instance().backendM().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'name' both are mandatory. The view will
@@ -1189,7 +1189,7 @@ Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
   put("_logs", "main page");
 }};
 
-Countly.backendMode().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
+Countly.instance().backendM().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
 </code></pre>
 <p>
   You may also pass an instance of an exception instead of the message and the
@@ -1209,7 +1209,7 @@ Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
 try {
   int a = 10 / 0;
 } catch(Exception e) {
-  Countly.backendMode().recordException("device-id", e, segmentation, crashDetails, null);
+  Countly.instance().backendM().recordException("device-id", e, segmentation, crashDetails, null);
 }</code></pre>
 <p>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
@@ -1249,7 +1249,7 @@ Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
   put("location", "31.5204,74.3587");
 }};
 
-Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130L);
+Countly.instance().backendM().sessionBegin("device-id", metrics, location, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note:</strong> In above example '_os', '_os_version' and '_app_version'
@@ -1276,11 +1276,11 @@ Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130
   <span data-preserver-spaces="true">Session update:</span>
 </p>
 <pre><code class="java hljs">double duration = 60;
-Countly.backendMode().sessionUpdate("device-id", duration, null);
+Countly.instance().backendM().sessionUpdate("device-id", duration, null);
 </code></pre>
 <p>Session end:</p>
 <pre><code class="java hljs">double duration = 20;
-Countly.backendMode().sessionEnd("device-id", duration, 1223456767L);
+Countly.instance().backendM().sessionEnd("device-id", duration, 1223456767L);
 </code></pre>
 <p>
   <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
@@ -1320,7 +1320,7 @@ userDetail.put("hair", "black");
 userDetail.put("height", 5.9);
 userDetail.put("marks", "{$inc: 1}");
 
-Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
   <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
@@ -1332,7 +1332,7 @@ Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
 userDetail.put("fav-colors", "{$push: black}");
 userDetail.put("marks", "{$inc: 1}");
 
-Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
   The keys for predefined <span>modification operation</span>s are as follows:
@@ -1419,7 +1419,7 @@ requestData.put("device_id", "device-id-2");
 requestData.put("timestamp", "1646640780130");
 requestData.put("key-name", "data");
 
-Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780130L);
+Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 1646640780130L);
 </code></pre>
   <p>
     <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
@@ -1431,7 +1431,7 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
   <p>
     <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>
-  <pre><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></pre>
+  <pre><code class="java hljs">int queueSize = Countly.instance().backendM().getQueueSize();</code></pre>
   <p>
     It will return the number of requests in the memory request queue.
   </p>
