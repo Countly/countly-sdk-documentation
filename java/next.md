@@ -441,6 +441,50 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   id, this call will return something like this:
 </p>
 <pre><code class="java">Countly.instance().deviceId().getID(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="h_01HFPBH065MSZER3S0X3J15Y3E">User Location</h1>
+<p>
+  User location can be tracked while integrating this SDK into your application.
+  This information can be used to know your app users better or to send them tailored
+  push notifications based on their coordinates. There are four fields that may
+  be provided:
+</p>
+<ul>
+  <li>
+    <span>Country code in the two-letter, ISO standard</span>
+  </li>
+  <li>
+    <span>City name (must be set together with the country code)</span>
+  </li>
+  <li>
+    <span>Latitude and longitude values separated by a comma, e.g.</span><span>&nbsp;</span>"56.42345,123.45325"
+  </li>
+  <li>
+    <span>Your user’s IP address</span><span></span>
+  </li>
+</ul>
+<h2 id="h_01HFPBH065HDQ0E63Q5T3F3V70">
+  <span>Setting Location</span>
+</h2>
+<p>
+  When location values are set, a separate request will be created to send them
+  sent. Except for ip address, because Countly Server processes IP address only
+  when starting a session.
+</p>
+<p>If you don't want to set specific fields, set them to null.</p>
+<pre><code class="java">//set user location
+String countryCode = "us";
+String city = "Houston";
+String latitude = "29.634933";
+String longitude = "-95.220255";
+String ipAddress = null;
+Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
+</code></pre>
+<h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
+<p>To disable location tracking:</p>
+<pre><span>Countly.instance().location().disableLocation();</span></pre>
+<p>
+  <span>This action will erase the cached location data from the device and the server.</span>
+</p>
 <h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
 <p>
   Remote config allows you to modify the app by requesting key-value pairs from
