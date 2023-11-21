@@ -11,17 +11,14 @@
   </p>
 </div>
 <p>
-  The following are some of the key assumptions being considered while developing
-  the SDK. Please take into account the following <strong>before</strong> integrating
-  this SDK:
+  The SDK requires the .NET profile to be at least ".NET 4.x" (".NET Framework
+  " or ".NET Standard 2.1" are acceptable targets)
 </p>
-<ol>
-  <li>Scripting version is based on .NET 4.x equivalent</li>
-  <li>API Compatibility Level is based on .NET 4.x equivalent</li>
-  <li>
-    SDK is tested on IOS, Android, Windows, UWP, Linux and Mac OSX
-  </li>
-</ol>
+<p>
+  The SDK is validated against the following platforms: Android, iOS, Windows,
+  UWP, Linux, and Mac OSX. The SDK is also validated against the following LTS
+  versions: 2020.X, 2021.X, 2022.X, and 2023.X.
+</p>
 <p>
   To look at our sample application, download the sample project from
   <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">Github repo</a>
@@ -1061,6 +1058,28 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
+</p>
+<h2 id="01HFEMPN4D6V1PJ7R9WC6WZ17H">Custom Metrics</h2>
+<p>
+  In certain situations, such as beginning a session or requesting remote config,
+  the SDK sends device metrics. You have the flexibility to override the sent metrics,
+  such as the operating system for a specific variant, or to provide your own custom
+  metrics by using <code>SetMetricOverride</code>.
+</p>
+<p>Example:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// overriding default metrics
+Dictionary&lt;string, string&gt; overridenMetrics = new Dictionary&lt;string, string&gt;();
+overridenMetrics.Add("_os", "CustomOS");
+configuration.SetMetricOverride(overridenMetrics);
+
+// providing custom metrics
+Dictionary&lt;string, string&gt; customMetric = new Dictionary&lt;string, string&gt;();
+customMetric.Add("customMetric", "CustomValue");
+configuration.SetMetricOverride(customMetric);</code></pre>
+<p class="anchor-heading">
+  For more information about metric keys, you can refer
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B">here</a>
+  for a comprehensive list and descriptions of available metrics.
 </p>
 <h2 id="sdk-internal-limits" class="anchor-heading">SDK Internal Limits</h2>
 <p>
