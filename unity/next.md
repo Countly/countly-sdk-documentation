@@ -11,21 +11,13 @@
   </p>
 </div>
 <p>
-  During the development of the SDK, several crucial assumptions are being considered.
-  <strong>Before</strong> incorporating this SDK, it is essential to be mindful
-  of the following factors: the scripting version relies on the equivalent of .NET
-  4.x, and the API Compatibility Level is aligned with the equivalent of .NET 4.x.
+  The SDK requires the .NET profile to be at least ".NET 4.x" (".NET Framework
+  " or ".NET Standard 2.1" are acceptable targets)
 </p>
 <p>
-  SDK has undergone thorough validation to ensure functionality across various
-  platforms, such as Android, iOS, Windows, UWP, Linux, and Mac OSX. Notably, this
-  compatibility extends to LTS (Long-Term Support) versions, including 2020.X,
-  2021.X, 2022.X, and 2023.X, underscoring its robustness and adaptability across
-  diverse operating and development environments.
-</p>
-<p>
-  Ongoing support is maintained through these LTS iterations, ensuring sustained
-  performance and reliability.
+  The SDK is validated against the following platforms: Android, iOS, Windows,
+  UWP, Linux, and Mac OSX. The SDK is also validated against the following LTS
+  versions: 2020.X, 2021.X, 2022.X, and 2023.X.
 </p>
 <p>
   To look at our sample application, download the sample project from
