@@ -129,19 +129,22 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   The Countly Java SDK has the ability to collect
   <a href="/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
   which you may examine and resolve later on the server. The SDK can collect unhandled
-  exceptions by default if the consent for crash reporting is given.
+  exceptions by default if the consent for crash reporting is given. You can reach
+  crash reporting interface via<code>Countly.instance().crash()</code>.
 </p>
 <h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
 <p>
   You may catch an exception during application runtime. You might report with
   these functions:
 </p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal);</code></pre>
+<pre><code class="java">Countly.instance().crash().recordHandledException(Throwable t);
+Countly.instance().crash().recordUnhandledException(Throwable t);</code></pre>
 <p>
-  If you want to add additional information like segmentation, logs, or names of
-  exceptions to inspect it in a detailed way later on, you can use the below function.
+  If you want to add additional information like segmentation to inspect it in
+  a detailed way later on, you can use the below function.
 </p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal, String name, Map&lt;String, String&gt; segments, String... logs);</code></pre>
+<pre><code class="java">Countly.instance().crash().recordHandledException(Throwable t, Map&lt;String, Object&gt; segment);
+Countly.instance().crash().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
