@@ -1068,14 +1068,14 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 </p>
 <p>Example:</p>
 <pre><code class="!whitespace-pre hljs language-csharp">// overriding default metrics
-  <br>Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; overridenMetrics = <span class="hljs-keyword">new</span> Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt;
-        {
-            { <span class="hljs-string">"_os"</span>, <span class="hljs-string">"CustomOS"</span> }
-        };<br>configuration.SetMetricOverride(overridenMetrics);<br><br>// providing custom metrics
-  <br>Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; customMetrics = <span class="hljs-keyword">new</span> Dictionary&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt;
-        {
-            { <span class="hljs-string">"customMetric"</span>, <span class="hljs-string">"CustomValue"</span> }
-        };<br>configuration.SetMetricOverride(customMetrics);</code></pre>
+Dictionary&lt;string, string&gt; overridenMetrics = new Dictionary&lt;string, string&gt;();
+overridenMetrics.Add("_os", "CustomOS");
+configuration.SetMetricOverride(overridenMetrics);
+
+// providing custom metrics
+Dictionary&lt;string, string&gt; customMetric = new Dictionary&lt;string, string&gt;();
+customMetric.Add("customMetric", "CustomValue");
+configuration.SetMetricOverride(customMetric);</code></pre>
 <p class="anchor-heading">
   For more information about metric keys, you can refer
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B">here</a>
