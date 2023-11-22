@@ -466,9 +466,10 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   <span>Setting Location</span>
 </h2>
 <p>
-  When location values are set, a separate request will be created to send them
-  sent. Except for ip address, because Countly Server processes IP address only
-  when starting a session.
+  To set the location parameters of a user, the below function can be called. If
+  an IP address is provided, the "setLocation" function must be called before starting
+  a session because location parsing from the IP on the server works in a session
+  begin request.
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
 <pre><code class="java">//set user location
@@ -480,7 +481,9 @@ String ipAddress = null;
 Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
 <h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
-<p>To disable location tracking:</p>
+<p>
+  Location tracking is enabled if consent is given. To disable location tracking:
+</p>
 <pre><span>Countly.instance().location().disableLocation();</span></pre>
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
