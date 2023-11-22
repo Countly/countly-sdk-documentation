@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.8.X<br>
+  and it applies to version 23.10.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
