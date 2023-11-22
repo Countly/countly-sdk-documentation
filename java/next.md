@@ -789,21 +789,21 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <p>
   For information about User Profiles, review
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
-  You can access user via <code>Countly.instance().user()</code> and you can edit
-  and push changes by this call; <code>edit().commit()</code>
+  You can access user profiles via <code>Countly.instance().userProfile()</code>.&nbsp;
 </p>
 <h2 id="h_01HD3M0EYQAERWFGMRVZXQ2RR1">Setting User Properties</h2>
 <h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
 <p>
-  To set custom properties, call set(). To send modification operations, call the
-  corresponding method:
+  To set custom properties, call setProperty(). To send modification operations,
+  call the corresponding methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java hljs">Countly.instance().user().edit()
-  .set("mostFavoritePet", "dog")
-  .inc("phoneCalls", 1)
-  .pushUnique("tags", "fan")
-  .pushUnique("skill", "singer")
-  .commit();</code></pre>
+<pre><code class="java">Countly.instance().userProfile().setProperty("mostFavoritePet", "dog");
+Countly.instance().userProfile().increment("phoneCalls"); // increments by 1
+Countly.instance().userProfile().pushUnique("tags", "fan");
+Countly.instance().userProfile().pushUnique("skill", "singer");
+Countly.instance().userProfile().save();
+</code></pre>
 <h3 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h3>
 <p>
   The Countly Java SDK allows you to upload specific data related to a user to
@@ -841,43 +841,46 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>
-  To set standard properties, call respective methods of <code>UserEditor</code>:
+  To set standard properties, call respective methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java hljs">Countly.instance().user().edit()
-  .setName("Firstname Lastname")
-  .setUsername("nickname")
-  .setEmail("test@test.com")
-  .setOrg("Tester")
-  .setPhone("+123456789")
-  .commit();</code></pre>
+<pre><code class="java">Countly.instance().userProfile().setProperty("name", "Firstname Lastname");
+Countly.instance().userProfile().setProperty("email", "test@test.com");
+Countly.instance().userProfile().setProperty("username", "nickname");
+Countly.instance().userProfile().setProperty("organization", "Tester");
+Countly.instance().userProfile().setProperty("phone", "+123456789");
+Countly.instance().userProfile().save();
+</code></pre>
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
-<pre>Countly.instance().user().edit().setPicture(byte[])</pre>
+<pre>Countly.instance().userProfile().setProperty("picture", BYTE_IMAGE)</pre>
 <p>
   or you can provide a picture url or local file path to set (only JPG, JPEG files
   are supported by the Java SDK):
 </p>
-<pre>Countly.instance().user().edit().setPicturePath(String)</pre>
+<pre>Countly.instance().userProfile().setProperty("picturePath", String)</pre>
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
-<pre><code class="java">//set a custom property
-Countly.instance().user().edit().set("money", 1000);
-//increment age by 1
-Countly.instance().user().edit().inc("money", 50);
+<pre><code lang="java">//set a custom property
+Countly.instance().userProfile().setProperty("money", 1000);
+//increment money by 50
+Countly.instance().userProfile().increment("money", 50);
 //multiply money with 2
-Countly.instance().user().edit().mul("money", 2);
+Countly.instance().userProfile().multiply("money", 2);
 //save maximum value
-Countly.instance().user().edit().max("score", 400);
+Countly.instance().userProfile().saveMax("score", 400);
 //save minimum value
-Countly.instance().user().edit().min("time", 60);
+Countly.instance().userProfile().saveMin("time", 60);
 //add property to array which can have unique values
-Countly.instance().user().edit().pushUnique("currency", "dollar");
+Countly.instance().userProfile().pushUnique("currency", "dollar");
 //add property to array which can be duplicate
-Countly.instance().user().edit().push("currency", "dollar");
+Countly.instance().userProfile().push("currency", "dollar");
 //remove value from array
-Countly.instance().user().edit().pull("currency","dollar");
-//commit changes
-Countly.instance().user().edit().commit();</code></pre>
+Countly.instance().userProfile().pull("currency","dollar");
+//set only a value
+Countly.instance().userProfile().setOnce("bank","TestBank");
+//save changes
+Countly.instance().userProfile().save();</code></pre>
 <h1 id="h_01HD1H1HNJVYBP0PNP0YSMFZY6">Security and Privacy</h1>
 <h2 id="h_01HD1H1HNJM6EBH29WE8AJSF80">Parameter Tamper Protection</h2>
 <p>
