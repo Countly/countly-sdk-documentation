@@ -795,7 +795,8 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
 <p>
   To set custom properties, call setProperty(). To send modification operations,
-  call the corresponding method:
+  call the corresponding methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
 <pre><code class="java">Countly.instance().userProfile().setProperty("mostFavoritePet", "dog");
 Countly.instance().userProfile().increment("phoneCalls"); // increments by 1
@@ -840,7 +841,8 @@ Countly.instance().userProfile().save();
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>
-  To set standard properties, call respective methods of <code>UserEditor</code>:
+  To set standard properties, call respective methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
 <pre><code class="java">Countly.instance().userProfile().setProperty("name", "Firstname Lastname");
 Countly.instance().userProfile().setProperty("email", "test@test.com");
