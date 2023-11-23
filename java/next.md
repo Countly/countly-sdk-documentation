@@ -844,21 +844,21 @@ Countly.instance().userProfile().save();
   To set standard properties, call respective methods and
   <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java">Countly.instance().userProfile().setProperty(UserPropertyKeys.NAME, "Firstname Lastname");
-Countly.instance().userProfile().setProperty(UserPropertyKeys.EMAIL, "test@test.com");
-Countly.instance().userProfile().setProperty(UserPropertyKeys.USERNAME, "nickname");
-Countly.instance().userProfile().setProperty(UserPropertyKeys.ORGANIZATION, "Tester");
-Countly.instance().userProfile().setProperty(UserPropertyKeys.PHONE, "+123456789");
+<pre><code class="java">Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.NAME, "Firstname Lastname");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.EMAIL, "test@test.com");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.USERNAME, "nickname");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.ORGANIZATION, "Tester");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PHONE, "+123456789");
 Countly.instance().userProfile().save();
 </code></pre>
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
-<pre>Countly.instance().userProfile().setProperty(UserPropertyKeys.PICTURE, BYTE_IMAGE)</pre>
+<pre>Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PICTURE, BYTE_IMAGE)</pre>
 <p>
   or you can provide a picture url or local file path to set (only JPG, JPEG files
   are supported by the Java SDK):
 </p>
-<pre>Countly.instance().userProfile().setProperty(UserPropertyKeys.PICTURE_PATH, String)</pre>
+<pre>Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PICTURE_PATH, String)</pre>
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
 <pre><code lang="java">//set a custom property
