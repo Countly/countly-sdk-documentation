@@ -456,20 +456,24 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
     <span>City name (must be set together with the country code)</span>
   </li>
   <li>
-    <span>Latitude and longitude values separated by a comma, e.g.</span><span>&nbsp;</span>"56.42345,123.45325"
+    <span>Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325"</span>
   </li>
   <li>
-    <span>Your user’s IP address</span><span></span>
+    <span>Your user’s IP address</span>
   </li>
 </ul>
 <h2 id="h_01HFPBH065HDQ0E63Q5T3F3V70">
   <span>Setting Location</span>
 </h2>
 <p>
-  To set the location parameters of a user, the below function can be called. If
-  an IP address is provided, the "setLocation" function must be called before starting
-  a session because location parsing from the IP on the server works in a session
-  begin request.
+  <span>During init you can set location info that will be sent during the start of the user session:</span>
+</p>
+<pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<p>
+  To set the location parameters of a user manually, the below function can be
+  called. If an IP address is provided, the "setLocation" function must be called
+  before starting a session because location parsing from the IP on the server
+  works in a session begin request.
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
 <pre><code class="java">//set user location
@@ -482,8 +486,11 @@ Countly.instance().location().setLocation(countryCode, city, latitude + "," + lo
 </code></pre>
 <h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
 <p>
-  Location tracking is enabled if consent is given. To disable location tracking:
+  To disable location during init, this function can be used. It is enabled by
+  default:
 </p>
+<pre>config.setDisableLocation();</pre>
+<p>To disable location tracking manually:</p>
 <pre><span>Countly.instance().location().disableLocation();</span></pre>
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
@@ -1029,6 +1036,13 @@ Countly.instance().user().edit().commit();</code></pre>
     <strong>enableRemoteConfigAutomaticTriggers()</strong> - Enable automatic
     download of remote config values on triggers
   </li>
+  <li>
+    <strong>setDisableLocation() </strong>- Disable location tracking
+  </li>
+  <li>
+    <strong>setLocation(String countryCode, String city, String geoLocation, String ipAddress)</strong>
+    - Set location parameters to be sent with session begin
+  </li>
 </ul>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
 <h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
@@ -1208,7 +1222,7 @@ Countly.backendMode().recordView("device-id", "SampleView", segmentation, 164664
   </li>
   <li>
     <strong>message -</strong>
-    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
+    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span>
   </li>
   <li>
     <strong>stacktrace -</strong>
@@ -1370,7 +1384,7 @@ userDetail.put("marks", "{$inc: 1}");
 Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
-  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
+  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span>
 </p>
 <p>
   <span>For example:</span>
