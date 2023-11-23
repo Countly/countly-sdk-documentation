@@ -171,7 +171,10 @@
   </li>
 </ul>
 <p>Example:</p>
-<pre><strong>try</strong>{<br><strong>  throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br><strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace); <br> }</pre>
+<pre><strong>try</strong>{
+<strong>  throw</strong> <strong>new</strong> DivideByZeroException();
+} <strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace); 
+}</pre>
 <p class="anchor-heading">You can also send a segmentation with an exception.</p>
 <pre><code class="!whitespace-pre hljs language-csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();<br>segmentation.Add("Action", "click");<br></span>
 <strong>try</strong>{<br><strong>  throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br><strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true); <br> }</code></pre>
