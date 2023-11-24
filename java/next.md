@@ -154,9 +154,9 @@ Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, 
 Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
 <p>
-  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
-  previous steps that were taken in your app before the crash. After a crash happens,
-  they will be sent together with the crash report.
+  Throughout your app you can leave crash breadcrumbs which would describe previous
+  steps that were taken in your app before the crash. After a crash happens, they
+  will be sent together with the crash report.
 </p>
 <p>Following the command adds crash breadcrumb:</p>
 <pre><code class="java hljs">Countly.instance().crashes().addCrashBreadcrumb(String record);</code></pre>
