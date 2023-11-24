@@ -173,11 +173,11 @@
 <p>Example:</p>
 <pre><strong>try</strong>{
 <strong>  throw</strong> <strong>new</strong> DivideByZeroException();
-} <strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace); 
+} <strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
 }</pre>
 <p class="anchor-heading">You can also send a segmentation with an exception.</p>
 <pre><code class="!whitespace-pre hljs language-csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();<br>segmentation.Add("Action", "click");<br></span>
-<strong>try</strong>{<br><strong>  throw</strong> <strong>new</strong> DivideByZeroException();<br> }<br><strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true); <br> }</code></pre>
+<strong>try</strong>{<br><strong>  throw</strong> <strong>new</strong> DivideByZeroException();<br>} <strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);<br>}</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
@@ -1123,7 +1123,7 @@ configuration.SetMetricOverride(customMetric);</code></pre>
   internally by the system before they can all be sent together in one request.&nbsp;<br>
   Example:
 </p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>ServerUrl = "https://try.count.ly/",<br>AppKey = "YOUR_APP_KEY",<br>EnableConsoleLogging = true,<br>NotificationMode = TestMode.AndroidTestToken,<br>EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>  ServerUrl = "https://try.count.ly/",<br>  AppKey = "YOUR_APP_KEY",<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken,<br>  EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
 <p>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
