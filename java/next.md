@@ -132,6 +132,11 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   exceptions by default if the consent for crash reporting is given. You can reach
   crash reporting interface via<code>Countly.instance().crashes()</code>.
 </p>
+<h2 id="h_01HG0S0PNJB87NG192K43SP5CS">Automatic Crash Handling</h2>
+<p>
+  Automatic crash handling is enabled by default, to disable it:
+</p>
+<pre>config.disableUnhandledCrashReporting();</pre>
 <h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
 <p>
   You may catch an exception during application runtime. You might report with
@@ -147,6 +152,18 @@ Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, 
 <pre><code class="java">Countly.instance().crashes().recordUnhandledException(Throwable t);
 // you can also add segments values to inspect it detailed way later on
 Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
+<h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
+<p>
+  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
+  previous steps that were taken in your app before the crash. After a crash happens,
+  they will be sent together with the crash report.
+</p>
+<p>Following the command adds crash breadcrumb:</p>
+<pre><code class="java hljs">Countly.instance().crashes().addCrashBreadcrumb(String record);</code></pre>
+<p>
+  The maximum breadcrumb limit is 100. To change the maximum limit:
+</p>
+<pre>config.setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed);</pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
@@ -986,6 +1003,14 @@ Countly.instance().user().edit().commit();</code></pre>
   <li>
     <strong>enableRemoteConfigAutomaticTriggers()</strong> - Enable automatic
     download of remote config values on triggers
+  </li>
+  <li>
+    <strong>setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed)&nbsp;</strong>-
+    To change maximum limit of crash breadcrumb
+  </li>
+  <li>
+    <strong>disableUnhandledCrashReporting()</strong> - To disable unhandled
+    crash reporting
   </li>
 </ul>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
