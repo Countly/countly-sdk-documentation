@@ -158,7 +158,7 @@ Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String
   steps that were taken in your app before the crash. After a crash happens, they
   will be sent together with the crash report.
 </p>
-<p>Following the command adds crash breadcrumb:</p>
+<p>Following command adds crash breadcrumb:</p>
 <pre><code class="java hljs">Countly.instance().crashes().addCrashBreadcrumb(String record);</code></pre>
 <p>
   The maximum breadcrumb limit is 100. To change the maximum limit:
