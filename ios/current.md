@@ -5,7 +5,7 @@
 </p>
 <p>
   Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#ios-sdk" target="_self" rel="undefined">here, </a>to
+  <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7Y97Y1T51TGGNDMNP" target="_self" rel="undefined">here, </a>to
   access the documentation for older SDK versions.
 </p>
 <div class="callout callout--info">
@@ -85,7 +85,7 @@
   <strong>Note:</strong> Make sure you start Countly iOS SDK on the main thread.
 </p>
 <p>
-  <span style="font-weight: 400;">Set your app key and host on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a> for more information about acquiring application key (APP_KEY) and server URL.</span>
+  <span style="font-weight: 400;">Set your app key and host on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information about acquiring application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If you are using the Countly Enterprise Edition trial servers, the <code>host</code></span><span style="font-weight: 400;"> should be <code>https://try.count.ly</code>, <code>https://us-try.count.ly</code> or <code>https://asia-try.count.ly</code></span><span style="font-weight: 400;">. Stated simply, it should be the domain from which you are accessing your trial dashboard.</span>
@@ -97,7 +97,7 @@
   <p>
     If you are in doubt about the correctness of your Countly SDK integration,
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01HAVHW0RNECF2W03GPMKS3E6K">Additional Features</h2>
@@ -175,7 +175,7 @@
 </p>
 <p>
   For more information on where to find the SDK logs you can check the documentation
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
 <h3 id="h_01HAVHW0RNY5T2XH6J8HYYJ2MF">Logger Delegate</h3>
 <p>
@@ -647,7 +647,7 @@ sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code><
 </p>
 <h3 id="h_01HAVHW0RP2HVF94RFG0TJY063">Manual dSYM Uploading</h3>
 <p>
-  <span style="font-weight: 400;">In case of an error with Automatic dSYM Uploading, or if you would like to upload your dSYM files manually, you can use our guide for Manual dSYM Uploading </span><a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication#uploading-the-symbol-file"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">. You will also need to use Manual dSYM Uploading if Bitcode is enabled while uploading your app to App Store Connect.</span>
+  <span style="font-weight: 400;">In case of an error with Automatic dSYM Uploading, or if you would like to upload your dSYM files manually, you can use our guide for Manual dSYM Uploading </span><a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication#h_01HBP9RH2Q5M0YMR2YS4QVVRK8"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">. You will also need to use Manual dSYM Uploading if Bitcode is enabled while uploading your app to App Store Connect.</span>
 </p>
 <h3 id="h_01HAVHW0RPB0WB207T16B54NGP">Bitcode Enabled Apps</h3>
 <p>
@@ -663,7 +663,7 @@ sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code><
   <span style="font-weight: 400;">For more information regarding downloading dSYM files from Apple, please see Apple's documentation </span><a href="https://help.apple.com/xcode/mac/current/#/devef5928039"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">After you receive your dSYM file from Apple, you can use our Manual dSYM Uploading </span><a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication#uploading-the-symbol-file"><span style="font-weight: 400;">guide</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">After you receive your dSYM file from Apple, you can use our Manual dSYM Uploading </span><a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication#h_01HBP9RH2Q5M0YMR2YS4QVVRK8"><span style="font-weight: 400;">guide</span></a><span style="font-weight: 400;">.</span>
 </p>
 <h3 id="h_01HAVHW0RPGRH26TX797Y456S7">How to Use Symbolication</h3>
 <p>
@@ -682,7 +682,7 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
 -[MHViewController transitionToMahya] (in YourAppName) (MHViewController.m:443)
 -[MHViewController textFieldShouldReturn:] (in YourAppName) (MHViewController.m:210)</code></pre>
 <p>
-  <span style="font-weight: 400;">For more information about how to use the Symbolication feature on the Countly Server, please see our Symbolication documentation </span><a href="https://resources.count.ly/v1.0/docs/crash-symbolication"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">For more information about how to use the Symbolication feature on the Countly Server, please see our Symbolication documentation </span><a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <h1 id="h_01HAVHW0RP28BREFV5E1HC97DM">Events</h1>
 <p>
@@ -1146,7 +1146,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <h3 id="h_01HFDVX9G293G57VFBANCB4GN6">Auto Stopped Views</h3>
 <p>
-  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use <code>startAutoStoppedView:</code></span><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.&nbsp;</span>
+  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use <code>startAutoStoppedView:</code></span><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1301,10 +1301,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
   views at the same time. If you are starting multiple views at the same time it
   might be necessary for you to pause some views while others are still continuing.
   This can be achieved by using the unique identifier you get while starting a
-  view.&nbsp;
+  view.
 </p>
 <p>
-  You can pause view tracking by its unique identifier using<span style="font-weight: 400;">&nbsp;<code>pauseViewWithID:</code></span>
+  You can pause view tracking by its unique identifier using <span style="font-weight: 400;"><code>pauseViewWithID:</code></span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1423,7 +1423,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
@@ -1499,7 +1499,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;">&nbsp;</span>method,
+  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span> method,
   all requests which have been kept on hold until that point will start with the
   real device ID:
 </p>
@@ -1748,7 +1748,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 <p>
   <strong>Note:</strong>
   <span style="font-weight: 400;">To see how to send push notifications using the Countly Server, please check our</span>
-  <a href="https://resources.count.ly/docs/countly-push-guide">Push Notifications documentation</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications">Push Notifications documentation</a>.
 </p>
 <h2 id="h_01HAVHW0RQG8PK3Z0KFW0D4Y2K">Deep links</h2>
 <p>
@@ -2343,7 +2343,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
 </p>
 <h1 id="h_01HAVHW0RRBKC5DT7Z5HYY70KQ">Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://resources.count.ly/docs/remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://support.count.ly/hc/en-us/articles/360037270492-Remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   Once downloaded, Remote config values will be saved persistently and available
@@ -2864,7 +2864,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 </div>
 <h3 id="h_01HAVHW0RR1SN06BQHEF3E1816">Rating Widget</h3>
 <p>
-  <span style="font-weight: 400;">You can use the Countly iOS SDK to display ratings feedback widgets configured on the Countly Server. For more information on ratings feedback widgets, please visit the </span><a href="https://resources.count.ly/docs/ratings-and-feedback"><span style="font-weight: 400;">Ratings widget documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You can use the Countly iOS SDK to display ratings feedback widgets configured on the Countly Server. For more information on ratings feedback widgets, please visit the </span><a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings-Feedbacks"><span style="font-weight: 400;">Ratings widget documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Here is how you can utilize ratings feedback widgets in your iOS apps:</span>
@@ -2937,7 +2937,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 </p>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
 <p>
-  <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
+  <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
   First you need to get the list of all available NPS and survey widgets:
 </p>
 <div class="tabs">
@@ -4497,7 +4497,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">Can I integrate Countly iOS SDK using CocoaPods?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#cocoapods">read our notes</a> to avoid issues.</span>
+  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTXSFZD8R6QMX0GWPN">read our notes</a> to avoid issues.</span>
 </p>
 <h2 id="h_01HAVHW0RTR6D4DH3VNENYY5C4">
   <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
@@ -4521,7 +4521,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">For details please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#user-profiles">User Profiles documentation</a>.</span>
+  <span class="wysiwyg-color-black">For details please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RRRH4M1Y4CDJSHGERJ">User Profiles documentation</a>.</span>
 </p>
 <h2 id="h_01HAVHW0RTF435Z2N9WTK4BEBD">
   <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
@@ -4554,7 +4554,7 @@ end</code></pre>
   <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#manually-handling-notifications">Handling Notifications Manually</a> section.</span>
+  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQRHJ27TXHTTZ0F82M">Handling Notifications Manually</a> section.</span>
 </p>
 <h2 id="h_01HAVHW0RTVFVX2KYZBY7NS2G4">
   <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>
