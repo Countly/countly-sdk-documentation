@@ -143,14 +143,14 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   these functions:
 </p>
 <pre><code class="java">Countly.instance().crashes().recordHandledException(Throwable t);
-// you can also add segments values to inspect it detailed way later on
+// you can also add segments values
 Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <p>
   If an exception handled and it turns out be a fatal exception for the application,
   it can be reported with these functions:
 </p>
 <pre><code class="java">Countly.instance().crashes().recordUnhandledException(Throwable t);
-// you can also add segments values to inspect it detailed way later on
+// you can also add segments values
 Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
 <p>
