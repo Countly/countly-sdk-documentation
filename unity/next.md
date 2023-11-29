@@ -59,7 +59,7 @@
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = <strong>new</strong> CountlyConfiguration{<br>  AppKey = <span>COUNTLY_APP_KEY,</span><br>  ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = <strong>new</strong> CountlyConfiguration {<br>  AppKey = <span>COUNTLY_APP_KEY,</span><br>  ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</code></pre>
 <p>
   <span>In the </span><code>CountlyConfiguration</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
@@ -125,7 +125,7 @@
 <p>
   Set <code>EnableConsoleLogging</code> on the config object to enable logging:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration{<br>  AppKey = <span>COUNTLY_APP_KEY,</span><br>  ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>  EnableConsoleLogging = true<br>};</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration {<br>  AppKey = <span>COUNTLY_APP_KEY,</span><br>  ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>  EnableConsoleLogging = true<br>};</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
@@ -171,13 +171,13 @@
   </li>
 </ul>
 <p>Example:</p>
-<pre><strong>try</strong>{
+<pre><strong>try </strong>{
 <strong>  throw</strong> <strong>new</strong> DivideByZeroException();
-} <strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
+} <strong>catch</strong> (Exception ex) {<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
 }</pre>
 <p class="anchor-heading">You can also send a segmentation with an exception.</p>
 <pre><code class="!whitespace-pre hljs language-csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();<br>segmentation.Add("Action", "click");<br></span>
-<strong>try</strong>{<br><strong>  throw</strong> <strong>new</strong> DivideByZeroException();<br>} <strong>catch</strong> (Exception ex){<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);<br>}</code></pre>
+<strong>try </strong>{<br><strong>  throw</strong> <strong>new</strong> DivideByZeroException();<br>} <strong>catch</strong> (Exception ex) {<br>  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);<br>}</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
@@ -424,7 +424,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   You can provide a device ID during initialization like this:
 </p>
-<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration{ <br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  EnableConsoleLogging = true,<br>  DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
+<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration { <br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  EnableConsoleLogging = true,<br>  DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
 <h2 id="h_01HABTZ315MW7E9560TS40F65Z" class="anchor-heading">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
@@ -567,7 +567,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration{<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken<br>};<br></span></code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><span>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken<br>};<br></span></code></pre>
 <p>
   <span> Here is an overview of notification modes:</span>
 </p>
@@ -626,7 +626,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message){<br>  }<br><br>  public void OnNotificationClicked(string message, int index){<br>  }<br>}</code></span></pre>
+<pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message) {<br>  }<br><br>  public void OnNotificationClicked(string message, int index) {<br>  }<br>}</code></span></pre>
 <p>
   <span>&nbsp;There are two ways to register for this class to listen to notification events.</span>
 </p>
@@ -636,7 +636,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><span><code class="!whitespace-pre hljs language-csharp">private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration{<br>    AppKey = COUNTLY_APP_KEY,<br>    ServerUrl = COUNTLY_SERVER_URL,<br>  };<br><br>  config.AddListener(this);<br>  Countly.Instance.Init(config);<br>}</code></span><span></span></pre>
+<pre><span><code class="!whitespace-pre hljs language-csharp">private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration {<br>    AppKey = COUNTLY_APP_KEY,<br>    ServerUrl = COUNTLY_SERVER_URL,<br>  };<br><br>  config.AddListener(this);<br>  Countly.Instance.Init(config);<br>}</code></span><span></span></pre>
 <p>
   <span></span><span></span>2. If SDK has been initialized<span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">, use the following code snippet to listen to push notification events.</span>
 </p>
@@ -858,11 +858,11 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <span class="hljs-comment">//set value if it does not exist</span>
 <strong>await</strong> <span>Countly.Instance</span>.UserDetails.SetOnce(<span class="hljs-string">"tag"</span>, <span class="hljs-string">"test"</span>);<br>
 <span class="hljs-comment">//insert value to array of unique values</span>
-<strong>await</strong> <span>Countly.Instance</span>.UserDetails.PushUnique(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.PushUnique(<span class="hljs-string">"type"</span>, new string[] { <span class="hljs-string">"morning" </span>});<br>
 <span class="hljs-comment">//insert value to array which can have duplicates</span>
-<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Push(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);<br>
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Push(<span class="hljs-string">"type"</span>, new string[] { <span class="hljs-string">"morning" </span>});<br>
 <span class="hljs-comment">//remove value from array</span>
-<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Pull(<span class="hljs-string">"type"</span>, new string[] {<span class="hljs-string">"morning"}</span>);
+<strong>await</strong> <span>Countly.Instance</span>.UserDetails.Pull(<span class="hljs-string">"type"</span>, new string[] { <span class="hljs-string">"morning" </span>});
 
 <span class="hljs-comment">//send provided values to server</span>
 <strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync()<br></code></pre>
@@ -885,7 +885,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   the latest value will be posted to the server.&nbsp;
 </p>
 <p>Example:</p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" }); ;<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);<br><span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");<br><span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" });<br><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
 <h2 id="h_01HABTZ316445B91Y1ZHCS6DGK" class="anchor-heading">Consent</h2>
 <p>
   This feature requires<code>User</code><span>consent. If consent is required and not given, it will not be possible to record user profile information.</span>
@@ -901,7 +901,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration{<br>  ServerUrl = "https://try.count.ly/",<br>  AppKey = "YOUR_APP_KEY",<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken,<br>  RequiresConsent = true<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>  ServerUrl = "https://try.count.ly/",<br>  AppKey = "YOUR_APP_KEY",<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken,<br>  RequiresConsent = true<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
 <p>
   <span>By default, when consent is required, no consent is given. If no consent is given, SDK will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
 </p>
@@ -999,7 +999,7 @@ configuration.GiveConsentToGroup("User-Consents");</code></pre>
 </p>
 <p>Example:</p>
 <pre><code class="!whitespace-pre hljs language-csharp">// prepare array of groups 
-string[] groupName = new string[]{ "User-Consents", "Events-Consents" };<br><br>// give consent to groups
+string[] groupName = new string[] { "User-Consents", "Events-Consents" };<br><br>// give consent to groups
 Countly.Instance.Consent.GiveConsentToGroup(groupName);<br><br>// remove consent of groups
 Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
 <h1 id="h_01HABTZ316AYQFEVA6BEXF711V">Security and Privacy</h1>
