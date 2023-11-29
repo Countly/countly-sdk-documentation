@@ -219,11 +219,11 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 <pre><code class="JavaScript">Countly.addCrashLog(String logs)</code></pre>
 <h1 id="h_01H930GAQ5NTNH59KY6FB5CCEN">Events</h1>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037093532-Custom-events">Event</a> is any type
-  of action that you can send to a Countly instance, e.g purchase, settings changed,
-  view enabled and so. This way it's possible to get much more information from
-  your application compared to what is sent from Flutter SDK to Countly instance
-  by default.
+  <a href="https://support.count.ly/hc/en-us/articles/360037093532-Custom-events">Event</a>
+  is any type of action that you can send to a Countly instance, e.g purchase,
+  settings changed, view enabled and so. This way it's possible to get much more
+  information from your application compared to what is sent from Flutter SDK to
+  Countly instance by default.
 </p>
 <p>
   Here are the detail about properties which we can use with event:
@@ -431,7 +431,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
     when the app goes to the background or terminates.
   </li>
 </ul>
-<h2 id="manual-sessions" class="anchor-heading">Manual sessions</h2>
+<h2 id="h_01HGDN3SPBVME2S4HP5GM2D7NG">Manual sessions</h2>
 <p>
   Sometimes, it might be preferable to control the session manually instead of
   relying on the SDK.
@@ -1620,7 +1620,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
     <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ81R7TMXJ7Z7RRBZ7A" target="_self">Max Queue Size Limit</a> - </strong>Set maximum size for the request queue.</span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#manual-sessions" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01HGDN3SPBVME2S4HP5GM2D7NG" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
   </li>
   <li>
     <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ7BDR4FWH4NCATN7B4" target="_self">Automatic Remote Config</a> - </strong>If
