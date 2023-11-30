@@ -130,27 +130,27 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <a href="/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
   which you may examine and resolve later on the server. The SDK can collect unhandled
   exceptions by default if the consent for crash reporting is given. You can reach
-  crash reporting interface via<code>Countly.instance().crashes()</code>.
+  all crash-related functionality from the returned interface on:
 </p>
+<pre><code>Countly.instance().crashes()</code></pre>
 <h2 id="h_01HG0S0PNJB87NG192K43SP5CS">Automatic Crash Handling</h2>
 <p>
-  Automatic crash handling is enabled by default, to disable it:
+  Automatic crash handling is enabled by default. To disable it call this method
+  on the config object during initialization:
 </p>
 <pre>config.disableUnhandledCrashReporting();</pre>
 <h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
 <p>
-  You may catch an exception during application runtime. You might report with
-  these functions:
+  <span>You might catch an exception or similar error during your app’s runtime. To report them use the following method</span>:
 </p>
 <pre><code class="java">Countly.instance().crashes().recordHandledException(Throwable t);
-// you can also add segments values
+// Or you can also add segment to be recorded with the error
 Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <p>
-  If an exception occurs and it turns out to be a fatal exception for the application,
-  it can be reported with these functions
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
 <pre><code class="java">Countly.instance().crashes().recordUnhandledException(Throwable t);
-// you can also add segments values
+// Or you can also add segment to be recorded with the error
 Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
 <p>
@@ -161,7 +161,8 @@ Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String
 <p>Following command adds crash breadcrumb:</p>
 <pre><code class="java hljs">Countly.instance().crashes().addCrashBreadcrumb(String record);</code></pre>
 <p>
-  The maximum breadcrumb limit is 100. To change the maximum limit:
+  The maximum breadcrumb limit is 100. To change the maximum limit use this method
+  during initialization:
 </p>
 <pre>config.setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed);</pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
