@@ -144,12 +144,14 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <span>You might catch an exception or similar error during your app’s runtime. To report them use the following method</span>:
 </p>
 <pre><code class="java">Countly.instance().crashes().recordHandledException(Throwable t);
+
 // Or you can also add segment to be recorded with the error
 Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
 <pre><code class="java">Countly.instance().crashes().recordUnhandledException(Throwable t);
+
 // Or you can also add segment to be recorded with the error
 Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
