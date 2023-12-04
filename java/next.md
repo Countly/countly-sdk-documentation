@@ -443,10 +443,10 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
 <pre><code class="java">Countly.instance().deviceId().getID(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
 <h1 id="h_01HFPBH065MSZER3S0X3J15Y3E">User Location</h1>
 <p>
-  User location can be tracked while integrating this SDK into your application.
-  This information can be used to know your app users better or to send them tailored
-  push notifications based on their coordinates. There are four fields that may
-  be provided:
+  The Countly Java SDK can track the user's location. This information can be used
+  to know your app users better, to send them tailored feedback widgets based on
+  their coordinates, or to create cohorts based on their location. Four fields
+  may be provided:
 </p>
 <ul>
   <li>
@@ -470,10 +470,7 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
 </p>
 <pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
-  To set the location parameters of a user manually, the below function can be
-  called. If an IP address is provided, the "setLocation" function must be called
-  before starting a session because location parsing from the IP on the server
-  works in a session begin request.
+  Note that the ipAddress will only be updated if set through the init process.
 </p>
 <p>If you don't want to set specific fields, set them to null.</p>
 <pre><code class="java">//set user location
@@ -484,6 +481,11 @@ String longitude = "-95.220255";
 String ipAddress = null;
 Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
+<p>
+  When those values are set, a separate request will be created to send them sent.
+  Except for ip address, because Countly Server processes IP address only when
+  starting a session. If you don't want to set specific fields, set them to null.
+</p>
 <h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
 <p>
   To disable location during init, this function can be used. It is enabled by
