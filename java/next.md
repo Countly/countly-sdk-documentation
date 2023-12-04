@@ -482,7 +482,7 @@ String ipAddress = null;
 Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
 <p>
-  When those values are set, a separate request will be created to send them sent.
+  When those values are set, a separate request will be created to send the values.
   Except for ip address, because Countly Server processes IP address only when
   starting a session. If you don't want to set specific fields, set them to null.
 </p>
