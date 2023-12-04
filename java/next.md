@@ -450,16 +450,16 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
 </p>
 <ul>
   <li>
-    <span>Country code in the two-letter, ISO standard</span>
+    <span>Country code in the two-letter, ISO standard, e.g. "en-US", "zh-CN"</span>
   </li>
   <li>
-    <span>City name (must be set together with the country code)</span>
+    <span>City name (must be set together with the country code), e.g. "Reykjavik"</span>
   </li>
   <li>
     <span>Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325"</span>
   </li>
   <li>
-    <span>Your user’s IP address</span>
+    <span>Your user’s IP address, e.g. "192.168.1.1"</span>
   </li>
 </ul>
 <h2 id="h_01HFPBH065HDQ0E63Q5T3F3V70">
