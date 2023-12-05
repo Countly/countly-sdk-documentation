@@ -32,13 +32,13 @@
   <a href="https://github.com/Countly/countly-sdk-ios.git">repo</a> as a Git submodule.
 </p>
 <p>
-  - Using <a href="#swift-package-manager-spm">Swift Package Manager (SPM)</a>
+  - Using <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTQ6WN8CYVNVZQ5TEP">Swift Package Manager (SPM)</a>
 </p>
 <p>
-  - Using <a href="#carthage">Carthage</a>
+  - Using <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTQGRSE9ZRVQSAXJ74">Carthage</a>
 </p>
 <p>
-  - Using <a href="#cocoapods">CocoaPods</a>
+  - Using <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTXSFZD8R6QMX0GWPN">CocoaPods</a>
 </p>
 <h1 id="h_01HAVHW0RNQWE9PRRXT9HXFKMJ">SDK Integration</h1>
 <h2 id="h_01HAVHW0RNVDW2E2F83R8E6PSB">Minimal Setup</h2>
