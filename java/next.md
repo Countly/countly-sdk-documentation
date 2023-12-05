@@ -129,19 +129,44 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   The Countly Java SDK has the ability to collect
   <a href="/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
   which you may examine and resolve later on the server. The SDK can collect unhandled
-  exceptions by default if the consent for crash reporting is given.
+  exceptions by default if the consent for crash reporting is given. You can reach
+  all crash-related functionality from the returned interface on:
 </p>
+<pre><code>Countly.instance().crashes()</code></pre>
+<h2 id="h_01HG0S0PNJB87NG192K43SP5CS">Automatic Crash Handling</h2>
+<p>
+  Automatic crash handling is enabled by default. To disable it call this method
+  on the config object during initialization:
+</p>
+<pre>config.disableUnhandledCrashReporting();</pre>
 <h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
 <p>
-  You may catch an exception during application runtime. You might report with
-  these functions:
+  <span>You might catch an exception or similar error during your app’s runtime. To report them use the following method</span>:
 </p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal);</code></pre>
+<pre><code class="java">Countly.instance().crashes().recordHandledException(Throwable t);
+
+// Or you can also add segment to be recorded with the error
+Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <p>
-  If you want to add additional information like segmentation, logs, or names of
-  exceptions to inspect it in a detailed way later on, you can use the below function.
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal, String name, Map&lt;String, String&gt; segments, String... logs);</code></pre>
+<pre><code class="java">Countly.instance().crashes().recordUnhandledException(Throwable t);
+
+// Or you can also add segment to be recorded with the error
+Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
+<h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
+<p>
+  Throughout your app you can leave crash breadcrumbs which would describe previous
+  steps that were taken in your app before the crash. After a crash happens, they
+  will be sent together with the crash report.
+</p>
+<p>Following command adds crash breadcrumb:</p>
+<pre><code class="java hljs">Countly.instance().crashes().addCrashBreadcrumb(String record);</code></pre>
+<p>
+  The maximum breadcrumb limit is 100. To change the maximum limit use this method
+  during initialization:
+</p>
+<pre>config.setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed);</pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
@@ -854,21 +879,21 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <p>
   For information about User Profiles, review
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
-  You can access user via <code>Countly.instance().user()</code> and you can edit
-  and push changes by this call; <code>edit().commit()</code>
+  You can access user profiles via <code>Countly.instance().userProfile()</code>.&nbsp;
 </p>
 <h2 id="h_01HD3M0EYQAERWFGMRVZXQ2RR1">Setting User Properties</h2>
 <h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
 <p>
-  To set custom properties, call set(). To send modification operations, call the
-  corresponding method:
+  To set custom properties, call setProperty(). To send modification operations,
+  call the corresponding methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java hljs">Countly.instance().user().edit()
-  .set("mostFavoritePet", "dog")
-  .inc("phoneCalls", 1)
-  .pushUnique("tags", "fan")
-  .pushUnique("skill", "singer")
-  .commit();</code></pre>
+<pre><code class="java">Countly.instance().userProfile().setProperty("mostFavoritePet", "dog");
+Countly.instance().userProfile().increment("phoneCalls"); // increments by 1
+Countly.instance().userProfile().pushUnique("tags", "fan");
+Countly.instance().userProfile().pushUnique("skill", "singer");
+Countly.instance().userProfile().save();
+</code></pre>
 <h3 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h3>
 <p>
   The Countly Java SDK allows you to upload specific data related to a user to
@@ -906,43 +931,46 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>
-  To set standard properties, call respective methods of <code>UserEditor</code>:
+  To set standard properties, call respective methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java hljs">Countly.instance().user().edit()
-  .setName("Firstname Lastname")
-  .setUsername("nickname")
-  .setEmail("test@test.com")
-  .setOrg("Tester")
-  .setPhone("+123456789")
-  .commit();</code></pre>
+<pre><code class="java">Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.NAME, "Firstname Lastname");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.EMAIL, "test@test.com");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.USERNAME, "nickname");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.ORGANIZATION, "Tester");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PHONE, "+123456789");
+Countly.instance().userProfile().save();
+</code></pre>
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
-<pre>Countly.instance().user().edit().setPicture(byte[])</pre>
+<pre>Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PICTURE, BYTE_IMAGE)</pre>
 <p>
   or you can provide a picture url or local file path to set (only JPG, JPEG files
   are supported by the Java SDK):
 </p>
-<pre>Countly.instance().user().edit().setPicturePath(String)</pre>
+<pre>Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PICTURE_PATH, String)</pre>
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
-<pre><code class="java">//set a custom property
-Countly.instance().user().edit().set("money", 1000);
-//increment age by 1
-Countly.instance().user().edit().inc("money", 50);
+<pre><code lang="java">//set a custom property
+Countly.instance().userProfile().setProperty("money", 1000);
+//increment money by 50
+Countly.instance().userProfile().increment("money", 50);
 //multiply money with 2
-Countly.instance().user().edit().mul("money", 2);
+Countly.instance().userProfile().multiply("money", 2);
 //save maximum value
-Countly.instance().user().edit().max("score", 400);
+Countly.instance().userProfile().saveMax("score", 400);
 //save minimum value
-Countly.instance().user().edit().min("time", 60);
+Countly.instance().userProfile().saveMin("time", 60);
 //add property to array which can have unique values
-Countly.instance().user().edit().pushUnique("currency", "dollar");
+Countly.instance().userProfile().pushUnique("currency", "dollar");
 //add property to array which can be duplicate
-Countly.instance().user().edit().push("currency", "dollar");
+Countly.instance().userProfile().push("currency", "dollar");
 //remove value from array
-Countly.instance().user().edit().pull("currency","dollar");
-//commit changes
-Countly.instance().user().edit().commit();</code></pre>
+Countly.instance().userProfile().pull("currency","dollar");
+//set only a value
+Countly.instance().userProfile().setOnce("bank","TestBank");
+//save changes
+Countly.instance().userProfile().save();</code></pre>
 <h1 id="h_01HD1H1HNJVYBP0PNP0YSMFZY6">Security and Privacy</h1>
 <h2 id="h_01HD1H1HNJM6EBH29WE8AJSF80">Parameter Tamper Protection</h2>
 <p>
@@ -1053,6 +1081,12 @@ Countly.instance().user().edit().commit();</code></pre>
   <li>
     <strong>setLocation(String countryCode, String city, String geoLocation, String ipAddress)</strong>
     - Set location parameters to be sent with session begin
+    <strong>setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed)&nbsp;</strong>-
+    To change maximum limit of crash breadcrumb
+  </li>
+  <li>
+    <strong>disableUnhandledCrashReporting()</strong> - To disable unhandled
+    crash reporting
   </li>
 </ul>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
@@ -1183,7 +1217,7 @@ Countly.init(targetFolder, config);</code></pre>
   put("Retry Attempts", "60");
 }};
 
-Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
+Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
@@ -1217,7 +1251,7 @@ Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment,
   put("start", "1");
 }};
 
-Countly.backendMode().recordView("device-id", "SampleView", segmentation, 1646640780130L);
+Countly.instance().backendM().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'name' both are mandatory. The view will
@@ -1261,7 +1295,7 @@ Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
   put("_logs", "main page");
 }};
 
-Countly.backendMode().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
+Countly.instance().backendM().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
 </code></pre>
 <p>
   You may also pass an instance of an exception instead of the message and the
@@ -1281,7 +1315,7 @@ Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
 try {
   int a = 10 / 0;
 } catch(Exception e) {
-  Countly.backendMode().recordException("device-id", e, segmentation, crashDetails, null);
+  Countly.instance().backendM().recordException("device-id", e, segmentation, crashDetails, null);
 }</code></pre>
 <p>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
@@ -1321,7 +1355,7 @@ Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
   put("location", "31.5204,74.3587");
 }};
 
-Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130L);
+Countly.instance().backendM().sessionBegin("device-id", metrics, location, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note:</strong> In above example '_os', '_os_version' and '_app_version'
@@ -1348,11 +1382,11 @@ Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130
   <span data-preserver-spaces="true">Session update:</span>
 </p>
 <pre><code class="java hljs">double duration = 60;
-Countly.backendMode().sessionUpdate("device-id", duration, null);
+Countly.instance().backendM().sessionUpdate("device-id", duration, null);
 </code></pre>
 <p>Session end:</p>
 <pre><code class="java hljs">double duration = 20;
-Countly.backendMode().sessionEnd("device-id", duration, 1223456767L);
+Countly.instance().backendM().sessionEnd("device-id", duration, 1223456767L);
 </code></pre>
 <p>
   <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
@@ -1392,7 +1426,7 @@ userDetail.put("hair", "black");
 userDetail.put("height", 5.9);
 userDetail.put("marks", "{$inc: 1}");
 
-Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
   <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span>
@@ -1404,7 +1438,7 @@ Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
 userDetail.put("fav-colors", "{$push: black}");
 userDetail.put("marks", "{$inc: 1}");
 
-Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
   The keys for predefined <span>modification operation</span>s are as follows:
@@ -1491,7 +1525,7 @@ requestData.put("device_id", "device-id-2");
 requestData.put("timestamp", "1646640780130");
 requestData.put("key-name", "data");
 
-Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780130L);
+Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 1646640780130L);
 </code></pre>
   <p>
     <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
@@ -1503,7 +1537,7 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
   <p>
     <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>
-  <pre><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></pre>
+  <pre><code class="java hljs">int queueSize = Countly.instance().backendM().getQueueSize();</code></pre>
   <p>
     It will return the number of requests in the memory request queue.
   </p>

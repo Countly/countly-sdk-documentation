@@ -3153,6 +3153,74 @@ npm install markdownlint --save-dev
   the up to date version has been acquired, it is stored persistently and the SDK
   reconfigures itself to reflect the new configuration.
 </p>
+<h2>SDK Heath Checks</h2>
+<p>SDKs should try to provide 2 type of health information:</p>
+<ul>
+  <li>Instant request to the server with health information</li>
+  <li>Additional parameter with requests to the server</li>
+</ul>
+<h3>Health Information with Instant Request</h3>
+<p>
+  At the end of every SDK init the SDK should attempt an instant request to send
+  over health check counters. These counters are:
+</p>
+<ul dir="auto">
+  <li>
+    <p dir="auto">
+      <strong>el</strong> - Int
+    </p>
+  </li>
+  <li>
+    <p dir="auto">
+      <strong>wl</strong> - Int&nbsp;
+    </p>
+  </li>
+  <li>
+    <p dir="auto">
+      <strong>sc</strong> - Int
+    </p>
+  </li>
+  <li>
+    <p dir="auto">
+      <strong>em</strong> - String&nbsp;
+    </p>
+  </li>
+</ul>
+<p>Positive triggers of these counters are:</p>
+<ul>
+  <li>
+    Error level SDK log printed =&gt; <strong>el</strong>++
+  </li>
+  <li>
+    Warning level SDK log printed =&gt; <strong>wl</strong>++
+  </li>
+  <li>
+    A RQ request failed =&gt; <strong>sc</strong> = status code
+  </li>
+  <li>
+    A RQ request failed =&gt; <strong>em</strong> = response text
+  </li>
+</ul>
+<p>Negative triggers of these counters are:</p>
+<ul>
+  <li>
+    Health check request got {result:Success} =&gt; reset all counters
+  </li>
+</ul>
+<p>
+  These counters must be persistently stored. At the end of SDK init they should
+  be send under the 'hc' parameter to the server (/i?) after url encoding them
+  with metric information (app version only) as an instant request. Example usage:
+</p>
+<pre><code>// the relevant parts:
+https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;metrics={app_version:2}...</code></pre>
+<h3>Request Parameters for Health Check</h3>
+<p>
+  The number of requests in the request queue must be provided with each request
+  send from the RQ under the param "rr":
+</p>
+<pre><code>// the relevant parts:
+https://countly.server/*?...&amp;rr=23...</code></pre>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>
