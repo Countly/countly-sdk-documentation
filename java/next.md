@@ -443,10 +443,10 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
 <pre><code class="java">Countly.instance().deviceId().getID(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
 <h1 id="h_01HFPBH065MSZER3S0X3J15Y3E">User Location</h1>
 <p>
-  The Countly Java SDK can track the user's location. This information can be used
-  to know your app users better, to send them tailored feedback widgets based on
-  their coordinates, or to create cohorts based on their location. Four fields
-  may be provided:
+  You can track your users' location with Countly Java SDK. This information can
+  then be used for various tasks in your Countly server, like creating cohorts
+  or sending push notifications depending on the location. You can only provide
+  these four parameters regarding a user's location:
 </p>
 <ul>
   <li>
@@ -456,7 +456,7 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
     <span>City name (must be set together with the country code), e.g. "Reykjavik"</span>
   </li>
   <li>
-    <span>Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325"</span>
+    <span>Latitude and longitude values, separated by a comma, e.g. "56.42345,123.45325"</span>
   </li>
   <li>
     <span>Your user’s IP address, e.g. "192.168.1.1"</span>
@@ -466,33 +466,42 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   <span>Setting Location</span>
 </h2>
 <p>
-  <span>During init you can set location info that will be sent during the start of the user session:</span>
+  <span>If you set the user location during SDK initialization it will be sent to the server during the start of the user session:</span>
 </p>
 <pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
 <p>
-  Note that the ipAddress will only be updated if set through the init process.
+  As server side location calculations depends on the location info coming at the
+  beginning of a user session, providing this info at init time is recommended.
 </p>
-<p>If you don't want to set specific fields, set them to null.</p>
+<p>
+  If you get your users' location info after SDK initialization, you can still
+  provide them with the following call:
+</p>
 <pre><code class="java">//set user location
 String countryCode = "us";
 String city = "Houston";
 String latitude = "29.634933";
 String longitude = "-95.220255";
-String ipAddress = null;
+String ipAddress = null; // IP address must only be provided during init.<br>
 Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
 </code></pre>
 <p>
-  When those values are set, a separate request will be created to send the values.
-  Except for ip address, because Countly Server processes IP address only when
-  starting a session. If you don't want to set specific fields, set them to null.
+  Here you if you don't want to set specific fields, you should set them to null.
+</p>
+<p>
+  When these values are set, a separate request will be created to send them to
+  the server and these values would be cached for location tracking later, so at
+  the start of the next user session they would be used in server side calculations.&nbsp;
 </p>
 <h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
 <p>
-  To disable location during init, this function can be used. It is enabled by
-  default:
+  To turn off location tracking during init, use this method. Otherwise the location
+  tracking is enabled by default:
 </p>
 <pre>config.setDisableLocation();</pre>
-<p>To disable location tracking manually:</p>
+<p>
+  To turn off location tracking after init you can use this method:
+</p>
 <pre><span>Countly.instance().location().disableLocation();</span></pre>
 <p>
   <span>This action will erase the cached location data from the device and the server.</span>
