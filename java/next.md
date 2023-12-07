@@ -523,7 +523,7 @@ Countly.instance().location().setLocation(countryCode, city, latitude + "," + lo
   To turn off location tracking during init, use this method. Otherwise the location
   tracking is enabled by default:
 </p>
-<pre>config.setDisableLocation();</pre>
+<pre>config.disableLocation();</pre>
 <p>
   To turn off location tracking after init you can use this method:
 </p>
@@ -1076,7 +1076,7 @@ Countly.instance().userProfile().save();</code></pre>
     download of remote config values on triggers
   </li>
   <li>
-    <strong>setDisableLocation() </strong>- Disable location tracking
+    <strong>disableLocation() </strong>- Disable location tracking
   </li>
   <li>
     <strong>setLocation(String countryCode, String city, String geoLocation, String ipAddress)</strong>
