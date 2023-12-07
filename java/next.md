@@ -166,7 +166,7 @@ Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String
   The maximum breadcrumb limit is 100. To change the maximum limit use this method
   during initialization:
 </p>
-<pre>config.setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed);</pre>
+<pre>config.setMaxBreadcrumbCount(int maxBreadcrumbCount);</pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
@@ -1011,7 +1011,7 @@ Countly.instance().userProfile().save();</code></pre>
     download of remote config values on triggers
   </li>
   <li>
-    <strong>setTotalBreadcrumbsAllowed(int totalBreadcrumbsAllowed)&nbsp;</strong>-
+    <strong>setMaxBreadcrumbCount(int maxBreadcrumbCount)&nbsp;</strong>-
     To change maximum limit of crash breadcrumb
   </li>
   <li>
