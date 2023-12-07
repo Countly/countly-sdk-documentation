@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly Web SDK and use it to track your web page in detail. It applies to the SDK version 23.6.X.</span>
+  <span style="font-weight: 400;">This documentation shows how to install the Countly Web SDK and use it to track your web page in detail. It applies to the SDK version 23.12.X.</span>
 </p>
 <div class="callout callout--info">
   <p>
