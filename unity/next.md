@@ -1,5 +1,5 @@
 <p>
-  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.06.x</span><br>
+  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.12.x</span><br>
   You can download the latest release from
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">GitHub</a>.&nbsp;
 </p>
@@ -23,7 +23,7 @@
   To look at our sample application, download the sample project from
   <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">GitHub repo</a>
   and open the 'EntryPoint.unity' scene. 'EntryPoint.unity' located in 'Example'
-  folder under Assest. There is also 'CountlyEntryPoint.cs' script in Example folder,
+  folder under Assets. There is also 'CountlyEntryPoint.cs' script in Example folder,
   and this script shows how most of the functionality can be used.
 </p>
 <h1 id="h_01HABTZ314WVHKW01D3RTT1RYX">Adding the SDK to the Project</h1>
@@ -59,7 +59,7 @@
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = <strong>new</strong> CountlyConfiguration {<br>  AppKey = <span>COUNTLY_APP_KEY,</span><br>  ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>};<br><br>Countly.Instance.Init(config);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">string appKey = "<span>COUNTLY_APP_KEY";</span><br>string serverUrl = "<span>COUNTLY_SERVER_URL"</span>;<br><br>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, serverUrl);<br>Countly.Instance.Init(config);</code></pre>
 <p>
   <span>In the </span><code>CountlyConfiguration</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
@@ -125,7 +125,7 @@
 <p>
   Set <code>EnableConsoleLogging</code> on the config object to enable logging:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration {<br>  AppKey = <span>COUNTLY_APP_KEY,</span><br>  ServerUrl = <span>COUNTLY_SERVER_URL</span>,<br>  EnableConsoleLogging = true<br>};</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)<br>  .EnableConsoleLogging(true);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
@@ -142,8 +142,8 @@
 <h2 id="h_01HABTZ314AT5KAJCM51D304ZV">Automatic Crash Handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
-  to the Countly server. To report uncaught exceptions/crashes automatically, enable
-  <strong>enableAutomaticCrashReporting<span>&nbsp;</span></strong><span>in the SDK configuration.</span>
+  to the Countly server. To report uncaught exceptions/crashes automatically, set
+  <strong>EnableAutomaticCrashReporting(bool enable)<span> </span></strong><span>to true, </span><span>in the SDK configuration.</span>
 </p>
 <h2 id="h_01HABTZ314W6CP02BBBHB6FBKJ" class="anchor-heading">Handled Exceptions</h2>
 <p>
@@ -190,7 +190,7 @@
   a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre>countly.CrashReports.AddBreadcrumbs("breadcrumb");</pre>
+<pre><code class="!whitespace-pre hljs language-csharp">countly.CrashReports.AddBreadcrumbs("breadcrumb");</code></pre>
 <h2 id="h_01HABTZ3140XGZJY6K0J169K5Q" class="anchor-heading">Consent</h2>
 <p>
   This feature uses <code>Crashes</code><span> consent. No additional crash logs will be recorded if consent is required and not given.</span>
@@ -401,7 +401,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><span><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();  <br>viewSegmentation.Add("Cats", 123);<br>viewSegmentation.Add("Moons", 9.98);<br>viewSegmentation.Add("Moose", "Deer");<br><br>await Countly.Instance.Views.RecordOpenViewAsync("Better view", viewSegmentation);</code></span></pre>
+<pre><span><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();<br>viewSegmentation.Add("Cats", 123);<br>viewSegmentation.Add("Moons", 9.98);<br>viewSegmentation.Add("Moose", "Deer");<br><br>await Countly.Instance.Views.RecordOpenViewAsync("Better view", viewSegmentation);</code></span></pre>
 <p>
   <span>Note: The accepted data types for the segmentation value are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
 </p>
@@ -424,7 +424,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   You can provide a device ID during initialization like this:
 </p>
-<pre>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration { <br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  EnableConsoleLogging = true,<br>  DeviceId = UNIQUE_DEVICE_ID<br>};<br><br>Countly.Instance.Init(config);</pre>
+<pre><code class="!whitespace-pre hljs language-csharp">string DeviceId = "UNIQUE_DEVICE_ID";<br>CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)<br>  .SetDeviceId(DeviceId);<br><br>Countly.Instance.Init(config);</code></pre>
 <h2 id="h_01HABTZ315MW7E9560TS40F65Z" class="anchor-heading">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
@@ -489,7 +489,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   <span><code class="java">ASIdentifierManager advertisingIdentifier</code></span>
 </p>
 <p>
-  <span>&nbsp;<strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code>&nbsp;returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;different value&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;</span>
+  <span><strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code>&nbsp;returns the md5 of ANDROID_ID.<br>Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a&nbsp;different value&nbsp;than signed builds (which are signed with a key provided in the player settings).&nbsp;</span>
 </p>
 <p>
   <span><strong>Windows Store Apps:</strong> uses <code class="java">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
@@ -567,7 +567,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration {<br>  AppKey = COUNTLY_APP_KEY,<br>  ServerUrl = COUNTLY_SERVER_URL,<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken<br>};<br></span></code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><span>CountlyConfiguration configuration = <strong>new</strong> CountlyConfiguration(appKey, serverUrl)<br>  .SetNotificationMode(TestMode.AndroidTestToken);</span></code></pre>
 <p>
   <span> Here is an overview of notification modes:</span>
 </p>
@@ -626,7 +626,17 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><br><span><code>public class CountlyEntryPoint : MonoBehaviour, INotificationListener<br>{<br>  public void OnNotificationReceived(string message) {<br>  }<br><br>  public void OnNotificationClicked(string message, int index) {<br>  }<br>}</code></span></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">public class CountlyEntryPoint : MonoBehaviour, INotificationListener
+{
+  public void OnNotificationReceived(string message)
+  {
+  
+  }
+  public void OnNotificationClicked(string message, int index)
+  {
+  
+  }
+}</code></pre>
 <p>
   <span>&nbsp;There are two ways to register for this class to listen to notification events.</span>
 </p>
@@ -636,7 +646,12 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><span><code class="!whitespace-pre hljs language-csharp">private void Awake()<br>{<br>  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration {<br>    AppKey = COUNTLY_APP_KEY,<br>    ServerUrl = COUNTLY_SERVER_URL,<br>  };<br><br>  config.AddListener(this);<br>  Countly.Instance.Init(config);<br>}</code></span><span></span></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">private void Awake()
+{
+  CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, serverUrl);
+  config.AddNotificationListener(this);
+  Countly.Instance.Init(config);
+}</code></pre>
 <p>
   <span></span><span></span>2. If SDK has been initialized<span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">, use the following code snippet to listen to push notification events.</span>
 </p>
@@ -828,7 +843,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   to easily send your specific data to Countly servers without unnecessary steps.
 </p>
 <p>Example:</p>
-<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; userDetails = <strong>new</strong> Dictionary&lt;string, object&gt;(); <br>userDetails.Add("Height", "5.8");<br>userDetails.Add("Mole", "Lower Left Cheek");<br><br><span>Countly.Instance</span>.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; userDetails = <strong>new</strong> Dictionary&lt;string, object&gt;();<br>userDetails.Add("Height", "5.8");<br>userDetails.Add("Mole", "Lower Left Cheek");<br><br><span>Countly.Instance</span>.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <h2 id="h_01HABTZ3166RSMTP5JC3Y2PVZC">Setting User Picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
@@ -901,7 +916,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>  ServerUrl = "https://try.count.ly/",<br>  AppKey = "YOUR_APP_KEY",<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken,<br>  RequiresConsent = true<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .EnableConsoleLogging(true)<br>  .SetNotificationMode(TestMode.AndroidTestToken)<br>  .SetRequiresConsent(true);<br><br>Countly.Instance.Init(configuration);</code></pre>
 <p>
   <span>By default, when consent is required, no consent is given. If no consent is given, SDK will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
 </p>
@@ -1007,70 +1022,66 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
 <p>
   <span>You may set the optional&nbsp;<code>salt</code></span><span>&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the&nbsp;<code>&amp;checksum</code></span><span>&nbsp;field. You will need to set exactly the same&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server. If&nbsp;the&nbsp;<code>salt</code></span><span>&nbsp;on the Countly server is set, all requests would be checked for the validity of the&nbsp;<code>&amp;checksum</code></span><span> field before being processed.</span>
 </p>
-<pre><code class="java hljs">configuration.Salt = "salt";</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .SetParameterTamperingProtectionSalt("Salt");</code></pre>
 <h1 id="h_01HABTZ317YY21TT4G68H4VJM4">Other Features</h1>
 <h2 id="h_01HCHSPK9JJC6GC35NHZJQ4F4Y">SDK Config Parameters Explained</h2>
 <p>
-  <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. Here are the details of the optional parameters:</span><span></span>
+  <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. These are the methods that lets you set values in your "<strong>CountlyConfiguration</strong>" object:</span><span></span>
 </p>
 <p>
-  <strong>DeviceId -<span>&nbsp;</span></strong>(Optional, string) your Device
-  ID. It is an optional parameter.<span>&nbsp;</span><strong>Example:</strong><span>&nbsp;</span>f16e5af2-8a2a-4f37-965d-qwer5678ui98.
-</p>
-<p>Below you can find details of each parameter:</p>
-<p>
-  <strong>Salt -<span>&nbsp;</span></strong>(Optional, string) used to prevent
-  parameter tampering. The default value is<span>&nbsp;</span><strong>NULL</strong>.&nbsp;
+  <strong>SetDeviceId(string deviceId) -</strong> your Device ID. It is an optional
+  parameter. <strong>Example:</strong> f16e5af2-8a2a-4f37-965d-qwer5678ui98.
 </p>
 <p>
-  <strong>EnablePost -<span>&nbsp;</span></strong>(bool) when set to<span>&nbsp;</span><strong>true</strong>,
-  all requests made to the Countly server will be done using HTTP POST. Otherwise,
-  the SDK sends all requests using the HTTP GET method. In some cases, if the data
-  to be sent exceeds the 1800-character limit, the SDK uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span>
+  <strong>SetParameterTamperingProtectionSalt(string salt) - </strong>used to prevent
+  parameter tampering. The default value is <strong>NULL</strong>.
 </p>
 <p>
-  <span><strong>EnableTestMode - </strong>(Optional, bool) this parameter is useful in development when you don't want to send requests to the Countly server. The default value is<strong>&nbsp;false</strong>.</span>
+  <strong>EnableHttpPostForced(bool enable) - </strong>when set to
+  <strong>true</strong>, all requests made to the Countly server will be done using
+  HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In
+  some cases, if the data to be sent exceeds the 1800-character limit, the SDK
+  uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span><span></span>
 </p>
 <p>
-  <strong>RequiresConsent -<span>&nbsp;</span></strong><span>(Optional, bool) t</span>his
-  is useful
-  <span>during the app run when the user wants to opt-out of SDK features.</span>
+  <strong>SetRequiresConsent(bool enable) -</strong> this is useful during the
+  app run when the user wants to opt-out of SDK features.
 </p>
 <p>
-  <strong>EnableConsoleLogging -<span>&nbsp;</span></strong><span>(Optional, bool) t</span>his
-  parameter is useful when you are debugging your application. When set to<span>&nbsp;</span><strong>true</strong>,
+  <strong>EnableLogging(bool enable) -</strong> this parameter is useful when you
+  are debugging your application. When set to<span>&nbsp;</span><strong>true</strong>,
   it basically turns on Logging.&nbsp;
 </p>
 <p>
-  <strong>SessionDuration -</strong><span> (Optional, int) s</span>ets the interval
+  <strong>SetUpdateSessionTimerDelay(int duration) -</strong> sets the interval
   (in seconds) after which the application will automatically extend the session,
   providing the manual session is disabled. This interval is also used to process
   requests in the queue. The default value is<strong><span>&nbsp;</span>60<span>&nbsp;</span></strong>(seconds).
 </p>
 <p>
-  <strong>EventThreshold -</strong><span> (Optional, int) sets </span>a threshold
-  value that limits the number of events that can be recorded internally by the
-  system before they can all be sent together in one request. Once the threshold
-  limit is reached, the system groups all recorded events and sends them to the
-  server. The default value is<span>&nbsp;</span><strong>100.</strong><span>&nbsp;</span>
+  <strong>SetEventQueueSizeToSend(int threshold) -</strong> sets a threshold value
+  that limits the number of events that can be recorded internally by the system
+  before they can all be sent together in one request. Once the threshold limit
+  is reached, the system groups all recorded events and sends them to the server.
+  The default value is<span>&nbsp;</span><strong>100.</strong><span>&nbsp;</span>
 </p>
 <p>
-  <strong>StoredRequestLimit -</strong><span> (Optional, int) s</span>ets a threshold
-  value that limits the number of requests that can be stored internally by the
-  system. The system processes these requests after every session duration interval
-  has passed. The default value is<span>&nbsp;</span><strong>1000.</strong>
+  <strong>SetMaxRequestQueueSize(int limit) -</strong> sets a threshold value that
+  limits the number of requests that can be stored internally by the system. The
+  system processes these requests after every session duration interval has passed.
+  The default value is<span>&nbsp;</span><strong>1000.</strong>
 </p>
 <p>
-  <strong>NotificationMode -<span>&nbsp;</span></strong>(Optional, enum) when<span>&nbsp;</span><strong>None</strong>,
-  the SDK disables Push Notifications for the device. Use an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or
-  an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
+  <strong>SetNotificationMode(TestMode mode) -</strong> when
+  <strong>None</strong>, the SDK disables Push Notifications for the device. Use
+  an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
   testing purposes, and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
   SDK uses the supplied mode for sending Push Notifications. The default value
   is<span>&nbsp;</span><strong>None.</strong>
 </p>
 <p>
-  <strong>EnableAutomaticCrashReporting -<span>&nbsp;</span></strong><span>(Optional, bool) u</span>sed
-  to turn on/off Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
+  <strong>EnableAutomaticCrashReport(bool enable) -</strong> used to turn on/off
+  Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
   the SDK will catch exceptions and automatically report them to the Countly server.
   The default value is<span>&nbsp;</span><strong>true.</strong>
 </p>
@@ -1100,30 +1111,36 @@ configuration.SetMetricOverride(customMetric);</code></pre>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
   limits. If values or keys provided by the user, would exceed the limits, they
-  would be truncated. Here are the details of these configurable fields:<span></span>
+  would be truncated. These are the methods that let's you set limits.<span></span>
 </p>
 <p>
-  <span><strong>MaxKeyLength -&nbsp;</strong>(int) maximum size of all string keys. The default value is <strong>128</strong>.&nbsp;</span>
+  <span><strong>SetMaxKeyLength(int length) - </strong>maximum size of all string keys. The default value is <strong>128</strong>.&nbsp;</span>
 </p>
 <p>
-  <span><strong>MaxValueSize -&nbsp;</strong>(int) maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.&nbsp;</span>
+  <span><strong>SetMaxValueSize(int size) - </strong>maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.&nbsp;</span>
 </p>
 <p>
-  <span><strong>MaxSegmentationValues -&nbsp;</strong>(int) max amount of custom (dev provided) segmentation in one event. The default value is <strong>30</strong>.&nbsp;</span>
+  <span><strong>SetMaxSegmentationValues(int values) - </strong>maximum amount of custom (dev provided) segmentation in one event. The default value is <strong>30</strong>.&nbsp;</span>
 </p>
 <p>
-  <span><strong>MaxStackTraceLinesPerThread -&nbsp;</strong>(int) limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.&nbsp;</span>
+  <span><strong>SetMaxStackTraceLinesPerThread(int lines) - </strong>limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.&nbsp;</span>
 </p>
 <p>
-  <span><strong>MaxStackTraceLineLength -&nbsp;</strong>(int) limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
+  <span><strong>SetMaxStackTraceLineLength(int length) - </strong>limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
 </p>
+<p>
+  <strong>SetMaxBreadcrumbCount(int amount) </strong>- maximum amount of breadcrumbs.
+  The default value is <strong>100</strong>.
+</p>
+<p>Example:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .SetMaxKeyLength(120)<br>  .SetMaxValueSize(240)<br>  .SetMaxSegmentationValues(35)<br>  .SetMaxStackTraceLinesPerThread(32)<br>  .SetMaxStackTraceLineLength(230)<br>  .SetMaxBreadcrumbCount(101);</code></pre>
 <h2 id="h_01HCHSPK9K615SPYZP2NF2KXN0">Setting Event Queue Threshold</h2>
 <p>
   In SDK configuration, you may limit the number of events that can be recorded
   internally by the system before they can all be sent together in one request.&nbsp;<br>
   Example:
 </p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration {<br>  ServerUrl = "https://try.count.ly/",<br>  AppKey = "YOUR_APP_KEY",<br>  EnableConsoleLogging = true,<br>  NotificationMode = TestMode.AndroidTestToken,<br>  EventThreshold = 1000<br>};<br><br>Countly.Instance.Init(configuration);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .SetEventQueueSizeToSend(1222);<br><br>Countly.Instance.Init(configuration);</code></pre>
 <p>
   Once the threshold limit is reached, the system groups all recorded events and
   sends them to the server.
@@ -1151,12 +1168,12 @@ configuration.SetMetricOverride(customMetric);</code></pre>
   If you do not specify a value for the StoredRequestLimit flag, the default setting
   of 1,000 will be used.
 </p>
-<pre><code class="Java">StoredRequestLimit = 5000;</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .SetMaxRequestQueueSize(500);</code></pre>
 <h2 id="h_01HCHSPK9K9CM6204WD2Z06WTZ">Checking If the SDK Has Been Initialized</h2>
 <p>
   <span>In case you would like to check if init has been called, you may use the following property:</span>
 </p>
-<pre><code class="java hljs">Countly.Instance.IsSDKInitialized;</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.IsSDKInitialized;</code></pre>
 <h1 id="h_01HCHSPK9KVEWVKRB0CRY25S8K">FAQ</h1>
 <h2 id="h_01HCHSPK9KTK4V1CCZXVND2TSV">What Information is Collected by the SDK</h2>
 <p>
