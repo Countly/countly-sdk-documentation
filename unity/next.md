@@ -408,7 +408,12 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><span><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();<br>viewSegmentation.Add("Cats", 123);<br>viewSegmentation.Add("Moons", 9.98);<br>viewSegmentation.Add("Moose", "Deer");<br><br>await Countly.Instance.Views.RecordOpenViewAsync("Better view", viewSegmentation);</code></span></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("Cats", 123);
+viewSegmentation.Add("Moons", 9.98);
+viewSegmentation.Add("Moose", "Deer");
+  
+await Countly.Instance.Views.RecordOpenViewAsync("Better view", viewSegmentation);</code></pre>
 <p>
   <span>Note: The accepted data types for the segmentation value are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
 </p>
@@ -431,7 +436,11 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   You can provide a device ID during initialization like this:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">string DeviceId = "UNIQUE_DEVICE_ID";<br>CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)<br>  .SetDeviceId(DeviceId);<br><br>Countly.Instance.Init(config);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">string DeviceId = "UNIQUE_DEVICE_ID";
+CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)
+  .SetDeviceId(DeviceId);
+  
+Countly.Instance.Init(config);</code></pre>
 <h2 id="h_01HABTZ315MW7E9560TS40F65Z" class="anchor-heading">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
@@ -574,7 +583,8 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>CountlyConfiguration configuration = <strong>new</strong> CountlyConfiguration(appKey, serverUrl)<br>  .SetNotificationMode(TestMode.AndroidTestToken);</span></code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = <strong>new</strong> CountlyConfiguration(appKey, serverUrl)
+  .SetNotificationMode(TestMode.AndroidTestToken);</code></pre>
 <p>
   <span> Here is an overview of notification modes:</span>
 </p>
@@ -850,7 +860,10 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   to easily send your specific data to Countly servers without unnecessary steps.
 </p>
 <p>Example:</p>
-<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; userDetails = <strong>new</strong> Dictionary&lt;string, object&gt;();<br>userDetails.Add("Height", "5.8");<br>userDetails.Add("Mole", "Lower Left Cheek");<br><br><span>Countly.Instance</span>.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; userDetails = <strong>new</strong> Dictionary&lt;string, object&gt;();
+userDetails.Add("Height", "5.8");
+userDetails.Add("Mole", "Lower Left Cheek");
+Countly.Instance.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <h2 id="h_01HABTZ3166RSMTP5JC3Y2PVZC">Setting User Picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
@@ -923,7 +936,12 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .EnableLogging()<br>  .SetNotificationMode(TestMode.AndroidTestToken)<br>  .SetRequiresConsent(true);<br><br>Countly.Instance.Init(configuration);</code></pre>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .EnableLogging()
+  .SetNotificationMode(TestMode.AndroidTestToken)
+  .SetRequiresConsent(true);
+  
+Countly.Instance.Init(configuration);</code></pre>
 <p>
   <span>By default, when consent is required, no consent is given. If no consent is given, SDK will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
 </p>
