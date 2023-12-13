@@ -1,5 +1,7 @@
 <p>
-  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.12.x</span><br>
+  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.12.x</span>
+</p>
+<p>
   You can download the latest release from
   <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">GitHub</a>.&nbsp;
 </p>
@@ -59,7 +61,11 @@
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">string appKey = "<span>COUNTLY_APP_KEY";</span><br>string serverUrl = "<span>COUNTLY_SERVER_URL"</span>;<br><br>CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, serverUrl);<br>Countly.Instance.Init(config);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">string appKey = "<span>COUNTLY_APP_KEY";</span>
+string serverUrl = "<span>COUNTLY_SERVER_URL"</span>;
+
+CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, serverUrl);<br>Countly.Instance.Init(config);
+</code></pre>
 <p>
   <span>In the </span><code>CountlyConfiguration</code><span> object, you provide appKey and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
@@ -123,9 +129,10 @@
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
 </p>
 <p>
-  Set <code>EnableConsoleLogging</code> on the config object to enable logging:
+  Call <code>EnableLogging</code> on the config object to enable logging:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)<br>  .EnableConsoleLogging(true);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)
+  .EnableLogging();</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
@@ -142,8 +149,8 @@
 <h2 id="h_01HABTZ314AT5KAJCM51D304ZV">Automatic Crash Handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
-  to the Countly server. To report uncaught exceptions/crashes automatically, set
-  <strong>EnableAutomaticCrashReporting(bool enable)<span> </span></strong><span>to true, </span><span>in the SDK configuration.</span>
+  to the Countly server. This feature is enabled by default. In order to, stop
+  reporting uncaught exceptions/crashes automatically, call<strong> DisableAutomaticCrashReporting()</strong><span>, </span><span>in the SDK configuration.</span>
 </p>
 <h2 id="h_01HABTZ314W6CP02BBBHB6FBKJ" class="anchor-heading">Handled Exceptions</h2>
 <p>
@@ -916,7 +923,7 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
 <p>
   <span>The requirement for consent is disabled by default. To enable it, you will have to set <code>RequiresConsent</code></span><span> value <code>true</code></span><span>&nbsp;before initializing Countly.</span>
 </p>
-<pre><code>CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .EnableConsoleLogging(true)<br>  .SetNotificationMode(TestMode.AndroidTestToken)<br>  .SetRequiresConsent(true);<br><br>Countly.Instance.Init(configuration);</code></pre>
+<pre><code>CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)<br>  .EnableLogging()<br>  .SetNotificationMode(TestMode.AndroidTestToken)<br>  .SetRequiresConsent(true);<br><br>Countly.Instance.Init(configuration);</code></pre>
 <p>
   <span>By default, when consent is required, no consent is given. If no consent is given, SDK will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
 </p>
@@ -1037,20 +1044,19 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   parameter tampering. The default value is <strong>NULL</strong>.
 </p>
 <p>
-  <strong>EnableHttpPostForced(bool enable) - </strong>when set to
-  <strong>true</strong>, all requests made to the Countly server will be done using
-  HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In
-  some cases, if the data to be sent exceeds the 1800-character limit, the SDK
-  uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span><span></span>
+  <strong>EnableForcedHttpPost() - </strong>when enabled, all requests made to
+  the Countly server will be done using HTTP POST. Otherwise, the SDK sends all
+  requests using the HTTP GET method. In some cases, if the data to be sent exceeds
+  the 1800-character limit, the SDK uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span><span></span>
 </p>
 <p>
   <strong>SetRequiresConsent(bool enable) -</strong> this is useful during the
   app run when the user wants to opt-out of SDK features.
 </p>
 <p>
-  <strong>EnableLogging(bool enable) -</strong> this parameter is useful when you
-  are debugging your application. When set to<span>&nbsp;</span><strong>true</strong>,
-  it basically turns on Logging.&nbsp;
+  <strong>EnableLogging() -</strong> this parameter is useful when you are debugging
+  your application. When set to<span>&nbsp;</span><strong>true</strong>, it basically
+  turns on Logging.&nbsp;
 </p>
 <p>
   <strong>SetUpdateSessionTimerDelay(int duration) -</strong> sets the interval
@@ -1080,10 +1086,9 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   is<span>&nbsp;</span><strong>None.</strong>
 </p>
 <p>
-  <strong>EnableAutomaticCrashReport(bool enable) -</strong> used to turn on/off
-  Automatic Crash Reporting. When set to<span>&nbsp;</span><strong>true</strong>,
-  the SDK will catch exceptions and automatically report them to the Countly server.
-  The default value is<span>&nbsp;</span><strong>true.</strong>
+  <strong>DisableAutomaticCrashReporting() -</strong> turns off Automatic Crash
+  Reporting. When<span> </span><strong>enabled</strong>, the SDK will catch exceptions
+  and automatically report them to the Countly server. It's enabled by default.
 </p>
 <h2 id="01HFEMPN4D6V1PJ7R9WC6WZ17H">Custom Metrics</h2>
 <p>
