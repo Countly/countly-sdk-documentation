@@ -715,7 +715,25 @@ Countly.Instance.SetConsent(consent);</code></pre>
   <span>Backend Mode</span>
 </h2>
 <p>
-  <span>The Windows SDK backend mode supports multiple apps. With backend mode events can be recorded with different apps and devices. To enable backend mode:</span>
+  <span>Backend mode allows sending requests with minimal SDK overhead and with the ability to control to which device ID to attribute the recorded data on a per data point level.</span>
+</p>
+<p>
+  <span>This feature allows also a fine grain control over to which Countly app the data should be sent.</span>
+</p>
+<p>
+  <span>Backend mode is mainly intended for server/backend use cases.</span>
+</p>
+<p>
+  <span>When backend mode is enabled other SDK calls will be ignored. </span>
+</p>
+<p>
+  <span>When in backend mode, nothing is saved persistently and everything is stored only in memory.</span>
+</p>
+<h3 id="h_01HHHV17XPBGMMDAM2HW82QX65">
+  <span>Enabling Backend Mode</span>
+</h3>
+<p>
+  <span>To enable backend mode you need to call "EnableBackendMode" :</span>
 </p>
 <pre><code class="csharp">CountlyConfig cc = new CountlyConfig();
 cc.serverUrl = "YOUR_SERVER_URL";
@@ -723,30 +741,16 @@ cc.appKey = "ONE_OF_YOUR_APP_KEYS";
 cc.appVersion = "APP_VERSION";
 cc.EnableBackendMode();
 await Countly.Instance.Init(cc);</code></pre>
+<p>You would also provide the default appKey.</p>
 <p>
-  <span>When backend mode is enabled other SDK calls will be omitted. And nothing will be saved persistently.&nbsp;</span>
+  For more information on backend mode configuration options, check bellow.
 </p>
-<h3 id="h_01HHHEEY3AHKR4XQD22DF8JQKJ">
-  <span>Events</span>
+<h3 id="h_01HHHV1KDXJNM5FJ8T9KHRB0ZZ">
+  <span>Recording Data</span>
 </h3>
-<p>
-  Firstly, when backend mode is enabled, the SDK will apply limits to request queue
-  and to the event queue. Default limit for the request queue is 1000, default
-  limit for the event queue 10 (this is a limit for per device).
-</p>
-<p>
-  Because the backend mode supports multiple apps, there is also two additional
-  limits, per app event queue limit and server event queue limit. Default value
-  of the per app event queue limit is 1000 and default server event queue limit
-  is 10000.
-</p>
-<p>
-  These limits can be changes with these additional config calls:
-</p>
-<pre><code class="csharp">cc.SetMaxRequestQueueSize(1000); // sets request queue max size as 1000
-cc.SetEventQueueSizeToSend(100); // sets event queue size per device
-cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
-cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
+<h4 id="h_01HHHEEY3AHKR4XQD22DF8JQKJ">
+  <span>Events</span>
+</h4>
 <p>
   <span>To record an event with backend mode this method should be called:</span>
 </p>
@@ -761,6 +765,35 @@ segmentation.Add("uid", "2873673");
 long timestamp = 1702467348;
 bm.RecordEvent("app2", "device2", "event2", 8.02, 2, 30, segmentation, timestamp);
 bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation </code></pre>
+<h3 id="h_01HHHTMR50NHVM1X61ZFCF7002">Configuring Backend Mode</h3>
+<p>
+  When backend mode is enabled, the SDK will apply limits to request queue and
+  to the event queue. Default limit for the maximum amount of entries that the
+  request queue can hold is 1000. When exceding that count, the oldest request
+  will be deleted.
+</p>
+<p>
+  Events are sent periodically (every 60 seconds we would try to send all stored
+  events), and a subsection of events can be sent based on different triggers.
+</p>
+<p>
+  For a single device ID the default "sending" threshold is 10 events.
+</p>
+<p>
+  For all events targeted for a single app, the default "sending" threshold is
+  1000 events.
+</p>
+<p>
+  For all stored events for a target countly server the default "sending" threshold
+  is 10000.
+</p>
+<p>
+  These limits can be changed with these additional config calls:
+</p>
+<pre><code class="csharp">cc.SetMaxRequestQueueSize(1000); // sets request queue max size as 1000
+cc.SetEventQueueSizeToSend(100); // sets event queue size per device
+cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
+cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
 <h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK</h2>
 <p>
