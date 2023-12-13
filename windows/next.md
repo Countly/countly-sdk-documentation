@@ -1,6 +1,6 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 23.02.X.
+  It applies to version 23.10.X.
 </p>
 <div class="callout callout--info">
   <p>
@@ -711,6 +711,56 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
 </p>
+<h2 id="h_01HHHE4NG1BWB112A9F7AYF93M">
+  <span>Backend Mode</span>
+</h2>
+<p>
+  <span>The Windows SDK backend mode supports multiple apps. With backend mode events can be recorded with different apps and devices. To enable backend mode:</span>
+</p>
+<pre><code class="csharp">CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "ONE_OF_YOUR_APP_KEYS";
+cc.appVersion = "APP_VERSION";
+cc.EnableBackendMode();
+await Countly.Instance.Init(cc);</code></pre>
+<p>
+  <span>When backend mode is enabled other SDK calls will be omitted. And nothing will be saved persistently.&nbsp;</span>
+</p>
+<h3 id="h_01HHHEEY3AHKR4XQD22DF8JQKJ">
+  <span>Events</span>
+</h3>
+<p>
+  Firstly, when backend mode is enabled, the SDK will apply limits to request queue
+  and to the event queue. Default limit for the request queue is 1000, default
+  limit for the event queue 10 (this is a limit for per device).
+</p>
+<p>
+  Because the backend mode supports multiple apps, there is also two additional
+  limits, per app event queue limit and server event queue limit. Default value
+  of the per app event queue limit is 1000 and default server event queue limit
+  is 10000.
+</p>
+<p>
+  These limits can be changes with these additional config calls:
+</p>
+<pre><code class="csharp">cc.SetMaxRequestQueueSize(1000); // sets request queue max size as 1000
+cc.SetEventQueueSizeToSend(100); // sets event queue size per device
+cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
+cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
+<p>
+  <span>To record an event with backend mode this method should be called:</span>
+</p>
+<pre><span>Countly.Instance.BackendMode().RecordEvent(string deviceId, string appKey, string eventKey, double? eventSum = null, int eventCount = 1, long? eventDuration = null, Segmentation segmentations = null, long timestamp = 0);</span></pre>
+<p>
+  Here are some examples for recording event with the backend mode:
+</p>
+<pre><code class="csharp">BackendMode bm = Countly.Instance.BackendMode(); // for convenient calling
+bm.RecordEvent("app1", "device1", "event1");
+Segmentation segmentation = new Segmentation();
+segmentation.Add("uid", "2873673");
+long timestamp = 1702467348;
+bm.RecordEvent("app2", "device2", "event2", 8.02, 2, 30, segmentation, timestamp);
+bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation </code></pre>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
 <h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK</h2>
 <p>
