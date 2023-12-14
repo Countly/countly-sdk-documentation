@@ -3,7 +3,7 @@
 </p>
 <p>
   You can download the latest release from
-  <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">GitHub</a>.&nbsp;
+  <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">GitHub</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -139,7 +139,9 @@ CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, 
 </p>
 <h1 id="h_01HABTZ31464JJFMECCZEH8F4C" class="anchor-heading" tabindex="-1">Crash Reporting</h1>
 <p>
-  <span>The Countly SDK for Unity can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
+  The Countly SDK for Unity can collect
+  <a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics">Crash Reports</a>,
+  which you may examine and resolve later on the server.
 </p>
 <p>
   In the SDK all crash-related functionalities can be browsed from the returned
@@ -1054,49 +1056,50 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   <span>To change the Configuration, update the values of parameters in the "<strong>CountlyConfiguration" </strong>object. These are the methods that lets you set values in your "<strong>CountlyConfiguration</strong>" object:</span><span></span>
 </p>
 <p>
-  <strong>SetDeviceId(string deviceId) -</strong> your Device ID. It is an optional
+  <strong>SetDeviceId(string deviceId)</strong> - your Device ID. It is an optional
   parameter. <strong>Example:</strong> f16e5af2-8a2a-4f37-965d-qwer5678ui98.
 </p>
 <p>
-  <strong>SetParameterTamperingProtectionSalt(string salt) - </strong>used to prevent
+  <strong>SetParameterTamperingProtectionSalt(string salt)</strong> - used to prevent
   parameter tampering. The default value is <strong>NULL</strong>.
 </p>
 <p>
-  <strong>EnableForcedHttpPost() - </strong>when enabled, all requests made to
+  <strong>EnableForcedHttpPost()</strong> - when enabled, all requests made to
   the Countly server will be done using HTTP POST. Otherwise, the SDK sends all
   requests using the HTTP GET method. In some cases, if the data to be sent exceeds
-  the 1800-character limit, the SDK uses the POST method.<span>&nbsp;The default value is&nbsp;<strong>false</strong>.&nbsp;</span><span></span>
+  the 1800-character limit, the SDK uses the POST method.The default value is
+  <strong>false</strong>
 </p>
 <p>
-  <strong>SetRequiresConsent(bool enable) -</strong> this is useful during the
+  <strong>SetRequiresConsent(bool enable)</strong> - this is useful during the
   app run when the user wants to opt-out of SDK features.
 </p>
 <p>
-  <strong>EnableLogging() -</strong> this parameter is useful when you are debugging
+  <strong>EnableLogging()</strong> - this parameter is useful when you are debugging
   your application. When set to<span>&nbsp;</span><strong>true</strong>, it basically
   turns on Logging.&nbsp;
 </p>
 <p>
-  <strong>SetUpdateSessionTimerDelay(int duration) -</strong> sets the interval
+  <strong>SetUpdateSessionTimerDelay(int duration)</strong> - sets the interval
   (in seconds) after which the application will automatically extend the session,
   providing the manual session is disabled. This interval is also used to process
   requests in the queue. The default value is<strong><span>&nbsp;</span>60<span>&nbsp;</span></strong>(seconds).
 </p>
 <p>
-  <strong>SetEventQueueSizeToSend(int threshold) -</strong> sets a threshold value
+  <strong>SetEventQueueSizeToSend(int threshold)</strong> - sets a threshold value
   that limits the number of events that can be recorded internally by the system
   before they can all be sent together in one request. Once the threshold limit
   is reached, the system groups all recorded events and sends them to the server.
   The default value is<span>&nbsp;</span><strong>100.</strong><span>&nbsp;</span>
 </p>
 <p>
-  <strong>SetMaxRequestQueueSize(int limit) -</strong> sets a threshold value that
+  <strong>SetMaxRequestQueueSize(int limit)</strong> - sets a threshold value that
   limits the number of requests that can be stored internally by the system. The
   system processes these requests after every session duration interval has passed.
   The default value is<span>&nbsp;</span><strong>1000.</strong>
 </p>
 <p>
-  <strong>SetNotificationMode(TestMode mode) -</strong> when
+  <strong>SetNotificationMode(TestMode mode)</strong> - when
   <strong>None</strong>, the SDK disables Push Notifications for the device. Use
   an<span>&nbsp;</span><strong>iOS Test Token<span>&nbsp;</span></strong>or an<span>&nbsp;</span><strong>Android Test Token</strong><span>&nbsp;</span>for
   testing purposes, and in production use a<span>&nbsp;</span><strong>Production</strong><span>&nbsp;</span><strong>Token.</strong><span>&nbsp;</span>The
@@ -1104,7 +1107,7 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   is<span>&nbsp;</span><strong>None.</strong>
 </p>
 <p>
-  <strong>DisableAutomaticCrashReporting() -</strong> turns off Automatic Crash
+  <strong>DisableAutomaticCrashReporting()</strong> - turns off Automatic Crash
   Reporting. When<span> </span><strong>enabled</strong>, the SDK will catch exceptions
   and automatically report them to the Countly server. It's enabled by default.
 </p>
