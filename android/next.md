@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.8.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.12.X</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -1377,9 +1377,6 @@ Countly.sharedInstance().remoteConfig().removeDownloadCallback(RCDownloadCallbac
 config.enrollABOnRCDownload ();
 Countly.sharedInstance().init(config);</code></pre>
 <h3 id="h_01HC2A5JDVP2RCW9RJ4VD9FSET">Enrollment on Access</h3>
-<div class="callout callout--warning">
-  <p>Available starting from version 23.8.3</p>
-</div>
 <p>
   You can enroll to A/B tests while getting RC values from storage. You can use
   <code>getValueAndEnroll</code> while getting a single value and
@@ -2615,9 +2612,6 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   Downloading Test Variants section.
 </p>
 <h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
-<div class="callout callout--warning">
-  <p>Available starting from version 23.8.3</p>
-</div>
 <p>
   If you are concerned about your app being used sparsely over a long time frame,
   old requests inside the request queue might not be important. If, for any reason,

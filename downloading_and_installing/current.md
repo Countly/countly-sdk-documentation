@@ -552,6 +552,8 @@
 </p>
 <h2 id="h_01H9QCP8G73H5RWXFK9P9W6F7Q">Android SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/26446610705049" target="_self" rel="undefined">Version 23.8</a>
+  -
   <a href="/hc/en-us/articles/23228065459353" target="_self" rel="undefined">Version 23.6</a>
   -
   <a href="/hc/en-us/articles/20128936020633" target="_self" rel="undefined">Version 22.09</a>
