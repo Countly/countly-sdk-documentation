@@ -485,11 +485,6 @@ final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView<
 <p>
   You can manually start a view using the <code>startView</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName</code> or <code>stopViewWithID</code> </span>
 </p>
-<!-- <p>
-  Below you can see two examples of starting a view using
-  <code>Countly.instance.views.startView</code> function. First without segmentation
-  and then with segmentaton;
-</p> -->
 <pre><code class="JavaScript">// record a view on your application
 Countly.instance.views.startView("HomePage");
 final String? viewID = await Countly.instance.views.startView("Dashboard");</code></pre>
