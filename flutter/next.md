@@ -483,13 +483,10 @@ final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView<
 </code></pre>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
+  Opposed to "auto stopped views", with regular views you can have multiple of
+  them started at the same time, and then you can control them independently.<br>
   You can manually start a view using the <code>startView</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName</code> or <code>stopViewWithID</code> </span>
 </p>
-<!-- <p>
-  Below you can see two examples of starting a view using
-  <code>Countly.instance.views.startView</code> function. First without segmentation
-  and then with segmentaton;
-</p> -->
 <pre><code class="JavaScript">// record a view on your application
 Countly.instance.views.startView("HomePage");
 final String? viewID = await Countly.instance.views.startView("Dashboard");</code></pre>
@@ -541,7 +538,7 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs using the unique ID:</span>
 </p>
 <pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithID(segmentation);</code></pre>
-<h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Simultaneous View Tracking</h3>
+<h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Pausing and Resuming Views</h3>
 <p>
   <span style="font-weight: 400;"></span>This SDK allows you to start multiple
   views at the same time. If you are starting multiple views at the same time it
