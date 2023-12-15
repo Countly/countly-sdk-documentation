@@ -534,7 +534,7 @@
 <h1 id="h_01H9QCP8G72897X5YK7YMZAZ8K">Documentation For Older SDK Versions</h1>
 <h2 id="h_01H9QCP8G7Y97Y1T51TGGNDMNP">iOS SDK</h2>
 <p>
-  <a href="/hc/en-us/articles/26447578557465" target="_blank" rel="noopener">Version 23.08</a>
+  <a href="/hc/en-us/articles/26447578557465" target="_blank" rel="noopener">Version 23.8</a>
   -
   <a href="/hc/en-us/articles/23224275572121" target="_blank" rel="noopener">Version 23.06</a>
   -
