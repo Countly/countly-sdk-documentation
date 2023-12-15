@@ -481,7 +481,7 @@ final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</
 };
 final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView</span>("HomePage", segmentation);
 </code></pre>
-<h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
+<h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Pausing and Resuming Views</h3>
 <p>
   Opposed to "auto stopped views", with regular views you can have multiple of
   them started at the same time, and then you can control them independently.<br>
