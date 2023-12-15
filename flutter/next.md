@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.8.X
+  and it applies to version 23.12.X
 </p>
 <div class="callout callout--info">
   <p>
@@ -533,6 +533,14 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping all views:</span>
 </p>
 <pre><code class="JavaScript">Countly.instance.views.stopAllViews(segmentation);</code></pre>
+<p>
+  You can specify the custom segmentation for any view using the view name
+</p>
+<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithName(segmentation);</code></pre>
+<p>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs using the unique ID:</span>
+</p>
+<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithID(segmentation);</code></pre>
 <h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Simultaneous View Tracking</h3>
 <p>
   <span style="font-weight: 400;"></span>This SDK allows you to start multiple
