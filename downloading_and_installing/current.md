@@ -598,6 +598,8 @@
 </p>
 <h2 id="h_01H9QCP8G7F8Y2PP937KS4DQE2">React Native SDK</h2>
 <p>
+  <a href="https://support.count.ly/hc/en-us/articles/26451081655065" target="_blank" rel="noopener">Version 23.10</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/25329719573017" target="_blank" rel="noopener">Version 23.8</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/23707508848025" target="_blank" rel="noopener">Version 23.02</a>
@@ -614,7 +616,7 @@
 </p>
 <h2 id="h_01H9QCP8G768WD943FT6WS38TH">Flutter SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/26449309263769" target="_blank" rel="noopener">Version 23.12</a>
+  <a href="https://support.count.ly/hc/en-us/articles/26449309263769" target="_blank" rel="noopener">Version 23.8</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/22712581413273" target="_blank" rel="noopener">Version 23.6</a>
   -
