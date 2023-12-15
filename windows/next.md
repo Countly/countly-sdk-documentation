@@ -13,15 +13,12 @@
   <p>
     The Countly Windows SDK implements the following explicit flavors:
   </p>
-  <ol>
+  <ul>
+    <li>.NET Standard 2.0</li>
     <li>
-      <span>.NET Standard, Version=2.0</span>
+      <span>.NET Framework 3.5, 4.5</span>
     </li>
-    <li>
-      <span>.NET Portable, Version=4.5</span>
-    </li>
-    <li>.NET Framework, Version=v3.5</li>
-  </ol>
+  </ul>
 </div>
 <p>
   The Countly GitHub page for this SDK contains also sample projects. You should
