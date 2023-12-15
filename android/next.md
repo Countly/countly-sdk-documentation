@@ -469,18 +469,105 @@ automaticViewSegmentation.put("Three", 4.44d);
 automaticViewSegmentation.put("Five", "Six");
 
 config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
+<h3 id="h_01HHNWEKDGQXAB9R2XAN4FBJYZ">Automatic View Exceptions</h3>
+<p>
+  I you want to exclude certain activities from automatic view tracking you can
+  let the SDK know during initialization by passing them in an array:
+</p>
+<pre><code class="java">config.setAutomaticViewTrackingExclusions(Class[] exclusions);</code></pre>
 <h2 id="h_01HAVQDM5TAM7FDYHWYNEA244T">Manual View Recording</h2>
 <p>
-  <span style="font-weight: 400;">You may track custom views with the following code snippet as well:</span>
+  <span style="font-weight: 400;">The SDK provides various ways to track views. You can have a single view at a given time or track multiple views according to your needs. Each view would have its own unique view ID which could be used for manipulating the view further.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().views().recordView("View name");</code></pre>
+<h3 id="h_01HHNXGAJ3J8YHYDSX7J8S180R">
+  <span style="font-weight: 400;">Auto Stopped Views</span>
+</h3>
+<p>
+  <span style="font-weight: 400;">An easy way to track views is with using the auto stopped views. These views would stop if another view starts. You can start an auto stopped view with or without segmentation like this:</span>
+</p>
+<pre><span style="font-weight: 400;">// without segmentation<br>Countly.<span>sharedInstance</span>().views().startAutoStoppedView(<span>"View Name"</span>);<br><br>// Or with segmentation<br>Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().startAutoStoppedView(<span>"View Name"</span>, viewSegmentation);<br></span></pre>
+<p>
+  <span style="font-weight: 400;">It would return a string view ID:</span>
+</p>
+<pre><span style="font-weight: 400;">String id = Countly.<span>sharedInstance</span>().views().startAutoStoppedView(<span>"View Name"</span>);</span></pre>
+<h3 id="h_01HHNY1G0SVAKPH1BAKJTVVSBZ">
+  <span style="font-weight: 400;">Regular Views</span>
+</h3>
+<p>
+  <span style="font-weight: 400;">You can start a view that would not close when another views starts like this:</span>
+</p>
+<pre><code class="java">Countly.sharedInstance().views().startView("View Name");</code></pre>
 <p>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre>Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().recordView(<span>"Better view"</span>, viewSegmentation);</pre>
+<pre>Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().startView(<span>"View Name"</span>, viewSegmentation);</pre>
 <p>
-  <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
+  These views would also return a string view ID when they are called.
+</p>
+<h3 id="h_01HHNY9513MGDDJMP3SDWV4KWW">Stopping Views</h3>
+<p>
+  You can stop a view with its name or its view ID. To stop it with its name:
+</p>
+<pre>Countly.<span>sharedInstance</span>().views().stopViewWithName("View Name");</pre>
+<p>
+  <span style="font-weight: 400;">You can provide a segmentation while doing so:</span>
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().stopViewWithName("View Name", viewSegmentation);<br></span></pre>
+<p>
+  <span style="font-weight: 400;"><span>If there are multiple views with the same name (they would have different identifiers) but if you try to stop one with that name the SDK would close one of those randomly.</span></span>
+</p>
+<p>
+  <span style="font-weight: 400;">To stop a view with its view ID:</span>
+</p>
+<pre>Countly.<span>sharedInstance</span>().views().stopViewWithID("View ID");</pre>
+<p>
+  <span style="font-weight: 400;">You can provide a segmentation while doing so:</span>
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().stopViewWithID("View ID", viewSegmentation);<br></span></pre>
+<p>
+  You can also stop all running views at once with a segmentation:
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().stopAllViews(viewSegmentation);</span></pre>
+<h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Simultaneous View Tracking</h3>
+<p>
+  <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
+</p>
+<p>
+  <span>To pause a view with its ID:</span>
+</p>
+<pre><span>Countly.sharedInstance().views().pauseViewWithID("View ID");</span></pre>
+<p>
+  <span style="font-weight: 400;">To resume a view with its ID:</span>
+</p>
+<pre><span style="font-weight: 400;"><span>Countly.sharedInstance().views().resumeViewWithID("View ID");</span></span></pre>
+<h3 id="h_01HHNZEE94N9FH6GYZTR4A1H0M">
+  <span style="font-weight: 400;">Adding Segmentation to Started Views</span>
+</h3>
+<p>
+  <span style="font-weight: 400;">You can add segmentation values to a view before it ends. This can be done as many times as desired and the final segmentation that will be send to the server would be the cumulative sum of all segmentations. However if a certain segmentation value for a specific key has been updated, the latest value will be used.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">To add segmentation to a view using its view ID:</span>
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().addSegmentationToViewWithID("View ID", viewSegmentation);</span></pre>
+<p>
+  <span style="font-weight: 400;">To add segmentation to a view using its name:</span>
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().addSegmentationToViewWithName("View Name", viewSegmentation);</span></pre>
+<h2 id="h_01HHNZ0MAP34090BTSV1KAYD4J">
+  <span style="font-weight: 400;">Global View Segmentation</span>
+</h2>
+<p>
+  <span style="font-weight: 400;">You can set a global segmentation to be send with all views when it ends:</span>
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().setGlobalViewSegmentation(viewSegmentation);<br></span></pre>
+<p>
+  <span style="font-weight: 400;">You can update this segmentation any time you want:</span>
+</p>
+<pre><span style="font-weight: 400;">Map&lt;String, Object&gt; viewSegmentation = <span>new </span>HashMap&lt;&gt;();<br><br>viewSegmentation.put(<span>"Cats"</span>, <span>123</span>);<br>viewSegmentation.put(<span>"Moons"</span>, <span>9.98d</span>);<br>viewSegmentation.put(<span>"Moose"</span>, <span>"Deer"</span>);<br><br>Countly.<span>sharedInstance</span>().views().updateGlobalViewSegmentation(viewSegmentation);</span></pre>
+<p>
+  <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click&nbsp;</span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
   <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
