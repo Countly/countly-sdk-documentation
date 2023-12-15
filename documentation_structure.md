@@ -288,6 +288,21 @@ This should contain the core integration information about the SDK, including a 
     * Enrolling / Exiting
 * Changing Server URL and App Key
 * Testing
+* Backend Mode
+  * (Intro, what is it for, what is it supports, multi apps?)
+  * Enabling Backend Mode (Give an example of how to enable it and most needed config things should be mentioned)
+  * Recording Data (On each sub-functionality explain how the methods work and give examples of the method calls, if needed give further information)
+    * Crash Reporting
+    * Events
+    * Sessions
+    * View Tracking
+    * Device ID Management
+      * (Change Device ID With Merge)
+      * (Change Device ID Without Merge)
+    * User Profiles
+    * Direct Requests (If supported by the SDK)
+    * (Other features, platform related things)
+  * Configuring Backend Mode (if backend mode related config params exist)
 * (Other features, configuration options)
   
 ***
