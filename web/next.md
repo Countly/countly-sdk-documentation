@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly Web SDK and use it to track your web page in detail. It applies to the SDK version 23.6.X.</span>
+  <span style="font-weight: 400;">This documentation shows how to install the Countly Web SDK and use it to track your web page in detail. It applies to the SDK version 23.12.X.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -3001,6 +3001,86 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
     <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_ga_adapter.html">GA Adapter Example</a>
   </p>
 </div>
+<h2 id="h_01HH1BABFQ48FKWGJCX9HFMKW8">Running the SDK in Web Worker Context</h2>
+<p>
+  SDK can be used in a dedicated Worker if needed. Currently Module Workers are
+  not supported so instead the SDK should be imported by
+  <code>importScripts</code> method. It would look something like this:
+</p>
+<pre><code>// Path or URL
+importScripts("../path/to/countly.js");</code></pre>
+<p>
+  After importing the Countly script in your worker, you can call the Countly methods
+  as usual. However, Countly in Web Workers has limited availability. Currently
+  only the manual tracking methods are supported. Moreover the SDK would not use
+  persistent storage by default. But now it extends its storage methods with which
+  you can provide your own storage logic to make things persistent.
+</p>
+<p>
+  A sample worker (let's say 'worker.js') could look like this:
+</p>
+<pre><code>importScripts("../path/to/countly.js"); // CDN is possible
+
+const STORE={}; // in-memory storage for worker
+
+Countly.init({
+    app_key: "YOUR_APP_KEY",
+    url: "https://your.domain.countly",
+    debug: true,
+    storage: {
+        // getItem will recieve a string key param with which it should return the item under it
+        getItem: function (key) {
+            return STORE[key];
+        },
+        // setItem will recieve two params, a string key and a value of any type, then it should store the value under the key
+        setItem: function (key, value) {
+            STORE[key] = value;
+        },
+        // removeItem will recieve a string key with which it should erase the key and any data under that key
+        removeItem: function (key) {
+            delete STORE[key];
+        }
+    }
+});
+
+onmessage = function (e) {
+    console.log(`Worker: Message received from main script:[${JSON.stringify(e.data)}]`);
+    
+    // Get an process messages to worker
+    const data = e.data.data; const type = e.data.type;
+
+    if (type === "event") { // you can send an event
+        Countly.add_event(data);
+    } else if (type === "view") { // you can record a view
+        Countly.track_pageview(data);
+    } else if (type === "session") { // you can manually control sessions
+        if (data === "begin_session") {
+            Countly.begin_session();
+            return;
+        }
+        Countly.end_session(null, true);   
+    }
+}</code></pre>
+<p>
+  In your website, an example communication can happen like this with the worker:
+</p>
+<pre><code>// create a worker
+const myWorker = new Worker("worker.js");
+
+// send messages to the Worker
+function clickEvent() { // send event
+    myWorker.postMessage({ type: "event", data: myEvent });
+}
+function recordView() { // track views
+    myWorker.postMessage({ type: "view", data: "home_page" });
+}
+function beginSession() { // start a session
+    myWorker.postMessage({ type: "session", data: "begin_session" });
+}
+function endSession() { // end a session
+    myWorker.postMessage({ type: "session", data: "end_session" });
+}
+</code></pre>
 <h1 id="h_01HABTQ43BRSHEYT75ZF6AN6F5">FAQ</h1>
 <h2 id="h_01HABTQ43BDS23GY6NZ32SFCZD">Can I integrate Countly Web SDK to my TypeScript Project</h2>
 <p>
