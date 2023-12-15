@@ -32,13 +32,16 @@
   <a href="https://github.com/Countly/countly-sdk-ios.git">repo</a> as a Git submodule.
 </p>
 <p>
-  - Using <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTQ6WN8CYVNVZQ5TEP">Swift Package Manager (SPM)</a>
+  - Using
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTQ6WN8CYVNVZQ5TEP">Swift Package Manager (SPM)</a>
 </p>
 <p>
-  - Using <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTQGRSE9ZRVQSAXJ74">Carthage</a>
+  - Using
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTQGRSE9ZRVQSAXJ74">Carthage</a>
 </p>
 <p>
-  - Using <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTXSFZD8R6QMX0GWPN">CocoaPods</a>
+  - Using
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RTXSFZD8R6QMX0GWPN">CocoaPods</a>
 </p>
 <h1 id="h_01HAVHW0RNQWE9PRRXT9HXFKMJ">SDK Integration</h1>
 <h2 id="h_01HAVHW0RNVDW2E2F83R8E6PSB">Minimal Setup</h2>
@@ -1304,7 +1307,8 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
   view.
 </p>
 <p>
-  You can pause view tracking by its unique identifier using <span style="font-weight: 400;"><code>pauseViewWithID:</code></span>
+  You can pause view tracking by its unique identifier using
+  <span style="font-weight: 400;"><code>pauseViewWithID:</code></span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1319,21 +1323,8 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
   </div>
 </div>
 <p>
-  <span>This function temporarily pauses the tracking of a view identified by its unique identifier.</span><br>
-  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
+  <span>This function temporarily pauses the tracking of a view identified by its unique identifier.</span>
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views pauseViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.pauseViewWithID("VIEW_ID", segmentation: ["key": "value"])</code></pre>
-  </div>
-</div>
 <p>
   You can resume view tracking by its unique identifier using<span style="font-weight: 400;"> <code>resumeViewWithID:</code></span>
 </p>
@@ -1351,27 +1342,14 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </div>
 <p>
   This function resumes the tracking of a previously paused view identified by
-  its unique identifier.<br>
-  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
+  its unique identifier.
+</p>
+<h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
+<p>
+  You can set global segmentation for views by using<span style="font-weight: 400;"> <code>setGlobalViewSegmentation:</code></span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views resumeViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.resumeViewWithID("VIEW_ID", segmentation: ["key": "value"])</code><code class="swift"></code></pre>
-  </div>
-</div>
-<div class="tabs">
-  <div class="tabs-menu">
-    <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
-    <p>
-      You can set global segmentation for views by using<span style="font-weight: 400;"> <code>setGlobalViewSegmentation:</code></span>
-    </p>
     <span class="tabs-link is-active">Objective-C</span>
     <span class="tabs-link">Swift</span>
   </div>
@@ -1499,9 +1477,9 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span> method,
-  all requests which have been kept on hold until that point will start with the
-  real device ID:
+  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span>
+  method, all requests which have been kept on hold until that point will start
+  with the real device ID:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
