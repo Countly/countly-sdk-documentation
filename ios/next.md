@@ -1180,6 +1180,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </div>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
+  Opposed to "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.
   You can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
 </p>
 <div class="tabs">
@@ -1298,7 +1299,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 <p>
   <span style="font-weight: 400;"><span>This function stops the tracking of all views.</span><br></span>
 </p>
-<h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Simultaneous View Tracking</h3>
+<h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Pausing and Resuming Views</h3>
 <p>
   <span style="font-weight: 400;"></span>The iOS SDK allows you to start multiple
   views at the same time. If you are starting multiple views at the same time it
