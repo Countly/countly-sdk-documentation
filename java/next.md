@@ -466,6 +466,71 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   id, this call will return something like this:
 </p>
 <pre><code class="java">Countly.instance().deviceId().getID(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="h_01HFPBH065MSZER3S0X3J15Y3E">User Location</h1>
+<p>
+  You can track your users' location with Countly Java SDK. This information can
+  then be used for various tasks in your Countly server, like creating cohorts
+  or sending push notifications depending on the location. You can only provide
+  these four parameters regarding a user's location:
+</p>
+<ul>
+  <li>
+    <span>Country code in the two-letter, ISO standard, e.g. "en-US", "zh-CN"</span>
+  </li>
+  <li>
+    <span>City name (must be set together with the country code), e.g. "Reykjavik"</span>
+  </li>
+  <li>
+    <span>Latitude and longitude values, separated by a comma, e.g. "56.42345,123.45325"</span>
+  </li>
+  <li>
+    <span>Your user’s IP address, e.g. "192.168.1.1"</span>
+  </li>
+</ul>
+<h2 id="h_01HFPBH065HDQ0E63Q5T3F3V70">
+  <span>Setting Location</span>
+</h2>
+<p>
+  <span>If you set the user location during SDK initialization it will be sent to the server during the start of the user session:</span>
+</p>
+<pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<p>
+  As server side location calculations depends on the location info coming at the
+  beginning of a user session, providing this info at init time is recommended.
+</p>
+<p>
+  If you get your users' location info after SDK initialization, you can still
+  provide them with the following call:
+</p>
+<pre><code class="java">//set user location
+String countryCode = "us";
+String city = "Houston";
+String latitude = "29.634933";
+String longitude = "-95.220255";
+String ipAddress = null; // IP address must only be provided during init.<br>
+Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
+</code></pre>
+<p>
+  Here you if you don't want to set specific fields, you should set them to null.
+</p>
+<p>
+  When these values are set, a separate request will be created to send them to
+  the server and these values would be cached for location tracking later, so at
+  the start of the next user session they would be used in server side calculations.&nbsp;
+</p>
+<h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
+<p>
+  To turn off location tracking during init, use this method. Otherwise the location
+  tracking is enabled by default:
+</p>
+<pre>config.disableLocation();</pre>
+<p>
+  To turn off location tracking after init you can use this method:
+</p>
+<pre><span>Countly.instance().location().disableLocation();</span></pre>
+<p>
+  <span>This action will erase the cached location data from the device and the server.</span>
+</p>
 <h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
 <p>
   Remote config allows you to modify the app by requesting key-value pairs from
@@ -995,11 +1060,11 @@ Countly.instance().userProfile().save();</code></pre>
     </div>
   </li>
   <li>
-    <strong>enrollABOnRCDownload()&nbsp;</strong>- Enables A/B tests enrollment
+    <strong>enrollABOnRCDownload()</strong> - Enables A/B tests enrollment
     when remote config keys downloaded
   </li>
   <li>
-    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)&nbsp;</strong>-
+    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)</strong> -
     Register a callback to be called when remote config values is downloaded
   </li>
   <li>
@@ -1011,7 +1076,14 @@ Countly.instance().userProfile().save();</code></pre>
     download of remote config values on triggers
   </li>
   <li>
-    <strong>setMaxBreadcrumbCount(int maxBreadcrumbCount)&nbsp;</strong>-
+    <strong>disableLocation() </strong>- Disable location tracking
+  </li>
+  <li>
+    <strong>setLocation(String countryCode, String city, String geoLocation, String ipAddress)</strong>
+    - Set location parameters to be sent with session begin
+  </li>
+  <li>
+    <strong>setMaxBreadcrumbCount(int maxBreadcrumbCount)</strong> -
     To change maximum limit of crash breadcrumb
   </li>
   <li>
@@ -1197,7 +1269,7 @@ Countly.instance().backendM().recordView("device-id", "SampleView", segmentation
   </li>
   <li>
     <strong>message -</strong>
-    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
+    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span>
   </li>
   <li>
     <strong>stacktrace -</strong>
@@ -1359,7 +1431,7 @@ userDetail.put("marks", "{$inc: 1}");
 Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
-  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
+  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span>
 </p>
 <p>
   <span>For example:</span>
