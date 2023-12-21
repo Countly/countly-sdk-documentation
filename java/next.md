@@ -383,8 +383,8 @@ segmentation.put("level", 37);</code></pre>
 </ul>
 <h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
 <p>
-  You can track views of your application by the Java SDK. By views, you can also
-  create
+  You can track the views of your application with the Java SDK. With views feature,
+  you can also create
   <a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener">flows</a>
   to see view transitions. Public interface of the views can be accessed via:
 </p>
@@ -417,7 +417,7 @@ String view2ID = Countly.instance().views().startAutoStoppedView("View Name", vi
   <span>Opposed to "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.</span>
 </p>
 <p>
-  You can start a view that would not close when another views starts like this:
+  You can start a view that would not close when another view starts, like this:
 </p>
 <pre><code class="java">Countly.instance().views().startView("View Name");</code></pre>
 <p>
@@ -446,7 +446,7 @@ viewSegmentation.put("Moose", "Deer");
 
 Countly.instance().views().stopViewWithName("View Name", viewSegmentation);</code></pre>
 <p>
-  <span>If there are multiple views with the same name (they would have different identifiers) but if you try to stop one with that name the SDK would close the one who is started first.</span>
+  <span>If there are multiple views with the same name then <code class="java">stopViewWithName</code> would close the one that has started first. These views would have different identifiers even though their names are same.</span>
 </p>
 <p>
   <span>To stop a view with its view ID:</span>
@@ -469,7 +469,7 @@ viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
 
-Countly.instance().views().stopAllViews(viewSegmentation);</code></pre>
+Countly.instance().views().stopAllViews(viewSegmentation); // pass null if no segmentation</code></pre>
 <h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB" class="anchor-heading">Pausing and Resuming Views</h3>
 <p>
   <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
