@@ -1374,68 +1374,75 @@ function sendMessage(param) {
       <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">timestamp</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">timestamp</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>timestamp that request is created at</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">hour</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">hour</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>hour that request is created at</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">tz</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">tz</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>timezone of the request that is created on</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">dow</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">dow</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>day of the week that request is created at (Countly days start with Sunday as 0)</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">sdk_version</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">sdk_version</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>version of the SDK that request is created from</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">sdk_name</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">sdk_name</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>name of the SDK that request is created from</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">app_key</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">app_key</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>key of the app that request is sent to</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">device_id</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">device_id</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>unique device identifier that request is created for</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">av</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">av</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>application version if it is provided</span>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">rr</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">rr</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>remaining request count in the request queue</span>
       </td>
     </tr>
   </tbody>
 </table>
-<h2 id="h_01HJ5PA5GMQSE8ATC3FJ6VAGP3">Common Metrics</h2>
+<p>
+  <span>Here is an example of a base request. To visualize things better it is URL decoded. When sending, data has to be URL encoded</span>
+</p>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0</span></pre>
+<h2 id="01HJ678RSDEGG93FK2RS9RS0GW">
+  <span>Parameters Specific to Certain Requests</span>
+</h2>
+<h3 id="h_01HJ5PA5GMQSE8ATC3FJ6VAGP3">Common Metrics</h3>
 <p>
   These are the common collected device metrics if platform can collect
 </p>
@@ -1489,12 +1496,12 @@ function sendMessage(param) {
     </tr>
   </tbody>
 </table>
-<h2 id="h_01HJ5QCQ99BYBMTZCSN5S3TSEV">Session Specific Metrics</h2>
+<h3 id="h_01HJ5QCQ99BYBMTZCSN5S3TSEV">Session Specific Metrics</h3>
 <p>
   The following metrics are additional to the common metrics that sent with every
-  begin session request
+  begin session request. Also session's start time, end time and duration collected.
 </p>
-<table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+<table style="border-collapse: collapse; height: 98px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
     <tr style="height: 22px;">
       <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
@@ -1517,25 +1524,43 @@ function sendMessage(param) {
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">device type</td>
     </tr>
     <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_ua</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">User agent, NodeJS SDK</td>
-    </tr>
-    <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_store</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">package name if collected by the SDK</td>
-    </tr>
-    <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_browser</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Browser name, NodeJS SDK</td>
-    </tr>
-    <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_browser_version</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Browser version, NodeJS SDK</td>
+      <td style="width: 21.7143%; vertical-align: middle; height: 10px; text-align: left;" scope="colGroup">_store</td>
+      <td style="width: 78.2857%; height: 10px; text-align: center; vertical-align: middle;" scope="colGroup">package name if collected by the SDK</td>
     </tr>
   </tbody>
 </table>
-<p>Also session's start time, end time and duration collected.</p>
-<h2 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h2>
+<p>
+  Here is an example of session begin request. This is URL decoded, when sending,
+  data has to be URL encoded
+</p>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;begin_session=1&amp;metrics=<br>{"_device": "CountlyDevice",<br>"_os": "CountlyOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "mobile",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal"<br>}</span></pre>
+<h4 id="h_01HJ67SCQSCX8H2NFXRD5NXNG1">NodeJS SDK Specific Additional Session Metrics</h4>
+<table style="border-collapse: collapse; height: 76px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 10px; text-align: left;" scope="colGroup">_ua</td>
+      <td style="width: 78.2857%; height: 10px; text-align: center; vertical-align: middle;" scope="colGroup">User agent</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_browser</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Browser name</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_browser_version</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Browser version</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Addition to session metrics NodeJS SDK sends these metric params. Here is an
+  example session end request from NodeJS SDK.
+</p>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;end_session=1&amp;session_duration=35&amp;metrics=<br>{"_device": "CountlyDevice",<br>"_os": "MacOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "web",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal",<br>"_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",<br>"_browser": "Firefox",<br>"_browser_version": "42.0"<br>}</span><span></span></pre>
+<h3 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h3>
 <p>
   These metrics are automatically collected when a crash is reported manually or
   automatically
@@ -1594,23 +1619,34 @@ function sendMessage(param) {
       <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_background</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Application in background status if collected by the SDK</td>
     </tr>
-    <tr>
-      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_app_build</td>
-      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">App build version, iOS SDK</td>
+  </tbody>
+</table>
+<h4 id="h_01HJ67MA7CGTGSDKK74B1XEGH8">iOS SDK Specific Additional Crash Metrics</h4>
+<table style="border-collapse: collapse; height: 54px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
     </tr>
-    <tr>
-      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_build_uuid</td>
-      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">Build UUID, iOS SDK</td>
+    <tr style="height: 10px;">
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left; height: 10px;">_app_build</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle; height: 10px;">App build version</td>
     </tr>
-    <tr>
-      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_executable_name</td>
-      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">
-        <p>Executable name, iOS SDK</p>
+    <tr style="height: 12px;">
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left; height: 12px;">_build_uuid</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle; height: 12px;">
+        <p>Build UUID</p>
+      </td>
+    </tr>
+    <tr style="height: 10px;">
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left; height: 10px;">_executable_name</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle; height: 10px;">
+        <p>Executable name</p>
       </td>
     </tr>
   </tbody>
 </table>
-<h2 id="h_01HJ5WD48B7TVTNP7TFY0646MK">Crash Data</h2>
+<h3 id="h_01HJ5WD48B7TVTNP7TFY0646MK">Crash Data</h3>
 <p>
   These parameters are automatically collected when a crash is reported manually
   or automatically
@@ -1624,7 +1660,7 @@ function sendMessage(param) {
     <tr style="height: 22px;">
       <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_error</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
-        <span>locale of the device</span>
+        <span>error happened</span>
       </td>
     </tr>
     <tr style="height: 22px;">
@@ -1635,34 +1671,55 @@ function sendMessage(param) {
     </tr>
     <tr style="height: 22px;">
       <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_logs</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">breadcrumbs</td>
-    </tr>
-    <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_native_cpp</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">true if it is a native crash, Android SDK</td>
-    </tr>
-    <tr>
-      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_binary_images</td>
-      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">binary stack trace, iOS SDK</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">breadcrumbs if given</td>
     </tr>
     <tr style="height: 22px;">
       <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_type</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">type of the crash</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">type of the crash if given</td>
     </tr>
     <tr style="height: 22px;">
       <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_name</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">name of the crash</td>
-    </tr>
-    <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_plcrash</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">true if PL Crash Reporter enabled, iOS SDK</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">name of the crash if given</td>
     </tr>
   </tbody>
 </table>
+<h4 id="h_01HJ6806RP93XGF2KW9YV96WSK">iOS SDK Specific Additional Crash Data</h4>
+<table style="border-collapse: collapse; height: 42px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 10px;">
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left; height: 10px;">_binary_images</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle; height: 10px;">binary stack trace</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 10px; text-align: left;" scope="colGroup">_plcrash</td>
+      <td style="width: 78.2857%; height: 10px; text-align: center; vertical-align: middle;" scope="colGroup">true if PL Crash Reporter enabled</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="h_01HJ680B5PNR6YX0E0Y5JPEV3C">Android SDK Specific Additional Crash Data</h4>
+<table style="border-collapse: collapse; height: 42px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_native_cpp</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">true if it is a native crash</td>
+    </tr>
+  </tbody>
+</table>
+<p>Here is an example crash request</p>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;crash={<br>"_run": 10859,<br>"_app_version": "123.56.h",<br>"_os": "Mac OS X",<br>"_ram_total": 8192,<br>"_disk_current": 95713,<br>"_logs": "sample app",<br>"_disk_total": 233752,<br>"_os_version": "14.2.1",<br>"_error": "java.lang.ArithmeticException: / by zero at ly.count.java.demo.Example.recordCrash(Example.java:129) at ly.count.java.demo.Example.main(Example.java:303) ",<br>"_nonfatal": false,<br>"_name": "DivisionByZero",<br>"_ram_current": 50,<br>"_muted": true,<br>}<br></span></pre>
+<p>Here is an example crash request from Flutter SDK</p>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;crash={<br></span>"_device":"Android SDK built for x86",<br>"_os":"Android",<br>"_os_version":"10",<br>"_resolution":"1080x2088",<br>"_app_version":"1.0.0",<br>"_manufacturer":"Google",<br>"_error":"java.lang.Exception: RangeError (index): Invalid value: Not in inclusive range 0..2: 10\n\tat ly.count.dart.countly_flutter.CountlyFlutterPlugin.onMethodCall(CountlyFlutterPlugin.java:340)\n\tat io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:258)\n\tat io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:295)\n\tat io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:322)\n\tat io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)\n\tat android.os.Handler.handleCallback(Handler.java:883)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loop(Looper.java:214)\n\tat android.app.ActivityThread.main(ActivityThread.java:7356)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)\n",<br>"_nonfatal":"false",<br>"_cpu":"x86",<br>"_opengl":"2",<br>"_root":"false",<br>"_ram_total":"1994",<br>"_disk_total":"2162",<br>"_ram_current":"885",<br>"_disk_current":"2114",<br>"_bat":"100.0",<br>"_run":"6",<br>"_orientation":"Portrait",<br>"_online":"true",<br>"_muted":"false",<br>"_background":"false"<br>}</pre>
 <h2 id="h_01HJ5XRSX13YGV6FBBXKVRGRZC">Device ID Sources</h2>
 <p>
   - The Android SDK uses Secure.ANDROID_ID as the default ID and advertising id
   as a fallback devices ID if no custom id is provided.
 </p>
 <p>- The iOS SDK uses UUID if no custom id is given</p>
-<p>&nbsp;</p>
