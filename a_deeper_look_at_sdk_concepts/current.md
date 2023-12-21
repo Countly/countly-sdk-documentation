@@ -1357,3 +1357,312 @@ function sendMessage(param) {
   Now you should be able to send an event with a key you want in your code. You
   can change things according to your own project inspiring from these basic principles.
 </p>
+<h1 id="h_01HJ5MD0WB97PA9Z04NG2G0AKC">What Information Is Collected by the SDK</h1>
+<p>
+  <span>The following description mentions data that is collected by SDK's to perform their functions and implement the required features. Before any of it is sent to the server, it is stored locally.</span>
+</p>
+<h2 id="h_01HJ5NDP00ATX2WXQAN1MJCCS1">
+  <span>Parameters Sent With Every Request</span>
+</h2>
+<p>
+  <span>When sending any network requests to the server, the following things are sent in addition of the main data</span><span></span>
+</p>
+<table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">timestamp</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>timestamp that request is created at</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">hour</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>hour that request is created at</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">tz</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>timezone of the request that is created on</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">dow</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>day of the week that request is created at (Countly days start with Sunday as 0)</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">sdk_version</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>version of the SDK that request is created from</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">sdk_name</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>name of the SDK that request is created from</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">app_key</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>key of the app that request is sent to</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">device_id</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>unique device identifier that request is created for</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">av</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>application version if it is provided</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">rr</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>remaining request count in the request queue</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="h_01HJ5PA5GMQSE8ATC3FJ6VAGP3">Common Metrics</h2>
+<p>
+  These are the common collected device metrics if platform can collect
+</p>
+<table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_device</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>name of the device</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_os</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>device OS</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_os_version</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>device OS version</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_resolution</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>resolution of the device/application</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_app_version</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>application version</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_manufacturer</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">device manufacturer</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_carrier</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">device carrier if extractable by the SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_orientation</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">device orientation if exists</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="h_01HJ5QCQ99BYBMTZCSN5S3TSEV">Session Specific Metrics</h2>
+<p>
+  The following metrics are additional to the common metrics that sent with every
+  begin session request
+</p>
+<table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_locale</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>locale of the device</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_density</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>density of the screen</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_device_type</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">device type</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_ua</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">User agent, NodeJS SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_store</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">package name if collected by the SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_browser</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Browser name, NodeJS SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_browser_version</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Browser version, NodeJS SDK</td>
+    </tr>
+  </tbody>
+</table>
+<p>Also session's start time, end time and duration collected.</p>
+<h2 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h2>
+<p>
+  These metrics are automatically collected when a crash is reported manually or
+  automatically
+</p>
+<table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_cpu</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">CPU information of the device</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_opengl</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">OpenGL information if exists</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_root</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Device root information if exists</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_ram_total</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Totam RAM of the device</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_ram_current</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Current RAM of the device</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_disk_current</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Current disk of the device</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_bat</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Battery level of the device if exists</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_run</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Running time of the SDK</td>
+    </tr>
+    <tr>
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_architecture</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">CPU architecture if collected by the SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_online</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Device online status if collected by the SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_muted</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Device muted status if collected by the SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_background</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">Application in background status if collected by the SDK</td>
+    </tr>
+    <tr>
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_app_build</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">App build version, iOS SDK</td>
+    </tr>
+    <tr>
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_build_uuid</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">Build UUID, iOS SDK</td>
+    </tr>
+    <tr>
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_executable_name</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">
+        <p>Executable name, iOS SDK</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="h_01HJ5WD48B7TVTNP7TFY0646MK">Crash Data</h2>
+<p>
+  These parameters are automatically collected when a crash is reported manually
+  or automatically
+</p>
+<table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
+  <tbody>
+    <tr style="height: 22px;">
+      <th style="width: 21.7143%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Parameter Name</th>
+      <th style="width: 78.2857%; text-align: center; vertical-align: middle; height: 22px;" scope="colGroup">Description</th>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_error</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>locale of the device</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_nonfatal</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
+        <span>whether crash is fatal or not</span>
+      </td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_logs</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">breadcrumbs</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_native_cpp</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">true if it is a native crash, Android SDK</td>
+    </tr>
+    <tr>
+      <td style="width: 21.7143%; vertical-align: middle; text-align: left;">_binary_images</td>
+      <td style="width: 78.2857%; text-align: center; vertical-align: middle;">binary stack trace, iOS SDK</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_type</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">type of the crash</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_name</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">name of the crash</td>
+    </tr>
+    <tr style="height: 22px;">
+      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">_plcrash</td>
+      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">true if PL Crash Reporter enabled, iOS SDK</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="h_01HJ5XRSX13YGV6FBBXKVRGRZC">Device ID Sources</h2>
+<p>
+  - The Android SDK uses Secure.ANDROID_ID as the default ID and advertising id
+  as a fallback devices ID if no custom id is provided.
+</p>
+<p>- The iOS SDK uses UUID if no custom id is given</p>
+<p>&nbsp;</p>
