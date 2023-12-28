@@ -726,6 +726,9 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span>When in backend mode, nothing is saved persistently and everything is stored only in memory.</span>
 </p>
+<p>
+  <span>The backend mode does not have checksum ability.</span>
+</p>
 <h3 id="h_01HHHV17XPBGMMDAM2HW82QX65">
   <span>Enabling Backend Mode</span>
 </h3>
@@ -745,6 +748,61 @@ await Countly.Instance.Init(cc);</code></pre>
 <h3 id="h_01HHHV1KDXJNM5FJ8T9KHRB0ZZ">
   <span>Recording Data</span>
 </h3>
+<h4 id="h_01HJQQ9QE1Y5BS2YKW5FYQYPVF">
+  <span>Crash Reporting</span>
+</h4>
+<p>
+  <span>To report a crash with backend mode this method should be called:</span>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(string deviceId = null, string appKey = null, string error = null, string stackTrace = null, IList&lt;string&gt; breadcrumbs = null, IDictionary&lt;string, object&gt; customInfo = null, IDictionary&lt;string, string&gt; metrics = null, bool unhandled = false, long timestamp = 0);</code></pre>
+<p>
+  <span>For this function to work, only error parameter is required. If no device id or app key is provided, it fallbacks to given app key or given/generated device id while initializing. </span>
+</p>
+<p>
+  <span>Keep in mind that, if multiple device id or multiple app key recording is needed, they must be provided to the function. Here is a minimal call:</span>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(error = "Exception");</code></pre>
+<p>
+  <span>Because there is a possibility to multi device recording, metrics also should be provided if metric recording is intended. Here is the supported metric keys:</span>
+</p>
+<pre><span>"_os", "_os_version", "_ram_total", "_ram_current", "_disk_total", "_disk_current", "_online", "_muted", "_resolution", "_app_version", "_manufacture", "_device", "_orientation", "_run"</span></pre>
+<p>
+  <span>To report unhandled/handled crashes you would provide unhandled parameter of the function. Default value for unhandled is false.</span>
+</p>
+<p>
+  <span>Custom segmentation can be also provided by customInfo parameter of the function. Supported values for the custom info are int, float, double, long, string and bool.</span>
+</p>
+<p>
+  <span>Here is a set of examples:</span>
+</p>
+<pre><code class="csharp">// unhandled crash reporting with metrics
+var metrics = new Dictionary&lt;string, string&gt;(){
+  {"_os", "Windows"},
+  {"_os_version", "Windows10NT"},
+  {"_run", "5678"},
+  {"_bat", "67"},
+  {"_ram_total", "1024"},
+};
+
+Countly.Instance.BackendMode().RecordException(DEVICE_ID, APP_KEY, "Exception", unhandled: true, metrics: metrics);
+
+// crash reporting with all params provided and custom segmentation
+var customSegmentation = new Dictionary&lt;string, string&gt;(){
+  {"level", 65},
+  {"build_version", "45fA2022"},
+  {"critical_point", -5.4E-79},
+  {"timestamp", 1703752478530},
+  {"done", true},
+  {"percent", 0.67}
+};
+var stackTrace = ... // gather stack trace
+var breadCrumbs = new List&lt;string&gt; { "Before Init", "After Init" };
+  
+Countly.Instance.BackendMode().RecordException(DEVICE_ID, APP_KEY, "Exception", stackTrace, breadCrumbs, customSegmentation, metrics);
+  
+// if needed you can also provide timestamp of the exception by adding timestamp to the call, if you do not provide it will be set as current timestamp
+Countly.Instance.BackendMode().RecordException(error: "Exception", timestamp: 1703752478530);
+</code></pre>
 <h4 id="h_01HHHEEY3AHKR4XQD22DF8JQKJ">
   <span>Events</span>
 </h4>
@@ -761,12 +819,296 @@ Segmentation segmentation = new Segmentation();
 segmentation.Add("uid", "2873673");
 long timestamp = 1702467348;
 bm.RecordEvent("app2", "device2", "event2", 8.02, 2, 30, segmentation, timestamp);
-bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation </code></pre>
+bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation); // timestamp will be set as current timestamp </code></pre>
+<h4 id="h_01HJQSGRAM1WV3N6VBVS74EADS">Sessions</h4>
+<p>
+  Also sessions can be tracked with the Backend Mode. There are "BeginSession",
+  "UpdateSession" and "EndSession" methods.
+</p>
+<p>
+  In each session method,
+  <span>If no device id or app key is provided, it fallbacks to given app key or given/generated device id while initializing.</span>
+</p>
+<p>
+  <strong>Begin Session</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().BeginSession(string deviceId = null, string appKey = null, IDictionary&lt;string, string&gt; metrics = null, IDictionary&lt;string, string&gt; location = null, long timestamp = 0);</code></pre>
+<p>
+  If no metrics are provided for the BeginSession, it fallbacks to internal metrics
+  collected from the current device.&nbsp;
+</p>
+<p>
+  Location can be also tracked with providing location parameter of the function.
+  A device's location information can only be tracked with BeginSession call in
+  backend mode.&nbsp;
+</p>
+<p>
+  If language and country information would like to be tracked, _locale metric
+  must be provided with the BeginSession method.
+</p>
+<p>Here are examples about BeginSession method.</p>
+<pre><code class="csharp">// minimal call to the BeginSession, this fallbacks to internal metrics, device id and app key
+Countly.Instance.BackendMode().BeginSession();
+
+// With custom metrics, location and custom timestamp (timestamp is optional, if not provided, it will be set as current)
+var metrics = new Dictionary&lt;string, string&gt;(){
+  {"_os", "Windows"},
+  {"_os_version", "Windows10NT"},
+  {"_locale", "en-US"},
+  {"_resolution", "256x256"},
+  {"_device", "ETab 4"},
+  {"_carrier", "X-mobile"},
+  {"_app_version", "1.0"},
+};
+
+var location = new Dictionary&lt;string, string&gt;(){
+  {"location", "-0.3720234014105792,-159.99741809049596"},
+  {"ip", "1.1.1.1"},
+  {"city", "New York"},
+  {"country_code", "DEU"} // iso country code
+};
+Countly.Instance.BackendMode().BeginSession(DEVICE_ID, APP_KEY, metrics, location, 1703752478530);</code></pre>
+<p>
+  <strong>Update Session</strong>
+</p>
+<p>
+  Duration is in seconds and required to call update session method.
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().UpdateSession(int duration, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<p>Here are examples about UpdateSession method.</p>
+<pre><code class="csharp">// minimal call to the UpdateSession, this fallbacks to internal metrics, device id and app key
+Countly.Instance.BackendMode().UpdateSession(60);
+
+// with custom timestamp
+Countly.Instance.BackendMode().UpdateSession(45, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
+<p>
+  <strong>End Session</strong>
+</p>
+<p>
+  Duration is in seconds and not required. If it is not provided, it will be not
+  sent
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().EndSession(int duration = -1, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<p>Here are examples about EndSession method.</p>
+<pre><code class="csharp">// minimal call to the EndSession, this fallbacks to internal metrics, device id and app key
+Countly.Instance.BackendMode().EndSession();
+
+// with custom timestamp and duration
+Countly.Instance.BackendMode().EndSession(45, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
+<h4 id="h_01HJQWCX2D7MN5VJDA7VNXVWRW">View Tracking</h4>
+<p>
+  The Windows SDK backend mode provides manual reporting of views. There is no
+  automatic handling of views internally.&nbsp;
+</p>
+<p>The SDK provides two functions; StartView and StopView</p>
+<p>
+  <strong>Start View</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().StartView(string deviceId, string appKey, string name, string segment, bool firstView = false, Segmentation segmentations = null, long timestamp = 0);</code></pre>
+<p>
+  deviceId, appKey, name and segment parameters are required. They should not be
+  empty or null.
+</p>
+<p>Segment is platform for devices or domain for websites.</p>
+<p>
+  If a view is first view in the session or in the design of your flow, firstView
+  parameter must be provided as true. Default is false.
+</p>
+<p>Here are examples about StartView method.</p>
+<pre><code class="csharp">// minimal call to the StartView
+Countly.Instance.BackendMode().StartView(DEVICE_ID, APP_KEY, "Login", "Desktop");
+
+Segmentation segmentation = new Segmentation();
+segmentation.Add("email", "test@test.test");
+segmentation.Add("campaign_user", "true");
+
+// with segmentation, firstView and timestamp
+Countly.Instance.BackendMode().StartView(DEVICE_ID, APP_KEY, "Login", "Desktop", true, segmentation, 1703752478530);</code></pre>
+<p>
+  <strong>Stop View</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().StopView(string deviceId, string appKey, string name, string segment, long duration, Segmentation segmentations = null, long timestamp = 0);</code></pre>
+<p>
+  deviceId, appKey, name, segment and duration parameters are required. They should
+  not be empty or null.
+</p>
+<p>Segment is platform for devices or domain for websites.</p>
+<p>Duration in seconds and cannot be less then 0</p>
+<p>Here are examples about StopView method.</p>
+<pre><code class="csharp">// minimal call to the StopView
+Countly.Instance.BackendMode().StopView(DEVICE_ID, APP_KEY, "Logout", "Android", 34);
+
+Segmentation segmentation = new Segmentation();
+segmentation.Add("last_seen", "1994-11-05T13:15:30Z");
+segmentation.Add("campaign_user", "false");
+
+// with segmentation and timestamp
+Countly.Instance.BackendMode().StopView(DEVICE_ID, APP_KEY, "Logout", "Gear", 56, segmentation, 1703752478530);</code></pre>
+<h4 id="h_01HJQXEQHXV7YFT3FGCFRQ36D7">Device ID Management</h4>
+<p>
+  It is possible manage device ids with the Windows SDK backend mode.
+</p>
+<p>
+  <strong>Change Device ID With Merge</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(string newDeviceId, string oldDeviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<p>newDeviceId is required, should not be empty or null</p>
+<p>
+  If oldDeviceId or appKey are not given they fallback to internal given/generated
+  while initializing
+</p>
+<p>Here are examples about ChangeDeviceIdWithMerge method.</p>
+<pre><code class="csharp">// minimal call to the ChangeDeviceIdWithMerge, this fallbacks to internal device id and app key
+Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID);
+
+// with custom timestamp
+Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID, APP_KEY, 1703752478530);</code></pre>
+<h4 id="h_01HJQZ3PMJXQ7CBN2FFPCYWXRR">User Profiles</h4>
+<p>
+  It is possible manage user properties and custom details with the Windows SDK
+  backend mode.
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordUserProperties(IDictionary&lt;string, object&gt; userProperties, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<p>
+  If deviceId or appKey are not given they fallback to internal given/generated
+  while initializing
+</p>
+<p>
+  userProperties are required and should not be empty. Current supported data types
+  for the values are: string, int, long, double, float and bool
+</p>
+<p>
+  Here is the supported predefined keys for user properties. Other than these keys,
+  everything will be a custom property.
+</p>
+<pre>"name", "username", "email", "organization", "phone", "gender", "byear", "picture"</pre>
+<p>
+  To set the picture correctly, only URL of the picture should be provided
+</p>
+<p>Here are examples about RecordUserProperties method.</p>
+<pre><code class="csharp">// minimal call to the RecordUserProperties, this fallbacks to internal device id and app key
+var userProperties = new Dictionary&lt;string, object&gt;(){
+   {"name", "John"},
+   {"username", "Dohn"},
+   {"organization", "Fohn"},
+   {"email", "johnjohn@john.jo"},
+   {"phone", "+123456789"},
+   {"gender", "Unkown"},
+   {"byear", 1969},
+   {"picture", "http://someurl.png"}
+};
+Countly.Instance.BackendMode().RecordUserProperties(userProperties);
+
+// with custom timestamp and custom properties
+userProperties["int"] = 5;
+userProperties["long"] = 1044151383000;
+userProperties["float"] = 56.45678;
+userProperties["string"] = "value";
+userProperties["double"] = -5.4E-79;
+userProperties["invalid"] = new List&lt;string&gt;(); // this will be eliminated
+userProperties["action"] = "{$push: \"black\"}";
+userProperties["nullable"] = null; // this will be eliminated
+userProperties["marks"] = "{$inc: 1}";
+
+Countly.Instance.BackendMode().RecordUserProperties(userProperties, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
+<p>
+  You may also perform certain manipulations to your custom property values, such
+  as incrementing the current value on a server by a certain amount or storing
+  an array of values under the same property.
+</p>
+<p>
+  The keys for predefined modification operations are as follows:
+</p>
+<div class="table-container">
+  <table style="width: 427px;">
+    <tbody>
+      <tr>
+        <th style="width: 86.0938px;">Key</th>
+        <th style="width: 333.906px;">Description</th>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$inc</td>
+        <td style="width: 325.906px;">
+          <span>increment used value by 1</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$mul</td>
+        <td style="width: 325.906px;">
+          <span>multiply value by the provided value</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$min</td>
+        <td style="width: 325.906px;">
+          <span>minimum value</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$max</td>
+        <td style="width: 325.906px;">
+          <span>maximal value</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$setOnce</td>
+        <td style="width: 325.906px;">
+          <span>set value if it does not exist</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$pull</td>
+        <td style="width: 325.906px;">
+          <span>remove value from an array</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$push</td>
+        <td style="width: 325.906px;">
+          <span>insert value to an array</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 78.0938px;">$addToSet</td>
+        <td style="width: 325.906px;">
+          <span>insert value to an array of unique values</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4 id="h_01HJR0QPH5KYCS80XYZMDE068R">Direct Requests</h4>
+<p>
+  The Windows SDK has ability to send direct/custom requests to the server.
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordDirectRequest(IDictionary&lt;string, string&gt; paramaters, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<p>
+  If deviceId or appKey are not given they fallback to internal given/generated
+  while initializing
+</p>
+<p>Parameters should not be empty</p>
+<p>Here are examples about RecordDirectRequest method.</p>
+<p>
+  The internal keys are not overridden by the given key values.
+</p>
+<pre><code class="csharp">// minimal call to the RecordDirectRequest, this fallbacks to internal device id and app key
+var parameters = new Dictionary&lt;string, string&gt;(){
+   {"begin_session", "1"},
+   {"metrics", ... }, // metrics to provide
+   {"location", "-0.3720234014105792,-159.99741809049596" },
+   {"sdk_custom_version", "23.12.0:04"},
+   {"user_id", "123456789"},
+   {"onesignal_id", "..."}
+};
+Countly.Instance.BackendMode().RecordDirectRequest(parameters);
+
+// with custom timestamp
+Countly.Instance.BackendMode().RecordDirectRequest(parameters, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
 <h3 id="h_01HHHTMR50NHVM1X61ZFCF7002">Configuring Backend Mode</h3>
 <p>
   When backend mode is enabled, the SDK will apply limits to request queue and
   to the event queue. Default limit for the maximum amount of entries that the
-  request queue can hold is 1000. When exceding that count, the oldest request
+  request queue can hold is 1000. When exceeding that count, the oldest request
   will be deleted.
 </p>
 <p>
