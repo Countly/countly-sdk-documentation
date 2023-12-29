@@ -708,6 +708,40 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
 </p>
+<h2 id="h_01HJT9W4R283JCJNXZJM0C42VQ">Custom Metrics</h2>
+<div class="callout callout--warning">
+  <p>This functionality is available since SDK version XX.XX.XX.</p>
+</div>
+<p>
+  During some specific circumstances, like beginning a session or requesting remote
+  config, the SDK is sending device metrics.
+</p>
+<p>
+  It is possible for you to either override the sent metrics (like the application
+  version for some specific variant) or provide either your own custom metrics.
+  If you are providing your own custom metrics, you would need your own custom
+  plugin server-side which would interpret it appropriately. If there is no plugin
+  to handle those custom values, they will be ignored.
+</p>
+<div>
+  <pre><code class="csharp">IDictionary&lt;string, string&gt; metricOverride = new Dictionary&lt;string, string&gt;();
+metricOverride["SomeKey"] = "123";
+metricOverride["_locale"] = "xx_yy";
+
+//create the Countly init object 
+CountlyConfig cc = new CountlyConfig(); 
+cc.serverUrl = "http://YOUR_SERVER"; 
+cc.appKey = "YOUR_APP_KEY";
+cc.SetMetricOverride(metricOverride);
+
+//initiate the SDK with your preferences 
+Countly.Instance.Init(cc);
+</code></pre>
+</div>
+<p>
+  For more information on the specific metric keys used by Countly, check
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
+</p>
 <h2 id="h_01HHHE4NG1BWB112A9F7AYF93M">
   <span>Backend Mode</span>
 </h2>
