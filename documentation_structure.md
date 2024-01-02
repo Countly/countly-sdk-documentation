@@ -120,7 +120,6 @@ This should contain the core integration information about the SDK, including a 
   * Auto Stopped Views
   * Regular Views
   * Stopping Views
-  * Simultaneous View Tracking
   * Pausing and Resuming Views
 * Global View Segmentation
 * Consent
