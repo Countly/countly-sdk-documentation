@@ -79,7 +79,11 @@ Countly.Instance.Init(config);
 </div>
 <h2 id="h_01HABTZ314QNCDAQT0SC5NETCG" class="anchor-heading">SDK Data Storage</h2>
 <p>
-  Countly SDK s<span>tore data that are meant for your app's use only, within an internal storage volume. If your game saves in external storage, SDK will store data within external storage. You may need to add permission to store data on an SD card. Please read the </span><a href="#require-app-permissions" target="_self" rel="undefined">Required app permissions</a>
+  Countly SDK store data that are meant for your app's use only, within an internal
+  storage volume. If your game saves in external storage, SDK will store data within
+  external storage. You may need to add permission to store data on an SD card.
+  Please read the
+  <a href="#require-app-permissions" target="_self" rel="undefined">Required app permissions</a>
   section for more information.
 </p>
 <p>
@@ -178,8 +182,7 @@ Countly.Instance.Init(config);
     custom key/values to be reported.
   </li>
   <li>
-    <strong>nonfatal -</strong> (Optional, bool) set false if the error
-    is fatal.
+    <strong>nonfatal -</strong> (Optional, bool) set false if the error is fatal.
   </li>
 </ul>
 <p>Example:</p>
@@ -238,9 +241,8 @@ segmentation.Add("Action", "click");
 </p>
 <ul>
   <li>
-    <strong>count -</strong> a whole numerical value that marks how many
-    times this event has happened. The default value for that is
-    <strong>1</strong>.
+    <strong>count -</strong> a whole numerical value that marks how many times
+    this event has happened. The default value for that is <strong>1</strong>.
   </li>
   <li>
     <strong>sum -</strong> this value would be summed across all events in the
@@ -253,8 +255,8 @@ segmentation.Add("Action", "click");
   <li>
     <strong>segments - </strong>a value where you can provide custom segmentation
     for your events to track additional information. It is a key and value map.
-    The accepted data types for the value are
-    "String", "Integer", "Double", and "Boolean". All other types will be ignored.
+    The accepted data types for the value are "String", "Integer", "Double",
+    and "Boolean". All other types will be ignored.
   </li>
 </ul>
 <h2 id="h_01HABTZ314FCF1V827B38D1TEA">Recording Events</h2>
@@ -270,21 +272,19 @@ segmentation.Add("Action", "click");
     Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times the <strong>purchase</strong> event occurred
-    + the total amount of those purchases.
+    Usage 2: how many times the <strong>purchase</strong> event occurred + the
+    total amount of those purchases.
   </li>
   <li>
-    Usage 3: how many times the <strong>purchase</strong> event occurred
-    +
+    Usage 3: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
   <li>
-    Usage 4: how many times the <strong>purchase</strong> event occurred
-    + <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
+    Usage 4: how many times the <strong>purchase</strong> event occurred +
+    <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
   <li>
-    Usage 5: how many times the <strong>purchase</strong> event occurred
-    +
+    Usage 5: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented by countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
@@ -341,8 +341,7 @@ Countly.Instance.Events.EndEvent(eventName);</code></pre>
 <p>
   <span>You may also provide additional information when ending an event. In that case you can provide the segmentation, count, or sum values. The default values for those are "null", 1, and 0.</span>
 </p>
-<pre>
-<code class="!whitespace-pre hljs language-csharp">string eventName = "Some event";
+<pre><code class="!whitespace-pre hljs language-csharp">string eventName = "Some event";
 
 //start some event
 Countly.Instance.Events.StartEvent(eventName);
@@ -516,7 +515,7 @@ Countly.Instance.Init(config);</code></pre>
 </p>
 <h2 id="h_01HABTZ315MARV8KKQMHM9EZBB">Device ID Generation</h2>
 <p>
-  <span>If no device ID is provided the first time the SDK is initialised, the SDK will generate a unique device ID. The source of that id is</span><span><code class="java">SystemInfo.deviceUniqueIdentifier</code>which is a value exposed by Unity. It should be unique for every device.</span>
+  <span>If no device ID is provided the first time the SDK is initialised, the SDK will generate a unique device ID. The source of that id is</span><span><code class="!csharp">SystemInfo.deviceUniqueIdentifier</code>which is a value exposed by Unity. It should be unique for every device.</span>
 </p>
 <p>
   <span>Here are the underlying mechanisms used to generate that value for some platforms:</span>
@@ -525,16 +524,16 @@ Countly.Instance.Init(config);</code></pre>
   <span><strong>IOS:</strong> on pre-iOS7 devices, it will return a hash of the MAC address. On iOS7 devices, it will be</span>
 </p>
 <p>
-  <span><code class="java">IDevice identifierForVendor</code> or, if that fails for any reason,</span>
+  <span><code class="!csharp">UIDevice identifierForVendor</code> or, if that fails for any reason,</span>
 </p>
 <p>
-  <span><code class="java">ASIdentifierManager advertisingIdentifier</code></span>
+  <span><code class="!csharp">ASIdentifierManager advertisingIdentifier</code></span>
 </p>
 <p>
-  <span><strong>Android: </strong><code class="java">SystemInfo.deviceUniqueIdentifier</code> returns the md5 of ANDROID_ID. Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a different value than signed builds (which are signed with a key provided in the player settings).</span>
+  <span><strong>Android: </strong><code class="!csharp">SystemInfo.deviceUniqueIdentifier</code> returns the md5 of ANDROID_ID. Note that since Android 8.0 (API level 26) ANDROID_ID depends on the app signing key. That means "unsigned" builds (which are by default signed with a debug keystore) will have a different value than signed builds (which are signed with a key provided in the player settings).</span>
 </p>
 <p>
-  <span><strong>Windows Store Apps:</strong> uses <code class="java">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
+  <span><strong>Windows Store Apps:</strong> uses <code class="!csharp">AdvertisingManager::AdvertisingId</code>for returning unique device identifiers.</span>
 </p>
 <p>
   <span><strong>Windows Standalone</strong>: returns a hash from the concatenation of strings taken from Computer System Hardware Classes. For more information, <a href="https://docs.unity3d.com/ScriptReference/SystemInfo-deviceUniqueIdentifier.html" target="_self">click here</a>.</span><span></span>
@@ -583,9 +582,9 @@ Countly.Instance.Init(config);</code></pre>
   <strong><span class="wysiwyg-font-size-large">iOS</span></strong>
 </p>
 <p>
-  The Countly server needs the APNs Auth Key to send notifications. To get
-  the APNs Auth Key and upload it to the County Server, for further information
-  refer to
+  The Countly server needs the APNs Auth Key to send notifications. To get the
+  APNs Auth Key and upload it to the County Server, for further information refer
+  to
   <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#setting-up-apns-authentication" target="_self">iOS Documentation.</a>
 </p>
 <p>To set up push for iOS, follow the next two steps:</p>
@@ -724,7 +723,7 @@ Countly.Instance.Init(config);</code></pre>
     <span>City name (must be set together with the country code).</span>
   </li>
   <li>
-    <span>Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325".
+    <span>Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325". </span>
   </li>
   <li>
     <span>Your user’s IP address.</span><span></span>
@@ -797,7 +796,7 @@ Countly.Instance.Init(config);</code></pre>
 </p>
 <pre><strong>Dictionary</strong>&lt;string, object&gt; config = Countly.Instance.RemoteConfigs.Configs;</pre>
 <p>
-  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against a key. The developer then needs to cast it to the appropriate type.
+  <span>The <code>Dictionary&lt;string, object&gt;</code> returns a value of the type <code>object</code> against a key. The developer then needs to cast it to the appropriate type. </span>
 </p>
 <h2 id="h_01HABTZ316D1SCDFXWV0VMDARS" class="anchor-heading">Consent</h2>
 <p>
@@ -943,7 +942,7 @@ Countly.Instance.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <strong>await</strong> Countly.Instance.UserDetails.Pull("type", new string[] { "morning" });
 
 //send provided values to server
-<strong>await</strong> Countly.Instance.UserDetails.SaveAsync();</code>
+<strong>await</strong> Countly.Instance.UserDetails.SaveAsync();</code></pre>
 <p>
   In the end, always call
   <code><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code>
@@ -1001,41 +1000,38 @@ Countly.Instance.Init(configuration);</code></pre>
   <span>Feature names in the <strong>Unity SDK,</strong> are stored as <strong>Enum</strong> called <code>Consents</code></span><span>.</span>
 </p>
 <p>The current features are:</p>
-<p>
-  *<span> </span><code>Sessions</code><span> </span>- tracking when, how often,
-  and how long users use your app
-</p>
-<p>
-  *<span> </span><code>Events</code><span> </span>- allow sending events to
-  the server
-</p>
-<p>
-  *<span> </span><code>Views</code><span> </span>- allow the tracking of which
-  views user visits
-</p>
-<p>
-  *<span> </span><code>Location</code><span> </span>- allow the sending of
-  location information
-</p>
-<p>
-  *<span> </span><code>Crashes</code><span> </span>- allow the tracking of
-  crashes, exceptions, and errors
-</p>
-<p>
-  *<span> </span><code>Users</code><span> </span>- allow the collecting/providing
-  of user information, including custom properties
-</p>
-<p>
-  *<span> </span><code>Push</code><span> </span>- allow push notifications
-</p>
-<p>
-  *<span> </span><code>StarRating</code><span> </span>- allow their rating
-  and feedback to be sent
-</p>
-<p>
-  *<span> </span><code>RemoteConfig</code><span> </span>- allow downloading
-  remote config values from your server
-</p>
+<ul>
+  <li>
+    <code>Sessions</code> - tracking when, how often, and how long users use
+    your app
+  </li>
+  <li>
+    <code>Events</code> - allow sending events to the server
+  </li>
+  <li>
+    <code>Views</code> - allow the tracking of which views users visit
+  </li>
+  <li>
+    <code>Location</code> - allow the sending of location information
+  </li>
+  <li>
+    <code>Crashes</code> - allow the tracking of crashes, exceptions, and errors
+  </li>
+  <li>
+    <code>Users</code> - allow the collecting/providing of user information,
+    including custom properties
+  </li>
+  <li>
+    <code>Push</code> - allow push notifications
+  </li>
+  <li>
+    <code>StarRating</code> - allow their rating and feedback to be sent
+  </li>
+  <li>
+    <code>RemoteConfig</code> - allow downloading remote config values from your
+    server
+  </li>
+</ul>
 <p>
   In case consent is required, you may give consent to features before the SDK
   Init call. These features consents are not persistent and must be given on every
@@ -1048,7 +1044,8 @@ Consents[] consents = new Consents[] { Consents.Users, Consents.Location };
 configuration.GiveConsent(consents);</code></pre>
 <h2 id="changing-consent" class="anchor-heading">Changing Consent</h2>
 <p>
-  After init call, use <code class="java">Countly.Instance.Consents.</code> to change consent.
+  After init call, use <code class="!csharp">Countly.Instance.Consents.</code>
+  to change consent.
 </p>
 <p>
   <span>There are 2 ways of changing feature consent: </span>
@@ -1078,7 +1075,11 @@ Countly.Instance.Consent.RemoveAllConsent();</code></pre>
   <span style="font-weight: 400;">Feature Groups</span>
 </h2>
 <p>
-  Consents may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. Groups may be created using <code>CreateConsentGroup</code> call during SDK configuration. Those groups are not persistent and must be created on every restart. During SDK configuration consents to groups may be given by using <code>GiveConsentToGroup</code>.
+  Consents may be put into groups. By doing this, you may give/remove consent to
+  multiple features in the same call. Groups may be created using
+  <code>CreateConsentGroup</code> call during SDK configuration. Those groups are
+  not persistent and must be created on every restart. During SDK configuration
+  consents to groups may be given by using <code>GiveConsentToGroup</code>.
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">// prepare consents that should be added to the group 
 Consents[] consents = <strong>new</strong> Consents[] { Consents.Users, Consents.Location };
@@ -1105,7 +1106,7 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
 <h1 id="h_01HABTZ316AYQFEVA6BEXF711V">Security and Privacy</h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tamper Protection</h2>
 <p>
-  <span>You may set the optional <code>salt</code></span><span> to be used for calculating the checksum of requested data which will be sent with each request, using the <code>&amp;checksum</code> field. You will need to set exactly the same <code>salt</code> on the Countly server. If the <code>salt</code> on the Countly server is set, all requests would be checked for the validity of the <code>&amp;checksum</code> field before being processed.
+  <span>You may set the optional <code>salt</code></span><span> to be used for calculating the checksum of requested data which will be sent with each request, using the <code>&amp;checksum</code> field. You will need to set exactly the same <code>salt</code> on the Countly server. If the <code>salt</code> on the Countly server is set, all requests would be checked for the validity of the <code>&amp;checksum</code> field before being processed. </span>
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
   .SetParameterTamperingProtectionSalt("Salt");</code></pre>
@@ -1135,8 +1136,7 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
 </p>
 <p>
   <strong>EnableLogging()</strong> - this parameter is useful when you are debugging
-  your application. When set to <strong>true</strong>, it basically
-  turns on Logging.
+  your application. When set to <strong>true</strong>, it basically turns on Logging.
 </p>
 <p>
   <strong>SetUpdateSessionTimerDelay(int duration)</strong> - sets the interval
@@ -1160,10 +1160,10 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
 <p>
   <strong>SetNotificationMode(TestMode mode)</strong> - when
   <strong>None</strong>, the SDK disables Push Notifications for the device. Use
-  an <strong>iOS Test Token </strong>or an <strong>Android Test Token</strong> for
-  testing purposes, and in production use a <strong>Production Token.</strong> The
-  SDK uses the supplied mode for sending Push Notifications. The default value
-  is <strong>None.</strong>
+  an <strong>iOS Test Token </strong>or an <strong>Android Test Token</strong>
+  for testing purposes, and in production use a
+  <strong>Production Token.</strong> The SDK uses the supplied mode for sending
+  Push Notifications. The default value is <strong>None.</strong>
 </p>
 <p>
   <strong>DisableAutomaticCrashReporting()</strong> - turns off Automatic Crash
@@ -1276,41 +1276,105 @@ Countly.Instance.Init(configuration);</code></pre>
   functions and implement the required features. Before any of it is sent to the
   server, it is stored locally.
 </p>
-<p>
-  * When sending any network requests to the server, the following things are sent
-  in addition to the main data: - Timestamp of when the request is created - Current
-  hour - Current day of week - Current timezone - SDK version - SDK name
-</p>
-<p>
-  * If sessions are used then it would record the session start time, end time,
-  and duration
-</p>
-<p>
-  * If sessions are used then also device metrics are collected which contains:
-  - Device model - Screen resolution - Screen density - OS name - OS version -
-  App version <span>- Locale identifier</span>
-</p>
-<p>
-  <span></span><span>* When generating a device ID, if no custom ID is provided, the SDK will use:</span>
-  <span>- Android: md5 of ANDROID_ID</span>
-  <span>- iOS: It will be vendor id and </span><span>advertising id as a fallback </span><span>- Windows stores apps: It will be advertising id </span><span>- Windows Standalone: It will be hash from the concatenation of strings taken from computer system hardware classes.</span><span></span>
-</p>
-<p>
-  * If push notification is used: - The devices push notification token - If the
-  user clicks on the notification then the time of the click and on which button
-  the user has clicked on
-</p>
-<p>
-  * When events are recorded, the following information collected: - Time of event
-  - Current hour - Current day of week
-</p>
-<p>
-  <span>* If crash tracking is enabled, it will collect the following information at the time of the crash: - OS name - OS version - Device model - Device architecture </span>-
-  The graphics API type:
-  <span> - Device resolution - App version - Time of the crash - Crash stack trace - Error description - Total RAM - Device battery level - Device orientation </span>
-  - The type of Internet reachability
-  <span>- If there is a network connection - If the app is in the background - How long has the application been running </span>
-</p>
-<p>
-  <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
-</p>
+<ul>
+  <li>
+    When sending any network requests to the server, the following things are
+    sent in addition to the main data:
+    <ul>
+      <li>Timestamp of when the request is created</li>
+      <li>Current hour</li>
+      <li>Current day of the week</li>
+      <li>Current timezone</li>
+      <li>SDK version</li>
+      <li>SDK name</li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    If sessions are used, it would record the session start time, end time, and
+    duration.
+  </li>
+</ul>
+<ul>
+  <li>
+    If sessions are used, then device metrics are collected which include:
+    <ul>
+      <li>Device model</li>
+      <li>Screen resolution</li>
+      <li>Screen density</li>
+      <li>OS name</li>
+      <li>OS version</li>
+      <li>App version</li>
+      <li>Locale identifier</li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    When generating a device ID, if no custom ID is provided, the SDK will use:
+    <ul>
+      <li>Android: md5 of ANDROID_ID</li>
+      <li>iOS: It will be vendor id and advertising id as a fallback</li>
+      <li>Windows Store Apps: It will be advertising id</li>
+      <li>
+        Windows Standalone: It will be hash from the concatenation of strings
+        taken from computer system hardware classes.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    If push notification is used:
+    <ul>
+      <li>The device's push notification token</li>
+      <li>
+        If the user clicks on the notification, then the time of the click
+        and on which button the user has clicked on
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    When events are recorded, the following information is collected:
+    <ul>
+      <li>Time of event</li>
+      <li>Current hour</li>
+      <li>Current day of the week</li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    If crash tracking is enabled, it will collect the following information at
+    the time of the crash:
+    <ul>
+      <li>OS name</li>
+      <li>OS version</li>
+      <li>Device model</li>
+      <li>Device architecture</li>
+      <li>The graphics API type</li>
+      <li>Device resolution</li>
+      <li>App version</li>
+      <li>Time of the crash</li>
+      <li>Crash stack trace</li>
+      <li>Error description</li>
+      <li>Total RAM</li>
+      <li>Device battery level</li>
+      <li>Device orientation</li>
+      <li>The type of Internet reachability</li>
+      <li>If there is a network connection</li>
+      <li>If the app is in the background</li>
+      <li>How long has the application been running</li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Any other information like data in events, location, user profile information,
+    or other manual requests depends on what the developer decides to provide
+    and is not collected by the SDK itself.
+  </li>
+</ul>
