@@ -1840,7 +1840,7 @@ Countly.sharedInstance().userProfile().save();</code></pre>
 </p>
 <h1 id="h_01HAVQDM5V1ZB8ECYTH1SPR3Q7">User Consent</h1>
 <p>
-  <span style="font-weight: 400;">In an effort to comply with GDPR, starting from 18.04, Countly provides ways to toggle different Countly features on/off depending on the given consent.</span>
+  <span style="font-weight: 400;">In an effort to comply with GDPR Countly provides ways to toggle different Countly features on/off depending on the given consent.</span>
 </p>
 <p>
   More information about GDPR can be found
