@@ -469,7 +469,6 @@ Countly.instance.sessions.endSession();</pre>
   another view, use the following method:
 </p>
 <pre><code class="JavaScript">// record a view on your application
-Countly.instance.views.startView("HomePage");
 final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</span>("Dashboard");</code></pre>
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
