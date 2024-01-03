@@ -759,7 +759,7 @@ await Countly.Instance.Init(cc);</code></pre>
   <span>For this function to work, only error parameter is required. If no device id or app key is provided, it fallbacks to given app key or given/generated device id while initializing. </span>
 </p>
 <p>
-  <span>Keep in mind that, if multiple device id or multiple app key recording is needed, they must be provided to the function. Here is a minimal call:</span>
+  <span>Keep in mind that if you want to send data for a device ID or app key that differs from the ones given during the SDK initialization, you must provide them in the function. Here is a minimal call:</span>
 </p>
 <pre><code class="csharp">Countly.Instance.BackendMode().RecordException(error = "Exception");</code></pre>
 <p>
@@ -767,10 +767,25 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <pre><span>"_os", "_os_version", "_ram_total", "_ram_current", "_disk_total", "_disk_current", "_online", "_muted", "_resolution", "_app_version", "_manufacture", "_device", "_orientation", "_run"</span></pre>
 <p>
-  <span>To report unhandled/handled crashes you would provide unhandled parameter of the function. Default value for unhandled is false.</span>
+  <span>Optional values:</span>
 </p>
 <p>
-  <span>Custom segmentation can be also provided by customInfo parameter of the function. Supported values for the custom info are int, float, double, long, string and bool.</span>
+  <span>&nbsp; - <strong>stackTrace</strong>: if not provided it will be not sent to the server</span>
+</p>
+<p>
+  <span>&nbsp; - <strong>breadcrumbs</strong>: if not provided it will be not sent to the server</span>
+</p>
+<p>
+  <span>&nbsp; - <strong>customInfo</strong>: custom segmentation of a crash, if not provided it will be not sent to the server. Supported values for the custom info are int, float, double, long, string and bool.</span>
+</p>
+<p>
+  <span>&nbsp; - <strong>metrics</strong>: if not provided it will be not sent to the server</span>
+</p>
+<p>
+  <span>&nbsp; - <strong>unhandled</strong>: if not provided it will be recorded as a handled crash. If unhandled crash reporting is intended true value should be passed to the parameter, ex. unhandled: true</span>
+</p>
+<p>
+  <span>&nbsp; - <strong>timestamp</strong>: if not provided, it will be set as current timestamp, ex. timestamp: 1703752478530</span>
 </p>
 <p>
   <span>Here is a set of examples:</span>
