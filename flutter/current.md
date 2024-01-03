@@ -40,7 +40,7 @@ flutter run</code></pre>
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^23.8.0
+  countly_flutter: ^23.12.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -481,7 +481,7 @@ final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</
 };
 final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView</span>("HomePage", segmentation);
 </code></pre>
-<h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Pausing and Resuming Views</h3>
+<h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
   Opposed to "auto stopped views", with regular views you can have multiple of
   them started at the same time, and then you can control them independently.<br>
@@ -530,14 +530,6 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping all views:</span>
 </p>
 <pre><code class="JavaScript">Countly.instance.views.stopAllViews(segmentation);</code></pre>
-<p>
-  You can specify the custom segmentation for any view using the view name
-</p>
-<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithName(segmentation);</code></pre>
-<p>
-  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs using the unique ID:</span>
-</p>
-<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithID(segmentation);</code></pre>
 <h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Pausing and Resuming Views</h3>
 <p>
   <span style="font-weight: 400;"></span>This SDK allows you to start multiple
@@ -561,6 +553,15 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 <p>
   <span>This function resumes the tracking of a view identified by its unique identifier.</span>
 </p>
+<h3 id="h_01HK6YJTHP4Y0WVZSC0ZPNZFDJ">Adding Segmentation to Started Views</h3>
+<p>
+  You can specify the custom segmentation for any view using the view name
+</p>
+<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithName(segmentation);</code></pre>
+<p>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs using the unique ID:</span>
+</p>
+<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithID(segmentation);</code></pre>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
 <p>
   It is possible to set global segmentation for all recorded views. This can be
@@ -1116,9 +1117,6 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
   <h3 id="h_01HD1KX6164ZKKCQS4B15G1NC5">
     <span>&nbsp;</span><span>Enrollment on Access</span>
   </h3>
-  <div class="callout callout--warning">
-    <p>Available starting from version 23.8.3</p>
-  </div>
   <p>
     <span>You can also enroll to A/B tests while getting RC values from storage. You can use <code>getValueAndEnroll</code> while getting a single value and <code>getAllValuesAndEnroll</code> while getting all values to enroll to the keys that exist. If no value was stored for those keys these functions would not enroll the user. Both of these functions works the same way with their non-enrolling variants, namely; <code>getValue</code> and <code>getAllValues</code>.</span>
   </p>
@@ -1799,9 +1797,6 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   the current app key, these requests will be removed from the request queue.
 </p>
 <h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
-<div class="callout callout--warning">
-  <p>Available starting from version 23.8.3</p>
-</div>
 <p>
   If you are concerned about your app being used sparsely over a long time frame,
   old requests inside the request queue might not be important. If, for any reason,
@@ -1966,9 +1961,6 @@ config.setRequestDropAgeHours(10); // a positive integer indicating hours</code>
 <h4 id="h_01HEMEGYZEPX60J2NJWJM59K4E">
   <span>Enrolling / Exiting</span>
 </h4>
-<div class="callout callout--warning">
-  <p>Available starting from version 23.8.4</p>
-</div>
 <p>
   To enroll a user into the A/B experiment using experiment ID, you use the following
   method:
