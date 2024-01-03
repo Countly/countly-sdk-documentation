@@ -1357,7 +1357,7 @@ function sendMessage(param) {
   Now you should be able to send an event with a key you want in your code. You
   can change things according to your own project inspiring from these basic principles.
 </p>
-<h1 id="h_01HJ5MD0WB97PA9Z04NG2G0AKC">What Information Is Collected by the SDK</h1>
+<h1 id="h_01HJ5MD0WB97PA9Z04NG2G0AKC">What Information Is Collected by the SDKs</h1>
 <p>
   <span>The following description mentions data that is collected by SDK's to perform their functions and implement the required features. Before any of it is sent to the server, it is stored locally.</span>
 </p>
@@ -1425,12 +1425,6 @@ function sendMessage(param) {
       <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">av</td>
       <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
         <span>application version if it is provided</span>
-      </td>
-    </tr>
-    <tr style="height: 22px;">
-      <td style="width: 21.7143%; vertical-align: middle; height: 22px; text-align: left;" scope="colGroup">rr</td>
-      <td style="width: 78.2857%; height: 22px; text-align: center; vertical-align: middle;" scope="colGroup">
-        <span>remaining request count in the request queue</span>
       </td>
     </tr>
   </tbody>
@@ -1534,7 +1528,7 @@ function sendMessage(param) {
   data has to be URL encoded
 </p>
 <pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;begin_session=1&amp;metrics=<br>{"_device": "CountlyDevice",<br>"_os": "CountlyOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "mobile",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal"<br>}</span></pre>
-<h4 id="h_01HJ67SCQSCX8H2NFXRD5NXNG1">NodeJS SDK Specific Additional Session Metrics</h4>
+<h4 id="h_01HJ67SCQSCX8H2NFXRD5NXNG1">Web SDK Specific Additional Session Metrics</h4>
 <table style="border-collapse: collapse; height: 76px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
     <tr style="height: 22px;">
@@ -1556,8 +1550,8 @@ function sendMessage(param) {
   </tbody>
 </table>
 <p>
-  Addition to session metrics NodeJS SDK sends these metric params. Here is an
-  example session end request from NodeJS SDK.
+  Addition to session metrics Web SDK sends these metric params. Here is an
+  example session end request from Web SDK.
 </p>
 <pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;end_session=1&amp;session_duration=35&amp;metrics=<br>{"_device": "CountlyDevice",<br>"_os": "MacOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "web",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal",<br>"_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",<br>"_browser": "Firefox",<br>"_browser_version": "42.0"<br>}</span><span></span></pre>
 <h3 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h3>
@@ -1719,6 +1713,7 @@ function sendMessage(param) {
 <pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;crash={<br></span>"_device":"Android SDK built for x86",<br>"_os":"Android",<br>"_os_version":"10",<br>"_resolution":"1080x2088",<br>"_app_version":"1.0.0",<br>"_manufacturer":"Google",<br>"_error":"java.lang.Exception: RangeError (index): Invalid value: Not in inclusive range 0..2: 10\n\tat ly.count.dart.countly_flutter.CountlyFlutterPlugin.onMethodCall(CountlyFlutterPlugin.java:340)\n\tat io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:258)\n\tat io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:295)\n\tat io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:322)\n\tat io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)\n\tat android.os.Handler.handleCallback(Handler.java:883)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loop(Looper.java:214)\n\tat android.app.ActivityThread.main(ActivityThread.java:7356)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)\n",<br>"_nonfatal":"false",<br>"_cpu":"x86",<br>"_opengl":"2",<br>"_root":"false",<br>"_ram_total":"1994",<br>"_disk_total":"2162",<br>"_ram_current":"885",<br>"_disk_current":"2114",<br>"_bat":"100.0",<br>"_run":"6",<br>"_orientation":"Portrait",<br>"_online":"true",<br>"_muted":"false",<br>"_background":"false"<br>}</pre>
 <h2 id="h_01HJ5XRSX13YGV6FBBXKVRGRZC">Device ID Sources</h2>
 <p>
+
   - The Android SDK uses Secure.ANDROID_ID as the default ID and advertising id
   as a fallback devices ID if no custom id is provided.
 </p>
