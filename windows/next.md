@@ -748,20 +748,26 @@ await Countly.Instance.Init(cc);</code></pre>
 <h3 id="h_01HHHV1KDXJNM5FJ8T9KHRB0ZZ">
   <span>Recording Data</span>
 </h3>
+<p>
+  <span>For each call, deviceId parameter is mandatory and should be provided. appKey parameter is optional. However, if multi app recording is intended it should be provided. </span>
+</p>
+<p>
+  <span>If app key is not provided, it fallbacks to given app key while initializing.</span>
+</p>
 <h4 id="h_01HJQQ9QE1Y5BS2YKW5FYQYPVF">
   <span>Crash Reporting</span>
 </h4>
 <p>
   <span>To report a crash with backend mode this method should be called:</span>
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(string deviceId = null, string appKey = null, string error = null, string stackTrace = null, IList&lt;string&gt; breadcrumbs = null, IDictionary&lt;string, object&gt; customInfo = null, IDictionary&lt;string, string&gt; metrics = null, bool unhandled = false, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(string deviceId, string appKey = null, string error = null, string stackTrace = null, IList&lt;string&gt; breadcrumbs = null, IDictionary&lt;string, object&gt; customInfo = null, IDictionary&lt;string, string&gt; metrics = null, bool unhandled = false, long timestamp = 0);</code></pre>
 <p>
-  <span>For this function to work, only error parameter is required. If no device id or app key is provided, it fallbacks to given app key or given/generated device id while initializing. </span>
+  <span>For this function to work, only error parameter is required.&nbsp;</span>
 </p>
 <p>
   <span>Keep in mind that if you want to send data for a device ID or app key that differs from the ones given during the SDK initialization, you must provide them in the function. Here is a minimal call:</span>
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(error = "Exception");</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(DEVICE_ID, error = "Exception");</code></pre>
 <p>
   <span>Because there is a possibility to multi device recording, metrics also should be provided if metric recording is intended. Here is the supported metric keys:</span>
 </p>
@@ -816,7 +822,7 @@ var breadCrumbs = new List&lt;string&gt; { "Before Init", "After Init" };
 Countly.Instance.BackendMode().RecordException(DEVICE_ID, APP_KEY, "Exception", stackTrace, breadCrumbs, customSegmentation, metrics);
   
 // if needed you can also provide timestamp of the exception by adding timestamp to the call, if you do not provide it will be set as current timestamp
-Countly.Instance.BackendMode().RecordException(error: "Exception", timestamp: 1703752478530);
+Countly.Instance.BackendMode().RecordException(DEVICE_ID, error: "Exception", timestamp: 1703752478530);
 </code></pre>
 <h4 id="h_01HHHEEY3AHKR4XQD22DF8JQKJ">
   <span>Events</span>
@@ -824,7 +830,7 @@ Countly.Instance.BackendMode().RecordException(error: "Exception", timestamp: 17
 <p>
   <span>To record an event with backend mode this method should be called:</span>
 </p>
-<pre><span>Countly.Instance.BackendMode().RecordEvent(string deviceId, string appKey, string eventKey, double? eventSum = null, int eventCount = 1, long? eventDuration = null, Segmentation segmentations = null, long timestamp = 0);</span></pre>
+<pre><span>Countly.Instance.BackendMode().RecordEvent(string deviceId, string appKey = null, string eventKey = null, double? eventSum = null, int eventCount = 1, long? eventDuration = null, Segmentation segmentations = null, long timestamp = 0);</span></pre>
 <p>
   Here are some examples for recording event with the backend mode:
 </p>
@@ -841,13 +847,9 @@ bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation); // tim
   "UpdateSession" and "EndSession" methods.
 </p>
 <p>
-  In each session method,
-  <span>If no device id or app key is provided, it fallbacks to given app key or given/generated device id while initializing.</span>
-</p>
-<p>
   <strong>Begin Session</strong>
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().BeginSession(string deviceId = null, string appKey = null, IDictionary&lt;string, string&gt; metrics = null, IDictionary&lt;string, string&gt; location = null, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().BeginSession(string deviceId, string appKey = null, IDictionary&lt;string, string&gt; metrics = null, IDictionary&lt;string, string&gt; location = null, long timestamp = 0);</code></pre>
 <p>
   If no metrics are provided for the BeginSession, it fallbacks to internal metrics
   collected from the current device.&nbsp;
@@ -862,8 +864,8 @@ bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation); // tim
   must be provided with the BeginSession method.
 </p>
 <p>Here are examples about BeginSession method.</p>
-<pre><code class="csharp">// minimal call to the BeginSession, this fallbacks to internal metrics, device id and app key
-Countly.Instance.BackendMode().BeginSession();
+<pre><code class="csharp">// minimal call to the BeginSession, this fallbacks to internal metrics and app key
+Countly.Instance.BackendMode().BeginSession(DEVICE_ID);
 
 // With custom metrics, location and custom timestamp (timestamp is optional, if not provided, it will be set as current)
 var metrics = new Dictionary&lt;string, string&gt;(){
@@ -889,10 +891,10 @@ Countly.Instance.BackendMode().BeginSession(DEVICE_ID, APP_KEY, metrics, locatio
 <p>
   Duration is in seconds and required to call update session method.
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().UpdateSession(int duration, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().UpdateSession(int duration, string deviceId, string appKey = null, long timestamp = 0);</code></pre>
 <p>Here are examples about UpdateSession method.</p>
-<pre><code class="csharp">// minimal call to the UpdateSession, this fallbacks to internal metrics, device id and app key
-Countly.Instance.BackendMode().UpdateSession(60);
+<pre><code class="csharp">// minimal call to the UpdateSession, this fallbacks to internal metrics and app key
+Countly.Instance.BackendMode().UpdateSession(60, DEVICE_ID);
 
 // with custom timestamp
 Countly.Instance.BackendMode().UpdateSession(45, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
@@ -900,13 +902,12 @@ Countly.Instance.BackendMode().UpdateSession(45, DEVICE_ID, APP_KEY, 17037524785
   <strong>End Session</strong>
 </p>
 <p>
-  Duration is in seconds and not required. If it is not provided, it will be not
-  sent
+  Duration is in seconds and required. If it is negative, it will be not sent
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().EndSession(int duration = -1, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().EndSession(int duration, string deviceId, string appKey = null, long timestamp = 0);</code></pre>
 <p>Here are examples about EndSession method.</p>
-<pre><code class="csharp">// minimal call to the EndSession, this fallbacks to internal metrics, device id and app key
-Countly.Instance.BackendMode().EndSession();
+<pre><code class="csharp">// minimal call to the EndSession, this fallbacks to internal metrics and app key
+Countly.Instance.BackendMode().EndSession(-1, DEVICE_ID);
 
 // with custom timestamp and duration
 Countly.Instance.BackendMode().EndSession(45, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
@@ -919,10 +920,9 @@ Countly.Instance.BackendMode().EndSession(45, DEVICE_ID, APP_KEY, 1703752478530)
 <p>
   <strong>Start View</strong>
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().StartView(string deviceId, string appKey, string name, string segment, bool firstView = false, Segmentation segmentations = null, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().StartView(string name, string segment, string deviceId, string appKey = null, bool firstView = false, Segmentation segmentations = null, long timestamp = 0);</code></pre>
 <p>
-  deviceId, appKey, name and segment parameters are required. They should not be
-  empty or null.
+  name and segment parameters are required. They should not be empty or null.
 </p>
 <p>Segment is platform for devices or domain for websites.</p>
 <p>
@@ -931,34 +931,34 @@ Countly.Instance.BackendMode().EndSession(45, DEVICE_ID, APP_KEY, 1703752478530)
 </p>
 <p>Here are examples about StartView method.</p>
 <pre><code class="csharp">// minimal call to the StartView
-Countly.Instance.BackendMode().StartView(DEVICE_ID, APP_KEY, "Login", "Desktop");
+Countly.Instance.BackendMode().StartView("Login", "Desktop", DEVICE_ID);
 
 Segmentation segmentation = new Segmentation();
 segmentation.Add("email", "test@test.test");
 segmentation.Add("campaign_user", "true");
 
 // with segmentation, firstView and timestamp
-Countly.Instance.BackendMode().StartView(DEVICE_ID, APP_KEY, "Login", "Desktop", true, segmentation, 1703752478530);</code></pre>
+Countly.Instance.BackendMode().StartView("Login", "Desktop", DEVICE_ID, APP_KEY, true, segmentation, 1703752478530);</code></pre>
 <p>
   <strong>Stop View</strong>
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().StopView(string deviceId, string appKey, string name, string segment, long duration, Segmentation segmentations = null, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().StopView(string name, string segment, long duration, string deviceId, string appKey = null, Segmentation segmentations = null, long timestamp = 0);</code></pre>
 <p>
-  deviceId, appKey, name, segment and duration parameters are required. They should
-  not be empty or null.
+  name, segment and duration parameters are required. They should not be empty
+  or null.
 </p>
 <p>Segment is platform for devices or domain for websites.</p>
 <p>Duration in seconds and cannot be less then 0</p>
 <p>Here are examples about StopView method.</p>
 <pre><code class="csharp">// minimal call to the StopView
-Countly.Instance.BackendMode().StopView(DEVICE_ID, APP_KEY, "Logout", "Android", 34);
+Countly.Instance.BackendMode().StopView("Logout", "Android", 34, DEVICE_ID);
 
 Segmentation segmentation = new Segmentation();
 segmentation.Add("last_seen", "1994-11-05T13:15:30Z");
 segmentation.Add("campaign_user", "false");
 
 // with segmentation and timestamp
-Countly.Instance.BackendMode().StopView(DEVICE_ID, APP_KEY, "Logout", "Gear", 56, segmentation, 1703752478530);</code></pre>
+Countly.Instance.BackendMode().StopView("Logout", "Gear", 56, DEVICE_ID, APP_KEY, segmentation, 1703752478530);</code></pre>
 <h4 id="h_01HJQXEQHXV7YFT3FGCFRQ36D7">Device ID Management</h4>
 <p>
   It is possible manage device ids with the Windows SDK backend mode.
@@ -966,15 +966,11 @@ Countly.Instance.BackendMode().StopView(DEVICE_ID, APP_KEY, "Logout", "Gear", 56
 <p>
   <strong>Change Device ID With Merge</strong>
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(string newDeviceId, string oldDeviceId = null, string appKey = null, long timestamp = 0);</code></pre>
+<pre><code class="csharp">Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(string newDeviceId, string oldDeviceId, string appKey = null, long timestamp = 0);</code></pre>
 <p>newDeviceId is required, should not be empty or null</p>
-<p>
-  If oldDeviceId or appKey are not given they fallback to internal given/generated
-  while initializing
-</p>
 <p>Here are examples about ChangeDeviceIdWithMerge method.</p>
-<pre><code class="csharp">// minimal call to the ChangeDeviceIdWithMerge, this fallbacks to internal device id and app key
-Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID);
+<pre><code class="csharp">// minimal call to the ChangeDeviceIdWithMerge, this fallbacks to internal app key
+Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID);
 
 // with custom timestamp
 Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID, APP_KEY, 1703752478530);</code></pre>
@@ -984,10 +980,6 @@ Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID, APP_KEY, 
   backend mode.
 </p>
 <pre><code class="csharp">Countly.Instance.BackendMode().RecordUserProperties(IDictionary&lt;string, object&gt; userProperties, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
-<p>
-  If deviceId or appKey are not given they fallback to internal given/generated
-  while initializing
-</p>
 <p>
   userProperties are required and should not be empty. Current supported data types
   for the values are: string, int, long, double, float and bool
@@ -1001,7 +993,7 @@ Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID, APP_KEY, 
   To set the picture correctly, only URL of the picture should be provided
 </p>
 <p>Here are examples about RecordUserProperties method.</p>
-<pre><code class="csharp">// minimal call to the RecordUserProperties, this fallbacks to internal device id and app key
+<pre><code class="csharp">// minimal call to the RecordUserProperties, this fallbacks to internal app key
 var userProperties = new Dictionary&lt;string, object&gt;(){
    {"name", "John"},
    {"username", "Dohn"},
@@ -1012,7 +1004,7 @@ var userProperties = new Dictionary&lt;string, object&gt;(){
    {"byear", 1969},
    {"picture", "http://someurl.png"}
 };
-Countly.Instance.BackendMode().RecordUserProperties(userProperties);
+Countly.Instance.BackendMode().RecordUserProperties(userProperties, DEVICE_ID);
 
 // with custom timestamp and custom properties
 userProperties["int"] = 5;
@@ -1096,17 +1088,13 @@ Countly.Instance.BackendMode().RecordUserProperties(userProperties, DEVICE_ID, A
 <p>
   The Windows SDK has ability to send direct/custom requests to the server.
 </p>
-<pre><code class="csharp">Countly.Instance.BackendMode().RecordDirectRequest(IDictionary&lt;string, string&gt; paramaters, string deviceId = null, string appKey = null, long timestamp = 0);</code></pre>
-<p>
-  If deviceId or appKey are not given they fallback to internal given/generated
-  while initializing
-</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordDirectRequest(IDictionary&lt;string, string&gt; paramaters, string deviceId, string appKey = null, long timestamp = 0);</code></pre>
 <p>Parameters should not be empty</p>
 <p>Here are examples about RecordDirectRequest method.</p>
 <p>
   The internal keys are not overridden by the given key values.
 </p>
-<pre><code class="csharp">// minimal call to the RecordDirectRequest, this fallbacks to internal device id and app key
+<pre><code class="csharp">// minimal call to the RecordDirectRequest, this fallbacks to internal app key
 var parameters = new Dictionary&lt;string, string&gt;(){
    {"begin_session", "1"},
    {"metrics", ... }, // metrics to provide
@@ -1115,7 +1103,7 @@ var parameters = new Dictionary&lt;string, string&gt;(){
    {"user_id", "123456789"},
    {"onesignal_id", "..."}
 };
-Countly.Instance.BackendMode().RecordDirectRequest(parameters);
+Countly.Instance.BackendMode().RecordDirectRequest(parameters, DEVICE_ID);
 
 // with custom timestamp
 Countly.Instance.BackendMode().RecordDirectRequest(parameters, DEVICE_ID, APP_KEY, 1703752478530);</code></pre>
