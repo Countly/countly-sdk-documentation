@@ -12,6 +12,10 @@ all view event segmentation should have the "name" field with the view name and 
 
 if not explicitly mentioned, the duration is 0, the sum is 0, count is 1, ts, dow, hour are also "correct"
 
+when recording views and events, a custom id generator should be used for ID's.
+View ids should be returned in the form "idvX" where x is an incrementing number starting from 1
+Event ids should be returnde in the form "ideX" where x is an incrementing number starting from 1
+
 ## (1XX) Value sanitation, wrong usage, simple tests
 
 ### 100_badValues_null
@@ -70,36 +74,36 @@ nothing should crash, no events should be recorded
 Make sure auto closing views behave correctly
 
 * recordView view A 
-(sE_A id=1 pvid="" segm={visit="1" start="1"})
+(sE_A id=idv1 pvid="" segm={visit="1" start="1"})
 * wait 1 sec
 * recordView view B 
-(eE_A d=1 id=1 pvid="", segm={}) 
-(sE_B id=2 pvid=1 segm={visit="1"})
+(eE_A d=1 id=idv1 pvid="", segm={}) 
+(sE_B id=idv2 pvid=idv1 segm={visit="1"})
 * wait 1 sec
 * start view C 
-(eE_B d=1 id=2 pvid=1, segm={}) 
-(sE_C id=3 pvid=2 segm={visit="1"})
+(eE_B d=1 id=idv2 pvid=idv1, segm={}) 
+(sE_C id=idv3 pvid=idv2 segm={visit="1"})
 * wait 1 sec
 * startAutoStoppedView D
-(sE_D id=4 pvid=3 segm={visit="1"})
+(sE_D id=idv4 pvid=idv3 segm={visit="1"})
 * wait 1 sec
 * startAutoStoppedView E 
-(eE_D d=0 id=4 pvid=3, segm={}) 
-(sE_E id=5 pvid=4 segm={visit="1"})
+(eE_D d=1 id=idv4 pvid=idv3, segm={}) 
+(sE_E id=idv5 pvid=idv4 segm={visit="1"})
 * wait 1 sec
 * start view F 
-(eE_E d=0 id=5 pvid=4, segm={}) 
-(sE_F id=6 pvid=5 segm={visit="1"})
+(eE_E d=1 id=idv5 pvid=idv4, segm={}) 
+(sE_F id=idv6 pvid=idv5 segm={visit="1"})
 * wait 1 sec
 * recordView view G
-(sE_G id=7 pvid=6 segm={visit="1"})
+(sE_G id=idv7 pvid=idv6 segm={visit="1"})
 * wait 1 sec
 * startAutoStoppedView H 
-(sE_H id=8 pvid=7 segm={visit="1"})
+(sE_H id=idv8 pvid=idv7 segm={visit="1"})
 * wait 1 sec
 * recordView view I 
-(eE_H d=0 id=8 pvid=7, segm={}) 
-(sE_I id=8 pvid=8 segm={visit="1"})
+(eE_H d=1 id=idv8 pvid=idv7, segm={}) 
+(sE_I id=idv8 pvid=idv8 segm={visit="1"})
 
 ### 201_simpleFlowMultipleViews
 
