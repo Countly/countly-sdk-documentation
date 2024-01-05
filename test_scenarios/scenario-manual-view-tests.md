@@ -4,7 +4,7 @@
 
 **eE_X_Y** - view end event for view name X with duration Y
 
-validation should also check cvid, pvid, peid
+validation should check all segmentation values and meta data like: cvid, pvid, peid
 
 ## (1XX) Value sanitation, wrong usage, simple tests
 
