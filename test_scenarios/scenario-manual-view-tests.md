@@ -2,9 +2,15 @@
 
 **sE_X** - view start event for view name X
 
-**eE_X_Y** - view end event for view name X with duration Y
+**eE_X** - view end event for view name X 
 
 validation should check all segmentation values and meta data like: cvid, pvid, peid
+
+duration is marked as "d=X"
+
+all view event segmentation should have the "name" field with the view name and the "segment" field with the platorm name (for example, "Android") these 2 will not be explicitly mentioned but should still be validated
+
+if not explicitly mentioned, the duration is 0, the sum is 0, count is 1, ts, dow, hour are also "correct"
 
 ## (1XX) Value sanitation, wrong usage, simple tests
 
@@ -46,9 +52,6 @@ nothing should crash, no events should be recorded
 
 ### 102_badValues_nonExistingViews
 
-recordView(x2),
-startAutoStoppedView(x2),  
-startView(x2), 
 pauseViewWithID, 
 resumeViewWithID,
 stopViewWithName(x2),
@@ -66,14 +69,22 @@ nothing should crash, no events should be recorded
 
 Make sure auto closing views behave correctly
 
-* recordView view A (sE_A)
-* recordView view B (eE_A_0, sE_B)
-* start view C (eE_B_0, sE_C)
+* recordView view A (sE_A id=1 pvid="" segm={visit="1" start="1"})
+* wait 1 sec
+* recordView view B (eE_A d=0 id=1 pvid="", segm={}) (sE_B id=2 pvid=1 segm={visit="1"})
+* wait 1 sec
+* start view C (eE_B d=0 id=1 pvid="", segm={}) (sE_B id=2 pvid=1 segm={visit="1"})
+* wait 1 sec
 * startAutoStoppedView D
+* wait 1 sec
 * startAutoStoppedView E
+* wait 1 sec
 * start view F
+* wait 1 sec
 * recordView view G
+* wait 1 sec
 * startAutoStoppedView H
+* wait 1 sec
 * recordView view I
 
 ### 201_simpleFlowMultipleViews
@@ -118,11 +129,7 @@ make sure that at this point there are 3 events, 2 starting and 1 closing.
 
 This should produce 1 more closing view
 
-### 2XX_segmentationPrecedence
-
-make sure that the segmentation value precedence is taken into account 
-
-## (3XX) Consent
+## (3XX) Consent and other features
 
 ### 300_callingWithNoConsent
 
@@ -135,8 +142,21 @@ updateGlobalViewSegmentation
 
 calling these with valid values should not cord anything in EQ
 
-### 301_consentRemoved
+### 301_consentRemoved WIP
 
+### 310_
+
+session end clears first view
+
+## (4XX) segmentation
+
+### 4XX_segmentationPrecedence
+
+make sure that the segmentation value precedence is taken into account 
+
+## (5XX) automatic views
+
+manual calls not working but the global segm calls do
 
 ################
 
