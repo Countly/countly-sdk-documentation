@@ -6,39 +6,77 @@
 
 validation should also check cvid, pvid, peid
 
-## (1XX) Value sanitation, wrong usage
+## (1XX) Value sanitation, wrong usage, simple tests
 
-### 101_badValues_null
+### 100_badValues_null
 
-startAutoStoppedView, addSegmentationToViewWithID, addSegmentationToViewWithName, startView, stopViewWithName, stopViewWithID, pauseViewWithID, resumeViewWithID
+recordView(x2),
+startAutoStoppedView(x2),
+startView(x2), 
+pauseViewWithID, 
+resumeViewWithID,
+stopViewWithName(x2), 
+stopViewWithID(x2), 
+addSegmentationToViewWithID, 
+addSegmentationToViewWithName,
+setGlobalViewSegmentation,
+updateGlobalViewSegmentation
 
-called with empty string values.
+called with "null" values.
 versions with and without segmentation.
-nothing should crash
+nothing should crash, no events should be recorded
 
 ### 101_badValues_emptyString
 
-startAutoStoppedView, addSegmentationToViewWithID, addSegmentationToViewWithName, startView, stopViewWithName, stopViewWithID, pauseViewWithID, resumeViewWithID
+recordView(x2),
+startAutoStoppedView(x2),
+startView(x2), 
+pauseViewWithID, 
+resumeViewWithID,
+stopViewWithName(x2), 
+stopViewWithID(x2), 
+addSegmentationToViewWithID, 
+addSegmentationToViewWithName
 
-called with empty or null values
+called with empty string values
 
 versions with and without segmentation
 
-### 102_NonExistingViews
+nothing should crash, no events should be recorded
 
-* stopViewWithName non existing views
-* stopViewWithID non existing id
-* pauseViewWithID non existing views
-* resumeViewWithID non existing views
+### 102_badValues_nonExistingViews
 
-none of these should create any events. logs should reflect that
-neither the segmentation version or the one without segmentation
+recordView(x2),
+startAutoStoppedView(x2),  
+startView(x2), 
+pauseViewWithID, 
+resumeViewWithID,
+stopViewWithName(x2),
+stopViewWithID(x2), 
+addSegmentationToViewWithID,
+addSegmentationToViewWithName
 
-## (2XX) Simple usage
+These should be called with view names and id's that are not started
 
-## (3XX) Usage flows
+nothing should crash, no events should be recorded
 
-### 301_simpleFlowMultipleViews
+## (2XX) Usage flows
+
+### 200_autostartView_autoClose
+
+Make sure auto closing views behave correctly
+
+* recordView view A (sE_A)
+* recordView view B (eE_A_0, sE_B)
+* start view C (eE_B_0, sE_C)
+* startAutoStoppedView D
+* startAutoStoppedView E
+* start view F
+* recordView view G
+* startAutoStoppedView H
+* recordView view I
+
+### 201_simpleFlowMultipleViews
 
 Make sure all the basic functions are working correctly and we are keeping time correctly
 
@@ -54,7 +92,7 @@ Make sure all the basic functions are working correctly and we are keeping time 
 make sure the summary time is correct
 in total there should be 5 events. validate their values
 
-### 302_mixedStartFlow
+### 202_mixedStartFlow (WIP)
 
 Validate the interaction of "startView" and "startAutoStoppedView". "startAutoStoppedView" should be automatically stopped when calling "startView", but not the other way around
 
@@ -67,7 +105,7 @@ Validate the interaction of "startView" and "startAutoStoppedView". "startAutoSt
 * stopViewWithName A (eE_A_3)
 * stopViewWithID B (eE_B_1)
 
-### 303_startAutoStoppedView
+### 203_startAutoStoppedView (WIP)
 
 We make sure that "startAutoStoppedView" closes other views started by it
 
@@ -80,18 +118,27 @@ make sure that at this point there are 3 events, 2 starting and 1 closing.
 
 This should produce 1 more closing view
 
-### 3XX_segmentationPrecedence
+### 2XX_segmentationPrecedence
 
 make sure that the segmentation value precedence is taken into account 
 
-## (4XX) Consent
+## (3XX) Consent
 
-### 401_callingWithNoConsent
+### 300_callingWithNoConsent
 
-startAutoStoppedView, addSegmentationToViewWithID, addSegmentationToViewWithName, startView, stopViewWithName, stopViewWithID, pauseViewWithID, resumeViewWithID
+recordView(x2),
+startAutoStoppedView(x2),  startView(x2), pauseViewWithID, resumeViewWithID,
+stopViewWithName(x2), stopViewWithID(x2), 
+addSegmentationToViewWithID, addSegmentationToViewWithName,
+setGlobalViewSegmentation,
+updateGlobalViewSegmentation
 
 calling these with valid values should not cord anything in EQ
 
+### 301_consentRemoved
+
+
+################
 
 ## A mixed test flow #2
 
