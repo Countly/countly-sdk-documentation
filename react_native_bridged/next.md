@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.12.X<br>
+  and it applies to version X.X.X<br>
   Countly is an open source SDK, you can take a look at our SDK code in the
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
 </p>
@@ -686,11 +686,12 @@ apply plugin: 'com.google.gms.google-services'
 </p>
 <p>
   By default additional intent redirection is enabled for intent redirect security,
-  you can disable the additional intent redirection:
+  you can disable the additional intent redirection with
+  <code>disableAdditionalIntentRedirectionChecks</code>:
 </p>
 <pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // ...
-countlyConfig.configureIntentRedirectionCheck([], [], false); // Disable intent redirection security
+countlyConfig.disableAdditionalIntentRedirectionChecks(); // Disable intent redirection security
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </pre>
 <p>
