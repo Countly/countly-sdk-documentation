@@ -69,23 +69,37 @@ nothing should crash, no events should be recorded
 
 Make sure auto closing views behave correctly
 
-* recordView view A (sE_A id=1 pvid="" segm={visit="1" start="1"})
+* recordView view A 
+(sE_A id=1 pvid="" segm={visit="1" start="1"})
 * wait 1 sec
-* recordView view B (eE_A d=0 id=1 pvid="", segm={}) (sE_B id=2 pvid=1 segm={visit="1"})
+* recordView view B 
+(eE_A d=1 id=1 pvid="", segm={}) 
+(sE_B id=2 pvid=1 segm={visit="1"})
 * wait 1 sec
-* start view C (eE_B d=0 id=1 pvid="", segm={}) (sE_B id=2 pvid=1 segm={visit="1"})
+* start view C 
+(eE_B d=1 id=2 pvid=1, segm={}) 
+(sE_C id=3 pvid=2 segm={visit="1"})
 * wait 1 sec
 * startAutoStoppedView D
+(sE_D id=4 pvid=3 segm={visit="1"})
 * wait 1 sec
-* startAutoStoppedView E
+* startAutoStoppedView E 
+(eE_D d=0 id=4 pvid=3, segm={}) 
+(sE_E id=5 pvid=4 segm={visit="1"})
 * wait 1 sec
-* start view F
+* start view F 
+(eE_E d=0 id=5 pvid=4, segm={}) 
+(sE_F id=6 pvid=5 segm={visit="1"})
 * wait 1 sec
 * recordView view G
+(sE_G id=7 pvid=6 segm={visit="1"})
 * wait 1 sec
-* startAutoStoppedView H
+* startAutoStoppedView H 
+(sE_H id=8 pvid=7 segm={visit="1"})
 * wait 1 sec
-* recordView view I
+* recordView view I 
+(eE_H d=0 id=8 pvid=7, segm={}) 
+(sE_I id=8 pvid=8 segm={visit="1"})
 
 ### 201_simpleFlowMultipleViews
 
@@ -159,6 +173,10 @@ make sure that the segmentation value precedence is taken into account
 manual calls not working but the global segm calls do
 
 ################
+
+start views with the same name
+
+###
 
 ## A mixed test flow #2
 
