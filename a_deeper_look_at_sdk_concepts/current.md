@@ -1738,7 +1738,52 @@ function sendMessage(param) {
 <pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;crash={<br></span>"_device":"Android SDK built for x86",<br>"_os":"Android",<br>"_os_version":"10",<br>"_resolution":"1080x2088",<br>"_app_version":"1.0.0",<br>"_manufacturer":"Google",<br>"_orientation":"Portrait",<br>"_carrier": "C-Mobile",<br>"_cpu":"x86",<br>"_opengl":"2",<br>"_root":"false",<br>"_ram_total":"1994",<br>"_ram_current":"213",<br>"_disk_total":"2162",<br>"_disk_current":"32",<br>"_bat":"100.0",<br>"_run":"6",<br>"_architecture":"arch",<br>"_online":"true",<br>"_muted":"false",<br>"_background":"false",<br>"_executable_name":"name",<br>"_build_uuid":"uuid",<br>"_app_build":"1.0",<br>"_error":"java.lang.Exception: RangeError (index): Invalid value: Not in inclusive range 0..2: 10\n\tat ly.count.dart.countly_flutter.CountlyFlutterPlugin.onMethodCall(CountlyFlutterPlugin.java:340)\n\tat io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:258)\n\tat io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:295)\n\tat io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:322)\n\tat io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)\n\tat android.os.Handler.handleCallback(Handler.java:883)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loop(Looper.java:214)\n\tat android.app.ActivityThread.main(ActivityThread.java:7356)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)\n",<br>"_nonfatal":"false"<br>"_logs":"logs",<br>"_type":"crash",<br>"_name":"error",<br>"_native_cpp":"true",<br>"_plcrash":"plcrash",<br>"_binary_images":"110001101"<br>}</pre>
 <h2 id="h_01HJ5XRSX13YGV6FBBXKVRGRZC">Device ID Sources</h2>
 <p>
-  - The Android SDK uses Secure.ANDROID_ID as the default ID and advertising id
-  as a fallback devices ID if no custom id is provided.
+  By default all of the Countly SDKs uses their implementation of device id generation
+  method if no developer supplied custom id is given during initialization. Here
+  are the device id generation methods for each SDK:
 </p>
-<p>- The iOS SDK uses UUID if no custom id is given</p>
+<p>
+  - The Android SDK uses Secure.ANDROID_ID as the default ID and advertising id
+  as a fallback devices ID
+</p>
+<p>- The iOS SDK uses:</p>
+<ul>
+  <li>
+    On iOS and tvOS, default device ID is Identifier For Vendor (IDFV).
+  </li>
+  <li>
+    On watchOS and macOS, default device ID is a persistently stored random NSUUID
+    string.
+  </li>
+</ul>
+<p>- The Windows SDK uses:</p>
+<ul>
+  <li>
+    <strong>cpuId</strong><span>&nbsp;</span>- [net35, net45] (we recommend against
+    using this) uses the OS-provided CPU id info to generate a hash that is used
+    as an id. It should be possible to generate the same id on a reinstall if
+    the CPU stays the same. On virtual machines and Windows 10 devices are not
+    guaranteed to be unique and generate the same id and therefore device id
+    conflicts.
+  </li>
+  <li>
+    <strong>multipleWindowsFields</strong><span>&nbsp;</span>- [net35, net45]
+    uses multiple OS-provided fields (CPU id, disk serial number, windows serial
+    number, windows username, mac address) to generate a hash that would be used
+    as the device Id. This method should regenerate the same id on a reinstall,
+    provided those source fields do not change.
+  </li>
+  <li>
+    <strong>windowsGUID</strong><span>&nbsp;</span>- [all platforms] generates
+    a random GUID that will be used as a device id. Very high chance of being
+    unique. Will generate a new id on a reinstall.
+  </li>
+</ul>
+<p>- The Web SDK generates a random device id</p>
+<p>
+  - The Unity SDK uses <span>SystemInfo.deviceUniqueIdentifier</span><span></span>
+</p>
+<p>
+  <span>- The Java SDK uses a random UUID&nbsp;</span>
+</p>
+<p>&nbsp;</p>
