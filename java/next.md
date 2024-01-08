@@ -414,7 +414,7 @@ viewSegmentation.put("Moose", "Deer");
 String view2ID = Countly.instance().views().startAutoStoppedView("View Name", viewSegmentation);</code></pre>
 <h3 id="h_01HJ3JP8GW4DF2JC5B8DM75XTF">Regular Views</h3>
 <p>
-  <span>Opposed to "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.</span>
+  <span>As opposed to the "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.</span>
 </p>
 <p>
   You can start a view that would not close when another view starts, like this:
