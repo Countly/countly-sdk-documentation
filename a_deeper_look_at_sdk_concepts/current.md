@@ -15,7 +15,7 @@
   <span style="font-weight: 400;">In case a user becomes active just at the end of the inactivity timer or just at the end of the session, Countly servers provide a grace period to extend the session instead of terminating it. This “session cooldown” value is 15 seconds by default and can be changed from the Countly dashboard under the settings section:</span>
 </p>
 <p>
-  <img src="/guide-media/01GVBGKPGGWB79MAQJJBXCN9" alt="001.png">
+  <img src="/guide-media/01GVBGKPGGWB79MAQ25JJBXCN9" alt="001.png">
 </p>
 <p align="justify">
   <font face="Arial, serif">
@@ -249,7 +249,7 @@
 <p>
   And in case of a rating widget, it would look something like this:
 </p>
-<pre>{<br>    "_id":"62222d1852e20462481193",<br>    "popup_header_text":"What&amp;#39;s your opinion about this page?",<br>    "popup_comment_callout":"Add comment",<br>    "popup_email_callout":"Contact me via e-mail",<br>    "popup_button_callout":"Submit feedback",<br>    "popup_thanks_message":"Thank you for your feedback",<br>    "trigger_position":"mright",<br>    "trigger_bg_color":"13B94D",<br>    "trigger_font_color":"FFFFFF",<br>    "trigger_button_text":"Feedback",<br>    "target_devices":{<br>        "phone":true,<br>        "desktop":true,<br>        "tablet":true<br>       },<br>    "target_page":"all",<br>    "target_pages":["/"],<br>    "is_active":"true",<br>    "hide_sticker":false,<br>    "app_id":"12345687af5c6b91a6345f",<br>    "contact_enable":"true",<br>    "comment_enable":"true",<br>    "trigger_size":"m",<br>    "type":"rating",<br>    "ratings_texts":[<br>        "Very dissatisfied",<br>        "Somewhat dissatisfied",<br>        "Neither satisfied Nor Dissatisfied",<br>        "Somewhat Satisfied",<br>        "Very Satisfied"<br>       ],<br>    "status":true,<br>    "targeting":null,<br>    "ratingsCount":116,<br>    "ratingsSum":334<br>}</pre>
+<pre>{<br> "_id":"62222d125852e20462481193",<br> "popup_header_text":"What&amp;#39;s your opinion about this page?",<br> "popup_comment_callout":"Add comment",<br> "popup_email_callout":"Contact me via e-mail",<br> "popup_button_callout":"Submit feedback",<br> "popup_thanks_message":"Thank you for your feedback",<br> "trigger_position":"mright",<br> "trigger_bg_color":"13B94D",<br> "trigger_font_color":"FFFFFF",<br> "trigger_button_text":"Feedback",<br> "target_devices":{<br> "phone":true,<br> "desktop":true,<br> "tablet":true<br> },<br> "target_page":"all",<br> "target_pages":["/"],<br> "is_active":"true",<br> "hide_sticker":false,<br> "app_id":"12345687af5c256b91a6345f",<br> "contact_enable":"true",<br> "comment_enable":"true",<br> "trigger_size":"m",<br> "type":"rating",<br> "ratings_texts":[<br> "Very dissatisfied",<br> "Somewhat dissatisfied",<br> "Neither satisfied Nor Dissatisfied",<br> "Somewhat Satisfied",<br> "Very Satisfied"<br> ],<br> "status":true,<br> "targeting":null,<br> "ratingsCount":116,<br> "ratingsSum":334<br>}</pre>
 <p>
   These describe all server-side configured information that would be used to visualize
   a widget manually. Starting from some style and color-related fields and, finally
@@ -1081,8 +1081,8 @@ subject=/CN=xxx.server.ly
 issuer=/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3
 ---
 No client certificate CA names sent
-Peer signing digest: SHA6
-Server Temp Key: ECDH, P-6, 6 bits
+Peer signing digest: SHA256
+Server Temp Key: ECDH, P-256, 256 bits
 ---
 SSL handshake has read 3072 bytes and written 460 bytes
 ---
@@ -1094,7 +1094,7 @@ Expansion: NONE
 No ALPN negotiated
 SSL-Session:
     Protocol  : TLSv1.2
-    Cipher    : ECDHE-RSA-AES6-GCM-SHA384
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
     Session-ID: B049D3E8126B5421704F7F793EBF78E2B595A7B4820341F169F5C394D177697A4
     Session-ID-ctx:
     Master-Key: 05F08C1C9B9E5EDC01A3A51DA3B656E715E1173186C3167EDC758BFBB7603A80
