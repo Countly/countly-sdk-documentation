@@ -1086,7 +1086,7 @@ Server Temp Key: ECDH, P-256, 256 bits
 ---
 SSL handshake has read 3072 bytes and written 460 bytes
 ---
-New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES6-GCM-SHA384
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
 Server public key is 2048 bit
 Secure Renegotiation IS supported
 Compression: NONE
