@@ -111,7 +111,7 @@ Includes the legacy method "recordView" in its flow
 (eE_H d=1 id=idv8 pvid=idv7, segm={}) 
 (sE_I id=idv9 pvid=idv8 segm={visit="1"})
 * stopAllViews
-(eE_C d=6 id=idv2 pvid=idv8, segm={}) 
+(eE_C d=6 id=idv3 pvid=idv8, segm={}) 
 (eE_F d=3 id=idv6 pvid=idv8, segm={}) 
 (eE_I d=0 id=idv9 pvid=idv8, segm={}) 
 
