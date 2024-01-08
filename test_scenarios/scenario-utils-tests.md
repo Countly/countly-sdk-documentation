@@ -6,4 +6,4 @@ Generate 2 values
 
 they should be different.
 They should be 21 chars long.
-They should contain on base64 characters.
+They should contain only base64 characters.

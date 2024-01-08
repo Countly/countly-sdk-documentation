@@ -99,11 +99,17 @@ Make sure auto closing views behave correctly
 (sE_G id=idv7 pvid=idv6 segm={visit="1"})
 * wait 1 sec
 * startAutoStoppedView H 
+(eE_G d=1 id=idv7 pvid=idv6, segm={}) 
 (sE_H id=idv8 pvid=idv7 segm={visit="1"})
 * wait 1 sec
 * recordView view I 
 (eE_H d=1 id=idv8 pvid=idv7, segm={}) 
-(sE_I id=idv8 pvid=idv8 segm={visit="1"})
+(sE_I id=idv9 pvid=idv8 segm={visit="1"})
+* stopAllViews
+(eE_C d=6 id=idv2 pvid=idv8, segm={}) 
+(eE_F d=3 id=idv6 pvid=idv8, segm={}) 
+(eE_I d=0 id=idv9 pvid=idv8, segm={}) 
+
 
 ### 201_simpleFlowMultipleViews
 
