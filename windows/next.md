@@ -58,7 +58,7 @@
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
+cc.serverUrl = "https://xxx.count.ly";
 cc.appKey = "YOUR_APP_KEY";
 cc.appVersion = "1.2.3";
 
