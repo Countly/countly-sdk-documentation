@@ -1,3 +1,7 @@
+# Working test scenarios
+
+100, 101, 102, 200A, 201, 300
+
 # Scenario test plan for views
 
 **sE_X** - view start event for view name X
@@ -8,13 +12,13 @@ validation should check all segmentation values and meta data like: cvid, pvid, 
 
 duration is marked as "d=X"
 
-all view event segmentation should have the "name" field with the view name and the "segment" field with the platorm name (for example, "Android") these 2 will not be explicitly mentioned but should still be validated
+all view event segmentation should have the "name" field with the view name and the "segment" field with the platform name (for example, "Android") these 2 will not be explicitly mentioned but should still be validated
 
 if not explicitly mentioned, the duration is 0, the sum is 0, count is 1, ts, dow, hour are also "correct"
 
 when recording views and events, a custom id generator should be used for ID's.
 View ids should be returned in the form "idvX" where x is an incrementing number starting from 1
-Event ids should be returnde in the form "ideX" where x is an incrementing number starting from 1
+Event ids should be returned in the form "ideX" where x is an incrementing number starting from 1
 
 ## (1XX) Value sanitation, wrong usage, simple tests
 
@@ -69,9 +73,10 @@ nothing should crash, no events should be recorded
 
 ## (2XX) Usage flows
 
-### 200_autostartView_autoClose
+### 200A_autostartView_autoClose_legacy
 
 Make sure auto closing views behave correctly
+Includes the legacy method "recordView" in its flow
 
 * recordView view A 
 (sE_A id=idv1 pvid="" segm={visit="1" start="1"})
@@ -110,6 +115,9 @@ Make sure auto closing views behave correctly
 (eE_F d=3 id=idv6 pvid=idv8, segm={}) 
 (eE_I d=0 id=idv9 pvid=idv8, segm={}) 
 
+### 200B_autostartView_autoClose WIP
+
+without the deprecated "recordViewCall"
 
 ### 201_simpleFlowMultipleViews
 
@@ -174,11 +182,11 @@ session end clears first view
 
 ## (4XX) segmentation
 
-### 4XX_segmentationPrecedence
+### 4XX_segmentationPrecedence WIP
 
 make sure that the segmentation value precedence is taken into account 
 
-## (5XX) automatic views
+## (5XX) automatic views WIP
 
 manual calls not working but the global segm calls do
 
