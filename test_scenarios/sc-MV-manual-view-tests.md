@@ -1,7 +1,5 @@
 # Working test scenarios
 
-100, 101, 102, 200A, 201, 300
-
 # Scenario test plan for views
 
 **sE_X** - view start event for view name X
@@ -22,7 +20,7 @@ Event ids should be returned in the form "ideX" where x is an incrementing numbe
 
 ## (1XX) Value sanitation, wrong usage, simple tests
 
-### 100_badValues_null
+### MV_100_badValues_null
 
 recordView(x2),
 startAutoStoppedView(x2),
@@ -40,7 +38,7 @@ called with "null" values.
 versions with and without segmentation.
 nothing should crash, no events should be recorded
 
-### 101_badValues_emptyString
+### MV_101_badValues_emptyString
 
 recordView(x2),
 startAutoStoppedView(x2),
@@ -58,7 +56,7 @@ versions with and without segmentation
 
 nothing should crash, no events should be recorded
 
-### 102_badValues_nonExistingViews
+### MV_102_badValues_nonExistingViews
 
 pauseViewWithID, 
 resumeViewWithID,
@@ -73,10 +71,12 @@ nothing should crash, no events should be recorded
 
 ## (2XX) Usage flows
 
-### 200A_autostartView_autoClose_legacy
+### MV_200A_autostartView_autoClose_legacy
 
 Make sure auto closing views behave correctly
 Includes the legacy method "recordView" in its flow
+
+After every action, the EQ should be validated so make sure that the correct event is recorded
 
 * recordView view A 
 (sE_A id=idv1 pvid="" segm={visit="1" start="1"})
@@ -115,11 +115,11 @@ Includes the legacy method "recordView" in its flow
 (eE_F d=3 id=idv6 pvid=idv8, segm={}) 
 (eE_I d=0 id=idv9 pvid=idv8, segm={}) 
 
-### 200B_autostartView_autoClose WIP
+### MV_200B_autostartView_autoClose WIP
 
 without the deprecated "recordViewCall"
 
-### 201_simpleFlowMultipleViews
+### MV_201_simpleFlowMultipleViews
 
 Make sure all the basic functions are working correctly and we are keeping time correctly
 
@@ -135,7 +135,7 @@ Make sure all the basic functions are working correctly and we are keeping time 
 make sure the summary time is correct
 in total there should be 5 events. validate their values
 
-### 202_mixedStartFlow (WIP)
+### MV_202_mixedStartFlow (WIP)
 
 Validate the interaction of "startView" and "startAutoStoppedView". "startAutoStoppedView" should be automatically stopped when calling "startView", but not the other way around
 
@@ -148,7 +148,7 @@ Validate the interaction of "startView" and "startAutoStoppedView". "startAutoSt
 * stopViewWithName A (eE_A_3)
 * stopViewWithID B (eE_B_1)
 
-### 203_startAutoStoppedView (WIP)
+### MV_203_startAutoStoppedView (WIP)
 
 We make sure that "startAutoStoppedView" closes other views started by it
 
@@ -163,7 +163,7 @@ This should produce 1 more closing view
 
 ## (3XX) Consent and other features
 
-### 300_callingWithNoConsent
+### MV_300_callingWithNoConsent
 
 recordView(x2),
 startAutoStoppedView(x2),  startView(x2), pauseViewWithID, resumeViewWithID,
@@ -174,15 +174,15 @@ updateGlobalViewSegmentation
 
 calling these with valid values should not cord anything in EQ
 
-### 301_consentRemoved WIP
+### MV_301_consentRemoved WIP
 
-### 310_
+### MV_310_
 
 session end clears first view
 
 ## (4XX) segmentation
 
-### 4XX_segmentationPrecedence WIP
+### MV_4XX_segmentationPrecedence WIP
 
 make sure that the segmentation value precedence is taken into account 
 
