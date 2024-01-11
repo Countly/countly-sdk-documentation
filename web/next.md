@@ -1377,14 +1377,9 @@ Countly.recordRatingWidgetWithID({
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. If you want
   to inject the feedback widget in a specific element, you can do so by specifying
-  the element ID or the class name.
+  the element ID or the class name. You can also add custom segmentation while
+  presenting a widget.
 </p>
-<div class="callout callout--warning">
-  <p>Available starting from version 23.6.3</p>
-  <p>
-    You can also add custom segmentation while presenting a widget.
-  </p>
-</div>
 <p>
   To use feedback widgets, you need to give "feedback" consent (in case consent
   is required).
