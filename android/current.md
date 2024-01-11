@@ -1840,7 +1840,7 @@ Countly.sharedInstance().userProfile().save();</code></pre>
 </p>
 <h1 id="h_01HAVQDM5V1ZB8ECYTH1SPR3Q7">User Consent</h1>
 <p>
-  <span style="font-weight: 400;">In an effort to comply with GDPR, starting from 18.04, Countly provides ways to toggle different Countly features on/off depending on the given consent.</span>
+  <span style="font-weight: 400;">In an effort to comply with GDPR Countly provides ways to toggle different Countly features on/off depending on the given consent.</span>
 </p>
 <p>
   More information about GDPR can be found
@@ -2018,12 +2018,8 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   </li>
   <li>
     <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
-    device the app is running on. Null means that Countly will use OpenUDID or
-    Google Advertising ID.
-  </li>
-  <li>
-    <strong>setIdMode(DeviceIdType idMode)</strong> - Sets the device ID generation
-    strategy Countly should use (OpenUDID or Google Advertising ID).
+    device the app is running on. Null means that Countly will use the OpenUDID
+    generation method.
   </li>
   <li>
     <strong>setStarRatingSessionLimit(int starRatingLimit)</strong> - Sets the
@@ -2659,9 +2655,8 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 </p>
 <p>* The current device orientation</p>
 <p>
-  * When generating a device ID, if no custom ID is provided, the SDK will use:<br>
-  - Secure.ANDROID_ID as the default ID and advertising id as a fallback devices
-  ID
+  * When generating a device ID, if no custom ID is provided, the SDK will use
+  Secure.ANDROID_ID as the ID
 </p>
 <p>
   * If push notification are used:<br>
