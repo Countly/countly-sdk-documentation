@@ -1667,7 +1667,7 @@ function sendMessage(param) {
       </td>
     </tr>
     <tr style="height: 10px;">
-      <td style="width: 25%; vertical-align: middle; text-align: left; padding-left: 10px; height: 10px; border-right: solid 1px;">_binary_images</td>
+      <td style="width: 25%; vertical-align: middle; text-align: left; padding-left: 10px; height: 10px; border-right: solid 1px;" scope="colGroup">_binary_images</td>
       <td style="width: 75%; vertical-align: middle; height: 10px; text-align: left; padding-left: 10px;">binary stack trace (iOS SDK)</td>
     </tr>
   </tbody>
