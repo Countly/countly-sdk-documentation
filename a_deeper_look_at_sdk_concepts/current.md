@@ -1698,24 +1698,23 @@ function sendMessage(param) {
 <p>- The Windows SDK uses:</p>
 <ul>
   <li>
-    <strong>cpuId</strong><span>&nbsp;</span>- [net35, net45] (we recommend against
-    using this) uses the OS-provided CPU id info to generate a hash that is used
-    as an id. It should be possible to generate the same id on a reinstall if
-    the CPU stays the same. On virtual machines and Windows 10 devices are not
-    guaranteed to be unique and generate the same id and therefore device id
-    conflicts.
+    <strong>cpuId</strong> - [net35, net45] (we recommend against using this)
+    uses the OS-provided CPU id info to generate a hash that is used as an id.
+    It should be possible to generate the same id on a reinstall if the CPU stays
+    the same. On virtual machines and Windows 10 devices are not guaranteed to
+    be unique and generate the same id and therefore device id conflicts.
   </li>
   <li>
-    <strong>multipleWindowsFields</strong><span>&nbsp;</span>- [net35, net45]
-    uses multiple OS-provided fields (CPU id, disk serial number, windows serial
-    number, windows username, mac address) to generate a hash that would be used
-    as the device Id. This method should regenerate the same id on a reinstall,
-    provided those source fields do not change.
+    <strong>multipleWindowsFields</strong> - [net35, net45] uses multiple OS-provided
+    fields (CPU id, disk serial number, windows serial number, windows username,
+    mac address) to generate a hash that would be used as the device Id. This
+    method should regenerate the same id on a reinstall, provided those source
+    fields do not change.
   </li>
   <li>
-    <strong>windowsGUID</strong><span>&nbsp;</span>- [all platforms] generates
-    a random GUID that will be used as a device id. Very high chance of being
-    unique. Will generate a new id on a reinstall.
+    <strong>windowsGUID</strong> - [all platforms] generates a random GUID that
+    will be used as a device id. Very high chance of being unique. Will generate
+    a new id on a reinstall.
   </li>
 </ul>
 <p>- The Web SDK generates a random device id</p>
@@ -1723,6 +1722,5 @@ function sendMessage(param) {
   - The Unity SDK uses <span>SystemInfo.deviceUniqueIdentifier</span><span></span>
 </p>
 <p>
-  <span>- The Java SDK uses a random UUID&nbsp;</span>
+  <span>- The Java SDK uses a random UUID</span>
 </p>
-<p>&nbsp;</p>
