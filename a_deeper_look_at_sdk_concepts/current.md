@@ -1682,8 +1682,7 @@ function sendMessage(param) {
   are the device id generation methods for each SDK:
 </p>
 <p>
-  - The Android SDK uses Secure.ANDROID_ID as the default ID and advertising id
-  as a fallback devices ID
+  - The Android SDK uses Secure.ANDROID_ID as the generated ID
 </p>
 <p>- The iOS SDK uses:</p>
 <ul>
