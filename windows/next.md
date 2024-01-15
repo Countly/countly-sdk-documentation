@@ -1,6 +1,6 @@
 <p>
   This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 23.12.X.
+  It applies to version 24.1.X.
 </p>
 <div class="callout callout--info">
   <p>
@@ -696,7 +696,7 @@ Countly.Instance.SetConsent(consent);</code></pre>
 </p>
 <h2 id="h_01HJT9W4R283JCJNXZJM0C42VQ">Custom Metrics</h2>
 <div class="callout callout--warning">
-  <p>This functionality is available since SDK version XX.XX.XX.</p>
+  <p>This functionality is available since SDK version 24.1.0.</p>
 </div>
 <p>
   During some specific circumstances, like beginning a session or requesting remote
