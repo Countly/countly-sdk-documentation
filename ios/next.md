@@ -3470,7 +3470,19 @@ Countly.user().save()</code></pre>
 </div>
 <h1 id="h_01HAVHW0RSD3G39KNP8ZP9WD69">User Consent</h1>
 <p>
-  <span style="font-weight: 400;">For compatibility with data protection regulations, such as GDPR, the Countly iOS SDK allows developers to enable/disable any feature at any time depending on user consent. Currently, available features with consent control are as follows:</span>
+  For compatibility with data protection regulations, such as GDPR, the Countly
+  iOS SDK allows developers to enable/disable any feature at any time depending
+  on user consent.
+</p>
+<p>
+  More information about GDPR can be found
+  <a href="https://medium.com/countly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
+</p>
+<h2 id="h_01HJ63TKKEMWYHN1P23DP14PHB">
+  <span>Feature Names</span>
+</h2>
+<p>
+  Currently, available features with consent control are as follows:
 </p>
 <pre>CLYConsentSessions<br>
 CLYConsentEvents<br>
@@ -3483,8 +3495,11 @@ CLYConsentAttribution<br>
 CLYConsentPerformanceMonitoring<br>
 CLYConsentFeedback<br>
 CLYConsentRemoteConfig</pre>
+<h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
 <p>
-  <span style="font-weight: 400;">You should set the <code>requiresConsent</code></span><span style="font-weight: 400;"> flag upon initial configuration to utilize consents.</span>
+  The requirement for consent is disabled by default. To enable it, you will have
+  to set the <code>requiresConsent</code> flag <code>true</code> upon initial configuration
+  to utilize consents.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3499,10 +3514,48 @@ CLYConsentRemoteConfig</pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">With this flag set, the Countly iOS SDK will not automatically collect or send any data and will ignore all manual calls. Until explicit consent is given for a feature, it will remain inactive. After consent for a feature is given, it will launch immediately and will remain active.</span>
+  <span style="font-weight: 400;">With this flag set, the Countly iOS SDK will not automatically collect or send any data and will ignore all manual calls. Until explicit consent is given for a feature, it will remain inactive. After consent for a feature is given, it will launch immediately and will remain active.<br>You can provide specific consents during initialization </span><span style="font-weight: 400;">by using the <code>consents</code>&nbsp;array on the <code>CountlyConfig</code> object before starting Countly</span>
 </p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.consents = @[CLYConsentSessions, CLYConsentEvents];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="objectivec">config.consents = [CLYConsentSessions, CLYConsentEvents];</code></pre>
+  </div>
+</div>
 <p>
-  <span style="font-weight: 400;">To give consent for a feature, you can use the <code>giveConsentForFeature:</code></span><span style="font-weight: 400;">method by passing the feature name:</span>
+  Or, if you would like to give consent for all the features during initialization,
+  you can set
+  <span style="font-weight: 400;"><code>enableAllConsents</code> flag</span>:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <div class="tabs">
+      <div class="tabs-menu">
+        <span class="tabs-link is-active">Objective-C</span>
+        <span class="tabs-link">Swift</span>
+      </div>
+      <div class="tab">
+        <pre><code class="objectivec">config.enableAllConsents = YES;</code></pre>
+      </div>
+      <div class="tab is-hidden">
+        <pre><code class="swift">config.enableAllConsents = true</code>&nbsp;</pre>
+      </div>
+    </div>
+    <div>
+      <h2 id="h_01HJ64PSQB64HGN27MYJFEV13M">
+        <span>Changing Consent</span>
+      </h2>
+    </div>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">You can also change the consents after initializing the SDK.<br>To give consent for a feature, you can use the <code>giveConsentForFeature:</code></span><span style="font-weight: 400;">method by passing the feature name:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3538,7 +3591,7 @@ Countly.sharedInstance().giveConsent(forFeature: CLYConsentEvents)</code></pre>
 </div>
 <p>
   Or, if you would like to give consent for all the features, you can use the
-  <code>giveConsentForAllFeatures</code>convenience method:
+  <code>giveAllConsents</code>convenience method:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3546,10 +3599,10 @@ Countly.sharedInstance().giveConsent(forFeature: CLYConsentEvents)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance giveConsentForAllFeatures];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance giveAllConsents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().giveConsentForAllFeatures()</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().giveAllConsents()</code></pre>
   </div>
 </div>
 <p>
