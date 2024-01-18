@@ -121,6 +121,7 @@ This should contain the core integration information about the SDK, including a 
   * Regular Views
   * Stopping Views
   * Pausing and Resuming Views
+  * Adding Segmentation to Started Views
 * Global View Segmentation
 * Consent
 
