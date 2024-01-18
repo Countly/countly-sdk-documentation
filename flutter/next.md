@@ -1408,7 +1408,10 @@ Countly.instance.pull("type", "morning");
   This SDK provides a few mechanisms for APM. To start using them you would first
   need to enable this feature and give the required consent if it was required.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config</code>.setRecordAppStartTime(true); // Enable APM features, which includes the recording of app start time.</pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// Enable APM features, which includes the recording of app start time.
+config.setRecordAppStartTime(true); </code></pre>
 <p>
   While using APM calls, you have the ability to provide trace keys by which you
   can track those parameters in your dashboard.
@@ -1419,8 +1422,11 @@ Countly.instance.pull("type", "morning");
   <code>appLoadingFinished</code> method. Make sure this method is called after
   <code>init</code>.
 </p>
-<pre><code class="JavaScript">//Example of appLoadingFinished<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<br>});<br></code></pre>
+<pre><code class="JavaScript">//Example of appLoadingFinished
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+Countly.initWithConfig(config ).then((value){
+  Countly.appLoadingFinished();
+});</code></pre>
 <p>
   This calculates and records the app launch time for performance monitoring. It
   should be called when the app is loaded and it successfully displayed its first
