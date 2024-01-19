@@ -26,8 +26,13 @@
   Below you can see steps to download the Countly Flutter example application.
   It assumes Flutter is installed in your system:
 </p>
-<pre><code class="shell">git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
+<pre><code class="bash"># clone the Countly SDK repository
+git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
+
+# dive into the cloned repo
 cd countly-sdk-flutter-bridge/example
+
+# install packages and run
 flutter pub get
 flutter run</code></pre>
 <p>
@@ -53,17 +58,17 @@ flutter run</code></pre>
   of device ID seamlessly, is to use the code below.
 </p>
 <pre><code class="dart">Countly.isInitialized().then((bool isInitialized){
-    if(!isInitialized){
-        // Create the configuration with your app key and server URL
-        CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+  if(!isInitialized) {
+    // Create the configuration with your app key and server URL
+    CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
-        // Initialize with that configuration
-        Countly.initWithConfig(config).then((value){
-            Countly.start(); // Enables automatic view tracking
-        });
-    }else{
-      print("Countly: Already initialized.");
-    }
+    // Initialize with that configuration
+    Countly.initWithConfig(config).then((value){
+      Countly.start(); // Enables automatic view tracking
+    });
+  } else {
+    print("Countly: Already initialized.");
+  }
 });</code></pre>
 <p>
   Please check
@@ -291,7 +296,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 var event = {
   "key": "Basic Event",
   "count": 1
-};
+};<br>
 Countly.recordEvent(event);</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">2. Event key, count and sum</span>
@@ -301,7 +306,7 @@ var event = {
   "key": "Event With Sum",
   "count": 1,
   "sum": "0.99",
-};
+};<br>
 Countly.recordEvent(event);
 </code></pre>
 <p>
@@ -311,45 +316,43 @@ Countly.recordEvent(event);
 var event = {
   "key": "Event With Segment",
   "count": 1
-};
+};<br>
 event["segmentation"] = {
   "Country": "Germany",
   "Age": "28"
-};
+};<br>
 Countly.recordEvent(event);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">4. Event key, count and sum with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">
-// example for event with segment and sum
+<pre><code class="JavaScript">// example for event with segment and sum
 var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
   "sum": "0.99"
-};
+};<br>
 event["segmentation"] = {
   "Country": "Germany",
   "Age": "28"
 };
-Countly.recordEvent(event);
+<br>Countly.recordEvent(event);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">5. Event key, count, sum and duration with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">
-// example for event with segment and sum
+<pre><code class="JavaScript">// example for event with segment and sum
 var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
   "sum": "0.99",
   "duration": "0"
 };
-event["segmentation"] = {
+<br>event["segmentation"] = {
   "Country": "Germany",
   "Age": "28"
 };
-Countly.recordEvent(event);
+<br>Countly.recordEvent(event);
 </code></pre>
 <h2 id="h_01H930GAQ5SWK23EQBNNRM4TZD">Timed events</h2>
 <p>
@@ -359,52 +362,52 @@ Countly.recordEvent(event);
   <span class="wysiwyg-font-size-large">1.Timed event with key</span>
 </p>
 <pre><code class="JavaScript">// Basic event
-Countly.startEvent("Timed Event");
+Countly.startEvent("Timed Event");<br>
 Timer timer = Timer(new Duration(seconds: 5), () {
-    Countly.endEvent({ "key": "Timed Event" });
+  Countly.endEvent({ "key": "Timed Event" });
 });
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">2.Timed event with key and sum</span>
 </p>
 <pre><code class="JavaScript">// Event with sum
-Countly.startEvent("Timed Event With Sum");
+Countly.startEvent("Timed Event With Sum");<br>
 Timer timer = Timer(new Duration(seconds: 5), () {
-    Countly.endEvent({ "key": "Timed Event With Sum", "sum": "0.99" });
+  Countly.endEvent({ "key": "Timed Event With Sum", "sum": "0.99" });
 });
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">3.Timed event with key, count and segmentation</span>
 </p>
 <pre><code class="JavaScript">// Event with segment
-Countly.startEvent("Timed Event With Segment");
+Countly.startEvent("Timed Event With Segment");<br>
 Timer timer = Timer(new Duration(seconds: 5), () {
-    var event = {
-        "key": "Timed Event With Segment",
-        "count": 1,
-    };
-    event["segmentation"] = {
-        "Country": "Germany",
-        "Age": "28"
-    };
-    Countly.endEvent(event);
+  var event = {
+    "key": "Timed Event With Segment",
+    "count": 1,
+  };
+  event["segmentation"] = {
+    "Country": "Germany",
+    "Age": "28"
+  };
+  Countly.endEvent(event);
 });</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">4.Timed event with key, count, sum and segmentation</span>
 </p>
 <pre><code class="JavaScript">// Event with Segment, sum and count
-Countly.startEvent("Timed Event With Segment, Sum and Count");
+Countly.startEvent("Timed Event With Segment, Sum and Count");<br>
 Timer timer = Timer(new Duration(seconds: 5), () {
-    var event = {
-        "key": "Timed Event With Segment, Sum and Count",
-        "count": 1,
-        "sum": "0.99"
-    };
-    event["segmentation"] = {
-        "Country": "Germany",
-        "Age": "28"
-    };
-    Countly.endEvent(event);
+  var event = {
+    "key": "Timed Event With Segment, Sum and Count",
+    "count": 1,
+    "sum": "0.99"
+  };
+  event["segmentation"] = {
+    "Country": "Germany",
+    "Age": "28"
+  };
+  Countly.endEvent(event);
 });</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
 <h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic session tracking</h2>
@@ -477,7 +480,7 @@ final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</
   "Cats": 123,
   "Moons": 9.98,
   "Moose": "Deer"
-};
+};<br>
 final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView</span>("HomePage", segmentation);
 </code></pre>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
@@ -496,7 +499,7 @@ final String? viewID = await Countly.instance.views.startView("Dashboard");</cod
   "Cats": 123,
   "Moons": 9.98,
   "Moose": "Deer"
-};
+};<br>
 final String? anotherViewID = Countly.instance.views.startView("HomePage", segmentation);</code></pre>
 <h3 id="h_01HFDVY8YAXBP812A870NAZ6Q2">Stopping Views</h3>
 <p>
@@ -519,7 +522,7 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
 </p>
-<pre><code class="JavaScript"><br>Countly.instance.views.stopViewWithID(anotherViewID, segmentation);</code></pre>
+<pre><code class="JavaScript">Countly.instance.views.stopViewWithID(anotherViewID, segmentation);</code></pre>
 <p>
   You can stop all views tracking using
   <span style="font-weight: 400;"><code>stopAllViews</code></span>
@@ -707,19 +710,19 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 </p>
 <pre><code class="xml">&lt;application ...&gt;
 ...
-   &lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
-     &lt;intent-filter&gt;
-       &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
-     &lt;/intent-filter&gt;
-   &lt;/service&gt;
+  &lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
+    &lt;intent-filter&gt;
+      &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
+    &lt;/intent-filter&gt;
+  &lt;/service&gt;
 &lt;/application&gt;
 </code></pre>
 <p>
   Step 6: Add the following line in file <code>android/build.gradle</code>
 </p>
 <pre><code class="JavaScript">buildscript {
-    dependencies {
-        classpath 'com.google.gms:google-services:4.3.15'
+  dependencies {
+    classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 </code></pre>
@@ -733,8 +736,8 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="JavaScript">dependencies {
-    implementation 'ly.count.android:sdk:22.02.1'
-    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+  implementation 'ly.count.android:sdk:22.02.1'
+  implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 // Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
@@ -744,7 +747,7 @@ apply plugin: 'com.google.gms.google-services'
   By default push notification is enabled for iOS, to disable you need to call
   <code>disablePushNotifications</code> method:
 </p>
-<pre><code class="JavaScript">// // Disable push notifications feature for iOS, by default it is enabled.
+<pre><code class="JavaScript">// Disable push notifications feature for iOS, by default it is enabled.
 Countly.disablePushNotifications();</code></pre>
 <p>
   For iOS push notification please follow the instruction from this URL
@@ -790,7 +793,7 @@ Countly.askForNotificationPermission();</code></pre>
   To register a Push Notification callback after initializing the SDK, use the
   method below.
 </p>
-<pre>Countly.onNotification((String notification) {<br>   print(notification);<br>});</pre>
+<pre>Countly.onNotification((String notification) {<br>  print(notification);<br>});</pre>
 <p>
   In order to listen to notification receive and click events, Place below code
   in <code>AppDelegate.swift</code>&nbsp;
@@ -801,29 +804,26 @@ Countly.askForNotificationPermission();</code></pre>
 <p>Add these methods:</p>
 <pre><code class="JavaScript">// Required for the notification event. You must call the completion handler after handling the remote notification.
 func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -&gt; Void) {
-    CountlyFlutterPlugin.onNotification(userInfo);
-    completionHandler(.newData);
-
+  CountlyFlutterPlugin.onNotification(userInfo);
+  completionHandler(.newData);
 }
 
 @available(iOS 10.0, \*)
 override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
 
-    //Called when a notification is delivered to a foreground app.
+  //Called when a notification is delivered to a foreground app.
 
-    let userInfo: NSDictionary = notification.request.content.userInfo as NSDictionary
-    CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
-
+  let userInfo: NSDictionary = notification.request.content.userInfo as NSDictionary
+  CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
 }
 
 @available(iOS 10.0, \*)
 override func userNotificationCenter(\_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -&gt; Void) {
 
-    // Called to let your app know which action was selected by the user for a given notification.
-    let userInfo: NSDictionary = response.notification.request.content.userInfo as NSDictionary
-    // print("\(userInfo)")
-    CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
-
+  // Called to let your app know which action was selected by the user for a given notification.
+  let userInfo: NSDictionary = response.notification.request.content.userInfo as NSDictionary
+  // print("\(userInfo)")
+  CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
 }
 </code></pre>
 <h3 id="h_01H930GAQ6GZBENE2SZZF3NGS3">Data Structure Received in Push Callbacks</h3>
@@ -832,9 +832,9 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
   <br>
   Data Received for Android platform:
 </p>
-<pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
+<pre>{<br>  "c.e.cc": "TR",<br>  "c.e.dt": "mobile",<br>  "Key": "value",<br>  "c.i": "62b59b979f05a1f5e5592036",<br>  "c.l": "https:\/\/www.google.com\/",<br>  "c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>  "c.li": "notify_icon",<br>  "badge": "1",<br>  "sound": "custom",<br>  "title": "title",<br>  "message": "Message"<br>}</pre>
 <p>Data Received for iOS platform:</p>
-<pre>{<br>Key = value;<br> aps = {<br>  alert = {<br>   body = Message;<br>   subtitle = subtitle;<br>   title = title;<br>  };<br> badge = 1;<br> "mutable-content" = 1;<br> sound = custom;<br> };<br> c = {<br>  a = "https://count.ly/images/logos/countly-logo-mark.png";<br>   e = {<br>    cc = TR;<br>    dt = mobile;<br>   };<br>  i = 62b5b945cabedb0870e9f217;<br>  l = "https://www.google.com/";<br> };<br>}</pre>
+<pre>{<br>  Key = value;<br>  aps = {<br>    alert = {<br>      body = Message;<br>      subtitle = subtitle;<br>      title = title;<br>    };<br>    badge = 1;<br>    "mutable-content" = 1;<br>    sound = custom;<br>  };<br>  c = {<br>    a = "https://count.ly/images/logos/countly-logo-mark.png";<br>    e = {<br>      cc = TR;<br>      dt = mobile;<br>    };<br>    i = 62b5b945cabedb0870e9f217;<br>    l = "https://www.google.com/";<br>  };<br>}</pre>
 <h1 id="h_01H930GAQ69F33CMKEBBV57FVB">User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -977,29 +977,29 @@ Countly.disableLocation();</code></pre>
   </div>
   <div class="tab">
     <pre><code class="dart">Countly.instance.remoteConfig.downloadAllKeys((rResult, error, fullValueUpdate, downloadedValues) {
-    if (rResult == RequestResult.Success) {
-        // do sth
-    } else {
-        // do sth
-    }
+  if (rResult == RequestResult.Success) {
+    // do sth
+  } else {
+    // do sth
+  }
 });</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="dart">Countly.instance.remoteConfig.downloadSpecificKeys(List&lt;String&gt; keysToInclude, (rResult, error, fullValueUpdate, downloadedValues) {
-    if (rResult == RequestResult.Success) {
-        // do sth
-    } else {
-        // do sth
-    }
+  if (rResult == RequestResult.Success) {
+    // do sth
+  } else {
+    // do sth
+  }
 });</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="dart">Countly.instance.remoteConfig.downloadOmittingKeys(List&lt;String&gt; keysToExclude, (rResult, error, fullValueUpdate, downloadedValues) {
-    if (rResult == RequestResult.Success) {
-        // do sth
-    } else {
-        // do sth
-    }
+  if (rResult == RequestResult.Success) {
+    // do sth
+  } else {
+    // do sth
+  }
 });</code></pre>
   </div>
 </div>
@@ -1091,12 +1091,12 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
 </p>
 <pre><code class="dart">// register a callback
 Countly.instance.remoteConfig.registerDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
-   // do sth
+  // do sth
 });
 
 // remove a callback
 Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
-   // do sth
+  // do sth
 });</code></pre>
 <h2 id="h_01H930GAQ6KZKGR0NMP6QM2JW6">A/B Testing</h2>
 <p>
@@ -1207,7 +1207,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   Using that you can call the function to show the widget popup:
 </p>
-<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {<br>if(error != null) {<br>   print(error);<br>}<br>});</code></pre>
+<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {<br>  if(error != null) {<br>    print(error);<br>  }<br>});</code></pre>
 <p>
   <code class="JavaScript">closeButtonText</code> and
   <code class="JavaScript">ratingWidgetCallback</code> are optional.
@@ -1236,7 +1236,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   the list of all available widgets that apply to the current device id.
 </p>
 <p>The objects in the returned list look like this:</p>
-<pre><code class="JavaScript">class CountlyPresentableFeedback {<br>    public String widgetId;<br>    public String type;<br>    public String name;<br>}</code></pre>
+<pre><code class="JavaScript">class CountlyPresentableFeedback {<br>  public String widgetId;<br>  public String type;<br>  public String name;<br>}</code></pre>
 <p>
   To determine what kind of widget that is, check the "type" value. The potential
   values are <code>"survey"</code> and <code>"nps"</code>.
@@ -1256,7 +1256,7 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   After you have decided which widget you want to display, you would provide that
   object to the following function:
 </p>
-<pre><code class="JavaScript">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {<br>   print('Widget Appeared');<br>}, widgetClosed: () {<br>   print('Widget Dismissed');<br>});</code></pre>
+<pre><code class="JavaScript">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {<br>  print('Widget Appeared');<br>}, widgetClosed: () {<br>  print('Widget Dismissed');<br>});</code></pre>
 <p>
   <code class="JavaScript">widgetShown</code> and
   <code class="JavaScript">widgetClosed</code> are optional callbacks, you can
@@ -1286,12 +1286,12 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   In case you want to use with callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {<br>if (error == null) {<br>}<br>});</code></pre>
+<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {<br>  if (error == null) {<br>  }<br>});</code></pre>
 <p>
   If you want to use it without a callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);<br>String? error = result[1];<br>if (error == null) {<br>   Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>}</code></pre>
+<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);<br>String? error = result[1];<br>if (error == null) {<br>  Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>}</code></pre>
 <p>
   <code>retrievedWidgetData</code> would contain a Map with all of the required
   information to present the widget yourself.
@@ -1341,7 +1341,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Using the following call, you can set both the predefined and the custom user
   properties during initialization:
 </p>
-<pre><code class="“JavaScript”">var userProperties = {<br>    ‘customProperty’: ‘custom Value’,<br>    ‘username’: ‘USER_NAME’,<br>    ‘email’: ‘USER_EMAIL’<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="“JavaScript”">var userProperties = {<br>  "customProperty": "custom Value",<br>  "username": "USER_NAME",<br>  "email": "USER_EMAIL"<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setUserProperties(userProperties); </code></pre>
 <h2 id="setting-user-profile-values-during-init" class="anchor-heading">Setting User profile values</h2>
 <p>Ther following calls can be used after init.</p>
@@ -1349,22 +1349,22 @@ config.setUserProperties(userProperties); </code></pre>
   If you want to set a single property, you can call
   <code class="“JavaScript”">Countly.userProfile.setUserProperty(key, value)</code>
 </p>
-<pre>Countly.instance.userProfile.setProperty('specialProperty', 'value');<br>Countly.instance.userProfile.save();</pre>
+<pre>Countly.instance.userProfile.setProperty("specialProperty", "value");<br>Countly.instance.userProfile.save();</pre>
 <p>
   If you want to set multiple properties at the same time, you can use:
   <code class="“JavaScript”">Countly.userProfile.setUserProperties(userProperties)</code>
 </p>
 <pre><code class="JavaScript">// example for setting user data
 Map&lt;String, Object&gt; userProperties= {
-    "name": "Nicola Tesla",
-    "username": "nicola",
-    "email": "info@nicola.tesla",
-    "organization": "Trust Electric Ltd",
-    "phone": "+90 822 140 2546",
-    "picture": "http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg",
-    "picturePath": "",
-    "gender": "M", // "F"
-    "byear": "1919",<br>    "special_value": "something special"
+  "name": "Nicola Tesla",
+  "username": "nicola",
+  "email": "info@nicola.tesla",
+  "organization": "Trust Electric Ltd",
+  "phone": "+90 822 140 2546",
+  "picture": "http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg",
+  "picturePath": "",
+  "gender": "M", // "F"
+  "byear": "1919",<br>  "special_value": "something special"
 };
 Countly.instance.setUserProperties(userProperties);<br>Countly.instance.userProfile.save();</code></pre>
 <p>
@@ -1577,24 +1577,24 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   in bold.
 </p>
 <pre><code class="JavaScript">android {
-&nbsp; &nbsp; buildTypes {
-&nbsp; &nbsp; &nbsp; &nbsp; release {
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables code shrinking, obfuscation, and optimization for only
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // your project's release build type.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; minifyEnabled true
+&nbsp; buildTypes {
+&nbsp; &nbsp; release {
+&nbsp; &nbsp; &nbsp; // Enables code shrinking, obfuscation, and optimization for only
+&nbsp; &nbsp; &nbsp; // your project's release build type.
+&nbsp; &nbsp; &nbsp; minifyEnabled true
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables resource shrinking, which is performed by the
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Android Gradle plugin.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shrinkResources true
+&nbsp; &nbsp; &nbsp; // Enables resource shrinking, which is performed by the
+&nbsp; &nbsp; &nbsp; // Android Gradle plugin.
+&nbsp; &nbsp; &nbsp; shrinkResources true
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Includes the default ProGuard rules files that are packaged with
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // the Android Gradle plugin. To learn more, go to the section about
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // R8 configuration files.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; proguardFiles getDefaultProguardFile(
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-android-optimize.txt'),
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-rules.pro'
-&nbsp; &nbsp; &nbsp; &nbsp; }
-&nbsp; &nbsp; }
+&nbsp; &nbsp; &nbsp; // Includes the default ProGuard rules files that are packaged with
+&nbsp; &nbsp; &nbsp; // the Android Gradle plugin. To learn more, go to the section about
+&nbsp; &nbsp; &nbsp; // R8 configuration files.
+&nbsp; &nbsp; &nbsp; proguardFiles getDefaultProguardFile(
+&nbsp; &nbsp; &nbsp; &nbsp; 'proguard-android-optimize.txt'),
+&nbsp; &nbsp; &nbsp; &nbsp; 'proguard-rules.pro'
+&nbsp; &nbsp; &nbsp; }
+&nbsp; }
 ...
 }
 </code></pre>
@@ -1703,7 +1703,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   If you do not specify a value for the setMaxRequestQueueSize flag, the default
   setting of 1,000 will be used.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setMaxRequestQueueSize(5000);</code><span><br></span></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setMaxRequestQueueSize(5000);</code></pre>
 <h2 id="h_01H930GAQ8QRF6ED3PXEF0QFAD">Attribution</h2>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
@@ -1730,7 +1730,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <p>
   <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code><span><br></span></pre>
+<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
 <p>
   You can also use <code>recordDirectAttribution</code> function to manually report
   attribution later:
@@ -1773,7 +1773,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   can use the same function later in the app's life cycle to disable the override.
   This function has to be called every time the app starts.
 </p>
-<pre><code class="JavaScript"> CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setHttpPostForced(true); // default is false</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setHttpPostForced(true); // default is false</code></pre>
 <h2 id="h_01H930GAQ8QBSG5GB1P8AY1ARX">Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -1929,38 +1929,38 @@ config.setRequestDropAgeHours(10); // a positive integer indicating hours</code>
   structure is like this:
 </p>
 <pre><code>class ExperimentInformation {
-   // same ID as used in the map
-   String experimentID;
-   // the name of the experiment
-   String experimentName;
-   // the description of the experiment
-   String experimentDescription;
-   // the name of the currently assigned variant for this user (e.g., 'Control Group', 'Variant A')
-   String currentVariant;
-   // variant information for this experiment
-   Map&lt;String, Map&lt;String, Object?&gt;&gt; variants;
+  // same ID as used in the map
+  String experimentID;
+  // the name of the experiment
+  String experimentName;
+  // the description of the experiment
+  String experimentDescription;
+  // the name of the currently assigned variant for this user (e.g., 'Control Group', 'Variant A')
+  String currentVariant;
+  // variant information for this experiment
+  Map&lt;String, Map&lt;String, Object?&gt;&gt; variants;
 }</code></pre>
 <p>
   So an example data structure you might get at the end would look something similar
   to this:
 </p>
 <pre><code>{
-   some_exp_ID: {
-     experimentID: some_ID,
-     experimentName: some_name,
-     experimentDescription: some description,
-     currentVariant: variant_name,
-     variants: {
-       Control Group: {
-         key_1: val,
-         key_2: val,
-       },
-       Variant A: {
-         key_1: val,
-         key_2: val,
-       }
-     }
-   }
+  some_exp_ID: {
+    experimentID: some_ID,
+    experimentName: some_name,
+    experimentDescription: some description,
+    currentVariant: variant_name,
+    variants: {
+      Control Group: {
+        key_1: val,
+        key_2: val,
+      },
+      Variant A: {
+        key_1: val,
+        key_2: val,
+      }
+    }
+  }
 }
 </code></pre>
 <h4 id="h_01HEMEGYZEPX60J2NJWJM59K4E">
