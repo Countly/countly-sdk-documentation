@@ -34,7 +34,7 @@ react-native run-ios                # Run the iOS project</code></pre>
 <h1 id="h_01HAVQNJQQY6AYCGY7TW5TR2GC">Adding the SDK to the project</h1>
 <p>
   Run the following snippet in the root directory of your React Native project
-  to install the npm dependencies and link <strong>native libraries</strong>.&nbsp;
+  to install the npm dependencies and link <strong>native libraries</strong>.
 </p>
 <pre><code class="bash"># Include the Countly Class in the file that you want to use.
 npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git
