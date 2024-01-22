@@ -130,7 +130,7 @@ Countly.Instance.Init(config);
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
-<pre>Countly.Instance.</pre>
+<pre>Countly.Instance</pre>
 <h1 id="enabling-logging" class="anchor-heading">SDK Logging / Debug Mode</h1>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
@@ -138,8 +138,7 @@ Countly.Instance.Init(config);
 <p>
   Call <code>EnableLogging</code> on the config object to enable logging:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)
-  .EnableLogging();</code></pre>
+<pre><code class="csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl).EnableLogging();</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
@@ -154,7 +153,7 @@ Countly.Instance.Init(config);
   In the SDK all crash-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.CrashReports.</pre>
+<pre>countly.CrashReports</pre>
 <h2 id="h_01HABTZ314AT5KAJCM51D304ZV">Automatic Crash Handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
@@ -186,18 +185,18 @@ Countly.Instance.Init(config);
   </li>
 </ul>
 <p>Example:</p>
-<pre><strong>try </strong>{
-<strong>  throw</strong> <strong>new</strong> DivideByZeroException();
-} <strong>catch</strong> (Exception ex) {
-  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
-}</pre>
+<pre><code class="csharp">try {
+  throw new DivideByZeroException();
+} catch (Exception ex) {
+  await countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
+}</code></pre>
 <p class="anchor-heading">You can also send a segmentation with an exception.</p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();
+<pre><code class="csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();
 segmentation.Add("Action", "click");</span>
-<strong>try </strong>{
-<strong>  throw</strong> <strong>new</strong> DivideByZeroException();
-} <strong>catch</strong> (Exception ex) {
-  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);
+try {
+  throw new DivideByZeroException();
+} catch (Exception ex) {
+  await countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);
 }</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
@@ -232,7 +231,7 @@ segmentation.Add("Action", "click");
   In the SDK, all event-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.Events.</pre>
+<pre>countly.Events</pre>
 <p>
   <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event. For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
 </p>
@@ -668,7 +667,7 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">public class CountlyEntryPoint : MonoBehaviour, INotificationListener
+<pre><code class="csharp">public class CountlyEntryPoint : MonoBehaviour, INotificationListener
 {
   public void OnNotificationReceived(string message)
   {
@@ -688,7 +687,7 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">private void Awake()
+<pre><code class="csharp">private void Awake()
 {
   CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, serverUrl);
   config.AddNotificationListener(this);
