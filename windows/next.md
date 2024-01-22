@@ -134,7 +134,7 @@ Countly.Instance.Init(cc);</code></pre>
 {
   serverUrl = "SERVER_URL",
   appKey = "APP_KEY",
-  appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   appVersion = "1.2.3",
   application = referenceToApplication //provide link to your application
 };
@@ -160,7 +160,15 @@ await Countly.Instance.Init(cc);</code></pre>
 <p>
   <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening.&nbsp;</span><span>To log exceptions use the following code snippet:</span>
 </p>
-<pre><code><strong>Dictionary</strong>&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;<br>{<br>{ "customData", "importantStuff" }<br>};<br><br>try {<br>    throw new Exception("It is an exception");<br>} catch (Exception ex) {<br><strong>    Countly</strong>.RecordException(ex.Message, ex.StackTrace, customInfo, false);<br>}</code></pre>
+<pre><code class="csharp">Dictionary&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;{
+  { "customData", "importantStuff" }
+};
+
+try {
+  throw new Exception("It is an exception");
+} catch (Exception ex) {
+  Countly.RecordException(ex.Message, ex.StackTrace, customInfo, false);
+}</code></pre>
 <p>Here is the detail of the parameters:</p>
 <ul>
   <li>
@@ -189,7 +197,7 @@ await Countly.Instance.Init(cc);</code></pre>
   crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre><code>Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
+<pre><code class="csharp">Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
 <h2 id="h_01HABTXQF8BRT1FY1PR381RVJV">Consent</h2>
 <p>
   This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given.</span>
@@ -268,6 +276,7 @@ await Countly.Instance.Init(cc);</code></pre>
 <pre><code class="csharp">Segmentation segmentation = new Segmentation();
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
+
 await Countly.RecordEvent("purchase", 3, segmentation);
 </code></pre>
 <p>
@@ -276,6 +285,7 @@ await Countly.RecordEvent("purchase", 3, segmentation);
 <pre><code class="csharp">Segmentation segmentation = new Segmentation();
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
+
 await Countly.RecordEvent("purchase", 3, 2.97, segmentation);
 </code></pre>
 <p>
@@ -284,6 +294,7 @@ await Countly.RecordEvent("purchase", 3, 2.97, segmentation);
 <pre><code class="csharp">Segmentation segmentation = new Segmentation();
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
+
 await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pre>
 <p>
   <span>These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, time_of_day, and any other segmentation of your choice that will provide you with valuable insights.</span>
@@ -302,7 +313,7 @@ await Countly.RecordEvent("purchase", 3, 2.97, 122.45, segmentation);</code></pr
   of the device, if you close the app before ending the event, you will have to
   start all over when you open the app later again.
 </p>
-<pre><code class="java">string eventName = "Some event";
+<pre><code class="csharp">string eventName = "Some event";
 
 //start some event with the event name "Some event"
 Countly.Instance.StartEvent(eventName);
@@ -313,7 +324,7 @@ Countly.Instance.EndEvent(eventName);</code></pre>
 <p>
   <span>You may also provide additional information when ending an event. In that case, you can provide the segmentation, count, or sum values. The default values for those are "null", 1, and 0.</span>
 </p>
-<pre><code class="java">string eventName = "Some event";
+<pre><code class="csharp">string eventName = "Some event";
 
 //start some event
 Countly.Instance.StartEvent(eventName);
@@ -326,13 +337,13 @@ segmentation.Add("wall", "orange");
 Countly.Instance.EndEvent(eventName, segmentation);
 </code></pre>
 <p>Here are other options to end timed events:</p>
-<pre><code class="java">//end the event while providing segmentation information and count
+<pre><code class="csharp">//end the event while providing segmentation information and count
 Countly.Instance.EndEvent("timed-event", segmentation, 4);<br><br>//end the event while providing segmentation information, count and sum
 Countly.Instance.EndEvent("timed-event", segmentation, 4, 10);</code></pre>
 <p>
   You may cancel an already started timed event in case it is not needed anymore:
 </p>
-<pre><code class="java">//start some event
+<pre><code class="csharp">//start some event
 Countly.Instance.StartEvent(eventName);
 //wait some time
 
@@ -428,13 +439,13 @@ Countly.Instance.Init(cc);</code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", true);</span></code></span></pre>
+<pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", true);</code></pre>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", false);</span></code></span></pre>
+<pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", false);</code></pre>
 <p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
 <div class="callout callout--warning">
   <p>
@@ -551,7 +562,10 @@ Countly.Instance.DisableLocation();</code></pre>
   set value as <code>null</code>, you will delete the property.
 </p>
 <p>Example:</p>
-<pre><code>Countly.UserDetails.Name = "John";</code>// set name to John<br><code>Countly.UserDetails.Name = "null";</code> // remove name</pre>
+<pre><code class="csharp">// set name to John
+Countly.UserDetails.Name = "John";
+// remove name
+Countly.UserDetails.Name = "null";</code></pre>
 <h2 id="h_01HABTXQFAE25QX52WCAG0Y15M">Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
@@ -892,10 +906,10 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
   event handler.
 </p>
 <p>Usage:</p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">MauiExceptions.UnhandledException += (sender, args) =&gt;
- {
-   Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
- };</pre>
+<pre><code class="csharp">MauiExceptions.UnhandledException += (sender, args) =&gt;
+{
+ Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
+};</code></pre>
 <p>
   <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
 </p>
