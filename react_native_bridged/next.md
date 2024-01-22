@@ -16,19 +16,24 @@
   meaning it includes all the functionalities that Android and iOS SDKs provide
   rather than having those functionalities as React Native code.
 </p>
-<div class="callout callout--info">
+<p>
   <strong>Supported Platforms:</strong> This SDK supports iOS and Android platforms.
-  <strong>Supported System Versions</strong>
-  <p>
-    The Countly React Native SDK requires a minimum <code>Deployment Target</code>
-    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
-    Xcode 13.0+.
-  </p>
-  <p>
-    The Countly React Native SDK requires a minimum Android version of 4.2.x (API Level
-    17). You can take a look at our sample application in the
-  </p>
-</div>
+</p>
+<p>
+  <strong>Supported System Versions:</strong>
+</p>
+<p>
+  For iOS builds, this SDK requires a minimum Deployment Target iOS 10.0 (watchOS
+  4.0, tvOS 10.0, macOS 10.14), and it requires Xcode 13.0+.
+</p>
+<p>
+  For Android builds, this SDK requires a minimum Android version of 4.2.x (API
+  Level 17).
+</p>
+<p>
+  The minimum react-native version for which this sdk has been tested is "0.71.0"
+  (along with "react": "18.2.0")
+</p>
 <p>
   You can take a look at our example application in
   <a href="https://github.com/Countly/countly-sdk-rnb-example.git" target="_blank" rel="noopener">this Github repo</a>.
