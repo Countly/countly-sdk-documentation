@@ -25,7 +25,7 @@
   It shows, how the majority of the SDK functionality can be used. After you have
   cloned the repo, run the following commands from the root folder:
 </p>
-<pre><code class="shell">npm install                         # Install dependencies
+<pre><code class="bash">npm install                         # Install dependencies
 cd ios                              # Move to ios directory
 pod install                         # Download and install pods<br>
 cd ../                              # Move to parent directory
@@ -36,7 +36,7 @@ react-native run-ios                # Run the iOS project</code></pre>
   Run the following snippet in the root directory of your React Native project
   to install the npm dependencies and link <strong>native libraries</strong>.&nbsp;
 </p>
-<pre># Include the Countly Class in the file that you want to use.
+<pre><code class="bash"># Include the Countly Class in the file that you want to use.
 npm install --save https://github.com/Countly/countly-sdk-react-native-bridge.git
 
 # OR
@@ -47,7 +47,7 @@ npm install --save countly-sdk-react-native-bridge@latest
 
 cd ios
 pod install
-cd ..</pre>
+cd ..</code></pre>
 <h1 id="h_01HAVQNJQQBPYNQ7D6ACZTPEMM">SDK Integration</h1>
 <h2 id="h_01HAVQNJQQQAZSCX41W0SPS5P3">Minimal setup</h2>
 <p>
@@ -60,7 +60,8 @@ cd ..</pre>
 <pre><code class="javascript">import Countly from 'countly-sdk-react-native-bridge';
 import CountlyConfig from 'countly-sdk-react-native-bridge/CountlyConfig';
 
-if(!await Countly.isInitialized()) {<br>  // create Countly config object
+if(!await Countly.isInitialized()) {
+  // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
   Countly.start(); // start session tracking
@@ -93,12 +94,11 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
   Call <code class="javascript">setLoggingEnabled</code> on the config object to
   enable logging:
 </p>
-<pre><code class="javascript">  // create Countly config object
-  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // ...
-  countlyConfig.setLoggingEnabled(true); // Enable countly internal debugging logs
-  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-  </code></pre>
+<pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// ...
+countlyConfig.setLoggingEnabled(true); // Enable countly internal debugging logs
+await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
@@ -125,12 +125,11 @@ if(!await Countly.isInitialized()) {<br>  // create Countly config object
   <code class="JavaScript">initWithConfig</code> in order to activate automatic
   crash reporting.
 </p>
-<pre><code class="javascript">  // create Countly config object
-  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // ...
-  countlyConfig.enableCrashReporting(); // Enable crash reports
-  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-</code></pre>
+<pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// ...
+countlyConfig.enableCrashReporting(); // Enable crash reports
+await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.</code></pre>
 <h2 id="h_01HAVQNJQQH45W0XT6VXNT2VG0">Automatic crash report segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
@@ -205,7 +204,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   currently 23.8.0):
 </p>
 <pre><code class="shell">dependencies {
-    implementation 'ly.count.android:sdk-native:LATEST_VERSION'
+  implementation 'ly.count.android:sdk-native:LATEST_VERSION'
 }</code></pre>
 <p>
   Then call <code class="JavaScript">Countly.initNative()</code> method as early
@@ -219,11 +218,11 @@ Countly.setCustomCrashSegments(segment);</code></pre>
 <p>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/src/main/java/com/PROJECT_NAME</code>
 </p>
-<pre>// import this in your Application class
+<pre><code class="java">// import this in your Application class
 import ly.count.android.sdknative.CountlyNative;
 
 // call this function in "onCreate" callback of Application class
-CountlyNative.initNative(getApplicationContext());</pre>
+CountlyNative.initNative(getApplicationContext());</code></pre>
 <p>
   <code class="JavaScript">getApplicationContext()</code> is needed to determine
   a storage place for minidump files.
@@ -239,7 +238,7 @@ CountlyNative.initNative(getApplicationContext());</pre>
 <p>
   This is what the debug logs will look like if you use this feature:
 </p>
-<pre><code class="text">$ adb logcat -s Countly:V countly_breakpad_cpp:V
+<pre><code class="bash">$ adb logcat -s Countly:V countly_breakpad_cpp:V
 
 # when Countly.initNative() is called
 
@@ -454,11 +453,11 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
 <p>
   To enable this when initializing the SDK, use the method below.
 </p>
-<pre><code class="javascript">  // create Countly config object
-  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  //...
-  countlyConfig.setDeviceId(Countly.TemporaryDeviceIDString); // Set temporary device ID
-  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
+<pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+//...
+countlyConfig.setDeviceId(Countly.TemporaryDeviceIDString); // Set temporary device ID
+await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
 <p>
   To enable a temporary device ID <strong>after</strong> initialization, use the
@@ -656,9 +655,9 @@ countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
   <code class="JavaScript">android/build.gradle</code>
 </p>
 <pre><code class="JavaScript">buildscript {
-    dependencies {
-        classpath 'com.google.gms:google-services:4.3.2'
-    }
+  dependencies {
+    classpath 'com.google.gms:google-services:4.3.2'
+  }
 }
 </code></pre>
 <p>
@@ -688,11 +687,11 @@ apply plugin: 'com.google.gms.google-services'
   By default additional intent redirection is enabled for intent redirect security,
   you can disable the additional intent redirection:
 </p>
-<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+<pre><code class="javascript"><br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // ...
 countlyConfig.configureIntentRedirectionCheck([], [], false); // Disable intent redirection security
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-</pre>
+</code></pre>
 <p>
   If these are enabled then the SDK will enforce additional security checks. More
   info can be found
@@ -708,11 +707,13 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   You can set the allowed package and class names for Intent Redirection using
   this call:
 </p>
-<pre>// create Countly config object<br>const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
+<pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// ...
 countlyConfig.configureIntentRedirectionCheck(["MainActivity"], ["com.countly.demo"]);
 // configure redirection check
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-</pre>
+</code></pre>
 <h2 id="h_01HAVQNJQSZ2E3RWEEZ9QEAB02">iOS Setup</h2>
 <p>
   Push notifications are enabled by default for iOS, but if you wish to disable
@@ -761,9 +762,9 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   To register a Push Notification callback after initialising the SDK, use the
   method below.
 </p>
-<pre>Countly.registerForNotification(function(theNotification){
-console.log(JSON.stringify(theNotification));
-});</pre>
+<pre><code class="java">Countly.registerForNotification(function(theNotification){
+  console.log(JSON.stringify(theNotification));
+});</code></pre>
 <p>
   In order to listen to notifications received and the click events, add the code
   below in <code>AppDelegate.m</code>
@@ -777,12 +778,12 @@ console.log(JSON.stringify(theNotification));
   in <code>didFinishLaunchingWithOptions:</code> method to handle push notification
   receive and action callbacks when SDK is not initialized.
 </p>
-<pre><code class="JavaScript">// For push notification received and action callbacks.
+<pre><code class="objectivec">// For push notification received and action callbacks.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
   Before <code>@end</code> add these method
 </p>
-<pre><code class="JavaScript">// Required for the notification event. You must call the completion handler after handling the remote notification.
+<pre><code class="objectivec">// Required for the notification event. You must call the completion handler after handling the remote notification.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary*)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
   [CountlyReactNative onNotification: userInfo];
@@ -809,9 +810,42 @@ console.log(JSON.stringify(theNotification));
   <br>
   Data Received for Android platform:
 </p>
-<pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
+<pre><code class="json">{
+  "c.e.cc": "TR",
+  "c.e.dt": "mobile",
+  "Key": "value",
+  "c.i": "62b59b979f05a1f5e5592036",
+  "c.l": "https:\/\/www.google.com\/",
+  "c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",
+  "c.li": "notify_icon",
+  "badge": "1",
+  "sound": "custom",
+  "title": "title",
+  "message": "Message"
+}</code></pre>
 <p>Data Received for iOS platform:</p>
-<pre>{<br> "c": {<br>  "i": "62b5b945cabedb0870e9f217",<br>  "l": "https:\/\/www.google.com\/",<br>  "e": {<br>   "dt": "mobile",<br>   "cc": "TR"<br>  },<br>  "a": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png"<br> },<br> "aps": {<br>  "mutable-content": 1,<br>  "alert": {<br>   "title": "title",<br>   "subtitle": "subtitle",<br>   "body": "Message"<br>  },<br>  "badge": 1,<br>  "sound": "custom"<br> },<br> "Key": "value"<br>}</pre>
+<pre><code class="json">{
+ "c": {
+  "i": "62b5b945cabedb0870e9f217",
+  "l": "https:\/\/www.google.com\/",
+  "e": {
+   "dt": "mobile",
+   "cc": "TR"
+  },
+  "a": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png"
+ },
+ "aps": {
+  "mutable-content": 1,
+  "alert": {
+   "title": "title",
+   "subtitle": "subtitle",
+   "body": "Message"
+  },
+  "badge": 1,
+  "sound": "custom"
+ },
+ "Key": "value"
+}</code></pre>
 <h1 id="h_01HAVQNJQSHA4P0WW2K60R3SNV">User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -909,7 +943,7 @@ Countly.disableLocation();</code></pre>
   desirable for you. It has a callback to let you know when it has finished.
 </p>
 <pre><code class="JavaScript">Countly.remoteConfigUpdate(function(data){
-console.log(data);
+  console.log(data);
 });</code></pre>
 <p>
   Or you might only want to update specific key values. To do so, you will need
@@ -920,7 +954,7 @@ console.log(data);
 </p>
 <pre><code class="JavaScript">Countly.updateRemoteConfigForKeysOnly(){
 Countly.updateRemoteConfigForKeysOnly(["aa", "bb"],function(data){
-console.log(data);
+  console.log(data);
 });</code></pre>
 <p>
   Or you might want to update all the values except a few defined keys. To do so,
@@ -929,7 +963,7 @@ console.log(data);
   when the request has finished.
 </p>
 <pre><code class="JavaScript">Countly.updateRemoteConfigExceptKeys(["aa", "bb"],function(data){
-console.log(data);
+  console.log(data);
 });</code></pre>
 <p>
   When making requests with an "inclusion" or "exclusion" array, if those arrays
@@ -945,7 +979,7 @@ console.log(data);
   key.
 </p>
 <pre><code class="JavaScript">Countly.getRemoteConfigValueForKey("KeyName", function(data){
-console.log(data);
+  console.log(data);
 });
 
 var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
@@ -1046,7 +1080,12 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   device ID.
 </p>
 <p>The objects in the returned list look like this:</p>
-<pre><code class="javascript">{ <br>  "id"   : "WIDGET_ID",<br>  "type" : "WIDGET_TYPE",<br>  "name" : "WIDGET_NAME",<br>  "tag"  : "WIDGET_TAG"<br>}</code></pre>
+<pre><code class="json">{ 
+  "id"   : "WIDGET_ID",
+  "type" : "WIDGET_TYPE",
+  "name" : "WIDGET_NAME",
+  "tag"  : "WIDGET_TAG"
+}</code></pre>
 <p>
   To determine what kind of widget that is, check the "type" value. The potential
   values are <code>survey</code>, <code>nps</code> and <code>rating</code>.
@@ -1343,12 +1382,12 @@ Countly.appLoadingFinished(); // Call the appLoadingFinished method</code></pre>
   <code class="objectivec">endTrace(traceKey, customMetric)</code>method, optionally
   passing any metrics as key-value pairs:
 </p>
-<pre>String traceKey = "Trace Key";
+<pre><code class="java">String traceKey = "Trace Key";
 Map&lt;String, int&gt; customMetric = {
   "ABC": 1233,
   "C44C": 1337
 };
-Countly.endTrace(traceKey, customMetric);</pre>
+Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>
   The duration of the custom trace will be automatically calculated upon ending.
 </p>
@@ -1510,11 +1549,11 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   <strong>Android</strong>
 </p>
-<pre>cd AwesomeProject
+<pre><code class="bash">cd AwesomeProject
 ls
 count.ly.cer
 mkdir -p ./android/app/src/main/assets/
-cp ./count.ly.cer ./android/app/src/main/assets/</pre>
+cp ./count.ly.cer ./android/app/src/main/assets/</code></pre>
 <p>
   <strong>iOS</strong>
 </p>
@@ -1570,13 +1609,13 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 <pre><code>...
 
 buildTypes {
-        release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
-            ...
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
+  release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
+    ...
+    minifyEnabled true
+    shrinkResources true
+    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+  }
+}
 ...</code></pre>
 <p>
   By following these steps, the Countly Messaging classes will be obfuscated using
@@ -1588,11 +1627,12 @@ buildTypes {
   You may provide your own custom device ID when initializing the SDK using the
   method below.
 </p>
-<pre>  // create Countly config object<br>  const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
-  // ...
-  countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
-  await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-</pre>
+<pre><code class="javascript">// create Countly config object
+const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+// ...
+countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
+await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
+</code></pre>
 <h2 id="h_01HBZGC0M4JG8E6DCYCD04HQTJ">SDK Storage and Requests</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in a file named
