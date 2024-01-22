@@ -209,10 +209,9 @@ Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String
   <code>events</code> interface:
 </p>
 <div>
-  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;() {
-  put("Time Spent", 60);
-  put("Retry Attempts", 60);
-};
+  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;();
+segmentation.put("Time Spent", 60);
+segmentation.put("Retry Attempts", 60);
 
 Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
 </div>
@@ -1302,10 +1301,9 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;() {{
-  put("Time Spent", "60");
-  put("Retry Attempts", "60");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;();
+segment.put("Time Spent", "60");
+segment.put("Retry Attempts", "60");
 
 Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
 </code></pre>
@@ -1335,11 +1333,10 @@ Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, 
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("visit", "1");
-  put("segment", "Windows");
-  put("start", "1");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("visit", "1");
+segmentation.put("segment", "Windows");
+segmentation.put("start", "1");
 
 Countly.instance().backendM().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
@@ -1375,15 +1372,13 @@ Countly.instance().backendM().recordView("device-id", "SampleView", segmentation
     <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
   </li>
 </ul>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("login page", "authenticate request");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("login page", "authenticate request");
 
-Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Windows 11");
-  put("_os_version", "11.202");
-  put("_logs", "main page");
-}};
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;();
+crashDetails.put("_os", "Windows 11");
+crashDetails.put("_os_version", "11.202");
+crashDetails.put("_logs", "main page");
 
 Countly.instance().backendM().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
 </code></pre>
@@ -1392,15 +1387,13 @@ Countly.instance().backendM().recordException("device-id", "message", "stacktrac
   stack trace to record a crash.
 </p>
 <p>For example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("login page", "authenticate request");
-}};
+<pre><code class="java">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("login page", "authenticate request");
 
-Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Windows 11");
-  put("_os_version", "11.202");
-  put("_logs", "main page");
-}};
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;();
+crashDetails.put("_os", "Windows 11");
+crashDetails.put("_os_version", "11.202");
+crashDetails.put("_logs", "main page");
 
 try {
   int a = 10 / 0;
@@ -1432,18 +1425,16 @@ try {
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Android");
-  put("_os_version", "10");
-  put("_app_version", "1.2");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;();
+metrics.put("_os", "Android");
+metrics.put("_os_version", "10");
+metrics.put("_app_version", "1.2");
 
-Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
-  put("ip_address", "192.168.1.1");
-  put("city", "Lahore");
-  put("country_code", "PK");
-  put("location", "31.5204,74.3587");
-}};
+Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;();
+location.put("ip_address", "192.168.1.1");
+location.put("city", "Lahore");
+location.put("country_code", "PK");
+location.put("location", "31.5204,74.3587");
 
 Countly.instance().backendM().sessionBegin("device-id", metrics, location, 1646640780130L);
 </code></pre>
