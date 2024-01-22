@@ -28,20 +28,20 @@
 </ul>
 <p>First, clone the repository with its submodules:</p>
 <div>
-  <pre><code>git clone --recursive https://github.com/Countly/countly-sdk-cpp</code></pre>
+  <pre><code class="bash">git clone --recursive https://github.com/Countly/countly-sdk-cpp</code></pre>
 </div>
 <p>
   If submodules in your project are empty you can run this command at root of your
   project:
 </p>
 <div>
-  <pre><code>git submodule update --init --recursive</code></pre>
+  <pre><code class="bash">git submodule update --init --recursive</code></pre>
 </div>
 <p>
   If you want to use SQLite to store session data persistently, build sqlite:
 </p>
 <div>
-  <pre><code># assuming we are on project root
+  <pre><code class="bash"># assuming we are on project root
 cd vendor/sqlite
 cmake -D BUILD_SHARED_LIBS=ON -B build . # out of source build, we don't like clutter :)
 # we define `BUILD_SHARED_LIBS` because sqlite's cmake file compiles statically by default for some reason
@@ -50,7 +50,7 @@ make # you might want to add something like -j8 to parallelize the build process
 </div>
 <p>The cmake build flow is pretty straightforward:</p>
 <div>
-  <pre><code># assuming we are on project root again
+  <pre><code class="bash"># assuming we are on project root again
 ccmake -B build . # this will launch a TUI, configure the build as you see fit
 cd build
 make</code></pre>
@@ -67,9 +67,10 @@ make</code></pre>
     project.
   </p>
   <div>
-    <pre><code>cmake -DCOUNTLY_BUILD_SAMPLE=ON -DCOUNTLY_BUILD_TESTS=ON -DCOUNTLY_USE_SQLITE=ON -B build . # or do it interactively with cmake
+    <pre><code class="bash">cmake -DCOUNTLY_BUILD_SAMPLE=ON -DCOUNTLY_BUILD_TESTS=ON -DCOUNTLY_USE_SQLITE=ON -B build . # or do it interactively with cmake
 cd build
-make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample app</code></pre>
+make ./countly-tests   # run unit test
+make ./countly-sample  # run sample app</code></pre>
   </div>
 </div>
 <h1 id="h_01HABV267SJ4AHSPDEWJDD8VPD">SDK Integration</h1>
@@ -80,7 +81,9 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code>cly::Countly&amp; countly = cly::Countly::getInstance();<br>countly.setDeviceID(<span class="pl-s"><span class="pl-pds">"test-device-id<span class="pl-pds">");<br>countly.start(<span class="pl-s"><span class="pl-pds">"YOUR_APP_KEY<span class="pl-pds">", <span class="pl-s"><span class="pl-pds">"https://try.count.ly<span class="pl-pds">", 443, true);</span></span></span></span></span></span></span></span></span></code></pre>
+<pre><code class="cpp">cly::Countly&amp; countly = cly::Countly::getInstance();
+countly.setDeviceID("test-device-id");
+countly.start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
 <p>
   Here, you have to provide your appKey, and your Countly server URL. Please check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
@@ -112,7 +115,13 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   Set <code>setLogger(logger_function)</code> on the <code>Counlty</code> object
   to enable logging:
 </p>
-<pre><span class="pl-k"><code>void <span class="pl-en">printLog(cly::Countly::LogLevel level, const string&amp; msg) {...}<br>...<br><br>void (*logger_function)(cly::Countly::LogLevel level, const std::string&amp; message);<br>logger_function = printLog;<br>cly::Countly::getInstance().setLogger(logger_function);</span></code></span></pre>
+<pre><code class="cpp">void printLog(cly::Countly::LogLevel level, const string&amp; msg) {...}
+...
+
+void (*logger_function)(cly::Countly::LogLevel level, const std::string&amp; message);
+logger_function = printLog;
+cly::Countly::getInstance().setLogger(logger_function);
+</code></pre>
 <h2 id="h_01HABV267SDXWCVYFV9RFGC08K">SDK Data Storage</h2>
 <p>
   In its unconfigured state, the SDK stores everything in memory.
@@ -127,7 +136,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
-<pre><code>cly::Countly::getInstance().</code></pre>
+<pre><code class="cpp">cly::Countly::getInstance()</code></pre>
 <h1 id="h_01HABV267T02RKF3WAAXMPRWKS">Crash Reporting</h1>
 <p>
   The Countly SDK for C++ can collect
@@ -138,14 +147,30 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   In the SDK all crash-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre><code class="java">countly.crash().</code></pre>
+<pre><code class="cpp">countly.crash()</code></pre>
 <h2 id="h_01HABV267THWA65ATEK35S08XQ">Handled Exceptions</h2>
 <p>
   You might catch an exception or similar error during your app’s runtime. You
   may also log these handled exceptions to monitor how and when they are happening.
   To log handled exceptions use the following code snippet:
 </p>
-<pre><code class="java">/*any additional info can be provided as a segmentation*/<br>std::map&lt;std::string, std::string&gt; segmentation = {<br>{"platform", "ubuntu"},<br>{"time", "60"},<br>};<br><br>/*should create the crashMetrics map*/<br>std::map&lt;std::string, std::any&gt; crashMetrics;<br><br>/*mandatory values*/<br>crashMetrics["_os"] = "Android"; # your OS info<br>crashMetrics["_app_version"] = "1.22";<br><br>/*any optional info*/<br>crashMetrics["_cpu"] = "armv7"; <br><br><span class="wysiwyg-color-black">countly.crash().recordException("title", "stackTrace", true, crashMetrics, segmentation);</span></code></pre>
+<pre><code class="cpp">/*any additional info can be provided as a segmentation*/
+std::map&lt;std::string, std::string&gt; segmentation = {
+  {"platform", "ubuntu"},
+  {"time", "60"},
+};
+
+/*should create the crashMetrics map*/
+std::map&lt;std::string, std::any="std::any"&gt; crashMetrics;
+
+/*mandatory values*/
+crashMetrics["_os"] = "Android"; # your OS info
+crashMetrics["_app_version"] = "1.22";
+
+/*any optional info*/
+crashMetrics["_cpu"] = "armv7"; 
+
+countly.crash().recordException("title", "stackTrace", true, crashMetrics, segmentation);</code></pre>
 <p>
   <code>recordException</code> expects the parameters below:
 </p>
@@ -178,7 +203,30 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   keys are optional, so you can add more key-value pairs to form a detailed crash
   report from the available options shown below:
 </p>
-<pre><code class="java">std::map&lt;std::string, std::any&gt; crashMetrics;<br><br>/*mandatory values*/<br>crashMetrics[<span class="hljs-string">"_os"] = <span class="hljs-string">"Android"; /*your OS info*/<br>crashMetrics[<span class="hljs-string">"_app_version"] = <span class="hljs-string">"22.06.1"; /*SDK version*/<br><br>/*optional values*/<br>crashMetrics[<span class="hljs-string">"_os_version"] = <span class="hljs-string">"4.1";<br>crashMetrics[<span class="hljs-string">"_manufacture"] = <span class="hljs-string">"Samsung"; /*may not be provided for ios or be constant, like Apple*/<br>crashMetrics[<span class="hljs-string">"_device"] = <span class="hljs-string">"Galaxy S4"; /*model for Android, iPhone1,1 etc for iOS*/<br>crashMetrics[<span class="hljs-string">"_resolution"] = <span class="hljs-string">"1900x1080"; /*SDK version*/<br>crashMetrics[<span class="hljs-string">"_cpu"] = <span class="hljs-string">"armv7"; /*type of cpu used on device (for ios will be based on device)*/<br>crashMetrics[<span class="hljs-string">"_opengl"] = <span class="hljs-string">"2.1"; /*version of open gl supported*/<br>crashMetrics[<span class="hljs-string">"_ram_current"] = 1024; /*in megabytes*/<br>crashMetrics[<span class="hljs-string">"_ram_total"] = 4096; /*in megabytes*/<br>crashMetrics[<span class="hljs-string">"_disk_current"] = 3000; /*in megabytes*/<br>crashMetrics[<span class="hljs-string">"_disk_total"] = 10240; /*in megabytes*/<br>crashMetrics[<span class="hljs-string">"_bat"] = 99; /*battery level from 0 to 100*/<br>crashMetrics[<span class="hljs-string">"_orientation"] = <span class="hljs-string">"portrait"; /*in which device was held, landscape, portrait, etc*/<br>crashMetrics[<span class="hljs-string">"_root"] = f<span class="hljs-string">alse; /*true if device is rooted/jailbroken, false or not provided if not*/<br>crashMetrics[<span class="hljs-string">"_online"] = f<span class="hljs-string">alse; /*true if device is connected to the internet (WiFi or 3G), false or not provided if not connected*/<br>crashMetrics[<span class="hljs-string">"_muted"] = f<span class="hljs-string">alse; /*true if volume is off, device is in muted state*/<br>crashMetrics[<span class="hljs-string">"_background"] = f<span class="hljs-string">alse; /*true if app was in background when it crashed*/<br>crashMetrics[<span class="hljs-string">"_run"] = 2000; /*running time since app start in seconds*/</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::any&gt; crashMetrics;
+
+/*mandatory values*/
+crashMetrics["_os"] = "Android"; /*your OS info*/
+crashMetrics["_app_version"] = "22.06.1"; /*SDK version*/
+
+/*optional values*/
+crashMetrics["_os_version"] = "4.1";
+crashMetrics["_manufacture"] = "Samsung"; /*may not be provided for ios or be constant, like Apple*/
+crashMetrics["_device"] = "Galaxy S4"; /*model for Android, iPhone1,1 etc for iOS*/
+crashMetrics["_resolution"] = "1900x1080"; /*SDK version*/
+crashMetrics["_cpu"] = "armv7"; /*type of cpu used on device (for ios will be based on device)*/
+crashMetrics["_opengl"] = "2.1"; /*version of open gl supported*/
+crashMetrics["_ram_current"] = 1024; /*in megabytes*/
+crashMetrics["_ram_total"] = 4096; /*in megabytes*/
+crashMetrics["_disk_current"] = 3000; /*in megabytes*/
+crashMetrics["_disk_total"] = 10240; /*in megabytes*/
+crashMetrics["_bat"] = 99; /*battery level from 0 to 100*/
+crashMetrics["_orientation"] = "portrait"; /*in which device was held, landscape, portrait, etc*/
+crashMetrics["_root"] = false; /*true if device is rooted/jailbroken, false or not provided if not*/
+crashMetrics["_online"] = false; /*true if device is connected to the internet (WiFi or 3G), false or not provided if not connected*/
+crashMetrics["_muted"] = false; /*true if volume is off, device is in muted state*/
+crashMetrics["_background"] = false; /*true if app was in background when it crashed*/
+crashMetrics["_run"] = 2000; /*running time since app start in seconds*/</code></pre>
 <h2 id="h_01HABV267T8DQQ2Y43QYDS65D7">Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs. They are short string logs
@@ -186,7 +234,7 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
   the crash. After a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre><code class="java">countly.crash().addBreadcrumb("breadcrumb");</code></pre>
+<pre><code class="cpp">countly.crash().addBreadcrumb("breadcrumb");</code></pre>
 <h1 id="h_01HABV267TYQ6567PAZ1D2BE81">Events</h1>
 <p>
   <span style="font-weight: 400;">An <a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application. </span></span>
@@ -249,23 +297,32 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="java">cly::Countly::getInstance().RecordEvent("purchase", 1);</code></pre>
+<pre><code class="cpp">cly::Countly::getInstance().RecordEvent("purchase", 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="java">cly::Countly::getInstance().RecordEvent("purchase", 1, 0.99);</code></pre>
+<pre><code class="cpp">cly::Countly::getInstance().RecordEvent("purchase", 1, 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["country"] = "Germany";<br><br>cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1);<br></code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation;
+segmentation["country"] = "Germany";
+
+cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["country"] = "Germany";<br><br>cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1, 0.99);</code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation;
+segmentation["country"] = "Germany";
+
+cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1, 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java">std::map&lt;std::string, std::string&gt; segmentation;<br>segmentation["country"] = "Germany";<br><br>cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1, 0.99, 60.0);<br></code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation;
+segmentation["country"] = "Germany";
+
+cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1, 0.99, 60.0);</code></pre>
 <p>
   <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, or any other segmentation of your choice that will provide you with valuable insights. </span>
 </p>
@@ -273,13 +330,29 @@ make ./countly-tests   # run unit test<br>make ./countly-sample  # run sample ap
 <p>
   It's possible to create timed events by defining a start and a stop moment.
 </p>
-<pre><code class="java hljs">cly::Event event("Some event", 1);</code><br><span class="hljs-comment"><br>//start some event<br><code class="java hljs">event.startTimer();<br></code><span class="hljs-comment">//wait some time<br><br><span class="hljs-comment">//end the timer and record event<br><code class="java hljs">event.stopTimer();<br>
-cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
+<pre><code class="cpp">cly::Event event("Some event", 1);
+
+//start some event
+event.startTimer();
+//wait some time
+
+//end the timer and record event
+event.stopTimer();
+
+cly::Countly.getInstance().addEvent(event);</code></pre>
 <p>
   You may also provide additional information e.g segmentation, count, and sum.
 </p>
-<pre><span class="hljs-comment">//event with count and sum
-<code class="java hljs">cly::Event event("Some event", 1, 0.99);</code><br><span class="hljs-comment">//add segmentation to event<br><code class="java hljs">event.addSegmentation("country", "Germany");</code><br>...<br><br><code class="java hljs">cly::Countly.getInstance().addEvent(event);</code></span></span></pre>
+<pre><code class="cpp">//event with count and sum
+cly::Event event("Some event", 1, 0.99);
+
+//add segmentation to event
+event.addSegmentation("country", "Germany");
+
+...
+
+cly::Countly.getInstance().addEvent(event);
+</code></pre>
 <h1 id="h_01HABV267VFHP206YEJ9RMAEDQ">Sessions</h1>
 <h2 id="h_01HABV267V3KME43J82YRC9XRZ">Automatic Session Tracking</h2>
 <p>
@@ -302,7 +375,14 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   While tracking views manually, you may add your custom segmentation to those
   views like this:
 </p>
-<pre><code>std::map&lt;std::string, std::string&gt; segmentation = {<br>{"cats", "123"},<br>{"moons", "9.98"},<br>{"Moose", "deer"},<br>};<br><br><span class="c-mrkdwn__br" data-stringify-type="paragraph-break">std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene", segmentation);</span></code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation = {
+  {"cats", "123"},
+  {"moons", "9.98"},
+  {"Moose", "deer"},
+};
+
+std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene", segmentation);
+</code></pre>
 <p>
   When the screen closes you can report it to the server by using one of the following
   methods:
@@ -315,12 +395,14 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   <span class="hljs-selector-tag">openView method, it returns a view ID of type <span class="hljs-keyword">std::string. You can use this ID to close a view. </span></span>
 </p>
 <p>For example:</p>
-<pre><code>std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");<br>...<br>cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
+<pre><code class="cpp">std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");
+...
+cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
 <p>
   <strong>2. Ending a view with a view name:<br></strong>You may close a view by
   its name using the following method:
 </p>
-<pre><code>cly::Countly::getInstance().views().closeViewWithName("Home Scene");</code></pre>
+<pre><code class="cpp">cly::Countly::getInstance().views().closeViewWithName("Home Scene");</code></pre>
 <p>
   To review the resulting view data, go to the <code>Analytics &gt; Views</code>
   section in your Countly server. For more information on how to utilize view tracking
@@ -339,7 +421,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   you start the SDK:
 </p>
 <div>
-  <pre><code>cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</code></pre>
+  <pre><code class="cpp">cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</code></pre>
 </div>
 <h2 id="h_01HABV267VM3R87G2CHE26ZBND">Changing Device ID</h2>
 <p>
@@ -352,7 +434,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   with the current device ID will be transferred (merged) into the user profile
   with the device ID you specified in the following method call:
 </p>
-<pre><span style="font-weight: 400;"><code class="java">cly::Countly::getInstance().setDeviceID("new-device-id", true);</code></span></pre>
+<pre><span style="font-weight: 400;"><code class="cpp">cly::Countly::getInstance().setDeviceID("new-device-id", true);</code></span></pre>
 <p>
   If you integrate this method, there might be times where you might want to track
   information about another user that starts using your app from the same device
@@ -360,7 +442,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   the identity of the current user (user logs out). In those cases, you can change
   the current device ID to a new one without merging their data. You would call:
 </p>
-<pre><span style="font-weight: 400;"><code class="java">cly::Countly::getInstance().setDeviceID("new-device-id", false);</code></span></pre>
+<pre><span style="font-weight: 400;"><code class="cpp">cly::Countly::getInstance().setDeviceID("new-device-id", false);</code></span></pre>
 <p>
   Doing it this , will prevent the previous user's data to merge with the new id.
 </p>
@@ -393,7 +475,14 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   info will be sent to the server at the start of the user session.
 </p>
 <p>Example:</p>
-<pre><code class="hljs cs"><span class="hljs-keyword">string countryCode = <span class="hljs-string">"us";<br><span class="hljs-keyword">string city = <span class="hljs-string">"Houston";<br><span class="hljs-keyword">string latitude = <span class="hljs-string">"29.634933"; <br><span class="hljs-keyword">string longitude = <span class="hljs-string">"-95.220255"; <br><span class="hljs-keyword">string ipAddress = "192.168.0.1"; <br><br>cly::Countly::getInstance().setLocation(countryCode, city, latitude + <span class="hljs-string">"," + longitude, ipAddress);</span></span></span></span></span></span></span></span></span></span></code></pre>
+<pre><code class="cpp">string countryCode = "us";
+string city = "Houston";
+string latitude = "29.634933"; 
+string longitude = "-95.220255"; 
+string ipAddress = "192.168.0.1"; 
+
+cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
+</code></pre>
 <p>
   Note that the IP address would only be updated if it's set during the init process.
 </p>
@@ -417,14 +506,14 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
 <p>
   To download Remote Config, call <code>updateRemoteConfig()</code>.
 </p>
-<pre><code>cly::Countly.getInstance().updateRemoteConfig();</code></pre>
+<pre><code class="cpp">cly::Countly.getInstance().updateRemoteConfig();</code></pre>
 <h2 id="h_01HABV267VENMTF2DNKJPPMC9T">Accessing Remote Config Values</h2>
 <p>
   To access the stored config, call
   <code>cly::Countly.getInstance().getRemoteConfigValue(const std::string&amp; key)</code>.
   It will return <code>null</code> if there isn't any config stored.
 </p>
-<pre><code>cly::Countly.getInstance().getRemoteConfigValue("Key");</code></pre>
+<pre><code class="cpp">cly::Countly.getInstance().getRemoteConfigValue("Key");</code></pre>
 <p>
   It returns a value of the type <code>json</code>.
 </p>
@@ -494,21 +583,44 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>Example:</p>
-<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"username", "username123"},<br>{"email", "useremail@email.com"},<br>{"phone", "222-222-222"},<br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>{"gender", "M"},<br>{"byear", "1991"},<br>{"organization", "Organization"},<br>};<br>cly::Countly.getInstance().setUserDetails(userdetail);</code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
+  {"name", "Full name"}, 
+  {"username", "username123"},
+  {"email", "useremail@email.com"},
+  {"phone", "222-222-222"},
+  {"picture", "http://webresizer.com/images2/bird1_after.jpg"},
+  {"gender", "M"},
+  {"byear", "1991"},
+  {"organization", "Organization"},
+};
+cly::Countly.getInstance().setUserDetails(userdetail);
+</code></pre>
 <h2 id="h_01HABV267W7SNCDY9FRE5FCJKJ">Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
   even when you don’t want to send other user-related data.
 </p>
 <p>Example:</p>
-<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"Height", "5.8"}, <br>{"Mole", "Lower Left Cheek"}<br>};<br><br>cly::Countly.getInstance().setCustomUserDetails(userdetail);</code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
+  {"Height", "5.8"}, 
+  {"Mole", "Lower Left Cheek"}
+};
+
+cly::Countly.getInstance().setCustomUserDetails(userdetail);
+</code></pre>
 <h2 id="h_01HABV267WSJFCCY9BTAJCDVCG">Setting User Picture</h2>
 <p>
   The SDK allows you to set the user's picture URL along with other details using
   the methods listed below.
 </p>
 <p>Example:</p>
-<pre><code>std::map&lt;std::string, std::string&gt; userdetail = { <br>{"name", "Full name"}, <br>{"picture", "http://webresizer.com/images2/bird1_after.jpg"},<br>};<br><br>cly::Counlty.getInstance().setUserDetails(userdetail);</code></pre>
+<pre><code class="cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
+  {"name", "Full name"}, 
+  {"picture", "http://webresizer.com/images2/bird1_after.jpg"},
+};
+
+cly::Counlty.getInstance().setUserDetails(userdetail);
+</code></pre>
 <h1 id="h_01HABV267WHKGYMQE1YP16C606">Security and Privacy</h1>
 <h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tamper Protection</h2>
 <p>
@@ -519,7 +631,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   server is set, all requests would be checked for the validity of the
   <code>&amp;checksum</code> the field before being processed.
 </p>
-<pre><code class="java hljs">cly::Countly.getInstance().setSalt("salt");</code></pre>
+<pre><code class="cpp">cly::Countly.getInstance().setSalt("salt");</code></pre>
 <h1 id="h_01HABV267WW07MSKNVAY9PE9HT">Other Features and Notes</h1>
 <h2 id="h_01HABV267W7SSP0J6GP8Z5N6QW">Setting Event Queue Threshold</h2>
 <p>
@@ -528,7 +640,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   are all sent to the request queue.<br>
   Example:
 </p>
-<pre><code>cly::Counlty.getInstance().setEventsToRQThreshold(10);</code></pre>
+<pre><code class="cpp">cly::Counlty.getInstance().setEventsToRQThreshold(10);</code></pre>
 <p>
   When the threshold is reached, the SDK batches all the events in the event queue
   and sends them to the request queue to be sent to the server in a single request.
@@ -545,7 +657,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   (100 by default) and starts again at the next iteration of the update loop.<br>
   Example:
 </p>
-<pre><code>cly::Counlty.getInstance().setMaxRQProcessingBatchSize(10);</code></pre>
+<pre><code class="cpp">cly::Counlty.getInstance().setMaxRQProcessingBatchSize(10);</code></pre>
 <h2 id="SettingUpSQLiteStorage">Setting Up SQLite Storage</h2>
 <p>
   In case you need persistent storage, you would need to build the SDK with that
@@ -557,7 +669,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   file could be stored.
 </p>
 <div>
-  <pre><code>cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
+  <pre><code class="cpp">cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
 </div>
 <p>
   Building your SDK with SQLite would enable event and request queues to be stored
@@ -583,7 +695,17 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   2. Set custom SHA-256 method <code>setSha256</code>
 </p>
 <p>For example:</p>
-<pre><code class="java hljs">std::string customChecksumCalculator(const std::string&amp; data) {<br>...<br>return result;<br>} </code><br><br><code class="java hljs">cly::Countly&amp; countly = cly::Countly.getInstance();</code><br><code class="java hljs">countly.setSalt("salt");<br>countly.setSha256(customChecksumCalculator);</code></pre>
+<pre><code class="cpp">std::string customChecksumCalculator(const std::string&amp; data) {
+  ...
+  return result;
+} 
+
+
+cly::Countly&amp; countly = cly::Countly.getInstance();
+
+countly.setSalt("salt");
+countly.setSha256(customChecksumCalculator);
+</code></pre>
 <h2 id="h_01HABV267WA5KC2F54SAK5YC1F" class="p-rich_text_section">Additional project install option</h2>
 <p>
   In some cases your project might need to install Countly globally one the system.
@@ -591,7 +713,7 @@ cly::Countly.getInstance().addEvent(event);</code></span></span></span></pre>
   As per the description, it install the countly library on the system.
 </p>
 <p>For example:</p>
-<pre class="notranslate notranslate"><code>#configure the SDK build
+<pre class="bash"><code>#configure the SDK build
 cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DBUILD_SHARED_LIBS=OFF -B build
 <br>cd build<br>#build the SDK
 make
