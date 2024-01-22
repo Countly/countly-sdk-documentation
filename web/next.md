@@ -1430,7 +1430,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 
     // Decide which which widget to show. Here the first rating widget is selected. 
     const widgetType = "rating";
-    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
+    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
     if (!countlyFeedbackWidget) {
       console.error(`[Countly] No ${widgetType} widget found`);
       return;
