@@ -138,7 +138,8 @@ Countly.Instance.Init(config);
 <p>
   Call <code>EnableLogging</code> on the config object to enable logging:
 </p>
-<pre><code class="csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl).EnableLogging();</code></pre>
+<pre><code class="csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)
+  .EnableLogging();</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
