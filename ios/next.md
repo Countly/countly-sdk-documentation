@@ -59,28 +59,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    CountlyConfig* config = CountlyConfig.new;
-    config.appKey = @"YOUR_APP_KEY";
-    config.host = @"https://YOUR_COUNTLY_SERVER";
-    [Countly.sharedInstance startWithConfig:config];
+  CountlyConfig* config = CountlyConfig.new;
+  config.appKey = @"YOUR_APP_KEY";
+  config.host = @"https://YOUR_COUNTLY_SERVER";
+  [Countly.sharedInstance startWithConfig:config];
 
-    // your code
-  
-    return YES;
+  // your code
+
+  return YES;
 }
 </code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
-    let config: CountlyConfig = CountlyConfig()
-    config.appKey = "YOUR_APP_KEY"
-    config.host = "https://YOUR_COUNTLY_SERVER"
-    Countly.sharedInstance().start(with: config)
-    
-    // your code
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
+  Countly.sharedInstance().start(with: config)
+  
+  // your code
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -118,35 +118,35 @@
   <div class="tab">
     <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    CountlyConfig* config = CountlyConfig.new;
-    config.appKey = @"YOUR_APP_KEY";
-    config.host = @"https://YOUR_COUNTLY_SERVER";
+  CountlyConfig* config = CountlyConfig.new;
+  config.appKey = @"YOUR_APP_KEY";
+  config.host = @"https://YOUR_COUNTLY_SERVER";
 
-    //You can specify additional features you want here
-    config.features = @[CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking];
+  //You can specify additional features you want here
+  config.features = @[CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking];
 
-    [Countly.sharedInstance startWithConfig:config];
+  [Countly.sharedInstance startWithConfig:config];
 
-    // your code
+  // your code
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
-    let config: CountlyConfig = CountlyConfig()
-    config.appKey = "YOUR_APP_KEY"
-    config.host = "https://YOUR_COUNTLY_SERVER"
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
 
-    //You can specify additional features you want here
-    config.features = [CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking]
+  //You can specify additional features you want here
+  config.features = [CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking]
 
-    Countly.sharedInstance().start(with: config)
+  Countly.sharedInstance().start(with: config)
 
-    // your code
+  // your code
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -568,10 +568,10 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.crashOccuredOnPreviousSessionCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)<br>{<br>    NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);<br>};</code></pre>
+    <pre><code class="objectivec">config.crashOccuredOnPreviousSessionCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)<br>{<br>  NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);<br>};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.crashOccuredOnPreviousSessionCallback =<br>{<br>    (crashReport: [AnyHashable: Any]) in<br>    print("crash report: \(crashReport)")<br>}</code></pre>
+    <pre><code class="swift">config.crashOccuredOnPreviousSessionCallback =<br>{<br>  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")<br>}</code></pre>
   </div>
 </div>
 <p>
@@ -594,10 +594,13 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.shouldSendCrashReportCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)<br>{<br>    NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);<br>    return YES;    //NO;     <br>};</code></pre>
+    <pre><code class="objectivec">config.shouldSendCrashReportCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)
+{                                                                                                                                        NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);
+  return YES;    //NO;
+};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.shouldSendCrashReportCallback =<br>{<br>    (crashReport: [AnyHashable: Any]) in<br>    print("crash report: \(crashReport)")<br>    return true    //false<br>}</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
+    <pre><code class="swift">config.shouldSendCrashReportCallback =<br>{<br>  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")<br>  return true    //false<br>}</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RN851W5J4BQX3FN938">Symbolication</h2>
@@ -1180,8 +1183,9 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </div>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
-  Opposed to "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.
-  You can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
+  Opposed to "auto stopped views", with regular views you can have multiple of
+  them started at the same time, and then you can control them independently. You
+  can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1699,42 +1703,42 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //Start Countly with CLYPushNotifications feature as follows
-    CountlyConfig* config = CountlyConfig.new;
-    config.appKey = @"YOUR_APP_KEY";
-    config.host = @"https://YOUR_COUNTLY_SERVER";
-    config.features = @[CLYPushNotifications];
-//  config.pushTestMode = CLYPushTestModeDevelopment;
-    [Countly.sharedInstance startWithConfig:config];
+  //Start Countly with CLYPushNotifications feature as follows
+  CountlyConfig* config = CountlyConfig.new;
+  config.appKey = @"YOUR_APP_KEY";
+  config.host = @"https://YOUR_COUNTLY_SERVER";
+  config.features = @[CLYPushNotifications];
+  //config.pushTestMode = CLYPushTestModeDevelopment;
+  [Countly.sharedInstance startWithConfig:config];
 
 
-    //Ask for user's permission for Push Notifications (not necessarily here)
-    //You can do this later at any point in the app after starting Countly
-    [Countly.sharedInstance askForNotificationPermission];
+  //Ask for user's permission for Push Notifications (not necessarily here)
+  //You can do this later at any point in the app after starting Countly
+  [Countly.sharedInstance askForNotificationPermission];
 
-    // your code
+  // your code
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
-    //Start Countly with CLYPushNotifications feature as follows
-    let config: CountlyConfig = CountlyConfig()
-    config.appKey = "YOUR_APP_KEY"
-    config.host = "https://YOUR_COUNTLY_SERVER"
-    config.features = [CLYPushNotifications]
-//  config.pushTestMode = CLYPushTestModeDevelopment
-    Countly.sharedInstance().start(with: config)
+  //Start Countly with CLYPushNotifications feature as follows
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
+  config.features = [CLYPushNotifications]
+  //config.pushTestMode = CLYPushTestModeDevelopment
+  Countly.sharedInstance().start(with: config)
 
-    //Ask for user's permission for Push Notifications (not necessarily here)
-    //You can do this later at any point in the app after starting Countly
-    Countly.sharedInstance().askForNotificationPermission()
+  //Ask for user's permission for Push Notifications (not necessarily here)
+  //You can do this later at any point in the app after starting Countly
+  Countly.sharedInstance().askForNotificationPermission()
 
-    // your code
+  // your code
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -1778,17 +1782,17 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt; *)options
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&gt; Bool
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -1803,17 +1807,17 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -1828,31 +1832,31 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">if ([url.scheme isEqualToString: @"countly"])
 {
-    if ([url.host isEqualToString: @"productA"])
-    {
-        // present view controller for Product A;
-    }
-    else if ([url.host isEqualToString: @"productB"])
-    {
-        // present view controller for Product B;
-    }
+  if ([url.host isEqualToString: @"productA"])
+  {
+    // present view controller for Product A;
+  }
+  else if ([url.host isEqualToString: @"productB"])
+  {
+    // present view controller for Product B;
+  }
 
-   // or you can use host property directly
+ // or you can use host property directly
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">if (url.scheme == "countly")
 {
-    if (url.host == "productA")
-    {
-        // present view controller for Product A;
-    }
-    else if (url.host == "productB")
-    {
-        // present view controller for Product B;
-    }
+  if (url.host == "productA")
+  {
+    // present view controller for Product A;
+  }
+  else if (url.host == "productB")
+  {
+    // present view controller for Product B;
+  }
 
-    // or you can use host property directly
+  // or you can use host property directly
 }</code></pre>
   </div>
 </div>
@@ -1930,22 +1934,22 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
 {
-    self.contentHandler = contentHandler;
-    self.bestAttemptContent = [request.content mutableCopy];
+  self.contentHandler = contentHandler;
+  self.bestAttemptContent = [request.content mutableCopy];
 
-    //delete existing template code, and add this line
-    [CountlyNotificationService didReceiveNotificationRequest:request withContentHandler:contentHandler];
+  //delete existing template code, and add this line
+  [CountlyNotificationService didReceiveNotificationRequest:request withContentHandler:contentHandler];
 }
 </code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void)
 {
-    self.contentHandler = contentHandler
-    bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+  self.contentHandler = contentHandler
+  bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
-    //delete existing template code, and add this line
-    CountlyNotificationService.didReceive(request, withContentHandler: contentHandler);
+  //delete existing template code, and add this line
+  CountlyNotificationService.didReceive(request, withContentHandler: contentHandler);
 }</code></pre>
   </div>
 </div>
@@ -1981,8 +1985,8 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 
 [Countly.sharedInstance askForNotificationPermissionWithOptions:authorizationOptions completionHandler:^(BOOL granted, NSError *error)
 {
-    NSLog(@"granted: %d", granted);
-    NSLog(@"error: %@", error);
+  NSLog(@"granted: %d", granted);
+  NSLog(@"error: %@", error);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -1990,8 +1994,8 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 
 Countly.sharedInstance().askForNotificationPermission(options: authorizationOptions, completionHandler:
 { (granted : Bool, error : Error?) in
-    print("granted: \(granted)")
-    print("error: \(error)")
+  print("granted: \(granted)")
+  print("error: \(error)")
 })</code></pre>
   </div>
 </div>
@@ -2191,8 +2195,8 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
 
 [Countly.sharedInstance askForNotificationPermissionWithOptions:authorizationOptions completionHandler:^(BOOL granted, NSError *error)
 {
-    NSLog(@"granted: %d", granted);
-    NSLog(@"error: %@", error);
+  NSLog(@"granted: %d", granted);
+  NSLog(@"error: %@", error);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2200,8 +2204,8 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
 
 Countly.sharedInstance().askForNotificationPermission(options: authorizationOptions, completionHandler:
 { (granted : Bool, error : Error?) in
-    print("granted: \(granted)")
-    print("error: \(error)")
+  print("granted: \(granted)")
+  print("error: \(error)")
 })</code></pre>
   </div>
 </div>
@@ -2582,8 +2586,8 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">class CountlyRCData {
-    var value: Any
-    var isCurrentUsersData: Bool
+  var value: Any
+  var isCurrentUsersData: Bool
 }
 </code></pre>
   </div>
@@ -2850,7 +2854,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <div class="tab">
     <pre><code class="objectivec">config.starRatingCompletion = ^(NSInteger rating)
 {
-    NSLog(@"rating %d",(int)rating);
+  NSLog(@"rating %d",(int)rating);
 };</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2868,7 +2872,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <div class="tab">
     <pre><code class="objectivec">[Countly.sharedInstance askForStarRating:^(NSInteger rating)
 {
-    NSLog(@"rating %li",(long)rating);
+  NSLog(@"rating %li",(long)rating);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2896,23 +2900,23 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <div class="tab">
     <pre><code class="objectivec">[Countly.sharedInstance presentRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" completionHandler:^(NSError* error)
 {
-    if (error)
-        NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
-    else
-        NSLog(@"Ratings feedback widget presented successfully");
+  if (error)
+    NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
+  else
+    NSLog(@"Ratings feedback widget presented successfully");
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">Countly.sharedInstance().presentRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", completionHandler:
 { (error : Error?) in
-    if (error != nil)
-    {
-        print("Ratings feedback widget presentation failed: \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
-    }
-    else
-    {
-        print("Ratings feedback widget presented successfully");
-    }
+  if (error != nil)
+  {
+    print("Ratings feedback widget presentation failed: \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
+  }
+  else
+  {
+    print("Ratings feedback widget presented successfully");
+  }
 })</code></pre>
   </div>
 </div>
@@ -2962,14 +2966,14 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="objectivec">
 [Countly.sharedInstance getFeedbackWidgets:^(NSArray * feedbackWidgets, NSError * error)
 {
-    if (error)
-    {
-        NSLog(@"Getting widgets list failed. Error: %@", error);
-    }
-    else
-    {
-        NSLog(@"Getting widgets list successfully completed. %@", [feedbackWidgets description]);
-    }
+  if (error)
+  {
+    NSLog(@"Getting widgets list failed. Error: %@", error);
+  }
+  else
+  {
+    NSLog(@"Getting widgets list successfully completed. %@", [feedbackWidgets description]);
+  }
 }];
     </code></pre>
   </div>
@@ -2977,16 +2981,15 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">
 Countly.sharedInstance().getFeedbackWidgets
 { (feedbackWidgets: [CountlyFeedbackWidget], error) in
-    if (error != nil)
-    {
-        print("Getting widgets list failed. \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
-    }
-    else
-    {
-        print("Getting widgets list successfully completed. \(String(describing: feedbackWidgets))")
-    }
-}
-    </code></pre>
+  if (error != nil)
+  {
+    print("Getting widgets list failed. \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
+  }
+  else
+  {
+    print("Getting widgets list successfully completed. \(String(describing: feedbackWidgets))")
+  }
+}</code></pre>
   </div>
 </div>
 <p>
@@ -3015,15 +3018,13 @@ Countly.sharedInstance().getFeedbackWidgets
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">
-        CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-        [aFeedbackWidget present];
+    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget present];
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">
-        let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
-        aFeedbackWidget?.present()
+    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.present()
     </code></pre>
   </div>
 </div>
@@ -3034,28 +3035,26 @@ Countly.sharedInstance().getFeedbackWidgets
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">
-CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
 [aFeedbackWidget presentWithAppearBlock:^
 {
-    NSLog(@"Appeared!");
+  NSLog(@"Appeared!");
 }
 andDismissBlock:^
 {
-    NSLog(@"Dismissed!");
+  NSLog(@"Dismissed!");
 }];
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">
-let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
 aFeedbackWidget?.present(appear:
 {
-    print("Appeared.")
+  print("Appeared.")
 },
 andDismiss:
 {
-    print("Dismissed.")
+  print("Dismissed.")
 })
     </code></pre>
   </div>
@@ -3074,14 +3073,14 @@ andDismiss:
 CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
 [aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
 {
-    if (error)
-    {
-        NSLog(@"Getting widget data failed. Error: %@", error);
-    }
-    else
-    {
-        NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
-    }
+  if (error)
+  {
+    NSLog(@"Getting widget data failed. Error: %@", error);
+  }
+  else
+  {
+    NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
+  }
 }];
     </code></pre>
   </div>
@@ -3090,14 +3089,14 @@ CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assumin
 let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
 aFeedbackWidget?.getData
 { (widgetData: [AnyHashable: Any]?, error: Error?) in
-    if (error != nil)
-    {
-        print("Getting widget data failed. Error \(error.debugDescription)")
-    }
-    else
-    {
-        print("Getting widget data successfully completed. \(String(describing: widgetData))")
-    }
+  if (error != nil)
+  {
+    print("Getting widget data failed. Error \(error.debugDescription)")
+  }
+  else
+  {
+    print("Getting widget data successfully completed. \(String(describing: widgetData))")
+  }
 }    </code></pre>
   </div>
 </div>
@@ -4098,67 +4097,67 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
 <p>
   Here is a detailed example usage of <code>addDirectRequest</code>:
 </p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">- (void) sendDirectRequest {
-    NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
-    requestMap[@"city"] = @"Istanbul";
-    requestMap[@"country_code"] = @"TR";
-    requestMap[@"ip_address"] = @"41.0082,28.9784";
+<pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
+  NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
+  requestMap[@"city"] = @"Istanbul";
+  requestMap[@"country_code"] = @"TR";
+  requestMap[@"ip_address"] = @"41.0082,28.9784";
 
-    NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
-    event[@"key"] = @"test";
-    event[@"count"] = @"201";
-    event[@"sum"] =  @"2010";
-    event[@"dur"] = @"2010";
+  NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
+  event[@"key"] = @"test";
+  event[@"count"] = @"201";
+  event[@"sum"] =  @"2010";
+  event[@"dur"] = @"2010";
 
-    NSMutableDictionary *ffJson = [[NSMutableDictionary alloc] init];
-    ffJson[@"type"] = @"FF";
-    ffJson[@"start_time"] = [NSNumber numberWithInt:123456789];
-    ffJson[@"end_time"] = [NSNumber numberWithInt:123456789];
-
-
-    NSMutableDictionary *skipJson = [[NSMutableDictionary alloc] init];
-    skipJson[@"type"] = @"skip";
-    skipJson[@"start_time"] = [NSNumber numberWithInt:123456789];
-    skipJson[@"end_time"] = [NSNumber numberWithInt:123456789];
-
-    NSMutableDictionary *resumeJson = [[NSMutableDictionary alloc] init];
-    resumeJson[@"type"] = @"resume_play";
-    resumeJson[@"start_time"] = [NSNumber numberWithInt:123456789];
-    resumeJson[@"end_time"] = [NSNumber numberWithInt:123456789];
-
-    NSMutableArray *trickPlay = [[NSMutableArray alloc] init];
-    [trickPlay addObject:ffJson];
-    [trickPlay addObject:skipJson];
-    [trickPlay addObject:resumeJson];
+  NSMutableDictionary *ffJson = [[NSMutableDictionary alloc] init];
+  ffJson[@"type"] = @"FF";
+  ffJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+  ffJson[@"end_time"] = [NSNumber numberWithInt:123456789];
 
 
-    NSMutableDictionary *segmentation = [[NSMutableDictionary alloc] init];
-    segmentation[@"trickplay"] =  trickPlay;
-    event[@"segmentation"] = segmentation;
+  NSMutableDictionary *skipJson = [[NSMutableDictionary alloc] init];
+  skipJson[@"type"] = @"skip";
+  skipJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+  skipJson[@"end_time"] = [NSNumber numberWithInt:123456789];
 
-    NSMutableArray *events = [[NSMutableArray alloc] init];
-    [events addObject:event];
+  NSMutableDictionary *resumeJson = [[NSMutableDictionary alloc] init];
+  resumeJson[@"type"] = @"resume_play";
+  resumeJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+  resumeJson[@"end_time"] = [NSNumber numberWithInt:123456789];
 
-    NSString *eventsString = [self toString:events];
+  NSMutableArray *trickPlay = [[NSMutableArray alloc] init];
+  [trickPlay addObject:ffJson];
+  [trickPlay addObject:skipJson];
+  [trickPlay addObject:resumeJson];
 
-    requestMap[@"events"]  = eventsString.cly_URLEscaped;
-    [Countly.sharedInstance addDirectRequest:requestMap];   
+
+  NSMutableDictionary *segmentation = [[NSMutableDictionary alloc] init];
+  segmentation[@"trickplay"] =  trickPlay;
+  event[@"segmentation"] = segmentation;
+
+  NSMutableArray *events = [[NSMutableArray alloc] init];
+  [events addObject:event];
+
+  NSString *eventsString = [self toString:events];
+
+  requestMap[@"events"]  = eventsString.cly_URLEscaped;
+  [Countly.sharedInstance addDirectRequest:requestMap];   
 }
 
 - (NSString *) toString: (id) dictionaryOrArrayToOutput  {
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
-                                                       options:0
-                                                         error:&amp;error];
-    NSString *jsonString = @"";
-    if (! jsonData) {
-        NSLog(@"Got an error: %@", error);
+  NSError *error;
+  NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
+                                                     options:0
+                                                       error:&amp;error];
+  NSString *jsonString = @"";
+  if (! jsonData) {
+    NSLog(@"Got an error: %@", error);
 
-    } else {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    return jsonString;
-}</pre>
+  } else {
+    jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+  }
+  return jsonString;
+}</code></pre>
 <h2 id="h_01HAVHW0RTPMZFEQGNNNR3ERYK">watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
