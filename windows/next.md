@@ -31,15 +31,15 @@
 </p>
 <h1 id="h_01HABTXQF7822Y2MQ0PHE8ARYH">Adding the SDK to the Project</h1>
 <p>
-  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency, either in your project file or a&nbsp;</span><code>packages.config</code><span>&nbsp;file (depending on the project format).</span>
+  <span>To install the package, you can use either the NuGet Package Manager or the Package Manager Console. When you install a package, NuGet records the dependency, either in your project file or a </span><code>packages.config</code><span> file (depending on the project format).</span>
 </p>
 <ol>
   <li>
-    In Solution Explorer, right-click<span>&nbsp;</span><strong>References</strong><span>&nbsp;</span>and
-    choose<span>&nbsp;</span><strong>Manage NuGet Packages</strong>.<img src="/guide-media/01GVCYFBRGSZYF4M2CSKYHNDKH" alt="image-NuGet-packages.png">
+    In Solution Explorer, right-click <strong>References</strong> and choose
+    <strong>Manage NuGet Packages</strong>.<img src="/guide-media/01GVCYFBRGSZYF4M2CSKYHNDKH" alt="image-NuGet-packages.png">
   </li>
   <li>
-    <span>Choose "nuget.org" as the&nbsp;</span><strong>Package source</strong><span>, select the&nbsp;</span><strong>Browse</strong><span>&nbsp;tab, search for&nbsp;</span><strong>Countly</strong><span>, select that package in the list, and select&nbsp;</span><strong>Install</strong><span>:<img src="/guide-media/01GVCYFDE9NW6731PFC2C4BMPW" alt="mceclip0.png"></span>
+    <span>Choose "nuget.org" as the </span><strong>Package source</strong><span>, select the </span><strong>Browse</strong><span> tab, search for </span><strong>Countly</strong><span>, select that package in the list, and select </span><strong>Install</strong><span>:<img src="/guide-media/01GVCYFDE9NW6731PFC2C4BMPW" alt="mceclip0.png"></span>
   </li>
   <li>
     <p>
@@ -88,7 +88,7 @@ Countly.Instance.Init(cc);</code></pre>
   <strong>Step 1</strong>: Enable SDK logging using the following call:
 </p>
 <pre><code class="csharp hljs">    Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
-<p>You can turn it on and off in any place of your code.&nbsp;</p>
+<p>You can turn it on and off in any place of your code.</p>
 <p>
   <strong>Step 2</strong>:
   <span>Go to project properties, select the 'Build' tab and make sure the following things are correct.</span>
@@ -142,7 +142,7 @@ Countly.Instance.Init(cc);</code></pre>
 await Countly.Instance.Init(cc);</code></pre>
 <h1 id="h_01HABTXQF82Z61FH639NC5FGSV">Crash Reporting</h1>
 <p>
-  <span>The Countly SDK for Windows can collect&nbsp;</span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span>&nbsp;which you may examine and resolve later on the server.</span>
+  <span>The Countly SDK for Windows can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span> which you may examine and resolve later on the server.</span>
 </p>
 <h2 id="h_01HABTXQF8Y0RYTXQBPQB8S4T5">Automatic Crash Handling</h2>
 <p>
@@ -158,7 +158,7 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <h2 id="h_01HABTXQF8WV6H2G2XNWXNTFBT">Handled Exceptions</h2>
 <p>
-  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening.&nbsp;</span><span>To log exceptions use the following code snippet:</span>
+  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span><span>To log exceptions use the following code snippet:</span>
 </p>
 <pre><code class="csharp">Dictionary&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;{
   { "customData", "importantStuff" }
@@ -172,8 +172,8 @@ try {
 <p>Here is the detail of the parameters:</p>
 <ul>
   <li>
-    <strong>error -</strong><span> A</span>&nbsp;string that contains a detailed
-    description of the exception.
+    <strong>error -</strong><span> A</span> string that contains a detailed description
+    of the exception.
   </li>
   <li>
     <strong>stackTrace -</strong><span> </span>A string that describes the contents
@@ -183,7 +183,7 @@ try {
     <strong>customInfo -<span> </span></strong>Custom key/values to be reported.
   </li>
   <li>
-    <strong>unhandled -</strong>&nbsp; (bool) Set false if the error is fatal.
+    <strong>unhandled -</strong> (bool) Set false if the error is fatal.
   </li>
 </ul>
 <p>
@@ -192,52 +192,53 @@ try {
 <pre><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
 <h2 id="h_01HABTXQF8XYTZNNY07Z52XPDR">Crash Breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave&nbsp;crash breadcrumbs<span>&nbsp;</span><span>Mandatory that </span>would
-  describe previous steps that were taken in your app before the crash. After a
-  crash happens, they will be sent together with the crash report.
+  Throughout your app, you can leave crash breadcrumbs
+  <span>Mandatory that </span>would describe previous steps that were taken in
+  your app before the crash. After a crash happens, they will be sent together
+  with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre><code class="csharp">Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
 <h2 id="h_01HABTXQF8BRT1FY1PR381RVJV">Consent</h2>
 <p>
-  This feature uses<span>&nbsp;</span><code>Crashes</code><span>&nbsp;consent. No additional crash logs will be recorded if consent is required and not given.</span>
+  This feature uses <code>Crashes</code><span> consent. No additional crash logs will be recorded if consent is required and not given.</span>
 </p>
 <h1 id="h_01HABTXQF8MKDPZ7J8JRS7AAEJ">Events</h1>
 <p>
-  <span>An&nbsp;</span><a href="http://resources.count.ly/docs/custom-events"><span>event</span></a><span>&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
+  <span>An </span><a href="http://resources.count.ly/docs/custom-events"><span>event</span></a><span> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.</span>
 </p>
 <p>
-  <span>There are a couple of values that can be set when recording an event. The main one is the&nbsp;<strong>key</strong>&nbsp;property which would be the identifier/name for that event.&nbsp; For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
+  <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event. For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
 </p>
 <p>
   <span>Optionally there are also other properties that you might want to set:</span>
 </p>
 <ul>
   <li>
-    <strong>Count -</strong>&nbsp; a whole numerical value that marks how many
-    times this event has happened. The default value for that is<span>&nbsp;</span><strong>1</strong>.
+    <strong>Count -</strong> a whole numerical value that marks how many times
+    this event has happened. The default value for that is <strong>1</strong>.
   </li>
   <li>
-    <strong>Sum -</strong><span>&nbsp;</span>This value would be summed across
-    all events in the dashboard. F<span>or example, in-app purchase events sum of purchased items. Its default value is <strong>null</strong>.</span>
+    <strong>Sum -</strong> This value would be summed across all events in the
+    dashboard. F<span>or example, in-app purchase events sum of purchased items. Its default value is <strong>null</strong>.</span>
   </li>
   <li>
-    <strong>Duration -<span>&nbsp;</span></strong>Used to record and track the
-    duration of events. The default value is<span> </span><strong>null</strong>.
+    <strong>Duration - </strong>Used to record and track the duration of events.
+    The default value is<span> </span><strong>null</strong>.
   </li>
   <li>
-    <strong>Segmentation-<span>&nbsp;</span></strong>A value where you can provide
-    custom segmentation for your events to track additional information. It is
-    a key and value map. The accepted data types for the value are<span>&nbsp;</span><span>"String".&nbsp;</span>
+    <strong>Segmentation- </strong>A value where you can provide custom segmentation
+    for your events to track additional information. It is a key and value map.
+    The accepted data types for the value are <span>"String".</span>
   </li>
 </ul>
 <h2 id="h_01HABTXQF8CACQNG6DNTEMRJA2">Recording Events</h2>
 <p>
-  <span>Here is a quick way to&nbsp;</span><span>record an event:</span>
+  <span>Here is a quick way to </span><span>record an event:</span>
 </p>
 <pre><code class="csharp">Countly.RecordEvent("event-key");</code></pre>
 <p>
-  <span>Based on the example below of an event recording a&nbsp;<strong>purchase</strong>, h</span><span>ere is a quick summary of the information for each usage:</span>
+  <span>Based on the example below of an event recording a <strong>purchase</strong>, h</span><span>ere is a quick summary of the information for each usage:</span>
 </p>
 <ul>
   <li>
@@ -351,7 +352,7 @@ Countly.Instance.StartEvent(eventName);
 Countly.Instance.CancelEvent(eventName);</code></pre>
 <h2 id="h_01HABTXQF9ZWR02CQHMJ74Y497">Consent</h2>
 <p>
-  <span>This feature uses&nbsp;<code>Events</code>&nbsp;consent.&nbsp;</span><span>No additional events will be recorded if consent is required and not given.</span>
+  <span>This feature uses <code>Events</code> consent. </span><span>No additional events will be recorded if consent is required and not given.</span>
 </p>
 <p>
   <span>When consent is removed, all previously started timed events will be cancelled.</span>
@@ -518,7 +519,7 @@ Countly.Instance.DisableLocation();</code></pre>
   <p>
     This feature is available with an
     <a href="http://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
-    <span>For information about User Profiles, review&nbsp;</span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
+    <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
   </p>
 </div>
 <h2 id="h_01HABTXQF97FBAZ6G2CV89E6DE">Setting Predefined Values</h2>
@@ -569,7 +570,7 @@ Countly.UserDetails.Name = "null";</code></pre>
 <h2 id="h_01HABTXQFAE25QX52WCAG0Y15M">Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
-  even when you don’t want to send other user-related data.<span>&nbsp;<br></span>You
+  even when you don’t want to send other user-related data.<span> <br></span>You
   can provide custom properties for user using <code>Custom</code> object
 </p>
 <pre><code>Countly.UserDetails.Custom.Add("city", "london");</code></pre>
@@ -673,16 +674,17 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <h1 id="h_01HABTXQFAD7RRPHNVJT9XDF6X">Other Features and Notes</h1>
 <h2 id="h_01HABTXQFA9FYPT9FFRADPMMF8">SDK Config Parameters Explained</h2>
 <p>
-  <span>To change the Configuration, update the values of parameters in the "<code class="csharp">CountlyConfig</code></span><strong><span>&nbsp;</span></strong><span>object. Here are the details of the optional parameters:</span><span></span>
+  <span>To change the Configuration, update the values of parameters in the "<code class="csharp">CountlyConfig</code></span>
+  <span>object. Here are the details of the optional parameters:</span><span></span>
 </p>
 <p>
-  <span><strong>developerProvidedDeviceId -&nbsp;</strong>(Optional, string) Your Device ID. It is an optional parameter.&nbsp;<strong>Example:</strong>&nbsp;f16e5af2-8a2a-4f37-965d-qwer5678ui98.</span>
+  <span><strong>developerProvidedDeviceId - </strong>(Optional, string) Your Device ID. It is an optional parameter. <strong>Example:</strong> f16e5af2-8a2a-4f37-965d-qwer5678ui98.</span>
 </p>
 <p>
-  <span><strong>consentRequired-&nbsp;</strong>(Optional, bool)&nbsp;This is useful&nbsp;during the app run when the user wants to opt-out of SDK features.</span>
+  <span><strong>consentRequired- </strong>(Optional, bool) This is useful during the app run when the user wants to opt-out of SDK features.</span>
 </p>
 <p>
-  <span><strong>sessionUpdateInterval -</strong>&nbsp;(Optional, int)&nbsp;Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong>&nbsp;60&nbsp;</strong>(seconds).</span>
+  <span><strong>sessionUpdateInterval -</strong> (Optional, int) Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong> 60 </strong>(seconds).</span>
 </p>
 <h2 id="h_01HABTXQFAHAQTRDWQ0YVM3VX4">SDK Internal Limits</h2>
 <p>
@@ -691,16 +693,16 @@ Countly.Instance.SetConsent(consent);</code></pre>
   would be truncated. Here are the details of these configurable fields:<span></span>
 </p>
 <p>
-  <span><strong>MaxKeyLength -&nbsp;</strong>(int) Maximum size of all string keys. The default value is&nbsp;<strong>128</strong>.&nbsp;</span>
+  <span><strong>MaxKeyLength - </strong>(int) Maximum size of all string keys. The default value is <strong>128</strong>. </span>
 </p>
 <p>
-  <span><strong>MaxValueLength - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.&nbsp;</span>
+  <span><strong>MaxValueLength - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>. </span>
 </p>
 <p>
-  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>256</strong>.&nbsp;</span>
+  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>256</strong>. </span>
 </p>
 <p>
-  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.&nbsp;</span>
+  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>. </span>
 </p>
 <p>
   <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
@@ -760,6 +762,9 @@ Countly.Instance.Init(cc);
 <p>
   <span>When in backend mode, nothing is saved persistently and everything is stored only in memory.</span>
 </p>
+<p>
+  <span>The backend mode does not have checksum ability.</span>
+</p>
 <h3 id="h_01HHHV17XPBGMMDAM2HW82QX65">
   <span>Enabling Backend Mode</span>
 </h3>
@@ -779,28 +784,402 @@ await Countly.Instance.Init(cc);</code></pre>
 <h3 id="h_01HHHV1KDXJNM5FJ8T9KHRB0ZZ">
   <span>Recording Data</span>
 </h3>
+<p>
+  <span>For each call, deviceId parameter is mandatory and should be provided. appKey parameter is optional. However, if multi app recording is intended it should be provided. </span>
+</p>
+<p>
+  <span>If app key is not provided, it fallbacks to given app key while initializing.</span>
+</p>
+<h4 id="h_01HJQQ9QE1Y5BS2YKW5FYQYPVF">
+  <span>Crash Reporting</span>
+</h4>
+<p>
+  <span>To report a crash with backend mode this method should be called:</span>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(string deviceId, string error, string stackTrace = null, IList&lt;string&gt; breadcrumbs = null, IDictionary&lt;string, object&gt; customInfo = null, IDictionary&lt;string, string&gt; metrics = null, bool unhandled = false, string appKey = null, long timestamp = 0);</code></pre>
+<p>
+  <span>For this function to work, only error parameter is required. </span>
+</p>
+<p>
+  <span>Keep in mind that if you want to send data for a device ID or app key that differs from the ones given during the SDK initialization, you must provide them in the function. Here is a minimal call:</span>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordException(DEVICE_ID, "Exception");</code></pre>
+<p>
+  <span>Because there is a possibility to multi device recording, metrics also should be provided if metric recording is intended. Here is the supported metric keys:</span>
+</p>
+<pre><span>"_os", "_os_version", "_ram_total", "_ram_current", "_disk_total", "_disk_current", "_online", "_muted", "_resolution", "_app_version", "_manufacture", "_device", "_orientation", "_run"</span></pre>
+<p>
+  <span>Optional values:</span>
+</p>
+<p>
+  <span> - <strong>stackTrace</strong>: if not provided it will be not sent to the server</span>
+</p>
+<p>
+  <span> - <strong>breadcrumbs</strong>: if not provided it will be not sent to the server</span>
+</p>
+<p>
+  <span> - <strong>customInfo</strong>: custom segmentation of a crash, if not provided it will be not sent to the server. Supported values for the custom info are int, float, double, long, string and bool.</span>
+</p>
+<p>
+  <span> - <strong>metrics</strong>: if not provided it will be not sent to the server</span>
+</p>
+<p>
+  <span> - <strong>unhandled</strong>: if not provided it will be recorded as a handled crash. If unhandled crash reporting is intended true value should be passed to the parameter, ex. unhandled: true</span>
+</p>
+<p>
+  <span> - <strong>timestamp</strong>: if not provided, it will be set as current timestamp, ex. timestamp: 1703752478530</span>
+</p>
+<p>
+  <span>Here is a set of examples:</span>
+</p>
+<pre><code class="csharp">// unhandled crash reporting with metrics
+var metrics = new Dictionary&lt;string, string&gt;(){
+  {"_os", "Windows"},
+  {"_os_version", "Windows10NT"},
+  {"_run", "5678"},
+  {"_bat", "67"},
+  {"_ram_total", "1024"},
+};
+
+Countly.Instance.BackendMode().RecordException(DEVICE_ID, "Exception", unhandled: true, metrics: metrics, appKey: APP_KEY);
+
+// crash reporting with all params provided and custom segmentation
+var customSegmentation = new Dictionary&lt;string, string&gt;(){
+  {"level", 65},
+  {"build_version", "45fA2022"},
+  {"critical_point", -5.4E-79},
+  {"timestamp", 1703752478530},
+  {"done", true},
+  {"percent", 0.67}
+};
+var stackTrace = ... // gather stack trace
+var breadCrumbs = new List&lt;string&gt; { "Before Init", "After Init" };
+  
+Countly.Instance.BackendMode().RecordException(DEVICE_ID, "Exception", stackTrace, breadCrumbs, customSegmentation, metrics, appKey: APP_KEY);
+  
+// if needed you can also provide timestamp of the exception by adding timestamp to the call, if you do not provide it will be set as current timestamp
+Countly.Instance.BackendMode().RecordException(DEVICE_ID, "Exception", appKey: APP_KEY, timestamp: 1703752478530);
+</code></pre>
 <h4 id="h_01HHHEEY3AHKR4XQD22DF8JQKJ">
   <span>Events</span>
 </h4>
 <p>
   <span>To record an event with backend mode this method should be called:</span>
 </p>
-<pre><span>Countly.Instance.BackendMode().RecordEvent(string deviceId, string appKey, string eventKey, double? eventSum = null, int eventCount = 1, long? eventDuration = null, Segmentation segmentations = null, long timestamp = 0);</span></pre>
+<pre><span>Countly.Instance.BackendMode().RecordEvent(string deviceId, string eventKey, Segmentation segmentations = null, int count = 1, double? sum = null, long? duration = null, string appKey = null, long timestamp = 0);</span></pre>
 <p>
   Here are some examples for recording event with the backend mode:
 </p>
 <pre><code class="csharp">BackendMode bm = Countly.Instance.BackendMode(); // for convenient calling
-bm.RecordEvent("app1", "device1", "event1");
+bm.RecordEvent("device1", "event1", appKey: "app1");
 Segmentation segmentation = new Segmentation();
 segmentation.Add("uid", "2873673");
 long timestamp = 1702467348;
-bm.RecordEvent("app2", "device2", "event2", 8.02, 2, 30, segmentation, timestamp);
-bm.RecordEvent("app3", "device3", "event3", segmentations: segmentation </code></pre>
+bm.RecordEvent("device2", "event2", segmentation, 2, 8.02, 30, "app2", timestamp);
+bm.RecordEvent("device3", "event3", segmentation, appKey: "app3"); // timestamp will be set as current timestamp </code></pre>
+<h4 id="h_01HJQSGRAM1WV3N6VBVS74EADS">Sessions</h4>
+<p>
+  Also sessions can be tracked with the Backend Mode. There are "BeginSession",
+  "UpdateSession" and "EndSession" methods.
+</p>
+<p>
+  <strong>Begin Session</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().BeginSession(string deviceId, string appKey = null, IDictionary&lt;string, string&gt; metrics = null, IDictionary&lt;string, string&gt; location = null, long timestamp = 0);</code></pre>
+<p>
+  If no metrics are provided for the BeginSession, it fallbacks to internal metrics
+  collected from the current device.
+</p>
+<p>
+  Location can be also tracked with providing location parameter of the function.
+  A device's location information can only be tracked with BeginSession call in
+  backend mode.
+</p>
+<p>
+  If language and country information would like to be tracked, _locale metric
+  must be provided with the BeginSession method.
+</p>
+<p>Here are examples about BeginSession method.</p>
+<pre><code class="csharp">// minimal call to the BeginSession, this fallbacks to internal metrics and app key
+Countly.Instance.BackendMode().BeginSession(DEVICE_ID);
+
+// With custom metrics, location and custom timestamp (timestamp is optional, if not provided, it will be set as current)
+var metrics = new Dictionary&lt;string, string&gt;(){
+  {"_os", "Windows"},
+  {"_os_version", "Windows10NT"},
+  {"_locale", "en-US"},
+  {"_resolution", "256x256"},
+  {"_device", "ETab 4"},
+  {"_carrier", "X-mobile"},
+  {"_app_version", "1.0"},
+};
+
+var location = new Dictionary&lt;string, string&gt;(){
+  {"location", "-0.3720234014105792,-159.99741809049596"},
+  {"ip", "1.1.1.1"},
+  {"city", "New York"},
+  {"country_code", "DEU"} // iso country code
+};
+Countly.Instance.BackendMode().BeginSession(DEVICE_ID, APP_KEY, metrics, location, 1703752478530);</code></pre>
+<p>
+  <strong>Update Session</strong>
+</p>
+<p>
+  Duration is in seconds and required to call update session method.
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().UpdateSession(string deviceId, int duration, string appKey = null, long timestamp = 0);</code></pre>
+<p>Here are examples about UpdateSession method.</p>
+<pre><code class="csharp">// minimal call to the UpdateSession, this fallbacks to internal metrics and app key
+Countly.Instance.BackendMode().UpdateSession(DEVICE_ID, 60);
+
+// with custom timestamp
+Countly.Instance.BackendMode().UpdateSession(DEVICE_ID, 45, APP_KEY, 1703752478530);</code></pre>
+<p>
+  <strong>End Session</strong>
+</p>
+<p>
+  Duration is in seconds and required. If it is negative, it will be not sent
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().EndSession(string deviceId, int duration, string appKey = null, long timestamp = 0);</code></pre>
+<p>Here are examples about EndSession method.</p>
+<pre><code class="csharp">// minimal call to the EndSession, this fallbacks to internal metrics and app key
+Countly.Instance.BackendMode().EndSession(DEVICE_ID, -1);
+
+// with custom timestamp and duration
+Countly.Instance.BackendMode().EndSession(DEVICE_ID, 45, APP_KEY, 1703752478530);</code></pre>
+<h4 id="h_01HJQWCX2D7MN5VJDA7VNXVWRW">View Tracking</h4>
+<p>
+  The Windows SDK backend mode provides manual reporting of views. There is no
+  automatic handling of views internally.
+</p>
+<p>The SDK provides two functions; StartView and StopView</p>
+<p>
+  <strong>Start View</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().StartView(string deviceId, string name, Segmentation segmentations = null, string segment = null, string appKey = null, bool firstView = false, long timestamp = 0);</code></pre>
+<p>
+  name and segment parameters are required. They should not be empty or null.
+</p>
+<p>Segment is platform for devices or domain for websites.</p>
+<p>
+  If a view is first view in the session or in the design of your flow, firstView
+  parameter must be provided as true. Default is false.
+</p>
+<p>Here are examples about StartView method.</p>
+<pre><code class="csharp">// minimal call to the StartView
+Countly.Instance.BackendMode().StartView(DEVICE_ID, "Login", segment: "Desktop");
+
+Segmentation segmentation = new Segmentation();
+segmentation.Add("email", "test@test.test");
+segmentation.Add("campaign_user", "true");
+
+// with segmentation, firstView and timestamp
+Countly.Instance.BackendMode().StartView(DEVICE_ID, "Login", segmentation, "Desktop", APP_KEY, true, 1703752478530);</code></pre>
+<p>
+  <strong>Stop View</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().StopView(string deviceId, string name, long duration, Segmentation segmentations = null, string segment = null, string appKey = null, long timestamp = 0);</code></pre>
+<p>
+  name, segment and duration parameters are required. They should not be empty
+  or null.
+</p>
+<p>Segment is platform for devices or domain for websites.</p>
+<p>Duration in seconds and cannot be less then 0</p>
+<p>Here are examples about StopView method.</p>
+<pre><code class="csharp">// minimal call to the StopView
+Countly.Instance.BackendMode().StopView(DEVICE_ID, "Logout", 34, segment: "Android");
+
+Segmentation segmentation = new Segmentation();
+segmentation.Add("last_seen", "1994-11-05T13:15:30Z");
+segmentation.Add("campaign_user", "false");
+
+// with segmentation and timestamp
+Countly.Instance.BackendMode().StopView(DEVICE_ID, "Logout", 56, segmentation, "Gear", APP_KEY, 1703752478530);</code></pre>
+<h4 id="h_01HJQXEQHXV7YFT3FGCFRQ36D7">Device ID Management</h4>
+<p>
+  It is possible manage device ids with the Windows SDK backend mode.
+</p>
+<p>
+  <strong>Change Device ID With Merge</strong>
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(string newDeviceId, string oldDeviceId, string appKey = null, long timestamp = 0);</code></pre>
+<p>newDeviceId is required, should not be empty or null</p>
+<p>Here are examples about ChangeDeviceIdWithMerge method.</p>
+<pre><code class="csharp">// minimal call to the ChangeDeviceIdWithMerge, this fallbacks to internal app key
+Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID);
+
+// with custom timestamp
+Countly.Instance.BackendMode().ChangeDeviceIdWithMerge(NEW_ID, OLD_ID, APP_KEY, 1703752478530);</code></pre>
+<h4 id="h_01HJQZ3PMJXQ7CBN2FFPCYWXRR">User Profiles</h4>
+<p>
+  It is possible manage user properties and custom details with the Windows SDK
+  backend mode.
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordUserProperties(string deviceId, IDictionary&lt;string, object&gt; userProperties, string appKey = null, long timestamp = 0);</code></pre>
+<p>
+  userProperties are required and should not be empty. Current supported data types
+  for the values are: string, int, long, double, float and bool
+</p>
+<p>
+  Here is the supported predefined keys for user properties. Other than these keys,
+  everything will be a custom property.
+</p>
+<pre>"name", "username", "email", "organization", "phone", "gender", "byear", "picture"</pre>
+<p>
+  To set the picture correctly, only URL of the picture should be provided
+</p>
+<p>Here are examples about RecordUserProperties method.</p>
+<pre><code class="csharp">// minimal call to the RecordUserProperties, this fallbacks to internal app key
+var userProperties = new Dictionary&lt;string, object&gt;(){
+   {"name", "John"},
+   {"username", "Dohn"},
+   {"organization", "Fohn"},
+   {"email", "johnjohn@john.jo"},
+   {"phone", "+123456789"},
+   {"gender", "Unkown"},
+   {"byear", 1969},
+   {"picture", "http://someurl.png"}
+};
+Countly.Instance.BackendMode().RecordUserProperties(DEVICE_ID, userProperties);
+
+// with custom timestamp and custom properties
+userProperties["int"] = 5;
+userProperties["long"] = 1044151383000;
+userProperties["float"] = 56.45678;
+userProperties["string"] = "value";
+userProperties["double"] = -5.4E-79;
+userProperties["invalid"] = new List&lt;string&gt;(); // this will be eliminated
+userProperties["action"] = "{$push: \"black\"}";
+userProperties["nullable"] = null; // this will be eliminated
+userProperties["marks"] = "{$inc: 1}";
+userProperties["point"] = "{$mul: 1.89}"
+userProperties["gpa"] = "{$min: 1.89}"
+userProperties["gpa"] = "{$max: 1.89}"
+userProperties["name"] = "{$setOnce: \"Name\"}"
+userProperties["permissions"] = "{$pull: [\"Create\", \"Update\"]}"
+userProperties["langs"] = "{$push: [\"Python\", \"Ruby\", \"Ruby\"]}" // this will create two 'Ruby' entry
+userProperties["langs"] = "{$addToSet: [\"Python\", \"Python\"]}" // this will create only one 'Python' entry
+
+Countly.Instance.BackendMode().RecordUserProperties(DEVICE_ID, userProperties, APP_KEY, 1703752478530);</code></pre>
+<p>
+  You may also perform certain manipulations to your custom property values, such
+  as incrementing the current value on a server by a certain amount or storing
+  an array of values under the same property.
+</p>
+<p>
+  The keys for predefined modification operations are as follows:
+</p>
+<div class="table-container">
+  <table style="width: 752px; height: 220px;">
+    <tbody>
+      <tr style="height: 22px;">
+        <th style="width: 95.1875px; height: 22px;">Key</th>
+        <th style="width: 259.859px; height: 22px;">Description</th>
+        <th style="width: 386.953px; height: 22px;">Example Usage</th>
+      </tr>
+      <tr style="height: 44px;">
+        <td style="width: 87.1875px; height: 44px;">$inc</td>
+        <td style="width: 251.859px; height: 44px;">
+          <span>increment value by provided value</span>
+        </td>
+        <td style="width: 378.953px; height: 44px;">
+          <span><code class="csharp">props["age"] = "{$inc: 5}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$mul</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>multiply value by the provided value</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["point"] = "{$mul: 1.89}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$min</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>sets minimum value between given and existing</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["gpa"] = "{$min: 1.89}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$max</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>sets maximum value between given and existing</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["gpa"] = "{$max: 1.89}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$setOnce</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>set value if it does not exist</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["name"] = "{$setOnce: \"Name\"}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$pull</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>remove values from an array prop</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["permissions"] = "{$pull: [\"Create\", \"Update\"]}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$push</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>insert values to an array prop, same values can be added</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["langs"] = "{$push: [\"Python\", \"Ruby\"]}"</code></span>
+        </td>
+      </tr>
+      <tr style="height: 22px;">
+        <td style="width: 87.1875px; height: 22px;">$addToSet</td>
+        <td style="width: 251.859px; height: 22px;">
+          <span>insert values to an array of unique values, same values are ignored</span>
+        </td>
+        <td style="width: 378.953px; height: 22px;">
+          <span><code class="csharp">props["langs"] = "{$addToSet: [\"Python\", \"Python\"]}"</code></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4 id="h_01HJR0QPH5KYCS80XYZMDE068R">Direct Requests</h4>
+<p>
+  The Windows SDK has ability to send direct/custom requests to the server.
+</p>
+<pre><code class="csharp">Countly.Instance.BackendMode().RecordDirectRequest(string deviceId, IDictionary&lt;string, string&gt; paramaters, string appKey = null, long timestamp = 0);</code></pre>
+<p>Parameters should not be empty</p>
+<p>Here are examples about RecordDirectRequest method.</p>
+<p>
+  The internal keys are not overridden by the given key values.
+</p>
+<pre><code class="csharp">// minimal call to the RecordDirectRequest, this fallbacks to internal app key
+var parameters = new Dictionary&lt;string, string&gt;(){
+   {"begin_session", "1"},
+   {"metrics", ... }, // metrics to provide
+   {"location", "-0.3720234014105792,-159.99741809049596" },
+   {"sdk_custom_version", "23.12.0:04"},
+   {"user_id", "123456789"},
+   {"onesignal_id", "..."}
+};
+Countly.Instance.BackendMode().RecordDirectRequest(DEVICE_ID, parameters);
+
+// with custom timestamp
+Countly.Instance.BackendMode().RecordDirectRequest(DEVICE_ID, parameters, APP_KEY, 1703752478530);</code></pre>
 <h3 id="h_01HHHTMR50NHVM1X61ZFCF7002">Configuring Backend Mode</h3>
 <p>
   When backend mode is enabled, the SDK will apply limits to request queue and
   to the event queue. Default limit for the maximum amount of entries that the
-  request queue can hold is 1000. When exceding that count, the oldest request
+  request queue can hold is 1000. When exceeding that count, the oldest request
   will be deleted.
 </p>
 <p>
