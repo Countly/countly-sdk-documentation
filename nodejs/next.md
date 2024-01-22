@@ -746,4 +746,3 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   metrics:"{'_os':'Linux'}",
   begin_session:1
 });</code></pre>
-<p>&nbsp;</p>
