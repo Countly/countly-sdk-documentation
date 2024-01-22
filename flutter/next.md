@@ -1691,24 +1691,24 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
   in bold.
 </p>
 <pre><code class="JavaScript">android {
-&nbsp; buildTypes {
-&nbsp; &nbsp; release {
-&nbsp; &nbsp; &nbsp; // Enables code shrinking, obfuscation, and optimization for only
-&nbsp; &nbsp; &nbsp; // your project's release build type.
-&nbsp; &nbsp; &nbsp; minifyEnabled true
+  buildTypes {
+    release {
+      // Enables code shrinking, obfuscation, and optimization for only
+      // your project's release build type.
+      minifyEnabled true
 
-&nbsp; &nbsp; &nbsp; // Enables resource shrinking, which is performed by the
-&nbsp; &nbsp; &nbsp; // Android Gradle plugin.
-&nbsp; &nbsp; &nbsp; shrinkResources true
+      // Enables resource shrinking, which is performed by the
+      // Android Gradle plugin.
+      shrinkResources true
 
-&nbsp; &nbsp; &nbsp; // Includes the default ProGuard rules files that are packaged with
-&nbsp; &nbsp; &nbsp; // the Android Gradle plugin. To learn more, go to the section about
-&nbsp; &nbsp; &nbsp; // R8 configuration files.
-&nbsp; &nbsp; &nbsp; proguardFiles getDefaultProguardFile(
-&nbsp; &nbsp; &nbsp; &nbsp; 'proguard-android-optimize.txt'),
-&nbsp; &nbsp; &nbsp; &nbsp; 'proguard-rules.pro'
-&nbsp; &nbsp; &nbsp; }
-&nbsp; }
+      // Includes the default ProGuard rules files that are packaged with
+      // the Android Gradle plugin. To learn more, go to the section about
+      // R8 configuration files.
+      proguardFiles getDefaultProguardFile(
+        'proguard-android-optimize.txt'),
+        'proguard-rules.pro'
+      }
+  }
 ...
 }
 </code></pre>
