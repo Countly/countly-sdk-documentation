@@ -826,7 +826,7 @@ Countly.askForNotificationPermission();</code></pre>
 });</pre>
 <p>
   In order to listen to notification receive and click events, Place below code
-  in <code>AppDelegate.swift</code>&nbsp;
+  in <code>AppDelegate.swift</code>
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">import countly_flutter
