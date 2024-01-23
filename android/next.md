@@ -1,5 +1,5 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 23.12.X</span>
+  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 24.1.X</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -1980,7 +1980,7 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 </ul>
 <p>To record app start time you need to implement 3 things.</p>
 <p>First, you must enable this feature in config on init:</p>
-<pre>config.setRecordAppStartTime(<span>true</span>)</pre>
+<pre>config.apm.enableAppStartTimeTracking()</pre>
 <p>
   Second, you must call `Countly.applicationOnCreate();` right after your application
   classes `onCreate` like:
@@ -2000,9 +2000,11 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 <h2 id="h_01HAVQDM5V5NQYRG4BZZ1RKKAY">App Time in Background / Foreground</h2>
 <p>
   Countly will record the time your users spend in the foreground and background.
-  For this to work, your users need to be given any consent. You also need to provide
-  your Application class to your config object with "<span>setApplication" during init.</span>
+  For this to work, your users need to be given any consent and enable foreground/background
+  tracking. You also need to provide your Application class to your config object
+  with "<span>setApplication" during init.</span> Enable this feature on init:
 </p>
+<pre>config.apm.enableForegroundBackgroundTracking()</pre>
 <h1 id="h_01HAVQDM5V1ZB8ECYTH1SPR3Q7">User Consent</h1>
 <p>
   <span style="font-weight: 400;">In an effort to comply with GDPR Countly provides ways to toggle different Countly features on/off depending on the given consent.</span>
@@ -2382,8 +2384,8 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     to the application class.
   </li>
   <li>
-    <strong>setRecordAppStartTime(boolean recordAppStartTime)</strong> - Enables
-    the recording of the app start time.
+    <strong>apm.enableAppStartTimeTracking()</strong> - Enables the recording
+    of the app start time.
   </li>
   <li>
     <strong>setDisableLocation()</strong> - Disables location tracking.
@@ -2399,15 +2401,15 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     <a href="#h_01GVJB16Q86TAX1AJ0QZZ5VR9N" target="_self">here</a>.
   </li>
   <li>
-    <strong>setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
+    <strong>apm.setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
     - Overrides the app start timestamp.
   </li>
   <li>
-    <strong>enableManualAppLoadedTrigger()</strong> - Enables manual trigger
+    <strong>apm.enableManualAppLoadedTrigger()</strong> - Enables manual trigger
     of the moment when the app has finished loading.
   </li>
   <li>
-    <strong>enableManualForegroundBackgroundTriggerAPM()</strong> - Enables manual
+    <strong>apm.enableForegroundBackgroundTracking()</strong> - Enables automatic
     control of triggers.
   </li>
   <li>
