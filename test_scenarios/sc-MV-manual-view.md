@@ -36,7 +36,9 @@ updateGlobalViewSegmentation
 
 called with "null" values.
 versions with and without segmentation.
+
 nothing should crash, no events should be recorded
+EQ and RQ should be checked at the start and at the end
 
 ### MV_101_badValues_emptyString
 
@@ -55,6 +57,7 @@ called with empty string values
 versions with and without segmentation
 
 nothing should crash, no events should be recorded
+EQ and RQ should be checked at the start and at the end
 
 ### MV_102_badValues_nonExistingViews
 
@@ -68,13 +71,18 @@ addSegmentationToViewWithName
 These should be called with view names and id's that are not started
 
 nothing should crash, no events should be recorded
+EQ and RQ should be checked at the start and at the end
 
 ## (2XX) Usage flows
 
-### MV_200A_autostartView_autoClose_legacy
+### MV_200A_autoStoppedView_autoClose_legacy
+
+This should not be implemented by SDK's where the legacy call behaves differently
 
 Make sure auto closing views behave correctly
-Includes the legacy method "recordView" in its flow
+Includes the legacy method "recordView" in its flow and the new "startAutoStoppedView"
+Double calling "recordView" or "startAutoStoppedView" should stop the view.
+Calling "start view" should also stop them.
 
 After every action, the EQ should be validated so make sure that the correct event is recorded
 
@@ -111,74 +119,195 @@ After every action, the EQ should be validated so make sure that the correct eve
 (eE_H d=1 id=idv8 pvid=idv7, segm={}) 
 (sE_I id=idv9 pvid=idv8 segm={visit="1"})
 * stopAllViews
-(eE_C d=6 id=idv2 pvid=idv8, segm={}) 
+(eE_C d=6 id=idv3 pvid=idv8, segm={}) 
 (eE_F d=3 id=idv6 pvid=idv8, segm={}) 
 (eE_I d=0 id=idv9 pvid=idv8, segm={}) 
 
-### MV_200B_autostartView_autoClose WIP
+### MV_200B_autoStoppedView_autoClose
 
 without the deprecated "recordViewCall"
+After every action, the EQ should be validated so make sure that the correct event is recorded
 
-### MV_201_simpleFlowMultipleViews
-
-Make sure all the basic functions are working correctly and we are keeping time correctly
-
-* start view A (sE_A)
-* start view B (sE_B)
+* startAutoStoppedView view A 
+(sE_A id=idv1 pvid="" segm={visit="1" start="1"})
 * wait 1 sec
-* pause view A (eE_A_1)
+* startAutoStoppedView view B 
+(eE_A d=1 id=idv1 pvid="", segm={}) 
+(sE_B id=idv2 pvid=idv1 segm={visit="1"})
 * wait 1 sec
-* resume view A
-* stop view with stopViewWithName/stopViewWithID/stopAllViews (eE_1, eE_2)
-* Stop view B if needed
+* start view C 
+(eE_B d=1 id=idv2 pvid=idv1, segm={}) 
+(sE_C id=idv3 pvid=idv2 segm={visit="1"})
+* stopAllViews
+(eE_X d=0 id=idv3 pvid=idv2, segm={}) 
 
-make sure the summary time is correct
-in total there should be 5 events. validate their values
 
-### MV_202_mixedStartFlow (WIP)
+### MV_201A_autoStopped_pausedResumed_Legacy
 
-Validate the interaction of "startView" and "startAutoStoppedView". "startAutoStoppedView" should be automatically stopped when calling "startView", but not the other way around
-
-* startView A (sE_A)
-* wait 1 sec
-* startAutoStoppedView C (sE_C)
-* wait 1 sec
-* startView B (eE_C_1, sE_B)
-* wait 1 sec
-* stopViewWithName A (eE_A_3)
-* stopViewWithID B (eE_B_1)
-
-### MV_203_startAutoStoppedView (WIP)
-
-We make sure that "startAutoStoppedView" closes other views started by it
-
-* startAutoStoppedView A
+* start view A
 * startAutoStoppedView B
+* wait 1 sec
+* pause view B 
+* wait 1 sec
+* resume view B
+* wait 1 sec
+* RecordView C
+* wait 1 sec
+* pause view C 
+* wait 1 sec
+* resume view C
+* stopAllViews 
 
-make sure that at this point there are 3 events, 2 starting and 1 closing.
+should record 8 events
 
+### MV_201B_autoStopped_pausedResumed
+
+* start view A 
+* start startAutoStoppedView B 
+* wait 1 sec
+* pause view B 
+* wait 1 sec
+* resume view B
+* stopAllViews 
+
+should record 5 events
+
+### MV_202A_autoStopped_stopped_legacy
+
+* startAutoStoppedView A 
+* wait 1 sec
+* stop by name
+* startAutoStoppedView B 
+* wait 1 sec
+* stop by ID
+* startAutoStoppedView C 
+* wait 1 sec
+* stopAllViews
+* record view D 
+* wait 1 sec
+* stop by name
+* record view E 
+* wait 1 sec
+* stop by ID
+* record view F 
+* wait 1 sec
 * stopAllViews
 
-This should produce 1 more closing view
+should record 12 events
+
+### MV_202B_autoStopped_stopped
+
+* startAutoStoppedView view A 
+* wait 1 sec
+* stop by name
+* startAutoStoppedView view B 
+* wait 1 sec
+* stop by ID
+* startAutoStoppedView view c 
+* wait 1 sec
+* stopAllViews
+
+should record 6 events
+
+### MV_203_startView_PausedResumed
+
+* start view A 
+* wait 1 sec
+* pause view A 
+* wait 1 sec
+* resume view A
+* wait 1 sec
+* stopAllViews 
+
+3 events
+
+### MV_203_startView_stopped
+
+* start view A 
+* wait 1 sec
+* stop by name
+* start view B 
+* wait 1 sec
+* stop by ID
+* start view c 
+* wait 1 sec
+* stopAllViews
+
+should record 6 events
 
 ## (3XX) Consent and other features
 
-### MV_300_callingWithNoConsent
+### MV_300A_callingWithNoConsent_legacy
 
 recordView(x2),
-startAutoStoppedView(x2),  startView(x2), pauseViewWithID, resumeViewWithID,
-stopViewWithName(x2), stopViewWithID(x2), 
-addSegmentationToViewWithID, addSegmentationToViewWithName,
-setGlobalViewSegmentation,
-updateGlobalViewSegmentation
+startAutoStoppedView(x2), 
+startView(x2), 
+pauseViewWithID, 
+resumeViewWithID,
+stopViewWithName(x2),
+stopViewWithID(x2), 
 
-calling these with valid values should not cord anything in EQ
+calling these with valid values should not record anything in EQ or RQ
+
+### MV_300B_callingWithNoConsent
+
+recordView(x2),
+startAutoStoppedView(x2), 
+startView(x2), 
+pauseViewWithID, 
+resumeViewWithID,
+stopViewWithName(x2),
+stopViewWithID(x2), 
+
+calling these with valid values should not record anything in EQ or RQ
 
 ### MV_301_consentRemoved WIP
 
 ### MV_310_
 
+
+A) 310_XXXXXX
+
+B) MV_310
+
+
+) test_MV_310_consentRemoved
+
+) test_MV_310
+
+=====
+
+
+A) regularTest.java
+
+   sc_MV_ManualView.java   
+   sc_UT_Utils.java
+
+B) scenarios/MV_ManualView.java
+   scenarios/UT_Utils.java
+
+   regularTest.java
+
+C) someTests/regularTest.java
+
+   MV_ManualView.java
+   UT_Utils.java
+
+
+
+
+
+SC-MA
+SC-MB
+SC-MV
+SC-UA
+SC-UB
+SC-UC
+
 session end clears first view
+
+
+changing device ID stops views and resets first segm
 
 ## (4XX) segmentation
 
@@ -193,6 +322,11 @@ manual calls not working but the global segm calls do
 ################
 
 start views with the same name
+
+
+###########
+
+automatic view tracking exceptions
 
 ###
 
