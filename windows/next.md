@@ -43,7 +43,7 @@
   </li>
   <li>
     <p>
-      Accept any license prompts.<span></span>
+      Accept any license prompts.
     </p>
   </li>
 </ol>
@@ -675,7 +675,7 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <h2 id="h_01HABTXQFA9FYPT9FFRADPMMF8">SDK Config Parameters Explained</h2>
 <p>
   <span>To change the Configuration, update the values of parameters in the "<code class="csharp">CountlyConfig</code></span>
-  <span>object. Here are the details of the optional parameters:</span><span></span>
+  <span>object. Here are the details of the optional parameters:</span>
 </p>
 <p>
   <span><strong>developerProvidedDeviceId - </strong>(Optional, string) Your Device ID. It is an optional parameter. <strong>Example:</strong> f16e5af2-8a2a-4f37-965d-qwer5678ui98.</span>
@@ -690,7 +690,7 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
   limits. If values or keys provided by the user, would exceed the limits, they
-  would be truncated. Here are the details of these configurable fields:<span></span>
+  would be truncated. Here are the details of these configurable fields:
 </p>
 <p>
   <span><strong>MaxKeyLength - </strong>(int) Maximum size of all string keys. The default value is <strong>128</strong>. </span>
@@ -1167,7 +1167,7 @@ var parameters = new Dictionary&lt;string, string&gt;(){
    {"begin_session", "1"},
    {"metrics", ... }, // metrics to provide
    {"location", "-0.3720234014105792,-159.99741809049596" },
-   {"sdk_custom_version", "23.12.0:04"},
+   {"sdk_custom_version", "24.1.0:04"},
    {"user_id", "123456789"},
    {"onesignal_id", "..."}
 };
