@@ -235,6 +235,24 @@ should record 6 events
 
 should record 6 events
 
+### MV_XXX_globalSegmentation
+
+We make sure that "setGlobalSegmentation" and "updateGlobalSegmentation" updates/sets global segmentation
+
+* initialize countly with init given global segmentation that includes all accepted data types and couple of incorrect ones (like arr=list())
+* start view A with segmentation that overrides one of the global segmentations
+* validate start view event is recorded for A with correct segmentation
+* setGlobalViewSegmentation with all accepted data types and couple of not accepted data types
+* sleep for 1 second
+* pause view A
+* validate pause view event, and setGlobalViewSegmentation values are exists
+* call updateGlobalViewSegmentation that overrides some of the globalSegmentation and also add couple of incorrect data types
+* start view B with segment that overrides couple of not overridden global segmentation values
+* validate start view event for B is recorded and global segmentation values are overwridden and incorrect data types removed
+* sleep for 1 second
+* stopAllViews with segmentation that has incorrect data types, 1 global segm override and new segm values
+* validate 2 stop view event is recorded in order of A,B and correct segm values are existed
+
 ## (3XX) Consent and other features
 
 ### MV_300A_callingWithNoConsent_legacy
