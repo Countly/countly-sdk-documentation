@@ -31,7 +31,7 @@
   GitHub repo <a href="https://github.com/Countly/countly-sdk-nodejs">here</a>
   and download it inside your project folder by executing the lines:
 </p>
-<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-nodejs.git
+<pre><code class="bash">git clone https://github.com/Countly/countly-sdk-nodejs.git
 </code></pre>
 <h1 id="h_01HABTSEDFXYDEN0QDRY7DEVR7">Adding the SDK to the project</h1>
 <p>
@@ -70,8 +70,8 @@
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
 Countly.init({
-    app_key: "YOUR-APP-KEY",
-    url: "https://your_server_url/"
+  app_key: "YOUR-APP-KEY",
+  url: "https://your_server_url/"
 });</code></pre>
 <div class="callout callout--info">
   <p>
@@ -90,9 +90,9 @@ Countly.init({
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
 Countly.init({
-    app_key: "YOUR-APP-KEY",
-    url: "https://your_server_url/",
-    debug: true
+  app_key: "YOUR-APP-KEY",
+  url: "https://your_server_url/",
+  debug: true
 });</code></pre>
 <p>
   But sometimes you might want to see the logs only for a small time frame or some
@@ -118,10 +118,10 @@ Countly.setLoggingEnabled(false);</code></pre>
 <pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
 
 Countly.init({
-    app_key: "YOUR-APP-KEY",
-    url: "https://your_server_url/",
-    // by default it is "../data/"
-    storage_path: "../your_storage/path" 
+  app_key: "YOUR-APP-KEY",
+  url: "https://your_server_url/",
+  // by default it is "../data/"
+  storage_path: "../your_storage/path" 
 });</code></pre>
 <h1 id="h_01HABTSEDF3VWA2BT8QJQH6NJ7">Crash reporting</h1>
 <p>
@@ -408,11 +408,11 @@ var test = Countly.get_remote_config("test");</code><code class="javascript"></c
 </p>
 <pre><code class="javascript">//user feedback
 Countly.report_feedback({
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
+  widget_id:"1234567890",
+  contactMe: true,
+  rating: 5,
+  email: "user@domain.com",
+  comment: "Very good"
 });</code></pre>
 <p>&nbsp;</p>
 <h1 id="h_01HABTSEDG0TDK1PCNWM8QENG0">User profiles</h1>
@@ -425,20 +425,20 @@ Countly.report_feedback({
 </p>
 <p>The list of possible parameters you can pass is:</p>
 <pre><code class="javascript">Countly.user_details({
-    "name": "Arturs Sosins",
-    "username": "ar2rsawseen",
-    "email": "test@test.com",
-    "organization": "Countly",
-    "phone": "+37112345678",
-    //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
-    "gender": "M",
-    "byear": 1987, //birth year
-    "custom":{
-      "key1":"value1",
-      "key2":"value2",
-      ...
-    }
+  "name": "Arturs Sosins",
+  "username": "ar2rsawseen",
+  "email": "test@test.com",
+  "organization": "Countly",
+  "phone": "+37112345678",
+  //Web URL pointing to user picture
+  "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+  "gender": "M",
+  "byear": 1987, //birth year
+  "custom":{
+    "key1":"value1",
+    "key2":"value2",
+    ...
+  }
  });</code></pre>
 <h2 id="h_01HABTSEDGZJXM38TNGRZDK69F">Modifying custom data</h2>
 <p>
@@ -465,16 +465,16 @@ Countly.userData.save() //send userData to server</code></pre>
 <p>Here is an example of how to report network trace:</p>
 <pre><code class="javascript">//report network trace
 Countly.report_trace({
-    type: "network", //device or network
-    name: "/some/endpoint", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
-    app_metrics: {
-        response_time: 1000,
-        response_code: 200,
-        response_payload_size: 12345,
-        request_payload_size: 5432
-    }
+  type: "network", //device or network
+  name: "/some/endpoint", //use name to identify trace and group them by
+  stz: 1234567890123, //start timestamp in miliseconds
+  etz: 1234567890123, //end timestamp in miliseconds
+  app_metrics: {
+    response_time: 1000,
+    response_code: 200,
+    response_payload_size: 12345,
+    request_payload_size: 5432
+  }
 });</code></pre>
 <p>&nbsp;And here is an example of device trace:</p>
 <pre><code class="javascript">//user built in method to report app start time
@@ -482,24 +482,24 @@ Countly.report_app_start();
 
 //or report device trace manually
 Countly.report_trace({
-    type: "device", //device or network
-    name: "My App", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
-    app_metrics: {
-        duration: 1000,
-    }
+  type: "device", //device or network
+  name: "My App", //use name to identify trace and group them by
+  stz: 1234567890123, //start timestamp in miliseconds
+  etz: 1234567890123, //end timestamp in miliseconds
+  app_metrics: {
+    duration: 1000,
+  }
 });</code></pre>
 <p>Or you can report any custom traces to provide duration:</p>
 <pre><code class="javascript">//or report device trace manually
 Countly.report_trace({
-    type: "device", //device or network
-    name: "Some process we launched", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in miliseconds
-    etz: 1234567890123, //end timestamp in miliseconds
-    app_metrics: {
-        duration: 1000,
-    }
+  type: "device", //device or network
+  name: "Some process we launched", //use name to identify trace and group them by
+  stz: 1234567890123, //start timestamp in miliseconds
+  etz: 1234567890123, //end timestamp in miliseconds
+  app_metrics: {
+    duration: 1000,
+  }
 });</code></pre>
 <h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other features and notes</h1>
 <h2 id="h_01HAXVDTRGE7AP3385T2HSWWT0">SDK Config Parameters Explained</h2>
@@ -586,22 +586,22 @@ Countly.report_trace({
   server, use it instead of try.count.ly):
 </p>
 <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    app_version: "1.2",
-    country_code: "LV",
-    city: "Riga",
-    ip_address: "83.140.15.1",
-    http_options: function(options){
-        options.headers["user-agent"] = "Test";
-    },
-    metrics:{
-        _os: "Ubuntu",
-        _os_version: "16.04",
-        _device: "aws-server"
-    }
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "https://try.count.ly",
+  app_version: "1.2",
+  country_code: "LV",
+  city: "Riga",
+  ip_address: "83.140.15.1",
+  http_options: function(options){
+    options.headers["user-agent"] = "Test";
+  },
+  metrics:{
+    _os: "Ubuntu",
+    _os_version: "16.04",
+    _device: "aws-server"
+  }
 });</code></pre>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
@@ -682,14 +682,14 @@ Countly.report_trace({
   the initialization:
 </p>
 <pre><code class="javascript">Countly.init({
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    max_key_length: 500,
-    max_value_size: 12,
-    max_segmentation_values: 23,
-    max_breadcrumb_count: 80,
-    max_stack_trace_lines_per_thread: 50,
-    max_stack_trace_line_length: 300
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  max_key_length: 500,
+  max_value_size: 12,
+  max_segmentation_values: 23,
+  max_breadcrumb_count: 80,
+  max_stack_trace_lines_per_thread: 50,
+  max_stack_trace_line_length: 300
 });</code></pre>
 <h2 id="h_01HAXVDTRGNHGD4SW5XH7NBE8W">Setting Maximum Request Queue Size</h2>
 <p>
@@ -715,10 +715,10 @@ Countly.report_trace({
   1,000 will be used.
 </p>
 <div class="javascript">
-  <pre><code class="">Countly.init({
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    queueSize: 5000
+  <pre><code class="javascript">Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  queueSize: 5000
 });</code></pre>
 </div>
 <h2 id="h_01HAXVDTRK5DCMFC9FKEDKD529">Attribution</h2>
@@ -746,4 +746,3 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   metrics:"{'_os':'Linux'}",
   begin_session:1
 });</code></pre>
-<p>&nbsp;</p>

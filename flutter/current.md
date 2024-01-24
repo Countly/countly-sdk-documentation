@@ -554,13 +554,27 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 </p>
 <h3 id="h_01HK6YJTHP4Y0WVZSC0ZPNZFDJ">Adding Segmentation to Started Views</h3>
 <p>
-  You can specify the custom segmentation for any view using the view name
+  Once a view has been started (but before it has been ended), you can add segmentation
+  to a view either with its name or its ID.
 </p>
-<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithName(segmentation);</code></pre>
 <p>
-  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs using the unique ID:</span>
+  Here is an example on how to achieve that using the view name:
 </p>
-<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithID(segmentation);</code></pre>
+<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+  "Cats": 123,
+  "Moons": 9.98,
+  "Moose": "Deer"
+};
+Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
+<p>
+  Here is an example for how to add segmentation to a view using its ID:
+</p>
+<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+  "Cats": 123,
+  "Moons": 9.98,
+  "Moose": "Deer"
+};
+Countly.instance.views.addSegmentationToViewWithID(viewID, segmentation);</code></pre>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
 <p>
   It is possible to set global segmentation for all recorded views. This can be

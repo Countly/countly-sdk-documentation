@@ -209,10 +209,9 @@ Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String
   <code>events</code> interface:
 </p>
 <div>
-  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;() {
-  put("Time Spent", 60);
-  put("Retry Attempts", 60);
-};
+  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;();
+segmentation.put("Time Spent", 60);
+segmentation.put("Retry Attempts", 60);
 
 Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
 </div>
@@ -383,39 +382,127 @@ segmentation.put("level", 37);</code></pre>
 </ul>
 <h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
 <p>
-  You can track views of your application by the Java SDK. By views, you can also
-  create
+  You can track the views of your application with the Java SDK. With views feature,
+  you can also create
   <a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener">flows</a>
-  to see view transitions.
+  to see view transitions. Public interface of the views can be accessed via:
 </p>
+<pre>Countly.instance().views()</pre>
 <h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
   <span data-preserver-spaces="true">Manual View Reporting</span>
 </h2>
 <p>
-  The Countly Java SDK provides manual reporting of views. View reporting functions
-  can track and decide whether or not the view is the first. They end the previous
-  views if they are still ongoing. You can use the below functions to report views:
+  The SDK provides various ways to track views. You can have a single view at a
+  given time or track multiple views according to your needs. Each view would have
+  its own unique view ID which could be used for manipulating the view further.
+</p>
+<h3 id="h_01HJ3JGGKS9E23WF0BY0XPT4MS">Auto Stopped Views</h3>
+<p>
+  <span>An easy way to track views is with using the auto stopped views. These views would stop if another view starts. You can start an auto stopped view with or without segmentation like this:</span>
+</p>
+<pre><code class="java">// without segmentation, use view id for further manipulation of views
+String viewID = Countly.instance().views().startAutoStoppedView("View Name");
+  
+// Or with segmentation
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+// use view id for further manipulation of views
+String view2ID = Countly.instance().views().startAutoStoppedView("View Name", viewSegmentation);</code></pre>
+<h3 id="h_01HJ3JP8GW4DF2JC5B8DM75XTF">Regular Views</h3>
+<p>
+  <span>As opposed to the "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.</span>
 </p>
 <p>
-  Calling this function will retrieve a view with the given name. If such a view
-  does not exist, the SDK will create it internally and immedietelly start it,
+  You can start a view that would not close when another view starts, like this:
 </p>
-<pre><span data-preserver-spaces="true">Countly.instance().view(String name);</span></pre>
+<pre><code class="java">Countly.instance().views().startView("View Name");</code></pre>
 <p>
-  If you want to signify that the recorded view is the first view in the session,
-  you would set the "start" parameter to "true".,
+  While manually tracking views, you may add your custom segmentation to them like
+  this:
 </p>
-<pre><span data-preserver-spaces="true">Countly.instance().view(String name, boolean start);</span></pre>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().startView("View Name", viewSegmentation);</code></pre>
 <p>
-  You can stop views by <code class="java">stop(boolean lastView)</code>on the
-  stored or retrieved View object.
+  These views would also return a string view ID when they are called.
+</p>
+<h3 id="h_01HHNY9513MGDDJMP3SDWV4KWW" class="anchor-heading">Stopping Views</h3>
+<p>
+  You can stop a view with its name or its view ID. To stop it with its name:
+</p>
+<pre><code class="java">Countly.instance().views().stopViewWithName("View Name");</code></pre>
+<p>You can provide a segmentation while doing so:</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().stopViewWithName("View Name", viewSegmentation);</code></pre>
+<p>
+  <span>If there are multiple views with the same name then <code class="java">stopViewWithName</code> would close the one that has started first. These views would have different identifiers even though their names are same.</span>
 </p>
 <p>
-  You can specifiy if that view was the last one by providing "true" to the boolean
-  parameter.
+  <span>To stop a view with its view ID:</span>
 </p>
-<pre><code class="java">View view = Countly.instance().view("logout_page");
-view.stop(true);</code><code class="java"></code></pre>
+<pre><code class="java">Countly.instance().views().stopViewWithID("View ID");</code></pre>
+<p>
+  <span>You can provide a segmentation while doing so:</span>
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().stopViewWithID("View ID", viewSegmentation);</code></pre>
+<p>
+  You can also stop all running views at once with a segmentation:
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().stopAllViews(viewSegmentation); // pass null if no segmentation</code></pre>
+<h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB" class="anchor-heading">Pausing and Resuming Views</h3>
+<p>
+  <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
+</p>
+<p>
+  <span>To pause a view with its ID:</span>
+</p>
+<pre><code class="java">Countly.instance().views().pauseViewWithID("View ID");</code></pre>
+<p>
+  <span>To resume a view with its ID:</span>
+</p>
+<pre><code class="java">Countly.instance().views().resumeViewWithID("View ID");</code></pre>
+<h3 id="h_01HHNZEE94N9FH6GYZTR4A1H0M" class="anchor-heading">Adding Segmentation to Started Views</h3>
+<p>
+  <span>You can add segmentation values to a view before it ends. This can be done as many times as desired and the final segmentation that will be send to the server would be the cumulative sum of all segmentations. However if a certain segmentation value for a specific key has been updated, the latest value will be used.</span>
+</p>
+<p>
+  <span>To add segmentation to a view using its view ID:</span>
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().addSegmentationToViewWithID("View ID", viewSegmentation);</code></pre>
+<p>
+  <span>To add segmentation to a view using its name:</span>
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().addSegmentationToViewWithName("View Name", viewSegmentation);</code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
@@ -1060,12 +1147,12 @@ Countly.instance().userProfile().save();</code></pre>
     </div>
   </li>
   <li>
-    <strong>enrollABOnRCDownload()</strong> - Enables A/B tests enrollment
-    when remote config keys downloaded
+    <strong>enrollABOnRCDownload()</strong> - Enables A/B tests enrollment when
+    remote config keys downloaded
   </li>
   <li>
-    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)</strong> -
-    Register a callback to be called when remote config values is downloaded
+    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)</strong>
+    - Register a callback to be called when remote config values is downloaded
   </li>
   <li>
     <strong>enableRemoteConfigValueCaching()</strong> - Enable caching of remote
@@ -1083,8 +1170,8 @@ Countly.instance().userProfile().save();</code></pre>
     - Set location parameters to be sent with session begin
   </li>
   <li>
-    <strong>setMaxBreadcrumbCount(int maxBreadcrumbCount)</strong> -
-    To change maximum limit of crash breadcrumb
+    <strong>setMaxBreadcrumbCount(int maxBreadcrumbCount)</strong> - To change
+    maximum limit of crash breadcrumb
   </li>
   <li>
     <strong>disableUnhandledCrashReporting()</strong> - To disable unhandled
@@ -1214,10 +1301,9 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;() {{
-  put("Time Spent", "60");
-  put("Retry Attempts", "60");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;();
+segment.put("Time Spent", "60");
+segment.put("Retry Attempts", "60");
 
 Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
 </code></pre>
@@ -1247,11 +1333,10 @@ Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, 
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("visit", "1");
-  put("segment", "Windows");
-  put("start", "1");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("visit", "1");
+segmentation.put("segment", "Windows");
+segmentation.put("start", "1");
 
 Countly.instance().backendM().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
@@ -1287,15 +1372,13 @@ Countly.instance().backendM().recordView("device-id", "SampleView", segmentation
     <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
   </li>
 </ul>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("login page", "authenticate request");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("login page", "authenticate request");
 
-Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Windows 11");
-  put("_os_version", "11.202");
-  put("_logs", "main page");
-}};
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;();
+crashDetails.put("_os", "Windows 11");
+crashDetails.put("_os_version", "11.202");
+crashDetails.put("_logs", "main page");
 
 Countly.instance().backendM().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
 </code></pre>
@@ -1304,15 +1387,13 @@ Countly.instance().backendM().recordException("device-id", "message", "stacktrac
   stack trace to record a crash.
 </p>
 <p>For example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("login page", "authenticate request");
-}};
+<pre><code class="java">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("login page", "authenticate request");
 
-Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Windows 11");
-  put("_os_version", "11.202");
-  put("_logs", "main page");
-}};
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;();
+crashDetails.put("_os", "Windows 11");
+crashDetails.put("_os_version", "11.202");
+crashDetails.put("_logs", "main page");
 
 try {
   int a = 10 / 0;
@@ -1344,18 +1425,16 @@ try {
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Android");
-  put("_os_version", "10");
-  put("_app_version", "1.2");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;();
+metrics.put("_os", "Android");
+metrics.put("_os_version", "10");
+metrics.put("_app_version", "1.2");
 
-Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
-  put("ip_address", "192.168.1.1");
-  put("city", "Lahore");
-  put("country_code", "PK");
-  put("location", "31.5204,74.3587");
-}};
+Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;();
+location.put("ip_address", "192.168.1.1");
+location.put("city", "Lahore");
+location.put("country_code", "PK");
+location.put("location", "31.5204,74.3587");
 
 Countly.instance().backendM().sessionBegin("device-id", metrics, location, 1646640780130L);
 </code></pre>

@@ -65,7 +65,7 @@
   repo <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
   it inside your project folder by executing the lines:
 </p>
-<pre><code class="javascript">git clone https://github.com/Countly/countly-sdk-web.git
+<pre><code class="bash">git clone https://github.com/Countly/countly-sdk-web.git
 </code></pre>
 <p>
   Additionally to see example integrations of Countly Web SDK within some popular
@@ -88,10 +88,10 @@
     <span class="tabs-link">yarn</span>
   </div>
   <div class="tab">
-    <pre><code class="shell">npm install countly-sdk-web</code></pre>
+    <pre><code class="bash">npm install countly-sdk-web</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="shell">yarn add countly-sdk-web</code></pre>
+    <pre><code class="bash">yarn add countly-sdk-web</code></pre>
   </div>
 </div>
 <p>You can also reach the SDK through CDN:</p>
@@ -224,7 +224,7 @@ Countly.track_pageview();
 Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">Countly.init({
+    <pre><code class="javascript">Countly.init({
     debug:true,
     app_key:"YOUR_APP_KEY",
     url: "https://try.count.ly",
@@ -324,15 +324,15 @@ catch(ex){
   <div class="tab">
     <pre><code class="javascript">
   const error = {stack: 'Your error message here'};
-  //report fatal error to Countly
-  Countly.q.push(['recordError', error, nonFatal, segments]);
+//report fatal error to Countly
+Countly.q.push(['recordError', error, nonFatal, segments]);
 </code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">
   const error = {stack: 'Your error message here'};
-  //report fatal error to Countly
-  Countly.recordError(error, nonFatal, segments);
+//report fatal error to Countly
+Countly.recordError(error, nonFatal, segments);
 </code></pre>
   </div>
 </div>
@@ -528,13 +528,13 @@ Countly.q.push(['end_event', 'timedEvent']);
 
 //or end event with additional data
 Countly.q.push(['end_event',{
-"key": "timedEvent",
-"count": 1,
-"sum": 1.5,
-"segmentation": {
-"key1": "value1",
-"key2": "value2"
-}
+  "key": "timedEvent",
+  "count": 1,
+  "sum": 1.5,
+  "segmentation": {
+  "key1": "value1",
+  "key2": "value2"
+  }
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -543,13 +543,13 @@ Countly.end_event("timedEvent")
 
 //or end event with additional data
 Countly.end_event({
-"key": "timedEvent",
-"count": 1,
-"sum": 1.5,
-"segmentation": {
-"key1": "value1",
-"key2": "value2"
-}
+  "key": "timedEvent",
+  "count": 1,
+  "sum": 1.5,
+  "segmentation": {
+  "key1": "value1",
+  "key2": "value2"
+  }
 });</code></pre>
   </div>
 </div>
@@ -671,14 +671,14 @@ Countly.end_event({
     <pre><code class="javascript">Countly.q.push(['track_pageview',location.pathname+location.hash]);
 
 $(window).on('hashchange', function() {
-Countly.q.push(['track_pageview',location.pathname+location.hash]);
+  Countly.q.push(['track_pageview',location.pathname+location.hash]);
 });</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.track_pageview(location.pathname+location.hash);
 
 $(window).on('hashchange', function() {
-Countly.track_pageview(location.pathname+location.hash);
+  Countly.track_pageview(location.pathname+location.hash);
 });</code></pre>
   </div>
 </div>
@@ -818,9 +818,9 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 <pre><code class="javascript">
 // adding device ID here will prevent the generation of a random ID
 Countly.init({
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    device_id:"yourDeviceID",
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  device_id:"yourDeviceID",
 });
 
 // you can assign a device ID to a user through a link that you have provided to them by adding cly_device_id to your url query
@@ -833,9 +833,9 @@ yourUrl + ?cly_device_id=yourDeviceID
 <pre><code class="javascript">
 // this will erase the stored device ID from the local storage every time the Countly is initialized
 Countly.init({
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    clear_stored_id: true,
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  clear_stored_id: true,
 });
 </code></pre>
 <div class="callout callout--info">
@@ -927,10 +927,10 @@ Countly.init();</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    offline_mode: true
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  offline_mode: true
 });</code></pre>
   </div>
 </div>
@@ -1032,14 +1032,13 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
     <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "https://try.count.ly";
 Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com"];
-
 </code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
 });</code></pre>
   </div>
 </div>
@@ -1278,14 +1277,14 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
     <pre><code class="javascript">//after initializing and giving consent
 //for a single rating widget with widget ID '5b86772f7965c435319c79ee'
 Countly.q.push([
-    'enableRatingWidgets',
-    {'popups':['5b86772f7965c435319c79ee']}
+  'enableRatingWidgets',
+  {'popups':['5b86772f7965c435319c79ee']}
 ]);
 
 //to manually show a rating widget as a popup
 Countly.q.push([
-    'presentRatingWidgetWithID',
-    '6gdd84asc435319c78s4'
+  'presentRatingWidgetWithID',
+  '6gdd84asc435319c78s4'
 ]);
 </code></pre>
   </div>
@@ -1293,7 +1292,7 @@ Countly.q.push([
     <pre><code class="javascript">//after initializing and giving consent
 //for a rating widget with widget ID '5b86772f7965c435319c79ee'
 Countly.enableRatingWidgets({
-    'popups':['5b86772f7965c435319c79ee'],
+  'popups':['5b86772f7965c435319c79ee'],
 });
 
 //to manually show a rating widget as a popup'
@@ -1315,8 +1314,8 @@ Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
     <pre><code class="javascript">//after enabling rating widgets
 //to show multiple rating widgets with an array of different widget IDs
 Countly.q.push([
-    'initializeRatingWidgets',
-    ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass']
+  'initializeRatingWidgets',
+  ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass']
 ]);
 
 </code></pre>
@@ -1345,21 +1344,21 @@ Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209
   <div class="tab">
     <pre><code class="javascript">//user feedback
 Countly.q.push(['recordRatingWidgetWithID', {
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
+  widget_id:"1234567890",
+  contactMe: true,
+  rating: 5,
+  email: "user@domain.com",
+  comment: "Very good"
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//user feedback
 Countly.recordRatingWidgetWithID({
-    widget_id:"1234567890",
-    contactMe: true,
-    rating: 5,
-    email: "user@domain.com",
-    comment: "Very good"
+  widget_id:"1234567890",
+  contactMe: true,
+  rating: 5,
+  email: "user@domain.com",
+  comment: "Very good"
 });</code></pre>
   </div>
 </div>
@@ -1377,14 +1376,9 @@ Countly.recordRatingWidgetWithID({
   selectors. The first one is used for selecting an element by it's id and the
   second one is used to select the element by it's class selector. If you want
   to inject the feedback widget in a specific element, you can do so by specifying
-  the element ID or the class name.
+  the element ID or the class name. You can also add custom segmentation while
+  presenting a widget.
 </p>
-<div class="callout callout--warning">
-  <p>Available starting from version 23.6.3</p>
-  <p>
-    You can also add custom segmentation while presenting a widget.
-  </p>
-</div>
 <p>
   To use feedback widgets, you need to give "feedback" consent (in case consent
   is required).
@@ -1399,28 +1393,28 @@ Countly.recordRatingWidgetWithID({
 Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
 <br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-  
-    // Decide which which widget to show. Here the first rating widget is selected. 
-    const widgetType = "rating";
-    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
-    if (!countlyFeedbackWidget) {
-      console.error(`[Countly] No ${widgetType} widget found`);
-      return;
-    }
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-    //Define the element ID and the class name (optional, pass undefined if you don't use)
-    const selectorId = "targetIdSelector";
-    const selectorClass = "targetClassSelector";
+  // Decide which which widget to show. Here the first rating widget is selected. 
+  const widgetType = "rating";
+  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
+  if (!countlyFeedbackWidget) {
+    console.error(`[Countly] No ${widgetType} widget found`);
+    return;
+  }
 
-    // Define the segmentation (optional)
-    const segmentation = { page: "home_page" };
+  //Define the element ID and the class name (optional, pass undefined if you don't use)
+  const selectorId = "targetIdSelector";
+  const selectorClass = "targetClassSelector";
 
-    //Display the feedback widget to the end user
-    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+  // Define the segmentation (optional)
+  const segmentation = { page: "home_page" };
+
+  //Display the feedback widget to the end user
+  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
   </div>
@@ -1546,51 +1540,50 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   And example implementation of the mentioned concepts can be seen here:
 </p>
 <pre><code class="javascript">
-    // an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'
-    function getFeedbackWidgetListAndDoThings(widgetType) {
-      // get the widget list
-      Countly.get_available_feedback_widgets(
-        // callback function, 1st param is the feedback widget list
-        function (feedbackList, err) {
+// an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'
+function getFeedbackWidgetListAndDoThings(widgetType) {
+  // get the widget list
+  Countly.get_available_feedback_widgets(
+    // callback function, 1st param is the feedback widget list
+    function (feedbackList, err) {
+      if (err) { // error handling
+        console.log(err);
+        return;
+      }
+
+      // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
+      const countlyFeedbackWidget = feedbackList.find(widget = widget.type === widgetType);
+      if (!countlyFeedbackWidget) {
+        console.error(`[Countly] No ${widgetType} widget found`);
+        return;
+      }
+
+      // Get data with the widget object
+      Countly.getFeedbackWidgetData(CountlyFeedbackWidget,
+        // callback function, 1st param is the feedback widget data
+        function (feedbackData, err) {
           if (err) { // error handling
-            console.log(err);
+            console.error(err);
             return;
           }
 
-          // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
-          const countlyFeedbackWidget = feedbackList.find(widget => widget.type === widgetType);
-          if (!countlyFeedbackWidget) {
-            console.error(`[Countly] No ${widgetType} widget found`);
-            return;
+          const CountlyWidgetData = feedbackData;
+          // record data according to the widget type
+          if (CountlyWidgetData.type === 'nps') {
+            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
+          } else if (CountlyWidgetData.type === 'survey') {
+            var widgetResponse = {};
+            // form the key/value pairs according to data
+            widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
+            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, widgetResponse);
+          } else if (CountlyWidgetData.type === 'rating') {
+            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
           }
+        }
 
-          // Get data with the widget object
-          Countly.getFeedbackWidgetData(CountlyFeedbackWidget,
-            // callback function, 1st param is the feedback widget data
-            function (feedbackData, err) {
-              if (err) { // error handling
-                console.error(err);
-                return;
-              }
-
-              const CountlyWidgetData = feedbackData;
-              // record data according to the widget type
-              if (CountlyWidgetData.type === 'nps') {
-                Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
-              } else if (CountlyWidgetData.type === 'survey') {
-                var widgetResponse = {};
-                // form the key/value pairs according to data
-                widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
-                Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, widgetResponse);
-              } else if (CountlyWidgetData.type === 'rating') {
-                Countly.reportFeedbackWidgetManually(CountlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
-              }
-            }
-
-          );
-        })
-    }
-       </code></pre>
+      );
+    })
+}</code></pre>
 <h1 id="h_01HABTQ439MH1SD5Q76905BRWP">User Profiles</h1>
 <h2 id="h_01HABTQ439KMGT58PHY4MRA1GT">User Details</h2>
 <p>
@@ -1606,38 +1599,38 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   </div>
   <div class="tab">
     <pre><code class="javascript">Countly.q.push(['user_details',{
-    "name": "Arturs Sosins",
-    "username": "ar2rsawseen",
-    "email": "test@test.com",
-    "organization": "Countly",
-    "phone": "+37112345678",
-    //Web URL to picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
-    "gender": "M",
-    "byear": 1987, //birth year
-    "custom":{
-      "key1":"value1",
-      "key2":"value2",
-      ...
-    }
+  "name": "Arturs Sosins",
+  "username": "ar2rsawseen",
+  "email": "test@test.com",
+  "organization": "Countly",
+  "phone": "+37112345678",
+  //Web URL to picture
+  "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+  "gender": "M",
+  "byear": 1987, //birth year
+  "custom":{
+    "key1":"value1",
+    "key2":"value2",
+    ...
+  }
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.user_details({
-    "name": "Arturs Sosins",
-    "username": "ar2rsawseen",
-    "email": "test@test.com",
-    "organization": "Countly",
-    "phone": "+37112345678",
-    //Web URL pointing to user picture
-    "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
-    "gender": "M",
-    "byear": 1987, //birth year
-    "custom":{
-      "key1":"value1",
-      "key2":"value2",
-      ...
-    }
+  "name": "Arturs Sosins",
+  "username": "ar2rsawseen",
+  "email": "test@test.com",
+  "organization": "Countly",
+  "phone": "+37112345678",
+  //Web URL pointing to user picture
+  "picture": "https://pbs.twimg.com/profile_images/1442562237/012_n_400x400.jpg", 
+  "gender": "M",
+  "byear": 1987, //birth year
+  "custom":{
+    "key1":"value1",
+    "key2":"value2",
+    ...
+  }
  });</code></pre>
   </div>
 </div>
@@ -1706,11 +1699,11 @@ Countly.enable_orientation_tracking = false;</code></pre>
   <div class="tab is-hidden">
     <pre><code class="javascript">//to disable orientation tracking
 Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    enable_orientation_tracking: false //this will disable orientation tracking
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "https://try.count.ly",
+  enable_orientation_tracking: false //this will disable orientation tracking
 });</code></pre>
   </div>
 </div>
@@ -1757,25 +1750,25 @@ Countly.report_orientatio("portrait");</code></pre>
   <div class="tab">
     <pre><code class="javascript">//report custom trace
 Countly.q.push(["report_trace",{
-    type: "device", //device or network
-    name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in milliseconds
-    etz: 1234567890123, //end timestamp in milliseconds
-    apm_metrics: {
-        duration: 1000 //duration of trace
-    }
+  type: "device", //device or network
+  name: "test call", //use name to identify trace and group them by
+  stz: 1234567890123, //start timestamp in milliseconds
+  etz: 1234567890123, //end timestamp in milliseconds
+  apm_metrics: {
+      duration: 1000 //duration of trace
+  }
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">//report custom trace
 Countly.report_trace({
-    type: "device", //device or network
-    name: "test call", //use name to identify trace and group them by
-    stz: 1234567890123, //start timestamp in milliseconds
-    etz: 1234567890123, //end timestamp in milliseconds
-    apm_metrics: {
-        duration: 1000 //duration of trace
-    }
+  type: "device", //device or network
+  name: "test call", //use name to identify trace and group them by
+  stz: 1234567890123, //start timestamp in milliseconds
+  etz: 1234567890123, //end timestamp in milliseconds
+  apm_metrics: {
+      duration: 1000 //duration of trace
+  }
 });</code></pre>
   </div>
 </div>
@@ -1817,24 +1810,24 @@ Countly.q.push(["track_performance"]);</code></pre>
 </p>
 <pre><code class="javascript">{
     //page load timing
-    RT:{},
-    //required for automated networking traces
-    instrument_xhr: true,
-    captureXhrRequestResponse: true,
-    AutoXHR: {
-        alwaysSendXhr: true,
-        monitorFetch: true,
-        captureXhrRequestResponse: true
-    },
-    //required for screen freeze traces
-    Continuity: {
-        enabled: true,
-        monitorLongTasks: true,
-        monitorPageBusy: true,
-        monitorFrameRate: true,
-        monitorInteractions: true,
-        afterOnload: true
-    }
+  RT:{},
+  //required for automated networking traces
+  instrument_xhr: true,
+  captureXhrRequestResponse: true,
+  AutoXHR: {
+    alwaysSendXhr: true,
+    monitorFetch: true,
+    captureXhrRequestResponse: true
+  },
+  //required for screen freeze traces
+  Continuity: {
+    enabled: true,
+    monitorLongTasks: true,
+    monitorPageBusy: true,
+    monitorFrameRate: true,
+    monitorInteractions: true,
+    afterOnload: true
+  }
 }</code></pre>
 <h3 id="h_01HABTQ439DYQ8H3VVJE9DV7YC">Synchronous Implementation</h3>
 <p>
@@ -1908,15 +1901,15 @@ Countly.require_consent = true;</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    app_version: "1.2",
-    country_code: "LV",
-    city: "Riga",
-    ip_address: "83.140.15.1",
-    require_consent: true //this will make require consent before tracking
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "https://try.count.ly",
+  app_version: "1.2",
+  country_code: "LV",
+  city: "Riga",
+  ip_address: "83.140.15.1",
+  require_consent: true //this will make require consent before tracking
 });</code></pre>
   </div>
 </div>
@@ -1975,8 +1968,8 @@ Countly.require_consent = true;</code></pre>
   </div>
   <div class="tab">
     <pre><code class="javascript">Countly.group_features({
-    activity:["sessions","events","views"],
-    interaction:["scrolls","clicks","forms"]
+  activity:["sessions","events","views"],
+  interaction:["scrolls","clicks","forms"]
 });
 //After this call Countly.add_consent("activity") to allow "sessions","events","views"
 //or call Countly.add_consent("interaction") to allow "scrolls","clicks","forms"
@@ -2023,8 +2016,8 @@ Countly.require_consent = true; //this true means consent is required
 
 //(optionally) provide custom feature tree if needed
 Countly.q.push(['group_features', {
-activity:["sessions","events","views"],
-interaction:["scrolls","clicks","forms"]
+  activity:["sessions","events","views"],
+  interaction:["scrolls","clicks","forms"]
 }]);
 
 //we can call all the helper methods we want, they won't record until consent is provided for specific features
@@ -2038,34 +2031,33 @@ Countly.q.push(['track_errors', {jquery:"1.10", jqueryui:"1.10"}]);
 //Consent Management logic should be implemented and controlled by developer
 //this is just a simply example of what logic it could have
 if (typeof(localStorage) !== "undefined") {
-var consents = localStorage.getItem("consents");
-//checking if user already provided consent
-if(consents){
-//we already have array with consents from previous visit, let's just pass them to Countly
-Countly.q.push(['add_consent', JSON.parse(consents)]);
-}
-else{
-//user have not yet provided us a consent
-//we need to display popup and ask user to give consent for specific features we want to track
-//once we get response, we should store them like this
-//example response
-var response = ["activity", "interaction", "crashes"];
-Countly.q.push(['add_consent', response]);
-localStorage.setItem("consents", JSON.stringify(response));
-}
+  var consents = localStorage.getItem("consents");
+  //checking if user already provided consent
+  if(consents){
+    //we already have array with consents from previous visit, let's just pass them to Countly
+    Countly.q.push(['add_consent', JSON.parse(consents)]);
+  } else {
+    //user have not yet provided us a consent
+    //we need to display popup and ask user to give consent for specific features we want to track
+    //once we get response, we should store them like this
+    //example response
+    var response = ["activity", "interaction", "crashes"];
+    Countly.q.push(['add_consent', response]);
+    localStorage.setItem("consents", JSON.stringify(response));
+  }
 } else {
-// Sorry! No Web Storage support..
-// we can fallback to cookie
+  // Sorry! No Web Storage support..
+  // we can fallback to cookie
 }
 
 // Load countly script asynchronously
 (function() {
-var cly = document.createElement('script'); cly.type = 'text/javascript';
-cly.async = true;
-// Enter url of script here (see below for other option)
-cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
-cly.onload = function(){Countly.init()};
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+  var cly = document.createElement('script'); cly.type = 'text/javascript';
+  cly.async = true;
+  // Enter url of script here (see below for other option)
+  cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
+  cly.onload = function(){Countly.init()};
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
   </div>
@@ -2076,16 +2068,16 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cl
 
 //initializing countly with params and passing require_consent config as true
 Countly.init({
-app_key: "YOUR_APP_KEY",
-url: "https://try.count.ly", //your server goes here
-debug:true,
-require_consent: true //this true means consent is required
+  app_key: "YOUR_APP_KEY",
+  url: "https://try.count.ly", //your server goes here
+  debug:true,
+  require_consent: true //this true means consent is required
 });
 
 //(optionally) provide custom feature tree if needed
 Countly.group_features({
-activity:["sessions","events","views"],
-interaction:["scrolls","clicks","forms"]
+  activity:["sessions","events","views"],
+  interaction:["scrolls","clicks","forms"]
 });
 
 //we can call all the helper methods we want, they won't record until consent is provided for specific features
@@ -2099,24 +2091,23 @@ Countly.track_errors({jquery:"1.10", jqueryui:"1.10"});
 //Consent Management logic should be implemented and controled by developer
 //this is just a simply example of what logic it could have
 if (typeof(localStorage) !== "undefined") {
-var consents = localStorage.getItem("consents");
-//checking if user already provided consent
-if(consents){
-//we already have array with consents from previous visit, let's just pass them to Countly
-Countly.add_consent(JSON.parse(consents));
-}
-else{
-//user have not yet provided us a consent
-//we need to display popup and ask user to give consent for specific features we want to track
-//once we get response, we should store them like this
-//example response
-var response = ["activity", "interaction", "crashes"];
-Countly.add_consent(response);
-localStorage.setItem("consents", JSON.stringify(response));
-}
+  var consents = localStorage.getItem("consents");
+  //checking if user already provided consent
+  if(consents){
+    //we already have array with consents from previous visit, let's just pass them to Countly
+    Countly.add_consent(JSON.parse(consents));
+  } else {
+    //user have not yet provided us a consent
+    //we need to display popup and ask user to give consent for specific features we want to track
+    //once we get response, we should store them like this
+    //example response
+    var response = ["activity", "interaction", "crashes"];
+    Countly.add_consent(response);
+    localStorage.setItem("consents", JSON.stringify(response));
+  }
 } else {
-// Sorry! No Web Storage support..
-// we can fallback to cookie
+  // Sorry! No Web Storage support..
+  // we can fallback to cookie
 }</code></pre>
   </div>
 </div>
@@ -2267,14 +2258,14 @@ Countly.ip_address = "83.140.15.1";</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    app_version: "1.2",
-    country_code: "LV",
-    city: "Riga",
-    ip_address: "83.140.15.1"
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "https://try.count.ly",
+  app_version: "1.2",
+  country_code: "LV",
+  city: "Riga",
+  ip_address: "83.140.15.1"
 });</code></pre>
   </div>
 </div>
@@ -2312,7 +2303,7 @@ Countly.ip_address = "83.140.15.1";</code></pre>
 Countly.storage = "localstorage";</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+    <pre><code class="javascript">//possible options are "localstorage", "cookies" and "none"
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
@@ -2380,28 +2371,28 @@ Countly.collect_from_forms(document, true);</code></pre>
 <pre><code class="html">&lt;script src="https://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
 FB.init({
-    appId: '251676171676751',
-    status: true,
-    cookie: true,
-    oauth: true
+  appId: '251676171676751',
+  status: true,
+  cookie: true,
+  oauth: true
 });
 
 function CountlyGatherFBData(){
-Countly.collect_from_facebook({"location":"location.name", "tz":"timezone"});
+  Countly.collect_from_facebook({"location":"location.name", "tz":"timezone"});
 };
 
 FB.getLoginStatus(function(stsResp) {
-if(stsResp.authResponse) {
-CountlyGatherFBData();
-} else {
-FB.login(function(loginResp) {
-if(loginResp.authResponse) {
-CountlyGatherFBData();
-} else {
-alert('Please authorize this application to use it!');
-}
-});
-}
+  if(stsResp.authResponse) {
+    CountlyGatherFBData();
+  } else {
+    FB.login(function(loginResp) {
+      if(loginResp.authResponse) {
+        CountlyGatherFBData();
+      } else {
+        alert('Please authorize this application to use it!');
+      }
+    });
+  }
 });
 &lt;/script&gt;</code></pre>
 <h2 id="h_01HABTQ439NRYGR6KNESQ324C1">Attribution</h2>
@@ -2503,11 +2494,11 @@ Countly.track_forms(null, true);</code></pre>
 <p>
   <span style="font-weight: 400;">Ensure local storage has been enabled</span>
 </p>
-<pre><code class="java">//change the path to where you want to store local storage data
+<pre><code class="javascript">//change the path to where you want to store local storage data
 myWebView.getSettings().setDomStorageEnabled(true);
 myWebView.getSettings().setDatabaseEnabled(true);
 if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
-    myWebView.getSettings().setDatabasePath("/data/data/" + myWebView.getContext().getPackageName() + "/databases/");
+  myWebView.getSettings().setDatabasePath("/data/data/" + myWebView.getContext().getPackageName() + "/databases/");
 }</code></pre>
 <p>
   <span style="font-weight: 400;">If you would like to use Countly both in the native app and Webview, then you would maybe also like to match the device_id between them, so the transitions may be seamless and you may continue to track events and data from both for the same user.</span>
@@ -2619,11 +2610,11 @@ Countly.init();</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    namespace: "forum"
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "https://try.count.ly",
+  namespace: "forum"
 });</code></pre>
   </div>
 </div>
@@ -2741,9 +2732,7 @@ var Countly2 = Countly.init({
 // report event to second app
 Countly2.add_event({
   key:"second_app"
-});
-    
-    </code></pre>
+});</code></pre>
   </div>
 </div>
 <h2 id="h_01HABTQ43ACRHQSY8263SJR14V">SDK Internal Limits</h2>
@@ -2844,16 +2833,16 @@ Countly.max_stack_trace_line_length = 300;
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    debug:false,
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    url: "https://try.count.ly",
-    max_key_length: 500,
-    max_value_size: 12,
-    max_segmentation_values: 23,
-    max_breadcrumb_count: 80,
-    max_stack_trace_lines_per_thread: 50,
-    max_stack_trace_line_length: 300
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "https://try.count.ly",
+  max_key_length: 500,
+  max_value_size: 12,
+  max_segmentation_values: 23,
+  max_breadcrumb_count: 80,
+  max_stack_trace_lines_per_thread: 50,
+  max_stack_trace_line_length: 300
 });</code></pre>
   </div>
 </div>
@@ -2890,9 +2879,9 @@ Countly.max_stack_trace_line_length = 300;
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    app_key:"YOUR_APP_KEY",
-    url: "https://try.count.ly",
-    queue_size: 5000
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  queue_size: 5000
 });</code></pre>
   </div>
 </div>
@@ -2943,10 +2932,10 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
-    app_key:"YOUR_APP_KEY",
-    device_id:"1234-1234-1234-1234",
-    // add your custom tags and set their value to true
-    utm: {tag1: true, tag2: true}
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  // add your custom tags and set their value to true
+  utm: {tag1: true, tag2: true}
 });
 
 // then your links should look like this:
@@ -2990,7 +2979,29 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 </ol>
 <p>A simple implementation would look something like this:</p>
 <div>
-  <pre><span>// ...<br>// ... &nbsp; &nbsp;</span><br><span>// ... Countly implementation was here</span><br><span>// </span><span>&lt;/</span><span>script</span><span>&gt;</span><br><br><span>// write the correct path to the GA plugin depending on your project structure</span><br><span>&lt;</span><strong>script</strong><span> </span><span>src</span><span>=</span><span>"../plugin/ga_adapter/ga_adapter.js"</span><span>&gt;</span><span>&lt;</span><span>/</span><strong>script</strong><span>&gt;</span><br><br>// Google Analytics implementation<br><span>&lt;</span><strong>script</strong><span>&gt;</span><br><span>(</span><span>function</span><span>(</span><span>i</span><span>,</span><span>s</span><span>,</span><span>o</span><span>,</span><span>g</span><span>,</span><span>r</span><span>,</span><span>a</span><span>,</span><span>m</span><span>){</span><span>i</span><span>[</span><span>'GoogleAnalyticsObject'</span><span>]</span><span>=</span><span>r</span><span>;</span><span>i</span><span>[</span><span>r</span><span>]</span><span>=</span><span>i</span><span>[</span><span>r</span><span>]</span><span>||</span><span>function</span><span>(){</span><br><span>(</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>=</span><span>i</span><span>[</span><span>r</span><span>].</span><span>q</span><span>||</span><span>[]).</span><span>push</span><span>(</span><span>arguments</span><span>)},</span><span>i</span><span>[</span><span>r</span><span>].</span><span>l</span><span>=</span><span>1</span><span>*new</span><span> Date</span><span>();</span><span>a</span><span>=</span><span>s</span><span>.</span><span>createElement</span><span>(</span><span>o</span><span>),</span><br><span>m</span><span>=</span><span>s</span><span>.</span><span>getElementsByTagName</span><span>(</span><span>o</span><span>)[</span><span>0</span><span>];</span><span>a</span><span>.</span><span>async</span><span>=</span><span>1</span><span>;</span><span>a</span><span>.</span><span>src</span><span>=</span><span>g</span><span>;</span><span>m</span><span>.</span><span>parentNode</span><span>.</span><span>insertBefore</span><span>(</span><span>a</span><span>,</span><span>m</span><span>)</span><br><span>})(</span><span>window</span><span>,</span><span>document</span><span>,</span><span>'script'</span><span>,</span><span>'https://www.google-analytics.com/analytics.js'</span><span>,</span><span>'ga'</span><span>);</span><br><br><span>// add this line into your google analytics snippet to use the GA plugin</span><br><span>CountlyGAAdapter</span><span>();</span><br><br>// now Countly will recognize the GA commands like below and send them to your Countly server too<br><span>ga</span><span>(</span><span>'create'</span><span>,</span><span> </span><span>'UA-56295140-3'</span><span>,</span><span> </span><span>'auto'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'event'</span><span>,</span><span>'category'</span><span>,</span><span>'action'</span><span>,</span><span>'label'</span><span>);</span><br><span>ga</span><span>(</span><span>'send'</span><span>,</span><span>'pageview'</span><span>,</span><span>'page.html'</span><span>);</span><br><span>&lt;/</span><strong>script</strong><span>&gt;</span></pre>
+  <pre><code class="html">// ...
+// ...    
+// ... Countly implementation was here
+// &lt;/script&gt;
+
+// write the correct path to the GA plugin depending on your project structure
+&lt;script src="../plugin/ga_adapter/ga_adapter.js"&gt;&lt;/script&gt;
+
+// Google Analytics implementation
+&lt;script&gt;
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+// add this line into your google analytics snippet to use the GA plugin
+CountlyGAAdapter();
+
+// now Countly will recognize the GA commands like below and send them to your Countly server too
+ga('create', 'UA-56295140-3', 'auto');
+ga('send','event','category','action','label');
+ga('send','pageview','page.html');
+&lt;/script&gt;</code></pre>
 </div>
 <div class="callout callout--info">
   <p>
@@ -3024,42 +3035,42 @@ importScripts("../path/to/countly.js");</code></pre>
 const STORE={}; // in-memory storage for worker
 
 Countly.init({
-    app_key: "YOUR_APP_KEY",
-    url: "https://your.domain.countly",
-    debug: true,
-    storage: {
-        // getItem will recieve a string key param with which it should return the item under it
-        getItem: function (key) {
-            return STORE[key];
-        },
-        // setItem will recieve two params, a string key and a value of any type, then it should store the value under the key
-        setItem: function (key, value) {
-            STORE[key] = value;
-        },
-        // removeItem will recieve a string key with which it should erase the key and any data under that key
-        removeItem: function (key) {
-            delete STORE[key];
-        }
+  app_key: "YOUR_APP_KEY",
+  url: "https://your.domain.countly",
+  debug: true,
+  storage: {
+    // getItem will recieve a string key param with which it should return the item under it
+    getItem: function (key) {
+      return STORE[key];
+    },
+    // setItem will recieve two params, a string key and a value of any type, then it should store the value under the key
+    setItem: function (key, value) {
+      STORE[key] = value;
+    },
+    // removeItem will recieve a string key with which it should erase the key and any data under that key
+    removeItem: function (key) {
+      delete STORE[key];
     }
+  }
 });
 
 onmessage = function (e) {
-    console.log(`Worker: Message received from main script:[${JSON.stringify(e.data)}]`);
-    
-    // Get an process messages to worker
-    const data = e.data.data; const type = e.data.type;
+  console.log(`Worker: Message received from main script:[${JSON.stringify(e.data)}]`);
+  
+  // Get an process messages to worker
+  const data = e.data.data; const type = e.data.type;
 
-    if (type === "event") { // you can send an event
-        Countly.add_event(data);
-    } else if (type === "view") { // you can record a view
-        Countly.track_pageview(data);
-    } else if (type === "session") { // you can manually control sessions
-        if (data === "begin_session") {
-            Countly.begin_session();
-            return;
-        }
-        Countly.end_session(null, true);   
+  if (type === "event") { // you can send an event
+    Countly.add_event(data);
+  } else if (type === "view") { // you can record a view
+    Countly.track_pageview(data);
+  } else if (type === "session") { // you can manually control sessions
+    if (data === "begin_session") {
+      Countly.begin_session();
+      return;
     }
+    Countly.end_session(null, true);   
+  }
 }</code></pre>
 <p>
   In your website, an example communication can happen like this with the worker:
@@ -3069,16 +3080,16 @@ const myWorker = new Worker("worker.js");
 
 // send messages to the Worker
 function clickEvent() { // send event
-    myWorker.postMessage({ type: "event", data: myEvent });
+  myWorker.postMessage({ type: "event", data: myEvent });
 }
 function recordView() { // track views
-    myWorker.postMessage({ type: "view", data: "home_page" });
+  myWorker.postMessage({ type: "view", data: "home_page" });
 }
 function beginSession() { // start a session
-    myWorker.postMessage({ type: "session", data: "begin_session" });
+  myWorker.postMessage({ type: "session", data: "begin_session" });
 }
 function endSession() { // end a session
-    myWorker.postMessage({ type: "session", data: "end_session" });
+  myWorker.postMessage({ type: "session", data: "end_session" });
 }
 </code></pre>
 <h1 id="h_01HABTQ43BRSHEYT75ZF6AN6F5">FAQ</h1>
