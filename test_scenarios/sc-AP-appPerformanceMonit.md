@@ -38,13 +38,13 @@ proper request created
 go foreground
 proper  request created
 
-## APP_205_AppStatOverride_automatic
+## AP_205_AppStatOverride_automatic
 app start enabled (automatic)
 override set (an hour in the past)
 init SDK
 observe duration
 
-## APP_206_AppStartOverride_manual
+## AP_206_AppStartOverride_manual
 app start enabled (manual)
 override set (an hour in the past)
 init SDK
