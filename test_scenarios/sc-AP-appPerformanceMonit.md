@@ -1,21 +1,24 @@
 
 
-## AP_200
+## AP_200_notEnabledNothingWorking
 features not enabled 
+'setAppStartTimestampOverride' is set
 init the SDK and no requests are recorded
 
-## AP_201
+## AP_201_automaticAppStart
 app start enabled but not manual trigger
 init SDK and request is created. duration bellow 1 sec
 
+automatic trigger should create request after the screen loads
 call manual trigger
 no additional requests
 
-## AP_202
+
+## AP_202_manualAppStartTrigger_notUsed
 app start enabled and manual trigger
 init SDK and request is not created
 
-## AP_203
+## AP_203_manualAppStartTrigger_correct
 app start enabled and manual trigger
 init SDK
 wait 2 seconds
@@ -24,7 +27,7 @@ call trigger and request is created and duration is 2-3 sec
 call trigger again, nothing is created
 
 
-## AP_204
+## AP_204_FBTrackingEnabled_working
 F/B enabled
 
 init SDK
@@ -34,3 +37,16 @@ go background
 proper request created
 go foreground
 proper  request created
+
+## APP_205_AppStatOverride_automatic
+app start enabled (automatic)
+override set (an hour in the past)
+init SDK
+observe duration
+
+## APP_206_AppStartOverride_manual
+app start enabled (manual)
+override set (an hour in the past)
+init SDK
+trigger manual call
+observe duration
