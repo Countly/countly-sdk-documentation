@@ -50,3 +50,21 @@ override set (an hour in the past)
 init SDK
 trigger manual call
 observe duration
+
+## AP_207A_enableFBAndStartTimeTracking_manual
+app start enabled and manual trigger
+foreground, background tracking enabled
+init SDK
+do manual trigger 
+go background, go foreground
+validate that all 3 apm requests have been recorded
+
+
+## AP_207B_enableFBAndStartTimeTracking_manual
+This should be done for SDK's that have the legacy method
+
+set the config option that would enable "all" apm features (app start and foreground/background)
+init SDK
+do manual trigger 
+go background, go foreground
+validate that all 3 apm requests have been recorded
