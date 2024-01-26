@@ -1,7 +1,7 @@
 <p>
   This document includes necessary information for integrating the Countly iOS
   SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>23.12.X</code>.
+  <code>24.1.X</code>.
 </p>
 <p>
   Click
@@ -3304,8 +3304,10 @@ Countly.user().save()</code></pre>
 <p>
   Here is how you can utilize Performance Monitoring feature in your iOS apps:
 </p>
+<h2 id="h_01HAVHW0RS1P1F4FX14M9QD3NW">App Background and Foreground Time</h2>
 <p>
-  First, you need to enable Performance Monitoring feature on the initial configuration:
+  You need to enable App Background and Foreground Time tracking feature on the
+  initial configuration:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3313,21 +3315,38 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enablePerformanceMonitoring = YES;</code></pre>
+    <pre><code class="objectivec">config.apm.enableForegroundBackgroundTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enablePerformanceMonitoring = true</code></pre>
+    <pre><code class="swift">config.apm().enableForegroundBackgroundTracking = true</code></pre>
   </div>
 </div>
 <p>
-  With this, Countly iOS SDK will start measuring some performance traces automatically.
-  Those include app start time, app foreground time, app background time. Additionally,
-  custom traces and network traces can be manually recorded.
+  With this, Countly iOS SDK will start measuring the app foreground time, app
+  background time.
 </p>
-<h2 id="h_01HAVHW0RS1P1F4FX14M9QD3NW">App Start Time</h2>
+<h2 id="01HN2RN10EXG8AMJPBV07AR3NW">App Start Time</h2>
 <p>
-  For the app start time to be recorded, you need to call
-  <code>appLoadingFinished</code> method.
+  Currently iOS SDK support manual app start time tracking. For the app start time
+  to be recorded, you need to set
+  <code class="objectivec">enableAppStartTimeTracking</code> and
+  <code class="objectivec">enableManualAppLoadedTrigger</code>&nbsp;on the initial
+  configuration:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.apm.enableAppStartTimeTracking = YES;<br>config.apm.enableManualAppLoadedTrigger = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.apm().enableAppStartTimeTracking = true<br>config.apm().enableManualAppLoadedTrigger = true</code></pre>
+  </div>
+</div>
+<p>
+  And then you need to call <code>appLoadingFinished</code> method.
 </p>
 <p>
   It calculates and records the app launch time for performance monitoring.<br>
@@ -3347,7 +3366,24 @@ Countly.user().save()</code></pre>
     <pre><code class="objectivec">[Countly.sharedInstance appLoadingFinished];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly..sharedInstance().appLoadingFinished()</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().appLoadingFinished()</code></pre>
+  </div>
+</div>
+<p>
+  If you also want to manipulate the app launch starting time instead of using
+  the SDK calculated value then you will need to call a third method on the config
+  object with the timestamp (in milliseconds) of that time you want:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;<br>[config.apm setAppStartTimestampOverride:timestamp];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;<br>config.apm().setAppStartTimestampOverride(timestamp)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RS4Q2FT2ZN6VV4A8CP">Manual Network Traces</h2>
