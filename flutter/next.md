@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.12.X
+  and it applies to version 24.1.X
 </p>
 <div class="callout callout--info">
   <p>
@@ -45,7 +45,7 @@ flutter run</code></pre>
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^23.12.0
+  countly_flutter: ^24.1.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
