@@ -1524,37 +1524,20 @@ Countly.instance.pull("type", "morning");
 </code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
 <p>
-  This SDK provides a few mechanisms for APM. To start using them you would first
-  need to enable this feature and give the required consent if it was required.
+  The SDK provides manual and automatic mechanisms for Application Performance
+  Monitoring (APM). All of the automatic mechanisms are disabled by default and
+  to start using them you would first need to enable them and give the required
+  consent if it was required:
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
-// Enable APM features, which includes the recording of app start time.
-config.setRecordAppStartTime(true); </code></pre>
+// this interface exposes the available APM features and their modifications.
+config.apm. </code></pre>
 <p>
   While using APM calls, you have the ability to provide trace keys by which you
   can track those parameters in your dashboard.
 </p>
-<h2 id="h_01H930GAQ7RY1ZGWMJWFN3N3G9">App Start Time</h2>
-<p>
-  For the app start time to be recorded, you need to call the
-  <code>appLoadingFinished</code> method. Make sure this method is called after
-  <code>init</code>.
-</p>
-<pre><code class="JavaScript">//Example of appLoadingFinished
-CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-Countly.initWithConfig(config ).then((value){
-  Countly.appLoadingFinished();
-});</code></pre>
-<p>
-  This calculates and records the app launch time for performance monitoring. It
-  should be called when the app is loaded and it successfully displayed its first
-  user-facing view. The time passed since the app has started to launch will be
-  automatically calculated and recorded for performance monitoring. Note that the
-  app launch time can be recorded only once per app launch. So, the second and
-  following calls to this method will be ignored.
-</p>
-<h2 id="h_01H930GAQ7ASS6HMSKF6HMPEMX">Custom trace</h2>
+<h2 id="h_01H930GAQ7ASS6HMSKF6HMPEMX">Custom Traces</h2>
 <p>
   Currently, you can use custom traces to record the duration of application processes.
   At the end of them, you can also provide any additionally gathered data.
@@ -1577,7 +1560,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   In this sample, a Map of integer values is provided when ending a trace. Those
   will be added to that trace in the dashboard.
 </p>
-<h2 id="h_01H930GAQ7BZESXJYJ893PHR18">Network trace</h2>
+<h2 id="h_01H930GAQ7BZESXJYJ893PHR18">Network Traces</h2>
 <p>
   You can use the APM to track your requests. You would record the required info
   for your selected approach of making network requests and then call this after
@@ -1591,6 +1574,66 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   payload size in bytes, request start time timestamp in milliseconds, and request
   end finish timestamp in milliseconds.
 </p>
+<h2 id="h_01H930GAQ7RY1ZGWMJWFN3N3G9">Automatic Device Traces</h2>
+<p>
+  There are a couple of performance metrics the SDK can gather for you automatically.
+  These are:
+</p>
+<ul>
+  <li>App Start Time</li>
+  <li>App Background and Foreground time</li>
+</ul>
+<p>
+  Tracking of these metrics are disabled by default and must be explicitly enabled
+  by the developer during init.
+</p>
+<p>
+  For tracking app start time automatically you will need to enable it in SDK init
+  config:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// enable it here separately with 'apm' interface.
+config.apm.<strong>enableAppStartTimeTracking</strong>();</code></pre>
+<p>
+  This calculates and records the app launch time for performance monitoring.
+</p>
+<p>
+  If you want to determine when the end time for this calculation should be you,
+  will have to enable the usage of manual triggers together with
+  <code class="JavaScript">enableAppStartTimeTracking</code> during init:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// enable it here separately with 'apm' interface.
+config.apm.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger</strong>();</code></pre>
+<p>
+  Now you can call <code class="JavaScript">Countly.appLoadingFinished()</code>
+  any time after SDK initialization to record that moment as the end of app launch
+  time. The starting time of the app load will be automatically calculated and
+  recorded. Note that the app launch time can be recorded only once per app launch.
+  So, the second and following calls to this method will be ignored.
+</p>
+<p>
+  If you also want to manipulate the app launch starting time instead of using
+  the SDK calculated value then you will need to call a third method on the config
+  object with the timestamp (in milliseconds) of that time you want:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// generate the timestamp you want (or you can directly pass a ts)
+int ts = DateTime.now().millisecondsSinceEpoch - 500; // 500 ms ago as an example
+
+// this would also work with manual trigger
+config.apm.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</strong>(ts);</code></pre>
+<p>
+  Lastly if you want to enable the SDK to record the time an app is in foreground
+  or background automatically you would need to enable this option during init:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// enable it here separately with 'apm' interface.
+config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
 <h1 id="h_01H930GAQ77F3QXV695Z9DE6PJ">User consent</h1>
 <p>
   For compatibility with data protection regulations, such as GDPR, the Countly
