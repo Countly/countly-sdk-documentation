@@ -737,11 +737,6 @@ make install</code></pre>
 <p>
   There are some data that is collected by SDK to perform their functions and implement
   the required features. Before any of it is sent to the server, it is stored locally.
-</p>
-<p>
-  * When sending any network requests to the server, the following things are sent
-  in addition to the main data:<br>
-  - Timestamp of when the request is created<br>
-  - SDK version<br>
-  - SDK name
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">Here</a>
+  is the collected data for the SDK.
 </p>
