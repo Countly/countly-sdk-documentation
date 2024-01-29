@@ -1430,7 +1430,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 
     // Decide which which widget to show. Here the first rating widget is selected. 
     const widgetType = "rating";
-    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
+    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
     if (!countlyFeedbackWidget) {
       console.error(`[Countly] No ${widgetType} widget found`);
       return;
@@ -3159,4 +3159,10 @@ function endSession() { // end a session
   traffic and inspect the request headers and payload, so if your server is Countly
   hosted and the domain name is in the filter of the ad blocker, it would still
   be blocked.
+</p>
+<h2 id="h_01HNANK3XPZ7429V5Z2FJ9MMZ5">What Information is Collected by the SDK?</h2>
+<p>
+  The data that SDKs gather to carry out their tasks and implement the necessary
+  functionalities is mentioned in
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
