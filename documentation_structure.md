@@ -43,7 +43,9 @@ Each SDK document starts with an introductory text that includes:
 
 * the current SDK version and the SDK name
 * link to the archived doc page
-* minimum platform, language requirements, supported platform versions
+* (A sub header "Minimum Supported Versions" that will be not a header, it will be bold and, font size will be Large)
+* minimum platform, language requirements, supported platform versions (The SDKs that have a platform concept should contain a minimum supported version table)
+* (A sub header "Repos" that will be not a header, it will be bold and, font size will be Large)
 * SDK repo location
 * example app location
 
