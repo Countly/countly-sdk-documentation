@@ -746,3 +746,10 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   metrics:"{'_os':'Linux'}",
   begin_session:1
 });</code></pre>
+<h1 id="h_01HNANT8H3P3W2PXB0CCY2FNBW">FAQ</h1>
+<h2 id="h_01HNANK3XPZ7429V5Z2FJ9MMZ5">What Information is Collected by the SDK?</h2>
+<p>
+  The data that SDKs gather to carry out their tasks and implement the necessary
+  functionalities is mentioned in
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+</p>
