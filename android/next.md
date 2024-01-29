@@ -2894,10 +2894,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   for all SDKs.
 </p>
 <p>
-  * When generating a device ID, if no custom ID is provided, the SDK will use
-  Secure.ANDROID_ID as the ID
-</p>
-<p>
   * If push notification are used:<br>
   - The devices push notification token<br>
   - If the user clicks on the notification then the time of the click and on which
