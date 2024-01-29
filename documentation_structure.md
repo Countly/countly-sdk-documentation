@@ -43,26 +43,19 @@ Each SDK document starts with an introductory text that includes:
 
 * the current SDK version and the SDK name
 * link to the archived doc page
-* (A sub header "Minimum Supported Versions" that will be not a header, it will be bold and, font size will be Large)
-* minimum platform, language requirements, supported platform versions (The SDKs that have a platform concept should contain a minimum supported version table)
-* (A sub header "Repos" that will be not a header, it will be bold and, font size will be Large)
-* SDK repo location
-* example app location
-
-***
-
-**Adding the SDK to the Project** 
-
-* (How should that be done, where can the library be found, how is the dependency added to their project)
-* other things to note (like what is they should know prior to implementation)
 
 ***
 
 **SDK Integration**
 
-This should contain the core integration information about the SDK, including a short MVP setup
+* Minimum Supported Versions (minimum platform, language requirements, supported platform versions (The SDKs that have a platform concept should contain a minimum supported version table))
+* SDK Repository and Example Integration (SDK repo location, example app location)
 
-* Minimal Setup (mandatory fields and other useful information)
+* Adding the SDK to the Project
+  * (How should that be done, where can the library be found, how is the dependency added to their project)
+  * other things to note (like what is they should know prior to implementation)
+
+* Minimal Setup (mandatory fields and other useful information. This should contain the core integration information about the SDK, including a short MVP setup)
 * Required App Permissions (if needed)
 * Required Callbacks (if needed)
 * (Other things if needed. This should cover rare platform specific topics)
