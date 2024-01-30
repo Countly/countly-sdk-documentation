@@ -2888,38 +2888,10 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>
   The following description mentions data that is collected by SDK's to perform
   their functions and implement the required features. Before any of it is sent
-  to the server, it is stored locally.
-</p>
-<p>
-  * When sending any network requests to the server, the following things are sent
-  in addition of the main data:<br>
-  - Timestamp of when the request is creted<br>
-  - Current hour<br>
-  - Current day of week<br>
-  - Current timezone<br>
-  - SDK version<br>
-  - SDK name
-</p>
-<p>
-  * If sessions are used then it would record the session start time, end time
-  and duration
-</p>
-<p>
-  * If sessions are used then also device metrics are collected which contains:<br>
-  - Device model<br>
-  - Device type (phone, tablet, etc)<br>
-  - Screen resolution<br>
-  - Screen density<br>
-  - OS name<br>
-  - OS version<br>
-  - App version<br>
-  - Locale identifier<br>
-  - Carrier name
-</p>
-<p>* The current device orientation</p>
-<p>
-  * When generating a device ID, if no custom ID is provided, the SDK will use
-  Secure.ANDROID_ID as the ID
+  to the server, it is stored locally. For further information please have a look
+  to the
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
+  for all SDKs.
 </p>
 <p>
   * If push notification are used:<br>
@@ -2941,29 +2913,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
   has been given to the SDK or removed from the SDK
-</p>
-<p>
-  * If crash tracking is enabled, it will collect the following information at
-  the time of the crash:<br>
-  - OS name<br>
-  - OS version<br>
-  - Device model<br>
-  - Device architecture<br>
-  - Device resolution<br>
-  - App version<br>
-  - Time of the crash<br>
-  - Crash stacktrace<br>
-  - Error description<br>
-  - Total RAM<br>
-  - Currently used RAM<br>
-  - Total disk size<br>
-  - Currently used disk size<br>
-  - Device battery level<br>
-  - Device orientation<br>
-  - If there is a network connection<br>
-  - If the app is in the background<br>
-  - How long has the application been running<br>
-  - If the device has been rooted
 </p>
 <p>
   Any other information like data in custom events, location, user profile information
