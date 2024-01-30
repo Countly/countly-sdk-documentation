@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.10.X
+  and it applies to version 24.1.X
 </p>
 <div class="callout callout--info">
   <p>
@@ -33,13 +33,13 @@
 }</pre>
 <p>The dependency can be added as:</p>
 <pre>dependencies {
-  implementation "ly.count.sdk:java:23.10.0"
+  implementation "ly.count.sdk:java:24.1.0"
 }</pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;23.10.0&lt;/version&gt;
+  &lt;version&gt;24.1.0&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 id="h_01HABV0K6CDY5FSWH5QBHTT79R">SDK Integration</h1>
