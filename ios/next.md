@@ -4722,37 +4722,16 @@ end</code></pre>
   </li>
 </ul>
 <h2 id="h_01HAVHW0RT0WGM2365JVMT956J">
-  <span class="wysiwyg-color-black">What data metrics are collected by Countly iOS SDK?</span>
+  <span class="wysiwyg-color-black">What Information is Collected by the SDK?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">Countly iOS SDK collects following metrics by default:</span>
+  The following description mentions data that is collected by SDK's to perform
+  their functions and implement the required features. Before any of it is sent
+  to the server, it is stored locally. For further information please have a look
+  to the
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
+  for all SDKs.
 </p>
-<ul>
-  <li>
-    <span>Device Model</span>
-  </li>
-  <li>
-    <span>Screen Resolution</span>
-  </li>
-  <li>
-    <span>Screen Density</span>
-  </li>
-  <li>
-    <span>OS Name</span>
-  </li>
-  <li>
-    <span>OS Version</span>
-  </li>
-  <li>
-    <span>App Version</span>
-  </li>
-  <li>
-    <span>Locale Identifier</span>
-  </li>
-  <li>
-    <span>Carrier</span>
-  </li>
-</ul>
 <p>
   Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS
   App Install Status
