@@ -42,9 +42,7 @@
     <span>Choose "nuget.org" as the </span><strong>Package source</strong><span>, select the </span><strong>Browse</strong><span> tab, search for </span><strong>Countly</strong><span>, select that package in the list, and select </span><strong>Install</strong><span>:<img src="/guide-media/01GVCYFDE9NW6731PFC2C4BMPW" alt="mceclip0.png"></span>
   </li>
   <li>
-    <p>
-      Accept any license prompts.
-    </p>
+    <p>Accept any license prompts.</p>
   </li>
 </ol>
 <h1 id="h_01HABTXQF7MZ5YDN38PTFQ6B4K">SDK Integration</h1>
@@ -1205,45 +1203,18 @@ cc.SetEventQueueSizeToSend(100); // sets event queue size per device
 cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
 cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
-<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK</h2>
+<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally.
-</p>
-<p>
-  *When sending any network requests to the server, the following things are sent
-  in addition to the main data:<br>
-  - Timestamp of when the request is created<br>
-  - Current hour<br>
-  - Current day of week<br>
-  - Current timezone<br>
-  - SDK version<br>
-  - SDK name
-</p>
-<p>
-  * If sessions are used then it would record the session start time, end time,
-  and duration
-</p>
-<p>
-  * If sessions are used then also device metrics are collected which contains:<br>
-  - Screen resolution<br>
-  - Screen density<br>
-  - OS name<br>
-  - OS version<br>
-  - App version<br>
-  <span>- Locale identifier</span>
+  server, it is stored locally. For further information please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
 </p>
 <p>
   * When events are recorded, the following information collected:<br>
   - Time of event<br>
   - Current hour<br>
-  - Current day of week
-</p>
-<p>
-  <span>* If crash tracking is enabled, it will collect the following information at the time of the crash:<br>- OS name<br>- OS version</span><br>
-  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stack trace<br>- Error description<br>- Total RAM</span><br>
-  <span>- If there is a network connection<br></span>
+  - Current day of week<span></span>
 </p>
 <p>
   <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
