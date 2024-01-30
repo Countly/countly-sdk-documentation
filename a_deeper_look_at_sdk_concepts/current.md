@@ -1365,7 +1365,7 @@ function sendMessage(param) {
   <span>Parameters Sent With Every Request</span>
 </h2>
 <p>
-  <span>When sending any network requests to the server, the following informations are sent in addition of the main data</span><span></span>
+  <span>When sending any network requests to the server, the following informations are sent in addition of the main data.</span><span></span>
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1499,7 +1499,7 @@ function sendMessage(param) {
 <h3 id="h_01HJ5QCQ99BYBMTZCSN5S3TSEV">Session Specific Metrics</h3>
 <p>
   The following metrics are additional to the common metrics that sent with every
-  begin session request.
+  begin session request. They are collected i<span>f they are available for the specific device/sdk/platform.</span>
 </p>
 <table style="border-collapse: collapse; height: 98px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1550,7 +1550,7 @@ function sendMessage(param) {
 <h3 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h3>
 <p>
   These metrics are automatically collected when a crash is reported manually or
-  automatically
+  automatically&nbsp;i<span>f they are available for the specific device/sdk/platform.</span>
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1624,7 +1624,7 @@ function sendMessage(param) {
 <h3 id="h_01HJ5WD48B7TVTNP7TFY0646MK">Crash Data</h3>
 <p>
   These parameters are automatically collected when a crash is reported manually
-  or automatically
+  or automatically i<span>f they are available for the specific device/sdk/platform.</span>
 </p>
 <table style="border-collapse: collapse; height: 174px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
