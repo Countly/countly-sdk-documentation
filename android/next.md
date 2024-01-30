@@ -1,5 +1,7 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 24.1.X</span>
+  This documentation is for the Countly Android SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,9 +12,11 @@
 </div>
 <p>
   The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
-  17). You can take a look at our sample application in the
-  <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
-  It shows how most of the functionalities can be used.
+  17).
+</p>
+<p>
+  To examine example integrations please have a look
+  <a href="/hc/en-us/articles/22856409354009#h_01HND059CTVC4QBVMB6P4CSVE7">here</a>.
 </p>
 <h1 id="h_01HAVQDM5SZRDX323EDDTNNMEF">Adding the SDK to the Project</h1>
 <p>
@@ -33,7 +37,7 @@
 <p>
   Before you can use any functionality, you have to initiate the SDK. That can
   be done either in your&nbsp;<code>Application</code> subclass (preferred), or
-  from your main activity <code>onCreate</code> method.
+  from your main activity <code>onCreate</code> method.<span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;"></span>
 </p>
 <h2 id="h_01HAVQDM5SPR8WSAQ76DEREE2E">Minimal Setup</h2>
 <p>The shortest way to initiate the SDK is with this call:</p>
@@ -2438,6 +2442,20 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     write signal is given.
   </li>
 </ul>
+<h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app">app</a>
+  module is an example integration that is written in Java. It covers most of the
+  functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app-kotlin">app-kotlin</a>
+  module is an example integration that is written in Kotlin.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native">app-native</a>
+  module is an example demonstration of native crash reporting in Java.
+</p>
 <h2 id="h_01HAVQDM5WJGFZ1DHDZR246KHR">Setting Event Queue Threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
@@ -2888,10 +2906,38 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>
   The following description mentions data that is collected by SDK's to perform
   their functions and implement the required features. Before any of it is sent
-  to the server, it is stored locally. For further information please have a look
-  to the
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
-  for all SDKs.
+  to the server, it is stored locally.
+</p>
+<p>
+  * When sending any network requests to the server, the following things are sent
+  in addition of the main data:<br>
+  - Timestamp of when the request is creted<br>
+  - Current hour<br>
+  - Current day of week<br>
+  - Current timezone<br>
+  - SDK version<br>
+  - SDK name
+</p>
+<p>
+  * If sessions are used then it would record the session start time, end time
+  and duration
+</p>
+<p>
+  * If sessions are used then also device metrics are collected which contains:<br>
+  - Device model<br>
+  - Device type (phone, tablet, etc)<br>
+  - Screen resolution<br>
+  - Screen density<br>
+  - OS name<br>
+  - OS version<br>
+  - App version<br>
+  - Locale identifier<br>
+  - Carrier name
+</p>
+<p>* The current device orientation</p>
+<p>
+  * When generating a device ID, if no custom ID is provided, the SDK will use
+  Secure.ANDROID_ID as the ID
 </p>
 <p>
   * If push notification are used:<br>
@@ -2913,6 +2959,29 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
   has been given to the SDK or removed from the SDK
+</p>
+<p>
+  * If crash tracking is enabled, it will collect the following information at
+  the time of the crash:<br>
+  - OS name<br>
+  - OS version<br>
+  - Device model<br>
+  - Device architecture<br>
+  - Device resolution<br>
+  - App version<br>
+  - Time of the crash<br>
+  - Crash stacktrace<br>
+  - Error description<br>
+  - Total RAM<br>
+  - Currently used RAM<br>
+  - Total disk size<br>
+  - Currently used disk size<br>
+  - Device battery level<br>
+  - Device orientation<br>
+  - If there is a network connection<br>
+  - If the app is in the background<br>
+  - How long has the application been running<br>
+  - If the device has been rooted
 </p>
 <p>
   Any other information like data in custom events, location, user profile information
