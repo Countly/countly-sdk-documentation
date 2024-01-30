@@ -845,13 +845,13 @@
     <span><strong>_locale</strong>- Locale or language of the device in ISO format.</span>
   </li>
   <li>
-    <span><strong>_store</strong>- (Mobile SDK) A source where the user came from.&nbsp;</span>
+    <span><strong>_store</strong>- (Mobile SDK) A source where the user came from.</span>
   </li>
   <li>
     <span><strong>_carrier</strong>- (Mobile SDK) Carrier or operator used for connection.</span>
   </li>
   <li>
-    <span><strong>_has_watch</strong>- (iOS SDK).&nbsp;</span>
+    <span><strong>_has_watch</strong>- (iOS SDK).</span>
   </li>
   <li>
     <div>
