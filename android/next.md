@@ -16,7 +16,7 @@
 </p>
 <p>
   To examine example integrations please have a look
-  <a href="/hc/en-us/articles/22856409354009#h_01HND059CTVC4QBVMB6P4CSVE7">here</a>.
+  <a href="#h_01HND059CTVC4QBVMB6P4CSVE7">here</a>.
 </p>
 <h1 id="h_01HAVQDM5SZRDX323EDDTNNMEF">Adding the SDK to the Project</h1>
 <p>
