@@ -1,5 +1,7 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 24.1.X</span>
+  This documentation is for the Countly Android SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,9 +12,11 @@
 </div>
 <p>
   The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
-  17). You can take a look at our sample application in the
-  <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
-  It shows how most of the functionalities can be used.
+  17).
+</p>
+<p>
+  To examine example integrations please have a look
+  <a href="#h_01HND059CTVC4QBVMB6P4CSVE7">here</a>.
 </p>
 <h1 id="h_01HAVQDM5SZRDX323EDDTNNMEF">Adding the SDK to the Project</h1>
 <p>
@@ -840,28 +844,17 @@ CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.Countl
   .setAllowedIntentPackageNames(allowedPackageNames);
 CountlyPush.init(countlyConfigPush);&lt;/&gt;&lt;/&gt;</code></pre>
 <p>
-  Please follow provider-specific instructions for Firebase and / or Huawei PushKit
-  below.
+  Please follow provider-specific instructions for Firebase and / or Huawei Push
+  Kit below.
 </p>
 <h3 id="h_01HAVQDM5TN4XSRHM5NPVQ8THG">Firebase</h3>
-<h4 id="h_01HAVQDM5TDXHRVHJR8F6VX2D2">Getting FCM Credentials</h4>
-<p>
-  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
-  order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/57c5e32-Screenshot_2018-04-21_17.20.16.png">
-</div>
-<p>Select Cloud Messaging tab</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVBGCTGJRS36EX7J6YHXZ2B4" alt="002.png">
-</div>
+<h4 id="h_01HNFBR840AQ9N49PH47614NF6">
+  Before implementing FCM to your application you would need to get Push Notification
+  credentials from your Firebase Console and upload them to your Countly server.
+  (If you have not done that already you can follow
+  <a href="/hc/en-us/articles/4409195031577#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
+  guide.)
+</h4>
 <h4 id="h_01HAVQDM5TAA8KNV9Y79HAAZS8">Integrating FCM into Your App</h4>
 <p>
   <span style="font-weight: 400;">Please review our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app" target="_self">Demo app</a><span style="font-weight: 400;">&nbsp;for a complete integration example.</span>
@@ -983,43 +976,14 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   }
 }
 </code></pre>
-<h3 id="h_01HAVQDM5TRPPPKPT4ZCWMCT26">Huawei PushKit</h3>
-<h4 id="h_01HAVQDM5TJ3FBWYNVZP793D6S">Getting Huawei Credentials</h4>
-<p>
-  Assuming you have followed Huawei's guide of
-  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-help-createapp-0000001146718717" target="_self">setting up an application</a>,
-  next step would be to
-  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service#enable-service" target="_self">enable PushKit</a>.
-  Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
-</p>
-<ul>
-  <li>
-    enter&nbsp;<code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into
-    the callback address field, while replacing YOUR_COUNTLY_SERVER with actual
-    server address;
-  </li>
-  <li>
-    and enter your certificate in PEM format (only your certificate, without
-    the rest of the chain; usually first one in
-    <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).&nbsp;
-  </li>
-</ul>
-<p>
-  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
-</p>
-<p>
-  Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
-  My Apps:
-</p>
-<p>
-  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
-</p>
-<p>
-  Copy your App ID &amp; the secret and paste it into Countly dashboard :
-</p>
-<p>
-  <img src="/guide-media/01GVD4Q3DR7YRWKN6931KFPG9V" alt="Screenshot_2020-08-25_at_16.04.29.png">
-</p>
+<h3 id="h_01HAVQDM5TRPPPKPT4ZCWMCT26">Huawei Push Kit</h3>
+<h4 id="h_01HNFCJ3YFC7TK307ATR3GNYM1">
+  Before implementing HMS to your application you would need to get Push Notification
+  credentials for the Push Kit and upload them to your Countly server. (If you
+  have not done that already you can follow
+  <a href="/hc/en-us/articles/4409195031577#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
+  guide.)
+</h4>
 <h4 id="h_01HAVQDM5TG1ZQ0FZVS0N9SCX5">Integrating HMS into Your App</h4>
 <p>
   HMS implementation in Countly SDK looks very much like FCM: add dependencies,
@@ -1204,6 +1168,76 @@ ProxyActivity.intentExtraWhichButton</code></pre>
     <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
   </p>
 </div>
+<h1 id="h_01HNF9WBDT037TDHVHRSEPEMZV">Setting up Credentials</h1>
+<p>
+  To use Push Notifications in your application you would need to acquire credentials
+  from the PN service of your choice (Firebase or Huawei) and then upload these
+  credentials to your Countly server.
+</p>
+<h3 id="h_01HNF9WBDTWYNW05YZ9M5X6HNN">Acquiring Credentials</h3>
+<h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">
+  <span style="font-weight: 400;">Firebase</span>
+</h4>
+<p>
+  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
+  order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/57c5e32-Screenshot_2018-04-21_17.20.16.png">
+</div>
+<p>Select Cloud Messaging tab</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
+</div>
+<h4 id="h_01HNFBDKJPQ5492DGFP9YDM5EQ">Huawei</h4>
+<p>
+  Assuming you have followed Huawei's guide of
+  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-help-createapp-0000001146718717" target="_self">setting up an application</a>,
+  next step would be to
+  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service#enable-service" target="_self">enable PushKit</a>.
+  Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
+</p>
+<ul>
+  <li>
+    enter&nbsp;<code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into
+    the callback address field, while replacing YOUR_COUNTLY_SERVER with actual
+    server address;
+  </li>
+  <li>
+    and enter your certificate in PEM format (only your certificate, without
+    the rest of the chain; usually first one in
+    <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).&nbsp;
+  </li>
+</ul>
+<p>
+  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
+</p>
+<p>
+  Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
+  My Apps:
+</p>
+<p>
+  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
+</p>
+<h3 id="h_01HNF9WVXKZZ5F6B0MK3AW7F3X">Setting up the Dashboard</h3>
+<h4 id="h_01HNFBDXP0SSKTH7CPJ8ZTGP40">
+  <span style="font-weight: 400;">Firebase</span>
+</h4>
+<p>
+  <span style="font-weight: 400;">Copy &amp; paste the FCM keys you get from your Firebase console into Management &gt; Applications &gt; &nbsp;Push Notifications &gt; Google FCM credentials upload form in your Countly server and press “Save changes”:</span>
+</p>
+<p>
+  <img src="/guide-media/01HNFC77T9NJHMPG9D346RN8C1" alt="002.png">
+</p>
+<h4 id="h_01HNFBE6CHKD70TNTAD0QARMCN">Huawei</h4>
+<p>
+  Copy your App ID &amp; the secret you got from your Huawei app gallery and paste
+  it
+  <span style="font-weight: 400;">into Management &gt; Applications &gt; Push Notifications &gt; Huawei Push Kit upload form in your Countly server and press “Save changes”:</span>
+</p>
+<p>
+  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="005.png">
+</p>
 <h1 id="h_01HAVQDM5V188C0YEHXB0E6238">User Location</h1>
 <p>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
@@ -2438,6 +2472,20 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     write signal is given.
   </li>
 </ul>
+<h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app">app</a>
+  module is an example integration that is written in Java. It covers most of the
+  functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app-kotlin">app-kotlin</a>
+  module is an example integration that is written in Kotlin.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native">app-native</a>
+  module is an example demonstration of native crash reporting in Java.
+</p>
 <h2 id="h_01HAVQDM5WJGFZ1DHDZR246KHR">Setting Event Queue Threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
@@ -2888,38 +2936,10 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>
   The following description mentions data that is collected by SDK's to perform
   their functions and implement the required features. Before any of it is sent
-  to the server, it is stored locally.
-</p>
-<p>
-  * When sending any network requests to the server, the following things are sent
-  in addition of the main data:<br>
-  - Timestamp of when the request is creted<br>
-  - Current hour<br>
-  - Current day of week<br>
-  - Current timezone<br>
-  - SDK version<br>
-  - SDK name
-</p>
-<p>
-  * If sessions are used then it would record the session start time, end time
-  and duration
-</p>
-<p>
-  * If sessions are used then also device metrics are collected which contains:<br>
-  - Device model<br>
-  - Device type (phone, tablet, etc)<br>
-  - Screen resolution<br>
-  - Screen density<br>
-  - OS name<br>
-  - OS version<br>
-  - App version<br>
-  - Locale identifier<br>
-  - Carrier name
-</p>
-<p>* The current device orientation</p>
-<p>
-  * When generating a device ID, if no custom ID is provided, the SDK will use
-  Secure.ANDROID_ID as the ID
+  to the server, it is stored locally. For further information please have a look
+  to the
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
+  for all SDKs.
 </p>
 <p>
   * If push notification are used:<br>
@@ -2941,29 +2961,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>
   * If the consent feature is used, the SDK will collect and send what consent
   has been given to the SDK or removed from the SDK
-</p>
-<p>
-  * If crash tracking is enabled, it will collect the following information at
-  the time of the crash:<br>
-  - OS name<br>
-  - OS version<br>
-  - Device model<br>
-  - Device architecture<br>
-  - Device resolution<br>
-  - App version<br>
-  - Time of the crash<br>
-  - Crash stacktrace<br>
-  - Error description<br>
-  - Total RAM<br>
-  - Currently used RAM<br>
-  - Total disk size<br>
-  - Currently used disk size<br>
-  - Device battery level<br>
-  - Device orientation<br>
-  - If there is a network connection<br>
-  - If the app is in the background<br>
-  - How long has the application been running<br>
-  - If the device has been rooted
 </p>
 <p>
   Any other information like data in custom events, location, user profile information
