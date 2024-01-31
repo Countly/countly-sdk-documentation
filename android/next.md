@@ -844,28 +844,17 @@ CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.Countl
   .setAllowedIntentPackageNames(allowedPackageNames);
 CountlyPush.init(countlyConfigPush);&lt;/&gt;&lt;/&gt;</code></pre>
 <p>
-  Please follow provider-specific instructions for Firebase and / or Huawei PushKit
-  below.
+  Please follow provider-specific instructions for Firebase and / or Huawei Push
+  Kit below.
 </p>
 <h3 id="h_01HAVQDM5TN4XSRHM5NPVQ8THG">Firebase</h3>
-<h4 id="h_01HAVQDM5TDXHRVHJR8F6VX2D2">Getting FCM Credentials</h4>
-<p>
-  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
-  order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/57c5e32-Screenshot_2018-04-21_17.20.16.png">
-</div>
-<p>Select Cloud Messaging tab</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Copy &amp; paste the FCM key into your application FCM credentials upload form in the Countly server and press “Save changes”.</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVBGCTGJRS36EX7J6YHXZ2B4" alt="002.png">
-</div>
+<h4 id="h_01HNFBR840AQ9N49PH47614NF6">
+  Before implementing FCM to your application you would need to get Push Notification
+  credentials from your Firebase Console and upload them to your Countly server.
+  (If you have not done that already you can follow
+  <a href="/hc/en-us/articles/4409195031577#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
+  guide.)
+</h4>
 <h4 id="h_01HAVQDM5TAA8KNV9Y79HAAZS8">Integrating FCM into Your App</h4>
 <p>
   <span style="font-weight: 400;">Please review our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app" target="_self">Demo app</a><span style="font-weight: 400;">&nbsp;for a complete integration example.</span>
@@ -987,43 +976,14 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   }
 }
 </code></pre>
-<h3 id="h_01HAVQDM5TRPPPKPT4ZCWMCT26">Huawei PushKit</h3>
-<h4 id="h_01HAVQDM5TJ3FBWYNVZP793D6S">Getting Huawei Credentials</h4>
-<p>
-  Assuming you have followed Huawei's guide of
-  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-help-createapp-0000001146718717" target="_self">setting up an application</a>,
-  next step would be to
-  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service#enable-service" target="_self">enable PushKit</a>.
-  Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
-</p>
-<ul>
-  <li>
-    enter&nbsp;<code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into
-    the callback address field, while replacing YOUR_COUNTLY_SERVER with actual
-    server address;
-  </li>
-  <li>
-    and enter your certificate in PEM format (only your certificate, without
-    the rest of the chain; usually first one in
-    <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).&nbsp;
-  </li>
-</ul>
-<p>
-  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
-</p>
-<p>
-  Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
-  My Apps:
-</p>
-<p>
-  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
-</p>
-<p>
-  Copy your App ID &amp; the secret and paste it into Countly dashboard :
-</p>
-<p>
-  <img src="/guide-media/01GVD4Q3DR7YRWKN6931KFPG9V" alt="Screenshot_2020-08-25_at_16.04.29.png">
-</p>
+<h3 id="h_01HAVQDM5TRPPPKPT4ZCWMCT26">Huawei Push Kit</h3>
+<h4 id="h_01HNFCJ3YFC7TK307ATR3GNYM1">
+  Before implementing HMS to your application you would need to get Push Notification
+  credentials for the Push Kit and upload them to your Countly server. (If you
+  have not done that already you can follow
+  <a href="/hc/en-us/articles/4409195031577#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
+  guide.)
+</h4>
 <h4 id="h_01HAVQDM5TG1ZQ0FZVS0N9SCX5">Integrating HMS into Your App</h4>
 <p>
   HMS implementation in Countly SDK looks very much like FCM: add dependencies,
@@ -1208,6 +1168,76 @@ ProxyActivity.intentExtraWhichButton</code></pre>
     <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
   </p>
 </div>
+<h1 id="h_01HNF9WBDT037TDHVHRSEPEMZV">Setting up Credentials</h1>
+<p>
+  To use Push Notifications in your application you would need to acquire credentials
+  from the PN service of your choice (Firebase or Huawei) and then upload these
+  credentials to your Countly server.
+</p>
+<h3 id="h_01HNF9WBDTWYNW05YZ9M5X6HNN">Acquiring Credentials</h3>
+<h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">
+  <span style="font-weight: 400;">Firebase</span>
+</h4>
+<p>
+  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
+  order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/57c5e32-Screenshot_2018-04-21_17.20.16.png">
+</div>
+<p>Select Cloud Messaging tab</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
+</div>
+<h4 id="h_01HNFBDKJPQ5492DGFP9YDM5EQ">Huawei</h4>
+<p>
+  Assuming you have followed Huawei's guide of
+  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-help-createapp-0000001146718717" target="_self">setting up an application</a>,
+  next step would be to
+  <a href="https://developer.huawei.com/consumer/en/doc/distribution/app/agc-enable_service#enable-service" target="_self">enable PushKit</a>.
+  Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
+</p>
+<ul>
+  <li>
+    enter&nbsp;<code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into
+    the callback address field, while replacing YOUR_COUNTLY_SERVER with actual
+    server address;
+  </li>
+  <li>
+    and enter your certificate in PEM format (only your certificate, without
+    the rest of the chain; usually first one in
+    <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).&nbsp;
+  </li>
+</ul>
+<p>
+  <img src="/guide-media/01GVBGBCHQBFVTTZ6116X01EXR" alt="Screenshot_2020-08-25_at_15.52.49.png">
+</p>
+<p>
+  Then you'd need to get your App ID &amp; App secret from AppGallery Connect -&gt;
+  My Apps:
+</p>
+<p>
+  <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
+</p>
+<h3 id="h_01HNF9WVXKZZ5F6B0MK3AW7F3X">Setting up the Dashboard</h3>
+<h4 id="h_01HNFBDXP0SSKTH7CPJ8ZTGP40">
+  <span style="font-weight: 400;">Firebase</span>
+</h4>
+<p>
+  <span style="font-weight: 400;">Copy &amp; paste the FCM keys you get from your Firebase console into Management &gt; Applications &gt; &nbsp;Push Notifications &gt; Google FCM credentials upload form in your Countly server and press “Save changes”:</span>
+</p>
+<p>
+  <img src="/guide-media/01HNFC77T9NJHMPG9D346RN8C1" alt="002.png">
+</p>
+<h4 id="h_01HNFBE6CHKD70TNTAD0QARMCN">Huawei</h4>
+<p>
+  Copy your App ID &amp; the secret you got from your Huawei app gallery and paste
+  it
+  <span style="font-weight: 400;">into Management &gt; Applications &gt; Push Notifications &gt; Huawei Push Kit upload form in your Countly server and press “Save changes”:</span>
+</p>
+<p>
+  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="005.png">
+</p>
 <h1 id="h_01HAVQDM5V188C0YEHXB0E6238">User Location</h1>
 <p>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
