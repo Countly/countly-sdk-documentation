@@ -1597,90 +1597,26 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <h1 id="h_01HAVHW0RQD3WBN560GAKTB77T">Push Notifications</h1>
 <p>
-  To disable push notifications in your app and avoid App Store Connect warnings,
-  you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in your project's
-  preprocessor macros setting. The location of this setting will vary depending
-  on the development environment you are using.
+  Countly gives you the ability to send Push Notifications to your users using
+  your app with the iOS SDK integration. For more information on how to best use
+  this feature you can check
+  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">this</a>
+  article.
 </p>
 <p>
-  For example, in Xcode, you can define this macro by navigating to the project
-  settings, selecting the build target, and then selecting the "Build Settings"
-  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
-  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
-  Debug and/or Release fields. This will exclude push notifications from the build
-  and avoid the App Store Connect warnings.
-</p>
-<h2 id="h_01HAVHW0RQCDBB56915BMJTP5H">Setting up APNs Authentication</h2>
-<p>
-  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple using one of the following methods:</span></strong>
+  To make this feature work you will need to make some configurations both in your
+  app and at your Countly server.
 </p>
 <p>
-  <strong>A)</strong> APNs Auth Key (preferred)<br>
-  <strong>B)</strong> Universal (Sandbox + Production) Certificate
-</p>
-<h3 id="h_01HAVHW0RQGBSB4VVFJMK2EB8K">A) Getting an APNs Auth Key</h3>
-<p>
-  <span style="font-weight: 400;">APNs Auth Key is the preferred authentication method on APNs for a number of reasons, including less issues faced during configuration and the fact that it can reuse the same connection with multiple apps.</span>
+  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple. (If you don't have them you can check <a href="/hc/en-us/articles/4409195031577#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">this</a> article to learn how you can do it.)</span></strong>
 </p>
 <p>
-  <span style="font-weight: 400;">First go to the </span><a href="https://developer.apple.com/account/ios/authkey/create"><span style="font-weight: 400;">Create a New Key</span></a><span style="font-weight: 400;"> section on the Apple Developer website to get an APNs Auth Key.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/1df7566-af33314-Screenshot_2017-09-20_14.38.56.png">
-</div>
-<p>
-  Check the <code>APNs</code> option and create your key.
+  <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to <a href="/hc/en-us/articles/4409195031577#h_01HNF5QRPJGG0GKMMH2SZWVK85">this</a> article for learning how you can do that.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Then download your key and store it in a safe place, you won't be able to download it again.</span><span style="font-weight: 400;"><br></span><span style="font-weight: 400;">You'll also need some identifiers to upload a key file to Countly:</span>
+  <span style="font-weight: 400;">Lastly you will need to integrate and enable the feature in your SDK as explained below.</span>
 </p>
-<ul>
-  <li>
-    <p>
-      <code>Key ID</code> (filled automatically if you kept the original Auth
-      Key filename, otherwise visible on the key details panel)
-    </p>
-  </li>
-  <li>
-    <p>
-      <code>Team ID</code> (see
-      <a href="https://developer.apple.com/account/#/membership/">Membership</a>
-      section)
-    </p>
-  </li>
-  <li>
-    <p>
-      <code>Bundle ID</code> (see
-      <a href="https://developer.apple.com/account/ios/identifier/bundle">App IDs</a>
-      section)
-    </p>
-  </li>
-</ul>
-<h3 id="h_01HAVHW0RQPP7Z6CQJ5V0HS7MC">
-  B) Getting APNs Universal (Sandbox + Production) Certificate
-</h3>
-<p>
-  <span style="font-weight: 400;">Please go to the </span><strong>Certificates</strong><span style="font-weight: 400;"> section on the </span><a href="https://developer.apple.com/account/ios/certificate/"><strong>Certificates, Identifiers &amp; Profiles</strong></a><span style="font-weight: 400;"> page on the Apple Developer website. Click the plus sign and select the </span><strong>Apple Push Notification service SSL (Sandbox &amp; Production)</strong><span style="font-weight: 400;"> type. Follow the instructions. Once you are done, download it and double click to add it to your Keychain.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/2248a72-1009cff-push_addcert.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Next, you'll need to export your push certificate into </span><strong>p12</strong><span style="font-weight: 400;"> format. Please open the </span><strong>Keychain Access</strong><span style="font-weight: 400;"> app, select the </span><strong>login</strong><span style="font-weight: 400;"> keychain, and the </span><strong>My Certificates</strong><span style="font-weight: 400;"> category. Search for your app ID and find the certificate starting with the </span><strong>Apple Push Services</strong><span style="font-weight: 400;">. Select both the certificate and its private key as shown in the screenshot below. Right click and choose </span><strong>Export 2 items...</strong><span style="font-weight: 400;"> and save it. You're free to name the p12 file as you wish and to set up a passphrase or leave it empty.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/94d763b-push_p12.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVD4NGFQ4RR2VYHWBK04M12E" alt="001.png">
-</div>
-<p>
-  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
-</p>
-<h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Configuring iOS app</h2>
+<h2 id="h_01HAVHW0RQCDBB56915BMJTP5H">Integration</h2>
 <p>
   <span style="font-weight: 400;">Using Countly Push Notifications on iOS apps is pretty straightforward. First, integrate the Countly iOS SDK as usual, if you still have yet to do so.</span>
 </p>
@@ -1690,8 +1626,9 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 <div class="img-container">
   <img src="https://count.ly/images/guide/0359527-push_xcode.png">
 </div>
+<h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Enabling Push</h2>
 <p>
-  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code></span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code></span><span style="font-weight: 400;">array on the <code>CountlyConfig</code></span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
+  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code> </span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code> </span><span style="font-weight: 400;">array on the <code>CountlyConfig</code> </span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1754,6 +1691,21 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <strong>Note:</strong>
   <span style="font-weight: 400;">To see how to send push notifications using the Countly Server, please check our</span>
   <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications">Push Notifications documentation</a>.
+</p>
+<h2 id="h_01HNF5NAJ40CEETJNZFDT5CPJ7">Removing Push</h2>
+<p>
+  To disable push notifications in your app and avoid App Store Connect warnings,
+  you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in your project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment you are using.
+</p>
+<p>
+  For example, in Xcode, you can define this macro by navigating to the project
+  settings, selecting the build target, and then selecting the "Build Settings"
+  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
+  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
+  Debug and/or Release fields. This will exclude push notifications from the build
+  and avoid the App Store Connect warnings.
 </p>
 <h2 id="h_01HAVHW0RQG8PK3Z0KFW0D4Y2K">Deep links</h2>
 <p>
@@ -2246,6 +2198,80 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <pre><code class="swift">Countly.launchNotification = notification</code></pre>
   </div>
 </div>
+<h2 id="h_01HNF5NAJ41Y4YT87PGV5HKE39">Setting up Credentials</h2>
+<h3 id="h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">
+  <strong><span style="font-weight: 400;">Acquiring Credentials</span></strong>
+</h3>
+<p>
+  <strong><span style="font-weight: 400;">There are two ways you can acquire Push Notification credentials from Apple:</span></strong>
+</p>
+<ul>
+  <li>APNs Auth Key (preferred method)</li>
+  <li>Universal (Sandbox + Production) Certificate</li>
+</ul>
+<h4 id="h_01HAVHW0RQGBSB4VVFJMK2EB8K">Getting an APNs Auth Key</h4>
+<p>
+  <span style="font-weight: 400;">APNs Auth Key is the preferred authentication method on APNs for a number of reasons, including less issues faced during configuration and the fact that it can reuse the same connection with multiple apps.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">First go to the </span><a href="https://developer.apple.com/account/ios/authkey/create"><span style="font-weight: 400;">Create a New Key</span></a><span style="font-weight: 400;"> section on the Apple Developer website to get an APNs Auth Key.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/1df7566-af33314-Screenshot_2017-09-20_14.38.56.png">
+</div>
+<p>
+  Check the <code>APNs</code> option and create your key.
+</p>
+<p>
+  <span style="font-weight: 400;">Then download your key and store it in a safe place, you won't be able to download it again.</span><span style="font-weight: 400;"><br></span><span style="font-weight: 400;">You'll also need some identifiers to upload a key file to Countly:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <code>Key ID</code> (filled automatically if you kept the original Auth
+      Key filename, otherwise visible on the key details panel)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>Team ID</code> (see
+      <a href="https://developer.apple.com/account/#/membership/">Membership</a>
+      section)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>Bundle ID</code> (see
+      <a href="https://developer.apple.com/account/ios/identifier/bundle">App IDs</a>
+      section)
+    </p>
+  </li>
+</ul>
+<h4 id="h_01HAVHW0RQPP7Z6CQJ5V0HS7MC">Getting APNs Universal (Sandbox + Production) Certificate</h4>
+<p>
+  <span style="font-weight: 400;">Please go to the </span><strong>Certificates</strong><span style="font-weight: 400;"> section on the </span><a href="https://developer.apple.com/account/ios/certificate/"><strong>Certificates, Identifiers &amp; Profiles</strong></a><span style="font-weight: 400;"> page on the Apple Developer website. Click the plus sign and select the </span><strong>Apple Push Notification service SSL (Sandbox &amp; Production)</strong><span style="font-weight: 400;"> type. Follow the instructions. Once you are done, download it and double click to add it to your Keychain.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/2248a72-1009cff-push_addcert.png">
+</div>
+<p>
+  <span style="font-weight: 400;">Next, you'll need to export your push certificate into </span><strong>p12</strong><span style="font-weight: 400;"> format. Please open the </span><strong>Keychain Access</strong><span style="font-weight: 400;"> app, select the </span><strong>login</strong><span style="font-weight: 400;"> keychain, and the </span><strong>My Certificates</strong><span style="font-weight: 400;"> category. Search for your app ID and find the certificate starting with the </span><strong>Apple Push Services</strong><span style="font-weight: 400;">. Select both the certificate and its private key as shown in the screenshot below. Right click and choose </span><strong>Export 2 items...</strong><span style="font-weight: 400;"> and save it. You're free to name the p12 file as you wish and to set up a passphrase or leave it empty.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/94d763b-push_p12.png">
+</div>
+<h3 id="h_01HNF5QRPJGG0GKMMH2SZWVK85">
+  <span style="font-weight: 400;">Setting up the Dashboard</span>
+</h3>
+<p>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
+</p>
+<div class="img-container">
+  <img src="/guide-media/01GVD4NGFQ4RR2VYHWBK04M12E" alt="001.png">
+</div>
+<p>
+  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
+</p>
 <h1 id="h_01HAVHW0RRSPH1W989GXSPR3HY">User Location</h1>
 <div class="callout callout--info">
   <strong>Enterprise Edition Feature</strong>
