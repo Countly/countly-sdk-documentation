@@ -147,6 +147,9 @@ This should contain the core integration information about the SDK, including a 
 * Handling Push Callbacks
   * Handling ‘onClick’ Events
   * Handling ‘onReceive’ Events
+* Setting up Credentials
+  * Acquiring Credentials
+  * Setting up the Dashboard
 * Consent
 
 ***
