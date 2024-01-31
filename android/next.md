@@ -1,5 +1,7 @@
 <p>
-  <span style="font-weight: 400;">This document will guide you through the process of Countly SDK installation and it applies to version 24.1.X</span>
+  This documentation is for the Countly Android SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,9 +12,11 @@
 </div>
 <p>
   The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
-  17). You can take a look at our sample application in the
-  <a href="https://github.com/Countly/countly-sdk-android" target="_self">Github repo</a>.
-  It shows how most of the functionalities can be used.
+  17).
+</p>
+<p>
+  To examine example integrations please have a look
+  <a href="#h_01HND059CTVC4QBVMB6P4CSVE7">here</a>.
 </p>
 <h1 id="h_01HAVQDM5SZRDX323EDDTNNMEF">Adding the SDK to the Project</h1>
 <p>
@@ -2438,6 +2442,20 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     write signal is given.
   </li>
 </ul>
+<h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app">app</a>
+  module is an example integration that is written in Java. It covers most of the
+  functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app-kotlin">app-kotlin</a>
+  module is an example integration that is written in Kotlin.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native">app-native</a>
+  module is an example demonstration of native crash reporting in Java.
+</p>
 <h2 id="h_01HAVQDM5WJGFZ1DHDZR246KHR">Setting Event Queue Threshold</h2>
 <p>
   Events get grouped together and are sent either every minute or after the unsent
