@@ -1603,7 +1603,6 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">this</a>
   article.
 </p>
-<h2 id="h_01HAVHW0RQCDBB56915BMJTP5H">Integration</h2>
 <p>
   To make this feature work you will need to make some configurations both in your
   app and at your Countly server.
@@ -1615,9 +1614,9 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to <a href="/hc/en-us/articles/4409195031577#h_01HNF5QRPJGG0GKMMH2SZWVK85">this</a> article for learning how you can do that.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Lastly you will need to enable the feature in your SDK as explained <a href="/hc/en-us/articles/4409195031577#h_01HAVHW0RQSFQYGK10F4REYQNG">here</a>.</span>
+  <span style="font-weight: 400;">Lastly you will need to integrate and enable the feature in your SDK as explained below.</span>
 </p>
-<h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Enabling Push</h2>
+<h2 id="h_01HAVHW0RQCDBB56915BMJTP5H">Integration</h2>
 <p>
   <span style="font-weight: 400;">Using Countly Push Notifications on iOS apps is pretty straightforward. First, integrate the Countly iOS SDK as usual, if you still have yet to do so.</span>
 </p>
@@ -1627,8 +1626,9 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 <div class="img-container">
   <img src="https://count.ly/images/guide/0359527-push_xcode.png">
 </div>
+<h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Enabling Push</h2>
 <p>
-  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code></span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code></span><span style="font-weight: 400;">array on the <code>CountlyConfig</code></span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
+  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code> </span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code> </span><span style="font-weight: 400;">array on the <code>CountlyConfig</code> </span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
