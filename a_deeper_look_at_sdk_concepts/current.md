@@ -1494,6 +1494,12 @@ function sendMessage(param) {
       <td style="width: 25%; vertical-align: middle; height: 22px; text-align: left; padding-left: 10px; border-right: solid 1px;" scope="colGroup">_orientation</td>
       <td style="width: 75%; height: 22px; vertical-align: middle; text-align: left; padding-left: 10px;" scope="colGroup">device orientation if exists</td>
     </tr>
+    <tr>
+      <td style="width: 25%; vertical-align: middle; text-align: left; padding-left: 10px; border-right: 1px solid;">_has_hinge</td>
+      <td style="width: 75%; vertical-align: middle; text-align: left; padding-left: 10px;">
+        device has hinge sensor, foldable (Only used by the Android SDK)
+      </td>
+    </tr>
   </tbody>
 </table>
 <p>&nbsp;</p>
@@ -1548,7 +1554,7 @@ function sendMessage(param) {
   Here is an example of session begin request. This is URL decoded, when sending,
   data has to be URL encoded
 </p>
-<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;end_session=1&amp;session_duration=35&amp;metrics=<br>{"_device": "CountlyDevice",<br>"_os": "MacOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "web",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal",<br>"_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",<br>"_browser": "Firefox",<br>"_browser_version": "42.0"<br>}</span></pre>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;end_session=1&amp;session_duration=35&amp;metrics={<br>"_device": "CountlyDevice",<br>"_os": "MacOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "web",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal",<br>"_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",<br>"_browser": "Firefox",<br>"_browser_version": "42.0",<br>"_has_hinge": "true"<br>}</span><span></span><span></span></pre>
 <h3 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h3>
 <p>
   These metrics are automatically collected when a crash is reported manually or

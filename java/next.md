@@ -1,6 +1,7 @@
 <p>
-  This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.10.X
+  This documentation is for the Countly Java SDK version 23.10.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,12 +11,11 @@
   </p>
 </div>
 <p>
-  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
-  reach the Countly Java SDK
-  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
-  Also, you can inspect the sample application
-  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
-  to understand how most functionalities work.
+  The Countly Java SDK minimum supported target version is Java 8.
+</p>
+<p>
+  To examine example integrations please have a look
+  <a href="#h_01HNFH7ZFRE3CKRCTZE6EZWM86">here.</a>
 </p>
 <h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
@@ -1178,6 +1178,21 @@ Countly.instance().userProfile().save();</code></pre>
     crash reporting
   </li>
 </ul>
+<h2 id="h_01HNFH7ZFRE3CKRCTZE6EZWM86">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-java/tree/master/app-java">app-java</a>
+  module contains example use cases for the Countly Java SDK
+</p>
+<p>
+  -
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java">Example</a>
+  is a java application that covers most of the functionalities.
+</p>
+<p>
+  -
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/BackendModeExample.java">BackendModeExample</a>
+  is a java application of an example usage of the BackendMode
+</p>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
 <h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
 <p>

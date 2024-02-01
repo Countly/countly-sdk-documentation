@@ -1,6 +1,7 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 24.1.X.
+  This documentation is for the Countly Windows SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -16,18 +17,16 @@
   <ul>
     <li>.NET Standard 2.0</li>
     <li>
-      <span>.NET Framework 3.5, 4.5</span>
+      <span>.NET Framework 3.5</span>
+    </li>
+    <li>
+      <span>.NET Framework 4.5</span>
     </li>
   </ul>
 </div>
 <p>
-  The Countly GitHub page for this SDK contains also sample projects. You should
-  be able to download them to test the basic functionality of this SDK and make
-  sure you are using it correctly. In case you encounter any problems in your application,
-</p>
-<p>
-  The project page can be found
-  <a href="https://github.com/Countly/countly-sdk-windows/">here</a>
+  To examine example integrations please have a look
+  <a href="#h_01HNFMRRC2N7DE6WB88PJ8DXA4">here.</a>
 </p>
 <h1 id="h_01HABTXQF7822Y2MQ0PHE8ARYH">Adding the SDK to the Project</h1>
 <p>
@@ -683,6 +682,67 @@ Countly.Instance.SetConsent(consent);</code></pre>
 </p>
 <p>
   <span><strong>sessionUpdateInterval -</strong> (Optional, int) Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong> 60 </strong>(seconds).</span>
+</p>
+<h2 id="h_01HNFMRRC2N7DE6WB88PJ8DXA4">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35">net35</a>
+  solution contains 3 project that are implemented with Net Framework 3.5<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlySample">CountlySample</a>
+  project is a console application that covers most of the functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlySampleWindowsForm">CountlySampleWindowsForm</a>
+  project is a Windows Form application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45">net45</a>
+  solution contains 6 project that are implemented with Net Framework 4.5<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleAspNet">CountlySampleAspNet</a>
+  project is a AspNet application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleAspNetMVC">CountlySampleAspNetMVC</a>
+  project is a AspNet MVC application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleWPF">CountlySampleWPF</a>
+  project is a WPF application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/countlySampleConsole">countlySampleConsole</a>
+  project is a console application that covers most of the functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleWIndowsForm">CountlySampleWindowsForm</a>
+  project is a Windows Form application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd">netstd</a>
+  solution contains 5 project that are implemented with Net Standard 2.0<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlySampleWPF">CountlySampleWPF</a>
+  project is a WPF application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlySampleUWP">CountlySampleUWP</a>
+  project is a UWP application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">MauiSampleApp</a>
+  project is a MAUI application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleAppNativeIntegrations">MauiSampleAppNativeIntegrations</a>
+  projects is a MAUI application demonstration of native crash reporting
 </p>
 <h2 id="h_01HABTXQFAHAQTRDWQ0YVM3VX4">SDK Internal Limits</h2>
 <p>

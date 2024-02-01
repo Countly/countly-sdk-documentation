@@ -39,10 +39,19 @@ h3: Second Subtitle
 
 ## The Structure
 
-Each SDK document starts with an introductory text that includes:
+Each SDK document starts with an introductory text that includes: the current SDK major version, SDK name, link to the archived doc page, link to the example integration section.
 
-* the current SDK version and the SDK name
-* link to the archived doc page
+The template for the first paragraph should be:
+"This documentation is for the Countly [SDK name] SDK version [SDK version]. The SDK source code repository can be found here [this links to the repo].
+
+Then there should be a informative callout with:
+"Click here [link to specific archive section], to access the documentation for older SDK versions."
+
+Then there should be a single of multiple paragraphs (depending on the SDK) describing the minimum version requirements for the SDK.
+
+And finally there should be:
+
+"To examine example integrations please have a look here [link to the example app explaining section]."
 
 ***
 
@@ -147,6 +156,9 @@ This should contain the core integration information about the SDK, including a 
 * Handling Push Callbacks
   * Handling ‘onClick’ Events
   * Handling ‘onReceive’ Events
+* Setting up Credentials
+  * Acquiring Credentials
+  * Setting up the Dashboard
 * Consent
 
 ***
@@ -259,6 +271,7 @@ This should contain the core integration information about the SDK, including a 
 **Other Features and Notes**
 
 * SDK Config Parameters Explained (should explain all init time SDK parameters)
+* Example Integrations
 * SDK storage and Requests
   * Setting Event Queue Threshold
   * Setting Maximum Request Queue Size
