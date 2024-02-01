@@ -827,7 +827,7 @@
     <span><strong>_os_version</strong>- Version of platform/operating system.</span>
   </li>
   <li>
-    <span><strong>_app_version</strong>- sets the application version. For some platforms, this is retrieved from the app configuration.</span><span></span>
+    <span><strong>_app_version</strong>- sets the application version. For some platforms, this is retrieved from the app configuration.</span>
   </li>
   <li>
     <span><strong>_device</strong>- Device model name.</span>
@@ -845,13 +845,13 @@
     <span><strong>_locale</strong>- Locale or language of the device in ISO format.</span>
   </li>
   <li>
-    <span><strong>_store</strong>- (Mobile SDK) A source where the user came from.&nbsp;</span>
+    <span><strong>_store</strong>- (Mobile SDK) A source where the user came from.</span>
   </li>
   <li>
-    <span><strong>_carrier</strong>- (Mobile SDK) Carrier or operator used for connection.</span><span></span>
+    <span><strong>_carrier</strong>- (Mobile SDK) Carrier or operator used for connection.</span>
   </li>
   <li>
-    <span><strong>_has_watch</strong>- (iOS SDK).&nbsp;</span>
+    <span><strong>_has_watch</strong>- (iOS SDK).</span>
   </li>
   <li>
     <div>
@@ -1114,7 +1114,7 @@ SSL-Session:
 </p>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
 <p>
-  <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
+  <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span>
 </p>
 <p>
   Sometimes a good way of exploring the cause of the problem is the same openssl
@@ -1365,7 +1365,7 @@ function sendMessage(param) {
   <span>Parameters Sent With Every Request</span>
 </h2>
 <p>
-  <span>When sending any network requests to the server, the following informations are sent in addition of the main data</span><span></span>
+  <span>When sending any network requests to the server, the following informations are sent in addition of the main data.</span>
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1443,7 +1443,8 @@ function sendMessage(param) {
 <h3 id="h_01HJ5PA5GMQSE8ATC3FJ6VAGP3">Common Metrics</h3>
 <p>
   Those additional informations are needed for Session, Crash Reporting and Remote
-  Config requests. These are the common collected device metrics i<span>f they are available for the specific device/sdk/platform.</span>
+  Config requests. These are the common collected device metrics if they are available
+  for the specific device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1505,7 +1506,8 @@ function sendMessage(param) {
 <h3 id="h_01HJ5QCQ99BYBMTZCSN5S3TSEV">Session Specific Metrics</h3>
 <p>
   The following metrics are additional to the common metrics that sent with every
-  begin session request.
+  begin session request. They are collected if they are available for the specific
+  device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 98px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1556,7 +1558,7 @@ function sendMessage(param) {
 <h3 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h3>
 <p>
   These metrics are automatically collected when a crash is reported manually or
-  automatically
+  automatically if they are available for the specific device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1630,7 +1632,7 @@ function sendMessage(param) {
 <h3 id="h_01HJ5WD48B7TVTNP7TFY0646MK">Crash Data</h3>
 <p>
   These parameters are automatically collected when a crash is reported manually
-  or automatically
+  or automatically if they are available for the specific device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 174px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1724,7 +1726,7 @@ function sendMessage(param) {
 </ul>
 <p>- The Web SDK generates a random device id</p>
 <p>
-  - The Unity SDK uses <span>SystemInfo.deviceUniqueIdentifier</span><span></span>
+  - The Unity SDK uses <span>SystemInfo.deviceUniqueIdentifier</span>
 </p>
 <p>
   <span>- The Java SDK uses a random UUID</span>
