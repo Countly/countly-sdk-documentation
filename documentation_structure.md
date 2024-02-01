@@ -51,7 +51,7 @@ Then there should be a single of multiple paragraphs (depending on the SDK) desc
 
 And finally there should be:
 
-"To examine example integrations please have a look here [link to the example app explaining section]."
+"To examine the example integrations please have a look here [link to the example app explaining section]."
 
 ***
 
