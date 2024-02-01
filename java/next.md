@@ -11,7 +11,7 @@
   </p>
 </div>
 <p>
-  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8).
+  The Countly Java SDK minimum supported target version is Java 8.
 </p>
 <p>
   To examine example integrations please have a look
