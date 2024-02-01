@@ -14,7 +14,7 @@
   The Countly Java SDK minimum supported target version is Java 8.
 </p>
 <p>
-  To examine example integrations please have a look
+  To examine the example integrations please have a look
   <a href="#h_01HNFH7ZFRE3CKRCTZE6EZWM86">here.</a>
 </p>
 <h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
