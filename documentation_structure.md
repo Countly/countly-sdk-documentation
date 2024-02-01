@@ -47,7 +47,7 @@ The template for the first paragraph should be:
 Then there should be a informative callout with:
 "Click here [link to specific archive section], to access the documentation for older SDK versions."
 
-Then there should be a single of multiple paragarphs (depending on the SDK) describing the minimum version requirements for the SDK.
+Then there should be a single of multiple paragraphs (depending on the SDK) describing the minimum version requirements for the SDK.
 
 And finally there should be:
 
