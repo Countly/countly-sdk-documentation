@@ -1608,10 +1608,10 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   app and at your Countly server.
 </p>
 <p>
-  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple. (If you don't have them you can check <a href="/hc/en-us/articles/4409195031577#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">this</a> article to learn how you can do it.)</span></strong>
+  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple. (If you don't have them you can check <a href="/hc/en-us/articles/360037753511#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">this</a> article to learn how you can do it.)</span></strong>
 </p>
 <p>
-  <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to <a href="/hc/en-us/articles/4409195031577#h_01HNF5QRPJGG0GKMMH2SZWVK85">this</a> article for learning how you can do that.</span>
+  <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to <a href="/hc/en-us/articles/360037753511#h_01HNF5QRPJGG0GKMMH2SZWVK85">this</a> article for learning how you can do that.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Lastly you will need to integrate and enable the feature in your SDK as explained below.</span>

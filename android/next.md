@@ -848,13 +848,13 @@ CountlyPush.init(countlyConfigPush);&lt;/&gt;&lt;/&gt;</code></pre>
   Kit below.
 </p>
 <h3 id="h_01HAVQDM5TN4XSRHM5NPVQ8THG">Firebase</h3>
-<h4 id="h_01HNFBR840AQ9N49PH47614NF6">
+<p id="h_01HNFBR840AQ9N49PH47614NF6">
   Before implementing FCM to your application you would need to get Push Notification
   credentials from your Firebase Console and upload them to your Countly server.
   (If you have not done that already you can follow
-  <a href="/hc/en-us/articles/4409195031577#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
+  <a href="/hc/en-us/articles/360037754031#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
   guide.)
-</h4>
+</p>
 <h4 id="h_01HAVQDM5TAA8KNV9Y79HAAZS8">Integrating FCM into Your App</h4>
 <p>
   <span style="font-weight: 400;">Please review our&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app" target="_self">Demo app</a><span style="font-weight: 400;">&nbsp;for a complete integration example.</span>
@@ -977,13 +977,13 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
 }
 </code></pre>
 <h3 id="h_01HAVQDM5TRPPPKPT4ZCWMCT26">Huawei Push Kit</h3>
-<h4 id="h_01HNFCJ3YFC7TK307ATR3GNYM1">
+<p id="h_01HNFCJ3YFC7TK307ATR3GNYM1">
   Before implementing HMS to your application you would need to get Push Notification
   credentials for the Push Kit and upload them to your Countly server. (If you
   have not done that already you can follow
-  <a href="/hc/en-us/articles/4409195031577#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
+  <a href="/hc/en-us/articles/360037754031#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
   guide.)
-</h4>
+</p>
 <h4 id="h_01HAVQDM5TG1ZQ0FZVS0N9SCX5">Integrating HMS into Your App</h4>
 <p>
   HMS implementation in Countly SDK looks very much like FCM: add dependencies,
@@ -1168,16 +1168,14 @@ ProxyActivity.intentExtraWhichButton</code></pre>
     <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
   </p>
 </div>
-<h1 id="h_01HNF9WBDT037TDHVHRSEPEMZV">Setting up Credentials</h1>
+<h2 id="h_01HNF9WBDT037TDHVHRSEPEMZV">Setting up Credentials</h2>
 <p>
   To use Push Notifications in your application you would need to acquire credentials
   from the PN service of your choice (Firebase or Huawei) and then upload these
   credentials to your Countly server.
 </p>
 <h3 id="h_01HNF9WBDTWYNW05YZ9M5X6HNN">Acquiring Credentials</h3>
-<h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">
-  <span style="font-weight: 400;">Firebase</span>
-</h4>
+<h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">Firebase</h4>
 <p>
   <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
   order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
@@ -1220,9 +1218,7 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <img src="/guide-media/01GVD4K7ZZ667PHS6XFVNDK0C9" alt="Screenshot_2020-08-25_at_15.49.12.png">
 </p>
 <h3 id="h_01HNF9WVXKZZ5F6B0MK3AW7F3X">Setting up the Dashboard</h3>
-<h4 id="h_01HNFBDXP0SSKTH7CPJ8ZTGP40">
-  <span style="font-weight: 400;">Firebase</span>
-</h4>
+<h4 id="h_01HNFBDXP0SSKTH7CPJ8ZTGP40">Firebase</h4>
 <p>
   <span style="font-weight: 400;">Copy &amp; paste the FCM keys you get from your Firebase console into Management &gt; Applications &gt; &nbsp;Push Notifications &gt; Google FCM credentials upload form in your Countly server and press “Save changes”:</span>
 </p>
