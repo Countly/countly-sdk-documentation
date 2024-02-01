@@ -25,7 +25,7 @@
   </ul>
 </div>
 <p>
-  To examine example integrations please have a look
+  To examine the example integrations please have a look
   <a href="#h_01HNFMRRC2N7DE6WB88PJ8DXA4">here.</a>
 </p>
 <h1 id="h_01HABTXQF7822Y2MQ0PHE8ARYH">Adding the SDK to the Project</h1>
