@@ -17,7 +17,10 @@
   <ul>
     <li>.NET Standard 2.0</li>
     <li>
-      <span>.NET Framework 3.5, 4.5</span>
+      <span>.NET Framework 3.5</span>
+    </li>
+    <li>
+      <span>.NET Framework 4.5</span>
     </li>
   </ul>
 </div>
