@@ -725,15 +725,23 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 </p>
 <h1 id="h_01H930GAQ6K5T1NRS29Z3Y8WSY">Push notifications</h1>
 <p>
-  Countly Flutter SDK comes with push notification capabilities embedded. For the
-  flavor without the push notifications features (like Firebase libraries) please
-  check <a href="https://pub.dev/packages/countly_flutter_np">here</a>.
+  Countly gives you the ability to send Push Notifications to your users using
+  your app with the Flutter SDK integration. For more information on how to best
+  use this feature you can check
+  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">this</a>
+  article.
+</p>
+<p>
+  To make this feature work you will need to make some configurations both in your
+  app and at your Countly server. Both platforms (Android and iOS) would need different
+  steps to integrate Push Notification feature into your application, as explained
+  below.
 </p>
 <h2 id="h_01H930GAQ6AQ5REWTYT4CB27CQ">Integration</h2>
 <h3 id="h_01H930GAQ6C3B3RYSEXZX4ZY3F">Android setup</h3>
 <p>
-  Step 1: For FCM credentials setup please follow the instruction from this URL
-  <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2</a>.
+  Step 1: For FCM credentials setup please follow the instruction from
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HNF9WBDT037TDHVHRSEPEMZV" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>
   Step 2: Make sure you have <code>google-services.json</code> from
@@ -771,10 +779,10 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 }
 </code></pre>
 <p>
-  You can get the latest version from this link
-  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
-  and this link
-  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
+  You can get the latest version from
+  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions" target="_blank" rel="noopener noreferrer">here</a>
+  and
+  <a href="https://developers.google.com/android/guides/google-services-plugin" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <p>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
@@ -788,20 +796,31 @@ apply plugin: 'com.google.gms.google-services'
 </code></pre>
 <h3 id="h_01H930GAQ6VJHE7EZ937JJ6HB9">iOS setup</h3>
 <p>
-  By default push notification is enabled for iOS, to disable you need to call
-  <code>disablePushNotifications</code> method:
-</p>
-<pre><code class="JavaScript">// Disable push notifications feature for iOS, by default it is enabled.
-Countly.disablePushNotifications();</code></pre>
-<p>
-  For iOS push notification please follow the instruction from this URL
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQD3WBN560GAKTB77T">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQD3WBN560GAKTB77T</a>
+  First, you will need to acquire Push Notification credentials from Apple. (If
+  you don't have them you can check
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB" target="_blank" rel="noopener noreferrer">this</a>
+  article to learn how you can do it.)
 </p>
 <p>
-  For Flutter you can find <code>CountlyNotificationService.h/m</code> file under
-  <code>Pods/Development Pods/Countly/{PROJECT_NAME}/ios/.symlinks/plugins/countly_flutter/ios/Classes/CountlyiOS/CountlyNotificationService.h/m</code>
-  <strong>Pro Tips to find the files from deep hierarchy: </strong>
+  Then you would need to upload these credentials to your Countly server. You can
+  refer to
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HNF5QRPJGG0GKMMH2SZWVK85" target="_blank" rel="noopener noreferrer">this</a>
+  article for learning how you can do that.
 </p>
+<p>
+  Finally, under the Capabilities section of Xcode, enable
+  <strong>Push Notifications</strong> and the
+  <strong>Remote notifications Background Mode</strong> for your target.
+</p>
+<p>
+  For Swift projects you might need to make sure Bridging Header File is configured
+  properly for each target as explained
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RT9DP8543XYWP278JC" target="_blank" rel="noopener noreferrer">here</a>.
+  For this purpose you can find <code>CountlyNotificationService.h/m</code> file
+  under:
+</p>
+<pre><code class="bash">Pods/Development Pods/Countly/{PROJECT_NAME}/ios/.symlinks/plugins/countly_flutter/ios/Classes/CountlyiOS/CountlyNotificationService.h/m</code></pre>
+<p>Some tips to find the files from deep hierarchy:</p>
 <ul>
   <li>
     You can filter the files in the navigator using a shortcut ⌥⌘J (Option-Command-J),
@@ -830,6 +849,18 @@ Countly.pushTokenType(Countly.messagingMode["TEST"]);</code></pre>
 </p>
 <pre><code class="JavaScript">// This method will ask for permission, enables push notification and send push token to countly server.
 Countly.askForNotificationPermission();</code></pre>
+<p>
+  Also it is important to note that push notification is enabled for iOS by default,
+  so to disable you need to call <code>disablePushNotifications</code> method:
+</p>
+<pre><code class="JavaScript">// Disable push notifications feature for iOS, by default it is enabled.
+Countly.disablePushNotifications();</code></pre>
+<h2 id="h_01HNFJBRCKHFFZZYWK1CD485FT">Removing Push and Its Dependencies</h2>
+<p>
+  Countly Flutter SDK comes with push notification capabilities embedded. For the
+  flavor without the push notifications features (like Firebase libraries) please
+  check <a href="https://pub.dev/packages/countly_flutter_np">here</a>.
+</p>
 <h2 id="h_01H930GAQ67F7994ZMTG30J1C5">Handling push callbacks</h2>
 <p>
   To register a Push Notification callback after initializing the SDK, use the
@@ -2177,3 +2208,10 @@ config.setEventQueueSizeToSend(6);</code></pre>
   use the following function:
 </p>
 <pre>Countly.instance.remoteConfig.testingExitABExperiment(String expID);</pre>
+<h1 id="h_01HNAP3C92TG1JKYJKG3MRBK4C">FAQ</h1>
+<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Information is Collected by the SDK?</h2>
+<p>
+  The data that SDKs gather to carry out their tasks and implement the necessary
+  functionalities is mentioned in
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+</p>
