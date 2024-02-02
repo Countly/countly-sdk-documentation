@@ -1274,42 +1274,9 @@ Countly.Instance.Init(configuration);</code></pre>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally.
+  server, it is stored locally. For further information please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
 </p>
-<ul>
-  <li>
-    When sending any network requests to the server, the following things are
-    sent in addition to the main data:
-    <ul>
-      <li>Timestamp of when the request is created</li>
-      <li>Current hour</li>
-      <li>Current day of the week</li>
-      <li>Current timezone</li>
-      <li>SDK version</li>
-      <li>SDK name</li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-    If sessions are used, it would record the session start time, end time, and
-    duration.
-  </li>
-</ul>
-<ul>
-  <li>
-    If sessions are used, then device metrics are collected which include:
-    <ul>
-      <li>Device model</li>
-      <li>Screen resolution</li>
-      <li>Screen density</li>
-      <li>OS name</li>
-      <li>OS version</li>
-      <li>App version</li>
-      <li>Locale identifier</li>
-    </ul>
-  </li>
-</ul>
 <ul>
   <li>
     When generating a device ID, if no custom ID is provided, the SDK will use:
@@ -1343,31 +1310,6 @@ Countly.Instance.Init(configuration);</code></pre>
       <li>Time of event</li>
       <li>Current hour</li>
       <li>Current day of the week</li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-    If crash tracking is enabled, it will collect the following information at
-    the time of the crash:
-    <ul>
-      <li>OS name</li>
-      <li>OS version</li>
-      <li>Device model</li>
-      <li>Device architecture</li>
-      <li>The graphics API type</li>
-      <li>Device resolution</li>
-      <li>App version</li>
-      <li>Time of the crash</li>
-      <li>Crash stack trace</li>
-      <li>Error description</li>
-      <li>Total RAM</li>
-      <li>Device battery level</li>
-      <li>Device orientation</li>
-      <li>The type of Internet reachability</li>
-      <li>If there is a network connection</li>
-      <li>If the app is in the background</li>
-      <li>How long has the application been running</li>
     </ul>
   </li>
 </ul>

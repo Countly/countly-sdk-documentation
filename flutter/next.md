@@ -2177,3 +2177,10 @@ config.setEventQueueSizeToSend(6);</code></pre>
   use the following function:
 </p>
 <pre>Countly.instance.remoteConfig.testingExitABExperiment(String expID);</pre>
+<h1 id="h_01HNAP3C92TG1JKYJKG3MRBK4C">FAQ</h1>
+<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Information is Collected by the SDK?</h2>
+<p>
+  The data that SDKs gather to carry out their tasks and implement the necessary
+  functionalities is mentioned in
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+</p>

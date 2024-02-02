@@ -40,7 +40,7 @@
   menu:
 </p>
 <p>
-  <img src="/guide-media/01HHNRG4J4WHCA00Z4V9C795D0" width="500" height="500" alt="001.png">
+  <img src="/guide-media/01HHNRG4J4WHCA00Z4V9C795D0" alt="001.png" width="500" height="500">
 </p>
 <p>
   Here the Server URL and the App Key are mandatory values.
@@ -86,11 +86,17 @@
   in the template's drop down menu:
 </p>
 <p>
-  <img src="/guide-media/01HHNSFHWTSA9HFT191WTTJ01R" width="600" height="600" alt="002.png">
+  <img src="/guide-media/01HHNSFHWTSA9HFT191WTTJ01R" alt="002.png" width="600" height="600">
 </p>
 <p>
   Here the Event Key is a mandatory value. It represents the name of the event
   that you will see in you Countly server. However, segmentation is optional key/value
   pairs you can send with the event if extra information would be needed.
 </p>
-<p>&nbsp;</p>
+<h1 id="h_01HNAP66B8XPS6PGA95ZRAHZDB">FAQ</h1>
+<h2 id="h_01HNAP66B8D156J2FQZEPTYE52">What Information is Collected by the SDK?</h2>
+<p>
+  The data that SDKs gather to carry out their tasks and implement the necessary
+  functionalities is mentioned in
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+</p>

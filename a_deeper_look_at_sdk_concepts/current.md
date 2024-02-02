@@ -827,7 +827,7 @@
     <span><strong>_os_version</strong>- Version of platform/operating system.</span>
   </li>
   <li>
-    <span><strong>_app_version</strong>- sets the application version. For some platforms, this is retrieved from the app configuration.</span><span></span>
+    <span><strong>_app_version</strong>- sets the application version. For some platforms, this is retrieved from the app configuration.</span>
   </li>
   <li>
     <span><strong>_device</strong>- Device model name.</span>
@@ -845,13 +845,13 @@
     <span><strong>_locale</strong>- Locale or language of the device in ISO format.</span>
   </li>
   <li>
-    <span><strong>_store</strong>- (Mobile SDK) A source where the user came from.&nbsp;</span>
+    <span><strong>_store</strong>- (Mobile SDK) A source where the user came from.</span>
   </li>
   <li>
-    <span><strong>_carrier</strong>- (Mobile SDK) Carrier or operator used for connection.</span><span></span>
+    <span><strong>_carrier</strong>- (Mobile SDK) Carrier or operator used for connection.</span>
   </li>
   <li>
-    <span><strong>_has_watch</strong>- (iOS SDK).&nbsp;</span>
+    <span><strong>_has_watch</strong>- (iOS SDK).</span>
   </li>
   <li>
     <div>
@@ -1114,7 +1114,7 @@ SSL-Session:
 </p>
 <h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
 <p>
-  <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span><span></span>
+  <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span>
 </p>
 <p>
   Sometimes a good way of exploring the cause of the problem is the same openssl
@@ -1365,7 +1365,7 @@ function sendMessage(param) {
   <span>Parameters Sent With Every Request</span>
 </h2>
 <p>
-  <span>When sending any network requests to the server, the following informations are sent in addition of the main data</span><span></span>
+  <span>When sending any network requests to the server, the following informations are sent in addition of the main data.</span>
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1443,7 +1443,8 @@ function sendMessage(param) {
 <h3 id="h_01HJ5PA5GMQSE8ATC3FJ6VAGP3">Common Metrics</h3>
 <p>
   Those additional informations are needed for Session, Crash Reporting and Remote
-  Config requests. These are the common collected device metrics i<span>f they are available for the specific device/sdk/platform.</span>
+  Config requests. These are the common collected device metrics if they are available
+  for the specific device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1493,13 +1494,20 @@ function sendMessage(param) {
       <td style="width: 25%; vertical-align: middle; height: 22px; text-align: left; padding-left: 10px; border-right: solid 1px;" scope="colGroup">_orientation</td>
       <td style="width: 75%; height: 22px; vertical-align: middle; text-align: left; padding-left: 10px;" scope="colGroup">device orientation if exists</td>
     </tr>
+    <tr>
+      <td style="width: 25%; vertical-align: middle; text-align: left; padding-left: 10px; border-right: 1px solid;">_has_hinge</td>
+      <td style="width: 75%; vertical-align: middle; text-align: left; padding-left: 10px;">
+        device has hinge sensor, foldable (Only used by the Android SDK)
+      </td>
+    </tr>
   </tbody>
 </table>
 <p>&nbsp;</p>
 <h3 id="h_01HJ5QCQ99BYBMTZCSN5S3TSEV">Session Specific Metrics</h3>
 <p>
   The following metrics are additional to the common metrics that sent with every
-  begin session request.
+  begin session request. They are collected if they are available for the specific
+  device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 98px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1546,11 +1554,11 @@ function sendMessage(param) {
   Here is an example of session begin request. This is URL decoded, when sending,
   data has to be URL encoded
 </p>
-<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;end_session=1&amp;session_duration=35&amp;metrics=<br>{"_device": "CountlyDevice",<br>"_os": "MacOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "web",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal",<br>"_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",<br>"_browser": "Firefox",<br>"_browser_version": "42.0"<br>}</span><span></span><span></span></pre>
+<pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;end_session=1&amp;session_duration=35&amp;metrics={<br>"_device": "CountlyDevice",<br>"_os": "MacOS",<br>"_os_version": "1.0.0",<br>"_resolution": "1080x1080",<br>"_app_version": "1.0.0",<br>"_manufacturer": "Countly",<br>"_carrier": "Countly-Mobile",<br>"_density": "XXHDPI",<br>"_locale": "en_US",<br>"_device_type": "web",<br>"_store": "ly.count.sdk",<br>"_orientation": "Horizontal",<br>"_ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0",<br>"_browser": "Firefox",<br>"_browser_version": "42.0",<br>"_has_hinge": "true"<br>}</span><span></span><span></span></pre>
 <h3 id="h_01HJ5V4WX0XFP7FC8ETDC3B96M">Crash Specific Metrics</h3>
 <p>
   These metrics are automatically collected when a crash is reported manually or
-  automatically
+  automatically if they are available for the specific device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 220px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1624,7 +1632,7 @@ function sendMessage(param) {
 <h3 id="h_01HJ5WD48B7TVTNP7TFY0646MK">Crash Data</h3>
 <p>
   These parameters are automatically collected when a crash is reported manually
-  or automatically
+  or automatically if they are available for the specific device/sdk/platform.
 </p>
 <table style="border-collapse: collapse; height: 174px; width: 100%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
@@ -1718,7 +1726,7 @@ function sendMessage(param) {
 </ul>
 <p>- The Web SDK generates a random device id</p>
 <p>
-  - The Unity SDK uses <span>SystemInfo.deviceUniqueIdentifier</span><span></span>
+  - The Unity SDK uses <span>SystemInfo.deviceUniqueIdentifier</span>
 </p>
 <p>
   <span>- The Java SDK uses a random UUID</span>

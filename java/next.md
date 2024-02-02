@@ -1,6 +1,7 @@
 <p>
-  This document will guide you through the process of Countly SDK installation
-  and it applies to version 24.1.X
+  This documentation is for the Countly Java SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,12 +11,11 @@
   </p>
 </div>
 <p>
-  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
-  reach the Countly Java SDK
-  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
-  Also, you can inspect the sample application
-  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
-  to understand how most functionalities work.
+  The Countly Java SDK minimum supported target version is Java 8.
+</p>
+<p>
+  To examine the example integrations please have a look
+  <a href="#h_01HNFH7ZFRE3CKRCTZE6EZWM86">here.</a>
 </p>
 <h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
@@ -1178,6 +1178,21 @@ Countly.instance().userProfile().save();</code></pre>
     crash reporting
   </li>
 </ul>
+<h2 id="h_01HNFH7ZFRE3CKRCTZE6EZWM86">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-java/tree/master/app-java">app-java</a>
+  module contains example use cases for the Countly Java SDK
+</p>
+<p>
+  -
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java">Example</a>
+  is a java application that covers most of the functionalities.
+</p>
+<p>
+  -
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/BackendModeExample.java">BackendModeExample</a>
+  is a java application of an example usage of the BackendMode
+</p>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
 <h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
 <p>
@@ -1634,76 +1649,14 @@ Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 16
   </h2>
   <p>
     The data that SDKs gather to carry out their tasks and implement the necessary
-    functionalities is mentioned in the following description. It is saved locally
-    before any of it is transferred to the server.
-  </p>
-  <p>
-    When sending any requests to the server, the followings are sent in addition
-    of the main data:
-  </p>
-  <ul>
-    <li>Timestamp of when the request is created as 'timestamp'</li>
-    <li>Current hour as 'hour'</li>
-    <li>Current day of week as 'dow'</li>
-    <li>Current timezone as 'tz'</li>
-    <li>SDK version as 'sdk_version'</li>
-    <li>SDK name as 'sdk_name'</li>
-    <li>App version as 'av' if exists</li>
-    <li>Remaining requests in the queue as 'rr'</li>
-  </ul>
-  <p>
-    If sessions are used then it would record the session start time, end time
-    and duration
-  </p>
-  <p>
-    If sessions are used then also device metrics are collected which contains:
-  </p>
-  <ul>
-    <li>Device name as '_device'</li>
-    <li>OS name as '_os'</li>
-    <li>OS version as '_os_version'</li>
-    <li>Screen resolution as '_resolution'</li>
-    <li>Locale as '_locale'</li>
-    <li>App version as '_app_version'</li>
-  </ul>
-  <p>
-    If feedback widgets are used, it will collect the users input and time of
-    the widgets completion
+    functionalities is mentioned in
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
+    It is saved locally before any of it is transferred to the server.
   </p>
   <p>
     When events are recorded, the time of when the event is recorded, will be
     collected
   </p>
-  <p>
-    If the consent feature is used, the SDK will collect and send what consent
-    has been given to the SDK or removed from the SDK
-  </p>
-  <p>
-    If crash tracking is enabled, it will collect the following information at
-    the time of the crash:
-  </p>
-  <ul>
-    <li>Device name as '_device'</li>
-    <li>OS name as '_os'</li>
-    <li>OS version as '_os_version'</li>
-    <li>Screen resolution as '_resolution'</li>
-    <li>App version as '_app_version'</li>
-    <li>Device manufacturer as '_manufacture'</li>
-    <li>CPU name as '_cpu'</li>
-    <li>OpenGL versin as '_opengl'</li>
-    <li>Ram available as '_ram_current'</li>
-    <li>Ram total as '_ram_total'</li>
-    <li>Available disk space as '_disk_current'</li>
-    <li>Total disk space as '_disk_total'</li>
-    <li>Battery level as '_bat'</li>
-    <li>Device running time as '_run'</li>
-    <li>Device orientation as '_orientation'</li>
-    <li>If network connection as '_online'</li>
-    <li>If device is muted as '_muted'</li>
-    <li>Error stack trace as '_error'</li>
-    <li>Name of error as '_name'</li>
-    <li>Whether or not is error fatal as '_nonfatal'</li>
-  </ul>
   <p>
     Any other information like data in custom events, location, user profile
     information or other manual requests depends on what the developer decides

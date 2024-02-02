@@ -1,6 +1,7 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 24.1.X.
+  This documentation is for the Countly Windows SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -16,18 +17,16 @@
   <ul>
     <li>.NET Standard 2.0</li>
     <li>
-      <span>.NET Framework 3.5, 4.5</span>
+      <span>.NET Framework 3.5</span>
+    </li>
+    <li>
+      <span>.NET Framework 4.5</span>
     </li>
   </ul>
 </div>
 <p>
-  The Countly GitHub page for this SDK contains also sample projects. You should
-  be able to download them to test the basic functionality of this SDK and make
-  sure you are using it correctly. In case you encounter any problems in your application,
-</p>
-<p>
-  The project page can be found
-  <a href="https://github.com/Countly/countly-sdk-windows/">here</a>
+  To examine the example integrations please have a look
+  <a href="#h_01HNFMRRC2N7DE6WB88PJ8DXA4">here.</a>
 </p>
 <h1 id="h_01HABTXQF7822Y2MQ0PHE8ARYH">Adding the SDK to the Project</h1>
 <p>
@@ -42,9 +41,7 @@
     <span>Choose "nuget.org" as the </span><strong>Package source</strong><span>, select the </span><strong>Browse</strong><span> tab, search for </span><strong>Countly</strong><span>, select that package in the list, and select </span><strong>Install</strong><span>:<img src="/guide-media/01GVCYFDE9NW6731PFC2C4BMPW" alt="mceclip0.png"></span>
   </li>
   <li>
-    <p>
-      Accept any license prompts.
-    </p>
+    <p>Accept any license prompts.</p>
   </li>
 </ol>
 <h1 id="h_01HABTXQF7MZ5YDN38PTFQ6B4K">SDK Integration</h1>
@@ -686,6 +683,67 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span><strong>sessionUpdateInterval -</strong> (Optional, int) Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong> 60 </strong>(seconds).</span>
 </p>
+<h2 id="h_01HNFMRRC2N7DE6WB88PJ8DXA4">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35">net35</a>
+  solution contains 3 project that are implemented with Net Framework 3.5<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlySample">CountlySample</a>
+  project is a console application that covers most of the functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlySampleWindowsForm">CountlySampleWindowsForm</a>
+  project is a Windows Form application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45">net45</a>
+  solution contains 6 project that are implemented with Net Framework 4.5<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleAspNet">CountlySampleAspNet</a>
+  project is a AspNet application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleAspNetMVC">CountlySampleAspNetMVC</a>
+  project is a AspNet MVC application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleWPF">CountlySampleWPF</a>
+  project is a WPF application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/countlySampleConsole">countlySampleConsole</a>
+  project is a console application that covers most of the functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleWIndowsForm">CountlySampleWindowsForm</a>
+  project is a Windows Form application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd">netstd</a>
+  solution contains 5 project that are implemented with Net Standard 2.0<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlySampleWPF">CountlySampleWPF</a>
+  project is a WPF application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlySampleUWP">CountlySampleUWP</a>
+  project is a UWP application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">MauiSampleApp</a>
+  project is a MAUI application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleAppNativeIntegrations">MauiSampleAppNativeIntegrations</a>
+  projects is a MAUI application demonstration of native crash reporting
+</p>
 <h2 id="h_01HABTXQFAHAQTRDWQ0YVM3VX4">SDK Internal Limits</h2>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
@@ -1205,45 +1263,18 @@ cc.SetEventQueueSizeToSend(100); // sets event queue size per device
 cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
 cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
-<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK</h2>
+<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally.
-</p>
-<p>
-  *When sending any network requests to the server, the following things are sent
-  in addition to the main data:<br>
-  - Timestamp of when the request is created<br>
-  - Current hour<br>
-  - Current day of week<br>
-  - Current timezone<br>
-  - SDK version<br>
-  - SDK name
-</p>
-<p>
-  * If sessions are used then it would record the session start time, end time,
-  and duration
-</p>
-<p>
-  * If sessions are used then also device metrics are collected which contains:<br>
-  - Screen resolution<br>
-  - Screen density<br>
-  - OS name<br>
-  - OS version<br>
-  - App version<br>
-  <span>- Locale identifier</span>
+  server, it is stored locally. For further information please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
 </p>
 <p>
   * When events are recorded, the following information collected:<br>
   - Time of event<br>
   - Current hour<br>
-  - Current day of week
-</p>
-<p>
-  <span>* If crash tracking is enabled, it will collect the following information at the time of the crash:<br>- OS name<br>- OS version</span><br>
-  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stack trace<br>- Error description<br>- Total RAM</span><br>
-  <span>- If there is a network connection<br></span>
+  - Current day of week<span></span>
 </p>
 <p>
   <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
