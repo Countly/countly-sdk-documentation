@@ -1715,7 +1715,7 @@ config.setRequiresConsent(true);</code></pre>
   array of consent values.
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig"])</code></pre>
+config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig])</code></pre>
 <p>
   The Countly SDK does not persistently store the status of given consents except
   push notifications. You are expected to handle receiving consent from end-users
