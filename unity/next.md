@@ -1291,32 +1291,3 @@ Countly.Instance.Init(configuration);</code></pre>
     </ul>
   </li>
 </ul>
-<ul>
-  <li>
-    If push notification is used:
-    <ul>
-      <li>The device's push notification token</li>
-      <li>
-        If the user clicks on the notification, then the time of the click
-        and on which button the user has clicked on
-      </li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-    When events are recorded, the following information is collected:
-    <ul>
-      <li>Time of event</li>
-      <li>Current hour</li>
-      <li>Current day of the week</li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-    Any other information like data in events, location, user profile information,
-    or other manual requests depends on what the developer decides to provide
-    and is not collected by the SDK itself.
-  </li>
-</ul>

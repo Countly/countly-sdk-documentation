@@ -1653,13 +1653,4 @@ Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 16
     <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
     It is saved locally before any of it is transferred to the server.
   </p>
-  <p>
-    When events are recorded, the time of when the event is recorded, will be
-    collected
-  </p>
-  <p>
-    Any other information like data in custom events, location, user profile
-    information or other manual requests depends on what the developer decides
-    to provide and is not collected by the SDK itself.
-  </p>
 </div>
