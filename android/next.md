@@ -2572,9 +2572,12 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   version for some specific variant) or provide either your own custom metrics.
   If you are providing your own custom metrics, you would need your own custom
   plugin server-side which would interpret it appropriately. If there is no plugin
-  to handle those custom values, they will be ignored.
+  to handle those custom values, they will be ignored. You can set these custom
+  metrics while initializing the Countly SDK.
 </p>
 <pre><code class="java">//provide custom metric values
+CountlyConfig config = ... // configuration related to implementation
+
 Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();
 metricOverride.put("SomeKey", "123");
 metricOverride.put("_app_version", "custom_version-123");
