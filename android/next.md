@@ -2575,11 +2575,11 @@ Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</co
   to handle those custom values, they will be ignored.
 </p>
 <pre><code class="java">//provide custom metric values
-Map&lt;string, string="String"&gt; metricOverride = new HashMap&lt;&gt;();
+Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();
 metricOverride.put("SomeKey", "123");
 metricOverride.put("_app_version", "custom_version-123");
 
-setMetricOverride(metricOverride);</code></pre>
+config.setMetricOverride(metricOverride);</code></pre>
 <p>
   For more information on the specific metric keys used by Countly, check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
