@@ -1,21 +1,22 @@
 <p>
-  This document includes necessary information for integrating the Countly iOS
-  SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>24.1.X</code>.
+  This documentation is for the Countly iOS SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-ios">here</a>.
 </p>
 <p>
   Click
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7Y97Y1T51TGGNDMNP" target="_self" rel="undefined">here, </a>to
   access the documentation for older SDK versions.
 </p>
-<div class="callout callout--info">
-  <strong>Supported System Versions</strong>
-  <p>
-    The Countly iOS SDK supports minimum <code>Deployment Target</code>
-    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
-    Xcode 13.0+.
-  </p>
-</div>
+<p>
+  The Countly iOS SDK supports minimum <code>Deployment Target</code>
+  <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
+  Xcode 13.0+.
+</p>
+<p>
+  To examine the example integrations please have a look
+  <a href="#h_01HPE2F8MYP82AZ29EV7N8HQJ3">here</a>.
+</p>
 <h1 id="h_01HAVHW0RNNZT7742WNX46GS1R">Adding the SDK to the project</h1>
 <p>
   To add the Countly iOS SDK into your project, you can choose one of the following
@@ -3879,6 +3880,31 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </p>
 <p>
   <span style="font-weight: 400;">You can further specify your optional settings on the <code>CountlyConfig</code></span><span style="font-weight: 400;">:</span>
+</p>
+<h2 id="h_01HPE2F8MYP82AZ29EV7N8HQJ3">Example Integrations</h2>
+<p>
+  The Countly iOS example integrations are located
+  <a href="https://github.com/Countly/countly-sample-ios">here</a>.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/ios-swift">ios-swift</a>
+  project is written in Swift and covers basic functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/ios">ios</a>
+  project is written in Objective-C and covers most of the functionalities
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/macos">macos</a>
+  project is written in Objective-C and covers basic functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/tvos">tvos</a>
+  project is written in Objective-C and covers basic functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/watchos">watchos</a>
+  project is written in Objective-C and covers basic functionalities.
 </p>
 <h2 id="h_01HAVHW0RSVHW5X7F0QA5BQJWR">Event Send Threshold</h2>
 <p>
