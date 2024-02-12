@@ -1,6 +1,7 @@
 <p>
-  This document will guide you through the process of SDK installation and it applies
-  to version 23.2.X.
+  This documentation is for the Countly CPP SDK version 23.2.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-cpp">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -9,12 +10,10 @@
     access the documentation for older SDK versions.
   </p>
 </div>
+<p>Supported Platforms are Windows, GNU/Linux, and Mac OS X.</p>
 <p>
-  It is an open-source SDK, you can take a look at our SDK code in the
-  <a href="https://github.com/Countly/countly-sdk-cpp/" target="_self" rel="undefined">Github repo</a>
-</p>
-<p>
-  <strong>Supported Platforms:</strong> Windows, GNU/Linux, and Mac OS X.
+  To examine the example integrations please have a look
+  <a href="#h_01HPE3P3THK961D2W8ABCA4FCD">here</a>.
 </p>
 <h1 id="AddingTheSdkToTheProject">Adding the SDK to the Project</h1>
 <p>
@@ -633,6 +632,11 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
 </p>
 <pre><code class="cpp">cly::Countly.getInstance().setSalt("salt");</code></pre>
 <h1 id="h_01HABV267WW07MSKNVAY9PE9HT">Other Features and Notes</h1>
+<h2 id="h_01HPE3P3THK961D2W8ABCA4FCD">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-cpp/blob/master/examples/example_integration.cpp">example_integration.cpp</a>
+  covers basic functionalities.
+</p>
 <h2 id="h_01HABV267W7SSP0J6GP8Z5N6QW">Setting Event Queue Threshold</h2>
 <p>
   Before or after SDK starts, you can set a threshold for the number of events
