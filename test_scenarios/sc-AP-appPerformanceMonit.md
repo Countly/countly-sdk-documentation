@@ -3,16 +3,29 @@
 ## AP_200_notEnabledNothingWorking
 features not enabled 
 'setAppStartTimestampOverride' is set
-init the SDK and no requests are recorded
+init the SDK 
+call app start manual trigger
+go background, go foreground
+no requests are recorded
 
-## AP_201_automaticAppStart
+## AP_201A_automaticAppStart
+SDK is initialized after the screen has been shown
+
+app start enabled but not manual trigger
+init SDK and request is created. duration bellow 1 sec
+
+automatic trigger should create request 
+call manual trigger, no additional request created
+
+## AP_201B_automaticAppStart
+SDK is initialized before the screen has been shown
+This should be done only for SDK's that can control that
+
 app start enabled but not manual trigger
 init SDK and request is created. duration bellow 1 sec
 
 automatic trigger should create request after the screen loads
-call manual trigger
-no additional requests
-
+call manual trigger, no additional request created
 
 ## AP_202_manualAppStartTrigger_notUsed
 app start enabled and manual trigger
