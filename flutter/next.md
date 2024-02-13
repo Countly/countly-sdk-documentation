@@ -1,6 +1,7 @@
 <p>
-  This document will guide you through the process of Countly SDK installation
-  and it applies to version 24.1.X
+  This documentation is for the Countly Flutter SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,35 +11,14 @@
   </p>
 </div>
 <p>
-  This document includes the necessary information for integrating Countly Flutter
-  SDK in your application. Flutter SDK requires Android and iOS SDKs, hence all
-  the features and limitations regarding those platforms also apply to Countly
-  Flutter SDK.
+  For iOS builds, this SDK requires a minimum Deployment Target iOS 10.0 (watchOS
+  4.0, tvOS 10.0, macOS 10.14), and it requires Xcode 13.0+.<br>
+  For Android builds, this SDK requires a minimum Android version of 4.2.x (API
+  Level 17).
 </p>
 <p>
-  Countly is an open source SDK, you can take a look at our SDK code in the
-  <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_self" rel="undefined">Github repo</a>
-</p>
-<p>
-  <strong>Supported Platforms:</strong> Countly SDK supports iOS and Android.
-</p>
-<p>
-  Below you can see steps to download the Countly Flutter example application.
-  It assumes Flutter is installed in your system:
-</p>
-<pre><code class="bash"># clone the Countly SDK repository
-git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
-
-# dive into the cloned repo
-cd countly-sdk-flutter-bridge/example
-
-# install packages and run
-flutter pub get
-flutter run</code></pre>
-<p>
-  This example application has most of the methods mentioned in this documentation,
-  and it is an excellent way to understand how different methods work, like events,
-  custom user profiles, and views.
+  To examine the example integrations, please have a look
+  <a href="#h_01HPGP75J54BBZFVZE7S7K1N2H">here.</a>
 </p>
 <h1 id="h_01H930GAQ59MD94NK0NP68GNGT">Adding the SDK to the project</h1>
 <p>
@@ -1888,6 +1868,26 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     Report indirect user attribution
   </li>
 </ul>
+<h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
+<p>
+  Below you can see steps to download the Countly Flutter
+  <a href="https://github.com/Countly/countly-sdk-flutter-bridge/tree/master/example">example</a>
+  application. It assumes Flutter is installed in your system:
+</p>
+<pre><code class="bash"># clone the Countly SDK repository
+git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
+
+# dive into the cloned repo
+cd countly-sdk-flutter-bridge/example
+
+# install packages and run
+flutter pub get
+flutter run</code></pre>
+<p>
+  This example application has most of the methods mentioned in this documentation,
+  and it is an excellent way to understand how different methods work, like events,
+  custom user profiles, and views.
+</p>
 <h2 id="h_01H930GAQ81R7TMXJ7Z7RRBZ7A">Setting Maximum Request Queue Size</h2>
 <p>
   When you initialize Countly, you can specify a value for the setMaxRequestQueueSize
