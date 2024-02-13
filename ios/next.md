@@ -1,21 +1,22 @@
 <p>
-  This document includes necessary information for integrating the Countly iOS
-  SDK into in your iOS / watchOS / tvOS / macOS applications, and applies to version
-  <code>23.12.X</code>.
+  This documentation is for the Countly iOS SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-ios">here</a>.
 </p>
 <p>
   Click
   <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7Y97Y1T51TGGNDMNP" target="_self" rel="undefined">here, </a>to
   access the documentation for older SDK versions.
 </p>
-<div class="callout callout--info">
-  <strong>Supported System Versions</strong>
-  <p>
-    The Countly iOS SDK supports minimum <code>Deployment Target</code>
-    <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
-    Xcode 13.0+.
-  </p>
-</div>
+<p>
+  The Countly iOS SDK supports minimum <code>Deployment Target</code>
+  <strong>iOS 10.0</strong> (watchOS 4.0, tvOS 10.0, macOS 10.14), and it requires
+  Xcode 13.0+.
+</p>
+<p>
+  To examine the example integrations please have a look
+  <a href="#h_01HPE2F8MYP82AZ29EV7N8HQJ3">here</a>.
+</p>
 <h1 id="h_01HAVHW0RNNZT7742WNX46GS1R">Adding the SDK to the project</h1>
 <p>
   To add the Countly iOS SDK into your project, you can choose one of the following
@@ -59,28 +60,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    CountlyConfig* config = CountlyConfig.new;
-    config.appKey = @"YOUR_APP_KEY";
-    config.host = @"https://YOUR_COUNTLY_SERVER";
-    [Countly.sharedInstance startWithConfig:config];
+  CountlyConfig* config = CountlyConfig.new;
+  config.appKey = @"YOUR_APP_KEY";
+  config.host = @"https://YOUR_COUNTLY_SERVER";
+  [Countly.sharedInstance startWithConfig:config];
 
-    // your code
-  
-    return YES;
+  // your code
+
+  return YES;
 }
 </code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
-    let config: CountlyConfig = CountlyConfig()
-    config.appKey = "YOUR_APP_KEY"
-    config.host = "https://YOUR_COUNTLY_SERVER"
-    Countly.sharedInstance().start(with: config)
-    
-    // your code
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
+  Countly.sharedInstance().start(with: config)
+  
+  // your code
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -118,35 +119,35 @@
   <div class="tab">
     <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    CountlyConfig* config = CountlyConfig.new;
-    config.appKey = @"YOUR_APP_KEY";
-    config.host = @"https://YOUR_COUNTLY_SERVER";
+  CountlyConfig* config = CountlyConfig.new;
+  config.appKey = @"YOUR_APP_KEY";
+  config.host = @"https://YOUR_COUNTLY_SERVER";
 
-    //You can specify additional features you want here
-    config.features = @[CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking];
+  //You can specify additional features you want here
+  config.features = @[CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking];
 
-    [Countly.sharedInstance startWithConfig:config];
+  [Countly.sharedInstance startWithConfig:config];
 
-    // your code
+  // your code
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
-    let config: CountlyConfig = CountlyConfig()
-    config.appKey = "YOUR_APP_KEY"
-    config.host = "https://YOUR_COUNTLY_SERVER"
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
 
-    //You can specify additional features you want here
-    config.features = [CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking]
+  //You can specify additional features you want here
+  config.features = [CLYPushNotifications, CLYCrashReporting, CLYAutoViewTracking]
 
-    Countly.sharedInstance().start(with: config)
+  Countly.sharedInstance().start(with: config)
 
-    // your code
+  // your code
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -568,10 +569,10 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.crashOccuredOnPreviousSessionCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)<br>{<br>    NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);<br>};</code></pre>
+    <pre><code class="objectivec">config.crashOccuredOnPreviousSessionCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)<br>{<br>  NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);<br>};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.crashOccuredOnPreviousSessionCallback =<br>{<br>    (crashReport: [AnyHashable: Any]) in<br>    print("crash report: \(crashReport)")<br>}</code></pre>
+    <pre><code class="swift">config.crashOccuredOnPreviousSessionCallback =<br>{<br>  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")<br>}</code></pre>
   </div>
 </div>
 <p>
@@ -594,10 +595,13 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.shouldSendCrashReportCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)<br>{<br>    NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);<br>    return YES;    //NO;     <br>};</code></pre>
+    <pre><code class="objectivec">config.shouldSendCrashReportCallback = ^(<span>NSDictionary</span><span> * </span>crashReport)
+{                                                                                                                                        NSLog(@"crash report: <a href="mailto:%@&quot;,">%@",</a> crashReport);
+  return YES;    //NO;
+};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.shouldSendCrashReportCallback =<br>{<br>    (crashReport: [AnyHashable: Any]) in<br>    print("crash report: \(crashReport)")<br>    return true    //false<br>}</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
+    <pre><code class="swift">config.shouldSendCrashReportCallback =<br>{<br>  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")<br>  return true    //false<br>}</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RN851W5J4BQX3FN938">Symbolication</h2>
@@ -1180,8 +1184,9 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </div>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
-  Opposed to "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.
-  You can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
+  Opposed to "auto stopped views", with regular views you can have multiple of
+  them started at the same time, and then you can control them independently. You
+  can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1593,90 +1598,26 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <h1 id="h_01HAVHW0RQD3WBN560GAKTB77T">Push Notifications</h1>
 <p>
-  To disable push notifications in your app and avoid App Store Connect warnings,
-  you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in your project's
-  preprocessor macros setting. The location of this setting will vary depending
-  on the development environment you are using.
+  Countly gives you the ability to send Push Notifications to your users using
+  your app with the iOS SDK integration. For more information on how to best use
+  this feature you can check
+  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">this</a>
+  article.
 </p>
 <p>
-  For example, in Xcode, you can define this macro by navigating to the project
-  settings, selecting the build target, and then selecting the "Build Settings"
-  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
-  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
-  Debug and/or Release fields. This will exclude push notifications from the build
-  and avoid the App Store Connect warnings.
-</p>
-<h2 id="h_01HAVHW0RQCDBB56915BMJTP5H">Setting up APNs Authentication</h2>
-<p>
-  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple using one of the following methods:</span></strong>
+  To make this feature work you will need to make some configurations both in your
+  app and at your Countly server.
 </p>
 <p>
-  <strong>A)</strong> APNs Auth Key (preferred)<br>
-  <strong>B)</strong> Universal (Sandbox + Production) Certificate
-</p>
-<h3 id="h_01HAVHW0RQGBSB4VVFJMK2EB8K">A) Getting an APNs Auth Key</h3>
-<p>
-  <span style="font-weight: 400;">APNs Auth Key is the preferred authentication method on APNs for a number of reasons, including less issues faced during configuration and the fact that it can reuse the same connection with multiple apps.</span>
+  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple. (If you don't have them you can check <a href="/hc/en-us/articles/360037753511#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">this</a> article to learn how you can do it.)</span></strong>
 </p>
 <p>
-  <span style="font-weight: 400;">First go to the </span><a href="https://developer.apple.com/account/ios/authkey/create"><span style="font-weight: 400;">Create a New Key</span></a><span style="font-weight: 400;"> section on the Apple Developer website to get an APNs Auth Key.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/1df7566-af33314-Screenshot_2017-09-20_14.38.56.png">
-</div>
-<p>
-  Check the <code>APNs</code> option and create your key.
+  <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to <a href="/hc/en-us/articles/360037753511#h_01HNF5QRPJGG0GKMMH2SZWVK85">this</a> article for learning how you can do that.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Then download your key and store it in a safe place, you won't be able to download it again.</span><span style="font-weight: 400;"><br></span><span style="font-weight: 400;">You'll also need some identifiers to upload a key file to Countly:</span>
+  <span style="font-weight: 400;">Lastly you will need to integrate and enable the feature in your SDK as explained below.</span>
 </p>
-<ul>
-  <li>
-    <p>
-      <code>Key ID</code> (filled automatically if you kept the original Auth
-      Key filename, otherwise visible on the key details panel)
-    </p>
-  </li>
-  <li>
-    <p>
-      <code>Team ID</code> (see
-      <a href="https://developer.apple.com/account/#/membership/">Membership</a>
-      section)
-    </p>
-  </li>
-  <li>
-    <p>
-      <code>Bundle ID</code> (see
-      <a href="https://developer.apple.com/account/ios/identifier/bundle">App IDs</a>
-      section)
-    </p>
-  </li>
-</ul>
-<h3 id="h_01HAVHW0RQPP7Z6CQJ5V0HS7MC">
-  B) Getting APNs Universal (Sandbox + Production) Certificate
-</h3>
-<p>
-  <span style="font-weight: 400;">Please go to the </span><strong>Certificates</strong><span style="font-weight: 400;"> section on the </span><a href="https://developer.apple.com/account/ios/certificate/"><strong>Certificates, Identifiers &amp; Profiles</strong></a><span style="font-weight: 400;"> page on the Apple Developer website. Click the plus sign and select the </span><strong>Apple Push Notification service SSL (Sandbox &amp; Production)</strong><span style="font-weight: 400;"> type. Follow the instructions. Once you are done, download it and double click to add it to your Keychain.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/2248a72-1009cff-push_addcert.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Next, you'll need to export your push certificate into </span><strong>p12</strong><span style="font-weight: 400;"> format. Please open the </span><strong>Keychain Access</strong><span style="font-weight: 400;"> app, select the </span><strong>login</strong><span style="font-weight: 400;"> keychain, and the </span><strong>My Certificates</strong><span style="font-weight: 400;"> category. Search for your app ID and find the certificate starting with the </span><strong>Apple Push Services</strong><span style="font-weight: 400;">. Select both the certificate and its private key as shown in the screenshot below. Right click and choose </span><strong>Export 2 items...</strong><span style="font-weight: 400;"> and save it. You're free to name the p12 file as you wish and to set up a passphrase or leave it empty.</span>
-</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/94d763b-push_p12.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVD4NGFQ4RR2VYHWBK04M12E" alt="001.png">
-</div>
-<p>
-  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
-</p>
-<h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Configuring iOS app</h2>
+<h2 id="h_01HAVHW0RQCDBB56915BMJTP5H">Integration</h2>
 <p>
   <span style="font-weight: 400;">Using Countly Push Notifications on iOS apps is pretty straightforward. First, integrate the Countly iOS SDK as usual, if you still have yet to do so.</span>
 </p>
@@ -1686,8 +1627,9 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 <div class="img-container">
   <img src="https://count.ly/images/guide/0359527-push_xcode.png">
 </div>
+<h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Enabling Push</h2>
 <p>
-  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code></span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code></span><span style="font-weight: 400;">array on the <code>CountlyConfig</code></span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
+  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code> </span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code> </span><span style="font-weight: 400;">array on the <code>CountlyConfig</code> </span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1699,42 +1641,42 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //Start Countly with CLYPushNotifications feature as follows
-    CountlyConfig* config = CountlyConfig.new;
-    config.appKey = @"YOUR_APP_KEY";
-    config.host = @"https://YOUR_COUNTLY_SERVER";
-    config.features = @[CLYPushNotifications];
-//  config.pushTestMode = CLYPushTestModeDevelopment;
-    [Countly.sharedInstance startWithConfig:config];
+  //Start Countly with CLYPushNotifications feature as follows
+  CountlyConfig* config = CountlyConfig.new;
+  config.appKey = @"YOUR_APP_KEY";
+  config.host = @"https://YOUR_COUNTLY_SERVER";
+  config.features = @[CLYPushNotifications];
+  //config.pushTestMode = CLYPushTestModeDevelopment;
+  [Countly.sharedInstance startWithConfig:config];
 
 
-    //Ask for user's permission for Push Notifications (not necessarily here)
-    //You can do this later at any point in the app after starting Countly
-    [Countly.sharedInstance askForNotificationPermission];
+  //Ask for user's permission for Push Notifications (not necessarily here)
+  //You can do this later at any point in the app after starting Countly
+  [Countly.sharedInstance askForNotificationPermission];
 
-    // your code
+  // your code
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
-    //Start Countly with CLYPushNotifications feature as follows
-    let config: CountlyConfig = CountlyConfig()
-    config.appKey = "YOUR_APP_KEY"
-    config.host = "https://YOUR_COUNTLY_SERVER"
-    config.features = [CLYPushNotifications]
-//  config.pushTestMode = CLYPushTestModeDevelopment
-    Countly.sharedInstance().start(with: config)
+  //Start Countly with CLYPushNotifications feature as follows
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
+  config.features = [CLYPushNotifications]
+  //config.pushTestMode = CLYPushTestModeDevelopment
+  Countly.sharedInstance().start(with: config)
 
-    //Ask for user's permission for Push Notifications (not necessarily here)
-    //You can do this later at any point in the app after starting Countly
-    Countly.sharedInstance().askForNotificationPermission()
+  //Ask for user's permission for Push Notifications (not necessarily here)
+  //You can do this later at any point in the app after starting Countly
+  Countly.sharedInstance().askForNotificationPermission()
 
-    // your code
+  // your code
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -1750,6 +1692,21 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <strong>Note:</strong>
   <span style="font-weight: 400;">To see how to send push notifications using the Countly Server, please check our</span>
   <a href="https://support.count.ly/hc/en-us/articles/360037270012-Push-notifications">Push Notifications documentation</a>.
+</p>
+<h2 id="h_01HNF5NAJ40CEETJNZFDT5CPJ7">Removing Push</h2>
+<p>
+  To disable push notifications in your app and avoid App Store Connect warnings,
+  you can define the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" in your project's
+  preprocessor macros setting. The location of this setting will vary depending
+  on the development environment you are using.
+</p>
+<p>
+  For example, in Xcode, you can define this macro by navigating to the project
+  settings, selecting the build target, and then selecting the "Build Settings"
+  tab. Under the "Apple LLVM - Preprocessing" section, you will find the "Preprocessor
+  Macros" where you can add the macro "COUNTLY_EXCLUDE_PUSHNOTIFICATIONS" to the
+  Debug and/or Release fields. This will exclude push notifications from the build
+  and avoid the App Store Connect warnings.
 </p>
 <h2 id="h_01HAVHW0RQG8PK3Z0KFW0D4Y2K">Deep links</h2>
 <p>
@@ -1778,17 +1735,17 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt; *)options
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&gt; Bool
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -1803,17 +1760,17 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return YES;
+  return YES;
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool
 {
-    //handle URL here to navigate to custom views
+  //handle URL here to navigate to custom views
 
-    return true
+  return true
 }</code></pre>
   </div>
 </div>
@@ -1828,31 +1785,31 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">if ([url.scheme isEqualToString: @"countly"])
 {
-    if ([url.host isEqualToString: @"productA"])
-    {
-        // present view controller for Product A;
-    }
-    else if ([url.host isEqualToString: @"productB"])
-    {
-        // present view controller for Product B;
-    }
+  if ([url.host isEqualToString: @"productA"])
+  {
+    // present view controller for Product A;
+  }
+  else if ([url.host isEqualToString: @"productB"])
+  {
+    // present view controller for Product B;
+  }
 
-   // or you can use host property directly
+ // or you can use host property directly
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">if (url.scheme == "countly")
 {
-    if (url.host == "productA")
-    {
-        // present view controller for Product A;
-    }
-    else if (url.host == "productB")
-    {
-        // present view controller for Product B;
-    }
+  if (url.host == "productA")
+  {
+    // present view controller for Product A;
+  }
+  else if (url.host == "productB")
+  {
+    // present view controller for Product B;
+  }
 
-    // or you can use host property directly
+  // or you can use host property directly
 }</code></pre>
   </div>
 </div>
@@ -1930,22 +1887,22 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   <div class="tab">
     <pre><code class="objectivec">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
 {
-    self.contentHandler = contentHandler;
-    self.bestAttemptContent = [request.content mutableCopy];
+  self.contentHandler = contentHandler;
+  self.bestAttemptContent = [request.content mutableCopy];
 
-    //delete existing template code, and add this line
-    [CountlyNotificationService didReceiveNotificationRequest:request withContentHandler:contentHandler];
+  //delete existing template code, and add this line
+  [CountlyNotificationService didReceiveNotificationRequest:request withContentHandler:contentHandler];
 }
 </code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void)
 {
-    self.contentHandler = contentHandler
-    bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+  self.contentHandler = contentHandler
+  bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
-    //delete existing template code, and add this line
-    CountlyNotificationService.didReceive(request, withContentHandler: contentHandler);
+  //delete existing template code, and add this line
+  CountlyNotificationService.didReceive(request, withContentHandler: contentHandler);
 }</code></pre>
   </div>
 </div>
@@ -1981,8 +1938,8 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 
 [Countly.sharedInstance askForNotificationPermissionWithOptions:authorizationOptions completionHandler:^(BOOL granted, NSError *error)
 {
-    NSLog(@"granted: %d", granted);
-    NSLog(@"error: %@", error);
+  NSLog(@"granted: %d", granted);
+  NSLog(@"error: %@", error);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -1990,8 +1947,8 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 
 Countly.sharedInstance().askForNotificationPermission(options: authorizationOptions, completionHandler:
 { (granted : Bool, error : Error?) in
-    print("granted: \(granted)")
-    print("error: \(error)")
+  print("granted: \(granted)")
+  print("error: \(error)")
 })</code></pre>
   </div>
 </div>
@@ -2191,8 +2148,8 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
 
 [Countly.sharedInstance askForNotificationPermissionWithOptions:authorizationOptions completionHandler:^(BOOL granted, NSError *error)
 {
-    NSLog(@"granted: %d", granted);
-    NSLog(@"error: %@", error);
+  NSLog(@"granted: %d", granted);
+  NSLog(@"error: %@", error);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2200,8 +2157,8 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
 
 Countly.sharedInstance().askForNotificationPermission(options: authorizationOptions, completionHandler:
 { (granted : Bool, error : Error?) in
-    print("granted: \(granted)")
-    print("error: \(error)")
+  print("granted: \(granted)")
+  print("error: \(error)")
 })</code></pre>
   </div>
 </div>
@@ -2242,6 +2199,80 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <pre><code class="swift">Countly.launchNotification = notification</code></pre>
   </div>
 </div>
+<h2 id="h_01HNF5NAJ41Y4YT87PGV5HKE39">Setting up Credentials</h2>
+<h3 id="h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">
+  <strong><span style="font-weight: 400;">Acquiring Credentials</span></strong>
+</h3>
+<p>
+  <strong><span style="font-weight: 400;">There are two ways you can acquire Push Notification credentials from Apple:</span></strong>
+</p>
+<ul>
+  <li>APNs Auth Key (preferred method)</li>
+  <li>Universal (Sandbox + Production) Certificate</li>
+</ul>
+<h4 id="h_01HAVHW0RQGBSB4VVFJMK2EB8K">Getting an APNs Auth Key</h4>
+<p>
+  <span style="font-weight: 400;">APNs Auth Key is the preferred authentication method on APNs for a number of reasons, including less issues faced during configuration and the fact that it can reuse the same connection with multiple apps.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">First go to the </span><a href="https://developer.apple.com/account/ios/authkey/create"><span style="font-weight: 400;">Create a New Key</span></a><span style="font-weight: 400;"> section on the Apple Developer website to get an APNs Auth Key.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/1df7566-af33314-Screenshot_2017-09-20_14.38.56.png">
+</div>
+<p>
+  Check the <code>APNs</code> option and create your key.
+</p>
+<p>
+  <span style="font-weight: 400;">Then download your key and store it in a safe place, you won't be able to download it again.</span><span style="font-weight: 400;"><br></span><span style="font-weight: 400;">You'll also need some identifiers to upload a key file to Countly:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <code>Key ID</code> (filled automatically if you kept the original Auth
+      Key filename, otherwise visible on the key details panel)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>Team ID</code> (see
+      <a href="https://developer.apple.com/account/#/membership/">Membership</a>
+      section)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>Bundle ID</code> (see
+      <a href="https://developer.apple.com/account/ios/identifier/bundle">App IDs</a>
+      section)
+    </p>
+  </li>
+</ul>
+<h4 id="h_01HAVHW0RQPP7Z6CQJ5V0HS7MC">Getting APNs Universal (Sandbox + Production) Certificate</h4>
+<p>
+  <span style="font-weight: 400;">Please go to the </span><strong>Certificates</strong><span style="font-weight: 400;"> section on the </span><a href="https://developer.apple.com/account/ios/certificate/"><strong>Certificates, Identifiers &amp; Profiles</strong></a><span style="font-weight: 400;"> page on the Apple Developer website. Click the plus sign and select the </span><strong>Apple Push Notification service SSL (Sandbox &amp; Production)</strong><span style="font-weight: 400;"> type. Follow the instructions. Once you are done, download it and double click to add it to your Keychain.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/2248a72-1009cff-push_addcert.png">
+</div>
+<p>
+  <span style="font-weight: 400;">Next, you'll need to export your push certificate into </span><strong>p12</strong><span style="font-weight: 400;"> format. Please open the </span><strong>Keychain Access</strong><span style="font-weight: 400;"> app, select the </span><strong>login</strong><span style="font-weight: 400;"> keychain, and the </span><strong>My Certificates</strong><span style="font-weight: 400;"> category. Search for your app ID and find the certificate starting with the </span><strong>Apple Push Services</strong><span style="font-weight: 400;">. Select both the certificate and its private key as shown in the screenshot below. Right click and choose </span><strong>Export 2 items...</strong><span style="font-weight: 400;"> and save it. You're free to name the p12 file as you wish and to set up a passphrase or leave it empty.</span>
+</p>
+<div class="img-container">
+  <img src="https://count.ly/images/guide/94d763b-push_p12.png">
+</div>
+<h3 id="h_01HNF5QRPJGG0GKMMH2SZWVK85">
+  <span style="font-weight: 400;">Setting up the Dashboard</span>
+</h3>
+<p>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
+</p>
+<div class="img-container">
+  <img src="/guide-media/01GVD4NGFQ4RR2VYHWBK04M12E" alt="001.png">
+</div>
+<p>
+  <span style="font-weight: 400;">After filling all the required fields, click the </span><span style="font-weight: 400;"><strong>Save changes </strong></span><span style="font-weight: 400;">button. Countly will check the validity of the credentials by initiating a test connection to the APNs.</span>
+</p>
 <h1 id="h_01HAVHW0RRSPH1W989GXSPR3HY">User Location</h1>
 <div class="callout callout--info">
   <strong>Enterprise Edition Feature</strong>
@@ -2582,8 +2613,8 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">class CountlyRCData {
-    var value: Any
-    var isCurrentUsersData: Bool
+  var value: Any
+  var isCurrentUsersData: Bool
 }
 </code></pre>
   </div>
@@ -2850,7 +2881,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <div class="tab">
     <pre><code class="objectivec">config.starRatingCompletion = ^(NSInteger rating)
 {
-    NSLog(@"rating %d",(int)rating);
+  NSLog(@"rating %d",(int)rating);
 };</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2868,7 +2899,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <div class="tab">
     <pre><code class="objectivec">[Countly.sharedInstance askForStarRating:^(NSInteger rating)
 {
-    NSLog(@"rating %li",(long)rating);
+  NSLog(@"rating %li",(long)rating);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2896,23 +2927,23 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   <div class="tab">
     <pre><code class="objectivec">[Countly.sharedInstance presentRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" completionHandler:^(NSError* error)
 {
-    if (error)
-        NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
-    else
-        NSLog(@"Ratings feedback widget presented successfully");
+  if (error)
+    NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
+  else
+    NSLog(@"Ratings feedback widget presented successfully");
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">Countly.sharedInstance().presentRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", completionHandler:
 { (error : Error?) in
-    if (error != nil)
-    {
-        print("Ratings feedback widget presentation failed: \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
-    }
-    else
-    {
-        print("Ratings feedback widget presented successfully");
-    }
+  if (error != nil)
+  {
+    print("Ratings feedback widget presentation failed: \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
+  }
+  else
+  {
+    print("Ratings feedback widget presented successfully");
+  }
 })</code></pre>
   </div>
 </div>
@@ -2962,14 +2993,14 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="objectivec">
 [Countly.sharedInstance getFeedbackWidgets:^(NSArray * feedbackWidgets, NSError * error)
 {
-    if (error)
-    {
-        NSLog(@"Getting widgets list failed. Error: %@", error);
-    }
-    else
-    {
-        NSLog(@"Getting widgets list successfully completed. %@", [feedbackWidgets description]);
-    }
+  if (error)
+  {
+    NSLog(@"Getting widgets list failed. Error: %@", error);
+  }
+  else
+  {
+    NSLog(@"Getting widgets list successfully completed. %@", [feedbackWidgets description]);
+  }
 }];
     </code></pre>
   </div>
@@ -2977,16 +3008,15 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">
 Countly.sharedInstance().getFeedbackWidgets
 { (feedbackWidgets: [CountlyFeedbackWidget], error) in
-    if (error != nil)
-    {
-        print("Getting widgets list failed. \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
-    }
-    else
-    {
-        print("Getting widgets list successfully completed. \(String(describing: feedbackWidgets))")
-    }
-}
-    </code></pre>
+  if (error != nil)
+  {
+    print("Getting widgets list failed. \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
+  }
+  else
+  {
+    print("Getting widgets list successfully completed. \(String(describing: feedbackWidgets))")
+  }
+}</code></pre>
   </div>
 </div>
 <p>
@@ -3015,15 +3045,13 @@ Countly.sharedInstance().getFeedbackWidgets
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">
-        CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-        [aFeedbackWidget present];
+    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget present];
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">
-        let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
-        aFeedbackWidget?.present()
+    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.present()
     </code></pre>
   </div>
 </div>
@@ -3034,28 +3062,26 @@ Countly.sharedInstance().getFeedbackWidgets
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">
-CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
 [aFeedbackWidget presentWithAppearBlock:^
 {
-    NSLog(@"Appeared!");
+  NSLog(@"Appeared!");
 }
 andDismissBlock:^
 {
-    NSLog(@"Dismissed!");
+  NSLog(@"Dismissed!");
 }];
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">
-let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
 aFeedbackWidget?.present(appear:
 {
-    print("Appeared.")
+  print("Appeared.")
 },
 andDismiss:
 {
-    print("Dismissed.")
+  print("Dismissed.")
 })
     </code></pre>
   </div>
@@ -3074,14 +3100,14 @@ andDismiss:
 CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
 [aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
 {
-    if (error)
-    {
-        NSLog(@"Getting widget data failed. Error: %@", error);
-    }
-    else
-    {
-        NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
-    }
+  if (error)
+  {
+    NSLog(@"Getting widget data failed. Error: %@", error);
+  }
+  else
+  {
+    NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
+  }
 }];
     </code></pre>
   </div>
@@ -3090,14 +3116,14 @@ CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assumin
 let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
 aFeedbackWidget?.getData
 { (widgetData: [AnyHashable: Any]?, error: Error?) in
-    if (error != nil)
-    {
-        print("Getting widget data failed. Error \(error.debugDescription)")
-    }
-    else
-    {
-        print("Getting widget data successfully completed. \(String(describing: widgetData))")
-    }
+  if (error != nil)
+  {
+    print("Getting widget data failed. Error \(error.debugDescription)")
+  }
+  else
+  {
+    print("Getting widget data successfully completed. \(String(describing: widgetData))")
+  }
 }    </code></pre>
   </div>
 </div>
@@ -3305,8 +3331,10 @@ Countly.user().save()</code></pre>
 <p>
   Here is how you can utilize Performance Monitoring feature in your iOS apps:
 </p>
+<h2 id="h_01HAVHW0RS1P1F4FX14M9QD3NW">App Background and Foreground Time</h2>
 <p>
-  First, you need to enable Performance Monitoring feature on the initial configuration:
+  You need to enable App Background and Foreground Time tracking feature on the
+  initial configuration:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3314,21 +3342,38 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enablePerformanceMonitoring = YES;</code></pre>
+    <pre><code class="objectivec">config.apm.enableForegroundBackgroundTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enablePerformanceMonitoring = true</code></pre>
+    <pre><code class="swift">config.apm().enableForegroundBackgroundTracking = true</code></pre>
   </div>
 </div>
 <p>
-  With this, Countly iOS SDK will start measuring some performance traces automatically.
-  Those include app start time, app foreground time, app background time. Additionally,
-  custom traces and network traces can be manually recorded.
+  With this, Countly iOS SDK will start measuring the app foreground time, app
+  background time.
 </p>
-<h2 id="h_01HAVHW0RS1P1F4FX14M9QD3NW">App Start Time</h2>
+<h2 id="01HN2RN10EXG8AMJPBV07AR3NW">App Start Time</h2>
 <p>
-  For the app start time to be recorded, you need to call
-  <code>appLoadingFinished</code> method.
+  Currently iOS SDK support manual app start time tracking. For the app start time
+  to be recorded, you need to set
+  <code class="objectivec">enableAppStartTimeTracking</code> and
+  <code class="objectivec">enableManualAppLoadedTrigger</code>&nbsp;on the initial
+  configuration:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.apm.enableAppStartTimeTracking = YES;<br>config.apm.enableManualAppLoadedTrigger = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.apm().enableAppStartTimeTracking = true<br>config.apm().enableManualAppLoadedTrigger = true</code></pre>
+  </div>
+</div>
+<p>
+  And then you need to call <code>appLoadingFinished</code> method.
 </p>
 <p>
   It calculates and records the app launch time for performance monitoring.<br>
@@ -3348,7 +3393,24 @@ Countly.user().save()</code></pre>
     <pre><code class="objectivec">[Countly.sharedInstance appLoadingFinished];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly..sharedInstance().appLoadingFinished()</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().appLoadingFinished()</code></pre>
+  </div>
+</div>
+<p>
+  If you also want to manipulate the app launch starting time instead of using
+  the SDK calculated value then you will need to call a third method on the config
+  object with the timestamp (in milliseconds) of that time you want:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;<br>[config.apm setAppStartTimestampOverride:timestamp];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;<br>config.apm().setAppStartTimestampOverride(timestamp)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RS4Q2FT2ZN6VV4A8CP">Manual Network Traces</h2>
@@ -3819,6 +3881,31 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 <p>
   <span style="font-weight: 400;">You can further specify your optional settings on the <code>CountlyConfig</code></span><span style="font-weight: 400;">:</span>
 </p>
+<h2 id="h_01HPE2F8MYP82AZ29EV7N8HQJ3">Example Integrations</h2>
+<p>
+  The Countly iOS example integrations are located
+  <a href="https://github.com/Countly/countly-sample-ios">here</a>.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/ios-swift">ios-swift</a>
+  project is written in Swift and covers basic functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/ios">ios</a>
+  project is written in Objective-C and covers most of the functionalities
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/macos">macos</a>
+  project is written in Objective-C and covers basic functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/tvos">tvos</a>
+  project is written in Objective-C and covers basic functionalities.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sample-ios/tree/master/watchos">watchos</a>
+  project is written in Objective-C and covers basic functionalities.
+</p>
 <h2 id="h_01HAVHW0RSVHW5X7F0QA5BQJWR">Event Send Threshold</h2>
 <p>
   <span style="font-weight: 400;">You can specify the <code>eventSendThreshold</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. It is used to send </span><strong>events</strong><span style="font-weight: 400;"> requests to the server when the number of recorded events reaches the threshold without waiting for the next update session request. If the <code>eventSendThreshold</code></span><span style="font-weight: 400;"> is not explicitly set, the default setting will be at </span><strong>10</strong><span style="font-weight: 400;"> for iOS, tvOS &amp; macOS, and </span><strong>3</strong><span style="font-weight: 400;"> for watchOS.</span>
@@ -4098,67 +4185,67 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
 <p>
   Here is a detailed example usage of <code>addDirectRequest</code>:
 </p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">- (void) sendDirectRequest {
-    NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
-    requestMap[@"city"] = @"Istanbul";
-    requestMap[@"country_code"] = @"TR";
-    requestMap[@"ip_address"] = @"41.0082,28.9784";
+<pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
+  NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
+  requestMap[@"city"] = @"Istanbul";
+  requestMap[@"country_code"] = @"TR";
+  requestMap[@"ip_address"] = @"41.0082,28.9784";
 
-    NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
-    event[@"key"] = @"test";
-    event[@"count"] = @"201";
-    event[@"sum"] =  @"2010";
-    event[@"dur"] = @"2010";
+  NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
+  event[@"key"] = @"test";
+  event[@"count"] = @"201";
+  event[@"sum"] =  @"2010";
+  event[@"dur"] = @"2010";
 
-    NSMutableDictionary *ffJson = [[NSMutableDictionary alloc] init];
-    ffJson[@"type"] = @"FF";
-    ffJson[@"start_time"] = [NSNumber numberWithInt:123456789];
-    ffJson[@"end_time"] = [NSNumber numberWithInt:123456789];
-
-
-    NSMutableDictionary *skipJson = [[NSMutableDictionary alloc] init];
-    skipJson[@"type"] = @"skip";
-    skipJson[@"start_time"] = [NSNumber numberWithInt:123456789];
-    skipJson[@"end_time"] = [NSNumber numberWithInt:123456789];
-
-    NSMutableDictionary *resumeJson = [[NSMutableDictionary alloc] init];
-    resumeJson[@"type"] = @"resume_play";
-    resumeJson[@"start_time"] = [NSNumber numberWithInt:123456789];
-    resumeJson[@"end_time"] = [NSNumber numberWithInt:123456789];
-
-    NSMutableArray *trickPlay = [[NSMutableArray alloc] init];
-    [trickPlay addObject:ffJson];
-    [trickPlay addObject:skipJson];
-    [trickPlay addObject:resumeJson];
+  NSMutableDictionary *ffJson = [[NSMutableDictionary alloc] init];
+  ffJson[@"type"] = @"FF";
+  ffJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+  ffJson[@"end_time"] = [NSNumber numberWithInt:123456789];
 
 
-    NSMutableDictionary *segmentation = [[NSMutableDictionary alloc] init];
-    segmentation[@"trickplay"] =  trickPlay;
-    event[@"segmentation"] = segmentation;
+  NSMutableDictionary *skipJson = [[NSMutableDictionary alloc] init];
+  skipJson[@"type"] = @"skip";
+  skipJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+  skipJson[@"end_time"] = [NSNumber numberWithInt:123456789];
 
-    NSMutableArray *events = [[NSMutableArray alloc] init];
-    [events addObject:event];
+  NSMutableDictionary *resumeJson = [[NSMutableDictionary alloc] init];
+  resumeJson[@"type"] = @"resume_play";
+  resumeJson[@"start_time"] = [NSNumber numberWithInt:123456789];
+  resumeJson[@"end_time"] = [NSNumber numberWithInt:123456789];
 
-    NSString *eventsString = [self toString:events];
+  NSMutableArray *trickPlay = [[NSMutableArray alloc] init];
+  [trickPlay addObject:ffJson];
+  [trickPlay addObject:skipJson];
+  [trickPlay addObject:resumeJson];
 
-    requestMap[@"events"]  = eventsString.cly_URLEscaped;
-    [Countly.sharedInstance addDirectRequest:requestMap];   
+
+  NSMutableDictionary *segmentation = [[NSMutableDictionary alloc] init];
+  segmentation[@"trickplay"] =  trickPlay;
+  event[@"segmentation"] = segmentation;
+
+  NSMutableArray *events = [[NSMutableArray alloc] init];
+  [events addObject:event];
+
+  NSString *eventsString = [self toString:events];
+
+  requestMap[@"events"]  = eventsString.cly_URLEscaped;
+  [Countly.sharedInstance addDirectRequest:requestMap];   
 }
 
 - (NSString *) toString: (id) dictionaryOrArrayToOutput  {
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
-                                                       options:0
-                                                         error:&amp;error];
-    NSString *jsonString = @"";
-    if (! jsonData) {
-        NSLog(@"Got an error: %@", error);
+  NSError *error;
+  NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionaryOrArrayToOutput
+                                                     options:0
+                                                       error:&amp;error];
+  NSString *jsonString = @"";
+  if (! jsonData) {
+    NSLog(@"Got an error: %@", error);
 
-    } else {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    return jsonString;
-}</pre>
+  } else {
+    jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+  }
+  return jsonString;
+}</code></pre>
 <h2 id="h_01HAVHW0RTPMZFEQGNNNR3ERYK">watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
@@ -4687,37 +4774,16 @@ end</code></pre>
   </li>
 </ul>
 <h2 id="h_01HAVHW0RT0WGM2365JVMT956J">
-  <span class="wysiwyg-color-black">What data metrics are collected by Countly iOS SDK?</span>
+  <span class="wysiwyg-color-black">What Information is Collected by the SDK?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">Countly iOS SDK collects following metrics by default:</span>
+  The following description mentions data that is collected by SDK's to perform
+  their functions and implement the required features. Before any of it is sent
+  to the server, it is stored locally. For further information please have a look
+  to the
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
+  for all SDKs.
 </p>
-<ul>
-  <li>
-    <span>Device Model</span>
-  </li>
-  <li>
-    <span>Screen Resolution</span>
-  </li>
-  <li>
-    <span>Screen Density</span>
-  </li>
-  <li>
-    <span>OS Name</span>
-  </li>
-  <li>
-    <span>OS Version</span>
-  </li>
-  <li>
-    <span>App Version</span>
-  </li>
-  <li>
-    <span>Locale Identifier</span>
-  </li>
-  <li>
-    <span>Carrier</span>
-  </li>
-</ul>
 <p>
   Further, if Apple Watch feature is enabled: - Paired Apple Watch Presence - watchOS
   App Install Status

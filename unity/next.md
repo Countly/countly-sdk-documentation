@@ -130,7 +130,7 @@ Countly.Instance.Init(config);
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
-<pre>Countly.Instance.</pre>
+<pre>Countly.Instance</pre>
 <h1 id="enabling-logging" class="anchor-heading">SDK Logging / Debug Mode</h1>
 <p>
   <span>The first thing you should do while integrating our SDK is enabling logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems.</span>
@@ -138,7 +138,7 @@ Countly.Instance.Init(config);
 <p>
   Call <code>EnableLogging</code> on the config object to enable logging:
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)
+<pre><code class="csharp">CountlyConfiguration config = new CountlyConfiguration(appKey, serverUrl)
   .EnableLogging();</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
@@ -154,7 +154,7 @@ Countly.Instance.Init(config);
   In the SDK all crash-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.CrashReports.</pre>
+<pre>countly.CrashReports</pre>
 <h2 id="h_01HABTZ314AT5KAJCM51D304ZV">Automatic Crash Handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
@@ -186,18 +186,18 @@ Countly.Instance.Init(config);
   </li>
 </ul>
 <p>Example:</p>
-<pre><strong>try </strong>{
-<strong>  throw</strong> <strong>new</strong> DivideByZeroException();
-} <strong>catch</strong> (Exception ex) {
-  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
-}</pre>
+<pre><code class="csharp">try {
+  throw new DivideByZeroException();
+} catch (Exception ex) {
+  await countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
+}</code></pre>
 <p class="anchor-heading">You can also send a segmentation with an exception.</p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();
+<pre><code class="csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();
 segmentation.Add("Action", "click");</span>
-<strong>try </strong>{
-<strong>  throw</strong> <strong>new</strong> DivideByZeroException();
-} <strong>catch</strong> (Exception ex) {
-  <strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);
+try {
+  throw new DivideByZeroException();
+} catch (Exception ex) {
+  await countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);
 }</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
@@ -232,7 +232,7 @@ segmentation.Add("Action", "click");
   In the SDK, all event-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.Events.</pre>
+<pre>countly.Events</pre>
 <p>
   <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event. For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
 </p>
@@ -668,7 +668,7 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">public class CountlyEntryPoint : MonoBehaviour, INotificationListener
+<pre><code class="csharp">public class CountlyEntryPoint : MonoBehaviour, INotificationListener
 {
   public void OnNotificationReceived(string message)
   {
@@ -688,7 +688,7 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">private void Awake()
+<pre><code class="csharp">private void Awake()
 {
   CountlyConfiguration config = <strong>new</strong> CountlyConfiguration(appKey, serverUrl);
   config.AddNotificationListener(this);
@@ -1274,42 +1274,9 @@ Countly.Instance.Init(configuration);</code></pre>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally.
+  server, it is stored locally. For further information please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
 </p>
-<ul>
-  <li>
-    When sending any network requests to the server, the following things are
-    sent in addition to the main data:
-    <ul>
-      <li>Timestamp of when the request is created</li>
-      <li>Current hour</li>
-      <li>Current day of the week</li>
-      <li>Current timezone</li>
-      <li>SDK version</li>
-      <li>SDK name</li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-    If sessions are used, it would record the session start time, end time, and
-    duration.
-  </li>
-</ul>
-<ul>
-  <li>
-    If sessions are used, then device metrics are collected which include:
-    <ul>
-      <li>Device model</li>
-      <li>Screen resolution</li>
-      <li>Screen density</li>
-      <li>OS name</li>
-      <li>OS version</li>
-      <li>App version</li>
-      <li>Locale identifier</li>
-    </ul>
-  </li>
-</ul>
 <ul>
   <li>
     When generating a device ID, if no custom ID is provided, the SDK will use:
@@ -1343,31 +1310,6 @@ Countly.Instance.Init(configuration);</code></pre>
       <li>Time of event</li>
       <li>Current hour</li>
       <li>Current day of the week</li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-    If crash tracking is enabled, it will collect the following information at
-    the time of the crash:
-    <ul>
-      <li>OS name</li>
-      <li>OS version</li>
-      <li>Device model</li>
-      <li>Device architecture</li>
-      <li>The graphics API type</li>
-      <li>Device resolution</li>
-      <li>App version</li>
-      <li>Time of the crash</li>
-      <li>Crash stack trace</li>
-      <li>Error description</li>
-      <li>Total RAM</li>
-      <li>Device battery level</li>
-      <li>Device orientation</li>
-      <li>The type of Internet reachability</li>
-      <li>If there is a network connection</li>
-      <li>If the app is in the background</li>
-      <li>How long has the application been running</li>
     </ul>
   </li>
 </ul>

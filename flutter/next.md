@@ -1,6 +1,6 @@
 <p>
   This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.12.X
+  and it applies to version 24.1.X
 </p>
 <div class="callout callout--info">
   <p>
@@ -26,8 +26,13 @@
   Below you can see steps to download the Countly Flutter example application.
   It assumes Flutter is installed in your system:
 </p>
-<pre><code class="shell">git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
+<pre><code class="bash"># clone the Countly SDK repository
+git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
+
+# dive into the cloned repo
 cd countly-sdk-flutter-bridge/example
+
+# install packages and run
 flutter pub get
 flutter run</code></pre>
 <p>
@@ -40,7 +45,7 @@ flutter run</code></pre>
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^23.12.0
+  countly_flutter: ^24.1.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -53,17 +58,17 @@ flutter run</code></pre>
   of device ID seamlessly, is to use the code below.
 </p>
 <pre><code class="dart">Countly.isInitialized().then((bool isInitialized){
-    if(!isInitialized){
-        // Create the configuration with your app key and server URL
-        CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+  if(!isInitialized) {
+    // Create the configuration with your app key and server URL
+    CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
-        // Initialize with that configuration
-        Countly.initWithConfig(config).then((value){
-            Countly.start(); // Enables automatic view tracking
-        });
-    }else{
-      print("Countly: Already initialized.");
-    }
+    // Initialize with that configuration
+    Countly.initWithConfig(config).then((value){
+      Countly.start(); // Enables automatic view tracking
+    });
+  } else {
+    print("Countly: Already initialized.");
+  }
 });</code></pre>
 <p>
   Please check
@@ -96,7 +101,8 @@ flutter run</code></pre>
 <p>
   We advise doing this while implementing Countly features in your application.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLoggingEnabled(true);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setLoggingEnabled(true);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
@@ -130,17 +136,21 @@ flutter run</code></pre>
   If you want to enable automatic unhandled crash reporting, you need to call this
   before init:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.enableCrashReporting()</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.enableCrashReporting()</code></pre>
 <p>
   By doing that it will automatically catch all errors that are thrown from within
   the Flutter framework.
 </p>
 <p>
-  <br>
   If you want to catch Dart errors, run your app inside a Zone and supply
   <code>Countly.recordDartError</code> to the <code>onError</code> parameter:
 </p>
-<pre><code class="JavaScript">void main() {<br>  runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {<br>    runApp(MyApp());<br>  }, Countly.recordDartError);<br>}</code></pre>
+<pre><code class="JavaScript">void main() {
+  runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
+    runApp(MyApp());
+  }, Countly.recordDartError);
+}</code></pre>
 <h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic crash report segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
@@ -152,7 +162,8 @@ flutter run</code></pre>
   The following call will add the provided segmentation to all recorded crashes.
   Use the following function for this purpose:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
 <h2 id="h_01H930GAQ5D1WSF2DZZJ8XA12T">Handled exceptions</h2>
 <p class="p1">
   There are multiple ways you could report a handled exception/error to Countly.
@@ -180,33 +191,41 @@ flutter run</code></pre>
 <p>
   <strong>1. Manually report exception</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+// With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal);
-<br>// With String message
+
+// With String message
 Countly.logExceptionManual("MESSAGE_STRING", nonfatal);
 </code></pre>
 <p>
   <strong>2. Manually report exception with stack trace</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+// With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, stacktrace: STACK_TRACE_OBJECT);
-<br>// With String message
+
+// With String message
 Countly.logExceptionManual("MESSAGE_STRING", nonfatal, stacktrace: STACK_TRACE_OBJECT);
 </code></pre>
 <p>
   <strong>3. Manually report exception with segmentation</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+// With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, segmentation: {"_facebook_version": "0.0.1"});
-<br>// With String message
+
+// With String message
 Countly.logExceptionManual("MESSAGE_STRING", nonfatal, segmentation: {"_facebook_version": "0.0.1"});
 </code></pre>
 <p>
   <strong>4. Manually report exception with stack trace and segmentation</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception<br>// With Exception object
+<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+// With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
-<br>// With String message
+
+// With String message
 Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
 </code></pre>
 <h2 id="h_01H930GAQ5PX812FVSVEAKZMJ8">Crash breadcrumbs</h2>
@@ -292,6 +311,7 @@ var event = {
   "key": "Basic Event",
   "count": 1
 };
+
 Countly.recordEvent(event);</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">2. Event key, count and sum</span>
@@ -302,6 +322,7 @@ var event = {
   "count": 1,
   "sum": "0.99",
 };
+
 Countly.recordEvent(event);
 </code></pre>
 <p>
@@ -312,43 +333,47 @@ var event = {
   "key": "Event With Segment",
   "count": 1
 };
+
 event["segmentation"] = {
   "Country": "Germany",
   "Age": "28"
 };
+
 Countly.recordEvent(event);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">4. Event key, count and sum with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">
-// example for event with segment and sum
+<pre><code class="JavaScript">// example for event with segment and sum
 var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
   "sum": "0.99"
 };
+
 event["segmentation"] = {
   "Country": "Germany",
   "Age": "28"
 };
+
 Countly.recordEvent(event);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">5. Event key, count, sum and duration with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">
-// example for event with segment and sum
+<pre><code class="JavaScript">// example for event with segment and sum
 var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
   "sum": "0.99",
   "duration": "0"
 };
+
 event["segmentation"] = {
   "Country": "Germany",
   "Age": "28"
 };
+
 Countly.recordEvent(event);
 </code></pre>
 <h2 id="h_01H930GAQ5SWK23EQBNNRM4TZD">Timed events</h2>
@@ -360,8 +385,9 @@ Countly.recordEvent(event);
 </p>
 <pre><code class="JavaScript">// Basic event
 Countly.startEvent("Timed Event");
+
 Timer timer = Timer(new Duration(seconds: 5), () {
-    Countly.endEvent({ "key": "Timed Event" });
+  Countly.endEvent({ "key": "Timed Event" });
 });
 </code></pre>
 <p>
@@ -369,8 +395,9 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 </p>
 <pre><code class="JavaScript">// Event with sum
 Countly.startEvent("Timed Event With Sum");
+
 Timer timer = Timer(new Duration(seconds: 5), () {
-    Countly.endEvent({ "key": "Timed Event With Sum", "sum": "0.99" });
+  Countly.endEvent({ "key": "Timed Event With Sum", "sum": "0.99" });
 });
 </code></pre>
 <p>
@@ -378,33 +405,35 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 </p>
 <pre><code class="JavaScript">// Event with segment
 Countly.startEvent("Timed Event With Segment");
+
 Timer timer = Timer(new Duration(seconds: 5), () {
-    var event = {
-        "key": "Timed Event With Segment",
-        "count": 1,
-    };
-    event["segmentation"] = {
-        "Country": "Germany",
-        "Age": "28"
-    };
-    Countly.endEvent(event);
+  var event = {
+    "key": "Timed Event With Segment",
+    "count": 1,
+  };
+  event["segmentation"] = {
+    "Country": "Germany",
+    "Age": "28"
+  };
+  Countly.endEvent(event);
 });</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">4.Timed event with key, count, sum and segmentation</span>
 </p>
 <pre><code class="JavaScript">// Event with Segment, sum and count
 Countly.startEvent("Timed Event With Segment, Sum and Count");
+
 Timer timer = Timer(new Duration(seconds: 5), () {
-    var event = {
-        "key": "Timed Event With Segment, Sum and Count",
-        "count": 1,
-        "sum": "0.99"
-    };
-    event["segmentation"] = {
-        "Country": "Germany",
-        "Age": "28"
-    };
-    Countly.endEvent(event);
+  var event = {
+    "key": "Timed Event With Segment, Sum and Count",
+    "count": 1,
+    "sum": "0.99"
+  };
+  event["segmentation"] = {
+    "Country": "Germany",
+    "Age": "28"
+  };
+  Countly.endEvent(event);
 });</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
 <h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic session tracking</h2>
@@ -413,8 +442,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   it handles making certain requests to the server to inform it about the user
   session. Automatic sessions are enabled by default and SDK handles the necessary
   calls (by sending start session, update session and end session requests) to
-  track a session automatically.<br>
-  This is how it works:
+  track a session automatically. This is how it works:
 </p>
 <ul>
   <li>
@@ -437,7 +465,8 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   relying on the SDK.
 </p>
 <p>It can be enabled during init with:</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br></code>config.enableManualSessionHandling();</pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+</code>config.enableManualSessionHandling();</pre>
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
   <li>Begin session (Starts a session)</li>
@@ -449,7 +478,8 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   <li>End session (Ends and updates duration)</li>
 </ul>
 <p>You can use the 'sessions interface' to make these calls:</p>
-<pre>Countly.instance.sessions.beginSession();<br>Countly.instance.sessions.updateSession();
+<pre>Countly.instance.sessions.beginSession();
+Countly.instance.sessions.updateSession();
 Countly.instance.sessions.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View tracking</h1>
 <h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual view recording</h2>
@@ -478,13 +508,14 @@ final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</
   "Moons": 9.98,
   "Moose": "Deer"
 };
+
 final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView</span>("HomePage", segmentation);
 </code></pre>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
   Opposed to "auto stopped views", with regular views you can have multiple of
-  them started at the same time, and then you can control them independently.<br>
-  You can manually start a view using the <code>startView</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName</code> or <code>stopViewWithID</code> </span>
+  them started at the same time, and then you can control them independently. You
+  can manually start a view using the <code>startView</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName</code> or <code>stopViewWithID</code> </span>
 </p>
 <pre><code class="JavaScript">// record a view on your application
 Countly.instance.views.startView("HomePage");
@@ -497,6 +528,7 @@ final String? viewID = await Countly.instance.views.startView("Dashboard");</cod
   "Moons": 9.98,
   "Moose": "Deer"
 };
+
 final String? anotherViewID = Countly.instance.views.startView("HomePage", segmentation);</code></pre>
 <h3 id="h_01HFDVY8YAXBP812A870NAZ6Q2">Stopping Views</h3>
 <p>
@@ -508,7 +540,7 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 <pre><code class="JavaScript">Countly.instance.views.stopViewWithName("HomePage");</code></pre>
 <p>
   This function allows you to manually stop the tracking of a view identified by
-  its name.<span style="font-weight: 400;"><br>You can also specify the custom segmentation key-value pairs while stopping views:</span>
+  its name.<span style="font-weight: 400;"> You can also specify the custom segmentation key-value pairs while stopping views:</span>
 </p>
 <pre><code class="JavaScript">Countly.instance.views.stopViewWithName("HomePage", segmentation);</code></pre>
 <p>
@@ -519,7 +551,7 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
 </p>
-<pre><code class="JavaScript"><br>Countly.instance.views.stopViewWithID(anotherViewID, segmentation);</code></pre>
+<pre><code class="JavaScript">Countly.instance.views.stopViewWithID(anotherViewID, segmentation);</code></pre>
 <p>
   You can stop all views tracking using
   <span style="font-weight: 400;"><code>stopAllViews</code></span>
@@ -554,13 +586,27 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 </p>
 <h3 id="h_01HK6YJTHP4Y0WVZSC0ZPNZFDJ">Adding Segmentation to Started Views</h3>
 <p>
-  You can specify the custom segmentation for any view using the view name
+  Once a view has been started (but before it has been ended), you can add segmentation
+  to a view either with its name or its ID.
 </p>
-<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithName(segmentation);</code></pre>
 <p>
-  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs using the unique ID:</span>
+  Here is an example on how to achieve that using the view name:
 </p>
-<pre><code class="JavaScript">Countly.instance.views.addSegmentationToViewWithID(segmentation);</code></pre>
+<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+  "Cats": 123,
+  "Moons": 9.98,
+  "Moose": "Deer"
+};
+Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
+<p>
+  Here is an example for how to add segmentation to a view using its ID:
+</p>
+<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+  "Cats": 123,
+  "Moons": 9.98,
+  "Moose": "Deer"
+};
+Countly.instance.views.addSegmentationToViewWithID(viewID, segmentation);</code></pre>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
 <p>
   It is possible to set global segmentation for all recorded views. This can be
@@ -600,7 +646,8 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 <p>
   You may provide your own custom device ID when initializing the SDK
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setDeviceId(DEVICE_ID);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
 <p>You may configure/change the device ID anytime using:</p>
 <pre><code class="JavaScript">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
@@ -608,7 +655,7 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
   You may either allow the device to be counted as a new device or merge existing
   data on the server. If the<code>onServer</code> bool is set to
   <code>true</code>, the old device ID on the server will be replaced with the
-  new one, and data associated with the old device ID will be merged automatically.<br>
+  new one, and data associated with the old device ID will be merged automatically.
   Otherwise, if <code>onServer</code> bool is set to <code>false</code>, the device
   will be counted as a new device on the server.
 </p>
@@ -673,20 +720,28 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
   Here are the underlying mechanisms used to generate that value for some platforms:
 </p>
 <p>
-  For iOS: the device ID generated by SDK is the Identifier For Vendor (IDFV)<br>
-  For Android: the device ID generated by SDK is the OpenUDID.
+  For iOS: the device ID generated by SDK is the Identifier For Vendor (IDFV) For
+  Android: the device ID generated by SDK is the OpenUDID.
 </p>
 <h1 id="h_01H930GAQ6K5T1NRS29Z3Y8WSY">Push notifications</h1>
 <p>
-  Countly Flutter SDK comes with push notification capabilities embedded. For the
-  flavor without the push notifications features (like Firebase libraries) please
-  check <a href="https://pub.dev/packages/countly_flutter_np">here</a>.
+  Countly gives you the ability to send Push Notifications to your users using
+  your app with the Flutter SDK integration. For more information on how to best
+  use this feature you can check
+  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">this</a>
+  article.
+</p>
+<p>
+  To make this feature work you will need to make some configurations both in your
+  app and at your Countly server. Both platforms (Android and iOS) would need different
+  steps to integrate Push Notification feature into your application, as explained
+  below.
 </p>
 <h2 id="h_01H930GAQ6AQ5REWTYT4CB27CQ">Integration</h2>
 <h3 id="h_01H930GAQ6C3B3RYSEXZX4ZY3F">Android setup</h3>
 <p>
-  Step 1: For FCM credentials setup please follow the instruction from this URL
-  <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2</a>.
+  Step 1: For FCM credentials setup please follow the instruction from
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HNF9WBDT037TDHVHRSEPEMZV" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>
   Step 2: Make sure you have <code>google-services.json</code> from
@@ -707,55 +762,65 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 </p>
 <pre><code class="xml">&lt;application ...&gt;
 ...
-   &lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
-     &lt;intent-filter&gt;
-       &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
-     &lt;/intent-filter&gt;
-   &lt;/service&gt;
+  &lt;service android:name="ly.count.dart.countly_flutter.CountlyMessagingService"&gt;
+    &lt;intent-filter&gt;
+      &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
+    &lt;/intent-filter&gt;
+  &lt;/service&gt;
 &lt;/application&gt;
 </code></pre>
 <p>
   Step 6: Add the following line in file <code>android/build.gradle</code>
 </p>
 <pre><code class="JavaScript">buildscript {
-    dependencies {
-        classpath 'com.google.gms:google-services:4.3.15'
+  dependencies {
+    classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 </code></pre>
 <p>
-  You can get the latest version from this link
-  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions">https://firebase.google.com/support/release-notes/android#latest_sdk_versions</a>
-  and this link
-  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
+  You can get the latest version from
+  <a href="https://firebase.google.com/support/release-notes/android#latest_sdk_versions" target="_blank" rel="noopener noreferrer">here</a>
+  and
+  <a href="https://developers.google.com/android/guides/google-services-plugin" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <p>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="JavaScript">dependencies {
-    implementation 'ly.count.android:sdk:22.02.1'
-    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+  implementation 'ly.count.android:sdk:22.02.1'
+  implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
 // Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
 </code></pre>
 <h3 id="h_01H930GAQ6VJHE7EZ937JJ6HB9">iOS setup</h3>
 <p>
-  By default push notification is enabled for iOS, to disable you need to call
-  <code>disablePushNotifications</code> method:
-</p>
-<pre><code class="JavaScript">// // Disable push notifications feature for iOS, by default it is enabled.
-Countly.disablePushNotifications();</code></pre>
-<p>
-  For iOS push notification please follow the instruction from this URL
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQD3WBN560GAKTB77T">https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQD3WBN560GAKTB77T</a>
+  First, you will need to acquire Push Notification credentials from Apple. (If
+  you don't have them you can check
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB" target="_blank" rel="noopener noreferrer">this</a>
+  article to learn how you can do it.)
 </p>
 <p>
-  For Flutter you can find <code>CountlyNotificationService.h/m</code> file under
-  <code>Pods/Development Pods/Countly/{PROJECT_NAME}/ios/.symlinks/plugins/countly_flutter/ios/Classes/CountlyiOS/CountlyNotificationService.h/m</code><br>
-  <br>
-  <strong>Pro Tips to find the files from deep hierarchy:<br></strong>
+  Then you would need to upload these credentials to your Countly server. You can
+  refer to
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HNF5QRPJGG0GKMMH2SZWVK85" target="_blank" rel="noopener noreferrer">this</a>
+  article for learning how you can do that.
 </p>
+<p>
+  Finally, under the Capabilities section of Xcode, enable
+  <strong>Push Notifications</strong> and the
+  <strong>Remote notifications Background Mode</strong> for your target.
+</p>
+<p>
+  For Swift projects you might need to make sure Bridging Header File is configured
+  properly for each target as explained
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RT9DP8543XYWP278JC" target="_blank" rel="noopener noreferrer">here</a>.
+  For this purpose you can find <code>CountlyNotificationService.h/m</code> file
+  under:
+</p>
+<pre><code class="bash">Pods/Development Pods/Countly/{PROJECT_NAME}/ios/.symlinks/plugins/countly_flutter/ios/Classes/CountlyiOS/CountlyNotificationService.h/m</code></pre>
+<p>Some tips to find the files from deep hierarchy:</p>
 <ul>
   <li>
     You can filter the files in the navigator using a shortcut ⌥⌘J (Option-Command-J),
@@ -764,8 +829,7 @@ Countly.disablePushNotifications();</code></pre>
   </li>
   <li>
     You can find the file using the shortcut ⇧⌘O (Shift-Command-O) and then navigate
-    to that file using the shortcut ⇧⌘J (Shift-Command-J)<br>
-    <br>
+    to that file using the shortcut ⇧⌘J (Shift-Command-J)
   </li>
 </ul>
 <p>You can drag and drop the file from Pod to Compile Sources.</p>
@@ -785,15 +849,29 @@ Countly.pushTokenType(Countly.messagingMode["TEST"]);</code></pre>
 </p>
 <pre><code class="JavaScript">// This method will ask for permission, enables push notification and send push token to countly server.
 Countly.askForNotificationPermission();</code></pre>
+<p>
+  Also it is important to note that push notification is enabled for iOS by default,
+  so to disable you need to call <code>disablePushNotifications</code> method:
+</p>
+<pre><code class="JavaScript">// Disable push notifications feature for iOS, by default it is enabled.
+Countly.disablePushNotifications();</code></pre>
+<h2 id="h_01HNFJBRCKHFFZZYWK1CD485FT">Removing Push and Its Dependencies</h2>
+<p>
+  Countly Flutter SDK comes with push notification capabilities embedded. For the
+  flavor without the push notifications features (like Firebase libraries) please
+  check <a href="https://pub.dev/packages/countly_flutter_np">here</a>.
+</p>
 <h2 id="h_01H930GAQ67F7994ZMTG30J1C5">Handling push callbacks</h2>
 <p>
   To register a Push Notification callback after initializing the SDK, use the
   method below.
 </p>
-<pre>Countly.onNotification((String notification) {<br>   print(notification);<br>});</pre>
+<pre>Countly.onNotification((String notification) {
+  print(notification);
+});</pre>
 <p>
   In order to listen to notification receive and click events, Place below code
-  in <code>AppDelegate.swift</code>&nbsp;
+  in <code>AppDelegate.swift</code>
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">import countly_flutter
@@ -801,40 +879,69 @@ Countly.askForNotificationPermission();</code></pre>
 <p>Add these methods:</p>
 <pre><code class="JavaScript">// Required for the notification event. You must call the completion handler after handling the remote notification.
 func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -&gt; Void) {
-    CountlyFlutterPlugin.onNotification(userInfo);
-    completionHandler(.newData);
-
+  CountlyFlutterPlugin.onNotification(userInfo);
+  completionHandler(.newData);
 }
 
 @available(iOS 10.0, \*)
 override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
 
-    //Called when a notification is delivered to a foreground app.
+  //Called when a notification is delivered to a foreground app.
 
-    let userInfo: NSDictionary = notification.request.content.userInfo as NSDictionary
-    CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
-
+  let userInfo: NSDictionary = notification.request.content.userInfo as NSDictionary
+  CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
 }
 
 @available(iOS 10.0, \*)
 override func userNotificationCenter(\_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -&gt; Void) {
 
-    // Called to let your app know which action was selected by the user for a given notification.
-    let userInfo: NSDictionary = response.notification.request.content.userInfo as NSDictionary
-    // print("\(userInfo)")
-    CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
-
+  // Called to let your app know which action was selected by the user for a given notification.
+  let userInfo: NSDictionary = response.notification.request.content.userInfo as NSDictionary
+  // print("\(userInfo)")
+  CountlyFlutterPlugin.onNotification(userInfo as? [AnyHashable : Any])
 }
 </code></pre>
 <h3 id="h_01H930GAQ6GZBENE2SZZF3NGS3">Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is the example of how data will receive in push callbacks:<img src="/guide-media/01GVDG0K4G51KAKZJZVZHNYQ4A" alt="Screenshot_2022-06-24_at_7.04.23_PM.png"><br>
-  <br>
+  Here is the example of how data will receive in push callbacks:<img src="/guide-media/01GVDG0K4G51KAKZJZVZHNYQ4A" alt="Screenshot_2022-06-24_at_7.04.23_PM.png">
   Data Received for Android platform:
 </p>
-<pre>{<br>"c.e.cc": "TR",<br>"c.e.dt": "mobile",<br>"Key": "value",<br>"c.i": "62b59b979f05a1f5e5592036",<br>"c.l": "https:\/\/www.google.com\/",<br>"c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",<br>"c.li": "notify_icon",<br>"badge": "1",<br>"sound": "custom",<br>"title": "title",<br>"message": "Message"<br>}</pre>
+<pre>{
+  "c.e.cc": "TR",
+  "c.e.dt": "mobile",
+  "Key": "value",
+  "c.i": "62b59b979f05a1f5e5592036",
+  "c.l": "https:\/\/www.google.com\/",
+  "c.m": "https:\/\/count.ly\/images\/logos\/countly-logo-mark.png?v2",
+  "c.li": "notify_icon",
+  "badge": "1",
+  "sound": "custom",
+  "title": "title",
+  "message": "Message"
+}</pre>
 <p>Data Received for iOS platform:</p>
-<pre>{<br>Key = value;<br> aps = {<br>  alert = {<br>   body = Message;<br>   subtitle = subtitle;<br>   title = title;<br>  };<br> badge = 1;<br> "mutable-content" = 1;<br> sound = custom;<br> };<br> c = {<br>  a = "https://count.ly/images/logos/countly-logo-mark.png";<br>   e = {<br>    cc = TR;<br>    dt = mobile;<br>   };<br>  i = 62b5b945cabedb0870e9f217;<br>  l = "https://www.google.com/";<br> };<br>}</pre>
+<pre>{
+  Key = value;
+  aps = {
+    alert = {
+      body = Message;
+      subtitle = subtitle;
+      title = title;
+    };
+    badge = 1;
+    "mutable-content" = 1;
+    sound = custom;
+  };
+  c = {
+    a = "https://count.ly/images/logos/countly-logo-mark.png";
+    e = {
+      cc = TR;
+      dt = mobile;
+    };
+    i = 62b5b945cabedb0870e9f217;
+    l = "https://www.google.com/";
+  };
+}</pre>
 <h1 id="h_01H930GAQ69F33CMKEBBV57FVB">User Location</h1>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
@@ -868,11 +975,12 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
   <span>All values are optional, but at least one should be set.</span>
 </p>
 <pre><code class="JavaScript">// Example for setLocation
-CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setLocation(country_code: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12')</code></pre>
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setLocation(country_code: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12')</code></pre>
 <p>
   Geolocation recording methods may also be called at any time after the Countly
-  SDK has started.<br>
-  To do so, use the <code>setUserLocation</code> method as shown below.
+  SDK has started. To do so, use the <code>setUserLocation</code> method as shown
+  below.
 </p>
 <pre><code class="JavaScript">// Example for setUserLocation
 Countly.setUserLocation(countryCode: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12');
@@ -942,7 +1050,8 @@ Countly.disableLocation();</code></pre>
     were not updated, you would have metadata indicating if a value belongs to
     the old or current user.
   </p>
-  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..enableRemoteConfigValueCaching(); </pre>
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) 
+  ..enableRemoteConfigValueCaching(); </pre>
 </div>
 <h3 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Calls</h3>
 <p>
@@ -977,29 +1086,29 @@ Countly.disableLocation();</code></pre>
   </div>
   <div class="tab">
     <pre><code class="dart">Countly.instance.remoteConfig.downloadAllKeys((rResult, error, fullValueUpdate, downloadedValues) {
-    if (rResult == RequestResult.Success) {
-        // do sth
-    } else {
-        // do sth
-    }
+  if (rResult == RequestResult.Success) {
+    // do sth
+  } else {
+    // do sth
+  }
 });</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="dart">Countly.instance.remoteConfig.downloadSpecificKeys(List&lt;String&gt; keysToInclude, (rResult, error, fullValueUpdate, downloadedValues) {
-    if (rResult == RequestResult.Success) {
-        // do sth
-    } else {
-        // do sth
-    }
+  if (rResult == RequestResult.Success) {
+    // do sth
+  } else {
+    // do sth
+  }
 });</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="dart">Countly.instance.remoteConfig.downloadOmittingKeys(List&lt;String&gt; keysToExclude, (rResult, error, fullValueUpdate, downloadedValues) {
-    if (rResult == RequestResult.Success) {
-        // do sth
-    } else {
-        // do sth
-    }
+  if (rResult == RequestResult.Success) {
+    // do sth
+  } else {
+    // do sth
+  }
 });</code></pre>
   </div>
 </div>
@@ -1020,7 +1129,11 @@ Object? value_2 = await Countly.instance.remoteConfig.getValue("key_2").value;
 Object? value_3 = await Countly.instance.remoteConfig.getValue("key_3").value;
 Object? value_4 = await Countly.instance.remoteConfig.getValue("key_4").value;
 
-int intValue = value1 as int;<br>double doubleValue = value2 as double;<br>JSONArray jArray = value3 as JSONArray;<br>JSONObject jObj = value4 as JSONObject;<br></code></pre>
+int intValue = value1 as int;
+double doubleValue = value2 as double;
+JSONArray jArray = value3 as JSONArray;
+JSONObject jObj = value4 as JSONObject;
+</code></pre>
 <p>
   If you want to get all values together you can use
   <code class="dart">getAllValues</code> which returns a Future&lt;Map&lt;String,
@@ -1028,8 +1141,12 @@ int intValue = value1 as int;<br>double doubleValue = value2 as double;<br>JSONA
   <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the <code>Object</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
   or just a simple value, such as <code>int</code>.
 </p>
-<pre><code class="dart">Map&lt;String, RCData&gt; allValues = await Countly.instance.remoteConfig.getAllValues();<br>
-int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key_2"] as double;<br>JSONArray jArray = allValues["key_3"] as JSONArray;<br>JSONObject jObj = allValues["key_4"] as JSONObject;</code></pre>
+<pre><code class="dart">Map&lt;String, RCData&gt; allValues = await Countly.instance.remoteConfig.getAllValues();
+
+int intValue = allValues["key_1"] as int;
+double doubleValue = allValues["key_2"] as double;
+JSONArray jArray = allValues["key_3"] as JSONArray;
+JSONObject jObj = allValues["key_4"] as JSONObject;</code></pre>
 <p>
   RCData object has two keys: value (Object) and isCurrentUsersData (Boolean).
   Value holds the data sent from the server for the key that the RCData object
@@ -1051,7 +1168,12 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
   config download request is finished with
   <code class="dart">remoteConfigRegisterGlobalCallback</code> during the SDK initialization:
 </p>
-<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) <br>  ..remoteConfigRegisterGlobalCallback((rResult, error, fullValueUpdate, downloadedValues) {<br>    if (error != null) {<br>      // do sth<br>    }<br>  })
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) 
+  ..remoteConfigRegisterGlobalCallback((rResult, error, fullValueUpdate, downloadedValues) {
+    if (error != null) {
+      // do sth
+    }
+  })
 </code></pre>
 <p>
   RCDownloadCallback is called when the remote config download request is finished,
@@ -1091,12 +1213,12 @@ int intValue = allValues["key_1"] as int;<br>double doubleValue = allValues["key
 </p>
 <pre><code class="dart">// register a callback
 Countly.instance.remoteConfig.registerDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
-   // do sth
+  // do sth
 });
 
 // remove a callback
 Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueUpdate, downloadedValues) {
-   // do sth
+  // do sth
 });</code></pre>
 <h2 id="h_01H930GAQ6KZKGR0NMP6QM2JW6">A/B Testing</h2>
 <p>
@@ -1112,7 +1234,8 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
     values from the server. To do so you have to set the following flag at the
     config object during initialization:
   </p>
-  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)<br>..<span>enrollABOnRCDownload();</span></pre>
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
+..<span>enrollABOnRCDownload();</span></pre>
   <h3 id="h_01HD1KX6164ZKKCQS4B15G1NC5">
     <span>&nbsp;</span><span>Enrollment on Access</span>
   </h3>
@@ -1207,7 +1330,11 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   Using that you can call the function to show the widget popup:
 </p>
-<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {<br>if(error != null) {<br>   print(error);<br>}<br>});</code></pre>
+<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {
+  if(error != null) {
+    print(error);
+  }
+});</code></pre>
 <p>
   <code class="JavaScript">closeButtonText</code> and
   <code class="JavaScript">ratingWidgetCallback</code> are optional.
@@ -1236,7 +1363,11 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   the list of all available widgets that apply to the current device id.
 </p>
 <p>The objects in the returned list look like this:</p>
-<pre><code class="JavaScript">class CountlyPresentableFeedback {<br>    public String widgetId;<br>    public String type;<br>    public String name;<br>}</code></pre>
+<pre><code class="JavaScript">class CountlyPresentableFeedback {
+  public String widgetId;
+  public String type;
+  public String name;
+}</code></pre>
 <p>
   To determine what kind of widget that is, check the "type" value. The potential
   values are <code>"survey"</code> and <code>"nps"</code>.
@@ -1256,7 +1387,11 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   After you have decided which widget you want to display, you would provide that
   object to the following function:
 </p>
-<pre><code class="JavaScript">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {<br>   print('Widget Appeared');<br>}, widgetClosed: () {<br>   print('Widget Dismissed');<br>});</code></pre>
+<pre><code class="JavaScript">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {
+  print('Widget Appeared');
+}, widgetClosed: () {
+  print('Widget Dismissed');
+});</code></pre>
 <p>
   <code class="JavaScript">widgetShown</code> and
   <code class="JavaScript">widgetClosed</code> are optional callbacks, you can
@@ -1282,16 +1417,23 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   Having the <code>CountlyPresentableFeedback</code> object of the widget you would
   want to display, you could use the '<code class="JavaScript">getFeedbackWidgetData</code>'&nbsp;
-  method to retrieve the widget information with an optional 'onFinished' callback.<br>
+  method to retrieve the widget information with an optional 'onFinished' callback.
   In case you want to use with callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {<br>if (error == null) {<br>}<br>});</code></pre>
+<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {
+  if (error == null) {
+  }
+});</code></pre>
 <p>
   If you want to use it without a callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);<br>String? error = result[1];<br>if (error == null) {<br>   Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];<br>}</code></pre>
+<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);
+String? error = result[1];
+if (error == null) {
+  Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];
+}</code></pre>
 <p>
   <code>retrievedWidgetData</code> would contain a Map with all of the required
   information to present the widget yourself.
@@ -1341,7 +1483,12 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Using the following call, you can set both the predefined and the custom user
   properties during initialization:
 </p>
-<pre><code class="“JavaScript”">var userProperties = {<br>    ‘customProperty’: ‘custom Value’,<br>    ‘username’: ‘USER_NAME’,<br>    ‘email’: ‘USER_EMAIL’<br>};<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="“JavaScript”">var userProperties = {
+  "customProperty": "custom Value",
+  "username": "USER_NAME",
+  "email": "USER_EMAIL"
+};
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setUserProperties(userProperties); </code></pre>
 <h2 id="setting-user-profile-values-during-init" class="anchor-heading">Setting User profile values</h2>
 <p>Ther following calls can be used after init.</p>
@@ -1349,24 +1496,27 @@ config.setUserProperties(userProperties); </code></pre>
   If you want to set a single property, you can call
   <code class="“JavaScript”">Countly.userProfile.setUserProperty(key, value)</code>
 </p>
-<pre>Countly.instance.userProfile.setProperty('specialProperty', 'value');<br>Countly.instance.userProfile.save();</pre>
+<pre>Countly.instance.userProfile.setProperty("specialProperty", "value");
+Countly.instance.userProfile.save();</pre>
 <p>
   If you want to set multiple properties at the same time, you can use:
   <code class="“JavaScript”">Countly.userProfile.setUserProperties(userProperties)</code>
 </p>
 <pre><code class="JavaScript">// example for setting user data
 Map&lt;String, Object&gt; userProperties= {
-    "name": "Nicola Tesla",
-    "username": "nicola",
-    "email": "info@nicola.tesla",
-    "organization": "Trust Electric Ltd",
-    "phone": "+90 822 140 2546",
-    "picture": "http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg",
-    "picturePath": "",
-    "gender": "M", // "F"
-    "byear": "1919",<br>    "special_value": "something special"
+  "name": "Nicola Tesla",
+  "username": "nicola",
+  "email": "info@nicola.tesla",
+  "organization": "Trust Electric Ltd",
+  "phone": "+90 822 140 2546",
+  "picture": "http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg",
+  "picturePath": "",
+  "gender": "M", // "F"
+  "byear": "1919",
+  "special_value": "something special"
 };
-Countly.instance.setUserProperties(userProperties);<br>Countly.instance.userProfile.save();</code></pre>
+Countly.instance.setUserProperties(userProperties);
+Countly.instance.userProfile.save();</code></pre>
 <p>
   After you have provided the user profile information, you must save it by calling
   <code class="“JavaScript”">Countly.userProfile.save()</code>. This would then
@@ -1405,31 +1555,20 @@ Countly.instance.pull("type", "morning");
 </code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
 <p>
-  This SDK provides a few mechanisms for APM. To start using them you would first
-  need to enable this feature and give the required consent if it was required.
+  The SDK provides manual and automatic mechanisms for Application Performance
+  Monitoring (APM). All of the automatic mechanisms are disabled by default and
+  to start using them you would first need to enable them and give the required
+  consent if it was required:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config</code>.setRecordAppStartTime(true); // Enable APM features, which includes the recording of app start time.</pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// this interface exposes the available APM features and their modifications.
+config.apm. </code></pre>
 <p>
   While using APM calls, you have the ability to provide trace keys by which you
   can track those parameters in your dashboard.
 </p>
-<h2 id="h_01H930GAQ7RY1ZGWMJWFN3N3G9">App Start Time</h2>
-<p>
-  For the app start time to be recorded, you need to call the
-  <code>appLoadingFinished</code> method. Make sure this method is called after
-  <code>init</code>.
-</p>
-<pre><code class="JavaScript">//Example of appLoadingFinished<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<br>});<br></code></pre>
-<p>
-  This calculates and records the app launch time for performance monitoring. It
-  should be called when the app is loaded and it successfully displayed its first
-  user-facing view. The time passed since the app has started to launch will be
-  automatically calculated and recorded for performance monitoring. Note that the
-  app launch time can be recorded only once per app launch. So, the second and
-  following calls to this method will be ignored.
-</p>
-<h2 id="h_01H930GAQ7ASS6HMSKF6HMPEMX">Custom trace</h2>
+<h2 id="h_01H930GAQ7ASS6HMSKF6HMPEMX">Custom Traces</h2>
 <p>
   Currently, you can use custom traces to record the duration of application processes.
   At the end of them, you can also provide any additionally gathered data.
@@ -1442,12 +1581,17 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
 <p>To start a custom trace, use:</p>
 <pre><code class="JavaScript">Countly.startTrace(traceKey);</code></pre>
 <p>To end a custom trace, use:</p>
-<pre><code class="JavaScript">String traceKey = "Trace Key";<br>Map&lt;String, int&gt; customMetric = {<br>  "ABC": 1233,<br>  "C44C": 1337<br>};<br>Countly.endTrace(traceKey, customMetric);</code></pre>
+<pre><code class="JavaScript">String traceKey = "Trace Key";
+Map&lt;String, int&gt; customMetric = {
+  "ABC": 1233,
+  "C44C": 1337
+};
+Countly.endTrace(traceKey, customMetric);</code></pre>
 <p>
   In this sample, a Map of integer values is provided when ending a trace. Those
   will be added to that trace in the dashboard.
 </p>
-<h2 id="h_01H930GAQ7BZESXJYJ893PHR18">Network trace</h2>
+<h2 id="h_01H930GAQ7BZESXJYJ893PHR18">Network Traces</h2>
 <p>
   You can use the APM to track your requests. You would record the required info
   for your selected approach of making network requests and then call this after
@@ -1461,6 +1605,66 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
   payload size in bytes, request start time timestamp in milliseconds, and request
   end finish timestamp in milliseconds.
 </p>
+<h2 id="h_01H930GAQ7RY1ZGWMJWFN3N3G9">Automatic Device Traces</h2>
+<p>
+  There are a couple of performance metrics the SDK can gather for you automatically.
+  These are:
+</p>
+<ul>
+  <li>App Start Time</li>
+  <li>App Background and Foreground time</li>
+</ul>
+<p>
+  Tracking of these metrics are disabled by default and must be explicitly enabled
+  by the developer during init.
+</p>
+<p>
+  For tracking app start time automatically you will need to enable it in SDK init
+  config:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// enable it here separately with 'apm' interface.
+config.apm.<strong>enableAppStartTimeTracking</strong>();</code></pre>
+<p>
+  This calculates and records the app launch time for performance monitoring.
+</p>
+<p>
+  If you want to determine when the end time for this calculation should be you,
+  will have to enable the usage of manual triggers together with
+  <code class="JavaScript">enableAppStartTimeTracking</code> during init:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// enable it here separately with 'apm' interface.
+config.apm.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger</strong>();</code></pre>
+<p>
+  Now you can call <code class="JavaScript">Countly.appLoadingFinished()</code>
+  any time after SDK initialization to record that moment as the end of app launch
+  time. The starting time of the app load will be automatically calculated and
+  recorded. Note that the app launch time can be recorded only once per app launch.
+  So, the second and following calls to this method will be ignored.
+</p>
+<p>
+  If you also want to manipulate the app launch starting time instead of using
+  the SDK calculated value then you will need to call a third method on the config
+  object with the timestamp (in milliseconds) of that time you want:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// generate the timestamp you want (or you can directly pass a ts)
+int ts = DateTime.now().millisecondsSinceEpoch - 500; // 500 ms ago as an example
+
+// this would also work with manual trigger
+config.apm.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</strong>(ts);</code></pre>
+<p>
+  Lastly if you want to enable the SDK to record the time an app is in foreground
+  or background automatically you would need to enable this option during init:
+</p>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+
+// enable it here separately with 'apm' interface.
+config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
 <h1 id="h_01H930GAQ77F3QXV695Z9DE6PJ">User consent</h1>
 <p>
   For compatibility with data protection regulations, such as GDPR, the Countly
@@ -1497,7 +1701,8 @@ Countly.initWithConfig(config ).then((value){<br>Countly.appLoadingFinished();<b
   By default the requirement for consent is disabled. To enable it, you have to
   call <code>setRequiresConsent</code> with true, before initializing Countly.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setRequiresConsent(true);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setRequiresConsent(true);</code></pre>
 <p>
   By default, no consent is given. That means that if no consent is enabled, Countly
   will not work and no network requests, related to features, will be sent. When
@@ -1529,7 +1734,9 @@ config.setConsentEnabled(["location", "sessions", "attribution", "push", "events
   <code>removeConsent</code> or <code class="JavaScript">giveConsent</code> methods.
 </p>
 <pre><code class="JavaScript">//give consent values after init
-Countly.giveConsent(["events", "views", "star-rating", "crashes"]);<br><br>//remove consent values after init
+Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
+
+//remove consent values after init
 Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
 </code></pre>
 <p>
@@ -1551,7 +1758,8 @@ Countly.removeAllConsent();</code></pre>
   <code>&amp;checksum</code> field before being processed.
 </p>
 <pre><code class="JavaScript">// sending data with salt
-CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParameterTamperingProtectionSalt("salt");</code></pre>
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setParameterTamperingProtectionSalt("salt");</code></pre>
 <p>
   Make sure not to use salt on the Countly server and not on the SDK side, otherwise,
   Countly won't accept any incoming requests.
@@ -1571,24 +1779,24 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   in bold.
 </p>
 <pre><code class="JavaScript">android {
-&nbsp; &nbsp; buildTypes {
-&nbsp; &nbsp; &nbsp; &nbsp; release {
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables code shrinking, obfuscation, and optimization for only
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // your project's release build type.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; minifyEnabled true
+  buildTypes {
+    release {
+      // Enables code shrinking, obfuscation, and optimization for only
+      // your project's release build type.
+      minifyEnabled true
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Enables resource shrinking, which is performed by the
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Android Gradle plugin.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shrinkResources true
+      // Enables resource shrinking, which is performed by the
+      // Android Gradle plugin.
+      shrinkResources true
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // Includes the default ProGuard rules files that are packaged with
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // the Android Gradle plugin. To learn more, go to the section about
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // R8 configuration files.
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; proguardFiles getDefaultProguardFile(
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-android-optimize.txt'),
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'proguard-rules.pro'
-&nbsp; &nbsp; &nbsp; &nbsp; }
-&nbsp; &nbsp; }
+      // Includes the default ProGuard rules files that are packaged with
+      // the Android Gradle plugin. To learn more, go to the section about
+      // R8 configuration files.
+      proguardFiles getDefaultProguardFile(
+        'proguard-android-optimize.txt'),
+        'proguard-rules.pro'
+      }
+  }
 ...
 }
 </code></pre>
@@ -1597,7 +1805,13 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
   insert inside:
 </p>
-<pre><code class="JavaScript">#Flutter Wrapper<br>-keep class io.flutter.app.** { *; }<br>-keep class io.flutter.plugin.**  { *; }<br>-keep class io.flutter.util.**  { *; }<br>-keep class io.flutter.view.**  { *; }<br>-keep class io.flutter.**  { *; }<br>-keep class io.flutter.plugins.**  { *; }</code></pre>
+<pre><code class="JavaScript">#Flutter Wrapper
+-keep class io.flutter.app.** { *; }
+-keep class io.flutter.plugin.**  { *; }
+-keep class io.flutter.util.**  { *; }
+-keep class io.flutter.view.**  { *; }
+-keep class io.flutter.**  { *; }
+-keep class io.flutter.plugins.**  { *; }</code></pre>
 <p>
   More info related to code shrinking can be found here for
   <a href="https://flutter.dev/docs/deployment/android#shrinking-your-code-with-r8">flutter</a>
@@ -1611,7 +1825,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 </p>
 <ul>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ65W1S9T2R1K2EQQFJ" target="_self">Device Id</a> - </strong>A device ID is a unique identifier for your users. You may specify the device ID yourself or allow the SDK to generate it.<br></span>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ65W1S9T2R1K2EQQFJ" target="_self">Device Id</a> - </strong>A device ID is a unique identifier for your users. You may specify the device ID yourself or allow the SDK to generate it. </span>
   </li>
   <li>
     <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ5BDPD0XHVV8RSR0XK" target="_self">Enable Logging</a> -</strong>
@@ -1653,7 +1867,7 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
     <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ6EQZ7TBJWV2KWWSVN" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location.<br></span>
+    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ6EQZ7TBJWV2KWWSVN" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location. </span>
   </li>
   <li>
     <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ81R7TMXJ7Z7RRBZ7A" target="_self">Max Queue Size Limit</a> - </strong>Set maximum size for the request queue.</span>
@@ -1697,7 +1911,8 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   If you do not specify a value for the setMaxRequestQueueSize flag, the default
   setting of 1,000 will be used.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setMaxRequestQueueSize(5000);</code><span><br></span></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setMaxRequestQueueSize(5000);</code></pre>
 <h2 id="h_01H930GAQ8QRF6ED3PXEF0QFAD">Attribution</h2>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
@@ -1724,19 +1939,23 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <p>
   <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code><span><br></span></pre>
+<pre><code class="JavaScript">String campaignData = 'JSON_STRING';
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
 <p>
   You can also use <code>recordDirectAttribution</code> function to manually report
   attribution later:
 </p>
-<pre><code class="JavaScript">String campaignData = 'JSON_STRING';<br>Countly.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
+<pre><code class="JavaScript">String campaignData = 'JSON_STRING';
+Countly.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
 <p>
   Currently this feature is limited and accepts data only in a specific format
   and for a single type. That type is "countly". It will be used to record install
   attribution. The data also needs to be formatted in a specific way. Either with
   the campaign id or with the campaign id and campaign user id.
 </p>
-<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';<br>Countly.recordDirectAttribution('countly', campaignData);</code></pre>
+<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';
+Countly.recordDirectAttribution('countly', campaignData);</code></pre>
 <h3 id="h_01H930GAQ8QNMCJGCMC0TS6CEV">
   <span>Indirect Attribution</span>
 </h3>
@@ -1748,12 +1967,29 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
 <p>
   <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
+<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};
+if(Platform.isIOS){
+  attributionValues[AttributionKey.IDFA] = 'IDFA';
+}
+else {
+  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';
+}
+
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
 <p>
   You can also use <code>recordIndirectAttribution</code> function to manually
   report attribution later
 </p>
-<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};<br>if(Platform.isIOS){<br>  attributionValues[AttributionKey.IDFA] = 'IDFA';<br>}<br>else {<br>  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';<br>}<br><br>Countly.recordIndirectAttribution(attributionValues);</code></pre>
+<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};
+if(Platform.isIOS){
+  attributionValues[AttributionKey.IDFA] = 'IDFA';
+}
+else {
+  attributionValues[AttributionKey.AdvertisingID] = 'AdvertisingID';
+}
+
+Countly.recordIndirectAttribution(attributionValues);</code></pre>
 <p>
   In case you would be accessing IDFA for ios, for iOS 14+ due to the changes made
   by Apple, regarding Application Tracking, you need to ask the user for permission
@@ -1767,7 +2003,8 @@ CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setParamete
   can use the same function later in the app's life cycle to disable the override.
   This function has to be called every time the app starts.
 </p>
-<pre><code class="JavaScript"> CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setHttpPostForced(true); // default is false</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setHttpPostForced(true); // default is false</code></pre>
 <h2 id="h_01H930GAQ8QBSG5GB1P8AY1ARX">Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -1817,7 +2054,8 @@ config.setRequestDropAgeHours(10); // a positive integer indicating hours</code>
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);<br>config.setEventQueueSizeToSend(6);</code></pre>
+<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setEventQueueSizeToSend(6);</code></pre>
 <h2 id="h_01H930GAQ8NM827P2ZCEZWCP5H">Checking if the SDK has been initialized</h2>
 <p>
   In case you would like to check if init has been called, you may use the following
@@ -1923,38 +2161,38 @@ config.setRequestDropAgeHours(10); // a positive integer indicating hours</code>
   structure is like this:
 </p>
 <pre><code>class ExperimentInformation {
-   // same ID as used in the map
-   String experimentID;
-   // the name of the experiment
-   String experimentName;
-   // the description of the experiment
-   String experimentDescription;
-   // the name of the currently assigned variant for this user (e.g., 'Control Group', 'Variant A')
-   String currentVariant;
-   // variant information for this experiment
-   Map&lt;String, Map&lt;String, Object?&gt;&gt; variants;
+  // same ID as used in the map
+  String experimentID;
+  // the name of the experiment
+  String experimentName;
+  // the description of the experiment
+  String experimentDescription;
+  // the name of the currently assigned variant for this user (e.g., 'Control Group', 'Variant A')
+  String currentVariant;
+  // variant information for this experiment
+  Map&lt;String, Map&lt;String, Object?&gt;&gt; variants;
 }</code></pre>
 <p>
   So an example data structure you might get at the end would look something similar
   to this:
 </p>
 <pre><code>{
-   some_exp_ID: {
-     experimentID: some_ID,
-     experimentName: some_name,
-     experimentDescription: some description,
-     currentVariant: variant_name,
-     variants: {
-       Control Group: {
-         key_1: val,
-         key_2: val,
-       },
-       Variant A: {
-         key_1: val,
-         key_2: val,
-       }
-     }
-   }
+  some_exp_ID: {
+    experimentID: some_ID,
+    experimentName: some_name,
+    experimentDescription: some description,
+    currentVariant: variant_name,
+    variants: {
+      Control Group: {
+        key_1: val,
+        key_2: val,
+      },
+      Variant A: {
+        key_1: val,
+        key_2: val,
+      }
+    }
+  }
 }
 </code></pre>
 <h4 id="h_01HEMEGYZEPX60J2NJWJM59K4E">
@@ -1970,3 +2208,10 @@ config.setRequestDropAgeHours(10); // a positive integer indicating hours</code>
   use the following function:
 </p>
 <pre>Countly.instance.remoteConfig.testingExitABExperiment(String expID);</pre>
+<h1 id="h_01HNAP3C92TG1JKYJKG3MRBK4C">FAQ</h1>
+<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Information is Collected by the SDK?</h2>
+<p>
+  The data that SDKs gather to carry out their tasks and implement the necessary
+  functionalities is mentioned in
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+</p>
