@@ -1,5 +1,7 @@
 <p>
-  <span style="font-weight: 400;">This documentation shows how to install the Countly Web SDK and use it to track your web page in detail. It applies to the SDK version 23.12.X.</span>
+  This documentation is for the Countly Web SDK version 23.12.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-web">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
@@ -15,65 +17,54 @@
 <table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
   <tbody>
     <tr class="wysiwyg-text-align-center" style="height: 36px;">
-      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 63.8516px; height: 36px;">
         <strong>IE</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 38.4453px; height: 36px;">
         <strong>Edge</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 55.4766px; height: 36px;">
         <strong>Firefox</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 77px; height: 36px;">
         <strong>Firefox (Android)</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 50.375px; height: 36px;">
         <strong>Opera</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 66.7578px; height: 36px;">
         <strong>Opera (Mobile)</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 36px;">
         <strong>Safari</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 36px;">
         <strong>Safari (iOS)</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 36px; text-align: center; vertical-align: middle;">
+      <td class="wysiwyg-text-align-center" style="width: 60.7891px; height: 36px; text-align: center; vertical-align: middle;">
         <strong>Chrome</strong>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 77.0234px; height: 36px;">
         <strong>Chrome (Android)</strong>
       </td>
     </tr>
     <tr style="height: 22px; padding: 2px;">
-      <td class="wysiwyg-text-align-center" style="width: 28.9867%; height: 10px;">10</td>
-      <td class="wysiwyg-text-align-center" style="width: 1.5528%; height: 10px;">12</td>
-      <td class="wysiwyg-text-align-center" style="width: 9.68603%; height: 10px;">21</td>
-      <td class="wysiwyg-text-align-center" style="width: 5.29042%; height: 10px;">96</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">15</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">64</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">6</td>
-      <td class="wysiwyg-text-align-center" style="width: 10%; height: 10px;">23</td>
-      <td class="wysiwyg-text-align-center" style="width: 22.4019%; height: 10px;">98</td>
+      <td class="wysiwyg-text-align-center" style="width: 63.8516px; height: 10px;">10</td>
+      <td class="wysiwyg-text-align-center" style="width: 38.4453px; height: 10px;">12</td>
+      <td class="wysiwyg-text-align-center" style="width: 55.4766px; height: 10px;">21</td>
+      <td class="wysiwyg-text-align-center" style="width: 77px; height: 10px;">96</td>
+      <td class="wysiwyg-text-align-center" style="width: 50.375px; height: 10px;">15</td>
+      <td class="wysiwyg-text-align-center" style="width: 66.7578px; height: 10px;">64</td>
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 60.7891px; height: 10px;">23</td>
+      <td class="wysiwyg-text-align-center" style="width: 77.0234px; height: 10px;">98</td>
     </tr>
   </tbody>
 </table>
 <p>
-  If you want to get the Countly Web SDK codebase locally you can go to the GitHub
-  repo <a href="https://github.com/Countly/countly-sdk-web">here</a> and download
-  it inside your project folder by executing the lines:
-</p>
-<pre><code class="bash">git clone https://github.com/Countly/countly-sdk-web.git
-</code></pre>
-<p>
-  Additionally to see example integrations of Countly Web SDK within some popular
-  front-end frameworks, you can reach our AngularJS and ReactJS examples from
-  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">here</a>
-  and
-  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">here</a>
-  respectively.
+  To examine the example integrations please have a look
+  <a href="#h_01HPE4EQ9TKCMJ0R2XN3BAYVND">here</a>.
 </p>
 <h1 id="h_01HABTQ436ACJV96Q5P2MMNGWZ">Adding the SDK to the Project</h1>
 <p>
@@ -2269,6 +2260,56 @@ Countly.ip_address = "83.140.15.1";</code></pre>
 });</code></pre>
   </div>
 </div>
+<h2 id="h_01HPE4EQ9TKCMJ0R2XN3BAYVND">Example Integrations</h2>
+<p>
+  Examples are located in
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples">examples</a>
+  folder.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Angular">Angular</a>
+  folder contains a basic Angular integration.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/react">react</a>
+  folder contains a basic React integration.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/Symbolication">Symbolication</a>
+  folder covers crash integrations and reporting.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/examples/mpa">mpa</a>
+  folder contains basic MPA integration.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html">example_apm</a>
+  is a simple APM integration.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm_async.html">example_apm_async</a>
+  is a simple async APM integration.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_fb.html">example_fb</a>
+  is a simple Facebook integration to collect data from there.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_formdata.html">example_formdata</a>
+  is a simple integration to collect data from form data.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_ga_adapter.html">example_ga_adapter</a>
+  is a simple integration to demonstrate how to integrate GA adapter.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_gdpr.html">example_gdpr</a>
+  is a simple integration to show how giving consent works.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_multiple_instances.html">example_multi_instances</a>
+  is a simple demonstration for multi instancing the Countly SDK.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_opt_out.html">example_opt_out</a>
+  is a simple demonstration to show how to opt out from services.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/examples_feedback_widgets.html">examples_feedback_widgets</a>
+  is a simple integration for feedback widgets.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_remote_config.html">example_remote_config</a>
+  is a simple integration for remote config.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_sync.html">example_sync</a>
+  is a sample integration for sync operations.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_web_worker.html">example_web_worker</a>
+  is a sample for web worker.<br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_async.html">example_async</a>
+  is a sample integration for async usage of the SDK.
+</p>
 <h2 id="h_01HABTQ437DGBA97G3DTYD27AV">SDK Storage and Requests</h2>
 <p>
   Countly Web SDK stores various information like device ID, request queue, session
