@@ -106,8 +106,7 @@ Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HABTXQF79D0GQFAPY6K8C37H">SDK Data Storage</h2>
 <p>
   Cached requests and other SDK relevant information is stored in files in a named
-  folder. All platform targets except .net40 call that folder "countly", .net40
-  calls that folder "countly_data".
+  folder. All platform targets call that folder "countly".
 </p>
 <p>
   All platform targets except .net35 will use
