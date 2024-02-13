@@ -2287,12 +2287,8 @@ Countly.ip_address = "83.140.15.1";</code></pre>
   is a simple APM integration.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm_async.html">example_apm_async</a>
   is a simple async APM integration.<br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_fb.html">example_fb</a>
-  is a simple Facebook integration to collect data from there.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_formdata.html">example_formdata</a>
   is a simple integration to collect data from form data.<br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_ga_adapter.html">example_ga_adapter</a>
-  is a simple integration to demonstrate how to integrate GA adapter.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_gdpr.html">example_gdpr</a>
   is a simple integration to show how giving consent works.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_multiple_instances.html">example_multi_instances</a>
