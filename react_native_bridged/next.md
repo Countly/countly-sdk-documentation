@@ -466,9 +466,9 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <pre>Countly.changeDeviceId(Countly.TemporaryDeviceIDString, ON_SERVER);</pre>
 <p>
   <strong>Note:</strong> When passing
-  <code class="JavaScript"><span>Countly.TemporaryDeviceIDString</span></code>&nbsp;for
-  the <code class="JavaScript">deviceID</code> parameter, the argument for the
-  <code class="JavaScript">onServer</code>parameter does not matter.
+  <code class="JavaScript"><span>Countly.TemporaryDeviceIDString</span></code>
+  for the <code class="JavaScript">deviceID</code> parameter, the argument for
+  the <code class="JavaScript">onServer</code>parameter does not matter.
 </p>
 <p>
   As long as the device ID value is
@@ -696,7 +696,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   If these are enabled then the SDK will enforce additional security checks. More
   info can be found
-  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.
 </p>
 <p>
   If, for some reason, the 'activity name' does not start with the 'application
@@ -1187,9 +1187,9 @@ if (!response.error) {
 </p>
 <p>
   Using <code class="JavaScript">Countly.userDataBulk</code> call requires you
-  to call <code class="JavaScript">Countly.userDataBulk.save()</code> call,&nbsp;
-  manually, to trigger sending data to your server, as a signifier marking the
-  end of user details you want to record. In the case of
+  to call <code class="JavaScript">Countly.userDataBulk.save()</code> call, manually,
+  to trigger sending data to your server, as a signifier marking the end of user
+  details you want to record. In the case of
   <code class="JavaScript">Countly.userData</code> though, you will not need to
   use any other methods to initiate the data transmission. It will handle that
   logic internally.
@@ -1290,8 +1290,8 @@ Countly.userDataBulk.save();</code></pre>
 <h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">Modifying Data</h2>
 <p>
   Additionally, you can modify these custom values in various ways like increasing
-  a number, pushing new values to an array, etc.&nbsp; You can see the whole range
-  of operations below.
+  a number, pushing new values to an array, etc. You can see the whole range of
+  operations below.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1470,24 +1470,25 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 </ul>
 <h2 id="h_01HAVQNJQT9EZ8R01NCM6ENW9Z">Setup During Init</h2>
 <p>
-  <span>The requirement for consent is disabled by default. To enable it, you will have to call&nbsp;<code>setRequiresConsent</code></span><span>&nbsp;with&nbsp;<code>true</code></span><span>&nbsp;before initializing Countly.</span>
+  <span>The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code> with <code>true</code> before initializing Countly.</span>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // Enable consent requirement
 Countly.setRequiresConsent(true);</code></pre>
 <p>
-  <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.&nbsp;</span>
+  <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.</span>
 </p>
 <p>
-  <span>To give consent during initialization, you have to call&nbsp;<code class="JavaScript">setConsentEnabled</code>on the config object with an array of consent values.</span>
+  <span>To give consent during initialization, you have to call <code class="JavaScript">setConsentEnabled</code>on the config object with an array of consent values.</span>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");</code><br>countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);</pre>
 <p>
   The Countly SDK does not persistently store the status of given consents except
   push notifications. You are expected to handle receiving consent from end-users
   using proper UIs depending on your app's context. You are also expected to store
-  them either locally or remotely. Following this step, you will need to call the<span>&nbsp;</span><code>giveConsent</code><span>&nbsp;</span>method
-  on each app launch depending on the permissions you managed to get from the end-users.
+  them either locally or remotely. Following this step, you will need to call the
+  <code>giveConsent</code> method on each app launch depending on the permissions
+  you managed to get from the end-users.
 </p>
 <p>Ideally you would give consent during initialization.</p>
 <h2 id="h_01HAVQNJQTN2M47W4JY10SZVY9">Changing Consent</h2>
@@ -1766,5 +1767,3 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>
-<h2 id="01HBZGNE148R4FSFYFTJMWP20Q">&nbsp;</h2>
-<p>&nbsp;</p>
