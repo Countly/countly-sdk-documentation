@@ -13,14 +13,12 @@
 </div>
 <p>
   This is the Countly SDK for React Native applications. It features bridging,
-  meaning it includes all the functionalities that Android and iOS SDKs provide
-  rather than having those functionalities as React Native code.
+  meaning it includes all the functionalities that Countly Android and iOS SDKs
+  provide rather than having those functionalities as React Native code.
 </p>
 <p>
-  <strong>Supported Platforms:</strong> This SDK supports iOS and Android platforms.
-</p>
-<p>
-  <strong>Supported System Versions:</strong>
+  For this reason, Countly Android and iOS SDK system requirements are also extended
+  to React Native SDK:
 </p>
 <p>
   For iOS builds, this SDK requires a minimum Deployment Target iOS 10.0 (watchOS
@@ -31,8 +29,9 @@
   Level 17).
 </p>
 <p>
-  The minimum react-native version for which this sdk has been tested is "0.71.0"
-  (along with "react": "18.2.0")
+  This SDK also depends on the react-native library for communicating with the
+  native side. While it can possibly work with older versions, the currently supported
+  react-native versions are 0.60.0 and up.
 </p>
 <p>
   You can take a look at our example application in
