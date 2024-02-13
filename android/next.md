@@ -2940,32 +2940,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
   for all SDKs.
 </p>
-<p>
-  * If push notification are used:<br>
-  - The devices push notification token<br>
-  - If the user clicks on the notification then the time of the click and on which
-  button the user has clicked on&nbsp;
-</p>
-<p>
-  * If automatic view tracking is enabled, it will collect:<br>
-  - activity class name&nbsp;
-</p>
-<p>
-  * If feedback or rating widgets are used, it will collect the users input and
-  time of the widgets completion
-</p>
-<p>
-  * When events are recorded, the time of when the event is recorded, will be collected
-</p>
-<p>
-  * If the consent feature is used, the SDK will collect and send what consent
-  has been given to the SDK or removed from the SDK
-</p>
-<p>
-  Any other information like data in custom events, location, user profile information
-  or other manual requests depends on what the developer decides to provide and
-  is not collected by the SDK itself.
-</p>
 <h2 id="h_01HAVQDM5W8YY460M5PN3JEGX3">How can I build the Android SDK?</h2>
 <p>
   <span style="font-weight: 400;">If you need to customize our Android SDK to fit your needs, you may find it&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">&nbsp;among our Countly Github repositories as an Android Studio project. Modules included in the project are:</span>

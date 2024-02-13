@@ -1683,6 +1683,38 @@ function sendMessage(param) {
 <p>&nbsp;</p>
 <p>Here is an example crash request:</p>
 <pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;crash={<br></span>"_device":"Android SDK built for x86",<br>"_os":"Android",<br>"_os_version":"10",<br>"_resolution":"1080x2088",<br>"_app_version":"1.0.0",<br>"_manufacturer":"Google",<br>"_orientation":"Portrait",<br>"_carrier": "C-Mobile",<br>"_cpu":"x86",<br>"_opengl":"2",<br>"_root":"false",<br>"_ram_total":"1994",<br>"_ram_current":"213",<br>"_disk_total":"2162",<br>"_disk_current":"32",<br>"_bat":"100.0",<br>"_run":"6",<br>"_architecture":"arch",<br>"_online":"true",<br>"_muted":"false",<br>"_background":"false",<br>"_executable_name":"name",<br>"_build_uuid":"uuid",<br>"_app_build":"1.0",<br>"_error":"java.lang.Exception: RangeError (index): Invalid value: Not in inclusive range 0..2: 10\n\tat ly.count.dart.countly_flutter.CountlyFlutterPlugin.onMethodCall(CountlyFlutterPlugin.java:340)\n\tat io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:8)\n\tat io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:295)\n\tat io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:322)\n\tat io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)\n\tat android.os.Handler.handleCallback(Handler.java:883)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loop(Looper.java:214)\n\tat android.app.ActivityThread.main(ActivityThread.java:7356)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)\n",<br>"_nonfatal":"false"<br>"_logs":"logs",<br>"_type":"crash",<br>"_name":"error",<br>"_native_cpp":"true",<br>"_plcrash":"plcrash",<br>"_binary_images":"110001101"<br>}</pre>
+<h3 id="h_01HPESKH8V516CA88CAS7WMBFX">Push Notifications</h3>
+<p>If push notifications are used:</p>
+<p>- The device's push notification token</p>
+<p>
+  - If the user clicks on the notification, then the time of the click and on which
+  button the user has clicked.
+</p>
+<h3 id="h_01HPESKH8VNH2XD445P52DYHAW">View Tracking</h3>
+<p>If automatic view tracking is enabled, it will collect:</p>
+<p>- activity class name. (Only for the Android SDK)</p>
+<h3 id="h_01HPESKH8VSFD5SA3H80W14PXC">User Feedback</h3>
+<p>
+  If feedback or rating widgets are used, it will collect the users' input and
+  the time of the widget's completion.
+</p>
+<h3 id="h_01HPESKH8VJDJ9VGZ1S7NHWWP0">Events</h3>
+<p>
+  * When events are recorded, the following information is collected:<br>
+  - Time of event<br>
+  - Current hour<br>
+  - Current day of the week
+</p>
+<h3 id="h_01HPESKH8VHB889KQX4JQA1KHM">User Consent</h3>
+<p>
+  If the consent feature is used, the SDK will collect and send what consent has
+  been given to the SDK or removed from the SDK.
+</p>
+<p>
+  Any other information like data in custom events, location, user profile information
+  or other manual requests depends on what the developer decides to provide and
+  is not collected by the SDK itself.
+</p>
 <h2 id="h_01HJ5XRSX13YGV6FBBXKVRGRZC">Device ID Sources</h2>
 <p>
   By default all of the Countly SDKs uses their implementation of device id generation

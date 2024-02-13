@@ -1269,15 +1269,6 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
   server, it is stored locally. For further information please have a look
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
 </p>
-<p>
-  * When events are recorded, the following information collected:<br>
-  - Time of event<br>
-  - Current hour<br>
-  - Current day of week<span></span>
-</p>
-<p>
-  <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
-</p>
 <h2 id="h_01HABTXQFAK87HNC49QE27H2PP">Is Windows SDK Compatible With .Net Maui</h2>
 <p>
   .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
