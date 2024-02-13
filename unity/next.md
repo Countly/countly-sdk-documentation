@@ -1,9 +1,7 @@
 <p>
-  <span>This document will guide you through the process of Countly SDK installation and it applies to version 23.12.x</span>
-</p>
-<p>
-  You can download the latest release from
-  <a href="https://github.com/Countly/countly-sdk-unity/releases/" target="_self" rel="undefined">GitHub</a>.
+  This documentation is for the Countly Unity SDK version 23.12.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-unity" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -22,11 +20,8 @@
   versions: 2020.X, 2021.X, 2022.X, and 2023.X.
 </p>
 <p>
-  To look at our sample application, download the sample project from
-  <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">GitHub repo</a>
-  and open the 'EntryPoint.unity' scene. 'EntryPoint.unity' located in 'Example'
-  folder under Assets. There is also 'CountlyEntryPoint.cs' script in Example folder,
-  and this script shows how most of the functionality can be used.
+  To examine the example integrations, please have a look
+  <a href="#h_01HPGPY37EVNPFRRXH07DTV7QV">here.</a>
 </p>
 <h1 id="h_01HABTZ314WVHKW01D3RTT1RYX">Adding the SDK to the Project</h1>
 <p>
@@ -1169,6 +1164,14 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   <strong>DisableAutomaticCrashReporting()</strong> - turns off Automatic Crash
   Reporting. When<span> </span><strong>enabled</strong>, the SDK will catch exceptions
   and automatically report them to the Countly server. It's enabled by default.
+</p>
+<h2 id="h_01HPGPY37EVNPFRRXH07DTV7QV">Example Integrations</h2>
+<p>
+  To look at our sample application, download the sample project from
+  <a href="http://github.com/countly/countly-sdk-unity" target="_self" rel="undefined">GitHub repo</a>
+  and open the 'EntryPoint.unity' scene. 'EntryPoint.unity' located in 'Example'
+  folder under Assets. There is also 'CountlyEntryPoint.cs' script in Example folder,
+  and this script shows how most of the functionality can be used.
 </p>
 <h2 id="01HFEMPN4D6V1PJ7R9WC6WZ17H">Custom Metrics</h2>
 <p>
