@@ -20,7 +20,7 @@
   To examine the example integrations, please have a look
   <a href="#h_01HPGP75J54BBZFVZE7S7K1N2H">here.</a>
 </p>
-<h1 id="h_01H930GAQ59MD94NK0NP68GNGT">Adding the SDK to the project</h1>
+<h1 id="h_01H930GAQ59MD94NK0NP68GNGT">Adding the SDK to the Project</h1>
 <p>
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
@@ -32,7 +32,7 @@
 </p>
 <pre><code class="shell">flutter pub get</code></pre>
 <h1 id="h_01H930GAQ51K98YA1RGR2ZMKN5">SDK Integration</h1>
-<h2 id="h_01H930GAQ5RGKSA3CTNVTBTDZF">Minimal setup</h2>
+<h2 id="h_01H930GAQ5RGKSA3CTNVTBTDZF">Minimal Setup</h2>
 <p>
   The shortest way to initialize the SDK, if you want Countly SDK to take care
   of device ID seamlessly, is to use the code below.
@@ -87,7 +87,7 @@ config.setLoggingEnabled(true);</code></pre>
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
-<h2 id="h_01H930GAQ5TH1KDYE8FFHE3NYC">SDK data storage</h2>
+<h2 id="h_01H930GAQ5TH1KDYE8FFHE3NYC">SDK Data Storage</h2>
 <p>SDK data storage locations are platform-specific:</p>
 <ul>
   <li>
@@ -100,7 +100,7 @@ config.setLoggingEnabled(true);</code></pre>
     provides simple reading and writing methods.
   </li>
 </ul>
-<h1 id="h_01H930GAQ5G76N9W9XM7JACE5B">Crash reporting</h1>
+<h1 id="h_01H930GAQ5G76N9W9XM7JACE5B">Crash Reporting</h1>
 <p>
   This feature allows the Countly SDK to record crash reports of either encountered
   issues or exceptions which cause your application to crash. Those reports will
@@ -111,7 +111,7 @@ config.setLoggingEnabled(true);</code></pre>
   unavailable server), then SDK stores the crash report locally in order to try
   again later.
 </p>
-<h2 id="h_01H930GAQ55ZND3R5TD6WWP4R6">Automatic crash handling</h2>
+<h2 id="h_01H930GAQ55ZND3R5TD6WWP4R6">Automatic Crash Handling</h2>
 <p>
   If you want to enable automatic unhandled crash reporting, you need to call this
   before init:
@@ -131,7 +131,7 @@ config.enableCrashReporting()</code></pre>
     runApp(MyApp());
   }, Countly.recordDartError);
 }</code></pre>
-<h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic crash report segmentation</h2>
+<h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic Crash Report Segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
   which specific library or framework version you used in your app. You may then
@@ -144,7 +144,7 @@ config.enableCrashReporting()</code></pre>
 </p>
 <pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
-<h2 id="h_01H930GAQ5D1WSF2DZZJ8XA12T">Handled exceptions</h2>
+<h2 id="h_01H930GAQ5D1WSF2DZZJ8XA12T">Handled Exceptions</h2>
 <p class="p1">
   There are multiple ways you could report a handled exception/error to Countly.
 </p>
@@ -208,7 +208,7 @@ Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, STACK_TRACE_OBJECT, {"_facebo
 // With String message
 Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
 </code></pre>
-<h2 id="h_01H930GAQ5PX812FVSVEAKZMJ8">Crash breadcrumbs</h2>
+<h2 id="h_01H930GAQ5PX812FVSVEAKZMJ8">Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs which would describe previous
   steps that were taken in your app before the crash. After a crash happens, they
@@ -255,7 +255,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
     All data passed to the Countly server via SDK or API should be in UTF-8.
   </p>
 </div>
-<h2 id="h_01H930GAQ5RVJC7NBPQFGPQ41Y">Recording events</h2>
+<h2 id="h_01H930GAQ5RVJC7NBPQFGPQ41Y">Recording Events</h2>
 <p>
   We will be recording a <strong>purchase</strong> event. Here is a quick summary
   of what information each usage will provide us:
@@ -356,7 +356,7 @@ event["segmentation"] = {
 
 Countly.recordEvent(event);
 </code></pre>
-<h2 id="h_01H930GAQ5SWK23EQBNNRM4TZD">Timed events</h2>
+<h2 id="h_01H930GAQ5SWK23EQBNNRM4TZD">Timed Events</h2>
 <p>
   It's possible to create timed events by defining a start and a stop moment.
 </p>
@@ -416,7 +416,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   Countly.endEvent(event);
 });</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
-<h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic session tracking</h2>
+<h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic Session Tracking</h2>
 <p>
   Automatic sessions tracks user activity with respect to the app visibility. Basically
   it handles making certain requests to the server to inform it about the user
@@ -439,7 +439,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
     when the app goes to the background or terminates.
   </li>
 </ul>
-<h2 id="h_01HGDN3SPBVME2S4HP5GM2D7NG">Manual sessions</h2>
+<h2 id="h_01HGDN3SPBVME2S4HP5GM2D7NG">Manual Sessions</h2>
 <p>
   Sometimes, it might be preferable to control the session manually instead of
   relying on the SDK.
@@ -461,8 +461,8 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <pre>Countly.instance.sessions.beginSession();
 Countly.instance.sessions.updateSession();
 Countly.instance.sessions.endSession();</pre>
-<h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View tracking</h1>
-<h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual view recording</h2>
+<h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View Tracking</h1>
+<h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual View Recording</h2>
 <p>You can manually track views in your application.</p>
 <p>
   When starting a view it would return an ID. This ID can be used to further interract
@@ -615,7 +615,7 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
   set values and overwrite any previously set keys.
 </p>
 <pre><code class="JavaScript">Countly.instance.views.updateGlobalViewSegmentation(segmentation);</code></pre>
-<h1 id="h_01H930GAQ65W1S9T2R1K2EQQFJ">Device ID management</h1>
+<h1 id="h_01H930GAQ65W1S9T2R1K2EQQFJ">Device ID Management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
   ID yourself or allow the SDK to generate it. When providing one yourself, keep
@@ -670,7 +670,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   which have been kept on hold until that point will start with the real device
   ID
 </p>
-<h2 id="h_01H930GAQ6PX99Z205GC9DDZ1J">Retrieving current device ID</h2>
+<h2 id="h_01H930GAQ6PX99Z205GC9DDZ1J">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following call:
@@ -691,7 +691,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   </li>
 </ul>
 <pre>DeviceIdType? deviceIdType = await Countly.getDeviceIDType();</pre>
-<h2 id="h_01H930GAQ61FQNZ1X9NS4QSA4N">Device ID generation</h2>
+<h2 id="h_01H930GAQ61FQNZ1X9NS4QSA4N">Device ID Generation</h2>
 <p>
   When the SDK is initialized for the first time with no device ID, then SDK will
   generate a device ID.
@@ -703,7 +703,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   For iOS: the device ID generated by SDK is the Identifier For Vendor (IDFV) For
   Android: the device ID generated by SDK is the OpenUDID.
 </p>
-<h1 id="h_01H930GAQ6K5T1NRS29Z3Y8WSY">Push notifications</h1>
+<h1 id="h_01H930GAQ6K5T1NRS29Z3Y8WSY">Push Notifications</h1>
 <p>
   Countly gives you the ability to send Push Notifications to your users using
   your app with the Flutter SDK integration. For more information on how to best
@@ -718,7 +718,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   below.
 </p>
 <h2 id="h_01H930GAQ6AQ5REWTYT4CB27CQ">Integration</h2>
-<h3 id="h_01H930GAQ6C3B3RYSEXZX4ZY3F">Android setup</h3>
+<h3 id="h_01H930GAQ6C3B3RYSEXZX4ZY3F">Android Setup</h3>
 <p>
   Step 1: For FCM credentials setup please follow the instruction from
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HNF9WBDT037TDHVHRSEPEMZV" target="_blank" rel="noopener noreferrer">here</a>.
@@ -774,7 +774,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 // Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
 </code></pre>
-<h3 id="h_01H930GAQ6VJHE7EZ937JJ6HB9">iOS setup</h3>
+<h3 id="h_01H930GAQ6VJHE7EZ937JJ6HB9">iOS Setup</h3>
 <p>
   First, you will need to acquire Push Notification credentials from Apple. (If
   you don't have them you can check
@@ -816,7 +816,7 @@ apply plugin: 'com.google.gms.google-services'
 <div class="img-container">
   <img src="/guide-media/01GVCKG6BTNK2EK9JYCG3SR73X" alt="Flutter_iOS_Notifications.png">
 </div>
-<h2 id="h_01H930GAQ6FAB8TBJDJXW2F2A7">Enabling push</h2>
+<h2 id="h_01H930GAQ6FAB8TBJDJXW2F2A7">Enabling Push</h2>
 <p>
   First, when setting up push for the Flutter SDK, you would first select the push
   token mode. This would allow you to choose either test or production modes, push
@@ -841,7 +841,7 @@ Countly.disablePushNotifications();</code></pre>
   flavor without the push notifications features (like Firebase libraries) please
   check <a href="https://pub.dev/packages/countly_flutter_np">here</a>.
 </p>
-<h2 id="h_01H930GAQ67F7994ZMTG30J1C5">Handling push callbacks</h2>
+<h2 id="h_01H930GAQ67F7994ZMTG30J1C5">Handling Push Callbacks</h2>
 <p>
   To register a Push Notification callback after initializing the SDK, use the
   method below.
@@ -1245,7 +1245,7 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
 <p>
   Here if no keys are provided it would remove the user from all A/B tests instead.
 </p>
-<h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User feedback</h1>
+<h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User Feedback</h1>
 <p>
   There are a couple ways of receiving feedback from your users: star-rating dialog,
   the rating widget and the feedback widgets (survey, nps).
@@ -1645,7 +1645,7 @@ config.apm.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</st
 
 // enable it here separately with 'apm' interface.
 config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
-<h1 id="h_01H930GAQ77F3QXV695Z9DE6PJ">User consent</h1>
+<h1 id="h_01H930GAQ77F3QXV695Z9DE6PJ">User Consent</h1>
 <p>
   For compatibility with data protection regulations, such as GDPR, the Countly
   Flutter SDK allows developers to enable/disable any feature at any time depending
@@ -1727,8 +1727,8 @@ Countly.giveAllConsent();
 
 //remove consent from all features
 Countly.removeAllConsent();</code></pre>
-<h1 id="h_01H930GAQ8RHCMMEPCJGC36BR7">Security and privacy</h1>
-<h2 id="h_01H930GAQ865YY5RAJN9ZYP7H2">Parameter tampering protection</h2>
+<h1 id="h_01H930GAQ8RHCMMEPCJGC36BR7">Security and Privacy</h1>
+<h2 id="h_01H930GAQ865YY5RAJN9ZYP7H2">Parameter Tampering Protection</h2>
 <p>
   You can set optional <code>salt</code> to be used for calculating checksum of
   request data, which will be sent with each request using
