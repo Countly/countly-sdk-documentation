@@ -1,6 +1,7 @@
 <p>
-  This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 22.06.0.
+  This documentation is for the Countly NodeJS SDK version 22.06.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-nodejs" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -27,12 +28,9 @@
   </tbody>
 </table>
 <p>
-  If you want to get the Countly NodeJS SDK codebase locally you can go to the
-  GitHub repo <a href="https://github.com/Countly/countly-sdk-nodejs">here</a>
-  and download it inside your project folder by executing the lines:
+  To examine the example integrations, please have a look
+  <a href="#h_01HPK9ZBQXA5AYYG2CVHWWWVHB">here.</a>
 </p>
-<pre><code class="bash">git clone https://github.com/Countly/countly-sdk-nodejs.git
-</code></pre>
 <h1 id="h_01HABTSEDFXYDEN0QDRY7DEVR7">Adding the SDK to the project</h1>
 <p>
   You can reach Countly NodeJS SDK npm package
@@ -603,6 +601,17 @@ Countly.report_trace({
     _device: "aws-server"
   }
 });</code></pre>
+<h2 id="h_01HPK9ZBQXA5AYYG2CVHWWWVHB">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/apm_example.js">apm_example</a>
+  is a simple APM integration.<br>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/bulk_import_example.js">bulk_import_example</a>
+  is a simple bulk import example.<br>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/example.js">example</a>
+  covers most of the functionalities.<br>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/multi-process.js">multi-process</a>
+  is a simple demonstration for multi-instancing the Countly SDK.
+</p>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
   Countly is highly customizable and let's you take a huge part at the control
