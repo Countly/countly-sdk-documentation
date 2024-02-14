@@ -1,8 +1,7 @@
 <p>
-  This document will guide you through the process of Countly SDK installation
-  and it applies to version X.X.X<br>
-  Countly is an open source SDK, you can take a look at our SDK code in the
-  <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_self">Github repo</a>
+  This documentation is for the Countly React Native SDK version X.X.X The SDK
+  source code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-react-native-bridge/" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -20,17 +19,9 @@
   <strong>Supported Platforms:</strong> This SDK supports iOS and Android platforms.
 </p>
 <p>
-  You can take a look at our example application in
-  <a href="https://github.com/Countly/countly-sdk-rnb-example.git" target="_blank" rel="noopener">this Github repo</a>.
-  It shows, how the majority of the SDK functionality can be used. After you have
-  cloned the repo, run the following commands from the root folder:
+  To examine the example integrations, please have a look
+  <a href="#h_01HPKC2VFEH3K77VCES1WPH7MN">here.</a>
 </p>
-<pre><code class="bash">npm install                         # Install dependencies
-cd ios                              # Move to ios directory
-pod install                         # Download and install pods<br>
-cd ../                              # Move to parent directory
-react-native run-android # OR       # Run the android project
-react-native run-ios                # Run the iOS project</code></pre>
 <h1 id="h_01HAVQNJQQY6AYCGY7TW5TR2GC">Adding the SDK to the project</h1>
 <p>
   Run the following snippet in the root directory of your React Native project
@@ -1635,6 +1626,19 @@ const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 countlyConfig.setDeviceId(DEVICE_ID); // Set device ID
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
+<h2 id="h_01HPKC2VFEH3K77VCES1WPH7MN">Example Integrations</h2>
+<p>
+  You can take a look at our example application in
+  <a href="https://github.com/Countly/countly-sdk-rnb-example.git" target="_blank" rel="noopener">this Github repo</a>.
+  It shows how the majority of the SDK functionality can be used. After you have
+  cloned the repo, run the following commands from the root folder:
+</p>
+<pre><code class="bash">npm install                         # Install dependencies
+cd ios                              # Move to ios directory
+pod install                         # Download and install pods<br>
+cd ../                              # Move to parent directory
+react-native run-android # OR       # Run the android project
+react-native run-ios                # Run the iOS project</code></pre>
 <h2 id="h_01HBZGC0M4JG8E6DCYCD04HQTJ">SDK Storage and Requests</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in a file named
