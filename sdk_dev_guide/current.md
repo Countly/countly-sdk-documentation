@@ -2219,17 +2219,67 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h2 id="01H821RTQ6567XRJNZ6A13JYVE">Feedback Widgets</h2>
 <p>
-  Showing feedback widgets or performing any of the feedback widget related features
-  require that the <code>feedback</code> consent is given.
+  The Feedback Widgets feature in Countly offers a versatile and user-friendly
+  way to gather valuable insights and opinions from users. Showing feedback widgets
+  or performing any of the feedback widget-related features requires that the
+  <code>feedback</code> consent is given.
 </p>
 <p>
-  This API gives access to 3 kinds of widgets, namely surveys, NPS and rating.
+  The Feedback Widgets API provides access to three primary types of widgets:
+</p>
+<ul>
+  <li>
+    <p>
+      <strong>Surveys:</strong> Engage users with targeted surveys to gather
+      in-depth insights about their experiences.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>NPS (Net Promoter Score):</strong> Measure user satisfaction
+      and loyalty by implementing the Net Promoter Score system.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Rating:</strong> Enable users to provide quick and intuitive
+      feedback through rating widgets.
+    </p>
+  </li>
+</ul>
+<p>
   They are shown using a very similar server API and basically the same processing.
+  This is also an alternative method to use rating widgets, which are also now
+  included in this newer SDK API.
 </p>
 <p>
-  This is also an alternative method to use rating widgets which are now also included
-  in this newer SDK API.
+  This feature allows the integration of feedback mechanisms through three distinct
+  methods:
 </p>
+<ul>
+  <li>
+    <p>
+      <strong>Automatic Presentation: </strong>Dynamically displaying feedback
+      widgets based on predefined criteria, streamlining the user experience
+      and requiring minimal manual intervention.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Manual Presentation with Data Retrieval:</strong> Manually present
+      feedback widgets after retrieving specific data about a chosen widget.
+      Ensures a tailored and data-driven approach to user feedback.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Manual Presentation in a Predefined Web View: </strong>Feedback
+      widgets are presented manually by inserting the widget URL into a predefined
+      web view. Offers flexibility in integrating the feedback experience into
+      existing web views, maintaining a consistent user interface.
+    </p>
+  </li>
+</ul>
 <h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Automatic Feedback Widgets</h3>
 <p>
   The first step to showing a feedback widget is getting a list of the available
