@@ -2219,38 +2219,34 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h2 id="01H821RTQ6567XRJNZ6A13JYVE">Feedback Widgets</h2>
 <p>
-  The Feedback Widgets feature in Countly offers a versatile and user-friendly
-  way to gather valuable insights and opinions from users. Showing feedback widgets
-  or performing any of the feedback widget-related features requires that the
-  <code>feedback</code> consent is given.
+  The Feedback Widgets feature is a way to gather insights and opinions from users.
+  Showing feedback widgets or performing any of the feedback widget-related features
+  requires that the <code>feedback</code> consent is given.
 </p>
 <p>
   The Feedback Widgets API provides access to three primary types of widgets:
 </p>
 <ul>
   <li>
-    <p>
-      <strong>Surveys:</strong> Engage users with targeted surveys to gather
-      in-depth insights about their experiences.
-    </p>
+    <strong>Surveys: </strong>Flexibility in questions, supporting various answer
+    formats such as multiple-choice, textbox, and rating scales.
   </li>
   <li>
-    <p>
-      <strong>NPS (Net Promoter Score):</strong> Measure user satisfaction
-      and loyalty by implementing the Net Promoter Score system.
-    </p>
+    <strong>Ratings: </strong>Utilizes a simple 1-5 scale and allows feedback
+    through emojis, thumbs, etc. Supports additional features like leaving comments
+    or initiating contact via email.
   </li>
   <li>
-    <p>
-      <strong>Rating:</strong> Enable users to provide quick and intuitive
-      feedback through rating widgets.
-    </p>
+    <strong>NPS (Net Promoter Score): </strong>Questions on a scale from 0-10,
+    with customization options for follow-up questions.
   </li>
 </ul>
 <p>
   They are shown using a very similar server API and basically the same processing.
   This is also an alternative method to use rating widgets, which are also now
-  included in this newer SDK API.
+  included in this newer SDK API. Refer to the
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings" target="_blank" rel="noopener noreferrer">Feedback User Guide</a>
+  for more detailed information about Feedback Widgets.&nbsp;
 </p>
 <p>
   This feature allows the integration of feedback mechanisms through three distinct
@@ -2280,18 +2276,18 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     </p>
   </li>
 </ul>
-<h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Automatic Feedback Widgets</h3>
+<h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Retrieving the List of Eligible Widgets</h3>
 <p>
   The first step to showing a feedback widget is getting a list of the available
   widgets for this device ID. That would be done with a function named similar
   to <code>getAvailableFeedbackWidgets</code>. That call takes a callback. That
-  callback returns 2 values. The second is the error string. The first one a list
-  of available widget objects (or any other mechanism that allows the grouping
-  of this data). If a class is used for grouping, it should be named similar to
+  callback returns 2 values. The second is the error string. The first is a list
+  of available widget objects (or any other mechanism that allows grouping this
+  data). If a class is used for grouping, it should be named similar to
   <code>CountlyPresentableFeedback</code>. That object contains 4 core values (widget
-  id (_id), widget type (type), widget name (name), tags (tg)) and 1 optional value
-  (UI info (appearance)). Potential type values are currently "nps", "survey" and
-  "rating".
+  id (_id), widget type (type), widget name (name), tags (tg)), and 1 optional
+  value (UI info (appearance)). Potential type values are currently "nps" "survey"
+  and "rating"
 </p>
 <p>The URL to acquire all available widgets in a list is:</p>
 <pre>/o/sdk?method=feedback&amp;app_key=[appKey]&amp;device_id=[deviceID]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]</pre>
@@ -2357,6 +2353,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   and decide any further action he would want to make with them with respect to
   the information provided.
 </p>
+<h3 id="01HPPGR7V2MHCREAR3K79SKMS5">Automatic Feedback Widgets</h3>
 <p>
   If the developer has decided on a widget to present, he would call
   <code>presentFeedbackWidget</code> method and pass the chosen widget (<code>CountlyFeedbackWidget</code>)
