@@ -58,9 +58,6 @@ And finally there should be:
 **SDK Integration**
 This should contain the core integration information about the SDK, including a short MVP setup
 
-* Minimum Supported Versions (minimum platform, language requirements, supported platform versions (The SDKs that have a platform concept should contain a minimum supported version table))
-* SDK Repository and Example Integration (SDK repo location, example app location)
-
 * Adding the SDK to the Project
   * (How should that be done, where can the library be found, how is the dependency added to their project)
   * other things to note (like what is they should know prior to implementation)
