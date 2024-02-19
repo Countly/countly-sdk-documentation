@@ -76,33 +76,6 @@ Countly.Instance.Init(cc);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HABTXQF7QV573QQXWM8HWVX3">SDK Logging / Debug Mode</h2>
-<p>
-  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
-  To enable logging you need to do the following two steps:
-</p>
-<p>
-  <strong>Step 1</strong>: Enable SDK logging using the following call:
-</p>
-<pre><code class="csharp hljs">    Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
-<p>You can turn it on and off in any place of your code.</p>
-<p>
-  <strong>Step 2</strong>:
-  <span>Go to project properties, select the 'Build' tab and make sure the following things are correct.</span>
-</p>
-<ul>
-  <li>Configuration: Debug</li>
-  <li>"Define DEBUG constant" is checked</li>
-</ul>
-<p>
-  <img src="/guide-media/01GVCPMRRT2Q54RB6JHN86D4C0" alt="mceclip1.png">
-</p>
-<p>
-  Log messages written in the application will show up in 'Output' windows.
-</p>
-<p>
-  <img src="/guide-media/01GVBACGEX9MG9X2GKY88G83GS" alt="mceclip4.png">
-</p>
 <h2 id="h_01HABTXQF79D0GQFAPY6K8C37H">SDK Data Storage</h2>
 <p>
   Cached requests and other SDK relevant information is stored in files in a named
@@ -136,6 +109,33 @@ Countly.Instance.Init(cc);</code></pre>
 };
 
 await Countly.Instance.Init(cc);</code></pre>
+<h1 id="h_01HABTXQF7QV573QQXWM8HWVX3">SDK Logging / Debug Mode</h1>
+<p>
+  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
+  To enable logging you need to do the following two steps:
+</p>
+<p>
+  <strong>Step 1</strong>: Enable SDK logging using the following call:
+</p>
+<pre><code class="csharp hljs">    Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
+<p>You can turn it on and off in any place of your code.</p>
+<p>
+  <strong>Step 2</strong>:
+  <span>Go to project properties, select the 'Build' tab and make sure the following things are correct.</span>
+</p>
+<ul>
+  <li>Configuration: Debug</li>
+  <li>"Define DEBUG constant" is checked</li>
+</ul>
+<p>
+  <img src="/guide-media/01GVCPMRRT2Q54RB6JHN86D4C0" alt="mceclip1.png">
+</p>
+<p>
+  Log messages written in the application will show up in 'Output' windows.
+</p>
+<p>
+  <img src="/guide-media/01GVBACGEX9MG9X2GKY88G83GS" alt="mceclip4.png">
+</p>
 <h1 id="h_01HABTXQF82Z61FH639NC5FGSV">Crash Reporting</h1>
 <p>
   <span>The Countly SDK for Windows can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span> which you may examine and resolve later on the server.</span>
