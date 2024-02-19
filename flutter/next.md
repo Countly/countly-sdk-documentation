@@ -1673,27 +1673,28 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
 </p>
 <p>
+  You can use CountlyConsent inteface to reach all possible consent options.<br>
   Currently, available features with consent control are as follows:
 </p>
 <ul>
   <li>
-    CountlyConsent.sessions - tracking when, how often and how long users use your app.
+    sessions - tracking when, how often and how long users use your app.
   </li>
-  <li>CountlyConsent.events - allow sending events to the server.</li>
-  <li>CountlyConsent.views - allow tracking which views user visits.</li>
-  <li>CountlyConsent.location - allow sending location information.</li>
-  <li>CountlyConsent.crashes - allow tracking crashes, exceptions and errors.</li>
+  <li>events - allow sending events to the server.</li>
+  <li>views - allow tracking which views user visits.</li>
+  <li>location - allow sending location information.</li>
+  <li>crashes - allow tracking crashes, exceptions and errors.</li>
   <li>
-    CountlyConsent.attribution - allow tracking from which campaign did user come.
+    attribution - allow tracking from which campaign did user come.
   </li>
   <li>
-    CountlyConsent.users - allow collecting/providing user information, including custom properties.
+    users - allow collecting/providing user information, including custom properties.
   </li>
-  <li>CountlyConsent.push - allow push notifications</li>
-  <li>CountlyConsent.starRating - allow sending their rating and feedback</li>
-  <li>CountlyConsent.apm - allow application performance monitoring</li>
+  <li>push - allow push notifications</li>
+  <li>starRating - allow sending their rating and feedback</li>
+  <li>apm - allow application performance monitoring</li>
   <li>
-    CountlyConsent.remoteConfig - allows downloading remote config values from your server
+    remoteConfig - allows downloading remote config values from your server
   </li>
 </ul>
 <h2 id="h_01H930GAQ85BFVYS2RZGN7TRA0">Setup During Init</h2>
