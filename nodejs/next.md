@@ -1,6 +1,7 @@
 <p>
-  This documentation shows how to use Countly NodeJS SDK to track your nodejs running
-  device or server, like tracking your API. It applies to the SDK version 22.06.0.
+  This documentation is for the Countly NodeJS SDK version 22.06.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-nodejs" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -27,12 +28,9 @@
   </tbody>
 </table>
 <p>
-  If you want to get the Countly NodeJS SDK codebase locally you can go to the
-  GitHub repo <a href="https://github.com/Countly/countly-sdk-nodejs">here</a>
-  and download it inside your project folder by executing the lines:
+  To examine the example integrations, please have a look
+  <a href="#h_01HPK9ZBQXA5AYYG2CVHWWWVHB">here.</a>
 </p>
-<pre><code class="bash">git clone https://github.com/Countly/countly-sdk-nodejs.git
-</code></pre>
 <h1 id="h_01HABTSEDFXYDEN0QDRY7DEVR7">Adding the SDK to the project</h1>
 <p>
   You can reach Countly NodeJS SDK npm package
@@ -80,7 +78,23 @@ Countly.init({
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HABTSEDFSJWTK0GZKKTYSBMK">SDK Logging</h2>
+<h2 id="h_01HABTSEDFRBJ54MX797V7QV2K">SDK Data Storage</h2>
+<p>
+  Countly stores information like requests, events and device ID locally as JSON
+  objects before using it to ensure data consistency. Default location of this
+  stored data is at the base of your project under a folder called Data. You can
+  change the location or file name during the initialization by using the storage_path
+  flag:
+</p>
+<pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
+
+Countly.init({
+  app_key: "YOUR-APP-KEY",
+  url: "https://your_server_url/",
+  // by default it is "../data/"
+  storage_path: "../your_storage/path" 
+});</code></pre>
+<h1 id="h_01HABTSEDFSJWTK0GZKKTYSBMK">SDK Logging</h1>
 <p>
   If you encounter a problem or want to see if everything is working smoothly just
   turning on the logs during the initialization is all you really need. You can
@@ -107,22 +121,6 @@ Countly.setLoggingEnabled(true);
 
 //to turn off the logs
 Countly.setLoggingEnabled(false);</code></pre>
-<h2 id="h_01HABTSEDFRBJ54MX797V7QV2K">SDK Data Storage</h2>
-<p>
-  Countly stores information like requests, events and device ID locally as JSON
-  objects before using it to ensure data consistency. Default location of this
-  stored data is at the base of your project under a folder called Data. You can
-  change the location or file name during the initialization by using the storage_path
-  flag:
-</p>
-<pre><code class="javascript">var Countly = require('countly-sdk-nodejs');
-
-Countly.init({
-  app_key: "YOUR-APP-KEY",
-  url: "https://your_server_url/",
-  // by default it is "../data/"
-  storage_path: "../your_storage/path" 
-});</code></pre>
 <h1 id="h_01HABTSEDF3VWA2BT8QJQH6NJ7">Crash reporting</h1>
 <p>
   Countly also provides a way to track NodeJS errors on your server.
@@ -603,6 +601,17 @@ Countly.report_trace({
     _device: "aws-server"
   }
 });</code></pre>
+<h2 id="h_01HPK9ZBQXA5AYYG2CVHWWWVHB">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/apm_example.js">apm_example</a>
+  is a simple APM integration.<br>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/bulk_import_example.js">bulk_import_example</a>
+  is a simple bulk import example.<br>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/example.js">example</a>
+  covers most of the functionalities.<br>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/multi-process.js">multi-process</a>
+  is a simple demonstration for multi-instancing the Countly SDK.
+</p>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
   Countly is highly customizable and let's you take a huge part at the control

@@ -153,7 +153,22 @@
 </div>
 <p>Available additional features per platform:</p>
 <pre>iOS<br>  CLYPushNotifications<br>  CLYCrashReporting<br>  CLYAutoViewTracking<br><br>watchOS<br>  CLYCrashReporting<br><br>tvOS<br>  CLYCrashReporting<br>  CLYAutoViewTracking<br><br>macOS<br>  CLYPushNotifications<br>  CLYCrashReporting</pre>
-<h2 id="h_01HAVHW0RNQ9ZX3KMX09DDFETR">Debug Mode</h2>
+<h2 id="h_01HAVHW0RNPY4C22J98XT6T4NN">SDK Data Storage</h2>
+<p>
+  The Countly iOS SDK uses <code>NSUserDefaults</code> and a simple data file named
+  <code>Countly.dat</code> under <code>NSApplicationSupportDirectory</code> (<code>NSCachesDirectory</code>
+  for tvOS).
+</p>
+<div class="callout callout--info">
+  <strong>Countly Code Generator</strong>
+  <p>
+    <a href="https://code.count.ly">The Countly Code Generator</a> can be used
+    to generate Countly iOS SDK code snippets effortlesly. You can provide values
+    for your events, user profiles, or just start with basic integration. It
+    will generate the necessary code for you.
+  </p>
+</div>
+<h1 id="h_01HAVHW0RNQ9ZX3KMX09DDFETR">SDK Logging / Debug Mode</h1>
 <p>
   <span style="font-weight: 400;">If you would like to enable the Countly iOS SDK to debug mode, which logs internal info, errors, and warnings into your console, you can set the <code>enableDebug</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
@@ -227,21 +242,6 @@ func internalLog(_ log: String)
 }
 </code></pre>
   </div>
-</div>
-<h2 id="h_01HAVHW0RNPY4C22J98XT6T4NN">SDK Data Storage</h2>
-<p>
-  The Countly iOS SDK uses <code>NSUserDefaults</code> and a simple data file named
-  <code>Countly.dat</code> under <code>NSApplicationSupportDirectory</code> (<code>NSCachesDirectory</code>
-  for tvOS).
-</p>
-<div class="callout callout--info">
-  <strong>Countly Code Generator</strong>
-  <p>
-    <a href="https://code.count.ly">The Countly Code Generator</a> can be used
-    to generate Countly iOS SDK code snippets effortlesly. You can provide values
-    for your events, user profiles, or just start with basic integration. It
-    will generate the necessary code for you.
-  </p>
 </div>
 <h1 id="h_01HAVHW0RNQ5ESJGQW3FFQBDHV">Crash Reporting</h1>
 <h2 id="h_01HAVHW0RNZJFE1FFPKJRCEFWA">Automatic Crash Handling</h2>

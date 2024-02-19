@@ -104,7 +104,22 @@ countly.start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HABV267SRYX26E90FHT1N4S3">SDK Logging</h2>
+<h2 id="h_01HABV267SDXWCVYFV9RFGC08K">SDK Data Storage</h2>
+<p>
+  In its unconfigured state, the SDK stores everything in memory.
+</p>
+<p>
+  There is an alternative SDK configuration option where the SDK will try to save
+  data peristently with SQLite. In that case you would provide a path and filename
+  where the database would be located. More information on that can be found
+  <a href="#SettingUpSQLiteStorage">here</a>.
+</p>
+<h2 id="h_01HABV267TYM01QYT4M4TJSY2J">SDK Notes</h2>
+<p>
+  To access the Countly Global Instance use the following code snippet:
+</p>
+<pre><code class="cpp">cly::Countly::getInstance()</code></pre>
+<h1 id="h_01HABV267SRYX26E90FHT1N4S3">SDK Logging</h1>
 <p>
   The first thing you should do while integrating our SDK is to enable logging.
   If logging is enabled, then our SDK will print out debug messages about its internal
@@ -121,21 +136,6 @@ void (*logger_function)(cly::Countly::LogLevel level, const std::string&amp; mes
 logger_function = printLog;
 cly::Countly::getInstance().setLogger(logger_function);
 </code></pre>
-<h2 id="h_01HABV267SDXWCVYFV9RFGC08K">SDK Data Storage</h2>
-<p>
-  In its unconfigured state, the SDK stores everything in memory.
-</p>
-<p>
-  There is an alternative SDK configuration option where the SDK will try to save
-  data peristently with SQLite. In that case you would provide a path and filename
-  where the database would be located. More information on that can be found
-  <a href="#SettingUpSQLiteStorage">here</a>.
-</p>
-<h2 id="h_01HABV267TYM01QYT4M4TJSY2J">SDK Notes</h2>
-<p>
-  To access the Countly Global Instance use the following code snippet:
-</p>
-<pre><code class="cpp">cly::Countly::getInstance()</code></pre>
 <h1 id="h_01HABV267T02RKF3WAAXMPRWKS">Crash Reporting</h1>
 <p>
   The Countly SDK for C++ can collect

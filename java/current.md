@@ -1,6 +1,7 @@
 <p>
-  This document will guide you through the process of Countly SDK installation
-  and it applies to version 23.10.X
+  This documentation is for the Countly Java SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -10,12 +11,11 @@
   </p>
 </div>
 <p>
-  The Countly Java SDK supports minimum JDK version 8 (Java 8, JDK 1.8). You can
-  reach the Countly Java SDK
-  <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">here</a>.
-  Also, you can inspect the sample application
-  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java" target="_blank" rel="noopener noreferrer">here</a>
-  to understand how most functionalities work.
+  The Countly Java SDK minimum supported target version is Java 8.
+</p>
+<p>
+  To examine the example integrations please have a look
+  <a href="#h_01HNFH7ZFRE3CKRCTZE6EZWM86">here.</a>
 </p>
 <h1 id="h_01HABV0K6BZ251ANK02RZK3Z5H">Adding the SDK to the Project</h1>
 <p>
@@ -33,13 +33,13 @@
 }</pre>
 <p>The dependency can be added as:</p>
 <pre>dependencies {
-  implementation "ly.count.sdk:java:23.10.0"
+  implementation "ly.count.sdk:java:24.1.0"
 }</pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;23.10.0&lt;/version&gt;
+  &lt;version&gt;24.1.0&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 id="h_01HABV0K6CDY5FSWH5QBHTT79R">SDK Integration</h1>
@@ -129,19 +129,44 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   The Countly Java SDK has the ability to collect
   <a href="/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
   which you may examine and resolve later on the server. The SDK can collect unhandled
-  exceptions by default if the consent for crash reporting is given.
+  exceptions by default if the consent for crash reporting is given. You can reach
+  all crash-related functionality from the returned interface on:
 </p>
+<pre><code>Countly.instance().crashes()</code></pre>
+<h2 id="h_01HG0S0PNJB87NG192K43SP5CS">Automatic Crash Handling</h2>
+<p>
+  Automatic crash handling is enabled by default. To disable it call this method
+  on the config object during initialization:
+</p>
+<pre>config.disableUnhandledCrashReporting();</pre>
 <h2 id="h_01HD1AK4K4M40M1J7W0R50QGQM">Handled Exceptions</h2>
 <p>
-  You may catch an exception during application runtime. You might report with
-  these functions:
+  <span>You might catch an exception or similar error during your app’s runtime. To report them use the following method</span>:
 </p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal);</code></pre>
+<pre><code class="java">Countly.instance().crashes().recordHandledException(Throwable t);
+
+// Or you can also add segment to be recorded with the error
+Countly.instance().crashes().recordHandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
 <p>
-  If you want to add additional information like segmentation, logs, or names of
-  exceptions to inspect it in a detailed way later on, you can use the below function.
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
-<pre><code class="java">Countly.instance().addCrashReport(Throwable t, boolean fatal, String name, Map&lt;String, String&gt; segments, String... logs);</code></pre>
+<pre><code class="java">Countly.instance().crashes().recordUnhandledException(Throwable t);
+
+// Or you can also add segment to be recorded with the error
+Countly.instance().crashes().recordUnhandledException(Throwable t, Map&lt;String, Object&gt; segment);</code></pre>
+<h2 id="h_01HG0S5QWDC5WEQSV0W724XCG4">Crash Breadcrumbs</h2>
+<p>
+  Throughout your app you can leave crash breadcrumbs which would describe previous
+  steps that were taken in your app before the crash. After a crash happens, they
+  will be sent together with the crash report.
+</p>
+<p>Following command adds crash breadcrumb:</p>
+<pre><code class="java hljs">Countly.instance().crashes().addCrashBreadcrumb(String record);</code></pre>
+<p>
+  The maximum breadcrumb limit is 100. To change the maximum limit use this method
+  during initialization:
+</p>
+<pre>config.setMaxBreadcrumbCount(int maxBreadcrumbCount);</pre>
 <h1 id="h_01HABV0K6C0FGCV0NJV59ZFJSC">Events</h1>
 <p>
   <a href="/hc/en-us/articles/4403721560857" target="_blank" rel="noopener noreferrer">Events</a>
@@ -184,10 +209,9 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
   <code>events</code> interface:
 </p>
 <div>
-  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;() {
-  put("Time Spent", 60);
-  put("Retry Attempts", 60);
-};
+  <pre><code class="java hljs">Map&lt;String, Object&gt; segmentation = new HashMap&lt;String, Object&gt;();
+segmentation.put("Time Spent", 60);
+segmentation.put("Retry Attempts", 60);
 
 Countly.instance().events().recordEvent("purchase", segmentation, 2, 19.98, 35);</code></pre>
 </div>
@@ -358,39 +382,127 @@ segmentation.put("level", 37);</code></pre>
 </ul>
 <h1 id="h_01HD1EJB1JHW9PJSSQDX0YC0TC">View Tracking</h1>
 <p>
-  You can track views of your application by the Java SDK. By views, you can also
-  create
+  You can track the views of your application with the Java SDK. With views feature,
+  you can also create
   <a class="editor-rtfLink" href="/hc/en-us/articles/4444616740249" target="_blank" rel="noopener">flows</a>
-  to see view transitions.
+  to see view transitions. Public interface of the views can be accessed via:
 </p>
+<pre>Countly.instance().views()</pre>
 <h2 id="h_01HD1F6YJJJCXHNG0FA0X8CAKJ">
   <span data-preserver-spaces="true">Manual View Reporting</span>
 </h2>
 <p>
-  The Countly Java SDK provides manual reporting of views. View reporting functions
-  can track and decide whether or not the view is the first. They end the previous
-  views if they are still ongoing. You can use the below functions to report views:
+  The SDK provides various ways to track views. You can have a single view at a
+  given time or track multiple views according to your needs. Each view would have
+  its own unique view ID which could be used for manipulating the view further.
+</p>
+<h3 id="h_01HJ3JGGKS9E23WF0BY0XPT4MS">Auto Stopped Views</h3>
+<p>
+  <span>An easy way to track views is with using the auto stopped views. These views would stop if another view starts. You can start an auto stopped view with or without segmentation like this:</span>
+</p>
+<pre><code class="java">// without segmentation, use view id for further manipulation of views
+String viewID = Countly.instance().views().startAutoStoppedView("View Name");
+  
+// Or with segmentation
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+// use view id for further manipulation of views
+String view2ID = Countly.instance().views().startAutoStoppedView("View Name", viewSegmentation);</code></pre>
+<h3 id="h_01HJ3JP8GW4DF2JC5B8DM75XTF">Regular Views</h3>
+<p>
+  <span>As opposed to the "auto stopped views", with regular views you can have multiple of them started at the same time, and then you can control them independently.</span>
 </p>
 <p>
-  Calling this function will retrieve a view with the given name. If such a view
-  does not exist, the SDK will create it internally and immedietelly start it,
+  You can start a view that would not close when another view starts, like this:
 </p>
-<pre><span data-preserver-spaces="true">Countly.instance().view(String name);</span></pre>
+<pre><code class="java">Countly.instance().views().startView("View Name");</code></pre>
 <p>
-  If you want to signify that the recorded view is the first view in the session,
-  you would set the "start" parameter to "true".,
+  While manually tracking views, you may add your custom segmentation to them like
+  this:
 </p>
-<pre><span data-preserver-spaces="true">Countly.instance().view(String name, boolean start);</span></pre>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().startView("View Name", viewSegmentation);</code></pre>
 <p>
-  You can stop views by <code class="java">stop(boolean lastView)</code>on the
-  stored or retrieved View object.
+  These views would also return a string view ID when they are called.
+</p>
+<h3 id="h_01HHNY9513MGDDJMP3SDWV4KWW" class="anchor-heading">Stopping Views</h3>
+<p>
+  You can stop a view with its name or its view ID. To stop it with its name:
+</p>
+<pre><code class="java">Countly.instance().views().stopViewWithName("View Name");</code></pre>
+<p>You can provide a segmentation while doing so:</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().stopViewWithName("View Name", viewSegmentation);</code></pre>
+<p>
+  <span>If there are multiple views with the same name then <code class="java">stopViewWithName</code> would close the one that has started first. These views would have different identifiers even though their names are same.</span>
 </p>
 <p>
-  You can specifiy if that view was the last one by providing "true" to the boolean
-  parameter.
+  <span>To stop a view with its view ID:</span>
 </p>
-<pre><code class="java">View view = Countly.instance().view("logout_page");
-view.stop(true);</code><code class="java"></code></pre>
+<pre><code class="java">Countly.instance().views().stopViewWithID("View ID");</code></pre>
+<p>
+  <span>You can provide a segmentation while doing so:</span>
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().stopViewWithID("View ID", viewSegmentation);</code></pre>
+<p>
+  You can also stop all running views at once with a segmentation:
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().stopAllViews(viewSegmentation); // pass null if no segmentation</code></pre>
+<h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB" class="anchor-heading">Pausing and Resuming Views</h3>
+<p>
+  <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
+</p>
+<p>
+  <span>To pause a view with its ID:</span>
+</p>
+<pre><code class="java">Countly.instance().views().pauseViewWithID("View ID");</code></pre>
+<p>
+  <span>To resume a view with its ID:</span>
+</p>
+<pre><code class="java">Countly.instance().views().resumeViewWithID("View ID");</code></pre>
+<h3 id="h_01HHNZEE94N9FH6GYZTR4A1H0M" class="anchor-heading">Adding Segmentation to Started Views</h3>
+<p>
+  <span>You can add segmentation values to a view before it ends. This can be done as many times as desired and the final segmentation that will be send to the server would be the cumulative sum of all segmentations. However if a certain segmentation value for a specific key has been updated, the latest value will be used.</span>
+</p>
+<p>
+  <span>To add segmentation to a view using its view ID:</span>
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().addSegmentationToViewWithID("View ID", viewSegmentation);</code></pre>
+<p>
+  <span>To add segmentation to a view using its name:</span>
+</p>
+<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+viewSegmentation.put("Cats", 123);
+viewSegmentation.put("Moons", 9.98d);
+viewSegmentation.put("Moose", "Deer");
+
+Countly.instance().views().addSegmentationToViewWithName("View Name", viewSegmentation);</code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
@@ -441,6 +553,71 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   id, this call will return something like this:
 </p>
 <pre><code class="java">Countly.instance().deviceId().getID(); // CLY_1930183b-77b7-48ce-882a-87a14056c73e</code></pre>
+<h1 id="h_01HFPBH065MSZER3S0X3J15Y3E">User Location</h1>
+<p>
+  You can track your users' location with Countly Java SDK. This information can
+  then be used for various tasks in your Countly server, like creating cohorts
+  or sending push notifications depending on the location. You can only provide
+  these four parameters regarding a user's location:
+</p>
+<ul>
+  <li>
+    <span>Country code in the two-letter, ISO standard, e.g. "en-US", "zh-CN"</span>
+  </li>
+  <li>
+    <span>City name (must be set together with the country code), e.g. "Reykjavik"</span>
+  </li>
+  <li>
+    <span>Latitude and longitude values, separated by a comma, e.g. "56.42345,123.45325"</span>
+  </li>
+  <li>
+    <span>Your user’s IP address, e.g. "192.168.1.1"</span>
+  </li>
+</ul>
+<h2 id="h_01HFPBH065HDQ0E63Q5T3F3V70">
+  <span>Setting Location</span>
+</h2>
+<p>
+  <span>If you set the user location during SDK initialization it will be sent to the server during the start of the user session:</span>
+</p>
+<pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<p>
+  As server side location calculations depends on the location info coming at the
+  beginning of a user session, providing this info at init time is recommended.
+</p>
+<p>
+  If you get your users' location info after SDK initialization, you can still
+  provide them with the following call:
+</p>
+<pre><code class="java">//set user location
+String countryCode = "us";
+String city = "Houston";
+String latitude = "29.634933";
+String longitude = "-95.220255";
+String ipAddress = null; // IP address must only be provided during init.<br>
+Countly.instance().location().setLocation(countryCode, city, latitude + "," + longitude, ipAddress);
+</code></pre>
+<p>
+  Here you if you don't want to set specific fields, you should set them to null.
+</p>
+<p>
+  When these values are set, a separate request will be created to send them to
+  the server and these values would be cached for location tracking later, so at
+  the start of the next user session they would be used in server side calculations.&nbsp;
+</p>
+<h2 id="h_01HFPBSR2PTZB0VKMBQK133MYA">Disabling Location</h2>
+<p>
+  To turn off location tracking during init, use this method. Otherwise the location
+  tracking is enabled by default:
+</p>
+<pre>config.disableLocation();</pre>
+<p>
+  To turn off location tracking after init you can use this method:
+</p>
+<pre><span>Countly.instance().location().disableLocation();</span></pre>
+<p>
+  <span>This action will erase the cached location data from the device and the server.</span>
+</p>
 <h1 id="h_01HE5J5B7V6DSCZWS0KMDV63WY">Remote Config</h1>
 <p>
   Remote config allows you to modify the app by requesting key-value pairs from
@@ -789,21 +966,21 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
 <p>
   For information about User Profiles, review
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
-  You can access user via <code>Countly.instance().user()</code> and you can edit
-  and push changes by this call; <code>edit().commit()</code>
+  You can access user profiles via <code>Countly.instance().userProfile()</code>.&nbsp;
 </p>
 <h2 id="h_01HD3M0EYQAERWFGMRVZXQ2RR1">Setting User Properties</h2>
 <h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
 <p>
-  To set custom properties, call set(). To send modification operations, call the
-  corresponding method:
+  To set custom properties, call setProperty(). To send modification operations,
+  call the corresponding methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java hljs">Countly.instance().user().edit()
-  .set("mostFavoritePet", "dog")
-  .inc("phoneCalls", 1)
-  .pushUnique("tags", "fan")
-  .pushUnique("skill", "singer")
-  .commit();</code></pre>
+<pre><code class="java">Countly.instance().userProfile().setProperty("mostFavoritePet", "dog");
+Countly.instance().userProfile().increment("phoneCalls"); // increments by 1
+Countly.instance().userProfile().pushUnique("tags", "fan");
+Countly.instance().userProfile().pushUnique("skill", "singer");
+Countly.instance().userProfile().save();
+</code></pre>
 <h3 id="h_01HABV0K6CJR090QF0ZTKB1MNG">Setting Predefined Values</h3>
 <p>
   The Countly Java SDK allows you to upload specific data related to a user to
@@ -841,43 +1018,46 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>
-  To set standard properties, call respective methods of <code>UserEditor</code>:
+  To set standard properties, call respective methods and
+  <span>ensure to call <code>Countly.instance().userProfile().save()</code> to send the configured user properties to the server after setting them</span>:
 </p>
-<pre><code class="java hljs">Countly.instance().user().edit()
-  .setName("Firstname Lastname")
-  .setUsername("nickname")
-  .setEmail("test@test.com")
-  .setOrg("Tester")
-  .setPhone("+123456789")
-  .commit();</code></pre>
+<pre><code class="java">Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.NAME, "Firstname Lastname");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.EMAIL, "test@test.com");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.USERNAME, "nickname");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.ORGANIZATION, "Tester");
+Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PHONE, "+123456789");
+Countly.instance().userProfile().save();
+</code></pre>
 <h2 id="h_01HD3M6CQAF1H7T6SWVHW1AWS9">Setting User Picture</h2>
 <p>You can either upload a profile picture by this call:</p>
-<pre>Countly.instance().user().edit().setPicture(byte[])</pre>
+<pre>Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PICTURE, BYTE_IMAGE)</pre>
 <p>
   or you can provide a picture url or local file path to set (only JPG, JPEG files
   are supported by the Java SDK):
 </p>
-<pre>Countly.instance().user().edit().setPicturePath(String)</pre>
+<pre>Countly.instance().userProfile().setProperty(PredefinedUserPropertyKeys.PICTURE_PATH, String)</pre>
 <h2 id="h_01HD3ME354FKRADNYDMRQWK7WE">User Property Modificators</h2>
 <p>Here is the list of property modificators:</p>
-<pre><code class="java">//set a custom property
-Countly.instance().user().edit().set("money", 1000);
-//increment age by 1
-Countly.instance().user().edit().inc("money", 50);
+<pre><code lang="java">//set a custom property
+Countly.instance().userProfile().setProperty("money", 1000);
+//increment money by 50
+Countly.instance().userProfile().increment("money", 50);
 //multiply money with 2
-Countly.instance().user().edit().mul("money", 2);
+Countly.instance().userProfile().multiply("money", 2);
 //save maximum value
-Countly.instance().user().edit().max("score", 400);
+Countly.instance().userProfile().saveMax("score", 400);
 //save minimum value
-Countly.instance().user().edit().min("time", 60);
+Countly.instance().userProfile().saveMin("time", 60);
 //add property to array which can have unique values
-Countly.instance().user().edit().pushUnique("currency", "dollar");
+Countly.instance().userProfile().pushUnique("currency", "dollar");
 //add property to array which can be duplicate
-Countly.instance().user().edit().push("currency", "dollar");
+Countly.instance().userProfile().push("currency", "dollar");
 //remove value from array
-Countly.instance().user().edit().pull("currency","dollar");
-//commit changes
-Countly.instance().user().edit().commit();</code></pre>
+Countly.instance().userProfile().pull("currency","dollar");
+//set only a value
+Countly.instance().userProfile().setOnce("bank","TestBank");
+//save changes
+Countly.instance().userProfile().save();</code></pre>
 <h1 id="h_01HD1H1HNJVYBP0PNP0YSMFZY6">Security and Privacy</h1>
 <h2 id="h_01HD1H1HNJM6EBH29WE8AJSF80">Parameter Tamper Protection</h2>
 <p>
@@ -967,12 +1147,12 @@ Countly.instance().user().edit().commit();</code></pre>
     </div>
   </li>
   <li>
-    <strong>enrollABOnRCDownload()&nbsp;</strong>- Enables A/B tests enrollment
-    when remote config keys downloaded
+    <strong>enrollABOnRCDownload()</strong> - Enables A/B tests enrollment when
+    remote config keys downloaded
   </li>
   <li>
-    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)&nbsp;</strong>-
-    Register a callback to be called when remote config values is downloaded
+    <strong>remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)</strong>
+    - Register a callback to be called when remote config values is downloaded
   </li>
   <li>
     <strong>enableRemoteConfigValueCaching()</strong> - Enable caching of remote
@@ -982,7 +1162,37 @@ Countly.instance().user().edit().commit();</code></pre>
     <strong>enableRemoteConfigAutomaticTriggers()</strong> - Enable automatic
     download of remote config values on triggers
   </li>
+  <li>
+    <strong>disableLocation() </strong>- Disable location tracking
+  </li>
+  <li>
+    <strong>setLocation(String countryCode, String city, String geoLocation, String ipAddress)</strong>
+    - Set location parameters to be sent with session begin
+  </li>
+  <li>
+    <strong>setMaxBreadcrumbCount(int maxBreadcrumbCount)</strong> - To change
+    maximum limit of crash breadcrumb
+  </li>
+  <li>
+    <strong>disableUnhandledCrashReporting()</strong> - To disable unhandled
+    crash reporting
+  </li>
 </ul>
+<h2 id="h_01HNFH7ZFRE3CKRCTZE6EZWM86">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-java/tree/master/app-java">app-java</a>
+  module contains example use cases for the Countly Java SDK
+</p>
+<p>
+  -
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/Example.java">Example</a>
+  is a java application that covers most of the functionalities.
+</p>
+<p>
+  -
+  <a href="https://github.com/Countly/countly-sdk-java/blob/master/app-java/src/main/java/ly/count/java/demo/BackendModeExample.java">BackendModeExample</a>
+  is a java application of an example usage of the BackendMode
+</p>
 <h2 id="h_01HD3J87NT4XC7YQ66JQ7HFTHF">SDK storage and Requests</h2>
 <h3 id="h_01HAXVT7C5GTQ0D0HRCZ83J0VQ">Setting Event Queue Threshold</h3>
 <p>
@@ -1106,12 +1316,11 @@ Countly.init(targetFolder, config);</code></pre>
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;() {{
-  put("Time Spent", "60");
-  put("Retry Attempts", "60");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segment = new HashMap&lt;String, String&gt;();
+segment.put("Time Spent", "60");
+segment.put("Retry Attempts", "60");
 
-Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
+Countly.instance().backendM().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'key' both are mandatory. The event will
@@ -1139,13 +1348,12 @@ Countly.backendMode().recordEvent("device-id", "Event Key", 1, 10.5, 5, segment,
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("visit", "1");
-  put("segment", "Windows");
-  put("start", "1");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("visit", "1");
+segmentation.put("segment", "Windows");
+segmentation.put("start", "1");
 
-Countly.backendMode().recordView("device-id", "SampleView", segmentation, 1646640780130L);
+Countly.instance().backendM().recordView("device-id", "SampleView", segmentation, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note: </strong>Device ID and 'name' both are mandatory. The view will
@@ -1161,7 +1369,7 @@ Countly.backendMode().recordView("device-id", "SampleView", segmentation, 164664
   </li>
   <li>
     <strong>message -</strong>
-    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span><span></span>
+    <span>This is the main property which would be the identifier/name for that event. It should not be null or empty.</span>
   </li>
   <li>
     <strong>stacktrace -</strong>
@@ -1179,37 +1387,33 @@ Countly.backendMode().recordView("device-id", "SampleView", segmentation, 164664
     <span data-preserver-spaces="true">It is time in milliseconds. It is not mandatory, and you may set it to null.</span>
   </li>
 </ul>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("login page", "authenticate request");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("login page", "authenticate request");
 
-Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Windows 11");
-  put("_os_version", "11.202");
-  put("_logs", "main page");
-}};
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;();
+crashDetails.put("_os", "Windows 11");
+crashDetails.put("_os_version", "11.202");
+crashDetails.put("_logs", "main page");
 
-Countly.backendMode().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
+Countly.instance().backendM().recordException("device-id", "message", "stacktrace", segmentation, crashDetails, null);
 </code></pre>
 <p>
   You may also pass an instance of an exception instead of the message and the
   stack trace to record a crash.
 </p>
 <p>For example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;() {{
-  put("login page", "authenticate request");
-}};
+<pre><code class="java">Map&lt;String, String&gt; segmentation = new HashMap&lt;String, String&gt;();
+segmentation.put("login page", "authenticate request");
 
-Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Windows 11");
-  put("_os_version", "11.202");
-  put("_logs", "main page");
-}};
+Map&lt;String, String&gt; crashDetails = new HashMap&lt;String, String&gt;();
+crashDetails.put("_os", "Windows 11");
+crashDetails.put("_os_version", "11.202");
+crashDetails.put("_logs", "main page");
 
 try {
   int a = 10 / 0;
 } catch(Exception e) {
-  Countly.backendMode().recordException("device-id", e, segmentation, crashDetails, null);
+  Countly.instance().backendM().recordException("device-id", e, segmentation, crashDetails, null);
 }</code></pre>
 <p>
   <strong>Note: </strong>Throwable is a mandatory parameter, the crash will not
@@ -1236,20 +1440,18 @@ try {
   </li>
 </ul>
 <p>Example:</p>
-<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;() {{
-  put("_os", "Android");
-  put("_os_version", "10");
-  put("_app_version", "1.2");
-}};
+<pre><code class="java hljs">Map&lt;String, String&gt; metrics = new HashMap&lt;String, String&gt;();
+metrics.put("_os", "Android");
+metrics.put("_os_version", "10");
+metrics.put("_app_version", "1.2");
 
-Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;() {{
-  put("ip_address", "192.168.1.1");
-  put("city", "Lahore");
-  put("country_code", "PK");
-  put("location", "31.5204,74.3587");
-}};
+Map&lt;String, String&gt; location = new HashMap&lt;String, String&gt;();
+location.put("ip_address", "192.168.1.1");
+location.put("city", "Lahore");
+location.put("country_code", "PK");
+location.put("location", "31.5204,74.3587");
 
-Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130L);
+Countly.instance().backendM().sessionBegin("device-id", metrics, location, 1646640780130L);
 </code></pre>
 <p>
   <strong>Note:</strong> In above example '_os', '_os_version' and '_app_version'
@@ -1276,11 +1478,11 @@ Countly.backendMode().sessionBegin("device-id", metrics, location, 1646640780130
   <span data-preserver-spaces="true">Session update:</span>
 </p>
 <pre><code class="java hljs">double duration = 60;
-Countly.backendMode().sessionUpdate("device-id", duration, null);
+Countly.instance().backendM().sessionUpdate("device-id", duration, null);
 </code></pre>
 <p>Session end:</p>
 <pre><code class="java hljs">double duration = 20;
-Countly.backendMode().sessionEnd("device-id", duration, 1223456767L);
+Countly.instance().backendM().sessionEnd("device-id", duration, 1223456767L);
 </code></pre>
 <p>
   <strong>Note:</strong> Java SDK automatically sets the duration to 0 if you have
@@ -1320,10 +1522,10 @@ userDetail.put("hair", "black");
 userDetail.put("height", 5.9);
 userDetail.put("marks", "{$inc: 1}");
 
-Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
-  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span><span></span>
+  <span>You may also perform certain manipulations to your custom property values, such as incrementing the current value on a server by a certain amount or storing an array of values under the same property.</span>
 </p>
 <p>
   <span>For example:</span>
@@ -1332,7 +1534,7 @@ Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
 userDetail.put("fav-colors", "{$push: black}");
 userDetail.put("marks", "{$inc: 1}");
 
-Countly.backendMode().recordUserProperties("device-id", userDetail, 0);
+Countly.instance().backendM().recordUserProperties("device-id", userDetail, 0);
 </code></pre>
 <p>
   The keys for predefined <span>modification operation</span>s are as follows:
@@ -1419,7 +1621,7 @@ requestData.put("device_id", "device-id-2");
 requestData.put("timestamp", "1646640780130");
 requestData.put("key-name", "data");
 
-Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780130L);
+Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 1646640780130L);
 </code></pre>
   <p>
     <span data-preserver-spaces="true">Values in the 'requestData' map will override the base request's respective values. In the above example, 'timestamp' and 'device_id' will be overridden by their respective values in the base request.</span>
@@ -1431,7 +1633,7 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
   <p>
     <span>In case you would like to get the size of the request queue, you can use:</span>
   </p>
-  <pre><code class="java hljs">int queueSize = Countly.backendMode().getQueueSize();</code></pre>
+  <pre><code class="java hljs">int queueSize = Countly.instance().backendM().getQueueSize();</code></pre>
   <p>
     It will return the number of requests in the memory request queue.
   </p>
@@ -1447,76 +1649,14 @@ Countly.backendMode().recordDirectRequest("device-id-1", requestData, 1646640780
   </h2>
   <p>
     The data that SDKs gather to carry out their tasks and implement the necessary
-    functionalities is mentioned in the following description. It is saved locally
-    before any of it is transferred to the server.
-  </p>
-  <p>
-    When sending any requests to the server, the followings are sent in addition
-    of the main data:
-  </p>
-  <ul>
-    <li>Timestamp of when the request is created as 'timestamp'</li>
-    <li>Current hour as 'hour'</li>
-    <li>Current day of week as 'dow'</li>
-    <li>Current timezone as 'tz'</li>
-    <li>SDK version as 'sdk_version'</li>
-    <li>SDK name as 'sdk_name'</li>
-    <li>App version as 'av' if exists</li>
-    <li>Remaining requests in the queue as 'rr'</li>
-  </ul>
-  <p>
-    If sessions are used then it would record the session start time, end time
-    and duration
-  </p>
-  <p>
-    If sessions are used then also device metrics are collected which contains:
-  </p>
-  <ul>
-    <li>Device name as '_device'</li>
-    <li>OS name as '_os'</li>
-    <li>OS version as '_os_version'</li>
-    <li>Screen resolution as '_resolution'</li>
-    <li>Locale as '_locale'</li>
-    <li>App version as '_app_version'</li>
-  </ul>
-  <p>
-    If feedback widgets are used, it will collect the users input and time of
-    the widgets completion
+    functionalities is mentioned in
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
+    It is saved locally before any of it is transferred to the server.
   </p>
   <p>
     When events are recorded, the time of when the event is recorded, will be
     collected
   </p>
-  <p>
-    If the consent feature is used, the SDK will collect and send what consent
-    has been given to the SDK or removed from the SDK
-  </p>
-  <p>
-    If crash tracking is enabled, it will collect the following information at
-    the time of the crash:
-  </p>
-  <ul>
-    <li>Device name as '_device'</li>
-    <li>OS name as '_os'</li>
-    <li>OS version as '_os_version'</li>
-    <li>Screen resolution as '_resolution'</li>
-    <li>App version as '_app_version'</li>
-    <li>Device manufacturer as '_manufacture'</li>
-    <li>CPU name as '_cpu'</li>
-    <li>OpenGL versin as '_opengl'</li>
-    <li>Ram available as '_ram_current'</li>
-    <li>Ram total as '_ram_total'</li>
-    <li>Available disk space as '_disk_current'</li>
-    <li>Total disk space as '_disk_total'</li>
-    <li>Battery level as '_bat'</li>
-    <li>Device running time as '_run'</li>
-    <li>Device orientation as '_orientation'</li>
-    <li>If network connection as '_online'</li>
-    <li>If device is muted as '_muted'</li>
-    <li>Error stack trace as '_error'</li>
-    <li>Name of error as '_name'</li>
-    <li>Whether or not is error fatal as '_nonfatal'</li>
-  </ul>
   <p>
     Any other information like data in custom events, location, user profile
     information or other manual requests depends on what the developer decides
