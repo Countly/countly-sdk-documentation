@@ -73,20 +73,6 @@
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01H930GAQ5BDPD0XHVV8RSR0XK">Enable logging</h2>
-<p>
-  If logging is enabled, then our SDK will print out debug messages about its internal
-  state and encountered problems.
-</p>
-<p>
-  We advise doing this while implementing Countly features in your application.
-</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-config.setLoggingEnabled(true);</code></pre>
-<p>
-  For more information on where to find the SDK logs you can check the documentation
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
-</p>
 <h2 id="h_01H930GAQ5TH1KDYE8FFHE3NYC">SDK Data Storage</h2>
 <p>SDK data storage locations are platform-specific:</p>
 <ul>
