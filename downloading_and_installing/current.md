@@ -682,6 +682,8 @@
 </p>
 <h2 id="h_01H9QCP8G8QD0W9EMHT11F2N8P">Java SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/28213661170073" target="_blank" rel="noopener">Version 23.10</a>
+  -
   <a href="/hc/en-us/articles/25060385136921" target="_blank" rel="noopener">Version 23.8</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/23736736982425/" target="_blank" rel="noopener">Version 22.09</a>
