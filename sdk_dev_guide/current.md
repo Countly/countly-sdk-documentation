@@ -2215,27 +2215,29 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <p>
-  <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].&nbsp;</span><span></span>
+  <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].</span>
 </p>
 <h2 id="01H821RTQ6567XRJNZ6A13JYVE">Feedback Widgets</h2>
 <p>
   The Feedback Widgets feature is a way to gather insights and opinions from users.
   Showing Feedback Widgets or performing any of the Feedback Widget-related features
-  requires that&nbsp; <code>feedback</code> consent is given. Also, before any
-  Feedback Widgets can be shown, they need to be created in the Countly Dashboard.
+  requires <code>feedback</code> consent.
 </p>
 <p>
-  The Feedback Widgets API provides access to three primary types of widgets:
+  Before any Feedback Widgets can be shown, they need to be created in the Countly
+  Dashboard.
+</p>
+<p>
+  The Feedback Widgets API provides access to three types of widgets:
 </p>
 <ul>
   <li>
-    <strong>Surveys: </strong>Flexibility in questions, supporting various answer
-    formats such as multiple-choice, textbox, and rating scales.
+    <strong>Surveys: </strong>A list of questions supporting various answer formats
+    such as multiple-choice, textbox, and rating scales.
   </li>
   <li>
-    <strong>Ratings: </strong>Utilizes a simple 1-5 scale and allows feedback
-    through emojis, thumbs, etc. Supports additional features like leaving comments
-    or initiating contact via email.
+    <strong>Ratings: </strong>Collects user feedback using a 1-5 rating scale.
+    Has an option to leave a comment, and lea to leave an email for future contact.
   </li>
   <li>
     <strong>NPS (Net Promoter Score): </strong>Questions on a scale from 0-10,
@@ -2247,35 +2249,29 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   This is also an alternative method to use rating widgets, which are also now
   included in this newer SDK API. Refer to the
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings" target="_blank" rel="noopener noreferrer">Feedback User Guide</a>
-  for more detailed information about Feedback Widgets.&nbsp;
+  for more detailed information about Feedback Widgets.
 </p>
-<p>
-  This feature facilitates the integration of feedback mechanisms through three
-  distinct methods. In all three approaches, the initial step involves retrieving
-  the list of eligible widgets. These methods are:
-</p>
+<p>Feedback widgets can be used through three methods:</p>
 <ul>
   <li>
     <p>
-      <strong>Automatic Presentation: </strong>Displaying feedback widgets
-      based on predefined criteria, requiring 2 calls, one for retrieving the
-      widget list and one for the call.
+      <strong>Automatic server rendered widget: </strong>The server rendered
+      widget is inserted in the web page or the UI, using a WebView, by the
+      SDK.
     </p>
   </li>
   <li>
     <p>
-      <strong>Manual Presentation with Data Retrieval: </strong>Method for
-      the specific cases developer wants to use the native UI. Instead of the
-      Automatic way this requires another call to request all the information
-      related to the chosen widget&nbsp;
+      <strong>Manually rendered and reported widget: </strong>The client app
+      builds a custom UI itself and then the results are reported to the SDK
+      manually. Used in cases where the developer wants to use a custom UI.
     </p>
   </li>
   <li>
     <p>
-      <strong>Manual Presentation in a Predefined Web View:&nbsp;</strong>Method
-      for the specific cases in which the developer wants to use custom UI
-      created instead of our WebView solution. This also requires another call
-      to request all the information related to the chosen widget&nbsp;
+      <strong>Server rendered widget in a custom WebView</strong>The SDK builds
+      a required url to be used in a webView. This then would be used in the
+      WebView of the client app choosing.
     </p>
   </li>
 </ul>
