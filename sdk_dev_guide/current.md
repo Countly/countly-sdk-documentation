@@ -2281,9 +2281,10 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   The first step to showing a feedback widget is getting a list of the available
   widgets for this device ID. That would be done with a function named similar
   to <code>getAvailableFeedbackWidgets</code>. That call takes a callback. That
-  callback returns 2 values. The second is the error string. The first is a list
-  of available widget objects (or any other mechanism that allows grouping this
-  data). If a class is used for grouping, it should be named similar to
+  callback returns 2 values. The first is a list of available widget objects (or
+  any other mechanism that allows grouping this data). The second is the error
+  string.<br>
+  If a class is used for grouping, it should be named similar to
   <code>CountlyPresentableFeedback</code>. That object contains 4 core values (widget
   id (_id), widget type (type), widget name (name), tags (tg)), and 1 optional
   value (UI info (appearance)). Potential type values are currently "nps" "survey"
@@ -2301,7 +2302,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   The server side will determine if there are any valid surveys for this device
-  ID and return something similar to:
+  ID and return something similar to the following:
 </p>
 <pre>{
   "result":[
@@ -2342,20 +2343,21 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   }</pre>
 <p>
   <code>result</code> contains a JSON Array of widget Objects. The _id is used
-  to construct the web view URL. Tags (the <code>tg</code> key) returns an Array
-  of String values. This is information provided by the creator of the widget and
-  can be used for various reasons. But the main goal is to provide versioning or
-  providing a whitelist of domains to present the widget and its implementation
-  is left to the developer.
+  to construct the webView URL. Tags (the <code>tg</code> key) returns an Array
+  of String values. This information is provided by the widget's creator and can
+  be used for various reasons. However, the main goal is to provide versioning
+  or a whitelist of domains to present the widget, and its implementation is left
+  to the developer.
 </p>
 <p>
   The idea is that the developer would retrieve this list of potential widgets
-  and decide any further action he would want to make with them with respect to
+  and decide any further action he would want to take with them with respect to
   the information provided.
 </p>
-<h3 id="01HPPGR7V2MHCREAR3K79SKMS5">Automatic Feedback Widgets</h3>
+<h3 id="01HPPGR7V2MHCREAR3K79SKMS5">Constructing the webView URL</h3>
+<h4 id="h_01HQ0B8QQKEX0A9FS8975JXGE5">Automatic Feedback Widgets</h4>
 <p>
-  If the developer has decided on a widget to present, he would call
+  If the developer has decided on a widget to present, they would call
   <code>presentFeedbackWidget</code> method and pass the chosen widget (<code>CountlyFeedbackWidget</code>)
   object.
 </p>
@@ -2380,75 +2382,32 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 //web SDK would also pass "origin"
 //web SDK also passes "widget_v=Web"</pre>
 <p>
-  The created URL contains params for: widget_id, device_id, app_key, sdk_version,
-  sdk_name, app_version, platform, origin (for web SDK).
+  The created URL contains params for widget_id, device_id, app_key, sdk_version,
+  sdk_name, app_version, platform, and origin (for web SDK).
 </p>
 <p>
   Even if parameter tamper protection is enabled, this URL
   <strong>does not</strong> use the checksum param!
 </p>
 <p>
-  That URL should then be provided to a webview and shown as an alert dialog similar
+  That URL should then be provided to a webView and shown as an alert dialog similar
   to the rating widget.
 </p>
+<h4 id="h_01HQ0B9EYBHPSZR9VVW6DPYZ33">Manual Feedback Widgets</h4>
 <p>
-  It should be possible to provide 2 optional callbacks to the
-  <code>presentFeedbackWidget</code> call:
-</p>
-<ol>
-  <li>
-    a callback (potentially named <code>widgetShown</code>) that is called when
-    the widget is successfully presented (currently that would mean that there
-    were no issues/errors while trying to show the dialog with the webView).
-    Also currently, we don't verify if the webView is showing a working widget.
-    If there would be any issues during the display of the widget, this callback
-    would return an error message.
-  </li>
-  <li>
-    a callback (potentially named <code>widgetClosed</code>) that is called when
-    the widget/dialog is closed (for mobile SDK's and for the web SDK that would
-    mean slightly different things, but the main point is to have the host app/site
-    notified of when the "feedback process" is over). If there would be any issues
-    during the closing of the widget, this callback would return an error message.
-  </li>
-</ol>
-<h3 id="01H821RTQ6VMWG2GBHZHBYZ4DB">Manual Feedback Widgets</h3>
-<p>Manual feedback widget reporting has 3 steps:</p>
-<ol>
-  <li>
-    Retrieve a list of available widgets and pick one. This is the same initial
-    step with the automatic feedback widgets and reuses the same call to retrieve
-    them.
-  </li>
-  <li>
-    Download widget data from the server (for that single widget with the information
-    that has been retrieved from the previous step).
-  </li>
-  <li>
-    Report the feedback result (for that single widget according to that data
-    from the previous step).
-  </li>
-</ol>
-<p>
-  As mentioned before, the first step uses
-  <code>getAvailableFeedbackWidgets</code> function, which is also used for automatic
-  feedback widgets. After inspecting the returned list, the developer would select
-  one widget he would want to report from the list of widgets, and then he would
-  use this as the <code>CountlyFeedbackWidget</code> object.
+  The developer uses the <code>CountlyFeedbackWidget</code> object from the retrieved
+  list of eligible widgets and calls the <code>getFeedbackWidgetData</code> function.
+  This function call accepts the <code>CountlyFeedbackWidget</code> object and
+  a callback. That callback returns 2 values - the retrieved
+  <code>CountlyWidgetData</code> JSON and an error message string. The string is
+  used in case there are some issues with this call.
 </p>
 <p>
-  The second step uses the <code>CountlyFeedbackWidget</code> object from the previous
-  step and calls <code>getFeedbackWidgetData</code> function. This function call
-  accepts the <code>CountlyFeedbackWidget</code> object and a callback. That callback
-  returns 2 values - the retrieved <code>CountlyWidgetData</code> JSON and an error
-  message string. The string is used in case there are some issues with this call.
-</p>
-<p>
-  The returned <code>CountlyWidgetData</code> JSON is the response from making
-  a server request. That request is done outside of the request queue (so a direct
-  request). Using the <strong>widget ID</strong> and
-  <strong>widget type</strong> information from the provided
-  <code>CountlyFeedbackWidget</code> object, we construct a URL similar to:
+  Returned <code>CountlyWidgetData</code> JSON is the response from making a server
+  request. That request is done outside the request queue (a direct request). Using
+  the <strong>widget ID</strong> and <strong>widget type</strong> information from
+  the provided <code>CountlyFeedbackWidget</code> object, we construct a URL similar
+  to:
 </p>
 <pre>//for nps
 /o/surveys/nps/widget?widget_id=[widgetID]&amp;shown=1&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]
@@ -2462,39 +2421,148 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   Performing a request on that URL should return JSON describing the widget, which
   should then be returned as <strong>a parsed JSON object</strong>.
 </p>
+<h3 id="h_01HQ1DNQK44EXDC5RD465GB1NE">Automatic Feedback Widgets</h3>
+<p>Automatic feedback widget reporting has 3 steps:</p>
+<ol>
+  <li>
+    Retrieve a list of available widgets and pick one, as mentioned above. The
+    retrieved list returns a list of widget objects containing essential information
+    such as widget ID, type, name, and tags.
+  </li>
+  <li>
+    Constructing the webView URL. Once the list of available widgets is obtained,
+    the next step involves constructing the URL for presenting the selected widget
+    in a webView. The URL is crafted using parameters like widget ID, device
+    ID, app key, and more.&nbsp;
+  </li>
+  <li>Presentation and callbacks.</li>
+</ol>
 <p>
-  After this step, the developer has all the information he needs to create the
-  widget and all the information required to prepare a response (namely the
-  <code>widgetResult</code> object) to "report" the filled widget.
+  As explained in the 'Retrieving the List of Eligible Widgets' section, the first
+  step uses the <code>getAvailableFeedbackWidgets</code> function to communicate
+  with the Countly server and obtain a list of available widgets based on the specific
+  device. This list contains information about each widget, such as its ID, type,
+  name, and tags.
+</p>
+<p>
+  Once the list is retrieved and the developer decides upon the widget they are
+  going to use, as explained in the 'Constructing the webView URL' section, they
+  would call <code>presentFeedbackWidget</code> method and pass the chosen widget
+  (<code>CountlyFeedbackWidget</code>) object.
+</p>
+<p>
+  It should be possible to provide 2 optional callbacks to the
+  <code>presentFeedbackWidget</code> call:
+</p>
+<ol>
+  <li>
+    a callback (potentially named <code>widgetShown</code>) that is called when
+    the widget is successfully presented (currently, that would mean that there
+    were no issues/errors while trying to show the dialog with the webView).
+    Also, we aren't verifying whether the webView shows a working widget. If
+    there are any issues during the display of the widget, this callback will
+    return an error message.
+  </li>
+  <li>
+    a callback (potentially named <code>widgetClosed</code>) that is called when
+    the widget/dialog is closed (for mobile SDKs and for the web SDK that would
+    mean slightly different things, but the main point is to have the host app/site
+    notified of when the "feedback process" is over). If there would be any issues
+    during the closing of the widget, this callback will return an error message.
+  </li>
+</ol>
+<p>
+  An example way of using the Automatic Feedback Widgets would look something like
+  this:
+</p>
+<pre><code class="language-javascript">
+function fetchAndDisplayWidget() {
+  // Fetch user's feedback widgets from the server (must have been created at server first)
+  Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
+}
+
+// Callback function to execute after fetching the feedback widgets
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+  if (err) { // error handling
+    console.log(err);
+    return;
+  }
+
+  // Decide which widget to show. Here the first rating widget is selected.
+  const widgetType = "rating";
+  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
+  if (!countlyFeedbackWidget) {
+    console.error(`[Countly] No ${widgetType} widget found`);
+    return;
+  }
+
+  // Define the element ID and the class name (optional)
+  const selectorId = "";
+  const selectorClass = "";
+
+  // Define the segmentation (optional)
+  const segmentation = { page: "home_page" };
+
+  // Display the feedback widget to the end user
+  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+}
+        </code></pre>
+<h3 id="01H821RTQ6VMWG2GBHZHBYZ4DB">Manual Feedback Widgets</h3>
+<p>Manual feedback widget reporting has 3 steps:</p>
+<ol>
+  <li>
+    Retrieve a list of available widgets and pick one. This is the exact same
+    step with automatic feedback widgets. Re-uses the same call to retrieve them.
+  </li>
+  <li>
+    Download widget data from the server (for that single widget with the information
+    that has been retrieved from the previous step).
+  </li>
+  <li>
+    Report the feedback result (for that single widget according to the data
+    from the previous step).
+  </li>
+</ol>
+<p>
+  As mentioned before, the first step uses
+  <code>getAvailableFeedbackWidgets</code> function, which is also used for automatic
+  feedback widgets. After inspecting the returned list, the developer would select
+  one widget he would want to report from the list of widgets, and then he would
+  use this as the <code>CountlyFeedbackWidget</code> object.
+</p>
+<p>
+  After constructing the webView URL, the developer has all the information he
+  needs to create the widget and all the information required to prepare a response
+  (namely the <code>widgetResult</code> object) to "report" the filled widget.
 </p>
 <p>
   The developer would look at this:
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually</a>
   document to better understand how to interpret the widget type and data to fill
   out the <code>widgetResult</code> object. Depending on the type of the widget
-  being reported this object would have different key/value pairs.
+  being reported, this object would have different key/value pairs.
 </p>
 <p>
-  At the third step, the developer would call the
+  In the third step, the developer would call the
   <code>reportFeedbackWidgetManually</code> function to report the result. This
-  call requires 3 fields/values/parameters: <code>CountlyFeedbackWidget</code>
-  object from the first step, <code>CountlyWidgetData</code> object from the second
-  step and the ,<code>widgetResult</code> object that has been formed and provided
-  by the developer. If the <code>widgetResult</code> is set to "null" then that
-  means that the widget was closed without filling it out (this still requires
-  an event to be created).
+  call requires 3 fields/values/parameters: the
+  <code>CountlyFeedbackWidget</code> object from the first step, the
+  <code>CountlyWidgetData</code>object from the second step, and the
+  <code>widgetResult</code> object that has been formed and provided by the developer.
+  If the <code>widgetResult</code> is set to "null" then that means that the widget
+  was closed without filling it out (this still requires an event to be created).
 </p>
 <p>
-  <code>CountlyFeedbackWidget</code> object is used for obtaining widget id and
+  <code>CountlyFeedbackWidget</code> object is used for obtaining widget ID and
   type, while <code>CountlyWidgetData</code> object is used to verify the correctness
-  of the reported <code>widgetResult</code>. For now, this second step is optional,
-  but might become mandatory in the future, therefore both fields should be required
+  of the reported <code>widgetResult</code>. For now, this second step is optional
+  but might become mandatory in the future. Therefore, both fields should be required
   from the start.
 </p>
 <p>
   The reported widget result should be recorded as an <strong>event</strong> and
   must be put into the event queue. This event must have the "[CLY]_nps"(for nps),
-  "[CLY]_survey"(for survey) or "[CLY]_star_rating"(for rating) key respective
+  "[CLY]_survey"(for survey), or "[CLY]_star_rating"(for rating) key respective
   to the type of the reported widget. That event should have the following segmentation:
 </p>
 <ul>
@@ -2523,9 +2591,54 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   After this event has been added to the event queue, the event queue should be
   forcefully combined into a request, even if the event count is under the threshold.
-  This way the event is sent as soon as possible to the server and marks the widget
+  This way, the event is sent as soon as possible to the server and marks the widget
   as "completed" for that specific user.
 </p>
+<pre><code class="language-javascript">
+function getFeedbackWidgetListAndDoThings(widgetType) {
+  // get the widget list
+  Countly.get_available_feedback_widgets(
+    // callback function, 1st param is the feedback widget list
+    function (feedbackList, err) {
+      if (err) { // error handling
+        console.log(err);
+        return;
+      }
+
+      // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
+      const countlyFeedbackWidget = feedbackList.find(widget = widget.type === widgetType);
+      if (!countlyFeedbackWidget) {
+        console.error(`[Countly] No ${widgetType} widget found`);
+        return;
+      }
+
+      // Get data with the widget object
+      Countly.getFeedbackWidgetData(countlyFeedbackWidget,
+        // callback function, 1st param is the feedback widget data
+        function (feedbackData, err) {
+          if (err) { // error handling
+            console.error(err);
+            return;
+          }
+
+          const CountlyWidgetData = feedbackData;
+          // record data according to the widget type
+          if (CountlyWidgetData.type === 'nps') {
+            Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
+          } else if (CountlyWidgetData.type === 'survey') {
+            var widgetResponse = {};
+            // form the key/value pairs according to data
+            widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
+            Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, widgetResponse);
+          } else if (CountlyWidgetData.type === 'rating') {
+            Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
+          }
+        }
+      );
+    }
+  );
+}
+        </code></pre>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
