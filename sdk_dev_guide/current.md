@@ -2219,17 +2219,66 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h2 id="01H821RTQ6567XRJNZ6A13JYVE">Feedback Widgets</h2>
 <p>
-  Showing feedback widgets or performing any of the feedback widget related features
-  require that the <code>feedback</code> consent is given.
+  The Feedback Widgets feature is a way to gather insights and opinions from users.
+  Showing Feedback Widgets or performing any of the Feedback Widget-related features
+  requires that&nbsp; <code>feedback</code> consent is given. Also, before any
+  Feedback Widgets can be shown, they need to be created in the Countly Dashboard.
 </p>
 <p>
-  This API gives access to 3 kinds of widgets, namely surveys, NPS and rating.
+  The Feedback Widgets API provides access to three primary types of widgets:
+</p>
+<ul>
+  <li>
+    <strong>Surveys: </strong>Flexibility in questions, supporting various answer
+    formats such as multiple-choice, textbox, and rating scales.
+  </li>
+  <li>
+    <strong>Ratings: </strong>Utilizes a simple 1-5 scale and allows feedback
+    through emojis, thumbs, etc. Supports additional features like leaving comments
+    or initiating contact via email.
+  </li>
+  <li>
+    <strong>NPS (Net Promoter Score): </strong>Questions on a scale from 0-10,
+    with customization options for follow-up questions.
+  </li>
+</ul>
+<p>
   They are shown using a very similar server API and basically the same processing.
+  This is also an alternative method to use rating widgets, which are also now
+  included in this newer SDK API. Refer to the
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings" target="_blank" rel="noopener noreferrer">Feedback User Guide</a>
+  for more detailed information about Feedback Widgets.&nbsp;
 </p>
 <p>
-  This is also an alternative method to use rating widgets which are now also included
-  in this newer SDK API.
+  This feature facilitates the integration of feedback mechanisms through three
+  distinct methods. In all three approaches, the initial step involves retrieving
+  the list of eligible widgets. These methods are:
 </p>
+<ul>
+  <li>
+    <p>
+      <strong>Automatic Presentation: </strong>Displaying feedback widgets
+      based on predefined criteria, requiring 2 calls, one for retrieving the
+      widget list and one for the call.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Manual Presentation with Data Retrieval: </strong>Method for
+      the specific cases developer wants to use the native UI. Instead of the
+      Automatic way this requires another call to request all the information
+      related to the chosen widget&nbsp;
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Manual Presentation in a Predefined Web View:&nbsp;</strong>Method
+      for the specific cases in which the developer wants to use custom UI
+      created instead of our WebView solution. This also requires another call
+      to request all the information related to the chosen widget&nbsp;
+    </p>
+  </li>
+</ul>
 <h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Automatic Feedback Widgets</h3>
 <p>
   The first step to showing a feedback widget is getting a list of the available
