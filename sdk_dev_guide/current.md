@@ -2255,33 +2255,33 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <ul>
   <li>
     <p>
-      <strong>Automatic server rendered widget: </strong>The server rendered
+      <strong>Automatic Server Rendered Widget: </strong>The server rendered
       widget is inserted in the web page or the UI, using a WebView, by the
       SDK.
     </p>
   </li>
   <li>
     <p>
-      <strong>Manually rendered and reported widget: </strong>The client app
-      builds a custom UI itself and then the results are reported to the SDK
-      manually. Used in cases where the developer wants to use a custom UI.
+      <strong>Manually Rendered and Reported Widget: </strong>The client app
+      builds a custom UI, and the results are reported to the SDK manually.
+      Used in cases where the developer wants to use a custom UI.
     </p>
   </li>
   <li>
     <p>
-      <strong>Server rendered widget in a custom WebView</strong>The SDK builds
-      a required url to be used in a webView. This then would be used in the
-      WebView of the client app choosing.
+      <strong>Server Rendered Widget in a Custom WebView: </strong>The SDK
+      builds a required URL to be used in a WebView. This would then be used
+      in the WebView of the client app of choice.
     </p>
   </li>
 </ul>
-<h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Automatic Feedback Widgets</h3>
+<h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Retrieving the List of Eligible Widgets</h3>
 <p>
   The first step to showing a feedback widget is getting a list of the available
   widgets for this device ID. That would be done with a function named similar
   to <code>getAvailableFeedbackWidgets</code>. That call takes a callback. That
-  callback returns 2 values. The second is the error string. The first one a list
-  of available widget objects (or any other mechanism that allows the grouping
+  callback returns 2 values. The second is the error string. The first one is a
+  list of available widget objects (or any other mechanism that allows the grouping
   of this data). If a class is used for grouping, it should be named similar to
   <code>CountlyPresentableFeedback</code>. That object contains 4 core values (widget
   id (_id), widget type (type), widget name (name), tags (tg)) and 1 optional value
@@ -2343,15 +2343,16 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <code>result</code> contains a JSON Array of widget Objects. The _id is used
   to construct the web view URL. Tags (the <code>tg</code> key) returns an Array
   of String values. This is information provided by the creator of the widget and
-  can be used for various reasons. But the main goal is to provide versioning or
-  providing a whitelist of domains to present the widget and its implementation
-  is left to the developer.
+  can be used for various reasons. However the main goal is to provide versioning
+  or a whitelist of domains to present the widget, and its implementation is left
+  to the developer.
 </p>
 <p>
   The idea is that the developer would retrieve this list of potential widgets
-  and decide any further action he would want to make with them with respect to
+  and decide any further action he would want to take with them with respect to
   the information provided.
 </p>
+<h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Automatic Feedback Widgets</h3>
 <p>
   If the developer has decided on a widget to present, he would call
   <code>presentFeedbackWidget</code> method and pass the chosen widget (<code>CountlyFeedbackWidget</code>)
