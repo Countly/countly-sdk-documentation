@@ -469,20 +469,12 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   <span style="font-weight: 400;">It is possible to use short view names that make use of the simple activity name. This would look like "activityname". To use this functionality, call this before calling init:</span>
 </p>
 <pre><code class="java">config.enableAutomaticViewShortNames();</code></pre>
-<h3 id="h_01HAVQDM5TN6T6FVYTKY855FHM">Automatic View Segmentation</h3>
 <p>
-  It's possible to provide custom segmentation that will be set to all automatically
-  recorded views:
+  If you want to add segmentation to all your automatic views, please have a look
+  <a href="#h_01HHNZ0MAP34090BTSV1KAYD4J">here</a>.
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; globalViewSegmentation = new HashMap&lt;&gt;();
-globalViewSegmentation.put("One", 2);
-globalViewSegmentation.put("Three", 4.44d);
-globalViewSegmentation.put("Five", "Six");
-
-config.setGlobalViewSegmentation(globalViewSegmentation);</code></pre>
-<h3 id="h_01HHNWEKDGQXAB9R2XAN4FBJYZ">Automatic View Exceptions</h3>
 <p>
-  I you want to exclude certain activities from automatic view tracking you can
+  If you want to exclude certain activities from automatic view tracking, you can
   let the SDK know during initialization by passing them in an array:
 </p>
 <pre><code class="java">config.setAutomaticViewTrackingExclusions(Class[] exclusions);</code></pre>
