@@ -460,7 +460,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <p>
   <span style="font-weight: 400;">View tracking is a way to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
-<pre><code class="java">config.setViewTracking(true);</code></pre>
+<pre><code class="java">config.enableAutomaticViewTracking();</code></pre>
 <p>
   The tracked views will use the full activity names which include their package
   name. It would look similar to "com.my.company.activityname".
@@ -468,18 +468,18 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <p>
   <span style="font-weight: 400;">It is possible to use short view names that make use of the simple activity name. This would look like "activityname". To use this functionality, call this before calling init:</span>
 </p>
-<pre><code class="java">config.setAutoTrackingUseShortName(true);</code></pre>
+<pre><code class="java">config.enableAutomaticViewShortNames();</code></pre>
 <h3 id="h_01HAVQDM5TN6T6FVYTKY855FHM">Automatic View Segmentation</h3>
 <p>
   It's possible to provide custom segmentation that will be set to all automatically
   recorded views:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; automaticViewSegmentation = new HashMap&lt;&gt;();
-automaticViewSegmentation.put("One", 2);
-automaticViewSegmentation.put("Three", 4.44d);
-automaticViewSegmentation.put("Five", "Six");
+<pre><code class="java">Map&lt;String, Object&gt; globalViewSegmentation = new HashMap&lt;&gt;();
+globalViewSegmentation.put("One", 2);
+globalViewSegmentation.put("Three", 4.44d);
+globalViewSegmentation.put("Five", "Six");
 
-config.setAutomaticViewSegmentation(automaticViewSegmentation);</code></pre>
+config.setGlobalViewSegmentation(globalViewSegmentation);</code></pre>
 <h3 id="h_01HHNWEKDGQXAB9R2XAN4FBJYZ">Automatic View Exceptions</h3>
 <p>
   I you want to exclude certain activities from automatic view tracking you can
@@ -747,7 +747,7 @@ Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
   present in the system, Countly would try to get HMS token instead. It's possible
   to alter this behaviour by supplying HMS as a preferred provider:
 </p>
-<pre><code class="java">CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION).setProvider(Countly.CountlyMessagingProvider.HMS);
+<pre><code class="java">CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this).setProvider(Countly.CountlyMessagingProvider.HMS);
 CountlyPush.init(countlyConfigPush);</code></pre>
 <h2 id="h_01HAVQDM5T196CVPSG134PEDGQ">Integration</h2>
 <p>
@@ -773,28 +773,28 @@ CountlyPush.init(countlyConfigPush);</code></pre>
         channel.setDescription(getString(R.string.countly_channel_description));
         notificationManager.createNotificationChannel(channel);
       }
-  }
+    }
 
-  Countly.sharedInstance()
-          .setLoggingEnabled(true)
-          .init(this, "http://try.count.ly", "APP_KEY");
-
-  CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION);
-  CountlyPush.init(countlyConfigPush);
-  FirebaseInstanceId.getInstance().getInstanceId()
-    .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
-      @Override
+    CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL)
+      .setLoggingEnabled(true);
+    Countly.sharedInstance().init(config);
+  
+    CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this);
+    CountlyPush.init(countlyConfigPush);
+    FirebaseInstanceId.getInstance().getInstanceId()
+      .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
+        @Override
         public void onComplete(@NonNull Task&lt;InstanceIdResult&gt; task) {
           if (!task.isSuccessful()) {
             Log.w(TAG, "getInstanceId failed", task.getException());
             return;
           }
-
+  
           // Get new Instance ID token
           String token = task.getResult().getToken();
             CountlyPush.onTokenRefresh(token);
           }
-    });
+      });
   }
 }</code></pre>
 <p>
@@ -834,15 +834,15 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   You can set the allowed package and class names for Intent Redirection using
   this call:
 </p>
-<pre><code class="java">ListallowedClassNames = new ArrayList&lt;&gt;();
+<pre><code class="java">List&lt;String&gt; allowedClassNames = new ArrayList&lt;&gt;();
 allowedClassNames.add("MainActivity");
-List allowedPackageNames = new ArrayList&lt;&gt;();
+List&lt;String&gt; allowedPackageNames = new ArrayList&lt;&gt;();
 allowedPackageNames.add(getPackageName());
 
-CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)
+CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this)
   .setAllowedIntentClassNames(allowedClassNames)
   .setAllowedIntentPackageNames(allowedPackageNames);
-CountlyPush.init(countlyConfigPush);&lt;/&gt;&lt;/&gt;</code></pre>
+CountlyPush.init(countlyConfigPush);</code></pre>
 <p>
   Please follow provider-specific instructions for Firebase and / or Huawei Push
   Kit below.
@@ -887,7 +887,7 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   private static final String TAG = "DemoMessagingService";
 
   @Override
-  public void onNewToken(String token) {
+  public void onNewToken(@NotNull String token) {
     super.onNewToken(token);
 
     Log.d("DemoFirebaseService", "got new token: " + token);
@@ -895,7 +895,7 @@ implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
   }
 
   @Override
-  public void onMessageReceived(RemoteMessage remoteMessage) {
+  public void onMessageReceived(@NotNull RemoteMessage remoteMessage) {
     super.onMessageReceived(remoteMessage);
 
     Log.d("DemoFirebaseService", "got new message: " + remoteMessage.getData());
@@ -1151,7 +1151,7 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
 <p>
   <span style="font-weight: 400;">In order to enable this functionality, you will need to call the following function before initializing Countly messaging:</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().setPushIntentAddMetadata(true);</code></pre>
+<pre><code class="java">countlyConfig.setPushIntentAddMetadata(true);</code></pre>
 <p>
   <span style="font-weight: 400;">To access those extras from the intent, you should use these names:</span>
 </p>
@@ -1197,14 +1197,13 @@ ProxyActivity.intentExtraWhichButton</code></pre>
 </p>
 <ul>
   <li>
-    enter&nbsp;<code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into
-    the callback address field, while replacing YOUR_COUNTLY_SERVER with actual
-    server address;
+    enter <code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into the callback
+    address field, while replacing YOUR_COUNTLY_SERVER with actual server address;
   </li>
   <li>
     and enter your certificate in PEM format (only your certificate, without
     the rest of the chain; usually first one in
-    <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).&nbsp;
+    <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).
   </li>
 </ul>
 <p>
@@ -1568,13 +1567,24 @@ Countly.sharedInstance().init(config);</code></pre>
   <span style="font-weight: 400;">This star rating has nothing to do with the Google Play Store ratings and reviews. It is just for getting brief feedback from users to be displayed on the Countly dashboard. If the user dismisses the star-rating dialog without providing a rating, the event will not be recorded.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The star-rating dialog's title, message, and dismiss button text may be customized either through the init function or the <code>SetStarRatingDialogTexts</code></span><span style="font-weight: 400;">&nbsp;function. If you don't want to override one of those values, set it to "null".</span>
+  <span style="font-weight: 400;">The star-rating dialog's title, message, and dismiss button text may be customized through the countly configuration.</span>
 </p>
-<pre><code class="java">//set it through the init function
-Countly.sharedInstance().init(context, serverURL, appKey, deviceID, idMode, starRatingLimit, starRatingCallback, "Custom title", "Custom message", "Custom dismiss button text");
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.setStarRatingSessionLimit(LIMIT);
+config.setStarRatingCallback(new StarRatingCallback() {
+    @Override public void onRate(int rating) {
+        Log.i(Countly.TAG, "Rating: " + rating);
+    }
 
-//Use the designated function:
-Countly.sharedInstance().setStarRatingDialogTexts(context, "Custom title", "Custom message", "Custom dismiss button text");
+    @Override public void onDismiss() {
+        Log.i(Countly.TAG, "Rating dialog was dismissed");
+    }
+});
+config.setStarRatingTextTitle("Custom title");
+config.setStarRatingTextMessage("Custom message");
+config.setStarRatingTextDismiss("Custom dismiss button text");
+
+Countly.sharedInstance().init(config);
 </code></pre>
 <p>
   <span style="font-weight: 400;">The star-rating dialog can be displayed in 2 ways:</span>
@@ -1587,49 +1597,46 @@ Countly.sharedInstance().setStarRatingDialogTexts(context, "Custom title", "Cust
   <span style="font-weight: 400;">In order to display the star-rating dialog manually, you must call the <code>ShowStarRating</code></span><span style="font-weight: 400;">&nbsp;function. Optionally, you may provide the callback functions. There is no limit on how many times the star-rating dialog may be displayed manually.</span>
 </p>
 <pre><code class="java">//show the star rating without a callback
-Countly.sharedInstance().showStarRating(context, null);
+Countly.sharedInstance().ratings().showStarRating(activity, null);
 
 //show the star rating with a callback
-Countly.sharedInstance().showStarRating(context, callback)</code></pre>
+Countly.sharedInstance().ratings().showStarRating(activity, callback)</code></pre>
 <p>
-  <span style="font-weight: 400;">The star-rating dialog will be displayed automatically when an application's session count reaches the specified limit, i.e. once for each new version of the application. This session count limit may be specified upon initial configuration or through the <code>SetAutomaticStarRatingSessionLimit</code></span><span style="font-weight: 400;">&nbsp;function. The default limit is 3. Once the star-rating dialog has been displayed automatically, it will not be displayed again, unless a new app version comes along.</span>
+  <span style="font-weight: 400;">The star-rating dialog will be displayed automatically when an application's session count reaches the specified limit, i.e. once for each new version of the application. This session count limit may be specified upon initial configuration or through the <code>SetAutomaticStarRatingSessionLimit</code></span><span style="font-weight: 400;">&nbsp;function. The default limit is 5. Once the star-rating dialog has been displayed automatically, it will not be displayed again, unless a new app version comes along.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You will need to pass the activity context during init in order to show the automatic star-rating dialog.</span>
+  <span style="font-weight: 400;">You will need to pass the activity context during init to show the automatic star-rating dialog.</span>
 </p>
-<pre><code class="java">//set the rating limit through the init function
+<pre><code class="java">//set the rating limit through the configuration
 int starRatingLimit = 5;
-Countly.sharedInstance().init(context, serverURL, appKey, deviceID, idMode, starRatingLimit, starRatingCallback, starRatingTextTitle, starRatingTextMessage, starRatingTextDismiss);
-
-//set it through the designated function
-Countly.sharedInstance().starRatingLimit(context, 5);</code></pre>
+config.setStarRatingSessionLimit(starRatingLimit);</code></pre>
 <p>
   <span style="font-weight: 400;">If you would like to enable the automatic star-rating function, use the <code>SetIfStarRatingShownAutomatically</code></span><span style="font-weight: 400;">&nbsp;function, it is disabled by default.</span>
 </p>
 <pre><code class="java">//enable automatic star rating
-Countly.sharedInstance().ratings().setIfStarRatingShownAutomatically(true);
+config.setIfStarRatingShownAutomatically(true);
 
 //disable automatic star rating
-Countly.sharedInstance().ratings().setIfStarRatingShownAutomatically(false);</code></pre>
+config.setIfStarRatingShownAutomatically(false);</code></pre>
 <p>
   <span style="font-weight: 400;">If you would like to have the star rating shown only once per app's lifetime and not for each new version, use the <code>SetStarRatingDisableAskingForEachAppVersion</code> function.</span>
 </p>
 <pre><code class="java">//disable star rating for each new version
-Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(true);
+config.setStarRatingDisableAskingForEachAppVersion(true);
 
 //enable star rating for each new version
-Countly.sharedInstance().setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
+config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 <p>
   <span style="font-weight: 400;">The star-rating callback provides functions for two events. <code>OnRate</code></span><span style="font-weight: 400;">&nbsp;is called when the user chooses a rating. <code>OnDismiss</code></span><span style="font-weight: 400;">&nbsp;is called when the user clicks the back button, clicks outside the dialog, or clicks the "Dismiss" button. The callback provided in the init function is only used when displaying the automatic star rating. Only the provided callback will be used for the manual star rating.</span>
 </p>
 <pre><code class="java">StarRatingCallback callback = new StarRatingCallback() {
   @Override
-  public void OnRate(int rating) {
+  public void onRate(int rating) {
     //the user rated the app
   }
 
   @Override
-  public void OnDismiss() {
+  public void onDismiss() {
     //the star rating dialog was dismissed
   }
 };</code></pre>
@@ -2215,7 +2222,7 @@ String[] certificates = new String[] {
     + "PTJ7eeMmX9g/0h"
 };
 
-CountlyConfig countlyConfig = new CountlyConfig(getApplicationContext(), "c4608d0a021b1cef0f8cb031f51200e9cbe48dd4", "https://try.count.ly");
+CountlyConfig countlyConfig = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 countlyConfig.enablePublicKeyPinning(certificates);
 Countly.sharedInstance().init(countlyConfig);</code></pre>
 <p>
@@ -2558,7 +2565,7 @@ config.setHttpPostForced(false);
 <pre><code class="java">HashMap&lt;String, String&gt; customHeaderValues = new HashMap&lt;&gt;();
 customHeaderValues.put("foo", "bar");
 
-Countly.sharedInstance().addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
+config.addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
 <p>
   <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
 </p>
@@ -2664,11 +2671,6 @@ messageReceiver = new BroadcastReceiver() {
 IntentFilter filter = new IntentFilter();
 filter.addAction(CountlyMessaging.getBroadcastAction(getApplicationContext()));
 registerReceiver(messageReceiver, filter);</code></pre>
-<h2 id="h_01HAVQDM5WVPT3XKJ34J970NPA">Checking If onStart Has Been Called</h2>
-<p>
-  <span style="font-weight: 400;">For some applications, there might a use case where the developer would like to check if the Countly SDK <code>onStart</code></span><span style="font-weight: 400;">&nbsp;function has been called. To do so, they may use the following call:</span>
-</p>
-<pre><code class="java">Countly.sharedInstance().hasBeenCalledOnStart();</code></pre>
 <h2 id="h_01HAVQDM5W40D12YAEZ9SW29KK">Ignoring App Crawlers</h2>
 <p>
   <span style="font-weight: 400;">Sometimes server data might be polluted with app crawlers which are not real users, and you would like to ignore them. Starting from the 17.05 release, it's possible to ignore app crawlers by filtering on the app level. The current version does that, using device names. Internally, the Countly SDK has a list of crawler device names. If a device name matches one from that list, no information is sent to the server. </span>
@@ -2856,7 +2858,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   You can download a map of all A/B testing parameters (keys) and variants associated
   with it:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().TestingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
+<pre><code class="java">Countly.sharedInstance().remoteConfig().testingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
 <p>
   You can provide an RCVariantCallback (which is optional) to be called when the
   fetching process ends. Depending on the situation, this would return a RequestResponse
