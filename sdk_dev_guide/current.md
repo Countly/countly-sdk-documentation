@@ -2360,7 +2360,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   Using information from that object, a widget URL will be constructed and presented
-  in a webView or other similar mechanism. That webView will perform further widget
+  in a WebView or other similar mechanism. That WebView will perform further widget
   interactions.
 </p>
 <p>
@@ -2408,7 +2408,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   Once the list is retrieved and the developer decides upon the widget they are
-  going to use, as explained in the 'Constructing the webView URL' section, they
+  going to use, as explained in the 'Constructing the WebView URL' section, they
   would call <code>presentFeedbackWidget</code> method and pass the chosen widget
   (<code>CountlyFeedbackWidget</code>) object.
 </p>
@@ -2420,8 +2420,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <li>
     a callback (potentially named <code>widgetShown</code>) that is called when
     the widget is successfully presented (currently that would mean that there
-    were no issues/errors while trying to show the dialog with the webView).
-    Also, we aren't verifying if the webView is showing a working widget. If
+    were no issues/errors while trying to show the dialog with the WebView).
+    Also, we aren't verifying if the WebView is showing a working widget. If
     there are any issues during the display of the widget, this callback will
     return an error message.
   </li>
