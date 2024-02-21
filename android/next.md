@@ -2230,11 +2230,29 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
 </p>
 <h2 id="h_01HAVQDM5WB4SK90KZYJE329MK">Using Proguard</h2>
 <p>
-  <span style="font-weight: 400;">Proguard obfuscates the Messaging classes. If you use Countly Messaging in your application, you will need to add the following lines to your Proguard rules file:</span>
+  The Countly Android SDK does not require specific proguard exclusions and can
+  be fully obfuscated.
 </p>
-<pre><code class="java">-keep class ly.count.android.sdk.** {*; }</code></pre>
 <p>
-  More info can be found
+  If you are using the Huawei Push Kit for Push Notifications, make sure to add
+  these recommended proguard rules
+</p>
+<pre><code class="java">-ignorewarnings
+-keepattributes *Annotation*
+-keepattributes Exceptions
+-keepattributes InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+-keep class com.huawei.hianalytics.**{*;}
+-keep class com.huawei.updatesdk.**{*;}
+-keep class com.huawei.hms.**{*;}</code></pre>
+<p>
+  For the most up-to-date Huawei Push Kit proguard rules recommendations, have
+  a look
+  <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-Guides/android-config-obfuscation-scripts-0000001050176973">here</a>.
+</p>
+<p>
+  More info about proguard, obfuscation, and code shrinking can be found
   <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">here</a>.
 </p>
 <h1 id="h_01HAVQDM5WSC106V395S088B7G">Other Features and Notes</h1>
