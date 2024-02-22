@@ -1746,12 +1746,9 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 </p>
 <h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
 <p>
-  Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
-  in your application, find
-  <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
-  <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
+  The Android side of the SDK does not require specific proguard exclusions and can
+  be fully obfuscated.
 </p>
-<pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
 <p>
   If Proguard is not already configured then first, enable shrinking and obfuscation
   in the build file. Find <strong class="ib cf">build.gradle</strong> file which
