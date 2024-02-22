@@ -1585,22 +1585,9 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 </p>
 <h2 id="h_01HAVQNJQT8NSPAFD2CXGXET30">Using Proguard</h2>
 <p>
-  If you are using Countly Messaging in your Android application, it is recommended
-  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
-  the instructions below:
+  The Android side of the SDK does not require specific proguard exclusions and can
+  be fully obfuscated.
 </p>
-<ol>
-  <li>
-    <p>
-      Locate the app/proguard-rules.pro file within the /android/app/ folder.
-    </p>
-  </li>
-  <li>
-    <p>Add the following lines to the file:</p>
-  </li>
-</ol>
-<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
-</code></pre>
 <ol start="3">
   <li>
     <p>
