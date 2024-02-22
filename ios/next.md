@@ -2347,7 +2347,22 @@ config.IP = "255.255.255.255"</code></pre>
   <span style="font-weight: 400;">Preferably you should use either location coordinate or city and country code pair.</span>
 </p>
 <h2 id="h_01HAVHW0RR7HA43KJ79QKR9C8S">Disabling Location</h2>
-<p>GeoLocation info can be disabled after init:</p>
+<p>
+  <span>Also during init, you can disable location:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.disableLocation = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.disableLocation = true</code></pre>
+  </div>
+</div>
+<p>GeoLocation info can also be disabled after init:</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
