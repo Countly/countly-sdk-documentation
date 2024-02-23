@@ -3211,7 +3211,7 @@ npm install markdownlint --save-dev
   </li>
   <li>
     <p dir="auto">
-      <strong>wl</strong> - Int&nbsp;
+      <strong>wl</strong> - Int
     </p>
   </li>
   <li>
@@ -3221,7 +3221,7 @@ npm install markdownlint --save-dev
   </li>
   <li>
     <p dir="auto">
-      <strong>em</strong> - String&nbsp;
+      <strong>em</strong> - String
     </p>
   </li>
 </ul>
@@ -3256,11 +3256,11 @@ npm install markdownlint --save-dev
 </p>
 <p>
   This service should initialize the HealthTracker before the completion of the
-  initialization of the SDK.&nbsp;
+  initialization of the SDK.
 </p>
 <p>
   There should be a feature flag to enable/disable health checks. The default value
-  is true.&nbsp;
+  is true.
 </p>
 <p>
   After completion of the SDK initialization, the service should create an instant
