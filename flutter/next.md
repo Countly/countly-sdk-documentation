@@ -1746,10 +1746,6 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 </p>
 <h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
 <p>
-  The Android side of the SDK does not require specific proguard exclusions and can
-  be fully obfuscated.
-</p>
-<p>
   If Proguard is not already configured then first, enable shrinking and obfuscation
   in the build file. Find <strong class="ib cf">build.gradle</strong> file which
   sits inside <strong class="ib cf">/android/app/</strong> folder and adds lines
@@ -1789,6 +1785,10 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 -keep class io.flutter.view.**  { *; }
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }</code></pre>
+<p>
+  The Android side of the SDK does not require specific proguard exclusions and can
+  be fully obfuscated.
+</p>
 <p>
   More info related to code shrinking can be found here for
   <a href="https://flutter.dev/docs/deployment/android#shrinking-your-code-with-r8">flutter</a>
