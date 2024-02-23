@@ -2354,18 +2354,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Constructing WebView URL</h3>
 <p>
-  If the developer has decided on a widget to present, he would call
-  <code>presentFeedbackWidget</code> method and pass the chosen widget (<code>CountlyFeedbackWidget</code>)
-  object.
+  Constructing a WebView URL requires calling the
+  <code>presentFeedbackWidget</code> method by passing a
+  <code>CountlyFeedbackWidget</code> object. Using information from that object,
+  a widget URL will be constructed.
 </p>
 <p>
-  Using information from that object, a widget URL will be constructed and presented
-  in a WebView or other similar mechanism. That WebView will perform further widget
-  interactions.
-</p>
-<p>
-  Using the widget ID (<code>_id</code> value) we construct a URL that looks like
-  this:
+  Constructed URL using the widget ID (<code>_id</code> value) looks like this:
 </p>
 <pre>//for nps
 /feedback/nps?widget_id=[widgetID]&amp;device_id=[deviceID]&amp;app_key=[appKey]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]
