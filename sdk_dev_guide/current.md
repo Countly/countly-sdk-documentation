@@ -3193,14 +3193,14 @@ npm install markdownlint --save-dev
   reconfigures itself to reflect the new configuration.
 </p>
 <h2 id="h_01HPM01NK3F2VHHXJ07P53QF55">SDK Health Checks</h2>
-<p>SDKs should try to provide 2 type of health information:</p>
+<p>SDKs should try to provide two types of health information:</p>
 <ul>
   <li>Instant request to the server with health information</li>
-  <li>Additional parameter with requests to the server</li>
+  <li>Additional parameters with requests to the server</li>
 </ul>
 <h3 id="h_01HPM01NK3HSSW3XXSKYXRQR0B">Health Information with Instant Request</h3>
 <p>
-  At the end of every SDK init the SDK should attempt an instant request to send
+  At the end of every SDK init, the SDK should attempt an instant request to send
   over health check counters. These counters are:
 </p>
 <ul dir="auto">
@@ -3225,41 +3225,66 @@ npm install markdownlint --save-dev
     </p>
   </li>
 </ul>
+<p>To track those, SDK should provide an interface:</p>
+<pre>interface HealthTracker:<br>  logWarning: void<br>  logError: void<br>  logFailedNetworkRequest(integer statusCode, string errorResponse): void<br>  clearAndSave: void<br>  saveState: void</pre>
+<p>
+  These counters must be persistently stored, and HealthTracker is responsible
+  for that.
+</p>
 <p>Positive triggers of these counters are:</p>
 <ul>
   <li>
-    Error level SDK log printed =&gt; <strong>el</strong>++
+    Error level SDK log printed =&gt; <strong>logError</strong>
   </li>
   <li>
-    Warning level SDK log printed =&gt; <strong>wl</strong>++
+    Warning level SDK log printed =&gt; <strong>logWarning</strong>
   </li>
   <li>
-    A RQ request failed =&gt; <strong>sc</strong> = status code
-  </li>
-  <li>
-    A RQ request failed =&gt; <strong>em</strong> = response text
+    An RQ request failed =&gt; <strong>logFailedNetworkRequest(sc, em)</strong>
   </li>
 </ul>
 <p>Negative triggers of these counters are:</p>
 <ul>
   <li>
-    Health check request got {result:Success} =&gt; reset all counters
+    Health check request got {result:Success} =&gt;
+    <strong>clearAndSave</strong>
   </li>
 </ul>
 <p>
-  These counters must be persistently stored. At the end of SDK init they should
-  be sent under the 'hc' parameter to the server (/i?) after URL encoding them
-  with metric information (app version only) as an instant request. Example usage:
+  This logic should be encapsulated inside a HealthCheckService/ModuleHealthCheck
+  design. A modular design is recommended.
+</p>
+<p>
+  This service should initialize the HealthTracker before the completion of the
+  initialization of the SDK.&nbsp;
+</p>
+<p>
+  There should be a feature flag to enable/disable health checks. The default value
+  is true.&nbsp;
+</p>
+<p>
+  After completion of the SDK initialization, the service should create an instant
+  health check request and try to send it if the feature flag for health checks
+  is enabled. They should be sent under the 'hc' parameter to the server (/i?)
+  after URL-encoding them with JSON metric information (app version only) .
 </p>
 <pre><code>// the relevant parts:
 https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;metrics={app_version:2}...</code></pre>
+<p>
+  If the request is successful, it should clear the health counter with
+  <strong>clearAndSave.</strong>
+</p>
 <h3 id="h_01HPM01NK3QJ1MPWC5WQFH9125">Request Parameters for Health Check</h3>
 <p>
   The number of requests in the request queue must be provided with each request
   sent from the RQ under the param "rr":
 </p>
-<pre><code>// the relevant parts:
-https://countly.server/*?...&amp;rr=23...</code></pre>
+<pre>// the relevant parts:
+https://countly.server/*?...&amp;rr=23...</pre>
+<p>
+  This parameter should be added to the request just before sending. If parameter
+  salting is intended, this parameter should also be added to the checksum calculation.
+</p>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>
