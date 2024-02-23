@@ -115,7 +115,7 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
-<pre><code class="java hljs">config.setLogListener((logMessage, logLevel) - {
+<pre><code class="java hljs">config.setLogListener((logMessage, logLevel) -&gt; {
   //print log
 });</code></pre>
 <h1 id="h_01HD1AJNNA11E9NMY0K0S5B3XN">Crash Reporting</h1>
