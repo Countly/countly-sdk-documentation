@@ -53,7 +53,6 @@
 <pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .enableTestMode()
   .setLoggingLevel(Config.LoggingLevel.DEBUG)
   .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
   .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
@@ -107,9 +106,7 @@ Countly.instance().init(config);</code></pre>
 <pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .setLoggingLevel(Config.LoggingLevel.DEBUG)
-  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+  .setLoggingLevel(Config.LoggingLevel.DEBUG);</code></pre>
 <p>
   This logging level would not influence the log listener. That will always receive
   all the printed logs event if the logging level is "OFF."
@@ -118,11 +115,8 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
-<pre><code class="java hljs">config.setLogListener(new LogCallback() {
-  @Override
-  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
-    //print log
-  }
+<pre><code class="java hljs">config.setLogListener((logMessage, logLevel) -&gt; {
+  //print log
 });</code></pre>
 <h1 id="h_01HD1AJNNA11E9NMY0K0S5B3XN">Crash Reporting</h1>
 <p>
@@ -1233,11 +1227,10 @@ Countly.instance().userProfile().save();</code></pre>
 metricOverride.put("SomeKey", "123");
 metricOverride.put("_locale", "xx_yy");
 
-Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY)
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, targetFolder)
   .setMetricOverride(metricOverride);
-  
-Countly.init(targetFolder, config);
-</code></pre>
+
+Countly.instance().init(config);</code></pre>
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
@@ -1262,12 +1255,12 @@ Countly.init(targetFolder, config);
   <code class="java">enableBackendMode</code>on this object, and later you should
   pass it to the <code>init</code> method.
 </p>
-<pre><code class="java hljs">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
+<pre><code class="java hljs">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
   .enableBackendMode()
-  .setRequestQueueMaxSize(<span>500</span>)
+  .setRequestQueueMaxSize(500)
   .setLoggingLevel(Config.LoggingLevel.DEBUG);
 
-Countly.init(targetFolder, config);</code></pre>
+Countly.instance().init(config);</code></pre>
 <p>
   If the Backend Mode is enabled the SDK stores up to a maximum of 1000 requests
   by default. Then when this limit is exceeded the SDK will drop the oldest request
