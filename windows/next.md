@@ -55,8 +55,8 @@
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "https://xxx.count.ly";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 cc.appVersion = "1.2.3";
 
 //initiate the SDK with your preferences
@@ -103,9 +103,7 @@ Countly.Instance.Init(cc);</code></pre>
 {
   serverUrl = "SERVER_URL",
   appKey = "APP_KEY",
-  appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   appVersion = "1.2.3",
-  application = referenceToApplication //provide link to your application
 };
 
 await Countly.Instance.Init(cc);</code></pre>
@@ -117,7 +115,7 @@ await Countly.Instance.Init(cc);</code></pre>
 <p>
   <strong>Step 1</strong>: Enable SDK logging using the following call:
 </p>
-<pre><code class="csharp hljs">    Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
+<pre><code class="csharp hljs">Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
 <p>You can turn it on and off in any place of your code.</p>
 <p>
   <strong>Step 2</strong>:
@@ -185,7 +183,7 @@ try {
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
-<pre><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
+<pre><code>Countly.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
 <h2 id="h_01HABTXQF8XYTZNNY07Z52XPDR">Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs
@@ -425,8 +423,8 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 cc.appVersion = "1.2.3";
 cc.developerProvidedDeviceId = "use@email.com";
 
@@ -562,7 +560,7 @@ Countly.Instance.DisableLocation();</code></pre>
 <pre><code class="csharp">// set name to John
 Countly.UserDetails.Name = "John";
 // remove name
-Countly.UserDetails.Name = "null";</code></pre>
+Countly.UserDetails.Name = null;</code></pre>
 <h2 id="h_01HABTXQFAE25QX52WCAG0Y15M">Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
@@ -598,8 +596,8 @@ Countly.UserDetails.Name = "null";</code></pre>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 
 //enable consent
 cc.consentRequired = true;
@@ -638,8 +636,8 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 
 //enable consent
 cc.consentRequired = true;
