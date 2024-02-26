@@ -2352,7 +2352,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   and decide any further action he would want to take with them with respect to
   the information provided.
 </p>
-<h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Constructing WebView URL</h3>
+<h3 id="h_01HQ1DNQK44EXDC5RD465GB1NE">Constructing WebView URL</h3>
 <p>
   Constructing a WebView URL requires calling the related method by passing a
   <code>CountlyFeedbackWidget</code> object. Using information from that object,
@@ -2384,7 +2384,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   That URL should then be provided to a WebView and shown as an alert dialog similar
   to the rating widget.
 </p>
-<h3 id="h_01HQ1DNQK44EXDC5RD465GB1NE">Automatic Feedback Widgets</h3>
+<h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Automatic Feedback Widgets</h3>
 <p>Automatic Feedback Widget reporting has 3 steps:</p>
 <ol>
   <li>Retrieve a list of available widgets and pick one.</li>
@@ -2427,7 +2427,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
     during the closing of the widget, this callback will return an error message.
   </li>
 </ol>
-<h3 id="01HQ5RYKPTTDFCNA7CBDH6HC5T">Manual Feedback Widgets</h3>
+<h3 id="01H821RTQ6VMWG2GBHZHBYZ4DB">Manual Feedback Widgets</h3>
 <p>Manual feedback widget reporting has 3 steps:</p>
 <ol>
   <li>
