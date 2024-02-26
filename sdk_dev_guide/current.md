@@ -2352,20 +2352,14 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   and decide any further action he would want to take with them with respect to
   the information provided.
 </p>
-<h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Automatic Feedback Widgets</h3>
+<h3 id="h_01HQ1DNQK44EXDC5RD465GB1NE">Constructing WebView URL</h3>
 <p>
-  If the developer has decided on a widget to present, he would call
-  <code>presentFeedbackWidget</code> method and pass the chosen widget (<code>CountlyFeedbackWidget</code>)
-  object.
+  Constructing a WebView URL requires calling the related method by passing a
+  <code>CountlyFeedbackWidget</code> object. Using information from that object,
+  a widget URL will be constructed.
 </p>
 <p>
-  Using information from that object, a widget URL will be constructed and presented
-  in a webView or other similar mechanism. That webView will perform further widget
-  interactions.
-</p>
-<p>
-  Using the widget ID (<code>_id</code> value) we construct a URL that looks like
-  this:
+  Constructed URL using the widget ID (<code>_id</code> value) looks like this:
 </p>
 <pre>//for nps
 /feedback/nps?widget_id=[widgetID]&amp;device_id=[deviceID]&amp;app_key=[appKey]&amp;sdk_version=[sdkVersion]&amp;sdk_name=[sdkName]&amp;app_version=[appVersion]&amp;platform=[platform]
@@ -2379,16 +2373,38 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 //web SDK would also pass "origin"
 //web SDK also passes "widget_v=Web"</pre>
 <p>
-  The created URL contains params for: widget_id, device_id, app_key, sdk_version,
-  sdk_name, app_version, platform, origin (for web SDK).
+  The created URL contains params for widget_id, device_id, app_key, sdk_version,
+  sdk_name, app_version, platform, and origin (for Web SDK).
 </p>
 <p>
   Even if parameter tamper protection is enabled, this URL
   <strong>does not</strong> use the checksum param!
 </p>
 <p>
-  That URL should then be provided to a webview and shown as an alert dialog similar
+  That URL should then be provided to a WebView and shown as an alert dialog similar
   to the rating widget.
+</p>
+<h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Automatic Feedback Widgets</h3>
+<p>Automatic Feedback Widget reporting has 3 steps:</p>
+<ol>
+  <li>Retrieve a list of available widgets and pick one.</li>
+  <li>
+    Presenting the widget with <code>presentFeedbackWidget</code> call.
+  </li>
+  <li>Handling the callbacks.</li>
+</ol>
+<p>
+  As explained in the 'Retrieving the List of Eligible Widgets' section, the first
+  step uses the <code>getAvailableFeedbackWidgets</code> function to communicate
+  with the Countly server and obtain a list of available widgets based on the specific
+  device. This list contains information about each widget, such as its ID, type,
+  name, and tags.
+</p>
+<p>
+  Once the list is retrieved and the developer decides upon the widget they are
+  going to use, as explained in the 'Constructing the WebView URL' section, they
+  would call <code>presentFeedbackWidget</code> method and pass the chosen widget
+  (<code>CountlyFeedbackWidget</code>) object.
 </p>
 <p>
   It should be possible to provide 2 optional callbacks to the
@@ -2398,17 +2414,17 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <li>
     a callback (potentially named <code>widgetShown</code>) that is called when
     the widget is successfully presented (currently that would mean that there
-    were no issues/errors while trying to show the dialog with the webView).
-    Also currently, we don't verify if the webView is showing a working widget.
-    If there would be any issues during the display of the widget, this callback
-    would return an error message.
+    were no issues/errors while trying to show the dialog with the WebView).
+    Also, we aren't verifying if the WebView is showing a working widget. If
+    there are any issues during the display of the widget, this callback will
+    return an error message.
   </li>
   <li>
     a callback (potentially named <code>widgetClosed</code>) that is called when
-    the widget/dialog is closed (for mobile SDK's and for the web SDK that would
+    the widget/dialog is closed (for mobile SDKs and for the web SDK that would
     mean slightly different things, but the main point is to have the host app/site
-    notified of when the "feedback process" is over). If there would be any issues
-    during the closing of the widget, this callback would return an error message.
+    notified of when the "feedback process" is over). If there are any issues
+    during the closing of the widget, this callback will return an error message.
   </li>
 </ol>
 <h3 id="01H821RTQ6VMWG2GBHZHBYZ4DB">Manual Feedback Widgets</h3>
