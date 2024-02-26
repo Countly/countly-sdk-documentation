@@ -1316,7 +1316,7 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
 </h2>
 <p>
   For .NET Framework 4.5 and older versions, the default protocols are SSL 3.0
-  and TLS 1.0.&nbsp;<br>
+  and TLS 1.0.<br>
   When working with those .NET versions, WebRequests are created with default protocols.
   However, because TLS 1.1 is not supported and TLS 1.2 is forced to be used, the
   protocol should be overridden:
