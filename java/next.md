@@ -963,6 +963,9 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   You can access user profiles via <code>Countly.instance().userProfile()</code>.&nbsp;
 </p>
 <h2 id="h_01HD3M0EYQAERWFGMRVZXQ2RR1">Setting User Properties</h2>
+<p>
+  If a property is set as an empty string, it will be deleted from the user on server side.
+</p>
 <h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
 <p>
   To set custom properties, call setProperty(). To send modification operations,
