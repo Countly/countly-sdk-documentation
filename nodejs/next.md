@@ -569,7 +569,7 @@ Countly.report_trace({
     and overwrite them, before running each request.
   </li>
   <li>
-    <strong>max_logs</strong> - maximum amount of breadcrumbs to store for crash
+    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to store for crash
     logs (default: 100)
   </li>
   <li>
