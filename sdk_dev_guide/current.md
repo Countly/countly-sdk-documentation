@@ -2354,8 +2354,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Constructing WebView URL</h3>
 <p>
-  Constructing a WebView URL requires calling the
-  <code>presentFeedbackWidget</code> method by passing a
+  Constructing a WebView URL requires calling the related method by passing a
   <code>CountlyFeedbackWidget</code> object. Using information from that object,
   a widget URL will be constructed.
 </p>
@@ -2404,8 +2403,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   Once the list is retrieved and the developer decides upon the widget they are
   going to use, as explained in the 'Constructing the WebView URL' section, they
-  would call <code>presentFeedbackWidget</code> method and pass the chosen widget
-  (<code>CountlyFeedbackWidget</code>) object.
+  would call the related method and pass the chosen widget (<code>CountlyFeedbackWidget</code>)
+  object.
 </p>
 <p>
   It should be possible to provide 2 optional callbacks to the
