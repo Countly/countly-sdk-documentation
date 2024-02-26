@@ -69,7 +69,6 @@ if(!await Countly.isInitialized()) {
   // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-  Countly.start(); // start session tracking
 }</code></pre>
 <p>
   Please check
@@ -1080,7 +1079,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
-<pre><code class="javascript">Countly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
+<pre><code class="javascript">Countly.feedback.getAvailableFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
 <p>
   From the callback, get the list of all available widgets that apply to the current
   device ID.
@@ -1103,7 +1102,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   After you have decided which widget you want to display, call the function below.
 </p>
-<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("Widgetshown");<br>},<br>function() {<br>  console.log("Widgetclosed");<br>})<br></code></pre>
+<pre><code class="javascript">Countly.feedback.presentFeedbackWidget(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("Widgetshown");<br>},<br>function() {<br>  console.log("Widgetclosed");<br>})<br></code></pre>
 <h3 id="h_01HBZPWR8E1BF4J850A5VB9BGJ">Manual Reporting</h3>
 <p>
   If you have a custom UI where you collect user feedback or you already have some
@@ -1479,7 +1478,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // Enable consent requirement
-Countly.setRequiresConsent(true);</code></pre>
+countlyConfig.setRequiresConsent(true);</code></pre>
 <p>
   <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.</span>
 </p>
