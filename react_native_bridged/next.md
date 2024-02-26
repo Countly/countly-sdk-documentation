@@ -1474,7 +1474,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 </ul>
 <h2 id="h_01HAVQNJQT9EZ8R01NCM6ENW9Z">Setup During Init</h2>
 <p>
-  <span>The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code> with <code>true</code> before initializing Countly.</span>
+  <span>The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code> with <code>true</code> during initializing Countly.</span>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // Enable consent requirement
@@ -1483,7 +1483,7 @@ countlyConfig.setRequiresConsent(true);</code></pre>
   <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.</span>
 </p>
 <p>
-  <span>To give consent during initialization, you have to call <code class="JavaScript">setConsentEnabled</code>on the config object with an array of consent values.</span>
+  <span>To give consent during initialization, you have to call <code class="JavaScript">giveConsent</code>on the config object with an array of consent values.</span>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");</code><br>countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);</pre>
 <p>
