@@ -2163,7 +2163,7 @@ if (typeof(localStorage) !== "undefined") {
     (default: 100)
   </li>
   <li>
-    <strong>max_logs</strong> -
+    <strong>max_breadcrumb_count</strong> -
     <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
   <li>
