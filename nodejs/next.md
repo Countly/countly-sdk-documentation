@@ -421,6 +421,9 @@ Countly.report_feedback({
   tab, which is available with
   <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.
 </p>
+<p>
+  If a parameter is set as an empty string, it will be deleted/cleared from the user on the server side.
+</p>
 <p>The list of possible parameters you can pass is:</p>
 <pre><code class="javascript">Countly.user_details({
   "name": "Arturs Sosins",
