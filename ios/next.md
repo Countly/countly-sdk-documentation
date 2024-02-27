@@ -3167,6 +3167,9 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
 <p>
   <span style="font-weight: 400;">You can see detailed user information under the User Profiles section of the Countly Dashboard by recording user properties.</span>
 </p>
+<p>
+  Note: If a property is set as an empty string, it will be deleted from the user on the server side.
+</p>
 <h2 id="h_01HAVHW0RRSN6J76K5N88M15TQ">Default User Properties</h2>
 <p>
   <span style="font-weight: 400;">You can record default user detail properties by adhering to the following:</span>
