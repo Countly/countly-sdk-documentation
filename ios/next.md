@@ -1382,7 +1382,7 @@ Countly.sharedInstance().views.addSegmentationToViewWithName("VIEW_NAME", segmen
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views setGlobalViewSegmentation:@{@"key": @"value"}"];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views setGlobalViewSegmentation:@{@"key": @"value"}];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">Countly.sharedInstance().views.setGlobalViewSegmentation(["key": "value"])</code></pre>
@@ -2337,18 +2337,10 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordLocation:(CLLocationCoordinate2D){35.6895,139.6917}];
-
-[Countly.sharedInstance recordCity:@"Tokyo" andISOCountryCode:@"JP"];
-
-[Countly.sharedInstance recordIP:@"255.255.255.255"];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance recordLocation:(CLLocationCoordinate2D){35.6895,139.6917} city:@"Tokyo" ISOCountryCode:@"JP" IP:@"255.255.255.255"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordLocation(CLLocationCoordinate2D(latitude:33.6895, longitude:139.6917))
-
-Countly.sharedInstance().recordCity("Tokyo", andISOCountryCode:"JP")
-
-Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().recordLocation(CLLocationCoordinate2D(latitude:33.6895, longitude:139.6917), city:"Tokyo", ISOCountryCode:"JP", IP:"255.255.255.255");</code></pre>
   </div>
 </div>
 <p>
@@ -2385,8 +2377,7 @@ Countly.sharedInstance().recordIP("255.255.255.255")</code></pre>
 </div>
 <p>
   Once disabled, you can re-enable GeoLocation info by calling the
-  <code>recordLocation:</code> or <code>recordCity:andISOCountryCode:</code> or
-  <code>recordIP:</code> method.
+  <code>recordLocation:</code> method.
 </p>
 <h1 id="h_01HAVHW0RRBKC5DT7Z5HYY70KQ">Remote Config</h1>
 <p>
