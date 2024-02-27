@@ -1452,7 +1452,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Note that this feature is available only for Enterprise Edition.
 </p>
 <p>
-  <span>You would call&nbsp;</span><span></span><code>Countly.instance.userProfile.</code><span>to see the available functionality for modifying user properties.</span>
+  <span>You would call </span><code>Countly.instance.userProfile.</code><span>to see the available functionality for modifying user properties.</span>
 </p>
 <p>
   If a property is set as an empty string, it will be deleted from the user on the server side.
