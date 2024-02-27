@@ -44,7 +44,7 @@
 
     // Initialize with that configuration
     Countly.initWithConfig(config).then((value){
-      Countly.start(); // Enables automatic view tracking
+      // handle extra logic after init
     });
   } else {
     print("Countly: Already initialized.");
@@ -647,9 +647,13 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <p>
   You can enable temporary device ID when initializing the SDK:
 </p>
-<pre><code class="JavaScript">Countly.init(SERVER_URL, APP_KEY, Countly.deviceIDType["TemporaryDeviceID"])</code></pre>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setDeviceId(Countly.deviceIDType["TemporaryDeviceID"]);
+
+// Initialize with that configuration
+Countly.initWithConfig(config);</code></pre>
 <p>To enable a temporary device ID after init, you would call:</p>
-<pre><code class="JavaScript">Countly.changeDeviceId(Countly.deviceIDType["TemporaryDeviceID"], ON_SERVER);</code></pre>
+<pre><code class="dart">Countly.changeDeviceId(Countly.deviceIDType["TemporaryDeviceID"], ON_SERVER);</code></pre>
 <p>
   <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for
   <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
@@ -1517,25 +1521,27 @@ Countly.instance.userProfile.save();</code></pre>
 </p>
 <p>Below is the list of available methods:</p>
 <pre><code class="JavaScript">//increment used value by 1
-Countly.instance.increment("increment");
+Countly.instance.userProfile.increment("increment");
 //increment used value by provided value
-Countly.instance.incrementBy("incrementBy", 10);
+Countly.instance.userProfile.incrementBy("incrementBy", 10);
 //multiply value by provided value
-Countly.instance.multiply("multiply", 20);
+Countly.instance.userProfile.multiply("multiply", 20);
 //save maximal value
-Countly.instance.saveMax("saveMax", 100);
+Countly.instance.userProfile.saveMax("saveMax", 100);
 //save minimal value
-Countly.instance.saveMin("saveMin", 50);
+Countly.instance.userProfile.saveMin("saveMin", 50);
 //set value if it does not exist
-Countly.instance.setOnce("setOnce", 200);
+Countly.instance.userProfile.setOnce("setOnce", 200);
 
 //insert value to array of unique values
-Countly.instance.pushUnique("type", "morning");;
+Countly.instance.userProfile.pushUnique("type", "morning");;
 //insert value to array which can have duplocates
-Countly.instance.push("type", "morning");
+Countly.instance.userProfile.push("type", "morning");
 //remove value from array
-Countly.instance.pull("type", "morning");
-</code></pre>
+Countly.instance.userProfile.pull("type", "morning");
+
+//call 'save' to persist the changes
+Countly.instance.userProfile.save();</code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
 <p>
   The SDK provides manual and automatic mechanisms for Application Performance
