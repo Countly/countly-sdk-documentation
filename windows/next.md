@@ -1311,3 +1311,22 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
 <p>
   <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
 </p>
+<h2 id="h_01HQJV3DV0E9NCVB7CXS8XYRCK">
+  The request was aborted: Could not create SSL/TLS secure channel
+</h2>
+<p>
+  For .NET Framework 4.5 and older versions, the default protocols are SSL 3.0
+  and TLS 1.0.<br>
+  When working with those .NET versions, WebRequests are created with default protocols.
+  However, because TLS 1.1 is not supported and TLS 1.2 is forced to be used, the
+  protocol should be overridden:
+</p>
+<pre><code class="csharp"></code>ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;</pre>
+<p>
+  Before initialization of the Countly Windows SDK, this should be overridden like
+  above.
+</p>
+<p>
+  <a href="https://stackoverflow.com/questions/2859790/the-request-was-aborted-could-not-create-ssl-tls-secure-channel">Here</a>
+  are the detailed explanations and further discussions about the issue.
+</p>
