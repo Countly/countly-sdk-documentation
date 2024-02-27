@@ -1454,6 +1454,9 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 <p>
   <span>You would call&nbsp;</span><span></span><code>Countly.instance.userProfile.</code><span>to see the available functionality for modifying user properties.</span>
 </p>
+<p>
+  If a property is set as an empty string, it will be deleted/cleared from the user on the server side.
+</p>
 <h2 id="h_01H930GAQ7J7R8CVHTSYM34ZM9">Setting User profile values during init</h2>
 <p>
   If possible set user properties during initialization. This way they would be
