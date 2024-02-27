@@ -3221,6 +3221,9 @@ Countly.user().save()</code></pre>
 <p>
   <span style="font-weight: 400;">You can record custom user detail properties by adhering to the following:</span>
 </p>
+<p>
+  If a property is set as an empty string, it will be deleted from the user on the server side.
+</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
