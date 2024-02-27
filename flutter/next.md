@@ -1536,7 +1536,9 @@ Countly.instance.userProfile.pushUnique("type", "morning");;
 Countly.instance.userProfile.push("type", "morning");
 //remove value from array
 Countly.instance.userProfile.pull("type", "morning");
-</code></pre>
+
+//call 'save' to persist the changes
+Countly.instance.userProfile.save();</code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
 <p>
   The SDK provides manual and automatic mechanisms for Application Performance
