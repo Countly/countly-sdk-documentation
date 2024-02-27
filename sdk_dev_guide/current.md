@@ -2544,44 +2544,53 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <h3 id="h_01HQMX59RNK27XW4S8HDMXBYC9">Calls Exposed in the SDK</h3>
 <p>
   Feedback Widgets functionality requires specific calls to be exposed within SDK.
-  Although method names may vary, the core functionalities remain consistent. Here
-  are the primary feedback-related methods:
+  Although method names may vary, the core functionalities should remain consistent.
+  Note that not all platforms may support all of these methods, and the list provided
+  is exhaustive. If applicable, these methods should be exposed through an interface
+  named 'feedback.' Here are the primary feedback-related methods:
 </p>
 <ul>
   <li>
-      <strong>Retrieve Available Feedback Widgets</strong>
+    <strong>Retrieve Available Feedback Widgets</strong>
   </li>
 </ul>
-<pre><code>Countly.getAvailableFeedbackWidgets()</code></pre>
+<pre><code>Countly.instance().feedback().getAvailableFeedbackWidgets()</code></pre>
 <p>
-  Retrieves a list of available feedback widgets for the device ID.
+  Retrieves a list of available Feedback Widgets for the device ID.
 </p>
 <ul>
   <li>
-      <strong>Present Feedback Widget</strong>
+    <strong>Present Feedback Widget</strong>
   </li>
 </ul>
-<pre><code>Countly.presentFeedbackWidget()</code></pre>
-<p>Presents a chosen feedback widget in an alert dialog.</p>
+<pre><code>Countly.instance().feedback().presentFeedbackWidget()</code></pre>
+<p>Presents the selected Feedback Widget.</p>
 <ul>
   <li>
-      <strong>Retrieve Feedback Widget Data</strong>
+    <strong>Retrieve Feedback Widget Data</strong>
   </li>
 </ul>
-<pre><code>Countly.getFeedbackWidgetData()</code></pre>
+<pre><code>Countly.instance().feedback().getFeedbackWidgetData()</code></pre>
 <p>
-  Downloads data for a specific widget to be displayed with a custom UI. This data
-  request would count as a shown widget.
+  Downloads data for a specific widget. This data request would count as a shown
+  widget.
 </p>
 <ul>
   <li>
-      <strong>Report Feedback Widget Manually</strong>
+    <strong>Report Feedback Widget Manually</strong>
   </li>
 </ul>
-<pre><code>Countly.reportFeedbackWidgetManually()</code></pre>
+<pre><code>Countly.instance().feedback().reportFeedbackWidgetManually()</code></pre>
 <p>
-  Manually reports a feedback widget in case a custom interface is used.
+  Manually reports a Feedback Widget in case a custom interface is used.
 </p>
+<ul>
+  <li>
+    <strong>Retrieve Constructed URL<br></strong>
+  </li>
+</ul>
+<pre><code>Countly.instance().feedback().constructFeedbackWidgetUrl()</code></pre>
+<p>Retrieves the constructed URL for the Feedback Widget</p>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
