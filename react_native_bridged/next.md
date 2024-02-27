@@ -1213,6 +1213,9 @@ if (!response.error) {
   you send a user’s data, it can be found in your Dashboard under
   <code class="JavaScript">Users &gt; User Profiles</code>.
 </p>
+<p>
+  If a property is set as an empty string, it will be deleted on the server side.
+</p>
 <h2 id="h_01HAVQNJQSBR8S36NF4KQ8X0D3">Setting Predefined Values</h2>
 <p>
   Predefined user properties are a set of default keys that are commonly used in
