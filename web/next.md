@@ -1581,7 +1581,7 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
   <span style="font-weight: 400;">If you have any details about the user/visitor, you may provide Countly with that information. This will allow you to track every specific user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
 </p>
 <p>
-  If a parameter is set as an empty string, it will be deleted from the user on the server side.
+  If a parameter is set as an empty string, it will be deleted on the server side.
 </p>
 <p>
   <span style="font-weight: 400;">The list of possible parameters you may pass:</span>
