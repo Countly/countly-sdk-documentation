@@ -2568,7 +2568,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   </li>
 </ul>
 <pre><code>Countly.instance().feedback().getFeedbackWidgetData()</code></pre>
-<p>Retrieves a specific widget's data.&nbsp;</p>
+<p>Retrieves a specific widget's data.</p>
 <ul>
   <li>
     <strong>reportFeedbackWidgetManually</strong>
