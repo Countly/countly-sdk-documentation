@@ -2562,7 +2562,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   If for user properties and "null" value is provided. SDK should ignore the value and print warning.
 </p>
 <p>  
-  If a empty string is provided as a value then that should lead to the deletion of the user property on the server side. This should trigger the SDK to send a JSON null value assigned to the property.
+  If an empty string is provided as a value then that should lead to the deletion of the user property on the server side. This should trigger the SDK to send a JSON null value assigned to the property.
 </p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
