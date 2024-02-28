@@ -2543,46 +2543,40 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h3 id="h_01HQMX59RNK27XW4S8HDMXBYC9">Calls Exposed by the SDK</h3>
 <p>
-  SDK should expose the below mentioned methods publicly. Note that not all platforms
-  may support all of these methods, but the list provided is exhaustive. If applicable,
-  these methods should be exposed through an interface named 'feedback' as show
-  below as an example:
+  SDK should publicly expose the methods mentioned below. Note that not all platforms
+  may support all of these methods, but the list provided is exhaustive. These
+  methods should be exposed through an interface named 'feedback' if applicable.
 </p>
-<ul>
-  <li>
-    <strong>getAvailableFeedbackWidgets</strong>
-  </li>
-</ul>
-<pre><code>Countly.instance().feedback().getAvailableFeedbackWidgets()</code></pre>
-<p>Retrieves the list of available Feedback Widgets.</p>
-<ul>
-  <li>
-    <strong>presentFeedbackWidget</strong>
-  </li>
-</ul>
-<pre><code>Countly.instance().feedback().presentFeedbackWidget()</code></pre>
-<p>Displays a specific widget.</p>
-<ul>
-  <li>
-    <strong>getFeedbackWidgetData</strong>
-  </li>
-</ul>
-<pre><code>Countly.instance().feedback().getFeedbackWidgetData()</code></pre>
-<p>Retrieves a specific widget's data.</p>
-<ul>
-  <li>
-    <strong>reportFeedbackWidgetManually</strong>
-  </li>
-</ul>
-<pre><code>Countly.instance().feedback().reportFeedbackWidgetManually()</code></pre>
-<p>Manually reports a widget's results.</p>
-<ul>
-  <li>
-    <strong>constructFeedbackWidgetUrl</strong>
-  </li>
-</ul>
-<pre><code>Countly.instance().feedback().constructFeedbackWidgetUrl()</code></pre>
-<p>Constructs a URL for a specific widget.</p>
+<pre><code>// Retrieves the list of available Feedback Widgets
+Countly.feedback().getAvailableFeedbackWidgets(RetrieveFeedbackWidgets callback { 
+  public void onFinished(List&lt;CountlyFeedbackWidget&gt; retrievedWidgets, String error) {
+    // Handling errors and retrieved widgets, can be done here
+  }
+});
+  
+// Displays a specific widget
+Countly.feedback().presentFeedbackWidget(CountlyFeedbackWidget widgetInfo, Context context, String closeButtonText, FeedbackCallback devCallback {
+  public void onFinished(String error) {
+    // Error handling can be done here
+  }
+});
+  
+// Retrieves a specific widget's data
+Countly.feedback().getFeedbackWidgetData(CountlyFeedbackWidget widgetInfo, RetrieveFeedbackWidgetData callback {
+  public void onFinished(JSONObject retrievedWidgetData, String error) {
+    // Handling errors and retrieved widget's data, can be done here
+  }
+});
+  
+// Manually reports a widget's results
+Countly.feedback().reportFeedbackWidgetManually(CountlyFeedbackWidget widgetInfo, JSONObject widgetData, Map&lt;string, object&gt; widgetResult);
+  
+// Construct URL for the chosen feedback widget
+Countly.feedback().constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget, ConstructUrlCallback callback {
+  public void onFinished(String constructedUrl, String error) {
+    // Handle error and the constructed URL
+  }
+});</code></pre>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
