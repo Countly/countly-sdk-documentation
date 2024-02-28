@@ -1755,57 +1755,8 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 </p>
 <h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
 <p>
-  Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
-  in your application, find
-  <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
-  <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
-</p>
-<pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
-<p>
-  If Proguard is not already configured then first, enable shrinking and obfuscation
-  in the build file. Find <strong class="ib cf">build.gradle</strong> file which
-  sits inside <strong class="ib cf">/android/app/</strong> folder and adds lines
-  in bold.
-</p>
-<pre><code class="JavaScript">android {
-  buildTypes {
-    release {
-      // Enables code shrinking, obfuscation, and optimization for only
-      // your project's release build type.
-      minifyEnabled true
-
-      // Enables resource shrinking, which is performed by the
-      // Android Gradle plugin.
-      shrinkResources true
-
-      // Includes the default ProGuard rules files that are packaged with
-      // the Android Gradle plugin. To learn more, go to the section about
-      // R8 configuration files.
-      proguardFiles getDefaultProguardFile(
-        'proguard-android-optimize.txt'),
-        'proguard-rules.pro'
-      }
-  }
-...
-}
-</code></pre>
-<p>
-  Next create a configuration that will preserve the entire Flutter wrapper code.
-  Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
-  insert inside:
-</p>
-<pre><code class="JavaScript">#Flutter Wrapper
--keep class io.flutter.app.** { *; }
--keep class io.flutter.plugin.**  { *; }
--keep class io.flutter.util.**  { *; }
--keep class io.flutter.view.**  { *; }
--keep class io.flutter.**  { *; }
--keep class io.flutter.plugins.**  { *; }</code></pre>
-<p>
-  More info related to code shrinking can be found here for
-  <a href="https://flutter.dev/docs/deployment/android#shrinking-your-code-with-r8">flutter</a>
-  and
-  <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">android</a>.
+  The Android side of the SDK does not require specific proguard exclusions and can
+  be fully obfuscated.
 </p>
 <h1 id="h_01H930GAQ8DQ2KJTQCAFZTRHD9">Other Features and Notes</h1>
 <h2 id="h_01H930GAQ8P3ZQAA3DGJT0RJVE">SDK Config Parameters Explained</h2>
