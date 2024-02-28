@@ -1742,3 +1742,20 @@ Countly.setCustomMetrics(customMetric);</code></pre>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
 Countly.setCustomMetrics(customMetric);</code></pre>
+<h2 id="h_01HQQNWZTBEDY9WR20SWDVR2RK">Testing</h2>
+<h3 id="h_01HQQNWZTBYF025X20JPAYFRKQ">Running Tests</h3>
+<p>
+  Execute the SDK tests by entering the following command in your command line
+  from the project root:
+</p>
+<pre><code class="shell">npm test;</code></pre>
+<p>
+  This command will initiate all the SDK tests, and you can view the test results
+  directly on the command line.
+</p>
+<h3 id="h_01HQQNWZTBMREMMGHN8R4GTTW3">Code Coverage</h3>
+<p>
+  When you run the tests, code coverage results are automatically generated. To
+  access a summary of the code coverage data, check the command line output. For
+  more in-depth information, explore the automatically generated 'coverage' folder.
+</p>
