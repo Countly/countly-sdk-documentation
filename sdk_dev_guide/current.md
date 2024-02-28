@@ -2558,6 +2558,11 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
 </p>
+<p>
+  If a property is sent as JSON null, that property is deleted from the server.
+  For property removal, the SDK should accept an empty string for operation. For
+  other types of undefined values, the SDK should ignore the user profiles call.
+</p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
   <span style="font-weight: 400;">You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
