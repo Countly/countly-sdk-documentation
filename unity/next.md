@@ -838,6 +838,9 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
 </p>
+<p>
+  If a property is set as an empty string, it will be deleted from the user on the server side.
+</p>
 <h2 id="h_01HABTZ316D6XXE1MP0RMYV6ZV">Setting Predefined Values</h2>
 <p>
   The Countly Unity SDK allows you to upload specific data related to a user to
