@@ -2559,10 +2559,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span style="font-weight: 400;">You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  If for user properties and "null" value is provided. SDK should ignore the value and print warning.
+  If a "null" value is set to a user property, the SDK should ignore the value
+  and print a warning.
 </p>
-<p>  
-  If an empty string is provided as a value then that should lead to the deletion of the user property on the server side. This should trigger the SDK to send a JSON null value assigned to the property.
+<p>
+  If an empty string is provided as a value then that should lead to the deletion
+  of the user property on the server side. This should trigger the SDK to send
+  a JSON null value assigned to the property.
 </p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
