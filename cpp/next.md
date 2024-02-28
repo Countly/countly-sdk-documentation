@@ -522,7 +522,7 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
 </p>
 <p>
-  Note: If a property is set as an empty string, it will be deleted from the user on the server side.
+  If a property is set as an empty string, it will be deleted from the user on the server side.
 </p>
 <h2 id="h_01HABV267VXMCSNAXPXD53Z8FK">Setting Predefined Values</h2>
 <p>
