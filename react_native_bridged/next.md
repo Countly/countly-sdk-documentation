@@ -1585,6 +1585,11 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
   Note that <code class="JavaScript">count.ly.cer</code> is the name of the file.
   Replace this file with the one you have.
 </p>
+<h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
+<p>
+  The Android side of the SDK does not require specific proguard exclusions and can
+  be fully obfuscated.
+</p>
 <h1 id="h_01HAVQNJQTVQ1CQD7VGBYY6HFV">Other Features and Notes</h1>
 <h2 id="h_01HBZGC0M48MT2JRYM9N89SJ8P">SDK Config Parameters Explained</h2>
 <p>
