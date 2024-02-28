@@ -2546,7 +2546,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are&nbsp;</span><a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
+  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are </span><a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
@@ -2556,7 +2556,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <li>Countly.user_custom_details(map custom_details)</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">You may find more information on what data may be set for a user&nbsp;</span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
+</p>
+<p>
+  If for user properties and "null" value is provided. SDK should ignore the value and print warning.
+</p>
+<p>  
+  If an empty string is provided as a value then that should lead to the deletion of the user property on the server side. This should trigger the SDK to send a JSON null value assigned to the property.
 </p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
