@@ -1033,7 +1033,7 @@ Countly.disableLocation();</code></pre>
       <span style="font-weight: 400;">when user gets out of temp ID mode</span>
     </li>
     <li>
-      <span style="font-weight: 400;">when CountlyConsent.remoteConfig consent is given after it had been removed before (if consents are enabled)</span>
+      <span style="font-weight: 400;">when <code>CountlyConsent.remoteConfig</code> consent is given after it had been removed before (if consents are enabled)</span>
     </li>
   </ul>
   <p>
@@ -1673,7 +1673,7 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
 </p>
 <p>
-  You can use CountlyConsent inteface to reach all possible consent options.<br>
+  You can use CountlyConsent interface (e.g <code>CountlyConsent.sessions</code>) to reach all possible consent options.<br>
   Currently, available features with consent control are as follows:
 </p>
 <ul>
