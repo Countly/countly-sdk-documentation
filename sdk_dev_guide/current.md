@@ -3193,11 +3193,10 @@ npm install markdownlint --save-dev
   reconfigures itself to reflect the new configuration.
 </p>
 <h2 id="h_01HPM01NK3F2VHHXJ07P53QF55">SDK Health Checks</h2>
-<p>SDKs should try to provide two types of health information:</p>
-<ul>
-  <li>Instant request to the server with health information</li>
-  <li>Additional parameters with requests to the server</li>
-</ul>
+<p>
+  These are a collection of different metrics and helpers that would give better
+  insight into the state of the SDK integration.
+</p>
 <h3 id="h_01HPM01NK3HSSW3XXSKYXRQR0B">Health Information with Instant Request</h3>
 <p>
   At the end of every SDK init, the SDK should attempt an instant request to send
@@ -3276,14 +3275,21 @@ https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;
 </p>
 <h3 id="h_01HPM01NK3QJ1MPWC5WQFH9125">Request Parameters for Health Check</h3>
 <p>
-  The number of requests in the request queue must be provided with each request
-  sent from the RQ under the param "rr":
+  This gives insight into how full is the request queue for the specific device.
+</p>
+<p>
+  With every request sent the SDK would also add a param that would show how many
+  requests are in the stored request queue.
+</p>
+<p>
+  The integer value of this is set under the param "rr". This param is not stored
+  in the RQ, but is added just before sending the request:
 </p>
 <pre>// the relevant parts:
 https://countly.server/*?...&amp;rr=23...</pre>
 <p>
-  This parameter should be added to the request just before sending. If parameter
-  salting is intended, this parameter should also be added to the checksum calculation.
+  If tamper protection (salting) is enabled then this parameter should also be
+  included in the checksum calculation.
 </p>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
