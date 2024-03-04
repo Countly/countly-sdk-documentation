@@ -3199,79 +3199,69 @@ npm install markdownlint --save-dev
 </p>
 <h3 id="h_01HPM01NK3HSSW3XXSKYXRQR0B">Health Information with Instant Request</h3>
 <p>
-  At the end of every SDK init, the SDK should attempt an instant request to send
-  over health check counters. These counters are:
+  During SDK operation, it should collect a variety of metrics regarding its usage.
+  Those collected metrics should then be periodically sent.
+</p>
+<p>
+  The trigger for sending the collected metrics is the end of SDK initialization.
+  At that point the SDK should send over all health metrics collected since the
+  last time the health metrics were successfully sent.
+</p>
+<p>
+  Metrics should be stored persistently. Upon successful transmission, the stored
+  metrics should be cleared.
+</p>
+<p>Metrics should be sent as an instant request.</p>
+<p>There is no way to disable health checks.</p>
+<p>
+  The health check tracking, serialization, deserialization, etc functionality
+  should be contained within an independent module designed with ease of testing
+  in mind.
+</p>
+<p>
+  Here is a list of metrics that need to be tracked. They are identified by the
+  JSON key that should be used when sending these health metrics:
 </p>
 <ul dir="auto">
   <li>
     <p dir="auto">
-      <strong>el</strong> - Int
+      <strong>el</strong> (Integer) - The amount of error-level SDK logs triggered
     </p>
   </li>
   <li>
     <p dir="auto">
-      <strong>wl</strong> - Int
+      <strong>wl</strong> (Integer) - The amount of warning-level SDK logs
+      triggered&nbsp;
     </p>
   </li>
   <li>
     <p dir="auto">
-      <strong>sc</strong> - Int
+      <strong>sc</strong> (Integer) - The status code of the last failed request&nbsp;
     </p>
   </li>
   <li>
     <p dir="auto">
-      <strong>em</strong> - String
+      <strong>em</strong> (String) - The first 1000 characters of the response
+      returned by the last failed request
     </p>
   </li>
 </ul>
-<p>To track those, SDK should provide an interface:</p>
-<pre>interface HealthTracker:<br>  logWarning: void<br>  logError: void<br>  logFailedNetworkRequest(integer statusCode, string errorResponse): void<br>  clearAndSave: void<br>  saveState: void</pre>
 <p>
-  These counters must be persistently stored, and HealthTracker is responsible
-  for that.
+  The module should expose the following methods for tracking, saving, and creating
+  the param:
 </p>
-<p>Positive triggers of these counters are:</p>
-<ul>
-  <li>
-    Error level SDK log printed =&gt; <strong>logError</strong>
-  </li>
-  <li>
-    Warning level SDK log printed =&gt; <strong>logWarning</strong>
-  </li>
-  <li>
-    An RQ request failed =&gt; <strong>logFailedNetworkRequest(sc, em)</strong>
-  </li>
-</ul>
-<p>Negative triggers of these counters are:</p>
-<ul>
-  <li>
-    Health check request got {result:Success} =&gt;
-    <strong>clearAndSave</strong>
-  </li>
-</ul>
+<pre>//increments the "wl" counter<br>void logWarning()<br><br>//increment the "el" counter<br>void logError()<br><br>//update the "sc" and "em" values<br>void logFailedNetworkRequest(integer statusCode, string errorResponse)<br><br>//counters should be cleared, and the state should be saved<br>void clearAndSave()<br><br>//state should be saved<br>void saveState()</pre>
 <p>
-  This logic should be encapsulated inside a HealthCheckService/ModuleHealthCheck
-  design. A modular design is recommended.
-</p>
-<p>
-  This service should initialize the HealthTracker before the completion of the
-  initialization of the SDK.
-</p>
-<p>
-  There should be a feature flag to enable/disable health checks. The default value
-  is true.
-</p>
-<p>
-  After completion of the SDK initialization, the service should create an instant
-  health check request and try to send it if the feature flag for health checks
-  is enabled. They should be sent under the 'hc' parameter to the server (/i?)
-  after URL-encoding them with JSON metric information (app version only) .
+  The health check request contains the base params, the regular metric param with
+  only the app version and then the metric information under the "hc" param. The
+  request should be sent to the "/i" endpoint. Health check metrics should be sent
+  as a JSON. Each metric would be setting their own key value pair in there.
 </p>
 <pre><code>// the relevant parts:
 https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;metrics={app_version:2}...</code></pre>
 <p>
-  If the request is successful, it should clear the health counter with
-  <strong>clearAndSave.</strong>
+  The request is considered sent successfully as per the regular SDK interpretations
+  of success.
 </p>
 <h3 id="h_01HPM01NK3QJ1MPWC5WQFH9125">Request Parameters for Health Check</h3>
 <p>
