@@ -2547,31 +2547,31 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   may support all of these methods, but the list provided is exhaustive. These
   methods should be exposed through an interface named 'feedback' if applicable.
 </p>
-<pre><code>// Retrieves the list of available Feedback Widgets
+<pre><code>// Retrieves the list of available Feedback Widgets, doesn't return a value
 Countly.feedback().getAvailableFeedbackWidgets(RetrieveFeedbackWidgets callback { 
   public void onFinished(List&lt;CountlyFeedbackWidget&gt; retrievedWidgets, String error) {
     // Handling errors and retrieved widgets, can be done here
   }
 });
   
-// Displays a specific widget
+// Displays a specific widget, doesn't return a value
 Countly.feedback().presentFeedbackWidget(CountlyFeedbackWidget widgetInfo, Context context, String closeButtonText, FeedbackCallback devCallback {
   public void onFinished(String error) {
     // Error handling can be done here
   }
 });
   
-// Retrieves a specific widget's data
+// Retrieves a specific widget's data, doesn't return a value
 Countly.feedback().getFeedbackWidgetData(CountlyFeedbackWidget widgetInfo, RetrieveFeedbackWidgetData callback {
   public void onFinished(JSONObject retrievedWidgetData, String error) {
     // Handling errors and retrieved widget's data, can be done here
   }
 });
   
-// Manually reports a widget's results
+// Manually reports a widget's results, doesn't return a value
 Countly.feedback().reportFeedbackWidgetManually(CountlyFeedbackWidget widgetInfo, JSONObject widgetData, Map&lt;string, object&gt; widgetResult);
   
-// Construct URL for the chosen feedback widget
+// Construct URL for the chosen feedback widget, returns string
 Countly.feedback().constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget, ConstructUrlCallback callback {
   public void onFinished(String constructedUrl, String error) {
     // Handle error and the constructed URL
