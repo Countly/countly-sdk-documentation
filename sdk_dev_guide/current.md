@@ -1670,6 +1670,21 @@ end_sesson=1&amp;session_duration=30</code></pre>
   location tracking for this device ID".
 </p>
 <p>Empty country code, city and IP address can not be sent.</p>
+<h2 id="h_01HH0HHMW6YQ6Y6ERDBG0GRGBN">Init Config Options</h2>
+<h2 id="h_01HH0HJB5FHYD1EC8ZJ8DW43T4">Feature Calls</h2>
+<h2 id="h_01HH0HJNZSRFWGVF881DXRR03G">Storage</h2>
+<h2 id="h_01HH0HEW42MWN8GN4J2WZX8Z4T">Consent</h2>
+<p>The location feature depends on the "location" consent.</p>
+<h2 id="h_01HH0D8W9DD34G92AMGVQMFV6S">Networking and Params</h2>
+<p>
+  There are 4 location related parameters that can be set in a Countly SDK. It
+  is "country code" (in ISO format), "city", "location_gps" (GPS coordinates),
+  "IP" address. Their params in API requests are: "country_code", "city", "location",
+  "ip".
+</p>
+<p>Location requests are sent to the "/i" endpoint.</p>
+<p>Location requests should be sent through the request queue.</p>
+<h2 id="h_01HH0D7S3TEVYNXWE8S5C1NNXZ">Test scenarios</h2>
 <p>Some sample situations for handling location:</p>
 <p>
   <strong>1) Dev Sets Location Sometime After Init</strong><br>
