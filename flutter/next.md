@@ -1471,7 +1471,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Using the following call, you can set both the predefined and the custom user
   properties during initialization:
 </p>
-<pre><code class="“JavaScript”">var userProperties = {
+<pre><code class="dart">var userProperties = {
   "customProperty": "custom Value",
   "username": "USER_NAME",
   "email": "USER_EMAIL"
@@ -1482,13 +1482,13 @@ config.setUserProperties(userProperties); </code></pre>
 <p>Ther following calls can be used after init.</p>
 <p>
   If you want to set a single property, you can call
-  <code class="“JavaScript”">Countly.userProfile.setUserProperty(key, value)</code>
+  <code class="dart">Countly.userProfile.setUserProperty(key, value)</code>
 </p>
 <pre>Countly.instance.userProfile.setProperty("specialProperty", "value");
 Countly.instance.userProfile.save();</pre>
 <p>
   If you want to set multiple properties at the same time, you can use:
-  <code class="“JavaScript”">Countly.userProfile.setUserProperties(userProperties)</code>
+  <code class="dart">Countly.userProfile.setUserProperties(userProperties)</code>
 </p>
 <pre><code class="dart">// example for setting user data
 Map&lt;String, Object&gt; userProperties= {
@@ -1507,12 +1507,12 @@ Countly.instance.setUserProperties(userProperties);
 Countly.instance.userProfile.save();</code></pre>
 <p>
   After you have provided the user profile information, you must save it by calling
-  <code class="“JavaScript”">Countly.userProfile.save()</code>. This would then
+  <code class="dart">Countly.userProfile.save()</code>. This would then
   create a request and send it to the server.
 </p>
 <p>
   If you changed your mind and want to clear the currently prepared values, call
-  <code class="“JavaScript”">Countly.userProfile.clear()</code>before calling "save".
+  <code class="dart">Countly.userProfile.clear()</code>before calling "save".
 </p>
 <h2 id="h_01H930GAQ793MEBMSC774K6VFM">Modifying custom data</h2>
 <p>
@@ -1721,7 +1721,7 @@ config.setConsentEnabled(["location", "sessions", "attribution", "push", "events
 </p>
 <p>
   To reflect these changes in the Countly SDK, you can use the
-  <code>removeConsent</code> or <code class="dart">giveConsent</code> methods.
+  <code>removeConsent</code> or <code>giveConsent</code> methods.
 </p>
 <pre><code class="dart">//give consent values after init
 Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
@@ -2121,7 +2121,7 @@ config.setEventQueueSizeToSend(6);</code></pre>
   Class which contains information about the experiment with that ID. This Class'
   structure is like this:
 </p>
-<pre><code>class ExperimentInformation {
+<pre><code class="dart">class ExperimentInformation {
   // same ID as used in the map
   String experimentID;
   // the name of the experiment
@@ -2137,7 +2137,7 @@ config.setEventQueueSizeToSend(6);</code></pre>
   So an example data structure you might get at the end would look something similar
   to this:
 </p>
-<pre><code>{
+<pre><code class="dart">{
   some_exp_ID: {
     experimentID: some_ID,
     experimentName: some_name,
