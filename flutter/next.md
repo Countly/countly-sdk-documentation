@@ -1017,7 +1017,7 @@ Countly.disableLocation();</code></pre>
       <span style="font-weight: 400;">when user gets out of temp ID mode</span>
     </li>
     <li>
-      <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+      <span style="font-weight: 400;">when <code>CountlyConsent.remoteConfig</code> consent is given after it had been removed before (if consents are enabled)</span>
     </li>
   </ul>
   <p>
@@ -1663,6 +1663,7 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
 </p>
 <p>
+  You can use CountlyConsent interface (e.g <code>CountlyConsent.sessions</code>) to reach all possible consent options.<br>
   Currently, available features with consent control are as follows:
 </p>
 <ul>
@@ -1680,10 +1681,10 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
     users - allow collecting/providing user information, including custom properties.
   </li>
   <li>push - allow push notifications</li>
-  <li>star-rating - allow sending their rating and feedback</li>
+  <li>starRating - allow sending their rating and feedback</li>
   <li>apm - allow application performance monitoring</li>
   <li>
-    remote-config - allows downloading remote config values from your server
+    remoteConfig - allows downloading remote config values from your server
   </li>
 </ul>
 <h2 id="h_01H930GAQ85BFVYS2RZGN7TRA0">Setup During Init</h2>
@@ -1705,7 +1706,7 @@ config.setRequiresConsent(true);</code></pre>
   of consent values.
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"])</code></pre>
+config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig])</code></pre>
 <p>
   The Countly SDK does not persistently store the status of given consents except
   push notifications. You are expected to handle receiving consent from end-users
@@ -1724,10 +1725,10 @@ config.setConsentEnabled(["location", "sessions", "attribution", "push", "events
   <code>removeConsent</code> or <code>giveConsent</code> methods.
 </p>
 <pre><code class="dart">//give consent values after init
-Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
+Countly.giveConsent([CountlyConsent.events, CountlyConsent.views, CountlyConsent.starRating, CountlyConsent.crashes]);
 
 //remove consent values after init
-Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
+Countly.removeConsent([CountlyConsent.events, CountlyConsent.views, CountlyConsent.starRating, CountlyConsent.crashes]);
 </code></pre>
 <p>
   You can also either give or remove consent to all possible SDK features:
