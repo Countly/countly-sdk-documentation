@@ -1221,15 +1221,32 @@ if (!response.error) {
   visitor data collection.
 </p>
 <p>
-  Bellow you can see how this can be set using the regular user property access
+  Bellow you can see how this can be set using the singular user property access
   mode and using the bulk mode:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Regular mode</span>
-    <span class="tabs-link">Bulk mode</span>
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
   </div>
   <div class="tab">
+    <pre><code class="javascript">var options = {};<br>
+options.name = "Name of User";
+options.username = "Username";
+options.email = "User Email";
+options.organization = "User Organization";
+options.phone = "User Contact number";
+options.picture = "https://count.ly/images/logos/countly-logo.png";
+options.picturePath = "";
+options.gender = "Male";
+options.byear = 1989;<br>
+Countly.userDataBulk.setUserProperties(options);
+
+// Unless you call this last function your data would not be sent to your server
+Countly.userDataBulk.save();
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
     <pre><code class="javascript">var options = {};<br>
 options.name = "Nicola Tesla";
 options.username = "nicola";
@@ -1242,23 +1259,6 @@ options.gender = "M";
 options.byear = 1919;<br>
 Countly.setUserData(options);</code></pre>
   </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">var options = {};<br>
-options.name = "Name of User";
-options.username = "Username";
-options.email = "User Email";
-options.organization = "User Organization";
-options.phone = "User Contact number";
-options.picture = "https://count.ly/images/logos/countly-logo.png";
-options.picturePath = "";
-options.gender = "Male";
-options.byear = 1989;<br>
-Countly.userDataBulk.setUserProperties(options);
-// Unless you call this last function your data would not be sent to your server
-
-Countly.userDataBulk.save();
-</code></pre>
-  </div>
 </div>
 <h2 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Setting Custom Values</h2>
 <p>
@@ -1268,30 +1268,29 @@ Countly.userDataBulk.save();
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Regular mode</span>
-    <span class="tabs-link">Bulk mode</span>
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
   </div>
   <div class="tab">
     <pre><code class="javascript">var options = {};
 
-options.customeValueA = "nicola";
-options.customeValueB = "info@nicola.tesla";
-// ...
-
-Countly.setUserData(options);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">var options = {};
-
-options.customeValueA = "Custom value A";
-options.customeValueB = "Custom value B";
+options.customValueA = "Custom value A";
+options.customValueB = "Custom value B";
 // ...
 
 Countly.userDataBulk.setUserProperties(options);
 
-// Unless you call this last function your data would not be send to your server
-
+// Unless you call this last function your data would not be sent to your server
 Countly.userDataBulk.save();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};
+
+options.customValueA = "nicola";
+options.customValueB = "info@nicola.tesla";
+// ...
+
+Countly.setUserData(options);</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">Modifying Data</h2>
@@ -1302,10 +1301,32 @@ Countly.userDataBulk.save();</code></pre>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Regular mode</span>
-    <span class="tabs-link">Bulk mode</span>
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
   </div>
   <div class="tab">
+    <pre><code class="javascript">Promise.allSettled([
+  Countly.userDataBulk.setProperty("key", "value"),
+  Countly.userDataBulk.setProperty("increment", 5),
+  Countly.userDataBulk.increment("increment"),
+  Countly.userDataBulk.setProperty("incrementBy", 5),
+  Countly.userDataBulk.incrementBy("incrementBy", 10),
+  Countly.userDataBulk.setProperty("multiply", 5),
+  Countly.userDataBulk.multiply("multiply", 20),
+  Countly.userDataBulk.setProperty("saveMax", 5),
+  Countly.userDataBulk.saveMax("saveMax", 100),
+  Countly.userDataBulk.setProperty("saveMin", 5),
+  Countly.userDataBulk.saveMin("saveMin", 50),
+  Countly.userDataBulk.setOnce("setOnce", 200),
+  Countly.userDataBulk.pushUniqueValue("type", "morning"),
+  Countly.userDataBulk.pushValue("type", "morning"),
+  Countly.userDataBulk.pullValue("type", "morning")
+]).then(values =&gt; {
+  // We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed
+  Countly.userDataBulk.save();
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
     <pre><code class="javascript">Countly.userData.setProperty("keyName", "keyValue"); //set custom property
 Countly.userData.setOnce("keyName", 200); //set custom property only if property does not exist
 Countly.userData.increment("keyName"); //increment value in key by one
@@ -1317,26 +1338,6 @@ Countly.userData.setOnce("setOnce", 200);//insert value to array of unique value
 Countly.userData.pushUniqueValue("type", "morning");//insert value to array of unique values
 Countly.userData.pushValue("type", "morning");//insert value to array which can have duplicates
 Countly.userData.pullValue("type", "morning");//remove value from array</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),
-Countly.userDataBulk.setProperty("increment", 5),
-Countly.userDataBulk.increment("increment"),
-Countly.userDataBulk.setProperty("incrementBy", 5),
-Countly.userDataBulk.incrementBy("incrementBy", 10),
-Countly.userDataBulk.setProperty("multiply", 5),
-Countly.userDataBulk.multiply("multiply", 20),
-Countly.userDataBulk.setProperty("saveMax", 5),
-Countly.userDataBulk.saveMax("saveMax", 100),
-Countly.userDataBulk.setProperty("saveMin", 5),
-Countly.userDataBulk.saveMin("saveMin", 50),
-Countly.userDataBulk.setOnce("setOnce", 200),
-Countly.userDataBulk.pushUniqueValue("type", "morning"),
-Countly.userDataBulk.pushValue("type", "morning"),
-Countly.userDataBulk.pullValue("type", "morning")])
-.then(values =&gt; {
-// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed
-Countly.userDataBulk.save();<br>})</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVQNJQT2HD7EVT4QTCXGG6G">Application Performance Monitoring</h1>
