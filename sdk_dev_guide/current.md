@@ -3199,12 +3199,12 @@ npm install markdownlint --save-dev
 </p>
 <h3 id="h_01HPM01NK3HSSW3XXSKYXRQR0B">Health Information with Instant Request</h3>
 <p>
-  During SDK operation, it should collect a variety of metrics regarding its usage.
+  During SDK operation, various metrics regarding its usage should be collected.
   Those collected metrics should then be periodically sent.
 </p>
 <p>
   The trigger for sending the collected metrics is the end of SDK initialization.
-  At that point the SDK should send over all health metrics collected since the
+  At that point, the SDK should send overall health metrics collected since the
   last time the health metrics were successfully sent.
 </p>
 <p>
@@ -3214,9 +3214,8 @@ npm install markdownlint --save-dev
 <p>Metrics should be sent as an instant request.</p>
 <p>There is no way to disable health checks.</p>
 <p>
-  The health check tracking, serialization, deserialization, etc functionality
-  should be contained within an independent module designed with ease of testing
-  in mind.
+  The health check tracking, serialization, deserialization, etc., functionality
+  should be contained within an independent module designed with ease of testing.
 </p>
 <p>
   Here is a list of metrics that need to be tracked. They are identified by the
@@ -3253,9 +3252,9 @@ npm install markdownlint --save-dev
 <pre>//increments the "wl" counter<br>void logWarning()<br><br>//increment the "el" counter<br>void logError()<br><br>//update the "sc" and "em" values<br>void logFailedNetworkRequest(integer statusCode, string errorResponse)<br><br>//counters should be cleared, and the state should be saved<br>void clearAndSave()<br><br>//state should be saved<br>void saveState()</pre>
 <p>
   The health check request contains the base params, the regular metric param with
-  only the app version and then the metric information under the "hc" param. The
-  request should be sent to the "/i" endpoint. Health check metrics should be sent
-  as a JSON. Each metric would be setting their own key value pair in there.
+  only the app version, and the metric information under the "hc" param. The request
+  should be sent to the "/i" endpoint. Health check metrics should be sent as a
+  JSON. Each metric would be setting its key-value pair in there.
 </p>
 <pre><code>// the relevant parts:
 https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;metrics={app_version:2}...</code></pre>
@@ -3268,18 +3267,18 @@ https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;
   This gives insight into how full is the request queue for the specific device.
 </p>
 <p>
-  With every request sent the SDK would also add a param that would show how many
-  requests are in the stored request queue.
+  With every request sent, the SDK also adds a parameter showing how many requests
+  are in the stored request queue.
 </p>
 <p>
-  The integer value of this is set under the param "rr". This param is not stored
-  in the RQ, but is added just before sending the request:
+  The integer value of this is set under the param "rr." This param is not stored
+  in the RQ but is added just before sending the request:
 </p>
 <pre>// the relevant parts:
 https://countly.server/*?...&amp;rr=23...</pre>
 <p>
-  If tamper protection (salting) is enabled then this parameter should also be
-  included in the checksum calculation.
+  If tamper protection (salting) is enabled, this parameter should also be included
+  in the checksum calculation.
 </p>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
