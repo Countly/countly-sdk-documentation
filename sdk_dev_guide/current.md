@@ -3215,8 +3215,22 @@ npm install markdownlint --save-dev
 <p>There is no way to disable health checks.</p>
 <p>
   The health check tracking, serialization, deserialization, etc., functionality
-  should be contained within an independent module designed with ease of testing.
+  should be contained within an independent module designed so it can be easily tested.
 </p>
+<p>
+  Health metrics should not be saved after every change to a metric. They should
+  be changed after the following triggers:
+</p>
+<ul>
+  <li>Session update timer - for a periodic save</li>
+  <li>
+    Session ended - as a proxy that the app/page is about to be closed
+  </li>
+  <li>
+    Any other platform mechanisms that would indicate that the app is about to
+    be closed or killed
+  </li>
+</ul>
 <p>
   Here is a list of metrics that need to be tracked. They are identified by the
   JSON key that should be used when sending these health metrics:
