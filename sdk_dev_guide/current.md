@@ -2541,42 +2541,37 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   This way the event is sent as soon as possible to the server and marks the widget
   as "completed" for that specific user.
 </p>
-<h3 id="h_01HQMX59RNK27XW4S8HDMXBYC9">Calls Exposed by the SDK</h3>
+<h3 id="h_01HQMX59RNK27XW4S8HDMXBYC9">API and Data Structures Exposed by the SDK</h3>
 <p>
   SDK should publicly expose the methods mentioned below. Note that not all platforms
   may support all of these methods, but the list provided is exhaustive. These
   methods should be exposed through an interface named 'feedback' if applicable.
+  The following functions are post-init calls and they should be located under
+  'ModuleFeedback'
 </p>
-<pre><code>// Retrieves the list of available Feedback Widgets, doesn't return a value
-Countly.feedback().getAvailableFeedbackWidgets(RetrieveFeedbackWidgets callback { 
-  public void onFinished(List&lt;CountlyFeedbackWidget&gt; retrievedWidgets, String error) {
-    // Handling errors and retrieved widgets, can be done here
-  }
-});
+<pre><code>// Retrieves the list of available Feedback Widgets
+void getAvailableFeedbackWidgets(RetrieveFeedbackWidgets callback);
   
-// Displays a specific widget, doesn't return a value
-Countly.feedback().presentFeedbackWidget(CountlyFeedbackWidget widgetInfo, Context context, String closeButtonText, FeedbackCallback devCallback {
-  public void onFinished(String error) {
-    // Error handling can be done here
-  }
-});
+// Displays a specific widget
+void presentFeedbackWidget(CountlyFeedbackWidget widgetInfo, Context context, String closeButtonText, FeedbackCallback devCallback);
   
-// Retrieves a specific widget's data, doesn't return a value
-Countly.feedback().getFeedbackWidgetData(CountlyFeedbackWidget widgetInfo, RetrieveFeedbackWidgetData callback {
-  public void onFinished(JSONObject retrievedWidgetData, String error) {
-    // Handling errors and retrieved widget's data, can be done here
-  }
-});
+// Retrieves a specific widget's data as a JSONObject
+void getFeedbackWidgetData(CountlyFeedbackWidget widgetInfo, RetrieveFeedbackWidgetData callback);
   
-// Manually reports a widget's results, doesn't return a value
-Countly.feedback().reportFeedbackWidgetManually(CountlyFeedbackWidget widgetInfo, JSONObject widgetData, Map&lt;string, object&gt; widgetResult);
+// Manually reports a widget's results
+void reportFeedbackWidgetManually(CountlyFeedbackWidget widgetInfo, JSONObject widgetData, Map&lt;string, object&gt; widgetResult);
   
-// Construct URL for the chosen feedback widget, returns string
-Countly.feedback().constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget, ConstructUrlCallback callback {
-  public void onFinished(String constructedUrl, String error) {
-    // Handle error and the constructed URL
-  }
-});</code></pre>
+// Construct URL for the chosen feedback widget
+string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></pre>
+<p>
+  Retrieved CountlyFeedbackWidget object would look like this:
+</p>
+<pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountlyFeedbackWidget</span> </span>{
+  <span class="hljs-keyword">public</span> String widgetId;
+  <span class="hljs-keyword">public</span> FeedbackWidgetType type;
+  <span class="hljs-keyword">public</span> String name;
+  <span class="hljs-keyword">public</span> String[] tags;
+}</code></pre>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
