@@ -1171,32 +1171,25 @@ if (!response.error) {
 <p>
   You can provide Countly any details you may have about your user or visitor.
   This will allow you to track each specific user on the "User Profiles" tab, available
-  in Countly Enterprise Edition. For more information, please review the
+  in Countly Enterprise Edition. For more information, please check the
   <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">User Profiles documentation</a>.
 </p>
 <p>
-  User details can be sent to your Countly instance in two separate ways depending
-  on your needs and use case. The first option is to set the user data in bulk
-  by using <code class="JavaScript">Countly.userDataBulk</code> call. This allows
-  you to bundle up all your user detail information in a single request to the
-  server and helps minimize the traffic to your server. If you have access to multiple
-  user details of your visitors at a given time, using this method would be the
-  preferred option
+  User details can be sent to your Countly instance in two separate ways: bulk
+  mode using <code class="JavaScript">Countly.userDataBulk</code>, and singular
+  mode using <code class="JavaScript">Countly.userData</code>.
 </p>
 <p>
-  The second option is using <code class="JavaScript">Countly.userData</code> calls
-  to send user details to your server as separate requests. This can be useful
-  in situations where you gain access to user information one at a time and you
-  would like to report that info to your server on the fly.
+  Bulk mode allows you to be more efficient and make multiple user profiles changes
+  in a single network request. This allows you to minimize the traffic to your
+  server. Just do note that after you have made the required changes, you need
+  to call <code class="JavaScript">Countly.userDataBulk.save()</code>for the changes
+  to be bundled and sent.
 </p>
 <p>
-  Using <code class="JavaScript">Countly.userDataBulk</code> call requires you
-  to call <code class="JavaScript">Countly.userDataBulk.save()</code> call, manually,
-  to trigger sending data to your server, as a signifier marking the end of user
-  details you want to record. In the case of
-  <code class="JavaScript">Countly.userData</code> though, you will not need to
-  use any other methods to initiate the data transmission. It will handle that
-  logic internally.
+  Singular mode is more intended for ease of use. Every time a change is done through
+  that interface, the SDK internally performs a "save" action silently and creates
+  a separate request. If used too often, it would lead to bad performance.
 </p>
 <p>
   <strong>Note:</strong> There is some inconsistency in underlying iOS and Android
@@ -1206,11 +1199,6 @@ if (!response.error) {
   around is that you need to call the “Countly.userDataBulk.save();” after every
   push/pull user property call. This does eliminate some of the potential gains
   of this mode, but it does result in the expected result server-side.
-</p>
-<p>
-  Snippets below show examples of using these calls in various situations. After
-  you send a user’s data, it can be found in your Dashboard under
-  <code class="JavaScript">Users &gt; User Profiles</code>.
 </p>
 <p>
   If a property is set as an empty string, it will be deleted on the server side.
@@ -1263,8 +1251,8 @@ Countly.setUserData(options);</code></pre>
 <h2 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Setting Custom Values</h2>
 <p>
   Custom user properties are any arbitrary values that you would like to store
-  under your user's profile. These values can be internal IDs, registration dates,
-  horoscopes, or any other value that is not included in the predefined user properties.
+  under your user's profile. These values can be internal IDs, registration dates
+  or any other value that is not included in the predefined user properties.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1588,8 +1576,8 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
 </p>
 <h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
 <p>
-  The Android side of the SDK does not require specific proguard exclusions and can
-  be fully obfuscated.
+  The Android side of the SDK does not require specific proguard exclusions and
+  can be fully obfuscated.
 </p>
 <h1 id="h_01HAVQNJQTVQ1CQD7VGBYY6HFV">Other Features and Notes</h1>
 <h2 id="h_01HBZGC0M48MT2JRYM9N89SJ8P">SDK Config Parameters Explained</h2>
