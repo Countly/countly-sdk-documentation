@@ -521,6 +521,9 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
   For information about User Profiles, review
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
 </p>
+<p>
+  If a property is set as an empty string, it will be deleted from the user on the server side.
+</p>
 <h2 id="h_01HABV267VXMCSNAXPXD53Z8FK">Setting Predefined Values</h2>
 <p>
   The Countly C++ SDK allows you to upload user specific data to your Countly server.

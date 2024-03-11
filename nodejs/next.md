@@ -421,6 +421,9 @@ Countly.report_feedback({
   tab, which is available with
   <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.
 </p>
+<p>
+  If a parameter is set as an empty string, it will be deleted on the server side.
+</p>
 <p>The list of possible parameters you can pass is:</p>
 <pre><code class="javascript">Countly.user_details({
   "name": "Arturs Sosins",
@@ -569,7 +572,7 @@ Countly.report_trace({
     and overwrite them, before running each request.
   </li>
   <li>
-    <strong>max_logs</strong> - maximum amount of breadcrumbs to store for crash
+    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to store for crash
     logs (default: 100)
   </li>
   <li>

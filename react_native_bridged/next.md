@@ -69,7 +69,6 @@ if(!await Countly.isInitialized()) {
   // create Countly config object
   const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
   await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-  Countly.start(); // start session tracking
 }</code></pre>
 <p>
   Please check
@@ -1080,7 +1079,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
-<pre><code class="javascript">Countly.getFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
+<pre><code class="javascript">Countly.feedback.getAvailableFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
 <p>
   From the callback, get the list of all available widgets that apply to the current
   device ID.
@@ -1103,7 +1102,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   After you have decided which widget you want to display, call the function below.
 </p>
-<pre><code class="javascript">Countly.presentFeedbackWidgetObject(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("Widgetshown");<br>},<br>function() {<br>  console.log("Widgetclosed");<br>})<br></code></pre>
+<pre><code class="javascript">Countly.feedback.presentFeedbackWidget(RETRIEVED_WIDGET_OBJECT, "CLOSE_BUTTON_TEXT", function() {<br>  console.log("Widgetshown");<br>},<br>function() {<br>  console.log("Widgetclosed");<br>})<br></code></pre>
 <h3 id="h_01HBZPWR8E1BF4J850A5VB9BGJ">Manual Reporting</h3>
 <p>
   If you have a custom UI where you collect user feedback or you already have some
@@ -1172,32 +1171,25 @@ if (!response.error) {
 <p>
   You can provide Countly any details you may have about your user or visitor.
   This will allow you to track each specific user on the "User Profiles" tab, available
-  in Countly Enterprise Edition. For more information, please review the
+  in Countly Enterprise Edition. For more information, please check the
   <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">User Profiles documentation</a>.
 </p>
 <p>
-  User details can be sent to your Countly instance in two separate ways depending
-  on your needs and use case. The first option is to set the user data in bulk
-  by using <code class="JavaScript">Countly.userDataBulk</code> call. This allows
-  you to bundle up all your user detail information in a single request to the
-  server and helps minimize the traffic to your server. If you have access to multiple
-  user details of your visitors at a given time, using this method would be the
-  preferred option
+  User details can be sent to your Countly instance in two separate ways: bulk
+  mode using <code class="JavaScript">Countly.userDataBulk</code>, and singular
+  mode using <code class="JavaScript">Countly.userData</code>.
 </p>
 <p>
-  The second option is using <code class="JavaScript">Countly.userData</code> calls
-  to send user details to your server as separate requests. This can be useful
-  in situations where you gain access to user information one at a time and you
-  would like to report that info to your server on the fly.
+  Bulk mode allows you to be more efficient and make multiple user profiles changes
+  in a single network request. This allows you to minimize the traffic to your
+  server. Just do note that after you have made the required changes, you need
+  to call <code class="JavaScript">Countly.userDataBulk.save()</code>for the changes
+  to be bundled and sent.
 </p>
 <p>
-  Using <code class="JavaScript">Countly.userDataBulk</code> call requires you
-  to call <code class="JavaScript">Countly.userDataBulk.save()</code> call, manually,
-  to trigger sending data to your server, as a signifier marking the end of user
-  details you want to record. In the case of
-  <code class="JavaScript">Countly.userData</code> though, you will not need to
-  use any other methods to initiate the data transmission. It will handle that
-  logic internally.
+  Singular mode is more intended for ease of use. Every time a change is done through
+  that interface, the SDK internally performs a "save" action silently and creates
+  a separate request. If used too often, it would lead to bad performance.
 </p>
 <p>
   <strong>Note:</strong> There is some inconsistency in underlying iOS and Android
@@ -1209,9 +1201,7 @@ if (!response.error) {
   of this mode, but it does result in the expected result server-side.
 </p>
 <p>
-  Snippets below show examples of using these calls in various situations. After
-  you send a user’s data, it can be found in your Dashboard under
-  <code class="JavaScript">Users &gt; User Profiles</code>.
+  If a property is set as an empty string, it will be deleted on the server side.
 </p>
 <h2 id="h_01HAVQNJQSBR8S36NF4KQ8X0D3">Setting Predefined Values</h2>
 <p>
@@ -1219,15 +1209,32 @@ if (!response.error) {
   visitor data collection.
 </p>
 <p>
-  Bellow you can see how this can be set using the regular user property access
+  Bellow you can see how this can be set using the singular user property access
   mode and using the bulk mode:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Regular mode</span>
-    <span class="tabs-link">Bulk mode</span>
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
   </div>
   <div class="tab">
+    <pre><code class="javascript">var options = {};<br>
+options.name = "Name of User";
+options.username = "Username";
+options.email = "User Email";
+options.organization = "User Organization";
+options.phone = "User Contact number";
+options.picture = "https://count.ly/images/logos/countly-logo.png";
+options.picturePath = "";
+options.gender = "Male";
+options.byear = 1989;<br>
+Countly.userDataBulk.setUserProperties(options);
+
+// Unless you call this last function your data would not be sent to your server
+Countly.userDataBulk.save();
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
     <pre><code class="javascript">var options = {};<br>
 options.name = "Nicola Tesla";
 options.username = "nicola";
@@ -1240,56 +1247,38 @@ options.gender = "M";
 options.byear = 1919;<br>
 Countly.setUserData(options);</code></pre>
   </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">var options = {};<br>
-options.name = "Name of User";
-options.username = "Username";
-options.email = "User Email";
-options.organization = "User Organization";
-options.phone = "User Contact number";
-options.picture = "https://count.ly/images/logos/countly-logo.png";
-options.picturePath = "";
-options.gender = "Male";
-options.byear = 1989;<br>
-Countly.userDataBulk.setUserProperties(options);
-// Unless you call this last function your data would not be sent to your server
-
-Countly.userDataBulk.save();
-</code></pre>
-  </div>
 </div>
 <h2 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Setting Custom Values</h2>
 <p>
   Custom user properties are any arbitrary values that you would like to store
-  under your user's profile. These values can be internal IDs, registration dates,
-  horoscopes, or any other value that is not included in the predefined user properties.
+  under your user's profile. These values can be internal IDs, registration dates
+  or any other value that is not included in the predefined user properties.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Regular mode</span>
-    <span class="tabs-link">Bulk mode</span>
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
   </div>
   <div class="tab">
     <pre><code class="javascript">var options = {};
 
-options.customeValueA = "nicola";
-options.customeValueB = "info@nicola.tesla";
-// ...
-
-Countly.setUserData(options);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">var options = {};
-
-options.customeValueA = "Custom value A";
-options.customeValueB = "Custom value B";
+options.customValueA = "Custom value A";
+options.customValueB = "Custom value B";
 // ...
 
 Countly.userDataBulk.setUserProperties(options);
 
-// Unless you call this last function your data would not be send to your server
-
+// Unless you call this last function your data would not be sent to your server
 Countly.userDataBulk.save();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};
+
+options.customValueA = "nicola";
+options.customValueB = "info@nicola.tesla";
+// ...
+
+Countly.setUserData(options);</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">Modifying Data</h2>
@@ -1300,10 +1289,32 @@ Countly.userDataBulk.save();</code></pre>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Regular mode</span>
-    <span class="tabs-link">Bulk mode</span>
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
   </div>
   <div class="tab">
+    <pre><code class="javascript">Promise.allSettled([
+  Countly.userDataBulk.setProperty("key", "value"),
+  Countly.userDataBulk.setProperty("increment", 5),
+  Countly.userDataBulk.increment("increment"),
+  Countly.userDataBulk.setProperty("incrementBy", 5),
+  Countly.userDataBulk.incrementBy("incrementBy", 10),
+  Countly.userDataBulk.setProperty("multiply", 5),
+  Countly.userDataBulk.multiply("multiply", 20),
+  Countly.userDataBulk.setProperty("saveMax", 5),
+  Countly.userDataBulk.saveMax("saveMax", 100),
+  Countly.userDataBulk.setProperty("saveMin", 5),
+  Countly.userDataBulk.saveMin("saveMin", 50),
+  Countly.userDataBulk.setOnce("setOnce", 200),
+  Countly.userDataBulk.pushUniqueValue("type", "morning"),
+  Countly.userDataBulk.pushValue("type", "morning"),
+  Countly.userDataBulk.pullValue("type", "morning")
+]).then(values =&gt; {
+  // We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed
+  Countly.userDataBulk.save();
+});</code></pre>
+  </div>
+  <div class="tab is-hidden">
     <pre><code class="javascript">Countly.userData.setProperty("keyName", "keyValue"); //set custom property
 Countly.userData.setOnce("keyName", 200); //set custom property only if property does not exist
 Countly.userData.increment("keyName"); //increment value in key by one
@@ -1315,26 +1326,6 @@ Countly.userData.setOnce("setOnce", 200);//insert value to array of unique value
 Countly.userData.pushUniqueValue("type", "morning");//insert value to array of unique values
 Countly.userData.pushValue("type", "morning");//insert value to array which can have duplicates
 Countly.userData.pullValue("type", "morning");//remove value from array</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Promise.allSettled([Countly.userDataBulk.setProperty("key", "value"),
-Countly.userDataBulk.setProperty("increment", 5),
-Countly.userDataBulk.increment("increment"),
-Countly.userDataBulk.setProperty("incrementBy", 5),
-Countly.userDataBulk.incrementBy("incrementBy", 10),
-Countly.userDataBulk.setProperty("multiply", 5),
-Countly.userDataBulk.multiply("multiply", 20),
-Countly.userDataBulk.setProperty("saveMax", 5),
-Countly.userDataBulk.saveMax("saveMax", 100),
-Countly.userDataBulk.setProperty("saveMin", 5),
-Countly.userDataBulk.saveMin("saveMin", 50),
-Countly.userDataBulk.setOnce("setOnce", 200),
-Countly.userDataBulk.pushUniqueValue("type", "morning"),
-Countly.userDataBulk.pushValue("type", "morning"),
-Countly.userDataBulk.pullValue("type", "morning")])
-.then(values =&gt; {
-// We need to call the "save" in then block else it will cause a race condition and "save" may call before all the user profiles calls are completed
-Countly.userDataBulk.save();<br>})</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVQNJQT2HD7EVT4QTCXGG6G">Application Performance Monitoring</h1>
@@ -1475,16 +1466,16 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
 </ul>
 <h2 id="h_01HAVQNJQT9EZ8R01NCM6ENW9Z">Setup During Init</h2>
 <p>
-  <span>The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code> with <code>true</code> before initializing Countly.</span>
+  <span>The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code> with <code>true</code> during initializing Countly.</span>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // Enable consent requirement
-Countly.setRequiresConsent(true);</code></pre>
+countlyConfig.setRequiresConsent(true);</code></pre>
 <p>
   <span>By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent.</span>
 </p>
 <p>
-  <span>To give consent during initialization, you have to call <code class="JavaScript">setConsentEnabled</code>on the config object with an array of consent values.</span>
+  <span>To give consent during initialization, you have to call <code class="JavaScript">giveConsent</code>on the config object with an array of consent values.</span>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");</code><br>countlyConfig.giveConsent(["events", "views", "star-rating", "crashes"]);</pre>
 <p>
@@ -1583,50 +1574,10 @@ Make sure copy bundle resources has your certificate (Screenshot 4).</pre>
   Note that <code class="JavaScript">count.ly.cer</code> is the name of the file.
   Replace this file with the one you have.
 </p>
-<h2 id="h_01HAVQNJQT8NSPAFD2CXGXET30">Using Proguard</h2>
+<h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
 <p>
-  If you are using Countly Messaging in your Android application, it is recommended
-  to obfuscate the Countly Messaging classes using Proguard. To do so, please follow
-  the instructions below:
-</p>
-<ol>
-  <li>
-    <p>
-      Locate the app/proguard-rules.pro file within the /android/app/ folder.
-    </p>
-  </li>
-  <li>
-    <p>Add the following lines to the file:</p>
-  </li>
-</ol>
-<pre><code class="Kotlin">-keep class ly.count.android.sdk.** { *; }
-</code></pre>
-<ol start="3">
-  <li>
-    <p>
-      If Proguard is not yet configured, you must first enable shrinking and
-      obfuscation in the build file. To do so, locate the build.gradle file
-      within the /android/app/ folder.
-    </p>
-  </li>
-  <li>
-    <p>Add the following lines in bold to the build.gradle file:</p>
-  </li>
-</ol>
-<pre><code>...
-
-buildTypes {
-  release { // Enables code shrinking, obfuscation, and optimization for only your project's release build type.
-    ...
-    minifyEnabled true
-    shrinkResources true
-    proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-  }
-}
-...</code></pre>
-<p>
-  By following these steps, the Countly Messaging classes will be obfuscated using
-  Proguard and your application will be better protected against reverse engineering.
+  The Android side of the SDK does not require specific proguard exclusions and
+  can be fully obfuscated.
 </p>
 <h1 id="h_01HAVQNJQTVQ1CQD7VGBYY6HFV">Other Features and Notes</h1>
 <h2 id="h_01HBZGC0M48MT2JRYM9N89SJ8P">SDK Config Parameters Explained</h2>

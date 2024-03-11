@@ -1,7 +1,7 @@
 <p>
   <span>Crash Symbolication lets you symbolicate/de-obfuscate crash reports and convert them into human readable format, helping you</span>
   pinpoint where in your code a crash is originating from.
-</p> 
+</p>
 <div class="callout callout--info">
   <span class="wysiwyg-font-size-large"><strong class="callout__title">Availability</strong></span>
   <p>

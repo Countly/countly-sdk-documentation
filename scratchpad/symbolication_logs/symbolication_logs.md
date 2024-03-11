@@ -1,5 +1,5 @@
 <h1>Symbolication Logs</h1>
-<p> 
+<p>
   <span style="font-weight: 400;">You might come across a situation when trying to symbolicate a crash where you will see something similar to the image below:</span>
 </p>
 <div class="img-container">

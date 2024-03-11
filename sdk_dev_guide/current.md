@@ -1670,6 +1670,21 @@ end_sesson=1&amp;session_duration=30</code></pre>
   location tracking for this device ID".
 </p>
 <p>Empty country code, city and IP address can not be sent.</p>
+<h2 id="h_01HH0HHMW6YQ6Y6ERDBG0GRGBN">Init Config Options</h2>
+<h2 id="h_01HH0HJB5FHYD1EC8ZJ8DW43T4">Feature Calls</h2>
+<h2 id="h_01HH0HJNZSRFWGVF881DXRR03G">Storage</h2>
+<h2 id="h_01HH0HEW42MWN8GN4J2WZX8Z4T">Consent</h2>
+<p>The location feature depends on the "location" consent.</p>
+<h2 id="h_01HH0D8W9DD34G92AMGVQMFV6S">Networking and Params</h2>
+<p>
+  There are 4 location related parameters that can be set in a Countly SDK. It
+  is "country code" (in ISO format), "city", "location_gps" (GPS coordinates),
+  "IP" address. Their params in API requests are: "country_code", "city", "location",
+  "ip".
+</p>
+<p>Location requests are sent to the "/i" endpoint.</p>
+<p>Location requests should be sent through the request queue.</p>
+<h2 id="h_01HH0D7S3TEVYNXWE8S5C1NNXZ">Test scenarios</h2>
 <p>Some sample situations for handling location:</p>
 <p>
   <strong>1) Dev Sets Location Sometime After Init</strong><br>
@@ -2611,6 +2626,15 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>
   <span style="font-weight: 400;">You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
 </p>
+<p>
+  If a "null" value is set to a user property, the SDK should ignore the value
+  and print a warning.
+</p>
+<p>
+  If an empty string is provided as a value then that should lead to the deletion
+  of the user property on the server side. This should trigger the SDK to send
+  a JSON null value assigned to the property.
+</p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
   <span style="font-weight: 400;">You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
@@ -3262,73 +3286,107 @@ npm install markdownlint --save-dev
   reconfigures itself to reflect the new configuration.
 </p>
 <h2 id="h_01HPM01NK3F2VHHXJ07P53QF55">SDK Health Checks</h2>
-<p>SDKs should try to provide 2 type of health information:</p>
-<ul>
-  <li>Instant request to the server with health information</li>
-  <li>Additional parameter with requests to the server</li>
-</ul>
+<p>
+  These are a collection of different metrics and helpers that would give better
+  insight into the state of the SDK integration.
+</p>
 <h3 id="h_01HPM01NK3HSSW3XXSKYXRQR0B">Health Information with Instant Request</h3>
 <p>
-  At the end of every SDK init the SDK should attempt an instant request to send
-  over health check counters. These counters are:
+  During SDK operation, various metrics regarding its usage should be collected.
+  Those collected metrics should then be periodically sent.
+</p>
+<p>
+  The trigger for sending the collected metrics is the end of SDK initialization.
+  At that point, the SDK should send overall health metrics collected since the
+  last time the health metrics were successfully sent.
+</p>
+<p>
+  Metrics should be stored persistently. Upon successful transmission, the stored
+  metrics should be cleared.
+</p>
+<p>Metrics should be sent as an instant request.</p>
+<p>There is no way to disable health checks.</p>
+<p>
+  The health check tracking, serialization, deserialization, etc., functionality
+  should be contained within an independent module designed so it can be easily tested.
+</p>
+<p>
+  Health metrics should not be saved after every change to a metric. They should
+  be changed after the following triggers:
+</p>
+<ul>
+  <li>Session update timer - for a periodic save</li>
+  <li>
+    Session ended - as a proxy that the app/page is about to be closed
+  </li>
+  <li>
+    Any other platform mechanisms that would indicate that the app is about to
+    be closed or killed
+  </li>
+</ul>
+<p>
+  Here is a list of metrics that need to be tracked. They are identified by the
+  JSON key that should be used when sending these health metrics:
 </p>
 <ul dir="auto">
   <li>
     <p dir="auto">
-      <strong>el</strong> - Int
+      <strong>el</strong> (Integer) - The amount of error-level SDK logs triggered
     </p>
   </li>
   <li>
     <p dir="auto">
-      <strong>wl</strong> - Int&nbsp;
+      <strong>wl</strong> (Integer) - The amount of warning-level SDK logs
+      triggered&nbsp;
     </p>
   </li>
   <li>
     <p dir="auto">
-      <strong>sc</strong> - Int
+      <strong>sc</strong> (Integer) - The status code of the last failed request&nbsp;
     </p>
   </li>
   <li>
     <p dir="auto">
-      <strong>em</strong> - String&nbsp;
+      <strong>em</strong> (String) - The first 1000 characters of the response
+      returned by the last failed request
     </p>
-  </li>
-</ul>
-<p>Positive triggers of these counters are:</p>
-<ul>
-  <li>
-    Error level SDK log printed =&gt; <strong>el</strong>++
-  </li>
-  <li>
-    Warning level SDK log printed =&gt; <strong>wl</strong>++
-  </li>
-  <li>
-    A RQ request failed =&gt; <strong>sc</strong> = status code
-  </li>
-  <li>
-    A RQ request failed =&gt; <strong>em</strong> = response text
-  </li>
-</ul>
-<p>Negative triggers of these counters are:</p>
-<ul>
-  <li>
-    Health check request got {result:Success} =&gt; reset all counters
   </li>
 </ul>
 <p>
-  These counters must be persistently stored. At the end of SDK init they should
-  be sent under the 'hc' parameter to the server (/i?) after URL encoding them
-  with metric information (app version only) as an instant request. Example usage:
+  The module should expose the following methods for tracking, saving, and creating
+  the param:
+</p>
+<pre>//increments the "wl" counter<br>void logWarning()<br><br>//increment the "el" counter<br>void logError()<br><br>//update the "sc" and "em" values<br>void logFailedNetworkRequest(integer statusCode, string errorResponse)<br><br>//counters should be cleared, and the state should be saved<br>void clearAndSave()<br><br>//state should be saved<br>void saveState()</pre>
+<p>
+  The health check request contains the base params, the regular metric param with
+  only the app version, and the metric information under the "hc" param. The request
+  should be sent to the "/i" endpoint. Health check metrics should be sent as a
+  JSON. Each metric would be setting its key-value pair in there.
 </p>
 <pre><code>// the relevant parts:
 https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;metrics={app_version:2}...</code></pre>
+<p>
+  The request is considered sent successfully as per the regular SDK interpretations
+  of success.
+</p>
 <h3 id="h_01HPM01NK3QJ1MPWC5WQFH9125">Request Parameters for Health Check</h3>
 <p>
-  The number of requests in the request queue must be provided with each request
-  sent from the RQ under the param "rr":
+  This gives insight into how full is the request queue for the specific device.
 </p>
-<pre><code>// the relevant parts:
-https://countly.server/*?...&amp;rr=23...</code></pre>
+<p>
+  With every request sent, the SDK also adds a parameter showing how many requests
+  are in the stored request queue.
+</p>
+<p>
+  The integer value of this is set under the param "rr." This param is not stored
+  in the RQ but is added just before sending the request:
+</p>
+<pre>// the relevant parts:
+https://countly.server/*?...&amp;rr=23...</pre>
+<p>
+  If tamper protection (salting) is enabled, this parameter should also be included
+  in the checksum calculation.
+</p>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>

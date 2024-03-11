@@ -44,7 +44,7 @@
 
     // Initialize with that configuration
     Countly.initWithConfig(config).then((value){
-      Countly.start(); // Enables automatic view tracking
+      // handle extra logic after init
     });
   } else {
     print("Countly: Already initialized.");
@@ -94,7 +94,7 @@
 <p>
   We advise doing this while implementing Countly features in your application.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setLoggingEnabled(true);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
@@ -116,7 +116,7 @@ config.setLoggingEnabled(true);</code></pre>
   If you want to enable automatic unhandled crash reporting, you need to call this
   before init:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.enableCrashReporting()</code></pre>
 <p>
   By doing that it will automatically catch all errors that are thrown from within
@@ -126,7 +126,7 @@ config.enableCrashReporting()</code></pre>
   If you want to catch Dart errors, run your app inside a Zone and supply
   <code>Countly.recordDartError</code> to the <code>onError</code> parameter:
 </p>
-<pre><code class="JavaScript">void main() {
+<pre><code class="dart">void main() {
   runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
     runApp(MyApp());
   }, Countly.recordDartError);
@@ -142,7 +142,7 @@ config.enableCrashReporting()</code></pre>
   The following call will add the provided segmentation to all recorded crashes.
   Use the following function for this purpose:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
 <h2 id="h_01H930GAQ5D1WSF2DZZJ8XA12T">Handled Exceptions</h2>
 <p class="p1">
@@ -153,17 +153,17 @@ config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
   be provided to the function. A potential use case would be to
   <code>exception.toString()</code>
 </p>
-<pre><code class="JavaScript">Countly.logException(String exception, bool nonfatal, [Map&lt;String, Object&gt; segmentation])</code></pre>
+<pre><code class="dart">Countly.logException(String exception, bool nonfatal, [Map&lt;String, Object&gt; segmentation])</code></pre>
 <p>
   The issue is recorded with a provided Exception object. If no stacktrace is set,<code>StackTrace.current</code>
   will be used.
 </p>
-<pre><code class="JavaScript">Countly.logExceptionEx(Exception exception, bool nonfatal, {StackTrace stacktrace, Map&lt;String, Object&gt; segmentation})</code></pre>
+<pre><code class="dart">Countly.logExceptionEx(Exception exception, bool nonfatal, {StackTrace stacktrace, Map&lt;String, Object&gt; segmentation})</code></pre>
 <p class="p1">
   The exception/error is recorded through a string message. If no stack trace is
   provided, <code>StackTrace.current</code> will be used.
 </p>
-<pre><code class="JavaScript">Countly.logExceptionManual(String message, bool nonfatal, {StackTrace stacktrace, Map&lt;String, Object&gt; segmentation})</code></pre>
+<pre><code class="dart">Countly.logExceptionManual(String message, bool nonfatal, {StackTrace stacktrace, Map&lt;String, Object&gt; segmentation})</code></pre>
 <p>
   Below are some examples that how to log handled/nonfatal and unhandled/fatal
   exceptions manually.
@@ -171,7 +171,7 @@ config.setCustomCrashSegment(Map&lt;String, Object&gt; segments);</code></pre>
 <p>
   <strong>1. Manually report exception</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+<pre><code class="dart">bool nonfatal = true; // Set it false in case of fatal exception
 // With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal);
 
@@ -181,7 +181,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal);
 <p>
   <strong>2. Manually report exception with stack trace</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+<pre><code class="dart">bool nonfatal = true; // Set it false in case of fatal exception
 // With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, stacktrace: STACK_TRACE_OBJECT);
 
@@ -191,7 +191,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, stacktrace: STACK_TRACE_O
 <p>
   <strong>3. Manually report exception with segmentation</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+<pre><code class="dart">bool nonfatal = true; // Set it false in case of fatal exception
 // With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, segmentation: {"_facebook_version": "0.0.1"});
 
@@ -201,7 +201,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, segmentation: {"_facebook
 <p>
   <strong>4. Manually report exception with stack trace and segmentation</strong>
 </p>
-<pre><code class="JavaScript">bool nonfatal = true; // Set it false in case of fatal exception
+<pre><code class="dart">bool nonfatal = true; // Set it false in case of fatal exception
 // With Exception object
 Countly.logExceptionEx(EXCEPTION_OBJECT, nonfatal, STACK_TRACE_OBJECT, {"_facebook_version": "0.0.1"});
 
@@ -215,7 +215,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   will be sent together with the crash report.
 </p>
 <p>The following function call adds a crash breadcrumb:</p>
-<pre><code class="JavaScript">Countly.addCrashLog(String logs)</code></pre>
+<pre><code class="dart">Countly.addCrashLog(String logs)</code></pre>
 <h1 id="h_01H930GAQ5NTNH59KY6FB5CCEN">Events</h1>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037093532-Custom-events">Event</a>
@@ -239,8 +239,8 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
     total amount of in-app purchase event.
   </li>
   <li>
-    <code class="JavaScript">duration</code> is used to record and track the
-    duration of events.
+    <code class="dart">duration</code> is used to record and track the duration
+    of events.
   </li>
   <li>
     <code>segmentation</code> is a key-value pairs, we can use
@@ -286,7 +286,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 <p>
   <span class="wysiwyg-font-size-large">1. Event key and count</span>
 </p>
-<pre><code class="JavaScript">// example for sending basic event
+<pre><code class="dart">// example for sending basic event
 var event = {
   "key": "Basic Event",
   "count": 1
@@ -296,7 +296,7 @@ Countly.recordEvent(event);</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">2. Event key, count and sum</span>
 </p>
-<pre><code class="JavaScript">// example for event with sum
+<pre><code class="dart">// example for event with sum
 var event = {
   "key": "Event With Sum",
   "count": 1,
@@ -308,7 +308,7 @@ Countly.recordEvent(event);
 <p>
   <span class="wysiwyg-font-size-large">3. Event key and count with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">// example for event with segment
+<pre><code class="dart">// example for event with segment
 var event = {
   "key": "Event With Segment",
   "count": 1
@@ -324,7 +324,7 @@ Countly.recordEvent(event);
 <p>
   <span class="wysiwyg-font-size-large">4. Event key, count and sum with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">// example for event with segment and sum
+<pre><code class="dart">// example for event with segment and sum
 var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
@@ -341,7 +341,7 @@ Countly.recordEvent(event);
 <p>
   <span class="wysiwyg-font-size-large">5. Event key, count, sum and duration with segmentation(s)</span>
 </p>
-<pre><code class="JavaScript">// example for event with segment and sum
+<pre><code class="dart">// example for event with segment and sum
 var event = {
   "key": "Event With Sum And Segment",
   "count": 1,
@@ -363,7 +363,7 @@ Countly.recordEvent(event);
 <p>
   <span class="wysiwyg-font-size-large">1.Timed event with key</span>
 </p>
-<pre><code class="JavaScript">// Basic event
+<pre><code class="dart">// Basic event
 Countly.startEvent("Timed Event");
 
 Timer timer = Timer(new Duration(seconds: 5), () {
@@ -373,7 +373,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <p>
   <span class="wysiwyg-font-size-large">2.Timed event with key and sum</span>
 </p>
-<pre><code class="JavaScript">// Event with sum
+<pre><code class="dart">// Event with sum
 Countly.startEvent("Timed Event With Sum");
 
 Timer timer = Timer(new Duration(seconds: 5), () {
@@ -383,7 +383,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <p>
   <span class="wysiwyg-font-size-large">3.Timed event with key, count and segmentation</span>
 </p>
-<pre><code class="JavaScript">// Event with segment
+<pre><code class="dart">// Event with segment
 Countly.startEvent("Timed Event With Segment");
 
 Timer timer = Timer(new Duration(seconds: 5), () {
@@ -400,7 +400,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 <p>
   <span class="wysiwyg-font-size-large">4.Timed event with key, count, sum and segmentation</span>
 </p>
-<pre><code class="JavaScript">// Event with Segment, sum and count
+<pre><code class="dart">// Event with Segment, sum and count
 Countly.startEvent("Timed Event With Segment, Sum and Count");
 
 Timer timer = Timer(new Duration(seconds: 5), () {
@@ -445,7 +445,7 @@ Timer timer = Timer(new Duration(seconds: 5), () {
   relying on the SDK.
 </p>
 <p>It can be enabled during init with:</p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 </code>config.enableManualSessionHandling();</pre>
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
@@ -478,12 +478,12 @@ Countly.instance.sessions.endSession();</pre>
   If you want to start a view that will be automatically stopped when starting
   another view, use the following method:
 </p>
-<pre><code class="JavaScript">// record a view on your application
+<pre><code class="dart">// record a view on your application
 final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</span>("Dashboard");</code></pre>
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
 </p>
-<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+<pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
   "Cats": 123,
   "Moons": 9.98,
   "Moose": "Deer"
@@ -497,13 +497,13 @@ final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView<
   them started at the same time, and then you can control them independently. You
   can manually start a view using the <code>startView</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName</code> or <code>stopViewWithID</code> </span>
 </p>
-<pre><code class="JavaScript">// record a view on your application
+<pre><code class="dart">// record a view on your application
 Countly.instance.views.startView("HomePage");
 final String? viewID = await Countly.instance.views.startView("Dashboard");</code></pre>
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
 </p>
-<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+<pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
   "Cats": 123,
   "Moons": 9.98,
   "Moose": "Deer"
@@ -517,30 +517,30 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
   you try to stop one with that name, the SDK would close one of those randomly.
 </p>
 <p>Below you can see example ways of stopping views.</p>
-<pre><code class="JavaScript">Countly.instance.views.stopViewWithName("HomePage");</code></pre>
+<pre><code class="dart">Countly.instance.views.stopViewWithName("HomePage");</code></pre>
 <p>
   This function allows you to manually stop the tracking of a view identified by
   its name.<span style="font-weight: 400;"> You can also specify the custom segmentation key-value pairs while stopping views:</span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.stopViewWithName("HomePage", segmentation);</code></pre>
+<pre><code class="dart">Countly.instance.views.stopViewWithName("HomePage", segmentation);</code></pre>
 <p>
   You can also stop view tracking by its unique idetifier using
   <span style="font-weight: 400;"><code>stopViewWithID</code></span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.stopViewWithID(viewID);</code></pre>
+<pre><code class="dart">Countly.instance.views.stopViewWithID(viewID);</code></pre>
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.stopViewWithID(anotherViewID, segmentation);</code></pre>
+<pre><code class="dart">Countly.instance.views.stopViewWithID(anotherViewID, segmentation);</code></pre>
 <p>
   You can stop all views tracking using
   <span style="font-weight: 400;"><code>stopAllViews</code></span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.stopAllViews();</code></pre>
+<pre><code class="dart">Countly.instance.views.stopAllViews();</code></pre>
 <p>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping all views:</span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.stopAllViews(segmentation);</code></pre>
+<pre><code class="dart">Countly.instance.views.stopAllViews(segmentation);</code></pre>
 <h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Pausing and Resuming Views</h3>
 <p>
   <span style="font-weight: 400;"></span>This SDK allows you to start multiple
@@ -553,14 +553,14 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
   You can pause view tracking by its unique identifier using
   <span style="font-weight: 400;"><code>pauseViewWithID</code></span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.pauseViewWithID(viewID);</code></pre>
+<pre><code class="dart">Countly.instance.views.pauseViewWithID(viewID);</code></pre>
 <p>
   <span>This function temporarily pauses the tracking of a view identified by its unique identifier.</span>
 </p>
 <p>
   You can resume view tracking by its unique identifier using<span style="font-weight: 400;"> <code>resumeViewWithID:</code></span>
 </p>
-<pre><code class="JavaScript">Countly.instance.views.resumeViewWithID(viewID);</code></pre>
+<pre><code class="dart">Countly.instance.views.resumeViewWithID(viewID);</code></pre>
 <p>
   <span>This function resumes the tracking of a view identified by its unique identifier.</span>
 </p>
@@ -572,7 +572,7 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 <p>
   Here is an example on how to achieve that using the view name:
 </p>
-<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+<pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
   "Cats": 123,
   "Moons": 9.98,
   "Moose": "Deer"
@@ -581,7 +581,7 @@ Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</c
 <p>
   Here is an example for how to add segmentation to a view using its ID:
 </p>
-<pre><code class="JavaScript">Map&lt;String, Object&gt; segmentation = {
+<pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
   "Cats": 123,
   "Moons": 9.98,
   "Moose": "Deer"
@@ -598,7 +598,7 @@ Countly.instance.views.addSegmentationToViewWithID(viewID, segmentation);</code>
   For setting global segmentation values during SDK initialization, use the following
   method:
 </p>
-<pre><code class="JavaScript">// set global segmentation at initialization
+<pre><code class="dart">// set global segmentation at initialization
 final CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setGlobalViewSegmentation(segmentation);</code></pre>
 <p>
@@ -609,12 +609,12 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
   The<code>setGlobalViewSegmentation</code> method will replace the previously
   set values..
 </p>
-<pre><code class="JavaScript">Countly.instance.views.setGlobalViewSegmentation(segmentation);</code></pre>
+<pre><code class="dart">Countly.instance.views.setGlobalViewSegmentation(segmentation);</code></pre>
 <p>
   The <code>updateGlobalViewSegmentation</code> method will modify the previously
   set values and overwrite any previously set keys.
 </p>
-<pre><code class="JavaScript">Countly.instance.views.updateGlobalViewSegmentation(segmentation);</code></pre>
+<pre><code class="dart">Countly.instance.views.updateGlobalViewSegmentation(segmentation);</code></pre>
 <h1 id="h_01H930GAQ65W1S9T2R1K2EQQFJ">Device ID Management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
@@ -626,11 +626,11 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 <p>
   You may provide your own custom device ID when initializing the SDK
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
 <p>You may configure/change the device ID anytime using:</p>
-<pre><code class="JavaScript">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
+<pre><code class="dart">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
 <p>
   You may either allow the device to be counted as a new device or merge existing
   data on the server. If the<code>onServer</code> bool is set to
@@ -647,9 +647,13 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <p>
   You can enable temporary device ID when initializing the SDK:
 </p>
-<pre><code class="JavaScript">Countly.init(SERVER_URL, APP_KEY, Countly.deviceIDType["TemporaryDeviceID"])</code></pre>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setDeviceId(Countly.deviceIDType["TemporaryDeviceID"]);
+
+// Initialize with that configuration
+Countly.initWithConfig(config);</code></pre>
 <p>To enable a temporary device ID after init, you would call:</p>
-<pre><code class="JavaScript">Countly.changeDeviceId(Countly.deviceIDType["TemporaryDeviceID"], ON_SERVER);</code></pre>
+<pre><code class="dart">Countly.changeDeviceId(Countly.deviceIDType["TemporaryDeviceID"], ON_SERVER);</code></pre>
 <p>
   <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for
   <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
@@ -675,7 +679,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following call:
 </p>
-<pre><code class="JavaScript">String currentDeviceId = Countly.getCurrentDeviceId();</code></pre>
+<pre><code class="dart">String currentDeviceId = Countly.getCurrentDeviceId();</code></pre>
 <p>
   <span>You can use </span><code>getDeviceIDType</code><span>&nbsp;method which returns a </span><code>DeviceIDType</code><span> to get the current device ID type. The id type is an enum with the possible values of: </span>
 </p>
@@ -752,7 +756,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <p>
   Step 6: Add the following line in file <code>android/build.gradle</code>
 </p>
-<pre><code class="JavaScript">buildscript {
+<pre><code class="dart">buildscript {
   dependencies {
     classpath 'com.google.gms:google-services:4.3.15'
     }
@@ -767,7 +771,7 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <p>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
-<pre><code class="JavaScript">dependencies {
+<pre><code class="dart">dependencies {
   implementation 'ly.count.android:sdk:22.02.1'
   implementation 'com.google.firebase:firebase-messaging:20.0.0'
 }
@@ -822,18 +826,18 @@ apply plugin: 'com.google.gms.google-services'
   token mode. This would allow you to choose either test or production modes, push
   token mode should be set before init.
 </p>
-<pre><code class="JavaScript">// Set messaging mode for push notifications
+<pre><code class="dart">// Set messaging mode for push notifications
 Countly.pushTokenType(Countly.messagingMode["TEST"]);</code></pre>
 <p>
   When you are finally ready to initialise Countly push, you would call this:
 </p>
-<pre><code class="JavaScript">// This method will ask for permission, enables push notification and send push token to countly server.
+<pre><code class="dart">// This method will ask for permission, enables push notification and send push token to countly server.
 Countly.askForNotificationPermission();</code></pre>
 <p>
   Also it is important to note that push notification is enabled for iOS by default,
   so to disable you need to call <code>disablePushNotifications</code> method:
 </p>
-<pre><code class="JavaScript">// Disable push notifications feature for iOS, by default it is enabled.
+<pre><code class="dart">// Disable push notifications feature for iOS, by default it is enabled.
 Countly.disablePushNotifications();</code></pre>
 <h2 id="h_01HNFJBRCKHFFZZYWK1CD485FT">Removing Push and Its Dependencies</h2>
 <p>
@@ -854,10 +858,10 @@ Countly.disablePushNotifications();</code></pre>
   in <code>AppDelegate.swift</code>
 </p>
 <p>Add header files</p>
-<pre><code class="JavaScript">import countly_flutter
+<pre><code class="dart">import countly_flutter
 </code></pre>
 <p>Add these methods:</p>
-<pre><code class="JavaScript">// Required for the notification event. You must call the completion handler after handling the remote notification.
+<pre><code class="dart">// Required for the notification event. You must call the completion handler after handling the remote notification.
 func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -&gt; Void) {
   CountlyFlutterPlugin.onNotification(userInfo);
   completionHandler(.newData);
@@ -954,7 +958,7 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
 <p>
   <span>All values are optional, but at least one should be set.</span>
 </p>
-<pre><code class="JavaScript">// Example for setLocation
+<pre><code class="dart">// Example for setLocation
 CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setLocation(country_code: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12')</code></pre>
 <p>
@@ -962,7 +966,7 @@ config.setLocation(country_code: 'TR', city: 'Istanbul', gpsCoordinates: '41.008
   SDK has started. To do so, use the <code>setUserLocation</code> method as shown
   below.
 </p>
-<pre><code class="JavaScript">// Example for setUserLocation
+<pre><code class="dart">// Example for setUserLocation
 Countly.setUserLocation(countryCode: 'TR', city: 'Istanbul', gpsCoordinates: '41.0082,28.9784', ipAddress: '10.2.33.12');
 </code></pre>
 <h2 id="h_01H930GAQ6ZJ0P4SAE3CF0H47J">Disable Location</h2>
@@ -972,7 +976,7 @@ Countly.setUserLocation(countryCode: 'TR', city: 'Istanbul', gpsCoordinates: '41
   <code>setUserLocation</code> is called with any non-null value, tracking will
   resume.
 </p>
-<pre><code class="JavaScript">//disable location tracking
+<pre><code class="dart">//disable location tracking
 Countly.disableLocation();</code></pre>
 <h1 id="h_01H930GAQ6GWEATBC0DAVDHW7R">Remote Config</h1>
 <p>
@@ -1013,7 +1017,7 @@ Countly.disableLocation();</code></pre>
       <span style="font-weight: 400;">when user gets out of temp ID mode</span>
     </li>
     <li>
-      <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
+      <span style="font-weight: 400;">when <code>CountlyConsent.remoteConfig</code> consent is given after it had been removed before (if consents are enabled)</span>
     </li>
   </ul>
   <p>
@@ -1270,12 +1274,12 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
   dashboard. If the user dismisses star rating dialog without giving a rating,
   the event will not be recorded.
 </p>
-<pre><code class="JavaScript">Countly.askForStarRating();</code></pre>
+<pre><code class="dart">Countly.askForStarRating();</code></pre>
 <p>
   The star-rating dialog's title, message, and dismiss button text may be customized
   either through the following functions:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setStarRatingTextTitle("Custom title"); // Only available for Android
 config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
@@ -1310,14 +1314,14 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   Using that you can call the function to show the widget popup:
 </p>
-<pre><code class="JavaScript">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {
+<pre><code class="dart">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {
   if(error != null) {
     print(error);
   }
 });</code></pre>
 <p>
-  <code class="JavaScript">closeButtonText</code> and
-  <code class="JavaScript">ratingWidgetCallback</code> are optional.
+  <code class="dart">closeButtonText</code> and
+  <code class="dart">ratingWidgetCallback</code> are optional.
 </p>
 <h2 id="h_01H930GAQ7XASR12CMDC11Q265">Feedback Widget</h2>
 <p>
@@ -1336,14 +1340,14 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   all available widgets for a user and another to display a chosen widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
-<pre><code class="JavaScript">FeedbackWidgetsResponse feedbackWidgetsResponse = await Countly.getAvailableFeedbackWidgets() ;</code></pre>
+<pre><code class="dart">FeedbackWidgetsResponse feedbackWidgetsResponse = await Countly.getAvailableFeedbackWidgets() ;</code></pre>
 <p>
   From the callback you would get
-  <code class="JavaScript">FeedbackWidgetsResponse</code> object which contains
-  the list of all available widgets that apply to the current device id.
+  <code class="dart">FeedbackWidgetsResponse</code> object which contains the list
+  of all available widgets that apply to the current device id.
 </p>
 <p>The objects in the returned list look like this:</p>
-<pre><code class="JavaScript">class CountlyPresentableFeedback {
+<pre><code class="dart">class CountlyPresentableFeedback {
   public String widgetId;
   public String type;
   public String name;
@@ -1367,16 +1371,15 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   After you have decided which widget you want to display, you would provide that
   object to the following function:
 </p>
-<pre><code class="JavaScript">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {
+<pre><code class="dart">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {
   print('Widget Appeared');
 }, widgetClosed: () {
   print('Widget Dismissed');
 });</code></pre>
 <p>
-  <code class="JavaScript">widgetShown</code> and
-  <code class="JavaScript">widgetClosed</code> are optional callbacks, you can
-  pass these callbacks if you want to perform some actions when widget appear or
-  dismiss.
+  <code class="dart">widgetShown</code> and
+  <code class="dart">widgetClosed</code> are optional callbacks, you can pass these
+  callbacks if you want to perform some actions when widget appear or dismiss.
 </p>
 <h3 id="h_01H930GAQ7HMVWZBVTXTCDTF50">Manual Reporting</h3>
 <p>
@@ -1396,20 +1399,20 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 </p>
 <p>
   Having the <code>CountlyPresentableFeedback</code> object of the widget you would
-  want to display, you could use the '<code class="JavaScript">getFeedbackWidgetData</code>'&nbsp;
+  want to display, you could use the '<code class="dart">getFeedbackWidgetData</code>'&nbsp;
   method to retrieve the widget information with an optional 'onFinished' callback.
-  In case you want to use with callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
+  In case you want to use with callback then you can call '<code class="dart">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {
+<pre><code class="dart">Countly.getFeedbackWidgetData(chosenWidget, onFinished: (retrievedWidgetData, error) {
   if (error == null) {
   }
 });</code></pre>
 <p>
-  If you want to use it without a callback then you can call '<code class="JavaScript">getFeedbackWidgetData</code>'
+  If you want to use it without a callback then you can call '<code class="dart">getFeedbackWidgetData</code>'
   in this way:
 </p>
-<pre><code class="JavaScript">List result = await Countly.getFeedbackWidgetData(chosenWidget);
+<pre><code class="dart">List result = await Countly.getFeedbackWidgetData(chosenWidget);
 String? error = result[1];
 if (error == null) {
   Map&lt;String, dynamic&gt; retrievedWidgetData = result[0];
@@ -1424,7 +1427,7 @@ if (error == null) {
   use it, the widgetInformation and the widgetData to report the feedback result
   with the following call:
 </p>
-<pre><code class="JavaScript">//this contains the reported results
+<pre><code class="dart">//this contains the reported results
 Map&lt;String, Object&gt; reportedResult = {};
 
 //
@@ -1452,7 +1455,12 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Note that this feature is available only for Enterprise Edition.
 </p>
 <p>
-  <span>You would call&nbsp;</span><span></span><code>Countly.instance.userProfile.</code><span>to see the available functionality for modifying user properties.</span>
+  You would call <code>Countly.instance.userProfile.</code>to see the available
+  functionality for modifying user properties.
+</p>
+<p>
+  If a property is set as an empty string, it will be deleted from the user on
+  the server side.
 </p>
 <h2 id="h_01H930GAQ7J7R8CVHTSYM34ZM9">Setting User profile values during init</h2>
 <p>
@@ -1463,7 +1471,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Using the following call, you can set both the predefined and the custom user
   properties during initialization:
 </p>
-<pre><code class="“JavaScript”">var userProperties = {
+<pre><code class="dart">var userProperties = {
   "customProperty": "custom Value",
   "username": "USER_NAME",
   "email": "USER_EMAIL"
@@ -1474,15 +1482,15 @@ config.setUserProperties(userProperties); </code></pre>
 <p>Ther following calls can be used after init.</p>
 <p>
   If you want to set a single property, you can call
-  <code class="“JavaScript”">Countly.userProfile.setUserProperty(key, value)</code>
+  <code class="dart">Countly.userProfile.setUserProperty(key, value)</code>
 </p>
 <pre>Countly.instance.userProfile.setProperty("specialProperty", "value");
 Countly.instance.userProfile.save();</pre>
 <p>
   If you want to set multiple properties at the same time, you can use:
-  <code class="“JavaScript”">Countly.userProfile.setUserProperties(userProperties)</code>
+  <code class="dart">Countly.userProfile.setUserProperties(userProperties)</code>
 </p>
-<pre><code class="JavaScript">// example for setting user data
+<pre><code class="dart">// example for setting user data
 Map&lt;String, Object&gt; userProperties= {
   "name": "Nicola Tesla",
   "username": "nicola",
@@ -1499,12 +1507,12 @@ Countly.instance.setUserProperties(userProperties);
 Countly.instance.userProfile.save();</code></pre>
 <p>
   After you have provided the user profile information, you must save it by calling
-  <code class="“JavaScript”">Countly.userProfile.save()</code>. This would then
+  <code class="dart">Countly.userProfile.save()</code>. This would then
   create a request and send it to the server.
 </p>
 <p>
   If you changed your mind and want to clear the currently prepared values, call
-  <code class="“JavaScript”">Countly.userProfile.clear()</code>before calling "save".
+  <code class="dart">Countly.userProfile.clear()</code>before calling "save".
 </p>
 <h2 id="h_01H930GAQ793MEBMSC774K6VFM">Modifying custom data</h2>
 <p>
@@ -1513,26 +1521,28 @@ Countly.instance.userProfile.save();</code></pre>
   the same property.
 </p>
 <p>Below is the list of available methods:</p>
-<pre><code class="JavaScript">//increment used value by 1
-Countly.instance.increment("increment");
+<pre><code class="dart">//increment used value by 1
+Countly.instance.userProfile.increment("increment");
 //increment used value by provided value
-Countly.instance.incrementBy("incrementBy", 10);
+Countly.instance.userProfile.incrementBy("incrementBy", 10);
 //multiply value by provided value
-Countly.instance.multiply("multiply", 20);
+Countly.instance.userProfile.multiply("multiply", 20);
 //save maximal value
-Countly.instance.saveMax("saveMax", 100);
+Countly.instance.userProfile.saveMax("saveMax", 100);
 //save minimal value
-Countly.instance.saveMin("saveMin", 50);
+Countly.instance.userProfile.saveMin("saveMin", 50);
 //set value if it does not exist
-Countly.instance.setOnce("setOnce", 200);
+Countly.instance.userProfile.setOnce("setOnce", 200);
 
 //insert value to array of unique values
-Countly.instance.pushUnique("type", "morning");;
+Countly.instance.userProfile.pushUnique("type", "morning");;
 //insert value to array which can have duplocates
-Countly.instance.push("type", "morning");
+Countly.instance.userProfile.push("type", "morning");
 //remove value from array
-Countly.instance.pull("type", "morning");
-</code></pre>
+Countly.instance.userProfile.pull("type", "morning");
+
+//call 'save' to persist the changes
+Countly.instance.userProfile.save();</code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
 <p>
   The SDK provides manual and automatic mechanisms for Application Performance
@@ -1540,7 +1550,7 @@ Countly.instance.pull("type", "morning");
   to start using them you would first need to enable them and give the required
   consent if it was required:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
 // this interface exposes the available APM features and their modifications.
 config.apm. </code></pre>
@@ -1559,9 +1569,9 @@ config.apm. </code></pre>
   with the same key.
 </p>
 <p>To start a custom trace, use:</p>
-<pre><code class="JavaScript">Countly.startTrace(traceKey);</code></pre>
+<pre><code class="dart">Countly.startTrace(traceKey);</code></pre>
 <p>To end a custom trace, use:</p>
-<pre><code class="JavaScript">String traceKey = "Trace Key";
+<pre><code class="dart">String traceKey = "Trace Key";
 Map&lt;String, int&gt; customMetric = {
   "ABC": 1233,
   "C44C": 1337
@@ -1577,7 +1587,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   for your selected approach of making network requests and then call this after
   your network request is done:
 </p>
-<pre><code class="JavaScript">Countly.recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</code></pre>
+<pre><code class="dart">Countly.recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</code></pre>
 <p>
   <code>networkTraceKey</code> is a unique identifier of the API endpoint you are
   targeting or just the url you are targeting, all params should be stripped. You
@@ -1602,7 +1612,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   For tracking app start time automatically you will need to enable it in SDK init
   config:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
 // enable it here separately with 'apm' interface.
 config.apm.<strong>enableAppStartTimeTracking</strong>();</code></pre>
@@ -1612,25 +1622,25 @@ config.apm.<strong>enableAppStartTimeTracking</strong>();</code></pre>
 <p>
   If you want to determine when the end time for this calculation should be you,
   will have to enable the usage of manual triggers together with
-  <code class="JavaScript">enableAppStartTimeTracking</code> during init:
+  <code class="dart">enableAppStartTimeTracking</code> during init:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
 // enable it here separately with 'apm' interface.
 config.apm.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger</strong>();</code></pre>
 <p>
-  Now you can call <code class="JavaScript">Countly.appLoadingFinished()</code>
-  any time after SDK initialization to record that moment as the end of app launch
-  time. The starting time of the app load will be automatically calculated and
-  recorded. Note that the app launch time can be recorded only once per app launch.
-  So, the second and following calls to this method will be ignored.
+  Now you can call <code class="dart">Countly.appLoadingFinished()</code> any time
+  after SDK initialization to record that moment as the end of app launch time.
+  The starting time of the app load will be automatically calculated and recorded.
+  Note that the app launch time can be recorded only once per app launch. So, the
+  second and following calls to this method will be ignored.
 </p>
 <p>
   If you also want to manipulate the app launch starting time instead of using
   the SDK calculated value then you will need to call a third method on the config
   object with the timestamp (in milliseconds) of that time you want:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
 // generate the timestamp you want (or you can directly pass a ts)
 int ts = DateTime.now().millisecondsSinceEpoch - 500; // 500 ms ago as an example
@@ -1641,7 +1651,7 @@ config.apm.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</st
   Lastly if you want to enable the SDK to record the time an app is in foreground
   or background automatically you would need to enable this option during init:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
 // enable it here separately with 'apm' interface.
 config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
@@ -1653,6 +1663,7 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
 </p>
 <p>
+  You can use CountlyConsent interface (e.g <code>CountlyConsent.sessions</code>) to reach all possible consent options.<br>
   Currently, available features with consent control are as follows:
 </p>
 <ul>
@@ -1670,10 +1681,10 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
     users - allow collecting/providing user information, including custom properties.
   </li>
   <li>push - allow push notifications</li>
-  <li>star-rating - allow sending their rating and feedback</li>
+  <li>starRating - allow sending their rating and feedback</li>
   <li>apm - allow application performance monitoring</li>
   <li>
-    remote-config - allows downloading remote config values from your server
+    remoteConfig - allows downloading remote config values from your server
   </li>
 </ul>
 <h2 id="h_01H930GAQ85BFVYS2RZGN7TRA0">Setup During Init</h2>
@@ -1681,7 +1692,7 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   By default the requirement for consent is disabled. To enable it, you have to
   call <code>setRequiresConsent</code> with true, before initializing Countly.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setRequiresConsent(true);</code></pre>
 <p>
   By default, no consent is given. That means that if no consent is enabled, Countly
@@ -1691,11 +1702,11 @@ config.setRequiresConsent(true);</code></pre>
 </p>
 <p>
   To give consent during initialization, you have to call
-  <code class="JavaScript">setConsentEnabled</code>on the config object with an
-  array of consent values.
+  <code class="dart">setConsentEnabled</code>on the config object with an array
+  of consent values.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-config.setConsentEnabled(["location", "sessions", "attribution", "push", "events", "views", "crashes", "users", "push", "star-rating", "apm", "feedback", "remote-config"])</code></pre>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig])</code></pre>
 <p>
   The Countly SDK does not persistently store the status of given consents except
   push notifications. You are expected to handle receiving consent from end-users
@@ -1711,18 +1722,18 @@ config.setConsentEnabled(["location", "sessions", "attribution", "push", "events
 </p>
 <p>
   To reflect these changes in the Countly SDK, you can use the
-  <code>removeConsent</code> or <code class="JavaScript">giveConsent</code> methods.
+  <code>removeConsent</code> or <code>giveConsent</code> methods.
 </p>
-<pre><code class="JavaScript">//give consent values after init
-Countly.giveConsent(["events", "views", "star-rating", "crashes"]);
+<pre><code class="dart">//give consent values after init
+Countly.giveConsent([CountlyConsent.events, CountlyConsent.views, CountlyConsent.starRating, CountlyConsent.crashes]);
 
 //remove consent values after init
-Countly.removeConsent(["events", "views", "star-rating", "crashes"]);
+Countly.removeConsent([CountlyConsent.events, CountlyConsent.views, CountlyConsent.starRating, CountlyConsent.crashes]);
 </code></pre>
 <p>
   You can also either give or remove consent to all possible SDK features:
 </p>
-<pre><code class="JavaScript">//give consent to all features
+<pre><code class="dart">//give consent to all features
 Countly.giveAllConsent();
 
 //remove consent from all features
@@ -1737,7 +1748,7 @@ Countly.removeAllConsent();</code></pre>
   is set, all requests would be checked for the validity of
   <code>&amp;checksum</code> field before being processed.
 </p>
-<pre><code class="JavaScript">// sending data with salt
+<pre><code class="dart">// sending data with salt
 CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setParameterTamperingProtectionSalt("salt");</code></pre>
 <p>
@@ -1746,57 +1757,8 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 </p>
 <h2 id="h_01H930GAQ8PTNSJ1YV6WFRN15C">Using Proguard</h2>
 <p>
-  Proguard obfuscates the Countly Messaging classes. If you use Countly Messaging
-  in your application, find
-  <strong class="ib cf">app/proguard-rules.pro</strong> file which sits inside
-  <strong class="ib cf">/android/app/</strong> folder and adds the following lines:
-</p>
-<pre><code class="JavaScript">-keep class ly.count.android.sdk.** { *; }</code></pre>
-<p>
-  If Proguard is not already configured then first, enable shrinking and obfuscation
-  in the build file. Find <strong class="ib cf">build.gradle</strong> file which
-  sits inside <strong class="ib cf">/android/app/</strong> folder and adds lines
-  in bold.
-</p>
-<pre><code class="JavaScript">android {
-  buildTypes {
-    release {
-      // Enables code shrinking, obfuscation, and optimization for only
-      // your project's release build type.
-      minifyEnabled true
-
-      // Enables resource shrinking, which is performed by the
-      // Android Gradle plugin.
-      shrinkResources true
-
-      // Includes the default ProGuard rules files that are packaged with
-      // the Android Gradle plugin. To learn more, go to the section about
-      // R8 configuration files.
-      proguardFiles getDefaultProguardFile(
-        'proguard-android-optimize.txt'),
-        'proguard-rules.pro'
-      }
-  }
-...
-}
-</code></pre>
-<p>
-  Next create a configuration that will preserve the entire Flutter wrapper code.
-  Create<strong class="ib cf"> /android/app/proguard-rules.pro</strong> file and
-  insert inside:
-</p>
-<pre><code class="JavaScript">#Flutter Wrapper
--keep class io.flutter.app.** { *; }
--keep class io.flutter.plugin.**  { *; }
--keep class io.flutter.util.**  { *; }
--keep class io.flutter.view.**  { *; }
--keep class io.flutter.**  { *; }
--keep class io.flutter.plugins.**  { *; }</code></pre>
-<p>
-  More info related to code shrinking can be found here for
-  <a href="https://flutter.dev/docs/deployment/android#shrinking-your-code-with-r8">flutter</a>
-  and
-  <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">android</a>.
+  The Android side of the SDK does not require specific proguard exclusions and
+  can be fully obfuscated.
 </p>
 <h1 id="h_01H930GAQ8DQ2KJTQCAFZTRHD9">Other Features and Notes</h1>
 <h2 id="h_01H930GAQ8P3ZQAA3DGJT0RJVE">SDK Config Parameters Explained</h2>
@@ -1911,7 +1873,7 @@ flutter run</code></pre>
   If you do not specify a value for the setMaxRequestQueueSize flag, the default
   setting of 1,000 will be used.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setMaxRequestQueueSize(5000);</code></pre>
 <h2 id="h_01H930GAQ8QRF6ED3PXEF0QFAD">Attribution</h2>
 <p>
@@ -1939,14 +1901,14 @@ config.setMaxRequestQueueSize(5000);</code></pre>
 <p>
   <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">String campaignData = 'JSON_STRING';
+<pre><code class="dart">String campaignData = 'JSON_STRING';
 CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
 <p>
   You can also use <code>recordDirectAttribution</code> function to manually report
   attribution later:
 </p>
-<pre><code class="JavaScript">String campaignData = 'JSON_STRING';
+<pre><code class="dart">String campaignData = 'JSON_STRING';
 Countly.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
 <p>
   Currently this feature is limited and accepts data only in a specific format
@@ -1954,7 +1916,7 @@ Countly.recordDirectAttribution('CAMPAIN_TYPE', campaignData);</code></pre>
   attribution. The data also needs to be formatted in a specific way. Either with
   the campaign id or with the campaign id and campaign user id.
 </p>
-<pre><code class="JavaScript">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';
+<pre><code class="dart">String campaignData = '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}';
 Countly.recordDirectAttribution('countly', campaignData);</code></pre>
 <h3 id="h_01H930GAQ8QNMCJGCMC0TS6CEV">
   <span>Indirect Attribution</span>
@@ -1967,7 +1929,7 @@ Countly.recordDirectAttribution('countly', campaignData);</code></pre>
 <p>
   <span>You can use <code>recordDirectAttribution</code> to set attribution values during initialization</span><span>.</span>
 </p>
-<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};
+<pre><code class="dart">Map&lt;String, String&gt; attributionValues = {};
 if(Platform.isIOS){
   attributionValues[AttributionKey.IDFA] = 'IDFA';
 }
@@ -1981,7 +1943,7 @@ config.recordIndirectAttribution(attributionValues);</code><span></span></pre>
   You can also use <code>recordIndirectAttribution</code> function to manually
   report attribution later
 </p>
-<pre><code class="JavaScript">Map&lt;String, String&gt; attributionValues = {};
+<pre><code class="dart">Map&lt;String, String&gt; attributionValues = {};
 if(Platform.isIOS){
   attributionValues[AttributionKey.IDFA] = 'IDFA';
 }
@@ -2003,7 +1965,7 @@ Countly.recordIndirectAttribution(attributionValues);</code></pre>
   can use the same function later in the app's life cycle to disable the override.
   This function has to be called every time the app starts.
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setHttpPostForced(true); // default is false</code></pre>
 <h2 id="h_01H930GAQ8QBSG5GB1P8AY1ARX">Interacting with the internal request queue</h2>
 <p>
@@ -2018,7 +1980,7 @@ config.setHttpPostForced(true); // default is false</code></pre>
   1. You can replace all requests with a different app key with the current app
   key:
 </p>
-<pre><code class="JavaScript">//Replaces all requests with a different app key with the current app key.
+<pre><code class="dart">//Replaces all requests with a different app key with the current app key.
 Countly.replaceAllAppKeysInQueueWithCurrentAppKey();</code></pre>
 <p>
   In the request queue, if there are any requests whose app key is different than
@@ -2026,7 +1988,7 @@ Countly.replaceAllAppKeysInQueueWithCurrentAppKey();</code></pre>
   app key. 2. You can remove all requests with a different app key in the request
   queue:
 </p>
-<pre><code class="JavaScript">//Removes all requests with a different app key in request queue.
+<pre><code class="dart">//Removes all requests with a different app key in request queue.
 Countly.removeDifferentAppKeysFromQueue();</code></pre>
 <p>
   In the request queue, if there are any requests whose app key is different than
@@ -2039,7 +2001,7 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   you don't want to get data older than a certain timeframe, you can configure
   the SDK to drop old requests:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setRequestDropAgeHours(10); // a positive integer indicating hours</code></pre>
 <p>
   By using the <code>setRequestDropAgeHours</code> method while configuring the
@@ -2054,14 +2016,14 @@ config.setRequestDropAgeHours(10); // a positive integer indicating hours</code>
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
-<pre><code class="JavaScript">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setEventQueueSizeToSend(6);</code></pre>
 <h2 id="h_01H930GAQ8NM827P2ZCEZWCP5H">Checking if the SDK has been initialized</h2>
 <p>
   In case you would like to check if init has been called, you may use the following
   function:
 </p>
-<pre><code class="JavaScript">Countly.isInitialized();</code></pre>
+<pre><code class="dart">Countly.isInitialized();</code></pre>
 <h2 id="h_01HEMEGDNWGA4HXRPCYPB0G613">A/B Experiment Testing</h2>
 <h3 id="h_01HEMEGDNWMH4E1WRGXRS7CF7E">
   <span>Variant Level Control</span>
@@ -2160,7 +2122,7 @@ config.setEventQueueSizeToSend(6);</code></pre>
   Class which contains information about the experiment with that ID. This Class'
   structure is like this:
 </p>
-<pre><code>class ExperimentInformation {
+<pre><code class="dart">class ExperimentInformation {
   // same ID as used in the map
   String experimentID;
   // the name of the experiment
@@ -2176,7 +2138,7 @@ config.setEventQueueSizeToSend(6);</code></pre>
   So an example data structure you might get at the end would look something similar
   to this:
 </p>
-<pre><code>{
+<pre><code class="dart">{
   some_exp_ID: {
     experimentID: some_ID,
     experimentName: some_name,
