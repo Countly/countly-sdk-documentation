@@ -1723,7 +1723,7 @@ Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButt
 <p>
   After you have decided which widget you want to display, you would provide that
   object to the following function as the first parameter. Second parameter is
-  app context, third is the close button text (if null mo close buttom would be
+  app context, third is the close button text (if null no close button would be
   shown) and third is a callback incase an error happens:
 </p>
 <pre><code class="java">Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
