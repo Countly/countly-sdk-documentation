@@ -1066,7 +1066,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVD4RVE1CE6DH744PPPNTY00" alt="001.png">
+  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2 id="h_01HABTQ438184HFAE37E78K9VP">Tracking Scrolls</h2>
 <p>
@@ -1088,7 +1088,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVAYP9A9YBWPDTJK815SX5JD" alt="002.png">
+  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
 </div>
 <h1 id="h_01HABTQ438YJDHDMKPS8X3YK99">Remote Config</h1>
 <p>
@@ -1841,7 +1841,7 @@ Countly.q.push(["track_performance"]);</code></pre>
 Countly.track_performance();</code></pre>
 <h1 id="h_01HABTQ439V9NNDDCW31XG086F">User Consent</h1>
 <p>
-  <span style="font-weight: 400;">This section talks about how to set up GDPR compliant consent management with the Countly Web SDK.</span>
+  This section talks about how to set up GDPR compliant consent management with the Countly Web SDK.
 </p>
 <p>
   If consent management is enabled then features of the SDK would require consent
@@ -1851,7 +1851,7 @@ Countly.track_performance();</code></pre>
 <p>
   It should be noted that there is no persistency for consent state in the SDK
   and the developer is fully responsible for saving/keeping the state of the user's
-  consent before providing it to the SDK.&nbsp;
+  consent before providing it to the SDK.
 </p>
 <h2 id="h_01HABTQ439DN2P2CKVF8YMBCKD">Feature Names</h2>
 <p>
@@ -1924,10 +1924,10 @@ Countly.require_consent = true;</code></pre>
 </div>
 <h2 id="h_01HABTQ4391J4A916V53AVFVP5">Changing Consent</h2>
 <p>
-  <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you could check if you already have consent from this visitor. If not, you could present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the <strong>Countly.add_consent</strong>&nbsp;method and passing one or multiple features (as an array). </span>
+  <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you could check if you already have consent from this visitor. If not, you could present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the <strong>Countly.add_consent</strong> method and passing one or multiple features (as an array). </span>
 </p>
 <p>
-  <span style="font-weight: 400;">Also you can also allow the user to change their mind regarding separate settings and when changes are going to be made you can </span><span style="font-weight: 400;">call the <strong>Countly.add_consent</strong> or <strong>Countly.remove_consent</strong>&nbsp;methods to allow Countly to track specific features or disable tracking for them.</span>
+  <span style="font-weight: 400;">Also you can also allow the user to change their mind regarding separate settings and when changes are going to be made you can </span><span style="font-weight: 400;">call the <strong>Countly.add_consent</strong> or <strong>Countly.remove_consent</strong> methods to allow Countly to track specific features or disable tracking for them.</span>
 </p>
 <p>Here is a high-level example of how it could look:</p>
 <div class="tabs">
@@ -1954,7 +1954,7 @@ Countly.remove_consent(feature)</code></pre>
 <h2 id="h_01HRECNEJ906HAY7SD4CHN17QR">Feature Groups</h2>
 <p>
   Depending on your website and use case, you may also want to combine some of
-  the features into one using the <strong>group_features</strong>&nbsp;method.
+  the features into one using the <strong>group_features</strong> method.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1977,7 +1977,7 @@ Countly.remove_consent(feature)</code></pre>
 //After this call Countly.add_consent("all") to allow all features</code></pre>
   </div>
 </div>
-<h1 id="01HRECRYDT7EKF6VXEXJ34WQ5G">Other Features and Notes</h1>
+<h1 id="h_01HABTQ439GYX75SVN2YEPHH82">Other Features and Notes</h1>
 <h2 id="h_01HABTQ439HZN7Y6A6F07Y6G0K">SDK Config Parameters Explained</h2>
 <p>
   Here are the properties you may set up upon Countly initialization:
