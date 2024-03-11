@@ -1840,74 +1840,20 @@ Countly.q.push(["track_performance"]);</code></pre>
 <pre><code class="javascript">//automatically report traces
 Countly.track_performance();</code></pre>
 <h1 id="h_01HABTQ439V9NNDDCW31XG086F">User Consent</h1>
-<h2 id="h_01HABTQ4394D6BR7PJ36RYQK4R">Opt In / Opt Out</h2>
 <p>
-  <span style="font-weight: 400;">The Countly SDK will always be opt in by default, but you may easily disable all tracking by selecting&nbsp;the <strong>opt_out</strong>&nbsp;method. It will also persistently save settings and prevent tracking after page reloads. Select&nbsp;<strong>opt_in</strong> to resume tracking.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//to stop tracking user data call
-Countly.q.push(['opt_out']);
-
-//to resume tracking user data call
-Countly.q.push(['opt_in']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//to stop tracking user data call
-Countly.opt_out();
-
-//to resume tracking user data call
-Countly.opt_in();</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Disabling tracking for specific users is more than sufficient for most cases. However, should you desire more granular feature controls, checkout the&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#disable-tracking-until-given-consent">following section</a>.</span>
-</p>
-<div class="callout callout--info">
-  <p>
-    If you would like to have opt out selected by default, combine these methods
-    with the initial setting <strong>ignore_visitor</strong> on the Countly init
-    object.
-  </p>
-</div>
-<p>
-  <span style="font-weight: 400;">In most cases, the </span><strong>opt_out</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>opt_in</strong><span style="font-weight: 400;">&nbsp;methods are enough to disable the tracking of specific users, such as testers. However, in some cases, you may require a more granular approach.</span>
+  This section talks about how to set up GDPR compliant consent management with the Countly Web SDK.
 </p>
 <p>
-  <span style="font-weight: 400;">This section will tell you how to set up GDPR compliant consent management with the Countly Web SDK.</span>
+  If consent management is enabled then features of the SDK would require consent
+  to be provided before start working. This way you would have full control over
+  your user tracking in every part of your website.
 </p>
-<h2 id="h_01HABTQ439VBB36B3SACYJGJWQ">Disable Tracking Until Given Consent</h2>
 <p>
-  <span style="font-weight: 400;">To disable tracking until consent is given for a specific feature, all you need to do is pass true as the&nbsp;</span><strong>require_consent</strong><span style="font-weight: 400;">&nbsp;config before or during your selection of the Countly&nbsp;</span><strong>init</strong><span style="font-weight: 400;">&nbsp;method.</span>
+  It should be noted that there is no persistency for consent state in the SDK
+  and the developer is fully responsible for saving/keeping the state of the user's
+  consent before providing it to the SDK.
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">// in your Countly init script
-Countly.require_consent = true;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
-  debug:false,
-  app_key:"YOUR_APP_KEY",
-  device_id:"1234-1234-1234-1234",
-  url: "https://try.count.ly",
-  app_version: "1.2",
-  country_code: "LV",
-  city: "Riga",
-  ip_address: "83.140.15.1",
-  require_consent: true //this will make require consent before tracking
-});</code></pre>
-  </div>
-</div>
-<h2 id="h_01HABTQ439DN2P2CKVF8YMBCKD">Features for Consent</h2>
+<h2 id="h_01HABTQ439DN2P2CKVF8YMBCKD">Feature Names</h2>
 <p>
   <span style="font-weight: 400;">The SDK provides different features for consent. You may check all the supported features for the current SDK by checking the&nbsp;</span><strong>Countly.features</strong><span style="font-weight: 400;">&nbsp;property. Here is a list containing all the properties with ex</span>planations:
 </p>
@@ -1934,7 +1880,7 @@ Countly.require_consent = true;</code></pre>
     <span style="font-weight: 400;">crashes - allows JavaScript errors to be tracked</span>
   </li>
   <li>
-    <span style="font-weight: 400;">attribution - allows the campaign from which a user came to be tracked</span>
+    <span style="font-weight: 400;">attribution - allows direct attribution tracking</span>
   </li>
   <li>
     <span style="font-weight: 400;">users - allows user information, including custom properties, to be collected/provided</span>
@@ -1943,7 +1889,7 @@ Countly.require_consent = true;</code></pre>
     <span style="font-weight: 400;">star-rating - allows user rating and feedback tracking through rating widgets</span>
   </li>
   <li>
-    <span style="font-weight: 400;">feedback - allows survey, nps rating and feedback tracking through feedback widgets</span>
+    <span style="font-weight: 400;">feedback - allows survey, nps and rating widgets usage and reporting</span>
   </li>
   <li>
     <span style="font-weight: 400;">apm - allows performance tracking of application by recording traces</span>
@@ -1951,9 +1897,64 @@ Countly.require_consent = true;</code></pre>
   <li>
     <span style="font-weight: 400;">location - allows a user’s location (country, city area) to be recorded</span>
   </li>
+  <li>
+    <span style="font-weight: 400;">remote-config - allows users to download remote config from the server</span>
+  </li>
 </ul>
+<h2 id="h_01HRECPHGKYPEZQ0HATVXJ2BPC">Setup During Init</h2>
 <p>
-  <span style="font-weight: 400;">This is the most granular level with control features for which consent may be given. However, depending on your website and use case, you may also want to combine some of the features into one using the&nbsp;<strong>group_features</strong>&nbsp;method.</span>
+  <span style="font-weight: 400;">To enable consent management mode ( and to disable tracking until consent is given for a specific feature), all you need to do is pass true to the </span><strong>require_consent</strong><span style="font-weight: 400;"> config flag during SDK initialization</span><span style="font-weight: 400;">.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// in your Countly init script
+Countly.require_consent = true;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  app_key: "YOUR_APP_KEY",
+  url: "https://your.server.ly",
+  require_consent: true // this will enable consent management
+});</code></pre>
+  </div>
+</div>
+<h2 id="h_01HABTQ4391J4A916V53AVFVP5">Changing Consent</h2>
+<p>
+  <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you could check if you already have consent from this visitor. If not, you could present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the <strong>Countly.add_consent</strong> method and passing one or multiple features (as an array). </span>
+</p>
+<p>
+  <span style="font-weight: 400;">Also you can also allow the user to change their mind regarding separate settings and when changes are going to be made you can </span><span style="font-weight: 400;">call the <strong>Countly.add_consent</strong> or <strong>Countly.remove_consent</strong> methods to allow Countly to track specific features or disable tracking for them.</span>
+</p>
+<p>Here is a high-level example of how it could look:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// to add consent {string|array}
+Countly.q.push(['add_consent', feature]);
+
+// to remove consent {string|array}
+Countly.q.push(['remove_consent', feature]);
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">// to add consent {string|array}
+Countly.add_consent(feature)
+
+// to remove consent {string|array}
+Countly.remove_consent(feature)</code></pre>
+  </div>
+</div>
+<h2 id="h_01HRECNEJ906HAY7SD4CHN17QR">Feature Groups</h2>
+<p>
+  Depending on your website and use case, you may also want to combine some of
+  the features into one using the <strong>group_features</strong> method.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1974,135 +1975,6 @@ Countly.require_consent = true;</code></pre>
   all:["sessions","events","views","scrolls","clicks","forms","crashes","attribution","users"]
 });
 //After this call Countly.add_consent("all") to allow all features</code></pre>
-  </div>
-</div>
-<h2 id="h_01HABTQ4391J4A916V53AVFVP5">Managing Consent</h2>
-<p>
-  <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you should check if you already have consent from this visitor. If not, you should present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the&nbsp;<strong>Countly.add_consent</strong>&nbsp;method and passing one or multiple features (as an array). For example, you should also allow the user to change their mind regarding separate settings screens and when changes are going to be made there.</span>
-  <span style="font-weight: 400;">Respectively call the <strong>Countly.add_consent</strong> or <strong>Countly.remove_consent</strong>&nbsp;methods to allow Countly to track specific features or disable tracking for them.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is a high-level example of how it could look:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">&lt;script type='text/javascript'&gt;
-  
-// Some default pre init
-var Countly = Countly || {};
-Countly.q = Countly.q || [];
-
-// Provide your app key that you retrieved from Countly dashboard
-Countly.app_key = "YOUR_APP_KEY";
-
-// Provide your server IP or name. Use try.count.ly or us-try.count.ly
-// or asia-try.count.ly for EE trial server.
-// If you use your own server, make sure you have https enabled if you use
-// https below.
-Countly.url = "https://yourdomain.com";
-
-//require consent before tracking anything
-Countly.require_consent = true; //this true means consent is required
-
-//(optionally) provide custom feature tree if needed
-Countly.q.push(['group_features', {
-  activity:["sessions","events","views"],
-  interaction:["scrolls","clicks","forms"]
-}]);
-
-//we can call all the helper methods we want, they won't record until consent is provided for specific features
-Countly.q.push(['track_sessions']);
-Countly.q.push(['track_pageview']);
-Countly.q.push(['track_clicks']);
-Countly.q.push(['track_links']);
-Countly.q.push(['track_forms']);
-Countly.q.push(['track_errors', {jquery:"1.10", jqueryui:"1.10"}]);
-
-//Consent Management logic should be implemented and controlled by developer
-//this is just a simply example of what logic it could have
-if (typeof(localStorage) !== "undefined") {
-  var consents = localStorage.getItem("consents");
-  //checking if user already provided consent
-  if(consents){
-    //we already have array with consents from previous visit, let's just pass them to Countly
-    Countly.q.push(['add_consent', JSON.parse(consents)]);
-  } else {
-    //user have not yet provided us a consent
-    //we need to display popup and ask user to give consent for specific features we want to track
-    //once we get response, we should store them like this
-    //example response
-    var response = ["activity", "interaction", "crashes"];
-    Countly.q.push(['add_consent', response]);
-    localStorage.setItem("consents", JSON.stringify(response));
-  }
-} else {
-  // Sorry! No Web Storage support..
-  // we can fallback to cookie
-}
-
-// Load countly script asynchronously
-(function() {
-  var cly = document.createElement('script'); cly.type = 'text/javascript';
-  cly.async = true;
-  // Enter url of script here (see below for other option)
-  cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
-  cly.onload = function(){Countly.init()};
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
-})();
-&lt;/script&gt;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="html">&lt;!--Countly script--&gt;
-&lt;script type='text/javascript' src='../lib/countly.js'&gt;&lt;/script&gt;
-&lt;script type='text/javascript'&gt;
-
-//initializing countly with params and passing require_consent config as true
-Countly.init({
-  app_key: "YOUR_APP_KEY",
-  url: "https://try.count.ly", //your server goes here
-  debug:true,
-  require_consent: true //this true means consent is required
-});
-
-//(optionally) provide custom feature tree if needed
-Countly.group_features({
-  activity:["sessions","events","views"],
-  interaction:["scrolls","clicks","forms"]
-});
-
-//we can call all the helper methods we want, they won't record until consent is provided for specific features
-Countly.track_sessions();
-Countly.track_pageview();
-Countly.track_clicks();
-Countly.track_links();
-Countly.track_forms();
-Countly.track_errors({jquery:"1.10", jqueryui:"1.10"});
-
-//Consent Management logic should be implemented and controled by developer
-//this is just a simply example of what logic it could have
-if (typeof(localStorage) !== "undefined") {
-  var consents = localStorage.getItem("consents");
-  //checking if user already provided consent
-  if(consents){
-    //we already have array with consents from previous visit, let's just pass them to Countly
-    Countly.add_consent(JSON.parse(consents));
-  } else {
-    //user have not yet provided us a consent
-    //we need to display popup and ask user to give consent for specific features we want to track
-    //once we get response, we should store them like this
-    //example response
-    var response = ["activity", "interaction", "crashes"];
-    Countly.add_consent(response);
-    localStorage.setItem("consents", JSON.stringify(response));
-  }
-} else {
-  // Sorry! No Web Storage support..
-  // we can fallback to cookie
-}</code></pre>
   </div>
 </div>
 <h1 id="h_01HABTQ439GYX75SVN2YEPHH82">Other Features and Notes</h1>
@@ -3132,6 +3004,40 @@ function endSession() { // end a session
   myWorker.postMessage({ type: "session", data: "end_session" });
 }
 </code></pre>
+<h2 id="h_01HABTQ4394D6BR7PJ36RYQK4R">Opt In / Opt Out</h2>
+<p>
+  <span style="font-weight: 400;">The Countly SDK will always be opt in by default, meaning all tracking is enabled, but you may easily disable all tracking by selecting the <strong>opt_out</strong> method. It will persistently save settings to prevent tracking after page reloads. Then if you want to opt in again you can use <strong>opt_in</strong> method to resume tracking at next page load.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// to stop tracking user data at next page load
+Countly.q.push(['opt_out']);
+
+// to resume tracking user data at next page load
+Countly.q.push(['opt_in']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">// to stop tracking user data at next page load
+Countly.opt_out();
+
+// to resume tracking user data at next page load
+Countly.opt_in();</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">Disabling tracking for specific users with these methods can be sufficient for testing or situations where you decide to not track a specific user's information from now on. However, should you desire more granular feature control, checkout the <a href="/hc/en-us/articles/4409195031577#h_01HABTQ439V9NNDDCW31XG086F">User Consent</a> section.</span>
+</p>
+<div class="callout callout--info">
+  <p>
+    If you would like to have opt out selected by default, combine these methods
+    with the initial setting <strong>ignore_visitor</strong> on the Countly init
+    object.
+  </p>
+</div>
 <h1 id="h_01HABTQ43BRSHEYT75ZF6AN6F5">FAQ</h1>
 <h2 id="h_01HABTQ43BDS23GY6NZ32SFCZD">Can I integrate Countly Web SDK to my TypeScript Project</h2>
 <p>
