@@ -2543,10 +2543,14 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h3 id="h_01HQMX59RNK27XW4S8HDMXBYC9">API and Data Structures Exposed by the SDK</h3>
 <p>
-  The methods listed below should be publicly accessible within the SDK. Provided
-  functionality should require <code>Feedback</code> consent. Note that not all
-  platforms may support all of these methods, but the list provided is exhaustive.
-  The 'Feedback' interface should expose the following functions.
+  Provided functionality should require <code>Feedback</code> consent.
+</p>
+<p>
+  Not all platforms can support methods to present the widget.
+</p>
+<p>
+  If supported by the platform, the 'Feedback' interface should expose the following
+  functions:
 </p>
 <pre><code>// Retrieves the list of available Feedback Widgets
 void getAvailableFeedbackWidgets(RetrieveFeedbackWidgets callback);
@@ -2563,10 +2567,7 @@ void reportFeedbackWidgetManually(CountlyFeedbackWidget widgetInfo, JSONObject w
 // Construct URL for the chosen feedback widget
 string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></pre>
 <p>
-  The provided callback for the <code>getAvailableFeedbackWidgets</code> method
-  returns a list of CountlyFeedbackWidget objects as the first parameter and an
-  error string as the second. Retrieved CountlyFeedbackWidget object would look
-  like this:
+  Retrieved CountlyFeedbackWidget object would look like this:
 </p>
 <pre><code class="java hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountlyFeedbackWidget</span> </span>{
   <span class="hljs-keyword">public</span> String widgetId;
@@ -2575,20 +2576,24 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span class="hljs-keyword">public</span> String[] tags;
 }</code></pre>
 <p>
-  The callback for the <code>getFeedbackWidgetData</code> method would return the
-  widget data as the first parameter and an error string as the second parameter.
-  It would yield a JSON Object with the information needed. Check the detailed
-  article
+  The <code>RetrieveFeedbackWidgets</code>callback (used for
+  <code>getAvailableFeedbackWidgets</code>) returns a list of CountlyFeedbackWidget
+  objects as the first parameter and an error string as the second.
+</p>
+<p>
+  The <code>RetrieveFeedbackWidgetData</code>callback (used for the
+  <code>getFeedbackWidgetData</code>) returns the widget data as the first parameter
+  and an error string as the second parameter. The data is returned in a JSON Object.
+  Check
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>
-  for information about how retrievedWidgetData would look like.
+  for example data structures returned.
 </p>
 <p>
-  The callback for the <code>presentFeedbackWidget</code> method is being added
-  in case an error happens.
+  The <code>FeedbackCallback</code>&nbsp;callback (used for
+  <code>presentFeedbackWidget</code>) returns an error string. The error is "null"
+  in case there were no issues.
 </p>
-<p>
-  It should also be mentioned that there are no Init time config options.
-</p>
+<p>There are no Init time config options for this feature.</p>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
   <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
