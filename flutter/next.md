@@ -572,20 +572,32 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 <p>
   Here is an example on how to achieve that using the view name:
 </p>
-<pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
-  "Cats": 123,
-  "Moons": 9.98,
-  "Moose": "Deer"
+<pre><code class="dart">String viewName = 'HomePage';
+Countly.instance.views.startView(viewName);
+
+Map&lt;String, Object&gt; segmentation = {
+  'Cats': 123,
+  'Moons': 9.98,
+  'Moose': 'Deer'
 };
+
 Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
 <p>
   Here is an example for how to add segmentation to a view using its ID:
 </p>
-<pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
-  "Cats": 123,
-  "Moons": 9.98,
-  "Moose": "Deer"
+<pre><code class="dart">String viewID = '';
+Countly.instance.views.startView('HomePage').then((value) = {
+  if(value != null){
+    viewID = value
+  }
+});
+
+Map&lt;String, Object&gt; segmentation = {
+  'Cats': 123,
+  'Moons': 9.98,
+  'Moose': 'Deer'
 };
+
 Countly.instance.views.addSegmentationToViewWithID(viewID, segmentation);</code></pre>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
 <p>
@@ -1507,8 +1519,8 @@ Countly.instance.setUserProperties(userProperties);
 Countly.instance.userProfile.save();</code></pre>
 <p>
   After you have provided the user profile information, you must save it by calling
-  <code class="dart">Countly.userProfile.save()</code>. This would then
-  create a request and send it to the server.
+  <code class="dart">Countly.userProfile.save()</code>. This would then create
+  a request and send it to the server.
 </p>
 <p>
   If you changed your mind and want to clear the currently prepared values, call
@@ -1663,7 +1675,8 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
 </p>
 <p>
-  You can use CountlyConsent interface (e.g <code>CountlyConsent.sessions</code>) to reach all possible consent options.<br>
+  You can use CountlyConsent interface (e.g <code>CountlyConsent.sessions</code>)
+  to reach all possible consent options.<br>
   Currently, available features with consent control are as follows:
 </p>
 <ul>
