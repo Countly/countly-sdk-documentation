@@ -573,7 +573,7 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
   Here is an example on how to achieve that using the view name:
 </p>
 <pre><code class="dart">String viewName = 'HomePage';
-Countly.instance.views.startView(viewName);
+await Countly.instance.views.startView(viewName);
 
 Map&lt;String, Object&gt; segmentation = {
   'Cats': 123,
@@ -581,16 +581,11 @@ Map&lt;String, Object&gt; segmentation = {
   'Moose': 'Deer'
 };
 
-Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
+await Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
 <p>
   Here is an example for how to add segmentation to a view using its ID:
 </p>
-<pre><code class="dart">String viewID = '';
-Countly.instance.views.startView('HomePage').then((value) = {
-  if(value != null){
-    viewID = value
-  }
-});
+<pre><code class="dart">String? viewID = await Countly.instance.views.startView('HomePage');
 
 Map&lt;String, Object&gt; segmentation = {
   'Cats': 123,
@@ -598,7 +593,7 @@ Map&lt;String, Object&gt; segmentation = {
   'Moose': 'Deer'
 };
 
-Countly.instance.views.addSegmentationToViewWithID(viewID, segmentation);</code></pre>
+await Countly.instance.views.addSegmentationToViewWithID(viewID!, segmentation);</code></pre>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
 <p>
   It is possible to set global segmentation for all recorded views. This can be
