@@ -578,7 +578,7 @@ await Countly.instance.views.startView(viewName);
 Map&lt;String, Object&gt; segmentation = {
   'Cats': 123,
   'Moons': 9.98,
-  'Moose': 'Deer'
+  'Moose': 'Deer',
 };
 
 await Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
@@ -590,7 +590,7 @@ await Countly.instance.views.addSegmentationToViewWithName(viewName, segmentatio
 Map&lt;String, Object&gt; segmentation = {
   'Cats': 123,
   'Moons': 9.98,
-  'Moose': 'Deer'
+  'Moose': 'Deer',
 };
 
 await Countly.instance.views.addSegmentationToViewWithID(viewID!, segmentation);</code></pre>
