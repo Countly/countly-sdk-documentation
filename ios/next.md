@@ -369,25 +369,8 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
   </div>
 </div>
 <p>
-  There is a limit for the number of crash logs to be stored on the device. By
-  default it is 100. You can change it using
-  <span style="font-weight: 400;"><code><span>crashLogLimit</span></code> property on the <code>CountlyConfig</code> object.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.crashLogLimit = 500;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.crashLogLimit = 500</code></pre>
-  </div>
-</div>
-<p>
-  If number of stored crash logs reaches the limit<span>,</span> SDK will start
-  to drop oldest crash log while appending the newest one.
+  There is a limit for the number of crash logs to be stored on the device. Have
+  a look <a href="#h_01HAVHW0RSESJ7AQ3XCKCA48X2">here</a> to configure its limit.
 </p>
 <h2 id="h_01HAVHW0RN0T1600A6B514XSNM">Crash Report Contents</h2>
 <p>A crash report includes the following information:</p>
@@ -3159,7 +3142,8 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
   <span style="font-weight: 400;">You can see detailed user information under the User Profiles section of the Countly Dashboard by recording user properties.</span>
 </p>
 <p>
-  Note: If a property is set as an empty string, it will be deleted from the user on the server side.
+  Note: If a property is set as an empty string, it will be deleted from the user
+  on the server side.
 </p>
 <h2 id="h_01HAVHW0RRSN6J76K5N88M15TQ">Default User Properties</h2>
 <p>
@@ -3942,7 +3926,8 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.storedRequestsLimit = 5000</code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RSZRM05AFX6DBDQGED">Maximum Key Length</h2>
+<h2 id="h_01HRVZFH0PNM4MHHCYH05E6CRZ">SDK Internal Limits</h2>
+<h3 id="h_01HRVZFH0P0DP0VWVJXATKBBS0">Key Lenght</h3>
 <p>
   <span style="font-weight: 400;">You can specify the <code>maxKeyLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>
 </p>
@@ -3967,7 +3952,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.maxKeyLength = 24</code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RSHBKNFRPBVYTQ30TW">Maximum Value Length</h2>
+<h3 id="h_01HAVHW0RSHBKNFRPBVYTQ30TW">Value Size</h3>
 <p>
   <span style="font-weight: 400;">You can specify the <code>maxValueLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>
 </p>
@@ -3992,7 +3977,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.maxValueLength = 24</code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RSWJSZ6RVGY5P0D1D7">Maximum Segmentation Values</h2>
+<h3 id="h_01HAVHW0RSWJSZ6RVGY5P0D1D7">Segmentation Values</h3>
 <p>
   <span style="font-weight: 400;">You can specify the <code>maxSegmentationValues</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>
 </p>
@@ -4014,7 +3999,30 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.maxSegmentationValues = 10</code></pre>
   </div>
 </div>
-<h2 id="h_01HAVHW0RSESJ7AQ3XCKCA48X2">Always using the POST method</h2>
+<h3 id="h_01HAVHW0RSESJ7AQ3XCKCA48X2">Breadcrumb Count</h3>
+<p>
+  By default it is 100. You can change it using
+  <span style="font-weight: 400;"><code><span>crashLogLimit</span></code> property on the <code>CountlyConfig</code> object.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.crashLogLimit = 500;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.crashLogLimit = 500</code></pre>
+  </div>
+</div>
+<p>
+  If number of stored crash logs reaches the limit<span>,</span> SDK will start
+  to drop oldest crash log while appending the newest one.
+</p>
+<h3>
+  Always using the POST method
+</h3>
 <p>
   <span style="font-weight: 400;">You can set the <code>alwaysUsePOST</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. This flag is used for sending all requests using the HTTP POST method, regardless of their data size. If set, all requests will be sent using the HTTP POST method. Otherwise, only the requests with a file upload or data size of more than 2,048 bytes will be sent using the HTTP POST method.</span>
 </p>
