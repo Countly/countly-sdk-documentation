@@ -279,6 +279,12 @@ This should contain the core integration information about the SDK, including a 
   * Explicit Storage Mode
 * Checking If the SDK Has Been Initialized
 * SDK Internal Limits
+  * Key Length
+  * Value Size
+  * Segmentation Values
+  * Breadcrumb Count
+  * Stack Trace Lines Per Thread
+  * Stack Trace Line Length
 * Attribution
   * Direct Attribution
   * Indirect Attribution
