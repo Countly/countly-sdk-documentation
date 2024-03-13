@@ -3086,13 +3086,13 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>
   <span>Limits the maximum size of all string keys.</span><br>
   <span>"Keys" include:</span><br>
-  <span>&nbsp;- event names</span><br>
-  <span>&nbsp;- view names</span><br>
-  <span>&nbsp;- custom trace key name (APM)</span><br>
-  <span>&nbsp;- custom metric key (APM)</span><br>
-  <span>&nbsp;- segmentation key (for all features)</span><br>
-  <span>&nbsp;- custom user property</span><br>
-  <span>&nbsp;- custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span>
+  <span> - event names</span><br>
+  <span> - view names</span><br>
+  <span> - custom trace key name (APM)</span><br>
+  <span> - custom metric key (APM)</span><br>
+  <span> - segmentation key (for all features)</span><br>
+  <span> - custom user property</span><br>
+  <span> - custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -3102,18 +3102,18 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>
   <span>Limits the size of all values in our key-value pairs.</span><br>
   <span>"Value" fields include:</span><br>
-  <span>&nbsp;- segmentation value in case of strings (for all features)</span><br>
-  <span>&nbsp;- custom user property string value</span><br>
-  <span>&nbsp;- user profile named key (username, email, etc) string values. Except "picture" field, that has a limit of 4096 chars</span><br>
-  <span>&nbsp;- custom user property modifier string values. For example, for modifiers like "push", "pull", "setOnce", etc.</span><br>
-  <span>&nbsp;- breadcrumb text</span><br>
-  <span>&nbsp;- manual feedback widget reporting fields (reported as event)</span><br>
-  <span>&nbsp;- rating widget response (reported as event)<br></span>
+  <span> - segmentation value in case of strings (for all features)</span><br>
+  <span> - custom user property string value</span><br>
+  <span> - user profile named key (username, email, etc) string values. Except the "picture" field, which has a limit of 4096 chars</span><br>
+  <span> - custom user property modifier string values. For example, for modifiers like "push," "pull," "setOnce", etc.</span><br>
+  <span> - breadcrumb text</span><br>
+  <span> - manual feedback widget reporting fields (reported as an event)</span><br>
+  <span> - rating widget response (reported as an event)<br></span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxSegmentationValues</strong>" - 30
-    dev entries
+    "<strong data-stringify-type="bold">maxSegmentationValues</strong>" - 100
+    developer-supplied entries
   </li>
 </ul>
 <p>
@@ -3143,13 +3143,13 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </li>
 </ul>
 <p>
-  <span>limits how many characters are allowed per stack trace line. This limits also the crash message length</span>
+  <span>limits how many characters are allowed per stack trace line. This also limits the crash message length.</span>
 </p>
 <p>
-  <span>In addition to those 2 exposed tweakable crash related values, there would also be an internal one for "maxStackTraceThreadCount". Which would limit the maximum amount of recorded threads with a default of 30. This would be mostly just a sanity check thing as that has to be capped in some way.<span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>In cases where stack traces can be provided as string, the maximum line count would therefore be 30*30 = 900. That string would have to be split into lines and then checked accordingly.</span>
+  <span> Besides those 2 exposed tweakable crash-related values, there would also be an internal one for "maxStackTraceThreadCount." Which would limit the maximum number of recorded threads by a default of 50. This would be mostly just a sanity check, as that has to be capped somehow. <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>In cases where stack traces can be provided as a string, the maximum line count would be 50*30 = 1500. That string would have to be split into lines and then checked accordingly.</span>
 </p>
 <p>
-  Crash information like PLC crashes for iOS and native Android crashes do not
+  Crash information like PLC crashes for iOS, and native Android crashes do not
   have any limits applied to them.
 </p>
 <h2 id="01H821RTQ8PWHE34M7R8RFAT3S">Changing the Server URL</h2>
