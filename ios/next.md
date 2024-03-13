@@ -3927,7 +3927,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2 id="h_01HRVZFH0PNM4MHHCYH05E6CRZ">SDK Internal Limits</h2>
-<h3 id="h_01HRVZFH0P0DP0VWVJXATKBBS0">Key Lenght</h3>
+<h3 id="h_01HRVZFH0P0DP0VWVJXATKBBS0">Key Length</h3>
 <p>
   <span style="font-weight: 400;">You can specify the <code>maxKeyLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>
 </p>
@@ -4020,9 +4020,9 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   If number of stored crash logs reaches the limit<span>,</span> SDK will start
   to drop oldest crash log while appending the newest one.
 </p>
-<h3>
+<h2>
   Always using the POST method
-</h3>
+</h2>
 <p>
   <span style="font-weight: 400;">You can set the <code>alwaysUsePOST</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. This flag is used for sending all requests using the HTTP POST method, regardless of their data size. If set, all requests will be sent using the HTTP POST method. Otherwise, only the requests with a file upload or data size of more than 2,048 bytes will be sent using the HTTP POST method.</span>
 </p>
