@@ -889,22 +889,25 @@
 </p>
 <h3 id="h_01HABT18WW4ZW13QKAAV1GZSBB">ProGuard Rules</h3>
 <p>
-  <span style="font-weight: 400;">You have the option of adding some rules to ProGuard (or DexGuard) and modifying how it runs. These rules should be added to the <strong>proguard-rules.pro</strong>&nbsp;file.</span>
+  <span style="font-weight: 400;">You can add some rules to ProGuard (or DexGuard) and modify how it runs. These rules should be added to the <strong>proguard-rules.pro</strong>&nbsp;file.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you decide to use ProGuard, you have to keep in mind that it will rename the function and class names. Therefore, it will break the code that is using reflection if you don't take steps to stop this from happening. You may find more information in the ProGuard </span><a href="https://www.guardsquare.com/en/proguard/manual/introduction" target="_blank" rel="noopener">manual</a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">If you decide to use ProGuard, you have to keep in mind that it will rename the function and class names. Therefore, it will break the code using reflection if you don't take steps to stop this from happening. You may find more information in the ProGuard </span><a href="https://www.guardsquare.com/en/proguard/manual/introduction" target="_blank" rel="noopener">manual</a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">At the very least, you should include these lines in your ProGuard rule file:</span>
+  <span style="font-weight: 400;">At the very least, you should include this line in your ProGuard rule file:</span>
 </p>
-<pre><code class="text">-keep class org.openudid.** { *; }
--renamesourcefileattribute SourceFile
--keepattributes SourceFile,LineNumberTable</code></pre>
+<pre><code class="text">-keepattributes SourceFile,LineNumberTable</code></pre>
 <p>
-  <span style="font-weight: 400;">The first one is needed to prevent <code>openudid</code> from breaking, and Countly uses it for generating user IDs. The second and third rules are needed to add source file and line number information to your Android stack traces.</span>
+  <span style="font-weight: 400;">This rule provides human-understandable source file and line number information for your Android stack traces.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The ProGuard rule file should be named <strong>proguard-rules.pro</strong>, and it is usually located at the root of your module. More information </span><a href="https://developer.android.com/studio/build/shrink-code.html#keep-code" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">.</span>
+  If you want to hide source file names from stack traces, add the rule below to
+  your proguard file.
+</p>
+<pre><code class="text">-renamesourcefileattribute SourceFile</code></pre>
+<p>
+  <span style="font-weight: 400;">The ProGuard rule file should be named <strong>proguard-rules.pro</strong>, which is usually located at the root of your module. More information </span><a href="https://developer.android.com/studio/build/shrink-code.html#keep-code" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">.</span>
 </p>
 <h2 id="h_01HABT18WWQ6R5BYSGCNXTKTGY">iOS</h2>
 <p>
