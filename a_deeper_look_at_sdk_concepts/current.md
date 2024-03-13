@@ -876,39 +876,30 @@
 </p>
 <h2 id="h_01HABT18WWB8BGBKK00RD3PA1W">Android</h2>
 <p>
-  <span style="font-weight: 400;">Android's official tool for code shrinking and obfuscation is called ProGuard. A detailed description of its usage can be found&nbsp;<a href="https://developer.android.com/studio/build/shrink-code.html" target="_blank" rel="noopener">here</a>. There is also a paid tool with additional features called&nbsp;<a href="https://www.guardsquare.com/en/dexguard" target="_blank" rel="noopener">DexGuard</a>. Both ProGuard and DexGuard can be used for Countly crash symbolication. Currently, we do not support any other Android obfuscation libraries.</span>
+  <span style="font-weight: 400;">Android's official tool for code shrinking and obfuscation is called ProGuard. A detailed description of its usage can be found <a href="https://developer.android.com/studio/build/shrink-code.html" target="_blank" rel="noopener">here</a>. There is also a paid tool with additional features called <a href="https://www.guardsquare.com/en/dexguard" target="_blank" rel="noopener">DexGuard</a>. Both ProGuard and DexGuard can be used for Countly crash symbolication. Currently, we do not support any other Android obfuscation libraries.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you are using Android Studio for development, the mapping files will not be produced when you make instant runs. For them to appear, you will either need to generate a signed APK or choose the <strong>Build APK</strong>&nbsp;option.</span>
+  <span style="font-weight: 400;">If you are using Android Studio for development, the mapping files will not be produced when you make instant runs. For them to appear, you will either need to generate a signed APK or choose the <strong>Build APK</strong> option.</span>
 </p>
 <div class="img-container wysiwyg-text-align-center">
   <img src="https://archive.count.ly/images/guide/e31d5d2-3.png">
 </div>
 <p>
-  <span style="font-weight: 400;">After the build is complete, the symbol file called <code>mapping.txt</code></span><span style="font-weight: 400;">&nbsp;can be found under <code>&lt;module-name&gt;/build/outputs/mapping/release/</code></span><span style="font-weight: 400;">&nbsp;or <code>&lt;module-name&gt;/build/outputs/mapping/debug/</code></span><span style="font-weight: 400;">, depending on how you initiate the build process.</span>
+  <span style="font-weight: 400;">After the build is complete, the symbol file called <code>mapping.txt</code></span><span style="font-weight: 400;"> can be found under <code>&lt;module-name&gt;/build/outputs/mapping/release/</code></span><span style="font-weight: 400;"> or <code>&lt;module-name&gt;/build/outputs/mapping/debug/</code></span><span style="font-weight: 400;">, depending on how you initiate the build process.</span>
 </p>
 <h3 id="h_01HABT18WW4ZW13QKAAV1GZSBB">ProGuard Rules</h3>
 <p>
-  <span style="font-weight: 400;">You can add some rules to ProGuard (or DexGuard) and modify how it runs. These rules should be added to the <strong>proguard-rules.pro</strong>&nbsp;file.</span>
+  <span style="font-weight: 400;">You can add some rules to ProGuard (or DexGuard) and modify how it runs. These rules should be added to the <strong>proguard-rules.pro</strong> file.</span><span style="font-weight: 400;"> You may find more information in the ProGuard </span><a href="https://www.guardsquare.com/manual/configuration/usage" target="_blank" rel="noopener noreferrer">manual</a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you decide to use ProGuard, you have to keep in mind that it will rename the function and class names. Therefore, it will break the code using reflection if you don't take steps to stop this from happening. You may find more information in the ProGuard </span><a href="https://www.guardsquare.com/en/proguard/manual/introduction" target="_blank" rel="noopener">manual</a><span style="font-weight: 400;">.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">At the very least, you should include this line in your ProGuard rule file:</span>
+  <span style="font-weight: 400;">For the best symbolication results, you should include this line in your ProGuard rule file:</span>
 </p>
 <pre><code class="text">-keepattributes SourceFile,LineNumberTable</code></pre>
 <p>
-  <span style="font-weight: 400;">This rule provides human-understandable source file and line number information for your Android stack traces.</span>
-</p>
-<p>
-  If you want to hide source file names from stack traces, add the rule below to
-  your proguard file.
+  To include also the source file name in the symbolication results, we recomment
+  not to have the following line in your proguard file:
 </p>
 <pre><code class="text">-renamesourcefileattribute SourceFile</code></pre>
-<p>
-  <span style="font-weight: 400;">The ProGuard rule file should be named <strong>proguard-rules.pro</strong>, which is usually located at the root of your module. More information </span><a href="https://developer.android.com/studio/build/shrink-code.html#keep-code" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">.</span>
-</p>
 <h2 id="h_01HABT18WWQ6R5BYSGCNXTKTGY">iOS</h2>
 <p>
   <span class="wysiwyg-color-black" style="font-weight: 400;">The symbol file is a dSYM file for iOS.</span>
