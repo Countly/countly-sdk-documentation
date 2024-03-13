@@ -1203,7 +1203,41 @@ if (!response.error) {
 <p>
   If a property is set as an empty string, it will be deleted on the server side.
 </p>
-<h2 id="h_01HAVQNJQSBR8S36NF4KQ8X0D3">Setting Predefined Values</h2>
+<h2 id="">Setting User Properties</h2>
+<h3 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Custom Values</h3>
+<p>
+  Custom user properties are any arbitrary values that you would like to store
+  under your user's profile. These values can be internal IDs, registration dates
+  or any other value that is not included in the predefined user properties.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Bulk mode</span>
+    <span class="tabs-link">Singular mode</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">var options = {};
+
+options.customValueA = "Custom value A";
+options.customValueB = "Custom value B";
+// ...
+
+Countly.userDataBulk.setUserProperties(options);
+
+// Unless you call this last function your data would not be sent to your server
+Countly.userDataBulk.save();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">var options = {};
+
+options.customValueA = "nicola";
+options.customValueB = "info@nicola.tesla";
+// ...
+
+Countly.setUserData(options);</code></pre>
+  </div>
+</div>
+<h3 id="h_01HAVQNJQSBR8S36NF4KQ8X0D3">Predefined Values</h3>
 <p>
   Predefined user properties are a set of default keys that are commonly used in
   visitor data collection.
@@ -1245,39 +1279,6 @@ options.picture = "http://www.trust.electric/images/people/nicola.png";
 options.picturePath = "";
 options.gender = "M";
 options.byear = 1919;<br>
-Countly.setUserData(options);</code></pre>
-  </div>
-</div>
-<h2 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Setting Custom Values</h2>
-<p>
-  Custom user properties are any arbitrary values that you would like to store
-  under your user's profile. These values can be internal IDs, registration dates
-  or any other value that is not included in the predefined user properties.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Bulk mode</span>
-    <span class="tabs-link">Singular mode</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">var options = {};
-
-options.customValueA = "Custom value A";
-options.customValueB = "Custom value B";
-// ...
-
-Countly.userDataBulk.setUserProperties(options);
-
-// Unless you call this last function your data would not be sent to your server
-Countly.userDataBulk.save();</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">var options = {};
-
-options.customValueA = "nicola";
-options.customValueB = "info@nicola.tesla";
-// ...
-
 Countly.setUserData(options);</code></pre>
   </div>
 </div>
