@@ -1203,7 +1203,7 @@ if (!response.error) {
 <p>
   If a property is set as an empty string, it will be deleted on the server side.
 </p>
-<h2 id="">Setting User Properties</h2>
+<h2 id="h_01HRW8HQCTY2Y2Q890DPE7YT9A">Setting User Properties</h2>
 <h3 id="h_01HAVQNJQSX9KWT0HTGJCEKPRK">Custom Values</h3>
 <p>
   Custom user properties are any arbitrary values that you would like to store
