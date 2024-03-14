@@ -1066,7 +1066,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="hc/article_attachments/9545658580121/001.png" alt="001.png">
+  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2 id="h_01HABTQ438184HFAE37E78K9VP">Tracking Scrolls</h2>
 <p>
