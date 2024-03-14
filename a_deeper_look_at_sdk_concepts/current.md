@@ -896,7 +896,7 @@
 </p>
 <pre><code class="text">-keepattributes SourceFile,LineNumberTable</code></pre>
 <p>
-  To include also the source file name in the symbolication results, we recomment
+  To include also the source file name in the symbolication results, we recommend
   not to have the following line in your proguard file:
 </p>
 <pre><code class="text">-renamesourcefileattribute SourceFile</code></pre>
