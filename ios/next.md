@@ -3985,7 +3985,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   It is used to limit the number of key-value pairs in segmentations. If there
   are more key-value pairs than this limit, some of them will be removed. As obviously
   there is no order among the keys of an NSDictionary, it is not defined which
-  ones will be removed. If not set, it will be 30 by default.
+  ones will be removed. If not set, it will be 100 by default.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
