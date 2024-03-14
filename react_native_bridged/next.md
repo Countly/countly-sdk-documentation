@@ -1282,7 +1282,7 @@ options.byear = 1919;<br>
 Countly.setUserData(options);</code></pre>
   </div>
 </div>
-<h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">Modifying Data</h2>
+<h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">User Property Modificators</h2>
 <p>
   Additionally, you can modify these custom values in various ways like increasing
   a number, pushing new values to an array, etc. You can see the whole range of
