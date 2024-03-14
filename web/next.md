@@ -1066,7 +1066,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVD4RVE1CE6DH744PPPNTY00" alt="001.png">
+  <img src="hc/article_attachments/9545658580121/001.png" alt="001.png">
 </div>
 <h2 id="h_01HABTQ438184HFAE37E78K9VP">Tracking Scrolls</h2>
 <p>
@@ -1088,7 +1088,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="/guide-media/01GVAYP9A9YBWPDTJK815SX5JD" alt="002.png">
+  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
 </div>
 <h1 id="h_01HABTQ438YJDHDMKPS8X3YK99">Remote Config</h1>
 <p>
