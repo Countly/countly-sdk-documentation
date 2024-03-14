@@ -1066,7 +1066,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
+  <img src="/guide-media/01GVD4RVE1CE6DH744PPPNTY00" alt="001.png">
 </div>
 <h2 id="h_01HABTQ438184HFAE37E78K9VP">Tracking Scrolls</h2>
 <p>
@@ -1088,7 +1088,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
+  <img src="/guide-media/01GVAYP9A9YBWPDTJK815SX5JD" alt="002.png">
 </div>
 <h1 id="h_01HABTQ438YJDHDMKPS8X3YK99">Remote Config</h1>
 <p>
@@ -1841,7 +1841,8 @@ Countly.q.push(["track_performance"]);</code></pre>
 Countly.track_performance();</code></pre>
 <h1 id="h_01HABTQ439V9NNDDCW31XG086F">User Consent</h1>
 <p>
-  This section talks about how to set up GDPR compliant consent management with the Countly Web SDK.
+  This section talks about how to set up GDPR compliant consent management with
+  the Countly Web SDK.
 </p>
 <p>
   If consent management is enabled then features of the SDK would require consent
@@ -2649,81 +2650,19 @@ Countly2.add_event({
 </div>
 <h2 id="h_01HABTQ43ACRHQSY8263SJR14V">SDK Internal Limits</h2>
 <p>
-  Countly is highly customizable and let's you take a huge part at the control
-  of the system in multiple ways. From customizing segmentation values to changing
-  event keys great liberty comes with the cost of great responsibility. As a sanity
-  check measure Countly relies on internal limits to get a hold of the free flow
-  of values, keys, character and more. These internal limits are again customizable
-  at initialization and current limits and their default values are as follows:
+  Countly is highly customizable and lets you take a huge part in controlling the
+  system in multiple ways. From customizing segmentation values to changing event
+  keys, great liberty comes with the cost of great responsibility. Countly relies
+  on internal limits to get a hold of the free flow of values, keys, characters,
+  and more as a sanity check measure. Again, these internal limits are customizable
+  at initialization, and for current limits and for their default values please
+  have a look
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>.
 </p>
-<ul>
-  <li>
-    <strong>maxKeyLength</strong> - 128 chars. Keys that exceed this limit will
-    be truncated.
-  </li>
-  <ul>
-    This is used for setting the maximum size of all string keys including:
-    <li>- event names</li>
-    <li>- view names</li>
-    <li>- custom trace key name (APM)</li>
-    <li>- custom metric key (apm)</li>
-    <li>- segmentation key (for all features)</li>
-    <li>- custom user property</li>
-    <li>
-      - custom user property keys that are used for property modifiers (mul,
-      push, pull, set, increment, etc)
-    </li>
-  </ul>
-  <li>
-    <strong>maxValueSize</strong> - 256 chars. Values that exceed this limit
-    will be truncated.
-  </li>
-  <ul>
-    This is used for setting the maximum size of all values in key-value pairs
-    including:
-    <li>- segmentation value in case of strings (for all features)</li>
-    <li>- custom user property string value</li>
-    <li>
-      - user profile named key (username, email, etc) string values. Except
-      "picture" field, that has a limit of 4096 chars
-    </li>
-    <li>
-      - custom user property modifier string values. For example, for modifiers
-      like "push", "pull", "setOnce", etc.
-    </li>
-    <li>- breadcrumb text</li>
-    <li>
-      - manual feedback widget reporting fields (reported as event)
-    </li>
-    <li>- rating widget response (reported as event)</li>
-  </ul>
-  <li>
-    <strong>maxSegmentationValues</strong> - 100 dev entries. Entries that exceed
-    this limit will be removed.<br>
-    To set the maximum amount of custom segmentation that can be recorded in
-    one event.
-  </li>
-  <li>
-    <strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded,
-    the oldest entry will be removed.<br>
-    To limit the amount of breadcrumbs that can be recorded before the oldest
-    one is deleted from the logs.
-  </li>
-  <li>
-    <strong>maxStackTraceLinesPerThread</strong> - 30 lines. Lines that exceed
-    this entry will be removed.<br>
-    Sets the maximum number of stack trace lines that can be recorded per thread.
-  </li>
-  <li>
-    <strong>maxStackTraceLineLength</strong> - 200 chars. Lines that exceed this
-    limit will be truncated.<br>
-    This can set the maximum number of characters that is allowed per stack trace
-    line. This also limits the crash message length.
-  </li>
-</ul>
+<h3 id="h_01HRY51Q9K26ZGFWJS9R87N0WQ">Key Length</h3>
 <p>
-  To change these default values all you have to do is to set the properties during
-  the initialization:
+  <code class="javascript">max_key_length</code> - 128 chars by default. Keys that
+  exceeding this limit will be truncated.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2734,13 +2673,8 @@ Countly2.add_event({
     <pre><code class="javascript">Countly.debug = false;
 Countly.app_key = "YOUR_APP_KEY";
 Countly.device_id = "1234-1234-1234-1234";
-Countly.url = "https://try.count.ly";
-Countly.max_key_length = 500;
-Countly.max_value_size = 12;
-Countly.max_segmentation_values = 23;
-Countly.max_breadcrumb_count = 80;
-Countly.max_stack_trace_lines_per_thread = 50;
-Countly.max_stack_trace_line_length = 300;
+Countly.url = "YOUR_SERVER_URL";
+Countly.max_key_length = 50;
 </code></pre>
   </div>
   <div class="tab is-hidden">
@@ -2748,13 +2682,155 @@ Countly.max_stack_trace_line_length = 300;
   debug:false,
   app_key:"YOUR_APP_KEY",
   device_id:"1234-1234-1234-1234",
-  url: "https://try.count.ly",
-  max_key_length: 500,
-  max_value_size: 12,
-  max_segmentation_values: 23,
-  max_breadcrumb_count: 80,
-  max_stack_trace_lines_per_thread: 50,
-  max_stack_trace_line_length: 300
+  url: "YOUR_SERVER_URL",
+  max_key_length: 50
+});</code></pre>
+  </div>
+</div>
+<h3 id="h_01HRY51XC20ZVT47JN7GYTAZ7D">Value Size</h3>
+<p>
+  <code class="javascript">max_value_size</code> - 256 chars by default. Values
+  that exceed this limit will be truncated.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "YOUR_SERVER_URL";
+Countly.max_value_size = 12;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "YOUR_SERVER_URL",
+  max_value_size: 12
+});</code></pre>
+  </div>
+</div>
+<h3 id="h_01HRY521MHG6HD8P7JQ0BE7S8K">Segmentation Values</h3>
+<p>
+  <code class="javascript">max_segmentation_values</code> - 100 dev entries by
+  default. Entries that exceed this limit will be removed.<br>
+  To set the maximum amount of custom segmentation that can be recorded in one
+  event.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "YOUR_SERVER_URL";
+Countly.max_segmentation_values = 67;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "YOUR_SERVER_URL",
+  max_segmentation_values: 67
+});</code></pre>
+  </div>
+</div>
+<h3 id="h_01HRY526FQC2R9BQRTYB1B2VF0">Breadcrumb Count</h3>
+<p>
+  <code class="javascript">max_breadcrumb_count</code> - 100 entries by default.
+  If the limit is exceeded, the oldest entry will be removed.<br>
+  To limit the amount of breadcrumbs that can be recorded before the oldest one
+  is deleted from the logs.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "YOUR_SERVER_URL";
+Countly.max_breadcrumb_count = 45;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "YOUR_SERVER_URL",
+  max_breadcrumb_count: 45
+});</code></pre>
+  </div>
+</div>
+<h3 id="h_01HRY52BYPANSEJ27WFFMWNR1F">Stack Trace Lines Per Thread</h3>
+<p>
+  <code class="javascript">max_stack_trace_lines_per_thread</code> - 30 lines by
+  default. Lines that exceed this entry will be removed.<br>
+  Sets the maximum number of stack trace lines that can be recorded per thread.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "YOUR_SERVER_URL";
+Countly.max_stack_trace_lines_per_thread = 23;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "YOUR_SERVER_URL",
+  max_stack_trace_lines_per_thread: 23
+});</code></pre>
+  </div>
+</div>
+<h3 id="h_01HRY52J9BCCYQ00XJ9PWY9PFZ">Stack Trace Line Length</h3>
+<p>
+  <code class="javascript">max_stack_trace_line_length</code> - 200 chars by default.
+  Lines that exceed this limit will be truncated.<br>
+  This can set the maximum number of characters that is allowed per stack trace
+  line. This also limits the crash message length.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.debug = false;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.device_id = "1234-1234-1234-1234";
+Countly.url = "YOUR_SERVER_URL";
+Countly.max_stack_trace_line_length = 10;
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  debug:false,
+  app_key:"YOUR_APP_KEY",
+  device_id:"1234-1234-1234-1234",
+  url: "YOUR_SERVER_URL",
+  max_stack_trace_line_length: 10
 });</code></pre>
   </div>
 </div>
