@@ -1759,7 +1759,7 @@ function sendMessage(param) {
 </p>
 <h1 id="sdk_internal_limits">SDK Internal Limits</h1>
 <p>
-  The SDK has internal limits to optimize and prevent inconsistencies.&nbsp;
+  The SDK has internal limits to optimize and prevent inconsistencies.
 </p>
 <h2 id="h_01HSAPZS8AG66NMZ9TYT7X53XH">Key Length</h2>
 <p>Limits the maximum size of keys, which are:</p>
@@ -1780,7 +1780,7 @@ function sendMessage(param) {
 <h2 id="h_01HSAQ3PHNMB8EESFQVMPZF9MB">
   <span>Value Size</span>
 </h2>
-<p>Limits the size of all values in our key-value pairs:&nbsp;</p>
+<p>Limits the size of all values in our key-value pairs:</p>
 <p>- Event segmentation values for strings</p>
 <p>- View segmentation values for strings</p>
 <p>- Custom crash segmentation values for strings</p>
