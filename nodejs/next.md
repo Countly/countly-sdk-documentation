@@ -617,16 +617,18 @@ Countly.report_trace({
 </p>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
-  SDK does have configurable fields to manipulate the internal SDK value and key limits. 
-  If values or keys provided by the user exceed the limits, they will be truncated. 
-  For current limits and their default values, please
-  have a look
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>.
+  If values or keys provided by the user exceeds certain internal limits, they
+  will be truncated. Please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>
+  for the list of properties effected by these limits.
+</p>
+<p>
+  You can override these internal limits during initialization.
 </p>
 <h3 id="h_01HRY51Q9K26ZGFWJS9R87N0WQ">Key Length</h3>
 <p>
   <code class="javascript">max_key_length</code> - 128 chars by default. Keys that
-  exceeding this limit will be truncated.
+  exceed this limit will be truncated.
 </p>
 <pre><code class="javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
@@ -646,9 +648,7 @@ Countly.report_trace({
 <h3 id="h_01HRY521MHG6HD8P7JQ0BE7S8K">Segmentation Values</h3>
 <p>
   <code class="javascript">max_segmentation_values</code> - 100 dev entries by
-  default. Entries that exceed this limit will be removed.<br>
-  To set the maximum amount of custom segmentation that can be recorded in one
-  event.
+  default. Key/value pairs that exceed this limit in a single event will be removed.
 </p>
 <pre><code class="javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
@@ -658,9 +658,7 @@ Countly.report_trace({
 <h3 id="h_01HRY526FQC2R9BQRTYB1B2VF0">Breadcrumb Count</h3>
 <p>
   <code class="javascript">max_breadcrumb_count</code> - 100 entries by default.
-  If the limit is exceeded, the oldest entry will be removed.<br>
-  To limit the amount of breadcrumbs that can be recorded before the oldest one
-  is deleted from the logs.
+  If the limit is exceeded, the oldest entry will be removed from stored breadcrumbs.
 </p>
 <pre><code class="javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
@@ -670,8 +668,8 @@ Countly.report_trace({
 <h3 id="h_01HRY52BYPANSEJ27WFFMWNR1F">Stack Trace Lines Per Thread</h3>
 <p>
   <code class="javascript">max_stack_trace_lines_per_thread</code> - 30 lines by
-  default. Lines that exceed this entry will be removed.<br>
-  Sets the maximum number of stack trace lines that can be recorded per thread.
+  default. Crash stack trace lines that exceed this limit (per thread) will be
+  removed.
 </p>
 <pre><code class="javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
@@ -681,9 +679,7 @@ Countly.report_trace({
 <h3 id="h_01HRY52J9BCCYQ00XJ9PWY9PFZ">Stack Trace Line Length</h3>
 <p>
   <code class="javascript">max_stack_trace_line_length</code> - 200 chars by default.
-  Lines that exceed this limit will be truncated.<br>
-  This can set the maximum number of characters that is allowed per stack trace
-  line. This also limits the crash message length.
+  Crash stack trace lines that exceed this limit will be truncated.
 </p>
 <pre><code class="javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
