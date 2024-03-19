@@ -1757,3 +1757,67 @@ function sendMessage(param) {
 <p>
   <span>- The Java SDK uses a random UUID</span>
 </p>
+<h1 id="sdk_internal_limits">SDK Internal Limits</h1>
+<p>
+  The SDK has internal limits to optimize and prevent inconsistencies.&nbsp;
+</p>
+<h2 id="h_01HSAPZS8AG66NMZ9TYT7X53XH">Key Length</h2>
+<p>Limits the maximum size of keys, which are:</p>
+<p>- Event names</p>
+<p>- Event segmentation key names</p>
+<p>- View names</p>
+<p>- View segmentation key names</p>
+<p>- Custom APM trace key names</p>
+<p>- Custom APM metric key names</p>
+<p>- Custom crash segmentation key names</p>
+<p>- Global view segmentation key names</p>
+<p>- Global crash segmentation key names</p>
+<p>- Custom user property names</p>
+<p>
+  - Custom user property names that are used for property modifiers (mul, push,
+  pull, set, increment, etc)
+</p>
+<h2 id="h_01HSAQ3PHNMB8EESFQVMPZF9MB">
+  <span>Value Size</span>
+</h2>
+<p>Limits the size of all values in our key-value pairs:&nbsp;</p>
+<p>- Event segmentation values for strings</p>
+<p>- View segmentation values for strings</p>
+<p>- Custom crash segmentation values for strings</p>
+<p>- Global view segmentation values for strings</p>
+<p>- Global crash segmentation values for strings</p>
+<p>- Custom user property values</p>
+<p>
+  - Custom user property values that are used for property modifiers (mul, push,
+  pull, set, increment, etc)
+</p>
+<p>- Whole breadcrumbs as a string</p>
+<p>- Manual feedback widget reporting fields</p>
+<p>
+  - Rating widget response<span></span>
+</p>
+<h2 id="h_01HSAQK4XYV5TSR6JA4J9CS5AX">Segmentation Values</h2>
+<p>
+  Limits the maximum amount of segmentation that anyone can provide
+</p>
+<p>- Event segmentation</p>
+<p>- View segmentation</p>
+<p>- Custom crash segmentation</p>
+<p>- Global view segmentation</p>
+<p>- Global crash segmentation</p>
+<h2 id="h_01HSAQP1NDJBX33KZXE4GQVNJW">Breadcrumb Count</h2>
+<p>
+  <span>Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted</span>
+</p>
+<h2 id="h_01HSAQR0WZQBZ5PYKJ75WAH642">
+  <span>Stack Trace Lines Per Thread</span>
+</h2>
+<p>
+  <span>Limits how many stack trace lines would be recorded per thread</span>
+</p>
+<h2 id="h_01HSAQS6MEKXNMZ2FGCA7TG8Y3">
+  <span>Stack Trace Line Length</span>
+</h2>
+<p>
+  <span>Limits how many characters are allowed per stack trace line. This also limits the crash message length.</span>
+</p>
