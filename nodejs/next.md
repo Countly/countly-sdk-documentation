@@ -617,12 +617,9 @@ Countly.report_trace({
 </p>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
-  Countly is highly customizable and lets you take a huge part in controlling the
-  system in multiple ways. From customizing segmentation values to changing event
-  keys, great liberty comes with the cost of great responsibility. Countly relies
-  on internal limits to get a hold of the free flow of values, keys, characters,
-  and more as a sanity check measure. Again, these internal limits are customizable
-  at initialization, and for current limits and for their default values please
+  SDK does have configurable fields to manipulate the internal SDK value and key limits. 
+  If values or keys provided by the user exceed the limits, they will be truncated. 
+  For current limits and their default values, please
   have a look
   <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>.
 </p>
