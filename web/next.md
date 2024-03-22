@@ -847,6 +847,13 @@ Countly.init({
 <p>
   <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Asynchronous</span>
@@ -1841,7 +1848,8 @@ Countly.q.push(["track_performance"]);</code></pre>
 Countly.track_performance();</code></pre>
 <h1 id="h_01HABTQ439V9NNDDCW31XG086F">User Consent</h1>
 <p>
-  This section talks about how to set up GDPR compliant consent management with the Countly Web SDK.
+  This section talks about how to set up GDPR compliant consent management with
+  the Countly Web SDK.
 </p>
 <p>
   If consent management is enabled then features of the SDK would require consent
