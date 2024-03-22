@@ -1345,14 +1345,16 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views addSegmentationToViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];
+    <pre><code class="objectivec">NSString * viewID = [Countly.sharedInstance.views startView:@"VIEW_NAME"];
+[Countly.sharedInstance.views addSegmentationToViewWithID:viewID segmentation:@{@"key": @"value"}];
       
 [Countly.sharedInstance.views addSegmentationToViewWithName:@"VIEW_NAME" segmentation:@{@"key": @"value"}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.addSegmentationToViewWithID("VIEW_ID", segmentation["key": "value"])
+    <pre><code class="swift">let viewID = Countly.sharedInstance().views().startView("MyView");
+Countly.sharedInstance().views().addSegmentationToViewWithID(withID: viewID, segmentation: segmentation["key": "value"])
       
-Countly.sharedInstance().views.addSegmentationToViewWithName("VIEW_NAME", segmentation["key": "value"])</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView", segmentation: segmentation["key": "value"])</code></pre>
   </div>
 </div>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
