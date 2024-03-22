@@ -294,6 +294,12 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
   data, and then authenticated and you want to change ID to your internal id of
   this user, to keep tracking it across multiple devices.
 </p>
+<!-- PLEASE ADD WARNING CALLOUT FOR PERFORMANCE RISK WHEN DOC IS REFACTORED TO COMPLY WITH STRUCTURE -->
+<p>
+  <strong>Performance risk.</strong> Changing device id with server merging results
+  in huge load on server as it is rewriting all the user history. This should be
+  done only once per user.
+</p>
 <p>
   This call will merge any data recorded for current ID and save it as user with
   new provided ID.
@@ -572,8 +578,8 @@ Countly.report_trace({
     and overwrite them, before running each request.
   </li>
   <li>
-    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to store for crash
-    logs (default: 100)
+    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to
+    store for crash logs (default: 100)
   </li>
   <li>
     <strong>metrics</strong> - provide metrics override or custom metrics for
