@@ -572,8 +572,8 @@ Countly.report_trace({
     and overwrite them, before running each request.
   </li>
   <li>
-    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to store for crash
-    logs (default: 100)
+    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to
+    store for crash logs (default: 100)
   </li>
   <li>
     <strong>metrics</strong> - provide metrics override or custom metrics for
@@ -617,91 +617,74 @@ Countly.report_trace({
 </p>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
-  Countly is highly customizable and let's you take a huge part at the control
-  of the system in multiple ways. From customizing segmentation values to changing
-  event keys. Great liberty comes with the cost of great responsibility. As a sanity
-  check measure Countly relies on internal limits to get a hold of the free flow
-  of values, keys, character and more. These internal limits are again customizable
-  at initialization and current limits and their default values are as follows:
+  If values or keys provided by the user exceeds certain internal limits, they
+  will be truncated. Please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>
+  for the list of properties effected by these limits.
 </p>
-<ul>
-  <li>
-    <strong>maxKeyLength</strong> - 128 chars. Keys that exceed this limit will
-    be truncated.
-  </li>
-  <ul>
-    This is used for setting the maximum size of all string keys including:
-    <li>- event names</li>
-    <li>- view names</li>
-    <li>- custom trace key name (APM)</li>
-    <li>- custom metric key (apm)</li>
-    <li>- segmentation key (for all features)</li>
-    <li>- custom user property</li>
-    <li>
-      - custom user property keys that are used for property modifiers (mul,
-      push, pull, set, increment, etc)
-    </li>
-  </ul>
-  <li>
-    <strong>maxValueSize</strong> - 256 chars. Values that exceed this limit
-    will be truncated.
-  </li>
-  <ul>
-    This is used for setting the maximum size of all values in key-value pairs
-    including:
-    <li>- segmentation value in case of strings (for all features)</li>
-    <li>- custom user property string value</li>
-    <li>
-      - user profile named key (username, email, etc) string values. Except
-      "picture" field, that has a limit of 4096 chars
-    </li>
-    <li>
-      - custom user property modifier string values. For example, for modifiers
-      like "push", "pull", "setOnce", etc.
-    </li>
-    <li>- breadcrumb text</li>
-    <li>
-      - manual feedback widget reporting fields (reported as event)
-    </li>
-    <li>- rating widget response (reported as event)</li>
-  </ul>
-  <li>
-    <strong>maxSegmentationValues</strong> - 30 dev entries. Entries that exceed
-    this limit will be removed.<br>
-    To set the maximum amount of custom segmentation that can be recorded in
-    one event.
-  </li>
-  <li>
-    <strong>maxBreadcrumbCount</strong> - 100 entries. If the limit is exceeded,
-    the oldest entry will be removed.<br>
-    To limit the amount of breadcrumbs that can be recorded before the oldest
-    one is deleted from the logs.
-  </li>
-  <li>
-    <strong>maxStackTraceLinesPerThread</strong> - 30 lines. Lines that exceed
-    this entry will be removed.<br>
-    Sets the maximum number of stack trace lines that can be recorded per thread.
-  </li>
-  <li>
-    <strong>maxStackTraceLineLength</strong> - 200 chars. Lines that exceed this
-    limit will be truncated.<br>
-    This can set the maximum number of characters that is allowed per stack trace
-    line. This also limits the crash message length.
-  </li>
-</ul>
 <p>
-  To change these default values, all you have to do is to set the properties during
-  the initialization:
+  You can override these internal limits during initialization.
+</p>
+<h3 id="h_01HRY51Q9K26ZGFWJS9R87N0WQ">Key Length</h3>
+<p>
+  <code class="javascript">max_key_length</code> - 128 chars by default. Keys that
+  exceed this limit will be truncated.
 </p>
 <pre><code class="javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
-  url: "https://try.count.ly",
-  max_key_length: 500,
-  max_value_size: 12,
-  max_segmentation_values: 23,
-  max_breadcrumb_count: 80,
-  max_stack_trace_lines_per_thread: 50,
-  max_stack_trace_line_length: 300
+  url: "YOUR_SERVER_URL",
+  max_key_length: 50
+});</code></pre>
+<h3 id="h_01HRY51XC20ZVT47JN7GYTAZ7D">Value Size</h3>
+<p>
+  <code class="javascript">max_value_size</code> - 256 chars by default. Values
+  that exceed this limit will be truncated.
+</p>
+<pre><code class="javascript">Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "YOUR_SERVER_URL",
+  max_value_size: 12
+});</code></pre>
+<h3 id="h_01HRY521MHG6HD8P7JQ0BE7S8K">Segmentation Values</h3>
+<p>
+  <code class="javascript">max_segmentation_values</code> - 100 dev entries by
+  default. Key/value pairs that exceed this limit in a single event will be removed.
+</p>
+<pre><code class="javascript">Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "YOUR_SERVER_URL",
+  max_segmentation_values: 67
+});</code></pre>
+<h3 id="h_01HRY526FQC2R9BQRTYB1B2VF0">Breadcrumb Count</h3>
+<p>
+  <code class="javascript">max_breadcrumb_count</code> - 100 entries by default.
+  If the limit is exceeded, the oldest entry will be removed from stored breadcrumbs.
+</p>
+<pre><code class="javascript">Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "YOUR_SERVER_URL",
+  max_breadcrumb_count: 45
+});</code></pre>
+<h3 id="h_01HRY52BYPANSEJ27WFFMWNR1F">Stack Trace Lines Per Thread</h3>
+<p>
+  <code class="javascript">max_stack_trace_lines_per_thread</code> - 30 lines by
+  default. Crash stack trace lines that exceed this limit (per thread) will be
+  removed.
+</p>
+<pre><code class="javascript">Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "YOUR_SERVER_URL",
+  max_stack_trace_lines_per_thread: 23
+});</code></pre>
+<h3 id="h_01HRY52J9BCCYQ00XJ9PWY9PFZ">Stack Trace Line Length</h3>
+<p>
+  <code class="javascript">max_stack_trace_line_length</code> - 200 chars by default.
+  Crash stack trace lines that exceed this limit will be truncated.
+</p>
+<pre><code class="javascript">Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "YOUR_SERVER_URL",
+  max_stack_trace_line_length: 10
 });</code></pre>
 <h2 id="h_01HAXVDTRGNHGD4SW5XH7NBE8W">Setting Maximum Request Queue Size</h2>
 <p>
