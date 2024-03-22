@@ -481,6 +481,13 @@ Countly.Instance.Init(config);</code></pre>
   any of the following two methods to changing the Device ID, depending on your
   needs.
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <p class="anchor-heading">
   <strong>Changing Device ID with Server Merge</strong>
 </p>
@@ -839,7 +846,8 @@ Countly.Instance.Init(config);</code></pre>
   <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
 </p>
 <p>
-  If a property is set as an empty string, it will be deleted from the user on the server side.
+  If a property is set as an empty string, it will be deleted from the user on
+  the server side.
 </p>
 <h2 id="h_01HABTZ316D6XXE1MP0RMYV6ZV">Setting Predefined Values</h2>
 <p>
