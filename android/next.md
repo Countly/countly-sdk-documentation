@@ -648,6 +648,13 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(viewSegmentation);
   (merged) into user profile with device id you specified in the following method
   call:
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <pre><code class="java">Countly.sharedInstance().deviceId().changeWithMerge("new device ID")</code></pre>
 <p>
   In other circumstances, you might want to track information about another separate
