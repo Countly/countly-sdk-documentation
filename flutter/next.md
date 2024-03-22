@@ -637,6 +637,13 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
 <p>You may configure/change the device ID anytime using:</p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <pre><code class="dart">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
 <p>
   You may either allow the device to be counted as a new device or merge existing
