@@ -745,26 +745,82 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
   limits. If values or keys provided by the user, would exceed the limits, they
-  would be truncated. Here are the details of these configurable fields:
+  would be truncated.
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">Here</a>
+  are the details of these configurable fields.
 </p>
+<h3 id="h_01HRYGE4SVQTQGPZNQW88RZ68W">Key Length</h3>
 <p>
   <span><strong>MaxKeyLength - </strong>(int) Maximum size of all string keys. The default value is <strong>128</strong>. </span>
 </p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxKeyLength = 128;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGG05DWD8GN6DP0FPJZS7C">Value Size</h3>
 <p>
-  <span><strong>MaxValueLength - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>. </span>
+  <span><strong>MaxValueSize - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>. </span>
 </p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxValueSize = 128;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGG6JJA3GET646JG6ZG1TY">Segmentation Values</h3>
 <p>
-  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>256</strong>. </span>
+  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>100</strong>.</span>
 </p>
-<p>
-  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>. </span>
-</p>
-<p>
-  <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
-</p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxSegmentationValues = 23;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGGCS3YXJRTHJ9VSXDZC4V">Breadcrumb Count</h3>
 <p>
   <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
 </p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxBreadcrumbCount = 50;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGGKF4V42JA2YNZ1G1CTXE">Stack Trace Lines Per Thread</h3>
+<p>
+  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.</span>
+</p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxStackTraceLinesPerThread = 10;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGGQYXB8K231ZB22G7VCSP">Stack Trace Line Length</h3>
+<p>
+  <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
+</p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxStackTraceLineLength = 128;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HJT9W4R283JCJNXZJM0C42VQ">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 24.1.0.</p>
