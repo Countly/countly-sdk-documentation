@@ -449,6 +449,13 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <code class="JavaScript">false</code>, the device will be counted as a new device
   on the server.
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <h2 id="h_01HAVQNJQRHVERZJ1YR7QJHMVG">Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode for keeping all requests on hold until
