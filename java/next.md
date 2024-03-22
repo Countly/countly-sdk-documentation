@@ -519,6 +519,13 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   any of the following two methods to changing the Device ID, depending on your
   needs.
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <p class="anchor-heading">
   <strong>Changing Device ID with server merge</strong>
 </p>
