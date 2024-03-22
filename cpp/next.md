@@ -433,6 +433,13 @@ cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
   with the current device ID will be transferred (merged) into the user profile
   with the device ID you specified in the following method call:
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <pre><span style="font-weight: 400;"><code class="cpp">cly::Countly::getInstance().setDeviceID("new-device-id", true);</code></span></pre>
 <p>
   If you integrate this method, there might be times where you might want to track
@@ -522,7 +529,8 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
 </p>
 <p>
-  If a property is set as an empty string, it will be deleted from the user on the server side.
+  If a property is set as an empty string, it will be deleted from the user on
+  the server side.
 </p>
 <h2 id="h_01HABV267VXMCSNAXPXD53Z8FK">Setting Predefined Values</h2>
 <p>
