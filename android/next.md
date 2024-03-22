@@ -582,21 +582,26 @@ Countly.sharedInstance().views().stopAllViews(viewSegmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To add segmentation to a view using its view ID:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+<pre><code class="java">String viewID = Countly.sharedInstance().views().startView("View Name");
+
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
 viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
   
-Countly.sharedInstance().views().addSegmentationToViewWithID("View ID", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithID(viewID, viewSegmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To add segmentation to a view using its name:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+<pre><code class="java">String viewName = "View Name";
+Countly.sharedInstance().views().startView(viewName);
+  
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
 viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
   
-Countly.sharedInstance().views().addSegmentationToViewWithName("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithName(viewName, viewSegmentation);</code></pre>
 <h2 id="h_01HHNZ0MAP34090BTSV1KAYD4J">Global View Segmentation</h2>
 <p>
   <span style="font-weight: 400;">You can set a global segmentation to be send with all views when it ends:</span>
