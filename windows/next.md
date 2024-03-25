@@ -753,8 +753,8 @@ Countly.Instance.SetConsent(consent);</code></pre>
   SDK does have configurable fields to manipulate the internal SDK value and key
   limits. If values or keys provided by the user, would exceed the limits, they
   would be truncated.
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">Here</a>
-  are the details of these configurable fields.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">Here</a> are the
+  details of these configurable fields.
 </p>
 <h3 id="h_01HRYGE4SVQTQGPZNQW88RZ68W">Key Length</h3>
 <p>
