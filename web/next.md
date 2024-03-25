@@ -870,6 +870,13 @@ Countly.init({
 <p>
   <span style="font-weight: 400;">This call will merge any data recorded for the current ID and save it as a user with a newly provided ID.</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Asynchronous</span>
