@@ -435,6 +435,13 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <li>Using a temporary ID</li>
 </ul>
 <h2 id="h_01HAVQNJQR1HPTNTJ711DVNFD1">Changing device ID with and without merge</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <p>
   You may configure or change the device ID anytime using the method below.
 </p>
