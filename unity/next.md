@@ -1184,6 +1184,51 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   folder under Assets. There is also 'CountlyEntryPoint.cs' script in Example folder,
   and this script shows how most of the functionality can be used.
 </p>
+<h2 id="sdk-internal-limits" class="anchor-heading">SDK Internal Limits</h2>
+<p>
+  SDK does have configurable fields to manipulate the internal SDK value and key
+  limits. If values or keys provided by the user, would exceed the limits, they
+  would be truncated. These are the methods that let's you set limits. For further
+  details please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>.<span></span>
+</p>
+<h3 id="h_01HRYHGASG78HB8NM4T64KZ0NS">Key Length</h3>
+<p>
+  <span><strong>SetMaxKeyLength(int length) - </strong>maximum size of all string keys. The default value is <strong>128</strong>.</span>
+</p>
+<pre><code class="csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .SetMaxKeyLength(120);</code></pre>
+<h3 id="h_01HRYHGASG1C44VHKRAHNTW0HR">Value Size</h3>
+<p>
+  <span><strong>SetMaxValueSize(int size) - </strong>maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.</span>
+</p>
+<pre><code class="csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .SetMaxValueSize(240);</code></pre>
+<h3 id="h_01HRYHGASG9DBJF5KNRT0JWQ55">Segmentation Values</h3>
+<p>
+  <span><strong>SetMaxSegmentationValues(int values) - </strong>maximum amount of custom (dev provided) segmentation in one event. The default value is <strong>100</strong>.</span>
+</p>
+<pre><code class="csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .SetMaxSegmentationValues(35);</code></pre>
+<h3 id="h_01HRYHGASHPHPEZ3RB698QQ73W">Breadcrumb Count</h3>
+<p>
+  <strong>SetMaxBreadcrumbCount(int amount) </strong>- maximum amount of breadcrumbs.
+  The default value is <strong>100</strong>.
+</p>
+<pre><code class="csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .SetMaxBreadcrumbCount(101);</code></pre>
+<h3 id="h_01HRYHGASH3B0YQRS1065R5BHW">Stack Trace Lines Per Thread</h3>
+<p>
+  <span><strong>SetMaxStackTraceLinesPerThread(int lines) - </strong>limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.</span>
+</p>
+<pre><code class="csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .SetMaxStackTraceLinesPerThread(32);</code></pre>
+<h3 id="h_01HRYHGASH45K0F6KWG2B8RY0X">Stack Trace Line Length</h3>
+<p>
+  <span><strong>SetMaxStackTraceLineLength(int length) - </strong>limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
+</p>
+<pre><code class="csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
+  .SetMaxStackTraceLineLength(230);</code></pre>
 <h2 id="01HFEMPN4D6V1PJ7R9WC6WZ17H">Custom Metrics</h2>
 <p>
   In certain situations, such as beginning a session or requesting remote config,
@@ -1206,39 +1251,6 @@ configuration.SetMetricOverride(customMetric);</code></pre>
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B">here</a>
   for a comprehensive list and descriptions of available metrics.
 </p>
-<h2 id="sdk-internal-limits" class="anchor-heading">SDK Internal Limits</h2>
-<p>
-  SDK does have configurable fields to manipulate the internal SDK value and key
-  limits. If values or keys provided by the user, would exceed the limits, they
-  would be truncated. These are the methods that let's you set limits.<span></span>
-</p>
-<p>
-  <span><strong>SetMaxKeyLength(int length) - </strong>maximum size of all string keys. The default value is <strong>128</strong>.</span>
-</p>
-<p>
-  <span><strong>SetMaxValueSize(int size) - </strong>maximum size of all values in our key-value pairs. The default value is <strong>256</strong>.</span>
-</p>
-<p>
-  <span><strong>SetMaxSegmentationValues(int values) - </strong>maximum amount of custom (dev provided) segmentation in one event. The default value is <strong>30</strong>.</span>
-</p>
-<p>
-  <span><strong>SetMaxStackTraceLinesPerThread(int lines) - </strong>limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.</span>
-</p>
-<p>
-  <span><strong>SetMaxStackTraceLineLength(int length) - </strong>limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
-</p>
-<p>
-  <strong>SetMaxBreadcrumbCount(int amount) </strong>- maximum amount of breadcrumbs.
-  The default value is <strong>100</strong>.
-</p>
-<p>Example:</p>
-<pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
-  .SetMaxKeyLength(120)
-  .SetMaxValueSize(240)
-  .SetMaxSegmentationValues(35)
-  .SetMaxStackTraceLinesPerThread(32)
-  .SetMaxStackTraceLineLength(230)
-  .SetMaxBreadcrumbCount(101);</code></pre>
 <h2 id="h_01HCHSPK9K615SPYZP2NF2KXN0">Setting Event Queue Threshold</h2>
 <p>
   In SDK configuration, you may limit the number of events that can be recorded
