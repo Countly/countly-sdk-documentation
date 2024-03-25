@@ -1784,7 +1784,7 @@ function sendMessage(param) {
 </p>
 <p>- Event and View segmentation values</p>
 <p>- Custom Crash segmentation values</p>
-<p>- Global View and&nbsp; Crash segmentation values</p>
+<p>- Global View and Crash segmentation values</p>
 <p>
   - Custom User Property values and their modifications (with mul, push, pull,
   set, increment, etc)
