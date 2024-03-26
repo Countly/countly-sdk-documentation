@@ -3936,6 +3936,12 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2 id="h_01HRVZFH0PNM4MHHCYH05E6CRZ">SDK Internal Limits</h2>
+<p>
+  If values or keys provided by the user exceeds certain internal limits, they
+  will be truncated. Please have a look
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>
+  for the list of properties effected by these limits.
+</p>
 <h3 id="h_01HRVZFH0P0DP0VWVJXATKBBS0">Key Length</h3>
 <p>
   <span style="font-weight: 400;">You can specify the <code>maxKeyLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>

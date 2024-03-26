@@ -1190,7 +1190,7 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   limits. If values or keys provided by the user, would exceed the limits, they
   would be truncated. These are the methods that let's you set limits. For further
   details please have a look
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>.<span></span>
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>.<span></span>
 </p>
 <h3 id="h_01HRYHGASG78HB8NM4T64KZ0NS">Key Length</h3>
 <p>

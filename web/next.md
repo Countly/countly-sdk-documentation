@@ -2659,7 +2659,7 @@ Countly2.add_event({
 <p>
   If values or keys provided by the user exceeds certain internal limits, they
   will be truncated. Please have a look
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#01H821RTQ7AZ6J858BHP4883ZC">here</a>
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>
   for the list of properties effected by these limits.
 </p>
 <p>
