@@ -1757,3 +1757,64 @@ function sendMessage(param) {
 <p>
   <span>- The Java SDK uses a random UUID</span>
 </p>
+<h1 id="sdk_internal_limits">SDK Internal Limits</h1>
+<p>
+  Countly SDKs have internal limits to prevent users from unintentionally sending
+  large amounts of data to the server. If these limits are exceeded, the data will
+  be truncated to keep it within the limit. Below, you can see these limits and
+  which data they affect.
+</p>
+<h2 id="h_01HSAPZS8AG66NMZ9TYT7X53XH">Key Length</h2>
+<p>SDKs limit the maximum size of all user set keys:</p>
+<p>- Event names and Event segmentation keys</p>
+<p>- View names and View segmentation keys</p>
+<p>- Custom APM trace keys and their segmentation keys</p>
+<p>- Custom Crash segmentation keys</p>
+<p>- Global View and Crash segmentation keys</p>
+<p>
+  - Custom User Property names and their modifications (with mul, push, pull, set,
+  increment, etc)
+</p>
+<h2 id="h_01HSAQ3PHNMB8EESFQVMPZF9MB">
+  <span>Value Size</span>
+</h2>
+<p>
+  SDKs limit the size of all user set string segmentation (or their equivalent)
+  values:
+</p>
+<p>- Event and View segmentation values</p>
+<p>- Custom Crash segmentation values</p>
+<p>- Global View and Crash segmentation values</p>
+<p>
+  - Custom User Property values and their modifications (with mul, push, pull,
+  set, increment, etc)
+</p>
+<p>
+  - User Profile named key (username, email, etc) values (except the "picture"
+  field, which has a limit of 4096 chars)
+</p>
+<p>- Breadcrumb value (text)</p>
+<p>- Manual Feedback and Rating Widgets reporting fields</p>
+<h2 id="h_01HSAQK4XYV5TSR6JA4J9CS5AX">Segmentation Value Count</h2>
+<p>
+  SDKs limit the amount of user set segmentation key-value pairs:
+</p>
+<p>- Event and View segmentation count</p>
+<p>- Custom Crash segmentation count</p>
+<p>- Global View and Crash segmentation count</p>
+<h2 id="h_01HSAQP1NDJBX33KZXE4GQVNJW">Breadcrumb Count</h2>
+<p>
+  <span>SDKs limit the amount of user set breadcrumbs that can be recorded (exceeding deletes the oldest one)</span>
+</p>
+<h2 id="h_01HSAQR0WZQBZ5PYKJ75WAH642">
+  <span>Stack Trace Lines Per Thread</span>
+</h2>
+<p>
+  <span>SDKs limit the stack trace lines that would be recorded per thread</span>
+</p>
+<h2 id="h_01HSAQS6MEKXNMZ2FGCA7TG8Y3">
+  <span>Stack Trace Line Length</span>
+</h2>
+<p>
+  <span>SDKs limit the characters that are allowed per stack trace line (which limits the crash message length)</span>
+</p>
