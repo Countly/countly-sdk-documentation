@@ -1757,3 +1757,86 @@ function sendMessage(param) {
 <p>
   <span>- The Java SDK uses a random UUID</span>
 </p>
+<h1 id="h_01HABSX9KXYEPGX1AJ5F61Q18D">
+  Using the Countly SDK's with iOS and Android widgets and watches
+</h1>
+<p>
+  With mobile devices, there are three different modalities that a user can interact
+  with phone app, phone widget, and watch app. When designing a product that spans
+  all three worlds, the goal is normally to track the user's lifecycle across all
+  of them.
+</p>
+<p>
+  To perform this cross-modality tracking, care must be given that tracking is
+  performed with the same device ID across all of them. If the device ID to which
+  the event or session is attributed would not be the same across all devices and
+  modalities, then the same user would be counted as a separate person on one of
+  them.
+</p>
+<p>
+  This also means that if the user's device ID changes, this change needs to be
+  synchronized across all modalities/apps.
+</p>
+<p>This can be achieved in two general approaches:</p>
+<ol>
+  <li>
+    Performing data recording at each location separately - each modality integrates,
+    configures, and initializes the Countly SDK separately. Device ID synchronization
+    needs to be performed manually across all modalities. This would be accomplished
+    either by using some platform-provided method to perform direct communication
+    or using an external device (for example, a server) to perform a centralized
+    exchange. Alternatively, every modality needs a way to create the same device
+    ID without direct cross-synchronization.
+  </li>
+  <li>
+    Performing data recording at a central location and proxying data recording
+    from each non-app modality eliminates the need for synchronization, as only
+    one instance of the SDK is initialized and configured. Device ID changes
+    are immediately taken into account when they happen. Since cross-device recording
+    is centralized, views and sessions must be recorded manually. The main issue
+    with this approach is that there will be times when the main app might be
+    out of reach for proxy recording or might not be running.
+  </li>
+</ol>
+<p>
+  To differentiate from which modality the event came from, you can use a custom
+  segmentation value that shows that. Every unique value would indicate a separate
+  modality.
+</p>
+<p>
+  <strong>Notes for native iOS integration</strong>
+</p>
+<p>
+  The general recommendation is to have Countly integrated into each separate modality
+  as that seems to present the least amount of issues. If the modalities used are
+  from the same developer account, then an internal communication channel should
+  be available to them. If they are not on the same developer account, an outside
+  synchronization mechanism will need to be used.
+</p>
+<p>
+  For additional integration details, you will also have to look at
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#watchos-integration" target="_self">this</a>
+  section.
+</p>
+<p>
+  <strong>Notes for native Android integration</strong>
+</p>
+<p>
+  Due to the way the SDK is currently designed, integrating the SDK in a widget
+  will cause crashes. Therefore the recommendation is to proxy the tracking requests
+  to the host application. Shared preferences could potentially be used to achieve
+  this.
+</p>
+<p>
+  The SDK would be directly integrated with the watch modality, and then synchronization
+  would be done with shared preferences.
+</p>
+<p>
+  <strong>Notes for Flutter integration</strong>
+</p>
+<p>
+  If you have a Flutter app, there doesn't seem to be an easy way to integrate
+  other modalities. To achieve that, you would need to create them using the native
+  platform languages and integrate the native Countly SDKs. In that case, the recommendations
+  from the previous sections would apply.
+</p>
