@@ -213,27 +213,97 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
 </p>
 <h2 id="h_01HAVQDM5TVAQT2CSB5JN46Y1P">Symbolication</h2>
 <p>
-  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it (the LATEST_VERSION is currently 23.8.3):</span>
+  <span style="font-weight: 400;">You may create Breakpad symbol files yourself and upload them to your Countly server using our UI. They will be needed to create stack traces from minidump files. Countly also developed a Gradle plugin to automate this process. To use the upload plugin in Studio, you first need to include it:</span>
 </p>
 <h3 id="h_01HAVQDM5TDW9QZDBDY4PWKSBV">Automatic symbol file upload</h3>
-<pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin
-
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  // for LATEST_VERSION check &lt;https://search.maven.org/artifact/ly.count.android/sdk&gt;
-  dependencies {
-    classpath group: 'ly.count.android', 'name': 'sdk-plugin', 'version': 'LATEST_VERSION'
-  }
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">build.gradle</span>
+    <span class="tabs-link">build.gradle.kts</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">plugins {
+  id "ly.count.android.plugins.upload-symbols" version "24.1.1"
 }</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">plugins {
+  id("ly.count.android.plugins.upload-symbols") version "24.1.1"
+}</code></pre>
+  </div>
+</div>
+<p>
+  If you have root level gradle file and want to enable the plugin for sub-projects,
+  add <code>apply false</code> to the end of the lines. And in sub-projects add
+  it to <code>plugins</code> block without version part.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">build.gradle</span>
+    <span class="tabs-link">build.gradle.kts</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">// in root level gradle file
+plugins {
+  id "ly.count.android.plugins.upload-symbols" version "24.1.1" apply false
+}
+    
+// in sub-project gradle file
+plugins {
+  id "ly.count.android.plugins.upload-symbols"
+}</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">// in root level gradle file
+plugins {
+  id("ly.count.android.plugins.upload-symbols") version "24.1.1" apply false
+}
+    
+// in sub-project gradle file
+plugins {
+  id("ly.count.android.plugins.upload-symbols")
+}</code></pre>
+  </div>
+</div>
+<p>
+  If you do not have <code>plugins</code> block in sub-projects, you can add them
+  via:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">build.gradle</span>
+    <span class="tabs-link">build.gradle.kts</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">apply(plugin = "ly.count.android.plugins.upload-symbols")
+</code></pre>
+  </div>
+</div>
 <p>
   <span style="font-weight: 400;">Then you will need to configure a Gradle Countly block for the plugin:</span>
 </p>
-<pre><code class="java">countly {
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">build.gradle</span>
+    <span class="tabs-link">build.gradle.kts</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">countly {
   server "https://YOUR_SERVER"
   app_key "YOUR_APP_KEY"  
 }</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">countly {
+  server = "https://YOUR_SERVER"
+  app_key = "YOUR_APP_KEY"  
+}</code></pre>
+  </div>
+</div>
 <p>
   Next, you will have two new Gradle tasks available to you:
   <code>uploadJavaSymbols</code> and <code>uploadNativeSymbols</code>.
@@ -266,7 +336,13 @@ buildscript {
 <p>
   <span style="font-weight: 400;">In addition, you may also override some default values in the Countly block in an effort to specify your server and app info.</span>
 </p>
-<pre><code class="java">countly {
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">build.gradle</span>
+    <span class="tabs-link">build.gradle.kts</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">countly {
   // required by both tasks
   server "https://try.count.ly"
   app_key "XXXXXX"  // same app_key used for SDK integration
@@ -289,6 +365,33 @@ buildscript {
   // path for breakpad tool dump_syms executable
   dumpSymsPath "/usr/bin/dump_syms" // note that will be saved with the upload and can be checked in the UI noteNative "sdk-plugin automatic upload of breakpad symbols" }
 }</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="java">countly {
+  // required by both tasks
+  server = "https://try.count.ly"
+  app_key = "XXXXXX"  // same app_key used for SDK integration
+
+  // optional properties for uploadJavaSymbols. Shown are the default values.
+
+  // location of mapping.txt file relative to project build directory
+  mappingFile = "outputs/mapping/release/mapping.txt"
+
+  // note that will be saved with the upload and can be checked in the UI
+  noteJava = "sdk-plugin automatic upload of mapping.txt"
+
+  // optional properties for uploadNativeSymbols. Shown are the default values.
+
+  // directory of .so files relative to project build directory.
+  // you can check the tar.gz file created under intermediates/countly
+  // BUILD_TYPE could be debug or release
+  nativeObjectFilesDir = "intermediates/merged_native_libs/BUILD_TYPE"
+
+  // path for breakpad tool dump_syms executable
+  dumpSymsPath = "/usr/bin/dump_syms" // note that will be saved with the upload and can be checked in the UI noteNative "sdk-plugin automatic upload of breakpad symbols" }
+}</code></pre>
+  </div>
+</div>
 <p>
   <span style="font-weight: 400;">It is possible that two of these properties will need to be configured manually: <code>dumpSymsPath</code></span><span style="font-weight: 400;">&nbsp;and <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">. The plugin assumes you will run the task after a release build. To test it for debug builds, please change <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">&nbsp;to <code>"intermediates/cmake/debug/obj"</code></span><span style="font-weight: 400;">&nbsp;(or to wherever your build process puts .so files under the build directory).</span>
 </p>
