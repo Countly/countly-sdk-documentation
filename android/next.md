@@ -146,18 +146,47 @@
 <h2 id="h_01HAVQDM5TQA2GG1ST6KSP2W56">Crash Filtering</h2>
 <p>
   There might be cases where a crash could contain sensitive information. For such
-  situations, there is a crash filtering option. You can provide a callback which
-  will be called every time a crash is recorded. It gets the string value of the
-  crash, which would be sent to the server, and should return "true" if the crash
-  should not be sent to the server:
+  situations, there is a crash filtering option that can discard the crash or modify
+  a crash.
 </p>
-<pre><code class="java">config.setCrashFilterCallback(new CrashFilterCallback() {
+<p>
+  You can provide a callback, which will be called every time a crash is recorded.
+  It gets the crash parameters that is <code>CrashData</code>, which would be sent
+  to the server and should return "true" if the crash should not be sent to the
+  server:
+</p>
+<pre><code class="java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
   @Override
-  public boolean filterCrash(String crash) {
-    //returns true if the crash should be ignored
-    return crash.contains("secret");
+  public boolean filterCrash(CrashData crash) {
+    crash.setStackTrace(crash.getStackTrace().replace("secret", "*****"));
+    if(crash.getCrashSegmentation().containsKey("secret")) {
+      crash.setFatal(false);
+      crash.getCrashSegmentation().put("secret", "*****");
+    }
+
+    if(crash.getCrashMetrics().has("device")) {
+      try {
+        // if metrics has a device other than an Android, discard crash
+        return crash.getCrashMetrics().get("device").equals("Non-Android");
+      } catch (JSONException ignored) {
+        // if there is an exception, discard crash
+        return true;
+      }
+    }
+    return false;
   }
-})
+});
+</code></pre>
+<p>
+  Below is the contents of the <strong>CrashData</strong>
+</p>
+<pre><code class="java">class CrashData {
+  String stackTrace;
+  Map&lt;String, Object&gt; crashSegmentation;
+  List&lt;String&gt; breadcrumbs;
+  boolean fatal;
+  JSONObject crashMetrics;
+}
 </code></pre>
 <h2 id="h_01HAVQDM5TH6A662XBT0WZ7B7Y">Recording all threads</h2>
 <p>
