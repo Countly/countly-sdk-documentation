@@ -393,10 +393,10 @@ plugins {
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">It is possible that two of these properties will need to be configured manually: <code>dumpSymsPath</code></span><span style="font-weight: 400;">&nbsp;and <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">. The plugin assumes you will run the task after a release build. To test it for debug builds, please change <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">&nbsp;to <code>"intermediates/cmake/debug/obj"</code></span><span style="font-weight: 400;">&nbsp;(or to wherever your build process puts .so files under the build directory).</span>
+  <span style="font-weight: 400;">It is possible that two of these properties will need to be configured manually: <code>dumpSymsPath</code></span><span style="font-weight: 400;"> and <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">. The plugin assumes you will run the task after a release build. To test it for debug builds, please change <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;"> to <code>"intermediates/cmake/debug/obj"</code></span><span style="font-weight: 400;"> (or to wherever your build process puts .so files under the build directory).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">We created a&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native"><span style="font-weight: 400;">sample app</span></a><span style="font-weight: 400;">&nbsp;in our github repo that demonstrates both how to use SDK-native and our upload plugin.</span>
+  <span style="font-weight: 400;">We created a </span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native"><span style="font-weight: 400;">sample app</span></a><span style="font-weight: 400;"> in our github repo that demonstrates both how to use SDK-native and our upload plugin.</span>
 </p>
 <h1 id="h_01HAVQDM5T91A747VG56537NN9">Events</h1>
 <p>
