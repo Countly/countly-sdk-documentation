@@ -164,12 +164,13 @@
       crash.getCrashSegmentation().put("secret", "*****");
     }
 
-    if(crash.getCrashMetrics().has("device")) {
-      try {
-        // if metrics has a device other than an Android, discard crash
-        return crash.getCrashMetrics().get("device").equals("Non-Android");
-      } catch (JSONException ignored) {
-        // if there is an exception, discard crash
+    if(crash.getCrashMetrics().containsKey("device")) {
+      // if metrics has a device other than an Android, discard crash
+      Object device = crash.getCrashMetrics().get("device");
+      if (device instanceof String) {
+        return !device.equals("Android");
+      } else {
+        // if value not found or not a string, discard crash
         return true;
       }
     }
@@ -185,7 +186,7 @@
   Map&lt;String, Object&gt; crashSegmentation;
   List&lt;String&gt; breadcrumbs;
   boolean fatal;
-  JSONObject crashMetrics;
+  Map&lt;String, Object&gt; crashMetrics;
 }
 </code></pre>
 <h2 id="h_01HAVQDM5TH6A662XBT0WZ7B7Y">Recording all threads</h2>
