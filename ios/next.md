@@ -1345,14 +1345,16 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views addSegmentationToViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];
+    <pre><code class="objectivec">NSString * viewID = [Countly.sharedInstance.views startView:@"VIEW_NAME"];
+[Countly.sharedInstance.views addSegmentationToViewWithID:viewID segmentation:@{@"key": @"value"}];
       
 [Countly.sharedInstance.views addSegmentationToViewWithName:@"VIEW_NAME" segmentation:@{@"key": @"value"}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.addSegmentationToViewWithID("VIEW_ID", segmentation["key": "value"])
+    <pre><code class="swift">let viewID = Countly.sharedInstance().views().startView("MyView");
+Countly.sharedInstance().views().addSegmentationToViewWithID(withID: viewID, segmentation: segmentation["key": "value"])
       
-Countly.sharedInstance().views.addSegmentationToViewWithName("VIEW_NAME", segmentation["key": "value"])</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView", segmentation: segmentation["key": "value"])</code></pre>
   </div>
 </div>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
@@ -1417,6 +1419,13 @@ Countly.sharedInstance().views.addSegmentationToViewWithName("VIEW_NAME", segmen
 <p>
   <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
@@ -3927,6 +3936,12 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
 </div>
 <h2 id="h_01HRVZFH0PNM4MHHCYH05E6CRZ">SDK Internal Limits</h2>
+<p>
+  If values or keys provided by the user exceeds certain internal limits, they
+  will be truncated. Please have a look
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>
+  for the list of properties effected by these limits.
+</p>
 <h3 id="h_01HRVZFH0P0DP0VWVJXATKBBS0">Key Length</h3>
 <p>
   <span style="font-weight: 400;">You can specify the <code>maxKeyLength</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>
@@ -3985,7 +4000,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   It is used to limit the number of key-value pairs in segmentations. If there
   are more key-value pairs than this limit, some of them will be removed. As obviously
   there is no order among the keys of an NSDictionary, it is not defined which
-  ones will be removed. If not set, it will be 30 by default.
+  ones will be removed. If not set, it will be 100 by default.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4185,7 +4200,13 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
 <p>
   Here is a detailed example usage of <code>addDirectRequest</code>:
 </p>
-<pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
   NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
   requestMap[@"city"] = @"Istanbul";
   requestMap[@"country_code"] = @"TR";
@@ -4246,6 +4267,69 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   }
   return jsonString;
 }</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">func sendDirectRequest() {
+    var requestMap = [String: Any]()
+    requestMap["city"] = "Istanbul"
+    requestMap["country_code"] = "TR"
+    requestMap["ip_address"] = "41.0082,28.9784"
+
+    var event = [String: Any]()
+    event["key"] = "test"
+    event["count"] = "201"
+    event["sum"] =  "2010"
+    event["dur"] = "2010"
+
+    var ffJson = [String: Any]()
+    ffJson["type"] = "FF"
+    ffJson["start_time"] = NSNumber(value: 123456789)
+    ffJson["end_time"] = NSNumber(value: 123456789)
+
+    var skipJson = [String: Any]()
+    skipJson["type"] = "skip"
+    skipJson["start_time"] = NSNumber(value: 123456789)
+    skipJson["end_time"] = NSNumber(value: 123456789)
+
+    var resumeJson = [String: Any]()
+    resumeJson["type"] = "resume_play"
+    resumeJson["start_time"] = NSNumber(value: 123456789)
+    resumeJson["end_time"] = NSNumber(value: 123456789)
+
+    var trickPlay = [[String: Any]]()
+    trickPlay.append(ffJson)
+    trickPlay.append(skipJson)
+    trickPlay.append(resumeJson)
+
+    var segmentation = [String: Any]()
+    segmentation["trickplay"] =  trickPlay
+    event["segmentation"] = segmentation
+
+    var events = [[String: Any]]()
+    events.append(event)
+
+    let eventsString = toString(dictionaryOrArrayToOutput: events)
+
+    if let eventsEscaped = eventsString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+        requestMap["events"] = eventsEscaped
+        Countly.sharedInstance()?.addDirectRequest(requestMap)
+    }
+}
+
+func toString(dictionaryOrArrayToOutput: Any) - String {
+    var jsonString = ""
+    do {
+        let jsonData = try JSONSerialization.data(withJSONObject: dictionaryOrArrayToOutput, options: [])
+        jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+    } catch let error {
+        print("Got an error: \(error)")
+    }
+    return jsonString
+}
+
+    </code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RTPMZFEQGNNNR3ERYK">watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>

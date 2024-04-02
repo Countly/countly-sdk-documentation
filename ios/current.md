@@ -4159,7 +4159,13 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
 <p>
   Here is a detailed example usage of <code>addDirectRequest</code>:
 </p>
-<pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
   NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
   requestMap[@"city"] = @"Istanbul";
   requestMap[@"country_code"] = @"TR";
@@ -4220,6 +4226,69 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   }
   return jsonString;
 }</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">func sendDirectRequest() {
+    var requestMap = [String: Any]()
+    requestMap["city"] = "Istanbul"
+    requestMap["country_code"] = "TR"
+    requestMap["ip_address"] = "41.0082,28.9784"
+
+    var event = [String: Any]()
+    event["key"] = "test"
+    event["count"] = "201"
+    event["sum"] =  "2010"
+    event["dur"] = "2010"
+
+    var ffJson = [String: Any]()
+    ffJson["type"] = "FF"
+    ffJson["start_time"] = NSNumber(value: 123456789)
+    ffJson["end_time"] = NSNumber(value: 123456789)
+
+    var skipJson = [String: Any]()
+    skipJson["type"] = "skip"
+    skipJson["start_time"] = NSNumber(value: 123456789)
+    skipJson["end_time"] = NSNumber(value: 123456789)
+
+    var resumeJson = [String: Any]()
+    resumeJson["type"] = "resume_play"
+    resumeJson["start_time"] = NSNumber(value: 123456789)
+    resumeJson["end_time"] = NSNumber(value: 123456789)
+
+    var trickPlay = [[String: Any]]()
+    trickPlay.append(ffJson)
+    trickPlay.append(skipJson)
+    trickPlay.append(resumeJson)
+
+    var segmentation = [String: Any]()
+    segmentation["trickplay"] =  trickPlay
+    event["segmentation"] = segmentation
+
+    var events = [[String: Any]]()
+    events.append(event)
+
+    let eventsString = toString(dictionaryOrArrayToOutput: events)
+
+    if let eventsEscaped = eventsString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+        requestMap["events"] = eventsEscaped
+        Countly.sharedInstance()?.addDirectRequest(requestMap)
+    }
+}
+
+func toString(dictionaryOrArrayToOutput: Any) - String {
+    var jsonString = ""
+    do {
+        let jsonData = try JSONSerialization.data(withJSONObject: dictionaryOrArrayToOutput, options: [])
+        jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+    } catch let error {
+        print("Got an error: \(error)")
+    }
+    return jsonString
+}
+
+    </code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RTPMZFEQGNNNR3ERYK">watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>

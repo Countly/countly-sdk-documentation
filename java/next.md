@@ -482,21 +482,24 @@ Countly.instance().views().stopAllViews(viewSegmentation); // pass null if no se
 <p>
   <span>To add segmentation to a view using its view ID:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+<pre><code class="java">String viewID = Countly.instance().views().startView("View Name");
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
 viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
 
-Countly.instance().views().addSegmentationToViewWithID("View ID", viewSegmentation);</code></pre>
+Countly.instance().views().addSegmentationToViewWithID(viewID, viewSegmentation);</code></pre>
 <p>
   <span>To add segmentation to a view using its name:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+<pre><code class="java">String viewName = "View Name";
+Countly.instance().views().startView(viewName);
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
 viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
 
-Countly.instance().views().addSegmentationToViewWithName("View Name", viewSegmentation);</code></pre>
+Countly.instance().views().addSegmentationToViewWithName(viewName, viewSegmentation);</code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
@@ -519,6 +522,13 @@ Countly.instance().deviceId().getType() // will return DeviceIdType enum</code><
   any of the following two methods to changing the Device ID, depending on your
   needs.
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <p class="anchor-heading">
   <strong>Changing Device ID with server merge</strong>
 </p>

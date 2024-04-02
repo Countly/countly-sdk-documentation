@@ -566,8 +566,15 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 </p>
 <h3 id="h_01HK6YJTHP4Y0WVZSC0ZPNZFDJ">Adding Segmentation to Started Views</h3>
 <p>
-  Once a view has been started (but before it has been ended), you can add segmentation
-  to a view either with its name or its ID.
+  You can add segmentation values to a view before it ends. This can be done as
+  many times as desired and the final segmentation that will be send to the server
+  would be the cumulative sum of all segmentations.
+</p>
+<p>
+  So, once added, any segmentation key/value pairs will stay until that view ends.
+  The only way to change it before it ends would be to provide a new value under
+  the key you want to update. In that case, when a particular segmentation value
+  for a specific key has been updated, only the latest value will be used.
 </p>
 <p>
   Here is an example on how to achieve that using the view name:
@@ -636,6 +643,13 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <p>You may configure/change the device ID anytime using:</p>
 <pre><code class="dart">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
 <p>

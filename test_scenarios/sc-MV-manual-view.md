@@ -315,6 +315,33 @@ changing device ID stops views and resets first segm
 
 make sure that the segmentation value precedence is taken into account 
 
+### MV_401_globalSegmentation
+
+We make sure that "setGlobalSegmentation" and "updateGlobalSegmentation" updates/sets global segmentation
+
+After every action, the EQ should be validated so make sure that the correct event is recorded
+For ease here is couple of parameters to be used with this test
+MAX_DOUBLE_VALUE=179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000
+MIN_DOUBLE_VALUE=-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.0000000000000000
+
+Tip: For all of the primitive types; integer, float, long, double usually platforms provide their MAX and MIN values as static parameters. If possible use them to increase readibility.
+
+* initalize the SDK with global view segmentation (segm={int=2147483647 bool=true double=MAX_DOUBLE_VALUE float=-340282346638528859811704183484516925440.0000000000000000 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE" arr=[1, 2, 3]})
+* start view A with segm={double=1.1}
+(sE_A id=idv1 pvid="" segm={visit="1" start="1" int=2147483647 bool=true double=1.1 float=-340282346638528859811704183484516925440.0000000000000000 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE"})
+* setGlobalViewSegmentation (segm={int=2147483647 bool=false double=MIN_DOUBLE_VALUE float=340282346638528859811704183484516925440.0000000000000000 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE2" map=[(key, val), (key1, val1)]})
+* wait 1 sec
+* pause view A
+(eE_A id=idv1 pvid="" d=1.0 segm={int=2147483647 bool=false double=MIN_DOUBLE_VALUE float=340282346638528859811704183484516925440.0000000000000000 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE2"})
+* updateGlobalViewSegmentation (segm={int=-2147483648 string="STRING_OF_YOUR_CHOICE3" map=[(key, val), (key1, val1)]})
+* start view B with segm={float=1.1}
+(sE_B id=idv2 pvid=idv1 segm={visit="1" int=-2147483647 bool=false double=MIN_DOUBLE_VALUE float=1.1 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE3"})
+* wait 1 sec
+* stopAllViews with segm={bool=true arr=["1", "2", "3"] string1="STRING_OF_YOUR_CHOICE4"}
+* validate 2 stop view event is recorded in order of A,B and correct segm values are existed
+(eE_A id=idv1 pvid=idv1 d=0.0 segm={int=-2147483647 bool=true double=MIN_DOUBLE_VALUE float=340282346638528859811704183484516925440.0000000000000000 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE3" string1="STRING_OF_YOUR_CHOICE4"})
+(eE_B id=idv2 pvid=idv1 d=1.0 segm={int=-2147483647 bool=true double=MIN_DOUBLE_VALUE float=340282346638528859811704183484516925440.0000000000000000 long=9223372036854775807 string="STRING_OF_YOUR_CHOICE3" string1="STRING_OF_YOUR_CHOICE4"})
+
 ## (5XX) automatic views WIP
 
 manual calls not working but the global segm calls do
