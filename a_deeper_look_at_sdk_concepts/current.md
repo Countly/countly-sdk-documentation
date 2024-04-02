@@ -1768,8 +1768,8 @@ function sendMessage(param) {
 <p>SDKs limit the maximum size of all user-set keys:</p>
 <p>- Event names and Event segmentation keys</p>
 <p>- View names and View segmentation keys</p>
-<p>- Custom APM trace keys</p>
-<p>- Custom APM trace metrics keys</p>
+<p>- Custom APM and network trace keys</p>
+<p>- Custom APM trace metric keys</p>
 <p>- Custom Crash segmentation keys</p>
 <p>- Global View and Crash segmentation keys</p>
 <p>- Custom User Property keys</p>
@@ -1786,10 +1786,11 @@ function sendMessage(param) {
 </p>
 <p>- Event and View segmentation values</p>
 <p>- Custom Crash segmentation values</p>
+<p>- Custom APM trace metric values</p>
 <p>- Global View and Crash segmentation values</p>
-<p>- Custom User Property keys</p>
+<p>- Custom User Property values</p>
 <p>
-  - Custom User Property keys used in modifications (with mul, push, pull, set,
+  - Custom User Property values used in modifications (with mul, push, pull, set,
   increment, etc)
 </p>
 <p>
@@ -1804,6 +1805,7 @@ function sendMessage(param) {
 </p>
 <p>- Event and View segmentation count</p>
 <p>- Custom Crash segmentation count</p>
+<p>- Custom APM trace metric count</p>
 <p>- Global View and Crash segmentation count</p>
 <h2 id="h_01HSAQP1NDJBX33KZXE4GQVNJW">Breadcrumb Count</h2>
 <p>
