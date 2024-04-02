@@ -1771,7 +1771,7 @@ function sendMessage(param) {
 <p>- Custom APM trace keys</p>
 <p>- Custom APM trace metrics keys</p>
 <p>- Custom Crash segmentation keys</p>
-<p>- Global-View and Crash segmentation keys</p>
+<p>- Global View and Crash segmentation keys</p>
 <p>- Custom User Property keys</p>
 <p>
   - Custom User Property keys used in modifications (with mul, push, pull, set,
@@ -1786,7 +1786,7 @@ function sendMessage(param) {
 </p>
 <p>- Event and View segmentation values</p>
 <p>- Custom Crash segmentation values</p>
-<p>- Global-View and Crash segmentation values</p>
+<p>- Global View and Crash segmentation values</p>
 <p>- Custom User Property keys</p>
 <p>
   - Custom User Property keys used in modifications (with mul, push, pull, set,
@@ -1804,7 +1804,7 @@ function sendMessage(param) {
 </p>
 <p>- Event and View segmentation count</p>
 <p>- Custom Crash segmentation count</p>
-<p>- Global-View and Crash segmentation count</p>
+<p>- Global View and Crash segmentation count</p>
 <h2 id="h_01HSAQP1NDJBX33KZXE4GQVNJW">Breadcrumb Count</h2>
 <p>
   <span>SDKs limit the amount of user-set breadcrumbs that can be recorded (exceeding deletes the oldest one)</span>
