@@ -523,3 +523,24 @@
 <p>
   <img src="/guide-media/01GVBGM81XJNKR008JE3E1EF2B" alt="013.png">
 </p>
+<h1 id="h_01HST5HJHQ9APXY4KZ7R29A9ZQ">Best practices for SDK integration</h1>
+<h2 id="h_01HST5HJHQRQV7TTF13BFD7XMG">SDK integration to constantly running platforms</h2>
+<p>
+  SDK integration to constantly running platforms, like servers or OSes, shares
+  the same principles with other platforms; however, due to the continuous activity
+  on these platforms, automatic session tracking can become a hinderance.
+</p>
+<p>
+  Frequent session update calls to your Countly server can put a strain on its
+  ability digest data and responsiveness. To mitigate this problem, we suggest
+  reducing the frequency of your session update requests to the bare minimum.
+</p>
+<p>
+  A 4-hour session update request interval is a recommended starting point to mitigate
+  most issues. This value should be set at the init configuration object of your
+  SDK and should also be changed at your server's Management &gt; Settings &gt;
+  API &gt; Data Limits &gt; Maximal Session Duration section. You can reach the
+  SDK-specific configuration settings from the corresponding documentation of your
+  SDK
+  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">here</a>
+</p>
