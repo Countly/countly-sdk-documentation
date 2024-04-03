@@ -155,29 +155,6 @@
   to the server and should return "true" if the crash should not be sent to the
   server:
 </p>
-<pre><code class="java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
-  @Override
-  public boolean filterCrash(CrashData crash) {
-    crash.setStackTrace(crash.getStackTrace().replace("secret", "*****"));
-    if(crash.getCrashSegmentation().containsKey("secret")) {
-      crash.setFatal(false);
-      crash.getCrashSegmentation().put("secret", "*****");
-    }
-
-    if(crash.getCrashMetrics().containsKey("device")) {
-      // if metrics has a device other than an Android, discard crash
-      Object device = crash.getCrashMetrics().get("device");
-      if (device instanceof String) {
-        return !device.equals("Android");
-      } else {
-        // if value not found or not a string, discard crash
-        return true;
-      }
-    }
-    return false;
-  }
-});
-</code></pre>
 <p>
   Below is the contents of the <strong>CrashData</strong>
 </p>
@@ -187,8 +164,52 @@
   List&lt;String&gt; breadcrumbs;
   boolean fatal;
   Map&lt;String, Object&gt; crashMetrics;
-}
-</code></pre>
+}</code></pre>
+<p>
+  - <strong>stackTrace</strong>: Concatenated stack trace with new lines.
+</p>
+<p>
+  - <strong>crashSegmentation</strong>: Combination of global crash segmentation
+  and segmentation given while recording a crash.
+</p>
+<p>
+  - <strong>breadcrumbs</strong>: List of given breadcrumbs.
+</p>
+<p>
+  - <strong>fatal</strong>: Indicates whether or not a crash is unhandled.
+</p>
+<p>
+  - <strong>crashMetric</strong>: Crash related
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5V4WX0XFP7FC8ETDC3B96M">metrics</a>
+  while recording a crash
+</p>
+<pre><code class="java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
+  @Override
+  public boolean filterCrash(CrashData crash) {
+    // You may want to omit a secret from the stack trace to protect it
+    crash.setStackTrace(crash.getStackTrace().replace("secret", "*****"));
+    // or if crash segmentation contains a secret key, it can me omitted
+    if(crash.getCrashSegmentation().containsKey("secret")) {
+      // You can change a crash is handled or not
+      crash.setFatal(false);
+      // The secret value could be overridden easily to protect it
+      crash.getCrashSegmentation().put("secret", "*****");
+    }
+
+    // Maybe when reporting crashes, only a device  permitted to report the crashes for testing or debugging
+    if(crash.getCrashMetrics().containsKey("_device")) {
+      // if metrics has a device other than an Android, discard crash
+      Object device = crash.getCrashMetrics().get("_device");
+      if (device instanceof String) {
+        return !device.equals("Android");
+      } else {
+        // if value not found or not a string, discard crash
+        return true;
+      }
+    }
+    return false;
+  }
+});</code></pre>
 <h2 id="h_01HAVQDM5TH6A662XBT0WZ7B7Y">Recording all threads</h2>
 <p>
   If you would like to record the state of all other threads during an uncaught
