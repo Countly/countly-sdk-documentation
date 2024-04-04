@@ -1897,7 +1897,7 @@ flutter run</code></pre>
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setMaxRequestQueueSize(5000);</code></pre>
-<h1 id="h_01HTF4H350DJ15WXZWCK6PBACR">SDK Internal Limits</h1>
+<h2 id="h_01HTF4H350DJ15WXZWCK6PBACR">SDK Internal Limits</h2>
 <p>
   Countly SDKs have internal limits to prevent users from unintentionally sending
   large amounts of data to the server. If these limits are exceeded, the data will
@@ -1905,24 +1905,24 @@ config.setMaxRequestQueueSize(5000);</code></pre>
   these limits effect from
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
-<h2 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h2>
+<h3 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h3>
 <p>Limits the maximum size of all user set keys:</p>
 <pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.sdkInternalLimits.setMaxKeyLength(int MAX_KEY_LENGTH);
 await Countly.initWithConfig(config);</code></pre>
-<h2 id="h_01HTF4H350PB7ZRJDKFVZEFXQT">Value Size</h2>
+<h3 id="h_01HTF4H350PB7ZRJDKFVZEFXQT">Value Size</h3>
 <p>
   Limits the size of all user set string segmentation (or their equivalent) values:
 </p>
 <pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.sdkInternalLimits.setMaxValueSize(int MAX_VALUE_SIZE);
 await Countly.initWithConfig(config);</code></pre>
-<h2 id="h_01HTF4H3507WWAHMBH7MGKW0V4">Segmentation Value</h2>
+<h3 id="h_01HTF4H3507WWAHMBH7MGKW0V4">Segmentation Value</h3>
 <p>Limits the amount of user set segmentation key-value pairs:</p>
 <pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.sdkInternalLimits.setMaxSegmentationValues(int MAX_SEGMENTATION_COUNT);
 await Countly.initWithConfig(config);</code></pre>
-<h2 id="h_01HTF4H350W0RY8HQKB31H1FTS">Breadcrumb Count</h2>
+<h3 id="h_01HTF4H350W0RY8HQKB31H1FTS">Breadcrumb Count</h3>
 <p>
   Limits the amount of user set breadcrumbs that can be recorded (exceeding this
   deletes the oldest one):
@@ -1930,14 +1930,14 @@ await Countly.initWithConfig(config);</code></pre>
 <pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.sdkInternalLimits.setMaxBreadcrumbCount(int MAX_BREADCRUMB_COUNT);
 await Countly.initWithConfig(config);</code></pre>
-<h2 id="h_01HTF4H35049TZ4ZTX7QK83YBQ">Stack Trace Lines Per Thread</h2>
+<h3 id="h_01HTF4H35049TZ4ZTX7QK83YBQ">Stack Trace Lines Per Thread</h3>
 <p>
   Limits the stack trace lines that would be recorded per thread:
 </p>
 <pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.sdkInternalLimits.setMaxStackTraceLinesPerThread(int MAX_STACK_THREAD);
 await Countly.initWithConfig(config);</code></pre>
-<h2 id="h_01HTF4H3500XJ84CSECQFPXE67">Stack Trace Line Length</h2>
+<h3 id="h_01HTF4H3500XJ84CSECQFPXE67">Stack Trace Line Length</h3>
 <p>
   Limits the characters that are allowed per stack trace line (which therefore
   limits the crash message length):
