@@ -146,17 +146,16 @@
 <h2 id="h_01HAVQDM5TQA2GG1ST6KSP2W56">Crash Filtering</h2>
 <p>
   There might be cases where a crash could contain sensitive information. For such
-  situations, there is a crash filtering option that can discard the crash or modify
-  a crash.
+  situations, there is a crash filtering option that can discard or modify a crash.
 </p>
 <p>
-  You can provide a callback, which will be called every time a crash is recorded.
-  It gets the crash parameters that is <code>CrashData</code>, which would be sent
-  to the server and should return "true" if the crash should not be sent to the
-  server:
+  To filter a crash you should provide a callback to the config object using the
+  <code class="java">crashes.setGlobalCrashFilterCallback</code> method during
+  initialization. This callback will be called every time a crash is recorded.
 </p>
 <p>
-  Below is the contents of the <strong>CrashData</strong>
+  The callback receives a <code>CrashData</code> object, which contains all the
+  information about the crash that would be sent to the server:
 </p>
 <pre><code class="java">class CrashData {
   String stackTrace;
@@ -169,11 +168,11 @@
   - <strong>stackTrace</strong>: Concatenated stack trace with new lines.
 </p>
 <p>
-  - <strong>crashSegmentation</strong>: Combination of global crash segmentation
-  and segmentation given while recording a crash.
+  - <strong>crashSegmentation</strong>: Combination of automatic crash report segmentation
+  and segmentation given while recording the crash.
 </p>
 <p>
-  - <strong>breadcrumbs</strong>: List of given breadcrumbs.
+  - <strong>breadcrumbs</strong>: List of recorded breadcrumbs.
 </p>
 <p>
   - <strong>fatal</strong>: Indicates whether or not a crash is unhandled.
@@ -181,7 +180,13 @@
 <p>
   - <strong>crashMetric</strong>: Crash related
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5V4WX0XFP7FC8ETDC3B96M">metrics</a>
-  while recording a crash
+  recorded by the SDK.
+</p>
+<p>
+  You can modify or filter the crash using the getter and setter methods provided
+  by the CrashData. After modifying the crash, to send the crash to the server,
+  you should return 'false.' If the callback returns 'true' the crash will be
+  discarded:
 </p>
 <pre><code class="java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
   @Override
@@ -189,7 +194,7 @@
     // You may want to omit a secret from the stack trace to protect it
     crash.setStackTrace(crash.getStackTrace().replace("secret", "*****"));
     // or if crash segmentation contains a secret key, it can me omitted
-    if(crash.getCrashSegmentation().containsKey("secret")) {
+    if (crash.getCrashSegmentation().containsKey("secret")) {
       // You can change a crash is handled or not
       crash.setFatal(false);
       // The secret value could be overridden easily to protect it
@@ -197,13 +202,13 @@
     }
 
     // Maybe when reporting crashes, only a device  permitted to report the crashes for testing or debugging
-    if(crash.getCrashMetrics().containsKey("_device")) {
+    if (crash.getCrashMetrics().containsKey("_device")) {
       // if metrics has a device other than an Android, discard crash
       Object device = crash.getCrashMetrics().get("_device");
       if (device instanceof String) {
         return !device.equals("Android");
       } else {
-        // if value not found or not a string, discard crash
+        // if value not found or not a string, discard the crash
         return true;
       }
     }
