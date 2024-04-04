@@ -1903,7 +1903,7 @@ config.setMaxRequestQueueSize(5000);</code></pre>
   large amounts of data to the server. If these limits are exceeded, the data will
   be truncated to keep it within the limit. You can check the exact parameters
   these limits effect from
-  <a href="/hc/en-us/articles/9290669873305" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h2>
 <p>Limits the maximum size of all user set keys:</p>
