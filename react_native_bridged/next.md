@@ -264,32 +264,30 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
 <p>
   An
   <a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events">Event</a>
-  is any type of action that you can send to a Countly instance, e.g. purchases,
+  is any type of action or data that you can send to a Countly instance, e.g. purchases,
   changed settings, view enabled, and so on. This way it's possible to get much
   more information from your application compared to what is sent from the SDK
   to the Countly instance by default.
 </p>
 <p>
-  Here are the detail about properties which we can use with event:
+  Here are the details about the properties which you can send with an event:
 </p>
 <ul>
   <li>
-    <code class="JavaScript">key</code> identifies the event
+    <code class="JavaScript">eventName</code> name of&nbsp; the event at server
+    (String) (<strong>mandatory</strong>)
   </li>
   <li>
-    <code class="JavaScript">count</code> is the number of times this event occurred
+    <code class="JavaScript">segments</code> is a map of key-value pairs, that
+    can be used to track additional information
   </li>
   <li>
-    <code class="JavaScript">sum</code> is an overall numerical data set tied
-    to an event. For example, total amount of in-app purchase event.
+    <code class="JavaScript">eventCount</code> number of times this event occurred.
+    Total count can be viewed at server (Number)
   </li>
   <li>
-    <code class="JavaScript">duration</code> is used to record and track the
-    duration of events.
-  </li>
-  <li>
-    <code class="JavaScript">segmentation</code> is a map of key-value pairs,
-    that can be used to track additional information.
+    <code class="JavaScript">eventSum</code> any numerical data tied to an event.
+    Total sum can be viewed at server (Number)
   </li>
 </ul>
 <div class="callout callout--warning">
@@ -324,25 +322,19 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="JavaScript">var event = {"eventName":"Purchase","eventCount":1};
-Countly.sendEvent(event);</code></pre>
+<pre>Countly.events.recordEvent("Purchase", undefined, 1);</pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="JavaScript">var event = {"eventName":"Purchase","eventCount":1,"eventSum":"0.99"};
-Countly.sendEvent(event);</code></pre>
+<pre><code class="JavaScript">Countly.events.recordEvent("Purchase", undefined, 1, 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="JavaScript">var event = {"eventName":"purchase","eventCount":1};
-event.segments = {"Country" : "Germany", "app_version" : "1.0"};
-Countly.sendEvent(event);</code></pre>
+<pre>Countly.events.recordEvent("Purchase", { Country: "Germany" }, 1 )</pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="JavaScript">var event = {"eventName":"purchase","eventCount":1};
-event.segments = {"Country" : "Germany", "app_version" : "1.0","eventSum":"0.99"};
-Countly.sendEvent(event);</code></pre>
+<pre>Countly.events.recordEvent("Purchase", { Country: "Germany" }, 1, 0.99)</pre>
 <p>
   Those are only a few examples of what you can do with events. You may extend
   those examples and use Country, app_version, game_level, time_of_day, and any
@@ -350,43 +342,38 @@ Countly.sendEvent(event);</code></pre>
 </p>
 <h2 id="h_01HAVQNJQRBRHVK5WF42VPFZF2">Timed events</h2>
 <p>
-  It's possible to create timed events by defining a start and a stop moment.
+  It's possible to create timed events by calling start and stop methods. This
+  would calculate the duration between those two calls and record it as the duration
+  of the event. However the start method only serves as a timer and unless the
+  end method is called no event will be recorded.&nbsp;
 </p>
-<pre><code class="JavaScript">String eventName = "Event Name";
-
-//start some event
-Countly.startEvent(eventName);
+<pre><code class="JavaScript">//start a timed event
+Countly.events.startEvent("Event name");
 //wait some time
 
 //end the event
-Countly.endEvent(eventName);</code></pre>
+Countly.events.endEvent("Event name");<br></code></pre>
 <p>
-  You may also provide additional information when ending an event. However, in
-  that case, you have to provide the segmentation, count, and sum. The default
-  values for those are "null", 1 and 0.
+  You may also provide additional information when ending an event:
 </p>
-<pre><code class="JavaScript">String eventName = "Event Name";
-
-//start some event
-Countly.startEvent(eventName);
-
-var event = { "eventName": eventName, "eventCount": 1, "eventSum": "0.99" };
-event.segments = { "Country": "Germany", "Age": "28" };
-
-//end the event while also providing segmentation information, count and sum
-Countly.endEvent(event);
-</code></pre>
-<p>
-  You may cancel the started timed event in case it is not relevant anymore:
-</p>
-<pre><code class="JavaScript">String eventName = "Event name";
-
-//start some event
-Countly.startEvent(eventName);
+<pre><code class="JavaScript">//start a timed event
+Countly.events.startEvent("Event name");
 //wait some time
 
-//cancel the event
-Countly.cancelEvent(eventName);</code></pre>
+//end the event
+Countly.events.endEvent("Event name", { Country: "Germany", Age: "21" }, 1, 0.99);
+</code></pre>
+<p>
+  You may cancel the started timed event in case it is not relevant anymore. Also
+  restarting the app would cancel a started timed event.
+</p>
+<pre><code class="JavaScript">//start a timed event
+Countly.events.startEvent("Event name");
+//wait some time<br><br>// cancels the timed event
+Countly.events.cancelEvent("Event name");
+
+// now this will not work
+Countly.events.endEvent("Event name");</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
 <h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic Session Tracking</h2>
 <p>
