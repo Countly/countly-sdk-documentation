@@ -4152,10 +4152,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CODE_HERE</code></pre>
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxKeyLength:150];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">CODE_HERE</code></pre>
+    <pre><code class="swift">config.sdkInternalLimits().setMaxKeyLength(150);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZCDKSFEM7NHK4PYPZ">Value Size</h3>
@@ -4169,10 +4169,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CODE_HERE</code></pre>
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxValueSize:200];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">CODE_HERE</code></pre>
+    <pre><code class="swift">config.sdkInternalLimits().setMaxValueSize(200);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Value</h3>
@@ -4185,10 +4185,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CODE_HERE</code></pre>
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxSegmentationValues:120];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">CODE_HERE</code></pre>
+    <pre><code class="swift">config.sdkInternalLimits().setMaxSegmentationValues(120);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZ4VVWKTEEYYJ9D050">Breadcrumb Count</h3>
@@ -4202,10 +4202,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CODE_HERE</code></pre>
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxBreadcrumbCount:120];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">CODE_HERE</code></pre>
+    <pre><code class="swift">config.sdkInternalLimits().setMaxBreadcrumbCount(120);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZT9A7GMK5D8EQXSPY">Stack Trace Lines Per Thread</h3>
@@ -4218,10 +4218,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CODE_HERE</code></pre>
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxStackTraceLinesPerThread:50];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">CODE_HERE</code></pre>
+    <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLinesPerThread(50);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZPFVMF36BZSNNQWFX">Stack Trace Line Length</h3>
@@ -4234,10 +4234,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CODE_HERE</code></pre>
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxStackTraceLineLength:300];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">CODE_HERE</code></pre>
+    <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
