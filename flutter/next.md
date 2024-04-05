@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 24.1.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 24.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
