@@ -21,6 +21,7 @@ Crash Reporting:
     - Crash Filtering:
         - Validate that after crash filtering new added breadcrumbs are clipped to the right value size
 User Profiles:
+- Validate every user property values are clipped
 - Validate every CUSTOM value is clipped to the right value size
 - Validate only String values are clipped
 Feedback Widgets:
