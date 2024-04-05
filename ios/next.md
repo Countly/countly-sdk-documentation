@@ -4034,6 +4034,112 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.customMetrics = [CLYMetricKeyAppVersion: "1.2.3"];</code></pre>
   </div>
 </div>
+<h2 id="h_01HTPANJCZGDCJS92XQZV69AY7">SDK Internal Limits</h2>
+<p>
+  Countly SDKs have internal limits to prevent users from unintentionally sending
+  large amounts of data to the server. If these limits are exceeded, the data will
+  be truncated to keep it within the limit. You can check the exact parameters
+  these limits effect from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<h3 id="h_01HTPANJCZTKQVAMJ1A2YSYGNE">Key Length</h3>
+<p>
+  Limits the maximum size of all user set keys (default: 128 chars):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxKeyLength:150];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkInternalLimits().setMaxKeyLength(150);</code></pre>
+  </div>
+</div>
+<h3 id="h_01HTPANJCZCDKSFEM7NHK4PYPZ">Value Size</h3>
+<p>
+  Limits the size of all user set string segmentation (or their equivalent) values
+  (default: 256 chars):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxValueSize:200];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkInternalLimits().setMaxValueSize(200);</code></pre>
+  </div>
+</div>
+<h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Value</h3>
+<p>
+  Limits the amount of user set segmentation key-value pairs (default: 100 entries):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxSegmentationValues:120];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkInternalLimits().setMaxSegmentationValues(120);</code></pre>
+  </div>
+</div>
+<h3 id="h_01HTPANJCZ4VVWKTEEYYJ9D050">Breadcrumb Count</h3>
+<p>
+  Limits the amount of user set breadcrumbs that can be recorded (default: 100
+  entries, exceeding this deletes the oldest one):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxBreadcrumbCount:120];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkInternalLimits().setMaxBreadcrumbCount(120);</code></pre>
+  </div>
+</div>
+<h3 id="h_01HTPANJCZT9A7GMK5D8EQXSPY">Stack Trace Lines Per Thread</h3>
+<p>
+  Limits the stack trace lines that would be recorded per thread (default: 30 lines):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxStackTraceLinesPerThread:50];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLinesPerThread(50);</code></pre>
+  </div>
+</div>
+<h3 id="h_01HTPANJCZPFVMF36BZSNNQWFX">Stack Trace Line Length</h3>
+<p>
+  Limits the characters that are allowed per stack trace line (default: 200 chars):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.sdkInternalLimits setMaxStackTraceLineLength:300];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
 <h3 id="h_01HAVHW0RSD4315V1VW115EWVS">Direct Attribution</h3>
 <p>
