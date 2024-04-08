@@ -14,7 +14,7 @@ All limits should only apply to user provided values. Deviations from this rule 
 
 These tests should validate the general things we expect like:
 - These methods should not break with bad values (more important for dynamically typed languages)
-
+- These limits should not truncate SDK's internal keys/values
 
 ## Base conditions
 Each test should have a bunch of events/settings (if applicable). These should be things effected by internal limits and should be bundled under a method called 'createInternalLimitsTestingEvents'.
