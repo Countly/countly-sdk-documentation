@@ -622,6 +622,8 @@
 </p>
 <h2 id="h_01H9QCP8G768WD943FT6WS38TH">Flutter SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/30854942150937" target="_blank" rel="noopener noreferrer">Version 24.1</a>
+  -
   <a href="/hc/en-us/articles/28073407851289" target="_blank" rel="noopener noreferrer">Version 23.12</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/26449309263769" target="_blank" rel="noopener">Version 23.8</a>
