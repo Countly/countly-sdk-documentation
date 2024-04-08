@@ -17,7 +17,7 @@ These tests should validate the general things we expect like:
 - These limits should not truncate SDK's internal keys/values
 
 ## Base conditions
-Each test should have a bunch of events/settings (if applicable). These should be things effected by internal limits and should be bundled under a method called 'createInternalLimitsTestingEvents'.
+Each test should create a bunch of events. These should be things effected by internal limits and should be bundled under a method called 'createInternalLimitsTestingEvents'.
 
 Segmentations and names to use:
   gloabalSegmentation = {'gs1_123456': 123456, 'gs2_123456': '123456'}
@@ -37,6 +37,7 @@ Segmentations and names to use:
     'cv2_123456': '123456'
   };
 
+  Then the methods to call (or their equivalent):
   setGlobalViewSegmentation(gloabalSegmentation)
   recordEvent(eventWithSegmentation)
   recordLegacyView('lvn_123456', segmentation)
@@ -68,17 +69,21 @@ Segmentations and names to use:
   TODO: add global crash segmentation call
 
 ## 100: bad and/or wrong values 
-- IL_100_null: give all six limits null at init => createInternalLimitsTestingEvents => nothing truncated
-- IL_101_zero: give all six limits 0 at init => createInternalLimitsTestingEvents => nothing truncated
-- IL_100_negative: give all six limits -1 at init => createInternalLimitsTestingEvents => nothing truncated
+Set each limit to mentioned val(null,0,-1) and init => createInternalLimitsTestingEvents => nothing truncated
+- IL_100_null
+- IL_101_zero
+- IL_100_negative
 
 ## 200: check normal working of each limit
-Set each limit to 5 and init => createInternalLimitsTestingEvents => check truncated/limited values
 TODO: more detail
+Set the mentioned limit to 5 and init => createInternalLimitsTestingEvents => check truncated/limited values/keys (and things that should not be affected)
 -IL_201_setMaxKeyLength
--IL_202_setMaxKeyLength
--IL_203_setMaxKeyLength
--IL_204_setMaxKeyLength
--IL_205_setMaxKeyLength
--IL_206_setMaxKeyLength
+-IL_202_setMaxValueSize
+-IL_203_setMaxStackTraceLineLength
+-IL_204_setMaxStackTraceLinesPerThread
 
+Set the mentioned limit to 1 and init => createInternalLimitsTestingEvents => check segmentatio count (and things that should not be affected)
+-IL_205_setMaxSegmentationValues
+
+Set the mentioned limit to 1 and init => createInternalLimitsTestingEvents => check the only breadcrumb is the last one recorded (and things that should not be affected)
+-IL_206_setMaxBreadcrumbCount
