@@ -3117,7 +3117,25 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </li>
 </ul>
 <p>
-  <span>Max amount of custom (dev-provided) segmentation in one event</span>
+  <span>Max amount of custom (dev-provided) segmentation in:</span>
+</p>
+<p>
+  <span>- Event segmentation</span>
+</p>
+<p>
+  <span>- View segmentation</span>
+</p>
+<p>
+  <span>- Global view segmentation</span>
+</p>
+<p>
+  <span>- Custom crash segmentation</span>
+</p>
+<p>
+  <span>- Crash segmentation</span>
+</p>
+<p>
+  <span>- Custom APM Metrics</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -3308,7 +3326,8 @@ npm install markdownlint --save-dev
 <p>There is no way to disable health checks.</p>
 <p>
   The health check tracking, serialization, deserialization, etc., functionality
-  should be contained within an independent module designed so it can be easily tested.
+  should be contained within an independent module designed so it can be easily
+  tested.
 </p>
 <p>
   Health metrics should not be saved after every change to a metric. They should
