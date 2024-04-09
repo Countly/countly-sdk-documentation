@@ -1920,7 +1920,7 @@ await Countly.initWithConfig(config);</code></pre>
 <pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.sdkInternalLimits.setMaxValueSize(int MAX_VALUE_SIZE);
 await Countly.initWithConfig(config);</code></pre>
-<h3 id="h_01HTF4H3507WWAHMBH7MGKW0V4">Segmentation Value</h3>
+<h3 id="h_01HTF4H3507WWAHMBH7MGKW0V4">Segmentation Values</h3>
 <p>
   Limits the amount of user set segmentation key-value pairs (default: 100 entries):
 </p>
