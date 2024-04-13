@@ -106,27 +106,45 @@
 <p>When implementing logs, the SDK should follow these levels:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li>
-    <strong>Error</strong> - this is a issues that needs attention right now.
+    <strong>Error</strong> - this is an issue that needs attention right now.
+    E.g.:
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li>try-catch block errors</li>
+      <li>missing `url` or `app_key`</li>
+    </ul>
   </li>
   <li>
-    <strong>Warning</strong> - this is something that is potentially a issue.
-    Maybe a deprecated usage of something, maybe consent is enabled but consent
-    is not given.
+    <strong>Warning</strong> - this is something that is potentially an issue.
+    E.g.:
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li>deprecated methods</li>
+      <li>wrong parameters provided</li>
+      <li>SDK is not initialized yet</li>
+    </ul>
   </li>
   <li>
-    <strong>Info</strong> - All publicly exposed functions should log a call
-    at this level to indicate that they were called. These calls should include
-    the function name.
+    <strong>Info</strong> - informs about the usual working of the SDK. E.g.:
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li>public method calls</li>
+      <li>provided init config options</li>
+      <li>initializations of modules</li>
+    </ul>
   </li>
   <li>
     <strong>Debug</strong> - this should contain logs from the internal workings
-    of the SDK and it's important calls. This should include things like the
-    SDK configuration options, success or fail of the current network request,
-    "request queue is full" and the oldest request get's dropped, etc.
+    of the SDK. E.g.:
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li>request success response</li>
+      <li>failed request</li>
+      <li>unique inner function checks</li>
+    </ul>
   </li>
   <li>
-    <strong>Verbose</strong> - this should give a even deeper look into the SDK's
-    inner working and should contain things that are more noisy and happen often.
+    <strong>Verbose</strong> - this should give an even deeper look into the
+    SDK's inner working (noisy). E.g.:
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li>No consent given</li>
+    </ul>
   </li>
 </ul>
 <p>
