@@ -475,81 +475,118 @@ function getUniqueMsTimestamp(){
 <h2 id="01H821RTQ27DWNCPTRG2126NA2">Symbolication (WIP)</h2>
 <h1 id="01H821RTQ2JN3F965RM2VT8A2G">Events</h1>
 <p>
-  <span style="font-weight: 400;">Events (or custom events) are the basic Countly reporting tool that reports when something has happened in the app. Someone clicked a button, performed a specific action, etc. All of these examples could be recorded as an event.</span>
+  Events are the basic Countly data reporting tool that conveys something has happened
+  in the app. Common examples are: someone clicked a button, performed a specific
+  action, etc.
+</p>
+<p>Events can be grouped under two categories:</p>
+<ul>
+  <li>Internal Events</li>
+  <li>Developer provided Events</li>
+</ul>
+<p>
+  Internal Events has a <strong>[CLY]_</strong> prefix for its
+  <strong>key</strong> and used for providing a <strong>specific</strong> kind
+  of information (a feature) to the server. For example Views feature is reported
+  as an internal Event and will be displayed at a unique section on the server
+  (Analytics &gt; Page Views).
 </p>
 <p>
-  <span style="font-weight: 400;">Events should be provided by the SDK user who knows what's important for the app to log. Also, events may be used to report some internal Countly events starting with the&nbsp;</span><strong>[CLY]_</strong><span style="font-weight: 400;">&nbsp;prefix, which vary per feature implementation on different platforms.</span>
+  Developer provided Events can be about any kind of information (<strong>non specific</strong>).
+  So all developer provided Events will have an aggregate display section (Events
+  &gt; All Events).&nbsp;
 </p>
+<p>An Event would have the following properties:</p>
+<ul>
+  <li>key - Mandatory, non empty string</li>
+  <li>count - Mandatory, integer, minimum 1</li>
+  <li>sum - Optional value, double, can be negative</li>
+  <li>dur - Optional value, double, minimum 0</li>
+  <li>segmentation - Optional, object with key-value pairs</li>
+</ul>
 <p>
-  <span style="font-weight: 400;">An event must contain&nbsp;</span><strong>key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>count</strong><span style="font-weight: 400;">&nbsp;properties. If the count is not provided, it should default to&nbsp;1. Optionally, a user may also provide the&nbsp;</span><strong>sum</strong><span style="font-weight: 400;">&nbsp;property (for example, in-app purchase events), the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property for recording some duration/period of time and&nbsp;</span><strong>segmentation</strong><span style="font-weight: 400;">&nbsp;as a map with keys and values for segmentation.</span>
+  More on Event formatting can be found in the
+  <a href="https://api.count.ly/reference/i#events">API Reference</a>.
 </p>
+<p>Here are some examples:</p>
 <p>
-  <span style="font-weight: 400;">More on event formatting may be found in the&nbsp;</span><a href="https://api.count.ly/reference/i#events"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
+  <strong>User logged into the game:</strong>
 </p>
+<pre>{ key: 'login', count: 1 }</pre>
 <p>
-  <span style="font-weight: 400;">Here are a few examples of events:</span>
+  <strong>User completed a level in the game with a score of 500:</strong>
 </p>
+<pre>{ key: 'level_completed', count: 1, segmentation: { level: 2, score: 500 } }</pre>
 <p>
-  <strong>User logged into the game</strong> * key = login * count = 1
+  <strong>User purchased something in the app worth 2.99 on the main screen:</strong>
 </p>
+<pre>{ key: 'purchase', count: 1, sum: 2.99, dur: 30, segmentation: { screen: 'main' } }</pre>
 <p>
-  <strong>User completed a level in the game with a score of 500&nbsp;</strong>*
-  key = level_completed * count = 1 * segmentation = {level=2, score=500}
-</p>
-<p>
-  <strong>User purchased something in the app worth 2.99 on the main screen</strong><span style="font-weight: 400;">&nbsp;* key = purchase * count = 1 * sum = 2.99 * dur = 30 * segmentation = {screen=main}</span>
-</p>
-<p>
-  <span style="font-weight: 400;">As you can imagine, your SDK should provide methods to cover these combinations, either by default values or by function parameter overloading, etc.:</span>
+  As you can imagine, your SDK should provide methods to cover these combinations,
+  either by default values or by function parameter overloading, etc.:
 </p>
 <ul>
-  <li>Countly.event(string key)</li>
-  <li>Countly.event(string key, int count)</li>
-  <li>Countly.event(string key, double sum)</li>
-  <li>Countly.event(string key, double duration)</li>
-  <li>Countly.event(string key, int count, double sum)</li>
-  <li>Countly.event(string key, map segmentation)</li>
-  <li>Countly.event(string key, map segmentation, int count)</li>
+  <li>Countly.events.recordEvent(string key)</li>
+  <li>Countly.events.recordEvent(string key, int count)</li>
+  <li>Countly.events.recordEvent(string key, double sum)</li>
+  <li>Countly.events.recordEvent(string key, double duration)</li>
   <li>
-    Countly.event(string key, map segmentation, int count, double sum)
+    Countly.events.recordEvent(string key, int count, double sum)
+  </li>
+  <li>Countly.events.recordEvent(string key, map segmentation)</li>
+  <li>
+    Countly.events.recordEvent(string key, map segmentation, int count)
   </li>
   <li>
-    Countly.event(string key, map segmentation, int count, double sum, double
-    duration)
+    Countly.events.recordEvent(string key, map segmentation, int count, double
+    sum)
+  </li>
+  <li>
+    Countly.events.recordEvent(string key, map segmentation, int count, double
+    sum, double duration)
   </li>
 </ul>
 <p>
   <strong>Note</strong>: <strong>count</strong> value defaults to 1 internally
-  if not specified.
+  if not provided as it is mandatory.
 </p>
 <h2 id="01H821RTQ2TT1GSM7YTBEN4F21">Internal Events</h2>
 <p>
-  <span>The call for recording events should support recording Countly internal events. If consent is required then the ability to record them should be governed only by their respective feature consents. The ability to record internal events is in no way influenced by the " event" consent. If consent for some feature is given and "recordEvent" is used to record that features internal event, it should be recorded even if no "event" consent is given. If for some feature consent is not given and </span><span>"recordEvent" is used to record it's internal event, it should not be recorded even if "event" consent is given. If no consent is required, they should be recorded as well.</span>
+  The call for recording events should support recording Countly internal events.
+  If consent is required then the ability to record them should be governed only
+  by their respective feature consents. The ability to record internal events is
+  in no way influenced by the " event" consent. If consent for some feature is
+  given and "recordEvent" is used to record that features internal event, it should
+  be recorded even if no "event" consent is given. If for some feature consent
+  is not given and "recordEvent" is used to record it's internal event, it should
+  not be recorded even if "event" consent is given. If no consent is required,
+  they should be recorded as well.
 </p>
 <p>
-  <span>At the current moment there are the following internal events and their respective required consent:</span>
+  At the current moment there are the following internal events and their respective
+  required consent:
 </p>
 <ul>
   <li>
-    <span><strong>[CLY]_nps</strong> - "feedback" consent</span>
+    <strong>[CLY]_nps</strong> - "feedback" consent
   </li>
   <li>
-    <span><strong>[CLY]_survey</strong> - "feedback" consent</span>
+    <strong>[CLY]_survey</strong> - "feedback" consent
   </li>
   <li>
-    <span><strong>[CLY]_star_rating</strong> - "star_rating" consent</span>
+    <strong>[CLY]_star_rating</strong> - "star_rating" consent
   </li>
   <li>
-    <span><strong>[CLY]_view</strong> - "view" consent</span>
+    <strong>[CLY]_view</strong> - "view" consent
   </li>
   <li>
-    <span><strong>[CLY]_orientation</strong> - "users" consent</span>
+    <strong>[CLY]_orientation</strong> - "users" consent
   </li>
   <li>
-    <span><strong>[CLY]_push_action</strong> - "push" consent</span>
+    <strong>[CLY]_push_action</strong> - "push" consent
   </li>
   <li>
-    <span><strong>[CLY]_action</strong> - "clicks" or "scroll" consent</span>
+    <strong>[CLY]_action</strong> - "clicks" or "scroll" consent
   </li>
 </ul>
 <p>Example 1:</p>
@@ -572,24 +609,37 @@ function getUniqueMsTimestamp(){
 </ol>
 <h2 id="01H821RTQ26ND225EPAXZPHS8B">Timed Events</h2>
 <p>
-  <span style="font-weight: 400;">In short, you may report time with the&nbsp;</span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property in an event. It is good practice to allow the user to measure some periods internally using the SDK API. For that purpose, the SDK needs to provide the methods below:</span>
+  In short, you may report time with the&nbsp;<strong>dur</strong>&nbsp;property
+  in an event. It is good practice to allow the user to measure some periods internally
+  using the SDK API. For that purpose, the SDK needs to provide the methods below:
 </p>
 <ul>
   <li>
-    <strong>startEvent(string key)</strong><span style="font-weight: 400;">&nbsp;- which will internally save the event key and current timestamp in the associative array/map.</span>
+    <strong>startEvent(string key)</strong>&nbsp;- which will internally save
+    the event key and current timestamp in the associative array/map.
   </li>
   <li>
-    <strong>endEvent(string key, map segmentation, int count, double sum)</strong><span style="font-weight: 400;">&nbsp;- which will take the event starting timestamp by the event key from the map, get the current timestamp and calculate the duration of the event. It will then fill it up as&nbsp;a </span><strong>dur</strong><span style="font-weight: 400;">&nbsp;property and report an event, just as you would report any regular event.</span>
+    <strong>endEvent(string key, map segmentation, int count, double sum)</strong>&nbsp;-
+    which will take the event starting timestamp by the event key from the map,
+    get the current timestamp and calculate the duration of the event. It will
+    then fill it up as&nbsp;a <strong>dur</strong>&nbsp;property and report an
+    event, just as you would report any regular event.
   </li>
   <li>
-    <strong>endEvent(string key)</strong><span style="font-weight: 400;">&nbsp;- which will simply end the event with a 1 as the count, 0 as the sum, and nil as the segmentation values.</span>
+    <strong>endEvent(string key)</strong>&nbsp;- which will simply end the event
+    with a 1 as the count, 0 as the sum, and nil as the segmentation values.
   </li>
 </ul>
 <p>
-  <span style="font-weight: 400;">If possible, the SDK may provide a way to start multiple timed events with the same key, such as returning an event instance in the method and then calling the end method on that instance.</span>
+  If possible, the SDK may provide a way to start multiple timed events with the
+  same key, such as returning an event instance in the method and then calling
+  the end method on that instance.
 </p>
 <p>
-  <span style="font-weight: 400;">If not, the following calls should be ignored: 1. events which have already started 2. events which have attempted to start again 3. events which have already ended 4. events which have attempted to end. Otherwise, they will provide an informative error.</span>
+  If not, the following calls should be ignored: 1. events which have already started
+  2. events which have attempted to start again 3. events which have already ended
+  4. events which have attempted to end. Otherwise, they will provide an informative
+  error.
 </p>
 <h1 id="01H821RTQ2TZF21BH3ZSR8XHNW">Device Metrics</h1>
 <p>
