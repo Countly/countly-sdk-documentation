@@ -1906,3 +1906,106 @@ function sendMessage(param) {
   platform languages and integrate the native Countly SDKs. In that case, the recommendations
   from the previous sections would apply.
 </p>
+<h1 id="h_01HVGFBX5BW5A1Z65NCZ0W4CVR">Push Notifications</h1>
+<h2 id="h_01HVG9V1K7NQ90GAWMBNXC315K">How to Acquire FCM Key</h2>
+<p>
+  This guide will show you how to acquire the FCM key in 3 steps:
+</p>
+<p>
+  <strong>Step 1:</strong>
+</p>
+<p>
+  In this step, we will create a new project to acquire the FCM key. If you already
+  have an application registered, you can go directly to
+  <a href="#step_3">step 3</a>.
+</p>
+<p>
+  First, you can go to the Firebase
+  <a href="https://console.firebase.google.com/">console</a>. This screen will
+  welcome you <img src="/guide-media/01HVGAB80W8C9QKN0NFXN6HJ59" alt="004.png">
+</p>
+<p>Now click on the "Create Project" button.</p>
+<p>
+  <img src="/guide-media/01HVGAM6YRXV97MW29RP6APB5A" alt="005.png">
+</p>
+<p>
+  When you click, a three-step project creation process will start. The first step
+  will ask for your project name, the second whether or not to enable Google Analytics,
+  and the third, which is optional, is to configure it. If you enable Google Analytics,
+  the third step is to configure it. In this guide, we will pass the third step.
+  <img src="/guide-media/01HVGB10V9E87JQA72DKS2W1HH" alt="006.png">Rather than
+  "test" input your project name.
+</p>
+<p>
+  <img src="/guide-media/01HVGB1XMKXY5HMXVAF40M1ZQG" alt="007.png">You can enable
+  Google Analytics if you want, but we will pass the third step and create the
+  project.
+</p>
+<p>Now, wait a moment for Firebase to create your project.</p>
+<p>
+  After a while, your project will be ready.
+  <img src="/guide-media/01HVGB6A5FP6J9PSXG6AY4FDFC" alt="019.png">
+</p>
+<p>You can continue.</p>
+<p>
+  We have created our project, and here is a preview of the project screen
+  <img src="/guide-media/01HVGBAWVF6TWCY1CVQM94XJEX" alt="018.png"> In the next
+  step, we will talk about how to create an Android application
+</p>
+<p id="step_2">
+  <strong>Step 2:</strong>
+</p>
+<p>
+  Now click on the Android icon
+  <img src="/guide-media/01HVGBNP8ES1ZJ1J68S8NW0K4D" alt="017.png">
+</p>
+<p>
+  Now complete the steps:
+  <img src="/guide-media/01HVGBQ9DSRQ4ZCH564PSB2S3G" alt="013.png">
+</p>
+<p>
+  Now, this page will welcome you
+  <img src="/guide-media/01HVGC95HPJD5MJ9JXMYY6RVAD" alt="011.png">
+</p>
+<p>Now, we will guide you on acquiring FCM key</p>
+<p>
+  <strong id="step_3">Step 3:</strong>
+</p>
+<p>Now click on your application</p>
+<p>
+  <img src="/guide-media/01HVGCDDNGSMVKFJGAKJAWCJXX" alt="009.png">
+</p>
+<p>On the popup, click on the settings.</p>
+<p>
+  <img src="/guide-media/01HVGCNE1X2Q9337GX47TMYX1J" alt="012.png">
+</p>
+<p>Now, open the "Cloud Messaging" page in the opened pane.</p>
+<p>
+  <img src="/guide-media/01HVGDFNGYAVHTM3AATR3F4ZVJ" alt="014.png">
+</p>
+<p>
+  Click on the three dots in "Cloud Messaging API (Legacy)," and click on the "Manage
+  API in Google Cloud Console."
+</p>
+<p>
+  <img src="/guide-media/01HVGDHWG5H9XKWMB32DMXBADT" alt="015.png">
+</p>
+<p>
+  This will direct you to the "Cloud Messaging" API pane on Google Cloud Console.
+  Now click on the "Enable" button to enable Legacy Cloud Messaging API.
+</p>
+<p>
+  <img src="/guide-media/01HVGDPN6H8977M45WE9RXDPN9" alt="010.png">
+</p>
+<p>After you enable it, this screen will show up.</p>
+<p>
+  <img src="/guide-media/01HVGCWDVN5H4EZGXPYAKFP9RJ" alt="016.png">
+</p>
+<p>
+  After those steps, when you return to the "Cloud Messaging" pane of the project
+  and reload it, your FCM key will appear. Now, you can copy the "Server Key" and
+  use it.
+</p>
+<p>
+  <img src="/guide-media/01HVGDWN021N83PTN0SWH6N7TV" alt="008.png">
+</p>
