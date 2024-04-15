@@ -3129,7 +3129,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span>- Global view segmentation</span>
 </p>
 <p>
-  <span>- Custom crash segmentation</span>
+  <span>- Custom (Global) crash segmentation</span>
 </p>
 <p>
   <span>- Crash segmentation</span>
