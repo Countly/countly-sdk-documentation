@@ -185,8 +185,7 @@
 <p>
   You can modify or filter the crash using the getter and setter methods provided
   by the CrashData. After modifying the crash, to send the crash to the server,
-  you should return 'false.' If the callback returns 'true' the crash will be
-  discarded:
+  you should return 'false.' If the callback returns 'true' the crash will be discarded:
 </p>
 <pre><code class="java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
   @Override
@@ -2706,6 +2705,52 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
 </p>
 <pre><code class="java">Countly.sharedInstance().isInitialized();</code></pre>
+<h2 id="h_01HV0RVRH2HFWQD8Z532GC8280">SDK Internal Limits</h2>
+<p>
+  Countly SDKs have internal limits to prevent users from unintentionally sending
+  large amounts of data to the server. If these limits are exceeded, the data will
+  be truncated to keep it within the limit. You can check the exact parameters
+  these limits affect from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#sdk_internal_limits">here</a>.
+</p>
+<h3 id="h_01HV0RVRH27YXZ19NBQF7MGJFD">Key Length</h3>
+<p>
+  Limits the maximum size of all user set keys (default: 128 chars):
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.sdkInternalLimits.setMaxKeyLength(32);</code></pre>
+<h3 id="h_01HV0RXX50GBFP4SPJ2DRMRJV8">Value Size</h3>
+<p>
+  Limits the size of all user-set string segmentation (or their equivalent) values
+  (default: 256 chars):
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.sdkInternalLimits.setMaxValueSize(128);</code></pre>
+<h3 id="h_01HV0RY0X9CJCZ0BB3FRZ0AR2H">Segmentation Values</h3>
+<p>
+  Limits the amount of user-set segmentation key-value pairs (default: 100 entries):
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.sdkInternalLimits.setMaxSegmentationValues(50);</code></pre>
+<h3 id="h_01HV0SQHSK61930WJX137VX6WV">Breadcrumb Count</h3>
+<p>
+  Limits the amount of user-set breadcrumbs that can be recorded (default: 100
+  entries, exceeding this deletes the oldest one):
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.sdkInternalLimits.setMaxBreadcrumbCount(50);</code></pre>
+<h3 id="h_01HV0SQHSMSX4ATZ7C6VFE7MX2">Stack Trace Lines Per Thread</h3>
+<p>
+  Limits the stack trace lines that would be recorded per thread (default: 30 lines):
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
+<h3 id="h_01HV0SQHSMTA47A743PTTGE6M2">Stack Trace Line Length</h3>
+<p>
+  Limits the characters that are allowed per stack trace line (default: 200 chars):
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
   This feature is available for the Enterprise Edition, but currently server side
