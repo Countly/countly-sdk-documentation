@@ -4075,7 +4075,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxValueSize(200);</code></pre>
   </div>
 </div>
-<h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Value</h3>
+<h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Values</h3>
 <p>
   Limits the amount of user set segmentation key-value pairs (default: 100 entries):
 </p>
