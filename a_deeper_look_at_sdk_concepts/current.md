@@ -1925,7 +1925,7 @@ function sendMessage(param) {
 </p>
 <p>Now click on the "Create Project" button.</p>
 <p>
-  <img src="/guide-media/01HVGYKR8PNXV29J7FFGCXYGXP" alt="004.png">
+  <img src="/guide-media/01HVK1RCRHHPNNXGVXGPGQA1F3" alt="004.png">
 </p>
 <p>
   When you click, a three-step project creation process will start. The first step
@@ -1945,7 +1945,7 @@ function sendMessage(param) {
 </p>
 <p>Now click on the Android icon</p>
 <p>
-  <img src="/guide-media/01HVGYY2B1NWBKEZJCE46WZPXS" alt="005.png">
+  <img src="/guide-media/01HVK1RKY61CGG53G3H3X4XZ7W" alt="005.png">
 </p>
 <p>Now complete the application creation steps</p>
 <p>
@@ -1954,29 +1954,29 @@ function sendMessage(param) {
 <p>In this step, we will guide you on acquiring FCM key</p>
 <p>Now click on your application</p>
 <p>
-  <img src="/guide-media/01HVGZ0B7MSMBA66HN3MAXH2FS" alt="006.png">
+  <img src="/guide-media/01HVK1RH28DMJVDYPP4T56JPN5" alt="006.png">
 </p>
 <p>On the popup, click on the settings.</p>
 <p>
-  <img src="/guide-media/01HVGZ1BA15GR3123Q44PZKBSX" alt="007.png">
+  <img src="/guide-media/01HVK1RGPC85SRHBRAQ1ZQP9XV" alt="007.png">
 </p>
 <p>Now, open the "Cloud Messaging" page in the opened pane.</p>
 <p>
-  <img src="/guide-media/01HVGZ2A4KQ60EW7DPDGNNAHKN" alt="008.png">
+  <img src="/guide-media/01HVK1RS9M2HDANPK1S6B9A27A" alt="008.png">
 </p>
 <p>
   Click on the three dots in "Cloud Messaging API (Legacy)," and click on the "Manage
   API in Google Cloud Console."
 </p>
 <p>
-  <img src="/guide-media/01HVGZ337P5P8Z9H4SRXZQFP05" alt="009.png">
+  <img src="/guide-media/01HVK1RPHTM3BSGYFWCM6Q9F2Z" alt="009.png">
 </p>
 <p>
   This will direct you to the "Cloud Messaging" API pane on Google Cloud Console.
   Now click on the "Enable" button to enable Legacy Cloud Messaging API.
 </p>
 <p>
-  <img src="/guide-media/01HVGZ3YE8P8MX5P8AZJ9BWNMJ" alt="010.png">
+  <img src="/guide-media/01HVK1RP062T41QEDBRVV8BY7G" alt="010.png">
 </p>
 <p>
   After those steps, when you return to the "Cloud Messaging" pane of the project
@@ -1984,5 +1984,5 @@ function sendMessage(param) {
   use it.
 </p>
 <p>
-  <img src="/guide-media/01HVGZ6T0Y9A9S7JRG1R038DXG" alt="011.png">
+  <img src="/guide-media/01HVK1RKGWDJRKZ6088C7MKJRM" alt="011.png">
 </p>
