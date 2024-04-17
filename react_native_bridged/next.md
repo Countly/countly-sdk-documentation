@@ -1420,7 +1420,7 @@ countlyConfig.<strong>enableAppStartTimeTracking</strong>();</code></pre>
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>
 // enable it here separately with 'apm' interface.
-countlyConfig.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger</strong>();<br></code></pre>
+countlyConfig.apm.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger</strong>();<br></code></pre>
 <p>
   Now you can call Countly.appLoadingFinished() any time after SDK initialization
   ( E.g. <code class="JavaScript">componentDidMount</code>&nbsp;method) to record
@@ -1440,14 +1440,14 @@ countlyConfig.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger<
 let ts = Date.now() - 500; // 500 ms before now
 
 // this would also work with manual trigger
-countlyConfig.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</strong>(ts);<br></code></pre>
+countlyConfig.apm.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</strong>(ts);<br></code></pre>
 <h2 id="h_01HVNVCBQ6HCE2Y3Q0WR7NG53Y">App Time in Background / Foreground</h2>
 <p>
   Lastly if you want to enable the SDK to record the time an app is in foreground
   or background automatically you would need to enable this option during init:
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br><br>// enable it here separately with 'apm' interface.
-countlyConfig.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
+countlyConfig.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
 <h1 id="h_01HAVQNJQTPBHA4HKBXA3SJG7Z">User consent</h1>
 <p>
   Being compliant with GDPR and other data privacy regulations, Countly provides
