@@ -274,12 +274,12 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
 </p>
 <ul>
   <li>
-    <code class="JavaScript">eventName</code> name of&nbsp; the event at server
-    (String) (<strong>mandatory</strong>)
+    <code class="JavaScript">eventName</code> name of the event at server (String)
+    (<strong>mandatory</strong>)
   </li>
   <li>
-    <code class="JavaScript">segments</code> is a map of key-value pairs, that
-    can be used to track additional information
+    <code class="JavaScript">segmentation</code> key-value pairs that can be
+    used to track additional information (Object)
   </li>
   <li>
     <code class="JavaScript">eventCount</code> number of times this event occurred.
@@ -337,15 +337,15 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
 <pre>Countly.events.recordEvent("Purchase", { Country: "Germany" }, 1, 0.99)</pre>
 <p>
   Those are only a few examples of what you can do with events. You may extend
-  those examples and use Country, app_version, game_level, time_of_day, and any
-  other segmentation that will provide you with valuable insights.
+  those examples and use Country, game_level, time_of_day, and any other segmentation
+  that will provide you with valuable insights.
 </p>
 <h2 id="h_01HAVQNJQRBRHVK5WF42VPFZF2">Timed events</h2>
 <p>
   It's possible to create timed events by calling start and stop methods. This
   would calculate the duration between those two calls and record it as the duration
   of the event. However the start method only serves as a timer and unless the
-  end method is called no event will be recorded.&nbsp;
+  end method is called no event will be recorded.
 </p>
 <pre><code class="JavaScript">//start a timed event
 Countly.events.startEvent("Event name");
