@@ -1330,42 +1330,19 @@ Countly.userData.pullValue("type", "morning");//remove value from array</code></
   <a href="https://support.count.ly/hc/en-us/articles/4734457847705-Performance" target="_self">Performance Monitoring documentation</a>.
 </p>
 <p>
-  Here is how you can utilize the Performance Monitoring feature in your apps:
-</p>
-<p>
-  First, you need to enable the Performance Monitoring feature:
+  The SDK provides manual and automatic mechanisms for Application Performance
+  Monitoring (APM). All of the automatic mechanisms are disabled by default and
+  to start using them you would first need to enable them and give the required
+  consent if it was required:
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
-countlyConfig.enableApm(); // Enable APM features.
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
+// this interface exposes the available APM features and their modifications.
+countlyConfig.apm.
 </code></pre>
+<h2 id="h_01HAVQNJQT9NWPZS7ADXQ5E170">Custom Traces</h2>
 <p>
-  With this, the Countly SDK will start measuring some performance traces automatically,
-  including app foreground time, app background time. Additionally, custom traces
-  and network traces can be manually recorded.
-</p>
-<h2 id="h_01HAVQNJQTH9C8YR2B0MZV0S4F">App Start Time</h2>
-<p>
-  For the app start time to be recorded, you need to call the
-  <code class="JavaScript">appLoadingFinished</code> method. Make sure this method
-  is called after <code class="JavaScript">initWithConfig</code>.
-</p>
-<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>// ...
-await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
-Countly.appLoadingFinished(); // Call the appLoadingFinished method</code></pre>
-<p>
-  This calculates and records the app launch time for performance monitoring. It
-  should be called when the app is loaded and it successfully displayed its first
-  user-facing view. E.g. <code class="JavaScript">componentDidMount:</code> method
-  or wherever is suitable for the app's flow. The time passed since the app has
-  started to launch will be automatically calculated and recorded for performance
-  monitoring. Note that the app launch time can be recorded only once per app launch.
-  So, the second and following calls to this method will be ignored.
-</p>
-<h2 id="h_01HAVQNJQT9NWPZS7ADXQ5E170">Custom trace</h2>
-<p>
-  You may also measure any operation you want and record it using custom traces.
-  First, you need to start a trace by using the
+  You may measure any operation you want and record it using custom traces. First,
+  you need to start a trace by using the
   <code class="objectivec">startTrace(traceKey)</code> method:
 </p>
 <pre>Countly.startTrace(traceKey);</pre>
@@ -1384,9 +1361,10 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   The duration of the custom trace will be automatically calculated upon ending.
 </p>
 <p>
-  Trace names should be non-zero length valid strings. Trying to start a custom
-  trace with the already started name will have no effect. Trying to end a custom
-  trace with already ended (or not yet started) name will have no effect.
+  Trace names should be non-zero length valid strings, and custom metric values
+  can only be numbers. Trying to start a custom trace with the already started
+  name will have no effect. Trying to end a custom trace with already ended (or
+  not yet started) name will have no effect.
 </p>
 <p>
   You may also cancel any custom trace you started using the
@@ -1398,7 +1376,7 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   started, using the <code class="objectivec">clearAllTraces()</code>method:
 </p>
 <pre>Countly.clearAllTraces(traceKey);</pre>
-<h2 id="h_01HAVQNJQTQGM8NFD1KBVYVCA6">Network trace</h2>
+<h2 id="h_01HAVQNJQTQGM8NFD1KBVYVCA6">Network Traces</h2>
 <p>
   You may record manual network traces using the
   <code class="JavaScript">recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime)</code>
@@ -1420,6 +1398,56 @@ Countly.endTrace(traceKey, customMetric);</code></pre>
   timestamp in milliseconds for the ending time of the request
 </p>
 <pre>Countly.recordNetworkTrace(networkTraceKey, responseCode, requestPayloadSize, responsePayloadSize, startTime, endTime);</pre>
+<h2 id="h_01HAVQNJQTH9C8YR2B0MZV0S4F">Automatic Device Traces</h2>
+<p>
+  SDK can automatically track the app start time for you. Tracking of app start
+  time is disabled by default and must be explicitly enabled by the developer during
+  init.
+</p>
+<p>
+  For tracking app start time automatically you will need to enable it in SDK init
+  config:
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br><br>// enable it here separately with 'apm' interface.
+countlyConfig.<strong>enableAppStartTimeTracking</strong>();</code></pre>
+<p>
+  This calculates and records the app launch time for performance monitoring.
+</p>
+<p>
+  If you want to determine when the end time for this calculation should be you
+  will have to enable the usage of manual triggers together with enableAppStartTimeTracking
+  during init:
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br>
+// enable it here separately with 'apm' interface.
+countlyConfig.enableAppStartTimeTracking().<strong>enableManualAppLoadedTrigger</strong>();<br></code></pre>
+<p>
+  Now you can call Countly.appLoadingFinished() any time after SDK initialization
+  ( E.g. <code class="JavaScript">componentDidMount</code>&nbsp;method) to record
+  that moment as the end of app launch time. The starting time of the app load
+  will be automatically calculated and recorded. Note that the app launch time
+  can be recorded only once per app launch. So, the second and following calls
+  to this method will be ignored.
+</p>
+<p>
+  If you also want to manipulate the app launch starting time instead of using
+  the SDK calculated value then you will need to call a third method on the config
+  object with the timestamp (in milliseconds) of that time you want:
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
+
+// generate the timestamp you want (or you can directly pass a ts)
+let ts = Date.now() - 500; // 500 ms before now
+
+// this would also work with manual trigger
+countlyConfig.enableAppStartTimeTracking().<strong>setAppStartTimestampOverride</strong>(ts);<br></code></pre>
+<h2 id="h_01HVNVCBQ6HCE2Y3Q0WR7NG53Y">App Time in Background / Foreground</h2>
+<p>
+  Lastly if you want to enable the SDK to record the time an app is in foreground
+  or background automatically you would need to enable this option during init:
+</p>
+<pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br><br>// enable it here separately with 'apm' interface.
+countlyConfig.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
 <h1 id="h_01HAVQNJQTPBHA4HKBXA3SJG7Z">User consent</h1>
 <p>
   Being compliant with GDPR and other data privacy regulations, Countly provides
