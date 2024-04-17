@@ -1906,3 +1906,46 @@ function sendMessage(param) {
   platform languages and integrate the native Countly SDKs. In that case, the recommendations
   from the previous sections would apply.
 </p>
+<h1 id="h_01HVGFBX5BW5A1Z65NCZ0W4CVR">Push Notifications</h1>
+<h2 id="h_01HVG9V1K7NQ90GAWMBNXC315K">How to Acquire FCM Key</h2>
+<p>
+  This guide will show you how to acquire the FCM key of an existing project from
+  your Firebase <a href="https://console.firebase.google.com/">console</a>:
+</p>
+<p>
+  At your console click on your application to open the popup with the settings
+  icon and click on it.
+</p>
+<p>
+  <img src="/guide-media/01HVK1RGPC85SRHBRAQ1ZQP9XV" alt="004.png">
+</p>
+<p>
+  This should open the project settings. Now, click on the "Cloud Messaging" section
+  and you should be able to see "Cloud Messaging API (Legacy)" on your screen with
+  a vertical "three dots icon" next to it.
+</p>
+<p>
+  <img src="/guide-media/01HVK1RS9M2HDANPK1S6B9A27A" alt="005.png">
+</p>
+<p>
+  Clicking on that icon should reveal a link called "Manage API in Google Cloud
+  Console.", go ahead and click on it.
+</p>
+<p>
+  <img src="/guide-media/01HVK1RPHTM3BSGYFWCM6Q9F2Z" alt="006.png">
+</p>
+<p>
+  This will direct you to the "Cloud Messaging" API panel on Google Cloud Console.
+  Now click on the "Enable" button to enable Legacy Cloud Messaging API.
+</p>
+<p>
+  <img src="/guide-media/01HVK1RP062T41QEDBRVV8BY7G" alt="007.png">
+</p>
+<p>
+  After these steps, return back to the "Cloud Messaging" section of your project
+  and reload it. Your FCM key should appear. Now, you can copy the "Server Key"
+  and use it in your Countly server.
+</p>
+<p>
+  <img src="/guide-media/01HVK1RKGWDJRKZ6088C7MKJRM" alt="008.png">
+</p>
