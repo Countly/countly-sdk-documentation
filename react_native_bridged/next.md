@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly React Native SDK version X.X.X The SDK
+  This documentation is for the Countly React Native SDK version 24.4.X The SDK
   source code repository can be found
   <a href="https://github.com/Countly/countly-sdk-react-native-bridge/" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
