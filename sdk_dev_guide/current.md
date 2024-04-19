@@ -489,11 +489,13 @@ Countly.sharedInstance().init(config);</code></pre>
     boolean filterCrash(CrashData crash);
 }</code><code class="java"></code></pre>
 <p>The crash data object must contain:</p>
-<p>- Stack trace string that is concatenated with new lines.</p>
-<p>- List of breadcrumbs</p>
-<p>- Crash metrics</p>
-<p>- Crash segmentation</p>
-<p>- Whether or not a crash is unhandled (fatal)</p>
+<ul>
+  <li>Stack trace string that is concatenated with new lines.</li>
+  <li>List of breadcrumbs</li>
+  <li>Crash metrics</li>
+  <li>Crash segmentation</li>
+  <li>Whether or not a crash is unhandled (fatal)</li>
+</ul>
 <p>
   While preparing "CrashData", SDK internal limits should be applied to the
   <strong>stack trace</strong>, <strong>crash segmentation</strong>, and
@@ -513,11 +515,13 @@ Countly.sharedInstance().init(config);</code></pre>
   A metric for crashes will be calculated as an integer of "_ob" bits. If some
   fields changed while filtering, bits must be set as:
 </p>
-<p>- 10000 for stack trace -&gt; "_ob" metric will be 16</p>
-<p>- 01000 for crash segmentation -&gt; "_ob" metric will be 8</p>
-<p>- 00100 for breadcrumbs -&gt; "_ob" metric will be 4</p>
-<p>- 00010 for crash metrics -&gt; "_ob" metric will be 2</p>
-<p>- 00001 for unhandled -&gt; "_ob" metric will be 1</p>
+<ul>
+  <li>10000 for stack trace -&gt; "_ob" metric will be 16</li>
+  <li>01000 for crash segmentation -&gt; "_ob" metric will be 8</li>
+  <li>00100 for breadcrumbs -&gt; "_ob" metric will be 4</li>
+  <li>00010 for crash metrics -&gt; "_ob" metric will be 2</li>
+  <li>00001 for unhandled -&gt; "_ob" metric will be 1</li>
+</ul>
 <p>
   For example, if crash segmentation, unhandled, and stack trace is changed, the
   "_ob" metric must be 25.
@@ -525,8 +529,8 @@ Countly.sharedInstance().init(config);</code></pre>
 <p>
   After the crash filtering is completed, SDK internal limits must be applied to
   the <strong>stack trace</strong>, <strong>crash segmentation</strong>, and
-  <strong>breadcrumbs</strong>. Also, unsupported data types must be removed from
-  crash metrics if any.
+  <strong>breadcrumbs</strong>. Unsupported data types must also be removed from
+  crash metrics.
 </p>
 <p>
   The "_ob" metric calculation must not be affected by SDK internal limit changes.
