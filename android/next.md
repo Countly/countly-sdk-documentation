@@ -608,6 +608,15 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   a session so that it is not closed server side. If you would want to increase
   that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
 </p>
+<h3 id="h_01HVKEZN4D4FYXAVD5V9HRC9VW">Hybrid Mode</h3>
+<p>
+  You can modify the manual session control by giving the control of
+  <code>updateSession</code> calls to the SDK. This way you would only need to
+  call <code>beginSession</code> and <code>endSession</code> methods and SDK would
+  handle the rest.
+</p>
+<pre><code>// after enabling manual sessions
+config.enableManualSessionControlHybridMode();</code></pre>
 <h1 id="h_01HAVQDM5T4KYTSDG1BQ41WDM1">View Tracking</h1>
 <p>
   In the SDK all view related functionality can be browsed from the returned interface
