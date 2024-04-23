@@ -99,11 +99,11 @@
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// 23.6.0 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@23.6.0/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
+    <pre><code class="javascript">// 24.4.0 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.4.0/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
 
-// 23.6.0 minified (<span>JSDelivr&nbsp;</span>or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@23.6.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a> or <a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/23.6.0/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
+// 24.4.0 minified (<span>JSDelivr&nbsp;</span>or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.4.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a> or <a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.4.0/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
