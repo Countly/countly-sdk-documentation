@@ -1476,7 +1476,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   Note that this feature is available only for Enterprise Edition.
 </p>
 <p>
-  You would call <code>Countly.instance.userProfile.</code>to see the available
+  You would call <code>Countly.instance.userProfile.</code> to see the available
   functionality for modifying user properties.
 </p>
 <p>
@@ -1503,13 +1503,13 @@ config.setUserProperties(userProperties); </code></pre>
 <p>Ther following calls can be used after init.</p>
 <p>
   If you want to set a single property, you can call
-  <code class="dart">Countly.userProfile.setUserProperty(key, value)</code>
+  <code class="dart">Countly.instance.userProfile.setProperty(key, value)</code>
 </p>
 <pre>Countly.instance.userProfile.setProperty("specialProperty", "value");
 Countly.instance.userProfile.save();</pre>
 <p>
   If you want to set multiple properties at the same time, you can use:
-  <code class="dart">Countly.userProfile.setUserProperties(userProperties)</code>
+  <code class="dart">Countly.instance.userProfile.setUserProperties(userProperties)</code>
 </p>
 <pre><code class="dart">// example for setting user data
 Map&lt;String, Object&gt; userProperties= {
@@ -1524,16 +1524,16 @@ Map&lt;String, Object&gt; userProperties= {
   "byear": "1919",
   "special_value": "something special"
 };
-Countly.instance.setUserProperties(userProperties);
+Countly.instance.userProfile.setUserProperties(userProperties);
 Countly.instance.userProfile.save();</code></pre>
 <p>
   After you have provided the user profile information, you must save it by calling
-  <code class="dart">Countly.userProfile.save()</code>. This would then create
+  <code class="dart">Countly.instance.userProfile.save()</code>. This would then create
   a request and send it to the server.
 </p>
 <p>
   If you changed your mind and want to clear the currently prepared values, call
-  <code class="dart">Countly.userProfile.clear()</code>before calling "save".
+  <code class="dart">Countly.instance.userProfile.clear()</code>before calling "save".
 </p>
 <h2 id="h_01H930GAQ793MEBMSC774K6VFM">Modifying custom data</h2>
 <p>
