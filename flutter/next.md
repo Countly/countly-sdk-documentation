@@ -1557,7 +1557,7 @@ Countly.instance.userProfile.setOnce("setOnce", 200);
 
 //insert value to array of unique values
 Countly.instance.userProfile.pushUnique("type", "morning");;
-//insert value to array which can have duplocates
+//insert value to array which can have duplicates
 Countly.instance.userProfile.push("type", "morning");
 //remove value from array
 Countly.instance.userProfile.pull("type", "morning");
