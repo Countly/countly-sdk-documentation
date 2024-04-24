@@ -2251,3 +2251,7 @@ config.setEventQueueSizeToSend(6);</code></pre>
   functionalities is mentioned in
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
+<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Platforms are supported?</h2>
+<p>
+  Currently our Flutter SDK only supports Android and iOS platforms.
+</p>
