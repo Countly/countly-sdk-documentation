@@ -635,6 +635,21 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
 </p>
 <pre><code class="cpp">cly::Countly.getInstance().setSalt("salt");</code></pre>
 <h1 id="h_01HABV267WW07MSKNVAY9PE9HT">Other Features and Notes</h1>
+<h2 id="h_01HWABRGA5S8N9CJHT286D29M8">Custom Metrics</h2>
+<p>
+  Device Metrics information is sent to the server with every 'begin session' request.
+  It's possible to override this information and provide custom metrics. For such
+  cases, the SetMetrics() method can be used before starting the SDK. Device metrics
+  that are provided by SetMetrics() method are, _os, _os_version, _device, _resolution,
+  _carrier, and _app_version respectively. For further information about these
+  params, please refer to
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HJ5PA5GMQSE8ATC3FJ6VAGP3" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<p>The example usage of SetMetrics() would be like this:</p>
+<pre><code class="cpp">Countly &amp;ct = Countly::getInstance();
+// OS, OS_version, device, resolution, carrier, app_version
+ct.SetMetrics("Windows 10", "10.22", "Mac", "800x600", "Carrier", "1.0");
+ct.start(_appKey, _serverUrl, 443, true);</code></pre>
 <h2 id="h_01HPE3P3THK961D2W8ABCA4FCD">Example Integrations</h2>
 <p>
   <a href="https://github.com/Countly/countly-sdk-cpp/blob/master/examples/example_integration.cpp">example_integration.cpp</a>
