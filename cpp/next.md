@@ -685,17 +685,17 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
 </p>
 <h2 id="h_01HWABRGA5S8N9CJHT286D29M8">Custom Metrics</h2>
 <p>
-  Device Metrics information is sent to the server with every 'begin session' request
+  User metrics information is sent to the server with every 'begin session' request
   and when requesting remote config. It's possible to override this information
   and provide custom metrics. For such cases, the SetMetrics() method can be used
-  before starting the SDK. Device metrics that are provided by SetMetrics() method
+  before starting the SDK. User metrics that are provided by SetMetrics() method
   are, _os, _os_version, _device, _resolution, _carrier, and _app_version respectively.
   For further information about these parameters, please refer to
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HJ5PA5GMQSE8ATC3FJ6VAGP3" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>The example usage of SetMetrics() would be like this:</p>
 <pre><code class="cpp">Countly &amp;ct = Countly::getInstance();
-// OS, OS_version, device, resolution, carrier, app_version
+// OS, OS version, device, resolution, carrier, app version
 ct.SetMetrics("Windows 10", "10.22", "Lenovo", "800x600", "Carrier", "1.0");
 ct.start(_appKey, _serverUrl, 443, true);</code></pre>
 <h2 id="h_01HABV267W87SHN2G1EW78J3PZ">Setting Custom SHA-256</h2>
