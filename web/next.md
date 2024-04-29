@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Web SDK version 23.12.X. The SDK source
+  This documentation is for the Countly Web SDK version 24.4.0. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-web">here</a>.
 </p>
@@ -99,11 +99,11 @@
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// 23.6.0 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@23.6.0/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
+    <pre><code class="javascript">// 24.4.0 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.4.0/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
 
-// 23.6.0 minified (<span>JSDelivr&nbsp;</span>or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@23.6.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a> or <a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/23.6.0/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
+// 24.4.0 minified (<span>JSDelivr</span> or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.4.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a> or <a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.4.0/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
@@ -1985,6 +1985,37 @@ Countly.remove_consent(feature)</code></pre>
 //After this call Countly.add_consent("all") to allow all features</code></pre>
   </div>
 </div>
+<h1 id="h_01HW5T3ZW11W74T71BGP3N4DD2">Security and Privacy</h1>
+<h2 id="h_01HW5T4GA5VER9KA2KX5V9BJ9G">Parameter Tamper Protection</h2>
+<p>
+  You can set an optional <code>salt</code> for the checksum calculation of request
+  data which will be sent alongside each request, using the
+  <code>&amp;checksum</code> field. You will need to set the exact same
+  <code>salt</code> on the Countly server (Management &gt; Applications&gt; Salt
+  for checksum). When the <code>salt</code> on the Countly server is set, all requests
+  would be checked for the validity of the <code>&amp;checksum</code> field before
+  being processed.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="JavaScript">Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://yourdomain.com";
+Countly.salt = "your_salt";
+// init after      
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="JavaScript">Countly.init({
+  app_key: "YOUR_APP_KEY",
+  url: "http://yourdomain.com",
+  salt: "your_salt"
+});</code></pre>
+  </div>
+</div>
 <h1 id="h_01HABTQ439GYX75SVN2YEPHH82">Other Features and Notes</h1>
 <h2 id="h_01HABTQ439HZN7Y6A6F07Y6G0K">SDK Config Parameters Explained</h2>
 <p>
@@ -2051,6 +2082,10 @@ Countly.remove_consent(feature)</code></pre>
   </li>
   <li>
     <strong>ignore_referrers</strong> - array with referrers to ignore (default:
+    none)
+  </li>
+  <li>
+    <strong>salt</strong> - string salt for checksums (default:
     none)
   </li>
   <li>
