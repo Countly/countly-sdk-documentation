@@ -617,6 +617,15 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 <p>Then, add the following snippet:</p>
 <pre><code class="shell">COUNTLY_DSYM_UPLOADER=$(/usr/bin/find $SRCROOT -name "countly_dsym_uploader.sh" | head -n 1)
 sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code></pre>
+<h4 id="h_01HX6N927Y4DNBRV8NTEDN1M4T">Above XCode 15</h4>
+<p>
+  To symbolication script to work an input file entry must be added to the run
+  script phase
+</p>
+<pre><span>${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}</span></pre>
+<p>
+  <span>This will make sure symbolication folder is existing to prevent race conditions above XCode version 15</span>
+</p>
 <p>
   <span style="font-weight: 400;">Next, select the checkbox</span><code>Run script only when installing</code>.
 </p>
