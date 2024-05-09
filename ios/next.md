@@ -618,6 +618,14 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 <pre><code class="shell">COUNTLY_DSYM_UPLOADER=$(/usr/bin/find $SRCROOT -name "countly_dsym_uploader.sh" | head -n 1)
 sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code></pre>
 <p>
+  Starting from <strong>Xcode 15</strong> you would need to add an
+  <code>Input Files</code> entry to the <code>Run Script</code> section like this:
+</p>
+<pre><span>${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}</span></pre>
+<p>
+  <span>This will make sure the symbolication folder is usable for the script.</span>
+</p>
+<p>
   <span style="font-weight: 400;">Next, select the checkbox</span><code>Run script only when installing</code>.
 </p>
 <div class="img-container">
