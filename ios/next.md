@@ -430,7 +430,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <pre><code class="swift">config.crashSegmentation = ["key":"value"]</code></pre>
   </div>
 </div>
-<h2 id="h_01EG5OMMU14Y5AZZJN9QJ5HMMY">Crash Filtering</h2>
+<h2 id="h_01HAVHW0RNB7HWT8W9XRYRKBYZ">Crash Filtering</h2>
 <p>
   There might be cases where a crash could contain sensitive information. For such
   situations, there is a crash filtering option that can discard or modify a crash.
