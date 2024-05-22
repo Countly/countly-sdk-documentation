@@ -437,20 +437,21 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 </p>
 <p>
   To filter a crash you should provide a callback to the config object using the
-  <code class="objectivec">crashes.setGlobalCrashFilterCallback</code> method during
+  <code class="objectivec">crashes.setCrashFilterCallback</code> method during
   initialization. This callback will be called every time a crash is recorded.
 </p>
 <p>
-  The callback receives a <code>CrashData</code> object, which contains all the
-  information about the crash that would be sent to the server:
+  The callback receives a <code>CountlyCrashData</code> object, which contains
+  all the information about the crash that would be sent to the server:
 </p>
-<pre><code class="objectivec">class CrashData {
-  String stackTrace;
-  Map&lt;String, Object&gt; crashSegmentation;
-  List&lt;String&gt; breadcrumbs;
-  boolean fatal;
-  Map&lt;String, Object&gt; crashMetrics;
-}</code></pre>
+<pre><code class="objectivec">@interface CountlyCrashData : NSObject
+
+@property (nonatomic, copy, nonnull) NSString *stackTrace;
+@property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashSegmentation;
+@property (nonatomic, copy, nonnull) NSArray&lt;NSString *&gt; *breadcrumbs;<br>@property (nonatomic, assign) BOOL fatal;
+@property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashMetrics;
+
+@end</code></pre>
 <p>
   - <strong>stackTrace</strong>: Concatenated stack trace with new lines.
 </p>
@@ -471,36 +472,100 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 </p>
 <p>
   You can modify or filter the crash using the getter and setter methods provided
-  by the CrashData. After modifying the crash, to send the crash to the server,
-  you should return 'false.' If the callback returns 'true' the crash will be discarded:
+  by the CountlyCrashData. After modifying the crash, to send the crash to the
+  server, you should return 'false.' If the callback returns 'true' the crash will
+  be discarded:
 </p>
-<pre><code class="objectivec">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
-  @Override
-  public boolean filterCrash(CrashData crash) {
-    // You may want to omit a secret from the stack trace to protect it
-    crash.setStackTrace(crash.getStackTrace().replace("secret", "*****"));
-    // or if crash segmentation contains a secret key, it can me omitted
-    if (crash.getCrashSegmentation().containsKey("secret")) {
-      // You can change a crash is handled or not
-      crash.setFatal(false);
-      // The secret value could be overridden easily to protect it
-      crash.getCrashSegmentation().put("secret", "*****");
-    }
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">#import "CountlyCrashFilterCallback.h"
+@interface CountlyCrashFilterCallbackDelegate : NSObject &lt;CountlyCrashFilterCallback&gt;
+@end
 
-    // Maybe when reporting crashes, only a device  permitted to report the crashes for testing or debugging
-    if (crash.getCrashMetrics().containsKey("_device")) {
-      // if metrics has a device other than an Android, discard crash
-      Object device = crash.getCrashMetrics().get("_device");
-      if (device instanceof String) {
-        return !device.equals("Android");
-      } else {
-        // if value not found or not a string, discard the crash
-        return true;
-      }
+@implementation CountlyCrashFilterCallbackDelegate
+
+- (BOOL)filterCrash:(CountlyCrashData *)crash{
+    // You may want to omit a secret from the stack trace to protect it
+    NSString *stackTrace = [crash stackTrace];
+    stackTrace = [stackTrace stringByReplacingOccurrencesOfString:@"secret" withString:@"*****"];
+    [crash setStackTrace:stackTrace];
+    // or if crash segmentation contains a secret key, it can be omitted
+    NSDictionary *crashSegmentation = [crash crashSegmentation];
+    if ([crashSegmentation objectForKey:@"secret"]) {
+        // You can change if a crash is handled or not
+        [crash setFatal:NO];
+        // The secret value could be overridden easily to protect it
+        [crashSegmentation setValue:@"*****" forKey:@"secret"];
     }
-    return false;
-  }
-});</code></pre>
+    // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
+    NSDictionary *crashMetrics = [crash crashMetrics];
+    if ([crashMetrics objectForKey:@"_device"]) {
+        // if metrics has a device other than an iOS, discard crash
+        id device = [crashMetrics objectForKey:@"_device"];
+        if ([device isKindOfClass:[NSString class]])
+        {
+            return ![(NSString *)device isEqualToString:@"iOS"];
+        } else {
+            // if value not found or not a string, discard the crash
+            return YES;
+        }
+    }
+    return NO;
+}
+@end
+
+...
+
+// later on your initialization block
+[config.crashes setCrashFilterCallback:[[CountlyCrashFilterCallbackDelegate alloc] init]];
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">import Countly
+class CountlyCrashFilterCallbackDelegate: NSObject, CountlyCrashFilterCallbackProtocol {
+    // Define a typealias for the callback function signature
+    func filterCrash(_ crash: CountlyCrashData?) - Bool {
+        guard let crash = crash else {
+            return false
+        }
+        
+        // You may want to omit a secret from the stack trace to protect it
+        var stackTrace = crash.stackTrace
+        stackTrace = stackTrace.replacingOccurrences(of: "secret", with: "*****")
+        crash.stackTrace = stackTrace
+        
+        // or if crash segmentation contains a secret key, it can be omitted
+        var crashSegmentation = crash.crashSegmentation
+        if crashSegmentation["secret"] != nil {
+            // You can change if a crash is handled or not
+            crash.fatal = false
+            // The secret value could be overridden easily to protect it
+            crashSegmentation["secret"] = "*****"
+        }
+        
+        // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
+        let crashMetrics = crash.crashMetrics
+        if let device = crashMetrics["_device"] as? String {
+            // if metrics has a device other than an iOS, discard crash
+            return device != "iOS"
+        } else {
+            // if value not found or not a string, discard the crash
+            return true
+        }
+    }
+}
+
+...
+
+// Later in your initialization block
+let callbackDelegate = CountlyCrashFilterCallbackDelegate()
+config.crashes().crashFilterCallback = callbackDelegate</code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RNV95SB7MH171A9209">PLCrashReporter</h2>
 <p>
   As an alternative to Countly iOS SDK's own exception and signal handling mechanism
