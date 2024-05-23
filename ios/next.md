@@ -446,7 +446,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 </p>
 <pre><code class="objectivec">@interface CountlyCrashData : NSObject
 
-@property (nonatomic, copy, nonnull) NSString *stackTrace;
+@property (nonatomic, copy, nonnull) NSString *stackTrace;<br>@property (nonatomic, copy, nonnull) NSString *name;<br>@property (nonatomic, copy, nonnull) NSString *crashDescription;
 @property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashSegmentation;
 @property (nonatomic, copy, nonnull) NSArray&lt;NSString *&gt; *breadcrumbs;<br>@property (nonatomic, assign) BOOL fatal;
 @property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashMetrics;
@@ -454,6 +454,13 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 @end</code></pre>
 <p>
   - <strong>stackTrace</strong>: Concatenated stack trace with new lines.
+</p>
+<p>
+  - <strong>name</strong>: Type name of the crash
+</p>
+<p>
+  - <strong>crashDescription</strong>: The descriptive name that would be used
+  to display the widget
 </p>
 <p>
   - <strong>crashSegmentation</strong>: Combination of automatic crash report segmentation
