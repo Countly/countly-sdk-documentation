@@ -446,7 +446,9 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 </p>
 <pre><code class="objectivec">@interface CountlyCrashData : NSObject
 
-@property (nonatomic, copy, nonnull) NSString *stackTrace;<br>@property (nonatomic, copy, nonnull) NSString *name;<br>@property (nonatomic, copy, nonnull) NSString *crashDescription;
+@property (nonatomic, copy, nonnull) NSString *stackTrace;
+@property (nonatomic, copy, nonnull) NSString *name;
+@property (nonatomic, copy, nonnull) NSString *crashDescription;
 @property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashSegmentation;
 @property (nonatomic, copy, nonnull) NSArray&lt;NSString *&gt; *breadcrumbs;<br>@property (nonatomic, assign) BOOL fatal;
 @property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashMetrics;
