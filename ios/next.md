@@ -431,6 +431,9 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
   </div>
 </div>
 <h2 id="h_01HAVHW0RNB7HWT8W9XRYRKBYZ">Crash Filtering</h2>
+<div class="callout callout--warning">
+  <p>This feature requires the minimum SDK version of 24.4.2</p>
+</div>
 <p>
   There might be cases where a crash could contain sensitive information. For such
   situations, there is a crash filtering option that can discard or modify a crash.
