@@ -472,6 +472,77 @@ function getUniqueMsTimestamp(){
   </li>
   <li>Countly.add_breadcrumb(string log)</li>
 </ul>
+<h2 id="h_01HVK6Q069F0FMF81J1TEDGBJB">Crash Filtering</h2>
+<p>
+  There should be a way to filter and edit the crash report before sending it to
+  the server. To do this, a callback should be registered while initializing the
+  SDK.
+</p>
+<pre><code class="java">config.crashes.setCrashFilterCallback(callback);
+Countly.sharedInstance().init(config);</code></pre>
+<p>
+  This callback will take a "CrashData" object containing all crash-related data
+  and modify or omit it. If "true" is returned from the callback, the crash must
+  be omitted.
+</p>
+<pre><code class="java">interface CrashFilterCallback {
+    boolean filterCrash(CrashData crash);
+}</code><code class="java"></code></pre>
+<p>The crash data object must contain:</p>
+<ul>
+  <li>Stack trace string that is concatenated with new lines.</li>
+  <li>List of breadcrumbs</li>
+  <li>Crash metrics</li>
+  <li>Crash segmentation</li>
+  <li>Crash Name (iOS only)</li>
+  <li>Crash Description (iOS only)</li>
+  <li>Whether or not a crash is unhandled (fatal)</li>
+</ul>
+<p>
+  While preparing "CrashData", SDK internal limits should be applied to the
+  <strong>stack trace</strong>, <strong>crash segmentation</strong>, and
+  <strong>breadcrumbs</strong>.
+</p>
+<p>
+  All of those attributes can be modified. "CrashData" must provide setters and
+  getters to achieve that.
+</p>
+<p>
+  Setters mustn't accept invalid values like null, undefined, etc.
+</p>
+<p>
+  Also, there must be a way to report which fields have been modified for the server.
+</p>
+<p>
+  A metric for crashes will be calculated as an integer of "_ob" bits. If some
+  fields changed while filtering, bits must be set as:
+</p>
+<ul>
+  <li>01000000 for description -&gt; "_ob" metric will be 64 (iOS only)</li>
+  <li>00100000 for name -&gt; "_ob" metric will be 32 (iOS only)</li>
+  <li>00010000 for stack trace -&gt; "_ob" metric will be 16</li>
+  <li>00001000 for crash segmentation -&gt; "_ob" metric will be 8</li>
+  <li>00000100 for breadcrumbs -&gt; "_ob" metric will be 4</li>
+  <li>00000010 for crash metrics -&gt; "_ob" metric will be 2</li>
+  <li>00000001 for unhandled -&gt; "_ob" metric will be 1</li>
+</ul>
+<p>
+  For example, if crash segmentation, unhandled, and stack trace is changed, the
+  "_ob" metric must be 25.
+</p>
+<p>
+  After the crash filtering is completed, SDK internal limits must be applied to
+  the <strong>stack trace</strong>, <strong>crash segmentation</strong>, and
+  <strong>breadcrumbs</strong>. Unsupported data types must also be removed from
+  crash metrics.
+</p>
+<p>
+  The "_ob" metric calculation must not be affected by SDK internal limit changes.
+  It must only indicate whether or not the developer modified that field.
+</p>
+<p>
+  The "_ob" metric must be appended to the crash metrics and sent to the server.
+</p>
 <h2 id="01H821RTQ27DWNCPTRG2126NA2">Symbolication (WIP)</h2>
 <h1 id="01H821RTQ2JN3F965RM2VT8A2G">Events</h1>
 <p>
