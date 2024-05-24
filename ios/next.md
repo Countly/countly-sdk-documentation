@@ -449,9 +449,10 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 @property (nonatomic, copy, nonnull) NSString *stackTrace;
 @property (nonatomic, copy, nonnull) NSString *name;
 @property (nonatomic, copy, nonnull) NSString *crashDescription;
-@property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashSegmentation;
-@property (nonatomic, copy, nonnull) NSArray&lt;NSString *&gt; *breadcrumbs;<br>@property (nonatomic, assign) BOOL fatal;
-@property (nonatomic, copy, nonnull) NSDictionary&lt;NSString *, id&gt; *crashMetrics;
+@property (nonatomic, assign) BOOL fatal;
+@property (nonatomic, copy, nonnull) NSMutableArray&lt;NSString *&gt; *breadcrumbs;
+@property (nonatomic, copy, nonnull) NSMutableDictionary&lt;NSString *, id&gt; *crashSegmentation;
+@property (nonatomic, copy, nonnull) NSMutableDictionary&lt;NSString *, id&gt; *crashMetrics;
 
 @end</code></pre>
 <p>
@@ -461,8 +462,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
   - <strong>name</strong>: Type name of the crash
 </p>
 <p>
-  - <strong>crashDescription</strong>: The descriptive name that would be used
-  to display the widget
+  - <strong>crashDescription</strong>: The description of the crash
 </p>
 <p>
   - <strong>crashSegmentation</strong>: Combination of automatic crash report segmentation
@@ -491,88 +491,99 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">#import "CountlyCrashFilterCallback.h"
-@interface CountlyCrashFilterCallbackDelegate : NSObject &lt;CountlyCrashFilterCallback&gt;
-@end
+    <pre><code class="objective">#import "Countly.h"
 
-@implementation CountlyCrashFilterCallbackDelegate
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  CountlyConfig *config = CountlyConfig.new;
+  config.appKey         = @"YOUR_APP_KEY";
+  config.host           = @"https://YOUR_COUNTLY_SERVER";
 
-- (BOOL)filterCrash:(CountlyCrashData *)crash{
+  [config.crashes setCrashFilterCallback:^BOOL(CountlyCrashData *crash) {
+    if (!crash)
+    {
+      return NO;
+    }
+
     // You may want to omit a secret from the stack trace to protect it
-    NSString *stackTrace = [crash stackTrace];
-    stackTrace = [stackTrace stringByReplacingOccurrencesOfString:@"secret" withString:@"*****"];
-    [crash setStackTrace:stackTrace];
-    // or if crash segmentation contains a secret key, it can be omitted
-    NSDictionary *crashSegmentation = [crash crashSegmentation];
-    if ([crashSegmentation objectForKey:@"secret"]) {
-        // You can change if a crash is handled or not
-        [crash setFatal:NO];
-        // The secret value could be overridden easily to protect it
-        [crashSegmentation setValue:@"*****" forKey:@"secret"];
+    NSString *stackTrace = crash.stackTrace;
+    stackTrace           = [stackTrace stringByReplacingOccurrencesOfString:@"secret" withString:@"*****"];
+    crash.stackTrace     = stackTrace;
+
+    // Or if crash segmentation contains a secret key, it can be omitted
+    NSMutableDictionary *crashSegmentation = [crash.crashSegmentation mutableCopy];
+    if (crashSegmentation[@"secret"])
+    {
+      // You can change if a crash is handled or not
+      crash.fatal = NO;
+      // The secret value could be overridden easily to protect it
+      crashSegmentation[@"secret"] = @"*****";
     }
+    crash.crashSegmentation = crashSegmentation;
+
     // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
-    NSDictionary *crashMetrics = [crash crashMetrics];
-    if ([crashMetrics objectForKey:@"_device"]) {
-        // if metrics has a device other than an iOS, discard crash
-        id device = [crashMetrics objectForKey:@"_device"];
-        if ([device isKindOfClass:[NSString class]])
-        {
-            return ![(NSString *)device isEqualToString:@"iOS"];
-        } else {
-            // if value not found or not a string, discard the crash
-            return YES;
-        }
+    NSDictionary *crashMetrics = crash.crashMetrics;
+    NSString     *device       = crashMetrics[@"_device"];
+    if ([device isKindOfClass:[NSString class]])
+    {
+      // If metrics has a device other than an iOS, discard crash
+      return ![device isEqualToString:@"iOS"];
     }
-    return NO;
-}
-@end
+    else
+    {
+      // If value not found or not a string, discard the crash
+      return YES;
+    }
+  }];
 
-...
+  [Countly.sharedInstance startWithConfig:config];
 
-// later on your initialization block
-[config.crashes setCrashFilterCallback:[[CountlyCrashFilterCallbackDelegate alloc] init]];
-</code></pre>
+  return YES;
+}</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">import Countly
-class CountlyCrashFilterCallbackDelegate: NSObject, CountlyCrashFilterCallbackProtocol {
-    // Define a typealias for the callback function signature
-    func filterCrash(_ crash: CountlyCrashData?) - Bool {
-        guard let crash = crash else {
-            return false
-        }
-        
-        // You may want to omit a secret from the stack trace to protect it
-        var stackTrace = crash.stackTrace
-        stackTrace = stackTrace.replacingOccurrences(of: "secret", with: "*****")
-        crash.stackTrace = stackTrace
-        
-        // or if crash segmentation contains a secret key, it can be omitted
-        var crashSegmentation = crash.crashSegmentation
-        if crashSegmentation["secret"] != nil {
-            // You can change if a crash is handled or not
-            crash.fatal = false
-            // The secret value could be overridden easily to protect it
-            crashSegmentation["secret"] = "*****"
-        }
-        
-        // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
-        let crashMetrics = crash.crashMetrics
-        if let device = crashMetrics["_device"] as? String {
-            // if metrics has a device other than an iOS, discard crash
-            return device != "iOS"
-        } else {
-            // if value not found or not a string, discard the crash
-            return true
-        }
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) - Bool
+{
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
+  
+  let crashFilterBlock: (CountlyCrashData?) - Bool = { crash in
+    guard let crash = crash else { 
+      return false 
     }
-}
+   
+    // You may want to omit a secret from the stack trace to protect it
+    var stackTrace = crash.stackTrace 
+    stackTrace = stackTrace.replacingOccurrences(of: "secret", with: "*****") 
+    crash.stackTrace = stackTrace
+  
+    // or if crash segmentation contains a secret key, it can be omitted
+    var crashSegmentation = crash.crashSegmentation 
+    if crashSegmentation["secret"] != nil {
+      // You can change if a crash is handled or not crash.fatal = false
+      // The secret value could be overridden easily to protect it
+      crashSegmentation["secret"] = "*****"
+    }
+  
+    // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
+    let crashMetrics = crash.crashMetrics
+    if let device = crashMetrics["_device"] as? String {
+      // if metrics has a device other than an iOS, discard crash
+      return device != "iOS" 
+    } else {
+        // if value not found or not a string, discard the crash
+        return true
+    }
+  }
+  
+  config.crashes().crashFilterCallback = crashFilterBlock
+  Countly.sharedInstance().start(with: config)
 
-...
-
-// Later in your initialization block
-let callbackDelegate = CountlyCrashFilterCallbackDelegate()
-config.crashes().crashFilterCallback = callbackDelegate</code></pre>
+  return true
+}</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RNV95SB7MH171A9209">PLCrashReporter</h2>
