@@ -431,13 +431,63 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
   </div>
 </div>
 <h2 id="h_01HAVHW0RNB7HWT8W9XRYRKBYZ">Crash Filtering</h2>
+<div class="callout callout--warning">
+  <p>This feature requires the minimum SDK version of 24.4.2</p>
+</div>
 <p>
-  <span style="font-weight: 400;">You can set the optional <code>crashFilter</code></span>
-  <span>regular expression</span> on the <code>CountlyConfig</code>
-  <span style="font-weight: 400;">object</span> for filtering crash reports and
-  preventing them from being sent to Countly Server. If a crash's name, description
-  or any line of stack trace matches the given regular expression, it will not
-  be sent to Countly Server.
+  There might be cases where a crash could contain sensitive information. For such
+  situations, there is a crash filtering option that can discard or modify a crash.
+</p>
+<p>
+  To filter a crash you should provide a callback to the config object using the
+  <code class="objectivec">crashes.setCrashFilterCallback</code> method during
+  initialization. This callback will be called every time a crash is recorded.
+</p>
+<p>
+  The callback receives a <code>CountlyCrashData</code> object, which contains
+  all the information about the crash that would be sent to the server:
+</p>
+<pre><code class="objectivec">@interface CountlyCrashData : NSObject
+
+@property (nonatomic, copy, nonnull) NSString *stackTrace;
+@property (nonatomic, copy, nonnull) NSString *name;
+@property (nonatomic, copy, nonnull) NSString *crashDescription;
+@property (nonatomic, assign) BOOL fatal;
+@property (nonatomic, copy, nonnull) NSMutableArray&lt;NSString *&gt; *breadcrumbs;
+@property (nonatomic, copy, nonnull) NSMutableDictionary&lt;NSString *, id&gt; *crashSegmentation;
+@property (nonatomic, copy, nonnull) NSMutableDictionary&lt;NSString *, id&gt; *crashMetrics;
+
+@end</code></pre>
+<p>
+  - <strong>stackTrace</strong>: Concatenated stack trace with new lines.
+</p>
+<p>
+  - <strong>name</strong>: Reason of the crash. (used for grouping)
+</p>
+<p>
+  - <strong>crashDescription</strong>: Dev provided name or captured description
+  of the crash.
+</p>
+<p>
+  - <strong>crashSegmentation</strong>: Combination of automatic crash report segmentation
+  and segmentation given while recording the crash.
+</p>
+<p>
+  - <strong>breadcrumbs</strong>: List of recorded breadcrumbs.
+</p>
+<p>
+  - <strong>fatal</strong>: Indicates whether or not a crash is unhandled.
+</p>
+<p>
+  - <strong>crashMetric</strong>: Crash related
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5V4WX0XFP7FC8ETDC3B96M">metrics</a>
+  recorded by the SDK.
+</p>
+<p>
+  You can modify or filter the crash using the getter and setter methods provided
+  by the CountlyCrashData. After modifying the crash, to send the crash to the
+  server, you should return 'false.' If the callback returns 'true' the crash will
+  be discarded:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -445,10 +495,99 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.crashFilter = [NSRegularExpression regularExpressionWithPattern:@".*keyword.*" options:NSRegularExpressionCaseInsensitive error:nil];<br></code></pre>
+    <pre><code class="objective">#import "Countly.h"
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  CountlyConfig *config = CountlyConfig.new;
+  config.appKey         = @"YOUR_APP_KEY";
+  config.host           = @"https://YOUR_COUNTLY_SERVER";
+
+  [config.crashes setCrashFilterCallback:^BOOL(CountlyCrashData *crash) {
+    if (!crash)
+    {
+      return NO;
+    }
+
+    // You may want to omit a secret from the stack trace to protect it
+    NSString *stackTrace = crash.stackTrace;
+    stackTrace           = [stackTrace stringByReplacingOccurrencesOfString:@"secret" withString:@"*****"];
+    crash.stackTrace     = stackTrace;
+
+    // Or if crash segmentation contains a secret key, it can be omitted
+    NSMutableDictionary *crashSegmentation = [crash.crashSegmentation mutableCopy];
+    if (crashSegmentation[@"secret"])
+    {
+      // You can change if a crash is handled or not
+      crash.fatal = NO;
+      // The secret value could be overridden easily to protect it
+      crashSegmentation[@"secret"] = @"*****";
+    }
+    crash.crashSegmentation = crashSegmentation;
+
+    // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
+    NSDictionary *crashMetrics = crash.crashMetrics;
+    NSString     *device       = crashMetrics[@"_device"];
+    if ([device isKindOfClass:[NSString class]])
+    {
+      // If metrics has a device other than an iOS, discard crash
+      return ![device isEqualToString:@"iOS"];
+    }
+    else
+    {
+      // If value not found or not a string, discard the crash
+      return YES;
+    }
+  }];
+
+  [Countly.sharedInstance startWithConfig:config];
+
+  return YES;
+}</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.crashFilter = try! NSRegularExpression(pattern: ".*keyword.*", options: NSRegularExpression.Options.caseInsensitive)</code></pre>
+    <pre><code class="swift">import Countly
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) - Bool
+{
+  let config: CountlyConfig = CountlyConfig()
+  config.appKey = "YOUR_APP_KEY"
+  config.host = "https://YOUR_COUNTLY_SERVER"
+  
+  let crashFilterBlock: (CountlyCrashData?) - Bool = { crash in
+    guard let crash = crash else { 
+      return false 
+    }
+   
+    // You may want to omit a secret from the stack trace to protect it
+    var stackTrace = crash.stackTrace 
+    stackTrace = stackTrace.replacingOccurrences(of: "secret", with: "*****") 
+    crash.stackTrace = stackTrace
+  
+    // or if crash segmentation contains a secret key, it can be omitted
+    var crashSegmentation = crash.crashSegmentation 
+    if crashSegmentation["secret"] != nil {
+      // You can change if a crash is handled or not crash.fatal = false
+      // The secret value could be overridden easily to protect it
+      crashSegmentation["secret"] = "*****"
+    }
+  
+    // Maybe when reporting crashes, only a device permitted to report the crashes for testing or debugging
+    let crashMetrics = crash.crashMetrics
+    if let device = crashMetrics["_device"] as? String {
+      // if metrics has a device other than an iOS, discard crash
+      return device != "iOS" 
+    } else {
+        // if value not found or not a string, discard the crash
+        return true
+    }
+  }
+  
+  config.crashes().crashFilterCallback = crashFilterBlock
+  Countly.sharedInstance().start(with: config)
+
+  return true
+}</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RNV95SB7MH171A9209">PLCrashReporter</h2>
@@ -617,6 +756,14 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 <p>Then, add the following snippet:</p>
 <pre><code class="shell">COUNTLY_DSYM_UPLOADER=$(/usr/bin/find $SRCROOT -name "countly_dsym_uploader.sh" | head -n 1)
 sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code></pre>
+<p>
+  Starting from <strong>Xcode 15</strong> you would need to add an
+  <code>Input Files</code> entry to the <code>Run Script</code> section like this:
+</p>
+<pre><span>${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}</span></pre>
+<p>
+  <span>This will make sure the symbolication folder is usable for the script.</span>
+</p>
 <p>
   <span style="font-weight: 400;">Next, select the checkbox</span><code>Run script only when installing</code>.
 </p>
@@ -4075,7 +4222,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxValueSize(200);</code></pre>
   </div>
 </div>
-<h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Value</h3>
+<h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Values</h3>
 <p>
   Limits the amount of user set segmentation key-value pairs (default: 100 entries):
 </p>
