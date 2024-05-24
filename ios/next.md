@@ -459,10 +459,11 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
   - <strong>stackTrace</strong>: Concatenated stack trace with new lines.
 </p>
 <p>
-  - <strong>name</strong>: Type name of the crash
+  - <strong>name</strong>: Reason of the crash. (used for grouping)
 </p>
 <p>
-  - <strong>crashDescription</strong>: The description of the crash
+  - <strong>crashDescription</strong>: Dev provided name or captured description
+  of the crash.
 </p>
 <p>
   - <strong>crashSegmentation</strong>: Combination of automatic crash report segmentation
