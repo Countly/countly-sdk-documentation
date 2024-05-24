@@ -494,6 +494,8 @@ Countly.sharedInstance().init(config);</code></pre>
   <li>List of breadcrumbs</li>
   <li>Crash metrics</li>
   <li>Crash segmentation</li>
+  <li>Crash Name (iOS only)</li>
+  <li>Crash Description (iOS only)</li>
   <li>Whether or not a crash is unhandled (fatal)</li>
 </ul>
 <p>
@@ -516,11 +518,13 @@ Countly.sharedInstance().init(config);</code></pre>
   fields changed while filtering, bits must be set as:
 </p>
 <ul>
-  <li>10000 for stack trace -&gt; "_ob" metric will be 16</li>
-  <li>01000 for crash segmentation -&gt; "_ob" metric will be 8</li>
-  <li>00100 for breadcrumbs -&gt; "_ob" metric will be 4</li>
-  <li>00010 for crash metrics -&gt; "_ob" metric will be 2</li>
-  <li>00001 for unhandled -&gt; "_ob" metric will be 1</li>
+  <li>01000000 for description -&gt; "_ob" metric will be 64 (iOS only)</li>
+  <li>00100000 for name -&gt; "_ob" metric will be 32 (iOS only)</li>
+  <li>00010000 for stack trace -&gt; "_ob" metric will be 16</li>
+  <li>00001000 for crash segmentation -&gt; "_ob" metric will be 8</li>
+  <li>00000100 for breadcrumbs -&gt; "_ob" metric will be 4</li>
+  <li>00000010 for crash metrics -&gt; "_ob" metric will be 2</li>
+  <li>00000001 for unhandled -&gt; "_ob" metric will be 1</li>
 </ul>
 <p>
   For example, if crash segmentation, unhandled, and stack trace is changed, the
