@@ -415,13 +415,13 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   If consent was removed and then given, and automatic sessions were enabled, a
   session will automatically be started.<span></span>
 </p>
-<h1 id="h_01HAVQDM5T4KYTSDG1BQ41WDM1">View Tracking</h1>
+<h1 id="h_01HABTZ315E40XEHJHRMQMW0J6">View Tracking</h1>
 <p>
   In the SDK, all view-related functionality can be browsed from the returned interface
   on:
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views</code></pre>
-<h2 id="h_01HAVQDM5TAM7FDYHWYNEA244T">Manual View Recording</h2>
+<h2 id="h_01HABTZ31504DKRD8DBNE1W400">Manual View Recording</h2>
 <p>
   The SDK provides various ways to track views. You can track a single view at
   a given time or multiple views according to your needs. Each view has its unique
@@ -587,6 +587,10 @@ Countly.Instance.Views.UpdateGlobalViewSegmentation(viewSegmentation);</code></p
   <code>Analytics &gt; Views</code>. For more information on using view tracking
   data to its fullest potential, click
   <a href="http://resources.count.ly/docs/view-analytics" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<h2 id="h_01HABTZ315ECG69VS4DKTX0W2N" class="anchor-heading">Consent</h2>
+<p>
+  <span>This feature requires <code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
 </p>
 <h1 id="h_01HABTZ315QACRZ219TTBZS5ZN" class="anchor-heading" tabindex="-1">Device ID Management</h1>
 <p>
