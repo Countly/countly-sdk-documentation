@@ -421,6 +421,12 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   on:
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views</code></pre>
+<p>
+  To review the resulting data from view tracking, open the dashboard and go to
+  <code>Analytics &gt; Views</code>. For more information on using view tracking
+  data to its fullest potential, click
+  <a href="https://support.count.ly/hc/en-us/articles/4431589003545-Analytics#h_01HAWAJ8QP89XMBYDBPWBPQ14C" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
 <h2 id="h_01HABTZ31504DKRD8DBNE1W400">Manual View Recording</h2>
 <p>
   The SDK provides various ways to track views. You can track a single view at
@@ -582,12 +588,6 @@ viewSegmentation.Add("ScreenSize", 55.0f);
 viewSegmentation.Add("UserID", 5566778899L);
   
 Countly.Instance.Views.UpdateGlobalViewSegmentation(viewSegmentation);</code></pre>
-<p>
-  To review the resulting data from view tracking, open the dashboard and go to
-  <code>Analytics &gt; Views</code>. For more information on using view tracking
-  data to its fullest potential, click
-  <a href="http://resources.count.ly/docs/view-analytics" target="_blank" rel="noopener noreferrer">here</a>.
-</p>
 <h2 id="h_01HABTZ315ECG69VS4DKTX0W2N" class="anchor-heading">Consent</h2>
 <p>
   <span>This feature requires <code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
