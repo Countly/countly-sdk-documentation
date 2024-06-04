@@ -416,38 +416,181 @@ Countly.Instance.Events.CancelEvent(eventName);</code></pre>
   session will automatically be started.<span></span>
 </p>
 <h1 id="h_01HABTZ315E40XEHJHRMQMW0J6">View Tracking</h1>
+<p>
+  In the SDK, all view-related functionality can be browsed from the returned interface
+  on:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views</code></pre>
+<p>
+  To review the resulting data from view tracking, open the dashboard and go to
+  <code>Analytics &gt; Views</code>. For more information on using view tracking
+  data to its fullest potential, click
+  <a href="https://support.count.ly/hc/en-us/articles/4431589003545-Analytics#h_01HAWAJ8QP89XMBYDBPWBPQ14C" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
 <h2 id="h_01HABTZ31504DKRD8DBNE1W400">Manual View Recording</h2>
 <p>
-  The Countly Unity SDK supports manual view (screen) tracking. With this feature,
-  you can report what views a user did and for how long. Thus, whenever there is
-  a screen switch in your app, you can report it to the Countly server by using
-  the following method:
+  The SDK provides various ways to track views. You can track a single view at
+  a given time or multiple views according to your needs. Each view has its unique
+  view ID, which can be used to manipulate the view further.
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">await Countly.Instance.Views.RecordOpenViewAsync("Home Scene");</code></pre>
+<h3 id="h_01HHNXGAJ3J8YHYDSX7J8S180R">Auto Stopped Views</h3>
+<p>
+  An easy way to track views is by using the auto-stopped views. These views would
+  stop if another view starts. You can start an auto-stopped view with or without
+  segmentation like this:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// without segmentation
+Countly.Instance.Views.StartAutoStoppedView("View Name");
+  
+// Or with segmentation
+Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("Game", "Space Invaders");
+viewSegmentation.Add("HighScore", 999999);
+viewSegmentation.Add("Accuracy", 99.99);
+viewSegmentation.Add("IsMultiplayer", false);
+viewSegmentation.Add("ResponseTime", 0.45f);
+viewSegmentation.Add("PlayerID", 2468135790L);
+
+Countly.Instance.Views.StartAutoStoppedView("View Name", viewSegmentation);</code></pre>
+<p>It would return a string view ID:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">string id = Countly.Instance.Views.StartAutoStoppedView("View Name");</code></pre>
+<h3 id="h_01HHNY1G0SVAKPH1BAKJTVVSBZ">Regular Views</h3>
+<p>
+  Opposed to auto-stopped views, with regular views, you can have multiple of them
+  started simultaneously, and then you can control them independently.
+</p>
+<p>
+  You can start a view that would not close when another view starts like this:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views.StartView("View Name");</code></pre>
 <p>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
-viewSegmentation.Add("Cats", 123);
-viewSegmentation.Add("Moons", 9.98);
-viewSegmentation.Add("Moose", "Deer");
+viewSegmentation.Add("Class", "Wizard");
+viewSegmentation.Add("Level", 42);
+viewSegmentation.Add("ManaPoints", 150.75);
+viewSegmentation.Add("HasMagicStaff", true);
+viewSegmentation.Add("CastingSpeed", 1.1f);
+viewSegmentation.Add("CharacterID", 9988776655L);
+
+Countly.Instance.Views.StartView("View Name", viewSegmentation);</code></pre>
+<p>
+  These views would also return a string view ID when they are called.
+</p>
+<h3 id="h_01HHNY9513MGDDJMP3SDWV4KWW">Stopping Views</h3>
+<p>
+  You can stop a view with its name or its view ID. To stop it with its name:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views.StopViewWithName("View Name");</code></pre>
+<p>You can provide a segmentation while doing so:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("CardName", "Spell Pierce");
+viewSegmentation.Add("ManaCost", 1);
+viewSegmentation.Add("CardValue", 3.5);
+viewSegmentation.Add("IsFoil", false);
+viewSegmentation.Add("CardPower", 0.0f);
+viewSegmentation.Add("CardID", 9876543210L);
+
+Countly.Instance.Views.StopViewWithName("View Name", viewSegmentation);</code></pre>
+<p>
+  <span>If multiple views have the same name (they would have different identifiers), but if you try to stop one with that name, the SDK will close the one that started last.</span>
+</p>
+<p>To stop a view with its view ID:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views.StopViewWithID("View ID");</code></pre>
+<p>You can provide a segmentation while doing so:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// starting view and recording view id
+string id = Countly.Instance.Views.StartAutoStoppedView("View Name");<br>
+Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("OpeningName", "Sicilian Defense");
+viewSegmentation.Add("ECOCode", "B40");
+viewSegmentation.Add("AverageGameDurationInMinutes", 45.5);
+viewSegmentation.Add("IsAggressive", true);
+viewSegmentation.Add("WinRatePercentage", 54.3f);
+viewSegmentation.Add("OpeningID", 123456789L);
+
+Countly.Instance.Views.StopViewWithID(id, viewSegmentation);</code></pre>
+<p>
+  You can also stop all running views at once with a segmentation:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("StationName", "Alpha Centauri Base");
+viewSegmentation.Add("CrewCount", 120);
+viewSegmentation.Add("DistanceFromEarth", 4.37E13);
+viewSegmentation.Add("HasArtificialGravity", true);
+viewSegmentation.Add("OrbitalPeriod", 365.25f);
+viewSegmentation.Add("StationID", 2233445566L);
   
-await Countly.Instance.Views.RecordOpenViewAsync("Better view", viewSegmentation);</code></pre>
+Countly.Instance.Views.StopAllViews(viewSegmentation);</code></pre>
+<h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Pausing and Resuming Views</h3>
 <p>
-  <span>Note: The accepted data types for the segmentation value are "String", "Integer", "Double", and "Boolean". All other types will be ignored.</span>
+  <span>If you start multiple views simultaneously, pausing some views while others continue might be necessary. You can achieve this by using the unique identifier you get when starting a view.</span>
 </p>
 <p>
-  When the screen closes you can report it to the server by using the following
-  method:
+  <span>To pause a view with its ID:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">await Countly.Instance.Views.RecordCloseViewAsync("Home Scene");</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views.PauseViewWithID("View ID");</code></pre>
+<p>To resume a view with its ID:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.Views.ResumeViewWithID("View ID");</code></pre>
+<h3 id="h_01HHNZEE94N9FH6GYZTR4A1H0M">Adding Segmentation to Started Views</h3>
 <p>
-  <span style="font-weight: 400;">To review the resulting data, open the dashboard and go to</span><span style="font-weight: 400;"> <code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
+  You can add segmentation values to a view before it ends. This can be done as
+  often as desired, and the final segmentation sent to the server will be the cumulative
+  sum of all segmentations. However, if a certain segmentation value for a specific
+  key has been updated, the latest value will be used.
 </p>
+<p>To add segmentation to a view using its view ID:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">string id = Countly.Instance.Views.StartView("View Name");
+
+Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("BookTitle", "Dune");
+viewSegmentation.Add("Author", "Frank Herbert");
+viewSegmentation.Add("PublicationYear", 1965);
+viewSegmentation.Add("NumberofPages", 412);
+viewSegmentation.Add("IsScienceFiction", true);
+viewSegmentation.Add("AverageRating", 4.35f);
+  
+Countly.Instance.Views.AddSegmentationToViewWithID(id, viewSegmentation);</code></pre>
+<p>To add segmentation to a view using its name:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">string viewName = "View Name";
+Countly.Instance.Views.StartView(viewName);
+  
+Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("FavoritePet", "Unicorn");
+viewSegmentation.Add("PetAge", 1);
+viewSegmentation.Add("PetMagicLevel", 100.0);
+viewSegmentation.Add("IsMythical", true);
+viewSegmentation.Add("HeightInMeters", 2.5f);
+viewSegmentation.Add("PetID", 1234567890L);
+  
+Countly.Instance.Views.AddSegmentationToViewWithName(viewName, viewSegmentation);</code></pre>
+<h2 id="h_01HHNZ0MAP34090BTSV1KAYD4J">Global-View Segmentation</h2>
+<p>
+  You can set a global segmentation to be sent with all views when it ends:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("DeskPlant", "Cactus");
+viewSegmentation.Add("CoffeeMugsOwned", 7);
+viewSegmentation.Add("AverageMeetingLength", 1.5);
+viewSegmentation.Add("HasOfficeDog", true);
+viewSegmentation.Add("DeskHeight", 1.2f);
+viewSegmentation.Add("EmployeeID", 1122334455L);
+
+Countly.Instance.Views.SetGlobalViewSegmentation(viewSegmentation);</code></pre>
+<p>You can update this segmentation any time you want:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; viewSegmentation = new Dictionary&lt;string, object&gt;();
+viewSegmentation.Add("FavoriteGenre", "Sci-Fi");
+viewSegmentation.Add("MoviesWatchedThisMonth", 15);
+viewSegmentation.Add("AverageRating", 4.8);
+viewSegmentation.Add("HasStreamingSubscription", true);
+viewSegmentation.Add("ScreenSize", 55.0f);
+viewSegmentation.Add("UserID", 5566778899L);
+  
+Countly.Instance.Views.UpdateGlobalViewSegmentation(viewSegmentation);</code></pre>
 <h2 id="h_01HABTZ315ECG69VS4DKTX0W2N" class="anchor-heading">Consent</h2>
 <p>
-  <span>This feature requires<code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
+  <span>This feature requires <code>Views</code> consent. No additional views will be recorded if consent is required and not given.</span>
 </p>
 <h1 id="h_01HABTZ315QACRZ219TTBZS5ZN" class="anchor-heading" tabindex="-1">Device ID Management</h1>
 <p>
