@@ -2637,8 +2637,8 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <code>widgetResult</code> object) to "report" the filled widget.
 </p>
 <p>
-  The developer would look at this:
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually</a>
+  The developer would look at
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">this</a>
   document to better understand how to interpret the widget type and data to fill
   out the <code>widgetResult</code> object. Depending on the type of the widget
   being reported this object would have different key/value pairs.
