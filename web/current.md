@@ -1006,6 +1006,54 @@ if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
   //... do something
 }
 </code></pre>
+<h1 id="h_01J0AYW920ZVG0T82DM4ABHXDJ">User Location</h1>
+<p>
+  With the SDK integrated into your website, you might want to track your user
+  location. By default, the Countly Server uses the GeoIP database to deduce a
+  user's location from the coming requests (you can check details of it from
+  <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Visitor-Profiles#h_01HBPA9VW7HRTFJSMHZBA0X9X4" target="_blank" rel="noopener noreferrer">here</a>).
+  However the SDK provides the ability to set custom locations for your users.
+</p>
+<h2 id="h_01J0AYWGFJN5H3E36F8HT59RT5">Setting Location</h2>
+<p>
+  There are 3 location parameters that can be provided with the SDK:
+</p>
+<ul>
+  <li>
+    Country code in the two-letter, ISO standard ("jp", "gr" etc.)
+  </li>
+  <li>City name ("Kyoto", "Athens" etc.)</li>
+  <li>Your user’s IP address</li>
+</ul>
+<p>
+  You can provide any of these information while initializing the SDK:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// you can directly provide the city and the country code
+Countly.city = "Tokyo";
+Countly.country_code = "jp";
+// or you can provide the ip address
+Countly.ip_address = "198.168.1.1";
+     
+// Initialize the SDK</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  app_key: "YOUR_APP_KEY",
+  url: "https://your.server.ly",
+  //  you can directly provide the city and the country code
+  city: "Tokyo",
+  country_code: "jp",
+  // or you can provide the ip address    
+  ip_address: "198.168.1.1",
+});</code></pre>
+  </div>
+</div>
 <h1 id="h_01HABTQ438V4VMNJPJF0MQECSZ">Heatmaps</h1>
 <p>
   Heatmaps feature is a web exclusive plugin that helps you to visualize user interactions
