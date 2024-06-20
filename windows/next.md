@@ -1333,46 +1333,65 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
 <h2 id="h_01HABTXQFAK87HNC49QE27H2PP">Is Windows SDK Compatible With .Net Maui</h2>
 <p>
   .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
-  native mobile and desktop apps with C# and XAML. It is compatible with .NET 6
-  runtime (or rather .NET Core 5). All .NET Core versions (2.0 and above) are compatible
-  with .NET Standard 2.0 libraries.
+  native mobile and desktop apps with C# and XAML. It is compatible with all .NET
+  Standard 2.0 libraries.
 </p>
 <p>
-  As one of our Windows SDK flavors targets '.NET Standard' you should be able
-  to use our Windows SDK in your .Net Maui applications without any hurdle.
+  One of our Windows SDK flavors targets '.NET Standard 2.0' so you should be able
+  to use our Windows SDK in your .Net Maui applications without any hurdles.
 </p>
 <p>
-  However there a couple of issues to touch upon. On .NET MAUI applications, when
-  an uncaught exception happens the <code>AppDomain.UnhandledException</code> event
-  occurs. As it is a cross-platform framework this effects the each platform you
-  target differently and each one should need. For Android applications all exceptions
-  should go through the
-  <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> event
-  instead of the <code>AppDomain.CurrentDomain.UnhandledException</code> event.
-  And for iOS and Mac Catalyst, handling of the <code>UnwindNativeCode</code> value
-  is necessary.
+  However there is a couple of issues to touch upon. On .NET MAUI applications,
+  when an uncaught exception happens, the
+  <code>AppDomain.UnhandledException</code> event occurs. As it is a cross-platform
+  framework, this affects each platform you target differently, and each one should
+  be handled manually.
 </p>
 <p>
-  So for reporting native crashes using
-  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener">this</a>
-  class in your project would provide a handler that would work on major platforms
-  with the mentioned logic. To handle uncaught exceptions correctly we catch iOS
-  and Android errors at lines
-  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener">29</a>
-  and
-  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener">40</a>
-  respectively. After catching them, we route all unhandled exceptions from different
-  platforms through
-  <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a>
-  event handler.
+  Subscriptions to the uncaught exception events should be placed after the SDK
+  initialization.
 </p>
-<p>Usage:</p>
-<pre><code class="csharp">MauiExceptions.UnhandledException += (sender, args) =&gt;
-{
- Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
+<p>
+  To catch unhandled exceptions, subscribe to the AppDomain.UnhandledException
+  event is needed:
+</p>
+<pre><code class="csharp">AppDomain.CurrentDomain.UnhandledException += async (sender, args) =&gt; {
+  var exception = (Exception)args.ExceptionObject;
+  await Countly.RecordException(exception.Message, exception.StackTrace, null, true); 
 };</code></pre>
 <p>
-  <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
+  It is also suggested to subscribe to TaskScheduler.UnobservedTaskException event:
+</p>
+<pre><code class="csharp">TaskScheduler.UnobservedTaskException += async (sender, args) =&gt; {
+  await Countly.RecordException(args.Exception.Message, args.Exception.StackTrace, null, true); 
+};</code></pre>
+<p>
+  However, some platforms need additional tweaks to handle uncaught exceptions
+</p>
+<p>For Android applications:</p>
+<pre><code class="csharp">Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser += async (sender, args) =&gt; {
+  args.Handled = true; // this is needed not to crash application 
+  await Countly.RecordException(args.Exception.Message, args.Exception.StackTrace, null, true); 
+};</code></pre>
+<p>For iOS/MacCatalyst applications:</p>
+<p>
+  This is already handled via
+  <code class="csharp">AppDomain.CurrentDomain.UnhandledException</code> but setting
+  exception mode to UnwindNativeCode is required to catch exceptions correctly
+  on iOS/MacCatalyst.
+</p>
+<pre><code class="csharp">ObjCRuntime.Runtime.MarshalManagedException += async (_, args) =&gt; {
+  args.ExceptionMode = ObjCRuntime.MarshalManagedExceptionMode.UnwindNativeCode;
+};</code></pre>
+<p>
+  If other platforms are used rather than the above ones, please make sure you
+  correctly handle uncaught exceptions for them.
+</p>
+<p>
+  A sample .NET MAUI application is implemented on the Windows SDK
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
+  page. It has basic integrations and uses Windows SDK functionalities. It also
+  has a basic handling of uncaught exceptions to give an idea.<span data-preserver-spaces="true"></span>
 </p>
 <h2 id="h_01HQJV3DV0E9NCVB7CXS8XYRCK">
   The request was aborted: Could not create SSL/TLS secure channel
