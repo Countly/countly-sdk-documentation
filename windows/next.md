@@ -1406,7 +1406,7 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
 <p>
   A sample .NET MAUI application with the SDK integration is available on the Windows
   SDK
-  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
+  <a href="https://github.com/Countly/countly-sdk-windows/blob/staging/netstd/MauiSampleApp/MauiExceptions.cs">GitHub</a>
   page. It showcases the basic Windows SDK functionalities and a sample automatic
   crash handling logic.
 </p>
