@@ -136,26 +136,32 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <h1 id="h_01HABTXQF82Z61FH639NC5FGSV">Crash Reporting</h1>
 <p>
-  <span>The Countly SDK for Windows can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span> which you may examine and resolve later on the server.</span>
+  <span>The Countly SDK for Windows can collect </span><a href="https://support.count.ly/hc/en-us/articles/4404213566105-Crashes-Errors" target="_blank" rel="noopener noreferrer">Crash Reports</a><span>,</span><span> which you may examine and resolve later on the server.</span>
 </p>
 <h2 id="h_01HABTXQF8Y0RYTXQBPQB8S4T5">Automatic Crash Handling</h2>
 <p>
-  Automatic crash handling is possible if the project type / platform target supports
-  a unhandled exception handler.
+  Windows SDK does not have a built in automatic crash handling logic as it tries
+  to be platform agnostic. However automatic crash handling is possible if the
+  project type / platform target supports an unhandled exception handler.
 </p>
 <p>
-  In that case you would subscribe to that and report the collected errors/exception
-  to the Countly SDK.
+  In that case you would subscribe to that handler and report the received crash
+  to the SDK with the handled exception method
+  <span><code class="csharp">RecordException</code></span> given below by providing
+  the <span><code>unhandled</code> parameter as <code>true</code></span>. This
+  way the crash details and device properties would be saved and sent to the server
+  on the next app launch.
 </p>
 <p>
-  Exception details and device properties would be sent on the next app launch.
+  You can check some platform specific recommendations from
+  <a href="/hc/en-us/articles/4409195031577#h_01J14B8K2JA0CX21YNCC0EWBRH" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HABTXQF8WV6H2G2XNWXNTFBT">Handled Exceptions</h2>
 <p>
-  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span><span>To log exceptions use the following code snippet:</span>
+  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span><span>To log exceptions you can use the <code class="csharp">RecordException</code> method:</span>
 </p>
 <pre><code class="csharp">Dictionary&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;{
-  { "customData", "importantStuff" }
+  { "customData", "customValue" }
 };
 
 try {
@@ -163,7 +169,7 @@ try {
 } catch (Exception ex) {
   Countly.RecordException(ex.Message, ex.StackTrace, customInfo, false);
 }</code></pre>
-<p>Here is the detail of the parameters:</p>
+<p>Parameters it takes are:</p>
 <ul>
   <li>
     <strong>error -</strong><span> A</span> string that contains a detailed description
@@ -174,22 +180,26 @@ try {
     of the call stack.
   </li>
   <li>
-    <strong>customInfo -<span> </span></strong>Custom key/values to be reported.
+    <strong>customInfo -<span> </span></strong>A Dictionary with string key/value
+    pairs to be reported with the crash.
   </li>
   <li>
-    <strong>unhandled -</strong> (bool) Set false if the error is fatal.
+    <strong>unhandled -</strong> A bool value indicating if the crash was fatal
+    or not.
   </li>
 </ul>
 <p>
-  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
+  <span>If <code>unhandled</code> is set to <code>true</code> the crash report will be saved and sent at the next app start.</span>
 </p>
-<pre><code>Countly.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
+<p>
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following shorthand method:</span>
+</p>
+<pre><code>Countly.RecordUnhandledException(ex.Message, ex.StackTrace);</code></pre>
 <h2 id="h_01HABTXQF8XYTZNNY07Z52XPDR">Crash Breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave crash breadcrumbs
-  <span>Mandatory that </span>would describe previous steps that were taken in
-  your app before the crash. After a crash happens, they will be sent together
-  with the crash report.
+  Throughout your app, you can record string values (crash breadcrumbs)
+  <span>that </span>could describe previous steps that were taken in your app before
+  the crash. After a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre><code class="csharp">Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
@@ -1322,27 +1332,10 @@ Countly.Instance.BackendMode().RecordDirectRequest(DEVICE_ID, parameters, APP_KE
 cc.SetEventQueueSizeToSend(100); // sets event queue size per device
 cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
 cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
-<h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
-<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>
+<h2 id="h_01J14B8K2JA0CX21YNCC0EWBRH">Automatic Crash Handling Recommendations</h2>
+<h3 id="h_01J14B2T8W27MFM211KBTX7H1D">.NET MAUI Applications</h3>
 <p>
-  The following description mentions data that is collected by SDK to perform their
-  functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally. For further information please have a look
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
-</p>
-<h2 id="h_01HABTXQFAK87HNC49QE27H2PP">Is Windows SDK Compatible With .Net Maui</h2>
-<p>
-  .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
-  native mobile and desktop apps with C# and XAML. It is compatible with all .NET
-  Standard 2.0 libraries.
-</p>
-<p>
-  One of our Windows SDK flavors targets '.NET Standard 2.0' so you should be able
-  to use our Windows SDK in your .Net Maui applications without any hurdles.
-</p>
-<p>
-  However there is a couple of issues to touch upon. On .NET MAUI applications,
-  when an uncaught exception happens, the
+  On .NET MAUI applications, when an uncaught exception happens, the
   <code>AppDomain.UnhandledException</code> event occurs. As it is a cross-platform
   framework, this affects each platform you target differently, and each one should
   be handled manually.
@@ -1370,7 +1363,7 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
 </p>
 <p>For Android applications:</p>
 <pre><code class="csharp">Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser += async (sender, args) =&gt; {
-  args.Handled = true; // this is needed not to crash application 
+  args.Handled = true;
   await Countly.RecordException(args.Exception.Message, args.Exception.StackTrace, null, true); 
 };</code></pre>
 <p>For iOS/MacCatalyst applications:</p>
@@ -1388,10 +1381,34 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
   correctly handle uncaught exceptions for them.
 </p>
 <p>
-  A sample .NET MAUI application is implemented on the Windows SDK
+  You can check a sample implementation from our Windows SDK
   <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
-  page. It has basic integrations and uses Windows SDK functionalities. It also
-  has a basic handling of uncaught exceptions to give an idea.<span data-preserver-spaces="true"></span>
+  page.
+</p>
+<h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
+<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>
+<p>
+  The following description mentions data that is collected by SDK to perform their
+  functions and implement the required features. Before any of it is sent to the
+  server, it is stored locally. For further information please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
+</p>
+<h2 id="h_01HABTXQFAK87HNC49QE27H2PP">Is Windows SDK Compatible With .Net Maui</h2>
+<p>
+  .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
+  native mobile and desktop apps with C# and XAML. It is compatible with all .NET
+  Standard 2.0 libraries.
+</p>
+<p>
+  One of our Windows SDK targets .NET Standard 2.0 so you should be able to use
+  our Windows SDK in your .Net Maui applications without any hurdles.
+</p>
+<p>
+  A sample .NET MAUI application with the SDK integration is available on the Windows
+  SDK
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
+  page. It showcases the basic Windows SDK functionalities and a sample automatic
+  crash handling logic.
 </p>
 <h2 id="h_01HQJV3DV0E9NCVB7CXS8XYRCK">
   The request was aborted: Could not create SSL/TLS secure channel
