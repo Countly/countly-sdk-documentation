@@ -1,6 +1,7 @@
 <p>
-  This document explains how to install Countly SDK for Windows desktop applications.
-  It applies to version 24.1.X.
+  This documentation is for the Countly Windows SDK version 24.1.X. The SDK source
+  code repository can be found
+  <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
@@ -16,18 +17,16 @@
   <ul>
     <li>.NET Standard 2.0</li>
     <li>
-      <span>.NET Framework 3.5, 4.5</span>
+      <span>.NET Framework 3.5</span>
+    </li>
+    <li>
+      <span>.NET Framework 4.5</span>
     </li>
   </ul>
 </div>
 <p>
-  The Countly GitHub page for this SDK contains also sample projects. You should
-  be able to download them to test the basic functionality of this SDK and make
-  sure you are using it correctly. In case you encounter any problems in your application,
-</p>
-<p>
-  The project page can be found
-  <a href="https://github.com/Countly/countly-sdk-windows/">here</a>
+  To examine the example integrations please have a look
+  <a href="#h_01HNFMRRC2N7DE6WB88PJ8DXA4">here.</a>
 </p>
 <h1 id="h_01HABTXQF7822Y2MQ0PHE8ARYH">Adding the SDK to the Project</h1>
 <p>
@@ -42,9 +41,7 @@
     <span>Choose "nuget.org" as the </span><strong>Package source</strong><span>, select the </span><strong>Browse</strong><span> tab, search for </span><strong>Countly</strong><span>, select that package in the list, and select </span><strong>Install</strong><span>:<img src="/guide-media/01GVCYFDE9NW6731PFC2C4BMPW" alt="mceclip0.png"></span>
   </li>
   <li>
-    <p>
-      Accept any license prompts.
-    </p>
+    <p>Accept any license prompts.</p>
   </li>
 </ol>
 <h1 id="h_01HABTXQF7MZ5YDN38PTFQ6B4K">SDK Integration</h1>
@@ -58,8 +55,8 @@
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "https://xxx.count.ly";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 cc.appVersion = "1.2.3";
 
 //initiate the SDK with your preferences
@@ -79,38 +76,10 @@ Countly.Instance.Init(cc);</code></pre>
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
-<h2 id="h_01HABTXQF7QV573QQXWM8HWVX3">SDK Logging / Debug Mode</h2>
-<p>
-  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
-  To enable logging you need to do the following two steps:
-</p>
-<p>
-  <strong>Step 1</strong>: Enable SDK logging using the following call:
-</p>
-<pre><code class="csharp hljs">    Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
-<p>You can turn it on and off in any place of your code.</p>
-<p>
-  <strong>Step 2</strong>:
-  <span>Go to project properties, select the 'Build' tab and make sure the following things are correct.</span>
-</p>
-<ul>
-  <li>Configuration: Debug</li>
-  <li>"Define DEBUG constant" is checked</li>
-</ul>
-<p>
-  <img src="/guide-media/01GVCPMRRT2Q54RB6JHN86D4C0" alt="mceclip1.png">
-</p>
-<p>
-  Log messages written in the application will show up in 'Output' windows.
-</p>
-<p>
-  <img src="/guide-media/01GVBACGEX9MG9X2GKY88G83GS" alt="mceclip4.png">
-</p>
 <h2 id="h_01HABTXQF79D0GQFAPY6K8C37H">SDK Data Storage</h2>
 <p>
   Cached requests and other SDK relevant information is stored in files in a named
-  folder. All platform targets except .net40 call that folder "countly", .net40
-  calls that folder "countly_data".
+  folder. All platform targets call that folder "countly".
 </p>
 <p>
   All platform targets except .net35 will use
@@ -134,34 +103,65 @@ Countly.Instance.Init(cc);</code></pre>
 {
   serverUrl = "SERVER_URL",
   appKey = "APP_KEY",
-  appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   appVersion = "1.2.3",
-  application = referenceToApplication //provide link to your application
 };
 
 await Countly.Instance.Init(cc);</code></pre>
+<h1 id="h_01HABTXQF7QV573QQXWM8HWVX3">SDK Logging / Debug Mode</h1>
+<p>
+  <span>The first thing you should do while integrating our SDK is to enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encounter problems.</span>
+  To enable logging you need to do the following two steps:
+</p>
+<p>
+  <strong>Step 1</strong>: Enable SDK logging using the following call:
+</p>
+<pre><code class="csharp hljs">Countly.IsLoggingEnabled = <span class="hljs-literal">true</span>;</code></pre>
+<p>You can turn it on and off in any place of your code.</p>
+<p>
+  <strong>Step 2</strong>:
+  <span>Go to project properties, select the 'Build' tab and make sure the following things are correct.</span>
+</p>
+<ul>
+  <li>Configuration: Debug</li>
+  <li>"Define DEBUG constant" is checked</li>
+</ul>
+<p>
+  <img src="/guide-media/01GVCPMRRT2Q54RB6JHN86D4C0" alt="mceclip1.png">
+</p>
+<p>
+  Log messages written in the application will show up in 'Output' windows.
+</p>
+<p>
+  <img src="/guide-media/01GVBACGEX9MG9X2GKY88G83GS" alt="mceclip4.png">
+</p>
 <h1 id="h_01HABTXQF82Z61FH639NC5FGSV">Crash Reporting</h1>
 <p>
-  <span>The Countly SDK for Windows can collect </span><a href="http://resources.count.ly/docs/introduction-to-crash-reporting-and-analytics"><span>Crash Reports</span></a><span>,</span><span> which you may examine and resolve later on the server.</span>
+  <span>The Countly SDK for Windows can collect </span><a href="https://support.count.ly/hc/en-us/articles/4404213566105-Crashes-Errors" target="_blank" rel="noopener noreferrer">Crash Reports</a><span>,</span><span> which you may examine and resolve later on the server.</span>
 </p>
 <h2 id="h_01HABTXQF8Y0RYTXQBPQB8S4T5">Automatic Crash Handling</h2>
 <p>
-  Automatic crash handling is possible if the project type / platform target supports
-  a unhandled exception handler.
+  Windows SDK does not have a built in automatic crash handling logic as it tries
+  to be platform agnostic. However automatic crash handling is possible if the
+  project type / platform target supports an unhandled exception handler.
 </p>
 <p>
-  In that case you would subscribe to that and report the collected errors/exception
-  to the Countly SDK.
+  In that case you would subscribe to that handler and report the received crash
+  to the SDK with the handled exception method
+  <span><code class="csharp">RecordException</code></span> given below by providing
+  the <span><code>unhandled</code> parameter as <code>true</code></span>. This
+  way the crash details and device properties would be saved and sent to the server
+  on the next app launch.
 </p>
 <p>
-  Exception details and device properties would be sent on the next app launch.
+  You can check some platform specific recommendations from
+  <a href="/hc/en-us/articles/4409195031577#h_01J14B8K2JA0CX21YNCC0EWBRH" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HABTXQF8WV6H2G2XNWXNTFBT">Handled Exceptions</h2>
 <p>
-  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span><span>To log exceptions use the following code snippet:</span>
+  <span>You might catch an exception or similar error during your app’s runtime. </span><span>You may also log these handled exceptions to monitor how and when they are happening. </span><span>To log exceptions you can use the <code class="csharp">RecordException</code> method:</span>
 </p>
 <pre><code class="csharp">Dictionary&lt;string, string&gt; customInfo = new Dictionary&lt;string, string&gt;{
-  { "customData", "importantStuff" }
+  { "customData", "customValue" }
 };
 
 try {
@@ -169,7 +169,7 @@ try {
 } catch (Exception ex) {
   Countly.RecordException(ex.Message, ex.StackTrace, customInfo, false);
 }</code></pre>
-<p>Here is the detail of the parameters:</p>
+<p>Parameters it takes are:</p>
 <ul>
   <li>
     <strong>error -</strong><span> A</span> string that contains a detailed description
@@ -180,22 +180,26 @@ try {
     of the call stack.
   </li>
   <li>
-    <strong>customInfo -<span> </span></strong>Custom key/values to be reported.
+    <strong>customInfo -<span> </span></strong>A Dictionary with string key/value
+    pairs to be reported with the crash.
   </li>
   <li>
-    <strong>unhandled -</strong> (bool) Set false if the error is fatal.
+    <strong>unhandled -</strong> A bool value indicating if the crash was fatal
+    or not.
   </li>
 </ul>
 <p>
-  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
+  <span>If <code>unhandled</code> is set to <code>true</code> the crash report will be saved and sent at the next app start.</span>
 </p>
-<pre><code><strong>Countly</strong>.RecordUnhandledException(ex.Message, ex.StackTrace, customInfo, true);</code></pre>
+<p>
+  <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following shorthand method:</span>
+</p>
+<pre><code>Countly.RecordUnhandledException(ex.Message, ex.StackTrace);</code></pre>
 <h2 id="h_01HABTXQF8XYTZNNY07Z52XPDR">Crash Breadcrumbs</h2>
 <p>
-  Throughout your app, you can leave crash breadcrumbs
-  <span>Mandatory that </span>would describe previous steps that were taken in
-  your app before the crash. After a crash happens, they will be sent together
-  with the crash report.
+  Throughout your app, you can record string values (crash breadcrumbs)
+  <span>that </span>could describe previous steps that were taken in your app before
+  the crash. After a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
 <pre><code class="csharp">Countly.Instance.AddCrashBreadCrumb("breadcrumb");</code></pre>
@@ -429,8 +433,8 @@ Countly.Instance.SessionUpdate(elapsedTime);</code></pre>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 cc.appVersion = "1.2.3";
 cc.developerProvidedDeviceId = "use@email.com";
 
@@ -440,6 +444,13 @@ Countly.Instance.Init(cc);</code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
 <pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", true);</code></pre>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
@@ -566,7 +577,7 @@ Countly.Instance.DisableLocation();</code></pre>
 <pre><code class="csharp">// set name to John
 Countly.UserDetails.Name = "John";
 // remove name
-Countly.UserDetails.Name = "null";</code></pre>
+Countly.UserDetails.Name = null;</code></pre>
 <h2 id="h_01HABTXQFAE25QX52WCAG0Y15M">Setting Custom Values</h2>
 <p>
   The SDK gives you the flexibility to send only the custom data to Countly servers,
@@ -602,8 +613,8 @@ Countly.UserDetails.Name = "null";</code></pre>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 
 //enable consent
 cc.consentRequired = true;
@@ -642,8 +653,8 @@ Countly.Instance.Init(cc);</code></pre>
 </p>
 <pre><code class="csharp">//create the Countly init object
 CountlyConfig cc = new CountlyConfig();
-cc.serverUrl = "http://YOUR_SERVER";
-cc.appKey = "YOUR_APP_KEY";
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
 
 //enable consent
 cc.consentRequired = true;
@@ -686,30 +697,147 @@ Countly.Instance.SetConsent(consent);</code></pre>
 <p>
   <span><strong>sessionUpdateInterval -</strong> (Optional, int) Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong> 60 </strong>(seconds).</span>
 </p>
+<h2 id="h_01HNFMRRC2N7DE6WB88PJ8DXA4">Example Integrations</h2>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35">net35</a>
+  solution contains 3 project that are implemented with Net Framework 3.5<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlySample">CountlySample</a>
+  project is a console application that covers most of the functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlySampleWindowsForm">CountlySampleWindowsForm</a>
+  project is a Windows Form application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net35/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45">net45</a>
+  solution contains 6 project that are implemented with Net Framework 4.5<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleAspNet">CountlySampleAspNet</a>
+  project is a AspNet application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleAspNetMVC">CountlySampleAspNetMVC</a>
+  project is a AspNet MVC application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleWPF">CountlySampleWPF</a>
+  project is a WPF application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/countlySampleConsole">countlySampleConsole</a>
+  project is a console application that covers most of the functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlySampleWIndowsForm">CountlySampleWindowsForm</a>
+  project is a Windows Form application that covers basic<br>
+  functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/net45/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode.
+</p>
+<p>
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd">netstd</a>
+  solution contains 5 project that are implemented with Net Standard 2.0<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlySampleWPF">CountlySampleWPF</a>
+  project is a WPF application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlySampleUWP">CountlySampleUWP</a>
+  project is a UWP application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/CountlyTestBackendMode">CountlyTestBackendMode</a>
+  project is a Windows Form application that covers events in<br>
+  Backend Mode<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">MauiSampleApp</a>
+  project is a MAUI application that covers basic functionalities.<br>
+  -
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleAppNativeIntegrations">MauiSampleAppNativeIntegrations</a>
+  projects is a MAUI application demonstration of native crash reporting
+</p>
 <h2 id="h_01HABTXQFAHAQTRDWQ0YVM3VX4">SDK Internal Limits</h2>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
   limits. If values or keys provided by the user, would exceed the limits, they
-  would be truncated. Here are the details of these configurable fields:
+  would be truncated.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">Here</a> are the
+  details of these configurable fields.
 </p>
+<h3 id="h_01HRYGE4SVQTQGPZNQW88RZ68W">Key Length</h3>
 <p>
   <span><strong>MaxKeyLength - </strong>(int) Maximum size of all string keys. The default value is <strong>128</strong>. </span>
 </p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxKeyLength = 128;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGG05DWD8GN6DP0FPJZS7C">Value Size</h3>
 <p>
-  <span><strong>MaxValueLength - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>. </span>
+  <span><strong>MaxValueSize - </strong>(int) Maximum size of all values in our key-value pairs. The default value is <strong>256</strong>. </span>
 </p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxValueSize = 128;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGG6JJA3GET646JG6ZG1TY">Segmentation Values</h3>
 <p>
-  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>256</strong>. </span>
+  <span><strong>MaxSegmentationValues - </strong>(int) Max amount of custom (dev provided) segmentation in one event. The default value is <strong>100</strong>.</span>
 </p>
-<p>
-  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>. </span>
-</p>
-<p>
-  <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
-</p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxSegmentationValues = 23;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGGCS3YXJRTHJ9VSXDZC4V">Breadcrumb Count</h3>
 <p>
   <span><strong>MaxBreadcrumbCount - </strong>(int)maximum amount of breadcrumbs. The default value is <strong>100</strong>.</span>
 </p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxBreadcrumbCount = 50;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGGKF4V42JA2YNZ1G1CTXE">Stack Trace Lines Per Thread</h3>
+<p>
+  <span><strong>MaxStackTraceLinesPerThread - </strong>(int) Limits how many stack trace lines would be recorded per thread. The default value is <strong>30</strong>.</span>
+</p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxStackTraceLinesPerThread = 10;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
+<h3 id="h_01HRYGGQYXB8K231ZB22G7VCSP">Stack Trace Line Length</h3>
+<p>
+  <span><strong>MaxStackTraceLineLength - </strong>(int) Limits how many characters are allowed per stack trace line. The default value is <strong>200</strong>.</span>
+</p>
+<pre><code class="csharp">//create the Countly init object
+CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "YOUR_SERVER_URL";
+cc.appKey = "YOUR_APP_KEY";
+cc.MaxStackTraceLineLength = 128;
+
+//initiate the SDK with your preferences
+Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HJT9W4R283JCJNXZJM0C42VQ">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 24.1.0.</p>
@@ -1204,91 +1332,100 @@ Countly.Instance.BackendMode().RecordDirectRequest(DEVICE_ID, parameters, APP_KE
 cc.SetEventQueueSizeToSend(100); // sets event queue size per device
 cc.SetBackendModeAppEQSizeToSend(1000): // sets event queue size per app
 cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server</code></pre>
+<h2 id="h_01J14B8K2JA0CX21YNCC0EWBRH">Automatic Crash Handling Recommendations</h2>
+<h3 id="h_01J14B2T8W27MFM211KBTX7H1D">.NET MAUI Applications</h3>
+<p>
+  On .NET MAUI applications, when an uncaught exception happens, the
+  <code>AppDomain.UnhandledException</code> event occurs. As it is a cross-platform
+  framework, this affects each platform you target differently, and each one should
+  be handled manually.
+</p>
+<p>
+  Subscriptions to the uncaught exception events should be placed after the SDK
+  initialization.
+</p>
+<p>
+  To catch unhandled exceptions, subscribe to the AppDomain.UnhandledException
+  event is needed:
+</p>
+<pre><code class="csharp">AppDomain.CurrentDomain.UnhandledException += async (sender, args) =&gt; {
+  var exception = (Exception)args.ExceptionObject;
+  await Countly.RecordException(exception.Message, exception.StackTrace, null, true); 
+};</code></pre>
+<p>
+  It is also suggested to subscribe to TaskScheduler.UnobservedTaskException event:
+</p>
+<pre><code class="csharp">TaskScheduler.UnobservedTaskException += async (sender, args) =&gt; {
+  await Countly.RecordException(args.Exception.Message, args.Exception.StackTrace, null, true); 
+};</code></pre>
+<p>
+  However, some platforms need additional tweaks to handle uncaught exceptions
+</p>
+<p>For Android applications:</p>
+<pre><code class="csharp">Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser += async (sender, args) =&gt; {
+  args.Handled = true;
+  await Countly.RecordException(args.Exception.Message, args.Exception.StackTrace, null, true); 
+};</code></pre>
+<p>For iOS/MacCatalyst applications:</p>
+<p>
+  This is already handled via
+  <code class="csharp">AppDomain.CurrentDomain.UnhandledException</code> but setting
+  exception mode to UnwindNativeCode is required to catch exceptions correctly
+  on iOS/MacCatalyst.
+</p>
+<pre><code class="csharp">ObjCRuntime.Runtime.MarshalManagedException += async (_, args) =&gt; {
+  args.ExceptionMode = ObjCRuntime.MarshalManagedExceptionMode.UnwindNativeCode;
+};</code></pre>
+<p>
+  If other platforms are used rather than the above ones, please make sure you
+  correctly handle uncaught exceptions for them.
+</p>
+<p>
+  You can check a sample implementation from our Windows SDK
+  <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
+  page.
+</p>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
-<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK</h2>
+<h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>
 <p>
   The following description mentions data that is collected by SDK to perform their
   functions and implement the required features. Before any of it is sent to the
-  server, it is stored locally.
-</p>
-<p>
-  *When sending any network requests to the server, the following things are sent
-  in addition to the main data:<br>
-  - Timestamp of when the request is created<br>
-  - Current hour<br>
-  - Current day of week<br>
-  - Current timezone<br>
-  - SDK version<br>
-  - SDK name
-</p>
-<p>
-  * If sessions are used then it would record the session start time, end time,
-  and duration
-</p>
-<p>
-  * If sessions are used then also device metrics are collected which contains:<br>
-  - Screen resolution<br>
-  - Screen density<br>
-  - OS name<br>
-  - OS version<br>
-  - App version<br>
-  <span>- Locale identifier</span>
-</p>
-<p>
-  * When events are recorded, the following information collected:<br>
-  - Time of event<br>
-  - Current hour<br>
-  - Current day of week
-</p>
-<p>
-  <span>* If crash tracking is enabled, it will collect the following information at the time of the crash:<br>- OS name<br>- OS version</span><br>
-  <span>- Device resolution<br>- App version<br>- Time of the crash<br>- Crash stack trace<br>- Error description<br>- Total RAM</span><br>
-  <span>- If there is a network connection<br></span>
-</p>
-<p>
-  <span>Any other information like data in events, location, user profile information, or other manual requests depends on what the developer decides to provide and is not collected by the SDK itself.</span>
+  server, it is stored locally. For further information please have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
 </p>
 <h2 id="h_01HABTXQFAK87HNC49QE27H2PP">Is Windows SDK Compatible With .Net Maui</h2>
 <p>
   .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating
-  native mobile and desktop apps with C# and XAML. It is compatible with .NET 6
-  runtime (or rather .NET Core 5). All .NET Core versions (2.0 and above) are compatible
-  with .NET Standard 2.0 libraries.
+  native mobile and desktop apps with C# and XAML. It is compatible with all .NET
+  Standard 2.0 libraries.
 </p>
 <p>
-  As one of our Windows SDK flavors targets '.NET Standard' you should be able
-  to use our Windows SDK in your .Net Maui applications without any hurdle.
+  One of our Windows SDK targets .NET Standard 2.0 so you should be able to use
+  our Windows SDK in your .Net Maui applications without any hurdles.
 </p>
 <p>
-  However there a couple of issues to touch upon. On .NET MAUI applications, when
-  an uncaught exception happens the <code>AppDomain.UnhandledException</code> event
-  occurs. As it is a cross-platform framework this effects the each platform you
-  target differently and each one should need. For Android applications all exceptions
-  should go through the
-  <code>Android.Runtime.AndroidEnvironment.UnhandledExceptionRaiser</code> event
-  instead of the <code>AppDomain.CurrentDomain.UnhandledException</code> event.
-  And for iOS and Mac Catalyst, handling of the <code>UnwindNativeCode</code> value
-  is necessary.
+  A sample .NET MAUI application with the SDK integration is available on the Windows
+  SDK
+  <a href="https://github.com/Countly/countly-sdk-windows/blob/staging/netstd/MauiSampleApp/MauiExceptions.cs">GitHub</a>
+  page. It showcases the basic Windows SDK functionalities and a sample automatic
+  crash handling logic.
+</p>
+<h2 id="h_01HQJV3DV0E9NCVB7CXS8XYRCK">
+  The request was aborted: Could not create SSL/TLS secure channel
+</h2>
+<p>
+  For .NET Framework 4.5 and older versions, the default protocols are SSL 3.0
+  and TLS 1.0.<br>
+  When working with those .NET versions, WebRequests are created with default protocols.
+  However, because TLS 1.1 is not supported and TLS 1.2 is forced to be used, the
+  protocol should be overridden:
+</p>
+<pre><code class="csharp"></code>ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;</pre>
+<p>
+  Before initialization of the Countly Windows SDK, this should be overridden like
+  above.
 </p>
 <p>
-  So for reporting native crashes using
-  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7" target="_blank" rel="noopener">this</a>
-  class in your project would provide a handler that would work on major platforms
-  with the mentioned logic. To handle uncaught exceptions correctly we catch iOS
-  and Android errors at lines
-  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L29" target="_blank" rel="noopener">29</a>
-  and
-  <a class="editor-rtfLink" href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L40" target="_blank" rel="noopener">40</a>
-  respectively. After catching them, we route all unhandled exceptions from different
-  platforms through
-  <a href="https://gist.github.com/mattjohnsonpint/7b385b7a2da7059c4a16562bc5ddb3b7#file-mauiexceptions-cs-L8" target="_self">this</a>
-  event handler.
-</p>
-<p>Usage:</p>
-<pre><code class="csharp">MauiExceptions.UnhandledException += (sender, args) =&gt;
-{
- Countly.RecordException(args.ExceptionObject.ToString(), null, null, true).Wait();
-};</code></pre>
-<p>
-  <span data-preserver-spaces="true">Windows SDK <a href="https://github.com/Countly/countly-sdk-windows/" target="_self">GitHub</a> page contains a sample project to test the basic functionality.</span>
+  <a href="https://stackoverflow.com/questions/2859790/the-request-was-aborted-could-not-create-ssl-tls-secure-channel">Here</a>
+  are the detailed explanations and further discussions about the issue.
 </p>
