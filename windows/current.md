@@ -154,7 +154,7 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <p>
   You can check some platform specific recommendations from
-  <a href="/hc/en-us/articles/4409195031577#h_01J14B8K2JA0CX21YNCC0EWBRH" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="#h_01J14B8K2JA0CX21YNCC0EWBRH" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HABTXQF8WV6H2G2XNWXNTFBT">Handled Exceptions</h2>
 <p>
