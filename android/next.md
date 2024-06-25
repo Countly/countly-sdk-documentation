@@ -137,9 +137,9 @@
 <pre><code class="java">Countly.sharedInstance().crashes().recordUnhandledException(Exception exception);</code></pre>
 <h2 id="h_01HAVQDM5S4VR5M3H2GCMCY8S8">Crash Breadcrumbs</h2>
 <p>
-  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
-  previous steps that were taken in your app before the crash. After a crash happens,
-  they will be sent together with the crash report.
+  Throughout your app you can leave crash breadcrumbs which would describe previous
+  steps that were taken in your app before the crash. After a crash happens, they
+  will be sent together with the crash report.
 </p>
 <p>Following the command adds crash breadcrumb:</p>
 <pre><code class="java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
@@ -229,7 +229,7 @@
   </p>
 </div>
 <p>
-  <span style="font-weight: 400;">Countly uses&nbsp;</span><a href="https://github.com/google/breakpad"><span style="font-weight: 400;">Google's Breakpad open source library</span></a><span style="font-weight: 400;">&nbsp;to be able to report crashes that occurred within the C++ components of your application, assuming there are any. Breakpad provides:</span>
+  <span style="font-weight: 400;">Countly uses </span><a href="https://github.com/google/breakpad"><span style="font-weight: 400;">Google's Breakpad open source library</span></a><span style="font-weight: 400;"> to be able to report crashes that occurred within the C++ components of your application, assuming there are any. Breakpad provides:</span>
 </p>
 <ul>
   <li>
@@ -466,6 +466,7 @@ plugins {
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().events()</code></pre>
+<p>&nbsp;</p>
 <p>
   When providing segmentation for events, the following primitive data types are
   supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays,
@@ -510,25 +511,46 @@ plugins {
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99, 60);</code></pre>
 <p>
@@ -662,12 +684,18 @@ config.enableManualSessionControlHybridMode();</code></pre>
 Countly.sharedInstance().views().startAutoStoppedView("View Name");
   
 // Or with segmentation
-Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().startAutoStoppedView("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().startAutoStoppedView("View Name", segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">It would return a string view ID:</span>
 </p>
@@ -685,12 +713,18 @@ Countly.sharedInstance().views().startAutoStoppedView("View Name", viewSegmentat
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().startView("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().startView("View Name", segmentation);</code></pre>
 <p>
   These views would also return a string view ID when they are called.
 </p>
@@ -700,12 +734,18 @@ Countly.sharedInstance().views().startView("View Name", viewSegmentation);</code
 </p>
 <pre>Countly.sharedInstance().views().stopViewWithName("View Name");</pre>
 <p>You can provide a segmentation while doing so:</p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().stopViewWithName("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().stopViewWithName("View Name", segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;"><span>If there are multiple views with the same name (they would have different identifiers) but if you try to stop one with that name the SDK would close one of those randomly.</span></span>
 </p>
@@ -716,21 +756,33 @@ Countly.sharedInstance().views().stopViewWithName("View Name", viewSegmentation)
 <p>
   <span style="font-weight: 400;">You can provide a segmentation while doing so:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().stopViewWithID("View ID", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().stopViewWithID("View ID", segmentation);</code></pre>
 <p>
   You can also stop all running views at once with a segmentation:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().stopAllViews(viewSegmentation);</code></pre>
+Countly.sharedInstance().views().stopAllViews(segmentation);</code></pre>
 <h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Pausing and Resuming Views</h3>
 <p>
   <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
@@ -752,43 +804,67 @@ Countly.sharedInstance().views().stopAllViews(viewSegmentation);</code></pre>
 </p>
 <pre><code class="java">String viewID = Countly.sharedInstance().views().startView("View Name");
 
-Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().addSegmentationToViewWithID(viewID, viewSegmentation);</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithID(viewID, segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To add segmentation to a view using its name:</span>
 </p>
 <pre><code class="java">String viewName = "View Name";
 Countly.sharedInstance().views().startView(viewName);
   
-Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().addSegmentationToViewWithName(viewName, viewSegmentation);</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithName(viewName, segmentation);</code></pre>
 <h2 id="h_01HHNZ0MAP34090BTSV1KAYD4J">Global View Segmentation</h2>
 <p>
   <span style="font-weight: 400;">You can set a global segmentation to be send with all views when it ends:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().setGlobalViewSegmentation(viewSegmentation);<br></code></pre>
+Countly.sharedInstance().views().setGlobalViewSegmentation(segmentation);<br></code></pre>
 <p>
   <span style="font-weight: 400;">You can update this segmentation any time you want:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().updateGlobalViewSegmentation(viewSegmentation);</code></pre>
+Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
