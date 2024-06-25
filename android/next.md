@@ -466,10 +466,11 @@ plugins {
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().events()</code></pre>
-<p>&nbsp;</p>
 <p>
-  When providing segmentation for events, the only valid data types are: "String",
-  "Integer", "Double" and "Boolean". All other types will be ignored.
+  When providing segmentation for events, the following primitive data types are
+  supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays,
+  Lists, and JSONArrays composed of these primitive types are also supported. Please
+  note that no other data types will be recorded.
 </p>
 <h2 id="h_01HAVQDM5TT3KRX8YBCCFZ8RKG">Recording Events</h2>
 <p>
