@@ -466,37 +466,40 @@ plugins {
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().events()</code></pre>
-<p>&nbsp;</p>
 <p>
   When providing segmentation for events, the following primitive data types are
   supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays,
   Lists, and JSONArrays composed of these primitive types are also supported. Please
   note that no other data types will be recorded.
 </p>
+<div class="callout callout--warning">
+  <p>
+    In version <strong>24.4.2</strong>, support for Array, List, and JSONArray
+    has been added. Previous versions do not include this functionality.
+  </p>
+</div>
 <h2 id="h_01HAVQDM5TT3KRX8YBCCFZ8RKG">Recording Events</h2>
 <p>
-  <span style="font-weight: 400;">We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span style="font-weight: 400;">&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
+  <span style="font-weight: 400;">We have provided an example of recording a </span><strong>purchase</strong><span style="font-weight: 400;"> event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
 <ul>
   <li>
-    Usage 1: how many times the&nbsp;<strong>purchase</strong> event occurred.
+    Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times the&nbsp;<strong>purchase</strong> event occurred
-    + the total amount of those purchases.
+    Usage 2: how many times the <strong>purchase</strong> event occurred + the
+    total amount of those purchases.
   </li>
   <li>
-    Usage 3: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +
+    Usage 3: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
   <li>
-    Usage 4: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +&nbsp;<span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
+    Usage 4: how many times the <strong>purchase</strong> event occurred +
+    <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
   <li>
-    Usage 5: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +
+    Usage 5: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
