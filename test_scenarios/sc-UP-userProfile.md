@@ -38,7 +38,7 @@
         Countly.instance.userProfile.setProperty('a12345', '3');
         Countly.instance.userProfile.setProperty('a12345', '4');
 
-## 200_CNR_A
+## 200_CNR_A
     Init SDK
     sendUserProperty
     sendUserData
@@ -51,7 +51,7 @@
 ## 202_CR_CNG_A
     same as 100 but there should be no request
 
-## 203_CNR_A_events
+## 203_CNR_A_events
     Init SDK
     RecordBasicEvent A
     RecordBasicEvent B
@@ -107,7 +107,7 @@
     Check event queue:
         - Event D
 
-## 208_CR_CG_M
+## 208_CR_CG_M
     same as 207
     Check requests queue:
         - Begin session
@@ -122,10 +122,10 @@
     Check event queue:
         -
 
-## 209_CR_CNG_M 
+## 209_CR_CNG_M 
     same as 207 but no there should be no request
 
-## 210_CNR_M_duration
+## 210_CNR_M_duration
     Init SDK with session update 5 secs
     sendUserData
     wait 6 secs
