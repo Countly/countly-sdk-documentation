@@ -1,41 +1,42 @@
-M:Manual Sessions enabled
-A:Automatic sessions enabled
-H:Hybrid Sessions enabled
-CR:Consent Required
-CNR:Consent not Required
-CG:Consent given (All)
-CNG:Consent not given (All)
-sendUserProperty:
- Map<String, Object> userProperties = {
-    'name': 'Nicola Tesla',
-    'username': 'nicola',
-    'email': 'info@nicola.tesla',
-    'organization': 'Trust Electric Ltd',
-    'phone': '+90 822 140 2546',
-    'picture': 'http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg',
-    'picturePath': '',
-    'gender': 'M',
-    'byear': 1919,
-    'special_value': 'something special',
-    'not_special_value': 'something special cooking'
-  };
- Countly.instance.userProfile.setUserProperties(userProperties);
-sendUserData:
- Countly.instance.userProfile.setProperty('a12345', 'My Property');
- Countly.instance.userProfile.increment('b12345');
- Countly.instance.userProfile.incrementBy('c12345', 10);
- Countly.instance.userProfile.multiply('d12345', 20);
- Countly.instance.userProfile.saveMax('e12345', 100);
- Countly.instance.userProfile.saveMin('f12345', 50);
- Countly.instance.userProfile.setOnce('g12345', '200');
- Countly.instance.userProfile.pushUnique('h12345', 'morning');
- Countly.instance.userProfile.push('i12345', 'morning');
- Countly.instance.userProfile.pull('k12345', 'morning');
-sendSameData:
- Countly.instance.userProfile.setProperty('a12345', '1');
- Countly.instance.userProfile.setProperty('a12345', '2');
- Countly.instance.userProfile.setProperty('a12345', '3');
- Countly.instance.userProfile.setProperty('a12345', '4');
+## Init options
+    M:Manual Sessions enabled
+    A:Automatic sessions enabled
+    H:Hybrid Sessions enabled
+    CR:Consent Required
+    CNR:Consent not Required
+    CG:Session Consent given
+    CNG:Session Consent not given
+    sendUserProperty:
+        Map<String, Object> userProperties = {
+            'name': 'Nicola Tesla',
+            'username': 'nicola',
+            'email': 'info@nicola.tesla',
+            'organization': 'Trust Electric Ltd',
+            'phone': '+90 822 140 2546',
+            'picture': 'http://images2.fanpop.com/images/photos/3300000/Nikola-Tesla-nikola-tesla-3365940-600-738.jpg',
+            'picturePath': '',
+            'gender': 'M',
+            'byear': 1919,
+            'special_value': 'something special',
+            'not_special_value': 'something special cooking'
+        };
+        Countly.instance.userProfile.setUserProperties(userProperties);
+    sendUserData:
+        Countly.instance.userProfile.setProperty('a12345', 'My Property');
+        Countly.instance.userProfile.increment('b12345');
+        Countly.instance.userProfile.incrementBy('c12345', 10);
+        Countly.instance.userProfile.multiply('d12345', 20);
+        Countly.instance.userProfile.saveMax('e12345', 100);
+        Countly.instance.userProfile.saveMin('f12345', 50);
+        Countly.instance.userProfile.setOnce('g12345', '200');
+        Countly.instance.userProfile.pushUnique('h12345', 'morning');
+        Countly.instance.userProfile.push('i12345', 'morning');
+        Countly.instance.userProfile.pull('k12345', 'morning');
+    sendSameData:
+        Countly.instance.userProfile.setProperty('a12345', '1');
+        Countly.instance.userProfile.setProperty('a12345', '2');
+        Countly.instance.userProfile.setProperty('a12345', '3');
+        Countly.instance.userProfile.setProperty('a12345', '4');
 
 ## 200_CNR_A
   Init SDK
