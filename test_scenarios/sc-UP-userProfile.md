@@ -75,7 +75,7 @@
 ## 205_CR_CG_A
     same as 203
 
-## 206_CR_CNG_A
+## 206_CR_CNG_A
     same as 203 but there should be no request
 
 ## 207_CNR_M
