@@ -10,29 +10,29 @@
 ## Manuals
 
 ## 200_CR_CG_M
-        endSession();
-        endSession();
-        updateSession();
-        updateSession();
-            wait (seconds: 2);
-        beginSession();
-            wait (seconds: 2);
-        beginSession();
-        updateSession();
-            wait(seconds: 2);
-        updateSession();
-            wait(seconds: 2));
-        endSession();
-            wait(seconds: 2));
-        endSession();
-        updateSession();
-        updateSession();
-        Check request queue and verify in this order:
-        1. 5 reqs only
-        2. 1 consent status req
-        3. 1 begin session req
-        4. 2 session update reqs with duration 2 seconds
-        5. 1 end session req with duration 2 secs
+      endSession();
+      endSession();
+      updateSession();
+      updateSession();
+        wait (seconds: 2);
+      beginSession();
+        wait (seconds: 2);
+      beginSession();
+      updateSession();
+        wait(seconds: 2);
+      updateSession();
+        wait(seconds: 2));
+      endSession();
+        wait(seconds: 2));
+      endSession();
+      updateSession();
+      updateSession();
+      Check request queue and verify in this order:
+      1. 5 reqs only
+      2. 1 consent status req
+      3. 1 begin session req
+      4. 2 session update reqs with duration 2 seconds
+      5. 1 end session req with duration 2 secs
 
 ## 201_CNR_M
         Same as 200_CR_CG_M except:
