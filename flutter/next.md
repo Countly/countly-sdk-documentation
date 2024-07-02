@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 24.4.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 24.7.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -25,7 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^24.4.0
+  countly_flutter: ^24.7.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -228,26 +228,30 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   Here are the detail about properties which we can use with event:
 </p>
 <ul>
-  <li>
-    <code>key</code> identifies the event.
-  </li>
-  <li>
-    <code>count</code> is the number of times this event occurred.
-  </li>
-  <li>
-    <code>sum</code> is an overall numerical data set tied to an event. For example,
-    total amount of in-app purchase event.
-  </li>
-  <li>
-    <code class="dart">duration</code> is used to record and track the duration
-    of events.
-  </li>
-  <li>
-    <code>segmentation</code> is a key-value pairs, we can use
-    <code>segmentation</code> to track additional information. The only valid
-    data types are: "String", "Integer", "Double" and "Boolean". All other types
-    will be ignored.
-  </li>
+  <ul>
+    <li>
+      <code>key</code> identifies the event.
+    </li>
+    <li>
+      <code>count</code> is the number of times this event occurred.
+    </li>
+    <li>
+      <code>sum</code> is an overall numerical data set tied to an event. For
+      example, total amount of in-app purchase event.
+    </li>
+    <li>
+      <code class="dart">duration</code> is used to record and track the duration
+      of events.
+    </li>
+    <li>
+      <code>segmentation</code> is a key-value pairs, we can use
+      <code>segmentation</code> to track additional information. The only valid
+      data types are: "String", "Integer", "Double", "Boolean" and "List".
+      All other types will be ignored. In version <strong>24.7.0</strong>,
+      support for List has been added. Previous versions do not have "List"
+      support.
+    </li>
+  </ul>
 </ul>
 <div class="callout callout--info">
   <strong>Data passed should be in UTF-8</strong>
@@ -315,8 +319,14 @@ var event = {
 };
 
 event["segmentation"] = {
-  "Country": "Germany",
-  "Age": "28"
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 Countly.recordEvent(event);
@@ -332,8 +342,14 @@ var event = {
 };
 
 event["segmentation"] = {
-  "Country": "Germany",
-  "Age": "28"
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 Countly.recordEvent(event);
@@ -350,8 +366,14 @@ var event = {
 };
 
 event["segmentation"] = {
-  "Country": "Germany",
-  "Age": "28"
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 Countly.recordEvent(event);
@@ -392,8 +414,14 @@ Timer timer = Timer(new Duration(seconds: 5), () {
     "count": 1,
   };
   event["segmentation"] = {
-    "Country": "Germany",
-    "Age": "28"
+    "country": "Germany",
+    "app_version": "1.0",
+    "rating": 10,
+    "precision": 324.54678,
+    "timestamp": 1234567890,
+    "clicked": false,
+    "languages": ["en", "de", "fr"],
+    "sub_names": ["John", "Doe", "Jane"]
   };
   Countly.endEvent(event);
 });</code></pre>
@@ -410,8 +438,14 @@ Timer timer = Timer(new Duration(seconds: 5), () {
     "sum": "0.99"
   };
   event["segmentation"] = {
-    "Country": "Germany",
-    "Age": "28"
+    "country": "Germany",
+    "app_version": "1.0",
+    "rating": 10,
+    "precision": 324.54678,
+    "timestamp": 1234567890,
+    "clicked": false,
+    "languages": ["en", "de", "fr"],
+    "sub_names": ["John", "Doe", "Jane"]
   };
   Countly.endEvent(event);
 });</code></pre>
@@ -484,9 +518,14 @@ final String? viewID = await Countly.instance.views.<span>startAutoStoppedView</
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
 </p>
 <pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
-  "Cats": 123,
-  "Moons": 9.98,
-  "Moose": "Deer"
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 final String? anotherViewID = Countly.instance.views.<span>startAutoStoppedView</span>("HomePage", segmentation);
@@ -504,9 +543,14 @@ final String? viewID = await Countly.instance.views.startView("Dashboard");</cod
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while starting views:</span>
 </p>
 <pre><code class="dart">Map&lt;String, Object&gt; segmentation = {
-  "Cats": 123,
-  "Moons": 9.98,
-  "Moose": "Deer"
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 final String? anotherViewID = Countly.instance.views.startView("HomePage", segmentation);</code></pre>
@@ -583,9 +627,14 @@ final String? anotherViewID = Countly.instance.views.startView("HomePage", segme
 await Countly.instance.views.startView(viewName);
 
 Map&lt;String, Object&gt; segmentation = {
-  'Cats': 123,
-  'Moons': 9.98,
-  'Moose': 'Deer',
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 await Countly.instance.views.addSegmentationToViewWithName(viewName, segmentation);</code></pre>
@@ -595,9 +644,14 @@ await Countly.instance.views.addSegmentationToViewWithName(viewName, segmentatio
 <pre><code class="dart">String? viewID = await Countly.instance.views.startView('HomePage');
 
 Map&lt;String, Object&gt; segmentation = {
-  'Cats': 123,
-  'Moons': 9.98,
-  'Moose': 'Deer',
+  "country": "Germany",
+  "app_version": "1.0",
+  "rating": 10,
+  "precision": 324.54678,
+  "timestamp": 1234567890,
+  "clicked": false,
+  "languages": ["en", "de", "fr"],
+  "sub_names": ["John", "Doe", "Jane"]
 };
 
 await Countly.instance.views.addSegmentationToViewWithID(viewID!, segmentation);</code></pre>
@@ -1528,12 +1582,13 @@ Countly.instance.userProfile.setUserProperties(userProperties);
 Countly.instance.userProfile.save();</code></pre>
 <p>
   After you have provided the user profile information, you must save it by calling
-  <code class="dart">Countly.instance.userProfile.save()</code>. This would then create
-  a request and send it to the server.
+  <code class="dart">Countly.instance.userProfile.save()</code>. This would then
+  create a request and send it to the server.
 </p>
 <p>
   If you changed your mind and want to clear the currently prepared values, call
-  <code class="dart">Countly.instance.userProfile.clear()</code>before calling "save".
+  <code class="dart">Countly.instance.userProfile.clear()</code>before calling
+  "save".
 </p>
 <h2 id="h_01H930GAQ793MEBMSC774K6VFM">Modifying custom data</h2>
 <p>
