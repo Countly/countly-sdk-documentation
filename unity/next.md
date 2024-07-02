@@ -1055,40 +1055,40 @@ Countly.Instance.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <strong>await</strong> Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
 <h2 id="h_01HABTZ3160SY1KJCM2G1JPYK0">Modifying Data</h2>
 <p>
-  <span>You may also perform different manipulations to your custom data values, such as incrementing the current value on a server or storing an array of values under the same property.</span>
+  <span>You may also manipulate your custom data values in different ways, such as incrementing the current value on a server or storing an array of values under the same property.</span>
 </p>
 <p>
   <span>You will find the list of available manipulations below:</span>
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">//set one custom properties
-<strong>await</strong> Countly.Instance.UserDetails.Set("test", "test");
+Countly.Instance.UserDetails.Set("test", "test");
 
 //increment used value by 1
-<strong>await</strong> Countly.Instance.UserDetails.Increment("used");
+Countly.Instance.UserDetails.Increment("used");
 
 //increment used value by provided value
-<strong>await</strong> Countly.Instance.UserDetails.IncrementBy("used", 2);
+Countly.Instance.UserDetails.IncrementBy("used", 2);
 
 //multiply value by provided value
-<strong>await</strong> Countly.Instance.UserDetails.Multiply("used", 3);
+Countly.Instance.UserDetails.Multiply("used", 3);
 
 //save maximal value
-<strong>await</strong> Countly.Instance.UserDetails.Max("highscore", 300);
+Countly.Instance.UserDetails.Max("highscore", 300);
 
 //save minimal value
-<strong>await</strong> Countly.Instance.UserDetails.Min("best_time", 60);
+Countly.Instance.UserDetails.Min("best_time", 60);
 
 //set value if it does not exist
-<strong>await</strong> Countly.Instance.UserDetails.SetOnce("tag", "test");
+Countly.Instance.UserDetails.SetOnce("tag", "test");
 
 //insert value to array of unique values
-<strong>await</strong> Countly.Instance.UserDetails.PushUnique("type", new string[] { "morning" });
+Countly.Instance.UserDetails.PushUnique("type", new string[] { "morning" });
 
 //insert value to array which can have duplicates
-<strong>await</strong> Countly.Instance.UserDetails.Push("type", new string[] { "morning" });
+Countly.Instance.UserDetails.Push("type", new string[] { "morning" });
 
 //remove value from array
-<strong>await</strong> Countly.Instance.UserDetails.Pull("type", new string[] { "morning" });
+Countly.Instance.UserDetails.Pull("type", new string[] { "morning" });
 
 //send provided values to server
 <strong>await</strong> Countly.Instance.UserDetails.SaveAsync();</code></pre>
@@ -1117,7 +1117,7 @@ Countly.Instance.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
 <h2 id="h_01HABTZ316445B91Y1ZHCS6DGK" class="anchor-heading">Consent</h2>
 <p>
-  This feature requires<code>User</code><span>consent. If consent is required and not given, it will not be possible to record user profile information.</span>
+  This feature requires<code>User</code><span>consent. If consent is required and not given, recording user profile information will not be possible.</span>
 </p>
 <h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User Consent</h1>
 <p>
