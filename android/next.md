@@ -474,7 +474,7 @@ plugins {
 </p>
 <div class="callout callout--warning">
   <p>
-    In version <strong>24.4.2</strong>, support for Array, List, and JSONArray
+    In version <strong>24.7.0</strong>, support for Array, List, and JSONArray
     has been added. Previous versions do not include this functionality.
   </p>
 </div>
