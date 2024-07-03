@@ -1558,16 +1558,36 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can change the device ID on runtime <strong>after you start Countly</strong>. You can either allow the device to be counted as a new device or merge existing data on the server.<br><br>To set a new device ID based on the current device ID type, use the <code>setID:</code> method. If the current device ID type is <code>CLYDeviceIDTypeCustom</code>, it will be counted as a new device; otherwise, it will merge existing data on the server. With <code>setID:</code>, the SDK will automatically handle whether to merge the device ID or not.<br></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">//Automatically handle whether to merge the device ID or not.
+[Countly.sharedInstance setID:@"new_device_id"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">//Automatically handle whether to merge the device ID or not.<br>Countly.sharedInstance().setID("new_device_id")</code></pre>
+  </div>
+</div>
+<p>
+  You can also use the <code>changeDeviceIDWithMerge:</code> or
+  <code>changeDeviceIDWithoutMerge:</code> methods.
 </p>
 <p>
-  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
+  The <code>changeDeviceIDWithMerge:</code> method replaces the old device ID on
+  the server with the new one, automatically merging data associated with the old
+  device ID. In contrast, the <code>changeDeviceIDWithoutMerge:</code> method creates
+  a new device ID on the server.
 </p>
 <div class="callout callout--warning">
   <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
+    <strong>Performance Risk:</strong> Changing the device ID with server merging
+    results in a significant load on the server as it rewrites all user history.
+    This operation should be performed only once per user.
   </p>
 </div>
 <div class="tabs">
