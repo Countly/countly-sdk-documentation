@@ -472,12 +472,6 @@ plugins {
   Lists, and JSONArrays composed of these primitive types are also supported. Please
   note that no other data types will be recorded.
 </p>
-<div class="callout callout--warning">
-  <p>
-    In version <strong>24.7.0</strong>, support for Array, List, and JSONArray
-    has been added. Previous versions do not include this functionality.
-  </p>
-</div>
 <h2 id="h_01HAVQDM5TT3KRX8YBCCFZ8RKG">Recording Events</h2>
 <p>
   <span style="font-weight: 400;">We have provided an example of recording a </span><strong>purchase</strong><span style="font-weight: 400;"> event below. Here is a quick summary of the information with which each usage will provide us:</span>
