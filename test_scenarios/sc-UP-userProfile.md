@@ -6,6 +6,7 @@
     CNR:Consent not Required
     CG:Session Consent given
     CNG:Session Consent not given
+    
     sendUserProperty:
         Map<String, Object> userProperties = {
             'name': 'Nicola Tesla',
@@ -21,6 +22,7 @@
             'not_special_value': 'something special cooking'
         };
         Countly.instance.userProfile.setUserProperties(userProperties);
+        
     sendUserData:
         Countly.instance.userProfile.setProperty('a12345', 'My Property');
         Countly.instance.userProfile.increment('b12345');
@@ -32,6 +34,7 @@
         Countly.instance.userProfile.pushUnique('h12345', 'morning');
         Countly.instance.userProfile.push('i12345', 'morning');
         Countly.instance.userProfile.pull('k12345', 'morning');
+        
     sendSameData:
         Countly.instance.userProfile.setProperty('a12345', '1');
         Countly.instance.userProfile.setProperty('a12345', '2');
@@ -46,10 +49,10 @@
     - There can be begin session request
 
 ## 201_CR_CG_A
-    same as 100
+    same as 200
 
 ## 202_CR_CNG_A
-    same as 100 but there should be no request
+    same as 200 but there should be no request
 
 ## 203_CNR_A_events
     Init SDK
