@@ -1284,7 +1284,7 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   Keep in mind that Feedback Widget is an enterprise-level plugin.
 </p>
 <div class="tabs"></div>
-<h2 id="h_01HABTQ438NWHSRCMAV4RJJVWX">Feedback Widget</h2>
+<h2 id="h_01HABTQ438NWHSRCMAV4RJJVWX">Feedback Widgets</h2>
 <p>
   There are three kinds of feedback widgets available. Namely NPS, survey and ratings
   widgets. Before any feedback widget can be shown, you need to create them in
@@ -1376,7 +1376,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </p>
 <h3 id="h_01HABTQ438KSCZWEFA8GEFE07R">Manual Reporting</h3>
 <p>
-  Reporting feedback widgets manually consists of 3 main steps:
+  Reporting Feedback Widgets manually consists of 3 main steps:
 </p>
 <ol>
   <li>
