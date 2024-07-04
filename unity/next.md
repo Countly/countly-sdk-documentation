@@ -958,7 +958,7 @@ Countly.Instance.Init(config);</code></pre>
   please see the
   <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
 </p>
-<h3 id="h_01HABTZ316HVHCHJC1E6QCK9BW">Manual Rating Reporting</h3>
+<h3 id="h_01HABTZ316HVHCHJC1E6QCK9BW">Star Rating Reporting</h3>
 <p>
   <span>When a user rates your application, you can report it to the Countly server.</span><span></span>
 </p>
@@ -982,7 +982,7 @@ Countly.Instance.Init(config);</code></pre>
 </ul>
 <h2 id="h_01HABTZ316JXD672PVFWMTVEMP" class="anchor-heading">Consent</h2>
 <p>
-  If consent is required, recording star rating requires<code>StarRating</code><span>consent. If consent is required and not give, it will not be possible to record star rating.</span><span></span>
+  If consent is required, recording Star Rating requires<code>StarRating</code><span>consent. If consent is required and not given, recording a Star Rating will not be possible.</span><span></span>
 </p>
 <h1 id="h_01HABTZ3164RBD3AC31PH330W9">User Profiles</h1>
 <p>
