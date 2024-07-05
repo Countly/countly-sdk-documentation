@@ -1509,7 +1509,7 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
 <h2 id="h_01J1YSATYHKAJ8SZMM4KW6BBRT">Consent</h2>
 <p>
   If consents are enabled, to use Feedback Widgets you have to provide the 'feedback'
-  consent for this feature to work.
+  and the 'star-rating' consents for this feature to work.
 </p>
 <h1 id="h_01HABTQ439MH1SD5Q76905BRWP">User Profiles</h1>
 <h2 id="h_01HABTQ439KMGT58PHY4MRA1GT">User Details</h2>
