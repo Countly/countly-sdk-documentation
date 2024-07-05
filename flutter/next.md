@@ -1326,15 +1326,15 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
 </p>
 <h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User Feedback</h1>
 <p>
-  There are a couple ways of receiving feedback from your users: star-rating dialog,
-  the rating widget and the feedback widgets (survey, nps).
+  There are two ways to receive user feedback: the Star Rating Dialog and the Feedback
+  Widgets (Survey, NPS).
 </p>
 <p>
-  Star-rating dialog allows users to give feedback as a rating from 1 to 5. The
-  rating widget allows users to rate using the same 1 to 5 rating system as well
-  as leave a text comment. Feedback widgets (survey, nps) allow for even more textual
-  feedback from users.
+  The Star Rating Dialog allows users to give feedback as a rating from 1 to 5.
+  Feedback Widgets allow for even more textual feedback from users.
 </p>
+<p>Star Rating Dialog is available in the Lite version.</p>
+<p>Feedback Widgets is an enterprise-level plugin.</p>
 <h2 id="h_01H930GAQ75H8R1SPMVD66PD2N">Ratings</h2>
 <h3 id="h_01H930GAQ74F34S2RYAVJFPG53">Star Rating Dialog</h3>
 <p>
@@ -1358,45 +1358,10 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
 config.setStarRatingTextTitle("Custom title"); // Only available for Android
 config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
-<h3 id="h_01H930GAQ72GJC3FYVGB6XF6FG">Rating Widget</h3>
+<h3 id="h_01J21B8AHX32JW1QB1NKW3D7PC">Consent</h3>
 <p>
-  Feedback widget shows a server configured widget to your user devices.
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVCPN6ZAEC0RG337CY2T0KZE" alt="001.png">
-</div>
-<p>
-  It's possible to configure any of the shown text fields and replace them with
-  a custom string of your choice.
-</p>
-<p>
-  In addition to a 1 to 5 rating, it is possible for users to leave a text comment
-  and also leave an email in case the user would want some contact from the app
-  developer.
-</p>
-<p>
-  Trying to show the rating widget is a single call, but underneath is a two-step
-  process. Before it is shown, the SDK tries to contact the server to get more
-  information about the dialog. Therefore a network connection to it is needed.
-</p>
-<p>
-  You can try to show the widget after you have initialized the SDK. To do that,
-  you first have to get the widget ID from your server:
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GV9ZW7Z8EYHZ4A7EX066G6T6" alt="002.png">
-</div>
-<p>
-  Using that you can call the function to show the widget popup:
-</p>
-<pre><code class="dart">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {
-  if(error != null) {
-    print(error);
-  }
-});</code></pre>
-<p>
-  <code class="dart">closeButtonText</code> and
-  <code class="dart">ratingWidgetCallback</code> are optional.
+  If consents are enabled, to use Star Rating Dialog you have to provide the 'starRating'
+  consent for this feature to work.
 </p>
 <h2 id="h_01H930GAQ7XASR12CMDC11Q265">Feedback Widget</h2>
 <p>
@@ -1520,6 +1485,11 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   For more information regarding how to structure the reported result, you would
   look
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
+</p>
+<h3 id="h_01J21BAQ9RWS12RS2C7JTRGD4A">Consent</h3>
+<p>
+  If consents are enabled, to use Feedback Widgets you have to provide the 'feedback'
+  consent for this feature to work.
 </p>
 <h1 id="h_01H930GAQ7DZQB56330E1PGK1E">User Profiles</h1>
 <p>
