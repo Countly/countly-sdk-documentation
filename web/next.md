@@ -1275,140 +1275,16 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 </p>
 <h1 id="h_01HABTQ438JABXJNTKRC4T9QXV">User Feedback</h1>
 <p>
-  If you want to receive feedback from your users there are a couple of ways you
-  can do that in Countly. To get a rating or suggestion from users you can use
-  rating widgets, which gives users flexibility to give a rating, leave a comment
-  or reach you with an e-mail. Another way the users can leave feedback is through
-  the feedback widgets (survey, nps, ratings). With the help of these widgets you
-  can ask your customers multiple questions and learn about their opinions and
-  preferences in detail.
-</p>
-<h2 id="h_01HABTQ438XGTYWGAMYGPB3F1A">Ratings</h2>
-<p>
-  While it can be cumbersome for a customer to fill a survey, a quick alternative
-  to get user feedback is to get a numerical user rating. That can be done with
-  the Countly rating widget.
-</p>
-<h3 id="h_01HABTQ438MQSY7Z8RPY3TQD0V">Rating Widget</h3>
-<p>
-  Rating widgets create a channel for users to interact, through a pop up widget.
+  If you want to receive feedback from your users, there are a couple of ways you
+  can do that in Countly. Users can leave feedback through Feedback Widgets (Surveys,
+  NPS, Ratings). With the help of these widgets, you can ask your customers multiple
+  questions and learn about their opinions and preferences in detail.
 </p>
 <p>
-  While it is possible to customize the text fields of rating widgets according
-  to your needs, the fundamental use case of a rating widget is to enable the user
-  to leave a rating feedback on scale of 1 to 5, let the user contact the developer
-  through e-mail and also to let the user be able to leave some comments or suggestions
-  along the way.
+  Keep in mind that Feedback Widget is an enterprise-level plugin.
 </p>
-<p>
-  With Countly, if you want, you can create a single rating widget to get feedback
-  on a specific topic or you can create multiple rating widgets that can tackle
-  different topics depending on your needs. Another feature that can prove useful
-  is the ability to show rating widgets on command, as a popup. This can be a very
-  useful tool when interlinked with a form submit button to ask your customers
-  about their experience directly after submitting their form or survey.
-</p>
-<p>
-  For rating widgets to show with proper styling and to be present on the screen
-  first you have to enable them using 'enableRatingWidgets' after you have initialized
-  the Countly Web SDK and gave "star-rating" consent for widgets. Then you can
-  integrate the ratings widget as follows:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//after initializing and giving consent
-//for a single rating widget with widget ID '5b86772f7965c435319c79ee'
-Countly.q.push([
-  'enableRatingWidgets',
-  {'popups':['5b86772f7965c435319c79ee']}
-]);
-
-//to manually show a rating widget as a popup
-Countly.q.push([
-  'presentRatingWidgetWithID',
-  '6gdd84asc435319c78s4'
-]);
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//after initializing and giving consent
-//for a rating widget with widget ID '5b86772f7965c435319c79ee'
-Countly.enableRatingWidgets({
-  'popups':['5b86772f7965c435319c79ee'],
-});
-
-//to manually show a rating widget as a popup'
-Countly.presentRatingWidgetWithID("6181639909e272efa5f64a44");
-</code></pre>
-  </div>
-</div>
-<p>
-  To see multiple rating widgets on the screen, after enabling your widgets with
-  'enableRatingWidgets' you have to use 'initializeRatingWidgets' by passing multiple
-  widget IDs as an argument as follows:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//after enabling rating widgets
-//to show multiple rating widgets with an array of different widget IDs
-Countly.q.push([
-  'initializeRatingWidgets',
-  ['4678wetfgb8g79gfdg9221', 'd45a5d8we4f6fs5a546ass']
-]);
-
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//after enabling rating widgets
-//to show multiple rating widgets with an array of different widget IDs
-Countly.initializeRatingWidgets(["6181435609e272efa5f64307", "619bb3737730596209194fcc"])
-</code></pre>
-  </div>
-</div>
-<h3 id="h_01HABTQ43877ZM0YG7KMXSXKNP">Manual Rating Reporting</h3>
-<p>
-  In case you don't want to use Countly provided feedback and rating UI where you
-  may use your own UI and simply report collected data to Countly.
-</p>
-<p>
-  To report the rating widget result manually, you need to give "star-rating" consent
-  (in case consent is required).
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//user feedback
-Countly.q.push(['recordRatingWidgetWithID', {
-  widget_id:"1234567890",
-  contactMe: true,
-  rating: 5,
-  email: "user@domain.com",
-  comment: "Very good"
-}]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//user feedback
-Countly.recordRatingWidgetWithID({
-  widget_id:"1234567890",
-  contactMe: true,
-  rating: 5,
-  email: "user@domain.com",
-  comment: "Very good"
-});</code></pre>
-  </div>
-</div>
-<h2 id="h_01HABTQ438NWHSRCMAV4RJJVWX">Feedback Widget</h2>
+<div class="tabs"></div>
+<h2 id="h_01HABTQ438NWHSRCMAV4RJJVWX">Feedback Widgets</h2>
 <p>
   There are three kinds of feedback widgets available. Namely NPS, survey and ratings
   widgets. Before any feedback widget can be shown, you need to create them in
@@ -1469,38 +1345,38 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
 <br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-    if (err) {
-        console.log(err);
-        return;
-    }
+  if (err) {
+    console.log(err);
+    return;
+  }
 
-    // Decide which which widget to show. Here the first rating widget is selected. 
-    const widgetType = "rating";
-    const countlyFeedbackWidget = countlyPresentableFeedback.find(widget =&gt; widget.type === widgetType);
-    if (!countlyFeedbackWidget) {
-      console.error(`[Countly] No ${widgetType} widget found`);
-      return;
-    }
-    
-    //Define the element ID and the class name (optional, pass undefined if you don't use)
-    const selectorId = "targetIdSelector";
-    const selectorClass = "targetClassSelector";
+  // Decide which which widget to show. Here the first rating widget is selected. 
+  const widgetType = "rating";
+  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget =&gt; widget.type === widgetType);
+  if (!countlyFeedbackWidget) {
+    console.error(`[Countly] No ${widgetType} widget found`);
+    return;
+  }
+  
+  //Define the element ID and the class name (optional, pass undefined if you don't use)
+  const selectorId = "targetIdSelector";
+  const selectorClass = "targetClassSelector";
 
-    // Define the segmentation (optional)
-    const segmentation = { page: "home_page" };
-    
-    //Display the feedback widget to the end user 
-    Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+  // Define the segmentation (optional)
+  const segmentation = { page: "home_page" };
+  
+  //Display the feedback widget to the end user 
+  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
   </div>
 </div>
 <p>
-  Note: Feedback widget's show policies are handled internally by the web sdk.
+  Note: Feedback Widgets' show policies are handled internally by the Web SDK.
 </p>
 <h3 id="h_01HABTQ438KSCZWEFA8GEFE07R">Manual Reporting</h3>
 <p>
-  Reporting feedback widgets manually consists of 3 main steps:
+  Reporting Feedback Widgets manually consists of 3 main steps:
 </p>
 <ol>
   <li>
@@ -1630,6 +1506,11 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
       );
     })
 }</code></pre>
+<h2 id="h_01J1YSATYHKAJ8SZMM4KW6BBRT">Consent</h2>
+<p>
+  If consents are enabled, to use Feedback Widgets you have to provide the 'feedback'
+  and the 'star-rating' consents for this feature to work.
+</p>
 <h1 id="h_01HABTQ439MH1SD5Q76905BRWP">User Profiles</h1>
 <h2 id="h_01HABTQ439KMGT58PHY4MRA1GT">User Details</h2>
 <p>
@@ -2133,8 +2014,7 @@ Countly.salt = "your_salt";
     none)
   </li>
   <li>
-    <strong>salt</strong> - string salt for checksums (default:
-    none)
+    <strong>salt</strong> - string salt for checksums (default: none)
   </li>
   <li>
     <strong>ignore_prefetch</strong> -
@@ -2742,8 +2622,8 @@ Countly2.add_event({
 <p>
   If values or keys provided by the user exceeds certain internal limits, they
   will be truncated. Please have a look
-  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>
-  for the list of properties effected by these limits.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a> for the
+  list of properties effected by these limits.
 </p>
 <p>
   You can override these internal limits during initialization.
