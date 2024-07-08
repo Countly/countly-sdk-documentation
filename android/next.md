@@ -1476,7 +1476,7 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <span style="font-weight: 400;">into Management &gt; Applications &gt; Push Notifications &gt; Huawei Push Kit upload form in your Countly server and press “Save changes”:</span>
 </p>
 <p>
-  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="005.png">
+  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="003.png">
 </p>
 <h1 id="h_01HAVQDM5V188C0YEHXB0E6238">User Location</h1>
 <p>
@@ -1803,9 +1803,6 @@ Countly.sharedInstance().init(config);</code></pre>
 <p>
   <span style="font-weight: 400;">Star Rating Dialog allows users to give feedback by rating it from 1 to 5. Feedback Widgets (Survey, NPS, Rating) allow for even more textual feedback from users.</span>
 </p>
-<div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
-</div>
 <h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
@@ -1888,6 +1885,9 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   }
 };</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
