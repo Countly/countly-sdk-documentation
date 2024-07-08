@@ -845,7 +845,10 @@ Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
 <p>
   <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
 </p>
-<h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widgets</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
