@@ -952,13 +952,7 @@ Countly.Instance.Init(config);</code></pre>
   will be cleared.
 </p>
 <h1 id="h_01HABTZ3167DDCYDQ3N6QSRZ6D">User Feedback</h1>
-<h2 id="h_01HABTZ316A3KZFNEG63TSS6GT">Ratings</h2>
-<p>
-  <span class="wysiwyg-color-black">Rating is a customer satisfaction tool that collects direct user feedback. For more details</span>,
-  please see the
-  <a href="/hc/en-us/articles/360037641291" target="_self">Rating documentation</a>.
-</p>
-<h3 id="h_01HABTZ316HVHCHJC1E6QCK9BW">Star Rating Reporting</h3>
+<h2 id="h_01HABTZ316A3KZFNEG63TSS6GT">Star Rating Reporting</h2>
 <p>
   <span>When a user rates your application, you can report it to the Countly server.</span><span></span>
 </p>
