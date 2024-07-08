@@ -952,7 +952,7 @@ Countly.Instance.Init(config);</code></pre>
   will be cleared.
 </p>
 <h1 id="h_01HABTZ3167DDCYDQ3N6QSRZ6D">User Feedback</h1>
-<h2 id="h_01HABTZ316A3KZFNEG63TSS6GT">Star Rating Reporting</h2>
+<h2 id="h_01HABTZ316A3KZFNEG63TSS6GT">Star Rating Dialog</h2>
 <p>
   <span>When a user rates your application, you can report it to the Countly server.</span><span></span>
 </p>
