@@ -1333,9 +1333,6 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
   The Star Rating Dialog allows users to give feedback as a rating from 1 to 5.
   Feedback Widgets allow for even more textual feedback from users.
 </p>
-<div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
-</div>
 <h2 id="h_01H930GAQ75H8R1SPMVD66PD2N">Star Rating Dialog</h2>
 <p>
   Star Rating Dialog provides a dialog for getting user's feedback about the application.
@@ -1359,6 +1356,9 @@ config.setStarRatingTextTitle("Custom title"); // Only available for Android
 config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
 <h2 id="h_01H930GAQ7XASR12CMDC11Q265">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
