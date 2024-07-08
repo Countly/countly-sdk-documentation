@@ -1803,14 +1803,10 @@ Countly.sharedInstance().init(config);</code></pre>
 <p>
   <span style="font-weight: 400;">Star Rating Dialog allows users to give feedback by rating it from 1 to 5. Feedback Widgets (Survey, NPS, Rating) allow for even more textual feedback from users.</span>
 </p>
-<p>
-  <span style="font-weight: 400;">Star Rating Dialog is available in the Lite version.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Feedback Widgets is an enterprise-level plugin.</span>
-</p>
-<h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Ratings</h2>
-<h3 id="h_01HAVQDM5V8DKE0V808A24Z7W0">Star Rating Dialog</h3>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
+<h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
@@ -1891,11 +1887,6 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
     //the star rating dialog was dismissed
   }
 };</code><code class="java"></code></pre>
-<h3 id="h_01J1YX6SZR6QYGNH2N8JH0QJQP">Consent</h3>
-<p>
-  If consents are enabled, to use Star Rating Dialog you have to provide the 'starRating'<br>
-  consent for this feature to work.
-</p>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -2018,10 +2009,11 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
   If the user has closed the widget, you would report that by passing a "null"
   as the reported result.
 </p>
-<h3 id="h_01J1YX5G6WJVY7KHZPTP8Z8G2W">Consent</h3>
+<h2 id="h_01J1YX5G6WJVY7KHZPTP8Z8G2W">Consent</h2>
 <p>
-  If consents are enabled, to use Feedback Widgets you have to provide the 'feedback'<br>
-  consent for this feature to work.
+  If consents are enabled, to use Feedback Widgets, you have to provide the 'feedback'
+  and to use Star Rating Dialog you have to provide the 'starRating' consent for
+  these features to work.
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <p>
