@@ -805,7 +805,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </code></pre>
 <h3 id="h_01HAVQNJQS165PB76SXZHC84PV">Data Structure Received in Push Callbacks</h3>
 <p>
-  Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="004.png"><br>
+  Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="002.png"><br>
   <br>
   Data Received for Android platform:
 </p>
@@ -990,28 +990,23 @@ var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
 <pre><code class="JavaScript">Countly.remoteConfigClearValues();</code></pre>
 <h1 id="h_01HAVQNJQS2ZB1K5WM9YA34TX9">User Feedback</h1>
 <p>
-  There are a different ways of receiving feedback from your users: the Star-rating
-  dialog, the Ratings widget, and the Surveys widgets (Surveys and NPS®).
+  <span style="font-weight: 400;">There are several ways to receive user feedback: the Star Rating Dialog and the Feedback Widgets (Survey, NPS, Rating).</span>
 </p>
 <p>
-  The Star-rating dialog allows users to give feedback as a rating from 1 to 5.
-  The Ratings widget allows users to rate using the same 1 to 5 emoji-based rating
-  system as well as leave a text comment. The Surveys widgets (Surveys and NPS®)
-  allow for even more targeted feedback from users.
+  <span style="font-weight: 400;">Star Rating Dialog allows users to give feedback by rating it from 1 to 5. Feedback Widgets (Survey, NPS, Rating) allow for even more textual feedback from users.</span>
 </p>
-<h2 id="h_01HAVQNJQSE7TGN56S5RGJVDE4">Ratings</h2>
-<h3 id="h_01HAVQNJQSSQ0PHR4FQPFXXTC3">Star Rating Dialog</h3>
+<h2 id="h_01HAVQNJQSE7TGN56S5RGJVDE4">Star Rating Dialog</h2>
 <p>
   The Star-rating integration provides a dialog for getting user feedback about
   an application. It contains a title, a simple message explaining its purpose,
-  a 1 through 5-star meter for getting users rating, and a dismiss button in case
-  the user does not want to give a rating.
+  a 1 through 5-star meter for getting users' ratings, and a dismiss button in
+  case the user does not want to give a rating.
 </p>
 <p>
   This star rating has nothing to do with Google Play Store ratings and reviews.
-  It is simply for getting brief feedback from your users to be displayed on the
-  Countly dashboard. If the user dismisses the star-rating dialog without giving
-  a rating, the event will not be recorded.
+  It is simply for getting brief user feedback to be displayed on the Countly dashboard.
+  If the user dismisses the star-rating dialog without giving a rating, the event
+  will not be recorded.
 </p>
 <pre><code class="javascript">Countly.showStarRating();</code></pre>
 <p>
@@ -1023,54 +1018,25 @@ countlyConfig.setStarRatingDialogTexts("Custom title", "Custom message", "Custom
 // Set dialog texts
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.
 </code></pre>
-<h3 id="h_01HAVQNJQSMBF7NN8CPH9R6W2Z">Rating Widget</h3>
-<p>
-  The rating widget displays a server-configured widget to your user devices.
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVBACKYF3R6V3D0P9N98GCEV" alt="002.png">
-</div>
-<p>
-  All the text fields in the example above can be configured and replaced with
-  a custom string of your choice.
-</p>
-<p>
-  In addition to a 1 through 5 rating, it is possible for users to leave a text
-  comment and an email, should the user like to be contacted by the app developer.
-</p>
-<p>
-  Showing the rating widget in a single call involves a two-set process: before
-  it is shown, the SDK tries to contact the server to get more information about
-  the dialog. Therefore, a network connection to it is needed.
-</p>
-<p>
-  To display the widget after initializing the SDK, you will first need to get
-  the widget ID from your server, as shown below.
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVB67MNKYRCSYQMHPBJHA3VM" alt="003.png">
-</div>
-<p>
-  Then, call the function to show the widget popup using the widget ID below.
-</p>
-<pre><code class="javascript">Countly.presentRatingWidgetWithID("WidgetId", "Button Text", function(error){<br>if (error != null) {<br>  console.log(error);<br>}<br>});</code></pre>
 <h2 id="h_01HAVQNJQS4TRX89X6GSGWQGGV">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   It is possible to display 3 kinds of Feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener noreferrer">NPS</a>,
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener noreferrer">Surveys</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener noreferrer">Rating</a>.
-  All widgets are shown as webviews and they use the same methods to present them.
+  All widgets are shown as webviews, and the same methods are used to present them.
 </p>
 <p>
-  Before any Feedback widget can be shown, you need to create them in your Countly
+  Before any Feedback widget can be shown, you must create them in your Countly
   Dashboard.
 </p>
 <p>
   When the widgets are created, you need to use 2 calls in your SDK to show them:
-  one to get all available widgets for a user and another to display, a chosen
-  widget.
+  one to get all available widgets for a user and another to display a chosen widget.
 </p>
 <p>To get your available widget list, use the call below.</p>
 <pre><code class="javascript">Countly.feedback.getAvailableFeedbackWidgets(function(retrivedWidgets, error){<br> if (error != null) {<br>  console.log("Error : " + error);<br> }<br> else {<br>  console.log(retrivedWidgets.length)<br> }<br>});</code></pre>
@@ -1103,7 +1069,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   feedback data in your system you can report that information to specific feedback
   widgets that you have created in your dashboard through the SDK manually.
 </p>
-<p>This processes consists of three steps:</p>
+<p>This process consists of three steps:</p>
 <ul>
   <li>
     Retrieving the list of available widgets and picking one. This is the same
