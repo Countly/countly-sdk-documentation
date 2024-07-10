@@ -1326,22 +1326,19 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
 </p>
 <h1 id="h_01H930GAQ71TKNV8BD6Q0F4P8H">User Feedback</h1>
 <p>
-  There are a couple ways of receiving feedback from your users: star-rating dialog,
-  the rating widget and the feedback widgets (survey, nps).
+  There are two ways to receive user feedback: the Star Rating Dialog and the Feedback
+  Widgets (Survey, NPS, Rating).
 </p>
 <p>
-  Star-rating dialog allows users to give feedback as a rating from 1 to 5. The
-  rating widget allows users to rate using the same 1 to 5 rating system as well
-  as leave a text comment. Feedback widgets (survey, nps) allow for even more textual
-  feedback from users.
+  The Star Rating Dialog allows users to give feedback as a rating from 1 to 5.
+  Feedback Widgets allow for even more textual feedback from users.
 </p>
-<h2 id="h_01H930GAQ75H8R1SPMVD66PD2N">Ratings</h2>
-<h3 id="h_01H930GAQ74F34S2RYAVJFPG53">Star Rating Dialog</h3>
+<h2 id="h_01H930GAQ75H8R1SPMVD66PD2N">Star Rating Dialog</h2>
 <p>
-  Star rating integration provides a dialog for getting user's feedback about the
-  application. It contains a title, simple message explaining what it is for, a
-  1-to-5 star meter for getting users rating and a dismiss button in case the user
-  does not want to give a rating.
+  Star Rating Dialog provides a dialog for getting user's feedback about the application.
+  It contains a title, a simple message explaining what it is for, a 1-to-5 star
+  meter for getting users' ratings, and a dismiss button in case the user does
+  not want to give a rating.
 </p>
 <p>
   This star-rating has nothing to do with Google Play Store ratings and reviews.
@@ -1352,59 +1349,23 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
 <pre><code class="dart">Countly.askForStarRating();</code></pre>
 <p>
   The star-rating dialog's title, message, and dismiss button text may be customized
-  either through the following functions:
+  through the following functions:
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setStarRatingTextTitle("Custom title"); // Only available for Android
 config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
-<h3 id="h_01H930GAQ72GJC3FYVGB6XF6FG">Rating Widget</h3>
-<p>
-  Feedback widget shows a server configured widget to your user devices.
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVCPN6ZAEC0RG337CY2T0KZE" alt="001.png">
-</div>
-<p>
-  It's possible to configure any of the shown text fields and replace them with
-  a custom string of your choice.
-</p>
-<p>
-  In addition to a 1 to 5 rating, it is possible for users to leave a text comment
-  and also leave an email in case the user would want some contact from the app
-  developer.
-</p>
-<p>
-  Trying to show the rating widget is a single call, but underneath is a two-step
-  process. Before it is shown, the SDK tries to contact the server to get more
-  information about the dialog. Therefore a network connection to it is needed.
-</p>
-<p>
-  You can try to show the widget after you have initialized the SDK. To do that,
-  you first have to get the widget ID from your server:
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GV9ZW7Z8EYHZ4A7EX066G6T6" alt="002.png">
-</div>
-<p>
-  Using that you can call the function to show the widget popup:
-</p>
-<pre><code class="dart">Countly.presentRatingWidgetWithID(RATING_WIDGET_ID, closeButtonText: "close", ratingWidgetCallback: (error) {
-  if(error != null) {
-    print(error);
-  }
-});</code></pre>
-<p>
-  <code class="dart">closeButtonText</code> and
-  <code class="dart">ratingWidgetCallback</code> are optional.
-</p>
 <h2 id="h_01H930GAQ7XASR12CMDC11Q265">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
-  It is possible to display 2 kinds of Surveys widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score" target="_blank" rel="noopener">NPS</a>
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">Surveys</a>.
-  Both widgets are shown as webviews and they both use the same code methods.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">rating</a>.
+  All widgets are shown as webviews and should be approached using the same methods.
 </p>
 <p>
   Before any Surveys widget can be shown, you need to create them in your Countly
@@ -1428,9 +1389,10 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   public String name;
 }</code></pre>
 <p>
-  To determine what kind of widget that is, check the "type" value. The potential
-  values are <code>"survey"</code> and <code>"nps"</code>.
+  To determine what kind of widget that is, check the "type" value.
 </p>
+<p>Potential 'type' values are:</p>
+<pre>FeedbackWidgetType {survey, nps, rating}</pre>
 <p>
   Then use the widget type and description (which is the same as provided in the
   Dashboard) to decide which widget to show.
@@ -1520,6 +1482,12 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   For more information regarding how to structure the reported result, you would
   look
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
+</p>
+<h2 id="h_01J21BAQ9RWS12RS2C7JTRGD4A">Consent</h2>
+<p>
+  If consents are enabled, to use Feedback Widgets, you have to provide the 'feedback'
+  consent and to use Star Rating Dialog you have to provide the 'starRating' consent
+  for these features to work.
 </p>
 <h1 id="h_01H930GAQ7DZQB56330E1PGK1E">User Profiles</h1>
 <p>
