@@ -1476,7 +1476,7 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <span style="font-weight: 400;">into Management &gt; Applications &gt; Push Notifications &gt; Huawei Push Kit upload form in your Countly server and press “Save changes”:</span>
 </p>
 <p>
-  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="005.png">
+  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="003.png">
 </p>
 <h1 id="h_01HAVQDM5V188C0YEHXB0E6238">User Location</h1>
 <p>
@@ -1798,13 +1798,12 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h1 id="01HC29WEYDQWW3351APKG4219Q">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
+  <span style="font-weight: 400;">There are several ways to receive user feedback: the Star Rating Dialog and the Feedback Widgets (Survey, NPS, Rating).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Star-rating dialog allows users to give feedback as a rating from 1 to 5. The rating widget allows users to rate using the same 1 to 5 rating system as well as leave a text comment. Feedback widgets (survey, nps) allow for even more textual feedback from users.</span>
+  <span style="font-weight: 400;">Star Rating Dialog allows users to give feedback by rating it from 1 to 5. Feedback Widgets (Survey, NPS, Rating) allow for even more textual feedback from users.</span>
 </p>
-<h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Ratings</h2>
-<h3 id="h_01HAVQDM5V8DKE0V808A24Z7W0">Star Rating Dialog</h3>
+<h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
@@ -1884,50 +1883,11 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   public void onDismiss() {
     //the star rating dialog was dismissed
   }
-};</code></pre>
-<h3 id="h_01HAVQDM5V37XAD39H8SN0TD1Q">Rating Widget</h3>
-<p>
-  <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVCPN579JDD7DNJBCW5T5HHM" alt="003.png">
-</div>
-<p>
-  <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">In addition to a 1 to 5 rating, users may also leave a text comment along with an email, should the user desire to be contacted by the app developer.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Trying to show the rating widget is a single call, but, in reality, it’s a two-step process. Before it is displayed, the SDK attempts to contact the server to receive more information regarding the dialog. Therefore, a network connection is needed.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVD4NEYK3AQ1W94DSN7NSS1V" alt="004.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
-</p>
-<pre><code class="java">String widgetId = "xxxxx";
-String closeButtonText = "Close";
-Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButtonText, activity, new FeedbackRatingCallback() {
-  @Override
-  public void callback(String error) {
-    if(error != null){
-      Toast.makeText(activity, "Encountered error while showing raging widget dialog: [" + error + "]", Toast.LENGTH_LONG).show();
-    }
-  }
-});</code></pre>
-<h3 id="h_01HAVQDM5VV16WPAS7KE5KFT11">Manual Rating Reporting</h3>
-<p>
-  You may want to display your own custom UI to query users about the information
-  in the rating widget. In case you do that, you would then report that rating
-  result manually. To do that you would use the following call:
-</p>
-<pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.sharedInstance().ratings().recordRatingWidgetWithID(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
+};</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
@@ -2046,8 +2006,14 @@ Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();
 //report the results to the SDK
 Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);</code></pre>
 <p>
-  If the user would have closed the widget, you would report that by passing a
-  "null" as the reportedResult.
+  If the user has closed the widget, you would report that by passing a "null"
+  as the reported result.
+</p>
+<h2 id="h_01J1YX5G6WJVY7KHZPTP8Z8G2W">Consent</h2>
+<p>
+  If consents are enabled, to use Feedback Widgets, you have to provide the 'feedback'
+  and to use Star Rating Dialog you have to provide the 'starRating' consent for
+  these features to work.
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <p>
