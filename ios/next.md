@@ -2956,9 +2956,6 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
   The Star Rating Dialog allows users to give feedback as a rating from 1 to 5.
   Feedback Widgets allow for even more textual feedback from users.
 </p>
-<div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
-</div>
 <h2 id="h_01HAVHW0RR1P4DMGKA4XVM64V7">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Optionally, you can set the Countly iOS SDK to automatically ask users for a 1 to 5-star rating, depending on the app launch count for each version. To do so, you will need to set the <code>starRatingSessionCount</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. When the total number of sessions reaches the <code>starRatingSessionCount</code></span><span style="font-weight: 400;">, an alert view asking for a 1 to 5-star rating will be displayed automatically, once for each new version of the app.</span>
@@ -3047,6 +3044,9 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
   First you need to get the list of all available NPS and survey widgets:
