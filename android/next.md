@@ -71,7 +71,7 @@
     Call <code>Countly.sharedInstance().onStop()</code> in onStop.
   </li>
   <li>
-    Call&nbsp;<code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
+    Call <code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
     onConfigurationChanged if you want to track the orientation changes.
   </li>
 </ul>
@@ -2138,10 +2138,11 @@ Countly.sharedInstance().userProfile().save();</code></pre>
 </p>
 <h2 id="h_01HAVQDM5VN01PPTK6B39509QZ">Orientation Tracking</h2>
 <p>
-  To record your applications orientation changes, you need to enable it on your
-  init object like:
+  Tracking of orientation changes is enabled by default. To stop recording your
+  application's orientation changes, you need to disable it on your init object
+  like:
 </p>
-<pre>config.setTrackOrientationChanges(<span>true</span>);</pre>
+<pre>config.setTrackOrientationChanges(<span>false</span>);</pre>
 <p>
   You need to add this to all of your activities where you want to track orientation:
 </p>
