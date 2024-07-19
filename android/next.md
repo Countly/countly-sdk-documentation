@@ -2154,9 +2154,14 @@ Countly.sharedInstance().userProfile().save();</code></pre>
   android:configChanges="orientation|screenSize"&gt;
 &lt;/activity&gt;</code></pre>
 <p>
-  To finish your setup for orientation tracking, you need to set up the android
-  callback for "onConfigurationChanged". In those you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".&nbsp;You
-  may set it up similarly to this:
+  To finish your setup for orientation tracking, you need to provide an application
+  class to the config object via "setApplication." This will automatically catch
+  orientation changes for all activities connected to the given application class.
+</p>
+<p>
+  Otherwise, you must set up the Android callback to "onConfigurationChanged."
+  In those, you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".
+  You may set it up similarly to this:
 </p>
 <pre><code class="java">@Override
 public void onConfigurationChanged (Configuration newConfig){
