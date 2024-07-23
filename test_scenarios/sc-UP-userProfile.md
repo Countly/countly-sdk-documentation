@@ -75,6 +75,9 @@
     Check event queue:
         - Event E
 
+## 204_XX_XX_X
+    Will be added in the future.
+
 ## 205_CR_CG_A
     same as 203
 
@@ -105,7 +108,6 @@
         - User Data
         - Merge ID
         - User Property a12345 = 4
-        - Non Merge ID
         - User Property a12345 = 4
     Check event queue:
         - Event D
@@ -121,7 +123,6 @@
         - User Data
         - Merge ID
         - User Property a12345 = 4
-        - Non Merge ID
     Check event queue:
         -
 
