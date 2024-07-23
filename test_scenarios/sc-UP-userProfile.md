@@ -122,7 +122,6 @@
         - Event C
         - User Data
         - Merge ID
-        - User Property a12345 = 4
     Check event queue:
         -
 
