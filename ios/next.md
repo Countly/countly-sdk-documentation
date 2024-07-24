@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly iOS SDK version 24.4.X. The SDK source
+  This documentation is for the Countly iOS SDK version 24.7.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-ios">here</a>.
 </p>
@@ -311,11 +311,11 @@ Countly.sharedInstance().recordException(myException, isFatal: false)</code></pr
   </div>
   <div class="tab">
     <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
-<br>NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+<br>NSDictionary* segmentation = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};<br><br>[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
-<br>let segmentation : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]<br>
+<br>let segmentation : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]<br>
 Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
   </div>
 </div>
@@ -343,11 +343,11 @@ Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace:
     <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0"};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+    <pre><code class="objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
-<br>let segmentation : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]<br>
+<br>let segmentation : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]<br>
 Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
   </div>
 </div>
@@ -424,16 +424,13 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.crashSegmentation = @{@"key":@"value"};</code></pre>
+    <pre><code class="objectivec">config.crashSegmentation = @{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.crashSegmentation = ["key":"value"]</code></pre>
+    <pre><code class="swift">config.crashSegmentation = ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RNB7HWT8W9XRYRKBYZ">Crash Filtering</h2>
-<div class="callout callout--warning">
-  <p>This feature requires the minimum SDK version of 24.4.2</p>
-</div>
 <p>
   There might be cases where a crash could contain sensitive information. For such
   situations, there is a crash filtering option that can discard or modify a crash.
@@ -912,12 +909,12 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0"};
+    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"purchase" segmentation:dict];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]
+    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country":"Germany", "app_version":"1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("purchase", segmentation:dict)</code></pre>
   </div>
@@ -935,12 +932,12 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0"};
+    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"purchase" segmentation:dict count:2];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]
+    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2)</code></pre>
   </div>
@@ -959,12 +956,12 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2)</co
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0"};
+    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"purchase" segmentation:dict count:2 sum:6.66];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]
+    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum:6.66)</code></pre>
   </div>
@@ -1024,12 +1021,12 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0"};
+    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance endEvent:@"level24" segmentation:dict count:1 sum:34578];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]
+    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().endEvent("level24", segmentation:dict, count:1, sum:34578)</code></pre>
   </div>
@@ -1089,12 +1086,12 @@ Countly.sharedInstance().endEvent("level24", segmentation:dict, count:1, sum:345
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0"};
+    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"level24" segmentation:dict count:2 sum:34578 duration:344];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, String&gt; = ["country":"Germany", "app_version":"1.0"]
+    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:34578, duration:344)</code></pre>
   </div>
@@ -1306,10 +1303,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.startAutoStoppedView("MyView", segmentation: ["key": "value"])</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.startAutoStoppedView("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
@@ -1339,10 +1336,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views startView:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views startView:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.startView("MyView", segmentation: ["key": "value"])</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.startView("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h3 id="h_01HFDVY8YAXBP812A870NAZ6Q2">Stopping Views</h3>
@@ -1376,10 +1373,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView" segmentation:@{@"key": @"value"}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithName("MyView", segmentation: ["key": "value"])</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithName("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <p>
@@ -1409,10 +1406,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value"}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID", segmentation: ["key": "value"])</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <p>
@@ -1493,15 +1490,15 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
   </div>
   <div class="tab">
     <pre><code class="objectivec">NSString * viewID = [Countly.sharedInstance.views startView:@"VIEW_NAME"];
-[Countly.sharedInstance.views addSegmentationToViewWithID:viewID segmentation:@{@"key": @"value"}];
+[Countly.sharedInstance.views addSegmentationToViewWithID:viewID segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];
       
-[Countly.sharedInstance.views addSegmentationToViewWithName:@"VIEW_NAME" segmentation:@{@"key": @"value"}];</code></pre>
+[Countly.sharedInstance.views addSegmentationToViewWithName:@"VIEW_NAME" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">let viewID = Countly.sharedInstance().views().startView("MyView");
-Countly.sharedInstance().views().addSegmentationToViewWithID(withID: viewID, segmentation: segmentation["key": "value"])
+Countly.sharedInstance().views().addSegmentationToViewWithID(withID: viewID, segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])
       
-Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView", segmentation: segmentation["key": "value"])</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
@@ -1529,10 +1526,10 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views updateGlobalViewSegmentation:@{@"key": @"value"}];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance.views updateGlobalViewSegmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.updateGlobalViewSegmentation(["key": "value"])</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().views.updateGlobalViewSegmentation(["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVHW0RPRWDT82DVYT4ABT9V">Device ID Management</h1>
@@ -1561,16 +1558,36 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can change the device ID on runtime <strong>after you start Countly</strong>. You can either allow the device to be counted as a new device or merge existing data on the server.<br><br>To set a new device ID based on the current device ID type, use the <code>setID:</code> method. If the current device ID type is <code>CLYDeviceIDTypeCustom</code>, it will be counted as a new device; otherwise, it will merge existing data on the server. With <code>setID:</code>, the SDK will automatically handle whether to merge the device ID or not.<br></span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">//Automatically handle whether to merge the device ID or not.
+[Countly.sharedInstance setID:@"new_device_id"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">//Automatically handle whether to merge the device ID or not.<br>Countly.sharedInstance().setID("new_device_id")</code></pre>
+  </div>
+</div>
+<p>
+  You can also use the <code>changeDeviceIDWithMerge:</code> or
+  <code>changeDeviceIDWithoutMerge:</code> methods.
 </p>
 <p>
-  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
+  The <code>changeDeviceIDWithMerge:</code> method replaces the old device ID on
+  the server with the new one, automatically merging data associated with the old
+  device ID. In contrast, the <code>changeDeviceIDWithoutMerge:</code> method creates
+  a new device ID on the server.
 </p>
 <div class="callout callout--warning">
   <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
+    <strong>Performance Risk:</strong> Changing the device ID with server merging
+    results in a significant load on the server as it rewrites all user history.
+    This operation should be performed only once per user.
   </p>
 </div>
 <div class="tabs">
