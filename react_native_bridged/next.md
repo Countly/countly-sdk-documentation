@@ -756,6 +756,13 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <div class="img-container">
   <img src="/guide-media/01GVDFZ17C5QDJTNSY6AKV01ZY" alt="Countly_RN_PUSH.png">
 </div>
+<h2 id="h_01HNFJBRCKHFFZZYWK1CD485FT">Removing Push and Its Dependencies</h2>
+<p>
+  Countly React Native SDK comes with push notification capabilities embedded.
+  For the flavor without the push notifications features (like Firebase libraries)
+  please check
+  <a href="https://www.npmjs.com/package/countly-sdk-react-native-bridge-np">here</a>.
+</p>
 <h2 id="h_01HAVQNJQSJT44XRDEHJX0SZYC">Handling push callbacks</h2>
 <p>
   To register a Push Notification callback after initialising the SDK, use the
