@@ -247,9 +247,7 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
       <code>segmentation</code> is a key-value pairs, we can use
       <code>segmentation</code> to track additional information. The only valid
       data types are: "String", "Integer", "Double", "Boolean" and "List".
-      All other types will be ignored. In version <strong>24.7.0</strong>,
-      support for List has been added. Previous versions do not have "List"
-      support.
+      All other types will be ignored.
     </li>
   </ul>
 </ul>
