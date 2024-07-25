@@ -71,7 +71,7 @@
     Call <code>Countly.sharedInstance().onStop()</code> in onStop.
   </li>
   <li>
-    Call&nbsp;<code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
+    Call <code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
     onConfigurationChanged if you want to track the orientation changes.
   </li>
 </ul>
@@ -137,9 +137,9 @@
 <pre><code class="java">Countly.sharedInstance().crashes().recordUnhandledException(Exception exception);</code></pre>
 <h2 id="h_01HAVQDM5S4VR5M3H2GCMCY8S8">Crash Breadcrumbs</h2>
 <p>
-  Throughout your app you can leave&nbsp;crash breadcrumbs which would describe
-  previous steps that were taken in your app before the crash. After a crash happens,
-  they will be sent together with the crash report.
+  Throughout your app you can leave crash breadcrumbs which would describe previous
+  steps that were taken in your app before the crash. After a crash happens, they
+  will be sent together with the crash report.
 </p>
 <p>Following the command adds crash breadcrumb:</p>
 <pre><code class="java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
@@ -229,7 +229,7 @@
   </p>
 </div>
 <p>
-  <span style="font-weight: 400;">Countly uses&nbsp;</span><a href="https://github.com/google/breakpad"><span style="font-weight: 400;">Google's Breakpad open source library</span></a><span style="font-weight: 400;">&nbsp;to be able to report crashes that occurred within the C++ components of your application, assuming there are any. Breakpad provides:</span>
+  <span style="font-weight: 400;">Countly uses </span><a href="https://github.com/google/breakpad"><span style="font-weight: 400;">Google's Breakpad open source library</span></a><span style="font-weight: 400;"> to be able to report crashes that occurred within the C++ components of your application, assuming there are any. Breakpad provides:</span>
 </p>
 <ul>
   <li>
@@ -466,35 +466,34 @@ plugins {
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().events()</code></pre>
-<p>&nbsp;</p>
 <p>
-  When providing segmentation for events, the only valid data types are: "String",
-  "Integer", "Double" and "Boolean". All other types will be ignored.
+  When providing segmentation for events, the following primitive data types are
+  supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays,
+  Lists, and JSONArrays composed of these primitive types are also supported. Please
+  note that no other data types will be recorded.
 </p>
 <h2 id="h_01HAVQDM5TT3KRX8YBCCFZ8RKG">Recording Events</h2>
 <p>
-  <span style="font-weight: 400;">We have provided an example of recording a&nbsp;</span><strong>purchase</strong><span style="font-weight: 400;">&nbsp;event below. Here is a quick summary of the information with which each usage will provide us:</span>
+  <span style="font-weight: 400;">We have provided an example of recording a </span><strong>purchase</strong><span style="font-weight: 400;"> event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
 <ul>
   <li>
-    Usage 1: how many times the&nbsp;<strong>purchase</strong> event occurred.
+    Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
   <li>
-    Usage 2: how many times the&nbsp;<strong>purchase</strong> event occurred
-    + the total amount of those purchases.
+    Usage 2: how many times the <strong>purchase</strong> event occurred + the
+    total amount of those purchases.
   </li>
   <li>
-    Usage 3: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +
+    Usage 3: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
   <li>
-    Usage 4: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +&nbsp;<span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
+    Usage 4: how many times the <strong>purchase</strong> event occurred +
+    <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
   <li>
-    Usage 5: how many times the&nbsp;<strong>purchase</strong> event occurred
-    +
+    Usage 5: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
   </li>
 </ul>
@@ -509,25 +508,46 @@ plugins {
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; segmentation = new HashMap&lt;String, Object&gt;();
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99, 60);</code></pre>
 <p>
@@ -661,12 +681,18 @@ config.enableManualSessionControlHybridMode();</code></pre>
 Countly.sharedInstance().views().startAutoStoppedView("View Name");
   
 // Or with segmentation
-Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().startAutoStoppedView("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().startAutoStoppedView("View Name", segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">It would return a string view ID:</span>
 </p>
@@ -684,12 +710,18 @@ Countly.sharedInstance().views().startAutoStoppedView("View Name", viewSegmentat
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().startView("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().startView("View Name", segmentation);</code></pre>
 <p>
   These views would also return a string view ID when they are called.
 </p>
@@ -699,12 +731,18 @@ Countly.sharedInstance().views().startView("View Name", viewSegmentation);</code
 </p>
 <pre>Countly.sharedInstance().views().stopViewWithName("View Name");</pre>
 <p>You can provide a segmentation while doing so:</p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().stopViewWithName("View Name", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().stopViewWithName("View Name", segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;"><span>If there are multiple views with the same name (they would have different identifiers) but if you try to stop one with that name the SDK would close one of those randomly.</span></span>
 </p>
@@ -715,21 +753,33 @@ Countly.sharedInstance().views().stopViewWithName("View Name", viewSegmentation)
 <p>
   <span style="font-weight: 400;">You can provide a segmentation while doing so:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().stopViewWithID("View ID", viewSegmentation);</code></pre>
+Countly.sharedInstance().views().stopViewWithID("View ID", segmentation);</code></pre>
 <p>
   You can also stop all running views at once with a segmentation:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().stopAllViews(viewSegmentation);</code></pre>
+Countly.sharedInstance().views().stopAllViews(segmentation);</code></pre>
 <h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Pausing and Resuming Views</h3>
 <p>
   <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
@@ -751,43 +801,67 @@ Countly.sharedInstance().views().stopAllViews(viewSegmentation);</code></pre>
 </p>
 <pre><code class="java">String viewID = Countly.sharedInstance().views().startView("View Name");
 
-Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().addSegmentationToViewWithID(viewID, viewSegmentation);</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithID(viewID, segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To add segmentation to a view using its name:</span>
 </p>
 <pre><code class="java">String viewName = "View Name";
 Countly.sharedInstance().views().startView(viewName);
   
-Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().addSegmentationToViewWithName(viewName, viewSegmentation);</code></pre>
+Countly.sharedInstance().views().addSegmentationToViewWithName(viewName, segmentation);</code></pre>
 <h2 id="h_01HHNZ0MAP34090BTSV1KAYD4J">Global View Segmentation</h2>
 <p>
   <span style="font-weight: 400;">You can set a global segmentation to be send with all views when it ends:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().setGlobalViewSegmentation(viewSegmentation);<br></code></pre>
+Countly.sharedInstance().views().setGlobalViewSegmentation(segmentation);<br></code></pre>
 <p>
   <span style="font-weight: 400;">You can update this segmentation any time you want:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
-viewSegmentation.put("Cats", 123);
-viewSegmentation.put("Moons", 9.98d);
-viewSegmentation.put("Moose", "Deer");
+<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+segmentation.put("country", "Germany");
+segmentation.put("app_version", "1.0");
+segmentation.put("rating", 10);
+segmentation.put("precision", 324.54678d);
+segmentation.put("timestamp", 1234567890L);
+segmentation.put("clicked", false);
+segmentation.put("languages", new String[] { "en", "de", "fr" });
+segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
-Countly.sharedInstance().views().updateGlobalViewSegmentation(viewSegmentation);</code></pre>
+Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
@@ -1402,7 +1476,7 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <span style="font-weight: 400;">into Management &gt; Applications &gt; Push Notifications &gt; Huawei Push Kit upload form in your Countly server and press “Save changes”:</span>
 </p>
 <p>
-  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="005.png">
+  <img src="/guide-media/01HNFC64B089RGN8DQ5ART4M5Y" alt="003.png">
 </p>
 <h1 id="h_01HAVQDM5V188C0YEHXB0E6238">User Location</h1>
 <p>
@@ -1724,13 +1798,12 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h1 id="01HC29WEYDQWW3351APKG4219Q">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">There are a couple ways of receiving feedback from your users: star-rating dialog, the rating widget and the feedback widgets (survey, nps).</span>
+  <span style="font-weight: 400;">There are several ways to receive user feedback: the Star Rating Dialog and the Feedback Widgets (Survey, NPS, Rating).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Star-rating dialog allows users to give feedback as a rating from 1 to 5. The rating widget allows users to rate using the same 1 to 5 rating system as well as leave a text comment. Feedback widgets (survey, nps) allow for even more textual feedback from users.</span>
+  <span style="font-weight: 400;">Star Rating Dialog allows users to give feedback by rating it from 1 to 5. Feedback Widgets (Survey, NPS, Rating) allow for even more textual feedback from users.</span>
 </p>
-<h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Ratings</h2>
-<h3 id="h_01HAVQDM5V8DKE0V808A24Z7W0">Star Rating Dialog</h3>
+<h2 id="h_01HAVQDM5VDY31NB5X2KRAKKW9">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Star-rating integration provides a dialog for receiving users’ feedback about the application. It contains a title, a simple message explaining its uses, a 1-to-5-star meter for receiving users’ ratings, and a dismiss button in case the user does not want to give a rating.</span>
 </p>
@@ -1810,50 +1883,11 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   public void onDismiss() {
     //the star rating dialog was dismissed
   }
-};</code></pre>
-<h3 id="h_01HAVQDM5V37XAD39H8SN0TD1Q">Rating Widget</h3>
-<p>
-  <span style="font-weight: 400;">The rating widget shows a server configured widget to your user devices.</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVCPN579JDD7DNJBCW5T5HHM" alt="003.png">
-</div>
-<p>
-  <span style="font-weight: 400;">It's possible to configure any of the shown text fields and replace them with a custom string of your choice.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">In addition to a 1 to 5 rating, users may also leave a text comment along with an email, should the user desire to be contacted by the app developer.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Trying to show the rating widget is a single call, but, in reality, it’s a two-step process. Before it is displayed, the SDK attempts to contact the server to receive more information regarding the dialog. Therefore, a network connection is needed.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">You may try to show the widget after you have initialized the SDK. To do so, you will first need to receive the widget ID from your server:</span>
-</p>
-<div class="img-container">
-  <img src="/guide-media/01GVD4NEYK3AQ1W94DSN7NSS1V" alt="004.png">
-</div>
-<p>
-  <span style="font-weight: 400;">Using the widget ID, you may call the function to show the widget popup:</span>
-</p>
-<pre><code class="java">String widgetId = "xxxxx";
-String closeButtonText = "Close";
-Countly.sharedInstance().ratings().presentRatingWidgetWithID(widgetId, closeButtonText, activity, new FeedbackRatingCallback() {
-  @Override
-  public void callback(String error) {
-    if(error != null){
-      Toast.makeText(activity, "Encountered error while showing raging widget dialog: [" + error + "]", Toast.LENGTH_LONG).show();
-    }
-  }
-});</code></pre>
-<h3 id="h_01HAVQDM5VV16WPAS7KE5KFT11">Manual Rating Reporting</h3>
-<p>
-  You may want to display your own custom UI to query users about the information
-  in the rating widget. In case you do that, you would then report that rating
-  result manually. To do that you would use the following call:
-</p>
-<pre><code class="java">String widgetId = <span>"5f15c01425f83c169c33cb65"</span>;<br><span>int </span>rating = <span>3</span>;<br>String email = <span>"foo@bar.garr"</span>;<br>String comment = <span>"Ragnaros should watch out"</span>;<br>Boolean userCanBeContacted = <span>true</span>;<br>Countly.sharedInstance().ratings().recordRatingWidgetWithID(widgetId, rating, email, comment, userCanBeContacted);</code></pre>
+};</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is an enterprise-level plugin.</p>
+</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
@@ -1972,8 +2006,14 @@ Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();
 //report the results to the SDK
 Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport, retrievedWidgetData, reportedResult);</code></pre>
 <p>
-  If the user would have closed the widget, you would report that by passing a
-  "null" as the reportedResult.
+  If the user has closed the widget, you would report that by passing a "null"
+  as the reported result.
+</p>
+<h2 id="h_01J1YX5G6WJVY7KHZPTP8Z8G2W">Consent</h2>
+<p>
+  If consents are enabled, to use Feedback Widgets, you have to provide the 'feedback'
+  and to use Star Rating Dialog you have to provide the 'starRating' consent for
+  these features to work.
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <p>
@@ -2098,10 +2138,11 @@ Countly.sharedInstance().userProfile().save();</code></pre>
 </p>
 <h2 id="h_01HAVQDM5VN01PPTK6B39509QZ">Orientation Tracking</h2>
 <p>
-  To record your applications orientation changes, you need to enable it on your
-  init object like:
+  Tracking of orientation changes is enabled by default. To stop recording your
+  application's orientation changes, you need to disable it on your init object
+  like:
 </p>
-<pre>config.setTrackOrientationChanges(<span>true</span>);</pre>
+<pre>config.setTrackOrientationChanges(<span>false</span>);</pre>
 <p>
   You need to add this to all of your activities where you want to track orientation:
 </p>
@@ -2113,9 +2154,14 @@ Countly.sharedInstance().userProfile().save();</code></pre>
   android:configChanges="orientation|screenSize"&gt;
 &lt;/activity&gt;</code></pre>
 <p>
-  To finish your setup for orientation tracking, you need to set up the android
-  callback for "onConfigurationChanged". In those you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".&nbsp;You
-  may set it up similarly to this:
+  To finish your setup for orientation tracking, you need to provide an application
+  class to the config object via "setApplication." This will automatically catch
+  orientation changes for all activities connected to the given application class.
+</p>
+<p>
+  Otherwise, you must set up the Android callback to "onConfigurationChanged."
+  In those, you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".
+  You may set it up similarly to this:
 </p>
 <pre><code class="java">@Override
 public void onConfigurationChanged (Configuration newConfig){
