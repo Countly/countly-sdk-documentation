@@ -979,74 +979,190 @@ Countly.Instance.Init(config);</code></pre>
   If consent is required, recording Star Rating requires<code>StarRating</code><span>consent. If consent is required and not given, recording a Star Rating will not be possible.</span><span></span>
 </p>
 <h1 id="h_01HABTZ3164RBD3AC31PH330W9">User Profiles</h1>
+<div class="callout callout--info">
+  <p>User Profiles is an enterprise-level plugin.</p>
+</div>
 <p>
-  <span>For information about User Profiles, review </span><a href="http://resources.count.ly/docs/user-profiles"><span>this documentation</span></a><span>.</span>
+  User Profiles is a tool for identifying users, their devices, event timelines,
+  and application crash information. It may contain any information you collect
+  or that is collected automatically by the Countly SDK.
 </p>
 <p>
-  If a property is set as an empty string, it will be deleted from the user on
-  the server side.
+  You may send user-related information to Countly and let the Countly Dashboard
+  show and segment this data. You may also send a notification to a group of users.
+  For more information about User Profiles, review
+  <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_blank" rel="noopener noreferrer">this documentation</a>
 </p>
-<h2 id="h_01HABTZ316D6XXE1MP0RMYV6ZV">Setting Predefined Values</h2>
+<h2 id="h_01J47DCBMMFRVW76KFDDJ6HD55">Setting User Properties</h2>
 <p>
-  The Countly Unity SDK allows you to upload specific data related to a user to
-  the Countly server. You may set the following predefined data for a particular
-  user:
+  In the SDK, the typical workflow involves using the following methods to provide
+  information about the current user:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// Provide multiple properties at once within a dictionary
+Countly.Instance.UserProfile.SetProperties(Dictionary &lt;string, object&gt; userProperties);
+<br>// Provide single user property as key and value
+Countly.Instance.UserProfile.SetProperty(string key, object value);</code></pre>
+<p>
+  These methods allow you to set predefined fields or any custom fields you wish
+  to include. While saving User Profile data by calling
+  <code>Countly.UserProfile.Save()</code> is not mandatory, if required manually
+  saving User Profile data by that call can still be applied. Recorded User Profile
+  data is automatically sent when:
 </p>
 <ul>
-  <li>
-    <strong>Name</strong>: full name of the user.
-  </li>
-  <li>
-    <strong>Username</strong>: username of the user.
-  </li>
-  <li>
-    <strong>E-mail</strong>: e-mail address of the user.
-  </li>
-  <li>
-    <strong>Organization</strong>: organization the user is working in.
-  </li>
-  <li>
-    <strong>Phone</strong>: phone number.
-  </li>
-  <li>
-    <strong>PictureUrl</strong>: web-based URL for the user’s profile.
-  </li>
-  <li>
-    <strong>Gender</strong>: gender of the user (use only single char like ‘M’
-    for Male and ‘F’ for Female).
-  </li>
-  <li>
-    <strong>BirthYear</strong>: birth year of the user.
-  </li>
+  <li>An event is recorded</li>
+  <li>A session update occurs</li>
+  <li>The device ID changes</li>
 </ul>
+<p>The keys for predefined user data fields are as follows:</p>
+<table>
+  <tbody>
+    <tr>
+      <th>Key</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>User's full name</td>
+    </tr>
+    <tr>
+      <td>username</td>
+      <td>string</td>
+      <td>User's nickname</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>string</td>
+      <td>User's email address</td>
+    </tr>
+    <tr>
+      <td>organization</td>
+      <td>string</td>
+      <td>User's organization name</td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td>string</td>
+      <td>User's phone number</td>
+    </tr>
+    <tr>
+      <td>picture</td>
+      <td>string</td>
+      <td>URL to avatar or profile picture of the user</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>string</td>
+      <td>User's gender as M for male and F for female</td>
+    </tr>
+    <tr>
+      <td>byear</td>
+      <td>int</td>
+      <td>User's year of birth as integer</td>
+    </tr>
+  </tbody>
+</table>
 <p>
-  The SDK allows you to upload user details using the methods listed below.
+  Using "" for strings or a negative number for 'byear' will effectively delete
+  that property.
 </p>
-<p>Example:</p>
-<pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel(name: "Full Name", username: "username", email: "useremail@email.com", organization: "Organization", phone: "222-222-222", pictureUrl: "http://webresizer.com/images2/bird1_after.jpg", gender: "M", birthYear: "1986", null);
-<strong>await</strong> Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
-<h2 id="h_01HABTZ316PCFDVF0EJGXMABY9">Setting Custom Values</h2>
 <p>
-  The SDK gives you the flexibility to send only the custom data to Countly servers,
-  even when you don’t want to send other user-related data. To achieve this, you
-  can generate a custom data segment using a
-  <code>Dictionary&lt;string, object&gt;</code>. You can leave all the parameters
-  in the constructor as null and simply provide your custom data. This allows you
-  to easily send your specific data to Countly servers without unnecessary steps.
+  You may use any key values to store and display on your Countly backend for custom
+  user properties.
+  <strong>Note: Keys with . or $ symbols will have those symbols removed.</strong>
 </p>
-<p>Example:</p>
-<pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; userDetails = <strong>new</strong> Dictionary&lt;string, object&gt;();
-userDetails.Add("Height", "5.8");
-userDetails.Add("Mole", "Lower Left Cheek");
-Countly.Instance.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
+<h3 id="h_01J47DN92CDNYHA24827B3VBXD">Recording Custom Values</h3>
+<p>
+  Both methods can be used to record custom User Profile data. Example usage would
+  be:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// Record the User Profile data by SetProperty method
+Countly.Instance.UserProfile.SetProperty("ExampleKey", "ExampleValue");
+// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();
+    
+// Create a Dictionary for SetProperties method
+Dictionary&lt;string, object&gt; userProperties = new Dictionary&lt;string, object&gt;
+{
+  { "ExampleKey2", "ExampleValue2" }
+};
+// Record the User Profile data by SetProperties method
+Countly.Instance.UserProfile.SetProperties(userProperties);
+// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();</code><code class="!whitespace-pre hljs language-csharp"></code></pre>
+<h3 id="h_01J47ECBQ9A9Z9KH7Z9EQ7PWYP">Recording Predefined Values</h3>
+<p>
+  In the same way as recording custom User Profile data, both methods can be used
+  again to record predefined User Profile data. Example usage would be:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// Record single User Profile data by SetProperty method
+Countly.Instance.UserProfile.SetProperty("name", "Albert Einstein");
+// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();
+<br>// Create a Dictionary containing User Profile data
+Dictionary&lt;string, object&gt; userProperties = new Dictionary&lt;string, object&gt;
+{
+  { "name", "Albert Einstein" },
+  { "username", "albert" },
+  { "email", "info@albert.einstein" },
+  { "organization", "Theoretical Physics Institute" },
+  { "phone", "90 123 456 7890" },
+  { "picture", "https://ExamplePictureUrl.org/geniuses/Albert_Einstein.jpg" },
+  { "gender", "M" },
+  { "byear", 1879 }
+};
+// Record the User Profile data by SetProperties method
+Countly.Instance.UserProfile.SetProperties(userProperties);
+// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();
+</code></pre>
+<p>
+  It's also possible to record custom and predefined data within the same dictionary
+  in a single call. Example usage would be:
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// Record both custom and predefined values
+Dictionary&lt;string, object&gt; userProperties = new Dictionary&lt;string, object&gt;
+{
+  // User values
+  { "name", "Marie Curie" },
+  { "username", "marie" },
+  { "email", "info@marie.curie" },
+  { "organization", "Institute of Radium" },
+  { "phone", "90 987 654 3210" },
+  { "picture", "https://ExamplePictureUrl.org/geniuses/Marie_Curie.jpg" },
+  { "gender", "F" },
+  { "byear", 1867 },
+  // Custom values
+  { "fieldOfStudy", "Radioactivity" },
+  { "nobelPrizes", new List { "Physics 1903", "Chemistry 1911" } },
+  { "discovery", "Polonium and Radium" }
+};
+// Record the values with SetProperties call
+Countly.Instance.UserProfile.SetProperties(userProperties);
+// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();
+</code></pre>
 <h2 id="h_01HABTZ3166RSMTP5JC3Y2PVZC">Setting User Picture</h2>
 <p>
-  The SDK allows you to set the user's picture URL along with other details using
-  the methods listed below.
+  As mentioned above SDK allows you to set the user's picture URL along with other
+  details using both <code>SetProperties</code> and <code>SetProperty</code> methods.
 </p>
-<p>Example:</p>
-<pre><code>CountlyUserDetailsModel userDetails = <strong>new</strong> CountlyUserDetailsModel(name: "Full Name", username: "username", email: "useremail@email.com", organization: "Organization", phone: "222-222-222", pictureUrl: "http://webresizer.com/images2/bird1_after.jpg", gender: "M", birthYear: "1986", null);
-<strong>await</strong> Countly.Instance.UserDetails.SetUserDetailsAsync(userDetails);</code></pre>
+<p>Example usage would be:</p>
+<pre><code class="!whitespace-pre hljs language-csharp">// Set User Picture with SetProperty method
+Countly.Instance.UserProfile.SetProperty("picture", "https://ExamplePictureUrl.org/geniuses/Richard_Garfield.jpg");
+// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();
+
+//Create a dictionary that contains picture URL data
+Dictionary&lt;string, object&gt; userProperties = new Dictionary&lt;string, object&gt;
+{
+  { "picture", "https://ExamplePictureUrl.org/geniuses/Marshall_Mathers.jpg" }
+};
+// Set the user profile picture using the SetProperties method
+Countly.Instance.UserProfile.SetProperties(userProperties);<br>// Send recorded value to the server manually if needed
+Countly.Instance.UserProfile.Save();</code></pre>
 <h2 id="h_01HABTZ3160SY1KJCM2G1JPYK0">Modifying Data</h2>
 <p>
   <span>You may also manipulate your custom data values in different ways, such as incrementing the current value on a server or storing an array of values under the same property.</span>
@@ -1054,64 +1170,54 @@ Countly.Instance.UserDetails.SetCustomUserDetails(userDetails);</code></pre>
 <p>
   <span>You will find the list of available manipulations below:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp">//set one custom properties
-Countly.Instance.UserDetails.Set("test", "test");
+<pre><code class="!whitespace-pre hljs language-csharp">// Increment custom property value by 1
+Countly.Instance.UserProfile.Increment("used");
 
-//increment used value by 1
-Countly.Instance.UserDetails.Increment("used");
+// Increment custom property value by provided value
+Countly.Instance.UserProfile.IncrementBy("used", 2);
 
-//increment used value by provided value
-Countly.Instance.UserDetails.IncrementBy("used", 2);
+// Save maximal value between existing and provided
+Countly.Instance.UserProfile.SaveMax("highscore", 300);
 
-//multiply value by provided value
-Countly.Instance.UserDetails.Multiply("used", 3);
+// Save minimal value between existing and provided
+Countly.Instance.UserProfile.SaveMin("best_time", 60);
+  
+// Multiply custom property value by the provided value
+Countly.Instance.UserProfile.Multiply("used", 3);
 
-//save maximal value
-Countly.Instance.UserDetails.Max("highscore", 300);
+// Removes existing property from the array
+Countly.Instance.UserProfile.Pull("type", "remove");
 
-//save minimal value
-Countly.Instance.UserDetails.Min("best_time", 60);
+// Insert value to the array, which can have duplicates
+Countly.Instance.UserProfile.Push("force", "add");
 
-//set value if it does not exist
-Countly.Instance.UserDetails.SetOnce("tag", "test");
+// Insert value to the array of unique values
+Countly.Instance.UserProfile.PushUnique("single", "unique");
 
-//insert value to array of unique values
-Countly.Instance.UserDetails.PushUnique("type", new string[] { "morning" });
+// Set value if it does not exist yet
+Countly.Instance.UserProfile.SetOnce("tag", "test");
 
-//insert value to array which can have duplicates
-Countly.Instance.UserDetails.Push("type", new string[] { "morning" });
-
-//remove value from array
-Countly.Instance.UserDetails.Pull("type", new string[] { "morning" });
-
-//send provided values to server
-<strong>await</strong> Countly.Instance.UserDetails.SaveAsync();</code></pre>
+// Send provided values to server
+Countly.Instance.UserProfile.Save();</code></pre>
 <p>
-  In the end, always call
-  <code><strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code>
-  to send them to the server.
+  Apart from updating a single property in one request, modifying multiple (unique)
+  properties in one request is possible. For example, this enables incrementing
+  HighScore and multiplying BestTime in the same request. Similarly, it's possible
+  to record any number of modified requests and save them all together in one single
+  request instead of multiple requests.
 </p>
 <p>
-  Apart from updating a single property in one request, you can modify multiple
-  (unique) properties in one single request. This way you can increment Weight
-  and multiply Height in the same request. Similarly, you can record any number
-  of modified requests and Save them all together in one single request instead
-  of multiple requests.
-</p>
-<p>
-  Note that if you are going to modify multiple properties in one request, make
-  sure your properties are unique, i.e. a property shouldn’t be modified more than
-  once in a single request. However, if you record a property more than once, only
-  the latest value will be posted to the server.
+  It should be noted that when modifying multiple properties in one request, the
+  properties must be unique. A property shouldn’t be modified more than once in
+  a single request. However, if a property is recorded more than once, only the
+  latest value will be posted to the server.
 </p>
 <p>Example:</p>
-<pre><code class="!whitespace-pre hljs language-csharp"><span>Countly.Instance</span>.UserDetails.Max("Weight", 90);
-<span>Countly.Instance</span>.UserDetails.SetOnce("Distance", "10KM");
-<span>Countly.Instance</span>.UserDetails.Push("Mole", new string[] { "Left Cheek", "Back", "Toe" });
-<strong>await</strong> <span>Countly.Instance</span>.UserDetails.SaveAsync();</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><span>Countly.Instance</span>.UserProfile.IncrementBy("HighScore", 90);
+<span>Countly.Instance</span>.UserProfile.Multiply("BestTime", 20);<br><span>Countly.Instance</span>.UserProfile.Save();</code></pre>
 <h2 id="h_01HABTZ316445B91Y1ZHCS6DGK" class="anchor-heading">Consent</h2>
 <p>
-  This feature requires<code>User</code><span>consent. If consent is required and not given, recording user profile information will not be possible.</span>
+  This feature requires<code>Users</code><span>consent. If consent is required and not given, recording user profile information will not be possible.</span>
 </p>
 <h1 id="user-consent-management" class="anchor-heading" tabindex="-1">User Consent</h1>
 <p>
