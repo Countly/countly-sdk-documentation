@@ -23,7 +23,8 @@
   To examine the example integrations, please have a look
   <a href="#h_01HPGPY37EVNPFRRXH07DTV7QV">here.</a>
 </p>
-<h1 id="h_01HABTZ314WVHKW01D3RTT1RYX">Adding the SDK to the Project</h1>
+<h1 id="h_01HABTZ3143Z9ZY3H02CEV868Z">SDK Integration</h1>
+<h2 id="h_01HABTZ314WVHKW01D3RTT1RYX">Adding the SDK to the Project</h2>
 <p>
   Download the Unity package from
   <a href="https://github.com/Countly/countly-sdk-unity/releases" target="_blank" rel="noopener">GitHub</a>
@@ -48,7 +49,6 @@
 <p>
   <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json </span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows </span></strong><span data-preserver-spaces="true">=&gt; </span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/guide-media/01GVDG0BAGCD7VJ9EYNK3GS32F" alt="image-newtonsoft.png"></span>
 </p>
-<h1 id="h_01HABTZ3143Z9ZY3H02CEV868Z">SDK Integration</h1>
 <h2 id="h_01HABTZ314XCMNWWK698JR773J">Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.
@@ -72,6 +72,15 @@ Countly.Instance.Init(config);
     <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#how-to-validate-your-countly-integration" target="blank">here</a>.
   </p>
 </div>
+<h2 id="require-app-permissions" class="anchor-heading">Required App Permissions</h2>
+<p>
+  If you expect the game to be saved on an SD card or any other type of external
+  storage, set <strong>Write Permission</strong> to 'External (SDCard). This can
+  be found in your Android platform settings under 'Other Settings'.
+</p>
+<p>
+  When configuring your app, make sure that it has permission to access the internet.
+</p>
 <h2 id="h_01HABTZ314QNCDAQT0SC5NETCG" class="anchor-heading">SDK Data Storage</h2>
 <p>
   Countly SDK store data that are meant for your app's use only, within an internal
@@ -112,15 +121,6 @@ Countly.Instance.Init(config);
     </li>
   </ul>
 </div>
-<h2 id="require-app-permissions" class="anchor-heading">Required App Permissions</h2>
-<p>
-  If you expect the game to be saved on an SD card or any other type of external
-  storage, set <strong>Write Permission</strong> to 'External (SDCard). This can
-  be found in your Android platform settings under 'Other Settings'.
-</p>
-<p>
-  When configuring your app, make sure that it has permission to access the internet.
-</p>
 <h2 id="h_01HABTZ31446VPCP3M6Y0PWMNY">SDK Notes</h2>
 <p>
   To access the Countly Global Instance use the following code snippet:
@@ -1321,6 +1321,11 @@ Countly.Instance.Consent.RemoveConsentOfGroup(groupName);</code></pre>
   folder under Assets. There is also 'CountlyEntryPoint.cs' script in Example folder,
   and this script shows how most of the functionality can be used.
 </p>
+<h2 id="h_01HCHSPK9K9CM6204WD2Z06WTZ">Checking If the SDK Has Been Initialized</h2>
+<p>
+  <span>In case you would like to check if init has been called, you may use the following property:</span>
+</p>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.IsSDKInitialized;</code></pre>
 <h2 id="sdk-internal-limits" class="anchor-heading">SDK Internal Limits</h2>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
@@ -1427,11 +1432,6 @@ Countly.Instance.Init(configuration);</code></pre>
 </p>
 <pre><code class="!whitespace-pre hljs language-csharp">CountlyConfiguration configuration = new CountlyConfiguration(appKey, serverUrl)
   .SetMaxRequestQueueSize(500);</code></pre>
-<h2 id="h_01HCHSPK9K9CM6204WD2Z06WTZ">Checking If the SDK Has Been Initialized</h2>
-<p>
-  <span>In case you would like to check if init has been called, you may use the following property:</span>
-</p>
-<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.IsSDKInitialized;</code></pre>
 <h1 id="h_01HCHSPK9KVEWVKRB0CRY25S8K">FAQ</h1>
 <h2 id="h_01HCHSPK9KTK4V1CCZXVND2TSV">What Information is Collected by the SDK</h2>
 <p>
