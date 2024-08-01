@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Unity SDK version 23.12.X. The SDK source
+  This documentation is for the Countly Unity SDK version 24.8.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-unity" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
