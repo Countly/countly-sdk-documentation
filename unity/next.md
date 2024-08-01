@@ -227,7 +227,7 @@ segmentation.Add("Action", "click");
   In the SDK, all event-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.Events</pre>
+<pre>Countly.Instance.Events</pre>
 <p>
   <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event. For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
 </p>
@@ -286,11 +286,11 @@ segmentation.Add("Action", "click");
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "purchase", count: 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
@@ -298,7 +298,7 @@ segmentation.Add("Action", "click");
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);</code></pre>
+<strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
@@ -306,7 +306,7 @@ segmentation.Add("app_version", "1.0");
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
+<strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
@@ -314,7 +314,7 @@ segmentation.Add("app_version", "1.0");
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);
+<strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);
 </code></pre>
 <p>
   These are only a few examples of what you can do with Events. You may go beyond
