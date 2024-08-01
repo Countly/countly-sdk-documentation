@@ -959,7 +959,7 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code><strong>await</strong> countly.StarRating.ReportStarRatingAsync(platform: "android", appVersion: "0.1", rating: 3);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.StarRating.ReportStarRatingAsync(platform: "android", appVersion: "0.1", rating: 3);</code></pre>
 <p>
   <span>All parameters are mandatory.</span>
 </p>
