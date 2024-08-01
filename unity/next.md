@@ -149,7 +149,7 @@ Countly.Instance.Init(config);
   In the SDK all crash-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.CrashReports</pre>
+<pre>Countly.Instance.CrashReports</pre>
 <h2 id="h_01HABTZ314AT5KAJCM51D304ZV">Automatic Crash Handling</h2>
 <p>
   The Unity SDK can automatically report uncaught exceptions/crashes in the application
@@ -161,7 +161,7 @@ Countly.Instance.Init(config);
   <span>You might catch an exception or similar error during your app’s runtime.</span><span> You may also log these handled exceptions to monitor how and when they are happening. </span>To
   log exception use the following code snippet:
 </p>
-<pre><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, null, false); </pre>
+<pre><strong>await</strong> Countly.Instance.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, null, false); </pre>
 <p>Here is the detail of the parameters:</p>
 <ul>
   <li>
@@ -184,7 +184,7 @@ Countly.Instance.Init(config);
 <pre><code class="csharp">try {
   throw new DivideByZeroException();
 } catch (Exception ex) {
-  await countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
+  await Countly.Instance.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace);
 }</code></pre>
 <p class="anchor-heading">You can also send a segmentation with an exception.</p>
 <pre><code class="csharp"><span>Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();
@@ -192,15 +192,15 @@ segmentation.Add("Action", "click");</span>
 try {
   throw new DivideByZeroException();
 } catch (Exception ex) {
-  await countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);
+  await Countly.Instance.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, true);
 }</code></pre>
 <p>
   <span>If you have handled an exception and it turns out to be fatal to your app, you may use the following calls:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, null, false);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, null, false);</code></pre>
 <pre><code class="!whitespace-pre hljs language-csharp">Dictionary&lt;string, object&gt; segmentation = <strong>new</strong> Dictionary&lt;string, object&gt;();
 segmentation.Add("Action", "click");
-<strong>await</strong> countly.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, false);</code></pre>
+<strong>await</strong> Countly.Instance.CrashReports.SendCrashReportAsync(ex.Message, ex.StackTrace, segmentation, false);</code></pre>
 <h2 id="h_01HABTZ314FEB9WM3P718TVMHY" class="anchor-heading">Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs. They are short logs<span> that </span>would
@@ -208,7 +208,7 @@ segmentation.Add("Action", "click");
   a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre><code class="!whitespace-pre hljs language-csharp">countly.CrashReports.AddBreadcrumbs("breadcrumb");</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp">Countly.Instance.CrashReports.AddBreadcrumbs("breadcrumb");</code></pre>
 <h2 id="h_01HABTZ3140XGZJY6K0J169K5Q" class="anchor-heading">Consent</h2>
 <p>
   This feature uses <code>Crashes</code><span> consent. No additional crash logs will be recorded if consent is required and not given.</span>
@@ -227,7 +227,7 @@ segmentation.Add("Action", "click");
   In the SDK, all event-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre>countly.Events</pre>
+<pre>Countly.Instance.Events</pre>
 <p>
   <span>There are a couple of values that can be set when recording an event. The main one is the <strong>key</strong> property which would be the identifier/name for that event. For example, in case a user purchased an item in a game, you could create an event with the key 'purchase'.</span>
 </p>
@@ -286,11 +286,11 @@ segmentation.Add("Action", "click");
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "purchase", count: 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "purchase", count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
@@ -298,7 +298,7 @@ segmentation.Add("Action", "click");
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);</code></pre>
+<strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
@@ -306,7 +306,7 @@ segmentation.Add("app_version", "1.0");
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
+<strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
@@ -314,7 +314,7 @@ segmentation.Add("app_version", "1.0");
 segmentation.Add("country", "Germany");
 segmentation.Add("app_version", "1.0");
 
-<strong>await</strong> countly.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);
+<strong>await</strong> Countly.Instance.Events.RecordEventAsync(key: "<span>purchase</span>", segmentation: segmentation, count: 1, sum: 0.99, duration: 60);
 </code></pre>
 <p>
   These are only a few examples of what you can do with Events. You may go beyond
@@ -637,14 +637,14 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.Device.ChangeDeviceIdWithMerge("New Device Id");</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.Device.ChangeDeviceIdWithMerge("New Device Id");</code></pre>
 <p class="anchor-heading">
   <strong>Changing Device ID without Server Merge</strong>
 </p>
 <p>
   <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
 </p>
-<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> countly.Device.ChangeDeviceIdWithoutMerge("New Device Id");</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.Device.ChangeDeviceIdWithoutMerge("New Device Id");</code></pre>
 <p>
   <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
 </p>
@@ -959,7 +959,7 @@ Countly.Instance.Init(config);</code></pre>
 <p>
   <span>Example:</span>
 </p>
-<pre><code><strong>await</strong> countly.StarRating.ReportStarRatingAsync(platform: "android", appVersion: "0.1", rating: 3);</code></pre>
+<pre><code class="!whitespace-pre hljs language-csharp"><strong>await</strong> Countly.Instance.StarRating.ReportStarRatingAsync(platform: "android", appVersion: "0.1", rating: 3);</code></pre>
 <p>
   <span>All parameters are mandatory.</span>
 </p>
