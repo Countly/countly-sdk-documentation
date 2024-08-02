@@ -2152,18 +2152,13 @@ Countly.sharedInstance().userProfile().saveMin("best_time",60);
 Countly.sharedInstance().userProfile().setOnce("tag", "test");
 //insert value to array of unique values
 Countly.sharedInstance().userProfile().pushUnique("type", "morning");
-//insert value to array which can have duplocates
+//insert value to array which can have duplicates
 Countly.sharedInstance().userProfile().push("type", "morning");
 //remove value from array
 Countly.sharedInstance().userProfile().pull("type", "morning");
 
 //send provided values to server
 Countly.sharedInstance().userProfile().save();</code></pre>
-<p>
-  In the end, always call
-  <strong>Countly.sharedInstance().userProfile().save()</strong> to send them to
-  the server.
-</p>
 <h2 id="h_01HAVQDM5VN01PPTK6B39509QZ">Orientation Tracking</h2>
 <p>
   Tracking of orientation changes is enabled by default. To stop recording your
