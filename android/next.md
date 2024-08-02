@@ -2016,30 +2016,42 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
   these features to work.
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
+<div class="callout callout--info">
+  <p>User Profiles is an enterprise-level plugin.</p>
+</div>
 <p>
-  <span style="font-weight: 400;">Available with Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information. User Profiles may contain any information you either collect or is collected automatically by the Countly SDK.</span>
+  User Profiles is a tool for identifying users, their devices, event timelines,
+  and application crash information. It may contain any information you collect
+  or that is collected automatically by the Countly SDK.
 </p>
 <p>
-  <span style="font-weight: 400;">You may send user-related information to Countly and let the Countly dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review </span><a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">this documentation</a><span style="font-weight: 400;">.</span><span style="font-weight: 400;"></span>
+  You may send user-related information to Countly and let the Countly Dashboard
+  show and segment this data. You may also send a notification to a group of users.
+  For more information about User Profiles, review
+  <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_blank" rel="noopener noreferrer">this documentation</a>
 </p>
+<h2 id="h_01J47DCBMMFRVW76KFDDJ6HD55">Setting User Properties</h2>
 <p>
-  <span style="font-weight: 400;">You would call </span>
-  <code>Countly.sharedInstance().userProfile().</code>to see the available functionality
-  for modifying user properties.
+  In the SDK, the typical workflow involves using the following methods to provide
+  information about the current user:
 </p>
-<p>
-  <span style="font-weight: 400;">The usual workflow would include calling <code>Countly.sharedInstance().userProfile().setProperty(key, value)</code></span><span style="font-weight: 400;">function in order to provide information regarding the current user. These can either be the predefined fields or any custom fields you would want to set. After you have provided the user profile information, you must save it by calling <code>Countly.userData.save()</code></span><span style="font-weight: 400;">. This would then create a request and send it to the server.</span>
-</p>
-<pre><code class="java">// Update the user profile with multiple values
-Map&lt;String, Object&gt; userInformation = new HashMap&lt;&gt;();<br>// Set user information<br>// ...<br>
-Countly.sharedInstance().userProfile().setProperties(userInformation);
-Countly.sharedInstance().userProfile().save();
+<pre><code class="java">// Provide multiple properties at once within a map
+Countly.sharedInstance().userProfile().setProperties(Map&lt;String, Object&gt; userProperties);
 
-//Update the user profile by setting multiple values in a map
-Map&lt;String, String&gt; setValues = new HashMap&lt;&gt;();
-// Set user information in the map<br>// ...
-Countly.sharedInstance().userProfile().setProperties(setValues);
-Countly.sharedInstance().userProfile().save();</code></pre>
+// Provide single user property as key and value
+Countly.sharedInstance().userProfile().setProperties(String key, Object value);</code></pre>
+<p>
+  These methods allow you to set predefined fields or any custom fields you wish
+  to include. While saving User Profile data by calling
+  <code>Countly.sharedInstance().userProfile().save()</code> is not mandatory;
+  if required, manually saving User Profile data by that call can still be applied.
+  Recorded User Profile data is automatically sent when:
+</p>
+<ul>
+  <li>An event is recorded</li>
+  <li>A session update occurs</li>
+  <li>The device ID changes</li>
+</ul>
 <p>The keys for predefined user data fields are as follows:</p>
 <table>
   <tbody>
@@ -2090,7 +2102,7 @@ Countly.sharedInstance().userProfile().save();</code></pre>
     </tr>
     <tr>
       <td>byear</td>
-      <td>String</td>
+      <td>int</td>
       <td>User's year of birth as integer</td>
     </tr>
   </tbody>
@@ -2099,7 +2111,23 @@ Countly.sharedInstance().userProfile().save();</code></pre>
   <span style="font-weight: 400;">Using "" for strings or a negative number for 'byear' will effectively delete that property.</span>
 </p>
 <p>
-  <strong><span style="font-weight: 400;">You may use any key values to be stored and displayed on your Countly backend for custom user properties.&nbsp;</span>Note: keys with . or $ symbols will have those symbols removed.</strong>
+  <span style="font-weight: 400;">When providing properties, the following primitive data types are supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays, Lists, and JSONArrays composed of these primitive types are also supported. Please note that no other data types will be recorded.</span>
+</p>
+<pre><code class="java">// Update the user profile with multiple values
+Map&lt;String, Object&gt; userInformation = new HashMap&lt;&gt;();
+userInformation.put("byear", 2024);
+userInformation.put("name", "Beduk");
+userInformation.put("level", 56);
+userInformation.put("languages", new String[] { "en", "de", "fr" });
+userInformation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
+userInformation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
+// Set user information
+// ...
+
+Countly.sharedInstance().userProfile().setProperties(userInformation);
+Countly.sharedInstance().userProfile().save();</code></pre>
+<p>
+  <strong><span style="font-weight: 400;">You may use any key values to be stored and displayed on your Countly backend for custom user properties. </span>Note: keys with . or $ symbols will have those symbols removed.</strong>
 </p>
 <h2 id="h_01HAVQDM5V1TKVHB4XM726FRG6">Modifying Data</h2>
 <p>
