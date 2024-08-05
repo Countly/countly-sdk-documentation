@@ -698,24 +698,31 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   <p>
     <strong>Performance risk.</strong> Changing the device ID with server merging
     results in a significant load on the server as it rewrites all user history.
-    This should be done only once per user.<br>
-    <br>
-    <strong>Device ID interface</strong> is only available from Countly version
-    24.7.1.
+    This should be done only once per user.
   </p>
 </div>
-<p>
-  You may configure or change the device ID interface anytime using any of the
-  following:
-</p>
-<pre><code class="dart">Countly.instance.deviceId.changeWithMerge(DEVICE_ID);</code></pre>
-<p>
-  The old device ID on the server will be replaced with the new one, and data associated
-  with the old device ID will be merged automatically.
-</p>
-<pre><code class="dart">Countly.instance.deviceId.changeWithoutMerge(DEVICE_ID);</code></pre>
-<p>The device will be counted as a new device on the server.</p>
-<pre><code class="dart">Countly.instance.deviceId.setID(DEVICE_ID);</code></pre>
+<p>You may configure or change the device ID anytime using:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">24.7.1</span>
+    <span class="tabs-link">24.7.0</span>
+  </div>
+  <div class="tab">
+    <pre><code class="dart">Countly.instance.deviceId.setID(DEVICE_ID);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="dart">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
+    <p>
+      You may either allow the device to be counted as a new device or merge
+      existing data on the server. If the<code>onServer</code> bool is set
+      to <code>true</code>, the old device ID on the server will be replaced
+      with the new one, and data associated with the old device ID will be
+      merged automatically. Otherwise, if <code>onServer</code> bool is set
+      to <code>false</code>, the device will be counted as a new device on
+      the server.
+    </p>
+  </div>
+</div>
 <p>
   When using <code>setID</code>, the SDK determines internally if the device will
   be counted as a new device on the server or if it will merge the new and old
@@ -729,48 +736,83 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ6PWYGR33SGRYFBE3R">Temporary Device ID</h2>
 <p>
   You may use a temporary device ID mode to keep all requests on hold until the
-  real device ID is set later.
+  device ID is set later.
 </p>
 <p>
   You can enable temporary device ID mode when initializing the SDK:
 </p>
-<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">24.7.1</span>
+    <span class="tabs-link">24.7.0</span>
+  </div>
+  <div class="tab">
+    <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.enableTemporaryDeviceIDMode();
 
 // Initialize with that configuration
 Countly.initWithConfig(config);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setDeviceId(Countly.temporaryDeviceID);
+
+// Initialize with that configuration
+Countly.initWithConfig(config);</code></pre>
+  </div>
+</div>
 <p>
   To enable a temporary device ID after initialization, you can call:
 </p>
-<pre><code class="dart">Countly.instance.deviceId.enableTemporaryIDMode();</code></pre>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">24.7.1</span>
+    <span class="tabs-link">24.7.0</span>
+  </div>
+  <div class="tab">
+    <pre><code class="dart">Countly.instance.deviceId.enableTemporaryIDMode();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="dart">Countly.changeDeviceId(Countly.temporaryDeviceID, ON_SERVER);</code></pre>
+    <p>
+      <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for
+      <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
+      does not matter.
+    </p>
+  </div>
+</div>
 <p>
-  The SDK will be in temporary device ID mode, and all requests will be on hold,
-  but they will be persistently stored.
+  The SDK will be in temporary device ID mode, all requests will be on hold and
+  they will be persistently stored.
 </p>
 <p>
   When in temporary device ID mode, method calls for presenting feedback widgets
   and updating remote config will be ignored.
 </p>
-<div class="callout callout--warning">
-  <p>
-    <strong>enableTemporaryDeviceIDMode</strong> is only available from version
-    24.7.1.
-  </p>
-</div>
 <p>
-  Later, when the real device ID is set using
-  <code>await Countly.instance.deviceId.changeWithoutMerge('123456');</code> method,
-  all requests that have been kept on hold until that point will be sent with the
-  real device ID.
+  Later, when a new device ID is set, all requests that have been kept on hold
+  will be sent with the new device ID.
 </p>
 <h2 id="h_01H930GAQ6PX99Z205GC9DDZ1J">Retrieving Current Device ID</h2>
 <p>
   You may want to see what the current device ID is. For that, you can use the
   following call:
 </p>
-<pre><code class="dart">String? currentDeviceId = Countly.instance.deviceId.getID();</code></pre>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">24.7.1</span>
+    <span class="tabs-link">24.7.0</span>
+  </div>
+  <div class="tab">
+    <pre><code class="dart">String? currentDeviceId = Countly.instance.deviceId.getID();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="dart">String? currentDeviceId = Countly.getCurrentDeviceId();</code></pre>
+  </div>
+</div>
 <p>
-  <span>You can use </span><code>getIDType</code><span> method which returns a </span><code>DeviceIDType</code><span> to get the current device ID type. The ID type is an enum with the possible values of: </span>
+  <span>You can use </span><code>getIDType</code> (Use
+  <code>getDeviceIDType</code> for 24.7.0) <span> method which returns a </span><code>DeviceIDType</code><span> to get the current device ID type. The ID type is an enum with the possible values of: </span>
 </p>
 <ul>
   <li>
@@ -783,7 +825,18 @@ Countly.initWithConfig(config);</code></pre>
     <span>"TEMPORARY_ID" - the SDK is in temporary device ID mode.</span>
   </li>
 </ul>
-<pre><code class="dart">DeviceIdType? deviceIdType = await Countly.instance.deviceId.getIDType();</code></pre>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">24.7.1</span>
+    <span class="tabs-link">24.7.0</span>
+  </div>
+  <div class="tab">
+    <pre><code class="dart">DeviceIdType? deviceIdType = await Countly.instance.deviceId.getIDType();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="dart">DeviceIdType? deviceIdType = await Countly.getDeviceIDType();</code></pre>
+  </div>
+</div>
 <h2 id="h_01H930GAQ61FQNZ1X9NS4QSA4N">Device ID Generation</h2>
 <p>
   When the SDK is initialized for the first time with no device ID, it will generate
