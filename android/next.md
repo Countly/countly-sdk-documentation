@@ -1886,7 +1886,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 };</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
+  <p>Feedback Widgets is an <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -2017,7 +2017,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <p>
-  <span style="font-weight: 400;">Available with Enterprise Edition, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information. User Profiles may contain any information you either collect or is collected automatically by the Countly SDK.</span>
+  <span style="font-weight: 400;">Available with <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>, User Profiles is a tool that helps you identify users, their devices, event timelines, and application crash information. User Profiles may contain any information you either collect or is collected automatically by the Countly SDK.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You may send user-related information to Countly and let the Countly dashboard show and segment this data. You may also send a notification to a group of users. For more information about User Profiles, review </span><a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">this documentation</a><span style="font-weight: 400;">.</span><span style="font-weight: 400;"></span>
@@ -2808,7 +2808,7 @@ config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
 config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
-  This feature is available for the Enterprise Edition, but currently server side
+  This feature is available for the <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>, but currently server side
   support for this is limited.
 </p>
 <p>
