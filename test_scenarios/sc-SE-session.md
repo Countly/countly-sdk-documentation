@@ -8,7 +8,8 @@
     CNG:Session Consent not given
 
 ## Notes
-  Anomalies
+  ## Anomalies
+
     Android:
       * Device id change without merge do not start a new session (CNR_A) : fix added but requires checking
       * Has scrolls, clicks, star-rating consent (ios dont)
