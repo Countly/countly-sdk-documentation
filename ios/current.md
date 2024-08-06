@@ -728,7 +728,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
+    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
 <p>
@@ -1619,8 +1620,41 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 <h2 id="h_01HAVHW0RPA7ADFJ2Y97HNPPH5">Temporary Device ID</h2>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
-  real device ID is set later. It can be enabled by setting
-  <code>deviceID</code> on initial configuration as<code>CLYTemporaryDeviceID</code>:
+  real device ID is set later. You can enable it by calling
+  <code>enableTemporaryDeviceIDMode</code> on initial configuration:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config enableTemporaryDeviceIDMode];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.enableTemporaryDeviceIDMode();</code></pre>
+  </div>
+</div>
+<p>
+  Or by calling<code>enableTemporaryDeviceIDMode</code>any time:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance enableTemporaryDeviceIDMode];<br></code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().enableTemporaryDeviceIDMode()</code></pre>
+  </div>
+</div>
+<div class="callout callout--warning">
+  <p>For SDK version 24.7.0 you should use the below methods:</p>
+</div>
+<p>
+  You can enable by setting <code>deviceID</code> on initial configuration as<code>CLYTemporaryDeviceID</code>:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1651,9 +1685,8 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   </div>
 </div>
 <p>
-  As long as the device ID value is <code>CLYTemporaryDeviceID</code>, the SDK
-  will be in temporary device ID mode and all requests will be on hold, but they
-  will be persistently stored.
+  As long as the SDK is in temporary device ID mode, all requests will be on hold
+  but they will be persistently stored.
 </p>
 <p>
   When in temporary device ID mode, method calls for presenting feedback widgets
@@ -2434,7 +2467,8 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
+    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
 <h2 id="h_01HAVHW0RRKP4VMJHP538EDXRM">Setting Location</h2>
@@ -3308,7 +3342,8 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
+    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
 <p>
