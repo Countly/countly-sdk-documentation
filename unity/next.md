@@ -980,7 +980,12 @@ Countly.Instance.Init(config);</code></pre>
 </p>
 <h1 id="h_01HABTZ3164RBD3AC31PH330W9">User Profiles</h1>
 <div class="callout callout--info">
-  <p>User Profiles is an enterprise-level plugin.</p>
+  <p>
+    The User Profiles feature is available in
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    and built-in
+    <a href="https://countly.com/flex" target="_blank" rel="noopener noreferrer">Flex</a>.
+  </p>
 </div>
 <p>
   User Profiles is a tool for identifying users, their devices, event timelines,
