@@ -7,19 +7,18 @@
     CG:Session Consent given
     CNG:Session Consent not given
 
-## Notes
-  ## Anomalies
+## Anomalies
 
-    Android:
-      * Device id change without merge do not start a new session (CNR_A) : fix added but requires checking
-      * Has scrolls, clicks, star-rating consent (ios dont)
-      * Orientation doc should state it is on by default
+  Android:
+    * Device id change without merge do not start a new session (CNR_A) : fix added but requires checking
+    * Has scrolls, clicks, star-rating consent (ios dont)
+    * Orientation doc should state it is on by default
     
-    iOS:
-      * no location req (203) : iOS should send an empty location request, when consent revoked and also we init with no consent.
-      * no orientation req (205)
-      * 206: no consent given request while CR_CNG
-      * check if app to fg starts session (204) : fix is being added
+  iOS:
+    * no location req (203) : iOS should send an empty location request, when consent revoked and also we init with no consent.
+    * no orientation req (205)
+    * 206: no consent given request while CR_CNG
+    * check if app to fg starts session (204) : fix is being added
 
 ## Manuals
 
