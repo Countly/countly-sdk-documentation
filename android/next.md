@@ -2017,7 +2017,12 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <div class="callout callout--info">
-  <p>User Profiles is an enterprise-level plugin.</p>
+    <p>
+    User Profiles is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin and built-in
+    <a href="https://countly.com/flex" target="_blank" rel="noopener noreferrer">Flex</a>.
+  </p>
 </div>
 <p>
   User Profiles is a tool for identifying users, their devices, event timelines,
