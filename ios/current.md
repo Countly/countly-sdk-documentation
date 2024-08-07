@@ -728,7 +728,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/enterprise">Enterprise Edition</a> and built-in
     <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
@@ -2467,7 +2467,7 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> and built-in
+    <a href="https:/countly.com/enterprise">Enterprise Edition</a> and built-in
     <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
@@ -3342,7 +3342,7 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/enterprise">Enterprise Edition</a> and built-in
     <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
