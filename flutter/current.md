@@ -690,7 +690,7 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
 </p>
 <div class="callout callout--info">
   <p>
-    <strong>Click <a href="https://support.countly.com/hc/en-us/articles/360037944212-Flutter" target="_blank" rel="noopener noreferrer">here</a>  to access the documentation for version 24.7.0</strong>
+    <strong>Click <a href="https://support.countly.com/hc/en-us/articles/34539364044697" target="_blank" rel="noopener noreferrer">here</a>  to access the documentation for version 24.7.0</strong>
   </p>
 </div>
 <p>
