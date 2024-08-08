@@ -1886,7 +1886,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 };</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
+  <p>Feedback Widgets is an <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -2836,7 +2836,7 @@ config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
 config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
-  This feature is available for the Enterprise Edition, but currently server side
+  This feature is available for the <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>, but currently server side
   support for this is limited.
 </p>
 <p>
