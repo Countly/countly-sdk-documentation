@@ -682,6 +682,8 @@
 </p>
 <h2 id="h_01H9QCP8G8GY2M2KEKK3CSKY3F">Unity SDK</h2>
 <p>
+  <a href="https://support.countly.com/hc/en-us/articles/15318025956508" target="_blank" rel="noopener">Version 23.12</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/26399466138905" target="_blank" rel="noopener">Version 23.06</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/23969854903961" target="_blank" rel="noopener">Version 22.06</a>
