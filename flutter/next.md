@@ -688,11 +688,6 @@ config.setGlobalViewSegmentation(segmentation);</code></pre>
   is unique for all users. Potential sources for such an ID include the username,
   email, or other internal ID used by your other systems.
 </p>
-<div class="callout callout--info">
-  <p>
-    <strong>Click <a href="https://support.countly.com/hc/en-us/articles/360037944212-Flutter" target="_blank" rel="noopener noreferrer">here</a>  to access the documentation for version 24.7.0</strong>
-  </p>
-</div>
 <p>
   You may provide your custom device ID when initializing the SDK:
 </p>
@@ -701,9 +696,9 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    <strong>Performance risk.</strong> Changing the device ID with server merging
-    results in a significant load on the server as it rewrites all user history.
-    This should be done only once per user.
+    This method is available starting from 24.7.1. If you want methods available
+    on 24.7.0, you can access it from
+    <a href="https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ682G16Z7M570XKSPD" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <p>You may configure or change the device ID anytime using:</p>
@@ -719,6 +714,13 @@ config.setDeviceId(DEVICE_ID);</code></pre>
   Note: <code>setID</code> cannot be used to enter temporary ID mode.
 </p>
 <h2 id="h_01H930GAQ6PWYGR33SGRYFBE3R">Temporary Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    These methods are available starting from 24.7.1. If you want methods available
+    on 24.7.0, you can access it from
+    <a href="https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ6PWYGR33SGRYFBE3R" target="_blank" rel="noopener noreferrer">here</a>.
+  </p>
+</div>
 <p>
   You may use a temporary device ID mode to keep all requests on hold until the
   device ID is set later.
