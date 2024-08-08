@@ -49,6 +49,18 @@
 <p>
   <span data-preserver-spaces="true">One way to do Install the </span><strong><span data-preserver-spaces="true">Newtonsoft Json </span></strong><span data-preserver-spaces="true">package would be to use the built-in package manager. You would go to </span><strong><span data-preserver-spaces="true">Windows </span></strong><span data-preserver-spaces="true">=&gt; </span><strong><span data-preserver-spaces="true">Package Manager</span></strong><span data-preserver-spaces="true">. In there you would see something like this:<img src="/guide-media/01GVDG0BAGCD7VJ9EYNK3GS32F" alt="image-newtonsoft.png"></span>
 </p>
+<p>
+  If the Newtonsoft Json package doesn't appear in the Package Manager, you can
+  add it manually. To achieve this, you would need to add:
+</p>
+<p>
+  <code>  "com.unity.nuget.newtonsoft-json": "3.0.2" </code>
+</p>
+<p>
+  This line, in the "<strong>manifest.json</strong>" file. After adding the line
+  and saving it, the package would be added automatically. It should also appear
+  in the Package Manager afterward.
+</p>
 <h2 id="h_01HABTZ314XCMNWWK698JR773J">Minimal Setup</h2>
 <p>
   Before you can use any functionality, you have to initiate the SDK.
