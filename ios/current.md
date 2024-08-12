@@ -630,6 +630,12 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   <span style="font-weight: 400;"><code>__has_include(&lt;CrashReporter/CrashReporter.h&gt;)</code> preprocessor macro.</span>
 </p>
 <p>
+  <strong>Note:</strong> <code>Countly-PL.podspec</code>automatically manages the
+  PLCrashReporter dependencies. However, if you encounter an error related to PLCrashReporter
+  when using CocoaPods, you can resolve it by adding the following to your Podfile:
+</p>
+<pre>post_install do |installer|<br> installer.pods_project.targets.each do |target|<br>  target.build_configurations.each do |config|<br>   if target.name == "Countly"<br>       config.build_settings['OTHER_LDFLAGS'] ||= ['$(inherited)']<br>       config.build_settings['OTHER_LDFLAGS'] &lt;&lt; '-framework "CrashReporter"'<br><br>       config.build_settings['LIBRARY_SEARCH_PATHS'] ||= ['$(inherited)']<br>       config.build_settings['LIBRARY_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"<br>       config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= ['$(inherited)']<br>       config.build_settings['FRAMEWORK_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"<br>     end<br>   end<br> end<br>end</pre>
+<p>
   <strong>Note:</strong> PLCrashReporter option is available only for iOS apps.
 </p>
 <p>
