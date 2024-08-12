@@ -11,8 +11,7 @@
   </p>
 </div>
 <p>
-  The Countly Android SDK requires a minimum Android version of 4.2.x (API Level
-  17).
+  The Countly Android SDK requires a minimum Android version of 7.0 (API Level 24).
 </p>
 <p>
   To examine the example integrations please have a look
