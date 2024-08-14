@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Android SDK version 24.7.X. The SDK source
+  This documentation is for the Countly Android SDK version 24.7.2. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
@@ -30,7 +30,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-  implementation 'ly.count.android:sdk:24.7.1'
+  implementation 'ly.count.android:sdk:24.7.2'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -277,12 +277,12 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   </div>
   <div class="tab">
     <pre><code class="java">plugins {
-  id "ly.count.android.plugins.upload-symbols" version "24.7.1"
+  id "ly.count.android.plugins.upload-symbols" version "24.7.2"
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="java">plugins {
-  id("ly.count.android.plugins.upload-symbols") version "24.7.1"
+  id("ly.count.android.plugins.upload-symbols") version "24.7.2"
 }</code></pre>
   </div>
 </div>
@@ -299,7 +299,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <div class="tab">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id "ly.count.android.plugins.upload-symbols" version "24.7.1" apply false
+  id "ly.count.android.plugins.upload-symbols" version "24.7.2" apply false
 }
     
 // in sub-project gradle file
@@ -310,7 +310,7 @@ plugins {
   <div class="tab is-hidden">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id("ly.count.android.plugins.upload-symbols") version "24.7.1" apply false
+  id("ly.count.android.plugins.upload-symbols") version "24.7.2" apply false
 }
     
 // in sub-project gradle file
