@@ -1027,7 +1027,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </code></pre>
 <h2 id="h_01HAVQNJQS4TRX89X6GSGWQGGV">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
+  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
 </div>
 <p>
   It is possible to display 3 kinds of Feedback widgets:
@@ -1038,9 +1038,14 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   All widgets are shown as webviews, and the same methods are used to present them.
 </p>
 <p>
-  Before any Feedback widget can be shown, you must create them in your Countly
-  Dashboard.
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+  </p>
+</div>
 <p>
   When the widgets are created, you need to use 2 calls in your SDK to show them:
   one to get all available widgets for a user and another to display a chosen widget.
