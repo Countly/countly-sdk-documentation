@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Android SDK version 24.7.2. The SDK source
+  This documentation is for the Countly Android SDK version 24.7.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
