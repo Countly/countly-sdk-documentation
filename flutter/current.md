@@ -131,6 +131,13 @@ config.enableCrashReporting()</code></pre>
     runApp(MyApp());
   }, Countly.recordDartError);
 }</code></pre>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> The use of <code>runZonedGuarded</code> is not necessary for SDK versions later than 24.7.1.
+    <br>
+    For these versions, you can simply call <code>runApp(MyApp())</code>. All errors, including dart errors, will be captured and recorded.
+  </p>
+</div>
 <h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic Crash Report Segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
