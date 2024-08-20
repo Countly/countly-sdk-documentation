@@ -1564,6 +1564,12 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   <span style="font-weight: 400;">Once set, the device ID will be persistently stored on the device after the first app launch, and the <code>deviceID</code></span><span style="font-weight: 400;"> property will be ignored on the following app launches, until the app is deleted and re-installed or a <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is set. For further details, please check the </span><a href="/hc/en-us/articles/4409195031577#h_01HAVHW0RPQ7A17R8H6RZCMWXP">Resetting Stored Device ID</a><span style="font-weight: 400;"> section below.</span>
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    For SDK version 24.7.0 check out the previous documentation
+    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RP2DPTREKXC0Q8T6QA" target="_blank" rel="noopener noreferrer">here</a>
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">You can change the device ID on runtime <strong>after you start Countly</strong>. You can either allow the device to be counted as a new device or merge existing data on the server.<br><br>To set a new device ID based on the current device ID type, use the <code>setID:</code> method. If the current device ID type is <code>CLYDeviceIDTypeCustom</code>, it will be counted as a new device; otherwise, it will merge existing data on the server. With <code>setID:</code>, the SDK will automatically handle whether to merge the device ID or not.<br></span>
 </p>
@@ -1580,50 +1586,19 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <pre><code class="swift">//Automatically handle whether to merge the device ID or not.<br>Countly.sharedInstance().setID("new_device_id")</code></pre>
   </div>
 </div>
-<p>
-  You can also use the <code>changeDeviceIDWithMerge:</code> or
-  <code>changeDeviceIDWithoutMerge:</code> methods.
-</p>
-<p>
-  The <code>changeDeviceIDWithMerge:</code> method replaces the old device ID on
-  the server with the new one, automatically merging data associated with the old
-  device ID. In contrast, the <code>changeDeviceIDWithoutMerge:</code> method creates
-  a new device ID on the server.
-</p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Performance Risk:</strong> Changing the device ID with server merging
-    results in a significant load on the server as it rewrites all user history.
-    This operation should be performed only once per user.
-  </p>
-</div>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">//change and merge on server
-[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
-
-//no replace and merge on server, device will be counted as new
-[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">//replace and merge on server
-Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
-
-//no replace and merge on server, device will be counted as new
-Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
-  </div>
-</div>
 <div class="callout callout--warning">
   <strong>Consent Reset on Device ID Change</strong>
   <p>
-    <span style="font-weight: 400;">If device ID is changed without merging and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
+    <span style="font-weight: 400;">If device ID is changed again from a developer provided ID and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
 <h2 id="h_01HAVHW0RPA7ADFJ2Y97HNPPH5">Temporary Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    For SDK version 24.7.0 check out the previous documentation
+    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RPA7ADFJ2Y97HNPPH5" target="_blank" rel="noopener noreferrer">here</a>
+  </p>
+</div>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
   real device ID is set later. You can enable it by calling
@@ -1656,40 +1631,6 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <pre><code class="swift">Countly.sharedInstance().enableTemporaryDeviceIDMode()</code></pre>
   </div>
 </div>
-<div class="callout callout--warning">
-  <p>For SDK version 24.7.0 you should use the below methods:</p>
-</div>
-<p>
-  You can enable by setting <code>deviceID</code> on initial configuration as<code>CLYTemporaryDeviceID</code>:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.deviceID = CLYTemporaryDeviceID;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.deviceID = CLYTemporaryDeviceID</code></pre>
-  </div>
-</div>
-<p>
-  Or by passing as an argument for <code>deviceID</code> parameter on
-  <code>changeDeviceIDWithoutMerge:</code>any time:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithoutMerge:CLYTemporaryDeviceID];<br></code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithoutMerge(CLYTemporaryDeviceID)</code></pre>
-  </div>
-</div>
 <p>
   As long as the SDK is in temporary device ID mode, all requests will be on hold
   but they will be persistently stored.
@@ -1700,27 +1641,22 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span>
-  method, all requests which have been kept on hold until that point will start
-  with the real device ID:
+  <span style="font-weight: 400;"> <code>setID:</code></span> method, all requests
+  which have been kept on hold until that point will start with the real device
+  ID:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span><span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;"></span>
+    <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];<br><br>[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance setID:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")<br><br>Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().setID("new_device_id")</code></pre>
   </div>
 </div>
-<p>
-  <strong>Note:</strong> When setting real device ID while the current device ID
-  is <code>CLYTemporaryDeviceID</code>, with merge or without merge&nbsp;does not
-  matter.
-</p>
 <div class="callout callout--warning">
   <strong>Consent Reset on Temporary Device ID Mode</strong>
   <p>
@@ -3005,8 +2941,15 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
   </div>
 </div>
 <h1 id="h_01HAVHW0RRN4E332BBZ3TVDDPF">User Feedback</h1>
-<h2 id="h_01HAVHW0RR1P4DMGKA4XVM64V7">Ratings</h2>
-<h3 id="h_01HAVHW0RR92ZP9K6DSP0QW0C2">Star Rating dialog</h3>
+<p>
+  There are two ways to receive user feedback: the Star Rating Dialog and the Feedback
+  Widgets (Survey, NPS, Rating).
+</p>
+<p>
+  The Star Rating Dialog allows users to give feedback as a rating from 1 to 5.
+  Feedback Widgets allow for even more textual feedback from users.
+</p>
+<h2 id="h_01HAVHW0RR1P4DMGKA4XVM64V7">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Optionally, you can set the Countly iOS SDK to automatically ask users for a 1 to 5-star rating, depending on the app launch count for each version. To do so, you will need to set the <code>starRatingSessionCount</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. When the total number of sessions reaches the <code>starRatingSessionCount</code></span><span style="font-weight: 400;">, an alert view asking for a 1 to 5-star rating will be displayed automatically, once for each new version of the app.</span>
 </p>
@@ -3093,84 +3036,32 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">Countly.sharedInstance().ask(forStarRating:{ (rating : Int) in print("rating \(rating)") })</code></pre>
   </div>
 </div>
-<h3 id="h_01HAVHW0RR1SN06BQHEF3E1816">Rating Widget</h3>
-<p>
-  <span style="font-weight: 400;">You can use the Countly iOS SDK to display ratings feedback widgets configured on the Countly Server. For more information on ratings feedback widgets, please visit the </span><a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings-Feedbacks"><span style="font-weight: 400;">Ratings widget documentation</span></a><span style="font-weight: 400;">.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is how you can utilize ratings feedback widgets in your iOS apps:</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Once you call the <code>presentRatingWidgetWithID:completionHandler:</code></span><span style="font-weight: 400;"> method, the ratings feedback widget with the given ID will be displayed in a WKWebView, having been placed in the UIViewController.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">First, the availability of the ratings feedback widget will be checked asynchronously. If the ratings feedback widget is available, it will be modally presented. Otherwise, the <code>completionHandler</code></span><span style="font-weight: 400;"> will be called with an <code>NSError</code></span><span style="font-weight: 400;">. The <code>completionHandler</code></span><span style="font-weight: 400;"> will also be called with <code>nil</code></span><span style="font-weight: 400;"> when the ratings feedback widget is dismissed by the user.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance presentRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" completionHandler:^(NSError* error)
-{
-  if (error)
-    NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
-  else
-    NSLog(@"Ratings feedback widget presented successfully");
-}];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().presentRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", completionHandler:
-{ (error : Error?) in
-  if (error != nil)
-  {
-    print("Ratings feedback widget presentation failed: \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
-  }
-  else
-  {
-    print("Ratings feedback widget presented successfully");
-  }
-})</code></pre>
-  </div>
-</div>
-<div class="img-container">
-  <img src="/guide-media/01GVCYFF4VQYKZEJMDABP3KQ7B" alt="002.png">
-</div>
-<h3 id="h_01HAVHW0RRFGZC3E7X3D6BKZTR">Manual Rating Reporting</h3>
-<p>
-  If you wish to construct your own custom UI for displaying ratings widgets, you
-  can manually record the result with the widget ID and other parameters as follows:<br>
-  <code>widgetID</code>: ID of the rating widget created on Countly Server<br>
-  <code>rating</code>: User's rating<br>
-  <code>email</code>: User's e-mail address (optional)<br>
-  <code>comment</code>: User's comment (optional)<br>
-  <code>userCanBeContacted</code>: User's consent for whether they can be contacted
-  via e-mail or not
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" rating:4 email:@"email@example.com" comment:@"Some comment" userCanBeContacted:YES];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", rating: 4, email: "email@example.com", comment: "Some comment", userCanBeContacted: true)</code></pre>
-  </div>
-</div>
-<p>
-  Calls to this method will be ignored if:<br>
-  - Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag
-  is set on initial configuration.<br>
-  - <code>widgetID</code> is not a non-zero length valid string.
-</p>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+</div>
 <p>
-  <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
-  First you need to get the list of all available NPS and survey widgets:
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  and
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  All widgets are shown as webviews and should be approached using the same methods.
 </p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+  </p>
+</div>
+<p>
+  When the widgets are created, you need to use 2 calls in your SDK: one to get
+  all available widgets for a user and another to display a chosen widget.
+</p>
+<p>To get your available widget list, use the call below.</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
