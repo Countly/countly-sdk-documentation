@@ -630,6 +630,12 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   <span style="font-weight: 400;"><code>__has_include(&lt;CrashReporter/CrashReporter.h&gt;)</code> preprocessor macro.</span>
 </p>
 <p>
+  <strong>Note:</strong> <code>Countly-PL.podspec</code>automatically manages the
+  PLCrashReporter dependencies. However, if you encounter an error related to PLCrashReporter
+  when using CocoaPods, you can resolve it by adding the following to your Podfile:
+</p>
+<pre>post_install do |installer|<br> installer.pods_project.targets.each do |target|<br>  target.build_configurations.each do |config|<br>   if target.name == "Countly"<br>       config.build_settings['OTHER_LDFLAGS'] ||= ['$(inherited)']<br>       config.build_settings['OTHER_LDFLAGS'] &lt;&lt; '-framework "CrashReporter"'<br><br>       config.build_settings['LIBRARY_SEARCH_PATHS'] ||= ['$(inherited)']<br>       config.build_settings['LIBRARY_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"<br>       config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= ['$(inherited)']<br>       config.build_settings['FRAMEWORK_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"<br>     end<br>   end<br> end<br>end</pre>
+<p>
   <strong>Note:</strong> PLCrashReporter option is available only for iOS apps.
 </p>
 <p>
@@ -728,7 +734,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
+    <a href="https://countly.com/enterprise">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
 <p>
@@ -1557,6 +1564,12 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   <span style="font-weight: 400;">Once set, the device ID will be persistently stored on the device after the first app launch, and the <code>deviceID</code></span><span style="font-weight: 400;"> property will be ignored on the following app launches, until the app is deleted and re-installed or a <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is set. For further details, please check the </span><a href="/hc/en-us/articles/4409195031577#h_01HAVHW0RPQ7A17R8H6RZCMWXP">Resetting Stored Device ID</a><span style="font-weight: 400;"> section below.</span>
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    For SDK version 24.7.0 check out the previous documentation
+    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RP2DPTREKXC0Q8T6QA" target="_blank" rel="noopener noreferrer">here</a>
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">You can change the device ID on runtime <strong>after you start Countly</strong>. You can either allow the device to be counted as a new device or merge existing data on the server.<br><br>To set a new device ID based on the current device ID type, use the <code>setID:</code> method. If the current device ID type is <code>CLYDeviceIDTypeCustom</code>, it will be counted as a new device; otherwise, it will merge existing data on the server. With <code>setID:</code>, the SDK will automatically handle whether to merge the device ID or not.<br></span>
 </p>
@@ -1573,54 +1586,23 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <pre><code class="swift">//Automatically handle whether to merge the device ID or not.<br>Countly.sharedInstance().setID("new_device_id")</code></pre>
   </div>
 </div>
-<p>
-  You can also use the <code>changeDeviceIDWithMerge:</code> or
-  <code>changeDeviceIDWithoutMerge:</code> methods.
-</p>
-<p>
-  The <code>changeDeviceIDWithMerge:</code> method replaces the old device ID on
-  the server with the new one, automatically merging data associated with the old
-  device ID. In contrast, the <code>changeDeviceIDWithoutMerge:</code> method creates
-  a new device ID on the server.
-</p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Performance Risk:</strong> Changing the device ID with server merging
-    results in a significant load on the server as it rewrites all user history.
-    This operation should be performed only once per user.
-  </p>
-</div>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">//change and merge on server
-[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
-
-//no replace and merge on server, device will be counted as new
-[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">//replace and merge on server
-Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
-
-//no replace and merge on server, device will be counted as new
-Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
-  </div>
-</div>
 <div class="callout callout--warning">
   <strong>Consent Reset on Device ID Change</strong>
   <p>
-    <span style="font-weight: 400;">If device ID is changed without merging and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
+    <span style="font-weight: 400;">If device ID is changed again from a developer provided ID and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
 <h2 id="h_01HAVHW0RPA7ADFJ2Y97HNPPH5">Temporary Device ID</h2>
+<div class="callout callout--warning">
+  <p>
+    For SDK version 24.7.0 check out the previous documentation
+    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RPA7ADFJ2Y97HNPPH5" target="_blank" rel="noopener noreferrer">here</a>
+  </p>
+</div>
 <p>
   You can use temporary device ID mode for keeping all requests on hold until the
-  real device ID is set later. It can be enabled by setting
-  <code>deviceID</code> on initial configuration as<code>CLYTemporaryDeviceID</code>:
+  real device ID is set later. You can enable it by calling
+  <code>enableTemporaryDeviceIDMode</code> on initial configuration:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1628,15 +1610,14 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.deviceID = CLYTemporaryDeviceID;</code></pre>
+    <pre><code class="objectivec">[config enableTemporaryDeviceIDMode];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.deviceID = CLYTemporaryDeviceID</code></pre>
+    <pre><code class="swift">config.enableTemporaryDeviceIDMode();</code></pre>
   </div>
 </div>
 <p>
-  Or by passing as an argument for <code>deviceID</code> parameter on
-  <code>changeDeviceIDWithoutMerge:</code>any time:
+  Or by calling<code>enableTemporaryDeviceIDMode</code>any time:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1644,16 +1625,15 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithoutMerge:CLYTemporaryDeviceID];<br></code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance enableTemporaryDeviceIDMode];<br></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithoutMerge(CLYTemporaryDeviceID)</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().enableTemporaryDeviceIDMode()</code></pre>
   </div>
 </div>
 <p>
-  As long as the device ID value is <code>CLYTemporaryDeviceID</code>, the SDK
-  will be in temporary device ID mode and all requests will be on hold, but they
-  will be persistently stored.
+  As long as the SDK is in temporary device ID mode, all requests will be on hold
+  but they will be persistently stored.
 </p>
 <p>
   When in temporary device ID mode, method calls for presenting feedback widgets
@@ -1661,27 +1641,22 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span>
-  method, all requests which have been kept on hold until that point will start
-  with the real device ID:
+  <span style="font-weight: 400;"> <code>setID:</code></span> method, all requests
+  which have been kept on hold until that point will start with the real device
+  ID:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span><span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;"></span>
+    <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];<br><br>[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
+    <pre><code class="objectivec">[Countly.sharedInstance setID:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")<br><br>Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
+    <pre><code class="swift">Countly.sharedInstance().setID("new_device_id")</code></pre>
   </div>
 </div>
-<p>
-  <strong>Note:</strong> When setting real device ID while the current device ID
-  is <code>CLYTemporaryDeviceID</code>, with merge or without merge&nbsp;does not
-  matter.
-</p>
 <div class="callout callout--warning">
   <strong>Consent Reset on Temporary Device ID Mode</strong>
   <p>
@@ -2434,7 +2409,8 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
+    <a href="https:/countly.com/enterprise">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
 <h2 id="h_01HAVHW0RRKP4VMJHP538EDXRM">Setting Location</h2>
@@ -3260,7 +3236,8 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
   <strong>Enterprise Edition Feature</strong>
   <p>
     This feature is only available with an
-    <a href="https://count.ly/enterprise-edition">Enterprise Edition</a> subscription.
+    <a href="https://countly.com/enterprise">Enterprise Edition</a> and built-in
+    <a href="https://countly.com/flex">Flex</a>.
   </p>
 </div>
 <p>
