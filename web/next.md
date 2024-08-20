@@ -1280,16 +1280,27 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   NPS, Ratings). With the help of these widgets, you can ask your customers multiple
   questions and learn about their opinions and preferences in detail.
 </p>
-<p>
-  Keep in mind that Feedback Widget is an enterprise-level plugin.
-</p>
 <div class="tabs"></div>
 <h2 id="h_01HABTQ438NWHSRCMAV4RJJVWX">Feedback Widgets</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+</div>
 <p>
-  There are three kinds of feedback widgets available. Namely NPS, survey and ratings
-  widgets. Before any feedback widget can be shown, you need to create them in
-  your countly dashboard first.
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  and
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
 </p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+  </p>
+</div>
 <p>
   All three widgets use the same API to fetch feedbacks from the server as well
   as to display them to the end user. By default, the created widget will be appended
