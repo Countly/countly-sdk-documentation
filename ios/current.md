@@ -2941,8 +2941,15 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
   </div>
 </div>
 <h1 id="h_01HAVHW0RRN4E332BBZ3TVDDPF">User Feedback</h1>
-<h2 id="h_01HAVHW0RR1P4DMGKA4XVM64V7">Ratings</h2>
-<h3 id="h_01HAVHW0RR92ZP9K6DSP0QW0C2">Star Rating dialog</h3>
+<p>
+  There are two ways to receive user feedback: the Star Rating Dialog and the Feedback
+  Widgets (Survey, NPS, Rating).
+</p>
+<p>
+  The Star Rating Dialog allows users to give feedback as a rating from 1 to 5.
+  Feedback Widgets allow for even more textual feedback from users.
+</p>
+<h2 id="h_01HAVHW0RR1P4DMGKA4XVM64V7">Star Rating Dialog</h2>
 <p>
   <span style="font-weight: 400;">Optionally, you can set the Countly iOS SDK to automatically ask users for a 1 to 5-star rating, depending on the app launch count for each version. To do so, you will need to set the <code>starRatingSessionCount</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. When the total number of sessions reaches the <code>starRatingSessionCount</code></span><span style="font-weight: 400;">, an alert view asking for a 1 to 5-star rating will be displayed automatically, once for each new version of the app.</span>
 </p>
@@ -3029,84 +3036,32 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <pre><code class="swift">Countly.sharedInstance().ask(forStarRating:{ (rating : Int) in print("rating \(rating)") })</code></pre>
   </div>
 </div>
-<h3 id="h_01HAVHW0RR1SN06BQHEF3E1816">Rating Widget</h3>
-<p>
-  <span style="font-weight: 400;">You can use the Countly iOS SDK to display ratings feedback widgets configured on the Countly Server. For more information on ratings feedback widgets, please visit the </span><a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings-Feedbacks"><span style="font-weight: 400;">Ratings widget documentation</span></a><span style="font-weight: 400;">.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Here is how you can utilize ratings feedback widgets in your iOS apps:</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Once you call the <code>presentRatingWidgetWithID:completionHandler:</code></span><span style="font-weight: 400;"> method, the ratings feedback widget with the given ID will be displayed in a WKWebView, having been placed in the UIViewController.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">First, the availability of the ratings feedback widget will be checked asynchronously. If the ratings feedback widget is available, it will be modally presented. Otherwise, the <code>completionHandler</code></span><span style="font-weight: 400;"> will be called with an <code>NSError</code></span><span style="font-weight: 400;">. The <code>completionHandler</code></span><span style="font-weight: 400;"> will also be called with <code>nil</code></span><span style="font-weight: 400;"> when the ratings feedback widget is dismissed by the user.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance presentRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" completionHandler:^(NSError* error)
-{
-  if (error)
-    NSLog(@"Ratings feedback widget presentation failed: \n%@\n%@", error.localizedDescription, error.userInfo);
-  else
-    NSLog(@"Ratings feedback widget presented successfully");
-}];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().presentRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", completionHandler:
-{ (error : Error?) in
-  if (error != nil)
-  {
-    print("Ratings feedback widget presentation failed: \n \(error!.localizedDescription) \n \((error! as NSError).userInfo)")
-  }
-  else
-  {
-    print("Ratings feedback widget presented successfully");
-  }
-})</code></pre>
-  </div>
-</div>
-<div class="img-container">
-  <img src="/guide-media/01GVCYFF4VQYKZEJMDABP3KQ7B" alt="002.png">
-</div>
-<h3 id="h_01HAVHW0RRFGZC3E7X3D6BKZTR">Manual Rating Reporting</h3>
-<p>
-  If you wish to construct your own custom UI for displaying ratings widgets, you
-  can manually record the result with the widget ID and other parameters as follows:<br>
-  <code>widgetID</code>: ID of the rating widget created on Countly Server<br>
-  <code>rating</code>: User's rating<br>
-  <code>email</code>: User's e-mail address (optional)<br>
-  <code>comment</code>: User's comment (optional)<br>
-  <code>userCanBeContacted</code>: User's consent for whether they can be contacted
-  via e-mail or not
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordRatingWidgetWithID:@"RATINGS_FEEDBACK_WIDGET_ID" rating:4 email:@"email@example.com" comment:@"Some comment" userCanBeContacted:YES];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordRatingWidget(withID: "RATINGS_FEEDBACK_WIDGET_ID", rating: 4, email: "email@example.com", comment: "Some comment", userCanBeContacted: true)</code></pre>
-  </div>
-</div>
-<p>
-  Calls to this method will be ignored if:<br>
-  - Consent for @c CLYConsentFeedback is not given, while @c requiresConsent flag
-  is set on initial configuration.<br>
-  - <code>widgetID</code> is not a non-zero length valid string.
-</p>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
+<div class="callout callout--info">
+  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+</div>
 <p>
-  <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
-  First you need to get the list of all available NPS and survey widgets:
+  It is possible to display 3 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  and
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  All widgets are shown as webviews and should be approached using the same methods.
 </p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+  </p>
+</div>
+<p>
+  When the widgets are created, you need to use 2 calls in your SDK: one to get
+  all available widgets for a user and another to display a chosen widget.
+</p>
+<p>To get your available widget list, use the call below.</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
