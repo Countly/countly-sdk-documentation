@@ -3062,11 +3062,26 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 </div>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
+  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
 </div>
 <p>
-  <span style="font-weight: 400;">Here is how you can utilize <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score">NPS (Net Promoter Score)</a> and <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys">survey</a> feedback widgets in your iOS apps:</span>
-  First you need to get the list of all available NPS and survey widgets:
+  It is possible to display 2 kinds of feedback widgets:
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS (Net Promoter Score)</a> and
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+</p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<div class="callout callout--warning">
+  <p>
+    Before any feedback widget can be shown, you need to create them in your
+    countly dashboard.
+  </p>
+</div>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS (Net Promoter Score)</a> and
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>, Feedback Widgets in your iOS apps:</span>
+  First you need to get the list of all available NPS and Survey widgets:
 </p>
 <div class="tabs">
   <div class="tabs-menu">

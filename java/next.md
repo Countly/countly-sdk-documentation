@@ -840,28 +840,31 @@ Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
 </p>
 <h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
+  <span style="font-weight: 400;">You can receive feedback from your users with NPS, Survey and Rating, Feedback Widgets.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
+  <span style="font-weight: 400;">The Rating Feedback Widget, allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and NPS Feedback Widgets allow for even more textual feedback from users.</span>
 </p>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widgets</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an enterprise-level plugin.</p>
+  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">rating</a>.
-  All widgets have their generated URL to be shown in a web viewer and should be
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  All widgets have their generated URL to be shown in a webview and should be
   approached using the same methods.
+</p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your
-    Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
   </p>
 </div>
 <h3 id="h_01HD3PX5GQ390KDHFCH1FD6ER9">Getting Available Widgets</h3>
