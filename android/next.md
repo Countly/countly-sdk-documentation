@@ -11,7 +11,8 @@
   </p>
 </div>
 <p>
-  The Countly Android SDK requires a minimum Android version of 5.0 (API Level 21).
+  The Countly Android SDK requires a minimum Android version of 5.0 (API Level
+  21).
 </p>
 <p>
   To examine the example integrations please have a look
@@ -642,6 +643,10 @@ config.enableManualSessionControlHybridMode();</code></pre>
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().views()</code></pre>
+<p>
+  While going to the background, all running views will be automatically stopped,
+  and while coming to the foreground, all stopped views will be automatically started.
+</p>
 <h2 id="h_01HAVQDM5TD5ZGVAC5GCABTXTF">Automatic Views</h2>
 <p>
   <span style="font-weight: 400;">View tracking is a way to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
@@ -782,6 +787,10 @@ Countly.sharedInstance().views().stopAllViews(segmentation);</code></pre>
 <h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Pausing and Resuming Views</h3>
 <p>
   <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
+</p>
+<p>
+  Pausing and resuming views will only impact a single view, ensuring it receives
+  the correct duration.
 </p>
 <p>
   <span>To pause a view with its ID:</span>
@@ -2019,7 +2028,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <div class="callout callout--info">
-    <p>
+  <p>
     User Profiles is a
     <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
     plugin and built-in
@@ -2838,8 +2847,9 @@ config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
 config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
-  This feature is available for the <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>, but currently server side
-  support for this is limited.
+  This feature is available for the
+  <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>,
+  but currently server side support for this is limited.
 </p>
 <p>
   <strong><span style="font-weight: 400;">To report install attribution, you would perform the following request:</span></strong>
