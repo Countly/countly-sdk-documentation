@@ -175,14 +175,6 @@
 </p>
 <pre><span>I: [Info] [Countly] [ModuleEvent] recordEvent, event is being recorded key: [Login], count: [2], segmentation: [{"isLoggedIn":true, "name":"Something"}]</span></pre>
 <p>
-  If the function is a constructor, using "constructor" keyword would be enough
-  to indicate it. Depending on the naming convention.
-</p>
-<pre><code>I: [Info] [Countly] [ModuleEvent] constructor, something bla bla
-
-//However, in C#
-I: [Info] [Countly] [ModuleEvent] Constructor, something bla bla</code></pre>
-<p>
   For functions which receive a callback, a bool is enough to indicate if a callback
   was or wasn't provided.
 </p>
