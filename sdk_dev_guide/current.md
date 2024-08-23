@@ -170,8 +170,10 @@
 <pre><span>E: [Error] [Countly] [ModuleName] functionName, Countly issue bla bla<br>E: [Warning] [Countly] [ModuleName] functionName, You are trying to use this feature in a deprecated way</span></pre>
 <p>
   Depending on the function call, the function parameters should also be printed,
-  for example event keys or for simple numerical values.
+  and they should be enclosed in closed brackets. For example event keys or for
+  simple numerical values.
 </p>
+<pre><span>I: [Info] [Countly] [ModuleEvent] recordEvent, event is being recorded key: [Login], count: [2], segmentation: [{"isLoggedIn":true, "name":"Something"}]</span></pre>
 <p>
   For functions which receive a callback, a bool is enough to indicate if a callback
   was or wasn't provided.
@@ -518,10 +520,14 @@ Countly.sharedInstance().init(config);</code></pre>
   fields changed while filtering, bits must be set as:
 </p>
 <ul>
-  <li>01000000 for description -&gt; "_ob" metric will be 64 (iOS only)</li>
+  <li>
+    01000000 for description -&gt; "_ob" metric will be 64 (iOS only)
+  </li>
   <li>00100000 for name -&gt; "_ob" metric will be 32 (iOS only)</li>
   <li>00010000 for stack trace -&gt; "_ob" metric will be 16</li>
-  <li>00001000 for crash segmentation -&gt; "_ob" metric will be 8</li>
+  <li>
+    00001000 for crash segmentation -&gt; "_ob" metric will be 8
+  </li>
   <li>00000100 for breadcrumbs -&gt; "_ob" metric will be 4</li>
   <li>00000010 for crash metrics -&gt; "_ob" metric will be 2</li>
   <li>00000001 for unhandled -&gt; "_ob" metric will be 1</li>
