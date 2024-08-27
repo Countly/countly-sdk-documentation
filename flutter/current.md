@@ -498,8 +498,6 @@ Countly.instance.sessions.endSession();</pre>
   The SDK provides access to all view-related functionality through the interface returned by:
 </p>
 <pre><code class="dart">Countly.instance.views</code></pre>
-
-<h2 id="h_01HAVQDM5TD5ZGVAC5GCABTXTF">Automatic Views</h2>
 <p>
   For adding segmentation to all automatic views, please refer to the
   <a href="#h_01HK6YJTHP4Y0WVZSC0ZPNZFDJ">relevant section</a>.
