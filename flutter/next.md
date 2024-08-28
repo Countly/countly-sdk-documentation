@@ -122,21 +122,15 @@ config.enableCrashReporting()</code></pre>
   By doing that it will automatically catch all errors that are thrown from within
   the Flutter framework.
 </p>
-<p>
-  If you want to catch Dart errors, run your app inside a Zone and supply
-  <code>Countly.recordDartError</code> to the <code>onError</code> parameter:
-</p>
-<pre><code class="dart">void main() {
+<div class="callout callout--warning">
+  <p>
+    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier, you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors, as shown below:
+  </p>
+  <pre><code class="dart">void main() {
   runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
     runApp(MyApp());
   }, Countly.recordDartError);
 }</code></pre>
-<div class="callout callout--warning">
-  <p>
-    <strong>Note:</strong> The use of <code>runZonedGuarded</code> is not necessary for SDK versions later than 24.7.1.
-    <br>
-    For these versions, you can simply call <code>runApp(MyApp())</code>. All errors, including dart errors, will be captured and recorded.
-  </p>
 </div>
 <h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic Crash Report Segmentation</h2>
 <p>
