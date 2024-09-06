@@ -3212,12 +3212,11 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <p>This class allows enabling two experimental features:</p>
 <ul>
-  <li>View Name Recording</li>
+  <li>Previous Name Recording</li>
   <li>Visibility Tracking</li>
 </ul>
 <p>
-  When you enable view name recording, it will add previous view names to the events
-  and views. And, current view name to the events
+  When you enable previous name recording, it will add previous view name to the views and previous event name to the events.
 </p>
 <pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
 <p>
