@@ -3219,7 +3219,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   When you enable view name recording, it will add previous view names to the events
   and views. And, current view name to the events
 </p>
-<pre><code class="java">countlyConfig.experimental.enableViewNameRecording()</code></pre>
+<pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
 <p>
   When you enable visibility tracking, it will add add a parameter to indicate
   events or views are visible.
