@@ -1331,7 +1331,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     return;
   }
 
-  // Decide which which widget to show. Here the first rating widget is selected. 
+  // Decide which widget to show. Here, the first rating widget is selected. 
   const widgetType = "rating";
   const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
   if (!countlyFeedbackWidget) {
@@ -1354,14 +1354,14 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   <div class="tab is-hidden">
     <pre><code class="javascript">//Fetch user's feedback widgets from the server
 Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
-<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
+<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widget objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  // Decide which which widget to show. Here the first rating widget is selected. 
+  // Decide which widget to show. Here, the first rating widget is selected. 
   const widgetType = "rating";
   const countlyFeedbackWidget = countlyPresentableFeedback.find(widget =&gt; widget.type === widgetType);
   if (!countlyFeedbackWidget) {
