@@ -3208,10 +3208,12 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
 <p>
-  The ConfigExperimental class provides experimental configuration options for
+  The ConfigExperimental interface provides experimental configuration options for
   enabling advanced features like view name recording and visibility tracking.
   These features are currently in a testing phase and might change in future versions.
 </p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.experimental.enableViewNameRecording().enableVisibilityTracking();</code></pre>
 <p>This class allows enabling two experimental features:</p>
 <ul>
   <li>Previous Name Recording</li>
