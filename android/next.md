@@ -3180,8 +3180,10 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   </p>
 </div>
 <p>
-  The **Content Zone** feature enhances user engagement by delivering various types
-  of content blocks such as in-app messaging, ads, or user engagement prompts.
+  The Content Zone feature enhances user engagement by delivering various types of 
+  content blocks, such as in-app messaging, ads, or user engagement prompts. These 
+  content blocks are dynamically served from the content builder on the server, 
+  ensuring that users receive relevant and up-to-date information.
 </p>
 <p>
   To start fetching content from the server, use the following method:
