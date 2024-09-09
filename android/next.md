@@ -3196,7 +3196,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 <p>To close any displayed content, use the following method:</p>
 <pre><code class="java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
 <p>
-  You can listen for content changes by setting a global content callback with
+  If content is closed, it could be listened by setting a global content callback with
   the following method:
 </p>
 <pre><code class="java">countlyConfig.contents.setGlobalContentCallback(callback);</code></pre>
