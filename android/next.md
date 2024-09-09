@@ -3172,7 +3172,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   server by setting <code>enableServerConfiguration</code> during init:
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
-<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Contents</h2>
+<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
 <div class="callout callout--warning">
   <p>
     <strong>Note:</strong> This is an experimental feature available from version
@@ -3180,7 +3180,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   </p>
 </div>
 <p>
-  The **Contents** feature enhances user engagement by delivering various types
+  The **Content Zone** feature enhances user engagement by delivering various types
   of content blocks such as in-app messaging, ads, or user engagement prompts.
 </p>
 <p>
