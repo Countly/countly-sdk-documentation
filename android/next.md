@@ -3225,7 +3225,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
 <pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
 <p>
   When you enable visibility tracking, it will add a parameter to indicate
-  that the app is visible while recording those events.
+  that the app if visible while recording those events.
 </p>
 <pre><code class="java">countlyConfig.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HAVQDM5W9GE8E1C64J6SDFSA">A/B Testing Variant Information</h2>
