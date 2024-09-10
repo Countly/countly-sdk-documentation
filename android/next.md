@@ -3193,7 +3193,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   This call will retrieve and display any available content for the user. If new
   content is found, it will be fetched and shown to the user.
 </p>
-<p>To close any displayed content, use the following method:</p>
+<p>When a content is closed or completed, you can call this method to exit from content zone (SDK will stop content updates)</p>
 <pre><code class="java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
 <p>
   If content is closed, it could be listened by setting a global content callback with
