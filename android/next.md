@@ -1894,7 +1894,11 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 };</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -1910,7 +1914,8 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <p>
@@ -3167,6 +3172,75 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   server by setting <code>enableServerConfiguration</code> during init:
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
+<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.7.3!
+  </p>
+</div>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
+  ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  To start fetching content from the server, use the following method:
+</p>
+<pre><code class="java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<pre><code class="java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<pre><code class="java">countlyConfig.contents.setGlobalContentCallback(callback);</code></pre>
+<pre><code class="java">interface ContentCallback {
+  void onContentCallback(ContentStatus contentStatus, Map&lt;String, Object&gt; contentData);
+}</code></pre>
+<p>
+  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
+</p>
+<h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.7.3!
+  </p>
+</div>
+<p>
+  The ConfigExperimental interface provides experimental configuration options
+  for enabling advanced features like view name recording and visibility tracking.
+  These features are currently in a testing phase and might change in future versions.
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.experimental.enableViewNameRecording().enableVisibilityTracking();</code></pre>
+<p>This class allows enabling two experimental features:</p>
+<ul>
+  <li>Previous Name Recording</li>
+  <li>Visibility Tracking</li>
+</ul>
+<p>
+  When you enable previous name recording, it will add previous view name to the
+  view segmentations (cly_pvn) and previous event name to the event segmentations
+  (cly_pen).
+</p>
+<pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
+<p>
+  When you enable visibility tracking, it will add a parameter (cly_v) to each
+  recorded event's segmentation about the visibility of the app at the time of
+  its recording.
+</p>
+<pre><code class="java">countlyConfig.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HAVQDM5W9GE8E1C64J6SDFSA">A/B Testing Variant Information</h2>
 <p>
   You can access all the A/B test variants for your Countly application within
