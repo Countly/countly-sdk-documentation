@@ -3180,9 +3180,9 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   </p>
 </div>
 <p>
-  The Content Zone feature enhances user engagement by delivering various types of 
-  content blocks, such as in-app messaging, ads, or user engagement prompts. These 
-  content blocks are dynamically served from the content builder on the server, 
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
   ensuring that users receive relevant and up-to-date information.
 </p>
 <p>
@@ -3190,13 +3190,18 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <pre><code class="java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
 <p>
-  This call will retrieve and display any available content for the user. If new
-  content is found, it will be fetched and shown to the user.
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
 </p>
-<p>When a content is closed, you can call this method to exit from content zone (SDK will stop content updates)</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
 <pre><code class="java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
 <p>
-  You can be informed if a user closes a content by registering a global content callback:
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
 </p>
 <pre><code class="java">countlyConfig.contents.setGlobalContentCallback(callback);</code></pre>
 <pre><code class="java">interface ContentCallback {
@@ -3213,8 +3218,8 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   </p>
 </div>
 <p>
-  The ConfigExperimental interface provides experimental configuration options for
-  enabling advanced features like view name recording and visibility tracking.
+  The ConfigExperimental interface provides experimental configuration options
+  for enabling advanced features like view name recording and visibility tracking.
   These features are currently in a testing phase and might change in future versions.
 </p>
 <pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
@@ -3225,12 +3230,15 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   <li>Visibility Tracking</li>
 </ul>
 <p>
-  When you enable previous name recording, it will add previous view name to the views and previous event name to the events.
+  When you enable previous name recording, it will add previous view name to the
+  view segmentations (cly_pvn) and previous event name to the event segmentations
+  (cly_pen).
 </p>
 <pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
 <p>
-  When you enable visibility tracking, it will add a parameter to indicate
-  that the app if visible while recording those events.
+  When you enable visibility tracking, it will add a parameter (cly_v) to each
+  recorded event's segmentation about the visibility of the app at the time of
+  its recording.
 </p>
 <pre><code class="java">countlyConfig.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HAVQDM5W9GE8E1C64J6SDFSA">A/B Testing Variant Information</h2>
