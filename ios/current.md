@@ -3038,7 +3038,11 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 </div>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -3054,7 +3058,8 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <p>
@@ -4639,6 +4644,129 @@ end</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">config.enableServerConfiguration = true</code></pre>
+  </div>
+</div>
+<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.7.2!
+  </p>
+</div>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
+  ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  To start fetching content from the server, use the following method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.content enterContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().content().enterContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.content exitContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().content().exitContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[config.content setGlobalContentCallback:^(ContentStatus contentStatus, NSDictionary&lt;NSString *,id&gt; * _Nonnull contentData) {
+      // do sth
+    }];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.content().setGlobalContentCallback { contentStatus, contentData in
+      // do something
+    }</code></pre>
+  </div>
+</div>
+<p>
+  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
+</p>
+<h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.7.2!
+  </p>
+</div>
+<p>
+  The ConfigExperimental interface provides experimental configuration options
+  for enabling advanced features like view name recording and visibility tracking.
+  These features are currently in a testing phase and might change in future versions.
+</p>
+<p>This class allows enabling two experimental features:</p>
+<ul>
+  <li>Previous Name Recording</li>
+  <li>Visibility Tracking</li>
+</ul>
+<p>
+  When you enable previous name recording, it will add previous view name to the
+  view segmentations (cly_pvn) and previous event name to the event segmentations
+  (cly_pen).
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.experimental.enablePreviousNameRecording = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.experimental().enablePreviousNameRecording = true;</code></pre>
+  </div>
+</div>
+<p>
+  When you enable visibility tracking, it will add a parameter (cly_v) to each
+  recorded event's segmentation about the visibility of the app at the time of
+  its recording.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.experimental.enableVisibiltyTracking = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.experimental().enableVisibiltyTracking = true;</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RT6Z24NQTD85KJP50H">A/B Testing Variant Information</h2>
