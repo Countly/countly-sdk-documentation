@@ -11,7 +11,8 @@
   </p>
 </div>
 <p>
-  The Countly Android SDK requires a minimum Android version of 5.0 (API Level 21).
+  The Countly Android SDK requires a minimum Android version of 5.0 (API Level
+  21).
 </p>
 <p>
   To examine the example integrations please have a look
@@ -1885,7 +1886,11 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 };</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is an
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -2016,7 +2021,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <div class="callout callout--info">
-    <p>
+  <p>
     User Profiles is a
     <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
     plugin and built-in
@@ -2835,8 +2840,9 @@ config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
 config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
-  This feature is available for the <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>, but currently server side
-  support for this is limited.
+  This feature is available for the
+  <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>,
+  but currently server side support for this is limited.
 </p>
 <p>
   <strong><span style="font-weight: 400;">To report install attribution, you would perform the following request:</span></strong>
