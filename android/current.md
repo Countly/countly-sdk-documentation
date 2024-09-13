@@ -11,7 +11,8 @@
   </p>
 </div>
 <p>
-  The Countly Android SDK requires a minimum Android version of 5.0 (API Level 21).
+  The Countly Android SDK requires a minimum Android version of 5.0 (API Level
+  21).
 </p>
 <p>
   To examine the example integrations please have a look
@@ -30,7 +31,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-  implementation 'ly.count.android:sdk:24.7.2'
+  implementation 'ly.count.android:sdk:24.7.3'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -277,12 +278,12 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   </div>
   <div class="tab">
     <pre><code class="java">plugins {
-  id "ly.count.android.plugins.upload-symbols" version "24.7.2"
+  id "ly.count.android.plugins.upload-symbols" version "24.7.3"
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="java">plugins {
-  id("ly.count.android.plugins.upload-symbols") version "24.7.2"
+  id("ly.count.android.plugins.upload-symbols") version "24.7.3"
 }</code></pre>
   </div>
 </div>
@@ -299,7 +300,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <div class="tab">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id "ly.count.android.plugins.upload-symbols" version "24.7.2" apply false
+  id "ly.count.android.plugins.upload-symbols" version "24.7.3" apply false
 }
     
 // in sub-project gradle file
@@ -310,7 +311,7 @@ plugins {
   <div class="tab is-hidden">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id("ly.count.android.plugins.upload-symbols") version "24.7.2" apply false
+  id("ly.count.android.plugins.upload-symbols") version "24.7.3" apply false
 }
     
 // in sub-project gradle file
@@ -642,6 +643,10 @@ config.enableManualSessionControlHybridMode();</code></pre>
   on:
 </p>
 <pre><code class="java">Countly.sharedInstance().views()</code></pre>
+<p>
+  While going to the background, all running views will be automatically stopped,
+  and while coming to the foreground, all stopped views will be automatically started.
+</p>
 <h2 id="h_01HAVQDM5TD5ZGVAC5GCABTXTF">Automatic Views</h2>
 <p>
   <span style="font-weight: 400;">View tracking is a way to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
@@ -782,6 +787,10 @@ Countly.sharedInstance().views().stopAllViews(segmentation);</code></pre>
 <h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Pausing and Resuming Views</h3>
 <p>
   <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
+</p>
+<p>
+  Pausing and resuming views will only impact a single view, ensuring it receives
+  the correct duration.
 </p>
 <p>
   <span>To pause a view with its ID:</span>
@@ -1885,20 +1894,28 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 };</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is an <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">nps</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">rating</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
   All widgets are shown as webviews and should be approached using the same methods.
+</p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--warning">
   <p>
     Before any feedback widget can be shown, you need to create them in your
-    countly dashboard.
+    Countly dashboard.
   </p>
 </div>
 <p>
@@ -2016,7 +2033,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
 </p>
 <h1 id="h_01HAVQDM5V9WJ0K26PAYZF71R3">User Profiles</h1>
 <div class="callout callout--info">
-    <p>
+  <p>
     User Profiles is a
     <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
     plugin and built-in
@@ -2835,8 +2852,9 @@ config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
 config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
-  This feature is available for the <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>, but currently server side
-  support for this is limited.
+  This feature is available for the
+  <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>,
+  but currently server side support for this is limited.
 </p>
 <p>
   <strong><span style="font-weight: 400;">To report install attribution, you would perform the following request:</span></strong>
@@ -3154,6 +3172,75 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   server by setting <code>enableServerConfiguration</code> during init:
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
+<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.7.3!
+  </p>
+</div>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
+  ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  To start fetching content from the server, use the following method:
+</p>
+<pre><code class="java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<pre><code class="java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<pre><code class="java">countlyConfig.contents.setGlobalContentCallback(callback);</code></pre>
+<pre><code class="java">interface ContentCallback {
+  void onContentCallback(ContentStatus contentStatus, Map&lt;String, Object&gt; contentData);
+}</code></pre>
+<p>
+  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
+</p>
+<h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.7.3!
+  </p>
+</div>
+<p>
+  The ConfigExperimental interface provides experimental configuration options
+  for enabling advanced features like view name recording and visibility tracking.
+  These features are currently in a testing phase and might change in future versions.
+</p>
+<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.experimental.enableViewNameRecording().enableVisibilityTracking();</code></pre>
+<p>This class allows enabling two experimental features:</p>
+<ul>
+  <li>Previous Name Recording</li>
+  <li>Visibility Tracking</li>
+</ul>
+<p>
+  When you enable previous name recording, it will add previous view name to the
+  view segmentations (cly_pvn) and previous event name to the event segmentations
+  (cly_pen).
+</p>
+<pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
+<p>
+  When you enable visibility tracking, it will add a parameter (cly_v) to each
+  recorded event's segmentation about the visibility of the app at the time of
+  its recording.
+</p>
+<pre><code class="java">countlyConfig.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HAVQDM5W9GE8E1C64J6SDFSA">A/B Testing Variant Information</h2>
 <p>
   You can access all the A/B test variants for your Countly application within
