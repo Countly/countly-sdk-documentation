@@ -1765,6 +1765,7 @@ function sendMessage(param) {
   which data they affect.
 </p>
 <h2 id="h_01HSAPZS8AG66NMZ9TYT7X53XH">Key Length</h2>
+<p>It is 128 characters maximum by default.</p>
 <p>SDKs limit the maximum size of all user-set keys:</p>
 <p>- Event names and Event segmentation keys</p>
 <p>- View names and View segmentation keys</p>
@@ -1780,6 +1781,7 @@ function sendMessage(param) {
 <h2 id="h_01HSAQ3PHNMB8EESFQVMPZF9MB">
   <span>Value Size</span>
 </h2>
+<p>It is 256 characters maximum by default.</p>
 <p>
   SDKs limit the size of all user-set string segmentation (or their equivalent)
   values:
@@ -1800,6 +1802,7 @@ function sendMessage(param) {
 <p>- Breadcrumb value</p>
 <p>- Manual Feedback and Rating Widgets reporting fields</p>
 <h2 id="h_01HSAQK4XYV5TSR6JA4J9CS5AX">Segmentation Value Count</h2>
+<p>It is 100 developer-provided entries maximum by default.</p>
 <p>
   SDKs limit the amount of user-set segmentation key-value pairs:
 </p>
@@ -1808,18 +1811,21 @@ function sendMessage(param) {
 <p>- Custom APM trace metric count</p>
 <p>- Global View and Crash segmentation count</p>
 <h2 id="h_01HSAQP1NDJBX33KZXE4GQVNJW">Breadcrumb Count</h2>
+<p>It is 100 developer-provided entries maximum by default.</p>
 <p>
   <span>SDKs limit the amount of user-set breadcrumbs that can be recorded (exceeding deletes the oldest one)</span>
 </p>
 <h2 id="h_01HSAQR0WZQBZ5PYKJ75WAH642">
   <span>Stack Trace Lines Per Thread</span>
 </h2>
+<p>It is 30 lines maximum by default.</p>
 <p>
   <span>SDKs limit the stack trace lines that would be recorded per thread</span>
 </p>
 <h2 id="h_01HSAQS6MEKXNMZ2FGCA7TG8Y3">
   <span>Stack Trace Line Length</span>
 </h2>
+<p>It is 200 characters maximum by default.</p>
 <p>
   <span>SDKs limit the characters that are allowed per stack trace line (which limits the crash message length)</span>
 </p>
