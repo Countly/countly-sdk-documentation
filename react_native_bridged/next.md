@@ -1605,6 +1605,68 @@ pod install                         # Download and install pods<br>
 cd ../                              # Move to parent directory
 react-native run-android # OR       # Run the android project
 react-native run-ios                # Run the iOS project</code></pre>
+<h2 id="h_01HTF4H350DJ15WXZWCK6PBACR">SDK Internal Limits</h2>
+<p>
+  Countly SDKs have internal limits to prevent users from unintentionally sending
+  large amounts of data to the server. If these limits are exceeded, the data will
+  be truncated to keep it within the limit. You can check the exact parameters
+  these limits affect from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<p>
+  The SDK Internal Limit functions can be accessed via an interface called
+  <code>sdkInternalLimits</code>, which is available through the
+  <code>CountlyConfig</code> object, as demonstrated in the examples.
+</p>
+<div class="callout callout--warning">
+  <p>
+    The SDK Internal Limit functions are introduced in SDK version 24.4.1.
+  </p>
+</div>
+<h3 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h3>
+<p>
+  Limits the maximum size of all user set keys (default: 128 chars):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxKeyLength(int MAX_KEY_LENGTH);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H350PB7ZRJDKFVZEFXQT">Value Size</h3>
+<p>
+  Limits the size of all user-set string segmentation (or their equivalent) values
+  (default: 256 chars):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxValueSize(int MAX_VALUE_SIZE);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H3507WWAHMBH7MGKW0V4">Segmentation Values</h3>
+<p>
+  Limits the amount of user-set segmentation key-value pairs (default: 100 entries):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxSegmentationValues(int MAX_SEGMENTATION_COUNT);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H350W0RY8HQKB31H1FTS">Breadcrumb Count</h3>
+<p>
+  Limits the amount of user-set breadcrumbs that can be recorded (default: 100
+  entries; exceeding this deletes the oldest one):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxBreadcrumbCount(int MAX_BREADCRUMB_COUNT);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H35049TZ4ZTX7QK83YBQ">Stack Trace Lines Per Thread</h3>
+<p>
+  Limits the stack trace lines that would be recorded per thread (default: 30 lines):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxStackTraceLinesPerThread(int MAX_STACK_THREAD);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H3500XJ84CSECQFPXE67">Stack Trace Line Length</h3>
+<p>
+  Limits the characters that are allowed per stack trace line (default: 200 chars):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxStackTraceLineLength(int MAX_STACK_LENGTH);
+await Countly.initWithConfig(config);</code></pre>
 <h2 id="h_01HBZGC0M4JG8E6DCYCD04HQTJ">SDK Storage and Requests</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in a file named
