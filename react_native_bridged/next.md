@@ -1618,9 +1618,11 @@ react-native run-ios                # Run the iOS project</code></pre>
   <code>sdkInternalLimits</code>, which is available through the
   <code>CountlyConfig</code> object, as demonstrated in the examples.
 </p>
-<p>
-  The SDK Internal Limit functions are introduced in SDK version 24.4.1.
-</p>
+<div class="callout callout--warning">
+  <p>
+    The SDK Internal Limit functions are introduced in SDK version 24.4.1.
+  </p>
+</div>
 <h3 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h3>
 <p>
   Limits the maximum size of all user set keys (default: 128 chars):
