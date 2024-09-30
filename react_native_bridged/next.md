@@ -6,7 +6,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7F8Y2PP937KS4DQE2" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7F8Y2PP937KS4DQE2" target="_blank" rel="noopener noreferrer">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -36,7 +36,7 @@
   To examine the example integrations, please have a look
   <a href="#h_01HPKC2VFEH3K77VCES1WPH7MN">here.</a>
 </p>
-<h1 id="h_01HAVQNJQQY6AYCGY7TW5TR2GC">Adding the SDK to the project</h1>
+<h1 id="h_01HAVQNJQQY6AYCGY7TW5TR2GC">Adding the SDK to the Project</h1>
 <p>
   Run the following snippet in the root directory of your React Native project
   to install the npm dependencies and link <strong>native libraries</strong>.
@@ -54,7 +54,7 @@ cd ios
 pod install
 cd ..</code></pre>
 <h1 id="h_01HAVQNJQQBPYNQ7D6ACZTPEMM">SDK Integration</h1>
-<h2 id="h_01HAVQNJQQQAZSCX41W0SPS5P3">Minimal setup</h2>
+<h2 id="h_01HAVQNJQQQAZSCX41W0SPS5P3">Minimal Setup</h2>
 <p>
   We will need to call two methods (<code class="JavaScript">initWithConfig</code>
   and <code class="JavaScript">start</code>) in order to set up our SDK. These
@@ -107,13 +107,13 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   For more information on where to find the SDK logs you can check the documentation
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
-<h1 id="h_01HAVQNJQQ54VGN5SK3J9YZYCN">Crash reporting</h1>
+<h1 id="h_01HAVQNJQQ54VGN5SK3J9YZYCN">Crash Reporting</h1>
 <p>
   The Countly SDK has the ability to collect
-  <a href="https://support.count.ly/hc/en-us/articles/4404213566105">crash reports</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4404213566105" target="_blank" rel="noopener noreferrer">crash reports</a>,
   which you may examine and resolve later on the server.
 </p>
-<h2 id="h_01HAVQNJQQ8BMDZBKTHKSMAHQQ">Automatic crash handling</h2>
+<h2 id="h_01HAVQNJQQ8BMDZBKTHKSMAHQQ">Automatic Crash Handling</h2>
 <p>
   With this feature, the Countly SDK will generate a crash report if your application
   crashes due to an exception and will send it to the Countly server for further
@@ -134,7 +134,7 @@ const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");
 // ...
 countlyConfig.enableCrashReporting(); // Enable crash reports
 await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with config.</code></pre>
-<h2 id="h_01HAVQNJQQH45W0XT6VXNT2VG0">Automatic crash report segmentation</h2>
+<h2 id="h_01HAVQNJQQH45W0XT6VXNT2VG0">Automatic Crash Report Segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
   which specific library or framework version you used in your app. You may then
@@ -144,7 +144,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>Use the following function for this purpose:</p>
 <pre><code class="JavaScript">var segment = {"Key": "Value"};
 Countly.setCustomCrashSegments(segment);</code></pre>
-<h2 id="h_01HAVQNJQQP9T6KQT0Y0PRW5RF">Handled exceptions</h2>
+<h2 id="h_01HAVQNJQQP9T6KQT0Y0PRW5RF">Handled Exceptions</h2>
 <p>
   You might catch an exception or similar error during your app’s runtime.
 </p>
@@ -178,7 +178,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <strong>4. Manually report fatal exception with segmentation</strong>
 </p>
 <pre><code class="JavaScript">Countly.logException("STACK_TRACE_STRING", false, {"_facebook_version": "0.0.1"});</code></pre>
-<h2 id="h_01HAVQNJQQW9G8MJHFW3EAR78S">Crash breadcrumbs</h2>
+<h2 id="h_01HAVQNJQQW9G8MJHFW3EAR78S">Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs which would describe previous
   steps that were taken in your app before the crash. After a crash happens, they
@@ -191,8 +191,8 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   If you have C++ libraries in your React Native Android app, the React Native
   Bridge SDK allows you to record possible crashes in your Countly server by integrating
   the <code class="JavaScript">sdk-native</code>developed within our
-  <a href="https://github.com/Countly/countly-sdk-android">Android SDK</a>. Find
-  more information
+  <a href="https://github.com/Countly/countly-sdk-android" target="_blank" rel="noopener noreferrer">Android SDK</a>.
+  Find more information
   <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#h_01HAVQDM5TFKEHBN5G8J9VSP37" target="_blank" rel="noopener">here</a>.
 </p>
 <p>
@@ -204,7 +204,7 @@ Countly.setCustomCrashSegments(segment);</code></pre>
   <code class="JavaScript">YOUR_REACT_NATIVE_PROJECT_PATH/android/app/build.gradle</code>and
   add the package dependency (please change the
   <code class="JavaScript">LATEST_VERSION</code> below by checking our Maven
-  <a href="https://central.sonatype.com/artifact/ly.count.android/sdk-native/versions">page</a>,
+  <a href="https://central.sonatype.com/artifact/ly.count.android/sdk-native/versions" target="_blank" rel="noopener noreferrer">page</a>,
   currently 23.8.0):
 </p>
 <pre><code class="shell">dependencies {
@@ -237,7 +237,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   uploads symbol files to your server (these are needed for the symbolication of
   crash dumps). Integrate it into your React Native project as explained in the
   relevant Android documentation
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TFKEHBN5G8J9VSP37" target="_self" rel="undefined">page</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TFKEHBN5G8J9VSP37" target="_blank" rel="noopener noreferrer">page</a>.
 </p>
 <p>
   This is what the debug logs will look like if you use this feature:
@@ -263,7 +263,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
 <h1 id="h_01HAVQNJQR1DMRFF2T44003S59">Events</h1>
 <p>
   An
-  <a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events">Event</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events" target="_blank" rel="noopener noreferrer">Event</a>
   is any type of action or data that you can send to a Countly instance, e.g. purchases,
   changed settings, view enabled, and so on. This way it's possible to get much
   more information from your application compared to what is sent from the SDK
@@ -340,7 +340,7 @@ D/Countly (124): Recording native crash dump: [30f6d9b8-b3b2-1553-2efe0ba2-36588
   those examples and use Country, game_level, time_of_day, and any other segmentation
   that will provide you with valuable insights.
 </p>
-<h2 id="h_01HAVQNJQRBRHVK5WF42VPFZF2">Timed events</h2>
+<h2 id="h_01HAVQNJQRBRHVK5WF42VPFZF2">Timed Events</h2>
 <p>
   It's possible to create timed events by calling start and stop methods. This
   would calculate the duration between those two calls and record it as the duration
@@ -384,7 +384,7 @@ Countly.events.endEvent("Event name");</code></pre>
   The SDK will automatically handle all required requests (begin session, update
   session and end session).
 </p>
-<h1 id="h_01HAVQNJQR7VTSADNK0KZGAE8H">View tracking</h1>
+<h1 id="h_01HAVQNJQR7VTSADNK0KZGAE8H">View Tracking</h1>
 <p>You may track custom views with the following code snippet:</p>
 <pre><code class="JavaScript">Countly.recordView("View Name")</code></pre>
 <p>
@@ -395,14 +395,12 @@ Countly.events.endEvent("Event name");</code></pre>
 Countly.recordView("View Name", viewSegmentation);</code></pre>
 <p>
   To review the resulting data, open the dashboard and go to
-  <code class="JavaScript">Analytics &gt; Views</code>. For more information on
-  how to use view tracking data to its fullest potential, click
-  <a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps">here</a>.
+  <code class="JavaScript">Analytics &gt; Views</code>
 </p>
 <div class="img-container">
   <img src="/guide-media/01GV9ZW9XVCXCTTKN1DT3684EV" alt="001.png">
 </div>
-<h1 id="h_01HAVQNJQR4M6EJ5WS9HRBX2Q4">Device ID management</h1>
+<h1 id="h_01HAVQNJQR4M6EJ5WS9HRBX2Q4">Device ID Management</h1>
 <p>
   When the SDK is initialized the first time and no custom device ID is provided,
   a random one will be generated. For most use cases that is enough as it provides
@@ -421,7 +419,7 @@ Countly.recordView("View Name", viewSegmentation);</code></pre>
   <li>Changing device ID without merge</li>
   <li>Using a temporary ID</li>
 </ul>
-<h2 id="h_01HAVQNJQR1HPTNTJ711DVNFD1">Changing device ID with and without merge</h2>
+<h2 id="h_01HAVQNJQR1HPTNTJ711DVNFD1">Changing Device ID</h2>
 <div class="callout callout--warning">
   <p>
     <strong>Performance risk.</strong> Changing device id with server merging
@@ -484,7 +482,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   method, all requests which have been kept on hold until that point will start
   with the real device ID.
 </p>
-<h2 id="h_01HAVQNJQREEYRDZ2HNBMRZ7HF">Retrieving the device id</h2>
+<h2 id="h_01HAVQNJQREEYRDZ2HNBMRZ7HF">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.
@@ -519,7 +517,7 @@ if(deviceIdType == <span class="pl-v">DeviceIdType.<span>SDK_GENERATED</span><sp
 <h1 id="h_01HAVQNJQR5GW08NR6A2P814QT">Push Notifications</h1>
 <p>
   Please first check our
-  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_self" rel="undefined">Push Notifications documentation</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">Push Notifications documentation</a>
   to see how you can use this feature. Since Android and iOS handles notifications
   differently (from how you can send them externally to how they are handled in
   native code), we need to provide different instructions for these two platforms.
@@ -619,21 +617,20 @@ countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
   "android.resource://PACKAGE_NAME/raw/NAME_OF_SOUND_WITHOUT_EXTENSION";
 </p>
 <p>
-  For more information about custom push notification sounds in Android check this
-  link:
-</p>
-<p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TZ37DMR7CVMDRHDX6" target="_self">https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TZ37DMR7CVMDRHDX6</a>
+  For more information about custom push notification sounds in Android check
+  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TZ37DMR7CVMDRHDX6" target="_blank" rel="noopener noreferrer">this section</a>
+  of Android article.
 </p>
 <h2 id="h_01HAVQNJQSDMY43FAAN5D1GQ74">Android Setup</h2>
 <p>
-  Step 1: For FCM credentials setup please follow the instruction from this URL
-  <a class="c-link" href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2" target="_blank" rel="noopener noreferrer" data-stringify-link="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2" data-sk="tooltip_parent">https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TDXHRVHJR8F6VX2D2</a>.
+  Step 1: For FCM credentials setup please follow the instruction from this
+  <a href="https://support.countly.com/hc/en-us/articles/360037754031-Android#h_01HAVQDM5TN4XSRHM5NPVQ8THG" target="_blank" rel="noopener noreferrer">URL</a>
 </p>
 <p>
   Step 2: Make sure you have
   <code class="JavaScript">google-services.json</code> from
-  <a href="https://firebase.google.com/">https://firebase.google.com/</a>
+  <a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer">Firebase</a>
+  website
 </p>
 <p>
   Step 3: Make sure the app package name and the
@@ -645,8 +642,8 @@ countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
   <code class="JavaScript">android/app</code>
 </p>
 <p>
-  Step 5: Use google services latest version from this link
-  <a href="https://developers.google.com/android/guides/google-services-plugin">https://developers.google.com/android/guides/google-services-plugin</a>
+  Step 5: Use google services latest version from
+  <a href="https://developers.google.com/android/guides/google-services-plugin" target="_blank" rel="noopener noreferrer">this link</a>
 </p>
 <p>
   Step 6: Add the following line in the file
@@ -666,10 +663,10 @@ countlyConfig.setPushNotificationAccentColor("#000000");</code></pre>
 apply plugin: 'com.google.gms.google-services'
 </code></pre>
 <p>
-  <strong>Note:</strong> You need to do some additional steps to handle multiple
-  messaging services. If you are using other plugins for push notifications, please
-  follow the instructions from this URL:<br>
-  <a href="/hc/en-us/articles/4412005896217" target="_self">Handling multiple FCM services</a>
+  <strong>Note:</strong> You need to take additional steps to handle multiple messaging
+  services. If you are using other plugins for push notifications, please follow
+  the instructions from this URL:<br>
+  <a href="/hc/en-us/articles/4412005896217" target="_blank" rel="noopener noreferrer">Handling multiple FCM services</a>
 </p>
 <p>
   <strong>Additional Intent Redirection Checks</strong>
@@ -729,7 +726,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </p>
 <p>
   For iOS push notification integration please follow the instructions from
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQD3WBN560GAKTB77T">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RQD3WBN560GAKTB77T" target="_blank" rel="noopener noreferrer">here</a>
 </p>
 <p>
   For React Native you can find
@@ -758,22 +755,21 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </div>
 <h2 id="h_01HNFJBRCKHFFZZYWK1CD485FT">Removing Push and Its Dependencies</h2>
 <p>
-  Countly React Native SDK comes with push notification capabilities embedded.
-  For the flavor without the push notifications features (like Firebase libraries)
-  please check
-  <a href="https://www.npmjs.com/package/countly-sdk-react-native-bridge-np">here</a>.
+  Countly React Native SDK comes with embedded push notification capabilities.
+  For the flavor without these features (like Firebase libraries), please check
+  <a href="https://www.npmjs.com/package/countly-sdk-react-native-bridge-np" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
-<h2 id="h_01HAVQNJQSJT44XRDEHJX0SZYC">Handling push callbacks</h2>
+<h2 id="h_01HAVQNJQSJT44XRDEHJX0SZYC">Handling Push Callbacks</h2>
 <p>
-  To register a Push Notification callback after initialising the SDK, use the
-  method below.
+  Use the method below to register a Push Notification callback after initializing
+  the SDK.
 </p>
 <pre><code class="java">Countly.registerForNotification(function(theNotification){
   console.log(JSON.stringify(theNotification));
 });</code></pre>
 <p>
-  In order to listen to notifications received and the click events, add the code
-  below in <code>AppDelegate.m</code>
+  To listen to notifications received and the click events, add the code below
+  in <code>AppDelegate.m</code>
 </p>
 <p>Add header files</p>
 <pre><code class="JavaScript">#import "CountlyReactNative.h"<br>#import &lt;UserNotifications/UserNotifications.h&gt;
@@ -787,7 +783,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <pre><code class="objectivec">// For push notification received and action callbacks.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions<br>{<br>  [CountlyReactNative startObservingNotifications];<br>}</code></pre>
 <p>
-  Before <code>@end</code> add these method
+  Before <code>@end</code> add these methods
 </p>
 <pre><code class="objectivec">// Required for the notification event. You must call the completion handler after handling the remote notification.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary*)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -814,7 +810,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 <p>
   Here is an example of how the data will be received in push callbacks:<img src="/guide-media/01GYZ1ETTFDZQAMC8YA0Y0AQ8G" alt="002.png"><br>
   <br>
-  Data Received for Android platform:
+  Data Received for Android Platform:
 </p>
 <pre><code class="json">{
   "c.e.cc": "TR",
@@ -829,7 +825,7 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
   "title": "title",
   "message": "Message"
 }</code></pre>
-<p>Data Received for iOS platform:</p>
+<p>Data Received for iOS Platform:</p>
 <pre><code class="json">{
  "c": {
   "i": "62b5b945cabedb0870e9f217",
@@ -927,9 +923,9 @@ Countly.disableLocation();</code></pre>
   Remote config allows you to modify how your app functions or looks by requesting
   key-value pairs from your Countly server. The returned values may be modified
   based on the user profile. For more details, please see the
-  <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config">Remote Config documentation</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener noreferrer">Remote Config documentation</a>.
 </p>
-<h2 id="h_01HAVQNJQS9RY5XN2RG153BG79">Manual Remote Config download</h2>
+<h2 id="h_01HAVQNJQS9RY5XN2RG153BG79">Manual Remote Config Download</h2>
 <p>
   There are three ways for manually requesting a remote config update:
 </p>
@@ -977,7 +973,7 @@ Countly.updateRemoteConfigForKeysOnly(["aa", "bb"],function(data){
   will update all the values. This means it will also erase all keys not returned
   by the server.
 </p>
-<h2 id="h_01HAVQNJQSN1VVTHGZSWR9JDAC">Getting Remote Config values</h2>
+<h2 id="h_01HAVQNJQSN1VVTHGZSWR9JDAC">Getting Remote Config Values</h2>
 <p>
   To request a stored value, call
   <code class="JavaScript">getRemoteConfigValueForKey</code> or
@@ -989,7 +985,7 @@ Countly.updateRemoteConfigForKeysOnly(["aa", "bb"],function(data){
 });
 
 var data = await Countly.getRemoteConfigValueForKeyP("KeyName");</code></pre>
-<h2 id="h_01HAVQNJQSRE44ZND5CQ1WZKAK">Clearing Stored Remote Config values</h2>
+<h2 id="h_01HAVQNJQSRE44ZND5CQ1WZKAK">Clearing Stored Remote Config Values</h2>
 <p>
   At some point, you might like to erase all the values downloaded from the server.
   You will need to call one function to do so.
@@ -1027,7 +1023,11 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </code></pre>
 <h2 id="h_01HAVQNJQS4TRX89X6GSGWQGGV">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of Feedback widgets:
@@ -1043,7 +1043,8 @@ await Countly.initWithConfig(countlyConfig); // Initialize the countly SDK with 
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <p>
@@ -1140,11 +1141,19 @@ if (!response.error) {
 </p>
 <pre><code class="javascript">Countly.feedback.reportFeedbackWidgetManually(widgetInfo, widgetData, widgetResult);</code></pre>
 <h1 id="h_01HAVQNJQSW54CC0XFHA30BPC8">User Profiles</h1>
+<div class="callout callout--info">
+  <p>
+    User Profiles is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin and built-in
+    <a href="https://countly.com/flex" target="_blank" rel="noopener noreferrer">Flex</a>.
+  </p>
+</div>
 <p>
-  You can provide Countly any details you may have about your user or visitor.
-  This will allow you to track each specific user on the "User Profiles" tab, available
-  in Countly Enterprise Edition. For more information, please check the
-  <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_self" rel="undefined">User Profiles documentation</a>.
+  You can provide Countly any details about your user or visitor. This will allow
+  you to track each specific user on the "User Profiles" tab. For more information,
+  please check the
+  <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_blank" rel="noopener noreferrer">User Profiles documentation</a>.
 </p>
 <p>
   User details can be sent to your Countly instance in two separate ways: bulk
@@ -1254,7 +1263,7 @@ options.byear = 1919;<br>
 Countly.setUserData(options);</code></pre>
   </div>
 </div>
-<h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">User Property Modificators</h2>
+<h2 id="h_01HAVQNJQTQ671N13EP5MF5EFV">Modifying Data</h2>
 <p>
   Additionally, you can modify these custom values in various ways like increasing
   a number, pushing new values to an array, etc. You can see the whole range of
@@ -1305,7 +1314,7 @@ Countly.userData.pullValue("type", "morning");//remove value from array</code></
 <p>
   The Performance Monitoring feature allows you to analyze your application's performance
   on various aspects. For more details, please review the
-  <a href="https://support.count.ly/hc/en-us/articles/4734457847705-Performance" target="_self">Performance Monitoring documentation</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/4734457847705-Performance" target="_blank" rel="noopener noreferrer">Performance Monitoring documentation</a>.
 </p>
 <p>
   The SDK provides manual and automatic mechanisms for Application Performance
@@ -1426,12 +1435,12 @@ countlyConfig.apm.enableAppStartTimeTracking().<strong>setAppStartTimestampOverr
 </p>
 <pre><code class="javascript">const countlyConfig = new CountlyConfig("https://try.count.ly", "YOUR_APP_KEY");<br><br>// enable it here separately with 'apm' interface.
 countlyConfig.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
-<h1 id="h_01HAVQNJQTPBHA4HKBXA3SJG7Z">User consent</h1>
+<h1 id="h_01HAVQNJQTPBHA4HKBXA3SJG7Z">User Consent</h1>
 <p>
   Being compliant with GDPR and other data privacy regulations, Countly provides
   ways to toggle different Countly tracking features on or off depending on a user's
   given consent. For more details, please review the
-  <a href="https://support.count.ly/hc/en-us/articles/4404570865433-Utilities#h_01HBC3FWCBVBZDYS0NSSGQN5F0">Compliance Hub plugin</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4404570865433-Utilities#h_01HBC3FWCBVBZDYS0NSSGQN5F0" target="_blank" rel="noopener noreferrer">Compliance Hub plugin</a>
   documentation.
 </p>
 <p>
@@ -1509,8 +1518,8 @@ Countly.removeConsent(["events", "views", "star-rating", "crashes"]);</code></pr
 <pre><code class="javascript">// To add/remove consent for all available features
 Countly.giveAllConsent();
 Countly.removeAllConsent();</code></pre>
-<h1 id="h_01HAVQNJQTD0RS47PZ0SX4ZW1X">Security and privacy</h1>
-<h2 id="h_01HAVQNJQTMSE0N9EHEDS3P8M8">Parameter tampering protection</h2>
+<h1 id="h_01HAVQNJQTD0RS47PZ0SX4ZW1X">Security and Privacy</h1>
+<h2 id="h_01HAVQNJQTMSE0N9EHEDS3P8M8">Parameter Tampering Protection</h2>
 <p>
   You can set optional <code class="JavaScript">salt</code> to be used for calculating
   checksum of request data, which will be sent with each request using
@@ -1794,7 +1803,7 @@ Countly.removeDifferentAppKeysFromQueue();</pre>
 Countly.setCustomMetrics(customMetric);</code></pre>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>Example to override 'Carrier' and 'App Version'</p>
 <pre><code class="JavaScript">var customMetric = {"_carrier": "custom carrier", "_app_version": "2.1"};
