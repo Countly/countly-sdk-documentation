@@ -1605,60 +1605,64 @@ pod install                         # Download and install pods<br>
 cd ../                              # Move to parent directory
 react-native run-android # OR       # Run the android project
 react-native run-ios                # Run the iOS project</code></pre>
+<h2 id="h_01HTF4H350DJ15WXZWCK6PBACR">SDK Internal Limits</h2>
+<p>
+  Countly SDKs have internal limits to prevent users from unintentionally sending
+  large amounts of data to the server. If these limits are exceeded, the data will
+  be truncated to keep it within the limit. You can check the exact parameters
+  these limits effect from
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
+<h3 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h3>
+<p>
+  Limits the maximum size of all user set keys (default: 128 chars):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxKeyLength(int MAX_KEY_LENGTH);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H350PB7ZRJDKFVZEFXQT">Value Size</h3>
+<p>
+  Limits the size of all user set string segmentation (or their equivalent) values
+  (default: 256 chars):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxValueSize(int MAX_VALUE_SIZE);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H3507WWAHMBH7MGKW0V4">Segmentation Values</h3>
+<p>
+  Limits the amount of user set segmentation key-value pairs (default: 100 entries):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxSegmentationValues(int MAX_SEGMENTATION_COUNT);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H350W0RY8HQKB31H1FTS">Breadcrumb Count</h3>
+<p>
+  Limits the amount of user set breadcrumbs that can be recorded (default: 100
+  entries, exceeding this deletes the oldest one):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxBreadcrumbCount(int MAX_BREADCRUMB_COUNT);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H35049TZ4ZTX7QK83YBQ">Stack Trace Lines Per Thread</h3>
+<p>
+  Limits the stack trace lines that would be recorded per thread (default: 30 lines):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxStackTraceLinesPerThread(int MAX_STACK_THREAD);
+await Countly.initWithConfig(config);</code></pre>
+<h3 id="h_01HTF4H3500XJ84CSECQFPXE67">Stack Trace Line Length</h3>
+<p>
+  Limits the characters that are allowed per stack trace line (default: 200 chars):
+</p>
+<pre><code>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.sdkInternalLimits.setMaxStackTraceLineLength(int MAX_STACK_LENGTH);
+await Countly.initWithConfig(config);</code></pre>
 <h2 id="h_01HBZGC0M4JG8E6DCYCD04HQTJ">SDK Storage and Requests</h2>
 <p>
   For iOS: SDK data is stored in Application Support Directory in a file named
   "Countly.dat" For Android: SDK data is stored in SharedPreferences. A SharedPreferences
   object points to a file containing key-value pairs and provides simple methods
   to read and write them.
-</p>
-<h3 id="h_01HAVQNJQVEMEHN5ZF3DTYNG84">Setting Event Queue Threshold</h3>
-<p>
-  Events get grouped together and are sent either every minute or after the unsent
-  event count reaches a threshold. By default it is 10. If you would like to change
-  this, call:
-</p>
-<pre>Countly.setEventSendThreshold(6);</pre>
-<h3 id="h_01HAVQNJQTRAKGYDMT0NB7GVNA">Forcing HTTP POST</h3>
-<p>
-  If the data sent to the server is short enough, the SDK will use HTTP GET requests.
-  In the event you would like an override so that HTTP POST may be used in all
-  cases, call the <code class="JavaScript">setHttpPostForced</code> function after
-  you have called <code class="JavaScript">initWithConfig</code>. You may use the
-  same function later in the app’s life cycle to disable the override. This function
-  has to be called every time the app starts, using the method below.
-</p>
-<pre><code class="javascript">// enabling the override
-Countly.setHttpPostForced(true);
-  
-// disabling the override
-Countly.setHttpPostForced(false);</code></pre>
-<h3 id="h_01HAVQNJQTKPQPAY8MBKTP66DE">Interacting with the Internal Request Queue</h3>
-<p>
-  When recording events or activities, the requests don't always get sent immediately.
-  Events get grouped together. All the requests contain the same app key which
-  is provided in the <code class="JavaScript">initWithConfig</code> function.
-</p>
-<p>
-  There are two ways to interact with the app key in the request queue at the moment.
-</p>
-<p>
-  1. You can replace all requests with a different app key with the current app
-  key:
-</p>
-<pre>//Replaces all requests with a different app key with the current app key.
-Countly.replaceAllAppKeysInQueueWithCurrentAppKey();</pre>
-<p>
-  In the request queue, if there are any requests whose app key is different than
-  the current app key, these requests app key will be replaced with the current
-  app key. 2. You can remove all requests with a different app key in the request
-  queue:
-</p>
-<pre>//Removes all requests with a different app key in request queue.
-Countly.removeDifferentAppKeysFromQueue();</pre>
-<p>
-  In the request queue, if there are any requests whose app key is different than
-  the current app key, these requests will be removed from the request queue.
 </p>
 <h2 id="01HBZGDQ57D82CFMYJH2FBXWEQ">Checking If the SDK Has Been Initialized</h2>
 <p>
