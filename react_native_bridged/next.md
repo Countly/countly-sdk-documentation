@@ -1664,6 +1664,54 @@ await Countly.initWithConfig(config);</code></pre>
   object points to a file containing key-value pairs and provides simple methods
   to read and write them.
 </p>
+<h3 id="h_01HAVQNJQVEMEHN5ZF3DTYNG84">Setting Event Queue Threshold</h3>
+<p>
+  Events get grouped together and are sent either every minute or after the unsent
+  event count reaches a threshold. By default it is 10. If you would like to change
+  this, call:
+</p>
+<pre>Countly.setEventSendThreshold(6);</pre>
+<h3 id="h_01HAVQNJQTRAKGYDMT0NB7GVNA">Forcing HTTP POST</h3>
+<p>
+  If the data sent to the server is short enough, the SDK will use HTTP GET requests.
+  In the event you would like an override so that HTTP POST may be used in all
+  cases, call the <code class="JavaScript">setHttpPostForced</code> function after
+  you have called <code class="JavaScript">initWithConfig</code>. You may use the
+  same function later in the app’s life cycle to disable the override. This function
+  has to be called every time the app starts, using the method below.
+</p>
+<pre><code class="javascript">// enabling the override
+Countly.setHttpPostForced(true);
+  
+// disabling the override
+Countly.setHttpPostForced(false);</code></pre>
+<h3 id="h_01HAVQNJQTKPQPAY8MBKTP66DE">Interacting with the Internal Request Queue</h3>
+<p>
+  When recording events or activities, the requests don't always get sent immediately.
+  Events get grouped together. All the requests contain the same app key which
+  is provided in the <code class="JavaScript">initWithConfig</code> function.
+</p>
+<p>
+  There are two ways to interact with the app key in the request queue at the moment.
+</p>
+<p>
+  1. You can replace all requests with a different app key with the current app
+  key:
+</p>
+<pre>//Replaces all requests with a different app key with the current app key.
+Countly.replaceAllAppKeysInQueueWithCurrentAppKey();</pre>
+<p>
+  In the request queue, if there are any requests whose app key is different than
+  the current app key, these requests app key will be replaced with the current
+  app key. 2. You can remove all requests with a different app key in the request
+  queue:
+</p>
+<pre>//Removes all requests with a different app key in request queue.
+Countly.removeDifferentAppKeysFromQueue();</pre>
+<p>
+  In the request queue, if there are any requests whose app key is different than
+  the current app key, these requests will be removed from the request queue.
+</p>
 <h2 id="01HBZGDQ57D82CFMYJH2FBXWEQ">Checking If the SDK Has Been Initialized</h2>
 <p>
   In the event you would like to check if initWithConfig has been called, use the
