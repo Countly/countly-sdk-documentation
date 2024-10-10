@@ -1903,7 +1903,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
   All widgets are shown as webviews and should be approached using the same methods.
@@ -1919,10 +1919,51 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   </p>
 </div>
 <p>
-  After you have created widgets at your dashboard you can reach their related
-  information as a list, corresponding to the current user's device ID, by providing
-  a callback to the getAvailableFeedbackWidgets method, which returns the list
-  as the first parameter and error as the second:
+  After you have created widgets on your dashboard, you can present them using
+  the function mentioned below. If you would like to access widget data and available
+  widgets, you can read the <a href="#h_01J9TZ1VZSG732EYVH1X9M2D04">advanced</a>
+  section for the feedback widgets.
+</p>
+<p>
+  Each feedback widget has the same function parameters and similar function signatures
+</p>
+<p>
+  They have "selector" parameter. When provided, it filters feedback widgets by
+  Its ID, name, and tags
+</p>
+<p>
+  If an empty selector is provided it will show the first feedback widget by its
+  type
+</p>
+<h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
+<pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
+Countly.sharedInstance().feedback().presentNPS(Context context, String selector)</code></pre>
+<pre><code>// Assuming you are in a context environment
+Countly.sharedInstance().feedback().presentNPS(this);
+// or
+Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore");
+</code></pre>
+<h3 id="h_01J9V00SX4HKSKS4X4ENXKK0RS">Survey</h3>
+<pre><code>Countly.sharedInstance().feedback().presentSurvey(Context context)
+Countly.sharedInstance().feedback().presentSurvey(Context context, String selector)</code></pre>
+<pre><code>// Assuming you are in a context environment
+Countly.sharedInstance().feedback().presentSurvey(this);
+// or
+Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655");
+</code></pre>
+<h3 id="h_01J9V00SX48CVFHF7JMTM3E3VH">Rating</h3>
+<pre><code>Countly.sharedInstance().feedback().presentRating(Context context)
+Countly.sharedInstance().feedback().presentRating(Context context, String selector)</code></pre>
+<pre><code>// Assuming you are in a context environment
+Countly.sharedInstance().feedback().presentRating(this);
+// or
+Countly.sharedInstance().feedback().presentRating(this, "tag_published");
+</code></pre>
+<h3 id="h_01J9TZ1VZSG732EYVH1X9M2D04">Advanced Feedback Widget</h3>
+<p>
+  You can access their related information as a list corresponding to the current
+  user's device ID, by providing a callback to the getAvailableFeedbackWidgets
+  method, which returns the list as the first parameter and error as the second:
 </p>
 <pre><code class="java">Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {
   @Override 
@@ -1963,7 +2004,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   }
 });
 </code></pre>
-<h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
+<h4 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h4>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created instead of our webview solution. At those times you would
