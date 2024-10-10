@@ -1928,16 +1928,16 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   Each feedback widget has the same function parameters and similar function signatures
 </p>
 <p>
-  They have "selector" parameter. When provided, it filters feedback widgets by
+  They have "nameIDorTag" parameter. When provided, it filters feedback widgets by
   Its ID, name, and tags
 </p>
 <p>
-  If an empty selector is provided it will show the first feedback widget by its
+  If an empty nameIDorTag is provided it will show the first feedback widget by its
   type
 </p>
 <h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
 <pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
-Countly.sharedInstance().feedback().presentNPS(Context context, String selector)</code></pre>
+Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag)</code></pre>
 <pre><code>// Assuming you are in a context environment
 Countly.sharedInstance().feedback().presentNPS(this);
 // or
@@ -1945,7 +1945,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore");
 </code></pre>
 <h3 id="h_01J9V00SX4HKSKS4X4ENXKK0RS">Survey</h3>
 <pre><code>Countly.sharedInstance().feedback().presentSurvey(Context context)
-Countly.sharedInstance().feedback().presentSurvey(Context context, String selector)</code></pre>
+Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag)</code></pre>
 <pre><code>// Assuming you are in a context environment
 Countly.sharedInstance().feedback().presentSurvey(this);
 // or
@@ -1953,7 +1953,7 @@ Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655");
 </code></pre>
 <h3 id="h_01J9V00SX48CVFHF7JMTM3E3VH">Rating</h3>
 <pre><code>Countly.sharedInstance().feedback().presentRating(Context context)
-Countly.sharedInstance().feedback().presentRating(Context context, String selector)</code></pre>
+Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag)</code></pre>
 <pre><code>// Assuming you are in a context environment
 Countly.sharedInstance().feedback().presentRating(this);
 // or
