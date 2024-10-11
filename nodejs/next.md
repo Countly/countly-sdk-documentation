@@ -786,9 +786,6 @@ Countly.report_conversion("MyCampaignID");</code></pre>
      */
     storeSet: function(key, value, callback) {
         // your storeSet method
-        if (callback) {
-            callback(); // Call the callback if provided
-        }
     },
     
     /**
@@ -811,13 +808,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 };
 </code></pre>
 <h1 id="h_01HNANT8H3P3W2PXB0CCY2FNBW">FAQ</h1>
-<p>
-  <code><code></code></code>
-</p>
 <h2 id="h_01HNANK3XPZ7429V5Z2FJ9MMZ5">What Information is Collected by the SDK?</h2>
-<p>
-  <code><code></code></code>
-</p>
 <p>
   The data that SDKs gather to carry out their tasks and implement the necessary
   functionalities is mentioned
