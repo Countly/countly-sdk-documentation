@@ -772,12 +772,28 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </p>
 <p>Custom Storage Method object should be like this:</p>
 <pre><code>const customStorageMethods = {
+    /**
+     *  Save value in memory
+     *  @param {String} key - key for value to store
+     *  @param {varies} value - value to store
+     *  @param {Function} callback - callback to call when done storing
+     */
     storeSet: function(key, value, callback) {
         // your storeSet method
     },
+    /**
+     *  Get value from memory
+     *  @param {String} key - key of value to get
+     *  @param {varies} def - default value to use if not set
+     *  @returns {varies} value for the key
+     */
     storeGet: function(key, def) {
         // your storeGet method
     },
+    /**
+     *  Remove value from memory
+     *  @param {String} key - key of value to remove
+     */
     storeRemove: function(key) {
         // your storeRemove method
     },
