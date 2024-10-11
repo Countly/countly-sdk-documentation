@@ -567,9 +567,10 @@ Countly.report_trace({
   </li>
   <li>
     <strong>storage_type</strong> - To determine which storage type will be applied.
-    The storage type options are file storage and memory storage. If not set
-    the default will be applied. If custom_storage_method will be used, do not
-    use the storage type. (default: "file")
+    The storage type options are file storage and memory storage (conf.storage_type("file")
+    or conf.storage_type("memory")). If not set the default will be applied.
+    If custom_storage_method will be used, do not use the storage type. (default:
+    "file")
   </li>
   <li>
     <strong>custom_storage_method</strong> - User given storage method which
@@ -773,31 +774,42 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 <p>Custom Storage Method object should be like this:</p>
 <pre><code>const customStorageMethods = {
     /**
-     *  Save value in memory
-     *  @param {String} key - key for value to store
-     *  @param {varies} value - value to store
-     *  @param {Function} callback - callback to call when done storing
+     * Save value in memory
+     * @param {String} key - Key for value to store
+     * @param {varies} value - Value to store
+     * @param {Function} [callback] - Callback to call when done storing; it will be invoked with no arguments if the operation is successful
+     * 
+     * @example
+     * customStorageMethods.storeSet('myKey', 'myValue', function() {
+     *     console.log('Value stored successfully.');
+     * });
      */
     storeSet: function(key, value, callback) {
         // your storeSet method
+        if (callback) {
+            callback(); // Call the callback if provided
+        }
     },
+    
     /**
-     *  Get value from memory
-     *  @param {String} key - key of value to get
-     *  @param {varies} def - default value to use if not set
-     *  @returns {varies} value for the key
+     * Get value from memory
+     * @param {String} key - Key of value to get
+     * @param {varies} def - Default value to use if not set
+     * @returns {varies} Value for the key
      */
     storeGet: function(key, def) {
         // your storeGet method
     },
+    
     /**
-     *  Remove value from memory
-     *  @param {String} key - key of value to remove
+     * Remove value from memory
+     * @param {String} key - Key of value to remove
      */
     storeRemove: function(key) {
         // your storeRemove method
     },
-};</code></pre>
+};
+</code></pre>
 <h1 id="h_01HNANT8H3P3W2PXB0CCY2FNBW">FAQ</h1>
 <p>
   <code><code></code></code>
