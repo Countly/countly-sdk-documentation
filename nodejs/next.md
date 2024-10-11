@@ -567,12 +567,15 @@ Countly.report_trace({
   </li>
   <li>
     <strong>storage_type</strong> - To determine which storage type will be applied.
-    (default: "file")
+    The storage type options are file storage and memory storage. If not set
+    the default will be applied. If custom_storage_method will be used, do not
+    use the storage type. (default: "file")
   </li>
   <li>
     <strong>custom_storage_method</strong> - User given storage method which
-    can be used instead of the default file or memory storage methods. (object
-    must contain storeGet, storeSet, storeRemove functions)
+    can be used instead of the default file or memory storage methods. If no
+    storage_path is provided with the custom method, path will be the default
+    path. (object must contain storeGet, storeSet, storeRemove functions)
   </li>
   <li>
     <strong>require_consent</strong> - pass true if you are implementing GDPR
@@ -755,8 +758,38 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   metrics:"{'_os':'Linux'}",
   begin_session:1
 });</code></pre>
+<h2 id="h_01J9XWNKSARED5HETGGR52XGBK">Providing Custom Storage Methods</h2>
+<p>
+  During configuration, you can provide preferred storage methods within an object
+  to the <code>conf.custom_storage_method</code> param. If a valid object is provided
+  SDK will use the custom methods as the storage methods internally. If custom
+  storage methods are going to be provided there is no need to fill
+  <code>conf.storage_type</code> parameters.
+</p>
+<p>
+  If <code>conf.storage_path</code> is not provided SDK will use the default storage
+  path ("../data/")
+</p>
+<p>Custom Storage Method object should be like this:</p>
+<pre><code>const customStorageMethods = {
+    storeSet: function(key, value, callback) {
+        // your storeSet method
+    },
+    storeGet: function(key, def) {
+        // your storeGet method
+    },
+    storeRemove: function(key) {
+        // your storeRemove method
+    },
+};</code></pre>
 <h1 id="h_01HNANT8H3P3W2PXB0CCY2FNBW">FAQ</h1>
+<p>
+  <code><code></code></code>
+</p>
 <h2 id="h_01HNANK3XPZ7429V5Z2FJ9MMZ5">What Information is Collected by the SDK?</h2>
+<p>
+  <code><code></code></code>
+</p>
 <p>
   The data that SDKs gather to carry out their tasks and implement the necessary
   functionalities is mentioned
