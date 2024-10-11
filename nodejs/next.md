@@ -774,7 +774,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 <p>Custom Storage Method object should be like this:</p>
 <pre><code>const customStorageMethods = {
     /**
-     * Save value in memory
+     * Save value
      * @param {String} key - Key for value to store
      * @param {varies} value - Value to store
      * @param {Function} [callback] - Callback to call when done storing; it will be invoked with no arguments if the operation is successful
@@ -792,7 +792,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     },
     
     /**
-     * Get value from memory
+     * Get value
      * @param {String} key - Key of value to get
      * @param {varies} def - Default value to use if not set
      * @returns {varies} Value for the key
@@ -802,7 +802,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     },
     
     /**
-     * Remove value from memory
+     * Remove value
      * @param {String} key - Key of value to remove
      */
     storeRemove: function(key) {
