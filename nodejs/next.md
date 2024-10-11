@@ -570,6 +570,11 @@ Countly.report_trace({
     (default: "file")
   </li>
   <li>
+    <strong>custom_storage_method</strong> - User given storage method which
+    can be used instead of the default file or memory storage methods. (object
+    must contain storeGet, storeSet, storeRemove functions)
+  </li>
+  <li>
     <strong>require_consent</strong> - pass true if you are implementing GDPR
     compatible consent management. It would prevent running any functionality
     without proper consent (default: false).
