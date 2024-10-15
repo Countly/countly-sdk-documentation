@@ -154,6 +154,83 @@
   to record a view.
 </p>
 <h1 id="h_01HABT18WTFWFNKVPJJ6G6DEM4">Working with Feedback Widgets</h1>
+<h2 id="h_01JA7E8H963VYQV6BNR6TB9489">Retrieving and Presenting Feedback Widgets</h2>
+<p>
+  Once you've created widgets in your dashboard, you can easily access their related
+  information as a list linked to the current user's device ID. Each SDK provides
+  a function called <code>getAvailableFeedbackWidgets</code> to retrieve feedback
+  widgets. Please note that each platform may require specific parameters.
+</p>
+<p>Below are example code snippets for your reference.</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Android</span>
+  </div>
+  <div class="tab">
+    <p>
+      The function requires providing a callback to the getAvailableFeedbackWidgets
+      method, which returns the list as the first parameter and error as the
+      second
+    </p>
+    <pre><code class="java">Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {
+@Override 
+  public void onFinished(List retrievedWidgets, String error) {
+    // error handling here
+
+    // do something with the returned list here like pick a widget and then show that widget etc...
+
+  }
+});</code></pre>
+  </div>
+</div>
+<p>
+  The returned values are the same as the values that can be seen on your Countly
+  server, like the widget ID, widget type, widget name, and the tags you have passed
+  while creating the widget. Tags can contain information that you would like to
+  have in order to keep track of the widget you have created. Its usage is totally
+  left to the developer.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Android</span>
+  </div>
+  <div class="tab">
+    <p>The objects in the returned list would look like this:</p>
+    <pre><code class="java">class CountlyFeedbackWidget {
+  public String widgetId;
+  public FeedbackWidgetType type;
+  public String name;
+  public String[] tags; 
+}</code></pre>
+    <p>Potential 'type' values are:</p>
+    <pre>FeedbackWidgetType {survey, nps, rating}</pre>
+  </div>
+</div>
+<p>
+  Once you've selected the feedback widget you'd like to display, you can use the
+  designated function in each SDK to present it seamlessly.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Android</span>
+  </div>
+  <div class="tab">
+    <p>
+      Provide a feedback widget object for the following function as the first
+      parameter. The second parameter is app context, the third is the close
+      button text (if null, no close button would be shown), and the fourth
+      is a callback in case an error happens:
+    </p>
+    <pre><code class="java">Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
+  // maybe show a toast when the widget is closed
+  @Override 
+  public void onFinished(String error) {
+    // error handling here
+  }
+});
+</code></pre>
+  </div>
+</div>
 <h2 id="h_01HABT18WTEHRZTAQ49GRGNBP1">Interpreting Retrieved Feedback Widget Lists</h2>
 <p>
   When working with feedback widgets, at some point, the available feedback widget
