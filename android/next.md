@@ -1903,7 +1903,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
   All widgets are shown as webviews and should be approached using the same methods.
@@ -1919,51 +1919,52 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   </p>
 </div>
 <p>
-  After you have created widgets at your dashboard you can reach their related
-  information as a list, corresponding to the current user's device ID, by providing
-  a callback to the getAvailableFeedbackWidgets method, which returns the list
-  as the first parameter and error as the second:
+  After you have created widgets on your dashboard, you can present them using
+  the function mentioned below. If you would like to access widget data and available
+  widgets, you can read the <a href="#h_01J9TZ1VZSG732EYVH1X9M2D04">advanced</a>
+  section for the feedback widgets.
 </p>
-<pre><code class="java">Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {
-  @Override 
-  public void onFinished(List retrievedWidgets, String error) {
-    // error handling here
-
-    // do something with the returned list here like pick a widget and then show that widget etc...
-
-  }
-});</code></pre>
-<p>The objects in the returned list would look like this:</p>
-<pre><code class="java">class CountlyFeedbackWidget {
-  public String widgetId;
-  public FeedbackWidgetType type;
-  public String name;
-  public String[] tags; 
-}</code></pre>
 <p>
-  Here all the values are same with the values that can be seen at your Countly
-  server like the widget ID, widget type, widget name and the tags you have passed
-  while creating the widget. Tags can contain information that you would like to
-  have in order to keep track of the widget you have created. Its usage is totally
-  left to the developer.
+  Each feedback widget has the same function parameters and similar function signatures
 </p>
-<p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
 <p>
-  After you have decided which widget you want to display, you would provide that
-  object to the following function as the first parameter. Second parameter is
-  app context, third is the close button text (if null no close button would be
-  shown) and third is a callback incase an error happens:
+  They have "nameIDorTag" parameter. When provided, it filters feedback widgets
+  by Its ID, name, and tags
 </p>
-<pre><code class="java">Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
-  // maybe show a toast when the widget is closed
-  @Override 
-  public void onFinished(String error) {
-    // error handling here
-  }
-});
+<p>
+  If an empty nameIDorTag is provided it will show the first feedback widget by
+  its type
+</p>
+<h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
+<pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
+Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag)</code></pre>
+<pre><code>// Assuming you are in a context environment
+Countly.sharedInstance().feedback().presentNPS(this);
+// or
+Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore");
 </code></pre>
-<h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
+<h3 id="h_01J9V00SX4HKSKS4X4ENXKK0RS">Survey</h3>
+<pre><code>Countly.sharedInstance().feedback().presentSurvey(Context context)
+Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag)</code></pre>
+<pre><code>// Assuming you are in a context environment
+Countly.sharedInstance().feedback().presentSurvey(this);
+// or
+Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655");
+</code></pre>
+<h3 id="h_01J9V00SX48CVFHF7JMTM3E3VH">Rating</h3>
+<pre><code>Countly.sharedInstance().feedback().presentRating(Context context)
+Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag)</code></pre>
+<pre><code>// Assuming you are in a context environment
+Countly.sharedInstance().feedback().presentRating(this);
+// or
+Countly.sharedInstance().feedback().presentRating(this, "tag_published");
+</code></pre>
+<p>
+  For more in-depth information on retrieving feedback widgets, understanding object
+  structures, or presenting them yourself, please refer to the following
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01JA7E8H963VYQV6BNR6TB9489" target="_blank" rel="noopener">resource</a>.
+</p>
+<h4 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h4>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created instead of our webview solution. At those times you would
