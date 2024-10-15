@@ -1928,12 +1928,12 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   Each feedback widget has the same function parameters and similar function signatures
 </p>
 <p>
-  They have "nameIDorTag" parameter. When provided, it filters feedback widgets by
-  Its ID, name, and tags
+  They have "nameIDorTag" parameter. When provided, it filters feedback widgets
+  by Its ID, name, and tags
 </p>
 <p>
-  If an empty nameIDorTag is provided it will show the first feedback widget by its
-  type
+  If an empty nameIDorTag is provided it will show the first feedback widget by
+  its type
 </p>
 <h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
 <pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
@@ -1959,51 +1959,11 @@ Countly.sharedInstance().feedback().presentRating(this);
 // or
 Countly.sharedInstance().feedback().presentRating(this, "tag_published");
 </code></pre>
-<h3 id="h_01J9TZ1VZSG732EYVH1X9M2D04">Advanced Feedback Widget</h3>
 <p>
-  You can access their related information as a list corresponding to the current
-  user's device ID, by providing a callback to the getAvailableFeedbackWidgets
-  method, which returns the list as the first parameter and error as the second:
+  For more in-depth information on retrieving feedback widgets, understanding object
+  structures, or presenting them yourself, please refer to the following
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01JA7E8H963VYQV6BNR6TB9489" target="_blank" rel="noopener">resource</a>.
 </p>
-<pre><code class="java">Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {
-  @Override 
-  public void onFinished(List retrievedWidgets, String error) {
-    // error handling here
-
-    // do something with the returned list here like pick a widget and then show that widget etc...
-
-  }
-});</code></pre>
-<p>The objects in the returned list would look like this:</p>
-<pre><code class="java">class CountlyFeedbackWidget {
-  public String widgetId;
-  public FeedbackWidgetType type;
-  public String name;
-  public String[] tags; 
-}</code></pre>
-<p>
-  Here all the values are same with the values that can be seen at your Countly
-  server like the widget ID, widget type, widget name and the tags you have passed
-  while creating the widget. Tags can contain information that you would like to
-  have in order to keep track of the widget you have created. Its usage is totally
-  left to the developer.
-</p>
-<p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
-<p>
-  After you have decided which widget you want to display, you would provide that
-  object to the following function as the first parameter. Second parameter is
-  app context, third is the close button text (if null no close button would be
-  shown) and third is a callback incase an error happens:
-</p>
-<pre><code class="java">Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
-  // maybe show a toast when the widget is closed
-  @Override 
-  public void onFinished(String error) {
-    // error handling here
-  }
-});
-</code></pre>
 <h4 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h4>
 <p>
   There might be some cases where you might want to use the native UI or a custom
