@@ -421,12 +421,19 @@ Countly.report_feedback({
 });</code></pre>
 <p>&nbsp;</p>
 <h1 id="h_01HABTSEDG0TDK1PCNWM8QENG0">User Profiles</h1>
-<h2 id="h_01HABTSEDG9HV99DN895KFJRCY">User Details</h2>
+<div class="callout callout--info">
+  <p>
+    User Profiles is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin and built-in
+    <a href="https://countly.com/flex" target="_blank" rel="noopener noreferrer">Flex</a>.
+  </p>
+</div>
+<h2 id="h_01HABTSEDG9HV99DN895KFJRCY">Setting User Properties</h2>
 <p>
   If you have any details about the user/visitor, you can provide that information
-  to Countly. This will allow you track each and specific user on "User Profiles"
-  tab, which is available with
-  <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.
+  to Countly. This will allow you to track each and every specific user on the
+  "User Profiles" tab.
 </p>
 <p>
   If a parameter is set as an empty string, it will be deleted on the server side.
@@ -448,10 +455,11 @@ Countly.report_feedback({
     ...
   }
  });</code></pre>
-<h2 id="h_01HABTSEDGZJXM38TNGRZDK69F">Modifying Custom Data</h2>
+<h2 id="h_01HABTSEDGZJXM38TNGRZDK69F">Modifying Data</h2>
 <p>
-  Additionally you can do different manipulations on custom data values, like increment
-  current value on server or store array of values under same property.
+  Additionally, you can manipulate custom data values in different ways, like incrementing
+  the current value on the server or storing an array of values under the same
+  property.
 </p>
 <p>Below is the list of available methods:</p>
 <pre><code class="javascript">Countly.userData.set(key, value) //set custom property
@@ -512,42 +520,43 @@ Countly.report_trace({
 <h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other Features and Notes</h1>
 <h2 id="h_01HAXVDTRGE7AP3385T2HSWWT0">SDK Config Parameters Explained</h2>
 <p>
-  Here are the properties you can setup on Countly initialization
+  Here are the properties you can set up on Countly initialization
 </p>
 <ul>
   <li>
-    <strong>app_key</strong> - mandatory, App key for your app created in Countly.
+    <strong>app_key</strong> - Mandatory! The App Key for your app which created
+    in Countly.
   </li>
   <li>
-    <strong>device_id</strong> - To identify a visitor, will be auto generated
-    if not provided.
+    <strong>url</strong> - Mandatory! Countly server URL. You must use your server
+    URL here!
   </li>
   <li>
-    <strong>url</strong> - Your Countly server url (default: "https://cloud.count.ly"),
-    you must use your own server URL here.
+    <strong>device_id</strong> - To identify a visitor, SDK will auto-generate
+    if not provided!
   </li>
   <li>
-    <strong>app_version</strong> - (optional) The version of your app or website.
+    <strong>app_version</strong> - Version of your app or website.
   </li>
   <li>
-    <strong>country_code</strong> - (optional) Country code for your visitor.
+    <strong>country_code</strong> - Country code for your visitor.
   </li>
   <li>
-    <strong>city</strong> - (optional) Name of the city of your visitor.
+    <strong>city</strong> - Name of the city of your visitor.
   </li>
   <li>
-    <strong>ip_address</strong> - (optional) IP address of your visitor.
+    <strong>ip_address</strong> - IP address of your visitor.
   </li>
   <li>
-    <strong>debug</strong> - Output debug info into console (default: false).
+    <strong>debug</strong> - Output debug info into the console (default: false).
   </li>
   <li>
     <strong>interval</strong> - Set an interval how often to check if there is
     any data to report and report it (default: 500 ms).
   </li>
   <li>
-    <strong>fail_timeout</strong> - Set time in seconds to wait after failed
-    connection to server (default: 60 seconds).
+    <strong>fail_timeout</strong> - Set time in seconds to wait after a failed
+    connection to the server (default: 60 seconds).
   </li>
   <li>
     <strong>session_update</strong> - How often in seconds should session be
@@ -558,25 +567,49 @@ Countly.report_trace({
     (default: 10).
   </li>
   <li>
-    <strong>force_post</strong> - Force using post method for all requests (default:
-    false)
+    <strong>force_post</strong> - Force using the post method for all requests
+    (default: false)
   </li>
   <li>
     <strong>storage_path</strong> - Where SDK would store data, including id,
-    queues, etc (default: "../data/").
+    queues, etc. (default: "../data/").
   </li>
   <li>
-    <strong>storage_type</strong> - To determine which storage type will be applied.
-    The storage type options are file storage and memory storage (conf.storage_type("file")
-    or conf.storage_type("memory")). If not set the default will be applied.
-    If custom_storage_method will be used, do not use the storage type. (default:
-    "file")
+    <strong>storage_type</strong> - Determines which storage type will be applied.
+    Built-in storage type options are:
+    <ul>
+      <li>
+        File Storage: <code>Countly.StorageTypes.FILE</code>
+      </li>
+      <li>
+        Memory Storage: <code>Countly.StorageTypes.MEMORY</code>
+      </li>
+    </ul>
+    If custom_storage_method will be used, do not use the storage type. If the
+    user didn't set the storage type, SDK applies the default. Default is:
+    <code>Countly.StorageTypes.FILE</code>
   </li>
   <li>
-    <strong>custom_storage_method</strong> - User given storage method which
-    can be used instead of the default file or memory storage methods. If no
-    storage_path is provided with the custom method, path will be the default
-    path. (object must contain storeGet, storeSet, storeRemove functions)
+    <strong>custom_storage_method</strong> - User-given storage methods that
+    can be used instead of the default File Storage or the optional Memory Storage
+    methods.
+    <ul>
+      <li>
+        If no storage_path is provided with the custom method, the storage
+        path will be the default path! (default: "../data/")
+      </li>
+      <li>
+        The object must contain storeGet, storeSet, and storeRemove functions!
+      </li>
+    </ul>
+    <div class="callout callout--info">
+      <p>
+        Before applying this configuration option, we strongly suggest checking
+        out
+        <a href="/hc/en-us/articles/23259053107993#h_01J9XWNKSARED5HETGGR52XGBK">this section of the document</a>
+        to get more information about providing your storage methods!
+      </p>
+    </div>
   </li>
   <li>
     <strong>require_consent</strong> - pass true if you are implementing GDPR
@@ -761,20 +794,54 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 });</code></pre>
 <h2 id="h_01J9XWNKSARED5HETGGR52XGBK">Providing Custom Storage Methods</h2>
 <p>
-  During configuration, you can provide preferred storage methods within an object
-  to the <code>conf.custom_storage_method</code> param. If a valid object is provided
-  SDK will use the custom methods as the storage methods internally. If custom
-  storage methods are going to be provided there is no need to fill
-  <code>conf.storage_type</code> parameters.
+  Countly NodeJS SDK permits the user to use their storage methods. To replace
+  the SDK's built-in storage options (File and Memory) during configuration, you
+  can provide preferred storage methods within an object to the
+  <code>custom_storage_method</code> parameter.
 </p>
 <p>
-  If <code>conf.storage_path</code> is not provided SDK will use the default storage
-  path ("../data/")
+  If a valid object is provided, SDK will use custom methods as internal storage
+  methods.
 </p>
+<p>
+  Keep in mind that if the provided object is invalid, the SDK will switch back
+  to the default (File Storage).
+</p>
+<p>
+  For the SDK to accept the user-given methods and function correctly, the custom
+  object must contain the 3 main methods (storeSet, storeGet, storeRemove), with
+  all parameters of these methods!
+</p>
+<p>
+  If custom storage methods are provided, do not fill <code>storage_type</code>
+  parameters during configuration.
+</p>
+<p>
+  If, during configuration, <code>storage_path</code> parameter is not provided,
+  SDK will use the default storage path. The default storage path is ("../data/").
+  This path must be given to use custom methods with any other desired path!
+</p>
+<p>
+  Custom Storage Object must contain the 3 main methods SDK uses internally;
+</p>
+<ul>
+  <li>
+    storeSet(key, value, callback) -&nbsp; must save the provided key/value pair
+    into the storage and invoke the callback afterward.
+  </li>
+  <li>
+    storeGet(key, def) - must return the value for the provided key, if the value
+    for the key does not exist, it should return the def value!
+  </li>
+  <li>
+    storeRemove(key) - must remove the key and value from the storage for the
+    provided key
+  </li>
+</ul>
 <p>Custom Storage Method object should be like this:</p>
 <pre><code>const customStorageMethods = {
     /**
-     * Save value
+     * Stores the value within the storage
      * @param {String} key - Key for value to store
      * @param {varies} value - Value to store
      * @param {Function} [callback] - Callback to call when done storing; it will be invoked with no arguments if the operation is successful
@@ -789,18 +856,25 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     },
     
     /**
-     * Get value
+     * Returns the value for the given key, if not existing returns the default value
      * @param {String} key - Key of value to get
      * @param {varies} def - Default value to use if not set
      * @returns {varies} Value for the key
+     *
+     * @example
+     * let value = customStorageMethods.storeGet('myKey', 'defaultValue');
+     * console.log('Retrieved value:', value);
      */
     storeGet: function(key, def) {
         // your storeGet method
     },
-    
+
     /**
-     * Remove value
+     * Removes the key and value for the given key
      * @param {String} key - Key of value to remove
+     *
+     * @example
+     * customStorageMethods.storeRemove('myKey');
      */
     storeRemove: function(key) {
         // your storeRemove method
