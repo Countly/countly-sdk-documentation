@@ -162,7 +162,7 @@ catch(ex){
 </p>
 <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
 <h1 id="h_01HABTSEDFRP0KEF7CKVC9F0EN">Events</h1>
-<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Adding an Event</h2>
+<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Recording Event</h2>
 <p>
   An event is a way to track any custom actions or other data you want to track
   from your website. You can also provide segments to be able to view breakdown
