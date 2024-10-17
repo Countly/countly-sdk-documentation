@@ -1,17 +1,17 @@
 <p>
-  This documentation is for the Countly NodeJS SDK version 22.06.X. The SDK source
+  This documentation is for the Countly NodeJS SDK version 24.10.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-nodejs" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7S1YR45QYHX6DQJ4D" target="_self" rel="undefined">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7S1YR45QYHX6DQJ4D" target="_self" rel="undefined">here </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
 <p>
-  Countly NodeJS runs with the following node versions, and up:
+  Countly NodeJS runs with the following node versions and up:
 </p>
 <table style="border-collapse: collapse; width: 100%;" border="1">
   <tbody>
@@ -121,7 +121,7 @@ Countly.setLoggingEnabled(true);
 
 //to turn off the logs
 Countly.setLoggingEnabled(false);</code></pre>
-<h1 id="h_01HABTSEDF3VWA2BT8QJQH6NJ7">Crash reporting</h1>
+<h1 id="h_01HABTSEDF3VWA2BT8QJQH6NJ7">Crash Reporting</h1>
 <p>
   Countly also provides a way to track NodeJS errors on your server.
 </p>
@@ -162,7 +162,7 @@ catch(ex){
 </p>
 <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
 <h1 id="h_01HABTSEDFRP0KEF7CKVC9F0EN">Events</h1>
-<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Adding an event</h2>
+<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Recording Event</h2>
 <p>
   An event is a way to track any custom actions or other data you want to track
   from your website. You can also provide segments to be able to view breakdown
@@ -225,7 +225,7 @@ Countly.end_event({
   }
 });</code></pre>
 <h1 id="h_01HABTSEDFMAR3E3AT8DGSRZ98">Session</h1>
-<h2 id="h_01HABTSEDF4A4P0ZKPFN0MNXYR">Beginning a session</h2>
+<h2 id="h_01HABTSEDF4A4P0ZKPFN0MNXYR">Beginning a Session</h2>
 <p>
   This method would allow you to control sessions manually. Use it only, if you
   don't call track_sessions method.
@@ -235,7 +235,7 @@ Countly.end_event({
   automatically, and you will need to do that manually.
 </p>
 <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
-<h2 id="h_01HABTSEDFV69Z7DB61R3HYK5N">Extending a session</h2>
+<h2 id="h_01HABTSEDFV69Z7DB61R3HYK5N">Extending a Session</h2>
 <p>
   By default (if <strong>noHeartBeat</strong> was not provided in
   <strong>begin_session</strong>) Countly SDK will extend session itself, but if
@@ -244,7 +244,7 @@ Countly.end_event({
   <strong>session_duration</strong> call, whatever was the last one.
 </p>
 <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
-<h2 id="h_01HABTSEDFZ22Z8Q8SH0DDMRGS">Ending a session</h2>
+<h2 id="h_01HABTSEDFZ22Z8Q8SH0DDMRGS">Ending a Session</h2>
 <p>
   When visitor is leaving your app or website, you should end his session with
   this method, optionally providing amount of seconds since last
@@ -252,7 +252,7 @@ Countly.end_event({
   was the last one.
 </p>
 <pre><code class="javascript">Countly.end_session(sec)</code></pre>
-<h1 id="h_01HABTSEDGBS3Z9EX21HVYSCVS">View tracking</h1>
+<h1 id="h_01HABTSEDGBS3Z9EX21HVYSCVS">View Tracking</h1>
 <p>
   This method allows you to track different parts of your application, called views.
   You can track how much time is spent on each part of the application.
@@ -276,7 +276,7 @@ Countly.end_event({
 </ul>
 <pre><code class="javascript">//Provide view segments
 Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
-<h1 id="h_01HABTSEDGC162BVG9Y5PZY0YE">Device ID management</h1>
+<h1 id="h_01HABTSEDGC162BVG9Y5PZY0YE">Device ID Management</h1>
 <p>
   In some cases you may want to change the ID of the user/device that you provided
   or Countly generated automatically, for example, when user was changed.
@@ -296,9 +296,9 @@ Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    <strong>Performance risk.</strong> Changing device id with server merging results
-    in huge load on server as it is rewriting all the user history. This should be
-    done only once per user.
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
   </p>
 </div>
 <p>
@@ -406,7 +406,7 @@ var test = Countly.get_remote_config("test");</code><code class="javascript"></c
   If consents are enabled, to fetch the Remote Config data you have to provide
   the 'remote-config' consent for this feature to work.
 </p>
-<h1 id="h_01HABTSEDG3ZAZTK7ARF28M1FH">User feedback</h1>
+<h1 id="h_01HABTSEDG3ZAZTK7ARF28M1FH">User Feedback</h1>
 <p>
   If there is any way you can get some user feedback, there is not a simple method
   to report collected data to Countly.
@@ -420,13 +420,20 @@ Countly.report_feedback({
   comment: "Very good"
 });</code></pre>
 <p>&nbsp;</p>
-<h1 id="h_01HABTSEDG0TDK1PCNWM8QENG0">User profiles</h1>
-<h2 id="h_01HABTSEDG9HV99DN895KFJRCY">User details</h2>
+<h1 id="h_01HABTSEDG0TDK1PCNWM8QENG0">User Profiles</h1>
+<div class="callout callout--info">
+  <p>
+    User Profiles is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin and built-in
+    <a href="https://countly.com/flex" target="_blank" rel="noopener noreferrer">Flex</a>.
+  </p>
+</div>
+<h2 id="h_01HABTSEDG9HV99DN895KFJRCY">Setting User Properties</h2>
 <p>
-  If you have any details about the user/visitor, you can provide Countly with
-  that information. This will allow you track each and specific user on "User Profiles"
-  tab, which is available with
-  <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.
+  If you have any details about the user/visitor, you can provide that information
+  to Countly. This will allow you to track each and every specific user on the
+  "User Profiles" tab.
 </p>
 <p>
   If a parameter is set as an empty string, it will be deleted on the server side.
@@ -448,10 +455,11 @@ Countly.report_feedback({
     ...
   }
  });</code></pre>
-<h2 id="h_01HABTSEDGZJXM38TNGRZDK69F">Modifying custom data</h2>
+<h2 id="h_01HABTSEDGZJXM38TNGRZDK69F">Modifying Data</h2>
 <p>
-  Additionally you can do different manipulations on custom data values, like increment
-  current value on server or store array of values under same property.
+  Additionally, you can manipulate custom data values in different ways, like incrementing
+  the current value on the server or storing an array of values under the same
+  property.
 </p>
 <p>Below is the list of available methods:</p>
 <pre><code class="javascript">Countly.userData.set(key, value) //set custom property
@@ -509,61 +517,99 @@ Countly.report_trace({
     duration: 1000,
   }
 });</code></pre>
-<h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other features and notes</h1>
+<h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other Features and Notes</h1>
 <h2 id="h_01HAXVDTRGE7AP3385T2HSWWT0">SDK Config Parameters Explained</h2>
 <p>
-  Here are the properties you can setup on Countly initialization
+  Here are the properties you can set up on Countly initialization
 </p>
 <ul>
   <li>
-    <strong>app_key</strong> - mandatory, App key for your app created in Countly.
+    <strong>app_key</strong> - Mandatory! The App Key for your app which created
+    in Countly.
   </li>
   <li>
-    <strong>device_id</strong> - To identify a visitor, will be auto generated
-    if not provided.
+    <strong>url</strong> - Mandatory! Countly server URL. You must use your server
+    URL here!
   </li>
   <li>
-    <strong>url</strong> - Your Countly server url (default: "https://cloud.count.ly"),
-    you must use your own server URL here.
+    <strong>device_id</strong> - To identify a visitor, SDK will auto-generate
+    if not provided!
   </li>
   <li>
-    <strong>app_version</strong> - (optional) The version of your app or website.
+    <strong>app_version</strong> - Version of your app or website.
   </li>
   <li>
-    <strong>country_code</strong> - (optional) Country code for your visitor.
+    <strong>country_code</strong> - Country code for your visitor.
   </li>
   <li>
-    <strong>city</strong> - (optional) Name of the city of your visitor.
+    <strong>city</strong> - Name of the city of your visitor.
   </li>
   <li>
-    <strong>ip_address</strong> - (optional) IP address of your visitor.
+    <strong>ip_address</strong> - IP address of your visitor.
   </li>
   <li>
-    <strong>debug</strong> - output debug info into console (default: false).
+    <strong>debug</strong> - Output debug info into the console (default: false).
   </li>
   <li>
-    <strong>interval</strong> - set an interval how often to check if there is
+    <strong>interval</strong> - Set an interval how often to check if there is
     any data to report and report it (default: 500 ms).
   </li>
   <li>
-    <strong>fail_timeout</strong> - set time in seconds to wait after failed
-    connection to server (default: 60 seconds).
+    <strong>fail_timeout</strong> - Set time in seconds to wait after a failed
+    connection to the server (default: 60 seconds).
   </li>
   <li>
-    <strong>session_update</strong> - how often in seconds should session be
+    <strong>session_update</strong> - How often in seconds should session be
     extended (default: 60 seconds).
   </li>
   <li>
-    <strong>max_events</strong> - maximum amount of events to send in one batch
+    <strong>max_events</strong> - Maximum amount of events to send in one batch
     (default: 10).
   </li>
   <li>
-    <strong>force_post</strong> - force using post method for all requests (default:
-    false)
+    <strong>force_post</strong> - Force using the post method for all requests
+    (default: false)
   </li>
   <li>
-    <strong>storage_path</strong> - where SDK would store data, including id,
-    queues, etc (default: "../data/").
+    <strong>storage_path</strong> - Where SDK would store data, including id,
+    queues, etc. (default: "../data/").
+  </li>
+  <li>
+    <strong>storage_type</strong> - Determines which storage type will be applied.
+    Built-in storage type options are:
+    <ul>
+      <li>
+        File Storage: <code>Countly.StorageTypes.FILE</code>
+      </li>
+      <li>
+        Memory Storage: <code>Countly.StorageTypes.MEMORY</code>
+      </li>
+    </ul>
+    If custom_storage_method will be used, do not use the storage type. If the
+    user didn't set the storage type, SDK applies the default. Default is:
+    <code>Countly.StorageTypes.FILE</code>
+  </li>
+  <li>
+    <strong>custom_storage_method</strong> - User-given storage methods that
+    can be used instead of the default File Storage or the optional Memory Storage
+    methods.
+    <ul>
+      <li>
+        If no storage_path is provided with the custom method, the storage
+        path will be the default path! (default: "../data/")
+      </li>
+      <li>
+        The object must contain storeGet, storeSet, and storeRemove functions!
+      </li>
+    </ul>
+    <div class="callout callout--info">
+      <p>
+        Before applying this configuration option, we strongly suggest checking
+        out
+        <a href="/hc/en-us/articles/23259053107993#h_01J9XWNKSARED5HETGGR52XGBK">this section of the document</a>
+        to get more information about providing your storage methods!
+      </p>
+    </div>
   </li>
   <li>
     <strong>require_consent</strong> - pass true if you are implementing GDPR
@@ -575,32 +621,30 @@ Countly.report_trace({
     provide callback function to be notified when fetching done (default: false).
   </li>
   <li>
-    <strong>http_options</strong> - function to get http options by reference
+    <strong>http_options</strong> - Function to get http options by reference
     and overwrite them, before running each request.
   </li>
   <li>
-    <strong>max_breadcrumb_count</strong> - maximum amount of breadcrumbs to
+    <strong>max_breadcrumb_count</strong> - Maximum amount of breadcrumbs to
     store for crash logs (default: 100)
   </li>
   <li>
-    <strong>metrics</strong> - provide metrics override or custom metrics for
+    <strong>metrics</strong> - Provide metrics override or custom metrics for
     this user. For more information on the specific metric keys used by Countly,
     check
     <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
   </li>
 </ul>
-<p>
-  Setting up properties in Countly NodeJS SDK is as follows (if you have your own
-  server, use it instead of try.count.ly):
-</p>
+<p>Setting up properties in Countly NodeJS SDK is as follows</p>
 <pre><code class="javascript">Countly.init({
   debug:false,
   app_key:"YOUR_APP_KEY",
   device_id:"1234-1234-1234-1234",
-  url: "https://try.count.ly",
+  url: "https://your.server.ly",
   app_version: "1.2",
   country_code: "LV",
   city: "Riga",
+  storage_type: "memory",
   ip_address: "83.140.15.1",
   http_options: function(options){
     options.headers["user-agent"] = "Test";
@@ -626,8 +670,8 @@ Countly.report_trace({
 <p>
   If values or keys provided by the user exceeds certain internal limits, they
   will be truncated. Please have a look
-  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>
-  for the list of properties effected by these limits.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a> for the
+  list of properties effected by these limits.
 </p>
 <p>
   You can override these internal limits during initialization.
@@ -734,7 +778,7 @@ Countly.report_trace({
 </p>
 <pre><code class="javascript">//or provide campaign id yourself
 Countly.report_conversion("MyCampaignID");</code></pre>
-<h2 id="h_01HAXVDTRKE32GSAT0EJ4MF7G1">Make raw request</h2>
+<h2 id="h_01HAXVDTRKE32GSAT0EJ4MF7G1">Make Raw Request</h2>
 <p>
   If you are switching between users a lot, or changing some other data, which
   is hard to handle over multiple processes, etc. You can simply make a raw request
@@ -748,10 +792,99 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   metrics:"{'_os':'Linux'}",
   begin_session:1
 });</code></pre>
+<h2 id="h_01J9XWNKSARED5HETGGR52XGBK">Providing Custom Storage Methods</h2>
+<p>
+  Countly NodeJS SDK permits the user to use their storage methods. To replace
+  the SDK's built-in storage options (File and Memory) during configuration, you
+  can provide preferred storage methods within an object to the
+  <code>custom_storage_method</code> parameter.
+</p>
+<p>
+  If a valid object is provided, SDK will use custom methods as internal storage
+  methods.
+</p>
+<p>
+  Keep in mind that if the provided object is invalid, the SDK will switch back
+  to the default (File Storage).
+</p>
+<p>
+  For the SDK to accept the user-given methods and function correctly, the custom
+  object must contain the 3 main methods (storeSet, storeGet, storeRemove), with
+  all parameters of these methods!
+</p>
+<p>
+  If custom storage methods are provided, do not fill <code>storage_type</code>
+  parameters during configuration.
+</p>
+<p>
+  If, during configuration, <code>storage_path</code> parameter is not provided,
+  SDK will use the default storage path. The default storage path is ("../data/").
+  This path must be given to use custom methods with any other desired path!
+</p>
+<p>
+  Custom Storage Object must contain the 3 main methods SDK uses internally;
+</p>
+<ul>
+  <li>
+    storeSet(key, value, callback) -&nbsp; must save the provided key/value pair
+    into the storage and invoke the callback afterward.
+  </li>
+  <li>
+    storeGet(key, def) - must return the value for the provided key, if the value
+    for the key does not exist, it should return the def value!
+  </li>
+  <li>
+    storeRemove(key) - must remove the key and value from the storage for the
+    provided key
+  </li>
+</ul>
+<p>Custom Storage Method object should be like this:</p>
+<pre><code>const customStorageMethods = {
+    /**
+     * Stores the value within the storage
+     * @param {String} key - Key for value to store
+     * @param {varies} value - Value to store
+     * @param {Function} [callback] - Callback to call when done storing; it will be invoked with no arguments if the operation is successful
+     * 
+     * @example
+     * customStorageMethods.storeSet('myKey', 'myValue', function() {
+     *     console.log('Value stored successfully.');
+     * });
+     */
+    storeSet: function(key, value, callback) {
+        // your storeSet method
+    },
+    
+    /**
+     * Returns the value for the given key, if not existing returns the default value
+     * @param {String} key - Key of value to get
+     * @param {varies} def - Default value to use if not set
+     * @returns {varies} Value for the key
+     *
+     * @example
+     * let value = customStorageMethods.storeGet('myKey', 'defaultValue');
+     * console.log('Retrieved value:', value);
+     */
+    storeGet: function(key, def) {
+        // your storeGet method
+    },
+
+    /**
+     * Removes the key and value for the given key
+     * @param {String} key - Key of value to remove
+     *
+     * @example
+     * customStorageMethods.storeRemove('myKey');
+     */
+    storeRemove: function(key) {
+        // your storeRemove method
+    },
+};
+</code></pre>
 <h1 id="h_01HNANT8H3P3W2PXB0CCY2FNBW">FAQ</h1>
 <h2 id="h_01HNANK3XPZ7429V5Z2FJ9MMZ5">What Information is Collected by the SDK?</h2>
 <p>
   The data that SDKs gather to carry out their tasks and implement the necessary
-  functionalities is mentioned in
+  functionalities is mentioned
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
