@@ -6,7 +6,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7S1YR45QYHX6DQJ4D" target="_self" rel="undefined">here </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G7S1YR45QYHX6DQJ4D" target="_blank" rel="noopener noreferrer">here </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -29,14 +29,14 @@
 </table>
 <p>
   To examine the example integrations, please have a look
-  <a href="#h_01HPK9ZBQXA5AYYG2CVHWWWVHB">here.</a>
+  <a href="#h_01HPK9ZBQXA5AYYG2CVHWWWVHB" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
 <h1 id="h_01HABTSEDFXYDEN0QDRY7DEVR7">Adding the SDK to the project</h1>
 <p>
   You can reach Countly NodeJS SDK npm package
-  <a href="https://www.npmjs.com/package/countly-sdk-nodejs">here</a>. To add it
-  to your project, you would use a command similar to these with your preferred
-  package manager:
+  <a href="https://www.npmjs.com/package/countly-sdk-nodejs" target="_blank" rel="noopener noreferrer">here</a>.
+  To add it to your project, you would use a command similar to these with your
+  preferred package manager:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -60,7 +60,7 @@
   Wherever you want to integrate Countly NodeJS SDK, you should import 'countly-sdk-nodejs'
   and initialize Countly. Here, you would also need to provide your application
   key and server URL. Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3" target="_blank" rel="noopener noreferrer">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -75,7 +75,7 @@ Countly.init({
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <h2 id="h_01HABTSEDFRBJ54MX797V7QV2K">SDK Data Storage</h2>
@@ -631,7 +631,7 @@ Countly.report_trace({
     <strong>metrics</strong> - Provide metrics override or custom metrics for
     this user. For more information on the specific metric keys used by Countly,
     check
-    <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
+    <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.
   </li>
 </ul>
 <p>Setting up properties in Countly NodeJS SDK is as follows</p>
@@ -656,21 +656,21 @@ Countly.report_trace({
 });</code></pre>
 <h2 id="h_01HPK9ZBQXA5AYYG2CVHWWWVHB">Example Integrations</h2>
 <p>
-  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/apm_example.js">apm_example</a>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/apm_example.js" target="_blank" rel="noopener noreferrer">apm_example</a>
   is a simple APM integration.<br>
-  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/bulk_import_example.js">bulk_import_example</a>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/bulk_import_example.js" target="_blank" rel="noopener noreferrer">bulk_import_example</a>
   is a simple bulk import example.<br>
-  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/example.js">example</a>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/example.js" target="_blank" rel="noopener noreferrer">example</a>
   covers most of the functionalities.<br>
-  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/multi-process.js">multi-process</a>
+  <a href="https://github.com/Countly/countly-sdk-nodejs/blob/master/examples/multi-process.js" target="_blank" rel="noopener noreferrer">multi-process</a>
   is a simple demonstration for multi-instancing the Countly SDK.
 </p>
 <h2 id="h_01HABTSEDHW6BSYV7VT45G2KFZ">SDK Internal Limits</h2>
 <p>
   If values or keys provided by the user exceeds certain internal limits, they
   will be truncated. Please have a look
-  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a> for the
-  list of properties effected by these limits.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>
+  for the list of properties effected by these limits.
 </p>
 <p>
   You can override these internal limits during initialization.
@@ -782,7 +782,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   If you are switching between users a lot, or changing some other data, which
   is hard to handle over multiple processes, etc. You can simply make a raw request
   with all possible SDK parameters described in
-  <a href="https://api.count.ly/reference/i">API reference</a>
+  <a href="https://api.count.ly/reference/i" target="_blank" rel="noopener noreferrer">API reference</a>
 </p>
 <pre><code class="javascript">Countly.request({
   app_key:"somekey", 
@@ -887,5 +887,5 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 <p>
   The data that SDKs gather to carry out their tasks and implement the necessary
   functionalities is mentioned
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC" target="_blank" rel="noopener noreferrer">here</a>
 </p>
