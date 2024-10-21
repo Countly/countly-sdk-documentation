@@ -777,7 +777,7 @@ Countly.report_trace({
 </p>
 <pre><code class="javascript">//or provide campaign id yourself
 Countly.report_conversion("MyCampaignID");</code></pre>
-<h2 id="h_01HAXVDTRKE32GSAT0EJ4MF7G1">Make Raw Request</h2>
+<h2 id="h_01HAXVDTRKE32GSAT0EJ4MF7G1">Make Direct Request</h2>
 <p>
   If you are switching between users a lot, or changing some other data, which
   is hard to handle over multiple processes, etc. You can simply make a raw request
