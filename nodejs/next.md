@@ -799,13 +799,14 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   <code>custom_storage_method</code> parameter.
 </p>
 <p>
-  If a valid object is provided, SDK will use custom methods as internal storage
-  methods.
-</p>
-<p>
   For the SDK to accept the user-given methods and function correctly, the custom
   object must contain the 3 main methods (storeSet, storeGet, storeRemove), with
   all parameters of these methods!
+</p>
+<p>
+  Objects containing the methods with correct naming and parameters will be evaluated
+  as valid objects, and the SDK will use the provided custom methods as internal
+  storage methods.
 </p>
 <p>
   SDK evaluates objects that do not contain these methods with correct names and
