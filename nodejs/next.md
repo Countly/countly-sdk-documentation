@@ -643,7 +643,7 @@ Countly.report_trace({
   app_version: "1.2",
   country_code: "LV",
   city: "Riga",
-  storage_type: "memory",
+  storage_type: Countly.StorageTypes.MEMORY,
   ip_address: "83.140.15.1",
   http_options: function(options){
     options.headers["user-agent"] = "Test";
@@ -803,13 +803,15 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   methods.
 </p>
 <p>
-  Keep in mind that if the provided object is invalid, the SDK will switch back
-  to the default (File Storage).
-</p>
-<p>
   For the SDK to accept the user-given methods and function correctly, the custom
   object must contain the 3 main methods (storeSet, storeGet, storeRemove), with
   all parameters of these methods!
+</p>
+<p>
+  SDK evaluates objects that do not contain these methods with correct names and
+  the parameters as invalid objects. In cases where an invalid object is provided
+  as the custom method, SDK will ignore the provided object and switch back to
+  the default storage type, File storage.
 </p>
 <p>
   If custom storage methods are provided, do not fill <code>storage_type</code>
