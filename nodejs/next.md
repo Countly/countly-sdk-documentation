@@ -162,7 +162,7 @@ catch(ex){
 </p>
 <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
 <h1 id="h_01HABTSEDFRP0KEF7CKVC9F0EN">Events</h1>
-<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Recording Event</h2>
+<h2 id="h_01HABTSEDFBFYNW9KRYV3E4WNS">Recording Events</h2>
 <p>
   An event is a way to track any custom actions or other data you want to track
   from your website. You can also provide segments to be able to view breakdown
@@ -225,7 +225,7 @@ Countly.end_event({
   }
 });</code></pre>
 <h1 id="h_01HABTSEDFMAR3E3AT8DGSRZ98">Session</h1>
-<h2 id="h_01HABTSEDF4A4P0ZKPFN0MNXYR">Beginning a Session</h2>
+<h2 id="h_01HABTSEDF4A4P0ZKPFN0MNXYR">Manual Sessions</h2>
 <p>
   This method would allow you to control sessions manually. Use it only, if you
   don't call track_sessions method.
@@ -419,7 +419,6 @@ Countly.report_feedback({
   email: "user@domain.com",
   comment: "Very good"
 });</code></pre>
-<p>&nbsp;</p>
 <h1 id="h_01HABTSEDG0TDK1PCNWM8QENG0">User Profiles</h1>
 <div class="callout callout--info">
   <p>
@@ -520,7 +519,7 @@ Countly.report_trace({
 <h1 id="h_01HABTSEDHGNE0G3EBG6XX39ZE">Other Features and Notes</h1>
 <h2 id="h_01HAXVDTRGE7AP3385T2HSWWT0">SDK Config Parameters Explained</h2>
 <p>
-  Here are the properties you can set up on Countly initialization
+  Here are the properties you can setup on Countly initialization
 </p>
 <ul>
   <li>
