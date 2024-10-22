@@ -1935,29 +1935,72 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   If an empty nameIDorTag is provided it will show the first feedback widget by
   its type
 </p>
+<p>
+  The "devCallback" parameter has two callbacks: - "onClosed" which will be called
+  when the feedback widget is closed - "onFinished" which will be called on some
+  internal errors and it will direct the error via "error" parameter.
+</p>
 <h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
 <pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
-Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag)</code></pre>
+Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag)<br>Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)<br></code></pre>
 <pre><code>// Assuming you are in a context environment
 Countly.sharedInstance().feedback().presentNPS(this);
 // or
 Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore");
+// or
+Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new ModuleFeedback.FeedbackCallback() {
+  @Override public void onClosed() {
+    Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
+  }
+
+  @Override public void onFinished(String error) {
+    if (error != null) {
+      Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
+    }
+  }
+});
 </code></pre>
 <h3 id="h_01J9V00SX4HKSKS4X4ENXKK0RS">Survey</h3>
 <pre><code>Countly.sharedInstance().feedback().presentSurvey(Context context)
-Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag)</code></pre>
+Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag)
+Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag, FeedbackCallback devCallback)</code></pre>
 <pre><code>// Assuming you are in a context environment
 Countly.sharedInstance().feedback().presentSurvey(this);
 // or
 Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655");
+// or
+Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655", new ModuleFeedback.FeedbackCallback() {
+  @Override public void onClosed() {
+    Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
+  }
+
+  @Override public void onFinished(String error) {
+    if (error != null) {
+      Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
+    }
+  }
+});
 </code></pre>
 <h3 id="h_01J9V00SX48CVFHF7JMTM3E3VH">Rating</h3>
 <pre><code>Countly.sharedInstance().feedback().presentRating(Context context)
-Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag)</code></pre>
+Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag)
+Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag, FeedbackCallback devCallback)</code></pre>
 <pre><code>// Assuming you are in a context environment
 Countly.sharedInstance().feedback().presentRating(this);
 // or
 Countly.sharedInstance().feedback().presentRating(this, "tag_published");
+// or
+Countly.sharedInstance().feedback().presentRating(this, "tag_published", new ModuleFeedback.FeedbackCallback() {
+  @Override public void onClosed() {
+    Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
+  }
+
+  @Override public void onFinished(String error) {
+    if (error != null) {
+      Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
+    }
+  }
+});
 </code></pre>
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
