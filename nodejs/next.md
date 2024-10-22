@@ -806,11 +806,17 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   as valid objects, and the SDK will use the provided custom methods as internal
   storage methods.
 </p>
+<p>While evaluating objects, SDK checks for, if:</p>
+<ul>
+  <li>an object is provided</li>
+  <li>
+    that object has the valid keys (storeSet, storeGet, storeRemove)
+  </li>
+  <li>the values are functions</li>
+</ul>
 <p>
-  SDK evaluates objects that do not contain these methods with correct names and
-  as invalid objects. In cases where an invalid object is provided as the custom
-  method, SDK will ignore the provided object and switch back to the default storage
-  type, File storage.
+  In cases where an invalid object is provided as the custom method, SDK will ignore
+  the provided object and switch back to the default storage type, File storage.
 </p>
 <p>
   Keep in mind that passing the internal validity check for the methods does not
@@ -845,9 +851,9 @@ Countly.report_conversion("MyCampaignID");</code></pre>
         - the value to store (can be null, primitive, or an object).
       </li>
       <li>
-        <strong>callback(function)</strong> - callback to call when done
-        storing; it will be invoked with no arguments if the operation is
-        successful
+        <strong>callback(function)</strong> - after the value is stored under
+        the given key you should call the callback if given, with the error
+        object of the failed operation, or with null if operation succeeds
       </li>
     </ul>
   </li>
