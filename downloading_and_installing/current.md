@@ -604,6 +604,8 @@
 </p>
 <h2 id="h_01H9QCP8G7S1YR45QYHX6DQJ4D">Node.js SDK</h2>
 <p>
+  <a href="https://support.countly.com/hc/en-us/articles/16515548811676-NodeJS-22-06" target="_blank" rel="noopener">Version 22.06</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/13579891019929" target="_blank" rel="noopener">Version 22.02</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="_blank" rel="noopener">Version 21.11</a>
