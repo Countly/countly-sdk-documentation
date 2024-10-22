@@ -603,10 +603,9 @@ Countly.report_trace({
     </ul>
     <div class="callout callout--info">
       <p>
-        Before applying this configuration option, we strongly suggest checking
-        out
+        Before applying this configuration option, read
         <a href="/hc/en-us/articles/23259053107993#h_01J9XWNKSARED5HETGGR52XGBK">this section of the document</a>
-        to get more information about providing your storage methods!
+        to get more information about providing your storage methods
       </p>
     </div>
   </li>
@@ -799,9 +798,8 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   <code>custom_storage_method</code> parameter.
 </p>
 <p>
-  For the SDK to accept the user-given methods and function correctly, the custom
-  object must contain the 3 main methods (storeSet, storeGet, storeRemove), with
-  all parameters of these methods!
+  The custom object must contain the storeSet, storeGet, and storeRemove functions
+  for the SDK to accept the user-given methods and function correctly!
 </p>
 <p>
   Objects containing the methods with correct naming and parameters will be evaluated
@@ -810,9 +808,15 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 </p>
 <p>
   SDK evaluates objects that do not contain these methods with correct names and
-  the parameters as invalid objects. In cases where an invalid object is provided
-  as the custom method, SDK will ignore the provided object and switch back to
-  the default storage type, File storage.
+  as invalid objects. In cases where an invalid object is provided as the custom
+  method, SDK will ignore the provided object and switch back to the default storage
+  type, File storage.
+</p>
+<p>
+  Keep in mind that passing the internal validity check for the methods does not
+  guarantee that the custom logic applied is correct. You must ensure that your
+  custom implementation functions properly and that the SDK runs without issues
+  when integrated with the custom methods.
 </p>
 <p>
   If custom storage methods are provided, do not fill <code>storage_type</code>
@@ -821,33 +825,62 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 <p>
   If, during configuration, <code>storage_path</code> parameter is not provided,
   SDK will use the default storage path. The default storage path is ("../data/").
-  This path must be given to use custom methods with any other desired path!
+  This parameter must be provided to use custom methods with other desired paths!
 </p>
 <p>
   Custom Storage Object must contain the 3 main methods SDK uses internally;
 </p>
 <ul>
   <li>
-    storeSet(key, value, callback) -&nbsp; must save the provided key/value pair
-    into the storage and invoke the callback afterward.
+    <strong>storeSet(key, value, callback)</strong> - must save the provided
+    key/value pair into the storage. Callback is a function that is invoked to
+    indicate the result of the operation after the operation is complete or failed.
+    Parameters:
+    <ul>
+      <li>
+        <strong>key(string)</strong> - the key to associate with the value.
+      </li>
+      <li>
+        <strong>value(null | boolean | number | string | object)</strong>
+        - the value to store (can be null, primitive, or an object).
+      </li>
+      <li>
+        <strong>callback(function)</strong> - callback to call when done
+        storing; it will be invoked with no arguments if the operation is
+        successful
+      </li>
+    </ul>
   </li>
   <li>
-    storeGet(key, def) - must return the value for the provided key, if the value
-    for the key does not exist, it should return the def value!
+    <strong>storeGet(key, def)</strong> - must return the value for the provided
+    key, if the value for the key does not exist, it should return the def value.
+    Parameters:
+    <ul>
+      <li>
+        <strong>key(string)</strong> - the key that's associated with the
+        value
+      </li>
+      <li>
+        <strong>def(null | boolean | number | string | object)</strong> -
+        default value to use if it doesn't set (can be null, primitive, or
+        an object).
+      </li>
+    </ul>
   </li>
   <li>
-    storeRemove(key) - must remove the key and value from the storage for the
-    provided key
+    <strong>storeRemove(key)</strong> - must remove the key and value from the
+    storage for the provided key! Parameters:<br>
+    <ul>
+      <li>
+        <strong>key(string)</strong> - the key that's associated with the
+        value to remove
+      </li>
+    </ul>
   </li>
 </ul>
 <p>Custom Storage Method object should be like this:</p>
 <pre><code>const customStorageMethods = {
     /**
-     * Stores the value within the storage
-     * @param {String} key - Key for value to store
-     * @param {varies} value - Value to store
-     * @param {Function} [callback] - Callback to call when done storing; it will be invoked with no arguments if the operation is successful
-     * 
      * @example
      * customStorageMethods.storeSet('myKey', 'myValue', function() {
      *     console.log('Value stored successfully.');
@@ -856,13 +889,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     storeSet: function(key, value, callback) {
         // your storeSet method
     },
-    
     /**
-     * Returns the value for the given key, if not existing returns the default value
-     * @param {String} key - Key of value to get
-     * @param {varies} def - Default value to use if not set
-     * @returns {varies} Value for the key
-     *
      * @example
      * let value = customStorageMethods.storeGet('myKey', 'defaultValue');
      * console.log('Retrieved value:', value);
@@ -870,11 +897,7 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     storeGet: function(key, def) {
         // your storeGet method
     },
-
     /**
-     * Removes the key and value for the given key
-     * @param {String} key - Key of value to remove
-     *
      * @example
      * customStorageMethods.storeRemove('myKey');
      */
