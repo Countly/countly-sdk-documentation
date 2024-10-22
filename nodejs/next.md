@@ -802,9 +802,9 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   for the SDK to accept the user-given methods and function correctly!
 </p>
 <p>
-  Objects containing the methods with correct naming and parameters will be evaluated
-  as valid objects, and the SDK will use the provided custom methods as internal
-  storage methods.
+  Objects containing the methods with correct naming will be evaluated as valid
+  objects, and the SDK will use the provided custom methods as internal storage
+  methods.
 </p>
 <p>While evaluating objects, SDK checks for, if:</p>
 <ul>
@@ -852,19 +852,19 @@ Countly.report_conversion("MyCampaignID");</code></pre>
       </li>
       <li>
         <strong>callback(function)</strong> - after the value is stored under
-        the given key you should call the callback if given, with the error
-        object of the failed operation, or with null if operation succeeds
+        the given key, you should call the callback if given, with the error
+        object of the failed operation or with null if the operation succeeds.
       </li>
     </ul>
   </li>
   <li>
     <strong>storeGet(key, def)</strong> - must return the value for the provided
-    key, if the value for the key does not exist, it should return the def value.
+    key. If the value for the key does not exist, it should return the def value.
     Parameters:
     <ul>
       <li>
         <strong>key(string)</strong> - the key that's associated with the
-        value
+        value.
       </li>
       <li>
         <strong>def(null | boolean | number | string | object)</strong> -
@@ -875,11 +875,11 @@ Countly.report_conversion("MyCampaignID");</code></pre>
   </li>
   <li>
     <strong>storeRemove(key)</strong> - must remove the key and value from the
-    storage for the provided key! Parameters:<br>
+    storage for the provided key. Parameters:<br>
     <ul>
       <li>
         <strong>key(string)</strong> - the key that's associated with the
-        value to remove
+        value to remove.
       </li>
     </ul>
   </li>
@@ -888,8 +888,12 @@ Countly.report_conversion("MyCampaignID");</code></pre>
 <pre><code>const customStorageMethods = {
     /**
      * @example
-     * customStorageMethods.storeSet('myKey', 'myValue', function() {
+     * customStorageMethods.storeSet('myKey', 'myValue', function(error) {
+     *   if (error) {
+     *     console.error('Failed to store value:', error);
+     *   } else {
      *     console.log('Value stored successfully.');
+     *   }
      * });
      */
     storeSet: function(key, value, callback) {
