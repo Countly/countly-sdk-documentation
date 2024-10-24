@@ -157,7 +157,7 @@
 <h2 id="h_01JA7E8H963VYQV6BNR6TB9489">Retrieving and Presenting Feedback Widgets</h2>
 <p>
   Once you've created widgets in your dashboard, you can easily access their related
-  information as a list linked to the current user's device ID. Each SDK provides
+  information as a list linked to the current user's device ID. Most of the SDKs provides
   a function called <code>getAvailableFeedbackWidgets</code> to retrieve feedback
   widgets. Please note that each platform may require specific parameters.
 </p>
@@ -184,10 +184,10 @@
   </div>
 </div>
 <p>
-  The returned values are the same as those seen on your Countly server, like the widget 
-  ID, widget type, widget name, and the tags you have passed while creating the widget. 
-  Tags can contain information you would like to have to keep track of the widget you 
-  have created. Its usage is left to the developer.
+  The returned values are the same as those seen on your Countly server, like
+  the widget ID, widget type, widget name, and the tags you have passed while
+  creating the widget. Tags can contain information you would like to have to
+  keep track of the widget you have created. Its usage is left to the developer.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
