@@ -1920,9 +1920,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 </div>
 <p>
   After you have created widgets on your dashboard, you can present them using
-  the function mentioned below. If you would like to access widget data and available
-  widgets, you can read the <a href="#h_01J9TZ1VZSG732EYVH1X9M2D04">advanced</a>
-  section for the feedback widgets.
+  the functions mentioned below.
 </p>
 <p>
   Each feedback widget has the same function parameters and similar function signatures
@@ -1941,6 +1939,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   internal errors and it will direct the error via "error" parameter.
 </p>
 <h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
+<p>Below are the functions to present NPS widgets.</p>
 <pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
 Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag)<br>Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)<br></code></pre>
 <pre><code>// Assuming you are in a context environment
@@ -1961,6 +1960,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
 });
 </code></pre>
 <h3 id="h_01J9V00SX4HKSKS4X4ENXKK0RS">Survey</h3>
+<p>Below are the functions to present Survey widgets.</p>
 <pre><code>Countly.sharedInstance().feedback().presentSurvey(Context context)
 Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag)
 Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag, FeedbackCallback devCallback)</code></pre>
@@ -1982,6 +1982,7 @@ Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655", new
 });
 </code></pre>
 <h3 id="h_01J9V00SX48CVFHF7JMTM3E3VH">Rating</h3>
+<p>Below are the functions to present Rating widgets.</p>
 <pre><code>Countly.sharedInstance().feedback().presentRating(Context context)
 Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag)
 Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag, FeedbackCallback devCallback)</code></pre>
