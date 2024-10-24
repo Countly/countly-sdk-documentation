@@ -184,11 +184,10 @@
   </div>
 </div>
 <p>
-  The returned values are the same as the values that can be seen on your Countly
-  server, like the widget ID, widget type, widget name, and the tags you have passed
-  while creating the widget. Tags can contain information that you would like to
-  have in order to keep track of the widget you have created. Its usage is totally
-  left to the developer.
+  The returned values are the same as those seen on your Countly server, like the widget 
+  ID, widget type, widget name, and the tags you have passed while creating the widget. 
+  Tags can contain information you would like to have to keep track of the widget you 
+  have created. Its usage is left to the developer.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
