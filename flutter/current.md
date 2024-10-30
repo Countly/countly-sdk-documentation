@@ -495,6 +495,10 @@ Timer timer = Timer(new Duration(seconds: 5), () {
 Countly.instance.sessions.updateSession();
 Countly.instance.sessions.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View Tracking</h1>
+<p>
+  The SDK provides access to all view-related functionality through the interface returned by:
+</p>
+<pre><code class="dart">Countly.instance.views</code></pre>
 <h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual View Recording</h2>
 <p>You can manually track views in your application.</p>
 <p>
