@@ -1903,10 +1903,9 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
-  All widgets are shown as webviews and should be approached using the same methods.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -1919,51 +1918,67 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   </p>
 </div>
 <p>
-  After you have created widgets at your dashboard you can reach their related
-  information as a list, corresponding to the current user's device ID, by providing
-  a callback to the getAvailableFeedbackWidgets method, which returns the list
-  as the first parameter and error as the second:
+  After you have created widgets on your dashboard, you can reach the methods to
+  show them from the feedback interface of your Countly instance:
 </p>
-<pre><code class="java">Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {
-  @Override 
-  public void onFinished(List retrievedWidgets, String error) {
-    // error handling here
-
-    // do something with the returned list here like pick a widget and then show that widget etc...
-
-  }
-});</code></pre>
-<p>The objects in the returned list would look like this:</p>
-<pre><code class="java">class CountlyFeedbackWidget {
-  public String widgetId;
-  public FeedbackWidgetType type;
-  public String name;
-  public String[] tags; 
-}</code></pre>
+<pre><code>Countly.sharedInstance().feedback()</code></pre>
 <p>
-  Here all the values are same with the values that can be seen at your Countly
-  server like the widget ID, widget type, widget name and the tags you have passed
-  while creating the widget. Tags can contain information that you would like to
-  have in order to keep track of the widget you have created. Its usage is totally
-  left to the developer.
+  You can display a random active widget for the widget type you want with one
+  of these methods:
 </p>
-<p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
-<p>
-  After you have decided which widget you want to display, you would provide that
-  object to the following function as the first parameter. Second parameter is
-  app context, third is the close button text (if null no close button would be
-  shown) and third is a callback incase an error happens:
-</p>
-<pre><code class="java">Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
-  // maybe show a toast when the widget is closed
-  @Override 
-  public void onFinished(String error) {
-    // error handling here
-  }
-});
+<pre><code>.presentNPS(Context context)
+.presentRating(Context context)
+.presentSurvey(Context context)
+
+// Example:
+Countly.sharedInstance().feedback().presentNPS(this);
 </code></pre>
-<h3 id="h_01HAVQDM5V90VKV6QA45CK8Z49">Manual Reporting</h3>
+<p>
+  If you want to show a specific widget according to its name, ID or one of its
+  tags then you can use these methods:
+</p>
+<pre><code>.presentNPS(Context context, String nameIDorTag)
+.presentRating(Context context, String nameIDorTag)
+.presentSurvey(Context context, String nameIDorTag)
+
+// Example:
+Countly.sharedInstance().feedback().presentNPS(this, "/home-page");
+</code></pre>
+<p>
+  If an empty nameIDorTag is provided it will show the first feedback widget by
+  its type.
+</p>
+<p>
+  If you need to know when the widget you are showing is closed you can use these
+  methods to provide a callback which will be called when the widget closes:
+</p>
+<pre><code>.presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)
+.presentRating(Context context, String nameIDorTag, FeedbackCallback devCallback)
+.presentSurvey(Context context, String nameIDorTag, FeedbackCallback devCallback)
+
+// Example:
+Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new ModuleFeedback.FeedbackCallback() {
+  @Override public void onClosed() {
+    Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
+  }
+
+  @Override public void onFinished(String error) {
+    if (error != null) {
+      Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
+    }
+  }
+});<br></code></pre>
+<p>
+  The "devCallback" parameter has two callbacks: - "onClosed" which will be called
+  when the feedback widget is closed - "onFinished" which will be called on some
+  internal errors and it will direct the error via "error" parameter.
+</p>
+<p>
+  For more in-depth information on retrieving feedback widgets, understanding object
+  structures, or presenting them yourself, please refer to the following
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01JA7E8H963VYQV6BNR6TB9489" target="_blank" rel="noopener">resource</a>.
+</p>
+<h3 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h3>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created instead of our webview solution. At those times you would
