@@ -3110,7 +3110,7 @@ Countly.sharedInstance().feedback().presentNPS()
   </div>
 </div>
 <p>
-  <span style="color: #1f2328; font-family: -apple-system, ' system-ui' , ' Segoe UI' , ' Noto Sans' , Helvetica, Arial, sans-serif, ' Apple Color Emoji' , ' Segoe UI Emoji' font-size:16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">If you want to show a specific widget according to its name, ID or one of its tags then you can use these methods:</span>
+  If you want to show a specific widget according to its name, ID or one of its tags then you can use these methods:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3140,7 +3140,7 @@ Countly.sharedInstance().feedback().presentNPS("/home-page")
       If an empty nameIDorTag is provided it will show the first feedback widget
       by its type.
     </p>
-    <p class="rich-diff-level-zero" dir="auto" style="box-sizing: border-box; margin-top: 0px; margin-bottom: var(--base-size-16); margin-left: var(--base-size-16);">
+    <p>
       If you need to know when the widget is appeared or closed you can use
       these methods to provide a callback which will be called when the widget
       appeared/closes:
@@ -3221,7 +3221,6 @@ Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetSta
     }];
   }
 }];
-
     </code></pre>
   </div>
   <div class="tab is-hidden">
