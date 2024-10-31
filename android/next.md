@@ -1905,8 +1905,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
-  All widgets are shown as webviews and should be approached using the same methods.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.&nbsp;
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -1919,34 +1918,45 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   </p>
 </div>
 <p>
-  After you have created widgets on your dashboard, you can present them using
-  the functions mentioned below.
+  After you have created widgets on your dashboard, you can reach the methods to
+  show them from the feedback interface of your Countly instance:
 </p>
+<pre><code>Countly.sharedInstance().feedback()</code></pre>
 <p>
-  Each feedback widget has the same function parameters and similar function signatures
+  You can display a random active widget for the widget type you want with one
+  of these methods:
 </p>
+<pre><code>.presentNPS(Context context)
+.presentRating(Context context)
+.presentSurvey(Context context)
+
+// Example:
+Countly.sharedInstance().feedback().presentNPS(this);
+</code></pre>
 <p>
-  They have "nameIDorTag" parameter. When provided, it filters feedback widgets
-  by Its ID, name, and tags
+  If you want to show a specific widget according to its name, ID or one of its
+  tags then you can use these methods:
 </p>
+<pre><code>.presentNPS(Context context, String nameIDorTag)
+.presentRating(Context context, String nameIDorTag)
+.presentSurvey(Context context, String nameIDorTag)
+
+// Example:
+Countly.sharedInstance().feedback().presentNPS(this, "/home-page");
+</code></pre>
 <p>
   If an empty nameIDorTag is provided it will show the first feedback widget by
-  its type
+  its type.
 </p>
 <p>
-  The "devCallback" parameter has two callbacks: - "onClosed" which will be called
-  when the feedback widget is closed - "onFinished" which will be called on some
-  internal errors and it will direct the error via "error" parameter.
+  If you need to know when the widget you are showing is closed you can use these
+  methods to provide a callback which will be called when the widget closes:
 </p>
-<h3 id="h_01J9V00SX40115R37EBQKDF1HJ">NPS</h3>
-<p>Below are the functions to present NPS widgets.</p>
-<pre><code>Countly.sharedInstance().feedback().presentNPS(Context context)
-Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag)<br>Countly.sharedInstance().feedback().presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)<br></code></pre>
-<pre><code>// Assuming you are in a context environment
-Countly.sharedInstance().feedback().presentNPS(this);
-// or
-Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore");
-// or
+<pre><code>.presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)
+.presentRating(Context context, String nameIDorTag, FeedbackCallback devCallback)
+.presentSurvey(Context context, String nameIDorTag, FeedbackCallback devCallback)
+
+// Example:
 Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new ModuleFeedback.FeedbackCallback() {
   @Override public void onClosed() {
     Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
@@ -1957,58 +1967,18 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
       Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
     }
   }
-});
-</code></pre>
-<h3 id="h_01J9V00SX4HKSKS4X4ENXKK0RS">Survey</h3>
-<p>Below are the functions to present Survey widgets.</p>
-<pre><code>Countly.sharedInstance().feedback().presentSurvey(Context context)
-Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag)
-Countly.sharedInstance().feedback().presentSurvey(Context context, String nameIDorTag, FeedbackCallback devCallback)</code></pre>
-<pre><code>// Assuming you are in a context environment
-Countly.sharedInstance().feedback().presentSurvey(this);
-// or
-Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655");
-// or
-Countly.sharedInstance().feedback().presentSurvey(this, "id_867asdhbdas655", new ModuleFeedback.FeedbackCallback() {
-  @Override public void onClosed() {
-    Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
-  }
-
-  @Override public void onFinished(String error) {
-    if (error != null) {
-      Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
-    }
-  }
-});
-</code></pre>
-<h3 id="h_01J9V00SX48CVFHF7JMTM3E3VH">Rating</h3>
-<p>Below are the functions to present Rating widgets.</p>
-<pre><code>Countly.sharedInstance().feedback().presentRating(Context context)
-Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag)
-Countly.sharedInstance().feedback().presentRating(Context context, String nameIDorTag, FeedbackCallback devCallback)</code></pre>
-<pre><code>// Assuming you are in a context environment
-Countly.sharedInstance().feedback().presentRating(this);
-// or
-Countly.sharedInstance().feedback().presentRating(this, "tag_published");
-// or
-Countly.sharedInstance().feedback().presentRating(this, "tag_published", new ModuleFeedback.FeedbackCallback() {
-  @Override public void onClosed() {
-    Toast.makeText(ActivityExampleFeedback.this, "The feedback widget was closed", Toast.LENGTH_LONG).show();
-  }
-
-  @Override public void onFinished(String error) {
-    if (error != null) {
-      Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
-    }
-  }
-});
-</code></pre>
+});<br></code></pre>
+<p>
+  The "devCallback" parameter has two callbacks: - "onClosed" which will be called
+  when the feedback widget is closed - "onFinished" which will be called on some
+  internal errors and it will direct the error via "error" parameter.
+</p>
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
   structures, or presenting them yourself, please refer to the following
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01JA7E8H963VYQV6BNR6TB9489" target="_blank" rel="noopener">resource</a>.
 </p>
-<h4 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h4>
+<h3 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h3>
 <p>
   There might be some cases where you might want to use the native UI or a custom
   UI you have created instead of our webview solution. At those times you would
