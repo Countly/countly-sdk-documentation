@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Web SDK version 24.4.0. The SDK source
+  This documentation is for the Countly Web SDK version 24.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-web">here</a>.
 </p>
@@ -783,111 +783,79 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
   </div>
 </div>
 <h1 id="h_01HABTQ438A1RWJXN4K84XP16R">Device ID Management</h1>
-<h2 id="h_01HABTQ438H09ECC7YDDKNN68R">Device ID Generation</h2>
+<h2 id="h_01HABTQ438Y2NCA9PE3PZWSXTY">Retrieving Current Device ID</h2>
 <p>
-  By default Countly generates and assigns a random device ID to each device that
-  reaches your website. This can be seen as the default way to recognize and capture
-  the user behavior by keeping this ID at the local storage and referring to it
-  when necessary. All activity done from the same device would be recorded under
-  the same device ID and for practical reasons it can be seen as a user identifier.
+  Countly offers a convenience method (<code>get_device_id</code>) for you to get
+  the current user's device ID:
+</p>
+<pre><code class="javascript">var id = Countly.get_device_id();</code></pre>
+<p>SDK records the type of an ID. These types are:</p>
+<ul>
+  <li>
+    <code>DEVELOPER_SUPPLIED</code>
+  </li>
+  <li>
+    <code>SDK_GENERATED</code>
+  </li>
+  <li>
+    <code>TEMPORARY_ID</code>
+  </li>
+</ul>
+<p>
+  <code>DEVELOPER_SUPPLIED</code> device ID means this ID was assigned by your
+  internal logic. <code>SDK_GENERATED</code> device ID means the ID was generated
+  randomly by the SDK, and <code>TEMPORARY_ID</code> device ID means the SDK is
+  in offline mode.
 </p>
 <p>
-  Limitations to this method comes when there multiple users using the same device
-  where all users using the same device would be seen as a single user, or when
-  a user reaches to your website from multiple devices or browsers in incognito
-  mode where all devices would be seen as separate users. If these scenarios are
-  an issue of concern to you, you can mitigate them with various device management
-  strategies.
+  You can get the device ID type of a user by calling the
+  <code>get_device_id_type</code> function:
 </p>
+<pre><code class="javascript">var idType = Countly.get_device_id_type();</code></pre>
 <p>
-  While it is possible to change an assigned ID (typically during the user login)
-  and implement your own logic, as explained at the next section, there are some
-  other methods that you can assign an ID to your users. Assigning an ID inside
-  your initialization config or adding a query to a link that you have provided
-  to your user can be named as two of these methods:
+  You can use the <code>DeviceIdType</code> enums to evaluate the device ID type
+  you retrieved:
 </p>
-<pre><code class="javascript">
-// adding device ID here will prevent the generation of a random ID
-Countly.init({
-  app_key:"YOUR_APP_KEY",
-  url: "https://try.count.ly",
-  device_id:"yourDeviceID",
-});
-
-// you can assign a device ID to a user through a link that you have provided to them by adding cly_device_id to your url query
-yourUrl + ?cly_device_id=yourDeviceID
+<pre><code class="javascript">var idType = Countly.get_device_id_type();
+if (idType === Countly.DeviceIdType.SDK_GENERATED) {
+  // ...do something
+}
 </code></pre>
+<h2 id="h_01HABTQ438H09ECC7YDDKNN68R">Changing Device ID</h2>
 <p>
-  If you want to erase the previously stored device ID from the storage you can
-  set clear_stored_id flag to true at the init config to do so:
+  <span style="font-weight: 400;">You can change the device ID of a user with set_id method:</span>
 </p>
-<pre><code class="javascript">
-// this will erase the stored device ID from the local storage every time the Countly is initialized
-Countly.init({
-  app_key:"YOUR_APP_KEY",
-  url: "https://try.count.ly",
-  clear_stored_id: true,
-});
-</code></pre>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['set_id', "newId"]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.set_id("newId");</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <span style="font-weight: 400;">If current stored ID is <code>SDK_GENERATED</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>SDK_GENERATED</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span style="font-weight: 400;">If the current stored ID is <code>DEVELOPER_SUPPLIED</code> or <code>TEMPORARY_ID</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
 <div class="callout callout--info">
-  <p class="callout__title">
-    <strong>Device ID Priority</strong>
-  </p>
   <p>
-    If you have used multiple methods to set a device ID for your users during
-    your first init, Countly would fall back to the device ID priority hierarchy
-    to assign the the correct ID for your user. This hierarchy is as follows:
+    <span style="font-weight: 400;">If you need a more complicated logic or using the SDK version 24.4.0 then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438HCZ8FJVAE34W49KP" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
-  <p>
-    URL set ID &gt; Developer set ID &gt; Temp ID (offline mode) &gt; SDK generated
-    ID
-  </p>
-</div>
-<h2 id="h_01HABTQ438HCZ8FJVAE34W49KP">Changing Device ID</h2>
-<p>
-  <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['change_id', "myNewId"]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
-  </div>
-</div>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
-  </p>
-</div>
-<p>
-  <span style="font-weight: 400;">In some other cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">This call will merge any data recorded for the current ID and save it as a user with a newly provided ID.</span>
-</p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
-  </p>
-</div>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['change_id', "myNewId", true]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
-  </div>
 </div>
 <p>
   <span style="font-weight: 400;">NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
@@ -962,50 +930,79 @@ Countly.init();</code></pre>
     <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
 </div>
-<h2 id="h_01HABTQ438Y2NCA9PE3PZWSXTY">Retrieving Current Device ID</h2>
+<h2 id="01JBBJ304CMXVQNECECHTHAAG0">Device ID Generation</h2>
 <p>
-  If you want to execute your functions or to implement your logic depending on
-  the type of device ID that the user has Countly offers a convenience method for
-  you to do so.
+  By default Countly generates and assigns a random device ID (UUID) to each device
+  that visits your website. This ID is saved at the localstorage of the browser.
+  Assuming the localstorage is not cleared, this device will be recognized with
+  this stored ID from now on.
 </p>
-<p>
-  You can reach the current device ID of the user with get_device_id:
-</p>
-<pre><code class="javascript">
-// you can just check if the device ID of the user is exactly what it should be
-var userId = Countly.get_device_id();
-if ( userId === "expectedId" ) {
-  //... do something
-}  
-</code></pre>
-<p>
-  Depending on whether a user is vising your site for the first time or might have
-  just logged in to their account or for many other reasons a user can have a certain
-  device ID that has a different type than another user. These types are:
-</p>
+<p>Limitations to this method:</p>
 <ul>
-  <li>DEVELOPER_SUPPLIED device ID</li>
-  <li>SDK_GENERATED device ID</li>
-  <li>TEMPORARY_ID device ID</li>
+  <li>
+    Multiple users using the same device would be seen as a single user
+  </li>
+  <li>
+    When a user reaches to your website from multiple devices or browsers in
+    incognito mode then all devices would be seen as separate users
+  </li>
 </ul>
 <p>
-  For DEVELOPER_SUPPLIED device ID, the assignment of the ID is handled by your
-  internal logic, for SDK_GENERATED device ID, the ID of the user was generated
-  randomly by Countly, and for TEMPORARY_ID device ID, the user is currently offline
-  and no request is being sent to the servers.
+  If these scenarios are an issue of concern to you, you can mitigate them with
+  various device management strategies like:
 </p>
+<ul>
+  <li>
+    Adding a login/authentication page and assigning device ID there
+  </li>
+  <li>
+    Entering the offline mode (mentioned above) until you identify the user and
+    assigning the ID then
+  </li>
+</ul>
 <p>
-  You can reach the device ID type of a user any time you want simply by calling
-  the get_device_id_type function:
+  You can also provide an ID during init to prevent the SDK from generating a random
+  ID:
 </p>
-<pre><code class="javascript">
-// You can get and compare if the device ID type is correct, and do something after
-var idType = Countly.get_device_id_type();
-// here lets check if it is SDK_GENERATED. Other options are DEVELOPER_SUPPLIED and TEMPORARY_ID
-if ( idType === Countly.DeviceIdType.SDK_GENERATED ) {
-  //... do something
-}
+<pre><code class="javascript">// adding device ID here will prevent the generation of a random ID
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://your.server",
+  device_id:"yourDeviceID",
+});</code></pre>
+<p>
+  You can also provide an ID in the search query of the link that opens your site.
+  If you use the param <code>cly_device_id</code> its value will be set as the
+  device ID instead of generating a random one:
+</p>
+<pre><code class="javascript">// you can assign a device ID to a user through a link that you have provided to them by adding cly_device_id to your url query
+yoursite.com + ?cly_device_id=yourDeviceID
 </code></pre>
+<p>
+  If you want to erase the previously stored device ID from the storage you can
+  set clear_stored_id flag to true at the init config:
+</p>
+<pre><code class="javascript">// this will erase the stored device ID from the local storage every time the Countly is initialized
+Countly.init({
+  app_key:"YOUR_APP_KEY",
+  url: "https://try.count.ly",
+  clear_stored_id: true,
+});
+</code></pre>
+<div class="callout callout--info">
+  <p class="callout__title">
+    <strong>Device ID Priority</strong>
+  </p>
+  <p>
+    If you have used multiple methods to set a device ID for your users during
+    your first init, Countly would fall back to the device ID priority hierarchy
+    to assign the the correct ID for your user. This hierarchy is as follows:
+  </p>
+  <p>
+    URL set ID &gt; Developer set ID &gt; Temp ID (offline mode) &gt; SDK generated
+    ID
+  </p>
+</div>
 <h1 id="h_01J0AYW920ZVG0T82DM4ABHXDJ">User Location</h1>
 <p>
   With the SDK integrated into your website, you might want to track your user
