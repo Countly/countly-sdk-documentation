@@ -3181,7 +3181,7 @@ Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetSta
   <code class="swift">widgetState</code> enum has two values
   <code class="swift">WIDGET_APPEARED</code> and
   <code class="swift">WIDGET_CLOSED</code>, on the basis of widget state you know
-  about whether widget is appeared or closed.&nbsp;
+  about whether widget is appeared or closed.
 </p>
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
