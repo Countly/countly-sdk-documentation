@@ -154,6 +154,31 @@
   to record a view.
 </p>
 <h1 id="h_01HABT18WTFWFNKVPJJ6G6DEM4">Working with Feedback Widgets</h1>
+<p>
+  Most SDKs provide an easy way to display a widget on the screen. But if you have
+  an elaborate logic which needs you to check and select among multiple widgets
+  that can not be satisfied with the convenience methods SDKs offer manual methods
+  for you to achieve that too.
+</p>
+<p>You can present any widget you want in 3 steps:</p>
+<ol>
+  <li>Downloading the list of available widgets from the server</li>
+  <li>Selecting a widget from that list</li>
+  <li>Displaying the selected widget</li>
+</ol>
+<p>
+  Most of the SDKs provides a method to fetch the widget list from the server and
+  another method for you to present a widget from that list. You can refer to each
+  SDK's respective documentation to check the exact method calls and examples:
+</p>
+<p>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34483587332121-Android-24-4#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Android</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34585282246553-iOS-watchOS-tvOS-macOS-24-4#h_01HAVHW0RR6N7WKDSA1GRJXBJ1', '_blank')">iOS</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438NWHSRCMAV4RJJVWX', '_blank')">Web</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/31332062133913-React-Native-Bridge-23-12#h_01HAVQNJQS4TRX89X6GSGWQGGV', '_blank')">React Native</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ7XASR12CMDC11Q265', '_blank')">Flutter</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/28213661170073-Java-23-10#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Java</button>
+</p>
 <h2 id="h_01HABT18WTEHRZTAQ49GRGNBP1">Interpreting Retrieved Feedback Widget Lists</h2>
 <p>
   When working with feedback widgets, at some point, the available feedback widget
