@@ -154,82 +154,31 @@
   to record a view.
 </p>
 <h1 id="h_01HABT18WTFWFNKVPJJ6G6DEM4">Working with Feedback Widgets</h1>
-<h2 id="h_01JA7E8H963VYQV6BNR6TB9489">Retrieving and Presenting Feedback Widgets</h2>
 <p>
-  Once you've created widgets in your dashboard, you can easily access their related
-  information as a list linked to the current user's device ID. Most of the SDKs provides
-  a function called <code>getAvailableFeedbackWidgets</code> to retrieve feedback
-  widgets. Please note that each platform may require specific parameters.
+  Most SDKs provide an easy way to display a widget on the screen. But if you have
+  an elaborate logic which needs you to check and select among multiple widgets
+  that can not be satisfied with the convenience methods SDKs offer manual methods
+  for you to achieve that too.
 </p>
-<p>Below are example code snippets for your reference.</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Android</span>
-  </div>
-  <div class="tab">
-    <p>
-      The function requires providing a callback to the getAvailableFeedbackWidgets
-      method, which returns the list as the first parameter and error as the
-      second
-    </p>
-    <pre><code class="java">Countly.sharedInstance().feedback().getAvailableFeedbackWidgets(new RetrieveFeedbackWidgets() {
-@Override 
-  public void onFinished(List retrievedWidgets, String error) {
-    // error handling here
-
-    // do something with the returned list here like pick a widget and then show that widget etc...
-
-  }
-});</code></pre>
-  </div>
-</div>
+<p>You can present any widget you want in 3 steps:</p>
+<ol>
+  <li>Downloading the list of available widgets from the server</li>
+  <li>Selecting a widget from that list</li>
+  <li>Displaying the selected widget</li>
+</ol>
 <p>
-  The returned values are the same as those seen on your Countly server, like
-  the widget ID, widget type, widget name, and the tags you have passed while
-  creating the widget. Tags can contain information you would like to have to
-  keep track of the widget you have created. Its usage is left to the developer.
+  Most of the SDKs provides a method to fetch the widget list from the server and
+  another method for you to present a widget from that list. You can refer to each
+  SDK's respective documentation to check the exact method calls and examples:
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Android</span>
-  </div>
-  <div class="tab">
-    <p>The objects in the returned list would look like this:</p>
-    <pre><code class="java">class CountlyFeedbackWidget {
-  public String widgetId;
-  public FeedbackWidgetType type;
-  public String name;
-  public String[] tags; 
-}</code></pre>
-    <p>Potential 'type' values are:</p>
-    <pre>FeedbackWidgetType {survey, nps, rating}</pre>
-  </div>
-</div>
 <p>
-  Once you've selected the feedback widget you'd like to display, you can use the
-  designated function in each SDK to present it seamlessly.
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34483587332121-Android-24-4#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Android</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34585282246553-iOS-watchOS-tvOS-macOS-24-4#h_01HAVHW0RR6N7WKDSA1GRJXBJ1', '_blank')">iOS</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438NWHSRCMAV4RJJVWX', '_blank')">Web</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/31332062133913-React-Native-Bridge-23-12#h_01HAVQNJQS4TRX89X6GSGWQGGV', '_blank')">React Native</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ7XASR12CMDC11Q265', '_blank')">Flutter</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/28213661170073-Java-23-10#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Java</button>
 </p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Android</span>
-  </div>
-  <div class="tab">
-    <p>
-      Provide a feedback widget object for the following function as the first
-      parameter. The second parameter is app context, the third is the close
-      button text (if null, no close button would be shown), and the fourth
-      is a callback in case an error happens:
-    </p>
-    <pre><code class="java">Countly.sharedInstance().feedback().presentFeedbackWidget(chosenWidget, context, "Close", new FeedbackCallback() {
-  // maybe show a toast when the widget is closed
-  @Override 
-  public void onFinished(String error) {
-    // error handling here
-  }
-});
-</code></pre>
-  </div>
-</div>
 <h2 id="h_01HABT18WTEHRZTAQ49GRGNBP1">Interpreting Retrieved Feedback Widget Lists</h2>
 <p>
   When working with feedback widgets, at some point, the available feedback widget
