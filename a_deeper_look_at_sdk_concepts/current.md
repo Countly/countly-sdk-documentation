@@ -126,7 +126,7 @@
     will not work.
   </font>
 </p>
-<h1 id="h_01HABT18WSV43CFW5YDA5G0BNP">Reporting "feature data" manually with events</h1>
+<h1 id="h_01HABT18WSV43CFW5YDA5G0BNP">Reporting "Feature Data" Manually with Events</h1>
 <h2 id="h_01HABT18WSXVTMVFRN0SFX427D">Views</h2>
 <p>
   <span data-preserver-spaces="true">Currently, SDK doesn't have any direct mechanism to record views. You may record views by using&nbsp;<code><span class="pl-c1">RecordEvent</span></code>&nbsp;method.&nbsp;</span>
@@ -218,7 +218,7 @@
 <div>
   <pre><span>[</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811419f030e44be07d82f"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"rating"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"appearance"</span><span>:{</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"position"</span><span>:</span><span>"mleft"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"bg_color"</span><span>:</span><span>"#fff"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"text_color"</span><span>:</span><span>"#ddd"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"text"</span><span>:</span><span>"Feedback"</span><br><span>  &nbsp; &nbsp; },</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>"startPage"</span><span>],</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"Leave us a feedback"</span><br><span>  &nbsp;},</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811419f030e44be07d839"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"nps"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"One response for all"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>]</span><br><span>  &nbsp;},</span><br><span>  &nbsp;{</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"_id"</span><span>:</span><span>"614811429f030e44be07d83d"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"type"</span><span>:</span><span>"survey"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"appearance"</span><span>:{</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"position"</span><span>:</span><span>"bLeft"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"show"</span><span>:</span><span>"uSubmit"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"color"</span><span>:</span><span>"#0166D6"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"logo"</span><span>:</span><span>null</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"submit"</span><span>:</span><span>"Submit"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"previous"</span><span>:</span><span>"Previous"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>"next"</span><span>:</span><span>"Next"</span><br><span>  &nbsp; &nbsp; },</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"name"</span><span>:</span><span>"Product Feedback example"</span><span>,</span><br><span>&nbsp; &nbsp; &nbsp; </span><span>"tg"</span><span>:[</span><span>]</span><br><span>  &nbsp;}</span><br><span>]</span></pre>
 </div>
-<h2 id="h_01HABT18WT0D08H8DR2BAD77T2">Reporting a feedback widget manually</h2>
+<h2 id="h_01HABT18WT0D08H8DR2BAD77T2">Reporting a Feedback Widget Manually</h2>
 <p>
   This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
   <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>,
@@ -294,7 +294,7 @@
   that has been created with respect to the type of widget that is being reported.
   More information on how to form this object is provided below.
 </p>
-<h3 id="h_01HABT18WVCY6BTEXM9TW7XJ0B">Reporting NPS widgets manually</h3>
+<h3 id="h_01HABT18WVCY6BTEXM9TW7XJ0B">Reporting NPS Widgets Manually</h3>
 <p>
   To report the results of an NPS widget manually, no information from the widget's
   data JSON is needed. These widgets can report only two pieces of information
@@ -306,18 +306,18 @@
   one with the key of "rating" and an Integer value and the other with the "comment"
   key and a String value.
 </p>
-<h4 id="h_01HABT18WVKNM54RJC97S4KQ5T">Android sample code</h4>
+<h4 id="h_01HABT18WVKNM54RJC97S4KQ5T">Android Sample Code</h4>
 <p>
   The following sample code would report the result of an NPS widget:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>segm</span>.put(<span>"rating"</span>, <span>3</span>);<span>//value from 0 to 10<br></span><span>        </span><span>segm</span>.put(<span>"comment"</span>, <span>"Filled out comment"</span>);<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
-<h4 id="h_01HABT18WV01YQA39M5CJN18WP">Web sample code</h4>
+<h4 id="h_01HABT18WV01YQA39M5CJN18WP">Web Sample Code</h4>
 <p>
   The following code shows what the expected widgetResult objects look like for
   the NPS widget:
 </p>
 <pre>var widgetResult = {<br>         rating: 3, // between 0 to 10<br>         comment: "any comment" // string<br>    };</pre>
-<h3 id="h_01HABT18WVQRSQ4RQS28P4QN9R">Reporting Rating widgets manually</h3>
+<h3 id="h_01HABT18WVQRSQ4RQS28P4QN9R">Reporting Rating Widgets Manually</h3>
 <p>
   To report the results of a Rating widget manually, again, no information from
   the obtained widget data is needed. These widgets have similar reporting capabilities
@@ -328,13 +328,13 @@
   <strong>contactMe</strong> Boolean (true or false) if the user gave consent to
   be contacted again or not.
 </p>
-<h4 id="h_01HABT18WV70HE6GXMF0X9V2AN">Web sample code</h4>
+<h4 id="h_01HABT18WV70HE6GXMF0X9V2AN">Web Sample Code</h4>
 <p>
   The following code shows what the expected widgetResult objects look like for
   the Rating widget:
 </p>
 <pre>var widgetResult = {<br>         rating: 3, // between 1 to 5<br>         comment: "any comment", // string<br>         email: "email@any.mail", // string<br>         contactMe: true // boolean<br>    };</pre>
-<h3 id="h_01HABT18WVWCX0W68RGB0FJ1KK">Reporting Survey widgets manually</h3>
+<h3 id="h_01HABT18WVWCX0W68RGB0FJ1KK">Reporting Survey Widgets Manually</h3>
 <p>
   To report survey widgets manually, an investigation of the widget data received
   from the second call is needed. Each question has a question type, and depending
@@ -359,7 +359,7 @@
   how to report results for different question types:
 </p>
 <p>
-  <strong>Multiple answer question</strong>
+  <strong>Multiple Answer Question</strong>
 </p>
 <p>
   It has the type "multi". In the question description, there is a field "choices,"
@@ -376,7 +376,7 @@
   for the answer would be: "ch1611875792-0,ch1611875792-2,ch1611875792-3".
 </p>
 <p>
-  <strong>Radio buttons</strong>
+  <strong>Radio Buttons</strong>
 </p>
 <p>
   It has the type "radio". In the question description, there is a field "choices,"
@@ -387,7 +387,7 @@
   You would use the chosen options key value as the value for your result segmentation.
 </p>
 <p>
-  <strong>Dropdown value selector</strong>
+  <strong>Dropdown Value Selector</strong>
 </p>
 <p>
   It has the type "dropdown". In the question description, there is a field "choices,"
@@ -398,25 +398,25 @@
   You would use the chosen options key value as the value for your result segmentation.
 </p>
 <p>
-  <strong>Text input field</strong>
+  <strong>Text Input Field</strong>
 </p>
 <p>It has the type "text".</p>
 <p>You would provide any String you want as the answer.</p>
 <p>
-  <strong>Rating picker</strong>
+  <strong>Rating Picker</strong>
 </p>
 <p>It has the type "rating"</p>
 <p>
   You would provide any Integer value from 1 to 10 as the answer.
 </p>
-<h4 id="h_01HABT18WV5DA061HYZ3FYBCD3">Android sample code</h4>
+<h4 id="h_01HABT18WV5DA061HYZ3FYBCD3">Android Sample Code</h4>
 <p>
   The following sample code would go through all of the received Survey widgets
   questions and choose a random answer to every question. It then reports the results:
 </p>
 <pre><span>Countly</span>.<span>sharedInstance</span>().feedback().getFeedbackWidgetData(chosenWidget, <span>new </span><span>RetrieveFeedbackWidgetData</span>() {<br>    <span>@Override </span><span>public void </span><span>onFinished</span>(<span>JSONObject </span>retrievedWidgetData, <span>String </span>error) {<br>        <span>JSONArray questions </span>= retrievedWidgetData.optJSONArray(<span>"questions"</span>);<br><br>        <span>Map</span>&lt;<span>String</span>, <span>Object</span>&gt; <span>segm </span>= <span>new </span>HashMap&lt;&gt;();<br>        <span>Random rnd </span>= <span>new </span>Random();<br><br>        <span>//iterate over all questions and set random answers<br></span><span>        </span><span>for </span>(<span>int </span>a = <span>0</span>; a &lt; <span>questions</span>.length(); a++) {<br>            <span>JSONObject </span>question = <span>null</span>;<br>            <span>try </span>{<br>                question = <span>questions</span>.getJSONObject(a);<br>            } <span>catch </span>(<span>JSONException </span>e) {<br>                e.printStackTrace();<br>            }<br>            <span>String wType </span>= question.optString(<span>"type"</span>);<br>            <span>String questionId </span>= question.optString(<span>"id"</span>);<br>            <span>String answerKey </span>= <span>"answ-" </span>+ <span>questionId</span>;<br>            <span>JSONArray choices </span>= question.optJSONArray(<span>"choices"</span>);<br><br>            <span>switch </span>(<span>wType</span>) {<br>                <span>//multiple answer question<br></span><span>                </span><span>case </span><span>"multi"</span>:<br>                    <span>StringBuilder sb </span>= <span>new </span>StringBuilder();<br><br>                    <span>for </span>(<span>int </span>b = <span>0</span>; b &lt; <span>choices</span>.length(); b++) {<br>                        <span>if </span>(b % <span>2 </span>== <span>0</span>) {//pick every other choice<br>                            <span>if </span>(b != <span>0</span>) {<br>                                <span>sb</span>.append(<span>","</span>);<br>                            }<br>                            <span>sb</span>.append(<span>choices</span>.optJSONObject(b).optString(<span>"key"</span>));<br>                        }<br>                    }<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>sb</span>.toString());<br>                    <span>break</span>;<br>                <span>//radio buttons<br></span><span>                </span><span>case </span><span>"radio"</span>:<br>                <span>//dropdown value selector<br></span><span>                </span><span>case </span><span>"dropdown"</span>:<br>                    <span>int </span><span>pick </span>= <span>rnd</span>.nextInt(<span>choices</span>.length());<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>choices</span>.optJSONObject(<span>pick</span>).optString(<span>"key"</span>));<span>//pick the key of random choice<br></span><span>                    </span><span>break</span>;<br>                <span>//text input field<br></span><span>                </span><span>case </span><span>"text"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>"Some random text"</span>);<br>                    <span>break</span>;<br>                <span>//rating picker<br></span><span>                </span><span>case </span><span>"rating"</span>:<br>                    <span>segm</span>.put(<span>answerKey</span>, <span>rnd</span>.nextInt(<span>11</span>));<span>//put a random rating<br></span><span>                    </span><span>break</span>;<br>            }<br>        }<br><br>        <span>Countly</span>.<span>sharedInstance</span>().feedback().reportFeedbackWidgetManually(<span>widgetToReport</span>, retrievedWidgetData, <span>segm</span>);<br>    }<br>});</pre>
 <h1 id="h_01HABT18WV676C95X2768C5PN5">
-  There Is No SDK That I Can Integrate for My Use Case. What are the options?
+  There Is No SDK That I Can Integrate for My Use Case. What Are the Options?
 </h1>
 <p>
   Countly SDKs provide you with many options to track your users with the least
@@ -565,7 +565,7 @@
   current device ID and the device ID type. The main types you would like to check
   for device ID management are to see if the ID was SDK-generated or developer-supplied.
 </p>
-<h3 id="h_01GG7QKAWDG3P7QC5G691MS9R8">Offline / Temporary ID mode</h3>
+<h3 id="h_01GG7QKAWDG3P7QC5G691MS9R8">Offline / Temporary ID Mode</h3>
 <p>
   It is possible to launch the Countly SDK in an <em>offline/temporary ID </em>mode
   during the first initialization. This mode can also enabled after initialization
@@ -583,7 +583,7 @@
   type. The main types you would like to check for device ID management are to
   see if the ID was SDK-generated or developer-supplied.
 </p>
-<h2 id="h_01GG7QB1WJQR1G8NX3EHP1ADG7">Different user tracking strategies</h2>
+<h2 id="h_01GG7QB1WJQR1G8NX3EHP1ADG7">Different User Tracking Strategies</h2>
 <h3 id="h_01HABT18WWTB0FRGMQMW22JND2">Default User Tracking</h3>
 <p>
   As mentioned in the "Device ID during init" section. With no additional configuration,
@@ -1025,12 +1025,12 @@ module.exports = {
 <p>
   <img src="/guide-media/01GVCKG7Q5YKKS920QD1T2RG8Y" alt="1612759876.png">
 </p>
-<h1 id="h_01HDNHXZ2Y30VG0D1TKCYPHJXT">Acquiring public key or certificate for SSL pinning</h1>
+<h1 id="h_01HDNHXZ2Y30VG0D1TKCYPHJXT">Acquiring Public Key or Certificate for SSL Pinning</h1>
 <p>
   <span>You can use the "<a href="https://www.openssl.org/source/">openssl</a>" command line utility to get this information.</span>
 </p>
 <h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
-  <span>Acquiring the SSL public key from a server</span>
+  <span>Acquiring the SSL Public Key from a Server</span>
 </h2>
 <p>
   <span>To get the current public key from your server you can use the following snippet (replace xxx.server.ly with your server name):</span>
@@ -1062,7 +1062,7 @@ UwIDAQAB
   this to the SDK.
 </p>
 <h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
-  <span>Acquiring the SSL certificate information from a server</span>
+  <span>Acquiring the SSL Certificate Information from a Server</span>
 </h2>
 <p>
   <span>To get the whole certificate from your server you can use the following snippets (replace xxx.server.ly with your server name):</span>
@@ -1131,7 +1131,7 @@ SSL-Session:
 <p>
   <span>You would copy the string/bytes between the first <code lang="bash">---BEGIN CERTIFICATE---</code> and <code lang="bash">-----END CERTIFICATE-----</code> tags and paste them to init block of the SDK that you are using. Remember to not add any newlines when providing this to the SDK.</span>
 </p>
-<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL certificate problems</h1>
+<h1 id="h_01HDNJK8PAE5GEQWRFDS4KD6S6">Common SSL Certificate Problems</h1>
 <p>
   <span>Problems might be encountered related to SSL or certificate exceptions. <a href="https://developer.android.com/privacy-and-security/security-ssl">Here</a> is a list of common reasons for issues in Android.</span>
 </p>
@@ -1344,7 +1344,7 @@ function sendMessage(param) {
   }
 }
 </code></pre>
-<h1 id="h_01HEADFCRX3BVR8QZNKQZY3B0T">Using Web SDK inside a Flutter Web App</h1>
+<h1 id="h_01HEADFCRX3BVR8QZNKQZY3B0T">Using Web SDK Inside a Flutter Web App</h1>
 <p>
   One of the ways to execute JavaScript in Dart is to use Dart:js library (another
   way would be to use its superset, the 'js' library). Using this library you can
@@ -1700,7 +1700,7 @@ function sendMessage(param) {
   </tbody>
 </table>
 <p>&nbsp;</p>
-<p>Here is an example crash request:</p>
+<p>Here is an Example Crash Request:</p>
 <pre><span>https://xxx.server.ly/i?timestamp=1703164988058&amp;hour=14&amp;tz=180&amp;dow=4&amp;sdk_version=23.12.0&amp;sdk_name=CountlySDK&amp;app_key=APP_KEY&amp;device_id=DEVICE_ID&amp;av=1.0.0&amp;rr=0&amp;crash={<br></span>"_device":"Android SDK built for x86",<br>"_os":"Android",<br>"_os_version":"10",<br>"_resolution":"1080x2088",<br>"_app_version":"1.0.0",<br>"_manufacturer":"Google",<br>"_orientation":"Portrait",<br>"_carrier": "C-Mobile",<br>"_cpu":"x86",<br>"_opengl":"2",<br>"_root":"false",<br>"_ram_total":"1994",<br>"_ram_current":"213",<br>"_disk_total":"2162",<br>"_disk_current":"32",<br>"_bat":"100.0",<br>"_run":"6",<br>"_architecture":"arch",<br>"_online":"true",<br>"_muted":"false",<br>"_background":"false",<br>"_executable_name":"name",<br>"_build_uuid":"uuid",<br>"_app_build":"1.0",<br>"_error":"java.lang.Exception: RangeError (index): Invalid value: Not in inclusive range 0..2: 10\n\tat ly.count.dart.countly_flutter.CountlyFlutterPlugin.onMethodCall(CountlyFlutterPlugin.java:340)\n\tat io.flutter.plugin.common.MethodChannel$IncomingMethodCallHandler.onMessage(MethodChannel.java:8)\n\tat io.flutter.embedding.engine.dart.DartMessenger.invokeHandler(DartMessenger.java:295)\n\tat io.flutter.embedding.engine.dart.DartMessenger.lambda$dispatchMessageToQueue$0$io-flutter-embedding-engine-dart-DartMessenger(DartMessenger.java:322)\n\tat io.flutter.embedding.engine.dart.DartMessenger$$ExternalSyntheticLambda0.run(Unknown Source:12)\n\tat android.os.Handler.handleCallback(Handler.java:883)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loop(Looper.java:214)\n\tat android.app.ActivityThread.main(ActivityThread.java:7356)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)\n",<br>"_nonfatal":"false"<br>"_logs":"logs",<br>"_type":"crash",<br>"_name":"error",<br>"_native_cpp":"true",<br>"_plcrash":"plcrash",<br>"_binary_images":"110001101"<br>}</pre>
 <h3 id="h_01HPESKH8V516CA88CAS7WMBFX">Push Notifications</h3>
 <p>If push notifications are used:</p>
@@ -1855,7 +1855,7 @@ function sendMessage(param) {
   <span>SDKs limit the characters that are allowed per stack trace line (which limits the crash message length)</span>
 </p>
 <h1 id="h_01HABSX9KXYEPGX1AJ5F61Q18D">
-  Using the Countly SDK's with iOS and Android widgets and watches
+  Using the Countly SDK's with iOS and Android Widgets and Watches
 </h1>
 <p>
   With mobile devices, there are three different modalities that a user can interact
@@ -1901,7 +1901,7 @@ function sendMessage(param) {
   modality.
 </p>
 <p>
-  <strong>Notes for native iOS integration</strong>
+  <strong>Notes for Native iOS Integration</strong>
 </p>
 <p>
   The general recommendation is to have Countly integrated into each separate modality
@@ -1916,7 +1916,7 @@ function sendMessage(param) {
   section.
 </p>
 <p>
-  <strong>Notes for native Android integration</strong>
+  <strong>Notes for Native Android Integration</strong>
 </p>
 <p>
   Due to the way the SDK is currently designed, integrating the SDK in a widget
@@ -1929,7 +1929,7 @@ function sendMessage(param) {
   would be done with shared preferences.
 </p>
 <p>
-  <strong>Notes for Flutter integration</strong>
+  <strong>Notes for Flutter Integration</strong>
 </p>
 <p>
   If you have a Flutter app, there doesn't seem to be an easy way to integrate
