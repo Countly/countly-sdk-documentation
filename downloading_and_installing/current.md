@@ -1,16 +1,15 @@
 <p>
-  <span style="font-weight: 400;">Countly has several SDKs to choose from. Some are officially supported by Countly, and others are contributed by the community.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">Below you may see a list of mobile and desktop SDKs.</span>
+  Countly offers a range of SDKs for mobile and desktop platforms, including both
+  officially supported SDKs and community-contributed options. Below there is a
+  comprehensive list of available SDKs.
 </p>
 <div class="callout callout--info">
-  <h3 id="h_01H9QCP8G5XEZFKXAFSTECCDWD" class="callout__title">Subscribe to SDK GitHub repositories</h3>
+  <h3 id="h_01H9QCP8G5XEZFKXAFSTECCDWD" class="callout__title">Subscribe to SDK GitHub Repositories</h3>
   <p>
-    To receive notifications regarding SDK changes, you should be subscribed
-    to the corresponding SDK repositories on
-    <a href="http://github.com/countly">GitHub</a>. This will help to keep you
-    up to date on any new releases.
+    To stay informed about SDK updates, consider subscribing to the relevant
+    SDK repositories on
+    <a href="http://github.com/countly" target="_blank" rel="noopener noreferrer">GitHub</a>.
+    This will ensure you receive notifications about new releases and other changes.
   </p>
 </div>
 <h1 id="h_01H9QCP8G5Y9PZJGERZ4XWYDY9">Officially Supported SDKs</h1>
@@ -30,10 +29,10 @@
         <em>with watchOS, tvOS &amp; macOS support</em>
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-ios">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-ios" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -41,7 +40,7 @@
         <strong>Android SDK</strong> (Java)
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-android">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-android" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
         <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK" target="_blank" rel="noopener">Click for documentation</a>
@@ -49,13 +48,13 @@
     </tr>
     <tr>
       <td>
-        <strong>Web SDK</strong> (JavaScript) <em>to track web sites</em>
+        <strong>Web SDK</strong> (JavaScript) <em>to track websites</em>
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-web">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-web" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -64,10 +63,10 @@
         <em>to track Node.js running apps and devices</em>
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-nodejs">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-nodejs" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037442892-NodeJS" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037442892-NodeJS" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -75,10 +74,10 @@
         <strong>React Native SDK</strong> (JavaScript)
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-react-native-bridge">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -86,11 +85,11 @@
         <strong>Flutter SDK</strong> (Dart)
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
         <p>
-          <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter" target="_blank" rel="noopener">Click for documentation</a>
+          <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter" target="_blank" rel="noopener noreferrer">Click for documentation</a>
         </p>
       </td>
     </tr>
@@ -99,21 +98,21 @@
         <strong>Windows SDK</strong> (C#)
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-windows">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037754691-Windows" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037754691-Windows" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
       <td>
-        <strong>C++ SDKs</strong> (C++)
+        <strong>C++ SDK</strong> (C++)
       </td>
       <td>
-        <a href="http://github.com/countly/countly-sdk-cpp">Click to get</a>
+        <a href="http://github.com/countly/countly-sdk-cpp" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="http://github.com/countly/countly-sdk-cpp">Click for documentation</a>
+        <a href="http://github.com/countly/countly-sdk-cpp" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -121,10 +120,10 @@
         <strong>Unity SDK</strong> (C#)
       </td>
       <td>
-        <a href="http://github.com/countly/countly-sdk-unity">Click to get</a>
+        <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -132,10 +131,10 @@
         <strong>Java SDK </strong>(Java)
       </td>
       <td>
-        <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener">Click to get</a>
+        <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813891-Java" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="https://support.count.ly/hc/en-us/articles/360037813891-Java" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
   </tbody>
@@ -146,11 +145,11 @@
     If you would like to generate mobile or web code easily for events, user
     profiles, crash reporting, and have access to all the other features that
     generally come with Countly, we suggest using
-    <a href="http://code.count.ly">the Countly Code Generator</a>, which is a
-    point-and-click service that builds necessary code for you.
+    <a href="http://code.count.ly" target="_blank" rel="noopener noreferrer">the Countly Code Generator</a>,
+    which is a point-and-click service that builds necessary code for you.
   </p>
 </div>
-<h1 id="h_01H9QCP8G52MSJGQZCFGV0HMWM">Feature comparison</h1>
+<h1 id="h_01H9QCP8G52MSJGQZCFGV0HMWM">Feature Comparison</h1>
 <p>This is a feature comparison for officially supported SDKs.</p>
 <table style="height: 252px; width: 601px;">
   <tbody>
@@ -570,7 +569,7 @@
   -
   <a href="/hc/en-us/articles/20128936020633" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/15806696414745" target="_self" rel="noopener">Version 22.06</a>
+  <a href="https://support.count.ly/hc/en-us/articles/15806696414745" target="_blank" rel="noopener">Version 22.06</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/11104014467737" target="_blank" rel="noopener">Version 22.02</a>
   -
@@ -672,7 +671,7 @@
   -
   <a href="https://support.count.ly/hc/en-us/articles/4403584269593" target="_blank" rel="noopener">Version 20.05</a>
 </p>
-<h2 id="h_01H9QCP8G88SRA8VHG55Z077GD">C++ SDKs</h2>
+<h2 id="h_01H9QCP8G88SRA8VHG55Z077GD">C++ SDK</h2>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/18695404412185" target="_blank" rel="noopener">Version 22.09</a>
   -
