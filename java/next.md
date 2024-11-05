@@ -518,36 +518,31 @@ Countly.instance().views().addSegmentationToViewWithName(viewName, viewSegmentat
 Countly.instance().deviceId().getType() // will return DeviceIdType enum</code></pre>
 <h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
-  The SDK allows you to change the Device ID at any point in time. You can use
-  any of the following two methods to changing the Device ID, depending on your
-  needs.
+  <span>You can change the device ID of an user with setID method:</span>
 </p>
-<div class="callout callout--warning">
+<pre><code class="java">Countly.instance().deviceId().setID("newId");</code></pre>
+<p>
+  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <span>If current stored ID is <code>DeviceIdType.SDK_GENERATED</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>DeviceIdType.SDK_GENERATED</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span>If the current stored ID is <code>DeviceIdType.DEVELOPER_SUPPLIED</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
+<div class="callout callout--info">
   <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
+    <span>If you need a more complicated logic or using the SDK version 24.1.0 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/28213661170073-Java-23-10#h_01HABV0K6CZSJPRK4RYG23YH7F" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
-<p class="anchor-heading">
-  <strong>Changing Device ID with server merge</strong>
-</p>
 <p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
-</p>
-<pre><code class="java hljs">Countly.instance().deviceId().changeWithMerge("New Device Id");</code></pre>
-<p class="anchor-heading">
-  <strong>Changing Device ID without server merge</strong>
-</p>
-<p>
-  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
-</p>
-<pre><code class="java hljs">Countly.instance().deviceId().changeWithoutMerge("New Device Id");</code></pre>
-<p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
-</p>
-<p>
-  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+  <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
 </p>
 <h2 id="h_01HD3QC31PBFGVZSRG6906NQGS">Device ID Generation</h2>
 <p>
@@ -847,7 +842,11 @@ Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
 </p>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widgets</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -855,8 +854,8 @@ Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
-  All widgets have their generated URL to be shown in a webview and should be
-  approached using the same methods.
+  All widgets have their generated URL to be shown in a webview and should be approached
+  using the same methods.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -864,7 +863,8 @@ Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <h3 id="h_01HD3PX5GQ390KDHFCH1FD6ER9">Getting Available Widgets</h3>
