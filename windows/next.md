@@ -462,7 +462,7 @@ Countly.Instance.Init(cc);</code></pre>
 </ul>
 <div class="callout callout--info">
   <p>
-    <span>If you need a more complicated logic or using the SDK version 24.1.1 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/360037754691-Windows#h_01HABTXQF9N0EKQNJ65GX4DMRA" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span>If you need a more complicated logic or using the SDK version 24.1.1 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/27983325097241-Windows-23-12#h_01HABTXQF9N0EKQNJ65GX4DMRA" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
 <p>
