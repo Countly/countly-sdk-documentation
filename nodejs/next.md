@@ -333,7 +333,7 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
 </ul>
 <div class="callout callout--info">
   <p>
-    <span>If you need a more complicated logic or using the SDK version 24.10.0 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/360037442892-NodeJS#h_01HABTSEDGC162BVG9Y5PZY0YE" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span>If you need a more complicated logic or using the SDK version 24.10.0 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/16515548811676-NodeJS-22-06#h_01HABTSEDGC162BVG9Y5PZY0YE" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
 <p>
