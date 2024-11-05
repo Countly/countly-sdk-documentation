@@ -893,51 +893,31 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code><code class="java"></code></pre>
 <h2 id="h_01HAVQDM5TPKRQAZGXW73GBM90">Changing Device ID</h2>
 <p>
-  In case your application authenticates users, you might want to change the ID
-  to the one in your backend after he has logged in. This helps you identify a
-  specific user with a specific ID on a device he logs in, and the same scenario
-  can also be used in cases this user logs in using a different way (e.g another
-  tablet, another mobile phone, or web). In this case, any data stored in your
-  Countly server database associated with the current device ID will be transferred
-  (merged) into user profile with device id you specified in the following method
-  call:
+  <span>You can change the device ID of an user with setID method:</span>
 </p>
-<div class="callout callout--warning">
+<pre><code class="java">Countly.sharedInstance().deviceId().setID("newId");</code></pre>
+<p>
+  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <span>If current stored ID is <code>DeviceIdType.OPEN_UDID</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>DeviceIdType.OPEN_UDID</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span>If the current stored ID is <code>DeviceIdType.DEVELOPER_SUPPLIED</code> or <code>DeviceIdType.TEMPORARY_ID</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
+<div class="callout callout--info">
   <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
+    <span>If you need a more complicated logic or using the SDK version 24.4.1 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/34483587332121-Android-24-4#h_01HAVQDM5TPKRQAZGXW73GBM90" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
-<pre><code class="java">Countly.sharedInstance().deviceId().changeWithMerge("new device ID")</code></pre>
 <p>
-  In other circumstances, you might want to track information about another separate
-  user that starts using your app (changing apps account), or your app enters a
-  state where you no longer can verify the identity of the current user (user logs
-  out). In that case, you can change the current device ID to a new one without
-  merging their data. You would call:
-</p>
-<pre><code class="java">Countly.sharedInstance().deviceId().changeWithoutMerge("new device ID")</code></pre>
-<p>
-  Doing it this way, will not merge the previously acquired data with the new id.
-</p>
-<p>
-  Do note that every time you change your deviceId without a merge, it will be
-  interpreted as a new user. Therefore implementing id management in a bad way
-  could inflate the users count by quite a lot.
-</p>
-<p>
-  The worst would be to not merge device id on login and generate a new random
-  ID on logout. This way, by repeatedly logging in and out one could generate an
-  infinite amount of users.
-</p>
-<p>
-  So the recommendation is (depending on your apps use case) either to keep the
-  same deviceId even if the user logs out or to have a predetermined deviceId for
-  when the users on the specific device logs out. The first method would not inflate
-  the user count, but not viable for single device, multiple users use case. The
-  second would create a "multi-user" id for every device and possibly slightly
-  inflate the user count.
+  <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
 </p>
 <h2 id="h_01HAVQDM5TY12M81SJ1NSXT2E2">Temporary Device ID</h2>
 <p>
@@ -968,10 +948,10 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
   You may want to see what device id Countly is assigning for the specific device
   and what the source of that id is. For that, you may use the following calls.
   The id type is an enum with the possible values of: "DEVELOPER_SUPPLIED", "OPEN_UDID",
-  "ADVERTISING_ID".
+  "TEMPORARY_ID".
 </p>
 <pre><code class="java">String usedId = Countly.sharedInstance().deviceId().getID();
-Type idType = Countly.sharedInstance().deviceId().getType();</code></pre>
+DeviceIdType idType = Countly.sharedInstance().deviceId().getType();</code></pre>
 <h1 id="h_01HAVQDM5TNGS4ZR4109W4S5TK">Push Notifications</h1>
 <div class="callout callout--info">
   <p>
