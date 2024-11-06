@@ -442,37 +442,62 @@ cc.developerProvidedDeviceId = "use@email.com";
 Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HABTXQF9N0EKQNJ65GX4DMRA">Changing Device ID</h2>
 <p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+  <span>You can change the device ID of a user with SetId method:</span>
 </p>
-<div class="callout callout--warning">
+<pre><code class="csharp">await Countly.Instance.SetId("new-device-id");</code></pre>
+<p>
+  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <span>If current stored ID is <code>DeviceIdType.SDKGenerated</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>DeviceIdType.SDKGenerated</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span>If the current stored ID is <code>DeviceIdType.DeveloperProvided</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
+<div class="callout callout--info">
   <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
+    <span>If you need a more complicated logic or using the SDK version 24.1.1 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/27983325097241-Windows-23-12#h_01HABTXQF9N0EKQNJ65GX4DMRA" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
-<pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", true);</code></pre>
 <p>
-  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
-</p>
-<pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", false);</code></pre>
-<p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
-</p>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">If the device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
-  </p>
-</div>
-<p>
-  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+  <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
 </p>
 <h2 id="h_01HABTXQF9503C704R080YHTW2">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.
 </p>
-<pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
+<pre><code class="csharp">string usedId = await Countly.GetDeviceId();</code></pre>
+<p>SDK record the type of an id. These types are:</p>
+<ul>
+  <li>
+    <code>DeveloperProvided</code>
+  </li>
+  <li>
+    <code>SDKGenerated</code>
+  </li>
+</ul>
+<p>
+  DeveloperProvided device ID means this ID was assigned by your internal logic.
+  SDKGenerated device ID means the ID was generated randomly by the SDK.
+</p>
+<p>
+  You can get the device ID type of a user by calling the GetDeviceIDType function:
+</p>
+<pre><code class="csharp">var idType = Countly.Instance.GetDeviceIDType();</code></pre>
+<p>
+  You can use the DeviceIdType enums to evaluate the device ID type you retrieved:
+</p>
+<pre><code class="csharp">var idType = Countly.Instance.GetDeviceIDType();
+if (idType.Equals(Countly.DeviceIdType.DeveloperProvided)) {
+  // ...do something
+}</code></pre>
 <h1 id="h_01HABTXQF9MFA0FMGZM3NA6M7R">User Location</h1>
 <p>
   While integrating this SDK into your application, you might want to track your
