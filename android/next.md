@@ -2055,7 +2055,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
 Countly.sharedInstance().userProfile().setProperties(Map&lt;String, Object&gt; userProperties);
 
 // Provide single user property as key and value
-Countly.sharedInstance().userProfile().setProperties(String key, Object value);</code></pre>
+Countly.sharedInstance().userProfile().setProperty(String key, Object value);</code></pre>
 <p>
   These methods allow you to set predefined fields or any custom fields you wish
   to include. While saving User Profile data by calling
