@@ -277,35 +277,68 @@ Countly.end_event({
 <pre><code class="javascript">//Provide view segments
 Countly.track_view("viewname", {theme:"red", mode:"fullscreen"});</code></pre>
 <h1 id="h_01HABTSEDGC162BVG9Y5PZY0YE">Device ID Management</h1>
+<h2 id="h_01JBXH7RBDWXGCPS8T8DQP91FE">Retrieving Current Device ID</h2>
 <p>
-  In some cases you may want to change the ID of the user/device that you provided
-  or Countly generated automatically, for example, when user was changed.
+  Countly offers a convenience method (<code>get_device_id</code>) for you to get
+  the current user's device ID:
 </p>
-<pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
-<div class="callout callout--warning">
+<pre><code class="javascript">var id = Countly.get_device_id();</code></pre>
+<p>SDK records the type of an ID. These types are:</p>
+<ul>
+  <li>
+    <code>DEVELOPER_SUPPLIED</code>
+  </li>
+  <li>
+    <code>SDK_GENERATED</code>
+  </li>
+</ul>
+<p>
+  <code>DEVELOPER_SUPPLIED</code> device ID means this ID was assigned by your
+  internal logic. <code>SDK_GENERATED</code> device ID means the ID was generated
+  randomly by the SDK.
+</p>
+<p>
+  You can get the device ID type of a user by calling the
+  <code>get_device_id_type</code> function:
+</p>
+<pre><code class="javascript">var idType = Countly.get_device_id_type();</code></pre>
+<p>
+  You can use the <code>DeviceIdType</code> enums to evaluate the device ID type
+  you retrieved:
+</p>
+<pre><code class="javascript">var idType = Countly.get_device_id_type();
+if (idType === Countly.DeviceIdType.SDK_GENERATED) {
+  // ...do something
+}
+</code></pre>
+<h2 id="h_01JBXH7RBD0G8QM2FV7EBE6488">Changing Device ID</h2>
+<p>
+  <span>You can change the device ID of a user with set_id method:</span>
+</p>
+<pre><code class="javascript">Countly.set_id("newId");</code></pre>
+<p>
+  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
+</p>
+<ul>
+  <li>
+    <p>
+      <span>If current stored ID is <code>SDK_GENERATED</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>SDK_GENERATED</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span>If the current stored ID is <code>DEVELOPER_SUPPLIED</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
+<div class="callout callout--info">
   <p>
-    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+    <span>If you need a more complicated logic or using the SDK version 24.10.0 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/16515548811676-NodeJS-22-06#h_01HABTSEDGC162BVG9Y5PZY0YE" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
 <p>
-  In some cases, you may also need to change user's device ID in a way, that server
-  will merge data of both user IDs (existing and new ID you provided) on the server,
-  for e.g., when user used website without authenticating and have recorded some
-  data, and then authenticated and you want to change ID to your internal id of
-  this user, to keep tracking it across multiple devices.
+  <span>NOTE: The call will reject invalid device ID values. A valid value is not null, not undefined, of type string and is not an empty string.</span>
 </p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
-  </p>
-</div>
-<p>
-  This call will merge any data recorded for current ID and save it as user with
-  new provided ID.
-</p>
-<pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
 <h1 id="h_01HABTSEDG6E0VY2C0FHBGVMGV">Remote Config</h1>
 <p>
   <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span><span style="font-weight: 400;"></span>
