@@ -1751,7 +1751,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <ul>
   <li>Country code</li>
   <li>City name</li>
-  <li>Latitude and longitude values&nbsp;</li>
+  <li>Latitude and longitude values</li>
   <li>IP address</li>
 </ul>
 <p>
