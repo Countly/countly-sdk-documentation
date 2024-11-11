@@ -1966,258 +1966,244 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <p>
   The SDK's core utility for Remote Config and A/B testing is fetching some values
-  from the Server. Only the Server decides which values to serve.
+  from the server. Only the server decides which values to serve.
 </p>
+<h2 id="h_01JC374GVGQ2G5XGKDGATX3NE0">Remote Config</h2>
+<p>
+  Downloaded remote config values have to be stored persistently.
+</p>
+<p>
+  Product Information:
+  <a href="https://support.countly.com/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener noreferrer">Product Documentation</a>
+</p>
+<h3 id="h_01JC3775J4KWS2R6NXM2YN3GHY">Exposed Methods</h3>
+<p>
+  <strong>Config Methods</strong>
+</p>
+<pre>CountlyConfig.<strong>enableRemoteConfigAutomaticTriggers</strong>()</pre>
+<pre>CountlyConfig.<strong>enableRemoteConfigValueCaching</strong>()</pre>
+<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback)</pre>
+<p>
+  <strong>Instance Methods</strong>
+</p>
+<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToOmit, callback)</pre>
+<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude, callback)</pre>
+<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback)</pre>
+<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getValues</strong>()</pre>
+<pre>RCData CountlyInstance.<strong>getValue</strong>(key)</pre>
+<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback)</pre>
+<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback)</pre>
+<pre>CountlyInstance.<strong>clearAll</strong>()</pre>
+<h3 id="h_01JC39FGVSK8R4RHW2XC71GRWF">Implementation Details</h3>
+<p>
+  For config method <strong>enableRemoteConfigAutomaticTriggers</strong>
+</p>
+<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()<br><br>// Logic<br><br></strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cache cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cache cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
+<p>
+  For config method <strong>enableRemoteConfigValueCaching</strong>
+</p>
+<pre>CountlyConfig<strong>.enableRemoteConfigValueCaching()<br><br>// Logic<br><br></strong>Enables caching of remote config values. When this is enabled all remote-config values<br>are not deleted.</pre>
+<p>
+  For config method <strong>remoteConfigRegisterGlobalCallback</strong>
+</p>
+<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback)<br><br><strong>// Valid values<br></strong>Value is not nullable, when null value is given it warns<br><br><strong>// Logic<br></strong>Notifies the developer about remote config values update process. <br>- If any error is encountered while downloading, the error is returned<br>- On a successful download, downloaded values are returned</pre>
+<p>
+  The callback's signature is <strong>RCDownloadCallback. </strong>And its callback
+  method is
+</p>
+<pre>RCDownloadCallback {
+  void callback(RequestResult requestResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues)
+}
+
+// <strong>Parameters</strong><br>- requestResult, one of the values <strong>Success, NetworkIssue, Error</strong> indicates result of the download<br>- error, error message. If it is null, it means there is no error<br>- fullValueUpdate, "true" - all values updated, "false" - a subset of values updated<br>- downloadedValues, the whole downloaded RC set, the delta<br><br>RCData will be mentioned in the Storage section.</pre>
+<p>
+  For instance method <strong>downloadAllKeys</strong>
+</p>
+<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback)<br><br><strong>// Valid values</strong><br>All nullable, only non null values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>Before preparing the request, the function will do some checks<br>- If no device id exists, the call is omitted. Given and registered callbacks are notified.<br>- If temporary device id enabled or request queue is containing temporary id requests, <br>  Given and registered callbacks are notified.<br><br>After those checks, SDK will prepare the fetch request using the device metrics.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given and registered <br>  callbacks are notified.<br><br>The function will parse the response and notify the given and registered callbacks.<br>And the remote config store is updated. We clear all values. If remote config value caching<br>is enabled we cache them rather than clearing them.</pre>
+<p>
+  For instance method <strong>downloadOmittingKeys</strong>
+</p>
+<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToInclude, callback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToOmit is not empty, a parameter will be added to omit some keys to the remote <br>config fetch request. The server will return all values except omitted ones.<br>- If the keysToOmit is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
+<p>
+  For instance method <strong>downloadSpecificKeys</strong>
+</p>
+<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude, callback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToInclude is not empty, a parameter will be added to include some keys to the remote <br>config fetch request. Server will return only specified values.<br>- If the keysToInclude is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
+<p>
+  For instance method <strong>getValues</strong>
+</p>
+<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getValues</strong>()<br><br><strong>// Logic<br></strong>This will get all saved remote config values from the storage</pre>
+<p>
+  For instance method <strong>getValue</strong>
+</p>
+<pre>RCData CountlyInstance.<strong>getValue</strong>(key)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists</pre>
+<p>
+  For instance method <strong>registerDownloadCallback</strong>
+</p>
+<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will add the given callback to the internal callback list</pre>
+<p>
+  For instance method <strong>removeDownloadCallback</strong>
+</p>
+<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will remove given callback from the internal callback list</pre>
+<p>
+  For instance method <strong>clearAll</strong>
+</p>
+<pre>CountlyInstance.<strong>clearAll</strong>()<br><br><strong>// Logic<br></strong>This will clear all remote config storage; caching is not important here</pre>
+<h4 id="h_01JCD7PS7J57JCR69A9CDTY7F9">Networking and Params</h4>
+<p>Remote config fetch request might consist of 4 parameters:</p>
+<pre>keys: json array of specific keys<br>omit_keys: json array of omitted keys<br>method: this is always "rc"<br>metrics: this is session metrics and they are added if session consent is given</pre>
+<p>
+  method parameters is always sent with remote config fetch request.
+</p>
+<p>keys and omit_keys are optional.</p>
+<p>
+  Remote config fetch requests are sent to the "<strong>/i</strong>" endpoint.
+</p>
+<p>
+  Remote config fetch requests are <strong>directly</strong> sent to the server,
+  they will not be added to the request queue.
+</p>
+<pre>// <strong>Common way to send all<br></strong>serverURL + /i? +<br>method=rc +<br>&amp;keys=["url", "limit"] +<br>&amp;omit_keys=["money"] +<br>&amp;metrics=session metrics + // if session consent is given<br>...remaining common params<br><br>// <strong>No key parameters only required ones<br></strong>serverURL + /i? +<br>method=rc +<br>&amp;metrics=session metrics + // if session consent is given<br>...remaining common params</pre>
+<p>Response would look like this:</p>
+<pre>{
+  "key": "value",
+  "key1": "value2"
+}</pre>
+<h4 id="h_01JCD7QBDDJ36X6TRZZNNEAB80">Storage</h4>
+<p>
+  Remote config values are stored persistently. And they should have a structure.
+</p>
+<p>
+  There might be a remote config key-value store structure that is keeping track
+  of the remote config values.
+</p>
+<p>
+  Any key-value storage is accepted. For reference JSON could be used.
+</p>
+<pre><code class="json">{
+  "key": {
+    "v": "value",
+    "c": 0
+  }
+}</code></pre>
+<p>
+  c parameter indicates cache. When a remote config value is cached, c value must
+  be 0. 1 means it is fresh, new value.<br>
+  RCData object contains two fields:
+</p>
+<pre>value: any type<br>isCurrentUsersData: boolean</pre>
+<p>
+  isCurrentUsersData parameter is calculated like this; if the value is cached
+  it is old user's data, false. If the value is fresh, just downloaded, then it
+  is true.
+</p>
+<h4 id="h_01JCD7QN4C8JCD0GYHPF4XAXPM">Consent</h4>
+<p>
+  The feature depends on "remote-config" consent, and "session" consent affects
+  the remote config fetch request.
+</p>
+<p>
+  If consent is given, it will trigger remote config values to be downloaded if
+  consents are enabled.
+</p>
+<p>
+  If consent is revoked and remote config storage is not cleared, they will stay
+  as they are.
+</p>
+<h2 id="h_01JCDT069MW1MNJDDRWGWZBRWT">A/B Testing</h2>
 <p>
   Users can participate in AB tests. For that to happen, they must enroll in those
   tests (keys) with specific requests.
 </p>
 <p>
-  All of these calls should be behind a "RemoteConfig" interface if possible. If
-  that is impossible, all function calls should start with "RemoteConfig."
+  Product Information:
+  <a href="https://support.countly.com/hc/en-us/articles/4416496362393-A-B-Testing" target="_blank" rel="noopener noreferrer">Product Documentation</a>
 </p>
-<h2 id="01H821RTQ5NCG4G3EGFYK9M2B9">Remote Config API</h2>
+<h3 id="h_01JCDT069MHCV9J7DAJVES43TT">Exposed Methods</h3>
 <p>
-  Downloaded remote config values have to be stored persistently.
+  <strong>Config Methods</strong>
 </p>
-<h3 id="01H821RTQ5XR9Z3SNTGFMEWVFE">Consent</h3>
+<pre>CountlyConfig.<strong>enrollABonRCDownload</strong>()</pre>
 <p>
-  This feature depends on the "remote-config" consent if consents are enabled.
+  <strong>Instance Methods</strong>
 </p>
+<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getAllValuesAndEnroll</strong>()</pre>
+<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key)</pre>
+<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys)</pre>
+<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys)</pre>
+<pre>Map&lt;String, String[]&gt; CountlyInstance.<strong>testingGetAllVariants</strong>()</pre>
+<pre>Map&lt;String, ExperimentInformation&gt; CountlyInstance.<strong>testingGetAllExperimentInfo</strong>()</pre>
+<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key)</pre>
+<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback)</pre>
+<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback)</pre>
+<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName, variantName, completionCallback)</pre>
+<h3 id="h_01JCDT069ME05YAEQEE24S86TM">Implementation Details</h3>
 <p>
-  When it is given, it would trigger RC values to download (if enabled).
+  For config method <strong>enrollABonRCDownload</strong>
 </p>
+<pre>CountlyConfig<strong>.enrollABonRCDownload()<br><br>// Logic<br><br></strong>Enables automatic enrolling to the remote config keys while fetching.<br>This will trigger adding a parameter to the remote config fetch request<code></code></pre>
 <p>
-  When it is removed, the RC storage structure should be cleared.
+  For instance method <strong>getAllValuesAndEnroll</strong>
 </p>
-<h3 id="01H821RTQ5FJAHQV06KB98665R">Data Structures, Notes</h3>
-<h4 id="01H821RTQ5B9DV6XNVZG6Y4K3J">RCDownloadCallback</h4>
+<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getAllValuesAndEnroll</strong>()<br><br><strong>// Logic<br></strong>This will get all saved remote config values from the storage and<br>will call the enrollIntoABTestsForKeys method.</pre>
 <p>
-  The <code>RCDownloadCallback</code> callback is called when RC values are downloaded.
-  Its return values:
+  For instance method <strong>getValueAndEnroll</strong>
 </p>
-<ul>
-  <li>
-    Result/error: Enum (<code>RequestResult</code>)
-  </li>
-  <li>Error message: String. "null" if there is no error.</li>
-  <li>
-    Full Update: Boolean ("true" - all values updated, "false" - a subset of
-    values updated)
-  </li>
-  <li>
-    Updated values: Map&lt;String, Object&gt; (the whole downloaded RC set, the
-    delta)
-  </li>
-</ul>
-<pre><code>RCDownloadCallback {
-  void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues)
-}</code><code></code></pre>
-<h4 id="01H821RTQ5RG6SJ3G7MPTGQTC7">RCData</h4>
+<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists and<br>will call the enrollIntoABTestsForKeys method for the specified key if the key exist.</pre>
 <p>
-  RCData Class is returned when retrieving downloaded values. The
-  <code><span>isCurrentUsersData</span></code> field indicates if it is the cached
-  data of the previous user or an up-to-date value of the current user:
+  For instance method <strong>enrollIntoABTestsForKeys</strong>
 </p>
-<pre><code>Class RCData {
-  Object value;
-  Boolean <span>isCurrentUsersData</span>;
-}</code></pre>
-<h4 id="01H821RTQ50TZ9KN1AT95AFYE3">Other Enums</h4>
-<p>RequestResult:</p>
-<pre><code>Enum RequestResult { Error, Success, NetworkIssue }</code></pre>
-<h4 id="01H821RTQ5JJ2K18R0TP1E444F">Automatic Download Triggers</h4>
+<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys)<br><br><strong>// Valid values</strong><br>Only non null and not empty keys are accepted<br>Non valid keys are warned and ignored<br><br><strong>// Logic<br></strong>This call will enroll user to the AB tests for the specified keys.<br>- If keys are null or empty call will be omitted.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
 <p>
-  Certain events and features can trigger the download/re-download or caching/erasure
-  of RC values if automatic RC triggers are enabled:&nbsp;
+  For instance method <strong>exitABTestsForKeys</strong>
 </p>
+<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys)<br><br><strong>// Valid values</strong><br>Keys could be nullable<br><br><strong>// Logic<br></strong>This call will exit user from the AB tests for the specified keys.<br>- If keys are null or keys are empty, it means exiting from all of AB tests.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
 <p>
-  <strong>SDK Init</strong> -&nbsp;We download the RC values at init.
+  For instance method <strong>testingGetAllVariants</strong>
 </p>
+<pre>Map&lt;String, String[]&gt; CountlyInstance.<strong>testingGetAllVariants</strong>()<br><br><strong>// Logic<br></strong>Before using this function, variants must be downloaded.<br>This function will return all variants.</pre>
 <p>
-  <strong>Temp ID </strong>- Entering temp ID mode should clear the RC cache. Coming
-  out of temp ID mode should download RC values again.
+  For instance method <strong>testingGetAllExperimentInfo</strong>
 </p>
+<pre>Map&lt;String, ExperimentInfo&gt; CountlyInstance.<strong>testingGetAllExperimentInfo</strong>()<br><br><strong>// Logic<br></strong>Before using this function, experiment informations must be downloaded.<br>This function will return all experiment informations.<br><br>ExperimentInfo will be mentioned in the Storage section.</pre>
 <p>
-  <strong>Consent&nbsp;</strong>- Receiving "remote-config" consent should trigger
-  RC values to download. Removing that consent should clear the stored values.
+  For instance method <strong>testingGetVariantsForKey</strong>
 </p>
+<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>Before using this function, variants must be downloaded.<br>This function will return the variants for the given key.<br>- If no variants found for the specified key, null is returned.</pre>
 <p>
-  <strong>Device ID Change</strong> -&nbsp;Changing the device ID without merge
-  should clear cached RC values. And re-download them for the new ID.
+  For instance method <strong>testingDownloadVariantInformation</strong>
 </p>
-<h4 id="01H821RTQ5Q5HTHJA5V4H05D70">Value Caching Mechanism</h4>
+<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download variants from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the variant fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all variant with the fresh downloaded values.</pre>
 <p>
-  The value caching mechanism tracks which values belong to which user in case
-  of a device ID change.
+  The completionCallback's signature is <strong>RCVariantCallback. </strong>And
+  its callback method is
 </p>
+<pre>RCVariantCallback {
+  void <strong>callback</strong>(<strong>RequestResult</strong> requestResult, <strong>String</strong> error)
+}
+
+<strong>// Parameters</strong><br>- requestResult, one of the values <strong>Success, NetworkIssue, Error</strong> indicates result of the download<br>- error, error message. If it is null, it means there is no error</pre>
 <p>
-  If the device ID was changed, but the RC values were not re-downloaded or partially
-  re-downloaded, this mechanism shows to which user (current or previous) the values
-  belong.
+  For instance method <strong>testingDownloadExperimentInformation</strong>
 </p>
-<h3 id="01H821RTQ5ES887SBRTBRD4XSJ">Init Time Configuration</h3>
+<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download experiments from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the experiment fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all experiments with the fresh downloaded values.</pre>
 <p>
-  Config flag enables RC values to be downloaded automatically on specific automatic
-  triggers. Disabled by default.
+  For instance method <strong>testingEnrollIntoVariant</strong>
 </p>
-<pre><code>config.enableRemoteConfigAutomaticTriggers()</code></pre>
+<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName, variantName, completionCallback)<br><br><strong>// Valid values</strong><br>keyName and variantName are not nullable and not empty. <br>completionCallback is nullable.<br>If non valid values are given they are warned and call will be omitted.<br><br><strong>// Logic<br></strong>This function do some checks before enrolling into specified variant<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the enrolling into variant request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>If the request is successful, the function will trigger downloading remote config values<br>with clearing all remote config values from the storage. And the callback is notified with<br>a Success.</pre>
+<h4 id="h_01JCDT069M3VGXFQTBBR9XDPR0">Networking and Params</h4>
 <p>
-  There should be a config flag that would automatically enroll a user to available
-  experiments while RC values are downloaded. Disabled by default.
+  If the configuration <strong>enrollABonRCDownload</strong> is called the SDK
+  will add a parameter to the remote config values fetch request:
+  <strong>oi=1</strong>
 </p>
-<pre><code>config.enrollABOnRCDownload()</code></pre>
+<pre>// <strong>a remote config fetch request</strong><br>serverURL + /i? +<br>method=rc +<br>...other remote config fetch request params if any +<br><strong>&amp;oi=1</strong> +<br>...remaining common params</pre>
 <p>
-  Registering the callback function that would be called when the RC is downloaded.
-  This can be called multiple times, all callbacks would be notified.
+  Here is a casual fetching all variants request, it does not have any other parameter
+  than method:
 </p>
-<pre><code>config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback)</code></pre>
-<p>
-  Enable/disable caching of previous user's RC values. It is disabled by default.
-  If enabled, old values must be kept after the device ID change, and the metadata
-  must be updated to show <code><span>isCurrentUsersData</span></code>&nbsp;as
-  false .&nbsp;
-</p>
-<pre><code>config.enableRemoteConfigValueCaching()</code></pre>
-<p>
-  All cached values must be cleared when receiving results for the next full update.
-  In case of a partial update only the downloaded values must be updated and the
-  rest would still have their <code><span>isCurrentUsersData</span></code>&nbsp;as
-  false.
-</p>
-<h3 id="01H821RTQ5SS6X6T28B80XFSBX">Usage</h3>
-<p>
-  SDK fetches all or a partial amount of RC keys from the Server.
-</p>
-<p>Downloaded values are saved persistently.</p>
-<h4 id="downloading-values" class="anchor-heading">Downloading Keys Manually</h4>
-<p>
-  Downloading has three modes: fetch all keys, fetch given keys, or fetch except
-  given keys:
-</p>
-<p>
-  "Download all keys" makes the main API call without optional parameters and stores
-  the downloaded values:
-</p>
-<pre><code>Countly.RemoteConfigDownloadKeys(RCDownloadCallback callback)</code></pre>
-<p>
-  "Download given keys" makes the main API call with the optional parameter 'keys.'
-  The developer should provide these keys as String Array. Then these values must
-  be passed as params to the request URL (&amp;keys=["key1", "key2"...])
-</p>
-<pre><code>Countly.RemoteConfigDownloadSpecificKeys(String[] keys, RCDownloadCallback callback)</code></pre>
-<p>
-  "Download except for given keys" makes the main API call with the optional parameter
-  'omit_keys.' The developer should provide these keys as String Array. Then these
-  values must be passed as params to the request URL (&amp;omit_keys=["key1", "key2"...])
-</p>
-<pre><code>Countly.RemoteConfigDownloadOmittingKeys(String[] omitKeys, RCDownloadCallback callback)</code></pre>
-<p>
-  All of those calls target the following server endpoint, but if auto enrolling
-  flag is set (<code>enrollABOnRCDownload</code>) then the opt in parameter must
-  be set to 1 and added the the URL formed (like '&amp;oi=1'):
-</p>
-<pre><code>o/sdk?method=rc&amp;metrics=...&amp;app_key=app_key&amp;device_id=device_id...(optional params: keys, omit_keys, oi)</code></pre>
-<p>
-  When working correctly returns a JSON Object of key-value pairs like this:
-</p>
-<pre><code>{
-  "key1": "val1",
-  "key2": "val2"
-  ....
-}</code></pre>
-<h4 id="01H821RTQ5SM62RASYDYGQB164">Add/Remove Download Callback Listeners</h4>
-<p>Dev should be able to register new callbacks:</p>
-<pre><code>Countly.RemoteConfigRegisterDownloadCallback(RCDownloadCallback callback)</code></pre>
-<p>Or remove a registered callback:</p>
-<pre><code>Countly.RemoteConfigRemoveDownloadCallback(RCDownloadCallback callback)</code></pre>
-<h4 id="01H821RTQ5CCWNJQ3DKFA72GM3">Getting Values</h4>
-<p>
-  Gets the map that contains all values from the storage, it returns Map&lt;String,
-  RCData&gt;.
-</p>
-<pre><code>Countly.RemoteConfigGetAllKeys()</code></pre>
-<p>
-  Gets values for a specific key from the map of all values downloaded. It returns
-  a RCData. If the value doesn't exist then&nbsp;
-</p>
-<pre><code>Countly.RemoteConfigGetKey(String key)</code></pre>
-<h4 id="01H821RTQ58T3FQCAYZEFRR9T2">Clear All Values</h4>
-<p>A call to wipe the persistently stored RC values.</p>
-<pre><code>Countly.RemoteConfigClearAll()</code></pre>
-<h2 id="01H821RTQ5HSKPYE5WM477Y3D8">A/B Testing API</h2>
-<h3 id="01H821RTQ5AD78Z5HMACAPMCTQ">Consent, Data Structures, Notes</h3>
-<p>This feature depends on the "remote-config" consent.</p>
-<p>When it is given, nothing should be done.</p>
-<p>When it is removed, nothing should be done.</p>
-<h3 id="01H821RTQ5KNF0AWWEQDFPYRH5">Usage</h3>
-<p>
-  To enroll a user into an AB test there should be a call that takes a list of
-  keys that were used in the app. This would indicate that if any of those were
-  used for an AB test, that the user should be enrolled in them.
-</p>
-<p>
-  <code>Countly.RemoteConfigEnrollIntoABTestsForKeys(String[] keys)</code>
-</p>
-<p>
-  A user can be enrolled to some keys (["key1","key2"...]) with this API:
-</p>
-<pre><code>o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id</code></pre>
-<p>This should return a JSON Object like this:</p>
-<pre><code>{"result": "Successfully enrolled in ab tests"}</code></pre>
-<p>
-  There should be a call that would remove the user from any AB tests that would
-  involve the given keys.
-</p>
-<pre><code>Countly.RemoteConfigExitABTestsForKeys(String[] keys)</code></pre>
-<p>
-  To remove a user from some or all A/B tests, the following API is used:
-</p>
-<pre><code>o/sdk?method=ab_opt_out&amp;app_key="APP_KEY"&amp;device_id=DEVICE_ID (optional param: keys)</code></pre>
-<p>
-  If an optional parameter with keys (["key1", "key2"...]) is not provided, the
-  user is removed from all experiments.
-</p>
-<h2 id="01H821RTQ5T6J0CK0BXDEXMHAD">A/B Testing Variant Control API</h2>
-<p>
-  The intended use for this API is only for app testing. It is not intended to
-  be used in production environments. The function names have a "Testing" prefix
-  to indicate that they should be only used for testing.
-</p>
-<p>Downloaded variant values are stored only in memory.</p>
-<h3 id="01H821RTQ5Z4XV1DNJQH48J0G1">Consent, Data Structures, Notes</h3>
-<p>This feature depends on the "remote-config" consent.</p>
-<p>When it is given, nothing should be done.</p>
-<p>
-  When it is removed, the variant storage structure should be cleared.
-</p>
-<p>
-  The <code>RCVariantCallback</code> callback is called when AB variants are downloaded.
-  Its return values:
-</p>
-<ul>
-  <li>
-    Result/error: Enum&nbsp;(<code>RequestResult</code>). This enum's values
-    are described in the RemoteConfig section.
-  </li>
-  <li>Error message: String. "null" if there is no error.</li>
-</ul>
-<pre><code>RCVariantCallback {
-  void callback(RequestResult rResult, String error)
-}</code></pre>
-<h3 id="01H821RTQ6ABMG23H27TC54FHZ">Init Time Configuration</h3>
-<p>There are no init time configuration options.</p>
-<h3 id="01H821RTQ6MP3FM0CCD8KZD2RB">Usage</h3>
-<h4 id="01H821RTQ6Z2Z3971EDEPH2JF8">Download Variant Information</h4>
-<p>
-  Initiate the network request for fetching the variant values from the server.
-  The end result would be stored in memory.
-</p>
-<pre><code>Countly.RemoteConfig.TestingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
-<p>The main server API endpoint:</p>
-<pre><code>o/sdk?method=ab_fetch_variants&amp;app_key="APP_KEY"&amp;device_id=DEVICE_ID</code></pre>
-<p>This would return a JSON Object like this:</p>
-<pre><code>{
+<pre>// <strong>a variants fetch request</strong><br>serverURL + /i? +<br>method=ab_fetch_variants +<br>...remaining common params</pre>
+<p>And the response would look like this:</p>
+<pre><code class="json">{
   "key1": [
     {
       "name": "variant1",
@@ -2236,36 +2222,68 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   ]
 }</code></pre>
 <p>
-  Here this object should be parsed into a Map&lt;String, String[]&gt; like this
-  and saved into memory:
+  Here is a casual fetching all experiment informations request, it does not have
+  any other parameter than method:
 </p>
-<pre><code>{
-  "key1": ["variant1", "variant2"],
-  "key2": ["variant1"]
-}</code></pre>
-<h4 id="01H821RTQ6KPQT2CMYCCPJA67B">Get All Variants</h4>
+<pre>// <strong>a experiment information fetch request</strong><br>serverURL + /i? +<br>method=ab_fetch_experiments +<br>...remaining common params</pre>
 <p>
-  A call that returns all variant information (stored in memory) parsed as Map&lt;String,
-  String[]&gt;.
+  And the response would look like this, this will return a json array:
 </p>
-<pre><code>Countly.RemoteConfig.TestingGetAllVariants()</code></pre>
-<h4 id="01H821RTQ6GK838Q42W091ZT1B">Get Variants For Key</h4>
+<pre><code class="json">[
+  {
+    "id": "experiment_id_1",
+    "name": "Experiment Name 1",
+    "description": "Description for Experiment 1",
+    "currentVariant": "variant_A",
+    "variants": {
+      "variant_A": {
+        "property_key_1": "property_value_1",
+        "property_key_2": "property_value_2"
+      },
+      "variant_B": {
+        "property_key_1": "property_value_3",
+        "property_key_2": "property_value_4"
+      }
+    }
+  },
+  {
+    "id": "experiment_id_2",
+    "name": "Experiment Name 2",
+    "description": "Description for Experiment 2",
+    "currentVariant": "variant_B",
+    "variants": {
+      "variant_A": {
+        "property_key_1": "property_value_5",
+        "property_key_2": "property_value_6"
+      },
+      "variant_B": {
+        "property_key_1": "property_value_7",
+        "property_key_2": "property_value_8"
+      }
+    }
+  }
+]</code></pre>
+<p>Here is a casual enrolling into a variant request:</p>
+<pre>// <strong>an enrolling into a variant request</strong><br>serverURL + /i? +<br>method=ab_enroll_variant +<br>&amp;key=keyName +<br>&amp;variant=variantName +<br>...remaining common params<code class="json"></code></pre>
+<h4 id="h_01JCDT069MRV9XMBV28T1W74H8">Storage</h4>
 <p>
-  Returns variant information (stored in memory) for a specific key. The return
-  type is String[]. If there is no entry for that key, it returns 'null'.
+  AB Testing is not stored persistently. Variants and experiment informations are
+  stored in memory in a key-value pair structure like Map.
 </p>
-<pre><code>Countly.RemoteConfig.TestingGetVariantsForKey(String valueKey)</code></pre>
-<h4 id="01H821RTQ6XV5YDRKJJRJ9ZXAS">Enroll User Into Variant</h4>
 <p>
-  Dev should provide the key and the variant strings for that to happen:
+  Variants are stored in a string and string array structured map where key is
+  remote config key name and value is variants name that is specified for that
+  remote config key.
 </p>
-<pre><code>Countly.RemoteConfig.TestingEnrollIntoVariant(String keyName, String variantName, RCVariantCallback completionCallback)</code><code></code></pre>
+<pre>// Key-value structure<br>key1: [variant1, variant2]<br>key2: [variant3, variant4]</pre>
 <p>
-  A user can be enrolled into a variant, and a key is given with this API:
+  Experiment informations are stored in a string and ExperimentInfo structured
+  map where key is experiment id and value is ExperimentInfo structure:
 </p>
-<pre><code>o/sdk?method=ab_enroll_variant&amp;app_key="APP_KEY"&amp;key=...&amp;variant=..&amp;device_id=DEVICE_ID</code></pre>
-<p>This should return a JSON Object like this:</p>
-<pre><code>{"result": "success"}</code></pre>
+<pre>ExperimentInfo:<br>  <strong>experimentID</strong>: id of the experiment, string<br>  <strong>experimentName</strong>: name of the experiment, string<br>  <strong>experimentDescription</strong>: description of the experiment, string<br>  <strong>currentVariant</strong>: active variant for that experiment, string<br>  <strong>variants</strong>: variants for that experiment which is a string and string array key-value<br>    structure like key is remote config key name and value is variants name that is <br>    specified for that remote config key</pre>
+<h4 id="h_01JCDT069M1ZTGCJP0WRJA6KHR">Consent</h4>
+<p>The feature depends on "remote-config" consent.</p>
+<p>If consent is revoked, in memory values are not cleared.</p>
 <h1 id="01H821RTQ689TVKC3WBTZ610X7">User Feedback</h1>
 <h2 id="01H821RTQ6WTDZPVQ9GDX3M5QR">Star Rating</h2>
 <p>
