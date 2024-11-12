@@ -854,7 +854,7 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
 </ul>
 <div class="callout callout--info">
   <p>
-    <span style="font-weight: 400;">If you need a more complicated logic or using the SDK version 24.4.0 then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438HCZ8FJVAE34W49KP" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span style="font-weight: 400;">If you need a more complicated logic or using the SDK version 24.4.0 then you will need to use this method mentioned <a href="#h_01JCGK0D278963WZKBW7ZWPTDN">here</a> instead.</span>
   </p>
 </div>
 <p>
@@ -1280,7 +1280,11 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 <div class="tabs"></div>
 <h2 id="h_01HABTQ438NWHSRCMAV4RJJVWX">Feedback Widgets</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -1295,7 +1299,8 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <p>
@@ -3060,6 +3065,45 @@ Countly.opt_in();</code></pre>
     with the initial setting <strong>ignore_visitor</strong> on the Countly init
     object.
   </p>
+</div>
+<h2 id="h_01JCGK0D278963WZKBW7ZWPTDN">Extended Device ID Management</h2>
+<p>
+  <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['change_id', "myNewId"]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
+  </div>
+</div>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
+<p>
+  <span style="font-weight: 400;">In some other cases, you may also need to change a user's device ID in a way so that that server will merge the data of both user IDs (both the new and existing ID you provided) on the server, e.g. when a user used the website without authenticating and recorded some data and then authenticated, and you would like to change the ID to your internal ID of this user to keep tracking it across multiple devices.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">This call will merge any data recorded for the current ID and save it as a user with a newly provided ID.</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(['change_id', "myNewId", true]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
+  </div>
 </div>
 <h1 id="h_01HABTQ43BRSHEYT75ZF6AN6F5">FAQ</h1>
 <h2 id="h_01HABTQ43BDS23GY6NZ32SFCZD">Can I integrate Countly Web SDK to my TypeScript Project</h2>

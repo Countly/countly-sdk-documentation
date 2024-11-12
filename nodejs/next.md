@@ -333,7 +333,7 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
 </ul>
 <div class="callout callout--info">
   <p>
-    <span>If you need a more complicated logic or using the SDK version 24.10.0 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/16515548811676-NodeJS-22-06#h_01HABTSEDGC162BVG9Y5PZY0YE" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span>If you need a more complicated logic or using the SDK version 24.10.0 and below then you will need to use this method mentioned <a href="#h_01JCGJTXJW98QZKXSCEWEG9DFN">here</a> instead.</span>
   </p>
 </div>
 <p>
@@ -947,8 +947,30 @@ Countly.report_conversion("MyCampaignID");</code></pre>
     storeRemove: function(key) {
         // your storeRemove method
     },
-};
-</code></pre>
+};</code></pre>
+<h2 id="h_01JCGJTXJW98QZKXSCEWEG9DFN">Extended Device ID Management</h2>
+<p>
+  In some cases you may want to change the ID of the user/device that you provided
+  or Countly generated automatically, for example, when user was changed.
+</p>
+<pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
+<p>
+  In some cases, you may also need to change user's device ID in a way, that server
+  will merge data of both user IDs (existing and new ID you provided) on the server,
+  for e.g., when user used website without authenticating and have recorded some
+  data, and then authenticated and you want to change ID to your internal id of
+  this user, to keep tracking it across multiple devices.
+</p>
+<p>
+  This call will merge any data recorded for current ID and save it as user with
+  new provided ID.
+</p>
+<pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
 <h1 id="h_01HNANT8H3P3W2PXB0CCY2FNBW">FAQ</h1>
 <h2 id="h_01HNANK3XPZ7429V5Z2FJ9MMZ5">What Information is Collected by the SDK?</h2>
 <p>

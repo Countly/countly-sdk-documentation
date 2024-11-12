@@ -1566,8 +1566,9 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    For SDK version 24.7.0 check out the previous documentation
-    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RP2DPTREKXC0Q8T6QA" target="_blank" rel="noopener noreferrer">here</a>
+    If you need a more complicated logic or using the SDK version 24.7.0 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGJ63WGHR3V9XZQT89JVYFQ">here</a>
   </p>
 </div>
 <p>
@@ -1595,8 +1596,9 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 <h2 id="h_01HAVHW0RPA7ADFJ2Y97HNPPH5">Temporary Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    For SDK version 24.7.0 check out the previous documentation
-    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RPA7ADFJ2Y97HNPPH5" target="_blank" rel="noopener noreferrer">here</a>
+    If you need a more complicated logic or using the SDK version 24.7.0 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGJD8TNSSNPV5DTYXEEFZX5">here</a>
   </p>
 </div>
 <p>
@@ -4907,6 +4909,104 @@ end</code></pre>
   requests would be removed from the request queue. For example, by setting this
   option to 10, the SDK would ensure that no request older than 10 hours would
   be sent to the server.
+</p>
+<h2 id="h_01JCGJ63WGHR3V9XZQT89JVYFQ">Extended Device ID Management</h2>
+<p>
+  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
+</p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">//change and merge on server
+[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
+
+//no replace and merge on server, device will be counted as new
+[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">//replace and merge on server
+Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
+
+//no replace and merge on server, device will be counted as new
+Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
+  </div>
+</div>
+<h3 id="h_01JCGJD8TNSSNPV5DTYXEEFZX5">
+  <span style="font-weight: 400;">Temporary Device ID</span>
+</h3>
+<p>
+  You can use temporary device ID mode for keeping all requests on hold until the
+  real device ID is set later. It can be enabled by setting
+  <code>deviceID</code> on initial configuration as<code>CLYTemporaryDeviceID</code>:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.deviceID = CLYTemporaryDeviceID;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.deviceID = CLYTemporaryDeviceID</code></pre>
+  </div>
+</div>
+<p>
+  Or by passing as an argument for <code>deviceID</code> parameter on
+  <code>changeDeviceIDWithoutMerge:</code>any time:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithoutMerge:CLYTemporaryDeviceID];<br></code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithoutMerge(CLYTemporaryDeviceID)</code></pre>
+  </div>
+</div>
+<p>
+  As long as the device ID value is <code>CLYTemporaryDeviceID</code>, the SDK
+  will be in temporary device ID mode and all requests will be on hold, but they
+  will be persistently stored.
+</p>
+<p>
+  Later, when the real device ID is set using
+  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span>
+  method, all requests which have been kept on hold until that point will start
+  with the real device ID:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span><span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;"></span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];<br><br>[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")<br><br>Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
+  </div>
+</div>
+<p>
+  <strong>Note:</strong> When setting real device ID while the current device ID
+  is <code>CLYTemporaryDeviceID</code>, with merge or without merge&nbsp;does not
+  matter.
 </p>
 <h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
   <span>FAQ</span>
