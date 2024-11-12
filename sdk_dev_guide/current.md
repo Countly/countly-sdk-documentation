@@ -1745,91 +1745,97 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <h1 id="01H821RTQ54ZMXGFNVRVMWY99P">Recording Location</h1>
 <p>
-  There are 4 location related parameters that can be set in a Countly SDK. It
-  is "country code" (in ISO format), "city", "location_gps" (GPS coordinates),
-  "IP" address. Their params in API requests are: "country_code", "city", "location",
-  "ip".
+  SDKs should be able to send location information to the server. This information
+  can include:
 </p>
+<ul>
+  <li>Country code</li>
+  <li>City name</li>
+  <li>Latitude and longitude values</li>
+  <li>IP address</li>
+</ul>
+<p>
+  Product Information:
+  <a href="https://support.countly.com/hc/en-us/articles/4431589003545-Analytics#h_01HAWAJ8QP38V2Q54RKAG9WRHN" target="_blank" rel="noopener noreferrer">Product Documentation</a>
+  |
+  <a href="https://support.countly.com/hc/en-us/articles/4404570865433-Utilities-Overview#h_01HCD3STXGT4RFT3MM4PF3XCCN" target="_blank" rel="noopener noreferrer">Other Uses</a>
+  |
+  <a href="https://support.countly.com/hc/en-us/articles/4403281285913-User-Visitor-Profiles#h_01HBPA9VW7HRTFJSMHZBA0X9X4" target="_blank" rel="noopener noreferrer">Further Server Logic</a>
+</p>
+<h2 id="h_01JBXS3NT6PCW066JQMKP7706E">
+  <span class="wysiwyg-font-size-x-large">Exposed Methods</span>
+</h2>
+<p id="h_01JBXS3RF5Y42D1CVQWRH29F5D">
+  <strong>Config Methods</strong>
+</p>
+<pre>CountlyConfig.<strong>setLocation</strong>(countryCode, city, gpsCoordinates, ipAddress)</pre>
+<pre>CountlyConfig.<strong>setDisableLocation</strong>()</pre>
+<p id="h_01JBXS3WH145H8APDN41QP6MCX">
+  <strong>Instance Methods</strong>
+</p>
+<pre>CountlyInstance.<strong>setLocation</strong>(countryCode, city, gpsCoordinates, ipAddress)</pre>
+<pre>CountlyInstance.<strong>disableLocation</strong>(countryCode, city, gpsCoordinates, ipAddress)</pre>
+<h2 id="h_01JBXS7XFB86RGGCVWHH4S7FW9">
+  <span class="wysiwyg-font-size-x-large">Implementation Details</span>
+</h2>
+<p>
+  For config method <strong>setLocation</strong>:
+</p>
+<pre>CountlyConfig.<strong>setLocation</strong>(countryCode, city, gpsCoordinates, ipAddress)<br><br><strong>// Valid values</strong><br>All non empty String values are valid.<br>All nullable. Only non null, non empty String values are used.<br>Non valid values are warned and ignored.<br><br><strong>// Logic</strong><br>Overrides the internal location cache with given values.<br>Warns if city is not coupled with country.</pre>
+<p>
+  For config method <strong>setDisableLocation</strong>:
+</p>
+<pre>CountlyConfig.<strong>setDisableLocation</strong>()<br><br><strong>// Logic</strong><br>Sets location tracking off (in a variable) regardless of setLocation.</pre>
+<p>
+  For instance method <strong>setLocation</strong>:
+</p>
+<pre>CountlyInstance.<strong>setLocation</strong>(countryCode, city, gpsCoordinates, ipAddress)<br><br><strong>// Valid values</strong><br>All non empty String values are valid.<br>All nullable. Only non null, non empty String values are used.<br>Non valid values are warned and ignored. <br><br><strong>// Logic</strong><br>Can be called before and after init.<br>Before init: <br>   - overrides the internal location cache with given values. <br>After init: <br>   - Re-enables location tracking (if disabled)<br>   - overrides the internal location cache with given values.<br>   - records a location request to request queue (omitting IP address) if:<br>      - (a session has started) <strong>and</strong> (auto sessions are on)<br>      - (no session consent given) <strong>or</strong> (auto sessions are off)<br>      - re-enabled location tracking <br>Warns if city is not coupled with country.</pre>
+<p>
+  For instance method <strong>disableLocation</strong>:
+</p>
+<pre>CountlyInstance.<strong>disableLocation</strong>()<br><br><strong>// Logic</strong><br>Sets location tracking off.<br>Records an empty location (location="") request to request queue</pre>
+<p>Automatic Begin Session requests should behave like this:</p>
+<pre>1. Should add cached location information to itself if:<br>   - (location consent given) <strong>and</strong> (location tracking is on)<br>2. Should add location="" to itself if:<br>   - (no location consent) <strong>or</strong> (location tracking off)</pre>
+<p>
+  SDK records an empty location (location="") request to request queue:
+</p>
+<pre>1. At the end of init if:<br>   - (no location consent <strong>or</strong> location tracking off) <strong>and</strong> (no session consent)</pre>
+<p>Consent removal/addition will have this implications:</p>
+<pre>Location consent removal:<br>   - records an empty location (location="") request to request queue<br>Location consent given:<br>   - no action</pre>
+<h3 id="h_01JC2J9JAAJ42RNRKSZXWGFHSH">
+  <span class="wysiwyg-font-size-large">Networking and Params</span>
+</h3>
+<p>Four location parameter that can be sent to server are:</p>
+<pre>country_code : Country code in the two-letter, ISO standard<br>city : City name<br>location : Latitude and longitude values separated by a comma, e.g. "56.42345,123.45325"<br>ip : IP address</pre>
+<p>
+  Location requests are sent to the <strong>"/i"</strong> endpoint.
+</p>
+<p>
+  Location requests should be sent through the<strong> request queue</strong>.
+</p>
+<p>
+  Empty country code, city and IP address can not be sent (simply omitted).
+</p>
+<pre><strong>// Common way to send all</strong><br>serverURL + /i? + <br>country_code="us" +<br>&amp;city="panama" +<br>&amp;location="56.42345,123.45325" +<br>&amp;ip="0.0.0.0" +<br>...remaining common params<br><br><strong>// Incase of empty location requests:</strong><br>serverURL + /i? + <br>&amp;location="" +<br>...remaining common params</pre>
+<h3 id="h_01JBXS49HVS4NHYNS3ZYBVK0QH">
+  <span class="wysiwyg-font-size-large">Storage</span>
+</h3>
 <p>
   Location information is not stored persistently (in a way that would survive
-  SDK shutdowns un further inits). Location information is stored only in memory
-  as variables. The SDK should cache only the latest location information.
+  SDK shutdowns and further inits). Location information is stored only in memory
+  as variables. The SDK should cache only the latest location information meaning
+  <strong>the provided values overwrite the previously cached values totally (meaning non valid/non provided values clears the cache for those values too.)</strong>.
 </p>
+<h3 id="h_01JBXVYT8VS83Y1XN8HBXHGNFG">
+  <span class="wysiwyg-font-size-large">Consent</span>
+</h3>
 <p>
-  The SDK has a single "setLocation" request where the dev can pick and choose
-  which values he wants to set. All set values are sent in a single request. The
-  provided values overwrite the previously cached values. If some field was left
-  out of the "setLocation" request, that means that the previously cached value
-  should be erased. Only the params that are not null and not empty strings should
-  be sent.
+  Feature depends on `Location` consent but `session` consent also affects its
+  behavior.
 </p>
-<p>
-  Init should have a way to set all location values (through config): location_gps,
-  city, country, ipAddress. Init config should also have a call to disable location.
-  If during init location is disabled and location values have been set, the disable
-  location call should take precedence.
-</p>
-<p>
-  If there is session consent, location values set in init should be sent in the
-  first "begin_session" request and cached internally. Location values set after
-  init but before the first begin session request would overwrite the values set
-  in init and should be sent with the first begin_session request. If there is
-  no session consent or automatic session recording is disabled, location values
-  set in init should be sent as a separate request that contains only location
-  values and they should be cached internally.
-</p>
-<p>
-  If during init location tracking is disabled and session consent is not given,
-  empty "location" param should be sent in a independent request.
-</p>
-<p>
-  Location values set after init and after the first "begin_session" request should
-  be sent in a separate request and update the internal location value cache. This
-  internal location cache should be added to every non-first "begin_session" request.
-  Values set in newer "setLocation" calls overwrite the cached values from previous
-  calls.
-</p>
-<p>
-  If the location feature gets disabled or location consent is removed, the SDK
-  sends a request with an empty "location" parameter.
-</p>
-<p>
-  If location is disabled or no location consent is given, the SDK adds an empty
-  location parameter to every "begin_session" request.
-</p>
-<p>
-  If location consent is given and location gets reenabled (previously was disabled),
-  we send that set location information in a separate request and save it in the
-  internal location cache.
-</p>
-<p>
-  If location consent was removed and is given back, no special action needs to
-  be taken.
-</p>
-<p>
-  If city is not paired together with country, a warning should be printed that
-  they should be set together.
-</p>
-<p>
-  When an empty "location" entry is sent to the server, it is interpreted as "disable
-  location tracking for this device ID".
-</p>
-<p>Empty country code, city and IP address can not be sent.</p>
-<h2 id="h_01HH0HHMW6YQ6Y6ERDBG0GRGBN">Init Config Options</h2>
-<h2 id="h_01HH0HJB5FHYD1EC8ZJ8DW43T4">Feature Calls</h2>
-<h2 id="h_01HH0HJNZSRFWGVF881DXRR03G">Storage</h2>
-<h2 id="h_01HH0HEW42MWN8GN4J2WZX8Z4T">Consent</h2>
-<p>The location feature depends on the "location" consent.</p>
-<h2 id="h_01HH0D8W9DD34G92AMGVQMFV6S">Networking and Params</h2>
-<p>
-  There are 4 location related parameters that can be set in a Countly SDK. It
-  is "country code" (in ISO format), "city", "location_gps" (GPS coordinates),
-  "IP" address. Their params in API requests are: "country_code", "city", "location",
-  "ip".
-</p>
-<p>Location requests are sent to the "/i" endpoint.</p>
-<p>Location requests should be sent through the request queue.</p>
-<h2 id="h_01HH0D7S3TEVYNXWE8S5C1NNXZ">Test scenarios</h2>
+<h2 id="h_01HH0D7S3TEVYNXWE8S5C1NNXZ">
+  <span class="wysiwyg-font-size-x-large">Test scenarios</span>
+</h2>
 <p>Some sample situations for handling location:</p>
 <p>
   <strong>1) Dev Sets Location Sometime After Init</strong><br>
