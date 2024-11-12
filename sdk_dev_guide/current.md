@@ -1998,7 +1998,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For config method <strong>enableRemoteConfigAutomaticTriggers</strong>
 </p>
-<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()<br><br>// Logic<br><br></strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cache cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cache cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
+<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()<br><br>// Logic<br><br></strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cached/cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cached/cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
 <p>
   For config method <strong>enableRemoteConfigValueCaching</strong>
 </p>
