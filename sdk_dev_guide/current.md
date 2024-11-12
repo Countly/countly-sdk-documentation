@@ -1982,23 +1982,23 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <pre>CountlyConfig.<strong>enableRemoteConfigAutomaticTriggers</strong>()</pre>
 <pre>CountlyConfig.<strong>enableRemoteConfigValueCaching</strong>()</pre>
-<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback)</pre>
+<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback: RCDownloadCallback)</pre>
 <p>
   <strong>Instance Methods</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToOmit, callback)</pre>
-<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude, callback)</pre>
-<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback)</pre>
+<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToOmit: Array&lt;String&gt;, callback: RCDownloadCallback)</pre>
+<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)</pre>
+<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback: RCDownloadCallback)</pre>
 <pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getValues</strong>()</pre>
-<pre>RCData CountlyInstance.<strong>getValue</strong>(key)</pre>
-<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback)</pre>
-<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback)</pre>
+<pre>RCData CountlyInstance.<strong>getValue</strong>(key: String)</pre>
+<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback: RCDownloadCallback)</pre>
+<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback: RCDownloadCallback)</pre>
 <pre>CountlyInstance.<strong>clearAll</strong>()</pre>
 <h3 id="h_01JC39FGVSK8R4RHW2XC71GRWF">Implementation Details</h3>
 <p>
   For config method <strong>enableRemoteConfigAutomaticTriggers</strong>
 </p>
-<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()<br><br>// Logic<br><br></strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cached/cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cached/cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
+<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()<br><br>// Logic<br><br></strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cache cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cache cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
 <p>
   For config method <strong>enableRemoteConfigValueCaching</strong>
 </p>
@@ -2006,7 +2006,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For config method <strong>remoteConfigRegisterGlobalCallback</strong>
 </p>
-<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback)<br><br><strong>// Valid values<br></strong>Value is not nullable, when null value is given it warns<br><br><strong>// Logic<br></strong>Notifies the developer about remote config values update process. <br>- If any error is encountered while downloading, the error is returned<br>- On a successful download, downloaded values are returned</pre>
+<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values<br></strong>Value is not nullable, when null value is given it warns<br><br><strong>// Logic<br></strong>Notifies the developer about remote config values update process. <br>- If any error is encountered while downloading, the error is returned<br>- On a successful download, downloaded values are returned</pre>
 <p>
   The callback's signature is <strong>RCDownloadCallback. </strong>And its callback
   method is
@@ -2019,15 +2019,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>downloadAllKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback)<br><br><strong>// Valid values</strong><br>All nullable, only non null values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>Before preparing the request, the function will do some checks<br>- If no device id exists, the call is omitted. Given and registered callbacks are notified.<br>- If temporary device id enabled or request queue is containing temporary id requests, <br>  Given and registered callbacks are notified.<br><br>After those checks, SDK will prepare the fetch request using the device metrics.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given and registered <br>  callbacks are notified.<br><br>The function will parse the response and notify the given and registered callbacks.<br>And the remote config store is updated. We clear all values. If remote config value caching<br>is enabled we cache them rather than clearing them.</pre>
+<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>Before preparing the request, the function will do some checks<br>- If no device id exists, the call is omitted. Given and registered callbacks are notified.<br>- If temporary device id enabled or request queue is containing temporary id requests, <br>  Given and registered callbacks are notified.<br><br>After those checks, SDK will prepare the fetch request using the device metrics.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given and registered <br>  callbacks are notified.<br><br>The function will parse the response and notify the given and registered callbacks.<br>And the remote config store is updated. We clear all values. If remote config value caching<br>is enabled we cache them rather than clearing them.</pre>
 <p>
   For instance method <strong>downloadOmittingKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToInclude, callback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToOmit is not empty, a parameter will be added to omit some keys to the remote <br>config fetch request. The server will return all values except omitted ones.<br>- If the keysToOmit is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
+<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToOmit is not empty, a parameter will be added to omit some keys to the remote <br>config fetch request. The server will return all values except omitted ones.<br>- If the keysToOmit is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
 <p>
   For instance method <strong>downloadSpecificKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude, callback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToInclude is not empty, a parameter will be added to include some keys to the remote <br>config fetch request. Server will return only specified values.<br>- If the keysToInclude is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
+<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToInclude is not empty, a parameter will be added to include some keys to the remote <br>config fetch request. Server will return only specified values.<br>- If the keysToInclude is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
 <p>
   For instance method <strong>getValues</strong>
 </p>
@@ -2035,15 +2035,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>getValue</strong>
 </p>
-<pre>RCData CountlyInstance.<strong>getValue</strong>(key)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists</pre>
+<pre>RCData CountlyInstance.<strong>getValue</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists</pre>
 <p>
   For instance method <strong>registerDownloadCallback</strong>
 </p>
-<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will add the given callback to the internal callback list</pre>
+<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will add the given callback to the internal callback list</pre>
 <p>
   For instance method <strong>removeDownloadCallback</strong>
 </p>
-<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will remove given callback from the internal callback list</pre>
+<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will remove given callback from the internal callback list</pre>
 <p>
   For instance method <strong>clearAll</strong>
 </p>
@@ -2127,15 +2127,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <strong>Instance Methods</strong>
 </p>
 <pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getAllValuesAndEnroll</strong>()</pre>
-<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key)</pre>
-<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys)</pre>
-<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys)</pre>
+<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key: String)</pre>
+<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys: Array&lt;String&gt;)</pre>
+<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys: Array&lt;String&gt;)</pre>
 <pre>Map&lt;String, String[]&gt; CountlyInstance.<strong>testingGetAllVariants</strong>()</pre>
 <pre>Map&lt;String, ExperimentInformation&gt; CountlyInstance.<strong>testingGetAllExperimentInfo</strong>()</pre>
-<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key)</pre>
-<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback)</pre>
-<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback)</pre>
-<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName, variantName, completionCallback)</pre>
+<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key: String)</pre>
+<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback: RCVariantCallback)</pre>
+<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback: RCVariantCallback)</pre>
+<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName: String, variantName: String, completionCallback: RCVariantCallback)</pre>
 <h3 id="h_01JCDT069ME05YAEQEE24S86TM">Implementation Details</h3>
 <p>
   For config method <strong>enrollABonRCDownload</strong>
@@ -2148,15 +2148,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>getValueAndEnroll</strong>
 </p>
-<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists and<br>will call the enrollIntoABTestsForKeys method for the specified key if the key exist.</pre>
+<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists and<br>will call the enrollIntoABTestsForKeys method for the specified key if the key exist.</pre>
 <p>
   For instance method <strong>enrollIntoABTestsForKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys)<br><br><strong>// Valid values</strong><br>Only non null and not empty keys are accepted<br>Non valid keys are warned and ignored<br><br><strong>// Logic<br></strong>This call will enroll user to the AB tests for the specified keys.<br>- If keys are null or empty call will be omitted.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
+<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys: Array&lt;String&gt;)<br><br><strong>// Valid values</strong><br>Only non null and not empty keys are accepted<br>Non valid keys are warned and ignored<br><br><strong>// Logic<br></strong>This call will enroll user to the AB tests for the specified keys.<br>- If keys are null or empty call will be omitted.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
 <p>
   For instance method <strong>exitABTestsForKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys)<br><br><strong>// Valid values</strong><br>Keys could be nullable<br><br><strong>// Logic<br></strong>This call will exit user from the AB tests for the specified keys.<br>- If keys are null or keys are empty, it means exiting from all of AB tests.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
+<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys: Array&lt;String&gt;)<br><br><strong>// Valid values</strong><br>Keys could be nullable<br><br><strong>// Logic<br></strong>This call will exit user from the AB tests for the specified keys.<br>- If keys are null or keys are empty, it means exiting from all of AB tests.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
 <p>
   For instance method <strong>testingGetAllVariants</strong>
 </p>
@@ -2168,11 +2168,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>testingGetVariantsForKey</strong>
 </p>
-<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>Before using this function, variants must be downloaded.<br>This function will return the variants for the given key.<br>- If no variants found for the specified key, null is returned.</pre>
+<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>Before using this function, variants must be downloaded.<br>This function will return the variants for the given key.<br>- If no variants found for the specified key, null is returned.</pre>
 <p>
   For instance method <strong>testingDownloadVariantInformation</strong>
 </p>
-<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download variants from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the variant fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all variant with the fresh downloaded values.</pre>
+<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download variants from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the variant fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all variant with the fresh downloaded values.</pre>
 <p>
   The completionCallback's signature is <strong>RCVariantCallback. </strong>And
   its callback method is
@@ -2185,11 +2185,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>testingDownloadExperimentInformation</strong>
 </p>
-<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download experiments from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the experiment fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all experiments with the fresh downloaded values.</pre>
+<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download experiments from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the experiment fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all experiments with the fresh downloaded values.</pre>
 <p>
   For instance method <strong>testingEnrollIntoVariant</strong>
 </p>
-<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName, variantName, completionCallback)<br><br><strong>// Valid values</strong><br>keyName and variantName are not nullable and not empty. <br>completionCallback is nullable.<br>If non valid values are given they are warned and call will be omitted.<br><br><strong>// Logic<br></strong>This function do some checks before enrolling into specified variant<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the enrolling into variant request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>If the request is successful, the function will trigger downloading remote config values<br>with clearing all remote config values from the storage. And the callback is notified with<br>a Success.</pre>
+<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName: String, variantName: String, completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>keyName and variantName are not nullable and not empty. <br>completionCallback is nullable.<br>If non valid values are given they are warned and call will be omitted.<br><br><strong>// Logic<br></strong>This function do some checks before enrolling into specified variant<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the enrolling into variant request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>If the request is successful, the function will trigger downloading remote config values<br>with clearing all remote config values from the storage. And the callback is notified with<br>a Success.</pre>
 <h4 id="h_01JCDT069M3VGXFQTBBR9XDPR0">Networking and Params</h4>
 <p>
   If the configuration <strong>enrollABonRCDownload</strong> is called the SDK
