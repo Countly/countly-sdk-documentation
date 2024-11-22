@@ -995,39 +995,27 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   public void onCreate() {
     super.onCreate();
 
-    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
-
-      // Register the channel with the system; you can't change the importance
-      // or other notification behaviors after this
-      NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-      if (notificationManager != null) {
-        // Create the NotificationChannel
-        NotificationChannel channel = new NotificationChannel(CountlyPush.CHANNEL_ID, getString(R.string.countly_hannel_name), NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setDescription(getString(R.string.countly_channel_description));
-        notificationManager.createNotificationChannel(channel);
-      }
-    }
-
     CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL)
       .setLoggingEnabled(true);
     Countly.sharedInstance().init(config);
-  
-    CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this);
+
+    CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this)
+      .setProvider(Countly.CountlyMessagingProvider.FCM);
     CountlyPush.init(countlyConfigPush);
-    FirebaseInstanceId.getInstance().getInstanceId()
-      .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
-        @Override
-        public void onComplete(@NonNull Task&lt;InstanceIdResult&gt; task) {
-          if (!task.isSuccessful()) {
-            Log.w(TAG, "getInstanceId failed", task.getException());
-            return;
-          }
-  
-          // Get new Instance ID token
-          String token = task.getResult().getToken();
-            CountlyPush.onTokenRefresh(token);
-          }
-      });
+    
+    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
+      @Override
+      public void onComplete(@NonNull Task task) {
+        if (!task.isSuccessful()) {
+          Log.w(Countly.TAG, "Fetching FCM registration token failed", task.getException());
+          return;
+        }
+
+        // Get new FCM registration token
+        String token = task.getResult();
+        CountlyPush.onTokenRefresh(token);
+      }
+    });
   }
 }</code></pre>
 <p>
