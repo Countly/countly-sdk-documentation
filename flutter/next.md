@@ -2084,6 +2084,17 @@ Countly.recordIndirectAttribution(attributionValues);</code></pre>
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setHttpPostForced(true); // default is false</code></pre>
+<h2 id="h_01JDKS8P2TP840JX9AK318PAJW">Setting Custom Network Request Headers</h2>
+<p>
+  If you need to include custom network request headers in the requests sent by
+  the SDK, you can easily add them using the following method.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setCustomNetworkRequestHeaders({'customHeaderKey': 'customHeaderValue'});</code></pre>
+<p>
+  This allows you to specify any headers your application requires for enhanced
+  functionality or security.
+</p>
 <h2 id="h_01H930GAQ8QBSG5GB1P8AY1ARX">Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
