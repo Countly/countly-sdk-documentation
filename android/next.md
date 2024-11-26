@@ -1956,7 +1956,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
   structures, or presenting them yourself, please refer to the following
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01JA7E8H963VYQV6BNR6TB9489" target="_blank" rel="noopener">resource</a>.
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
 </p>
 <h3 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h3>
 <p>
