@@ -986,8 +986,6 @@ CountlyPush.init(countlyConfigPush);</code></pre>
 <p>
   To have the best experience with push notifications, the SDK should be initialized
   in your Application subclass' "onCreate" method.
-  <span style="font-weight: 400;">Android O and later models require the use of <code>NotificationChannel</code>s</span>.
-  Use <code>CountlyPush.CHANNEL_ID</code>&nbsp;for Countly-displayed notifications:
 </p>
 <pre><code class="java">public class App extends Application {
 
@@ -1090,7 +1088,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
-implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
+implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
 </p>
@@ -1398,16 +1396,8 @@ ProxyActivity.intentExtraWhichButton</code></pre>
 <h3 id="h_01HNF9WBDTWYNW05YZ9M5X6HNN">Acquiring Credentials</h3>
 <h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">Firebase</h4>
 <p>
-  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
-  order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
+  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM service account file. In order to get one please follow these steps mentioned <a href="/hc/en-us/articles/9290669873305#h_01JDMZ7F8TKB254YF62DTWC2JP">here</a>.</span>
 </p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/57c5e32-Screenshot_2018-04-21_17.20.16.png">
-</div>
-<p>Select Cloud Messaging tab</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
-</div>
 <h4 id="h_01HNFBDKJPQ5492DGFP9YDM5EQ">Huawei</h4>
 <p>
   Assuming you have followed Huawei's guide of
