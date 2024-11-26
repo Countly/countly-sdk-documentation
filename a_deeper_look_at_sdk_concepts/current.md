@@ -1938,7 +1938,70 @@ function sendMessage(param) {
   from the previous sections would apply.
 </p>
 <h1 id="h_01HVGFBX5BW5A1Z65NCZ0W4CVR">Push Notifications</h1>
-<h2 id="h_01HVG9V1K7NQ90GAWMBNXC315K">How to Acquire FCM Key</h2>
+<h2 id="h_01JDMZ7F8TKB254YF62DTWC2JP">How to Acquire Service Account File</h2>
+<p>
+  For Firebase Cloud Messaging (FCM) integration, you need a
+  <strong>service account file</strong> to authenticate your requests. Follow these
+  steps to acquire the file:
+</p>
+<h3>1. Navigate to Google Cloud Console</h3>
+<ul>
+  <li>
+    Open
+    <a href="https://console.cloud.google.com/" target="_blank" rel="noopener">Google Cloud Console</a>.
+  </li>
+  <li>
+    Ensure you are logged in with the Google account that has access to your
+    Firebase project.
+  </li>
+</ul>
+<h3>2. Select Your Project</h3>
+<ul>
+  <li>
+    From the <strong>Project Selector</strong> dropdown in the top navigation
+    bar, select your Firebase project.
+  </li>
+</ul>
+<h3>3. Access Service Accounts</h3>
+<ul>
+  <li>
+    In the left-hand navigation menu, go to
+    <strong>IAM &amp; Admin Service Accounts</strong>.
+  </li>
+  <li>
+    Look for the service account named
+    <code>firebase-adminsdk-<em>random-characters</em>@<em>project-id</em>.iam.gserviceaccount.com</code>.
+  </li>
+</ul>
+<h3>4. Create a Private Key</h3>
+<ul>
+  <li>
+    Next to the service account, click the <strong>Actions</strong> menu (three
+    dots).
+  </li>
+  <li>
+    Select <strong>Manage keys</strong>.
+  </li>
+  <li>
+    Click <strong>Add Key</strong> &gt; <strong>Create new key</strong>.
+  </li>
+  <li>
+    Choose the <strong>JSON</strong> format and confirm by clicking
+    <strong>Create</strong>.
+  </li>
+</ul>
+<h3>5. Download and Secure the File</h3>
+<ul>
+  <li>
+    The service account file will automatically download to your system as a
+    <code>.json</code> file.
+  </li>
+  <li>
+    <strong>Important:</strong> Store this file securely. Do not share it publicly
+    or commit it to source control repositories.
+  </li>
+</ul>
+<h2 id="h_01HVG9V1K7NQ90GAWMBNXC315K">How to Acquire FCM Key (Legacy)</h2>
 <p>
   This guide will show you how to acquire the FCM key of an existing project from
   your Firebase <a href="https://console.firebase.google.com/">console</a>:
