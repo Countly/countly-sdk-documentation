@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 24.7.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 24.11.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -25,7 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^24.7.1
+  countly_flutter: ^24.11.1
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -124,7 +124,9 @@ config.enableCrashReporting()</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier, you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors, as shown below:
+    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier,
+    you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors,
+    as shown below:
   </p>
   <pre><code class="dart">void main() {
   runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
@@ -496,7 +498,8 @@ Countly.instance.sessions.updateSession();
 Countly.instance.sessions.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View Tracking</h1>
 <p>
-  The SDK provides access to all view-related functionality through the interface returned by:
+  The SDK provides access to all view-related functionality through the interface
+  returned by:
 </p>
 <pre><code class="dart">Countly.instance.views</code></pre>
 <h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual View Recording</h2>
@@ -1364,7 +1367,11 @@ config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
 <h2 id="h_01H930GAQ7XASR12CMDC11Q265">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -1380,7 +1387,8 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <p>
