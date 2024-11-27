@@ -986,12 +986,27 @@ CountlyPush.init(countlyConfigPush);</code></pre>
 <p>
   To have the best experience with push notifications, the SDK should be initialized
   in your Application subclass' "onCreate" method.
+  <span style="font-weight: 400;">Android O and later models require the use of <code>NotificationChannel</code>s</span>.
+  Use <code>CountlyPush.CHANNEL_ID</code> for Countly-displayed notifications:
 </p>
 <pre><code class="java">public class App extends Application {
 
   @Override
   public void onCreate() {
     super.onCreate();
+
+  
+    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
+      // Register the channel with the system; you can't change the importance
+      // or other notification behaviors after this
+      NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+      if (notificationManager != null) {
+        // Create the NotificationChannel
+        NotificationChannel channel = new NotificationChannel(CountlyPush.CHANNEL_ID, getString(R.string.countly_hannel_name), NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription(getString(R.string.countly_channel_description));
+        notificationManager.createNotificationChannel(channel);
+      }
+    }
 
     CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL)
       .setLoggingEnabled(true);
