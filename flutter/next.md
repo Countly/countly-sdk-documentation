@@ -25,7 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^24.11.1
+  countly_flutter: ^24.11.2
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
