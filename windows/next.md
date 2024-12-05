@@ -462,7 +462,7 @@ Countly.Instance.Init(cc);</code></pre>
 </ul>
 <div class="callout callout--info">
   <p>
-    <span>If you need a more complicated logic or using the SDK version 24.1.1 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/27983325097241-Windows-23-12#h_01HABTXQF9N0EKQNJ65GX4DMRA" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span>If you need a more complicated logic or using the SDK version 24.1.1 and below then you will need to use this method mentioned <a href="#h_01JCGK7691XPRWANRT01QRZ92T">here</a> instead.</span>
   </p>
 </div>
 <p>
@@ -1409,6 +1409,26 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
   You can check a sample implementation from our Windows SDK
   <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
   page.
+</p>
+<h2 id="h_01JCGK7691XPRWANRT01QRZ92T">Extended Device ID Management</h2>
+<p>
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", true);</span></code></span></pre>
+<p>
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", false);</span></code></span></pre>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
+</p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If the device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
+<p>
+  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
 <h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>

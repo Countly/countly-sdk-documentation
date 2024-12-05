@@ -124,7 +124,9 @@ config.enableCrashReporting()</code></pre>
 </p>
 <div class="callout callout--warning">
   <p>
-    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier, you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors, as shown below:
+    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier,
+    you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors,
+    as shown below:
   </p>
   <pre><code class="dart">void main() {
   runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
@@ -496,7 +498,8 @@ Countly.instance.sessions.updateSession();
 Countly.instance.sessions.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View Tracking</h1>
 <p>
-  The SDK provides access to all view-related functionality through the interface returned by:
+  The SDK provides access to all view-related functionality through the interface
+  returned by:
 </p>
 <pre><code class="dart">Countly.instance.views</code></pre>
 <h2 id="h_01H930GAQ6CANPDTP8H1K86K7W">Manual View Recording</h2>
@@ -701,9 +704,9 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    This method is available starting from 24.7.1. If you want methods available
-    on 24.7.0, you can access it from
-    <a href="https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ682G16Z7M570XKSPD" target="_blank" rel="noopener noreferrer">here</a>.
+    If you need a more complicated logic or using the SDK version 24.7.0 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGHR95YCTVF6C81WF2B0FMW">here</a>.
   </p>
 </div>
 <p>You may configure or change the device ID anytime using:</p>
@@ -721,9 +724,9 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ6PWYGR33SGRYFBE3R">Temporary Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    These methods are available starting from 24.7.1. If you want methods available
-    on 24.7.0, you can access it from
-    <a href="https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ6PWYGR33SGRYFBE3R" target="_blank" rel="noopener noreferrer">here</a>.
+    If you need a more complicated logic or using the SDK version 24.7.0 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGHWKDGDVRB9JNBQJ099QEX">here</a>.
   </p>
 </div>
 <p>
@@ -1364,7 +1367,11 @@ config.setStarRatingTextMessage("Custom message");
 config.setStarRatingTextDismiss("Custom message"); // Only available for Android</code></pre>
 <h2 id="h_01H930GAQ7XASR12CMDC11Q265">Feedback Widget</h2>
 <div class="callout callout--info">
-  <p>Feedback Widgets is a <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a> plugin.</p>
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
@@ -1380,7 +1387,8 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 </p>
 <div class="callout callout--warning">
   <p>
-    Before any feedback widget can be shown, you need to create them in your Countly dashboard.
+    Before any feedback widget can be shown, you need to create them in your
+    Countly dashboard.
   </p>
 </div>
 <p>
@@ -2279,6 +2287,59 @@ config.setEventQueueSizeToSend(6);</code></pre>
   use the following function:
 </p>
 <pre>Countly.instance.remoteConfig.testingExitABExperiment(String expID);</pre>
+<h2 id="h_01JCGHR95YCTVF6C81WF2B0FMW">Extended Device ID Management</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
+<p>You may configure/change the device ID anytime using:</p>
+<pre><code class="dart">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
+<p>
+  You may either allow the device to be counted as a new device or merge existing
+  data on the server. If the<code>onServer</code> bool is set to
+  <code>true</code>, the old device ID on the server will be replaced with the
+  new one, and data associated with the old device ID will be merged automatically.
+  Otherwise, if <code>onServer</code> bool is set to <code>false</code>, the device
+  will be counted as a new device on the server.
+</p>
+<h3 id="h_01JCGHWKDGDVRB9JNBQJ099QEX">Temporary Device ID</h3>
+<p>
+  You may use a temporary device ID mode for keeping all requests on hold until
+  the real device ID is set later.
+</p>
+<p>
+  You can enable temporary device ID when initializing the SDK:
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setDeviceId(Countly.deviceIDType["TemporaryDeviceID"]);
+
+// Initialize with that configuration
+Countly.initWithConfig(config);</code></pre>
+<p>To enable a temporary device ID after init, you would call:</p>
+<pre><code class="dart">Countly.changeDeviceId(Countly.deviceIDType["TemporaryDeviceID"], ON_SERVER);</code></pre>
+<p>
+  <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for
+  <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
+  does not matter.
+</p>
+<p>
+  As long as the device ID value is <code>TemporaryDeviceID</code>, the SDK will
+  be in temporary device ID mode and all requests will be on hold, but they will
+  be persistently stored.
+</p>
+<p>
+  When in temporary device ID mode, method calls for presenting feedback widgets
+  and updating remote config will be ignored.
+</p>
+<p>
+  Later, when the real device ID is set using
+  <code>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code> method, all requests
+  which have been kept on hold until that point will start with the real device
+  ID
+</p>
 <h1 id="h_01HNAP3C92TG1JKYJKG3MRBK4C">FAQ</h1>
 <h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Information is Collected by the SDK?</h2>
 <p>
