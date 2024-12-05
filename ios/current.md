@@ -3063,135 +3063,10 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </p>
 </div>
 <p>
-  After you have created widgets on your dashboard, you can reach the methods to show them from the feedback interface of your Countly instance:
+  When the widgets are created, you need to use 2 calls in your SDK: one to get
+  all available widgets for a user and another to display a chosen widget.
 </p>
-<div class="callout callout--warning">
-  <p>
-    For SDK version prior 24.7.5 check out the previous documentation
-    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RR6N7WKDSA1GRJXBJ1" target="_blank" rel="noopener noreferrer">here</a>
-  </p>
-</div>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance feedback];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().feedback()</code></pre>
-  </div>
-</div>
-<p>
-  You can display a random active widget for the widget type you want with one
-  of these methods:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[presentNPS]
-[presentSurvey]
-[presentRating]
-// Example:
-[Countly.sharedInstance.feedback presentNPS];
-    </code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">.presentNPS()
-.presentSurvey()
-.presentRating()
-// Example:
-Countly.sharedInstance().feedback().presentNPS()
-    </code></pre>
-  </div>
-</div>
-<p>
-  If you want to show a specific widget according to its name, ID or one of its tags then you can use these methods:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <div class="tabs">
-      <div class="tabs-menu">
-        <span class="tabs-link is-active">Objective-C</span>
-        <span class="tabs-link">Swift</span>
-      </div>
-      <div class="tab">
-        <pre><code class="objectivec">[presentNPS:nameIDorTag
-[presentSurvey:nameIDorTag]
-[presentRating:nameIDorTag]
-// Example:
-[Countly.sharedInstance.feedback presentNPS:@"/home-page"];
-        </code></pre>
-      </div>
-      <div class="tab is-hidden">
-        <pre><code class="swift">.presentNPS(nameIDorTag)
-.presentSurvey(nameIDorTag)
-.presentRating(nameIDorTag)
-// Example:
-Countly.sharedInstance().feedback().presentNPS("/home-page")
-        </code></pre>
-      </div>
-    </div>
-    <p>
-      If an empty nameIDorTag is provided it will show the first feedback widget
-      by its type.
-    </p>
-    <p>
-      If you need to know when the widget is appeared or closed you can use
-      these methods to provide a callback which will be called when the widget
-      appeared/closes:
-    </p>
-    <div class="tabs">
-      <div class="tabs-menu">
-        <div class="tabs">
-          <div class="tabs-menu">
-            <span class="tabs-link is-active">Objective-C</span>
-            <span class="tabs-link">Swift</span>
-          </div>
-          <div class="tab">
-            <pre><code class="objectivec">[presentNPS:nameIDorTag widgetCallback:]
-[presentSurvey:nameIDorTag widgetCallback:]
-[presentRating:nameIDorTag widgetCallback:]
-// Example:
-[Countly.sharedInstance.feedback presentNPS:@"MyNetPromoterScore" widgetCallback:^(WidgetState widgetState) {
-//...
-}];
-              </code></pre>
-          </div>
-          <div class="tab is-hidden">
-            <pre><code class="swift">.presentNPS(nameIDorTag, widgetCallback)
-.presentSurvey(nameIDorTag, widgetCallback)
-.presentRating(nameIDorTag, widgetCallback)
-// Example:
-Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetState in
-//...
-})
-            </code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<p>
-  <code class="swift">widgetState</code> enum has two values
-  <code class="swift">WIDGET_APPEARED</code> and
-  <code class="swift">WIDGET_CLOSED</code>, on the basis of widget state you know
-  about whether widget is appeared or closed.
-</p>
-<p>
-  For more in-depth information on retrieving feedback widgets, understanding object
-  structures, or presenting them yourself, please refer to the following
-  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4">resource</a>.
-</p>
-<h3 id="h_01HAVHW0RRR7N3A283E2YQQT1Z">Manual Reporting</h3>
-<p>
-  Optionally you can fetch feedback widget data and create your own UI using:
-</p>
+<p>To get your available widget list, use the call below.</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
@@ -3207,18 +3082,7 @@ Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetSta
   }
   else
   {
-    CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-    [aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
-    {
-      if (error)
-      {
-        NSLog(@"Getting widget data failed. Error: %@", error);
-      }
-      else
-      {
-        NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
-      }
-    }];
+    NSLog(@"Getting widgets list successfully completed. %@", [feedbackWidgets description]);
   }
 }];
     </code></pre>
@@ -3233,21 +3097,117 @@ Countly.sharedInstance().getFeedbackWidgets
   }
   else
   {
-    let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
-    aFeedbackWidget?.getData
-    { (widgetData: [AnyHashable: Any]?, error: Error?) in
-      if (error != nil)
-      {
-        print("Getting widget data failed. Error \(error.debugDescription)")
-      }
-      else
-      {
-        print("Getting widget data successfully completed. \(String(describing: widgetData))")
-      }
-    }
+    print("Getting widgets list successfully completed. \(String(describing: feedbackWidgets))")
   }
-}
+}</code></pre>
+  </div>
+</div>
+<p>
+  When feedback widgets are fetched successfully, <code>completionHandler</code>
+  will be executed with an array of <code>CountlyFeedbackWidget</code> objects.
+  Otherwise, <code>completionHandler</code> will be executed with an
+  <code>NSError</code>.
+</p>
+<p>
+  Calls to this method will be ignored and <code>completionHandler</code> will
+  not be executed if:<br>
+  - Consent for <code>CLYConsentFeedback</code> is not given, while
+  <code>requiresConsent</code> flag is set on initial configuration.<br>
+  - Current device ID is <code>CLYTemporaryDeviceID</code>.
+</p>
+<p>
+  Once you get the list, you can inspect <code>CountlyFeedbackWidget</code> objects
+  in it, by checking their <code>type</code>, <code>ID</code>, and
+  <code>name</code> properties to decide which one to display. And when you decide,
+  you can use <code>present</code> method on <code>CountlyFeedbackWidget</code>
+  object to display it.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget present];
     </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.present()
+    </code></pre>
+  </div>
+</div>
+<p>Optionally you can pass appear and dismiss callback blocks:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget presentWithAppearBlock:^
+{
+  NSLog(@"Appeared!");
+}
+andDismissBlock:^
+{
+  NSLog(@"Dismissed!");
+}];
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.present(appear:
+{
+  print("Appeared.")
+},
+andDismiss:
+{
+  print("Dismissed.")
+})
+    </code></pre>
+  </div>
+</div>
+<h3 id="h_01HAVHW0RRR7N3A283E2YQQT1Z">Manual Reporting</h3>
+<p>
+  Optionally you can fetch feedback widget data and create your own UI using:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">
+CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+[aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
+{
+  if (error)
+  {
+    NSLog(@"Getting widget data failed. Error: %@", error);
+  }
+  else
+  {
+    NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
+  }
+}];
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">
+let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+aFeedbackWidget?.getData
+{ (widgetData: [AnyHashable: Any]?, error: Error?) in
+  if (error != nil)
+  {
+    print("Getting widget data failed. Error \(error.debugDescription)")
+  }
+  else
+  {
+    print("Getting widget data successfully completed. \(String(describing: widgetData))")
+  }
+}    </code></pre>
   </div>
 </div>
 <p>
