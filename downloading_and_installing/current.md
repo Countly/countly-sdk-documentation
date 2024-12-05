@@ -585,6 +585,8 @@
 </p>
 <h2 id="h_01H9QCP8G7V4S0SS317HRT5XN8">Web SDK</h2>
 <p>
+  <a href="https://support.countly.com/hc/en-us/articles/16876291962012-Web-analytics-JavaScript-24-4-X" target="_blank" rel="noopener noreferrer">Version 24.4</a>
+  -
   <a href="https://support.count.ly/hc/en-us/articles/31592459504537" target="_blank" rel="noopener">Version 23.12</a>
   -
   <a href="https://support.count.ly/hc/en-us/articles/26125729715737" target="_blank" rel="noopener">Version 23.6</a>
