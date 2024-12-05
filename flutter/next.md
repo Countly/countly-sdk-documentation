@@ -1376,10 +1376,9 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
-  All widgets are shown as webviews and should be approached using the same methods.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -1392,51 +1391,44 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   </p>
 </div>
 <p>
-  When the widgets are created, you need to use 2 calls in your SDK: one to get
-  all available widgets for a user and another to display a chosen widget.
+  After you have created widgets on your dashboard, you can reach the methods to
+  show them from the feedback interface of your Countly instance:
 </p>
-<p>To get your available widget list, use the call below.</p>
-<pre><code class="dart">FeedbackWidgetsResponse feedbackWidgetsResponse = await Countly.getAvailableFeedbackWidgets() ;</code></pre>
+<pre><code>Countly.instance.feedback</code></pre>
 <p>
-  From the callback you would get
-  <code class="dart">FeedbackWidgetsResponse</code> object which contains the list
-  of all available widgets that apply to the current device id.
+  You can display a random active widget for the widget type you want with one
+  of these methods:
 </p>
-<p>The objects in the returned list look like this:</p>
-<pre><code class="dart">class CountlyPresentableFeedback {
-  public String widgetId;
-  public String type;
-  public String name;
-}</code></pre>
+<pre><code class="dart">.presentNPS([String? nameIDorTag, FeedbackCallback? feedbackCallback])
+.presentRating([String? nameIDorTag, FeedbackCallback? feedbackCallback])
+.presentSurvey([String? nameIDorTag, FeedbackCallback? feedbackCallback])
+
+// Example:
+Countly.instance.feedback.presentSurvey();
+
+// Example with show a specific widget according to its name, ID or one of its tags
+Countly.instance.feedback.presentRating("/home-page");
+
+
+// Example about need to know when the widget you are showing is closed
+Countly.instance.feedback.presentNPS("MyNetPromoterScore", FeedbackCallback(
+  onClosed: () {
+    print('NPS closed');
+  },
+  onFinished: (String error) {
+    print('NPS finished with error: $error');
+  },
+));
+</code></pre>
 <p>
-  To determine what kind of widget that is, check the "type" value.
+  The "devCallback" parameter has two callbacks: - "onClosed" which will be called
+  when the feedback widget is closed - "onFinished" which will be called on some
+  internal errors and it will direct the error via "error" parameter.
 </p>
-<p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
 <p>
-  Then use the widget type and description (which is the same as provided in the
-  Dashboard) to decide which widget to show.
-</p>
-<p>
-  After you have decided which widget you want to display, call the function below.
-</p>
-<p>
-  You would then use the widget type and description (which is the same as provided
-  in the dashboard) to decide which widget to show.
-</p>
-<p>
-  After you have decided which widget you want to display, you would provide that
-  object to the following function:
-</p>
-<pre><code class="dart">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {
-  print('Widget Appeared');
-}, widgetClosed: () {
-  print('Widget Dismissed');
-});</code></pre>
-<p>
-  <code class="dart">widgetShown</code> and
-  <code class="dart">widgetClosed</code> are optional callbacks, you can pass these
-  callbacks if you want to perform some actions when widget appear or dismiss.
+  For more in-depth information on retrieving feedback widgets, understanding object
+  structures, or presenting them yourself, please refer to the following
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
 </p>
 <h3 id="h_01H930GAQ7HMVWZBVTXTCDTF50">Manual Reporting</h3>
 <p>
