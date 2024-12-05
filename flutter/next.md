@@ -843,7 +843,7 @@ Countly.initWithConfig(config);</code></pre>
 </p>
 <pre><code class="dart">buildscript {
   dependencies {
-    classpath 'com.google.gms:google-services:4.3.15'
+    classpath 'com.google.gms:google-services:LATEST'
     }
 }
 </code></pre>
@@ -857,8 +857,8 @@ Countly.initWithConfig(config);</code></pre>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="dart">dependencies {
-  implementation 'ly.count.android:sdk:22.02.1'
-  implementation 'com.google.firebase:firebase-messaging:20.0.0'
+  implementation 'ly.count.android:sdk:LATEST'
+  implementation 'com.google.firebase:firebase-messaging:LATEST'
 }
 // Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
