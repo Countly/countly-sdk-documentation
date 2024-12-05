@@ -2076,6 +2076,17 @@ Countly.recordIndirectAttribution(attributionValues);</code></pre>
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setHttpPostForced(true); // default is false</code></pre>
+<h2 id="h_01JDKS8P2TP840JX9AK318PAJW">Setting Custom Network Request Headers</h2>
+<p>
+  If you need to include custom network request headers in the requests sent by
+  the SDK, you can easily add them using the following method.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setCustomNetworkRequestHeaders({'customHeaderKey': 'customHeaderValue'});</code></pre>
+<p>
+  This allows you to specify any headers your application requires for enhanced
+  functionality or security.
+</p>
 <h2 id="h_01H930GAQ8QBSG5GB1P8AY1ARX">Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -2133,6 +2144,61 @@ config.setEventQueueSizeToSend(6);</code></pre>
   function:
 </p>
 <pre><code class="dart">Countly.isInitialized();</code></pre>
+<h2 id="h_01JDHWBTSH0SJXE2NKFN1ZX45G">Content Zone</h2>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
+  ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  To start fetching content from the server, use the following method:
+</p>
+<pre><code class="dart">Countly.instance.content.enterContentZone()</code></pre>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<pre><code class="dart">Countly.instance.content.exitContentZone()</code></pre>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<pre><code class="dart">countlyConfig.content.setGlobalContentCallback((contentStatus, contentData))</code></pre>
+<pre><code class="dart">typedef ContentCallback = void Function(ContentStatus contentStatus, Map&lt;String, dynamic&gt; contentData);</code></pre>
+<p>
+  The `contentStatus` will indicate either `ContentStatus.completed` or `ContentStatus.closed`.
+</p>
+<h2 id="h_01JDHWT7ES2EF2E9T8QHJQHGT8">Experimental Config</h2>
+<p>
+  The ConfigExperimental interface provides experimental configuration options
+  for enabling advanced features like view name recording and visibility tracking.
+  These features are currently in a testing phase and might change in future versions.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.experimental.enablePreviousNameRecording().enableVisibilityTracking();</code></pre>
+<p>This class allows enabling two experimental features:</p>
+<ul>
+  <li>Previous Name Recording</li>
+  <li>Visibility Tracking</li>
+</ul>
+<p>
+  When you enable previous name recording, it will add previous view name to the
+  view segmentations (cly_pvn) and previous event name to the event segmentations
+  (cly_pen).
+</p>
+<pre><code class="dart">config.experimental.enablePreviousNameRecording()</code></pre>
+<p>
+  When you enable visibility tracking, it will add a parameter (cly_v) to each
+  recorded event's segmentation about the visibility of the app at the time of
+  its recording.
+</p>
+<pre><code class="dart">config.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HEMEGDNWGA4HXRPCYPB0G613">A/B Experiment Testing</h2>
 <h3 id="h_01HEMEGDNWMH4E1WRGXRS7CF7E">
   <span>Variant Level Control</span>
