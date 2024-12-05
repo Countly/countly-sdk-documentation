@@ -704,9 +704,9 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ682G16Z7M570XKSPD">Changing the Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    This method is available starting from 24.7.1. If you want methods available
-    on 24.7.0, you can access it from
-    <a href="https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ682G16Z7M570XKSPD" target="_blank" rel="noopener noreferrer">here</a>.
+    If you need a more complicated logic or using the SDK version 24.7.0 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGHR95YCTVF6C81WF2B0FMW">here</a>.
   </p>
 </div>
 <p>You may configure or change the device ID anytime using:</p>
@@ -724,9 +724,9 @@ config.setDeviceId(DEVICE_ID);</code></pre>
 <h2 id="h_01H930GAQ6PWYGR33SGRYFBE3R">Temporary Device ID</h2>
 <div class="callout callout--warning">
   <p>
-    These methods are available starting from 24.7.1. If you want methods available
-    on 24.7.0, you can access it from
-    <a href="https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ6PWYGR33SGRYFBE3R" target="_blank" rel="noopener noreferrer">here</a>.
+    If you need a more complicated logic or using the SDK version 24.7.0 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGHWKDGDVRB9JNBQJ099QEX">here</a>.
   </p>
 </div>
 <p>
@@ -843,7 +843,7 @@ Countly.initWithConfig(config);</code></pre>
 </p>
 <pre><code class="dart">buildscript {
   dependencies {
-    classpath 'com.google.gms:google-services:4.3.15'
+    classpath 'com.google.gms:google-services:LATEST'
     }
 }
 </code></pre>
@@ -857,8 +857,8 @@ Countly.initWithConfig(config);</code></pre>
   Step 7: Add the following line in file <code>android/app/build.gradle</code>
 </p>
 <pre><code class="dart">dependencies {
-  implementation 'ly.count.android:sdk:22.02.1'
-  implementation 'com.google.firebase:firebase-messaging:20.0.0'
+  implementation 'ly.count.android:sdk:LATEST'
+  implementation 'com.google.firebase:firebase-messaging:LATEST'
 }
 // Add this at the bottom of the file
 apply plugin: 'com.google.gms.google-services'
@@ -1376,10 +1376,9 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 <p>
   It is possible to display 3 kinds of feedback widgets:
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
   <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
-  All widgets are shown as webviews and should be approached using the same methods.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -1392,51 +1391,44 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
   </p>
 </div>
 <p>
-  When the widgets are created, you need to use 2 calls in your SDK: one to get
-  all available widgets for a user and another to display a chosen widget.
+  After you have created widgets on your dashboard, you can reach the methods to
+  show them from the feedback interface of your Countly instance:
 </p>
-<p>To get your available widget list, use the call below.</p>
-<pre><code class="dart">FeedbackWidgetsResponse feedbackWidgetsResponse = await Countly.getAvailableFeedbackWidgets() ;</code></pre>
+<pre><code>Countly.instance.feedback</code></pre>
 <p>
-  From the callback you would get
-  <code class="dart">FeedbackWidgetsResponse</code> object which contains the list
-  of all available widgets that apply to the current device id.
+  You can display a random active widget for the widget type you want with one
+  of these methods:
 </p>
-<p>The objects in the returned list look like this:</p>
-<pre><code class="dart">class CountlyPresentableFeedback {
-  public String widgetId;
-  public String type;
-  public String name;
-}</code></pre>
+<pre><code class="dart">.presentNPS([String? nameIDorTag, FeedbackCallback? feedbackCallback])
+.presentRating([String? nameIDorTag, FeedbackCallback? feedbackCallback])
+.presentSurvey([String? nameIDorTag, FeedbackCallback? feedbackCallback])
+
+// Example:
+Countly.instance.feedback.presentSurvey();
+
+// Example with show a specific widget according to its name, ID or one of its tags
+Countly.instance.feedback.presentRating("/home-page");
+
+
+// Example about need to know when the widget you are showing is closed
+Countly.instance.feedback.presentNPS("MyNetPromoterScore", FeedbackCallback(
+  onClosed: () {
+    print('NPS closed');
+  },
+  onFinished: (String error) {
+    print('NPS finished with error: $error');
+  },
+));
+</code></pre>
 <p>
-  To determine what kind of widget that is, check the "type" value.
+  The "devCallback" parameter has two callbacks: - "onClosed" which will be called
+  when the feedback widget is closed - "onFinished" which will be called on some
+  internal errors and it will direct the error via "error" parameter.
 </p>
-<p>Potential 'type' values are:</p>
-<pre>FeedbackWidgetType {survey, nps, rating}</pre>
 <p>
-  Then use the widget type and description (which is the same as provided in the
-  Dashboard) to decide which widget to show.
-</p>
-<p>
-  After you have decided which widget you want to display, call the function below.
-</p>
-<p>
-  You would then use the widget type and description (which is the same as provided
-  in the dashboard) to decide which widget to show.
-</p>
-<p>
-  After you have decided which widget you want to display, you would provide that
-  object to the following function:
-</p>
-<pre><code class="dart">await Countly.presentFeedbackWidget(widgets.first, 'Close', widgetShown: () {
-  print('Widget Appeared');
-}, widgetClosed: () {
-  print('Widget Dismissed');
-});</code></pre>
-<p>
-  <code class="dart">widgetShown</code> and
-  <code class="dart">widgetClosed</code> are optional callbacks, you can pass these
-  callbacks if you want to perform some actions when widget appear or dismiss.
+  For more in-depth information on retrieving feedback widgets, understanding object
+  structures, or presenting them yourself, please refer to the following
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
 </p>
 <h3 id="h_01H930GAQ7HMVWZBVTXTCDTF50">Manual Reporting</h3>
 <p>
@@ -2084,6 +2076,17 @@ Countly.recordIndirectAttribution(attributionValues);</code></pre>
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setHttpPostForced(true); // default is false</code></pre>
+<h2 id="h_01JDKS8P2TP840JX9AK318PAJW">Setting Custom Network Request Headers</h2>
+<p>
+  If you need to include custom network request headers in the requests sent by
+  the SDK, you can easily add them using the following method.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setCustomNetworkRequestHeaders({'customHeaderKey': 'customHeaderValue'});</code></pre>
+<p>
+  This allows you to specify any headers your application requires for enhanced
+  functionality or security.
+</p>
 <h2 id="h_01H930GAQ8QBSG5GB1P8AY1ARX">Interacting with the internal request queue</h2>
 <p>
   When recording events or activities, the requests don't always get sent immediately.
@@ -2141,6 +2144,61 @@ config.setEventQueueSizeToSend(6);</code></pre>
   function:
 </p>
 <pre><code class="dart">Countly.isInitialized();</code></pre>
+<h2 id="h_01JDHWBTSH0SJXE2NKFN1ZX45G">Content Zone</h2>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
+  ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  To start fetching content from the server, use the following method:
+</p>
+<pre><code class="dart">Countly.instance.content.enterContentZone()</code></pre>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<pre><code class="dart">Countly.instance.content.exitContentZone()</code></pre>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<pre><code class="dart">countlyConfig.content.setGlobalContentCallback((contentStatus, contentData))</code></pre>
+<pre><code class="dart">typedef ContentCallback = void Function(ContentStatus contentStatus, Map&lt;String, dynamic&gt; contentData);</code></pre>
+<p>
+  The `contentStatus` will indicate either `ContentStatus.completed` or `ContentStatus.closed`.
+</p>
+<h2 id="h_01JDHWT7ES2EF2E9T8QHJQHGT8">Experimental Config</h2>
+<p>
+  The ConfigExperimental interface provides experimental configuration options
+  for enabling advanced features like view name recording and visibility tracking.
+  These features are currently in a testing phase and might change in future versions.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.experimental.enablePreviousNameRecording().enableVisibilityTracking();</code></pre>
+<p>This class allows enabling two experimental features:</p>
+<ul>
+  <li>Previous Name Recording</li>
+  <li>Visibility Tracking</li>
+</ul>
+<p>
+  When you enable previous name recording, it will add previous view name to the
+  view segmentations (cly_pvn) and previous event name to the event segmentations
+  (cly_pen).
+</p>
+<pre><code class="dart">config.experimental.enablePreviousNameRecording()</code></pre>
+<p>
+  When you enable visibility tracking, it will add a parameter (cly_v) to each
+  recorded event's segmentation about the visibility of the app at the time of
+  its recording.
+</p>
+<pre><code class="dart">config.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HEMEGDNWGA4HXRPCYPB0G613">A/B Experiment Testing</h2>
 <h3 id="h_01HEMEGDNWMH4E1WRGXRS7CF7E">
   <span>Variant Level Control</span>
@@ -2287,6 +2345,59 @@ config.setEventQueueSizeToSend(6);</code></pre>
   use the following function:
 </p>
 <pre>Countly.instance.remoteConfig.testingExitABExperiment(String expID);</pre>
+<h2 id="h_01JCGHR95YCTVF6C81WF2B0FMW">Extended Device ID Management</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
+<p>You may configure/change the device ID anytime using:</p>
+<pre><code class="dart">Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code></pre>
+<p>
+  You may either allow the device to be counted as a new device or merge existing
+  data on the server. If the<code>onServer</code> bool is set to
+  <code>true</code>, the old device ID on the server will be replaced with the
+  new one, and data associated with the old device ID will be merged automatically.
+  Otherwise, if <code>onServer</code> bool is set to <code>false</code>, the device
+  will be counted as a new device on the server.
+</p>
+<h3 id="h_01JCGHWKDGDVRB9JNBQJ099QEX">Temporary Device ID</h3>
+<p>
+  You may use a temporary device ID mode for keeping all requests on hold until
+  the real device ID is set later.
+</p>
+<p>
+  You can enable temporary device ID when initializing the SDK:
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.setDeviceId(Countly.deviceIDType["TemporaryDeviceID"]);
+
+// Initialize with that configuration
+Countly.initWithConfig(config);</code></pre>
+<p>To enable a temporary device ID after init, you would call:</p>
+<pre><code class="dart">Countly.changeDeviceId(Countly.deviceIDType["TemporaryDeviceID"], ON_SERVER);</code></pre>
+<p>
+  <strong>Note:</strong> When passing <code>TemporaryDeviceID</code> for
+  <code>deviceID</code> parameter, argument for <code>onServer</code>parameter
+  does not matter.
+</p>
+<p>
+  As long as the device ID value is <code>TemporaryDeviceID</code>, the SDK will
+  be in temporary device ID mode and all requests will be on hold, but they will
+  be persistently stored.
+</p>
+<p>
+  When in temporary device ID mode, method calls for presenting feedback widgets
+  and updating remote config will be ignored.
+</p>
+<p>
+  Later, when the real device ID is set using
+  <code>Countly.changeDeviceId(DEVICE_ID, ON_SERVER);</code> method, all requests
+  which have been kept on hold until that point will start with the real device
+  ID
+</p>
 <h1 id="h_01HNAP3C92TG1JKYJKG3MRBK4C">FAQ</h1>
 <h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Information is Collected by the SDK?</h2>
 <p>

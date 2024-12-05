@@ -913,7 +913,7 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
 </ul>
 <div class="callout callout--info">
   <p>
-    <span>If you need a more complicated logic or using the SDK version 24.4.1 and below then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/34483587332121-Android-24-4#h_01HAVQDM5TPKRQAZGXW73GBM90" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span>If you need a more complicated logic or using the SDK version 24.4.1 and below then you will need to use this method mentioned <a href="#h_01JCGHKHE44J6TCC0JTYB4HDCR">here</a> instead.</span>
   </p>
 </div>
 <p>
@@ -987,7 +987,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   To have the best experience with push notifications, the SDK should be initialized
   in your Application subclass' "onCreate" method.
   <span style="font-weight: 400;">Android O and later models require the use of <code>NotificationChannel</code>s</span>.
-  Use <code>CountlyPush.CHANNEL_ID</code>&nbsp;for Countly-displayed notifications:
+  Use <code>CountlyPush.CHANNEL_ID</code> for Countly-displayed notifications:
 </p>
 <pre><code class="java">public class App extends Application {
 
@@ -995,8 +995,8 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   public void onCreate() {
     super.onCreate();
 
+  
     if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
-
       // Register the channel with the system; you can't change the importance
       // or other notification behaviors after this
       NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -1011,23 +1011,24 @@ CountlyPush.init(countlyConfigPush);</code></pre>
     CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL)
       .setLoggingEnabled(true);
     Countly.sharedInstance().init(config);
-  
-    CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this);
+
+    CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this)
+      .setProvider(Countly.CountlyMessagingProvider.FCM);
     CountlyPush.init(countlyConfigPush);
-    FirebaseInstanceId.getInstance().getInstanceId()
-      .addOnCompleteListener(new OnCompleteListener&lt;InstanceIdResult&gt;() {
-        @Override
-        public void onComplete(@NonNull Task&lt;InstanceIdResult&gt; task) {
-          if (!task.isSuccessful()) {
-            Log.w(TAG, "getInstanceId failed", task.getException());
-            return;
-          }
-  
-          // Get new Instance ID token
-          String token = task.getResult().getToken();
-            CountlyPush.onTokenRefresh(token);
-          }
-      });
+    
+    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
+      @Override
+      public void onComplete(@NonNull Task task) {
+        if (!task.isSuccessful()) {
+          Log.w(Countly.TAG, "Fetching FCM registration token failed", task.getException());
+          return;
+        }
+
+        // Get new FCM registration token
+        String token = task.getResult();
+        CountlyPush.onTokenRefresh(token);
+      }
+    });
   }
 }</code></pre>
 <p>
@@ -1102,7 +1103,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
 <pre>//latest firebase-messaging version that is available<code class="java">
-implementation 'com.google.firebase:firebase-messaging:23.1.2'</code></pre>
+implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
 </p>
@@ -1410,16 +1411,8 @@ ProxyActivity.intentExtraWhichButton</code></pre>
 <h3 id="h_01HNF9WBDTWYNW05YZ9M5X6HNN">Acquiring Credentials</h3>
 <h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">Firebase</h4>
 <p>
-  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM server key.&nbsp;</span>In
-  order to get one, open&nbsp;Project settings in&nbsp;<a href="https://console.firebase.google.com">Firebase console</a>:
+  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM service account file. In order to get one please follow these steps mentioned <a href="/hc/en-us/articles/9290669873305#h_01JDMZ7F8TKB254YF62DTWC2JP">here</a>.</span>
 </p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/57c5e32-Screenshot_2018-04-21_17.20.16.png">
-</div>
-<p>Select Cloud Messaging tab</p>
-<div class="img-container">
-  <img src="https://count.ly/images/guide/fb244d1-Screenshot-2018-04-21-17.20.41-x.png">
-</div>
 <h4 id="h_01HNFBDKJPQ5492DGFP9YDM5EQ">Huawei</h4>
 <p>
   Assuming you have followed Huawei's guide of
@@ -1956,7 +1949,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
   structures, or presenting them yourself, please refer to the following
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01JA7E8H963VYQV6BNR6TB9489" target="_blank" rel="noopener">resource</a>.
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
 </p>
 <h3 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h3>
 <p>
@@ -3321,6 +3314,54 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   requests would be removed from the request queue. For example, by setting this
   option to 10, the SDK would ensure that no request older than 10 hours would
   be sent to the server.
+</p>
+<h2 id="h_01JCGHKHE44J6TCC0JTYB4HDCR">Extended Device ID Management</h2>
+<p>
+  In case your application authenticates users, you might want to change the ID
+  to the one in your backend after he has logged in. This helps you identify a
+  specific user with a specific ID on a device he logs in, and the same scenario
+  can also be used in cases this user logs in using a different way (e.g another
+  tablet, another mobile phone, or web). In this case, any data stored in your
+  Countly server database associated with the current device ID will be transferred
+  (merged) into user profile with device id you specified in the following method
+  call:
+</p>
+<div class="callout callout--warning">
+  <p>
+    <strong>Performance risk.</strong> Changing device id with server merging
+    results in huge load on server as it is rewriting all the user history. This
+    should be done only once per user.
+  </p>
+</div>
+<pre><code class="java">Countly.sharedInstance().deviceId().changeWithMerge("new device ID")</code></pre>
+<p>
+  In other circumstances, you might want to track information about another separate
+  user that starts using your app (changing apps account), or your app enters a
+  state where you no longer can verify the identity of the current user (user logs
+  out). In that case, you can change the current device ID to a new one without
+  merging their data. You would call:
+</p>
+<pre><code class="java">Countly.sharedInstance().deviceId().changeWithoutMerge("new device ID")</code></pre>
+<p>
+  Doing it this way, will not merge the previously acquired data with the new id.
+</p>
+<p>
+  Do note that every time you change your deviceId without a merge, it will be
+  interpreted as a new user. Therefore implementing id management in a bad way
+  could inflate the users count by quite a lot.
+</p>
+<p>
+  The worst would be to not merge device id on login and generate a new random
+  ID on logout. This way, by repeatedly logging in and out one could generate an
+  infinite amount of users.
+</p>
+<p>
+  So the recommendation is (depending on your apps use case) either to keep the
+  same deviceId even if the user logs out or to have a predetermined deviceId for
+  when the users on the specific device logs out. The first method would not inflate
+  the user count, but not viable for single device, multiple users use case. The
+  second would create a "multi-user" id for every device and possibly slightly
+  inflate the user count.
 </p>
 <h1 id="h_01HAVQDM5WK09GD0427C636XGW">FAQ</h1>
 <h2 id="h_01HAVQDM5WG0QKAZZWKRMNWTB7">What Information is Collected by the SDK</h2>
