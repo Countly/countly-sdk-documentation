@@ -68,8 +68,23 @@
 </p>
 <h1 id="h_01HABTQ436ACJV96Q5P2MMNGWZ">Adding the SDK to the Project</h1>
 <p>
-  <span style="font-weight: 400;">To track your web pages, you will need the Countly Web SDK (also known as the Countly JavaScript tracking library). It is automatically hosted on your Countly server as a minified UMD file (at </span><a href="http://yourdomain.com/sdk/web/countly.min.js)"><span style="font-weight: 400;">http://yourdomain.com/sdk/web/countly.min.js)</span></a><span style="font-weight: 400;"> and can be updated via the command line. This library also works well with mobile applications that consist of HTML5 views.</span>
+  <span style="font-weight: 400;">To track your web pages (SPA, MPA or mobile applications that consist of HTML5 views) and browser extensions, you can use Countly Web SDK.</span>
 </p>
+<p>
+  <span style="font-weight: 400;">It is automatically hosted on your Countly server as a UMD file:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">minified</span>
+    <span class="tabs-link">non-minified</span>
+  </div>
+  <div class="tab">
+    <pre><code class="bash">https://yourdomain.com/sdk/web/countly.min.js</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="bash">https://yourdomain.com/sdk/web/countly.js</code></pre>
+  </div>
+</div>
 <p>
   <span style="font-weight: 400;">Optionally, you may also use package managers to gain access to the SDK:</span>
 </p>
@@ -93,17 +108,17 @@
   </div>
   <div class="tab">
     <pre><code class="javascript">// latest non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.js</a>
 
 // latest minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">// 24.11.0 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.js" target="_blank" rel="noopener noreferrer">countly.js</a>
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.js</a>
 
 // 24.11.0 minified (<span>JSDelivr</span> or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a> or <a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.11.0/countly.min.js" target="_blank" rel="noopener noreferrer">countly.min.js</a></code></pre>
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.11.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.11.0/countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
@@ -112,84 +127,84 @@
 <h1 id="h_01HABTQ436KQ0HD0G5NXFBZQR7">SDK Integration</h1>
 <h2 id="h_01HABTQ4360WX3SY413Z3ZSAWZ">Minimal Setup</h2>
 <p>
-  <span style="font-weight: 400;">You may use the Countly Web SDK synchronously or asynchronously. However the asynchronous usage would benefit from working without blocking content loading. This would also allow you to use Countly while the Countly script has not yet been loaded. This can be done by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue.</span>
+  <span style="font-weight: 400;">The SDK is a single UMD file which can be loaded directly to your HTML file or can be imported with a package manager to your project and bundled with your bundler to your build.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Inserting asynchronous code before closing the "<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head" target="_blank" rel="noopener noreferrer">head tags</a>" of your website is suggested, while Synchronous code should be added towards the bottom of the page before closing the head tag. Main logic here is to make the Countly load as soon as possible to start collecting data.</span>
+  <span style="font-weight: 400;">You may use the Countly Web SDK synchronously or asynchronously. Asynchronous usage would work without blocking content loading. This would also allow you to use Countly while the Countly script has not yet been loaded. This can be done by pushing function calls into the </span><strong>Countly.q</strong><span style="font-weight: 400;"> queue, which SDK will execute after it is initialized.</span>
 </p>
 <p>
-  Here you would also need to provide your application key and server URL. Please
-  check
+  Here you would also need to provide your Countly server app's application key
+  and server URL. Please check
   <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#acquiring-your-application-key-and-server-url">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
+<div class="callout callout--info">
+  <p>
+    You can check all the config options you can use to manipulate the SDK behaviour
+    from
+    <a href="/hc/en-us/articles/4409195031577#h_01HABTQ439HZN7Y6A6F07Y6G0K" target="_blank" rel="noopener noreferrer">here</a>.
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">An example setup would look like this:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
+    <span class="tabs-link is-active">npm/yarn</span>
+    <span class="tabs-link">HTML (Async)</span>
+    <span class="tabs-link">HTML (Sync)</span>
   </div>
   <div class="tab">
-    <pre><code class="html">&lt;script type='text/javascript'&gt;
-  
-// Some default pre init
+    <pre><code class="javascript">import Countly from "countly-sdk-web";
+
+Countly.init({<br>  // server credentials
+  app_key: "YOUR_APP_KEY",
+  url: "http://yourdomain.com"
+});
+
+// Track sessions and page views automatically (recommended)
+Countly.track_sessions();
+Countly.track_pageview();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="html">&lt;!--inside &lt;head&gt;&lt;/head&gt;--&gt;
+&lt;script type='text/javascript'&gt;
 var Countly = Countly || {};
 Countly.q = Countly.q || [];
-
-// Provide your app key that you retrieved from Countly dashboard
-Countly.app_key = "YOUR_APP_KEY";
-
-// Provide your server IP or name.
-// If you use your own server, make sure you have https enabled if you use
-// https below.
+<br>// server credentials 
+Countly.app_key = "YOUR_APP_KEY"; 
 Countly.url = "https://yourdomain.com";
 
-// Start pushing function calls to queue
-// Track sessions automatically (recommended)
+// Track sessions and page views automatically (recommended)
 Countly.q.push(['track_sessions']);
-
-//track web page views automatically (recommended)
 Countly.q.push(['track_pageview']);
 
 // Load Countly script asynchronously
 (function() {
-var cly = document.createElement('script'); cly.type = 'text/javascript';
-cly.async = true;
-// Enter URL of script here (see below for other option)
-cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
-cly.onload = function(){Countly.init()};
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+  var cly = document.createElement('script'); cly.type = 'text/javascript';
+  cly.async = true;
+  cly.src = 'https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js';
+  cly.onload = function(){Countly.init()};
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 })();
 &lt;/script&gt;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">&lt;!--Countly script--&gt;
+    <pre><code class="html">&lt;!--inside &lt;head&gt;&lt;/head&gt;--&gt;
 &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js'&gt;&lt;/script&gt;
 &lt;script type='text/javascript'&gt;
 
-Countly.init({
-// provide your app key that you retrieved from Countly dashboard
-app_key: "YOUR_APP_KEY",
-
-// Provide your server IP or name.
-// If you use your own server, make sure you have https enabled if you use
-// https below.  
- url: "http://yourdomain.com"
-
+Countly.init({<br>  // server credentials
+  app_key: "YOUR_APP_KEY",
+  url: "http://yourdomain.com"
 });
-// track sessions automatically
+// Track sessions and page views automatically (recommended)
 Countly.track_sessions();
-// track pageviews automatically
 Countly.track_pageview();
 &lt;/script&gt;</code></pre>
   </div>
 </div>
-<p>
-  <span style="font-weight: 400;">In the above-mentioned example, we used JSDelivr to retrieve the Countly JS SDK. As</span><span style="font-weight: 400;"> an alternative, you may also use one of the methods mentioned at the previous section.</span>
-</p>
 <p>
   <span style="font-weight: 400;">If </span>you are in doubt about the correctness
   of your Countly SDK integration you can learn about the verification methods
@@ -198,9 +213,8 @@ Countly.track_pageview();
 </p>
 <h1 id="h_01HABTQ437271440T3QZN3DCSN">SDK Logging</h1>
 <p>
-  The first thing you should do while integrating our SDK is enabling logging.
   If logging is enabled, then our SDK will print out debug messages about its internal
-  state and encountered problems.
+  state (events it's recording and sending) and encountered problems.
 </p>
 <p>
   Set debug option to true at the Countly initialization to enable logging:
@@ -211,8 +225,7 @@ Countly.track_pageview();
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">//during initialization
-Countly.debug = true;</code></pre>
+    <pre><code class="html">Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.init({
@@ -224,30 +237,13 @@ Countly.debug = true;</code></pre>
 </div>
 <p>
   For more information on where to find the SDK logs you can check the documentation
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#finding-sdk-logs" target="blank">here</a>.
+  <a href="https://support.countly.com/hc/en-us/articles/900000908046-Getting-Started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h1 id="h_01HABTQ4378NGJPGEYQX8X1CWZ">Crash Reporting</h1>
 <p>
-  <span style="font-weight: 400;">Countly also provides a way for tracking JavaScript errors on your websites.</span>
+  <span style="font-weight: 400;">To automatically capture and report <strong>unhandled</strong> JavaScript errors on your website (</span><span style="font-weight: 400;">You can add more information to error reports by providing an object with key/value pairs):</span>
 </p>
-<p>
-  <span style="font-weight: 400;">Select the following function to automatically capture and report JavaScript errors on your website:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_errors'])</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_errors()</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">Additionally, you may add more segments or properties/values to track with error reports by providing an object with a key/values to add to the error reports.</span>
-</p>
+<div class="tabs"></div>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Asynchronous</span>
@@ -255,22 +251,17 @@ Countly.debug = true;</code></pre>
   </div>
   <div class="tab">
     <pre><code class="javascript">Countly.q.push(['track_errors', {
-  "facebook_sdk": "2.3",
-  "jquery": "1.8"
+  "your_extra_info_key": your_info
 }])</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.track_errors({
-  "facebook_sdk": "2.3",
-  "jquery": "1.8"
+  "your_extra_info_key": your_info
 })</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Apart from automatically reporting unhandled errors, you may also report handled exceptions to the server, so you may figure out how to handle them later on (or if you even need to figure out how to handle them later on). Optionally, you may once again provide the custom segments to be used in the report (or use the ones provided with the&nbsp;<strong>track_error</strong>&nbsp;method as default ones).</span>
-</p>
-<p>
-  <strong>Countly.log_error (error, segments):</strong>
+  <span style="font-weight: 400;">You can also report <strong>handled</strong> exceptions to the server. Optionally you can provide extra information (an object) with the report (or use the ones provided with the <strong>track_errors</strong>&nbsp;method as default ones).</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -283,7 +274,7 @@ Countly.debug = true;</code></pre>
 }
 catch(ex){
   //report error to Countly
-  Countly.q.push(['log_error', ex]);
+  Countly.q.push(['log_error', ex, extra_info]);
 }</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -292,43 +283,12 @@ catch(ex){
 }
 catch(ex){
   //report error to Countly
-  Countly.log_error(ex);
+  Countly.log_error(ex, extra_info);
 }</code></pre>
   </div>
 </div>
 <p>
-  For fatal errors you can use recordError function which takes three parameters;
-  first, an error object with a stack key that has the error message value, second,
-  a boolean which is false to indicate the fatality of the error and lastly segments
-  object (optional) for custom crash segments for any extra information that you
-  want to deliver with custom key value pairs. You can use this same function for
-  nonfatal errors too by just setting the boolean value to true.
-</p>
-<p>
-  <strong>Countly.recordError(error, nonFatal, segments):</strong>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">
-  const error = {stack: 'Your error message here'};
-//report fatal error to Countly
-Countly.q.push(['recordError', error, nonFatal, segments]);
-</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">
-  const error = {stack: 'Your error message here'};
-//report fatal error to Countly
-Countly.recordError(error, nonFatal, segments);
-</code></pre>
-  </div>
-</div>
-<p>
-  <span style="font-weight: 400;">To better understand what your users did prior to receiving an error, you may leave breadcrumbs throughout the code on different user actions. These breadcrumbs will then be combined in a single log and reported to the server as well.</span>
+  <span style="font-weight: 400;">You can leave breadcrumbs throughout the code on different user actions. These breadcrumbs will then be combined in a single log and reported to the server as well.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -357,43 +317,31 @@ Countly.recordError(error, nonFatal, segments);
 </p>
 <div class="tabs">
   <div class="tabs-menu">
-    <span class="tabs-link is-active">JS Symbolication input sample</span>
-    <span class="tabs-link">JS Symbolication output sample</span>
+    <span class="tabs-link is-active">Obfuscated</span>
+    <span class="tabs-link">De-obfuscated</span>
   </div>
   <div class="tab">
-    <pre><code class="JS Symbolication input sample">ReferenceError: undefined_function is not defined
-    at r (file:///home/atak/Work/Countly/sample-app/dist/main.js:2:140)
-    at HTMLButtonElement.document.getElementById.onclick (file:///home/atak/Work/Countly/sample-app/dist/main.js:2:521)</code></pre>
+    <pre>Error: Error at depth 3<br>  at cause_error (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5657:13)<br>  at multiply (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5651:3)<br>  at saveRecords (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5648:3)<br>  at initializeCoreFunctions (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5645:3)<br>  at save (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5642:3)<br>  at removeHashes (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5639:3)<br>  at calculateParams (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5636:3)<br>  at addRecords (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5633:3)<br>  at HTMLButtonElement.unhandled_error (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5675:5)</pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="JS Symbolication output sample">ReferenceError: undefined_function is not defined
-    at undefined_function (src/index.js:30:4)
-    at cause_error (src/index.js:37:10)</code></pre>
+    <pre>Error: Error at depth 3<br>  at src/index.js:66:12<br>  at cause_error (src/index.js:59:2)<br>  at multiply (src/index.js:56:2)<br>  at saveRecords (src/index.js:53:2)<br>  at initializeCoreFunctions (src/index.js:50:2)<br>  at save (src/index.js:47:2)<br>  at removeHashes (src/index.js:44:2)<br>  at calculateParams (src/index.js:41:2)<br>  at addRecords (src/index.js:87:6)</pre>
   </div>
 </div>
 <p>
-  There are a number of JavaScript build tools and countless way to configure them
-  so laying out the steps for producing a source map file for each one would take
-  quite a while. We will focus on webpack for brevity and simplicity.
+  When using any build tool you will need to choose an option that generates the
+  source map as a separate file and not inline with the final js file (<a href="https://webpack.js.org/configuration/devtool/" target="_blank" rel="noopener">devtool</a>
+  option for webpack for example). If you set it up correctly your builds will
+  produce a source map file ending in <code>.map</code>, which is the source map
+  file you will upload to your Countly server.
 </p>
 <p>
-  When using webpack configuration, the
-  <a href="https://webpack.js.org/configuration/devtool/" target="_blank" rel="noopener">devtool</a>
-  option to generate project source maps, keep in mind that options used to attain
-  more verbose information might take longer to build. You must choose an option
-  that generates the source map as a separate file and not inline with the final
-  js file. After setting this, your builds will produce a source map file ending
-  in <code>.map</code>, which is the source map file you will upload to your Countly
-  server.
-</p>
-<p>
-  To start symbolicating your errors you just need to upload your source map file
-  to your Countly instance via the side menu &gt; Improve &gt; Errors &gt; Manage
-  Symbols. In this view, the source map files you have uploaded are listed. To
-  upload one, you click the "Add Debug Symbol File", fill the symbol type and app
-  version fields accordingly and upload your <code>.map</code> file. With your
-  source map file uploaded, you can symbolicate the crash reports for that app
-  version on Countly. For more information, see
+  To start Symbolicating your errors you just need to upload your source map file
+  to your Countly instance via the side menu Crashes &gt; Manage Symbols. In this
+  view, the source map files you have uploaded are listed. To upload one, you click
+  the "Add Debug Symbol File", fill the symbol type and app version fields accordingly
+  and upload your <code>.map</code> file. With your source map file uploaded, you
+  can Symbolicate the crash reports for that app version on Countly. For more information,
+  see
   <a href="https://support.count.ly/hc/en-us/articles/360037261472-Crash-symbolication" target="_self">Crash Symbolication</a>
   documentation.
 </p>
@@ -412,13 +360,8 @@ Countly.recordError(error, nonFatal, segments);
   <li>key - the name of the event (mandatory)</li>
   <li>count - number of events (default: 1)</li>
   <li>sum - sum to report with the event (optional)</li>
-  <li>
-    dur - duration expressed in seconds, meant for reporting with the event (optional)
-  </li>
-  <li>
-    segmentation - an object with key/value pairs to report with the event as
-    segments
-  </li>
+  <li>dur - duration expressed in seconds (optional)</li>
+  <li>segmentation - an object with key/value pairs</li>
 </ul>
 <p>
   <span style="font-weight: 400;">Here is an example of adding an event with all possible properties:</span>
@@ -430,48 +373,45 @@ Countly.recordError(error, nonFatal, segments);
   </div>
   <div class="tab">
     <pre><code class="javascript">Countly.q.push(['add_event',{
-  "key": "click",
+  "key": "Survey_success",
   "count": 1,
-  "sum": 1.5,
-  "dur": 30,
+  "sum": 0,
+  "dur": 25,
   "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
+    "Answer_1": "I would love to",
+    "Answer_2": 12
   }
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.add_event({
-  "key": "click",
+  "key": "Survey_success",
   "count": 1,
-  "sum": 1.5,
-  "dur": 30,
+  "sum": 0,
+  "dur": 25,
   "segmentation": {
-    "key1": "value1",
-    "key2": "value2"
+    "Answer_1": "I would love to",
+    "Answer_2": 12
   }
 });</code></pre>
   </div>
 </div>
 <h2 id="h_01HABTQ437SAGSADF72AW4XEM6">Timed Events</h2>
 <p>
-  All events contain an optional duration property that can be set manually or
-  with the help of the Countly web SDK's convenience functions. There are three
-  methods available to use to calculate the duration property: start_event, cancel_event,
-  and end_event.
+  Timed events are SDK's convenience methods to calculate the duration of an activity
+  easily. There are three methods available to use to calculate the duration property
+  of an event: start_event, cancel_event, and end_event.
 </p>
+<div class="callout callout--warning">
+  <p>
+    However, it's important to note that these methods operate on the memory
+    layer and shouldn't be used to calculate durations in situations where a
+    browser restart/refresh occurs.
+  </p>
+</div>
 <p>
-  The expected usage of these methods involves calling start_event for a specific
-  event when it begins and then calling end_event to calculate the duration and
-  create the event. In case you need to cancel a previously-called start_event,
-  you can call cancel_event. However, it's important to note that these methods
-  operate on the memory layer and shouldn't be used to calculate durations in situations
-  where a browser restart occurs.
-</p>
-<p>
-  The start_event method is used to initiate an internal timer within the SDK for
-  a given event name. This timer works by taking the current timestamp and storing
-  it in memory.
+  The start_event method starts an internal timer within the SDK for a given event
+  name. This timer works by taking the current timestamp and storing it in memory.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -502,11 +442,10 @@ Countly.recordError(error, nonFatal, segments);
   </div>
 </div>
 <p>
-  The end_event method calculates the duration value for the given event name by
-  finding the time difference between when the start_event was called and the current
-  time. It then creates an event for the given name with the calculated duration
-  and adds it to the event queue. You can also pass an event object to this method,
-  and in that case, it will use the key value as the event name.
+  The end_event method stops the timer and creates an event for the given name
+  with the calculated duration and adds it to the event queue. You can also pass
+  an event object to this method, and in that case, it will use the key value as
+  the event name.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -544,10 +483,20 @@ Countly.end_event({
 });</code></pre>
   </div>
 </div>
+<div class="callout callout--warning">
+  <p>
+    If end_event is not called, no event will be sent to the server.
+  </p>
+</div>
 <h1 id="h_01HABTQ437NA2XTXAMAXSQ9MD5">Sessions</h1>
+<p>
+  Sessions are the continuous time blocks that indicates the user interacts with
+  your website. Each recorded interaction after a session starts will be recorded
+  under that session until a new session starts.&nbsp;
+</p>
 <h2 id="h_01HABTQ437C35DZRN4C13RNA7K">Automatic Session Tracking</h2>
 <p>
-  <span style="font-weight: 400;">This method will automatically track user sessions by calling begin, extend, and end session methods.</span>
+  <span style="font-weight: 400;">To leave session tracking logic to the SDK you can just call:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -563,14 +512,22 @@ Countly.end_event({
 </div>
 <h2 id="h_01HABTQ437J7MQ9P10ES33VHHR">Manual Sessions</h2>
 <p>
+  If you need a custom session logic then you can use manual session methods to:
+</p>
+<ul>
+  <li>Starting a session at the beginning</li>
+  <li>Marking the end of a session</li>
+</ul>
+<p>
+  <span style="font-weight: 400;">Only use the methods below if you aren’t planning on using the automatic session tracking and set the </span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;"> setting to false during init for more granular control of the session.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">SDK will automatically report elapsed session duration with 60 seconds intervals (this can be modified during init with `session_update` config option).</span>
+</p>
+<p>
   <strong>Beginning a Session</strong>
 </p>
-<p>
-  <span style="font-weight: 400;">This method would allow you to control sessions manually. Only use this method if you aren’t planning on calling the track_sessions method and set the&nbsp;</span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;">&nbsp;setting to false for more granular control of the session.</span>
-</p>
-<p>
-  <span style="font-weight: 400;">If&nbsp;<strong>noHeartBeat</strong>&nbsp;is true, then the Countly Web SDK will not automatically extend the session, meaning you would be the one to do it automatically.</span>
-</p>
+<p>To begin a session:</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Asynchronous</span>
@@ -580,33 +537,13 @@ Countly.end_event({
     <pre><code class="javascript">Countly.q.push(['begin_session']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.begin_session(noHeartBeat);</code></pre>
-  </div>
-</div>
-<p>
-  <strong>Extending a session</strong>
-</p>
-<p>
-  <span style="font-weight: 400;">The Countly SDK will extend the session itself by default (if&nbsp;<strong>noHeartBeat</strong>&nbsp;was provided in the&nbsp;<strong>begin_session</strong>), but if you have not selected this option, you may then extend it using this method and provide the seconds since the last <strong>begin_session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;call.</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['session_duration', sec]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.session_duration(sec)</code></pre>
+    <pre><code class="javascript">Countly.begin_session();</code></pre>
   </div>
 </div>
 <p>
   <strong>Ending a session</strong>
 </p>
-<p>
-  <span style="font-weight: 400;">When a visitor is leaving your app or website, you should end their session with this method or by optionally providing the amount of seconds since the last&nbsp;<strong>begin session</strong>&nbsp;or&nbsp;<strong>session_duration</strong>&nbsp;calls, which ever came last.</span>
-</p>
+<p>To end a session:</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Asynchronous</span>
@@ -854,7 +791,7 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
 </ul>
 <div class="callout callout--info">
   <p>
-    <span style="font-weight: 400;">If you need a more complicated logic or using the SDK version 24.4.0 then you will need to use this method mentioned <a href="#h_01JCGK0D278963WZKBW7ZWPTDN">here</a> instead.</span>
+    <span style="font-weight: 400;">If you need a more complicated logic then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438HCZ8FJVAE34W49KP" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
   </p>
 </div>
 <p>
