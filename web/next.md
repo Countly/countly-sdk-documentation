@@ -358,10 +358,10 @@ catch(ex){
 <p>An event consists of a JavaScript object with keys:</p>
 <ul>
   <li>key - the name of the event (mandatory)</li>
-  <li>count - number of events (default: 1)</li>
+  <li>count - number of events (optional) (defaults to 1)</li>
   <li>sum - sum to report with the event (optional)</li>
   <li>dur - duration expressed in seconds (optional)</li>
-  <li>segmentation - an object with key/value pairs</li>
+  <li>segmentation - an object with key/value pairs (optional)</li>
 </ul>
 <p>
   <span style="font-weight: 400;">Here is an example of adding an event with all possible properties:</span>
@@ -519,10 +519,12 @@ Countly.end_event({
   <li>Marking the end of a session</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">Only use the methods below if you aren’t planning on using the automatic session tracking and set the </span><em><span style="font-weight: 400;">use_session_cookie</span></em><span style="font-weight: 400;"> setting to false during init for more granular control of the session.</span>
+  Only use the methods below if you aren’t planning on using the automatic session
+  tracking and set the <code>use_session_cookie</code> setting to false during
+  init for more granular control of the session.
 </p>
 <p>
-  <span style="font-weight: 400;">SDK will automatically report elapsed session duration with 60 seconds intervals (this can be modified during init with `session_update` config option).</span>
+  <span style="font-weight: 400;">SDK will automatically report elapsed session duration with 60 seconds intervals (this can be modified during init with <code>session_update</code> config option).</span>
 </p>
 <p>
   <strong>Beginning a Session</strong>
@@ -558,7 +560,16 @@ Countly.end_event({
 </div>
 <h1 id="h_01HABTQ437CAD08ESRK6RMJ2FG">View Tracking</h1>
 <p>
-  <span style="font-weight: 400;">This method will track the current pageview by using location.path as the page name and then reporting it to the server.</span>
+  <span style="font-weight: 400;">SDK only provides manual views (you will need to determine when a view starts). Depending on your site's structure (MPA or SPA) you might need to modify how you track page views with the SDK.</span>
+</p>
+<h2 id="h_01JF056M0Y04NSX2GPN4132W9K">
+  <span style="font-weight: 400;">Manual View Recording</span>
+</h2>
+<p>
+  <span style="font-weight: 400;">All views are auto-stopped meaning there can only be one view tracked at a time and it will end at the end of a session or when another one starts.</span>
+</p>
+<p>
+  <span style="font-weight: 400;">You can track the current page that the SDK initialized in by using the method below for MPAs. This uses <code>location.path</code> as the page name and then reports it to the server:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -573,7 +584,7 @@ Countly.end_event({
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">For Ajax updated contents and single page web applications, pass the page name as a parameter to record the new page view.</span>
+  <span style="font-weight: 400;">If <code>location.path</code> as the page name is not useful for you (for Ajax updated contents and single page web applications), pass the page name as a parameter to record the new page view, for example</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -581,14 +592,14 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview','pagename']);</code></pre>
+    <pre><code class="javascript">Countly.q.push(['track_pageview', "pagename"]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.track_pageview("pagename");</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Here is a good example if your single-page app uses URL hash.</span>
+  <span style="font-weight: 400;">Here is a good example if your single-page app uses URL hash:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -611,7 +622,7 @@ $(window).on('hashchange', function() {
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In some cases, you might like to ignore some URLs to exclude from tracking, such as dynamic URLs that include the user ID in the URL, internal URLs, or for any other reason. You may do so by providing another parameter with a list of strings of views to ignore or a list of regular expressions to ignore.</span>
+  <span style="font-weight: 400;">If you are relying on the default page name assigned by the SDK you might like to ignore some URLs to exclude from tracking, such as dynamic URLs that include the user ID in the URL, internal URLs, or for any other reason. You may do so by providing another parameter with a list of strings of views to ignore or a list of regular expressions to ignore.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -675,7 +686,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 </div>
 <h2 id="h_01HABTQ43780HVFRZME2BK1PZJ">Overriding View Name and URL Getters</h2>
 <p>
-  <span style="font-weight: 400;">There are cases when determining the view name requires more complex logic, and in some cases, you will need to separate the URL and the View naming. This is done so you may still have some business logic view names, yet you have the valid URL underneath them to view action maps, such as clicks and scrolls.</span>
+  <span style="font-weight: 400;">There are cases when determining the view name requires more complex logic, and in some cases, you will need to separate the URL and the View naming. This way you give a human readable page name, yet you have the valid URL underneath them to view action maps, such as clicks and scrolls.</span>
 </p>
 <p>
   <span style="font-weight: 400;">To do so you may define the view name and URL getter functions. That way you won’t need to provide separate view names, rather the SDK will use this getter function to receive the proper view name and the URL you would like to use.</span>
@@ -996,12 +1007,12 @@ Countly.ip_address = "198.168.1.1";
   Heatmaps overlay to visualize these click clusters and scroll zones on your website.
 </p>
 <p>
-  To display this overlay the SDK loads certain scripts from your server. To ensure
-  the source of these scripts and to enable these scripts to be loaded from somewhere
-  else other than your Countly server, the SDK offers a whitelisting option during
-  the initialization. To whitelist domains other than your Countly server you should
-  provide an array of these domains, as String values, under the 'heatmap_whitelist'
-  flag during the initialization:
+  To display this overlay the SDK loads certain scripts from your server. To enable
+  these scripts to be loaded from somewhere else other than the Countly server
+  SDK sends information to (for example your internal server), the SDK offers a
+  whitelisting option during the initialization. To whitelist domains other than
+  your Countly server you should provide an array of these domains, as String values,
+  under the <code>heatmap_whitelist</code> flag during the initialization:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1052,7 +1063,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   </p>
 </div>
 <p>
-  <span style="font-weight: 400;">After you integrate the JS SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Page views, as shown below:</span>
+  <span style="font-weight: 400;">After you integrate the SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Heatmaps, as shown below:</span>
 </p>
 <div class="img-container">
   <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
@@ -1074,7 +1085,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Page views. You may change the heatmap type on the top bar once a view is open.</span>
+  <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Heatmaps. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
   <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
@@ -1088,7 +1099,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <h2 id="h_01HABTQ438MKGNJ0DCP8J8YFTG">Automatic Remote Config</h2>
 <p>
-  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific trigers. For example, after SDK initialization, changing device ID.</span>
+  <span style="font-weight: 400;">Automatic Remote Config functionality is disabled by default and needs to be explicitly enabled. When automatic Remote Config is enabled, the SDK will try to fetch it upon some specific triggers. For example, after SDK initialization or changing device ID.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You may enable this feature by providing to the </span><em><span style="font-weight: 400;">remote_config</span></em><span style="font-weight: 400;"> flag a callback function or by setting it to true while initializing the SDK.</span>
@@ -1241,19 +1252,18 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   </p>
 </div>
 <p>
-  All three widgets use the same API to fetch feedbacks from the server as well
-  as to display them to the end user. By default, the created widget will be appended
-  to the end of the html document. In some scenarios you might prefer to have the
-  widget injected in a specific element. For those scenarios we have added optional
-  selectors. The first one is used for selecting an element by it's id and the
-  second one is used to select the element by it's class selector. If you want
-  to inject the feedback widget in a specific element, you can do so by specifying
-  the element ID or the class name. You can also add custom segmentation while
-  presenting a widget.
+  To simply show available widgets to your users you can use the methods available
+  through the feedback interface. These methods will take a single parameter:
 </p>
+<ul>
+  <li>
+    nameTagOrID - String value to select a widget according to its name, tag
+    or ID (optional)
+  </li>
+</ul>
 <p>
-  To use feedback widgets, you need to give "feedback" consent (in case consent
-  is required).
+  If this value is not provided or no widget with the provided parameter can not
+  be found it will display the first widget available instead:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1261,69 +1271,19 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//Fetch user's feedback widgets from the server
-Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
-<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
-function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
-  // Decide which widget to show. Here, the first rating widget is selected. 
-  const widgetType = "rating";
-  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
-  if (!countlyFeedbackWidget) {
-    console.error(`[Countly] No ${widgetType} widget found`);
-    return;
-  }
-
-  //Define the element ID and the class name (optional, pass undefined if you don't use)
-  const selectorId = "targetIdSelector";
-  const selectorClass = "targetClassSelector";
-
-  // Define the segmentation (optional)
-  const segmentation = { page: "home_page" };
-
-  //Display the feedback widget to the end user
-  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
-}
-</code></pre>
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.feedback.showNPS("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showSurvey("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showRating("nameTagOrID"); });</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//Fetch user's feedback widgets from the server
-Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
-<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widget objects
-function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-
-  // Decide which widget to show. Here, the first rating widget is selected. 
-  const widgetType = "rating";
-  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget =&gt; widget.type === widgetType);
-  if (!countlyFeedbackWidget) {
-    console.error(`[Countly] No ${widgetType} widget found`);
-    return;
-  }
-  
-  //Define the element ID and the class name (optional, pass undefined if you don't use)
-  const selectorId = "targetIdSelector";
-  const selectorClass = "targetClassSelector";
-
-  // Define the segmentation (optional)
-  const segmentation = { page: "home_page" };
-  
-  //Display the feedback widget to the end user 
-  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
-}
-</code></pre>
+    <pre><code class="javascript">Countly.feedback.showNPS("nameTagOrID");<br>Countly.feedback.showSurvey("nameTagOrID");<br>Countly.feedback.showRating("nameTagOrID");</code></pre>
   </div>
 </div>
-<p>
-  Note: Feedback Widgets' show policies are handled internally by the Web SDK.
-</p>
+<div class="callout callout--info">
+  <p>
+    If you need a more complex logic to display your widgets you can check extended
+    documentation from
+    <a href="/hc/en-us/articles/4409195031577#h_01JF06CEVMYPPTDFTTTJ2DG7F6" target="_blank" rel="noopener noreferrer">here</a>.
+  </p>
+</div>
 <h3 id="h_01HABTQ438KSCZWEFA8GEFE07R">Manual Reporting</h3>
 <p>
   Reporting Feedback Widgets manually consists of 3 main steps:
@@ -3001,6 +2961,95 @@ Countly.opt_in();</code></pre>
     If you would like to have opt out selected by default, combine these methods
     with the initial setting <strong>ignore_visitor</strong> on the Countly init
     object.
+  </p>
+  <h2 id="h_01JF06CEVMYPPTDFTTTJ2DG7F6">Extended Feedback Widget Options</h2>
+  <p>
+    If you have many widgets and the way you want to show them is intricate you
+    can use the methods shown below.
+  </p>
+  <p>
+    All three widgets use the same API to fetch feedbacks from the server as
+    well as to display them to the end user. By default, the created widget will
+    be appended to the end of the html document. In some scenarios you might
+    prefer to have the widget injected in a specific element. For those scenarios
+    we have added optional selectors. The first one is used for selecting an
+    element by it's id and the second one is used to select the element by it's
+    class selector. If you want to inject the feedback widget in a specific element,
+    you can do so by specifying the element ID or the class name. You can also
+    add custom segmentation while presenting a widget.
+  </p>
+  <p>
+    To use feedback widgets, you need to give "feedback" consent (in case consent
+    is required).
+  </p>
+  <div class="tabs">
+    <div class="tabs-menu">
+      <span class="tabs-link is-active">Asynchronous</span>
+      <span class="tabs-link">Synchronous</span>
+    </div>
+    <div class="tab">
+      <pre><code class="javascript">//Fetch user's feedback widgets from the server
+Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
+<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  // Decide which widget to show. Here, the first rating widget is selected. 
+  const widgetType = "rating";
+  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget = widget.type === widgetType);
+  if (!countlyFeedbackWidget) {
+    console.error(`[Countly] No ${widgetType} widget found`);
+    return;
+  }
+
+  //Define the element ID and the class name (optional, pass undefined if you don't use)
+  const selectorId = "targetIdSelector";
+  const selectorClass = "targetClassSelector";
+
+  // Define the segmentation (optional)
+  const segmentation = { page: "home_page" };
+
+  //Display the feedback widget to the end user
+  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+}
+</code></pre>
+    </div>
+    <div class="tab is-hidden">
+      <pre><code class="javascript">//Fetch user's feedback widgets from the server
+Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
+<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widget objects
+function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  // Decide which widget to show. Here, the first rating widget is selected. 
+  const widgetType = "rating";
+  const countlyFeedbackWidget = countlyPresentableFeedback.find(widget =&gt; widget.type === widgetType);
+  if (!countlyFeedbackWidget) {
+    console.error(`[Countly] No ${widgetType} widget found`);
+    return;
+  }
+  
+  //Define the element ID and the class name (optional, pass undefined if you don't use)
+  const selectorId = "targetIdSelector";
+  const selectorClass = "targetClassSelector";
+
+  // Define the segmentation (optional)
+  const segmentation = { page: "home_page" };
+  
+  //Display the feedback widget to the end user 
+  Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+}
+</code></pre>
+    </div>
+  </div>
+  <p>
+    Note: Feedback Widgets' show policies are handled internally by the Web SDK.
   </p>
 </div>
 <h2 id="h_01JCGK0D278963WZKBW7ZWPTDN">Extended Device ID Management</h2>
