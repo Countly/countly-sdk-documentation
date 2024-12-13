@@ -1281,7 +1281,7 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   <p>
     If you need a more complex logic to display your widgets you can check extended
     documentation from
-    <a href="/hc/en-us/articles/4409195031577#h_01JF06CEVMYPPTDFTTTJ2DG7F6" target="_blank" rel="noopener noreferrer">here</a>.
+    <a href="/hc/en-us/articles/360037441932#h_01JF06CEVMYPPTDFTTTJ2DG7F6" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <h3 id="h_01HABTQ438KSCZWEFA8GEFE07R">Manual Reporting</h3>
@@ -2962,33 +2962,34 @@ Countly.opt_in();</code></pre>
     with the initial setting <strong>ignore_visitor</strong> on the Countly init
     object.
   </p>
-  <h2 id="h_01JF06CEVMYPPTDFTTTJ2DG7F6">Extended Feedback Widget Options</h2>
-  <p>
-    If you have many widgets and the way you want to show them is intricate you
-    can use the methods shown below.
-  </p>
-  <p>
-    All three widgets use the same API to fetch feedbacks from the server as
-    well as to display them to the end user. By default, the created widget will
-    be appended to the end of the html document. In some scenarios you might
-    prefer to have the widget injected in a specific element. For those scenarios
-    we have added optional selectors. The first one is used for selecting an
-    element by it's id and the second one is used to select the element by it's
-    class selector. If you want to inject the feedback widget in a specific element,
-    you can do so by specifying the element ID or the class name. You can also
-    add custom segmentation while presenting a widget.
-  </p>
-  <p>
-    To use feedback widgets, you need to give "feedback" consent (in case consent
-    is required).
-  </p>
-  <div class="tabs">
-    <div class="tabs-menu">
-      <span class="tabs-link is-active">Asynchronous</span>
-      <span class="tabs-link">Synchronous</span>
-    </div>
-    <div class="tab">
-      <pre><code class="javascript">//Fetch user's feedback widgets from the server
+</div>
+<h2 id="h_01JF06CEVMYPPTDFTTTJ2DG7F6">Extended Feedback Widget Options</h2>
+<p>
+  If you have many widgets and the way you want to show them is intricate you can
+  use the methods shown below.
+</p>
+<p>
+  All three widgets use the same API to fetch feedbacks from the server as well
+  as to display them to the end user. By default, the created widget will be appended
+  to the end of the html document. In some scenarios you might prefer to have the
+  widget injected in a specific element. For those scenarios we have added optional
+  selectors. The first one is used for selecting an element by it's id and the
+  second one is used to select the element by it's class selector. If you want
+  to inject the feedback widget in a specific element, you can do so by specifying
+  the element ID or the class name. You can also add custom segmentation while
+  presenting a widget.
+</p>
+<p>
+  To use feedback widgets, you need to give "feedback" consent (in case consent
+  is required).
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">//Fetch user's feedback widgets from the server
 Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
 <br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
@@ -3016,9 +3017,9 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
-    </div>
-    <div class="tab is-hidden">
-      <pre><code class="javascript">//Fetch user's feedback widgets from the server
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">//Fetch user's feedback widgets from the server
 Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
 <br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widget objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
@@ -3046,12 +3047,11 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
 }
 </code></pre>
-    </div>
   </div>
-  <p>
-    Note: Feedback Widgets' show policies are handled internally by the Web SDK.
-  </p>
 </div>
+<p>
+  Note: Feedback Widgets' show policies are handled internally by the Web SDK.
+</p>
 <h2 id="h_01JCGK0D278963WZKBW7ZWPTDN">Extended Device ID Management</h2>
 <p>
   <span style="font-weight: 400;">In some cases, you may want to change the ID of the user/device that you provided or Countly automatically generated, e.g. when a user was changed.</span>
