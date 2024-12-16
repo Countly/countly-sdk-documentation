@@ -1253,7 +1253,8 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 </div>
 <p>
   To simply show available widgets to your users you can use the methods available
-  through the feedback interface. These methods will take a single parameter:
+  through the <code>feedback</code> interface. These methods will take a single
+  parameter:
 </p>
 <ul>
   <li>
@@ -1262,8 +1263,8 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   </li>
 </ul>
 <p>
-  If this value is not provided or no widget with the provided parameter can not
-  be found it will display the first widget available instead:
+  If this value is not provided or no widget with the provided parameter can be
+  found it will display the first widget available instead:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1419,16 +1420,19 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
 <h2 id="h_01J1YSATYHKAJ8SZMM4KW6BBRT">Consent</h2>
 <p>
   If consents are enabled, to use Feedback Widgets you have to provide the 'feedback'
-  and the 'star-rating' consents for this feature to work.
+  and the 'star-rating' consents for it to work.
 </p>
 <h1 id="h_01HABTQ439MH1SD5Q76905BRWP">User Profiles</h1>
 <h2 id="h_01HABTQ439KMGT58PHY4MRA1GT">User Details</h2>
 <p>
-  <span style="font-weight: 400;">If you have any details about the user/visitor, you may provide Countly with that information. This will allow you to track every specific user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
+  <span style="font-weight: 400;">You can provide Countly with user information like a username or email address. This will allow you to distinguish user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
 </p>
-<p>
-  If a parameter is set as an empty string, it will be deleted on the server side.
-</p>
+<div class="callout callout--warning">
+  <p>
+    If a parameter is set as an empty string, it will be deleted on the server
+    side.
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">The list of possible parameters you may pass:</span>
 </p>
@@ -1539,40 +1543,21 @@ Countly.enable_orientation_tracking = false;</code></pre>
   <div class="tab is-hidden">
     <pre><code class="javascript">//to disable orientation tracking
 Countly.init({
-  debug:false,
   app_key:"YOUR_APP_KEY",
-  device_id:"1234-1234-1234-1234",
   url: "https://try.count.ly",
   enable_orientation_tracking: false //this will disable orientation tracking
 });</code></pre>
   </div>
 </div>
-<p>
-  In case you need to force reporting orientation, you may call the following method.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">//user stored conversion data
-Countly.q.push(['report_orientation', "portrait"]);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">//user stored conversion data
-Countly.report_orientatio("portrait");</code></pre>
-  </div>
-</div>
 <h1 id="h_01HABTQ4399MRCTWV2VT19QGGE">Application Performance Monitoring</h1>
 <p>
   If you want to record some performance metrics regarding your website there are
-  2 ways to report these performance traces. One way is to construct and report
-  them manually. The other is using a plugin that will utilize BoomerangJS to collect
-  website's performance data and report it as a performance trace.
+  2 ways to report these performance traces with Countly. One way is to construct
+  and report them manually. The other is using a plugin that will utilize BoomerangJS
+  to collect website's performance data and report it as a performance trace.
 </p>
 <p>
-  You can reach to example implementations of APM with BoomerangJS from the following
+  You can reach our example implementations of APM with BoomerangJS from the following
   links:<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm_async.html" target="_blank" rel="noopener">Async Apm Example</a><br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html" target="_blank" rel="noopener">Sync Apm Example</a>
@@ -1613,9 +1598,9 @@ Countly.report_trace({
   </div>
 </div>
 <p>
-  Whether you are using Countly synchronously or asynchronously, you should always
-  provide the 'duration' key and its value in apm_metrics, otherwise custom traces
-  won't be recorded.
+  Whether you are using Countly synchronously or asynchronously,
+  <strong>you should always provide the 'duration' key and its value in apm_metrics</strong>,
+  otherwise custom traces won't be recorded.
 </p>
 <h2 id="h_01HABTQ439VYQ8V9TJ2GX1J450">Automatic Device Traces</h2>
 <p>
@@ -1982,7 +1967,7 @@ Countly.salt = "your_salt";
     <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
   </li>
   <li>
-    <span><strong>metrics</strong> - provide metrics override or custom metrics for this user. For more information on the specific metric keys used by Countly, check <a href="https://support.count.ly/hc/en-us/articles/9290669873305#setting-custom-user-metrics" target="_self">here</a>.</span><span></span>
+    <span><strong>metrics</strong> - provide metrics override or custom metrics for this user. For more information on the specific metric keys used by Countly, check <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.</span><span></span>
   </li>
 </ul>
 <p>
@@ -2049,8 +2034,6 @@ Countly.ip_address = "83.140.15.1";</code></pre>
   is a simple integration to show how giving consent works.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_multiple_instances.html">example_multi_instances</a>
   is a simple demonstration for multi instancing the Countly SDK.<br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_opt_out.html">example_opt_out</a>
-  is a simple demonstration to show how to opt out from services.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/examples_feedback_widgets.html">examples_feedback_widgets</a>
   is a simple integration for feedback widgets.<br>
   <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_remote_config.html">example_remote_config</a>
@@ -2444,6 +2427,9 @@ Countly.init();</code></pre>
   </li>
   <li>
     <strong>cly_id</strong> - current user's device id
+  </li>
+  <li>
+    <strong>cly_id_type</strong> - current user's device id type
   </li>
   <li>
     <strong>cly_cmp_id</strong> - last campaign id user came from
@@ -3089,6 +3075,77 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
+  </div>
+</div>
+<h2 id="h_01JF7TA0TASABV8RSAX2PWYAZ8">Content Zone</h2>
+<div class="callout callout--warning">
+  <p>
+    <strong>Note:</strong> This is an experimental feature available from version
+    24.11.1!
+  </p>
+</div>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts.
+  These content blocks are dynamically served from the content builder on the server,
+  ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  To start fetching content from the server, use the following method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.enterContenZone(); });</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.content.enterContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.exitContentZone(); });</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.content.exitContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  If you need to change the frequency of content zone requests from default 30
+  seconds, you can give a custom value for intervals, in seconds, during init:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.content_zone_timer_interval = 45; // seconds
+     
+// Initialize the SDK</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+  app_key: "YOUR_APP_KEY",
+  url: "https://your.server.ly",
+  content_zone_timer_interval: 45, //seconds
+});</code></pre>
   </div>
 </div>
 <h1 id="h_01HABTQ43BRSHEYT75ZF6AN6F5">FAQ</h1>
