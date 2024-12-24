@@ -37,18 +37,12 @@
   The shortest way to initialize the SDK, if you want Countly SDK to take care
   of device ID seamlessly, is to use the code below.
 </p>
-<pre><code class="dart">Countly.isInitialized().then((bool isInitialized){
-  if(!isInitialized) {
-    // Create the configuration with your app key and server URL
-    CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">// Create the configuration with your app key and server URL
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
-    // Initialize with that configuration
-    Countly.initWithConfig(config).then((value){
-      // handle extra logic after init
-    });
-  } else {
-    print("Countly: Already initialized.");
-  }
+// Initialize with that configuration
+Countly.initWithConfig(config).then((value){
+  // handle extra logic after init
 });</code></pre>
 <p>
   Please check
