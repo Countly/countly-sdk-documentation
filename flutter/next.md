@@ -228,38 +228,19 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
   Countly instance by default.
 </p>
 <p>
-  Here are the detail about properties which we can use with event:
+  All data passed to the Countly server via SDK or API should be in UTF-8.
 </p>
-<ul>
-  <ul>
-    <li>
-      <code>key</code> identifies the event.
-    </li>
-    <li>
-      <code>count</code> is the number of times this event occurred.
-    </li>
-    <li>
-      <code>sum</code> is an overall numerical data set tied to an event. For
-      example, total amount of in-app purchase event.
-    </li>
-    <li>
-      <code class="dart">duration</code> is used to record and track the duration
-      of events.
-    </li>
-    <li>
-      <code>segmentation</code> is a key-value pairs, we can use
-      <code>segmentation</code> to track additional information. The only valid
-      data types are: "String", "Integer", "Double", "Boolean" and "List".
-      All other types will be ignored.
-    </li>
-  </ul>
-</ul>
-<div class="callout callout--info">
-  <strong>Data passed should be in UTF-8</strong>
-  <p>
-    All data passed to the Countly server via SDK or API should be in UTF-8.
-  </p>
-</div>
+<p>
+  In the SDK all event-related functionality can be browsed from the returned interface
+  on:
+</p>
+<pre><code>Countly.instance.events</code></pre>
+<p>
+  When providing segmentation for events, the following primitive data types are
+  supported: "String," "int," "double," and "bool." Additionally, Lists composed
+  of these primitive types are also supported. Please note that no other data types
+  will be recorded.
+</p>
 <h2 id="h_01H930GAQ5RVJC7NBPQFGPQ41Y">Recording Events</h2>
 <p>
   We will be recording a <strong>purchase</strong> event. Here is a quick summary
@@ -288,168 +269,107 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
     versions + the total duration of those events (under Timed Events topic below).
   </li>
 </ul>
+<p>The function signature as follows</p>
+<pre><code class="dart">Future&lt;String?&gt; recordEvent(String key, [Map&lt;String, Object&gt;? segmentation, int? count, double? sum, int? duration])</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">1. Event key and count</span>
 </p>
-<pre><code class="dart">// example for sending basic event
-var event = {
-  "key": "Basic Event",
-  "count": 1
-};
-
-Countly.recordEvent(event);</code></pre>
+<pre><code class="dart">Countly.instance.events.recordEvent('purchase', null, 1);</code></pre>
 <p>
   <span class="wysiwyg-font-size-large">2. Event key, count and sum</span>
 </p>
-<pre><code class="dart">// example for event with sum
-var event = {
-  "key": "Event With Sum",
-  "count": 1,
-  "sum": "0.99",
-};
-
-Countly.recordEvent(event);
+<pre><code class="dart">Countly.instance.events.recordEvent('purchase', null, 1, 0.99);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">3. Event key and count with segmentation(s)</span>
 </p>
-<pre><code class="dart">// example for event with segment
-var event = {
-  "key": "Event With Segment",
-  "count": 1
+<pre><code class="dart">Map&lt;String, Object&gt;? segmentation = {
+  'country': 'Germany',
+  'app_version': '1.0',
+  'rating': 10,
+  'precision': 324.54678,
+  'timestamp': 1234567890,
+  'clicked': false,
+  'languages': ['en', 'de', 'fr'],
+  'sub_names': ['John', 'Doe', 'Jane']
 };
 
-event["segmentation"] = {
-  "country": "Germany",
-  "app_version": "1.0",
-  "rating": 10,
-  "precision": 324.54678,
-  "timestamp": 1234567890,
-  "clicked": false,
-  "languages": ["en", "de", "fr"],
-  "sub_names": ["John", "Doe", "Jane"]
-};
-
-Countly.recordEvent(event);
+Countly.instance.events.recordEvent('purchase', segmentation, 1);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">4. Event key, count and sum with segmentation(s)</span>
 </p>
-<pre><code class="dart">// example for event with segment and sum
-var event = {
-  "key": "Event With Sum And Segment",
-  "count": 1,
-  "sum": "0.99"
+<pre><code class="dart">Map&lt;String, Object&gt;? segmentation = {
+  'country': 'Germany',
+  'app_version': '1.0',
+  'rating': 10,
+  'precision': 324.54678,
+  'timestamp': 1234567890,
+  'clicked': false,
+  'languages': ['en', 'de', 'fr'],
+  'sub_names': ['John', 'Doe', 'Jane']
 };
 
-event["segmentation"] = {
-  "country": "Germany",
-  "app_version": "1.0",
-  "rating": 10,
-  "precision": 324.54678,
-  "timestamp": 1234567890,
-  "clicked": false,
-  "languages": ["en", "de", "fr"],
-  "sub_names": ["John", "Doe", "Jane"]
-};
-
-Countly.recordEvent(event);
+Countly.instance.events.recordEvent('purchase', segmentation, 1, 0.99);
 </code></pre>
 <p>
   <span class="wysiwyg-font-size-large">5. Event key, count, sum and duration with segmentation(s)</span>
 </p>
-<pre><code class="dart">// example for event with segment and sum
-var event = {
-  "key": "Event With Sum And Segment",
-  "count": 1,
-  "sum": "0.99",
-  "duration": "0"
+<pre><code class="dart">Map&lt;String, Object&gt;? segmentation = {
+  'country': 'Germany',
+  'app_version': '1.0',
+  'rating': 10,
+  'precision': 324.54678,
+  'timestamp': 1234567890,
+  'clicked': false,
+  'languages': ['en', 'de', 'fr'],
+  'sub_names': ['John', 'Doe', 'Jane']
 };
 
-event["segmentation"] = {
-  "country": "Germany",
-  "app_version": "1.0",
-  "rating": 10,
-  "precision": 324.54678,
-  "timestamp": 1234567890,
-  "clicked": false,
-  "languages": ["en", "de", "fr"],
-  "sub_names": ["John", "Doe", "Jane"]
-};
-
-Countly.recordEvent(event);
+Countly.instance.events.recordEvent('purchase', segmentation, 1, 0.99, 1);
 </code></pre>
 <h2 id="h_01H930GAQ5SWK23EQBNNRM4TZD">Timed Events</h2>
 <p>
   It's possible to create timed events by defining a start and a stop moment.
 </p>
-<p>
-  <span class="wysiwyg-font-size-large">1.Timed event with key</span>
-</p>
 <pre><code class="dart">// Basic event
-Countly.startEvent("Timed Event");
+Countly.instance.events.startEvent("Timed Event");
 
 Timer timer = Timer(new Duration(seconds: 5), () {
-  Countly.endEvent({ "key": "Timed Event" });
+  Countly.instance.events.endEvent('Timed Event');
 });
 </code></pre>
 <p>
-  <span class="wysiwyg-font-size-large">2.Timed event with key and sum</span>
-</p>
-<pre><code class="dart">// Event with sum
-Countly.startEvent("Timed Event With Sum");
-
-Timer timer = Timer(new Duration(seconds: 5), () {
-  Countly.endEvent({ "key": "Timed Event With Sum", "sum": "0.99" });
-});
-</code></pre>
-<p>
-  <span class="wysiwyg-font-size-large">3.Timed event with key, count and segmentation</span>
-</p>
-<pre><code class="dart">// Event with segment
-Countly.startEvent("Timed Event With Segment");
-
-Timer timer = Timer(new Duration(seconds: 5), () {
-  var event = {
-    "key": "Timed Event With Segment",
-    "count": 1,
-  };
-  event["segmentation"] = {
-    "country": "Germany",
-    "app_version": "1.0",
-    "rating": 10,
-    "precision": 324.54678,
-    "timestamp": 1234567890,
-    "clicked": false,
-    "languages": ["en", "de", "fr"],
-    "sub_names": ["John", "Doe", "Jane"]
-  };
-  Countly.endEvent(event);
-});</code></pre>
-<p>
-  <span class="wysiwyg-font-size-large">4.Timed event with key, count, sum and segmentation</span>
+  <span>You may also provide additional information when ending an event. However, in that case, you have to provide the segmentation, count, and sum. The default values for those are "null", 1 and 0.</span>
 </p>
 <pre><code class="dart">// Event with Segment, sum and count
-Countly.startEvent("Timed Event With Segment, Sum and Count");
+Countly.instance.events.startEvent("Timed Event With Segment, Sum and Count");
 
 Timer timer = Timer(new Duration(seconds: 5), () {
-  var event = {
-    "key": "Timed Event With Segment, Sum and Count",
-    "count": 1,
-    "sum": "0.99"
+  Map&lt;String, Object&gt;? segmentation = {
+    'country': 'Germany',
+    'app_version': '1.0',
+    'rating': 10,
+    'precision': 324.54678,
+    'timestamp': 1234567890,
+    'clicked': false,
+    'languages': ['en', 'de', 'fr'],
+    'sub_names': ['John', 'Doe', 'Jane']
   };
-  event["segmentation"] = {
-    "country": "Germany",
-    "app_version": "1.0",
-    "rating": 10,
-    "precision": 324.54678,
-    "timestamp": 1234567890,
-    "clicked": false,
-    "languages": ["en", "de", "fr"],
-    "sub_names": ["John", "Doe", "Jane"]
-  };
-  Countly.endEvent(event);
+  
+  Countly.instance.events.endEvent('Timed Event With Segment, Sum and Count', segmentation, 1, 0.99);
 });</code></pre>
+<p>
+  You may cancel the started timed event in case it is not relevant anymore:
+</p>
+<pre><code class="dart">//start some event
+Countly.instace.events.startEvent(eventName);
+
+//wait some time
+
+//cancel the event
+Countly.instance.events.cancelEvent(eventName);
+</code></pre>
 <h1 id="h_01H930GAQ5AHF46JK3WQ9Y7M01">Sessions</h1>
 <h2 id="h_01H930GAQ5GC90X94VG7NAG6K1">Automatic Session Tracking</h2>
 <p>
