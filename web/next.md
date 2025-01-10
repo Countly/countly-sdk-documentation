@@ -1272,7 +1272,12 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.feedback.showNPS("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showSurvey("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showRating("nameTagOrID"); });</code></pre>
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.feedback.showNPS("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showSurvey("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showRating("nameTagOrID"); });
+
+// or from SDK version 24.11.4 forward you can use:
+Countly.q.push(["feedback.showNPS", "nameTagOrID"]);
+Countly.q.push(["feedback.showSurvey", "nameTagOrID"]);
+Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.feedback.showNPS("nameTagOrID");<br>Countly.feedback.showSurvey("nameTagOrID");<br>Countly.feedback.showRating("nameTagOrID");</code></pre>
@@ -3099,7 +3104,10 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.enterContenZone(); });</code></pre>
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.enterContentZone(); });
+
+// or from SDK version 24.11.4 and forward:
+Countly.q.push(['content.enterContentZone']);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.content.enterContentZone();</code></pre>
@@ -3120,7 +3128,10 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.exitContentZone(); });</code></pre>
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.exitContentZone(); });
+
+// or from SDK version 24.11.4 and forward:
+Countly.q.push(['content.exitContentZone']);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.content.exitContentZone();</code></pre>
