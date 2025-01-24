@@ -199,8 +199,8 @@
   If you would like to understand how SDKs work by generating mobile or web code
   for events, user profiles, crash reporting, and all other features that come
   with Countly in general, we suggest you use the
-  <a href="http://code.count.ly">Countly Code Generator</a>, which is a point and
-  click service that builds the necessary code for you.
+  <a href="https://countly.github.io/countly-code-generator/">Countly Code Generator</a>,
+  which is a point and click service that builds the necessary code for you.
 </p>
 <h1 id="01H821RTQ18DVPGH41Y03VD7G4">SDK Storage and Requests</h1>
 <h2 id="01H821RTQ1ZMTGHAF6MHDX41MD">Making Requests</h2>
@@ -1756,11 +1756,11 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </ul>
 <p>
   Product Information:
-  <a href="https://support.countly.com/hc/en-us/articles/4431589003545-Analytics#h_01HAWAJ8QP38V2Q54RKAG9WRHN" target="_blank" rel="noopener noreferrer">Product Documentation</a>
+  <a href="/hc/en-us/articles/4431589003545#h_01HAWAJ8QP38V2Q54RKAG9WRHN" target="_blank" rel="noopener noreferrer">Product Documentation</a>
   |
-  <a href="https://support.countly.com/hc/en-us/articles/4404570865433-Utilities-Overview#h_01HCD3STXGT4RFT3MM4PF3XCCN" target="_blank" rel="noopener noreferrer">Other Uses</a>
+  <a href="/hc/en-us/articles/4404570865433#h_01HCD3STXGT4RFT3MM4PF3XCCN" target="_blank" rel="noopener noreferrer">Other Uses</a>
   |
-  <a href="https://support.countly.com/hc/en-us/articles/4403281285913-User-Visitor-Profiles#h_01HBPA9VW7HRTFJSMHZBA0X9X4" target="_blank" rel="noopener noreferrer">Further Server Logic</a>
+  <a href="/hc/en-us/articles/4403281285913#h_01HBPA9VW7HRTFJSMHZBA0X9X4" target="_blank" rel="noopener noreferrer">Further Server Logic</a>
 </p>
 <h2 id="h_01JBXS3NT6PCW066JQMKP7706E">
   <span class="wysiwyg-font-size-x-large">Exposed Methods</span>
@@ -1980,7 +1980,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <p>
   Product Information:
-  <a href="https://support.countly.com/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener noreferrer">Product Documentation</a>
+  <a href="/hc/en-us/articles/9895605514009" target="_blank" rel="noopener noreferrer">Product Documentation</a>
 </p>
 <h3 id="h_01JC3775J4KWS2R6NXM2YN3GHY">Exposed Methods</h3>
 <p>
@@ -2122,7 +2122,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </p>
 <p>
   Product Information:
-  <a href="https://support.countly.com/hc/en-us/articles/4416496362393-A-B-Testing" target="_blank" rel="noopener noreferrer">Product Documentation</a>
+  <a href="/hc/en-us/articles/4416496362393" target="_blank" rel="noopener noreferrer">Product Documentation</a>
 </p>
 <h3 id="h_01JCDT069MHCV9J7DAJVES43TT">Exposed Methods</h3>
 <p>
@@ -2432,7 +2432,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   They are shown using a very similar server API and basically the same processing.
   This is also an alternative method to use rating widgets, which are also now
   included in this newer SDK API. Refer to the
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings" target="_blank" rel="noopener noreferrer">Feedback User Guide</a>
+  <a href="/hc/en-us/articles/4652903481753" target="_blank" rel="noopener noreferrer">Feedback User Guide</a>
   for more detailed information about Feedback Widgets.
 </p>
 <p>Feedback widgets can be used through three methods:</p>
@@ -2668,7 +2668,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>
   The developer would look at
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">this</a>
+  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">this</a>
   document to better understand how to interpret the widget type and data to fill
   out the <code>widgetResult</code> object. Depending on the type of the widget
   being reported this object would have different key/value pairs.
@@ -2769,7 +2769,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <code>getFeedbackWidgetData</code>) returns the widget data as the first parameter
   and an error string as the second parameter. The data is returned in a JSON Object.
   Check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>
+  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>
   for example data structures returned.
 </p>
 <p>
@@ -3422,13 +3422,13 @@ npm install markdownlint --save-dev
 <h2 id="01H821RTQ8TP1A38587C72MW4T">SDK Server Configuration</h2>
 <div class="p-rich_text_section">
   Server UI URL for the UI (Management -&gt; SDK):<br>
-  <a class="c-link" href="https://xxx.count.ly/dashboard#/manage/sdk/configurations" target="_blank" rel="noopener" data-stringify-link="https://arturs.count.ly/dashboard#/manage/sdk/configurations" data-sk="tooltip_parent">https://xxx.count.ly/dashboard#/manage/sdk/configurations</a>
+  <a class="c-link" href="https://xxx.count.ly/dashboard#/manage/sdk/configurations" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/dashboard#/manage/sdk/configurations" data-sk="tooltip_parent">https://xxx.count.ly/dashboard#/manage/sdk/configurations</a>
 </div>
 <div class="p-rich_text_section">
   <br>
   <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>Server
   Example Endpoint:<br>
-  <a class="c-link" href="https://xxx.count.ly/o/sdk?app_key=3d8b794fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" target="_blank" rel="noopener" data-stringify-link="https://arturs.count.ly/o/sdk?app_key=3d8b794fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" data-sk="tooltip_parent">https://xxx.count.ly/o/sdk?app_key=3d8b794fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc</a>
+  <a class="c-link" href="https://xxx.count.ly/o/sdk?app_key=3d8b79s4fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/o/sdk?app_key=3d8bs94fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" data-sk="tooltip_parent">https://xxx.count.ly/o/sdk?app_key=3d8b7s94fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc</a>
 </div>
 <div class="p-rich_text_section">
   <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>Sample

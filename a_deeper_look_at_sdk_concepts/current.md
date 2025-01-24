@@ -172,12 +172,12 @@
   SDK's respective documentation to check the exact method calls and examples:
 </p>
 <p>
-  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34483587332121-Android-24-4#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Android</button>
-  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34585282246553-iOS-watchOS-tvOS-macOS-24-4#h_01HAVHW0RR6N7WKDSA1GRJXBJ1', '_blank')">iOS</button>
-  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438NWHSRCMAV4RJJVWX', '_blank')">Web</button>
-  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/31332062133913-React-Native-Bridge-23-12#h_01HAVQNJQS4TRX89X6GSGWQGGV', '_blank')">React Native</button>
-  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ7XASR12CMDC11Q265', '_blank')">Flutter</button>
-  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('https://support.countly.com/hc/en-us/articles/28213661170073-Java-23-10#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Java</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('/hc/en-us/articles/34483587332121-Android-24-4#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Android</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('/hc/en-us/articles/34585282246553-iOS-watchOS-tvOS-macOS-24-4#h_01HAVHW0RR6N7WKDSA1GRJXBJ1', '_blank')">iOS</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438NWHSRCMAV4RJJVWX', '_blank')">Web</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('/hc/en-us/articles/31332062133913-React-Native-Bridge-23-12#h_01HAVQNJQS4TRX89X6GSGWQGGV', '_blank')">React Native</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('/hc/en-us/articles/34539364044697-Flutter-24-4#h_01H930GAQ7XASR12CMDC11Q265', '_blank')">Flutter</button>
+  <button class="article-unsubscribe" style="padding: 10px 20px;" onclick="window.open('/hc/en-us/articles/28213661170073-Java-23-10#h_01HAVQDM5VNQE1BKTPNSXMX3BM', '_blank')">Java</button>
 </p>
 <h2 id="h_01HABT18WTEHRZTAQ49GRGNBP1">Interpreting Retrieved Feedback Widget Lists</h2>
 <p>
@@ -220,10 +220,10 @@
 </div>
 <h2 id="h_01HABT18WT0D08H8DR2BAD77T2">Reporting a Feedback Widget Manually</h2>
 <p>
-  This guide will go into the reporting of feedback widgets (<a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>,
+  This guide will go into the reporting of feedback widgets (<a href="/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_self">nps</a>,
+  <a href="/hc/en-us/articles/900004337763-Surveys" target="_self" rel="undefined">surveys</a>,
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">ratings</a>)
+  <a href="/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">ratings</a>)
   manually. It will give more context into how the widget data should be interpreted
   and how the response should be structured when reporting back to the SDK. Also,
   it must be noted that not all SDKs contain the functionality to do manual feedback
@@ -445,13 +445,13 @@
   and gather information in any way you want as long as you form and send correct
   requests to your Countly server. Documentations that would be useful to find
   the answers to these questions are the
-  <a href="https://support.count.ly/hc/en-us/articles/900005345483-Countly-Terminology" target="_blank" rel="noopener">Countly glossary</a>
+  <a href="/hc/en-us/articles/900005345483" target="_blank" rel="noopener">Countly glossary</a>
   to understand the Countly terminology, the
   <a href="https://api.count.ly/reference/i#modifying-custom-user-data" target="_blank" rel="noopener">API documentation</a>
   to see the endpoints and the data structure, the
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide" target="_blank" rel="noopener">SDK Development Guide</a>
+  <a href="/hc/en-us/articles/360037753291" target="_blank" rel="noopener">SDK Development Guide</a>
   to see the scope of the endpoints, and the specific documentation of the
-  <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs" target="_blank" rel="noopener">SDK</a>
+  <a href="/hc/en-us/sections/360007310512" target="_blank" rel="noopener">SDK</a>
   of your platform to see the capabilities and the features.
 </p>
 <h1 id="h_01HABT18WVPPB1PX9J7MG2ZSCT">Handling the Device ID in Your Integrations</h1>
@@ -529,7 +529,7 @@
 <p>
   For a deeper overview of how the SDK would behave in different situations, have
   a look at
-  <a href="https://support.count.ly/hc/en-us/articles/360037753291-SDK-development-guide#device-id-state-management-during-init" target="_blank" rel="noopener">this</a>
+  <a href="/hc/en-us/articles/360037753291#h_01GYC5WK7X17JTDEJEWMYFTYSA" target="_blank" rel="noopener">this</a>
   table.
 </p>
 <h3 id="h_01GG7QEZ64EJEE01S5NHXGW1QR">Changing Device ID</h3>
@@ -610,20 +610,12 @@
     If multiple different users use the same device, they will be identified
     as a single user in the Countly dashboard and will have a single profile
     under
-    <a href="https://count.ly/plugins/user-profiles" target="_blank" rel="noopener nofollow">User Profiles</a>.
+    <a href="https://countly.com/feature/user-profiles" target="_blank" rel="noopener nofollow">User Profiles</a>.
   </li>
   <li>
     If the same user uses multiple devices, each device will be identified as
     a separate user in the Countly dashboard; hence the same user will have separate
     user profiles.
-  </li>
-  <li>
-    Depending on the platform, if app storage is reset (erased) or the app is
-    uninstalled and re-installed again, this user most likely will be identified
-    as a new user, and a new user profile will be created. This highly depends
-    on how the platform behaves. Check
-    <a href="https://support.count.ly/hc/en-us/articles/360037501352-Countly-Implementation-and-Technical-FAQ#in-which-situations-does-a-device-id-reset" target="_self">here</a>
-    to understand what happens in such cases.
   </li>
 </ul>
 <h3 id="h_01HABT18WW2EQPJV5HVB9PYDBJ">Tracking Known Users</h3>
@@ -771,7 +763,7 @@
   both known users and anonymous ones. The actual implementations may differ based
   on your application specifics. But an example integration of the mentioned method
   can be reached from
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#handling-loginlogout-in-your-app" target="_self">here</a>.
+  <a href="/hc/en-us/articles/900000908046#h_01HABSX9KX61TSEGKY47F43KP3" target="_self">here</a>.
 </p>
 <p>
   <strong>Pros</strong>
@@ -957,7 +949,7 @@
 <h3 id="h_01HABT18WWB2RYD1XCT9HESD1D">Automatic dSYM Upload</h3>
 <p>
   For automatic dSYM, please see the Countly iOS SDK documentation
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#symbolication" target="_self" rel="undefined">here</a>.
+  <a href="/hc/en-us/articles/360037753511#h_01HAVHW0RN851W5J4BQX3FN938" target="_self" rel="undefined">here</a>.
 </p>
 <h2 id="h_01HABT18WWMW9E0W66Z9QMN1P7">JavaScript</h2>
 <p>
@@ -1912,7 +1904,7 @@ function sendMessage(param) {
 </p>
 <p>
   For additional integration details, you will also have to look at
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#watchos-integration" target="_self">this</a>
+  <a href="/hc/en-us/articles/360037753511#h_01HAVHW0RTPMZFEQGNNNR3ERYK" target="_self">this</a>
   section.
 </p>
 <p>
@@ -1944,7 +1936,7 @@ function sendMessage(param) {
   <strong>service account file</strong> to authenticate your requests. Follow these
   steps to acquire the file:
 </p>
-<h3>1. Navigate to Google Cloud Console</h3>
+<h3 id="h_01JJ9EJE30GA15WSADBYYAPGAK">1. Navigate to Google Cloud Console</h3>
 <ul>
   <li>
     Open
@@ -1955,14 +1947,14 @@ function sendMessage(param) {
     Firebase project.
   </li>
 </ul>
-<h3>2. Select Your Project</h3>
+<h3 id="h_01JJ9EJE30YVB74JEKD89X3BYY">2. Select Your Project</h3>
 <ul>
   <li>
     From the <strong>Project Selector</strong> dropdown in the top navigation
     bar, select your Firebase project.
   </li>
 </ul>
-<h3>3. Access Service Accounts</h3>
+<h3 id="h_01JJ9EJE30A9K16B08NR2X2JZ8">3. Access Service Accounts</h3>
 <ul>
   <li>
     In the left-hand navigation menu, go to
@@ -1973,7 +1965,7 @@ function sendMessage(param) {
     <code>firebase-adminsdk-<em>random-characters</em>@<em>project-id</em>.iam.gserviceaccount.com</code>.
   </li>
 </ul>
-<h3>4. Create a Private Key</h3>
+<h3 id="h_01JJ9EJE30Z29DST6V7ABYKPST">4. Create a Private Key</h3>
 <ul>
   <li>
     Next to the service account, click the <strong>Actions</strong> menu (three
@@ -1990,7 +1982,7 @@ function sendMessage(param) {
     <strong>Create</strong>.
   </li>
 </ul>
-<h3>5. Download and Secure the File</h3>
+<h3 id="h_01JJ9EJE30VBFVZFZEGZYSZT30">5. Download and Secure the File</h3>
 <ul>
   <li>
     The service account file will automatically download to your system as a
