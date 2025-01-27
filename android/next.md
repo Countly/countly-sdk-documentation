@@ -6,7 +6,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G73H5RWXFK9P9W6F7Q" target="_self" rel="undefined">here, </a>to
+    <a href="/hc/en-us/articles/360037236571#h_01H9QCP8G73H5RWXFK9P9W6F7Q" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -43,7 +43,7 @@
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.sharedInstance().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
-  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
+  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
@@ -55,7 +55,7 @@
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener">here</a>.
+    <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener">here</a>.
   </p>
 </div>
 <h2 id="h_01HAVQDM5SXG0Q4MRTDYXJRA8H">Adding callbacks</h2>
@@ -96,11 +96,11 @@
 <pre><code>CountlyConfig config = (<span>new </span>CountlyConfig(appC, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));<br>config.setLoggingEnabled(<span>true</span>);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
+  <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
 <h1 id="h_01HAVQDM5SSRZASQPBFV5YG0QV">Crash Reporting</h1>
 <p>
-  <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/4404213566105"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
+  <span style="font-weight: 400;">The Countly SDK for Android has the ability to collect&nbsp;</span><a href="/hc/en-us/articles/4404213566105"><span style="font-weight: 400;">crash reports</span></a><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;which you may examine and resolve later on the server.</span>
 </p>
 <p>
   In the SDK all crash-related functionality can be browsed from the returned interface
@@ -179,7 +179,7 @@
 </p>
 <p>
   - <strong>crashMetric</strong>: Crash related
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5V4WX0XFP7FC8ETDC3B96M">metrics</a>
+  <a href="/hc/en-us/articles/9290669873305#h_01HJ5V4WX0XFP7FC8ETDC3B96M">metrics</a>
   recorded by the SDK.
 </p>
 <p>
@@ -243,7 +243,7 @@
   </li>
 </ul>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/7cbb985-breakpad.png">
+  <img src="https://archive.count.ly/images/guide/7cbb985-breakpad.png">
 </div>
 <p>
   <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://central.sonatype.com/artifact/ly.count.android/sdk/versions"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 23.8.3):</span>
@@ -368,7 +368,7 @@ plugins {
   (2) and grouped as Countly tasks (3).
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/6ddc195-Selection_006.png">
+  <img src="https://archive.count.ly/images/guide/6ddc195-Selection_006.png">
 </div>
 <p>Another option is to run them from the command line:</p>
 <pre><code class="java">./gradlew uploadNativeSymbols
@@ -455,7 +455,7 @@ plugins {
 </p>
 <h1 id="h_01HAVQDM5T91A747VG56537NN9">Events</h1>
 <p>
-  <span style="font-weight: 400;">An</span><a href="https://support.count.ly/hc/en-us/articles/4403721560857-Events"><span style="font-weight: 400;">&nbsp;event</span></a><span style="font-weight: 400;">&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the Android SDK to the Countly instance by default.</span>
+  <span style="font-weight: 400;">An</span><a href="/hc/en-us/articles/4403721560857"><span style="font-weight: 400;">&nbsp;event</span></a><span style="font-weight: 400;">&nbsp;is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on. This way it's possible to get much more information from your application compared to what is sent from the Android SDK to the Countly instance by default.</span>
 </p>
 <p>
   All data passed to the Countly server via the SDK or API should be in UTF-8.
@@ -606,7 +606,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   Countly Android SDK comes with built in automatic session tracking functionality.
   Only thing necessary for this functionality to work is to add the proper calls
   to your activities after initializing the SDK. For more information you can check
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HAVQDM5SXG0Q4MRTDYXJRA8H" target="_self">here</a>.
+  <a href="/hc/en-us/articles/360037754031#h_01HAVQDM5SXG0Q4MRTDYXJRA8H" target="_self">here</a>.
 </p>
 <h2 id="h_01HAVQDM5TBV8FDMH3JE23ZPQB">Manual Sessions</h2>
 <p>
@@ -871,7 +871,7 @@ segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
 Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</code></pre>
 <p>
-  <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="http://resources.count.ly/docs/view-analytics"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="/hc/en-us/articles/4431589003545#h_01HAWAJ8QP89XMBYDBPWBPQ14C"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
   <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
@@ -1514,7 +1514,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
 </p>
 <h1 id="h_01HAVQDM5VZMRFC551YX1JQSZR">Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="/hc/en-us/articles/9895605514009"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   Once downloaded, Remote config values will be saved persistently and available
@@ -1875,14 +1875,14 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
-  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/4652903481753" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--warning">
   <p>
@@ -1949,7 +1949,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
   structures, or presenting them yourself, please refer to the following
-  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
+  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
 </p>
 <h3 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h3>
 <p>
@@ -1989,7 +1989,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
   <p>
     For how this retrievedWidgetData would look like and in depth information
     on this topic please check our detailed article
-    <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener">here</a>.
+    <a href="/hc/en-us/articles/9290669873305#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener">here</a>.
   </p>
 </div>
 <p>
@@ -2037,7 +2037,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
   You may send user-related information to Countly and let the Countly Dashboard
   show and segment this data. You may also send a notification to a group of users.
   For more information about User Profiles, review
-  <a href="https://support.count.ly/hc/en-us/articles/4403281285913-User-Profiles" target="_blank" rel="noopener noreferrer">this documentation</a>
+  <a href="/hc/en-us/articles/4403281285913" target="_blank" rel="noopener noreferrer">this documentation</a>
 </p>
 <h2 id="h_01J47DCBMMFRVW76KFDDJ6HD55">Setting User Properties</h2>
 <p>
@@ -2427,7 +2427,7 @@ Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code><
   Pinning is done during init through the CountlyConfig object.
 </p>
 <p>
-  <span>For more information on how to acquire the public key or the certificate, have a look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
+  <span>For more information on how to acquire the public key or the certificate, have a look <a href="/hc/en-us/articles/9290669873305#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
 </p>
 <p>
   Here is an example of public key pinning for a example server.
@@ -2482,7 +2482,7 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
 </p>
 <p>
   In case you still have issues, have a look
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNJK8PAE5GEQWRFDS4KD6S6" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/9290669873305#h_01HDNJK8PAE5GEQWRFDS4KD6S6" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HAVQDM5WB4SK90KZYJE329MK">Using Proguard</h2>
 <p>
@@ -2798,7 +2798,7 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   large amounts of data to the server. If these limits are exceeded, the data will
   be truncated to keep it within the limit. You can check the exact parameters
   these limits affect from
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#sdk_internal_limits">here</a>.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits">here</a>.
 </p>
 <h3 id="h_01HV0RVRH27YXZ19NBQF7MGJFD">Key Length</h3>
 <p>
@@ -2906,7 +2906,7 @@ metricOverride.put("_app_version", "custom_version-123");
 config.setMetricOverride(metricOverride);</code></pre>
 <p>
   For more information on the specific metric keys used by Countly, check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
+  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_self">here</a>.
 </p>
 <h2 id="h_01HAVQDM5W9DMJ3Y6NXNCCVW0J">Log Listener</h2>
 <p>
@@ -2952,7 +2952,7 @@ config.setMetricOverride(metricOverride);</code></pre>
   <span style="font-weight: 400;">While creating a new message in the messaging overview and preparing its content, there is an optional prompt called "Add iOS badge". You may use this prompt to also send badges to Android devices.</span>
 </p>
 <div class="img-container">
-  <img src="https://count.ly/images/guide/5fbc4a2-Ekran_Resmi_2017-01-27_07.15.34.png">
+  <img src="https://archive.count.ly/images/guide/5fbc4a2-Ekran_Resmi_2017-01-27_07.15.34.png">
 </div>
 <p>
   <span style="font-weight: 400;">In order to receive this badge number in your application, you must subscribe to the broadcasts about received messages. There you will be informed about all received push notifications using Message and the bundle. The badge number is sent with the key "badge". You may use it to extract the badge number from the bundle received and then use it to display badge numbers with your implementation of choice.</span>
@@ -3370,7 +3370,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   their functions and implement the required features. Before any of it is sent
   to the server, it is stored locally. For further information please have a look
   to the
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
+  <a href="/hc/en-us/articles/9290669873305#h_01HJ5MD0WB97PA9Z04NG2G0AKC">collected informations</a>
   for all SDKs.
 </p>
 <h2 id="h_01HAVQDM5W8YY460M5PN3JEGX3">How can I build the Android SDK?</h2>
@@ -3403,7 +3403,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
       </td>
       <td>
         Module needed for
-        <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
+        <a href="/hc/en-us/articles/360037754031#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
       </td>
     </tr>
     <tr>
