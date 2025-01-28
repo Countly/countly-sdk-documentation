@@ -25,7 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^25.1.0
+  countly_flutter: ^24.11.2
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -1737,6 +1737,9 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <li>
     remoteConfig - allows downloading remote config values from your server
   </li>
+  <li>
+    content - allow to enter content zone to receive contents from the server.
+  </li>
 </ul>
 <h2 id="h_01H930GAQ85BFVYS2RZGN7TRA0">Setup During Init</h2>
 <p>
@@ -1754,10 +1757,11 @@ config.setRequiresConsent(true);</code></pre>
 <p>
   To give consent during initialization, you have to call
   <code class="dart">setConsentEnabled</code>on the config object with an array
-  of consent values.
+  of consent values. Or, you can use <code class="dart">giveAllConsents</code>for
+  all consent values.
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig])</code></pre>
+config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig, CountlyConsent.content])<br>config.giveAllConsents()</code></pre>
 <p>
   The Countly SDK does not persistently store the status of given consents except
   push notifications. You are expected to handle receiving consent from end-users
