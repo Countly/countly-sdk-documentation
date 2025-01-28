@@ -3181,12 +3181,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
-<div class="callout callout--warning">
-  <p>
-    <strong>Note:</strong> This is an experimental feature available from version
-    24.7.5!
-  </p>
-</div>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
   of content blocks, such as in-app messaging, ads, or user engagement prompts.
