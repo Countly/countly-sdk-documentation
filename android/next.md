@@ -3204,7 +3204,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <p>
   This regular check happens in every 30 seconds by default. It could be configurable
-  while initializing the SDK through
+  while initializing the SDK through and it must be greater than 15 seconds.
 </p>
 <pre><code class="java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
 <p>
