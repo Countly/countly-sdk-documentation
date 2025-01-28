@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 24.11.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 25.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -25,7 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^24.11.2
+  countly_flutter: ^25.1.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -2399,7 +2399,7 @@ Countly.initWithConfig(config);</code></pre>
   functionalities is mentioned in
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
-<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Platforms are supported?</h2>
+<h2 id="h_01JJP594C2RNXD9BTMXK97QG6V">What Platforms are supported?</h2>
 <p>
   Currently our Flutter SDK only supports Android and iOS platforms.
 </p>
