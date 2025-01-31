@@ -6,7 +6,7 @@
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G768WD943FT6WS38TH" target="_self" rel="undefined">here, </a>to
+    <a href="/hc/en-us/articles/360037236571#h_01H9QCP8G768WD943FT6WS38TH" target="_self" rel="undefined">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -46,7 +46,7 @@ Countly.initWithConfig(config).then((value){
 });</code></pre>
 <p>
   Please check
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
+  <a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3">here</a>
   for more information on how to acquire your application key (APP_KEY) and server
   URL.
 </p>
@@ -57,14 +57,14 @@ Countly.initWithConfig(config).then((value){
 </p>
 <p>
   Click
-  <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ8P3ZQAA3DGJT0RJVE" target="_self">here</a>
+  <a href="/hc/en-us/articles/360037944212#h_01H930GAQ8P3ZQAA3DGJT0RJVE" target="_self">here</a>
   for more information about the "CountlyConfig" object functionalities.
 </p>
 <div class="callout callout--info">
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
+    <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXE6YKVETHDWPP8J3K" target="blank">here</a>.
   </p>
 </div>
 <h2 id="h_01H930GAQ5TH1KDYE8FFHE3NYC">SDK Data Storage</h2>
@@ -92,7 +92,7 @@ Countly.initWithConfig(config).then((value){
 config.setLoggingEnabled(true);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
-  <a href="https://support.count.ly/hc/en-us/articles/900000908046-Getting-started-with-SDKs#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
+  <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
 </p>
 <h1 id="h_01H930GAQ5G76N9W9XM7JACE5B">Crash Reporting</h1>
 <p>
@@ -215,11 +215,10 @@ Countly.logExceptionManual("MESSAGE_STRING", nonfatal, STACK_TRACE_OBJECT, {"_fa
 <pre><code class="dart">Countly.addCrashLog(String logs)</code></pre>
 <h1 id="h_01H930GAQ5NTNH59KY6FB5CCEN">Events</h1>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/360037093532-Custom-events">Event</a>
-  is any type of action that you can send to a Countly instance, e.g purchase,
-  settings changed, view enabled and so. This way it's possible to get much more
-  information from your application compared to what is sent from Flutter SDK to
-  Countly instance by default.
+  <a href="/hc/en-us/articles/4403721560857">Event</a> is any type of action that
+  you can send to a Countly instance, e.g purchase, settings changed, view enabled
+  and so. This way it's possible to get much more information from your application
+  compared to what is sent from Flutter SDK to Countly instance by default.
 </p>
 <p>
   All data passed to the Countly server via SDK or API should be in UTF-8.
@@ -711,7 +710,7 @@ Countly.initWithConfig(config);</code></pre>
   Countly gives you the ability to send Push Notifications to your users using
   your app with the Flutter SDK integration. For more information on how to best
   use this feature you can check
-  <a href="https://support.count.ly/hc/en-us/articles/4405405459225-Push-Notifications" target="_blank" rel="noopener noreferrer">this</a>
+  <a href="/hc/en-us/articles/4405405459225" target="_blank" rel="noopener noreferrer">this</a>
   article.
 </p>
 <p>
@@ -724,7 +723,7 @@ Countly.initWithConfig(config);</code></pre>
 <h3 id="h_01H930GAQ6C3B3RYSEXZX4ZY3F">Android Setup</h3>
 <p>
   Step 1: For FCM credentials setup please follow the instruction from
-  <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android#h_01HNF9WBDT037TDHVHRSEPEMZV" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/360037754031#h_01HNF9WBDT037TDHVHRSEPEMZV" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>
   Step 2: Make sure you have <code>google-services.json</code> from
@@ -781,13 +780,13 @@ apply plugin: 'com.google.gms.google-services'
 <p>
   First, you will need to acquire Push Notification credentials from Apple. (If
   you don't have them you can check
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB" target="_blank" rel="noopener noreferrer">this</a>
+  <a href="/hc/en-us/articles/360037753511#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB" target="_blank" rel="noopener noreferrer">this</a>
   article to learn how you can do it.)
 </p>
 <p>
   Then you would need to upload these credentials to your Countly server. You can
   refer to
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HNF5QRPJGG0GKMMH2SZWVK85" target="_blank" rel="noopener noreferrer">this</a>
+  <a href="/hc/en-us/articles/360037753511#h_01HNF5QRPJGG0GKMMH2SZWVK85" target="_blank" rel="noopener noreferrer">this</a>
   article for learning how you can do that.
 </p>
 <p>
@@ -798,7 +797,7 @@ apply plugin: 'com.google.gms.google-services'
 <p>
   For Swift projects you might need to make sure Bridging Header File is configured
   properly for each target as explained
-  <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#h_01HAVHW0RT9DP8543XYWP278JC" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/360037753511#h_01HAVHW0RT9DP8543XYWP278JC" target="_blank" rel="noopener noreferrer">here</a>.
   For this purpose you can find <code>CountlyNotificationService.h/m</code> file
   under:
 </p>
@@ -979,7 +978,7 @@ Countly.setUserLocation(countryCode: 'TR', city: 'Istanbul', gpsCoordinates: '41
 Countly.disableLocation();</code></pre>
 <h1 id="h_01H930GAQ6GWEATBC0DAVDHW7R">Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="https://support.count.ly/hc/en-us/articles/360037270492-Remote-config"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Remote config allows you to modify how your app functions or looks by requesting key-value pairs from your Countly server. The returned values may be modified based on the user properties. For more details, please see the </span><a href="/hc/en-us/articles/9895605514009"><span style="font-weight: 400;">Remote Config documentation</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   Once downloaded, Remote config values will be saved persistently and available
@@ -1289,14 +1288,14 @@ config.setStarRatingTextDismiss("Custom message"); // Only available for Android
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
-  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/4652903481753" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--warning">
   <p>
@@ -1342,7 +1341,7 @@ Countly.instance.feedback.presentNPS("MyNetPromoterScore", FeedbackCallback(
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
   structures, or presenting them yourself, please refer to the following
-  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
+  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
 </p>
 <h3 id="h_01H930GAQ7HMVWZBVTXTCDTF50">Manual Reporting</h3>
 <p>
@@ -1406,8 +1405,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 </p>
 <p>
   For more information regarding how to structure the reported result, you would
-  look
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts" target="_self">here</a>.
+  look <a href="/hc/en-us/articles/9290669873305" target="_self">here</a>.
 </p>
 <h2 id="h_01J21BAQ9RWS12RS2C7JTRGD4A">Consent</h2>
 <p>
@@ -1630,7 +1628,7 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   For compatibility with data protection regulations, such as GDPR, the Countly
   Flutter SDK allows developers to enable/disable any feature at any time depending
   on user consent. More information about GDPR
-  <a href="/hc/en-us/articles/360037997132" target="_self">can be found here.</a>
+  <a href="https://countly.com/blog/importance-of-gdpr" target="_self">can be found here.</a>
 </p>
 <p>
   You can use CountlyConsent interface (e.g <code>CountlyConsent.sessions</code>)
@@ -1738,23 +1736,23 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 </p>
 <ul>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ65W1S9T2R1K2EQQFJ" target="_self">Device Id</a> - </strong>A device ID is a unique identifier for your users. You may specify the device ID yourself or allow the SDK to generate it. </span>
+    <span><strong><a href="#h_01H930GAQ65W1S9T2R1K2EQQFJ" target="_self">Device Id</a> - </strong>A device ID is a unique identifier for your users. You may specify the device ID yourself or allow the SDK to generate it. </span>
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ5BDPD0XHVV8RSR0XK" target="_self">Enable Logging</a> -</strong>
+    <strong><a href="#h_01H930GAQ5BDPD0XHVV8RSR0XK" target="_self">Enable Logging</a> -</strong>
     To enable countly internal debugging logs.<span></span>
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ55ZND3R5TD6WWP4R6" target="_self" rel="undefined">Enable Crash Reporting</a> -</strong>
+    <strong><a href="#h_01H930GAQ55ZND3R5TD6WWP4R6" target="_self" rel="undefined">Enable Crash Reporting</a> -</strong>
     To enable uncaught crash reporting.
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ865YY5RAJN9ZYP7H2" target="_self">Salt</a> -</strong>
+    <strong><a href="#h_01H930GAQ865YY5RAJN9ZYP7H2" target="_self">Salt</a> -</strong>
     Set the optional salt to be used for calculating the checksum of requested
     data which will be sent with each request.<span></span>
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ8GF1RMBD9MPWBBZ5J" target="_self" rel="undefined">Event queue threshold</a> -</strong>
+    <strong><a href="#h_01H930GAQ8GF1RMBD9MPWBBZ5J" target="_self" rel="undefined">Event queue threshold</a> -</strong>
     Set the threshold for event grouping. Event count that is bellow the threshold
     will be sent on update ticks.<span></span>
   </li>
@@ -1763,41 +1761,41 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     session update calls.
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ524KXJKJ2FQYVH075" target="_self">Custom Crash Segment</a> -</strong>Set
+    <strong><a href="#h_01H930GAQ524KXJKJ2FQYVH075" target="_self">Custom Crash Segment</a> -</strong>Set
     custom crash segmentation which will be added to all recorded crashes.
   </li>
   <li>
-    <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ77F3QXV695Z9DE6PJ" target="_self"><strong>User consent</strong></a>
+    <a href="#h_01H930GAQ77F3QXV695Z9DE6PJ" target="_self"><strong>User consent</strong></a>
     - Set if consent should be required and give consents.
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ8WN5X15PVGKP5VYJZ" target="_self">Forcing HTTP POST</a> -<span> </span></strong><span>When set to</span><span>&nbsp;</span><strong>true</strong><span>, all requests made to the Countly server will be done using HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In some cases, if the data to be sent exceeds the 1800-character limit, the SDK uses the POST method.</span><span>&nbsp;The default value is&nbsp;<strong>false</strong>. </span>
+    <strong><a href="#h_01H930GAQ8WN5X15PVGKP5VYJZ" target="_self">Forcing HTTP POST</a> -<span> </span></strong><span>When set to</span><span>&nbsp;</span><strong>true</strong><span>, all requests made to the Countly server will be done using HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In some cases, if the data to be sent exceeds the 1800-character limit, the SDK uses the POST method.</span><span>&nbsp;The default value is&nbsp;<strong>false</strong>. </span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ74F34S2RYAVJFPG53" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs.</span>
+    <span><strong><a href="#h_01H930GAQ74F34S2RYAVJFPG53" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs.</span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
+    <span><strong><a href="#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ6EQZ7TBJWV2KWWSVN" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location. </span>
+    <span><strong><a href="#h_01H930GAQ6EQZ7TBJWV2KWWSVN" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location. </span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ81R7TMXJ7Z7RRBZ7A" target="_self">Max Queue Size Limit</a> - </strong>Set maximum size for the request queue.</span>
+    <span><strong><a href="#h_01H930GAQ81R7TMXJ7Z7RRBZ7A" target="_self">Max Queue Size Limit</a> - </strong>Set maximum size for the request queue.</span>
   </li>
   <li>
-    <span><strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01HGDN3SPBVME2S4HP5GM2D7NG" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
+    <span><strong><a href="#h_01HGDN3SPBVME2S4HP5GM2D7NG" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ7BDR4FWH4NCATN7B4" target="_self">Automatic Remote Config</a> - </strong>If
+    <strong><a href="#h_01H930GAQ7BDR4FWH4NCATN7B4" target="_self">Automatic Remote Config</a> - </strong>If
     enabled, will automatically download newest remote config values.
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ8A62X8BFPAWQPZ1DA" target="_self">Direct Attribution</a> -</strong>
+    <strong><a href="#h_01H930GAQ8A62X8BFPAWQPZ1DA" target="_self">Direct Attribution</a> -</strong>
     Report direct user attribution
   </li>
   <li>
-    <strong><a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
+    <strong><a href="#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
     Report indirect user attribution
   </li>
 </ul>
@@ -1852,7 +1850,7 @@ config.setMaxRequestQueueSize(5000);</code></pre>
   large amounts of data to the server. If these limits are exceeded, the data will
   be truncated to keep it within the limit. You can check the exact parameters
   these limits effect from
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/9290669873305#sdk_internal_limits" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h3 id="h_01HTF4H350DC2PMY77ASMHAGBA">Key Length</h3>
 <p>
@@ -2317,9 +2315,9 @@ Countly.initWithConfig(config);</code></pre>
 <p>
   The data that SDKs gather to carry out their tasks and implement the necessary
   functionalities is mentioned in
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
+  <a href="/hc/en-us/articles/9290669873305#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
-<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Platforms are supported?</h2>
+<h2 id="h_01JJKC2AXVRFY16RSEJ1NR5XRF">What Platforms are supported?</h2>
 <p>
   Currently our Flutter SDK only supports Android and iOS platforms.
 </p>
