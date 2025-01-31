@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly iOS SDK version 24.7.X. The SDK source
+  This documentation is for the Countly iOS SDK version 25.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-ios">here</a>.
 </p>
@@ -3646,7 +3646,8 @@ CLYConsentViewTracking<br>
 CLYConsentAttribution<br>
 CLYConsentPerformanceMonitoring<br>
 CLYConsentFeedback<br>
-CLYConsentRemoteConfig</pre>
+CLYConsentRemoteConfig<br>
+CLYConsentContent</pre>
 <h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
 <p>
   The requirement for consent is disabled by default. To enable it, you will have
@@ -4649,12 +4650,6 @@ end</code></pre>
   </div>
 </div>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
-<div class="callout callout--warning">
-  <p>
-    <strong>Note:</strong> This is an experimental feature available from version
-    24.7.2!
-  </p>
-</div>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
   of content blocks, such as in-app messaging, ads, or user engagement prompts.
@@ -4681,6 +4676,22 @@ end</code></pre>
   also regularly check if a new content is available, and if it is, will fetch
   and show it to the user.
 </p>
+<p>
+  This regular check happens in every 30 seconds by default. It could be configurable
+  while initializing the SDK through and it must be greater than 15 seconds.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.content.zoneTimerInterval = 60;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="objectivec">config.content.zoneTimerInterval = 60</code></pre>
+  </div>
+</div>
 <p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
