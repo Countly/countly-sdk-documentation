@@ -43,6 +43,9 @@
 <p>The shortest way to initiate the SDK is with this call:</p>
 <pre><code>Countly.sharedInstance().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
 <p>
+  <span style="font-weight: 400;">Using the Application class is the recommended approach for integrating the Countly Android SDK. When provided, the SDK automatically registers for lifecycle callbacks, eliminating the need for manual <code>onStart</code> and <code>onStop</code> calls. This simplifies setup and management.</span>
+</p>
+<p>
   <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
@@ -60,7 +63,7 @@
 </div>
 <h2 id="h_01HAVQDM5SXG0Q4MRTDYXJRA8H">Adding callbacks</h2>
 <p>
-  After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities:</span>
+  After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities. If Application class is provided during init you can omit this step:</span>
 </p>
 <ul>
   <li>
