@@ -559,6 +559,8 @@
 </p>
 <h2 id="h_01H9QCP8G73H5RWXFK9P9W6F7Q">Android SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/18156925767068" target="_blank" rel="noopener">Version 24.7</a>
+  -
   <a href="/hc/en-us/articles/34483587332121" target="_blank" rel="noopener">Version 24.4</a>
   -
   <a href="/hc/en-us/articles/30761919688729" target="_blank" rel="noopener">Version 24.1</a>

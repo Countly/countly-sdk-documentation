@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Android SDK version 24.7.X. The SDK source
+  This documentation is for the Countly Android SDK version 25.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
@@ -31,7 +31,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-  implementation 'ly.count.android:sdk:24.7.8'
+  implementation 'ly.count.android:sdk:25.1.0'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -278,12 +278,12 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   </div>
   <div class="tab">
     <pre><code class="java">plugins {
-  id "ly.count.android.plugins.upload-symbols" version "24.7.8"
+  id "ly.count.android.plugins.upload-symbols" version "25.1.0"
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="java">plugins {
-  id("ly.count.android.plugins.upload-symbols") version "24.7.8"
+  id("ly.count.android.plugins.upload-symbols") version "25.1.0"
 }</code></pre>
   </div>
 </div>
@@ -300,7 +300,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <div class="tab">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id "ly.count.android.plugins.upload-symbols" version "24.7.8" apply false
+  id "ly.count.android.plugins.upload-symbols" version "25.1.0" apply false
 }
     
 // in sub-project gradle file
@@ -311,7 +311,7 @@ plugins {
   <div class="tab is-hidden">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id("ly.count.android.plugins.upload-symbols") version "24.7.8" apply false
+  id("ly.count.android.plugins.upload-symbols") version "25.1.0" apply false
 }
     
 // in sub-project gradle file
@@ -2305,8 +2305,13 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 </p>
 <pre><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setRequiresConsent(<span>true</span>);<br><span>Countly</span>.sharedInstance().init(<span>config</span>);</pre>
 <p>
-  <span style="font-weight: 400;">By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span>
+  <span style="font-weight: 400;">By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.<br>With below calls, consents for features will be given while initializing the SDK.</span>
 </p>
+<pre><code class="java">// give all consents for all features
+config.giveAllConsent()
+
+// give consents for the features which specified below
+config.setConsentEnabled(String[] featureNames)</code></pre>
 <p>
   <span style="font-weight: 400;">For all features, except <code>push</code></span><span style="font-weight: 400;">, consent is not persistent and will have to be set each time before Countly init. Therefore, the storage and persistence of the given consent falls on the SDK integrator.</span>
 </p>
@@ -2361,30 +2366,44 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
   * <code>remoteConfig</code> - allow to download remote config values from your
   server.
 </p>
+<p>
+  * <code>content</code> - allow to enter content zone to receive contents from
+  the server.
+</p>
 <h2 id="h_01HAVQDM5VH4GZ0YG1S0G6XWGZ">Changing Consent</h2>
 <p>
-  <span style="font-weight: 400;">There are 3 ways of changing feature consent: </span>
+  <span style="font-weight: 400;">There are 4 ways of changing feature consent:</span>
 </p>
 <ul>
   <li>
-    <span style="font-weight: 400;"><code>giveConsent</code>/<code>removeConsent</code></span><span style="font-weight: 400;">&nbsp;- gives or removes consent to a specific feature.</span>
+    <span style="font-weight: 400;"><code>giveConsentAll</code>/<code>removeConsentAll</code><br></span>
+  </li>
+</ul>
+<pre><code class="java">// give consent for all features
+Countly.sharedInstance().consent().giveConsentAll()
+
+// remove consent for all features
+Countly.sharedInstance().consent().removeConsentAll()</code></pre>
+<ul>
+  <li>
+    <span style="font-weight: 400;"><code>giveConsent</code>/<code>removeConsent</code></span><span style="font-weight: 400;">&nbsp;- gives or removes consent to a specific feature.</span><span style="font-weight: 400;"></span>
   </li>
 </ul>
 <pre><code class="java">// give consent to "sessions" feature
-Countly.sharedInstance().giveConsent(new String[]{Countly.CountlyFeatureNames.sessions});
+Countly.sharedInstance().consent().giveConsent(new String[]{Countly.CountlyFeatureNames.sessions});
 
 // remove consent from "sessions" feature
-Countly.sharedInstance().removeConsent(new String[]{Countly.CountlyFeatureNames.sessions});</code></pre>
+Countly.sharedInstance().consent().removeConsent(new String[]{Countly.CountlyFeatureNames.sessions});</code></pre>
 <ul>
   <li>
     <code>setConsent</code> - set consent to a specific (true/false) value
   </li>
 </ul>
 <pre><code class="java">// give consent to "sessions" feature
-Countly.sharedInstance().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, true);
+Countly.sharedInstance().consent().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, true);
 
 // remove consent from "sessions" feature
-Countly.sharedInstance().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, false);</code></pre>
+Countly.sharedInstance().consent().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, false);</code></pre>
 <ul>
   <li>
     <code>setConsentFeatureGroup</code> - set consent for a feature group to
@@ -2392,15 +2411,16 @@ Countly.sharedInstance().setConsent(new String[]{Countly.CountlyFeatureNames.ses
   </li>
 </ul>
 <pre><code class="java">// prepare features that should be added to the group
+// features groups need to be created before setting consent for them, see below
 String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.location };
 
 String groupName = "featureGroup1";
 
 // give consent to "sessions" and "location" feature with a single consent group call
-Countly.sharedInstance().setConsentFeatureGroup(groupName, true);
+Countly.sharedInstance().consent().setConsentFeatureGroup(groupName, true);
 
 // remove consent from "sessions" and "location" feature with a single consent group call
-Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
+Countly.sharedInstance().consent().setConsentFeatureGroup(groupName, false);</code></pre>
 <h2 id="h_01HAVQDM5VJQQ6HG65RTFF30V5">Feature Groups</h2>
 <p>
   <span style="font-weight: 400;">Features may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>createFeatureGroup</code></span><span style="font-weight: 400;">. Those groups are not persistent and must be created on every restart.</span>
@@ -2409,7 +2429,7 @@ Countly.sharedInstance().setConsentFeatureGroup(groupName, false);</code></pre>
 String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.location };
 
 // create the feature group
-Countly.sharedInstance().createFeatureGroup("groupName", groupFeatures);</code></pre>
+Countly.sharedInstance().consent().createFeatureGroup("groupName", groupFeatures);</code></pre>
 <h1 id="h_01HAVQDM5VQ3PVAC0AHJ116BCQ">Security and Privacy</h1>
 <h2 id="h_01HAVQDM5V4JB48BB1H8JQQKT2">Parameter Tamper Protection</h2>
 <p>
@@ -3161,12 +3181,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <pre><code class="java">config.enableServerConfiguration()</code></pre>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
-<div class="callout callout--warning">
-  <p>
-    <strong>Note:</strong> This is an experimental feature available from version
-    24.7.5!
-  </p>
-</div>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
   of content blocks, such as in-app messaging, ads, or user engagement prompts.
@@ -3184,7 +3198,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <p>
   This regular check happens in every 30 seconds by default. It could be configurable
-  while initializing the SDK through
+  while initializing the SDK through and it must be greater than 15 seconds.
 </p>
 <pre><code class="java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
 <p>
