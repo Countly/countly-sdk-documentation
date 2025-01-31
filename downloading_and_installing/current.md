@@ -32,7 +32,7 @@
         <a href="https://github.com/Countly/countly-sdk-ios" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037753511" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -43,7 +43,7 @@
         <a href="https://github.com/Countly/countly-sdk-android" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037754031-Android-SDK" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037754031" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -54,7 +54,7 @@
         <a href="https://github.com/Countly/countly-sdk-web" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037441932" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -66,7 +66,7 @@
         <a href="https://github.com/Countly/countly-sdk-nodejs" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037442892-NodeJS" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037442892" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -77,7 +77,7 @@
         <a href="https://github.com/Countly/countly-sdk-react-native-bridge" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813231-React-Native-Bridge-" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037813231" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -89,7 +89,7 @@
       </td>
       <td>
         <p>
-          <a href="https://support.count.ly/hc/en-us/articles/360037944212-Flutter" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+          <a href="/hc/en-us/articles/360037944212" target="_blank" rel="noopener noreferrer">Click for documentation</a>
         </p>
       </td>
     </tr>
@@ -101,7 +101,7 @@
         <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037754691-Windows" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037754691" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -112,7 +112,7 @@
         <a href="http://github.com/countly/countly-sdk-cpp" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="http://github.com/countly/countly-sdk-cpp" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/4416163384857" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -123,7 +123,7 @@
         <a href="http://github.com/countly/countly-sdk-unity" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813851-Unity" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037813851" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -134,7 +134,7 @@
         <a href="https://github.com/Countly/countly-sdk-java" target="_blank" rel="noopener noreferrer">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813891-Java" target="_blank" rel="noopener noreferrer">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037813891" target="_blank" rel="noopener noreferrer">Click for documentation</a>
       </td>
     </tr>
   </tbody>
@@ -145,7 +145,7 @@
     If you would like to generate mobile or web code easily for events, user
     profiles, crash reporting, and have access to all the other features that
     generally come with Countly, we suggest using
-    <a href="http://code.count.ly" target="_blank" rel="noopener noreferrer">the Countly Code Generator</a>,
+    <a href="https://countly.github.io/countly-code-generator" target="_blank" rel="noopener noreferrer">the Countly Code Generator</a>,
     which is a point-and-click service that builds necessary code for you.
   </p>
 </div>
@@ -414,7 +414,7 @@
         <a href="https://github.com/shadow0162/countly-sdk-cocos2d-x" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td style="width: 167.109px;">
-        <a href="https://support.count.ly/hc/en-us/articles/360038883751-Cocos2d-x" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360038883751" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -444,10 +444,10 @@
         <strong>Xamarin (Android)</strong>
       </td>
       <td style="width: 94.3594px;">
-        <a href="https://www.nuget.org/packages?q=countly" target="_blank" rel="noopener">Click to get</a>
+        <a href="https://www.nuget.org/packages/CountlySDK.Xamarin.Android" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td style="width: 167.109px;">
-        <a href="https://support.count.ly/hc/en-us/articles/360037813691-Xamarin-Android-" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037813691" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -455,10 +455,10 @@
         <strong>Xamarin (iOS)</strong>
       </td>
       <td style="width: 94.3594px;">
-        <a href="https://www.nuget.org/packages?q=countly" target="_blank" rel="noopener">Click to get</a>
+        <a href="https://www.nuget.org/packages/CountlySDK.Xamarin.iOS" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td style="width: 167.109px;">
-        <a href="https://support.count.ly/hc/en-us/articles/360037443392-Xamarin-iOS" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037443392" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -469,7 +469,7 @@
         <a href="https://www.nuget.org/packages?q=countly" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td style="width: 167.109px;">
-        <a href="https://support.count.ly/hc/en-us/articles/360037813331-Xamarin-Forms-iOS-" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037813331" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
   </tbody>
@@ -495,7 +495,7 @@
         <a href="https://github.com/Countly/countly-sdk-iot-python" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037442772-IoT-devices-Python-" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037442772" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -506,7 +506,7 @@
         <a href="https://github.com/Countly/countly-sdk-react-native" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037443012-React-Native-unmaintained-" target="_blank" rel="noopener">Click for documentation</a>
+        <a href="/hc/en-us/articles/360037443012" target="_blank" rel="noopener">Click for documentation</a>
       </td>
     </tr>
     <tr>
@@ -517,13 +517,13 @@
         <a href="https://github.com/Countly/countly-sdk-cordova" target="_blank" rel="noopener">Click to get</a>
       </td>
       <td>
-        <a href="https://support.count.ly/hc/en-us/articles/360037813011-Cordova" target="_blank" rel="noopener">22.09</a>
+        <a href="/hc/en-us/articles/360037813011" target="_blank" rel="noopener">22.09</a>
         -
-        <a href="https://support.count.ly/hc/en-us/articles/15669961053721" target="_blank" rel="noopener">21.11</a>
+        <a href="/hc/en-us/articles/15669961053721" target="_blank" rel="noopener">21.11</a>
         -
-        <a href="https://support.count.ly/hc/en-us/articles/7019114935961" target="_blank" rel="noopener">20.11</a>
+        <a href="/hc/en-us/articles/7019114935961" target="_blank" rel="noopener">20.11</a>
         -
-        <a href="https://support.count.ly/hc/en-us/articles/900004883663" target="_blank" rel="noopener">19.9.3</a>
+        <a href="/hc/en-us/articles/900004883663" target="_blank" rel="noopener">19.9.3</a>
       </td>
     </tr>
   </tbody>
@@ -543,95 +543,97 @@
   -
   <a href="/hc/en-us/articles/23224275572121" target="_blank" rel="noopener">Version 23.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/15917842316313" target="_blank" rel="noopener">Version 22.09</a>
+  <a href="/hc/en-us/articles/15917842316313" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/13896615805337" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/13896615805337" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/10017895289625" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/10017895289625" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4410229126809" target="_blank" rel="noopener">Version 20.11.3</a>
+  <a href="/hc/en-us/articles/4410229126809" target="_blank" rel="noopener">Version 20.11.3</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900004099706" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/900004099706" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900004398263" target="_blank" rel="noopener">Version 20.04.3</a>
+  <a href="/hc/en-us/articles/900004398263" target="_blank" rel="noopener">Version 20.04.3</a>
 </p>
 <h2 id="h_01H9QCP8G73H5RWXFK9P9W6F7Q">Android SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/34483587332121" target="_blank" rel="noopener">Version 24.4</a>
+  <a href="/hc/en-us/articles/34483587332121" target="_blank" rel="noopener">Version 24.4</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/30761919688729" target="_blank" rel="noopener">Version 24.1</a>
+  <a href="/hc/en-us/articles/30761919688729" target="_blank" rel="noopener">Version 24.1</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/27948910269465" target="_blank" rel="noopener">Version 23.12</a>
+  <a href="/hc/en-us/articles/27948910269465" target="_blank" rel="noopener">Version 23.12</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/26446610705049" target="_blank" rel="noopener">Version 23.8</a>
+  <a href="/hc/en-us/articles/26446610705049" target="_blank" rel="noopener">Version 23.8</a>
   -
   <a href="/hc/en-us/articles/23228065459353" target="_blank" rel="noopener">Version 23.6</a>
   -
   <a href="/hc/en-us/articles/20128936020633" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/15806696414745" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/15806696414745" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/11104014467737" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/11104014467737" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/11104063417241" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/11104063417241" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4409196247065" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/4409196247065" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900004313263" target="_blank" rel="noopener">Version 20.04</a>
+  <a href="/hc/en-us/articles/900004313263" target="_blank" rel="noopener">Version 20.04</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/360038978452" target="_blank" rel="noopener">Version 19.09</a>
+  <a href="/hc/en-us/articles/360038978452" target="_blank" rel="noopener">Version 19.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/360038842151-Android-SDK-19-02-" target="_blank" rel="noopener">Version 19.02</a>
+  <a href="/hc/en-us/articles/360038842151" target="_blank" rel="noopener">Version 19.02</a>
 </p>
 <h2 id="h_01H9QCP8G7V4S0SS317HRT5XN8">Web SDK</h2>
 <p>
-  <a href="https://support.countly.com/hc/en-us/articles/16876291962012-Web-analytics-JavaScript-24-4-X" target="_blank" rel="noopener noreferrer">Version 24.4</a>
+  <a href="/hc/en-us/articles/16876291962012" target="_blank" rel="noopener noreferrer">Version 24.4</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/31592459504537" target="_blank" rel="noopener">Version 23.12</a>
+  <a href="/hc/en-us/articles/31592459504537" target="_blank" rel="noopener">Version 23.12</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/26125729715737" target="_blank" rel="noopener">Version 23.6</a>
+  <a href="/hc/en-us/articles/26125729715737" target="_blank" rel="noopener">Version 23.6</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/21184260797721" target="_blank" rel="noopener">Version 23.2</a>
+  <a href="/hc/en-us/articles/21184260797721" target="_blank" rel="noopener">Version 23.2</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/16640702657817" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/16640702657817" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/8911877681945" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/8911877681945" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/6195638333593" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/6195638333593" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4408793793689" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/4408793793689" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900003463646" target="_blank" rel="noopener">Version 20.04</a>
+  <a href="/hc/en-us/articles/900003463646" target="_blank" rel="noopener">Version 20.04</a>
 </p>
 <h2 id="h_01H9QCP8G7S1YR45QYHX6DQJ4D">Node.js SDK</h2>
 <p>
-  <a href="https://support.countly.com/hc/en-us/articles/16515548811676-NodeJS-22-06" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/16515548811676" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/13579891019929" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/13579891019929" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/6577856570137" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/6577856570137" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4410672825881" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/4410672825881" target="_blank" rel="noopener">Version 20.11</a>
 </p>
 <h2 id="h_01H9QCP8G7F8Y2PP937KS4DQE2">React Native SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/31332062133913" target="_blank" rel="noopener">Version 23.12</a>
+  <a href="/hc/en-us/articles/18117888262044" target="_blank" rel="noopener">Version 24.4</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/26451081655065" target="_blank" rel="noopener">Version 23.10</a>
+  <a href="/hc/en-us/articles/31332062133913" target="_blank" rel="noopener">Version 23.12</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/25329719573017" target="_blank" rel="noopener">Version 23.8</a>
+  <a href="/hc/en-us/articles/26451081655065" target="_blank" rel="noopener">Version 23.10</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/23707508848025" target="_blank" rel="noopener">Version 23.02</a>
+  <a href="/hc/en-us/articles/25329719573017" target="_blank" rel="noopener">Version 23.8</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/17931615262745" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/23707508848025" target="_blank" rel="noopener">Version 23.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/11734029520665" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/17931615262745" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/6116239554841" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/11734029520665" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/6505713479577" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/6116239554841" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900003765726" target="_blank" rel="noopener">Version 20.04</a>
+  <a href="/hc/en-us/articles/6505713479577" target="_blank" rel="noopener">Version 20.11</a>
+  -
+  <a href="/hc/en-us/articles/900003765726" target="_blank" rel="noopener">Version 20.04</a>
 </p>
 <h2 id="h_01H9QCP8G768WD943FT6WS38TH">Flutter SDK</h2>
 <p>
@@ -643,65 +645,65 @@
   -
   <a href="/hc/en-us/articles/28073407851289" target="_blank" rel="noopener noreferrer">Version 23.12</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/26449309263769" target="_blank" rel="noopener">Version 23.8</a>
+  <a href="/hc/en-us/articles/26449309263769" target="_blank" rel="noopener">Version 23.8</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/22712581413273" target="_blank" rel="noopener">Version 23.6</a>
+  <a href="/hc/en-us/articles/22712581413273" target="_blank" rel="noopener">Version 23.6</a>
   -
   <a href="/hc/en-us/articles/20143743115801" target="_blank" rel="noopener">Version 23.2</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/15911643081369" target="_blank" rel="noopener">Version 22.09</a>
+  <a href="/hc/en-us/articles/15911643081369" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/15911440344601" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/15911440344601" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/9667091699097" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/9667091699097" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4409295642137" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/4409295642137" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900005264923" target="_blank" rel="noopener">Version 20.04.2</a>
+  <a href="/hc/en-us/articles/900005264923" target="_blank" rel="noopener">Version 20.04.2</a>
 </p>
 <h2 id="h_01H9QCP8G8HMBBT2NPHFJPJ3KX">Windows SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/27983325097241" target="_blank" rel="noopener">Version 23.12</a>
+  <a href="/hc/en-us/articles/27983325097241" target="_blank" rel="noopener">Version 23.12</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/26360970027033" target="_blank" rel="noopener">Version 23.02</a>
+  <a href="/hc/en-us/articles/26360970027033" target="_blank" rel="noopener">Version 23.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/19142855719705" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/19142855719705" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/13579863428377" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/13579863428377" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/11428429151513" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/11428429151513" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4413138651161" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/4413138651161" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4403584269593" target="_blank" rel="noopener">Version 20.05</a>
+  <a href="/hc/en-us/articles/4403584269593" target="_blank" rel="noopener">Version 20.05</a>
 </p>
 <h2 id="h_01H9QCP8G88SRA8VHG55Z077GD">C++ SDK</h2>
 <p>
-  <a href="https://support.count.ly/hc/en-us/articles/18695404412185" target="_blank" rel="noopener">Version 22.09</a>
+  <a href="/hc/en-us/articles/18695404412185" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/16413408161817" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/16413408161817" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/10317667908889" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/10317667908889" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/9665186961945" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/9665186961945" target="_blank" rel="noopener">Version 21.11</a>
 </p>
 <h2 id="h_01H9QCP8G8GY2M2KEKK3CSKY3F">Unity SDK</h2>
 <p>
-  <a href="https://support.countly.com/hc/en-us/articles/15318025956508" target="_blank" rel="noopener">Version 23.12</a>
+  <a href="/hc/en-us/articles/15318025956508" target="_blank" rel="noopener">Version 23.12</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/26399466138905" target="_blank" rel="noopener">Version 23.06</a>
+  <a href="/hc/en-us/articles/26399466138905" target="_blank" rel="noopener">Version 23.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/23969854903961" target="_blank" rel="noopener">Version 22.06</a>
+  <a href="/hc/en-us/articles/23969854903961" target="_blank" rel="noopener">Version 22.06</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/13578391556121" target="_blank" rel="noopener">Version 22.02</a>
+  <a href="/hc/en-us/articles/13578391556121" target="_blank" rel="noopener">Version 22.02</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/7518482784409" target="_blank" rel="noopener">Version 21.11</a>
+  <a href="/hc/en-us/articles/7518482784409" target="_blank" rel="noopener">Version 21.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4410908291737" target="_blank" rel="noopener">Version 20.11.5</a>
+  <a href="/hc/en-us/articles/4410908291737" target="_blank" rel="noopener">Version 20.11.5</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900007764903" target="_blank" rel="noopener">Version 20.11.1</a>
+  <a href="/hc/en-us/articles/900007764903" target="_blank" rel="noopener">Version 20.11.1</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/900002413783" target="_blank" rel="noopener">Version 19.09</a>
+  <a href="/hc/en-us/articles/900002413783" target="_blank" rel="noopener">Version 19.09</a>
 </p>
 <h2 id="h_01H9QCP8G8QD0W9EMHT11F2N8P">Java SDK</h2>
 <p>
@@ -709,9 +711,9 @@
   -
   <a href="/hc/en-us/articles/25060385136921" target="_blank" rel="noopener">Version 23.8</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/23736736982425/" target="_blank" rel="noopener">Version 22.09</a>
+  <a href="/hc/en-us/articles/23736736982425/" target="_blank" rel="noopener">Version 22.09</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/16286959845145" target="_blank" rel="noopener">Version 20.11</a>
+  <a href="/hc/en-us/articles/16286959845145" target="_blank" rel="noopener">Version 20.11</a>
   -
-  <a href="https://support.count.ly/hc/en-us/articles/4404187501465" target="_blank" rel="noopener">Version 19.09</a>
+  <a href="/hc/en-us/articles/4404187501465" target="_blank" rel="noopener">Version 19.09</a>
 </p>

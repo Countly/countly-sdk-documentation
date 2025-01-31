@@ -3183,6 +3183,11 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   and show it to the user.
 </p>
 <p>
+  This regular check happens in every 30 seconds by default. It could be configurable
+  while initializing the SDK through
+</p>
+<pre><code class="java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
+<p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>
@@ -3191,7 +3196,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   To get informed when a user closes a content you can register a global content
   callback during SDK initialization:
 </p>
-<pre><code class="java">countlyConfig.contents.setGlobalContentCallback(callback);</code></pre>
+<pre><code class="java">countlyConfig.content.setGlobalContentCallback(callback);</code></pre>
 <pre><code class="java">interface ContentCallback {
   void onContentCallback(ContentStatus contentStatus, Map&lt;String, Object&gt; contentData);
 }</code></pre>
