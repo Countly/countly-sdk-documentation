@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Web SDK version 24.11.X. The SDK source
+  This documentation is for the Countly Web SDK version 25.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-web">here</a>.
 </p>
@@ -114,11 +114,11 @@
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// 24.11.0 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.js</a>
+    <pre><code class="javascript">// 25.1.0 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.js</a>
 
-// 24.11.0 minified (<span>JSDelivr</span> or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@24.11.0/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.11.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/24.11.0/countly.min.js</a></code></pre>
+// 25.1.0 minified (<span>JSDelivr</span> or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.1.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.1.0/countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
@@ -302,6 +302,50 @@ catch(ex){
     <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
   </div>
 </div>
+<h2 id="h_01JK8PC8KHKZ1DF3KMKTEKFCN3">Crash Filtering</h2>
+<p>
+  You can omit or modify crash reports that SDK generates by crash filtering feature.
+  You can provide a callback function which SDK can call when a crash report it
+  prepared. Then you can modify or omit the crash according to the information
+  present.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">// before init
+Countly.crash_filter_callback = function (crashObject) {
+      console.log("Crash object:", crashObject);
+      // modify, omit or return directly
+      return crashObject;
+};</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.init({
+      app_key: "YOUR_APP_KEY",
+      url: "https://yourdomain.com",
+      crash_filter_callback: function (crashObject) {
+        console.log("Crash object:", crashObject);
+        // modify, omit or return directly
+        return crashObject;
+      }
+});</code></pre>
+  </div>
+</div>
+<p>
+  The <code>crashObject</code> will include some of these
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HJ5V4WX0XFP7FC8ETDC3B96M" target="_blank" rel="noopener noreferrer">metric</a>
+  and
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HJ5WD48B7TVTNP7TFY0646MK" target="_blank" rel="noopener noreferrer">data</a>
+  info. Most important parameter is <code>_error</code>, which you can check for
+  string values you are looking for. If you want to prevent sending a crash just
+  return <code>null</code> from the callback. If you want to send the report as
+  is then you can just directly return it. And finally you can remove/obfuscate
+  sensitive information and return the modified crash object in the callback. SDK
+  will send the returned object to the server.
+</p>
 <h2 id="h_01HABTQ437TVKP94G5W0AEPC3S">Symbolication</h2>
 <div class="callout callout--warning">
   <p>
@@ -1066,7 +1110,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">After you integrate the SDK and start sending click data, all generated heatmaps may be viewed under Analytics &gt; Heatmaps, as shown below:</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545658580121/001.png" alt="001.png">
+  <img src="/guide-media/01GVD4RVE1CE6DH744PPPNTY00" alt="001.png">
 </div>
 <h2 id="h_01HABTQ438184HFAE37E78K9VP">Tracking Scrolls</h2>
 <p>
@@ -1088,7 +1132,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span style="font-weight: 400;">As with Click Heatmaps, collected data is viewable under Analytics &gt; Heatmaps. You may change the heatmap type on the top bar once a view is open.</span>
 </p>
 <div class="img-container">
-  <img src="/hc/article_attachments/9545659738009/002.png" alt="002.png">
+  <img src="/guide-media/01GVAYP9A9YBWPDTJK815SX5JD" alt="002.png">
 </div>
 <h1 id="h_01HABTQ438YJDHDMKPS8X3YK99">Remote Config</h1>
 <p>
@@ -1274,7 +1318,7 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   <div class="tab">
     <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.feedback.showNPS("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showSurvey("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showRating("nameTagOrID"); });
 
-// or from SDK version 24.11.4 forward you can use:
+// or
 Countly.q.push(["feedback.showNPS", "nameTagOrID"]);
 Countly.q.push(["feedback.showSurvey", "nameTagOrID"]);
 Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
@@ -3083,12 +3127,6 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   </div>
 </div>
 <h2 id="h_01JF7TA0TASABV8RSAX2PWYAZ8">Content Zone</h2>
-<div class="callout callout--warning">
-  <p>
-    <strong>Note:</strong> This is an experimental feature available from version
-    24.11.1!
-  </p>
-</div>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
   of content blocks, such as in-app messaging, ads, or user engagement prompts.
@@ -3106,7 +3144,7 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   <div class="tab">
     <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.enterContentZone(); });
 
-// or from SDK version 24.11.4 and forward:
+// or
 Countly.q.push(['content.enterContentZone']);</code></pre>
   </div>
   <div class="tab is-hidden">
@@ -3130,7 +3168,7 @@ Countly.q.push(['content.enterContentZone']);</code></pre>
   <div class="tab">
     <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.exitContentZone(); });
 
-// or from SDK version 24.11.4 and forward:
+// or 
 Countly.q.push(['content.exitContentZone']);</code></pre>
   </div>
   <div class="tab is-hidden">
