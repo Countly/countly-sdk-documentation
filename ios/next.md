@@ -4729,12 +4729,6 @@ end</code></pre>
   The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
 </p>
 <h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
-<div class="callout callout--warning">
-  <p>
-    <strong>Note:</strong> This is an experimental feature available from version
-    24.7.2!
-  </p>
-</div>
 <p>
   The ConfigExperimental interface provides experimental configuration options
   for enabling advanced features like view name recording and visibility tracking.
