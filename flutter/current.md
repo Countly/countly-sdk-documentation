@@ -25,8 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^25.1.0
-</code></pre>
+  countly_flutter: ^25.1.0</code></pre>
 <p>
   After you can install packages from the command line with Flutter:
 </p>
@@ -1737,6 +1736,9 @@ config.apm.<strong>enableForegroundBackgroundTracking</strong>();</code></pre>
   <li>
     remoteConfig - allows downloading remote config values from your server
   </li>
+  <li>
+    content - allow to enter content zone to receive contents from the server.
+  </li>
 </ul>
 <h2 id="h_01H930GAQ85BFVYS2RZGN7TRA0">Setup During Init</h2>
 <p>
@@ -1754,10 +1756,11 @@ config.setRequiresConsent(true);</code></pre>
 <p>
   To give consent during initialization, you have to call
   <code class="dart">setConsentEnabled</code>on the config object with an array
-  of consent values.
+  of consent values. Or, you can use <code class="dart">giveAllConsents</code>for
+  all consent values.
 </p>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
-config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig])</code></pre>
+config.setConsentEnabled([CountlyConsent.location, CountlyConsent.sessions, CountlyConsent.attribution, CountlyConsent.push, CountlyConsent.events, CountlyConsent.views, CountlyConsent.crashes, CountlyConsent.users, CountlyConsent.push, CountlyConsent.starRating, CountlyConsent.apm, CountlyConsent.feedback, CountlyConsent.remoteConfig, CountlyConsent.content])<br>config.giveAllConsents()</code></pre>
 <p>
   The Countly SDK does not persistently store the status of given consents except
   push notifications. You are expected to handle receiving consent from end-users
@@ -2155,6 +2158,11 @@ config.setEventQueueSizeToSend(6);</code></pre>
   and show it to the user.
 </p>
 <p>
+  This regular check happens in every 30 seconds by default. It could be configurable
+  while initializing the SDK through and it must be greater than 15 seconds.
+</p>
+<pre><code class="dart">countlyConfig.content.setZoneTimerInterval(60) //in seconds</code></pre>
+<p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>
@@ -2399,7 +2407,7 @@ Countly.initWithConfig(config);</code></pre>
   functionalities is mentioned in
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
-<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Platforms are supported?</h2>
+<h2 id="h_01JKAZ2FHPG5A6ZJFGJ8BTE8AF">What Platforms are supported?</h2>
 <p>
   Currently our Flutter SDK only supports Android and iOS platforms.
 </p>
