@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 24.11.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 25.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -25,7 +25,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^24.11.2
+  countly_flutter: ^25.1.0
 </code></pre>
 <p>
   After you can install packages from the command line with Flutter:
@@ -37,18 +37,12 @@
   The shortest way to initialize the SDK, if you want Countly SDK to take care
   of device ID seamlessly, is to use the code below.
 </p>
-<pre><code class="dart">Countly.isInitialized().then((bool isInitialized){
-  if(!isInitialized) {
-    // Create the configuration with your app key and server URL
-    CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+<pre><code class="dart">// Create the configuration with your app key and server URL
+CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 
-    // Initialize with that configuration
-    Countly.initWithConfig(config).then((value){
-      // handle extra logic after init
-    });
-  } else {
-    print("Countly: Already initialized.");
-  }
+// Initialize with that configuration
+Countly.initWithConfig(config).then((value){
+  // handle extra logic after init
 });</code></pre>
 <p>
   Please check
