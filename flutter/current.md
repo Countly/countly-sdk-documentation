@@ -2020,7 +2020,8 @@ await Countly.initWithConfig(config);</code></pre>
 </h3>
 <div class="callout callout--info">
   <p>
-    Currently, direct attribution is only available for Android.
+    <strong>Platform Info</strong><br>
+    Direct attribution is only available for the Android platform.
   </p>
 </div>
 <p>
