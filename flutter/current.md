@@ -1876,10 +1876,12 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     <strong><a href="#h_01H930GAQ8WN5X15PVGKP5VYJZ" target="_self">Forcing HTTP POST</a> -<span> </span></strong><span>When set to</span><span>&nbsp;</span><strong>true</strong><span>, all requests made to the Countly server will be done using HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In some cases, if the data to be sent exceeds the 1800-character limit, the SDK uses the POST method.</span><span>&nbsp;The default value is&nbsp;<strong>false</strong>. </span>
   </li>
   <li>
-    <span><strong><a href="#h_01H930GAQ74F34S2RYAVJFPG53" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs.</span>
+    <span><strong><a href="#h_01H930GAQ74F34S2RYAVJFPG53" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs. </span>
+    <strong>(no Web platform support)</strong>
   </li>
   <li>
-    <span><strong><a href="#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
+    <span><strong><a href="#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time. </span>
+    <strong>(no Web platform support)</strong>
   </li>
   <li>
     <span><strong><a href="#h_01H930GAQ6EQZ7TBJWV2KWWSVN" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location. </span>
@@ -1889,6 +1891,7 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
   </li>
   <li>
     <span><strong><a href="#h_01HGDN3SPBVME2S4HP5GM2D7NG" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
+    <strong>(no Web platform support)</strong>
   </li>
   <li>
     <strong><a href="#h_01H930GAQ7BDR4FWH4NCATN7B4" target="_self">Automatic Remote Config</a> - </strong>If
@@ -1896,11 +1899,11 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
   </li>
   <li>
     <strong><a href="#h_01H930GAQ8A62X8BFPAWQPZ1DA" target="_self">Direct Attribution</a> -</strong>
-    Report direct user attribution
+    Report direct user attribution <strong>(no Web platform support)</strong>
   </li>
   <li>
     <strong><a href="#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
-    Report indirect user attribution
+    Report indirect user attribution <strong>(no Web platform support)</strong>
   </li>
 </ul>
 <h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
