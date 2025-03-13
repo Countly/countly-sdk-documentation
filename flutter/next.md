@@ -173,18 +173,6 @@ config.enableCrashReporting()</code></pre>
   By doing that it will automatically catch all errors that are thrown from within
   the Flutter framework.
 </p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier,
-    you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors,
-    as shown below:
-  </p>
-  <pre><code class="dart">void main() {
-  runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
-    runApp(MyApp());
-  }, Countly.recordDartError);
-}</code></pre>
-</div>
 <h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic Crash Report Segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
@@ -2480,7 +2468,7 @@ Countly.initWithConfig(config);</code></pre>
   functionalities is mentioned in
   <a href="/hc/en-us/articles/9290669873305#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
-<h2 id="h_01HNAP3C923GCJ1VHHFE051PXA">What Platforms are supported?</h2>
+<h2 id="h_01JP80V15YQ6C17KGBW2GQG727">What Platforms are supported?</h2>
 <p>
   Currently our Flutter SDK supports Android, iOS, and Web platforms.
 </p>
