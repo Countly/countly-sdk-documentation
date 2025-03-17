@@ -116,6 +116,6 @@
 <p>
   For detailed information on content-related methods, you can refer to the Content
   Zone section in the
-  <a href="/hc/en-us/sections/360007310512" target="_new" rel="noopener">SDKs documentation</a>
-  of your respective platform
+  <a href="/hc/en-us/sections/360007310512">SDKs documentation</a> of your respective
+  platform
 </p>
