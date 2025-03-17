@@ -18,7 +18,7 @@
             of your messages.
           </li>
           <li>
-            <strong>With Journey</strong>, in-app messages are triggered
+            <strong>With Journeys</strong>, in-app messages are triggered
             by defining conditions and events, which determine when and
             how the messages will appear to users.
           </li>
@@ -37,21 +37,21 @@
 <ol>
   <li>
     <p>
-      <strong>Create a Content Block</strong>: Begin by creating a content
+      <strong>Create a content block</strong>: Begin by creating a content
       block in the Content Builder. This content block defines the message's
       structure, such as the text, images, and buttons that will be displayed
       to the users. For detailed instructions, refer to the
-      <a href="/hc/en-us/articles/17072500159388-Content-Builder" target="_new" rel="noopener">Content Builder documentation</a>.
+      <a href="/hc/en-us/articles/17072500159388" target="_new" rel="noopener">Content Builder documentation</a>.
     </p>
   </li>
   <li>
     <p>
-      <strong>Set Up a Journey</strong>: After creating the content block,
+      <strong>Set up a journey</strong>: After creating the content block,
       configure a journey to define when and how the in-app message will be
       presented to your users. A journey specifies the user actions or conditions
       that trigger the message. For more information on creating a journey,
       refer to the
-      <a href="/hc/en-us/articles/17072475592988-Journey" target="_new" rel="noopener">Journey documentation</a>.
+      <a href="/hc/en-us/articles/17072475592988" target="_new" rel="noopener">Journeys documentation</a>.
     </p>
   </li>
 </ol>
