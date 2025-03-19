@@ -1783,6 +1783,14 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   These content blocks are dynamically served from the content builder on the server,
   ensuring that users receive relevant and up-to-date information.
 </p>
+<div class="callout callout--info">
+  <p>
+    For learning how you can use Journeys &amp; Content Builder to create In-App
+    messages you can check
+    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
+    article.
+  </p>
+</div>
 <p>
   To start fetching content from the server, use the following method:
 </p>
@@ -1797,3 +1805,19 @@ Countly.setCustomMetrics(customMetric);</code></pre>
   content you can use this method:
 </p>
 <pre><code class="javascript">Countly.content.exitContentZone();</code></pre>
+<div class="callout callout--warning">
+  <p>
+    Init time config options below needs minimum SDK version of 25.1.1!
+  </p>
+</div>
+<p>
+  Content checks happens every 30 seconds by default but you can change this interval
+  during initialization. Setting a low value would increase the load on your server
+  and it can not be lower than 15 seconds.
+</p>
+<pre><code class="javascript">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization. SDK would call it when the content is closed.
+</p>
+<pre><code class="javascript">countlyConfig.content.setGlobalContentCallback(callback);</code></pre>

@@ -33,13 +33,13 @@
 }</pre>
 <p>The dependency can be added as:</p>
 <pre>dependencies {
-  implementation "ly.count.sdk:java:24.1.0"
+  implementation "ly.count.sdk:java:24.1.1"
 }</pre>
 <p>Or as:</p>
 <pre><code class="xml">&lt;dependency&gt;
   &lt;groupId&gt;ly.count.sdk&lt;/groupId&gt;
   &lt;artifactId&gt;java&lt;/artifactId&gt;
-  &lt;version&gt;24.1.0&lt;/version&gt;
+  &lt;version&gt;24.1.1&lt;/version&gt;
   &lt;type&gt;pom&lt;/type&gt;
 &lt;/dependency&gt;</code></pre>
 <h1 id="h_01HABV0K6CDY5FSWH5QBHTT79R">SDK Integration</h1>
@@ -53,7 +53,6 @@
 <pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .enableTestMode()
   .setLoggingLevel(Config.LoggingLevel.DEBUG)
   .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
   .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);
@@ -107,9 +106,7 @@ Countly.instance().init(config);</code></pre>
 <pre><code class="java hljs">File targetFolder = new File("d:\\__COUNTLY\\java_test\\");
 
 Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
-  .setLoggingLevel(Config.LoggingLevel.DEBUG)
-  .enableFeatures(Config.Feature.Events, Config.Feature.Sessions, Config.Feature.CrashReporting, Config.Feature.UserProfiles)
-  .setDeviceIdStrategy(Config.DeviceIdStrategy.UUID);</code></pre>
+  .setLoggingLevel(Config.LoggingLevel.DEBUG);</code></pre>
 <p>
   This logging level would not influence the log listener. That will always receive
   all the printed logs event if the logging level is "OFF."
@@ -118,11 +115,8 @@ Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolde
 <p>
   To listen to the SDK's internal logs, you can call <code>setLogListener</code><span> on the <code>Config</code> Object. If set, SDK will forward its internal logs to this listener regardless of SDK's <code>loggingLevel</code> . </span>
 </p>
-<pre><code class="java hljs">config.setLogListener(new LogCallback() {
-  @Override
-  public void LogHappened(String logMessage, Config.LoggingLevel logLevel) {
-    //print log
-  }
+<pre><code class="java hljs">config.setLogListener((logMessage, logLevel) -&gt; {
+  //print log
 });</code></pre>
 <h1 id="h_01HD1AJNNA11E9NMY0K0S5B3XN">Crash Reporting</h1>
 <p>
@@ -488,21 +482,24 @@ Countly.instance().views().stopAllViews(viewSegmentation); // pass null if no se
 <p>
   <span>To add segmentation to a view using its view ID:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+<pre><code class="java">String viewID = Countly.instance().views().startView("View Name");
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
 viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
 
-Countly.instance().views().addSegmentationToViewWithID("View ID", viewSegmentation);</code></pre>
+Countly.instance().views().addSegmentationToViewWithID(viewID, viewSegmentation);</code></pre>
 <p>
   <span>To add segmentation to a view using its name:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
+<pre><code class="java">String viewName = "View Name";
+Countly.instance().views().startView(viewName);
+Map&lt;String, Object&gt; viewSegmentation = new HashMap&lt;&gt;();
 viewSegmentation.put("Cats", 123);
 viewSegmentation.put("Moons", 9.98d);
 viewSegmentation.put("Moose", "Deer");
 
-Countly.instance().views().addSegmentationToViewWithName("View Name", viewSegmentation);</code></pre>
+Countly.instance().views().addSegmentationToViewWithName(viewName, viewSegmentation);</code></pre>
 <h1 id="h_01HABV0K6CCY07B2BS5JVW72QQ">Device ID Management</h1>
 <p>
   A device ID is a unique identifier for your users. You may specify the device
@@ -521,29 +518,31 @@ Countly.instance().views().addSegmentationToViewWithName("View Name", viewSegmen
 Countly.instance().deviceId().getType() // will return DeviceIdType enum</code></pre>
 <h2 id="h_01HABV0K6CZSJPRK4RYG23YH7F">Changing Device ID</h2>
 <p>
-  The SDK allows you to change the Device ID at any point in time. You can use
-  any of the following two methods to changing the Device ID, depending on your
-  needs.
+  <span>You can change the device ID of an user with setID method:</span>
 </p>
-<p class="anchor-heading">
-  <strong>Changing Device ID with server merge</strong>
-</p>
+<pre><code class="java">Countly.instance().deviceId().setID("newId");</code></pre>
 <p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
 </p>
-<pre><code class="java hljs">Countly.instance().deviceId().changeWithMerge("New Device Id");</code></pre>
-<p class="anchor-heading">
-  <strong>Changing Device ID without server merge</strong>
-</p>
+<ul>
+  <li>
+    <p>
+      <span>If current stored ID is <code>DeviceIdType.SDK_GENERATED</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>DeviceIdType.SDK_GENERATED</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span>If the current stored ID is <code>DeviceIdType.DEVELOPER_SUPPLIED</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
+<div class="callout callout--info">
+  <p>
+    <span>If you need a more complicated logic or using the SDK version 24.1.0 and below then you will need to use this method mentioned <a href="#h_01JCGJPB284JKKATCKB43SNF5Y">here</a> instead.</span>
+  </p>
+</div>
 <p>
-  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
-</p>
-<pre><code class="java hljs">Countly.instance().deviceId().changeWithoutMerge("New Device Id");</code></pre>
-<p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
-</p>
-<p>
-  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+  <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
 </p>
 <h2 id="h_01HD3QC31PBFGVZSRG6906NQGS">Device ID Generation</h2>
 <p>
@@ -836,20 +835,31 @@ Countly.instance().remoteConfig().getAllValuesAndEnroll();</code></pre>
 </p>
 <h1 id="01HD3Q7MES8WBFJXDP7CP6E5V2">User Feedback</h1>
 <p>
-  <span style="font-weight: 400;">You can receive <a href="/hc/en-us/articles/4652903481753">feedback</a> from your users with nps, survey and rating feedback widgets.</span>
+  <span style="font-weight: 400;">You can receive feedback from your users with NPS, Survey and Rating, Feedback Widgets.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The rating feedback widget allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and nps feedback widgets allow for even more textual feedback from users.</span>
+  <span style="font-weight: 400;">The Rating Feedback Widget, allows users to rate using the 1 to 5 rating system as well as leave a text comment. Survey and NPS Feedback Widgets allow for even more textual feedback from users.</span>
 </p>
-<h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
+<h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widgets</h2>
+<div class="callout callout--info">
+  <p>
+    Feedback Widgets is a
+    <a href="https://countly.com/enterprise" target="_blank" rel="noopener noreferrer">Countly Enterprise</a>
+    plugin.
+  </p>
+</div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/900003407386-NPS-Net-Promoter-Score-" target="_blank" rel="noopener">nps</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/900004337763-Surveys" target="_blank" rel="noopener">survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/360037641291-Ratings" target="_blank" rel="noopener">rating</a>.
-  All widgets have their generated URL to be shown in a web viewer and should be
-  approached using the same methods.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  All widgets have their generated URL to be shown in a webview and should be approached
+  using the same methods.
+</p>
+<p>
+  For more detailed information about Feedback Widgets, you can refer to
+  <a href="https://support.countly.com/hc/en-us/articles/4652903481753-Feedback-Overview" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <div class="callout callout--warning">
   <p>
@@ -969,6 +979,10 @@ Countly.instance().feedback().reportFeedbackWidgetManually(widgetToReport, retri
   You can access user profiles via <code>Countly.instance().userProfile()</code>.&nbsp;
 </p>
 <h2 id="h_01HD3M0EYQAERWFGMRVZXQ2RR1">Setting User Properties</h2>
+<p>
+  If a property is set as an empty string, it will be deleted from the user on
+  server side.
+</p>
 <h3 id="h_01HABV0K6CJE3JS8YYM8TNYV9A">Setting Custom Values</h3>
 <p>
   To set custom properties, call setProperty(). To send modification operations,
@@ -1068,6 +1082,49 @@ Countly.instance().userProfile().save();</code></pre>
   for the validity of the <code>checksum</code> field before being processed.
 </p>
 <pre><span>Config config </span>= <span>new </span>Config(<span>COUNTLY_SERVER_URL</span>, <span>COUNTLY_APP_KEY</span>, sdkStorageRootDirectory);<br><span>config</span>.enableParameterTamperingProtection(<span>"salt"</span>);<br><span>Countly</span>.<span>instance</span>().init(<span>config</span>);<code class="java"></code></pre>
+<h2 id="h_01HAVQDM5VSW75AMVE99287SBX">SSL Certificate Pinning</h2>
+<p>
+  <span>Public key and certificate pinning are techniques that improve communication security by eliminating the threat of </span><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a><span> in SSL connections</span>
+</p>
+<p>
+  <span>When you supply a list of acceptable SSL certificates to Countly SDK with either</span><code>config.addPublicKeyPin(String)</code><span> or </span><code>config.addCertificatePin(String)</code><span>, it will ensure that connection is made with one of the public keys specified or one of the certificates specified, respectively. Using whole certificate pinning is somewhat safer, but using public key pinning is preferred since certificates can be rotated and do expire while public keys don't (assuming you don't change your CA).</span>
+</p>
+<p>Pinning is done during init through the Config object.</p>
+<p>
+  The provided public key or certificate should be in PEM-encoded format.
+</p>
+<p>
+  <span>For more information on how to acquire the public key or the certificate, have a look <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
+</p>
+<p>
+  Here is an example of public key pinning for an example server.
+</p>
+<pre><code class="java">Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, sdkStorageRootDirectory)
+  .addPublicKeyPin(
+    "oIssIjsNsgkqhkiG9s0BAQEFAAsCAs8AMIIBCsgKCAQEtmTk89AsQboS+sMbVoOJ\n"
+    + "cXsOz0TWJqNs9M00atZasr//WcNTQvmGps66hWqhYglPFH76CWlsq34aOsHXoHyS\n"
+    + "zxuywsIWtp9s559bbCsPoEhL7bTZWMuu/SnJ0yOLAN3+yUxPurlFLg2TG2330+nx\n"
+    + "v2n3ksuoLd/s6NXW2sUW3tpdDDgFRm3IDoTsWPG1/zVas/WNIRSNsCCoDH0seANz\n"
+    + "sQIDsQAs\n")
+  .addCertificatePin("MIIE6zCCA9OgAwIBAgISBOnD4DLsF/BN6DfX48OHnxJeMA0GCSqGSIb3DQEBCwUA\n"
+    + "ihXZ0bqI3D3luTIsKb4ld3Fwzs9E1iajevTNNGrWWqq//1nDU0L5hqbOuoVqoWIJ\n"
+    + "AQIBMIIBBAYKKwYBBAHWeQIEAgSB9QSB8gDwAHYAouK/1h7eLy8HoNZObTen3GVD\n"
+    + "gPrHsflTEp2qE7kf5UGLlpbljJyyaNKLa6COi4TmHxUdc44mYglPWMd+FUp9PdZz\n"
+    + "OkZ6BfFtZ8n+IQLS8u310cjEhGnCdV3c6ShkbeKL4xzphf9izDzTPMie22JIB+PM\n"
+    + "/slMT7q5RS4Nkxh4w9Pp8aiQZrLsUDLLHF81+phEc/NSpaKJKt63eipTVNDssxNv\n"
+    + "TxR++glpbKt+GjvR16B8ks8bssEyFrafSOefW2wrj6BIS+202VjLrv0pydMjiwDd\n"
+    + "jYuULqgPlvynDMFMG+mB\n");
+            
+Countly.instance().init(config);</code></pre>
+<p>
+  In case you get a <code>CertificateException</code>, which means the certificate
+  or public key for the reached server did not match any of the provided ones.
+  Usually, it means that the certificate you provided is wrong.
+</p>
+<p>
+  In case you still have issues, have a look
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HDNJK8PAE5GEQWRFDS4KD6S6" target="_blank" rel="noopener noreferrer">here</a>.
+</p>
 <h1 id="h_01HABV0K6DQMRJ4VJ3X328HXT5">Other Features and Notes</h1>
 <h2 id="h_01HAXVT7C5C8C64NHXNVG0TS4W">SDK Config Parameters Explained</h2>
 <p>
@@ -1233,11 +1290,10 @@ Countly.instance().userProfile().save();</code></pre>
 metricOverride.put("SomeKey", "123");
 metricOverride.put("_locale", "xx_yy");
 
-Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY)
+Config config = new Config(COUNTLY_SERVER_URL, COUNTLY_APP_KEY, targetFolder)
   .setMetricOverride(metricOverride);
-  
-Countly.init(targetFolder, config);
-</code></pre>
+
+Countly.instance().init(config);</code></pre>
 </div>
 <p>
   For more information on the specific metric keys used by Countly, check
@@ -1262,12 +1318,12 @@ Countly.init(targetFolder, config);
   <code class="java">enableBackendMode</code>on this object, and later you should
   pass it to the <code>init</code> method.
 </p>
-<pre><code class="java hljs">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY")
+<pre><code class="java hljs">Config config = new Config("http://YOUR.SERVER.COM", "YOUR_APP_KEY", targetFolder)
   .enableBackendMode()
-  .setRequestQueueMaxSize(<span>500</span>)
+  .setRequestQueueMaxSize(500)
   .setLoggingLevel(Config.LoggingLevel.DEBUG);
 
-Countly.init(targetFolder, config);</code></pre>
+Countly.instance().init(config);</code></pre>
 <p>
   If the Backend Mode is enabled the SDK stores up to a maximum of 1000 requests
   by default. Then when this limit is exceeded the SDK will drop the oldest request
@@ -1637,6 +1693,32 @@ Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 16
   <p>
     It will return the number of requests in the memory request queue.
   </p>
+  <h2 id="h_01JCGJPB284JKKATCKB43SNF5Y">Extended Device ID Management</h2>
+  <p>
+    The SDK allows you to change the Device ID at any point in time. You can
+    use any of the following two methods to changing the Device ID, depending
+    on your needs.
+  </p>
+  <p class="anchor-heading">
+    <strong>Changing Device ID with server merge</strong>
+  </p>
+  <p>
+    <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way. In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+  </p>
+  <pre><code class="java hljs">Countly.instance().deviceId().changeWithMerge("New Device Id");</code></pre>
+  <p class="anchor-heading">
+    <strong>Changing Device ID without server merge</strong>
+  </p>
+  <p>
+    <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+  </p>
+  <pre><code class="java hljs">Countly.instance().deviceId().changeWithoutMerge("New Device Id");</code></pre>
+  <p>
+    <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
+  </p>
+  <p>
+    <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+  </p>
   <h1 id="h_01HD3EHQ4A3HMEJSF4YP4CBZ8P">FAQ</h1>
   <h2 id="h_01HD3EJBRFM3FJ0F1P3K172TZV">
     <span>Where Does the SDK Store the Data?</span>
@@ -1652,14 +1734,5 @@ Countly.instance().backendM().recordDirectRequest("device-id-1", requestData, 16
     functionalities is mentioned in
     <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>.
     It is saved locally before any of it is transferred to the server.
-  </p>
-  <p>
-    When events are recorded, the time of when the event is recorded, will be
-    collected
-  </p>
-  <p>
-    Any other information like data in custom events, location, user profile
-    information or other manual requests depends on what the developer decides
-    to provide and is not collected by the SDK itself.
   </p>
 </div>
