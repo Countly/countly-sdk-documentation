@@ -3133,6 +3133,14 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   These content blocks are dynamically served from the content builder on the server,
   ensuring that users receive relevant and up-to-date information.
 </p>
+<div class="callout callout--info">
+  <p>
+    For learning how you can use Journeys &amp; Content Builder to create In-App
+    messages you can check
+    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
+    article.
+  </p>
+</div>
 <p>
   To start fetching content from the server, use the following method:
 </p>
