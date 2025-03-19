@@ -12,10 +12,64 @@
 </div>
 <p>
   For iOS builds, this SDK requires a minimum Deployment Target iOS 10.0 (watchOS
-  4.0, tvOS 10.0, macOS 10.14), and it requires Xcode 13.0+.<br>
+  4.0, tvOS 10.0, macOS 10.14), and it requires Xcode 13.0+.
+</p>
+<p>
   For Android builds, this SDK requires a minimum Android version of 4.2.x (API
   Level 17).
 </p>
+<p>
+  For Web builds, this SDK is compatible with browsers that support ECMAScript
+  5. Minimum versions of major internet browsers that fully support ES5 are:
+</p>
+<table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
+  <tbody>
+    <tr class="wysiwyg-text-align-center" style="height: 36px;">
+      <td class="wysiwyg-text-align-center" style="width: 63.8516px; height: 36px;">
+        <strong>IE</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 38.4453px; height: 36px;">
+        <strong>Edge</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 55.4766px; height: 36px;">
+        <strong>Firefox</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 77px; height: 36px;">
+        <strong>Firefox (Android)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 50.375px; height: 36px;">
+        <strong>Opera</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 66.7578px; height: 36px;">
+        <strong>Opera (Mobile)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 36px;">
+        <strong>Safari</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 36px;">
+        <strong>Safari (iOS)</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 60.7891px; height: 36px; text-align: center; vertical-align: middle;">
+        <strong>Chrome</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="width: 77.0234px; height: 36px;">
+        <strong>Chrome (Android)</strong>
+      </td>
+    </tr>
+    <tr style="height: 22px; padding: 2px;">
+      <td class="wysiwyg-text-align-center" style="width: 63.8516px; height: 10px;">10</td>
+      <td class="wysiwyg-text-align-center" style="width: 38.4453px; height: 10px;">12</td>
+      <td class="wysiwyg-text-align-center" style="width: 55.4766px; height: 10px;">21</td>
+      <td class="wysiwyg-text-align-center" style="width: 77px; height: 10px;">96</td>
+      <td class="wysiwyg-text-align-center" style="width: 50.375px; height: 10px;">15</td>
+      <td class="wysiwyg-text-align-center" style="width: 66.7578px; height: 10px;">64</td>
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 10px;">6</td>
+      <td class="wysiwyg-text-align-center" style="width: 60.7891px; height: 10px;">23</td>
+      <td class="wysiwyg-text-align-center" style="width: 77.0234px; height: 10px;">98</td>
+    </tr>
+  </tbody>
+</table>
 <p>
   To examine the example integrations, please have a look
   <a href="#h_01HPGP75J54BBZFVZE7S7K1N2H">here.</a>
@@ -25,8 +79,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^25.1.0
-</code></pre>
+  countly_flutter: ^25.1.1</code></pre>
 <p>
   After you can install packages from the command line with Flutter:
 </p>
@@ -79,6 +132,10 @@ Countly.initWithConfig(config).then((value){
     A SharedPreferences object points to a file containing key-value pairs and
     provides simple reading and writing methods.
   </li>
+  <li>
+    For <strong>Web</strong>, the SDK data is stored in Local Storage. It can
+    be modified to use memory only or cookies.
+  </li>
 </ul>
 <h1 id="h_01H930GAQ5BDPD0XHVV8RSR0XK">SDK Logging</h1>
 <p>
@@ -116,18 +173,6 @@ config.enableCrashReporting()</code></pre>
   By doing that it will automatically catch all errors that are thrown from within
   the Flutter framework.
 </p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Important:</strong> If you are using SDK version 24.7.1 or earlier,
-    you must use <code>runZonedGuarded</code> to catch asynchronous Dart errors,
-    as shown below:
-  </p>
-  <pre><code class="dart">void main() {
-  runZonedGuarded&lt;Future&lt;void&gt;&gt;(() async {
-    runApp(MyApp());
-  }, Countly.recordDartError);
-}</code></pre>
-</div>
 <h2 id="h_01H930GAQ524KXJKJ2FQYVH075">Automatic Crash Report Segmentation</h2>
 <p>
   You may add a key/value segment to crash reports. For example, you could set
@@ -388,6 +433,12 @@ Countly.instance.events.cancelEvent(eventName);
   </li>
 </ul>
 <h2 id="h_01HGDN3SPBVME2S4HP5GM2D7NG">Manual Sessions</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    The Web platform supports only Hybrid mode; manual update call not supported.
+  </p>
+</div>
 <p>
   Sometimes, it might be preferable to control the session manually instead of
   relying on the SDK.
@@ -410,6 +461,12 @@ Countly.instance.events.cancelEvent(eventName);
 Countly.instance.sessions.updateSession();
 Countly.instance.sessions.endSession();</pre>
 <h1 id="h_01H930GAQ6R8N0G7CAPDJ60AN0">View Tracking</h1>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    The Web platform supports only startAutoStoppedView call.
+  </p>
+</div>
 <p>
   The SDK provides access to all view-related functionality through the interface
   returned by:
@@ -703,7 +760,8 @@ Countly.initWithConfig(config);</code></pre>
 </p>
 <p>
   For iOS: the device ID generated by the SDK is the Identifier For Vendor (IDFV).
-  For Android: the device ID generated by the SDK is the OpenUDID.
+  For Android: the device ID generated by the SDK is the OpenUDID. For Web: the
+  device ID generated by the SDK is a random UUID.
 </p>
 <h1 id="h_01H930GAQ6K5T1NRS29Z3Y8WSY">Push Notifications</h1>
 <p>
@@ -925,6 +983,12 @@ override func userNotificationCenter(\_ center: UNUserNotificationCenter, didRec
   };
 }</pre>
 <h1 id="h_01H930GAQ69F33CMKEBBV57FVB">User Location</h1>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    The Web platform supports only setting location through configuration.
+  </p>
+</div>
 <p>
   Countly allows you to send geolocation-based push notifications to your users.
   By default, the Countly Server uses the GeoIP database to deduce a user's location.
@@ -998,6 +1062,12 @@ Countly.disableLocation();</code></pre>
     <span>Downloading Values</span>
   </h2>
   <h3 id="h_01H930GAQ7BDR4FWH4NCATN7B4">Automatic Remote Config Triggers</h3>
+  <div class="callout callout--info">
+    <p>
+      <strong>Platform Info</strong><br>
+      The caching is not supported in the Web platform.
+    </p>
+  </div>
   <p>
     <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
   </p>
@@ -1140,6 +1210,12 @@ JSONObject jObj = allValues["key_4"] as JSONObject;</code></pre>
   Boolean isCurrentUsersData;
 }</code></pre>
 <h2 id="01HD1KQVYS1NHR0ZFMJ12AVP0P">Clearing Stored Values</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
@@ -1238,6 +1314,12 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
   <h3 id="h_01HD1KX617T07K6KD77Q4THRCC">
     <span>Exiting A/B Tests</span>
   </h3>
+  <div class="callout callout--info">
+    <p>
+      <strong>Platform Info</strong><br>
+      This feature is not supported in the Web platform.
+    </p>
+  </div>
 </div>
 <p>
   If you want to remove users from A/B tests of certain keys you can use the following
@@ -1257,6 +1339,12 @@ Countly.instance.remoteConfig.removeDownloadCallback((rResult, error, fullValueU
   Feedback Widgets allow for even more textual feedback from users.
 </p>
 <h2 id="h_01H930GAQ75H8R1SPMVD66PD2N">Star Rating Dialog</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   Star Rating Dialog provides a dialog for getting user's feedback about the application.
   It contains a title, a simple message explaining what it is for, a 1-to-5 star
@@ -1430,6 +1518,12 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
   the server side.
 </p>
 <h2 id="h_01H930GAQ7J7R8CVHTSYM34ZM9">Setting User profile values during init</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   If possible set user properties during initialization. This way they would be
   reflected when the session is started shortly.
@@ -1512,6 +1606,12 @@ Countly.instance.userProfile.pull("type", "morning");
 //call 'save' to persist the changes
 Countly.instance.userProfile.save();</code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   The SDK provides manual and automatic mechanisms for Application Performance
   Monitoring (APM). All of the automatic mechanisms are disabled by default and
@@ -1776,10 +1876,12 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     <strong><a href="#h_01H930GAQ8WN5X15PVGKP5VYJZ" target="_self">Forcing HTTP POST</a> -<span> </span></strong><span>When set to</span><span>&nbsp;</span><strong>true</strong><span>, all requests made to the Countly server will be done using HTTP POST. Otherwise, the SDK sends all requests using the HTTP GET method. In some cases, if the data to be sent exceeds the 1800-character limit, the SDK uses the POST method.</span><span>&nbsp;The default value is&nbsp;<strong>false</strong>. </span>
   </li>
   <li>
-    <span><strong><a href="#h_01H930GAQ74F34S2RYAVJFPG53" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs.</span>
+    <span><strong><a href="#h_01H930GAQ74F34S2RYAVJFPG53" target="_self">Star Rating Text</a> -</strong> Set shown title, message and dismiss buttim text for the star rating dialogs. </span>
+    <strong>(no Web platform support)</strong>
   </li>
   <li>
-    <span><strong><a href="#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time.</span>
+    <span><strong><a href="#h_01H930GAQ7PNW0DA85DV7PK2EJ" target="_self">Application Performance Monitoring</a> -</strong> Enable APM features, which includes the recording of app start time. </span>
+    <strong>(no Web platform support)</strong>
   </li>
   <li>
     <span><strong><a href="#h_01H930GAQ6EQZ7TBJWV2KWWSVN" target="_self">Set User Location</a> -</strong> Set user location manually instead of using Countly server to use GeoIP database to deduce a user's location. </span>
@@ -1789,6 +1891,7 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
   </li>
   <li>
     <span><strong><a href="#h_01HGDN3SPBVME2S4HP5GM2D7NG" target="_self">Manual Sessions</a> -</strong> To enable manual session handling</span>
+    <strong>(no Web platform support)</strong>
   </li>
   <li>
     <strong><a href="#h_01H930GAQ7BDR4FWH4NCATN7B4" target="_self">Automatic Remote Config</a> - </strong>If
@@ -1796,11 +1899,11 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
   </li>
   <li>
     <strong><a href="#h_01H930GAQ8A62X8BFPAWQPZ1DA" target="_self">Direct Attribution</a> -</strong>
-    Report direct user attribution
+    Report direct user attribution <strong>(no Web platform support)</strong>
   </li>
   <li>
     <strong><a href="#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
-    Report indirect user attribution
+    Report indirect user attribution <strong>(no Web platform support)</strong>
   </li>
 </ul>
 <h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
@@ -1901,6 +2004,12 @@ await Countly.initWithConfig(config);</code></pre>
 config.sdkInternalLimits.setMaxStackTraceLineLength(int MAX_STACK_LENGTH);
 await Countly.initWithConfig(config);</code></pre>
 <h2 id="h_01H930GAQ8QRF6ED3PXEF0QFAD">Attribution</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   <a href="https://support.count.ly/hc/en-us/articles/360037639271-Attribution-Analytics">Countly Attribution Analytics</a>
   allows you to measure your marketing campaign performance by attributing installs
@@ -1914,7 +2023,8 @@ await Countly.initWithConfig(config);</code></pre>
 </h3>
 <div class="callout callout--info">
   <p>
-    Currently, direct attribution is only available for Android.
+    <strong>Platform Info</strong><br>
+    Direct attribution is only available for the Android platform.
   </p>
 </div>
 <p>
@@ -1993,6 +2103,12 @@ Countly.recordIndirectAttribution(attributionValues);</code></pre>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setHttpPostForced(true); // default is false</code></pre>
 <h2 id="h_01JDKS8P2TP840JX9AK318PAJW">Setting Custom Network Request Headers</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web and Android platforms.
+  </p>
+</div>
 <p>
   If you need to include custom network request headers in the requests sent by
   the SDK, you can easily add them using the following method.
@@ -2031,6 +2147,12 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   the current app key, these requests will be removed from the request queue.
 </p>
 <h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   If you are concerned about your app being used sparsely over a long time frame,
   old requests inside the request queue might not be important. If, for any reason,
@@ -2085,6 +2207,11 @@ config.setEventQueueSizeToSend(6);</code></pre>
   and show it to the user.
 </p>
 <p>
+  This regular check happens in every 30 seconds by default. It could be configurable
+  while initializing the SDK through and it must be greater than 15 seconds.
+</p>
+<pre><code class="dart">countlyConfig.content.setZoneTimerInterval(60) //in seconds</code></pre>
+<p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>
@@ -2093,12 +2220,24 @@ config.setEventQueueSizeToSend(6);</code></pre>
   To get informed when a user closes a content you can register a global content
   callback during SDK initialization:
 </p>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <pre><code class="dart">countlyConfig.content.setGlobalContentCallback((contentStatus, contentData))</code></pre>
 <pre><code class="dart">typedef ContentCallback = void Function(ContentStatus contentStatus, Map&lt;String, dynamic&gt; contentData);</code></pre>
 <p>
   The `contentStatus` will indicate either `ContentStatus.completed` or `ContentStatus.closed`.
 </p>
 <h2 id="h_01JDHWT7ES2EF2E9T8QHJQHGT8">Experimental Config</h2>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <p>
   The ConfigExperimental interface provides experimental configuration options
   for enabling advanced features like view name recording and visibility tracking.
@@ -2127,6 +2266,12 @@ config.experimental.enablePreviousNameRecording().enableVisibilityTracking();</c
 <h3 id="h_01HEMEGDNWMH4E1WRGXRS7CF7E">
   <span>Variant Level Control</span>
 </h3>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <h4 id="h_01HEMEGMXC8XKRT4ZCN813ZV8N">
   <span>Downloading</span>
 </h4>
@@ -2190,6 +2335,12 @@ config.experimental.enablePreviousNameRecording().enableVisibilityTracking();</c
 <h3 id="h_01HEMEGJ3XR0T33CT8NDQKRXVV">
   <span>Experiment Level Control</span>
 </h3>
+<div class="callout callout--info">
+  <p>
+    <strong>Platform Info</strong><br>
+    This feature is not supported in the Web platform.
+  </p>
+</div>
 <h4 id="h_01HEMEGSWG4J0HD4JFHG9D0C1X">
   <span>Downloading</span>
 </h4>
@@ -2329,7 +2480,7 @@ Countly.initWithConfig(config);</code></pre>
   functionalities is mentioned in
   <a href="/hc/en-us/articles/9290669873305#h_01HJ5MD0WB97PA9Z04NG2G0AKC">here</a>
 </p>
-<h2 id="h_01JJKC2AXVRFY16RSEJ1NR5XRF">What Platforms are supported?</h2>
+<h2 id="h_01JP80V15YQ6C17KGBW2GQG727">What Platforms are supported?</h2>
 <p>
-  Currently our Flutter SDK only supports Android and iOS platforms.
+  Currently our Flutter SDK supports Android, iOS, and Web platforms.
 </p>
