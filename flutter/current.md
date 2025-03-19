@@ -1526,7 +1526,7 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 </div>
 <p>
   If possible set user properties during initialization. This way they would be
-  reflected when the session is started shortly.
+  sent shortly after the SDK initialization.
 </p>
 <p>
   Using the following call, you can set both the predefined and the custom user
@@ -1540,13 +1540,12 @@ Countly.reportFeedbackWidgetManually(chosenWidget, retrievedWidgetData , reporte
 CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setUserProperties(userProperties); </code></pre>
 <h2 id="setting-user-profile-values-during-init" class="anchor-heading">Setting User profile values</h2>
-<p>Ther following calls can be used after init.</p>
+<p>The following calls can be used after init.</p>
 <p>
   If you want to set a single property, you can call
   <code class="dart">Countly.instance.userProfile.setProperty(key, value)</code>
 </p>
-<pre>Countly.instance.userProfile.setProperty("specialProperty", "value");
-Countly.instance.userProfile.save();</pre>
+<pre>Countly.instance.userProfile.setProperty("specialProperty", "value");</pre>
 <p>
   If you want to set multiple properties at the same time, you can use:
   <code class="dart">Countly.instance.userProfile.setUserProperties(userProperties)</code>
@@ -1564,10 +1563,11 @@ Map&lt;String, Object&gt; userProperties= {
   "byear": "1919",
   "special_value": "something special"
 };
-Countly.instance.userProfile.setUserProperties(userProperties);
-Countly.instance.userProfile.save();</code></pre>
+Countly.instance.userProfile.setUserProperties(userProperties);</code></pre>
 <p>
-  After you have provided the user profile information, you must save it by calling
+  SDK caches set properties, bundles them and sends to the server when necessary
+  with minimum amount of network requests. However if you want to manually decide
+  when to create a request you must save it by calling
   <code class="dart">Countly.instance.userProfile.save()</code>. This would then
   create a request and send it to the server.
 </p>
@@ -1601,10 +1601,7 @@ Countly.instance.userProfile.pushUnique("type", "morning");;
 //insert value to array which can have duplicates
 Countly.instance.userProfile.push("type", "morning");
 //remove value from array
-Countly.instance.userProfile.pull("type", "morning");
-
-//call 'save' to persist the changes
-Countly.instance.userProfile.save();</code></pre>
+Countly.instance.userProfile.pull("type", "morning");</code></pre>
 <h1 id="h_01H930GAQ7PNW0DA85DV7PK2EJ">Application Performance Monitoring</h1>
 <div class="callout callout--info">
   <p>
