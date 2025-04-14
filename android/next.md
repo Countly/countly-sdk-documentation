@@ -1081,6 +1081,22 @@ CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this)
   .setAllowedIntentPackageNames(allowedPackageNames);
 CountlyPush.init(countlyConfigPush);</code></pre>
 <p>
+  You can set a custom URL handler for the push notification if needed.
+</p>
+<pre><code class="java">public interface CountlyNotificationButtonURLHandler {
+  // true if it is handled, false otherwise
+  boolean onClick(String url);
+}
+
+CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this)
+  .setNotificationButtonURLHandler(url -&gt; {
+    if(url.contains("myschema://myUrl")){
+      return true;
+    }
+    return false;
+  });
+CountlyPush.init(countlyConfigPush);</code></pre>
+<p>
   Please follow provider-specific instructions for Firebase and / or Huawei Push
   Kit below.
 </p>
