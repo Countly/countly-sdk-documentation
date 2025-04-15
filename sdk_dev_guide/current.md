@@ -1,22 +1,22 @@
 <p>
-  <span style="font-weight: 400;">Would you like to develop a new SDK for Countly? Then this guide is for you. Before starting, bear in mind that there are a lot of SDKs that Countly has already developed. Please check whether the SDK you are going to develop is not already available.</span>
+  <span>Would you like to develop a new SDK for Countly? Then this guide is for you. Before starting, bear in mind that there are a lot of SDKs that Countly has already developed. Please check whether the SDK you are going to develop is not already available.</span>
 </p>
 <h1 id="01H821RTQ1G58MJXF4JFX5HVF5">
-  <span style="font-weight: 400;">Integration</span>
+  <span>Integration</span>
 </h1>
 <h2 id="01H821RTQ15HRMMKHQY49NFYV8">Initialization</h2>
 <p>
-  <span style="font-weight: 400;">To start making requests to the server, SDK needs 3 things: the URL of the server where you will be making requests, the app_key of the app for which you will be reporting, and your current device_id to uniquely identify this device.</span>
+  <span>To start making requests to the server, SDK needs 3 things: the URL of the server where you will be making requests, the app_key of the app for which you will be reporting, and your current device_id to uniquely identify this device.</span>
 </p>
 <p>
-  <strong>Server URL</strong> -&nbsp;<span style="font-weight: 400;">The SDK needs to provide the ability for the user to specify the URL for the server where their Countly instance is installed. This be used for all requests.</span>
+  <strong>Server URL</strong> -&nbsp;<span>The SDK needs to provide the ability for the user to specify the URL for the server where their Countly instance is installed. This be used for all requests.</span>
 </p>
 <p>
-  <strong>App Key</strong> -&nbsp;<span style="font-weight: 400;">The App key should be provided by the SDK user. This value identifies to which dashboard applications this request is going to be tied to. Your app should be created on the Countly server. After app creation, the server will provide an app key for the user. The same app key is used for the same app on different platforms.</span>
+  <strong>App Key</strong> -&nbsp;<span>The App key should be provided by the SDK user. This value identifies to which dashboard applications this request is going to be tied to. Your app should be created on the Countly server. After app creation, the server will provide an app key for the user. The same app key is used for the same app on different platforms.</span>
 </p>
 <p>
   <strong>Device ID</strong> -
-  <span style="font-weight: 400;">A device ID is required to uniquely identify a device or user. If you have some unique user ID which you can retrieve, you may use it. If not, you may provide platform-specific device identification (as Advertising identifier in Google Play Services on Android) or use existing implementations (as OpenUDID). More info about device ID is described <a href="#h_01GYC4S9JM2F2WDDFSBEF2TBJ0" target="_self">here</a>.</span>
+  <span>A device ID is required to uniquely identify a device or user. If you have some unique user ID which you can retrieve, you may use it. If not, you may provide platform-specific device identification (as Advertising identifier in Google Play Services on Android) or use existing implementations (as OpenUDID). More info about device ID is described <a href="#h_01GYC4S9JM2F2WDDFSBEF2TBJ0" target="_self">here</a>.</span>
 </p>
 <h2 id="01H821RTQ1NM9W4N116BKF3FAW">Init Configuration</h2>
 <p>
@@ -205,65 +205,65 @@
 <h1 id="01H821RTQ18DVPGH41Y03VD7G4">SDK Storage and Requests</h1>
 <h2 id="01H821RTQ1ZMTGHAF6MHDX41MD">Making Requests</h2>
 <p>
-  <span style="font-weight: 400;">The Countly server is a simple HTTP-based REST API server, and all SDK requests should be made to </span><strong>/i</strong><span style="font-weight: 400;">&nbsp;endpoint with two required parameters:&nbsp;</span><strong>app_key</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>device_id</strong><span style="font-weight: 400;">.</span>
+  <span>The Countly server is a simple HTTP-based REST API server, and all SDK requests should be made to </span><strong>/i</strong><span>&nbsp;endpoint with two required parameters:&nbsp;</span><strong>app_key</strong><span>&nbsp;and&nbsp;</span><strong>device_id</strong><span>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference/i"><span style="font-weight: 400;">/i endpoint Server API reference</span></a><span style="font-weight: 400;">.</span>
+  <span>Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference/i"><span>/i endpoint Server API reference</span></a><span>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">There are some parameters that should be added to all requests, even though they are not mandatory. Together with the required parameters, they form the base request. Every request sent to the server should be formed from this base request. The parameters in this base request are: </span>
+  <span>There are some parameters that should be added to all requests, even though they are not mandatory. Together with the required parameters, they form the base request. Every request sent to the server should be formed from this base request. The parameters in this base request are: </span>
 </p>
 <ul>
   <li>
-    <span style="font-weight: 400;">"app_key" - the application key for this countly app (retrievable on the dashboard)</span>
+    <span>"app_key" - the application key for this countly app (retrievable on the dashboard)</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"device_id" - the current user's device ID</span>
+    <span>"device_id" - the current user's device ID</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"timestamp" - the timestamp in ms of when this request is created</span>
+    <span>"timestamp" - the timestamp in ms of when this request is created</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"hour" - the hour of the timestamp</span>
+    <span>"hour" - the hour of the timestamp</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"dow" - the day of the week for this timestamp. 0 - sunday, ... , 6 - saturday.</span>
+    <span>"dow" - the day of the week for this timestamp. 0 - sunday, ... , 6 - saturday.</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"tz" - this device's timezone offset</span>
+    <span>"tz" - this device's timezone offset</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"sdk_version" - the SDK's version</span>
+    <span>"sdk_version" - the SDK's version</span>
   </li>
   <li>
-    <span style="font-weight: 400;">"sdk_name" - the SDK's name</span>
+    <span>"sdk_name" - the SDK's name</span>
   </li>
 </ul>
 <p>
-  <span style="font-weight: 400;">In cases where some devices may be offline, etc., and requests should be queued, it is highly recommended you add a timestamp to each request, displaying when it was created.</span>
+  <span>In cases where some devices may be offline, etc., and requests should be queued, it is highly recommended you add a timestamp to each request, displaying when it was created.</span>
 </p>
 <div class="callout callout--info">
   <h3 id="01H821RTQ1M9DQRPT8FJ9TTBFK" class="callout__title">Encoding URI Components</h3>
   <p>
-    <span style="font-weight: 400;">Due to the possible use of the ‘&amp;’ and ‘?’ symbols in encoded JSON strings, SDKs should encode uri components before adding them to the request and sending it to the server.</span>
+    <span>Due to the possible use of the ‘&amp;’ and ‘?’ symbols in encoded JSON strings, SDKs should encode uri components before adding them to the request and sending it to the server.</span>
   </p>
 </div>
 <h3 id="01H821RTQ1D25TAE687RNRS3NR">Using GET or POST</h3>
 <p>
-  <span style="font-weight: 400;">By default, the preferred method is to make GET requests for the Countly servers. However, there may be some length limitations for GET requests based on specific platform or server settings. Thus, the best practice is to make a POST request when the data reaches over 2,000 characters for a single request.</span>
+  <span>By default, the preferred method is to make GET requests for the Countly servers. However, there may be some length limitations for GET requests based on specific platform or server settings. Thus, the best practice is to make a POST request when the data reaches over 2,000 characters for a single request.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Before making each request, you will need to check if the data you are going to send is less than 2,000 characters. If so, use GET. If you have more characters, use POST.</span>
+  <span>Before making each request, you will need to check if the data you are going to send is less than 2,000 characters. If so, use GET. If you have more characters, use POST.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Additionally, the SDK should be able to switch to post completely if a user should so specify in the SDK configuration/settings.</span>
+  <span>Additionally, the SDK should be able to switch to post completely if a user should so specify in the SDK configuration/settings.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
+  <span>When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
 </p>
 <h3 id="01H821RTQ1KQ1PR0XHNZXCWCYD">SDK Metadata</h3>
 <p>
-  <span style="font-weight: 400;">The SDK should send the following metadata with every request.</span>
+  <span>The SDK should send the following metadata with every request.</span>
 </p>
 <ul>
   <li>SDK name:</li>
@@ -298,42 +298,42 @@
 </p>
 <h2 id="01H821RTQ2YX94108QAANP2R8J">Storage</h2>
 <p>
-  <span style="font-weight: 400;">Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
+  <span>Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span style="font-weight: 400;"></span>
+  <span>If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span></span>
 </p>
 <h2 id="01H821RTQ2YD4C2V3AD4RKRJXA">Request Queue</h2>
 <p>
-  <span style="font-weight: 400;">In some cases, users might be offline, thus they are not able to make requests to the server. In other cases, the server may be down or in maintenance, thus unable to accept requests. In both cases, the SDK should handle queuing and persistently storing requests made to the Countly server and should wait for a successful response from the server before removing a request from the queue.</span>
+  <span>In some cases, users might be offline, thus they are not able to make requests to the server. In other cases, the server may be down or in maintenance, thus unable to accept requests. In both cases, the SDK should handle queuing and persistently storing requests made to the Countly server and should wait for a successful response from the server before removing a request from the queue.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Note that requests should be made in historical order, meaning you must also preserve the order of your queue.</span>
+  <span>Note that requests should be made in historical order, meaning you must also preserve the order of your queue.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Simple flow on how requests should appear as follows:</span>
+  <span>Simple flow on how requests should appear as follows:</span>
 </p>
 <ol>
   <li>
-    <span style="font-weight: 400;">Initiating request - either a new event reported or session call, etc.</span>
+    <span>Initiating request - either a new event reported or session call, etc.</span>
   </li>
   <li>
-    <span style="font-weight: 400;">Creating a payload - take all the parameters (including the current timestamp) and the values needed for a request and generate a payload which will be included in the HTTP request</span>
+    <span>Creating a payload - take all the parameters (including the current timestamp) and the values needed for a request and generate a payload which will be included in the HTTP request</span>
   </li>
   <li>
-    <span style="font-weight: 400;">This payload is inserted into the queue (First In, First Out)</span>
+    <span>This payload is inserted into the queue (First In, First Out)</span>
   </li>
   <li>
-    <span style="font-weight: 400;">All updates to the queue should be persistently stored. Based on the environment, you may directly use storage for the queue</span>
+    <span>All updates to the queue should be persistently stored. Based on the environment, you may directly use storage for the queue</span>
   </li>
   <li>
-    <span style="font-weight: 400;">On some other thread there should be a request processor which takes the first request in the queue, applies the checksum if needed, determines the request type (GET or POST) based on the length, and makes the HTTP request</span>&nbsp;<br>
+    <span>On some other thread there should be a request processor which takes the first request in the queue, applies the checksum if needed, determines the request type (GET or POST) based on the length, and makes the HTTP request</span>&nbsp;<br>
     <ul>
       <li>
-        <span style="font-weight: 400;">if the request is successful (defined below), then it should be removed from the queue and the next request will be processed upon the next iteration</span>
+        <span>if the request is successful (defined below), then it should be removed from the queue and the next request will be processed upon the next iteration</span>
       </li>
       <li>
-        <span style="font-weight: 400;">if the request failed, the request processor should have a cool-down period, lasting a minute or so (configurable value), and it will then try the same request again until it is completed</span>
+        <span>if the request failed, the request processor should have a cool-down period, lasting a minute or so (configurable value), and it will then try the same request again until it is completed</span>
       </li>
     </ul>
   </li>
@@ -342,33 +342,33 @@
   <img src="https://count.ly/images/guide/PPNhED7RiGZC0StuDYBd_SDK%20queue%20flow.png">
 </div>
 <p>
-  <span style="font-weight: 400;">There are multiple scenarios why a request might fail, so to ensure that the request is successfully delivered to the server SDK, you will need to assure the following has taken place:</span>
+  <span>There are multiple scenarios why a request might fail, so to ensure that the request is successfully delivered to the server SDK, you will need to assure the following has taken place:</span>
 </p>
 <ol>
   <li>
-    <span style="font-weight: 400;">The HTTP response code was successful (which is any 2xx code or code between 200 &lt;= x &lt; 300)</span>
+    <span>The HTTP response code was successful (which is any 2xx code or code between 200 &lt;= x &lt; 300)</span>
   </li>
   <li>
-    <span style="font-weight: 400;">The returned request is a JSON object</span>
+    <span>The returned request is a JSON object</span>
   </li>
   <li>
-    <span style="font-weight: 400;">That JSON object contains the field "result" (there can be other fields)</span>
+    <span>That JSON object contains the field "result" (there can be other fields)</span>
   </li>
 </ol>
 <p>
-  <span style="font-weight: 400;">When sending request to a Countly server, it would respond with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added.</span>
+  <span>When sending request to a Countly server, it would respond with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If the previously described things are "true", </span>then
-  it means the request was successfully delivered to the server and can be removed
-  from the queue.
+  <span>If the previously described things are "true", </span>then it means the
+  request was successfully delivered to the server and can be removed from the
+  queue.
 </p>
 <h3 id="01H821RTQ2CA0ARFHWBSS89BZH">Queue Size Limit</h3>
 <p>
-  <span style="font-weight: 400;">We need to limit the queue size so that it doesn’t overflow, and so that syncing up won’t take too long if some specific server is down for too long. This limit would be in the number of stored queries, and this limit should be available for the end-user to change as the SDK settings.</span>
+  <span>We need to limit the queue size so that it doesn’t overflow, and so that syncing up won’t take too long if some specific server is down for too long. This limit would be in the number of stored queries, and this limit should be available for the end-user to change as the SDK settings.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span style="font-weight: 400;">.</span>
+  <span>In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span>.</span>
 </p>
 <h2 id="01H821RTQ2GJ97A0QH0FE86ZBM">Event Queue</h2>
 <p>
@@ -385,30 +385,29 @@
 <p>Those would have their own storage format.</p>
 <h2 id="01H821RTQ28RTWMDKM06XPTM50">Recording Time of Data</h2>
 <p>
-  <span style="font-weight: 400;">To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
+  <span>To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
 </p>
 <ul>
   <li>
     <strong>timestamp</strong>:
-    <span style="font-weight: 400;">13-digit UTC millisecond unique timestamp of the moment of action</span>
+    <span>13-digit UTC millisecond unique timestamp of the moment of action</span>
   </li>
   <li>
-    <strong>hour</strong>:
-    <span style="font-weight: 400;">Current user local hour (0 - 23)</span>
+    <strong>hour</strong>: <span>Current user local hour (0 - 23)</span>
   </li>
   <li>
-    <strong>dow</strong>:&nbsp;<span style="font-weight: 400;">Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
+    <strong>dow</strong>:&nbsp;<span>Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
   </li>
   <li>
     <strong>tz</strong>:
-    <span style="font-weight: 400;">Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
+    <span>Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
   </li>
 </ul>
 <p>
-  <span style="font-weight: 400;">As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
+  <span>As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
+  <span>The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
 </p>
 <pre><code class="javascript">//variable to hold last used timestamp
 lastMsTs = 0;
@@ -430,39 +429,39 @@ function getUniqueMsTimestamp(){
   return lastMsTs;
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
+  <span>If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
 </p>
 <h1 id="01H821RTQ2JRCPX43EYJ7PABWB">General SDK Structure Overview</h1>
 <p>
-  <span style="font-weight: 400;">Depending on the SDK’s environment/language, a different set of features could be supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app may not provide telecom operator information.</span>
+  <span>Depending on the SDK’s environment/language, a different set of features could be supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app may not provide telecom operator information.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
+  <span>Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
+  <span>Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
 </p>
 <h2 id="01H821RTQ2D8GVP71K49AQ5KB3">Initialization</h2>
 <p>
-  <span style="font-weight: 400;">In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method that accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
+  <span>In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method that accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
 </p>
 <pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
 </code></pre>
 <h1 id="01H821RTQ20M61EKN76EY6RJ84">Crash Reporting</h1>
 <p>
-  <span style="font-weight: 400;">On some platforms, the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and this is also optional as with other similar functions. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on </span><a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a><span style="font-weight: 400;">&nbsp;that you may use in your SDK.</span>
+  <span>On some platforms, the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and this is also optional as with other similar functions. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on </span><a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a><span>&nbsp;that you may use in your SDK.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In regard to crashes, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. You should also provide a way for users to log errors manually (for example, logging handled exceptions which are not fatal).</span>
+  <span>In regard to crashes, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. You should also provide a way for users to log errors manually (for example, logging handled exceptions which are not fatal).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Basically, for automatically captured errors, you should set the&nbsp;</span><strong>_nonfatal</strong><span style="font-weight: 400;">&nbsp;property to false, whereas on user logged errors the&nbsp;</span><strong>_nonfatal</strong><span style="font-weight: 400;">&nbsp;property should be true. You should also provide a way to set custom key/values to be reported as segments with crash reports, either by providing global default segments or setting separately for automatically tracked errors and user logged errors.</span>
+  <span>Basically, for automatically captured errors, you should set the&nbsp;</span><strong>_nonfatal</strong><span>&nbsp;property to false, whereas on user logged errors the&nbsp;</span><strong>_nonfatal</strong><span>&nbsp;property should be true. You should also provide a way to set custom key/values to be reported as segments with crash reports, either by providing global default segments or setting separately for automatically tracked errors and user logged errors.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Additionally, there should be a way for the SDK user to leave breadcrumbs that would be submitted together with the crash reports. In order to collect breadcrumbs as logs, create an empty array upon initialization and provide a method to add breadcrumbs as strings into that array as elements for log. Also, in the event of a crash, concatenate the array with new line symbols and submit under the&nbsp;</span><strong>_logs</strong><span style="font-weight: 400;">&nbsp;property. There is no need to persistently save those logs on a device, as we would like to have a clean log on every app start.</span>
+  <span>Additionally, there should be a way for the SDK user to leave breadcrumbs that would be submitted together with the crash reports. In order to collect breadcrumbs as logs, create an empty array upon initialization and provide a method to add breadcrumbs as strings into that array as elements for log. Also, in the event of a crash, concatenate the array with new line symbols and submit under the&nbsp;</span><strong>_logs</strong><span>&nbsp;property. There is no need to persistently save those logs on a device, as we would like to have a clean log on every app start.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The end API could look like this (but it should be totally based on the specific platform error handling):</span>
+  <span>The end API could look like this (but it should be totally based on the specific platform error handling):</span>
 </p>
 <ul>
   <li>Countly.enable_auto_error_reporting(map segments)</li>
@@ -720,10 +719,10 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h1 id="01H821RTQ2TZF21BH3ZSR8XHNW">Device Metrics</h1>
 <p>
-  <span style="font-weight: 400;">Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference/i#metrics"><span style="font-weight: 400;">API Reference</span></a><span style="font-weight: 400;">.</span>
+  <span>Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference/i#metrics"><span>API Reference</span></a><span>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span style="font-weight: 400;">&nbsp;metric.</span>
+  <span>One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span>&nbsp;metric.</span>
 </p>
 <ul>
   <li>
@@ -826,7 +825,7 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h2 id="01H821RTQ23WZFKH76EXFHN456">Manual Session Tracking (WIP)</h2>
 <p>
-  <span style="font-weight: 400;">Most of the official SDKs implement automatic session handling, meaning SDK users don't need to separately bother with session calls. However, it is good practice to provide a way to disable automatic session handling and allow SDK users to make session calls themselves through methods such as:</span>
+  <span>Most of the official SDKs implement automatic session handling, meaning SDK users don't need to separately bother with session calls. However, it is good practice to provide a way to disable automatic session handling and allow SDK users to make session calls themselves through methods such as:</span>
 </p>
 <ul>
   <li>Countly.begin_session()</li>
@@ -834,7 +833,7 @@ Countly.sharedInstance().init(config);</code></pre>
   <li>Countly.end_session(int seconds)</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">Here is the documentation showing how you may&nbsp;</span><a href="https://api.count.ly/reference/i#session"><span style="font-weight: 400;">report sessions through our API</span></a><span style="font-weight: 400;">.</span>
+  <span>Here is the documentation showing how you may&nbsp;</span><a href="https://api.count.ly/reference/i#session"><span>report sessions through our API</span></a><span>.</span>
 </p>
 <h2 id="01H821RTQ2EHYPRRZ9H9CPZH7T">Session API</h2>
 <p>
@@ -843,22 +842,22 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h3 id="01H821RTQ2GGYNVHKPW17BBMW4">Starting a Session</h3>
 <p>
-  <span style="font-weight: 400;">The SDK should then send the </span><strong>begin_session=1</strong><span style="font-weight: 400;"> param. This same request should also contain metrics parameters with the maximum metrics described on </span><a href="https://api.count.ly/reference/i"><span style="font-weight: 400;">/i page</span></a><span style="font-weight: 400;">, which may be collected from this SDK-specific environment/language. It might look something like:<br></span>
+  <span>The SDK should then send the </span><strong>begin_session=1</strong><span> param. This same request should also contain metrics parameters with the maximum metrics described on </span><a href="https://api.count.ly/reference/i"><span>/i page</span></a><span>, which may be collected from this SDK-specific environment/language. It might look something like:<br></span>
 </p>
-<pre><span style="font-weight: 400;">"&amp;begin_session=1&amp;metrics={...}"</span></pre>
+<pre><span>"&amp;begin_session=1&amp;metrics={...}"</span></pre>
 <h3 id="01H821RTQ37TYR08W9RYQWN3KQ">Session Update</h3>
 <p>
-  <span style="font-weight: 400;">Each minute of the session should be extended by sending the <strong>session_duration</strong> param with the number of seconds that passed since the previous session request (begin_session or session_duration, whichever was last). It might look something like:</span>
+  <span>Each minute of the session should be extended by sending the <strong>session_duration</strong> param with the number of seconds that passed since the previous session request (begin_session or session_duration, whichever was last). It might look something like:</span>
 </p>
-<pre><span style="font-weight: 400;">"&amp;session_duration=60"</span></pre>
+<pre><span>"&amp;session_duration=60"</span></pre>
 <h3 id="01H821RTQ3MYH265462NQMHNBT">Ending a Session</h3>
 <p>
-  <span style="font-weight: 400;">The SDK should send the </span><strong>end_session=1</strong><span style="font-weight: 400;"> param, including the <strong>session_duration</strong> parameter with how many seconds passed since the last session request (begin_session or session_duration, whichever was last). It might look something like this:</span>
+  <span>The SDK should send the </span><strong>end_session=1</strong><span> param, including the <strong>session_duration</strong> parameter with how many seconds passed since the last session request (begin_session or session_duration, whichever was last). It might look something like this:</span>
 </p>
-<pre><span style="font-weight: 400;">"&amp;end_session=1&amp;session_duration=15"</span></pre>
+<pre><span>"&amp;end_session=1&amp;session_duration=15"</span></pre>
 <h3 id="01H821RTQ3T4K0EMQWE7D4JWEZ">Sample Uses</h3>
 <p>
-  <span style="font-weight: 400;">Here are a few example requests generated by different session lengths:</span>
+  <span>Here are a few example requests generated by different session lengths:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -878,30 +877,30 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </div>
 <h2 id="01H821RTQ3ZVV6YVP2FHVE6DKE">Session Cooldown</h2>
 <p>
-  <span style="font-weight: 400;">In some cases, it is difficult to know for sure if a session has ended, such as with web analytics when a user is leaving the page, and whether they will visit another page or not. This is why there is a small&nbsp;</span><em><span style="font-weight: 400;">cooldown</span></em><span style="font-weight: 400;">&nbsp;time of 15 seconds. If the end_session request is sent and then the begin_session request is sent within 15 seconds, it will be counted as the same session, and the session duration will extend this session instead of applying it to the new one.</span>
+  <span>In some cases, it is difficult to know for sure if a session has ended, such as with web analytics when a user is leaving the page, and whether they will visit another page or not. This is why there is a small&nbsp;</span><em><span>cooldown</span></em><span>&nbsp;time of 15 seconds. If the end_session request is sent and then the begin_session request is sent within 15 seconds, it will be counted as the same session, and the session duration will extend this session instead of applying it to the new one.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This makes it easier to call the end_session on each page unload without worrying about starting a new session if the user visits another page.</span>
+  <span>This makes it easier to call the end_session on each page unload without worrying about starting a new session if the user visits another page.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you don't need this behavior, simply pass the&nbsp;</span><strong>ignore_cooldown=true</strong><span style="font-weight: 400;">&nbsp;parameter to all the session requests and the server will not extend the session. Rather, it will always count it as a new session.</span>
+  <span>If you don't need this behavior, simply pass the&nbsp;</span><strong>ignore_cooldown=true</strong><span>&nbsp;parameter to all the session requests and the server will not extend the session. Rather, it will always count it as a new session.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The 15-second cooldown is a default value and may be configured on the server, so don't rely on it being 15 seconds.</span>
+  <span>The 15-second cooldown is a default value and may be configured on the server, so don't rely on it being 15 seconds.</span>
 </p>
 <h1 id="01H821RTQ3A76M4SDM49BZPAYH">View Tracking</h1>
 <p>
-  <span style="font-weight: 400;">Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually.&nbsp;</span>
+  <span>Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually.&nbsp;</span>
 </p>
 <h2 id="01H821RTQ3WPFFJBM5CP953JA6">
-  <span style="font-weight: 400;">View Structure</span>
+  <span>View Structure</span>
 </h2>
 <p>
-  <span style="font-weight: 400;">View information is packaged into events. There are 2 kinds of events:&nbsp;</span>
+  <span>View information is packaged into events. There are 2 kinds of events:&nbsp;</span>
 </p>
 <ul>
   <li>
-    <span style="font-weight: 400;">an event to indicate that a view was entered</span>
+    <span>an event to indicate that a view was entered</span>
   </li>
   <li>
     an event to send the duration of the view and indicate that the view was
@@ -944,32 +943,32 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"</span>,<br>            <span>"visit"</span>: <span>1</span>,<br>            <span>"start"</span>: <span>1,<br>            "_idv": "f0e8f5db5e5d9e7b9a45d3916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
 <p>
-  <span style="font-weight: 400;">Sample event for reporting this view's duration:</span>
+  <span>Sample event for reporting this view's duration:</span>
 </p>
 <pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android",<br>            "_idv": "f0e8f5db5e17ad5ce5cf53916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
 <p>
-  <span style="font-weight: 400;">Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
+  <span>Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
 </p>
 <h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
-  <span style="font-weight: 400;">View Manual Reporting</span>
+  <span>View Manual Reporting</span>
 </h2>
 <p>
-  <span style="font-weight: 400;">The following section will describe a sample implementation of manual views.</span>
+  <span>The following section will describe a sample implementation of manual views.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First, you will need to have 2 internal private properties as </span><strong>string lastView</strong><span style="font-weight: 400;">&nbsp;and&nbsp;</span><strong>int lastViewStartTime</strong><span style="font-weight: 400;">. Then, create an internal private method&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;">, which checks if </span><strong>lastView</strong><span style="font-weight: 400;">&nbsp;is null, and if not, it should report the duration for&nbsp;</span><strong>lastView</strong><span style="font-weight: 400;"> by calculating it based off the current timestamp and&nbsp;</span><strong>lastViewStartTime</strong><span style="font-weight: 400;">.</span>
+  <span>First, you will need to have 2 internal private properties as </span><strong>string lastView</strong><span>&nbsp;and&nbsp;</span><strong>int lastViewStartTime</strong><span>. Then, create an internal private method&nbsp;</span><strong>reportViewDuration</strong><span>, which checks if </span><strong>lastView</strong><span>&nbsp;is null, and if not, it should report the duration for&nbsp;</span><strong>lastView</strong><span> by calculating it based off the current timestamp and&nbsp;</span><strong>lastViewStartTime</strong><span>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">After those steps, provide a&nbsp;</span><strong>reportView</strong><span style="font-weight: 400;">&nbsp;method to set the view name as a string parameter inside this method call&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;"> to report the duration of the previous view (if there is one). Then set the provided view name as&nbsp;</span><strong>lastView&nbsp;</strong><span style="font-weight: 400;">and the current timestamp as&nbsp;</span><strong>lastViewStartTime</strong><span style="font-weight: 400;">. Report the view as an event with the&nbsp;</span><strong>visit</strong><span style="font-weight: 400;">&nbsp;property and&nbsp;</span><strong>segment</strong><span style="font-weight: 400;">&nbsp;as your platform name. Additionally, if this is the first view a user visits in this app session, then also report the&nbsp;</span><strong>start</strong><span style="font-weight: 400;">&nbsp;property as true. You will also need to call&nbsp;</span><strong>reportViewDuration</strong><span style="font-weight: 400;"> with the app exit event.</span>
+  <span>After those steps, provide a&nbsp;</span><strong>reportView</strong><span>&nbsp;method to set the view name as a string parameter inside this method call&nbsp;</span><strong>reportViewDuration</strong><span> to report the duration of the previous view (if there is one). Then set the provided view name as&nbsp;</span><strong>lastView&nbsp;</strong><span>and the current timestamp as&nbsp;</span><strong>lastViewStartTime</strong><span>. Report the view as an event with the&nbsp;</span><strong>visit</strong><span>&nbsp;property and&nbsp;</span><strong>segment</strong><span>&nbsp;as your platform name. Additionally, if this is the first view a user visits in this app session, then also report the&nbsp;</span><strong>start</strong><span>&nbsp;property as true. You will also need to call&nbsp;</span><strong>reportViewDuration</strong><span> with the app exit event.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">After manual view tracking has been implemented, you may also implement automatic view tracking (if it is available on your platform). To implement automatic view tracking, you will need to catch your platform's specific event when the view is changed and call your implemented&nbsp;</span><strong>reportView</strong><span style="font-weight: 400;">&nbsp;method with the view name.</span>
+  <span>After manual view tracking has been implemented, you may also implement automatic view tracking (if it is available on your platform). To implement automatic view tracking, you will need to catch your platform's specific event when the view is changed and call your implemented&nbsp;</span><strong>reportView</strong><span>&nbsp;method with the view name.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Additionally, you will need to implement enabling and disabling automatic view tracking, as well as status checking, despite whether automatic view tracking is currently enabled or not.</span>
+  <span>Additionally, you will need to implement enabling and disabling automatic view tracking, as well as status checking, despite whether automatic view tracking is currently enabled or not.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The pseudo-code to implement view tracking could appear as follows:</span>
+  <span>The pseudo-code to implement view tracking could appear as follows:</span>
 </p>
 <pre><code class="java">class Countly {
     String lastView = null;
@@ -1010,7 +1009,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     }
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a><span style="font-weight: 400;">.</span>
+  <span>Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a><span>.</span>
 </p>
 <h1 id="h_01GYC4S9JM2F2WDDFSBEF2TBJ0">Device ID Management</h1>
 <p>
@@ -1035,17 +1034,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <p>
   If another value was already acquired before, that one should be used unless
-  a "clear stored device ID" flag is used.<span style="font-weight: 400;"></span>
+  a "clear stored device ID" flag is used.<span></span>
 </p>
 <p>
   When acquiring a device ID, the SDK should take note of the source of the ID.
   It should know if it is SDK generated or provided by the developer.
 </p>
 <h2 id="h_01GYC5WK7X17JTDEJEWMYFTYSA">
-  <span style="font-weight: 400;">Device ID State Management During Init</span>
+  <span>Device ID State Management During Init</span>
 </h2>
 <p>
-  <span style="font-weight: 400;">There are different state combinations possible during init. This table covers all possible combinations and should be looked as a "truth table" of how the SDK should function.</span>
+  <span>There are different state combinations possible during init. This table covers all possible combinations and should be looked as a "truth table" of how the SDK should function.</span>
 </p>
 <table style="border-collapse: collapse; width: 96.6123%; height: 582px;" border="1">
   <tbody>
@@ -1061,25 +1060,25 @@ end_sesson=1&amp;session_duration=30</code></pre>
       </td>
     </tr>
     <tr style="height: 44px;">
-      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black; border-bottom: 1px solid black;" colspan="2">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;" colspan="2">
         <span class="wysiwyg-font-size-small">Non-Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-right: 1px solid black; border-bottom: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0688%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">Custom ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">Temp ID</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">URL Provided</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; border-right: 1px solid black; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 25.1522%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is not set</span>
       </td>
-      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 44px; text-align: center; vertical-align: middle; padding: 2px; border-bottom: 1px solid black;">
+      <td class="wysiwyg-text-align-center" style="width: 83.303%; height: 44px; text-align: center; vertical-align: middle; padding: 2px;">
         <span class="wysiwyg-font-size-small">'clear Stored Device ID' flag is set</span>
       </td>
     </tr>
@@ -1631,54 +1630,54 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </table>
 <h2 id="01H821RTQ48YFVRR5TMTJTZ3R0">Changing Device ID</h2>
 <p>
-  <span style="font-weight: 400;">In addition to initialization, developers may need to change the device ID while the app is running. For example, when an end-user signs out and another end-user signs in. In this case, the Countly SDK needs to provide a way to change the device ID at any point while the app is running. </span>
+  <span>In addition to initialization, developers may need to change the device ID while the app is running. For example, when an end-user signs out and another end-user signs in. In this case, the Countly SDK needs to provide a way to change the device ID at any point while the app is running. </span>
 </p>
 <p>
-  <span style="font-weight: 400;">This change can be done with either with a server side merge or without it.</span>
+  <span>This change can be done with either with a server side merge or without it.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><strong>Note:</strong>&nbsp;If a new and current device ID is exactly the same, then the Countly SDK must ignore this change call.</span>
+  <span><strong>Note:</strong>&nbsp;If a new and current device ID is exactly the same, then the Countly SDK must ignore this change call.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">When changing device ID, it has to be done to a valid value. Making the SDK regenerate a new device ID should not be possible by providing an invalid value. If an invalid value (empty or null) is provided, the request is ignored and it prints a warning.</span>
+  <span>When changing device ID, it has to be done to a valid value. Making the SDK regenerate a new device ID should not be possible by providing an invalid value. If an invalid value (empty or null) is provided, the request is ignored and it prints a warning.</span>
 </p>
 <h3 id="01H821RTQ4XQDC3C24T8G7AAZX">
-  <span style="font-weight: 400;">Changing ID Without Merging</span>
+  <span>Changing ID Without Merging</span>
 </h3>
 <p>
-  <span style="font-weight: 400;">It should replace the internally used device ID with the new one, and use it for all new requests, persistently storing it for further sessions. The Countly SDK should follow these steps:</span>
+  <span>It should replace the internally used device ID with the new one, and use it for all new requests, persistently storing it for further sessions. The Countly SDK should follow these steps:</span>
 </p>
 <ul>
   <li>
-    <strong><span style="font-weight: 400;">Add currently recorded, but not queued, events to the request queue</span></strong>
+    <strong><span>Add currently recorded, but not queued, events to the request queue</span></strong>
   </li>
   <li>End the current session</li>
   <li>Clear all started timed-events</li>
   <li>
-    <span style="font-weight: 400;">Change the device ID and store it persistently for further session use</span>
+    <span>Change the device ID and store it persistently for further session use</span>
   </li>
   <li>
-    <span style="font-weight: 400;">Begin a new session with the new device ID</span><span style="font-weight: 400;"></span><span style="font-weight: 400;"></span>
+    <span>Begin a new session with the new device ID</span><span></span><span></span>
   </li>
 </ul>
 <h3 id="01H821RTQ4RPFFQJ9YFTNCNNQ1">
-  <span style="font-weight: 400;">Changing ID With Merging</span>
+  <span>Changing ID With Merging</span>
 </h3>
 <p>
-  <span style="font-weight: 400;">Developers may need to change a device ID to their own internal user ID and merge the server-side data previously generated by a user while he/she was unauthenticated. It is similar to "Changing ID without merging", but the Countly SDK will need to merge the data on the server as well. In order to make a proper transition, the Countly SDK should follow these steps:</span>
+  <span>Developers may need to change a device ID to their own internal user ID and merge the server-side data previously generated by a user while he/she was unauthenticated. It is similar to "Changing ID without merging", but the Countly SDK will need to merge the data on the server as well. In order to make a proper transition, the Countly SDK should follow these steps:</span>
 </p>
 <ul>
   <li>
-    <span style="font-weight: 400;">Temporarily keep the current device ID</span>
+    <span>Temporarily keep the current device ID</span>
   </li>
   <li>
-    <span style="font-weight: 400;">Change the device ID and store it persistently for further session use</span>
+    <span>Change the device ID and store it persistently for further session use</span>
   </li>
   <li>
-    <span style="font-weight: 400;">Use the&nbsp;</span><a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a><span style="font-weight: 400;">&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
+    <span>Use the&nbsp;</span><a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a><span>&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
   </li>
   <li>
-    <span style="font-weight: 400;">No need to end and restart the current session or clear started timed-events</span>
+    <span>No need to end and restart the current session or clear started timed-events</span>
   </li>
 </ul>
 <h2 id="01H821RTQ4Z7ZBN3SE64VW17GM">Retrieving the Current Device ID and Type</h2>
@@ -1706,10 +1705,10 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <h1 id="01H821RTQ4N0QMR49CM619Z3ZE">Push Notifications</h1>
 <p>
-  <span style="font-weight: 400;">Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference/i#push-notifications" target="_self">here</a><span style="font-weight: 400;">&nbsp;for API calls.</span>
+  <span>Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference/i#push-notifications" target="_self">here</a><span>&nbsp;for API calls.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
+  <span>From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
 </p>
 <pre><code class="text">Countly.enable_push()</code></pre>
 <h2 id="01H821RTQ5E9ADZZBRH6FWGQNX">Actioned Events</h2>
@@ -2293,13 +2292,13 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <h1 id="01H821RTQ689TVKC3WBTZ610X7">User Feedback</h1>
 <h2 id="01H821RTQ6WTDZPVQ9GDX3M5QR">Star Rating</h2>
 <p>
-  <span style="font-weight: 400;">If possible, the SDK should provide a simple 1 to 5 star-rating interface for receiving user feedback about the application. The interface will have a simple message explaining its purpose, a 1 through 5-star meter for receiving users’ ratings, and a dismiss button in case the user does not wish to give a rating. This star rating has nothing to do with App Store/Google Play Store ratings and reviews. It is just for getting brief feedback from users to be displayed on the Countly dashboard.</span>
+  <span>If possible, the SDK should provide a simple 1 to 5 star-rating interface for receiving user feedback about the application. The interface will have a simple message explaining its purpose, a 1 through 5-star meter for receiving users’ ratings, and a dismiss button in case the user does not wish to give a rating. This star rating has nothing to do with App Store/Google Play Store ratings and reviews. It is just for getting brief feedback from users to be displayed on the Countly dashboard.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/102515c-star-rating2x.png">
 </div>
 <p>
-  <span style="font-weight: 400;">After a user gives a rating, a reserved event will be recorded with <code>[CLY]_star_rating</code></span><span style="font-weight: 400;">as the key and following as the segmentation dictionary:</span>
+  <span>After a user gives a rating, a reserved event will be recorded with <code>[CLY]_star_rating</code></span><span>as the key and following as the segmentation dictionary:</span>
 </p>
 <ul>
   <li>
@@ -2313,35 +2312,35 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   </li>
 </ul>
 <p>
-  <span style="font-weight: 400;">If a user dismisses the star-rating dialog without giving a rating, an event will not be recorded. The star-rating dialog's message and dismiss button title may be customized using the properties on the initial configuration object.</span>
+  <span>If a user dismisses the star-rating dialog without giving a rating, an event will not be recorded. The star-rating dialog's message and dismiss button title may be customized using the properties on the initial configuration object.</span>
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingMessage = "Custom Message";
 CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title";</code></pre>
 <p>
-  <span style="font-weight: 400;">If not explicitly set, the message should read, "How would you rate the app?" and the dismiss button title will read, "Dismiss" or one of the corresponding localized versions depending on the device’s language.</span>
+  <span>If not explicitly set, the message should read, "How would you rate the app?" and the dismiss button title will read, "Dismiss" or one of the corresponding localized versions depending on the device’s language.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The star-rating dialog may be displayed in 2 ways:</span>
+  <span>The star-rating dialog may be displayed in 2 ways:</span>
 </p>
 <p>
   <strong>1. Manually by the Developer</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">The star-rating dialog will be displayed when the developers call the specified method, such as <code>askForStarRating</code></span><span style="font-weight: 400;">. Optionally, there will be a callback method indicating the user's 1-to-5 rating value for the developer if the developer wants to use the rating.</span>
+  <span>The star-rating dialog will be displayed when the developers call the specified method, such as <code>askForStarRating</code></span><span>. Optionally, there will be a callback method indicating the user's 1-to-5 rating value for the developer if the developer wants to use the rating.</span>
 </p>
 <pre><code class="java">Countly.askForStarRating(callback);</code></pre>
 <p>
-  <span style="font-weight: 400;">There is no limit on how many times the star-rating dialog may be manually displayed.</span>
+  <span>There is no limit on how many times the star-rating dialog may be manually displayed.</span>
 </p>
 <p>
   <strong>2. Automatically, Depending on the Session Count</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">The star-rating dialog will be displayed when the application's session count reaches a specified limit, once for each new version of the application. The SDK should keep track of the session count for each app version locally and compare it to the specified count on each app launch. This session count limit may be specified upon initial configuration.</span>
+  <span>The star-rating dialog will be displayed when the application's session count reaches a specified limit, once for each new version of the application. The SDK should keep track of the session count for each app version locally and compare it to the specified count on each app launch. This session count limit may be specified upon initial configuration.</span>
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingSessionCount = 5;</code></pre>
 <p>
-  <span style="font-weight: 400;">Once the star-rating dialog has been displayed automatically, it will not be displayed again unless there is a new app version.</span>
+  <span>Once the star-rating dialog has been displayed automatically, it will not be displayed again unless there is a new app version.</span>
 </p>
 <p>
   Upon initial configuration, there should be an optional flag called
@@ -2780,20 +2779,20 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>There are no Init time config options for this feature.</p>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
-  <span style="font-weight: 400;">Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
+  <span>Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">To do so, you may create a method to accept an object with key/regarding the user, which are </span><a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a><span style="font-weight: 400;">, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
+  <span>To do so, you may create a method to accept an object with key/regarding the user, which are </span><a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a><span>, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
+  <span>Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
 </p>
 <ul>
   <li>Countly.user_details(map details)</li>
   <li>Countly.user_custom_details(map custom_details)</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span style="font-weight: 400;">.</span>
+  <span>You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span>.</span>
 </p>
 <p>
   If a "null" value is set to a user property, the SDK should ignore the value
@@ -2806,10 +2805,10 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 </p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
-  <span style="font-weight: 400;">You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
+  <span>You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The standard methods that should be provided by the SDK are as follows (provided as pseudo-code, naming conventions may differ from platform to platform):</span>
+  <span>The standard methods that should be provided by the SDK are as follows (provided as pseudo-code, naming conventions may differ from platform to platform):</span>
 </p>
 <ul>
   <li>Countly.userData.set(string key, string value)</li>
@@ -2825,7 +2824,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <li>Countly.userData.save() //send data to server</li>
 </ul>
 <p>
-  <strong>Note</strong>:&nbsp;<span style="font-weight: 400;">when reporting to the server, assure the push, pushUnique, and pull parameters can provide multiple values for the same property as an array.</span>
+  <strong>Note</strong>:&nbsp;<span>when reporting to the server, assure the push, pushUnique, and pull parameters can provide multiple values for the same property as an array.</span>
 </p>
 <p>
   Here is
@@ -2887,7 +2886,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   APM data is combined into a single JSON object which is set to the "apm" param.
   So a basic request would look similar to:
 </p>
-<pre>/i<span style="font-weight: 400;">?app_key=app_key<br>  &amp;device_id=device_id<br>  &amp;dow=dow<br>  &amp;hour=hour<br>  &amp;timestamp=timestamp<br>  &amp;apm={ _apm_params }</span></pre>
+<pre>/i<span>?app_key=app_key<br>  &amp;device_id=device_id<br>  &amp;dow=dow<br>  &amp;hour=hour<br>  &amp;timestamp=timestamp<br>  &amp;apm={ _apm_params }</span></pre>
 <h2 id="01H821RTQ6P6YVK5A07RH9Z0CE">Custom Traces</h2>
 <p>
   These are used as a tool to measure the performance of some running task. At
@@ -2898,33 +2897,33 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   String and Integer/Numeric pairs.
 </p>
 <p>&nbsp;Sample custom trace API request:</p>
-<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"forLoopProfiling_1",<br>        "apm_metrics":{"duration": 10, “memory”: 200}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=15847000900000</span></pre>
+<pre><span>/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"forLoopProfiling_1",<br>        "apm_metrics":{"duration": 10, “memory”: 200}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=15847000900000</span></pre>
 <h2 id="01H821RTQ6VQ552GKTX5Q8TBZX">Network Traces</h2>
 <p>Sample network trace request:</p>
-<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"network",<br>        "name":"/count.ly/about",<br>        "apm_metrics":{"response_time":1330,"response_payload_size":120, "response_code": 300, "request_payload_size": 70}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=1584698900000</span></pre>
+<pre><span>/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"network",<br>        "name":"/count.ly/about",<br>        "apm_metrics":{"response_time":1330,"response_payload_size":120, "response_code": 300, "request_payload_size": 70}, <br>        "stz": 1584698900000, <br>        "etz": 1584699900000}<br>  &amp;timestamp=1584698900000</span></pre>
 <h2 id="01H821RTQ6BNZHZNM8AHTV8BZP">Device Traces</h2>
 <p>Sample device trace request:</p>
-<pre><span style="font-weight: 400;">/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"</span><span style="font-weight: 400;">app_start</span><span style="font-weight: 400;">",<br>        "apm_metrics":{"duration": 15000}, <br>        "stz": 1584698900, <br>        "etz": 1584699900}<br>  &amp;timestamp=1584698900</span></pre>
+<pre><span>/i?app_key=xyz<br>  &amp;device_id=pts911<br>  &amp;apm={"type":"device",<br>        "name":"</span><span>app_start</span><span>",<br>        "apm_metrics":{"duration": 15000}, <br>        "stz": 1584698900, <br>        "etz": 1584699900}<br>  &amp;timestamp=1584698900</span></pre>
 <p>&nbsp;</p>
 <h1 id="01H821RTQ72HHY8E4AD9NCYE8E">User Consent</h1>
 <p>
-  <span style="font-weight: 400;">GDPR compatibility is about dividing the SDK functionality into different features and allowing SDK integrators to ask for consent when using these features. Once consent has been given, the SDK may only send newly collected (after consent is given) data to the server.</span>
+  <span>GDPR compatibility is about dividing the SDK functionality into different features and allowing SDK integrators to ask for consent when using these features. Once consent has been given, the SDK may only send newly collected (after consent is given) data to the server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Additionally, the user may change his/her mind during the app run and opt-out of some features. Therefore, the SDK should be able to enable or disable these features on run time.</span>
+  <span>Additionally, the user may change his/her mind during the app run and opt-out of some features. Therefore, the SDK should be able to enable or disable these features on run time.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Consent persistence is handled by the host app and not by the SDK. In exceptional circumstances (in cases it is needed) it is possible to handle some consent values persistently inside of the SDK.</span>
+  <span>Consent persistence is handled by the host app and not by the SDK. In exceptional circumstances (in cases it is needed) it is possible to handle some consent values persistently inside of the SDK.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Consent management in the SDK is done in 2 steps<br></span><span style="font-weight: 400;"></span>
+  <span>Consent management in the SDK is done in 2 steps<br></span><span></span>
 </p>
 <ol>
   <li>
-    <span style="font-weight: 400;">consent has to first be required in the app otherwise, the SDK works as if all consent is given</span>
+    <span>consent has to first be required in the app otherwise, the SDK works as if all consent is given</span>
   </li>
   <li>
-    <span style="font-weight: 400;">if consent is required, it has to explicitly be given for each targeted feature</span>
+    <span>if consent is required, it has to explicitly be given for each targeted feature</span>
   </li>
 </ol>
 <h2 id="01H821RTQ7CS4N3G4Q9AXQC904">Initial Configuration</h2>
@@ -2933,14 +2932,14 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   inform the SDK that it requires consent before doing anything.
 </p>
 <p>
-  <span style="font-weight: 400;">If this configuration is set, the SDK should not send any data to the server without consent. Even if specific SDK methods (reporting errors, recording events, etc.) are manually called, these calls should be ignored until consent is given.</span>
+  <span>If this configuration is set, the SDK should not send any data to the server without consent. Even if specific SDK methods (reporting errors, recording events, etc.) are manually called, these calls should be ignored until consent is given.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Init should also have a function to provide an array consent that is given during startup.</span>
+  <span>Init should also have a function to provide an array consent that is given during startup.</span>
 </p>
 <h2 id="01H821RTQ7K4X2AC3391381E95">Exposing Available Features for Consent</h2>
 <p>
-  <span style="font-weight: 400;">The SDK should expose all the features it supports for consent in the form of a method, static properties, or constant strings. The developer may check which features are available during development or when creating a consent form UI.&nbsp;</span>
+  <span>The SDK should expose all the features it supports for consent in the form of a method, static properties, or constant strings. The developer may check which features are available during development or when creating a consent form UI.&nbsp;</span>
 </p>
 <p>
   Developers shouldn't have to write the consent feature strings themself. They
@@ -2948,80 +2947,80 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   need for strings.
 </p>
 <p>
-  <span style="font-weight: 400;">The following are the currently available features: </span>
+  <span>The following are the currently available features: </span>
 </p>
 <ul>
   <li>
     <code>sessions</code> -
-    <span style="font-weight: 400;">tracking when, how often, and how long users use your app/website</span>
+    <span>tracking when, how often, and how long users use your app/website</span>
   </li>
   <li>
     <code>events</code> -
-    <span style="font-weight: 400;">allow events to be sent to the server (doesn't apply to other features using event mechanisms)</span>
+    <span>allow events to be sent to the server (doesn't apply to other features using event mechanisms)</span>
   </li>
   <li>
-    <code>location</code> -&nbsp;<span style="font-weight: 400;">allows location information to be sent. If consent has not been given, the SDK should force send an empty location upon <code>begin_session</code></span><span style="font-weight: 400;">to prevent the server from determining location via IP addresses</span>
+    <code>location</code> -&nbsp;<span>allows location information to be sent. If consent has not been given, the SDK should force send an empty location upon <code>begin_session</code></span><span>to prevent the server from determining location via IP addresses</span>
   </li>
   <li>
     <code>views</code> -
-    <span style="font-weight: 400;">allow tracking of which views/pages a user visits</span>
+    <span>allow tracking of which views/pages a user visits</span>
   </li>
   <li>
     <code>scrolls</code> -
-    <span style="font-weight: 400;">allow user scrolls for scroll heatmap to be tracked</span>
+    <span>allow user scrolls for scroll heatmap to be tracked</span>
   </li>
   <li>
     <code>clicks</code> -
-    <span style="font-weight: 400;">allow user clicks for heatmaps as well as link clicks to be tracked</span>
+    <span>allow user clicks for heatmaps as well as link clicks to be tracked</span>
   </li>
   <li>
     <code>forms</code> -
-    <span style="font-weight: 400;">allow user's form submissions to be tracked</span>
+    <span>allow user's form submissions to be tracked</span>
   </li>
   <li>
     <code>crashes</code> -
-    <span style="font-weight: 400;">allow crashes, exceptions, and errors to be tracked</span>
+    <span>allow crashes, exceptions, and errors to be tracked</span>
   </li>
   <li>
     <code>attribution</code> -
-    <span style="font-weight: 400;">allows the campaign from which a user came to be tracked</span>
+    <span>allows the campaign from which a user came to be tracked</span>
   </li>
   <li>
     <code>users</code> -
-    <span style="font-weight: 400;">allow collecting/providing user information, including custom properties</span>
+    <span>allow collecting/providing user information, including custom properties</span>
   </li>
   <li>
     <code>push</code> - allows push notifications
   </li>
   <li>
     <code>star-rating</code> -
-    <span style="font-weight: 400;">allows their rating and feedback to be sent</span>
+    <span>allows their rating and feedback to be sent</span>
   </li>
   <li>
     <code>accessory-devices</code> -
-    <span style="font-weight: 400;">allow accessories or wearable devices, such as Apple Watches, etc. to be detected</span>
+    <span>allow accessories or wearable devices, such as Apple Watches, etc. to be detected</span>
   </li>
   <li>
     <code>apm</code> -
-    <span style="font-weight: 400;">allows usage of application performance monitoring features</span>
+    <span>allows usage of application performance monitoring features</span>
   </li>
   <li>
     <code>remote-config</code> -
-    <span style="font-weight: 400;">allows downloading of remote configs from the server</span>
+    <span>allows downloading of remote configs from the server</span>
   </li>
   <li>
-    <span style="font-weight: 400;"><code>feedback</code>- allows showing things like surveys and NPS</span>
+    <span><code>feedback</code>- allows showing things like surveys and NPS</span>
   </li>
 </ul>
 <p>
-  <span style="font-weight: 400;">Note that the available features may change depending on the platform.</span>
+  <span>Note that the available features may change depending on the platform.</span>
 </p>
 <h2 id="01H821RTQ78JF1ANB1K482NQE0">Feature Grouping (optional)</h2>
 <p>
-  <span style="font-weight: 400;">The SDK may also provide feature grouping, allowing existing features to be put into groups and the use of these groups to give, cancel, and check consent.</span>
+  <span>The SDK may also provide feature grouping, allowing existing features to be put into groups and the use of these groups to give, cancel, and check consent.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">For example, a client may put "sessions", "events," and "views" into one group called "activity". After which, they give their consent to "activity", the SDK should then automatically give consent to all underlying features.</span>
+  <span>For example, a client may put "sessions", "events," and "views" into one group called "activity". After which, they give their consent to "activity", the SDK should then automatically give consent to all underlying features.</span>
 </p>
 <pre><code class="javascript">Countly.group_features({
     activity:["sessions","events","views"],
@@ -3029,13 +3028,13 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 });</code></pre>
 <h2 id="01H821RTQ715V2V2RKC9SYBFYE">Giving Consent</h2>
 <p>
-  <span style="font-weight: 400;">The SDK initial consent should be sent through the config object.</span>
+  <span>The SDK initial consent should be sent through the config object.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">After init there </span><span style="font-weight: 400;">should be a method for giving consent. This method should have feature names or groups as parameters. It may accept a single feature or group as well as multiple features or groups in the form of an array or variable arguments, depending on the SDK language and environment.</span>
+  <span>After init there </span><span>should be a method for giving consent. This method should have feature names or groups as parameters. It may accept a single feature or group as well as multiple features or groups in the form of an array or variable arguments, depending on the SDK language and environment.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">At any time during the app run, a user may give consent to more features after starting the SDK.</span>
+  <span>At any time during the app run, a user may give consent to more features after starting the SDK.</span>
 </p>
 <p>
   Upon receiving consent (also during init), the SDK should immediately begin collecting
@@ -3049,22 +3048,22 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   may be attached to any other SDK request.
 </p>
 <p>
-  <span style="font-weight: 400;">If someone attempts to give consent for a second time, the SDK should ignore it as the consent is already given and nothing changes.</span>
+  <span>If someone attempts to give consent for a second time, the SDK should ignore it as the consent is already given and nothing changes.</span>
 </p>
 <h2 id="01H821RTQ7XHKNWRBHN0ZW49N9">Checking Consent Status</h2>
 <p>
-  <span style="font-weight: 400;">There should also be a method to check the current consent status for the SDK, returning true if consent was given, and false if not. Checking status for groups should return <code>true</code>&nbsp;</span><span style="font-weight: 400;">only if all the underlying features return true.</span>
+  <span>There should also be a method to check the current consent status for the SDK, returning true if consent was given, and false if not. Checking status for groups should return <code>true</code>&nbsp;</span><span>only if all the underlying features return true.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This check should also return <code>true</code> if consent is not required.</span>
+  <span>This check should also return <code>true</code> if consent is not required.</span>
 </p>
 <h2 id="01H821RTQ7AM6MBCDYTFAZ0HK4">Removing Consent</h2>
 <p>
-  <span style="font-weight: 400;">The SDK also needs to provide a method to remove consents. It should support the same parameter options as the consent giving method.</span>
+  <span>The SDK also needs to provide a method to remove consents. It should support the same parameter options as the consent giving method.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Upon receiving the request to remove consent, the SDK should immediately stop collecting data allowed by the provided feature(s) and also send consent removal to the server in the form of <code>consent=&nbsp;{"feature":false}</code></span>
-  <span style="font-weight: 400;">. </span>
+  <span>Upon receiving the request to remove consent, the SDK should immediately stop collecting data allowed by the provided feature(s) and also send consent removal to the server in the form of <code>consent=&nbsp;{"feature":false}</code></span>
+  <span>. </span>
 </p>
 <p>
   When consent is removed, the update request should sent the current state of
@@ -3072,10 +3071,10 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   or it may be attached to any other SDK request.
 </p>
 <p>
-  <span style="font-weight: 400;">Depending on the SDK structure, the SDK may sync existing requests in the queue. Or, it may ignore requests in the queue and never send them or remove them from the queue.</span>
+  <span>Depending on the SDK structure, the SDK may sync existing requests in the queue. Or, it may ignore requests in the queue and never send them or remove them from the queue.</span>
 </p>
 <p>
-  <strong><span style="font-weight: 400;">Both giving consent and removing consent may be combined in a single request as well. If, for example, consent was given for crashes but removed from users, then the request should contain&nbsp;</span>consent={"crashes":true,"users":false}</strong>.
+  <strong><span>Both giving consent and removing consent may be combined in a single request as well. If, for example, consent was given for crashes but removed from users, then the request should contain&nbsp;</span>consent={"crashes":true,"users":false}</strong>.
 </p>
 <h2 id="01H821RTQ77ER5XPWMCADD7NFX">Common Flow with Required Consent</h2>
 <p>
@@ -3100,36 +3099,36 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   Server (<code>consent={"feature":true}</code>).
 </p>
 <p>
-  6)&nbsp;<span style="font-weight: 400;">The Countly SDK checks if <code>FeatureName</code></span><span style="font-weight: 400;">has already been passed to&nbsp;the <code>giveConsent</code></span><span style="font-weight: 400;">&nbsp;method, and it ignores all repetitive calls.</span>
+  6)&nbsp;<span>The Countly SDK checks if <code>FeatureName</code></span><span>has already been passed to&nbsp;the <code>giveConsent</code></span><span>&nbsp;method, and it ignores all repetitive calls.</span>
 </p>
 <p>
-  7)&nbsp;<span style="font-weight: 400;">The Countly SDK does not persistently store the status of given consents and expects the developer to call the&nbsp;</span><span style="font-weight: 400;">giveConsent</span><span style="font-weight: 400;">&nbsp;method on each app launch, just as with starting the SDK.</span>
+  7)&nbsp;<span>The Countly SDK does not persistently store the status of given consents and expects the developer to call the&nbsp;</span><span>giveConsent</span><span>&nbsp;method on each app launch, just as with starting the SDK.</span>
 </p>
 <p>
-  8)&nbsp;<span style="font-weight: 400;">If the app user changes his/her mind about consents at a later time, the developer may reflect this to the Countly SDK using the <code>removeConsent</code></span><span style="font-weight: 400;">method, passing feature names or groups.</span>
+  8)&nbsp;<span>If the app user changes his/her mind about consents at a later time, the developer may reflect this to the Countly SDK using the <code>removeConsent</code></span><span>method, passing feature names or groups.</span>
 </p>
 <p>
-  9)&nbsp;<span style="font-weight: 400;">The Countly SDK stops the relevant features and also sends a request to the Countly Server (<code>consent={"feature":false}</code></span><span style="font-weight: 400;">).</span>
+  9)&nbsp;<span>The Countly SDK stops the relevant features and also sends a request to the Countly Server (<code>consent={"feature":false}</code></span><span>).</span>
 </p>
 <p>
-  10)&nbsp;<span style="font-weight: 400;">The Countly SDK checks if feature names or groups have already been passed to the <code>removeConsent</code></span><span style="font-weight: 400;">&nbsp;method, and it ignores all repetitive calls. Or, it attempts to cancel consents never given at all.</span>
+  10)&nbsp;<span>The Countly SDK checks if feature names or groups have already been passed to the <code>removeConsent</code></span><span>&nbsp;method, and it ignores all repetitive calls. Or, it attempts to cancel consents never given at all.</span>
 </p>
 <h1 id="01H821RTQ7SM8P0181NDD3MSZV">Security and Privacy</h1>
 <h2 id="01H821RTQ7RN8GPAY3305Q19XS">Parameter Tampering</h2>
 <p>
-  <span style="font-weight: 400;">This is one of the preventive measures of Countly. If someone in the middle intercepts the request, it would be possible to change the data in the request and make another request with other data to the server or simply make random requests to the server through the retrieved <code>app_key</code></span><span style="font-weight: 400;">.</span>
+  <span>This is one of the preventive measures of Countly. If someone in the middle intercepts the request, it would be possible to change the data in the request and make another request with other data to the server or simply make random requests to the server through the retrieved <code>app_key</code></span><span>.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">To prevent this from happening, the SDK should provide the option to send a checksum alongside the request data. To do so, it should be possible for the developer to provide some random string as SALT to the SDK as parameters or configuration options.</span>
+  <span>To prevent this from happening, the SDK should provide the option to send a checksum alongside the request data. To do so, it should be possible for the developer to provide some random string as SALT to the SDK as parameters or configuration options.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If this SALT is provided, right before making the request, the SDK should take all the payload it is about to send (all the data after the ‘?’ symbol in GET requests, including the app_key and device_id or query string encoded body of POST requests) and make a sha256 hash of this data. You should also provide SALT, and append it as checksum256={hash}.</span>
+  <span>If this SALT is provided, right before making the request, the SDK should take all the payload it is about to send (all the data after the ‘?’ symbol in GET requests, including the app_key and device_id or query string encoded body of POST requests) and make a sha256 hash of this data. You should also provide SALT, and append it as checksum256={hash}.</span>
 </p>
 <pre><code class="javascript">if(salt){
   data += "&amp;checksum256=" + sha256Hash(data + salt);
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
+  <span>If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
 </p>
 <h1 id="01H821RTQ7GNGHSMJGP10YQXWZ">Other Features</h1>
 <h2 id="01H821RTQ7QP861SSC3JS3V236">Attribution</h2>
@@ -3419,59 +3418,6 @@ npm install markdownlint --save-dev
   This section describes features that are under development and in a prototype
   phase
 </p>
-<h2 id="01H821RTQ8TP1A38587C72MW4T">SDK Server Configuration</h2>
-<div class="p-rich_text_section">
-  Server UI URL for the UI (Management -&gt; SDK):<br>
-  <a class="c-link" href="https://xxx.count.ly/dashboard#/manage/sdk/configurations" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/dashboard#/manage/sdk/configurations" data-sk="tooltip_parent">https://xxx.count.ly/dashboard#/manage/sdk/configurations</a>
-</div>
-<div class="p-rich_text_section">
-  <br>
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>Server
-  Example Endpoint:<br>
-  <a class="c-link" href="https://xxx.count.ly/o/sdk?app_key=3d8b79s4fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/o/sdk?app_key=3d8bs94fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" data-sk="tooltip_parent">https://xxx.count.ly/o/sdk?app_key=3d8b7s94fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc</a>
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>Sample
-  Response:
-</div>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">{<br> "v":1,<br> "t":1681808287464,<br> "c":{<br>  "tracking":false,<br>  "networking":false,<br>  "crashes":false,<br>  "views":false,<br>  "heartbeat":61,<br>  "event_queue":11,<br>  "request_queue":1001<br> }<br>}</pre>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>v</strong> - current schema version</span>
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>t</strong> - timestamp</span>
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>c</strong> - config object</span>
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>Server
-  has default values for every field.<br>
-  If the currently set value differs from the default, it will be sent by the server.
-  If no value is sent for a configuration, then that means that the SDK has to
-  use its own default or the value provided by the developer.
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>
-</div>
-<div class="p-rich_text_section">
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span><span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"></span>SDK
-  side the precedence of configs will be:
-</div>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK default &lt; Dev set value &lt; server config value</pre>
-<p>
-  Once per init the SDK tries to acquire the config and stores it persistently
-  locally.
-</p>
-<p>
-  When initializing the SDK, if there is a persistent config stored, it will be
-  used. The SDK will still try to get a up to date version of the config. Once
-  the up to date version has been acquired, it is stored persistently and the SDK
-  reconfigures itself to reflect the new configuration.
-</p>
 <h2 id="h_01HPM01NK3F2VHHXJ07P53QF55">SDK Health Checks</h2>
 <p>
   These are a collection of different metrics and helpers that would give better
@@ -3575,10 +3521,275 @@ https://countly.server/*?...&amp;rr=23...</pre>
   If tamper protection (salting) is enabled, this parameter should also be included
   in the checksum calculation.
 </p>
+<h1 id="h_01JRT094QEGTG0BXBN2MTT82D7">Server Config</h1>
+<p>
+  SDK should provide a way for server to provide a configuration. This configuration
+  can effect which internal limits are used and which features are allowed to work.
+</p>
+<p>
+  Server UI URL for the UI (Management -&gt; SDK):<br>
+  <a class="c-link" href="https://xxx.count.ly/dashboard#/manage/sdk/configurations" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/dashboard#/manage/sdk/configurations" data-sk="tooltip_parent">https://xxx.count.ly/dashboard#/manage/sdk/configurations</a>
+</p>
+<p>
+  <strong>API Endpoint</strong>
+</p>
+<p>
+  Server Example Endpoint:<br>
+  <a class="c-link" href="https://xxx.count.ly/o/sdk?app_key=3d8b79s4fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/o/sdk?app_key=3d8bs94fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" data-sk="tooltip_parent">https://xxx.count.ly/o/sdk?app_key=123&amp;device_id=1&amp;method=sc</a>
+</p>
+<p>Server configuration response has the following format:</p>
+<pre>{<br>"v": 1, <br>"t": 1742459739383,<br>"c": {<br>    "tracking": false,<br>    "networking": false,<br>    // ...<br>  }<br>}</pre>
+<p>
+  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>v</strong> - current schema version</span><br>
+  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>t</strong> - timestamp (at the time of creation)</span><br>
+  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>c</strong> - config object (key value pairs)</span>
+</p>
+<p>
+  <strong>Behavior</strong>
+</p>
+<p>
+  During init and every X hours SDK tries to acquire the config and stores it persistently
+  locally.
+</p>
+<p>
+  When initializing the SDK, if there is a persistent config stored, it will be
+  used. The SDK will still try to get a up to date version of the config at the
+  end of initialization. Once the up to date version has been acquired, it is stored
+  persistently and the SDK reconfigures itself to reflect the new configuration.
+  Summary of SDK side precedence of the config values will be:
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK's Default &lt; Dev Set Config &lt; Dev Set Server Config &lt; Stored Server Config</pre>
+<table dir="ltr" style="width: 548px; border-collapse: collapse; border: none;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
+  <colgroup>
+
+    <col width="100">
+
+    <col width="100">
+
+    <col width="100">
+
+    <col width="107">
+
+  </colgroup>
+  <tbody>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 327.125px;" colspan="3" rowspan="1">
+        <strong>Init Time Status</strong>
+      </td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 206.475px;">
+        <strong>Initial Behavior</strong>
+      </td>
+    </tr>
+    <tr style="height: 21px;">
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Stored SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">Provided SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">Temp ID</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">&nbsp;</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SC</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SC</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User C</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User C</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  After this initial behavior SDK should get the server config again to be up-to-date
+  and save it. If that request fails or the config is invalid it should keep using
+  what it has.
+</p>
+<p>
+  <strong>Affected Options</strong>
+</p>
+<p>
+  Server and SDK has default values for every config option keys.<br>
+  If user changes a setting in server, response would include that option with
+  new value. If no value is sent for a configuration (meaning <strong>c</strong>
+  is empty), then that means that the SDK has to use its own default or the value
+  provided by the developer.
+</p>
+<p>Server config keys and their default values are:</p>
+<table dir="ltr" style="width: 579px; border-collapse: collapse; border: none; height: 506px;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
+  <colgroup>
+
+    <col width="187">
+
+    <col width="110">
+
+    <col width="141">
+
+  </colgroup>
+  <tbody>
+    <tr style="height: 21px;">
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">
+        <strong>Feature Name</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">
+        <strong>Key</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 179.35px; height: 22px;">
+        <strong>Default Val</strong>
+      </td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow all tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">tracking</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow sending requests</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">networking</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Request queue size</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">rqs</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">1000 requests</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Event queue size (or batch)</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">eqs</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">100 events</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Session update interval</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">sui</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">60 seconds</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow session tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">st</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow crash tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">crt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow location tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow view tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">vt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Key length limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lkl</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">128 chars</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Value size limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lvs</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">256 chars</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Segmentation values count limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lsv</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">100 key/values</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Breadcrumb count limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lbc</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">100 breadcrumbs</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Stack trace line count limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">ltlpt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">30 lines</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Stack trace line length limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">ltl</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">200 chars</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow custom event tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">cet</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Enter Content Zone after init</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">ecz</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">FALSE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Content Zone request interval</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">czi</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">30 seconds</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Consent required</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">cr</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">FALSE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Server config update interval</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">scui</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">4 hours</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow Refresh Content Zone</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">rcz</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Drop old request time</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">dort</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">0 (disabled)</td>
+    </tr>
+  </tbody>
+</table>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>
-  <span style="font-weight: 400;">First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span style="font-weight: 400;">Remote Config API documentation</span></a><span style="font-weight: 400;"> for legacy remote config API</span>
+  <span>First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span>Remote Config API documentation</span></a><span> for legacy remote config API</span>
   includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
   inside the request URL while fetching the remote config object <em>and</em> enrolling
   the user to A/B testing automatically.
@@ -3616,41 +3827,41 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
 </p>
 <h2 id="01H821RTQ843R82K27AE6V09V9">Automatic Fetch</h2>
 <p>
-  <span style="font-weight: 400;">The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
+  <span>The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
+  <span>There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
 </p>
 <p>
   e.g. <code>config.enableRemoteConfig = true;</code>
 </p>
 <h2 id="01H821RTQ8QMZHEBPQTH1TEENH">Manual Fetch</h2>
 <p>
-  <span style="font-weight: 400;">There should be a method/function to fetch the remote config manually anytime the developer would like. Just like with automatic fetch, this method will fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. This method should take a callback argument to inform the developer about the results of manually fetching the remote config. Callback on initial config should not be affected by manual fetchings, as it is for automatic fetchings only.</span>
+  <span>There should be a method/function to fetch the remote config manually anytime the developer would like. Just like with automatic fetch, this method will fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. This method should take a callback argument to inform the developer about the results of manually fetching the remote config. Callback on initial config should not be affected by manual fetchings, as it is for automatic fetchings only.</span>
 </p>
 <p>
   e.g. <code>updateRemoteConfig(callback(){ })</code>
 </p>
 <h2 id="01H821RTQ8PZJWW6459JAM8D6W">Getting Values</h2>
 <p>
-  <span style="font-weight: 400;">There should be a method to get remote config values for a given key. It will return the value for a given key. If the key does not exist, or the remote config has yet to be fetched, this method should return nil or null or however the platform handles the absence of values. If the server is not reachable, this method should return the last fetched and locally stored value if available.</span>
+  <span>There should be a method to get remote config values for a given key. It will return the value for a given key. If the key does not exist, or the remote config has yet to be fetched, this method should return nil or null or however the platform handles the absence of values. If the server is not reachable, this method should return the last fetched and locally stored value if available.</span>
 </p>
 <p>
   e.g. <code>remoteConfigValueForKey(key)</code>
 </p>
 <h2 id="01H821RTQ822HR5EB6F9TYDR0T">Keys and Omit Keys</h2>
 <p>
-  <span style="font-weight: 400;">There should be 2 additional methods for manual fetching: one for specifying which keys will be updated and one for specifying which keys will be ignored.</span>
+  <span>There should be 2 additional methods for manual fetching: one for specifying which keys will be updated and one for specifying which keys will be ignored.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">These methods should take an array of keys as an argument, in addition to callbacks, and send requests with <code>keys=</code></span><span style="font-weight: 400;">&nbsp;or <code>omit_keys=</code></span><span style="font-weight: 400;">&nbsp;query strings. For the result of these requests, only the keys in the response should be updated in local storage, not a complete overwrite as with an automatic or standard manual fetch.</span>
+  <span>These methods should take an array of keys as an argument, in addition to callbacks, and send requests with <code>keys=</code></span><span>&nbsp;or <code>omit_keys=</code></span><span>&nbsp;query strings. For the result of these requests, only the keys in the response should be updated in local storage, not a complete overwrite as with an automatic or standard manual fetch.</span>
 </p>
 <p>
   e.g. <code>updateRemoteConfigForKeysOnly(keys, callback(){ })</code> e.g.
   <code>updateRemoteConfigExceptKeys(keys, callback(){ })</code>
 </p>
 <p>
-  <span style="font-weight: 400;">Example case: Local storage reflecting server as is (after an automatic or manual fetch):</span>
+  <span>Example case: Local storage reflecting server as is (after an automatic or manual fetch):</span>
 </p>
 <pre><code>{
   "a": "x",
@@ -3658,7 +3869,7 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
   "c": "z",
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Calling update for specified keys only:</span>
+  <span>Calling update for specified keys only:</span>
 </p>
 <pre><code>updateRemoteConfigForKeysOnly(["a"], callback(){ });
 </code></pre>
@@ -3688,13 +3899,13 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
 </p>
 <h2 id="01H821RTQ8VYEGXZA4K0QJ6Q5R">Consents</h2>
 <p>
-  <span style="font-weight: 400;">In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span style="font-weight: 400;">info, similar to begin session requests.</span>
+  <span>In case where the <code>consentRequired</code>flag is set upon initial config, remote config actions should only be executed if the "remote-config" consent is given. Additionally, if <code>sessions</code>&nbsp;consent is given, the remote config requests will have <code>metrics</code>&nbsp;</span><span>info, similar to begin session requests.</span>
 </p>
 <h2 id="01H821RTQ8QPZMM69K8HYBPQW7">Device ID Change</h2>
 <p>
-  <span style="font-weight: 400;">After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
+  <span>After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
 </p>
 <h2 id="01H821RTQ8P17JFY9MQTQP11AG">Salt</h2>
 <p>
-  <span style="font-weight: 400;">Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
+  <span>Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
 </p>
