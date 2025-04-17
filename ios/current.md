@@ -4626,26 +4626,6 @@ end</code></pre>
   and go to File &gt; Add Packages and enter the URL into the search bar. From
   here you can add the package by targeting the master branch.
 </p>
-<h2 id="h_01HAVHW0RTFYNXCHP2F1S91GMJ">Server Configuration</h2>
-<div class="callout callout--warning">
-  <p>This is an experimental feature!</p>
-</div>
-<p>
-  You can make your SDK fetch some configurations you have set in your Countly
-  server by setting <code>enableServerConfiguration</code> to true during init:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.enableServerConfiguration = YES;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.enableServerConfiguration = true</code></pre>
-  </div>
-</div>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
