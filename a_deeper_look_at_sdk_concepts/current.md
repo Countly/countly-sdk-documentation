@@ -1733,18 +1733,11 @@ function sendMessage(param) {
   are the device id generation methods for each SDK:
 </p>
 <p>
-  - The Android SDK uses Secure.ANDROID_ID as the generated ID
+  - The Android SDK uses a random UUID as the generated ID
 </p>
-<p>- The iOS SDK uses:</p>
-<ul>
-  <li>
-    On iOS and tvOS, default device ID is Identifier For Vendor (IDFV).
-  </li>
-  <li>
-    On watchOS and macOS, default device ID is a persistently stored random NSUUID
-    string.
-  </li>
-</ul>
+<p>
+  - The iOS SDK use a persistently stored random NSUUID string
+</p>
 <p>- The Windows SDK uses:</p>
 <ul>
   <li>
