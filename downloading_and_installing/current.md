@@ -533,6 +533,8 @@
 <h1 id="h_01H9QCP8G72897X5YK7YMZAZ8K">Documentation For Older SDK Versions</h1>
 <h2 id="h_01H9QCP8G7Y97Y1T51TGGNDMNP">iOS SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/19627972441500" target="_blank" rel="noopener">Version 25.1</a>
+  -
   <a href="/hc/en-us/articles/18155738523292" target="_blank" rel="noopener">Version 24.7</a>
   -
   <a href="/hc/en-us/articles/34585282246553" target="_blank" rel="noopener">Version 24.4</a>
@@ -559,6 +561,8 @@
 </p>
 <h2 id="h_01H9QCP8G73H5RWXFK9P9W6F7Q">Android SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/19627885653276" target="_blank" rel="noopener">Version 25.1</a>
+  -
   <a href="/hc/en-us/articles/18156925767068" target="_blank" rel="noopener">Version 24.7</a>
   -
   <a href="/hc/en-us/articles/34483587332121" target="_blank" rel="noopener">Version 24.4</a>
