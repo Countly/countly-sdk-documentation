@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Web SDK version 25.1.X. The SDK source
+  This documentation is for the Countly Web SDK version 25.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-web">here</a>.
 </p>
@@ -114,11 +114,11 @@
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// 25.1.0 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.js</a>
+    <pre><code class="javascript">// 25.4.0 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.js</a>
 
-// 25.1.0 minified (<span>JSDelivr</span> or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.1.0/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.1.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.1.0/countly.min.js</a></code></pre>
+// 25.4.0 minified (<span>JSDelivr</span> or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.0/countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
@@ -1950,6 +1950,12 @@ Countly.salt = "your_salt";
     (default: 100)
   </li>
   <li>
+    <strong>behavior_settings</strong> - an object that includes server config options taken from your server (experimental!)
+  </li>
+  <li>
+    <strong>content_whitelist</strong> - an array that includes urls to your other domains which can serve the Content
+  </li>
+  <li>
     <strong>max_breadcrumb_count</strong> -
     <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
@@ -3164,6 +3170,24 @@ Countly.q.push(['content.enterContentZone']);</code></pre>
   also regularly check if a new content is available, and if it is, will fetch
   and show it to the user.
 </p>
+<p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.refreshContentZone(); });
+
+// or
+Countly.q.push(['content.refreshContentZone']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="javascript">Countly.content.refreshContentZone();</code></pre>
+  </div>
+</div>
 <p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
