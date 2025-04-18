@@ -3182,7 +3182,7 @@ Countly.q.push(['content.enterContentZone']);</code></pre>
     <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.refreshContentZone(); });
 
 // or
-Countly.q.push(['content.refrehContentZone']);</code></pre>
+Countly.q.push(['content.refreshContentZone']);</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="javascript">Countly.content.refreshContentZone();</code></pre>
