@@ -2569,8 +2569,8 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   </li>
   <li>
     <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
-    device the app is running on. Null means that Countly will use the random UUID
-    generation method.
+    device the app is running on. Null means that Countly will use the random
+    UUID generation method.
   </li>
   <li>
     <strong>setStarRatingSessionLimit(int starRatingLimit)</strong> - Sets the

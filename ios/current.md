@@ -1539,7 +1539,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </div>
 <h1 id="h_01HAVHW0RPRWDT82DVYT4ABT9V">Device ID Management</h1>
 <p>
-  <span style="font-weight: 400;">On iOS, iPadOS, and tvOS, the default device ID is the Identifier For Vendor (IDFV). On watchOS and macOS, it is a persistently stored random <code>NSUUID</code></span><span style="font-weight: 400;"> string.</span>
+  <span style="font-weight: 400;">It is a persistently stored random <code>NSUUID</code></span><span style="font-weight: 400;"> string.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If you would like to use a custom device ID, you can set the <code>deviceID</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. If the <code>deviceID</code></span><span style="font-weight: 400;"> property is not set explicitly, a </span>default

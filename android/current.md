@@ -887,7 +887,7 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
   <span style="font-weight: 400;">One of the first things you'll need to decide is which device ID generation strategy to use. There are several options defined below:</span>
 </p>
 <p>
-  <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is OpenUDID.</span>
+  <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is UUID.</span>
 </p>
 <pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>Countly.sharedInstance().init(config);</code></pre>
 <p>
@@ -2569,8 +2569,8 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   </li>
   <li>
     <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
-    device the app is running on. Null means that Countly will use the OpenUDID
-    generation method.
+    device the app is running on. Null means that Countly will use the random
+    UUID generation method.
   </li>
   <li>
     <strong>setStarRatingSessionLimit(int starRatingLimit)</strong> - Sets the

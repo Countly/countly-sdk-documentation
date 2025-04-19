@@ -1053,7 +1053,7 @@ UwIDAQAB
   this information to the SDK. Remember to not add any newlines when providing
   this to the SDK.
 </p>
-<h2 id="h_01HEHTTDPAS4D3X2T8SWKVHMR8">
+<h2 id="h_01JS24D9C7038QHC5GNGFYE8P3">
   <span>Acquiring the SSL Certificate Information from a Server</span>
 </h2>
 <p>
@@ -1732,9 +1732,7 @@ function sendMessage(param) {
   method if no developer supplied custom id is given during initialization. Here
   are the device id generation methods for each SDK:
 </p>
-<p>
-  - The Android SDK uses a random UUID as the generated ID
-</p>
+<p>- The Android SDK uses a random UUID as the generated ID</p>
 <p>
   - The iOS SDK use a persistently stored random NSUUID string
 </p>
