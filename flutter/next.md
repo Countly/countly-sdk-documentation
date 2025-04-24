@@ -1894,6 +1894,10 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     <strong><a href="#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
     Report indirect user attribution <strong>(no Web platform support)</strong>
   </li>
+    <li>
+    <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
+    the server configuration to be set while initializing the SDK
+  </li>
 </ul>
 <h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
 <p>
