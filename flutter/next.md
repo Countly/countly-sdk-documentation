@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 25.1.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 25.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -79,7 +79,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^25.1.1</code></pre>
+  countly_flutter: ^25.4.0</code></pre>
 <p>
   After you can install packages from the command line with Flutter:
 </p>
