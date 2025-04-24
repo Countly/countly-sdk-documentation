@@ -2780,6 +2780,10 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     the SDK not write the request and event queues to disk until the explicit
     write signal is given.
   </li>
+  <li>
+    <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
+    the server configuration to be set while initializing the SDK
+  </li>
 </ul>
 <h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
 <p>
