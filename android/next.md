@@ -3229,6 +3229,10 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
 </p>
 <pre><code class="java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
 <p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<pre><code class="java">Countly.sharedInstance().contents().refreshContentZone()</code></pre>
+<p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>
