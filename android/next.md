@@ -3067,6 +3067,20 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   To do so, invoke the following method:
 </p>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.sharedInstance().requestQueue().flushQueues();</pre>
+<h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
+<p>
+  The SDK includes a backoff mechanism that temporarily pauses sending requests
+  when the server is slow or unresponsive. This helps reduce server load and avoid
+  unnecessary retries. It’s enabled by default but can be disabled if needed.
+</p>
+<pre><code class="class">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+config.disableBackoffMechanism();
+Countly.sharedInstance().init(config);</code></pre>
+<p>
+  For a detailed explanation of how the backoff mechanism works and when it triggers,
+  see the
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">full documentation here</a>.
+</p>
 <h2 id="h_01HAVQDM5W7W375FCJET7Z57CW">Direct Request</h2>
 <p>
   <span style="font-weight: 400;">This feature allows you to create custom functionality or implement features that the SDK might be lacking at that moment.</span>
