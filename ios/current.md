@@ -4296,6 +4296,81 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   And for App Tracking Transparency permission required on iOS 14.5+ please see:
   <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
 </p>
+<h2 id="h_01JXEX7QAQ3CGTE7QE9SR5GACD">Interacting with the Internal Request Queue</h2>
+<p>
+  When recording events or user activities, requests are not always sent to the
+  server immediately. They may be batched together for efficiency or delayed due
+  to lack of network connectivity.
+</p>
+<p>
+  Currently, there are two ways to interact with this internal request queue:
+</p>
+<p>
+  You can force the SDK to try to send the requests immediately:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance attemptToSendStoredRequests];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().attemptToSendStoredRequests()</code></pre>
+  </div>
+</div>
+<p>
+  This approach bypasses the SDK’s internal scheduling mechanisms and initiates
+  an immediate attempt to send all queued requests.
+</p>
+<p>
+  In certain situations, you may need to delete all stored requests from the queue.
+  To do so, invoke the following method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance flushQueues];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().flushQueues()</code></pre>
+  </div>
+</div>
+<h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
+<p>
+  The SDK includes a backoff mechanism that temporarily pauses sending requests
+  when the server is slow or unresponsive. This helps reduce server load and avoid
+  unnecessary retries. It’s enabled by default but can be disabled if needed.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">CountlyConfig* config = CountlyConfig.new;
+config.appKey = @"YOUR_APP_KEY";
+config.host = @"https://YOUR_COUNTLY_SERVER";
+config.disableBackoffMechanism = YES;
+[Countly.sharedInstance startWithConfig:config];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let config: CountlyConfig = CountlyConfig()
+config.appKey = "YOUR_APP_KEY"
+config.host = "https://YOUR_COUNTLY_SERVER"
+config.disableBackoffMechanism = true
+Countly.sharedInstance().start(with: config)</code></pre>
+  </div>
+</div>
+<p>
+  For a detailed explanation of how the backoff mechanism works and when it triggers,
+  see the
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">full documentation here</a>.
+</p>
 <h2 id="h_01HAVHW0RTA5BP4D191447F3TT">Direct Request</h2>
 <p>
   The <code>addDirectRequest</code> method allows you to send custom key/value
