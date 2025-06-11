@@ -4241,6 +4241,28 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
+<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<p>
+  Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
+  on your server will affect SDK behavior directly.
+</p>
+<p>
+  In all cases, the configuration may not be applied during the app’s first run.
+  If this is a security sensitive case for the situations, you can provide the
+  server config to the SDK during initialization.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.sdkBehaviorSettings = @"json server config";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
 <h3 id="h_01HAVHW0RSD4315V1VW115EWVS">Direct Attribution</h3>
 <p>
