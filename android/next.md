@@ -3063,7 +3063,7 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   an immediate attempt to send all queued requests.
 </p>
 <p>
-  In certain situations, you may need to clear all stored requests from the queue.
+  In certain situations, you may need to delete all stored requests from the queue.
   To do so, invoke the following method:
 </p>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.sharedInstance().requestQueue().flushQueues();</pre>
