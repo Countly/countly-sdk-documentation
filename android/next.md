@@ -3047,24 +3047,24 @@ config.setAppCrawlerNames(new String[] { "App Crawler" });
 Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 <h2 id="h_01HAVQDM5WXRHGD4ETK4THSKXY">Interacting with the Internal Request Queue</h2>
 <p>
-  When recording events or activities, the requests don't always get sent immediately.
-  Events get grouped together and sometimes there is no connection to the server
-  and the requests can't be sent.
+  When recording events or user activities, requests are not always sent to the
+  server immediately. They may be batched together for efficiency or delayed due
+  to lack of network connectivity.
 </p>
 <p>
-  There are two ways how to interact with this request queue at the moment.&nbsp;
+  Currently, there are two ways to interact with this internal request queue:
 </p>
 <p>
   You can force the SDK to try to send the requests immediately:
 </p>
 <pre>//Doing internally stored requests<br>Countly.sharedInstance().requestQueue().attemptToSendStoredRequests();</pre>
 <p>
-  This way the SDK will not wait for its internal triggers and it will try to empty
-  the queue on demand.
+  This approach bypasses the SDK’s internal scheduling mechanisms and initiates
+  an immediate attempt to send all queued requests.
 </p>
 <p>
-  There are some circumstances where you would want to delete all stored requests.
-  Then you would call:
+  In certain situations, you may need to delete all stored requests from the queue.
+  To do so, invoke the following method:
 </p>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.sharedInstance().requestQueue().flushQueues();</pre>
 <h2 id="h_01HAVQDM5W7W375FCJET7Z57CW">Direct Request</h2>
