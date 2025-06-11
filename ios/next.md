@@ -4340,6 +4340,37 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <pre><code class="swift">Countly.sharedInstance().flushQueues()</code></pre>
   </div>
 </div>
+<h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
+<p>
+  The SDK includes a backoff mechanism that temporarily pauses sending requests
+  when the server is slow or unresponsive. This helps reduce server load and avoid
+  unnecessary retries. It’s enabled by default but can be disabled if needed.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">CountlyConfig* config = CountlyConfig.new;
+config.appKey = @"YOUR_APP_KEY";
+config.host = @"https://YOUR_COUNTLY_SERVER";
+config.disableBackoffMechanism = YES;
+[Countly.sharedInstance startWithConfig:config];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">let config: CountlyConfig = CountlyConfig()
+config.appKey = "YOUR_APP_KEY"
+config.host = "https://YOUR_COUNTLY_SERVER"
+config.disableBackoffMechanism = true
+Countly.sharedInstance().start(with: config)</code></pre>
+  </div>
+</div>
+<p>
+  For a detailed explanation of how the backoff mechanism works and when it triggers,
+  see the
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">full documentation here</a>.
+</p>
 <h2 id="h_01HAVHW0RTA5BP4D191447F3TT">Direct Request</h2>
 <p>
   The <code>addDirectRequest</code> method allows you to send custom key/value

@@ -2135,6 +2135,19 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   In the request queue, if there are any requests whose app key is different than
   the current app key, these requests will be removed from the request queue.
 </p>
+<h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
+<p>
+  The SDK includes a backoff mechanism that temporarily pauses sending requests
+  when the server is slow or unresponsive. This helps reduce server load and avoid
+  unnecessary retries. It’s enabled by default but can be disabled if needed.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.disableBackoffMechanism();</code></pre>
+<p>
+  For a detailed explanation of how the backoff mechanism works and when it triggers,
+  see the
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">full documentation here</a>.
+</p>
 <h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
 <div class="callout callout--info">
   <p>

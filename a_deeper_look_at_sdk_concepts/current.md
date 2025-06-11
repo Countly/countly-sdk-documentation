@@ -2026,3 +2026,48 @@ function sendMessage(param) {
 <p>
   <img src="/guide-media/01HVK1RKGWDJRKZ6088C7MKJRM" alt="008.png">
 </p>
+<h1 id="h_05JJ9EJ330VBFVZRZEWZYSZT30">Backoff Mechanism</h1>
+<p>
+  To ensure stable communication with the server, the SDK includes a backoff mechanism
+  designed to temporarily pause outgoing requests when the server appears to be
+  under strain or unresponsive.
+</p>
+<p>
+  The SDK automatically triggers the backoff mechanism when <strong>all</strong>
+  of the following conditions are met:
+</p>
+<ol>
+  <li>
+    <p>
+      <strong>Slow Server Response</strong><br>
+      The response time from the server exceeds an acceptable threshold. (default
+      10 seconds)
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Moderate Queue Size</strong><br>
+      The number of requests currently stored in the queue is less than half
+      of the maximum allowed capacity (default %50). This indicates that the
+      queue is not congested but may grow if not controlled.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Recent Request</strong><br>
+      The request being evaluated is not too old. (default 24 hours)
+    </p>
+  </li>
+</ol>
+<p>
+  Once triggered, the SDK temporarily pauses sending new requests for a short period
+  (default 60 seconds). This helps prevent unnecessary retries and reduces the
+  risk of overloading the server when it is not responding in a timely manner.
+  After the backoff period ends, the SDK resumes sending requests automatically
+  if conditions have improved.
+</p>
+<p>
+  This mechanism is enabled by default to help manage server load more gracefully.
+  However, it can be disabled via configuration if needed, depending on your specific
+  use case or infrastructure requirements.
+</p>
