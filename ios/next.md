@@ -4298,12 +4298,12 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
 </p>
 <h2 id="h_01JXEX7QAQ3CGTE7QE9SR5GACD">Interacting with the Internal Request Queue</h2>
 <p>
-  When recording events or activities, the requests don't always get sent immediately.
-  Events get grouped together and sometimes there is no connection to the server
-  and the requests can't be sent.
+  When recording events or user activities, requests are not always sent to the
+  server immediately. They may be batched together for efficiency or delayed due
+  to lack of network connectivity.
 </p>
 <p>
-  There are two ways how to interact with this request queue at the moment.&nbsp;
+  Currently, there are two ways to interact with this internal request queue:
 </p>
 <p>
   You can force the SDK to try to send the requests immediately:
@@ -4321,12 +4321,12 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   </div>
 </div>
 <p>
-  This way the SDK will not wait for its internal triggers and it will try to empty
-  the queue on demand.
+  This approach bypasses the SDK’s internal scheduling mechanisms and initiates
+  an immediate attempt to send all queued requests.
 </p>
 <p>
-  There are some circumstances where you would want to delete all stored requests.
-  Then you would call:
+  In certain situations, you may need to clear all stored requests from the queue.
+  To do so, invoke the following method:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
