@@ -4303,7 +4303,7 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   and the requests can't be sent.
 </p>
 <p>
-  There are two ways how to interact with this request queue at the moment.&nbsp;
+  There are two ways how to interact with this request queue at the moment.
 </p>
 <p>
   You can force the SDK to try to send the requests immediately:
