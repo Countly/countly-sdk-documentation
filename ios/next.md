@@ -4296,6 +4296,50 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
   And for App Tracking Transparency permission required on iOS 14.5+ please see:
   <a href="https://developer.apple.com/documentation/apptrackingtransparency?language=objc">https://developer.apple.com/documentation/apptrackingtransparency?language=objc</a>
 </p>
+<h2 id="h_01JXEX7QAQ3CGTE7QE9SR5GACD">Interacting with the Internal Request Queue</h2>
+<p>
+  When recording events or activities, the requests don't always get sent immediately.
+  Events get grouped together and sometimes there is no connection to the server
+  and the requests can't be sent.
+</p>
+<p>
+  There are two ways how to interact with this request queue at the moment.&nbsp;
+</p>
+<p>
+  You can force the SDK to try to send the requests immediately:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance attemptToSendStoredRequests];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().attemptToSendStoredRequests()</code></pre>
+  </div>
+</div>
+<p>
+  This way the SDK will not wait for its internal triggers and it will try to empty
+  the queue on demand.
+</p>
+<p>
+  There are some circumstances where you would want to delete all stored requests.
+  Then you would call:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance flushQueues];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().flushQueues()</code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RTA5BP4D191447F3TT">Direct Request</h2>
 <p>
   The <code>addDirectRequest</code> method allows you to send custom key/value
