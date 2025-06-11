@@ -2210,6 +2210,10 @@ config.setEventQueueSizeToSend(6);</code></pre>
 </p>
 <pre><code class="dart">countlyConfig.content.setZoneTimerInterval(60) //in seconds</code></pre>
 <p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<pre><code class="java">Countly.instance.content.refreshContentZone()</code></pre>
+<p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>

@@ -110,9 +110,34 @@
 </div>
 <p>
   If you need to achieve an instant fetch, you can manually trigger a content refresh
-  by using the "enter" and "exit" functions, which will force the SDK to fetch
+  by using the "refreshContentZone" function, which will force the SDK to fetch
   the content immediately, bypassing the timer interval.
 </p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Android</span>
+    <span class="tabs-link">iOS</span> <span class="tabs-link">Web</span>
+    <span class="tabs-link">Flutter</span>
+    <span class="tabs-link">React Native</span>
+  </div>
+  <div class="tab">
+    <pre><code class="java">Countly.sharedInstance().contents().refreshContentZone();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="objectivec">[Countly.sharedInstance.content refreshContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="js">Countly.content.refreshContentZone();</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="dart">Countly.instance.content.refreshContentZone()
+</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="js">Countly.content.refreshContentZone();
+</code></pre>
+  </div>
+</div>
 <p>
   For detailed information on content-related methods, you can refer to the Content
   Zone section in the

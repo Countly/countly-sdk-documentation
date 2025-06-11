@@ -4775,6 +4775,21 @@ end</code></pre>
   </div>
 </div>
 <p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.content refreshContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().content().refreshContentZone();</code></pre>
+  </div>
+</div>
+<p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>
