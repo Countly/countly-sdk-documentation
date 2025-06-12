@@ -2784,6 +2784,10 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
     the server configuration to be set while initializing the SDK
   </li>
+  <li>
+    <strong>disableSDKBehaviorSettingsUpdates()</strong> - Disables updates to
+    the SDK’s behavior settings that are fetched from the server.
+  </li>
 </ul>
 <h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
 <p>
