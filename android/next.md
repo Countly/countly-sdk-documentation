@@ -3205,14 +3205,6 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   the Countly SDK.
 </p>
 <h2 id="h_01HAVQDM5W6FJH42AFSGV7FZ2T">SDK Behavior Settings</h2>
-<div class="callout callout--info">
-  <p>
-    Previously known as <strong>Server Configuration</strong>, this feature is
-    now called <strong>SDK Behavior Settings</strong> in the SDKs. The Countly
-    server will adopt this naming soon, but you may still see the old term in
-    the Dashboard for now.
-  </p>
-</div>
 <p>
   SDK Behavior Settings are enabled by default. Any changes made in the SDK Manager’s
   "SDK Configuration" section on the server will directly affect the behavior of
