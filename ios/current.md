@@ -4241,7 +4241,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
-<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">Server Configuration</h2>
 <p>
   Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
   on your server will affect SDK behavior directly.
@@ -4261,6 +4261,23 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
+  </div>
+</div>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.disableSDKBehaviorSettingsUpdates = true</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
