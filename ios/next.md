@@ -4241,28 +4241,6 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
-<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
-<p>
-  Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
-  on your server will affect SDK behavior directly.
-</p>
-<p>
-  In all cases, the configuration may not be applied during the app’s first run.
-  If this is a security sensitive case for the situations, you can provide the
-  server config to the SDK during initialization.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.sdkBehaviorSettings = @"json server config";</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
-  </div>
-</div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
 <h3 id="h_01HAVHW0RSD4315V1VW115EWVS">Direct Attribution</h3>
 <p>
@@ -4723,6 +4701,46 @@ end</code></pre>
   and go to File &gt; Add Packages and enter the URL into the search bar. From
   here you can add the package by targeting the master branch.
 </p>
+<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<p>
+  SDK Behavior Settings are enabled by default. Any changes made in the SDK Manager’s
+  "SDK Configuration" section on the server will directly affect the behavior of
+  the SDK.
+</p>
+<p>
+  In most cases, the configuration may not be applied during the app’s first run.
+  If the behavior controlled by these settings is critical for security or consistency,
+  you can manually provide the configuration to the SDK during initialization.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.sdkBehaviorSettings = @"json server config";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
+  </div>
+</div>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.disableSDKBehaviorSettingsUpdates = true</code></pre>
+  </div>
+</div>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
