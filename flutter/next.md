@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Flutter SDK version 25.1.X. The SDK source
+  This documentation is for the Countly Flutter SDK version 25.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-flutter-bridge" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -79,7 +79,7 @@
   Add this to your project's <code>pubspec.yaml</code> file:
 </p>
 <pre><code class="yaml">dependencies:
-  countly_flutter: ^25.1.1</code></pre>
+  countly_flutter: ^25.4.0</code></pre>
 <p>
   After you can install packages from the command line with Flutter:
 </p>
@@ -1894,6 +1894,10 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     <strong><a href="#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
     Report indirect user attribution <strong>(no Web platform support)</strong>
   </li>
+    <li>
+    <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
+    the server configuration to be set while initializing the SDK
+  </li>
 </ul>
 <h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
 <p>
@@ -2205,6 +2209,10 @@ config.setEventQueueSizeToSend(6);</code></pre>
   while initializing the SDK through and it must be greater than 15 seconds.
 </p>
 <pre><code class="dart">countlyConfig.content.setZoneTimerInterval(60) //in seconds</code></pre>
+<p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<pre><code class="java">Countly.instance.content.refreshContentZone()</code></pre>
 <p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
