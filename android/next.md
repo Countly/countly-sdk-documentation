@@ -3204,7 +3204,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   other scenarios, we recommend using the default storage behavior provided by
   the Countly SDK.
 </p>
-<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<h2 id="h_01HAVQDM5W6FJH42AFSGV7FZ2T">SDK Behavior Settings</h2>
 <div class="callout callout--info">
   <p>
     Previously known as <strong>Server Configuration</strong>, this feature is
