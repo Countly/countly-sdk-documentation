@@ -4241,6 +4241,54 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
+<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<div class="callout callout--info">
+  <p>
+    Previously known as <strong>Server Configuration</strong>, this feature is
+    now called <strong>SDK Behavior Settings</strong> in the SDKs. The Countly
+    server will adopt this naming soon, but you may still see the old term in
+    the Dashboard for now.
+  </p>
+</div>
+<p>
+  SDK Behavior Settings are enabled by default. Any changes made in the SDK Manager’s
+  "SDK Configuration" section on the server will directly affect the behavior of
+  the SDK.
+</p>
+<p>
+  In most cases, the configuration may not be applied during the app’s first run.
+  If the behavior controlled by these settings is critical for security or consistency,
+  you can manually provide the configuration to the SDK during initialization.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.sdkBehaviorSettings = @"json server config";</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
+  </div>
+</div>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.disableSDKBehaviorSettingsUpdates = true</code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
 <h3 id="h_01HAVHW0RSD4315V1VW115EWVS">Direct Attribution</h3>
 <p>
@@ -4750,6 +4798,21 @@ end</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="objectivec">config.content.zoneTimerInterval = 60</code></pre>
+  </div>
+</div>
+<p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance.content refreshContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().content().refreshContentZone();</code></pre>
   </div>
 </div>
 <p>
