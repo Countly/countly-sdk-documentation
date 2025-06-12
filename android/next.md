@@ -2780,10 +2780,6 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     the SDK not write the request and event queues to disk until the explicit
     write signal is given.
   </li>
-  <li>
-    <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
-    the server configuration to be set while initializing the SDK
-  </li>
 </ul>
 <h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
 <p>
@@ -3208,15 +3204,32 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   other scenarios, we recommend using the default storage behavior provided by
   the Countly SDK.
 </p>
-<h2 id="h_01HAVQDM5W6FJH42AFSGV7FZ2T">Server Configuration</h2>
-<div class="callout callout--warning">
-  <p>This is an experimental feature!</p>
+<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<div class="callout callout--info">
+  <p>
+    Previously known as <strong>Server Configuration</strong>, this feature is
+    now called <strong>SDK Behavior Settings</strong> in the SDKs. The Countly
+    server will adopt this naming soon, but you may still see the old term in
+    the Dashboard for now.
+  </p>
 </div>
 <p>
-  You can make your SDK fetch some configurations you have set in your Countly
-  server by setting <code>enableServerConfiguration</code> during init:
+  SDK Behavior Settings are enabled by default. Any changes made in the SDK Manager’s
+  "SDK Configuration" section on the server will directly affect the behavior of
+  the SDK.
 </p>
-<pre><code class="java">config.enableServerConfiguration()</code></pre>
+<p>
+  In most cases, the configuration may not be applied during the app’s first run.
+  If the behavior controlled by these settings is critical for security or consistency,
+  you can manually provide the configuration to the SDK during initialization.
+</p>
+<pre><code class="java">config.setSDKBehaviorSettings("{json server config}");</code></pre>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<pre><code class="java">config.disableSDKBehaviorSettingsUpdates();</code></pre>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
