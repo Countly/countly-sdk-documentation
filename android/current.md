@@ -3047,26 +3047,40 @@ config.setAppCrawlerNames(new String[] { "App Crawler" });
 Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 <h2 id="h_01HAVQDM5WXRHGD4ETK4THSKXY">Interacting with the Internal Request Queue</h2>
 <p>
-  When recording events or activities, the requests don't always get sent immediately.
-  Events get grouped together and sometimes there is no connection to the server
-  and the requests can't be sent.
+  When recording events or user activities, requests are not always sent to the
+  server immediately. They may be batched together for efficiency or delayed due
+  to lack of network connectivity.
 </p>
 <p>
-  There are two ways how to interact with this request queue at the moment.&nbsp;
+  Currently, there are two ways to interact with this internal request queue:
 </p>
 <p>
   You can force the SDK to try to send the requests immediately:
 </p>
 <pre>//Doing internally stored requests<br>Countly.sharedInstance().requestQueue().attemptToSendStoredRequests();</pre>
 <p>
-  This way the SDK will not wait for its internal triggers and it will try to empty
-  the queue on demand.
+  This approach bypasses the SDK’s internal scheduling mechanisms and initiates
+  an immediate attempt to send all queued requests.
 </p>
 <p>
-  There are some circumstances where you would want to delete all stored requests.
-  Then you would call:
+  In certain situations, you may need to delete all stored requests from the queue.
+  To do so, invoke the following method:
 </p>
 <pre><span>//Delete all stored requests in queue<br></span>Countly.sharedInstance().requestQueue().flushQueues();</pre>
+<h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
+<p>
+  The SDK includes a backoff mechanism that temporarily pauses sending requests
+  when the server is slow or unresponsive. This helps reduce server load and avoid
+  unnecessary retries. It’s enabled by default but can be disabled if needed.
+</p>
+<pre><code class="class">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+config.disableBackoffMechanism();
+Countly.sharedInstance().init(config);</code></pre>
+<p>
+  For a detailed explanation of how the backoff mechanism works and when it triggers,
+  see the
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">full documentation here</a>.
+</p>
 <h2 id="h_01HAVQDM5W7W375FCJET7Z57CW">Direct Request</h2>
 <p>
   <span style="font-weight: 400;">This feature allows you to create custom functionality or implement features that the SDK might be lacking at that moment.</span>
@@ -3191,14 +3205,22 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   the Countly SDK.
 </p>
 <h2 id="h_01HAVQDM5W6FJH42AFSGV7FZ2T">Server Configuration</h2>
-<div class="callout callout--warning">
-  <p>This is an experimental feature!</p>
-</div>
 <p>
-  You can make your SDK fetch some configurations you have set in your Countly
-  server by setting <code>enableServerConfiguration</code> during init:
+  Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
+  on your server will affect SDK behavior directly.
 </p>
-<pre><code class="java">config.enableServerConfiguration()</code></pre>
+<p>
+  p In all cases, the configuration may not be applied during the app’s first run.
+  If this is a security sensitive case for the situations, you can provide the
+  server config to the SDK during initialization.
+</p>
+<pre><code class="java">config.setSDKBehaviorSettings("json server config");</code></pre>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates();</code></pre>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
@@ -3228,6 +3250,10 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   while initializing the SDK through and it must be greater than 15 seconds.
 </p>
 <pre><code class="java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
+<p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<pre><code class="java">Countly.sharedInstance().contents().refreshContentZone()</code></pre>
 <p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
