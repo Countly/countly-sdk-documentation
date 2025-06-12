@@ -1894,14 +1894,6 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     <strong><a href="#h_01H930GAQ8QNMCJGCMC0TS6CEV" target="_self" rel="undefined">Indirect Attribution</a> -</strong>
     Report indirect user attribution <strong>(no Web platform support)</strong>
   </li>
-    <li>
-    <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
-    the server configuration to be set while initializing the SDK
-  </li>
-    <li>
-    <strong>disableSDKBehaviorSettingsUpdates()</strong> - Disables updates to
-    the SDK’s behavior settings that are fetched from the server.
-  </li>
 </ul>
 <h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
 <p>
@@ -2192,6 +2184,23 @@ config.setEventQueueSizeToSend(6);</code></pre>
   function:
 </p>
 <pre><code class="dart">Countly.isInitialized();</code></pre>
+<h2 id="h_01HAVQDM5W6FJH42AFSGV7FZ2T">Server Configuration</h2>
+<p>
+  Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
+  on your server will affect SDK behavior directly.
+</p>
+p>
+  In all cases, the configuration may not be applied during the app’s first run.
+  If this is a security sensitive case for the situations, you can provide the
+  server config to the SDK during initialization.
+</p>
+<pre><code class="java">config.setSDKBehaviorSettings("json server config")</code></pre>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates()</code></pre>
 <h2 id="h_01JDHWBTSH0SJXE2NKFN1ZX45G">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
