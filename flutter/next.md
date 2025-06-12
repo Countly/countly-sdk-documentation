@@ -1898,6 +1898,10 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
     <strong>setSDKBehaviorSettings(String sdkBehaviorSettings)</strong> - Set
     the server configuration to be set while initializing the SDK
   </li>
+    <li>
+    <strong>disableSDKBehaviorSettingsUpdates()</strong> - Disables updates to
+    the SDK’s behavior settings that are fetched from the server.
+  </li>
 </ul>
 <h2 id="h_01HPGP75J54BBZFVZE7S7K1N2H">Example Integrations</h2>
 <p>
