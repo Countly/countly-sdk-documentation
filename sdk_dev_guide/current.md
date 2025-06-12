@@ -1,27 +1,18 @@
 <p>
-  Would you like to develop a new SDK for Countly? Then this guide is for you.
-  Before starting, bear in mind that there are a lot of SDKs that Countly has already
-  developed. Please check whether the SDK you are going to develop is not already
-  available.
+  <span>Would you like to develop a new SDK for Countly? Then this guide is for you. Before starting, bear in mind that there are a lot of SDKs that Countly has already developed. Please check whether the SDK you are going to develop is not already available.</span>
 </p>
-<h1 id="01H821RTQ1G58MJXF4JFX5HVF5">Integration</h1>
+<h1 id="01H821RTQ1G58MJXF4JFX5HVF5">
+  <span>Integration</span>
+</h1>
 <h2 id="01H821RTQ15HRMMKHQY49NFYV8">Initialization</h2>
 <p>
-  To start making requests to the server, SDK needs 3 things: the URL of the server
-  where you will be making requests, the app_key of the app for which you will
-  be reporting, and your current device_id to uniquely identify this device.
+  <span>To start making requests to the server, SDK needs 3 things: the URL of the server where you will be making requests, the app_key of the app for which you will be reporting, and your current device_id to uniquely identify this device.</span>
 </p>
 <p>
-  <strong>Server URL</strong> -&nbsp;The SDK needs to provide the ability for the
-  user to specify the URL for the server where their Countly instance is installed.
-  This be used for all requests.
+  <strong>Server URL</strong> -&nbsp;<span>The SDK needs to provide the ability for the user to specify the URL for the server where their Countly instance is installed. This be used for all requests.</span>
 </p>
 <p>
-  <strong>App Key</strong> -&nbsp;The App key should be provided by the SDK user.
-  This value identifies to which dashboard applications this request is going to
-  be tied to. Your app should be created on the Countly server. After app creation,
-  the server will provide an app key for the user. The same app key is used for
-  the same app on different platforms.
+  <strong>App Key</strong> -&nbsp;<span>The App key should be provided by the SDK user. This value identifies to which dashboard applications this request is going to be tied to. Your app should be created on the Countly server. After app creation, the server will provide an app key for the user. The same app key is used for the same app on different platforms.</span>
 </p>
 <p>
   <strong>Device ID</strong> -
@@ -62,64 +53,54 @@
 <p>
   This flag functions independently of the log listener (described below).
 </p>
-<table class="wysiwyg-table" style="height: 110px; width: 50.7143%; margin-right: auto; margin-left: auto; border-collapse: collapse; border-style: solid; border-width: 1px;">
+<table style="border-collapse: collapse; height: 110px; width: 50.7143%; margin-right: auto; margin-left: auto;" border="1">
   <tbody>
     <tr style="height: 22px;">
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 22.0476%;">&nbsp;</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.619%;">
+      <td class="wysiwyg-text-align-center" style="width: 22.0476%; height: 22px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.619%; height: 22px;">
         <strong>Log printed to console</strong>
       </td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.0476%;">
+      <td class="wysiwyg-text-align-center" style="width: 14.0476%; height: 22px;">
         <strong>Log printed to listener</strong>
       </td>
     </tr>
     <tr style="height: 22px;">
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 22.0476%;">Nothing set</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.619%;">No</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.0476%;">No</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.0476%; height: 22px;">Nothing set</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.619%; height: 22px;">No</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.0476%; height: 22px;">No</td>
     </tr>
     <tr style="height: 22px;">
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 22.0476%;">Only flag set</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.619%;">Yes</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.0476%;">No</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.0476%; height: 22px;">Only flag set</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.619%; height: 22px;">Yes</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.0476%; height: 22px;">No</td>
     </tr>
     <tr style="height: 22px;">
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 22.0476%;">Only listener set</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.619%;">No</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.0476%;">Yes</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.0476%; height: 22px;">Only listener set</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.619%; height: 22px;">No</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.0476%; height: 22px;">Yes</td>
     </tr>
     <tr style="height: 22px;">
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 22.0476%;">Flag and listener set</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.619%;">Yes</td>
-      <td style="border-style: solid; border-width: 1px; height: 22px; text-align: center; width: 14.0476%;">Yes</td>
+      <td class="wysiwyg-text-align-center" style="width: 22.0476%; height: 22px;">Flag and listener set</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.619%; height: 22px;">Yes</td>
+      <td class="wysiwyg-text-align-center" style="width: 14.0476%; height: 22px;">Yes</td>
     </tr>
   </tbody>
 </table>
 <h3 id="01H822TC8FN7N2AHT7C6TJKR95">Log Messages</h3>
 <p>
-  No two places should have the same log message. This means that all messages
-  should be unique. Knowing the log message and the sdk version it should be unambiguous
-  to know which line printed that message.<br>
-  To help with being unambiguous, the log messages could include the internal "module"
-  or "section" name from where it was called. If the function called is part of
-  the public API of the SDK, that log should include the function name.
+  <span>No two places should have the same log message. This means that all messages should be unique. Knowing the log message and the sdk version it should be unambiguous to know which line printed that message.</span><br>
+  <span>To help with being unambiguous, the log messages could include the internal "module" or "section" name from where it was called. If the function called is part of the public API of the SDK, that log should include the function name.</span>
 </p>
-<pre>[ModuleName] functionName, Some message</pre>
+<pre><span>[ModuleName] functionName, Some message</span></pre>
 <p>
-  If there is a message tag/group mechanism on the platform then the tag name "Countly"
-  should be used. If there is no tag/group mechanism available then the name "Countly"
-  should be added to each message.
+  <span>If there is a message tag/group mechanism on the platform then the tag name "Countly" should be used. If there is no tag/group mechanism available then the name "Countly" should be added to each message.</span>
 </p>
-<pre>[Countly] [ModuleName] functionName, Some message</pre>
+<pre><span>[Countly] [ModuleName] functionName, Some message</span></pre>
 <p>
-  All calls, that can be called by developers, should produce a log message to
-  indicate what is being called.
+  <span>All calls, that can be called by developers, should produce a log message to indicate what is being called.</span><span></span>
 </p>
 <p>
-  <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>The goal
-  is to have a good enough log coverage so that it's easy to understand what was
-  happening with the SDK and how it was used when a SDK integrator provides his
-  logs.
+  <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span><span>The goal is to have a good enough log coverage so that it's easy to understand what was happening with the SDK and how it was used when a SDK integrator provides his logs.</span>
 </p>
 <h3 id="01H821RTQ1T2MJ9CRTCBM50ADE">Log Levels</h3>
 <p>When implementing logs, the SDK should follow these levels:</p>
@@ -167,14 +148,10 @@
   </li>
 </ul>
 <p>
-  By using log levels "info" and above it should be clear what the dev was doing
-  with the SDK and what was the call order. "Debug" and above should give us a
-  good enough look into the SDK's internal state and a good overview of it's configuration.
+  <span>By using log levels "info" and above it should be clear what the dev was doing with the SDK and what was the call order. </span><span>"Debug" and above should give us a good enough look into the SDK's internal state and a good overview of it's configuration.</span>
 </p>
 <p>
-  Platforms that don't have explicit log levels should print them manually at the
-  start of the log in square brackets. Either of these variants currently seem
-  fine (as long as it's consistent for the SDK)
+  <span>Platforms that don't have explicit log levels should print them manually at the start of the log in square brackets. Either of these variants currently seem fine (as long as it's consistent for the SDK)</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li>[ERROR], [WARNING], [INFO], [DEBUG], [VERBOSE]</li>
@@ -182,18 +159,13 @@
   <li>[error], [warning], [info], [debug], [verbose]</li>
 </ul>
 <p>
-  If there are the same amount of log levels available but with different names
-  then the closest ones available for the platform should be picked.
+  <span>If there are the same amount of log levels available but with different names then the closest ones available for the platform should be picked.</span>
 </p>
 <p>
-  If there are less than 5 log levels available then multiple ones should be printed
-  in the same log level and the appropriate tag in square brackets should be printed
-  at the start.
+  <span>If there are less than 5 log levels available then multiple ones should be printed in the same log level and the appropriate tag in square brackets should be printed at the start.</span>
 </p>
 <p>
-  For example, if there are only 3 levels "error", "info", "debug". "Error" and
-  "Warning" would be printed in the error "channel" and "debug" and "verbose" would
-  be printed in the "debug" channel".
+  <span>For example, if there are only 3 levels "error", "info", "debug". "Error" and "Warning" would be printed in the error "channel" and "debug" and "verbose" would be printed in the "debug" channel".</span>
 </p>
 <pre><span>E: [Error] [Countly] [ModuleName] functionName, Countly issue bla bla<br>E: [Warning] [Countly] [ModuleName] functionName, You are trying to use this feature in a deprecated way</span></pre>
 <p>
@@ -201,7 +173,7 @@
   and they should be enclosed in closed brackets. For example event keys or for
   simple numerical values.
 </p>
-<pre>I: [Info] [Countly] [ModuleEvent] recordEvent, event is being recorded key: [Login], count: [2], segmentation: [{"isLoggedIn":true, "name":"Something"}]</pre>
+<pre><span>I: [Info] [Countly] [ModuleEvent] recordEvent, event is being recorded key: [Login], count: [2], segmentation: [{"isLoggedIn":true, "name":"Something"}]</span></pre>
 <p>
   For functions which receive a callback, a bool is enough to indicate if a callback
   was or wasn't provided.
@@ -233,71 +205,65 @@
 <h1 id="01H821RTQ18DVPGH41Y03VD7G4">SDK Storage and Requests</h1>
 <h2 id="01H821RTQ1ZMTGHAF6MHDX41MD">Making Requests</h2>
 <p>
-  The Countly server is a simple HTTP-based REST API server, and all SDK requests
-  should be made to <strong>/i</strong>&nbsp;endpoint with two required parameters:&nbsp;<strong>app_key</strong>&nbsp;and&nbsp;<strong>device_id</strong>.
+  <span>The Countly server is a simple HTTP-based REST API server, and all SDK requests should be made to </span><strong>/i</strong><span>&nbsp;endpoint with two required parameters:&nbsp;</span><strong>app_key</strong><span>&nbsp;and&nbsp;</span><strong>device_id</strong><span>.</span>
 </p>
 <p>
-  Other optional parameters need to be provided based on what this request should
-  do. You may checklist all the parameters that the Countly Server can accept in&nbsp;<a href="https://api.count.ly/reference/i">/i endpoint Server API reference</a>.
+  <span>Other optional parameters need to be provided based on what this request should do. You may checklist all the parameters that the Countly Server can accept in&nbsp;</span><a href="https://api.count.ly/reference/i"><span>/i endpoint Server API reference</span></a><span>.</span>
 </p>
 <p>
-  There are some parameters that should be added to all requests, even though they
-  are not mandatory. Together with the required parameters, they form the base
-  request. Every request sent to the server should be formed from this base request.
-  The parameters in this base request are:&nbsp;
+  <span>There are some parameters that should be added to all requests, even though they are not mandatory. Together with the required parameters, they form the base request. Every request sent to the server should be formed from this base request. The parameters in this base request are: </span>
 </p>
 <ul>
   <li>
-    "app_key" - the application key for this countly app (retrievable on the
-    dashboard)
+    <span>"app_key" - the application key for this countly app (retrievable on the dashboard)</span>
   </li>
-  <li>"device_id" - the current user's device ID</li>
   <li>
-    "timestamp" - the timestamp in ms of when this request is created
+    <span>"device_id" - the current user's device ID</span>
   </li>
-  <li>"hour" - the hour of the timestamp</li>
   <li>
-    "dow" - the day of the week for this timestamp. 0 - sunday, ... , 6 - saturday.
+    <span>"timestamp" - the timestamp in ms of when this request is created</span>
   </li>
-  <li>"tz" - this device's timezone offset</li>
-  <li>"sdk_version" - the SDK's version</li>
-  <li>"sdk_name" - the SDK's name</li>
+  <li>
+    <span>"hour" - the hour of the timestamp</span>
+  </li>
+  <li>
+    <span>"dow" - the day of the week for this timestamp. 0 - sunday, ... , 6 - saturday.</span>
+  </li>
+  <li>
+    <span>"tz" - this device's timezone offset</span>
+  </li>
+  <li>
+    <span>"sdk_version" - the SDK's version</span>
+  </li>
+  <li>
+    <span>"sdk_name" - the SDK's name</span>
+  </li>
 </ul>
 <p>
-  In cases where some devices may be offline, etc., and requests should be queued,
-  it is highly recommended you add a timestamp to each request, displaying when
-  it was created.
+  <span>In cases where some devices may be offline, etc., and requests should be queued, it is highly recommended you add a timestamp to each request, displaying when it was created.</span>
 </p>
 <div class="callout callout--info">
   <h3 id="01H821RTQ1M9DQRPT8FJ9TTBFK" class="callout__title">Encoding URI Components</h3>
   <p>
-    Due to the possible use of the ‘&amp;’ and ‘?’ symbols in encoded JSON strings,
-    SDKs should encode uri components before adding them to the request and sending
-    it to the server.
+    <span>Due to the possible use of the ‘&amp;’ and ‘?’ symbols in encoded JSON strings, SDKs should encode uri components before adding them to the request and sending it to the server.</span>
   </p>
 </div>
 <h3 id="01H821RTQ1D25TAE687RNRS3NR">Using GET or POST</h3>
 <p>
-  By default, the preferred method is to make GET requests for the Countly servers.
-  However, there may be some length limitations for GET requests based on specific
-  platform or server settings. Thus, the best practice is to make a POST request
-  when the data reaches over 2,000 characters for a single request.
+  <span>By default, the preferred method is to make GET requests for the Countly servers. However, there may be some length limitations for GET requests based on specific platform or server settings. Thus, the best practice is to make a POST request when the data reaches over 2,000 characters for a single request.</span>
 </p>
 <p>
-  Before making each request, you will need to check if the data you are going
-  to send is less than 2,000 characters. If so, use GET. If you have more characters,
-  use POST.
+  <span>Before making each request, you will need to check if the data you are going to send is less than 2,000 characters. If so, use GET. If you have more characters, use POST.</span>
 </p>
 <p>
-  Additionally, the SDK should be able to switch to post completely if a user should
-  so specify in the SDK configuration/settings.
+  <span>Additionally, the SDK should be able to switch to post completely if a user should so specify in the SDK configuration/settings.</span>
 </p>
 <p>
-  When making POST requests, the used content type should be "application/x-www-form-urlencoded".
+  <span>When making POST requests, the used content type should be "application/x-www-form-urlencoded".</span>
 </p>
 <h3 id="01H821RTQ1KQ1PR0XHNZXCWCYD">SDK Metadata</h3>
 <p>
-  The SDK should send the following metadata with every request.
+  <span>The SDK should send the following metadata with every request.</span>
 </p>
 <ul>
   <li>SDK name:</li>
@@ -332,56 +298,42 @@
 </p>
 <h2 id="01H821RTQ2YX94108QAANP2R8J">Storage</h2>
 <p>
-  Some things in the SDK are stored persistently, for example, request queue, event
-  queue etc. Those should be stored in the device storage.
+  <span>Some things in the SDK are stored persistently, for example, request queue, event queue etc. Those should be stored in the device storage.</span>
 </p>
 <p>
-  If possible, those persistent values should be segmented by the appKey. That
-  means that for every appKey there should be different storage for their queues.
+  <span>If possible, those persistent values should be segmented by the appKey. That means that for every appKey there should be different storage for their queues.</span><span></span>
 </p>
 <h2 id="01H821RTQ2YD4C2V3AD4RKRJXA">Request Queue</h2>
 <p>
-  In some cases, users might be offline, thus they are not able to make requests
-  to the server. In other cases, the server may be down or in maintenance, thus
-  unable to accept requests. In both cases, the SDK should handle queuing and persistently
-  storing requests made to the Countly server and should wait for a successful
-  response from the server before removing a request from the queue.
+  <span>In some cases, users might be offline, thus they are not able to make requests to the server. In other cases, the server may be down or in maintenance, thus unable to accept requests. In both cases, the SDK should handle queuing and persistently storing requests made to the Countly server and should wait for a successful response from the server before removing a request from the queue.</span>
 </p>
 <p>
-  Note that requests should be made in historical order, meaning you must also
-  preserve the order of your queue.
+  <span>Note that requests should be made in historical order, meaning you must also preserve the order of your queue.</span>
 </p>
-<p>Simple flow on how requests should appear as follows:</p>
+<p>
+  <span>Simple flow on how requests should appear as follows:</span>
+</p>
 <ol>
   <li>
-    Initiating request - either a new event reported or session call, etc.
+    <span>Initiating request - either a new event reported or session call, etc.</span>
   </li>
   <li>
-    Creating a payload - take all the parameters (including the current timestamp)
-    and the values needed for a request and generate a payload which will be
-    included in the HTTP request
+    <span>Creating a payload - take all the parameters (including the current timestamp) and the values needed for a request and generate a payload which will be included in the HTTP request</span>
   </li>
   <li>
-    This payload is inserted into the queue (First In, First Out)
+    <span>This payload is inserted into the queue (First In, First Out)</span>
   </li>
   <li>
-    All updates to the queue should be persistently stored. Based on the environment,
-    you may directly use storage for the queue
+    <span>All updates to the queue should be persistently stored. Based on the environment, you may directly use storage for the queue</span>
   </li>
   <li>
-    On some other thread there should be a request processor which takes the
-    first request in the queue, applies the checksum if needed, determines the
-    request type (GET or POST) based on the length, and makes the HTTP request
+    <span>On some other thread there should be a request processor which takes the first request in the queue, applies the checksum if needed, determines the request type (GET or POST) based on the length, and makes the HTTP request</span>&nbsp;<br>
     <ul>
       <li>
-        if the request is successful (defined below), then it should be removed
-        from the queue and the next request will be processed upon the next
-        iteration
+        <span>if the request is successful (defined below), then it should be removed from the queue and the next request will be processed upon the next iteration</span>
       </li>
       <li>
-        if the request failed, the request processor should have a cool-down
-        period, lasting a minute or so (configurable value), and it will
-        then try the same request again until it is completed
+        <span>if the request failed, the request processor should have a cool-down period, lasting a minute or so (configurable value), and it will then try the same request again until it is completed</span>
       </li>
     </ul>
   </li>
@@ -390,41 +342,33 @@
   <img src="https://count.ly/images/guide/PPNhED7RiGZC0StuDYBd_SDK%20queue%20flow.png">
 </div>
 <p>
-  There are multiple scenarios why a request might fail, so to ensure that the
-  request is successfully delivered to the server SDK, you will need to assure
-  the following has taken place:
+  <span>There are multiple scenarios why a request might fail, so to ensure that the request is successfully delivered to the server SDK, you will need to assure the following has taken place:</span>
 </p>
 <ol>
   <li>
-    The HTTP response code was successful (which is any 2xx code or code between
-    200 &lt;= x &lt; 300)
+    <span>The HTTP response code was successful (which is any 2xx code or code between 200 &lt;= x &lt; 300)</span>
   </li>
-  <li>The returned request is a JSON object</li>
   <li>
-    That JSON object contains the field "result" (there can be other fields)
+    <span>The returned request is a JSON object</span>
+  </li>
+  <li>
+    <span>That JSON object contains the field "result" (there can be other fields)</span>
   </li>
 </ol>
 <p>
-  When sending request to a Countly server, it would respond with a JSON object,
-  which should have a property named "result". Usually that value will be "Success".
-  There may be scenarios where a different "result" value is returned or where
-  additional fields may be added.
+  <span>When sending request to a Countly server, it would respond with a JSON object, which should have a property named "result". Usually that value will be "Success". There may be scenarios where a different "result" value is returned or where additional fields may be added.</span>
 </p>
 <p>
-  If the previously described things are "true", then it means the request was
-  successfully delivered to the server and can be removed from the queue.
+  <span>If the previously described things are "true", </span>then it means the
+  request was successfully delivered to the server and can be removed from the
+  queue.
 </p>
 <h3 id="01H821RTQ2CA0ARFHWBSS89BZH">Queue Size Limit</h3>
 <p>
-  We need to limit the queue size so that it doesn’t overflow, and so that syncing
-  up won’t take too long if some specific server is down for too long. This limit
-  would be in the number of stored queries, and this limit should be available
-  for the end-user to change as the SDK settings.
+  <span>We need to limit the queue size so that it doesn’t overflow, and so that syncing up won’t take too long if some specific server is down for too long. This limit would be in the number of stored queries, and this limit should be available for the end-user to change as the SDK settings.</span>
 </p>
 <p>
-  In case this limit is reached, the SDK should remove older queries and insert
-  new ones. The default limit may change from what the SDK needs, but the suggested
-  limit is&nbsp;<strong>1,000 queries</strong>.
+  <span>In case this limit is reached, the SDK should remove older queries and insert new ones. The default limit may change from what the SDK needs, but the suggested limit is&nbsp;</span><strong>1,000 queries</strong><span>.</span>
 </p>
 <h2 id="01H821RTQ2GJ97A0QH0FE86ZBM">Event Queue</h2>
 <p>
@@ -441,36 +385,29 @@
 <p>Those would have their own storage format.</p>
 <h2 id="01H821RTQ28RTWMDKM06XPTM50">Recording Time of Data</h2>
 <p>
-  To properly report and process data (especially queued data), you should also
-  provide the time when the data was recorded. You will need to provide 3 parameters
-  with each request:
+  <span>To properly report and process data (especially queued data), you should also provide the time when the data was recorded. You will need to provide 3 parameters with each request:</span>
 </p>
 <ul>
   <li>
-    <strong>timestamp</strong>: 13-digit UTC millisecond unique timestamp of
-    the moment of action
+    <strong>timestamp</strong>:
+    <span>13-digit UTC millisecond unique timestamp of the moment of action</span>
   </li>
   <li>
-    <strong>hour</strong>: Current user local hour (0 - 23)
+    <strong>hour</strong>: <span>Current user local hour (0 - 23)</span>
   </li>
   <li>
-    <strong>dow</strong>:&nbsp;Current user day of the week (0-Sunday, 1 - Monday,
-    ... 6 - Saturday)
+    <strong>dow</strong>:&nbsp;<span>Current user day of the week (0-Sunday, 1 - Monday, ... 6 - Saturday)</span>
   </li>
   <li>
-    <strong>tz</strong>: Current user time zone in minutes (120 for UTC+02, -300
-    for UTC-05)
+    <strong>tz</strong>:
+    <span>Current user time zone in minutes (120 for UTC+02, -300 for UTC-05)</span>
   </li>
 </ul>
 <p>
-  As multiple events may be combined in a single request, you should also provide
-  these parameters automatically in every event object.
+  <span>As multiple events may be combined in a single request, you should also provide these parameters automatically in every event object.</span>
 </p>
 <p>
-  The suggested millisecond timestamp should be unique, meaning if events were
-  reported in the same timestamp, the SDK should update the millisecond timestamp
-  in the order in which the events were reported. The pseudo-code to the unique
-  millisecond timestamp could appear as follows:
+  <span>The suggested millisecond timestamp should be unique, meaning if events were reported in the same timestamp, the SDK should update the millisecond timestamp in the order in which the events were reported. The pseudo-code to the unique millisecond timestamp could appear as follows:</span>
 </p>
 <pre><code class="javascript">//variable to hold last used timestamp
 lastMsTs = 0;
@@ -492,70 +429,39 @@ function getUniqueMsTimestamp(){
   return lastMsTs;
 }</code></pre>
 <p>
-  If it’s impossible to use a millisecond timestamp on a specific platform, you
-  may also use a 10-digit UTC seconds timestamp.
+  <span>If it’s impossible to use a millisecond timestamp on a specific platform, you may also use a 10-digit UTC seconds timestamp.</span>
 </p>
 <h1 id="01H821RTQ2JRCPX43EYJ7PABWB">General SDK Structure Overview</h1>
 <p>
-  Depending on the SDK’s environment/language, a different set of features could
-  be supported. Some of these features may be supported on any platform, whereas
-  others are quite platform-specific. For example, a desktop app may not provide
-  telecom operator information.
+  <span>Depending on the SDK’s environment/language, a different set of features could be supported. Some of these features may be supported on any platform, whereas others are quite platform-specific. For example, a desktop app may not provide telecom operator information.</span>
 </p>
 <p>
-  Note that function and argument namings are only examples of what it could be.
-  Try to follow your platform/environment/language best practices when creating
-  and naming functions and variables.
+  <span>Note that function and argument namings are only examples of what it could be. Try to follow your platform/environment/language best practices when creating and naming functions and variables.</span>
 </p>
 <p>
-  Core features are the minimal set of features that the SDK should support, and
-  these features are platform-independent.
+  <span>Core features are the minimal set of features that the SDK should support, and these features are platform-independent.</span>
 </p>
 <h2 id="01H821RTQ2D8GVP71K49AQ5KB3">Initialization</h2>
 <p>
-  In its official SDKs, Countly is used as a singleton object or basically an object
-  with a shared instance. Still, there are some parameters that need to be provided
-  before the SDK can work. Usually, there is an "init" method that accepts the
-  URL, app key, and device_id (or the SDK generates it itself if it’s not provided):
+  <span>In its official SDKs, Countly is used as a singleton object or basically an object with a shared instance. Still, there are some parameters that need to be provided before the SDK can work. Usually, there is an "init" method that accepts the URL, app key, and device_id (or the SDK generates it itself if it’s not provided):</span>
 </p>
 <pre><code class="java">Countly.init(string url="https://try.count.ly", string app_key, string device_id, ...)
 </code></pre>
 <h1 id="01H821RTQ20M61EKN76EY6RJ84">Crash Reporting</h1>
 <p>
-  On some platforms, the automatic detection of errors and crashes is possible.
-  In this case, your SDK may report them to the Countly server, and this is also
-  optional as with other similar functions. If a crash report is not sent, it won't
-  be displayed on the dashboard under the Crashes section. Here is more information
-  on
-  <a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a>&nbsp;that
-  you may use in your SDK.
+  <span>On some platforms, the automatic detection of errors and crashes is possible. In this case, your SDK may report them to the Countly server, and this is also optional as with other similar functions. If a crash report is not sent, it won't be displayed on the dashboard under the Crashes section. Here is more information on </span><a href="https://api.count.ly/reference/i#crash-analytics" target="_self">Crash reporting parameters</a><span>&nbsp;that you may use in your SDK.</span>
 </p>
 <p>
-  In regard to crashes, all information, except the app version and OS, is optional,
-  but you should collect as much information about the device as possible to assure
-  each crash may be more identifiable with additional data. You should also provide
-  a way for users to log errors manually (for example, logging handled exceptions
-  which are not fatal).
+  <span>In regard to crashes, all information, except the app version and OS, is optional, but you should collect as much information about the device as possible to assure each crash may be more identifiable with additional data. You should also provide a way for users to log errors manually (for example, logging handled exceptions which are not fatal).</span>
 </p>
 <p>
-  Basically, for automatically captured errors, you should set the&nbsp;<strong>_nonfatal</strong>&nbsp;property
-  to false, whereas on user logged errors the&nbsp;<strong>_nonfatal</strong>&nbsp;property
-  should be true. You should also provide a way to set custom key/values to be
-  reported as segments with crash reports, either by providing global default segments
-  or setting separately for automatically tracked errors and user logged errors.
+  <span>Basically, for automatically captured errors, you should set the&nbsp;</span><strong>_nonfatal</strong><span>&nbsp;property to false, whereas on user logged errors the&nbsp;</span><strong>_nonfatal</strong><span>&nbsp;property should be true. You should also provide a way to set custom key/values to be reported as segments with crash reports, either by providing global default segments or setting separately for automatically tracked errors and user logged errors.</span>
 </p>
 <p>
-  Additionally, there should be a way for the SDK user to leave breadcrumbs that
-  would be submitted together with the crash reports. In order to collect breadcrumbs
-  as logs, create an empty array upon initialization and provide a method to add
-  breadcrumbs as strings into that array as elements for log. Also, in the event
-  of a crash, concatenate the array with new line symbols and submit under the&nbsp;<strong>_logs</strong>&nbsp;property.
-  There is no need to persistently save those logs on a device, as we would like
-  to have a clean log on every app start.
+  <span>Additionally, there should be a way for the SDK user to leave breadcrumbs that would be submitted together with the crash reports. In order to collect breadcrumbs as logs, create an empty array upon initialization and provide a method to add breadcrumbs as strings into that array as elements for log. Also, in the event of a crash, concatenate the array with new line symbols and submit under the&nbsp;</span><strong>_logs</strong><span>&nbsp;property. There is no need to persistently save those logs on a device, as we would like to have a clean log on every app start.</span>
 </p>
 <p>
-  The end API could look like this (but it should be totally based on the specific
-  platform error handling):
+  <span>The end API could look like this (but it should be totally based on the specific platform error handling):</span>
 </p>
 <ul>
   <li>Countly.enable_auto_error_reporting(map segments)</li>
@@ -582,8 +488,7 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <pre><code class="java">interface CrashFilterCallback {
     boolean filterCrash(CrashData crash);
-}</code></pre>
-<pre><code class="java">&nbsp;</code></pre>
+}</code><code class="java"></code></pre>
 <p>The crash data object must contain:</p>
 <ul>
   <li>Stack trace string that is concatenated with new lines.</li>
@@ -814,15 +719,10 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h1 id="01H821RTQ2TZF21BH3ZSR8XHNW">Device Metrics</h1>
 <p>
-  Metrics should only be reported together with the begin_session=1 parameter on
-  every session start. Collect as many metrics as possible or allow some values
-  to be provided by the user upon initialization. Possible metrics are listed in
-  the&nbsp;<a href="https://api.count.ly/reference/i#metrics">API Reference</a>.
+  <span>Metrics should only be reported together with the begin_session=1 parameter on every session start. Collect as many metrics as possible or allow some values to be provided by the user upon initialization. Possible metrics are listed in the&nbsp;</span><a href="https://api.count.ly/reference/i#metrics"><span>API Reference</span></a><span>.</span>
 </p>
 <p>
-  One thing that we should agree on is identifying platforms with the same string
-  overall SDKs, so here is the list of how we would suggest identifying platforms
-  for the server through the&nbsp;<strong>_os</strong>&nbsp;metric.
+  <span>One thing that we should agree on is identifying platforms with the same string overall SDKs, so here is the list of how we would suggest identifying platforms for the server through the&nbsp;</span><strong>_os</strong><span>&nbsp;metric.</span>
 </p>
 <ul>
   <li>
@@ -925,10 +825,7 @@ Countly.sharedInstance().init(config);</code></pre>
 </p>
 <h2 id="01H821RTQ23WZFKH76EXFHN456">Manual Session Tracking (WIP)</h2>
 <p>
-  Most of the official SDKs implement automatic session handling, meaning SDK users
-  don't need to separately bother with session calls. However, it is good practice
-  to provide a way to disable automatic session handling and allow SDK users to
-  make session calls themselves through methods such as:
+  <span>Most of the official SDKs implement automatic session handling, meaning SDK users don't need to separately bother with session calls. However, it is good practice to provide a way to disable automatic session handling and allow SDK users to make session calls themselves through methods such as:</span>
 </p>
 <ul>
   <li>Countly.begin_session()</li>
@@ -936,7 +833,7 @@ Countly.sharedInstance().init(config);</code></pre>
   <li>Countly.end_session(int seconds)</li>
 </ul>
 <p>
-  Here is the documentation showing how you may&nbsp;<a href="https://api.count.ly/reference/i#session">report sessions through our API</a>.
+  <span>Here is the documentation showing how you may&nbsp;</span><a href="https://api.count.ly/reference/i#session"><span>report sessions through our API</span></a><span>.</span>
 </p>
 <h2 id="01H821RTQ2EHYPRRZ9H9CPZH7T">Session API</h2>
 <p>
@@ -947,20 +844,20 @@ Countly.sharedInstance().init(config);</code></pre>
 <p>
   <span>The SDK should then send the </span><strong>begin_session=1</strong><span> param. This same request should also contain metrics parameters with the maximum metrics described on </span><a href="https://api.count.ly/reference/i"><span>/i page</span></a><span>, which may be collected from this SDK-specific environment/language. It might look something like:<br></span>
 </p>
-<pre>"&amp;begin_session=1&amp;metrics={...}"</pre>
+<pre><span>"&amp;begin_session=1&amp;metrics={...}"</span></pre>
 <h3 id="01H821RTQ37TYR08W9RYQWN3KQ">Session Update</h3>
 <p>
   <span>Each minute of the session should be extended by sending the <strong>session_duration</strong> param with the number of seconds that passed since the previous session request (begin_session or session_duration, whichever was last). It might look something like:</span>
 </p>
-<pre>"&amp;session_duration=60"</pre>
+<pre><span>"&amp;session_duration=60"</span></pre>
 <h3 id="01H821RTQ3MYH265462NQMHNBT">Ending a Session</h3>
 <p>
   <span>The SDK should send the </span><strong>end_session=1</strong><span> param, including the <strong>session_duration</strong> parameter with how many seconds passed since the last session request (begin_session or session_duration, whichever was last). It might look something like this:</span>
 </p>
-<pre>"&amp;end_session=1&amp;session_duration=15"</pre>
+<pre><span>"&amp;end_session=1&amp;session_duration=15"</span></pre>
 <h3 id="01H821RTQ3T4K0EMQWE7D4JWEZ">Sample Uses</h3>
 <p>
-  Here are a few example requests generated by different session lengths:
+  <span>Here are a few example requests generated by different session lengths:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -980,41 +877,31 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </div>
 <h2 id="01H821RTQ3ZVV6YVP2FHVE6DKE">Session Cooldown</h2>
 <p>
-  In some cases, it is difficult to know for sure if a session has ended, such
-  as with web analytics when a user is leaving the page, and whether they will
-  visit another page or not. This is why there is a small&nbsp;<em>cooldown</em>&nbsp;time
-  of 15 seconds. If the end_session request is sent and then the begin_session
-  request is sent within 15 seconds, it will be counted as the same session, and
-  the session duration will extend this session instead of applying it to the new
-  one.
+  <span>In some cases, it is difficult to know for sure if a session has ended, such as with web analytics when a user is leaving the page, and whether they will visit another page or not. This is why there is a small&nbsp;</span><em><span>cooldown</span></em><span>&nbsp;time of 15 seconds. If the end_session request is sent and then the begin_session request is sent within 15 seconds, it will be counted as the same session, and the session duration will extend this session instead of applying it to the new one.</span>
 </p>
 <p>
-  This makes it easier to call the end_session on each page unload without worrying
-  about starting a new session if the user visits another page.
+  <span>This makes it easier to call the end_session on each page unload without worrying about starting a new session if the user visits another page.</span>
 </p>
 <p>
-  If you don't need this behavior, simply pass the&nbsp;<strong>ignore_cooldown=true</strong>&nbsp;parameter
-  to all the session requests and the server will not extend the session. Rather,
-  it will always count it as a new session.
+  <span>If you don't need this behavior, simply pass the&nbsp;</span><strong>ignore_cooldown=true</strong><span>&nbsp;parameter to all the session requests and the server will not extend the session. Rather, it will always count it as a new session.</span>
 </p>
 <p>
-  The 15-second cooldown is a default value and may be configured on the server,
-  so don't rely on it being 15 seconds.
+  <span>The 15-second cooldown is a default value and may be configured on the server, so don't rely on it being 15 seconds.</span>
 </p>
 <h1 id="01H821RTQ3A76M4SDM49BZPAYH">View Tracking</h1>
 <p>
-  Reporting views would allow you to analyze which views/screens/pages were visited
-  by the app user as well as how long they spent on a specific view. If it is possible
-  to automatically determine when a user visits a specific view in your platform,
-  then you should provide an option to automatically track views. Also, it is important
-  to provide a way to track views manually.&nbsp;
+  <span>Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually.&nbsp;</span>
 </p>
-<h2 id="01H821RTQ3WPFFJBM5CP953JA6">View Structure</h2>
+<h2 id="01H821RTQ3WPFFJBM5CP953JA6">
+  <span>View Structure</span>
+</h2>
 <p>
-  View information is packaged into events. There are 2 kinds of events:&nbsp;
+  <span>View information is packaged into events. There are 2 kinds of events:&nbsp;</span>
 </p>
 <ul>
-  <li>an event to indicate that a view was entered</li>
+  <li>
+    <span>an event to indicate that a view was entered</span>
+  </li>
   <li>
     an event to send the duration of the view and indicate that the view was
     exited
@@ -1055,48 +942,33 @@ end_sesson=1&amp;session_duration=30</code></pre>
   A sample event for reporting the first view would look like this:
 </p>
 <pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"</span>,<br>            <span>"visit"</span>: <span>1</span>,<br>            <span>"start"</span>: <span>1,<br>            "_idv": "f0e8f5db5e5d9e7b9a45d3916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
-<p>Sample event for reporting this view's duration:</p>
+<p>
+  <span>Sample event for reporting this view's duration:</span>
+</p>
 <pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android",<br>            "_idv": "f0e8f5db5e17ad5ce5cf53916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
 <p>
   <span>Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
 </p>
-<h2 id="01H821RTQ35WBYP7P6KZKQSXJF">View Manual Reporting</h2>
+<h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
+  <span>View Manual Reporting</span>
+</h2>
 <p>
-  The following section will describe a sample implementation of manual views.
+  <span>The following section will describe a sample implementation of manual views.</span>
 </p>
 <p>
-  First, you will need to have 2 internal private properties as
-  <strong>string lastView</strong>&nbsp;and&nbsp;<strong>int lastViewStartTime</strong>.
-  Then, create an internal private method&nbsp;<strong>reportViewDuration</strong>,
-  which checks if <strong>lastView</strong>&nbsp;is null, and if not, it should
-  report the duration for&nbsp;<strong>lastView</strong> by calculating it based
-  off the current timestamp and&nbsp;<strong>lastViewStartTime</strong>.
+  <span>First, you will need to have 2 internal private properties as </span><strong>string lastView</strong><span>&nbsp;and&nbsp;</span><strong>int lastViewStartTime</strong><span>. Then, create an internal private method&nbsp;</span><strong>reportViewDuration</strong><span>, which checks if </span><strong>lastView</strong><span>&nbsp;is null, and if not, it should report the duration for&nbsp;</span><strong>lastView</strong><span> by calculating it based off the current timestamp and&nbsp;</span><strong>lastViewStartTime</strong><span>.</span>
 </p>
 <p>
-  After those steps, provide a&nbsp;<strong>reportView</strong>&nbsp;method to
-  set the view name as a string parameter inside this method call&nbsp;<strong>reportViewDuration</strong>
-  to report the duration of the previous view (if there is one). Then set the provided
-  view name as&nbsp;<strong>lastView&nbsp;</strong>and the current timestamp as&nbsp;<strong>lastViewStartTime</strong>.
-  Report the view as an event with the&nbsp;<strong>visit</strong>&nbsp;property
-  and&nbsp;<strong>segment</strong>&nbsp;as your platform name. Additionally, if
-  this is the first view a user visits in this app session, then also report the&nbsp;<strong>start</strong>&nbsp;property
-  as true. You will also need to call&nbsp;<strong>reportViewDuration</strong>
-  with the app exit event.
+  <span>After those steps, provide a&nbsp;</span><strong>reportView</strong><span>&nbsp;method to set the view name as a string parameter inside this method call&nbsp;</span><strong>reportViewDuration</strong><span> to report the duration of the previous view (if there is one). Then set the provided view name as&nbsp;</span><strong>lastView&nbsp;</strong><span>and the current timestamp as&nbsp;</span><strong>lastViewStartTime</strong><span>. Report the view as an event with the&nbsp;</span><strong>visit</strong><span>&nbsp;property and&nbsp;</span><strong>segment</strong><span>&nbsp;as your platform name. Additionally, if this is the first view a user visits in this app session, then also report the&nbsp;</span><strong>start</strong><span>&nbsp;property as true. You will also need to call&nbsp;</span><strong>reportViewDuration</strong><span> with the app exit event.</span>
 </p>
 <p>
-  After manual view tracking has been implemented, you may also implement automatic
-  view tracking (if it is available on your platform). To implement automatic view
-  tracking, you will need to catch your platform's specific event when the view
-  is changed and call your implemented&nbsp;<strong>reportView</strong>&nbsp;method
-  with the view name.
+  <span>After manual view tracking has been implemented, you may also implement automatic view tracking (if it is available on your platform). To implement automatic view tracking, you will need to catch your platform's specific event when the view is changed and call your implemented&nbsp;</span><strong>reportView</strong><span>&nbsp;method with the view name.</span>
 </p>
 <p>
-  Additionally, you will need to implement enabling and disabling automatic view
-  tracking, as well as status checking, despite whether automatic view tracking
-  is currently enabled or not.
+  <span>Additionally, you will need to implement enabling and disabling automatic view tracking, as well as status checking, despite whether automatic view tracking is currently enabled or not.</span>
 </p>
 <p>
-  The pseudo-code to implement view tracking could appear as follows:
+  <span>The pseudo-code to implement view tracking could appear as follows:</span>
 </p>
 <pre><code class="java">class Countly {
     String lastView = null;
@@ -1137,8 +1009,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
     }
 }</code></pre>
 <p>
-  Additionally, if your platform supports actions on view, such as clicks, you
-  may report them as well. Here is more information on&nbsp;<a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a>.
+  <span>Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a><span>.</span>
 </p>
 <h1 id="h_01GYC4S9JM2F2WDDFSBEF2TBJ0">Device ID Management</h1>
 <p>
@@ -1163,17 +1034,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <p>
   If another value was already acquired before, that one should be used unless
-  a "clear stored device ID" flag is used.
+  a "clear stored device ID" flag is used.<span></span>
 </p>
 <p>
   When acquiring a device ID, the SDK should take note of the source of the ID.
   It should know if it is SDK generated or provided by the developer.
 </p>
-<h2 id="h_01GYC5WK7X17JTDEJEWMYFTYSA">Device ID State Management During Init</h2>
+<h2 id="h_01GYC5WK7X17JTDEJEWMYFTYSA">
+  <span>Device ID State Management During Init</span>
+</h2>
 <p>
-  There are different state combinations possible during init. This table covers
-  all possible combinations and should be looked as a "truth table" of how the
-  SDK should function.
+  <span>There are different state combinations possible during init. This table covers all possible combinations and should be looked as a "truth table" of how the SDK should function.</span>
 </p>
 <table style="border-collapse: collapse; width: 96.6123%; height: 582px;" border="1">
   <tbody>
@@ -1213,7 +1084,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
@@ -1233,7 +1106,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-color-green110">⬤</span>
@@ -1253,7 +1128,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9116%;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
@@ -1273,7 +1150,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
@@ -1293,7 +1172,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="height: 22px; width: 19.9116%;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
@@ -1313,7 +1194,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
@@ -1333,7 +1216,9 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small">-</span>
@@ -1353,13 +1238,17 @@ end_sesson=1&amp;session_duration=30</code></pre>
     </tr>
     <tr style="height: 22px;">
       <td class="wysiwyg-text-align-center" style="width: 19.9116%; height: 22px;" colspan="3">
-        <span> <span class="wysiwyg-font-size-small">First Init</span> </span>
+        <font size="2">
+          <span class="wysiwyg-font-size-small">First Init</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.5207%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.6248%; height: 22px;">
-        <span> <span class="wysiwyg-color-green110">⬤</span> </span>
+        <font size="2">
+          <span class="wysiwyg-color-green110">⬤</span>
+        </font>
       </td>
       <td class="wysiwyg-text-align-center" style="width: 10.0294%; height: 22px;">
         <span class="wysiwyg-font-size-medium wysiwyg-font-size-small"><span class="wysiwyg-color-green110">⬤</span></span>
@@ -1741,58 +1630,54 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </table>
 <h2 id="01H821RTQ48YFVRR5TMTJTZ3R0">Changing Device ID</h2>
 <p>
-  In addition to initialization, developers may need to change the device ID while
-  the app is running. For example, when an end-user signs out and another end-user
-  signs in. In this case, the Countly SDK needs to provide a way to change the
-  device ID at any point while the app is running.&nbsp;
+  <span>In addition to initialization, developers may need to change the device ID while the app is running. For example, when an end-user signs out and another end-user signs in. In this case, the Countly SDK needs to provide a way to change the device ID at any point while the app is running. </span>
 </p>
 <p>
-  This change can be done with either with a server side merge or without it.
+  <span>This change can be done with either with a server side merge or without it.</span>
 </p>
 <p>
   <span><strong>Note:</strong>&nbsp;If a new and current device ID is exactly the same, then the Countly SDK must ignore this change call.</span>
 </p>
 <p>
-  When changing device ID, it has to be done to a valid value. Making the SDK regenerate
-  a new device ID should not be possible by providing an invalid value. If an invalid
-  value (empty or null) is provided, the request is ignored and it prints a warning.
+  <span>When changing device ID, it has to be done to a valid value. Making the SDK regenerate a new device ID should not be possible by providing an invalid value. If an invalid value (empty or null) is provided, the request is ignored and it prints a warning.</span>
 </p>
-<h3 id="01H821RTQ4XQDC3C24T8G7AAZX">Changing ID Without Merging</h3>
+<h3 id="01H821RTQ4XQDC3C24T8G7AAZX">
+  <span>Changing ID Without Merging</span>
+</h3>
 <p>
-  It should replace the internally used device ID with the new one, and use it
-  for all new requests, persistently storing it for further sessions. The Countly
-  SDK should follow these steps:
+  <span>It should replace the internally used device ID with the new one, and use it for all new requests, persistently storing it for further sessions. The Countly SDK should follow these steps:</span>
 </p>
 <ul>
   <li>
-    <strong>Add currently recorded, but not queued, events to the request queue</strong>
+    <strong><span>Add currently recorded, but not queued, events to the request queue</span></strong>
   </li>
   <li>End the current session</li>
   <li>Clear all started timed-events</li>
   <li>
-    Change the device ID and store it persistently for further session use
+    <span>Change the device ID and store it persistently for further session use</span>
   </li>
-  <li>Begin a new session with the new device ID</li>
+  <li>
+    <span>Begin a new session with the new device ID</span><span></span><span></span>
+  </li>
 </ul>
-<h3 id="01H821RTQ4RPFFQJ9YFTNCNNQ1">Changing ID With Merging</h3>
+<h3 id="01H821RTQ4RPFFQJ9YFTNCNNQ1">
+  <span>Changing ID With Merging</span>
+</h3>
 <p>
-  Developers may need to change a device ID to their own internal user ID and merge
-  the server-side data previously generated by a user while he/she was unauthenticated.
-  It is similar to "Changing ID without merging", but the Countly SDK will need
-  to merge the data on the server as well. In order to make a proper transition,
-  the Countly SDK should follow these steps:
+  <span>Developers may need to change a device ID to their own internal user ID and merge the server-side data previously generated by a user while he/she was unauthenticated. It is similar to "Changing ID without merging", but the Countly SDK will need to merge the data on the server as well. In order to make a proper transition, the Countly SDK should follow these steps:</span>
 </p>
 <ul>
-  <li>Temporarily keep the current device ID</li>
   <li>
-    Change the device ID and store it persistently for further session use
+    <span>Temporarily keep the current device ID</span>
   </li>
   <li>
-    Use the&nbsp;<a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a>&nbsp;API
-    with the temporarily kept, old device ID to merge the data on the server
+    <span>Change the device ID and store it persistently for further session use</span>
   </li>
   <li>
-    No need to end and restart the current session or clear started timed-events
+    <span>Use the&nbsp;</span><a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a><span>&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
+  </li>
+  <li>
+    <span>No need to end and restart the current session or clear started timed-events</span>
   </li>
 </ul>
 <h2 id="01H821RTQ4Z7ZBN3SE64VW17GM">Retrieving the Current Device ID and Type</h2>
@@ -1820,15 +1705,10 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <h1 id="01H821RTQ4N0QMR49CM619Z3ZE">Push Notifications</h1>
 <p>
-  Push notifications are platform-specific and not all platforms have them. However,
-  if your platform does, you would need to register your device to the push notification
-  server and send the token to the Countly server. For more information, please
-  click&nbsp;<a href="https://api.count.ly/reference/i#push-notifications" target="_self">here</a>&nbsp;for
-  API calls.
+  <span>Push notifications are platform-specific and not all platforms have them. However, if your platform does, you would need to register your device to the push notification server and send the token to the Countly server. For more information, please click&nbsp;</span><a href="https://api.count.ly/reference/i#push-notifications" target="_self">here</a><span>&nbsp;for API calls.</span>
 </p>
 <p>
-  From the SDK API point of view, there could be one simple function to enable
-  push notifications for the Countly server:
+  <span>From the SDK API point of view, there could be one simple function to enable push notifications for the Countly server:</span>
 </p>
 <pre><code class="text">Countly.enable_push()</code></pre>
 <h2 id="01H821RTQ5E9ADZZBRH6FWGQNX">Actioned Events</h2>
@@ -1849,20 +1729,19 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <span>To increase platform security and limit exploits, google has enforced additional requirements for push notification that require additional checks for push intents. More info can be found <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.</span>
 </p>
 <p>
-  These additional checks should be optional and there should be a way to enable
-  the during init/push setup. Something like this:
+  <span>These additional checks should be optional and there should be a way to enable the during init/push setup. Something like this:</span>
 </p>
-<pre>CountlyPush.useAdditionalIntentRedirectionChecks = true;<br>&nbsp;</pre>
+<pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;<br><span></span></pre>
 <p>
   If these are enabled then the SDK will enforce additional security checks.
 </p>
 <p>
   As additional parameters there would a one or multiple allow lists to provide
-  details of what kind of packages or activities are allowed. There should be a
-  way to enable the during init/push setup.
+  details of what kind of packages or activities are allowed.
+  <span>There should be a way to enable the during init/push setup.</span>
 </p>
 <p>Providing that information could look something like this:</p>
-<pre>List&lt;String&gt; allowedClassNames = new ArrayList&lt;&gt;();<br>allowedClassNames.add("MainActivity");<br>List&lt;String&gt; allowedPackageNames = new ArrayList&lt;&gt;();<br>allowedPackageNames.add(getPackageName());<br><br>CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this, Countly.CountlyMessagingMode.PRODUCTION)<br>.setAllowedIntentClassNames(allowedClassNames)<br>.setAllowedIntentPackageNames(allowedPackageNames);<br>CountlyPush.init(countlyConfigPush);</pre>
+<pre><span>List</span>&lt;<span>String</span>&gt; <span>allowedClassNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedClassNames</span>.add(<span>"MainActivity"</span>);<br><span>List</span>&lt;<span>String</span>&gt; <span>allowedPackageNames </span>= <span>new </span>ArrayList&lt;&gt;();<br><span>allowedPackageNames</span>.add(getPackageName());<br><br><span>CountlyConfigPush countlyConfigPush </span>= <span>new </span>CountlyConfigPush(<span>this</span>, <span>Countly</span>.<span>CountlyMessagingMode</span>.<span>PRODUCTION</span>)<br>.setAllowedIntentClassNames(<span>allowedClassNames</span>)<br>.setAllowedIntentPackageNames(<span>allowedPackageNames</span>);<br><span>CountlyPush</span>.<span>init</span>(<span>countlyConfigPush</span>);</pre>
 <h1 id="01H821RTQ54ZMXGFNVRVMWY99P">Recording Location</h1>
 <p>
   SDKs should be able to send location information to the server. This information
@@ -2124,15 +2003,15 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For config method <strong>enableRemoteConfigAutomaticTriggers</strong>
 </p>
-<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()</strong><br><br><strong>// Logic</strong><br><strong>&nbsp;</strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cache cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cache cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
+<pre>CountlyConfig<strong>.enableRemoteConfigAutomaticTriggers()<br><br>// Logic<br><br></strong>Enables automatic download of the remote config values (in a variable)<br>This will trigger remote config values to be downloaded in those situations:<br>- After a device id change, values first cache cleared then downloaded again<br>- After exiting from temporary device id mode, values are downloaded<br>- After enrolling into a variant, values are cache cleared and downloaded again<br>- After remote config consent is given after init, values are downloaded<br>- After init is finished if we are not in the temporary id mode, values are downloaded</pre>
 <p>
   For config method <strong>enableRemoteConfigValueCaching</strong>
 </p>
-<pre>CountlyConfig<strong>.enableRemoteConfigValueCaching()</strong><br><br><strong>// Logic</strong><br><strong>&nbsp;</strong>Enables caching of remote config values. When this is enabled all remote-config values<br>are not deleted.</pre>
+<pre>CountlyConfig<strong>.enableRemoteConfigValueCaching()<br><br>// Logic<br><br></strong>Enables caching of remote config values. When this is enabled all remote-config values<br>are not deleted.</pre>
 <p>
   For config method <strong>remoteConfigRegisterGlobalCallback</strong>
 </p>
-<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong>Value is not nullable, when null value is given it warns<br><br><strong>// Logic</strong>Notifies the developer about remote config values update process. <br>- If any error is encountered while downloading, the error is returned<br>- On a successful download, downloaded values are returned</pre>
+<pre>CountlyConfig.<strong>remoteConfigRegisterGlobalCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values<br></strong>Value is not nullable, when null value is given it warns<br><br><strong>// Logic<br></strong>Notifies the developer about remote config values update process. <br>- If any error is encountered while downloading, the error is returned<br>- On a successful download, downloaded values are returned</pre>
 <p>
   The callback's signature is <strong>RCDownloadCallback. </strong>And its callback
   method is
@@ -2145,35 +2024,35 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>downloadAllKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic</strong>Before preparing the request, the function will do some checks<br>- If no device id exists, the call is omitted. Given and registered callbacks are notified.<br>- If temporary device id enabled or request queue is containing temporary id requests, <br>  Given and registered callbacks are notified.<br><br>After those checks, SDK will prepare the fetch request using the device metrics.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given and registered <br>  callbacks are notified.<br><br>The function will parse the response and notify the given and registered callbacks.<br>And the remote config store is updated. We clear all values. If remote config value caching<br>is enabled we cache them rather than clearing them.</pre>
+<pre>CountlyInstance.<strong>downloadAllKeys</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>Before preparing the request, the function will do some checks<br>- If no device id exists, the call is omitted. Given and registered callbacks are notified.<br>- If temporary device id enabled or request queue is containing temporary id requests, <br>  Given and registered callbacks are notified.<br><br>After those checks, SDK will prepare the fetch request using the device metrics.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given and registered <br>  callbacks are notified.<br><br>The function will parse the response and notify the given and registered callbacks.<br>And the remote config store is updated. We clear all values. If remote config value caching<br>is enabled we cache them rather than clearing them.</pre>
 <p>
   For instance method <strong>downloadOmittingKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic</strong>- If keysToOmit is not empty, a parameter will be added to omit some keys to the remote <br>config fetch request. The server will return all values except omitted ones.<br>- If the keysToOmit is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
+<pre>CountlyInstance.<strong>downloadOmittingKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToOmit is not empty, a parameter will be added to omit some keys to the remote <br>config fetch request. The server will return all values except omitted ones.<br>- If the keysToOmit is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
 <p>
   For instance method <strong>downloadSpecificKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic</strong>- If keysToInclude is not empty, a parameter will be added to include some keys to the remote <br>config fetch request. Server will return only specified values.<br>- If the keysToInclude is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
+<pre>CountlyInstance.<strong>downloadSpecificKeys</strong>(keysToInclude: Array&lt;String&gt;, callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>All nullable, only non null and not empty values are accepted<br>Non valid values are warned and ignored<br><br><strong>// Logic<br></strong>- If keysToInclude is not empty, a parameter will be added to include some keys to the remote <br>config fetch request. Server will return only specified values.<br>- If the keysToInclude is empty, this function will behave like downloading all values.<br><br>We only update the keys in the storage that are changed.</pre>
 <p>
   For instance method <strong>getValues</strong>
 </p>
-<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getValues</strong>()<br><br><strong>// Logic</strong>This will get all saved remote config values from the storage</pre>
+<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getValues</strong>()<br><br><strong>// Logic<br></strong>This will get all saved remote config values from the storage</pre>
 <p>
   For instance method <strong>getValue</strong>
 </p>
-<pre>RCData CountlyInstance.<strong>getValue</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic</strong>This will get the remote config value of the given key if it exists</pre>
+<pre>RCData CountlyInstance.<strong>getValue</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists</pre>
 <p>
   For instance method <strong>registerDownloadCallback</strong>
 </p>
-<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic</strong>This will add the given callback to the internal callback list</pre>
+<pre>CountlyInstance.<strong>registerDownloadCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will add the given callback to the internal callback list</pre>
 <p>
   For instance method <strong>removeDownloadCallback</strong>
 </p>
-<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic</strong>This will remove given callback from the internal callback list</pre>
+<pre>CountlyInstance.<strong>removeDownloadCallback</strong>(callback: RCDownloadCallback)<br><br><strong>// Valid values</strong><br>Only non null callback is accepted<br><br><strong>// Logic<br></strong>This will remove given callback from the internal callback list</pre>
 <p>
   For instance method <strong>clearAll</strong>
 </p>
-<pre>CountlyInstance.<strong>clearAll</strong>()<br><br><strong>// Logic</strong>This will clear all remote config storage; caching is not important here</pre>
+<pre>CountlyInstance.<strong>clearAll</strong>()<br><br><strong>// Logic<br></strong>This will clear all remote config storage; caching is not important here</pre>
 <h4 id="h_01JCD7PS7J57JCR69A9CDTY7F9">Networking and Params</h4>
 <p>Remote config fetch request might consist of 4 parameters:</p>
 <pre>keys: json array of specific keys<br>omit_keys: json array of omitted keys<br>method: this is always "rc"<br>metrics: this is session metrics and they are added if session consent is given</pre>
@@ -2188,7 +2067,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   Remote config fetch requests are <strong>directly</strong> sent to the server,
   they will not be added to the request queue.
 </p>
-<pre>// <strong>Common way to send all</strong>serverURL + /i? +<br>method=rc +<br>&amp;keys=["url", "limit"] +<br>&amp;omit_keys=["money"] +<br>&amp;metrics=session metrics + // if session consent is given<br>...remaining common params<br><br>// <strong>No key parameters only required ones</strong>serverURL + /i? +<br>method=rc +<br>&amp;metrics=session metrics + // if session consent is given<br>...remaining common params</pre>
+<pre>// <strong>Common way to send all<br></strong>serverURL + /i? +<br>method=rc +<br>&amp;keys=["url", "limit"] +<br>&amp;omit_keys=["money"] +<br>&amp;metrics=session metrics + // if session consent is given<br>...remaining common params<br><br>// <strong>No key parameters only required ones<br></strong>serverURL + /i? +<br>method=rc +<br>&amp;metrics=session metrics + // if session consent is given<br>...remaining common params</pre>
 <p>Response would look like this:</p>
 <pre>{
   "key": "value",
@@ -2266,40 +2145,39 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For config method <strong>enrollABonRCDownload</strong>
 </p>
-<pre><strong>.enrollABonRCDownload()</strong><br><br><strong>// Logic</strong><br><strong>&nbsp;</strong><br>&nbsp;</pre>
-<pre><code>&nbsp;</code></pre>
+<pre>CountlyConfig<strong>.enrollABonRCDownload()<br><br>// Logic<br><br></strong>Enables automatic enrolling to the remote config keys while fetching.<br>This will trigger adding a parameter to the remote config fetch request<code></code></pre>
 <p>
   For instance method <strong>getAllValuesAndEnroll</strong>
 </p>
-<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getAllValuesAndEnroll</strong>()<br><br><strong>// Logic</strong>This will get all saved remote config values from the storage and<br>will call the enrollIntoABTestsForKeys method.</pre>
+<pre>Map&lt;String, RCData&gt; CountlyInstance.<strong>getAllValuesAndEnroll</strong>()<br><br><strong>// Logic<br></strong>This will get all saved remote config values from the storage and<br>will call the enrollIntoABTestsForKeys method.</pre>
 <p>
   For instance method <strong>getValueAndEnroll</strong>
 </p>
-<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic</strong>This will get the remote config value of the given key if it exists and<br>will call the enrollIntoABTestsForKeys method for the specified key if the key exist.</pre>
+<pre>RCData CountlyInstance.<strong>getValueAndEnroll</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>This will get the remote config value of the given key if it exists and<br>will call the enrollIntoABTestsForKeys method for the specified key if the key exist.</pre>
 <p>
   For instance method <strong>enrollIntoABTestsForKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys: Array&lt;String&gt;)<br><br><strong>// Valid values</strong><br>Only non null and not empty keys are accepted<br>Non valid keys are warned and ignored<br><br><strong>// Logic</strong>This call will enroll user to the AB tests for the specified keys.<br>- If keys are null or empty call will be omitted.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
+<pre>CountlyInstance.<strong>enrollIntoABTestsForKeys</strong>(keys: Array&lt;String&gt;)<br><br><strong>// Valid values</strong><br>Only non null and not empty keys are accepted<br>Non valid keys are warned and ignored<br><br><strong>// Logic<br></strong>This call will enroll user to the AB tests for the specified keys.<br>- If keys are null or empty call will be omitted.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
 <p>
   For instance method <strong>exitABTestsForKeys</strong>
 </p>
-<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys: Array&lt;String&gt;)<br><br><strong>// Valid values</strong><br>Keys could be nullable<br><br><strong>// Logic</strong>This call will exit user from the AB tests for the specified keys.<br>- If keys are null or keys are empty, it means exiting from all of AB tests.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
+<pre>CountlyInstance.<strong>exitABTestsForKeys</strong>(keys: Array&lt;String&gt;)<br><br><strong>// Valid values</strong><br>Keys could be nullable<br><br><strong>// Logic<br></strong>This call will exit user from the AB tests for the specified keys.<br>- If keys are null or keys are empty, it means exiting from all of AB tests.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted. </pre>
 <p>
   For instance method <strong>testingGetAllVariants</strong>
 </p>
-<pre>Map&lt;String, String[]&gt; CountlyInstance.<strong>testingGetAllVariants</strong>()<br><br><strong>// Logic</strong>Before using this function, variants must be downloaded.<br>This function will return all variants.</pre>
+<pre>Map&lt;String, String[]&gt; CountlyInstance.<strong>testingGetAllVariants</strong>()<br><br><strong>// Logic<br></strong>Before using this function, variants must be downloaded.<br>This function will return all variants.</pre>
 <p>
   For instance method <strong>testingGetAllExperimentInfo</strong>
 </p>
-<pre>Map&lt;String, ExperimentInfo&gt; CountlyInstance.<strong>testingGetAllExperimentInfo</strong>()<br><br><strong>// Logic</strong>Before using this function, experiment informations must be downloaded.<br>This function will return all experiment informations.<br><br>ExperimentInfo will be mentioned in the Storage section.</pre>
+<pre>Map&lt;String, ExperimentInfo&gt; CountlyInstance.<strong>testingGetAllExperimentInfo</strong>()<br><br><strong>// Logic<br></strong>Before using this function, experiment informations must be downloaded.<br>This function will return all experiment informations.<br><br>ExperimentInfo will be mentioned in the Storage section.</pre>
 <p>
   For instance method <strong>testingGetVariantsForKey</strong>
 </p>
-<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic</strong>Before using this function, variants must be downloaded.<br>This function will return the variants for the given key.<br>- If no variants found for the specified key, null is returned.</pre>
+<pre>String[] CountlyInstance.<strong>testingGetVariantsForKey</strong>(key: String)<br><br><strong>// Valid values</strong><br>Only non null and not empty key is accepted<br>If non valid key is given, the call will be omitted.<br><br><strong>// Logic<br></strong>Before using this function, variants must be downloaded.<br>This function will return the variants for the given key.<br>- If no variants found for the specified key, null is returned.</pre>
 <p>
   For instance method <strong>testingDownloadVariantInformation</strong>
 </p>
-<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic</strong>This function will download variants from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the variant fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all variant with the fresh downloaded values.</pre>
+<pre>CountlyInstance.<strong>testingDownloadVariantInformation</strong>(completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download variants from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the variant fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all variant with the fresh downloaded values.</pre>
 <p>
   The completionCallback's signature is <strong>RCVariantCallback. </strong>And
   its callback method is
@@ -2312,11 +2190,11 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <p>
   For instance method <strong>testingDownloadExperimentInformation</strong>
 </p>
-<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic</strong>This function will download experiments from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the experiment fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all experiments with the fresh downloaded values.</pre>
+<pre>CountlyInstance.<strong>testingDownloadExperimentInformation</strong>(completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>Callback is nullable<br><br><strong>// Logic<br></strong>This function will download experiments from the server.<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the experiment fetch request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>The function will parse the response and replace all experiments with the fresh downloaded values.</pre>
 <p>
   For instance method <strong>testingEnrollIntoVariant</strong>
 </p>
-<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName: String, variantName: String, completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>keyName and variantName are not nullable and not empty. <br>completionCallback is nullable.<br>If non valid values are given they are warned and call will be omitted.<br><br><strong>// Logic</strong>This function do some checks before enrolling into specified variant<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the enrolling into variant request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>If the request is successful, the function will trigger downloading remote config values<br>with clearing all remote config values from the storage. And the callback is notified with<br>a Success.</pre>
+<pre>CountlyInstance.<strong>testingEnrollIntoVariant</strong>(keyName: String, variantName: String, completionCallback: RCVariantCallback)<br><br><strong>// Valid values</strong><br>keyName and variantName are not nullable and not empty. <br>completionCallback is nullable.<br>If non valid values are given they are warned and call will be omitted.<br><br><strong>// Logic<br></strong>This function do some checks before enrolling into specified variant<br>- If temporary device id enabled or request queue is containing temporary id requests or <br>device id is not reachable at the moment function is called, call will be omitted and callback<br>is notified.<br><br>After those checks, SDK will prepare the enrolling into variant request.<br>Then it will send the request immediately without adding it to the request queue.<br>- If any error encountered while request sent or retrieved, given callback is notified.<br><br>If the request is successful, the function will trigger downloading remote config values<br>with clearing all remote config values from the storage. And the callback is notified with<br>a Success.</pre>
 <h4 id="h_01JCDT069M3VGXFQTBBR9XDPR0">Networking and Params</h4>
 <p>
   If the configuration <strong>enrollABonRCDownload</strong> is called the SDK
@@ -2391,8 +2269,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   }
 ]</code></pre>
 <p>Here is a casual enrolling into a variant request:</p>
-<pre><strong>an enrolling into a variant request</strong><br><br><br><br><br>&nbsp;</pre>
-<pre><code class="json">&nbsp;</code></pre>
+<pre>// <strong>an enrolling into a variant request</strong><br>serverURL + /i? +<br>method=ab_enroll_variant +<br>&amp;key=keyName +<br>&amp;variant=variantName +<br>...remaining common params<code class="json"></code></pre>
 <h4 id="h_01JCDT069MRV9XMBV28T1W74H8">Storage</h4>
 <p>
   AB Testing is not stored persistently. Variants and experiment informations are
@@ -2415,13 +2292,7 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 <h1 id="01H821RTQ689TVKC3WBTZ610X7">User Feedback</h1>
 <h2 id="01H821RTQ6WTDZPVQ9GDX3M5QR">Star Rating</h2>
 <p>
-  If possible, the SDK should provide a simple 1 to 5 star-rating interface for
-  receiving user feedback about the application. The interface will have a simple
-  message explaining its purpose, a 1 through 5-star meter for receiving users’
-  ratings, and a dismiss button in case the user does not wish to give a rating.
-  This star rating has nothing to do with App Store/Google Play Store ratings and
-  reviews. It is just for getting brief feedback from users to be displayed on
-  the Countly dashboard.
+  <span>If possible, the SDK should provide a simple 1 to 5 star-rating interface for receiving user feedback about the application. The interface will have a simple message explaining its purpose, a 1 through 5-star meter for receiving users’ ratings, and a dismiss button in case the user does not wish to give a rating. This star rating has nothing to do with App Store/Google Play Store ratings and reviews. It is just for getting brief feedback from users to be displayed on the Countly dashboard.</span>
 </p>
 <div class="img-container">
   <img src="https://count.ly/images/guide/102515c-star-rating2x.png">
@@ -2441,18 +2312,16 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   </li>
 </ul>
 <p>
-  If a user dismisses the star-rating dialog without giving a rating, an event
-  will not be recorded. The star-rating dialog's message and dismiss button title
-  may be customized using the properties on the initial configuration object.
+  <span>If a user dismisses the star-rating dialog without giving a rating, an event will not be recorded. The star-rating dialog's message and dismiss button title may be customized using the properties on the initial configuration object.</span>
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingMessage = "Custom Message";
 CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title";</code></pre>
 <p>
-  If not explicitly set, the message should read, "How would you rate the app?"
-  and the dismiss button title will read, "Dismiss" or one of the corresponding
-  localized versions depending on the device’s language.
+  <span>If not explicitly set, the message should read, "How would you rate the app?" and the dismiss button title will read, "Dismiss" or one of the corresponding localized versions depending on the device’s language.</span>
 </p>
-<p>The star-rating dialog may be displayed in 2 ways:</p>
+<p>
+  <span>The star-rating dialog may be displayed in 2 ways:</span>
+</p>
 <p>
   <strong>1. Manually by the Developer</strong>
 </p>
@@ -2461,22 +2330,17 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <pre><code class="java">Countly.askForStarRating(callback);</code></pre>
 <p>
-  There is no limit on how many times the star-rating dialog may be manually displayed.
+  <span>There is no limit on how many times the star-rating dialog may be manually displayed.</span>
 </p>
 <p>
   <strong>2. Automatically, Depending on the Session Count</strong>
 </p>
 <p>
-  The star-rating dialog will be displayed when the application's session count
-  reaches a specified limit, once for each new version of the application. The
-  SDK should keep track of the session count for each app version locally and compare
-  it to the specified count on each app launch. This session count limit may be
-  specified upon initial configuration.
+  <span>The star-rating dialog will be displayed when the application's session count reaches a specified limit, once for each new version of the application. The SDK should keep track of the session count for each app version locally and compare it to the specified count on each app launch. This session count limit may be specified upon initial configuration.</span>
 </p>
 <pre><code class="java">CountlyConfiguration.starRatingSessionCount = 5;</code></pre>
 <p>
-  Once the star-rating dialog has been displayed automatically, it will not be
-  displayed again unless there is a new app version.
+  <span>Once the star-rating dialog has been displayed automatically, it will not be displayed again unless there is a new app version.</span>
 </p>
 <p>
   Upon initial configuration, there should be an optional flag called
@@ -2493,7 +2357,7 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>
   To present such a widget, you would have the following call:
 </p>
-<pre>presentRatingWidgetWithID(String widgetId, String closeButtonText, RatingWidgetCallback callback)</pre>
+<pre><span>presentRatingWidgetWithID</span>(S<span>tring </span>widgetId, <span>String </span>closeButtonText, <span>RatingWidgetCallback </span>callback)</pre>
 <p>
   It takes the ID of the widget, the custom close button text, and a callback.
 </p>
@@ -2504,30 +2368,37 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>They would use the following call:</p>
 <p>
-  That function should be called "recordRatingWidgetWithID" and it should have
-  the following parameters:<br>
-  "(String widgetId, int rating, String email, String comment, boolean userCanBeContacted)"
+  <span>That function should be called "recordRatingWidgetWithID" and it should have the following parameters:</span><br>
+  <span>"(String widgetId, int rating, String email, String comment, boolean userCanBeContacted)"</span>
 </p>
 <p>
-  "recordRatingWidgetWithID" should record an event with the internal key "[CLY]_star_rating".
-  The event should have the following segmentation:
+  <span>"recordRatingWidgetWithID" should record an event with the internal key "[CLY]_star_rating". The event should have the following segmentation:</span>
 </p>
 <ul>
-  <li>"platform" - current platform</li>
-  <li>"app_version" - current app version</li>
   <li>
-    "rating" - provided rating result. In the range from 1 to 5. (Mandatory)
+    <span>"platform" - current platform</span>
   </li>
-  <li>"widget_id" - provided widget ID. (Mandatory)</li>
-  <li>"contactMe" - provided value.</li>
-  <li>"email" - provided value.</li>
-  <li>"comment" - provided value.</li>
+  <li>
+    <span>"app_version" - current app version</span>
+  </li>
+  <li>
+    <span>"rating" - provided rating result. In the range from 1 to 5. (Mandatory)</span>
+  </li>
+  <li>
+    <span>"widget_id" - provided widget ID. (Mandatory)</span>
+  </li>
+  <li>
+    <span>"contactMe" - provided value.</span>
+  </li>
+  <li>
+    "email" - <span>provided value.</span>
+  </li>
+  <li>
+    "comment" - <span>provided value.</span>
+  </li>
 </ul>
 <p>
-  Basic filtering (type checks) on the provided values should be performed. Mandatory
-  values must be provided. Invalid widget ID's (non string or empty values) should
-  not be accepted. Rating value should be modified, if necessary, so that it lies
-  within the acceptable range of [1,5].
+  <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].</span>
 </p>
 <h2 id="01H821RTQ6567XRJNZ6A13JYVE">Feedback Widgets</h2>
 <p>
@@ -2566,18 +2437,25 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 <p>Feedback widgets can be used through three methods:</p>
 <ul>
   <li>
-    <strong>Automatic Server Rendered Widget: </strong>The server rendered widget
-    is inserted in the web page or the UI, using a WebView, by the SDK.
+    <p>
+      <strong>Automatic Server Rendered Widget: </strong>The server rendered
+      widget is inserted in the web page or the UI, using a WebView, by the
+      SDK.
+    </p>
   </li>
   <li>
-    <strong>Manually Rendered and Reported Widget: </strong>The client app builds
-    a custom UI, and the results are reported to the SDK manually. Used in cases
-    where the developer wants to use a custom UI.
+    <p>
+      <strong>Manually Rendered and Reported Widget: </strong>The client app
+      builds a custom UI, and the results are reported to the SDK manually.
+      Used in cases where the developer wants to use a custom UI.
+    </p>
   </li>
   <li>
-    <strong>Server Rendered Widget in a Custom WebView: </strong>The SDK builds
-    a required URL to be used in a WebView. This would then be used in the WebView
-    of the client app of choice.
+    <p>
+      <strong>Server Rendered Widget in a Custom WebView: </strong>The SDK
+      builds a required URL to be used in a WebView. This would then be used
+      in the WebView of the client app of choice.
+    </p>
   </li>
 </ul>
 <h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Retrieving the List of Eligible Widgets</h3>
@@ -2901,28 +2779,20 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>There are no Init time config options for this feature.</p>
 <h1 id="01H821RTQ6JDWE5B09F33H03WY">User Profiles</h1>
 <p>
-  Your SDK does not need to have a platform-specific way to receive user data if
-  it isn’t possible on your platform. However, you will need to provide a way for
-  a developer to pass this information to the SDK and send it to the Countly server.
+  <span>Your SDK does not need to have a platform-specific way to receive user data if it isn’t possible on your platform. However, you will need to provide a way for a developer to pass this information to the SDK and send it to the Countly server.</span>
 </p>
 <p>
-  To do so, you may create a method to accept an object with key/regarding the
-  user, which are
-  <a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a>,
-  or provide a parameterized method to pass the information regarding the user.
-  Note that all fields are optional.
+  <span>To do so, you may create a method to accept an object with key/regarding the user, which are </span><a href="https://api.count.ly/reference/i#user-details" target="_self">described here</a><span>, or provide a parameterized method to pass the information regarding the user. Note that all fields are optional.</span>
 </p>
 <p>
-  Additionally, there could be custom key values added to the user details. In
-  this case, you would need to provide a means to set them:
+  <span>Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
 </p>
 <ul>
   <li>Countly.user_details(map details)</li>
   <li>Countly.user_custom_details(map custom_details)</li>
 </ul>
 <p>
-  You may find more information on what data may be set for a user
-  <a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a>.
+  <span>You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span>.</span>
 </p>
 <p>
   If a "null" value is set to a user property, the SDK should ignore the value
@@ -2935,14 +2805,10 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 </p>
 <h2 id="01H821RTQ64NDJ9KHTM0B34MJK">Modifying Custom Data Properties</h2>
 <p>
-  You should also provide an option to modify custom user data, such as by increasing
-  the value on the server by 1, etc. Since there are many operations you could
-  perform with that data, it is recommended to implement a subclass for this API,
-  which may be retrieved through the Countly instance.
+  <span>You should also provide an option to modify custom user data, such as by increasing the value on the server by 1, etc. Since there are many operations you could perform with that data, it is recommended to implement a subclass for this API, which may be retrieved through the Countly instance.</span>
 </p>
 <p>
-  The standard methods that should be provided by the SDK are as follows (provided
-  as pseudo-code, naming conventions may differ from platform to platform):
+  <span>The standard methods that should be provided by the SDK are as follows (provided as pseudo-code, naming conventions may differ from platform to platform):</span>
 </p>
 <ul>
   <li>Countly.userData.set(string key, string value)</li>
@@ -2958,8 +2824,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <li>Countly.userData.save() //send data to server</li>
 </ul>
 <p>
-  <strong>Note</strong>:&nbsp;when reporting to the server, assure the push, pushUnique,
-  and pull parameters can provide multiple values for the same property as an array.
+  <strong>Note</strong>:&nbsp;<span>when reporting to the server, assure the push, pushUnique, and pull parameters can provide multiple values for the same property as an array.</span>
 </p>
 <p>
   Here is
@@ -2976,8 +2841,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 </p>
 <p>
   Orientation tracking can be disabled during init. The config variable would be
-  named similar to "enableOrientationTracking" which then would receive a "false"
-  value to turn orientation tracking off.
+  named similar to "<span>enableOrientationTracking" which then would receive a "false" value to turn orientation tracking off.</span>
 </p>
 <p>Orientation change tracking requires "users" consent.</p>
 <p>
@@ -3043,31 +2907,23 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>&nbsp;</p>
 <h1 id="01H821RTQ72HHY8E4AD9NCYE8E">User Consent</h1>
 <p>
-  GDPR compatibility is about dividing the SDK functionality into different features
-  and allowing SDK integrators to ask for consent when using these features. Once
-  consent has been given, the SDK may only send newly collected (after consent
-  is given) data to the server.
+  <span>GDPR compatibility is about dividing the SDK functionality into different features and allowing SDK integrators to ask for consent when using these features. Once consent has been given, the SDK may only send newly collected (after consent is given) data to the server.</span>
 </p>
 <p>
-  Additionally, the user may change his/her mind during the app run and opt-out
-  of some features. Therefore, the SDK should be able to enable or disable these
-  features on run time.
+  <span>Additionally, the user may change his/her mind during the app run and opt-out of some features. Therefore, the SDK should be able to enable or disable these features on run time.</span>
 </p>
 <p>
-  Consent persistence is handled by the host app and not by the SDK. In exceptional
-  circumstances (in cases it is needed) it is possible to handle some consent values
-  persistently inside of the SDK.
+  <span>Consent persistence is handled by the host app and not by the SDK. In exceptional circumstances (in cases it is needed) it is possible to handle some consent values persistently inside of the SDK.</span>
 </p>
 <p>
   <span>Consent management in the SDK is done in 2 steps<br></span><span></span>
 </p>
 <ol>
   <li>
-    consent has to first be required in the app otherwise, the SDK works as if
-    all consent is given
+    <span>consent has to first be required in the app otherwise, the SDK works as if all consent is given</span>
   </li>
   <li>
-    if consent is required, it has to explicitly be given for each targeted feature
+    <span>if consent is required, it has to explicitly be given for each targeted feature</span>
   </li>
 </ol>
 <h2 id="01H821RTQ7CS4N3G4Q9AXQC904">Initial Configuration</h2>
@@ -3076,26 +2932,23 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   inform the SDK that it requires consent before doing anything.
 </p>
 <p>
-  If this configuration is set, the SDK should not send any data to the server
-  without consent. Even if specific SDK methods (reporting errors, recording events,
-  etc.) are manually called, these calls should be ignored until consent is given.
+  <span>If this configuration is set, the SDK should not send any data to the server without consent. Even if specific SDK methods (reporting errors, recording events, etc.) are manually called, these calls should be ignored until consent is given.</span>
 </p>
 <p>
-  Init should also have a function to provide an array consent that is given during
-  startup.
+  <span>Init should also have a function to provide an array consent that is given during startup.</span>
 </p>
 <h2 id="01H821RTQ7K4X2AC3391381E95">Exposing Available Features for Consent</h2>
 <p>
-  The SDK should expose all the features it supports for consent in the form of
-  a method, static properties, or constant strings. The developer may check which
-  features are available during development or when creating a consent form UI.&nbsp;
+  <span>The SDK should expose all the features it supports for consent in the form of a method, static properties, or constant strings. The developer may check which features are available during development or when creating a consent form UI.&nbsp;</span>
 </p>
 <p>
   Developers shouldn't have to write the consent feature strings themself. They
   should be provided either as constants or even as enums thereby eliminating the
   need for strings.
 </p>
-<p>The following are the currently available features:&nbsp;</p>
+<p>
+  <span>The following are the currently available features: </span>
+</p>
 <ul>
   <li>
     <code>sessions</code> -
@@ -3160,17 +3013,14 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </li>
 </ul>
 <p>
-  Note that the available features may change depending on the platform.
+  <span>Note that the available features may change depending on the platform.</span>
 </p>
 <h2 id="01H821RTQ78JF1ANB1K482NQE0">Feature Grouping (optional)</h2>
 <p>
-  The SDK may also provide feature grouping, allowing existing features to be put
-  into groups and the use of these groups to give, cancel, and check consent.
+  <span>The SDK may also provide feature grouping, allowing existing features to be put into groups and the use of these groups to give, cancel, and check consent.</span>
 </p>
 <p>
-  For example, a client may put "sessions", "events," and "views" into one group
-  called "activity". After which, they give their consent to "activity", the SDK
-  should then automatically give consent to all underlying features.
+  <span>For example, a client may put "sessions", "events," and "views" into one group called "activity". After which, they give their consent to "activity", the SDK should then automatically give consent to all underlying features.</span>
 </p>
 <pre><code class="javascript">Countly.group_features({
     activity:["sessions","events","views"],
@@ -3178,17 +3028,13 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 });</code></pre>
 <h2 id="01H821RTQ715V2V2RKC9SYBFYE">Giving Consent</h2>
 <p>
-  The SDK initial consent should be sent through the config object.
+  <span>The SDK initial consent should be sent through the config object.</span>
 </p>
 <p>
-  After init there should be a method for giving consent. This method should have
-  feature names or groups as parameters. It may accept a single feature or group
-  as well as multiple features or groups in the form of an array or variable arguments,
-  depending on the SDK language and environment.
+  <span>After init there </span><span>should be a method for giving consent. This method should have feature names or groups as parameters. It may accept a single feature or group as well as multiple features or groups in the form of an array or variable arguments, depending on the SDK language and environment.</span>
 </p>
 <p>
-  At any time during the app run, a user may give consent to more features after
-  starting the SDK.
+  <span>At any time during the app run, a user may give consent to more features after starting the SDK.</span>
 </p>
 <p>
   Upon receiving consent (also during init), the SDK should immediately begin collecting
@@ -3202,8 +3048,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   may be attached to any other SDK request.
 </p>
 <p>
-  If someone attempts to give consent for a second time, the SDK should ignore
-  it as the consent is already given and nothing changes.
+  <span>If someone attempts to give consent for a second time, the SDK should ignore it as the consent is already given and nothing changes.</span>
 </p>
 <h2 id="01H821RTQ7XHKNWRBHN0ZW49N9">Checking Consent Status</h2>
 <p>
@@ -3214,11 +3059,11 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 </p>
 <h2 id="01H821RTQ7AM6MBCDYTFAZ0HK4">Removing Consent</h2>
 <p>
-  The SDK also needs to provide a method to remove consents. It should support
-  the same parameter options as the consent giving method.
+  <span>The SDK also needs to provide a method to remove consents. It should support the same parameter options as the consent giving method.</span>
 </p>
 <p>
-  <span>Upon receiving the request to remove consent, the SDK should immediately stop collecting data allowed by the provided feature(s) and also send consent removal to the server in the form of <code>consent=&nbsp;{"feature":false}</code></span><span>. </span>
+  <span>Upon receiving the request to remove consent, the SDK should immediately stop collecting data allowed by the provided feature(s) and also send consent removal to the server in the form of <code>consent=&nbsp;{"feature":false}</code></span>
+  <span>. </span>
 </p>
 <p>
   When consent is removed, the update request should sent the current state of
@@ -3226,12 +3071,10 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   or it may be attached to any other SDK request.
 </p>
 <p>
-  Depending on the SDK structure, the SDK may sync existing requests in the queue.
-  Or, it may ignore requests in the queue and never send them or remove them from
-  the queue.
+  <span>Depending on the SDK structure, the SDK may sync existing requests in the queue. Or, it may ignore requests in the queue and never send them or remove them from the queue.</span>
 </p>
 <p>
-  <strong>Both giving consent and removing consent may be combined in a single request as well. If, for example, consent was given for crashes but removed from users, then the request should contain&nbsp;</strong><strong>consent={"crashes":true,"users":false}</strong>.
+  <strong><span>Both giving consent and removing consent may be combined in a single request as well. If, for example, consent was given for crashes but removed from users, then the request should contain&nbsp;</span>consent={"crashes":true,"users":false}</strong>.
 </p>
 <h2 id="01H821RTQ77ER5XPWMCADD7NFX">Common Flow with Required Consent</h2>
 <p>
@@ -3259,9 +3102,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   6)&nbsp;<span>The Countly SDK checks if <code>FeatureName</code></span><span>has already been passed to&nbsp;the <code>giveConsent</code></span><span>&nbsp;method, and it ignores all repetitive calls.</span>
 </p>
 <p>
-  7)&nbsp;The Countly SDK does not persistently store the status of given consents
-  and expects the developer to call the&nbsp;giveConsent&nbsp;method on each app
-  launch, just as with starting the SDK.
+  7)&nbsp;<span>The Countly SDK does not persistently store the status of given consents and expects the developer to call the&nbsp;</span><span>giveConsent</span><span>&nbsp;method on each app launch, just as with starting the SDK.</span>
 </p>
 <p>
   8)&nbsp;<span>If the app user changes his/her mind about consents at a later time, the developer may reflect this to the Countly SDK using the <code>removeConsent</code></span><span>method, passing feature names or groups.</span>
@@ -3278,23 +3119,16 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span>This is one of the preventive measures of Countly. If someone in the middle intercepts the request, it would be possible to change the data in the request and make another request with other data to the server or simply make random requests to the server through the retrieved <code>app_key</code></span><span>.</span>
 </p>
 <p>
-  To prevent this from happening, the SDK should provide the option to send a checksum
-  alongside the request data. To do so, it should be possible for the developer
-  to provide some random string as SALT to the SDK as parameters or configuration
-  options.
+  <span>To prevent this from happening, the SDK should provide the option to send a checksum alongside the request data. To do so, it should be possible for the developer to provide some random string as SALT to the SDK as parameters or configuration options.</span>
 </p>
 <p>
-  If this SALT is provided, right before making the request, the SDK should take
-  all the payload it is about to send (all the data after the ‘?’ symbol in GET
-  requests, including the app_key and device_id or query string encoded body of
-  POST requests) and make a sha256 hash of this data. You should also provide SALT,
-  and append it as checksum256={hash}.
+  <span>If this SALT is provided, right before making the request, the SDK should take all the payload it is about to send (all the data after the ‘?’ symbol in GET requests, including the app_key and device_id or query string encoded body of POST requests) and make a sha256 hash of this data. You should also provide SALT, and append it as checksum256={hash}.</span>
 </p>
 <pre><code class="javascript">if(salt){
   data += "&amp;checksum256=" + sha256Hash(data + salt);
 }</code></pre>
 <p>
-  If SALT is not provided, the SDK should make ordinary requests without any checksums.
+  <span>If SALT is not provided, the SDK should make ordinary requests without any checksums.</span>
 </p>
 <h1 id="01H821RTQ7GNGHSMJGP10YQXWZ">Other Features</h1>
 <h2 id="01H821RTQ7QP861SSC3JS3V236">Attribution</h2>
@@ -3321,8 +3155,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 </p>
 <p>
   Currently there is only one type "countly". That type expected the data to look
-  like following: '{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}'.
-  The inserted values would be retrieved from install attribution.
+  like following: '<span>{cid:"[PROVIDED_CAMPAIGN_ID]", cuid:"[PROVIDED_CAMPAIGN_USER_ID]"}'. The inserted values would be retrieved from install attribution.</span>
 </p>
 <p>
   This feature is currently setup in a way to give more flexibility in the future.
@@ -3348,9 +3181,9 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   The call to record this value should be named something similar to "recordDirectAttribution".
 </p>
 <p>The param for the campaign ID should be added as:</p>
-<pre>"&amp;campaign_id=[PROVIDED_CAMPAIGN_ID]"</pre>
+<pre><span>"&amp;campaign_id=[PROVIDED_CAMPAIGN_ID]"</span></pre>
 <p>The param for the campaign user ID should be added as:</p>
-<pre>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</pre>
+<pre><span>"&amp;campaign_user=[PROVIDED_CAMPAIGN_USER_ID]"</span></pre>
 <p>
   If the provided type is "_special_test" then the second special case will be
   executed. If the provided data is not null or empty then it will be processed.&nbsp;
@@ -3359,7 +3192,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   A request will be created. The provided value should be HTTP encoded and then
   set to the parameter "attribution_data" and then sent.
 </p>
-<pre>"&amp;attribution_data=[ENCODED_CAMPAIGN_DATA]"</pre>
+<pre>"&amp;<span>attribution_data=[ENCODED_CAMPAIGN_DATA]"</span></pre>
 <h3 id="01H821RTQ7Z09FDXQE62YBGFVC">Indirect Attribution</h3>
 <p>
   With this the dev is able to provide a map/dictionary of String to String values.
@@ -3380,7 +3213,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   The pseudo code for recording indirect attribution would look something like
   this:
 </p>
-<pre>Map&lt;String, String&gt; attributionValues = new HashMap&lt;&gt;();<br>attributionValues.put(AttributionIndirectKey.AdvertisingID, getAdvertisingID());<br>Countly.recordIndirectAttribution(attributionValues);</pre>
+<pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>attributionValues </span>= <span>new </span>HashMap&lt;&gt;();<br><span>attributionValues</span>.put(<span>AttributionIndirectKey</span>.<span>AdvertisingID</span>, getAdvertisingID());<br><span>Countly</span>.recordIndirectAttribution(<span>attributionValues</span>);</pre>
 <p>
   The map/dictionary with valid key-value pairs will then be transformed into a
   json object which will set to the "aid" param and then immedietelly sent to the
@@ -3404,13 +3237,13 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   The call to record this value should be named something similar to "recordIndirectAttribution".
 </p>
 <p>The param in the request would look something like like:</p>
-<pre>&amp;aid={"adid":[PROVIDED_ATTRIBUTION_ID], "idfa":[PROVIDED_IDFA_VALUE]}</pre>
+<pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID], "idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
 <p>Or:</p>
-<pre>&amp;aid={"adid":[PROVIDED_ATTRIBUTION_ID]}</pre>
+<pre><span>&amp;aid=</span><span>{</span><span>"</span><span>adid</span><span>"</span><span>:[PROVIDED_ATTRIBUTION_ID]</span><span>}</span></pre>
 <p>Or:</p>
-<pre>&amp;aid={"idfa":[PROVIDED_IDFA_VALUE]}</pre>
+<pre><span>&amp;aid=</span><span>{"idfa":[PROVIDED_IDFA_VALUE]</span><span>}</span></pre>
 <p>Or:</p>
-<pre>&amp;aid={"rndid":[SOME_OTHER_ID_VALUE]}</pre>
+<pre><span>&amp;aid=</span><span>{"rndid":[SOME_OTHER_ID_VALUE]</span><span>}</span></pre>
 <h2 id="01H821RTQ7AZ6J858BHP4883ZC">SDK Internal Limits</h2>
 <p>The SDK should have the following limits:</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
@@ -3419,16 +3252,15 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </li>
 </ul>
 <p>
-  Limits the maximum size of all string keys.<br>
-  "Keys" include:<br>
-  - event names<br>
-  - view names<br>
-  - custom trace key name (APM)<br>
-  - custom metric key (APM)<br>
-  - segmentation key (for all features)<br>
-  - custom user property<br>
-  - custom user property keys that are used for property modifiers (mul, push,
-  pull, set, increment, etc)
+  <span>Limits the maximum size of all string keys.</span><br>
+  <span>"Keys" include:</span><br>
+  <span> - event names</span><br>
+  <span> - view names</span><br>
+  <span> - custom trace key name (APM)</span><br>
+  <span> - custom metric key (APM)</span><br>
+  <span> - segmentation key (for all features)</span><br>
+  <span> - custom user property</span><br>
+  <span> - custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -3452,20 +3284,34 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
     developer-supplied entries
   </li>
 </ul>
-<p>Max amount of custom (dev-provided) segmentation in:</p>
-<p>- Event segmentation</p>
-<p>- View segmentation</p>
-<p>- Global view segmentation</p>
-<p>- Custom (Global) crash segmentation</p>
-<p>- Crash segmentation</p>
-<p>- Custom APM Metrics</p>
+<p>
+  <span>Max amount of custom (dev-provided) segmentation in:</span>
+</p>
+<p>
+  <span>- Event segmentation</span>
+</p>
+<p>
+  <span>- View segmentation</span>
+</p>
+<p>
+  <span>- Global view segmentation</span>
+</p>
+<p>
+  <span>- Custom (Global) crash segmentation</span>
+</p>
+<p>
+  <span>- Crash segmentation</span>
+</p>
+<p>
+  <span>- Custom APM Metrics</span>
+</p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
     "<strong data-stringify-type="bold">maxBreadcrumbCount</strong>" - 100 entries
   </li>
 </ul>
 <p>
-  Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted
+  <span>Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -3474,7 +3320,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </li>
 </ul>
 <p>
-  limits how many stack trace lines would be recorded per thread
+  <span>limits how many stack trace lines would be recorded per thread</span>
 </p>
 <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
   <li data-stringify-indent="0">
@@ -3483,8 +3329,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </li>
 </ul>
 <p>
-  limits how many characters are allowed per stack trace line. This also limits
-  the crash message length.
+  <span>limits how many characters are allowed per stack trace line. This also limits the crash message length.</span>
 </p>
 <p>
   <span> Besides those 2 exposed tweakable crash-related values, there would also be an internal one for "maxStackTraceThreadCount." Which would limit the maximum number of recorded threads by a default of 50. This would be mostly just a sanity check, as that has to be capped somehow. <span class="c-mrkdwn__br" data-stringify-type="paragraph-break"></span>In cases where stack traces can be provided as a string, the maximum line count would be 50*30 = 1500. That string would have to be split into lines and then checked accordingly.</span>
@@ -3855,7 +3700,9 @@ method disables server configuration requests to help mitigate such issues.<br>-
   the npm:
 </p>
 <p>
-  <code>npm install markdownlint --save-dev&nbsp;</code>
+  <code>
+npm install markdownlint --save-dev
+</code>
 </p>
 <p>
   Another way to add it to your project would be to download its extension in VSC.
@@ -3866,64 +3713,13 @@ method disables server configuration requests to help mitigate such issues.<br>-
   called ".markdownlint.json". This file must be created at the root of the project
   and should have a structure similar to this:
 </p>
-<pre><code>{
-    "MD001": true, /*Heading levels should increase one at a time*/
-    "MD002": false, /*First heading should be h1*/
-    "MD003": true, /*Use only one heading style in a document*/
-    "MD004": true, /*Only one unordered list style should be used*/
-    "MD005": true, /*List items should have same indentation at same level*/
-    "MD006": true, /*Top level list items should not be indented*/
-    "MD007": { "indent": 2 }, /*Indent level as space*/
-    "MD009": false, /*No white space at the end*/
-    "MD010": false, /*No hard tab indentation*/
-    "MD011": true, /*link syntax should not be reversed like (a)[a.com]*/
-    "MD012": { "maximum": 1 }, /*No more than 1 blank line*/
-    "MD013": { "line_length": 300 }, /*Max line length*/
-    "MD014": false, /*Dollar sign should not be used consecutively for shell commands*/
-    "MD018": true, /*There should be a space after heading hash*/
-    "MD019": true, /**There should not be multiple spaces after heading hash*/
-    "MD020": true, /*Closed atx style heading should have 1 space inside hashes*/
-    "MD021": true, /*Closed atx style heading should note have multiple space inside hashes*/
-    "MD022": false, /*Before and after a heading should be a blank line*/
-    "MD023": true, /*Heading should not be indented*/
-    "MD024": true, /*No duplicate sibling headings*/
-    "MD025": true, /*Only one h1*/
-    "MD026": true, /*No punctuation at the end of a heading except '?'*/
-    "MD027": true, /*No more than 1 space after blockquote symbol*/
-    "MD028": true, /*No separation of blockquotes with a blank line*/
-    "MD029": true, /*Ordered list should be ordered and start with  or 1*/
-    "MD030": true, /*Only one space between the list marker and text*/
-    "MD031": true, /*Before and after a fenced code block should be a blank line*/
-    "MD032": false, /*Before and after a list should be a blank line*/
-    "MD033": false, /*No raw HTML*/
-    "MD034": false, /*URL should be surrounded with brackets*/
-    "MD035": true, /*No inconsistent horizontal rules; ---, *** */
-    "MD036": true, /*No emphasis instead of heading*/
-    "MD037": true, /*No space between emphasis market and the text*/
-    "MD038": true, /*No space between backtick and text*/
-    "MD039": true, /*No space inside link text*/
-    "MD040": true, /*Fenced code blocks should have a language declared*/
-    "MD041": false, /*First line in a file should be h1*/
-    "MD042": true, /*No empty links*/
-    "MD043": false, /*Declare a heading structure*/
-    "MD044": true, /*Proper names should have the correct capitalization*/
-    "MD045": true, /*Images should have alt text*/
-    "MD046": true, /*Use indent or code fence alone*/
-    "MD047": true, /*Files should end with a single newline character */
-    "MD048": true, /*Code fence style should be uniform*/
-    "MD049": true, /*Emphasis style should be consistent*/
-    "MD050": true, /*Strong style should be consistent*/
-    "MD051": true, /*Link fragments should correspond to a heading*/
-    "MD052": true, /*Reference links and images should use a label that is defined*/
-    "MD053": true /* Link and image reference definitions should be needed*/
-}
+<pre><code>{<br>    "MD001": true, /*Heading levels should increase one at a time*/<br>    "MD002": false, /*First heading should be h1*/<br>    "MD003": true, /*Use only one heading style in a document*/<br>    "MD004": true, /*Only one unordered list style should be used*/<br>    "MD005": true, /*List items should have same indentation at same level*/<br>    "MD006": true, /*Top level list items should not be indented*/<br>    "MD007": { "indent": 2 }, /*Indent level as space*/<br>    "MD009": false, /*No white space at the end*/<br>    "MD010": false, /*No hard tab indentation*/<br>    "MD011": true, /*link syntax should not be reversed like (a)[a.com]*/<br>    "MD012": { "maximum": 1 }, /*No more than 1 blank line*/<br>    "MD013": { "line_length": 300 }, /*Max line length*/<br>    "MD014": false, /*Dollar sign should not be used consecutively for shell commands*/<br>    "MD018": true, /*There should be a space after heading hash*/<br>    "MD019": true, /**There should not be multiple spaces after heading hash*/<br>    "MD020": true, /*Closed atx style heading should have 1 space inside hashes*/<br>    "MD021": true, /*Closed atx style heading should note have multiple space inside hashes*/<br>    "MD022": false, /*Before and after a heading should be a blank line*/<br>    "MD023": true, /*Heading should not be indented*/<br>    "MD024": true, /*No duplicate sibling headings*/<br>    "MD025": true, /*Only one h1*/<br>    "MD026": true, /*No punctuation at the end of a heading except '?'*/<br>    "MD027": true, /*No more than 1 space after blockquote symbol*/<br>    "MD028": true, /*No separation of blockquotes with a blank line*/<br>    "MD029": true, /*Ordered list should be ordered and start with  or 1*/<br>    "MD030": true, /*Only one space between the list marker and text*/<br>    "MD031": true, /*Before and after a fenced code block should be a blank line*/<br>    "MD032": false, /*Before and after a list should be a blank line*/<br>    "MD033": false, /*No raw HTML*/<br>    "MD034": false, /*URL should be surrounded with brackets*/<br>    "MD035": true, /*No inconsistent horizontal rules; ---, *** */<br>    "MD036": true, /*No emphasis instead of heading*/<br>    "MD037": true, /*No space between emphasis market and the text*/<br>    "MD038": true, /*No space between backtick and text*/<br>    "MD039": true, /*No space inside link text*/<br>    "MD040": true, /*Fenced code blocks should have a language declared*/<br>    "MD041": false, /*First line in a file should be h1*/<br>    "MD042": true, /*No empty links*/<br>    "MD043": false, /*Declare a heading structure*/<br>    "MD044": true, /*Proper names should have the correct capitalization*/<br>    "MD045": true, /*Images should have alt text*/<br>    "MD046": true, /*Use indent or code fence alone*/<br>    "MD047": true, /*Files should end with a single newline character */<br>    "MD048": true, /*Code fence style should be uniform*/<br>    "MD049": true, /*Emphasis style should be consistent*/<br>    "MD050": true, /*Strong style should be consistent*/<br>    "MD051": true, /*Link fragments should correspond to a heading*/<br>    "MD052": true, /*Reference links and images should use a label that is defined*/<br>    "MD053": true /* Link and image reference definitions should be needed*/<br>}
 </code></pre>
 <p>
   To exclude certain files from being analyzed you can create a ".markdownlintignore"
   at the project root and add directories that you want to exclude from the analysis:
 </p>
-<pre><code>// to exclude node_modules folder
-/node_modules/
+<pre><code>// to exclude node_modules folder<br>/node_modules/
 </code></pre>
 <h2 id="01H821RTQ8Y1HXSY2HDDK8AGD1">Usage</h2>
 <p>
@@ -3948,7 +3744,12 @@ method disables server configuration requests to help mitigate such issues.<br>-
   like so:
 </p>
 <p>
-  <code>"[markdown]": { "editor.formatOnSave": true, "editor.formatOnPaste": true },&nbsp;</code>
+  <code>
+"[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+},
+</code>
 </p>
 <h1 id="01H821RTQ83FE200Z8NARD5GCJ">Experimental</h1>
 <p>
@@ -4001,17 +3802,26 @@ method disables server configuration requests to help mitigate such issues.<br>-
 </p>
 <ul dir="auto">
   <li>
-    <strong>el</strong> (Integer) - The amount of error-level SDK logs triggered
+    <p dir="auto">
+      <strong>el</strong> (Integer) - The amount of error-level SDK logs triggered
+    </p>
   </li>
   <li>
-    <strong>wl</strong> (Integer) - The amount of warning-level SDK logs triggered&nbsp;
+    <p dir="auto">
+      <strong>wl</strong> (Integer) - The amount of warning-level SDK logs
+      triggered&nbsp;
+    </p>
   </li>
   <li>
-    <strong>sc</strong> (Integer) - The status code of the last failed request&nbsp;
+    <p dir="auto">
+      <strong>sc</strong> (Integer) - The status code of the last failed request&nbsp;
+    </p>
   </li>
   <li>
-    <strong>em</strong> (String) - The first 1000 characters of the response
-    returned by the last failed request
+    <p dir="auto">
+      <strong>em</strong> (String) - The first 1000 characters of the response
+      returned by the last failed request
+    </p>
   </li>
 </ul>
 <p>
@@ -4052,13 +3862,10 @@ https://countly.server/*?...&amp;rr=23...</pre>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>
-  First off, interaction with the Countly Server for the Remote Config feature
-  should be done after you have checked the available API information. The
-  <a href="https://api.count.ly/reference/osdk">Remote Config API documentation</a>
-  for legacy remote config API includes information about an earlier implementation.
-  This legacy API uses 'method=fetch_remote_config' inside the request URL while
-  fetching the remote config object <em>and</em> enrolling the user to A/B testing
-  automatically.
+  <span>First off, interaction with the Countly Server for the Remote Config feature should be done after you have checked the available API information. The </span><a href="https://api.count.ly/reference/osdk"><span>Remote Config API documentation</span></a><span> for legacy remote config API</span>
+  includes information about an earlier implementation. This legacy API uses 'method=fetch_remote_config'
+  inside the request URL while fetching the remote config object <em>and</em> enrolling
+  the user to A/B testing automatically.
 </p>
 <p>
   The latest API, on the other hand, fetches the remote config object while giving
@@ -4093,52 +3900,31 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
 </p>
 <h2 id="01H821RTQ843R82K27AE6V09V9">Automatic Fetch</h2>
 <p>
-  The Remote Config feature allows app developers to change the behavior and appearance
-  of their applications at any time by creating or updating custom key-value pairs
-  on the Countly Server.
+  <span>The Remote Config feature allows app developers to change the behavior and appearance of their applications at any time by creating or updating custom key-value pairs on the Countly Server.</span>
 </p>
 <p>
-  There should be a flag upon initial config to enable the automatic fetching of
-  the remote config upon SDK start. If this flag is set, the SDK will automatically
-  fetch the remote config from the server and store it locally. A locally stored
-  remote config should reflect the server response as is, overwriting any existing
-  remote config. No merging or partial updating. Automatic fetching will be performed
-  only upon SDK start, not with every begin session. There should also be a callback
-  on the initial config to inform the developer about the results of automatic
-  fetching the remote config.
+  <span>There should be a flag upon initial config to enable the automatic fetching of the remote config upon SDK start. If this flag is set, the SDK will automatically fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. Automatic fetching will be performed only upon SDK start, not with every begin session. There should also be a callback on the initial config to inform the developer about the results of automatic fetching the remote config.</span>
 </p>
 <p>
   e.g. <code>config.enableRemoteConfig = true;</code>
 </p>
 <h2 id="01H821RTQ8QMZHEBPQTH1TEENH">Manual Fetch</h2>
 <p>
-  There should be a method/function to fetch the remote config manually anytime
-  the developer would like. Just like with automatic fetch, this method will fetch
-  the remote config from the server and store it locally. A locally stored remote
-  config should reflect the server response as is, overwriting any existing remote
-  config. No merging or partial updating. This method should take a callback argument
-  to inform the developer about the results of manually fetching the remote config.
-  Callback on initial config should not be affected by manual fetchings, as it
-  is for automatic fetchings only.
+  <span>There should be a method/function to fetch the remote config manually anytime the developer would like. Just like with automatic fetch, this method will fetch the remote config from the server and store it locally. A locally stored remote config should reflect the server response as is, overwriting any existing remote config. No merging or partial updating. This method should take a callback argument to inform the developer about the results of manually fetching the remote config. Callback on initial config should not be affected by manual fetchings, as it is for automatic fetchings only.</span>
 </p>
 <p>
   e.g. <code>updateRemoteConfig(callback(){ })</code>
 </p>
 <h2 id="01H821RTQ8PZJWW6459JAM8D6W">Getting Values</h2>
 <p>
-  There should be a method to get remote config values for a given key. It will
-  return the value for a given key. If the key does not exist, or the remote config
-  has yet to be fetched, this method should return nil or null or however the platform
-  handles the absence of values. If the server is not reachable, this method should
-  return the last fetched and locally stored value if available.
+  <span>There should be a method to get remote config values for a given key. It will return the value for a given key. If the key does not exist, or the remote config has yet to be fetched, this method should return nil or null or however the platform handles the absence of values. If the server is not reachable, this method should return the last fetched and locally stored value if available.</span>
 </p>
 <p>
   e.g. <code>remoteConfigValueForKey(key)</code>
 </p>
 <h2 id="01H821RTQ822HR5EB6F9TYDR0T">Keys and Omit Keys</h2>
 <p>
-  There should be 2 additional methods for manual fetching: one for specifying
-  which keys will be updated and one for specifying which keys will be ignored.
+  <span>There should be 2 additional methods for manual fetching: one for specifying which keys will be updated and one for specifying which keys will be ignored.</span>
 </p>
 <p>
   <span>These methods should take an array of keys as an argument, in addition to callbacks, and send requests with <code>keys=</code></span><span>&nbsp;or <code>omit_keys=</code></span><span>&nbsp;query strings. For the result of these requests, only the keys in the response should be updated in local storage, not a complete overwrite as with an automatic or standard manual fetch.</span>
@@ -4148,15 +3934,16 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
   <code>updateRemoteConfigExceptKeys(keys, callback(){ })</code>
 </p>
 <p>
-  Example case: Local storage reflecting server as is (after an automatic or manual
-  fetch):
+  <span>Example case: Local storage reflecting server as is (after an automatic or manual fetch):</span>
 </p>
 <pre><code>{
   "a": "x",
   "b": "y",
   "c": "z",
 }</code></pre>
-<p>Calling update for specified keys only:</p>
+<p>
+  <span>Calling update for specified keys only:</span>
+</p>
 <pre><code>updateRemoteConfigForKeysOnly(["a"], callback(){ });
 </code></pre>
 <p>Response:</p>
@@ -4189,12 +3976,9 @@ o/sdk?method=ab&amp;keys=...&amp;app_key=app_key&amp;device_id=device_id
 </p>
 <h2 id="01H821RTQ8QPZMM69K8HYBPQW7">Device ID Change</h2>
 <p>
-  After a device ID change, the locally stored remote config should be cleaned,
-  and an automatic fetch should be performed if enabled upon initial config.
+  <span>After a device ID change, the locally stored remote config should be cleaned, and an automatic fetch should be performed if enabled upon initial config.</span>
 </p>
 <h2 id="01H821RTQ8P17JFY9MQTQP11AG">Salt</h2>
 <p>
-  Remote config requests need to include the checksum if enabled upon initial config.
-  As with all other requests, only the query string part will be used to calculate
-  hash.
+  <span>Remote config requests need to include the checksum if enabled upon initial config. As with all other requests, only the query string part will be used to calculate hash.</span>
 </p>
