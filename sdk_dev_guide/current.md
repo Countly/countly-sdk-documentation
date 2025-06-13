@@ -3660,7 +3660,7 @@ method disables server configuration requests to help mitigate such issues.<br>-
     <tr>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism request queue %</td>
       <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px;">bom_rqp</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">0.5</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">0.5 (between 0 and 1)</td>
     </tr>
     <tr>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism request age</td>
