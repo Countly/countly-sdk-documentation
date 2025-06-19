@@ -3449,6 +3449,12 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   what it has.
 </p>
 <p>
+  After fetching the settings, the module must notify dependent components to allow
+  them to reconfigure themselves with the updated settings. The notification mechanism
+  can be implemented as a single function or a callback, allowing features to handle
+  updates themselves. The exact approach depends on SDK design and platform constraints.
+</p>
+<p>
   If user changes a setting in server, response would include that option with
   new value. If no value is sent for a configuration (meaning <strong>c</strong>
   is empty), then that means that the SDK has to use its own default or the value
@@ -3478,6 +3484,68 @@ server configuration through a dedicated configuration function becomes necessar
 By default, SDKs fetch the server configuration from the server. However, in some 
 cases, network traffic may increase due to unintended factors. This configuration 
 method disables server configuration requests to help mitigate such issues.<br>- After SDK behavior settings updates disabled, it will only disable server config<br>fetch requests. Feature still continues to read the stored server config and provided<br>server config.</pre>
+<p>
+  The feature must expose an internal interface for other components to access
+  the required settings. Here is an example interface for function signatures.
+  Some functions might not be exposed if they are used only inside of the feature.
+  It is up to SDK design and platform constraints.
+</p>
+<pre><code class="java">interface ConfigurationProvider {
+
+  Boolean getNetworkingEnabled() //networking
+
+  Boolean getTrackingEnabled() //tracking
+
+  Boolean getSessionTrackingEnabled() //st
+
+  Boolean getViewTrackingEnabled() //vt
+
+  Boolean getCustomEventTrackingEnabled() //cet
+
+  Boolean getEnterContentZone() //ecz
+
+  Boolean getCrashReportingEnabled() //crt
+
+  Boolean getLocationTrackingEnabled() //lt
+
+  Boolean getRefreshContentZoneEnabled() //rcz
+
+  Integer getRequestQueueSize() // rqs
+
+  Integer getEventQueueSize() //eqs
+
+  Integer getSessionUpdateInterval() //sui
+
+  Integer getLimitKeyLength() //lkl
+
+  Integer getLimitValueSize() //lvs
+
+  Integer getLimitSegmentationValues() //lsv
+
+  Integer getLimitBreadcrumbCount() //lbc
+
+  Integer getLimitStackTraceLineCount() //ltlpt
+
+  Integer getLimitStackTraceLineLength() //ltl
+
+  Integer getContentZoneInterval() //czi
+
+  Boolean getConsentRequired() //cr
+
+  Integer getServerConfigUpdateInterval() //scui
+
+  Integer getDropOldRequestTime() //dort
+
+  Boolean getBOMEnabled() //bom
+
+  Integer getBOMAcceptedTimeoutSeconds() //bom_at
+
+  Double getBOMRQPercentage() //bom_rqp
+
+  Integer getBOMRequestAge() //bom_ra
+
+  Integer getBOMDuration() //bom_d
+}</code></pre>
 <h4 id="h_01JRT094QEGTG0BXBN2MTT82D7_id_nap">Networking and Params</h4>
 <p>
   Server config fetch request might consist of only 1 parameter
