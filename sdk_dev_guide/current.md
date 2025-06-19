@@ -1106,13 +1106,17 @@ Returns a unique view ID for further reference.
   - If global view segmentation set, it is added
   - If it is the first view in the session "start" added
   - "visit", "segment", "name" parameters added which key length SDK internal limit is applied to the name.
-- Records the view event
+- Records the view event with calculated segmentation
 - Returns the view ID generated
 </pre>
 <p>
   For instance method <strong>startAutoStoppedView</strong> with segmentation
 </p>
 <pre>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Valid values</strong>
+Only non-empty values accepted, and segmentation is validated by the constraints mentioned above.
+Segmentation can be nullable.
 
 // <strong>Logic</strong>
 Same as startAutoStoppedView(viewName) but allows attaching segmentation data for that specific view start.
@@ -1125,6 +1129,9 @@ Same as startAutoStoppedView(viewName) but allows attaching segmentation data fo
 </p>
 <pre>String CountlyInstance.<strong>startView</strong>(viewName: String)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted.
+
 // <strong>Logic</strong>
 Same as startAutoStoppedView(viewName), except views started with this function will not be stopped automatically.
 Calling this function must end previously started automatic views too.
@@ -1133,6 +1140,10 @@ Calling this function must end previously started automatic views too.
   For instance method <strong>startView</strong> with segmentation
 </p>
 <pre>String CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Valid values</strong>
+Only non-empty values accepted, and segmentation is validated by the constraints mentioned above.
+Segmentation can be nullable.
 
 // <strong>Logic</strong>
 Same as startAutoStoppedView(viewName, segmenatation), except views started with this function will not be stopped automatically.
@@ -1143,33 +1154,57 @@ Calling this function must end previously started automatic views too.
 </p>
 <pre>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted.
+
 // <strong>Logic</strong>
-Stops tracking a view session by its name.
-If multiple sessions with the same name exist, the most recent one is stopped.
+Stops tracking a view by its name.
+If multiple views with the same name exist, the most recent one or first accessed view from the view list is stopped.
+- Tries to find a view with the given name, if it cannot find a name function returns
+- So stopping a view with an ID is most recommended way, becuase stopping with name can arise conflicts.
+- If view tracking is not enabled in the SDK behavior settings, call need to be omitted.
+- View duration calculated here by current timestamp - vew start timestamp
+- View segmentation created here with:
+  - Global view segmentation
+  - "name" and "segment" reserved segmentation keys are added
+- Then, a view event recorded here with calculated duration and segmentation.
 </pre>
 <p>
   For instance method <strong>stopViewWithName</strong> with segmentation
 </p>
 <pre>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted, and segmentation is validated by the constraints mentioned above.
+Segmentation can be nullable.
+
 // <strong>Logic</strong>
-Stops the view session by name and attaches segmentation data to the stop event.
-</pre>
+Same as stopViewWithName(viewName) but allows attaching segmentation data for that specific view end.
+- While creating the view segmentation, before adding reserved keys given segmentation needs to be validated and all related SDK internal limits must be applied
+- After it is validated, already validated global view segmentation need to be added and after addition segmentation values SDK internal limit must be applied
+- At last, reserved segmentation keys are added. They must not affected from the segmentation values SDK internal limit.</pre>
 <p>
   For instance method <strong>stopViewWithID</strong>
 </p>
 <pre>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted.
+
 // <strong>Logic</strong>
-Stops tracking a view session by its unique ID.
+Same as stopViewWithName(viewName) one difference because we have ID directly, we can directly access it via its ID.
 </pre>
 <p>
   For instance method <strong>stopViewWithID</strong> with segmentation
 </p>
 <pre>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted, and segmentation is validated by the constraints mentioned above.
+Segmentation can be nullable.
+
 // <strong>Logic</strong>
-Stops the view session by ID and attaches segmentation data to the stop event.
+Same as stopViewWithName(viewName, segmentation) one difference because we have ID directly, we can directly access it via its ID.
 </pre>
 <p>
   For instance method <strong>pauseViewWithID</strong>
@@ -1193,8 +1228,13 @@ Resumes a paused view session identified by the given ID.
 </p>
 <pre>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)
 
+// <strong>Valid values</strong>
+If not empty segmentation is validated by the constraints mentioned above. It can be nullable.
+
 // <strong>Logic</strong>
-Stops all currently active view sessions and attaches the given segmentation data to each stop event.
+Stops all views (auto/non-auto) with provided segmentation if any with adding global view segmentation.
+- It can loop through views and stop them one by one with their id.
+- It can use stopViewWithID(viewID, segmentation) function internally.
 </pre>
 <p>
   For instance method <strong>addSegmentationToViewWithID</strong>
