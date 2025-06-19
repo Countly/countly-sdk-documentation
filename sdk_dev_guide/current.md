@@ -898,29 +898,29 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <p>
   <strong>Config Methods</strong>
 </p>
-<pre><code>CountlyConfig.<strong>enableAutomaticViewTracking</strong>()</code></pre>
-<pre><code>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()</code></pre>
-<pre><code>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)</code></pre>
-<pre><code>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyConfig.<strong>disableOrientationTracking</strong>()</code></pre>
+<pre>CountlyConfig.<strong>enableAutomaticViewTracking</strong>()</pre>
+<pre>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()</pre>
+<pre>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)</pre>
+<pre>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyConfig.<strong>disableOrientationTracking</strong>()</pre>
 <p>
   <strong>Instance Methods</strong>
 </p>
-<pre><code>CountlyInstance.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyInstance.<strong>updateGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String)</code></pre>
-<pre><code>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>String CountlyInstance.<strong>startView</strong>(viewName: String)</code></pre>
-<pre><code>String CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)</code></pre>
-<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)</code></pre>
-<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)</code></pre>
-<pre><code>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)</code></pre>
-<pre><code>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
-<pre><code>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre>CountlyInstance.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyInstance.<strong>updateGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String)</pre>
+<pre>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>String CountlyInstance.<strong>startView</strong>(viewName: String)</pre>
+<pre>String CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)</pre>
+<pre>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)</pre>
+<pre>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)</pre>
+<pre>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)</pre>
+<pre>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)</pre>
+<pre>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</pre>
 <h2 id="h_01JXYN0FJ91BQZ27873FJ9JSSC">Implementation Details</h2>
 <p>
   If it is possible to automatically determine when a user visits a specific view
@@ -1013,26 +1013,26 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <p>
   For config method <strong>enableAutomaticViewTracking</strong>
 </p>
-<pre><code>CountlyConfig.<strong>enableAutomaticViewTracking</strong>()
+<pre>CountlyConfig.<strong>enableAutomaticViewTracking</strong>()
 
 // <strong>Logic</strong>
 Enables automatic tracking of views if the system supports it.
 Registers system-specific lifecycle callbacks to track view appearances automatically.
 - Like onViewStart, onViewStop, onViewPause, onViewResume
-</code></pre>
+</pre>
 <p>
   For config method <strong>enableAutomaticViewShortNames</strong>
 </p>
-<pre><code>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()
+<pre>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()
 
 // <strong>Logic</strong>
 When enabled, view names will be shortened automatically by trimming package or path prefixes.
 Helps in reducing verbose or repetitive view naming in analytics.<br>Only will get class of view name.
-- If view name is something like ly.count.some.View name must be shortened to View</code></pre>
+- If view name is something like ly.count.some.View name must be shortened to View</pre>
 <p>
   For config method <strong>setAutomaticViewTrackingExclusions</strong>
 </p>
-<pre><code>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)
+<pre>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)
 
 // <strong>Valid values</strong>
 Only non-empty strings accepted.
@@ -1041,11 +1041,11 @@ Only non-empty strings accepted.
 Sets a list of view names to be excluded from automatic view tracking.
 Useful to prevent tracking of internal, debug, or unwanted views.
 - Simply omits the views if they exist in the exclusions list.
-</code></pre>
+</pre>
 <p>
   For config method <strong>setGlobalViewSegmentation</strong>
 </p>
-<pre><code>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Valid values</strong>
 Only non-empty and non-null values accepted. And, for values only mentioned validated constraints above accepted.
@@ -1053,20 +1053,20 @@ Only non-empty and non-null values accepted. And, for values only mentioned vali
 // <strong>Logic</strong>
 Sets a global segmentation dictionary that will be attached to all views.
 Allows adding common context or user attributes globally.
-</code></pre>
+</pre>
 <p>
   For config method <strong>disableOrientationTracking</strong>
 </p>
-<pre><code>CountlyConfig.<strong>disableOrientationTracking</strong>()
+<pre>CountlyConfig.<strong>disableOrientationTracking</strong>()
 
 // <strong>Logic</strong>
 Disables automatic tracking of device orientation changes.
 Useful to reduce noise or overhead if orientation data is not needed.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>setGlobalViewSegmentation</strong>
 </p>
-<pre><code>CountlyInstance.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Valid values</strong>
 Only non-empty and non-null values accepted. And, for values only mentioned validated constraints above accepted.
@@ -1074,11 +1074,11 @@ Only non-empty and non-null values accepted. And, for values only mentioned vali
 // <strong>Logic</strong>
 Sets a global segmentation dictionary that will be attached to all views.
 Useful to add common context or attributes to all views globally.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>updateGlobalViewSegmentation</strong>
 </p>
-<pre><code>CountlyInstance.<strong>updateGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>updateGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Valid values</strong>
 Only non-empty and non-null values accepted. And, for values only mentioned validated constraints above accepted.
@@ -1086,11 +1086,11 @@ Only non-empty and non-null values accepted. And, for values only mentioned vali
 // <strong>Logic</strong>
 Updates the existing global segmentation by merging the new keys and values.
 Allows to add or overwrite global segmentation properties dynamically.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>startAutoStoppedView</strong>
 </p>
-<pre>String <code>CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String)
+<pre>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String)
 
 // <strong>Valid values</strong>
 Only non-empty values accepted
@@ -1108,110 +1108,110 @@ Returns a unique view ID for further reference.
   - "visit", "segment", "name" parameters added which key length SDK internal limit is applied to the name.
 - Records the view event
 - Returns the view ID generated
-</code></pre>
+</pre>
 <p>
   For instance method <strong>startAutoStoppedView</strong> with segmentation
 </p>
-<pre>String <code>CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+<pre>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Same as startAutoStoppedView(viewName) but allows attaching segmentation data for that specific view start.
 - While creating the view segmentation, before adding reserved keys given segmentation needs to be validated and all related SDK internal limits must be applied
 - After it is validated, already validated global view segmentation need to be added and after addition segmentation values SDK internal limit must be applied
 - At last, reserved segmentation keys are added. They must not affected from the segmentation values SDK internal limit.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>startView</strong>
 </p>
-<pre>String <code>CountlyInstance.<strong>startView</strong>(viewName: String)
+<pre>String CountlyInstance.<strong>startView</strong>(viewName: String)
 
 // <strong>Logic</strong>
 Same as startAutoStoppedView(viewName), except views started with this function will not be stopped automatically.
 Calling this function must end previously started automatic views too.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>startView</strong> with segmentation
 </p>
-<pre>String <code>CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+<pre>String CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Same as startAutoStoppedView(viewName, segmenatation), except views started with this function will not be stopped automatically.
 Calling this function must end previously started automatic views too.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>stopViewWithName</strong>
 </p>
-<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)
+<pre>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)
 
 // <strong>Logic</strong>
 Stops tracking a view session by its name.
 If multiple sessions with the same name exist, the most recent one is stopped.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>stopViewWithName</strong> with segmentation
 </p>
-<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Stops the view session by name and attaches segmentation data to the stop event.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>stopViewWithID</strong>
 </p>
-<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)
+<pre>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)
 
 // <strong>Logic</strong>
 Stops tracking a view session by its unique ID.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>stopViewWithID</strong> with segmentation
 </p>
-<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Stops the view session by ID and attaches segmentation data to the stop event.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>pauseViewWithID</strong>
 </p>
-<pre><code>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)
+<pre>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)
 
 // <strong>Logic</strong>
 Pauses the timing of the view session identified by the given ID.
 Useful when the app goes into background or temporary interruptions occur.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>resumeViewWithID</strong>
 </p>
-<pre><code>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)
+<pre>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)
 
 // <strong>Logic</strong>
 Resumes a paused view session identified by the given ID.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>stopAllViews</strong>
 </p>
-<pre><code>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Stops all currently active view sessions and attaches the given segmentation data to each stop event.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>addSegmentationToViewWithID</strong>
 </p>
-<pre><code>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Adds or updates segmentation data on an active view session identified by the given ID.
-</code></pre>
+</pre>
 <p>
   For instance method <strong>addSegmentationToViewWithName</strong>
 </p>
-<pre><code>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+<pre>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
 Adds or updates segmentation data on active view sessions matching the given name.
-</code></pre>
+</pre>
 <h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
   <span>View Manual Reporting</span>
 </h2>
