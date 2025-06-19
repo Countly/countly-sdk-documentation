@@ -1161,6 +1161,7 @@ Only non-empty values accepted.
 Stops tracking a view by its name.
 If multiple views with the same name exist, the most recent one or first accessed view from the view list is stopped.
 - Tries to find a view with the given name, if it cannot find a name function returns
+- Not started views cannot be stopped.
 - So stopping a view with an ID is most recommended way, becuase stopping with name can arise conflicts.
 - If view tracking is not enabled in the SDK behavior settings, call need to be omitted.
 - View duration calculated here by current timestamp - vew start timestamp
@@ -1211,17 +1212,31 @@ Same as stopViewWithName(viewName, segmentation) one difference because we have 
 </p>
 <pre>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted.
+
 // <strong>Logic</strong>
-Pauses the timing of the view session identified by the given ID.
+Pauses the timing of the view identified by the given ID.
 Useful when the app goes into background or temporary interruptions occur.
+- If view tracking is not enabled in the SDK behavior settings, call need to be omitted.
+- This function will omit calls where the specified view ID is already paused.
+- An end view event will be recorded here to prevent data loss and data disperancies.
+- End view segmentation is same as stop calls without given segmentation.
+- Paused view will not be deleted from the view list, its start time will be reset.
 </pre>
 <p>
   For instance method <strong>resumeViewWithID</strong>
 </p>
 <pre>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)
 
+// <strong>Valid values</strong>
+Only non-empty values accepted.
+
 // <strong>Logic</strong>
-Resumes a paused view session identified by the given ID.
+Resumes a paused view identified by the given ID.
+- If view tracking is not enabled in the SDK behavior settings, call need to be omitted.
+- Already running views cannot be resumed. 
+- This function will not record any event, it will set start time of already paused views.
 </pre>
 <p>
   For instance method <strong>stopAllViews</strong>
