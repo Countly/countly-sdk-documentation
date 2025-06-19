@@ -3338,15 +3338,6 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   Crash information like PLC crashes for iOS, and native Android crashes do not
   have any limits applied to them.
 </p>
-<h1 id="h_01JXJ9Z1GHR65T2WMAGCCEHJ5F">Remote Config</h1>
-<p>
-  A/B testing and Remote Config are different features, but their SDK-related integration
-  is interlinked.
-</p>
-<p>
-  The SDK's core utility for Remote Config and A/B testing is fetching some values
-  from the server. Only the server decides which values to serve.
-</p>
 <h2 id="h_01JXJ9Z1GHM8QBQ1KE9BAVYVHJ">Backoff Mechanism</h2>
 <p>
   The SDK uses a backoff mechanism to pause requests when the server is slow or
