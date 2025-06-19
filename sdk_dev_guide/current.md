@@ -1123,11 +1123,11 @@ Same as startAutoStoppedView(viewName) but allows attaching segmentation data fo
 <p>
   For instance method <strong>startView</strong>
 </p>
-<pre><code>CountlyInstance.<strong>startView</strong>(viewName: String): String
+<pre>String <code>CountlyInstance.<strong>startView</strong>(viewName: String)
 
 // <strong>Logic</strong>
-Explicitly starts tracking a view session with the given name without auto-stop behavior.
-Returns a unique view ID for this session.
+Same as startAutoStoppedView(viewName), except views started with this function will not be stopped automatically.
+Calling this function must end previously started automatic views too.
 </code></pre>
 <p>
   For instance method <strong>startView</strong> with segmentation
@@ -1135,7 +1135,8 @@ Returns a unique view ID for this session.
 <pre>String <code>CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
 // <strong>Logic</strong>
-Same as startView(viewName) but allows attaching segmentation data for this view session.
+Same as startAutoStoppedView(viewName, segmenatation), except views started with this function will not be stopped automatically.
+Calling this function must end previously started automatic views too.
 </code></pre>
 <p>
   For instance method <strong>stopViewWithName</strong>
