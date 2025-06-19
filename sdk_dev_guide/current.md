@@ -902,7 +902,6 @@ end_sesson=1&amp;session_duration=30</code></pre>
 <pre>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()</pre>
 <pre>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)</pre>
 <pre>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</pre>
-<pre>CountlyConfig.<strong>disableOrientationTracking</strong>()</pre>
 <p>
   <strong>Instance Methods</strong>
 </p>
@@ -926,58 +925,6 @@ end_sesson=1&amp;session_duration=30</code></pre>
   If it is possible to automatically determine when a user visits a specific view
   in your platform, then you should provide an option to automatically track views.
   Also, it is important to provide a way to track views manually.
-</p>
-<p>
-  View tracking data is reported as events. There are two types of view events:
-</p>
-<ul>
-  <li>One to indicate the view was entered</li>
-  <li>One to report view duration and mark it as exited</li>
-</ul>
-<p>
-  Both use the event key <code>"[CLY]_view"</code>. Each event is sent with
-  <code>"count": 1</code>. Duration (in seconds) is reported via the
-  <code>"dur"</code> field.
-</p>
-<p>Each event includes up to four reserved segmentation keys:</p>
-<ul>
-  <li>
-    <code>name</code>: view name, e.g. <code>"View_1"</code>
-  </li>
-  <li>
-    <code>segment</code>: SDK platform name, e.g. <code>"Android"</code>
-  </li>
-  <li>
-    <code>visit</code>: set to <code>1</code> when the view is entered
-  </li>
-  <li>
-    <code>start</code>: set to <code>1</code> if it's the first view of the session
-  </li>
-</ul>
-<p>Example: first view entry</p>
-<pre><code>{
-  "key": "[CLY]_view",
-  "count": 1,
-  "segmentation": {
-    "name": "view1",
-    "segment": "Android",
-    "visit": 1,
-    "start": 1
-  }
-}</code></pre>
-<p>Example: reporting view duration</p>
-<pre><code>{
-  "key": "[CLY]_view",
-  "count": 1,
-  "dur": 30,
-  "segmentation": {
-    "name": "view1",
-    "segment": "Android"  
-  }
-}</code></pre>
-<p>
-  For details, see the
-  <a href="https://api.count.ly/reference/i#views" target="_blank" rel="noopener noreferrer">Countly View Tracking API</a>.
 </p>
 <p>
   For all segmentation inputs, segmentation must be validated before processing,
@@ -1053,15 +1000,6 @@ Only non-empty and non-null values accepted. And, for values only mentioned vali
 // <strong>Logic</strong>
 Sets a global segmentation dictionary that will be attached to all views.
 Allows adding common context or user attributes globally.
-</pre>
-<p>
-  For config method <strong>disableOrientationTracking</strong>
-</p>
-<pre>CountlyConfig.<strong>disableOrientationTracking</strong>()
-
-// <strong>Logic</strong>
-Disables automatic tracking of device orientation changes.
-Useful to reduce noise or overhead if orientation data is not needed.
 </pre>
 <p>
   For instance method <strong>setGlobalViewSegmentation</strong>
@@ -1164,7 +1102,7 @@ If multiple views with the same name exist, the most recent one or first accesse
 - Not started views cannot be stopped.
 - So stopping a view with an ID is most recommended way, becuase stopping with name can arise conflicts.
 - If view tracking is not enabled in the SDK behavior settings, call need to be omitted.
-- View duration calculated here by current timestamp - vew start timestamp
+- View duration calculated here by current timestamp - vew start timestamp in seconds.
 - View segmentation created here with:
   - Global view segmentation
   - "name" and "segment" reserved segmentation keys are added
@@ -1276,67 +1214,128 @@ viewName cannot be empty. If not empty segmentation is validated by the constrai
 Adds or updates segmentation data on active view matching the given name.
 - Same as addSegmentationToViewWithID(viewID, segmentation), function just tries to find view with given name.
 </pre>
-<h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
-  <span>View Manual Reporting</span>
-</h2>
 <p>
-  <span>The following section will describe a sample implementation of manual views.</span>
+  If platform supports automatic view reporting, feature must register to some
+  callbacks or app lifecycle events if any.<br>
+  If a callback that notifies new screen started or new page started exist, when
+  it called:
+</p>
+<p>- SDK tries to extract a name from given page or screen</p>
+<p>
+  - If using short names is used, SDK need to shorten by specific platform calls.
+  If names are always short, and cannot be null, SDK might not expose shortening
+  at all.
 </p>
 <p>
-  <span>First, you will need to have 2 internal private properties as </span><strong>string lastView</strong><span>&nbsp;and&nbsp;</span><strong>int lastViewStartTime</strong><span>. Then, create an internal private method&nbsp;</span><strong>reportViewDuration</strong><span>, which checks if </span><strong>lastView</strong><span>&nbsp;is null, and if not, it should report the duration for&nbsp;</span><strong>lastView</strong><span> by calculating it based off the current timestamp and&nbsp;</span><strong>lastViewStartTime</strong><span>.</span>
+  - If extracted name not in the exclusion list, we simply start a view with global
+  view segmentation.
 </p>
 <p>
-  <span>After those steps, provide a&nbsp;</span><strong>reportView</strong><span>&nbsp;method to set the view name as a string parameter inside this method call&nbsp;</span><strong>reportViewDuration</strong><span> to report the duration of the previous view (if there is one). Then set the provided view name as&nbsp;</span><strong>lastView&nbsp;</strong><span>and the current timestamp as&nbsp;</span><strong>lastViewStartTime</strong><span>. Report the view as an event with the&nbsp;</span><strong>visit</strong><span>&nbsp;property and&nbsp;</span><strong>segment</strong><span>&nbsp;as your platform name. Additionally, if this is the first view a user visits in this app session, then also report the&nbsp;</span><strong>start</strong><span>&nbsp;property as true. You will also need to call&nbsp;</span><strong>reportViewDuration</strong><span> with the app exit event.</span>
+  - If this view is the first view, function should start all view that are flagged
+  as "willStartAgain"
+</p>
+<p>If a callback that notifies screen or place is closing:</p>
+<p>- stop the current running view</p>
+<p>
+  - if app is losing focus or going to background all running views will be stopped
+  and sent.
 </p>
 <p>
-  <span>After manual view tracking has been implemented, you may also implement automatic view tracking (if it is available on your platform). To implement automatic view tracking, you will need to catch your platform's specific event when the view is changed and call your implemented&nbsp;</span><strong>reportView</strong><span>&nbsp;method with the view name.</span>
+  - And they are flagged as willStartAgain and will not be removed from the view
+  cache list. They are removed when they are stopped properly.&nbsp;
 </p>
 <p>
-  <span>Additionally, you will need to implement enabling and disabling automatic view tracking, as well as status checking, despite whether automatic view tracking is currently enabled or not.</span>
+  <span>Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a>
 </p>
+<h3 id="h_01JY3VCAY9ZWF7C8KFGTWKB0Q4">Networking and Params</h3>
 <p>
-  <span>The pseudo-code to implement view tracking could appear as follows:</span>
+  Because views reported as events they are pretty much same. Except, views have
+  some internal segmentation keys.
 </p>
-<pre><code class="java">class Countly {
-    String lastView = null;
-    int lastViewStartTime = 0;
-    boolean autoViewTracking = false;
-    
-    private void reportViewDuration(){
-        if(lastView != null){
-             //create event with parameters and 
-             //calculating dur as getCurrentTimestamp()-lastViewStartTime
-        }
-    }
-    
-    void onAppExit(){
-        reportViewDuration();
-    }
-    
-   void onViewChanged(String view){
-      if(autoViewTracking)
-          reportView(view);
-   }
-    
-    public void reportView(String name){
-        //report previous view duration
-        reportViewDuration();
-        lastView = name;
-        lastViewStartTime = getCurrentTimestamp();
-        //create event with parameters without duration
-       // duration will be calculated on next view start or app exit
-    }
-    
-    public void setAutoViewTracking(boolean enable){
-        autoViewTracking = enable;
-    } 
-    
-    public boolean getAutoViewTracking(){
-        return autoViewTracking;
-    }
+<p>There are two types of view events:</p>
+<ul>
+  <li>One to indicate the view was entered</li>
+  <li>One to report view duration and mark it as exited</li>
+</ul>
+<p>
+  Both use the event key <code>"[CLY]_view"</code>. Each event is sent with
+  <code>"count": 1</code>. Duration (in seconds) is reported via the
+  <code>"dur"</code> field.
+</p>
+<p>Each event includes up to four reserved segmentation keys:</p>
+<ul>
+  <li>
+    <code>name</code>: view name, e.g. <code>"View_1"</code>
+  </li>
+  <li>
+    <code>segment</code>: SDK platform name, e.g. <code>"Android"</code>
+  </li>
+  <li>
+    <code>visit</code>: set to <code>1</code> when the view is entered
+  </li>
+  <li>
+    <code>start</code>: set to <code>1</code> if it's the first view of the session
+  </li>
+</ul>
+<p>Example: first view entry</p>
+<pre><code>{
+  "key": "[CLY]_view",
+  "count": 1,
+  "segmentation": {
+    "name": "view1",
+    "segment": "Android",
+    "visit": 1,
+    "start": 1
+  }
+}</code></pre>
+<p>Example: reporting view duration</p>
+<pre><code>{
+  "key": "[CLY]_view",
+  "count": 1,
+  "dur": 30,
+  "segmentation": {
+    "name": "view1",
+    "segment": "Android"  
+  }
 }</code></pre>
 <p>
-  <span>Additionally, if your platform supports actions on view, such as clicks, you may report them as well. Here is more information on&nbsp;</span><a href="https://api.count.ly/reference/i#view-actions" target="_self">reporting actions for views</a><span>.</span>
+  For details, see the
+  <a href="https://api.count.ly/reference/i#views" target="_blank" rel="noopener noreferrer">Countly View Tracking API</a>.
+</p>
+<h3 id="h_01JY3VCAY9ZH56FFRQFA2RT7MK">Storage</h3>
+<p>
+  Views are not stored specifically. Their start and end view events are stored
+  as events. Views are cache-stored to manage view states. A map data structure
+  is the supported approach to manage and access views by their IDs easily. Their
+  datas could be demonstrated by below class concept.
+</p>
+<pre><code class="java">class ViewData {
+  
+  String viewID
+
+  String viewName
+
+  Long viewStartTime
+
+  Boolean autoView
+
+  Map&lt;String, Object&gt; viewSegmentation
+
+  Boolean willStartAgain
+}</code></pre>
+<p>
+  ViewID is randomly generated unique URL-safe random string by combining 6 bytes
+  of secure randomness (Base64-encoded) with the current timestamp.
+</p>
+<h3 id="h_01JY3VCAY967MN3WKZ49JY04A0">Consent</h3>
+<p>
+  The feature depends on "views" consent. If consent is not given, all calls must
+  be omitted.&nbsp;
+</p>
+<p>On consent revoke, all running views will be stopped.</p>
+<p>
+  On session end and "session" consent revoke, first view cache information int
+  the module is reset.
 </p>
 <h1 id="h_01GYC4S9JM2F2WDDFSBEF2TBJ0">Device ID Management</h1>
 <p>
