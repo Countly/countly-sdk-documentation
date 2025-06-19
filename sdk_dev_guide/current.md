@@ -1256,16 +1256,25 @@ Stops all views (auto/non-auto) with provided segmentation if any with adding gl
 </p>
 <pre>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
 
+// <strong>Valid values</strong>
+viewID cannot be empty. If not empty segmentation is validated by the constraints mentioned above. It can be nullable.
+
 // <strong>Logic</strong>
-Adds or updates segmentation data on an active view session identified by the given ID.
+Adds or updates segmentation data on an active view identified by the given ID.
+- SDK internal limits are applied to the segmentation and added to the view.
+- This segmentation will be recorded when a view ended or paused.
 </pre>
 <p>
   For instance method <strong>addSegmentationToViewWithName</strong>
 </p>
 <pre>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
 
+// <strong>Valid values</strong>
+viewName cannot be empty. If not empty segmentation is validated by the constraints mentioned above. It can be nullable.
+
 // <strong>Logic</strong>
-Adds or updates segmentation data on active view sessions matching the given name.
+Adds or updates segmentation data on active view matching the given name.
+- Same as addSegmentationToViewWithID(viewID, segmentation), function just tries to find view with given name.
 </pre>
 <h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
   <span>View Manual Reporting</span>
