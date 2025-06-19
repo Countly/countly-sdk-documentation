@@ -966,6 +966,7 @@ end_sesson=1&amp;session_duration=30</code></pre>
 Enables automatic tracking of views if the system supports it.
 Registers system-specific lifecycle callbacks to track view appearances automatically.
 - Like onViewStart, onViewStop, onViewPause, onViewResume
+- Enabling automatic view tracking will disable calling all manual view calls.
 </pre>
 <p>
   For config method <strong>enableAutomaticViewShortNames</strong>
