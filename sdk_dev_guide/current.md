@@ -890,65 +890,327 @@ end_sesson=1&amp;session_duration=30</code></pre>
 </p>
 <h1 id="01H821RTQ3A76M4SDM49BZPAYH">View Tracking</h1>
 <p>
-  <span>Reporting views would allow you to analyze which views/screens/pages were visited by the app user as well as how long they spent on a specific view. If it is possible to automatically determine when a user visits a specific view in your platform, then you should provide an option to automatically track views. Also, it is important to provide a way to track views manually.&nbsp;</span>
+  Reporting views enables you to analyze which screens or pages were visited by
+  users and how much time they spent on each one, providing valuable insights into
+  user engagement and navigation patterns.
 </p>
-<h2 id="01H821RTQ3WPFFJBM5CP953JA6">
-  <span>View Structure</span>
-</h2>
+<h2 id="h_01JXYCN4T2Z92V0K92537TBMF2">Exposed Methods</h2>
 <p>
-  <span>View information is packaged into events. There are 2 kinds of events:&nbsp;</span>
+  <strong>Config Methods</strong>
+</p>
+<pre><code>CountlyConfig.<strong>enableAutomaticViewTracking</strong>()</code></pre>
+<pre><code>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()</code></pre>
+<pre><code>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)</code></pre>
+<pre><code>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyConfig.<strong>disableOrientationTracking</strong>()</code></pre>
+<p>
+  <strong>Instance Methods</strong>
+</p>
+<pre><code>CountlyInstance.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyInstance.<strong>updateGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String)</code></pre>
+<pre><code>String CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>String CountlyInstance.<strong>startView</strong>(viewName: String)</code></pre>
+<pre><code>String CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)</code></pre>
+<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)</code></pre>
+<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)</code></pre>
+<pre><code>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)</code></pre>
+<pre><code>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<pre><code>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)</code></pre>
+<h2 id="h_01JXYN0FJ91BQZ27873FJ9JSSC">Implementation Details</h2>
+<p>
+  If it is possible to automatically determine when a user visits a specific view
+  in your platform, then you should provide an option to automatically track views.
+  Also, it is important to provide a way to track views manually.
+</p>
+<p>
+  View tracking data is reported as events. There are two types of view events:
 </p>
 <ul>
+  <li>One to indicate the view was entered</li>
+  <li>One to report view duration and mark it as exited</li>
+</ul>
+<p>
+  Both use the event key <code>"[CLY]_view"</code>. Each event is sent with
+  <code>"count": 1</code>. Duration (in seconds) is reported via the
+  <code>"dur"</code> field.
+</p>
+<p>Each event includes up to four reserved segmentation keys:</p>
+<ul>
   <li>
-    <span>an event to indicate that a view was entered</span>
+    <code>name</code>: view name, e.g. <code>"View_1"</code>
   </li>
   <li>
-    an event to send the duration of the view and indicate that the view was
-    exited
+    <code>segment</code>: SDK platform name, e.g. <code>"Android"</code>
+  </li>
+  <li>
+    <code>visit</code>: set to <code>1</code> when the view is entered
+  </li>
+  <li>
+    <code>start</code>: set to <code>1</code> if it's the first view of the session
+  </li>
+</ul>
+<p>Example: first view entry</p>
+<pre><code>{
+  "key": "[CLY]_view",
+  "count": 1,
+  "segmentation": {
+    "name": "view1",
+    "segment": "Android",
+    "visit": 1,
+    "start": 1
+  }
+}</code></pre>
+<p>Example: reporting view duration</p>
+<pre><code>{
+  "key": "[CLY]_view",
+  "count": 1,
+  "dur": 30,
+  "segmentation": {
+    "name": "view1",
+    "segment": "Android"  
+  }
+}</code></pre>
+<p>
+  For details, see the
+  <a href="https://api.count.ly/reference/i#views" target="_blank" rel="noopener noreferrer">Countly View Tracking API</a>.
+</p>
+<p>
+  For all segmentation inputs, segmentation must be validated before processing,
+  constraints for a segmentation:
+</p>
+<ul>
+  <li>Keys are String.</li>
+  <li>
+    Supported class concepts for the values Integer, String, Double, Long, Float,
+    Boolean.
+  </li>
+  <li>
+    Array, List data structures which composed of above class concepts and they
+    can be mixed.
+  </li>
+  <li>
+    It must not contain reserved segmentation keys for the views.
+  </li>
+  <li>
+    SDK internal limits must be applied before using the segmentation:
+    <ul>
+      <li>Key length limit for the keys</li>
+      <li>Value size limit for the String values</li>
+      <li>Segmentation values limit</li>
+    </ul>
   </li>
 </ul>
 <p>
-  All view-related events use the event key "[CLY]_view" and are dependent on the
-  consent key "views".
+  View tracking can be configured through
+  <a href="#h_01JRT094QEGTG0BXBN2MTT82D7">SDK behavior settings</a>, if it is disabled
+  in the Behavior Settings, all view calls must be omiited.
 </p>
-<p>All view events are sent with a "count" of 1.</p>
 <p>
-  The duration field "dur" is used when reporting view duration. It should contain
-  the view duration in seconds.
+  For config method <strong>enableAutomaticViewTracking</strong>
 </p>
-<p>There are 5 potential segmentation values:</p>
-<ul>
-  <li>
-    "name" - string value of the view name, for example, "View_1"
-  </li>
-  <li>
-    "segment" - string value of the SDK platform name, for example, "Android"
-  </li>
-  <li>
-    "visit" - if the view was entered, this property should be set with the value
-    "1"
-  </li>
-  <li>
-    "start" - if the view was entered and it was the first view of a session
-    this property should be set with "1"
-  </li>
-  <li>
-    "_idv" - the unique identifier of this view-session. This should be set to
-    the String concatenation of 8 base64 characters created from 6 bytes of randomness
-    (ideally crypto safe) and timestamp in ms.
-  </li>
-</ul>
+<pre><code>CountlyConfig.<strong>enableAutomaticViewTracking</strong>()
+
+// <strong>Logic</strong>
+Enables automatic tracking of views if the system supports it.
+Registers system-specific lifecycle callbacks to track view appearances automatically.
+- Like onViewStart, onViewStop, onViewPause, onViewResume
+</code></pre>
 <p>
-  A sample event for reporting the first view would look like this:
+  For config method <strong>enableAutomaticViewShortNames</strong>
 </p>
-<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android"</span>,<br>            <span>"visit"</span>: <span>1</span>,<br>            <span>"start"</span>: <span>1,<br>            "_idv": "f0e8f5db5e5d9e7b9a45d3916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
+<pre><code>CountlyConfig.<strong>enableAutomaticViewShortNames</strong>()
+
+// <strong>Logic</strong>
+When enabled, view names will be shortened automatically by trimming package or path prefixes.
+Helps in reducing verbose or repetitive view naming in analytics.<br>Only will get class of view name.
+- If view name is something like ly.count.some.View name must be shortened to View</code></pre>
 <p>
-  <span>Sample event for reporting this view's duration:</span>
+  For config method <strong>setAutomaticViewTrackingExclusions</strong>
 </p>
-<pre>events=[<br>    {<br>        <span>"key"</span>: <span>"[CLY]_view"</span>,<br>        <span>"count"</span>: <span>1</span>,<br>        <span>"dur"</span>: <span>30</span>,<br>        <span>"segmentation"</span>: {<br>            <span>"name"</span>: <span>"view1"</span>,<br>            <span>"segment"</span>: <span>"Android",<br>            "_idv": "f0e8f5db5e17ad5ce5cf53916b93e43dd091153fdfb6c9a6f"<br></span><span>        </span>}<br>    }<br>]</pre>
+<pre><code>CountlyConfig.<strong>setAutomaticViewTrackingExclusions</strong>(exclusions: Array&lt;String&gt;)
+
+// <strong>Valid values</strong>
+Only non-empty strings accepted.
+
+// <strong>Logic</strong>
+Sets a list of view names to be excluded from automatic view tracking.
+Useful to prevent tracking of internal, debug, or unwanted views.
+- Simply omits the views if they exist in the exclusions list.
+</code></pre>
 <p>
-  <span>Here is&nbsp;<a href="https://api.count.ly/reference/i#views" target="_self">more information on view-tracking API</a>s.</span>
+  For config method <strong>setGlobalViewSegmentation</strong>
 </p>
+<pre><code>CountlyConfig.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Valid values</strong>
+Only non-empty and non-null values accepted. And, for values only mentioned validated constraints above accepted.
+
+// <strong>Logic</strong>
+Sets a global segmentation dictionary that will be attached to all views.
+Allows adding common context or user attributes globally.
+</code></pre>
+<p>
+  For config method <strong>disableOrientationTracking</strong>
+</p>
+<pre><code>CountlyConfig.<strong>disableOrientationTracking</strong>()
+
+// <strong>Logic</strong>
+Disables automatic tracking of device orientation changes.
+Useful to reduce noise or overhead if orientation data is not needed.
+</code></pre>
+<p>
+  For instance method <strong>setGlobalViewSegmentation</strong>
+</p>
+<pre><code>CountlyInstance.<strong>setGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Valid values</strong>
+Only non-empty and non-null values accepted. And, for values only mentioned validated constraints above accepted.
+
+// <strong>Logic</strong>
+Sets a global segmentation dictionary that will be attached to all views.
+Useful to add common context or attributes to all views globally.
+</code></pre>
+<p>
+  For instance method <strong>updateGlobalViewSegmentation</strong>
+</p>
+<pre><code>CountlyInstance.<strong>updateGlobalViewSegmentation</strong>(segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Valid values</strong>
+Only non-empty and non-null values accepted. And, for values only mentioned validated constraints above accepted.
+
+// <strong>Logic</strong>
+Updates the existing global segmentation by merging the new keys and values.
+Allows to add or overwrite global segmentation properties dynamically.
+</code></pre>
+<p>
+  For instance method <strong>startAutoStoppedView</strong>
+</p>
+<pre>String <code>CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String)
+
+// <strong>Valid values</strong>
+Only non-empty values accepted
+
+// <strong>Logic</strong>
+Starts a view that will be stopped with another view.
+Returns a unique view ID for further reference.
+- If automatic view tracking enabled, this call will be omitted because manually calling this function end the automatically started views by the callbacks.
+- If view tracking is not enabled in the SDK behavior settings, call need to be omitted.
+- viewName is validated
+- Previously started automatic views must end
+- View segmentation will be created:
+  - If global view segmentation set, it is added
+  - If it is the first view in the session "start" added
+  - "visit", "segment", "name" parameters added which key length SDK internal limit is applied to the name.
+- Records the view event
+- Returns the view ID generated
+</code></pre>
+<p>
+  For instance method <strong>startAutoStoppedView</strong> with segmentation
+</p>
+<pre>String <code>CountlyInstance.<strong>startAutoStoppedView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Same as startAutoStoppedView(viewName) but allows attaching segmentation data for that specific view start.
+- While creating the view segmentation, before adding reserved keys given segmentation needs to be validated and all related SDK internal limits must be applied
+- After it is validated, already validated global view segmentation need to be added and after addition segmentation values SDK internal limit must be applied
+- At last, reserved segmentation keys are added. They must not affected from the segmentation values SDK internal limit.
+</code></pre>
+<p>
+  For instance method <strong>startView</strong>
+</p>
+<pre><code>CountlyInstance.<strong>startView</strong>(viewName: String): String
+
+// <strong>Logic</strong>
+Explicitly starts tracking a view session with the given name without auto-stop behavior.
+Returns a unique view ID for this session.
+</code></pre>
+<p>
+  For instance method <strong>startView</strong> with segmentation
+</p>
+<pre>String <code>CountlyInstance.<strong>startView</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Same as startView(viewName) but allows attaching segmentation data for this view session.
+</code></pre>
+<p>
+  For instance method <strong>stopViewWithName</strong>
+</p>
+<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String)
+
+// <strong>Logic</strong>
+Stops tracking a view session by its name.
+If multiple sessions with the same name exist, the most recent one is stopped.
+</code></pre>
+<p>
+  For instance method <strong>stopViewWithName</strong> with segmentation
+</p>
+<pre><code>CountlyInstance.<strong>stopViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Stops the view session by name and attaches segmentation data to the stop event.
+</code></pre>
+<p>
+  For instance method <strong>stopViewWithID</strong>
+</p>
+<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String)
+
+// <strong>Logic</strong>
+Stops tracking a view session by its unique ID.
+</code></pre>
+<p>
+  For instance method <strong>stopViewWithID</strong> with segmentation
+</p>
+<pre><code>CountlyInstance.<strong>stopViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Stops the view session by ID and attaches segmentation data to the stop event.
+</code></pre>
+<p>
+  For instance method <strong>pauseViewWithID</strong>
+</p>
+<pre><code>CountlyInstance.<strong>pauseViewWithID</strong>(viewID: String)
+
+// <strong>Logic</strong>
+Pauses the timing of the view session identified by the given ID.
+Useful when the app goes into background or temporary interruptions occur.
+</code></pre>
+<p>
+  For instance method <strong>resumeViewWithID</strong>
+</p>
+<pre><code>CountlyInstance.<strong>resumeViewWithID</strong>(viewID: String)
+
+// <strong>Logic</strong>
+Resumes a paused view session identified by the given ID.
+</code></pre>
+<p>
+  For instance method <strong>stopAllViews</strong>
+</p>
+<pre><code>CountlyInstance.<strong>stopAllViews</strong>(segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Stops all currently active view sessions and attaches the given segmentation data to each stop event.
+</code></pre>
+<p>
+  For instance method <strong>addSegmentationToViewWithID</strong>
+</p>
+<pre><code>CountlyInstance.<strong>addSegmentationToViewWithID</strong>(viewID: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Adds or updates segmentation data on an active view session identified by the given ID.
+</code></pre>
+<p>
+  For instance method <strong>addSegmentationToViewWithName</strong>
+</p>
+<pre><code>CountlyInstance.<strong>addSegmentationToViewWithName</strong>(viewName: String, segmentation: Map&lt;String, Object&gt;)
+
+// <strong>Logic</strong>
+Adds or updates segmentation data on active view sessions matching the given name.
+</code></pre>
 <h2 id="01H821RTQ35WBYP7P6KZKQSXJF">
   <span>View Manual Reporting</span>
 </h2>
@@ -1648,17 +1910,21 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <span>It should replace the internally used device ID with the new one, and use it for all new requests, persistently storing it for further sessions. The Countly SDK should follow these steps:</span>
 </p>
 <ul>
-  <li>
-    <strong><span>Add currently recorded, but not queued, events to the request queue</span></strong>
-  </li>
-  <li>End the current session</li>
-  <li>Clear all started timed-events</li>
-  <li>
-    <span>Change the device ID and store it persistently for further session use</span>
-  </li>
-  <li>
-    <span>Begin a new session with the new device ID</span><span></span><span></span>
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <strong><span>Add currently recorded, but not queued, events to the request queue</span></strong>
+      </li>
+      <li>End the current session</li>
+      <li>Clear all started timed-events</li>
+      <li>
+        <span>Change the device ID and store it persistently for further session use</span>
+      </li>
+      <li>
+        <span>Begin a new session with the new device ID</span><span></span><span></span>
+      </li>
+    </ul>
+  </ul>
 </ul>
 <h3 id="01H821RTQ4RPFFQJ9YFTNCNNQ1">
   <span>Changing ID With Merging</span>
@@ -1667,18 +1933,22 @@ end_sesson=1&amp;session_duration=30</code></pre>
   <span>Developers may need to change a device ID to their own internal user ID and merge the server-side data previously generated by a user while he/she was unauthenticated. It is similar to "Changing ID without merging", but the Countly SDK will need to merge the data on the server as well. In order to make a proper transition, the Countly SDK should follow these steps:</span>
 </p>
 <ul>
-  <li>
-    <span>Temporarily keep the current device ID</span>
-  </li>
-  <li>
-    <span>Change the device ID and store it persistently for further session use</span>
-  </li>
-  <li>
-    <span>Use the&nbsp;</span><a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a><span>&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
-  </li>
-  <li>
-    <span>No need to end and restart the current session or clear started timed-events</span>
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <span>Temporarily keep the current device ID</span>
+      </li>
+      <li>
+        <span>Change the device ID and store it persistently for further session use</span>
+      </li>
+      <li>
+        <span>Use the&nbsp;</span><a href="https://api.count.ly/reference/i#change-id-and-merge-data" target="_self">old_device_id</a><span>&nbsp;API with the temporarily kept, old device ID to merge the data on the server</span>
+      </li>
+      <li>
+        <span>No need to end and restart the current session or clear started timed-events</span>
+      </li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="01H821RTQ4Z7ZBN3SE64VW17GM">Retrieving the Current Device ID and Type</h2>
 <p>
@@ -1719,9 +1989,13 @@ end_sesson=1&amp;session_duration=30</code></pre>
   The currently used ones are the following:
 </p>
 <ul>
-  <li>"a" - Android</li>
-  <li>"i" - iOS</li>
-  <li>"m" - macOS</li>
+  <ul>
+    <ul>
+      <li>"a" - Android</li>
+      <li>"i" - iOS</li>
+      <li>"m" - macOS</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="01H821RTQ5YWFTQ776SZWR9RSB">Platform Specific Notes</h2>
 <h3 id="01H821RTQ5M2PDNV8VA4BQEM3P">Additional Intent Redirection Checks (Android)</h3>
@@ -1748,10 +2022,14 @@ end_sesson=1&amp;session_duration=30</code></pre>
   can include:
 </p>
 <ul>
-  <li>Country code</li>
-  <li>City name</li>
-  <li>Latitude and longitude values</li>
-  <li>IP address</li>
+  <ul>
+    <ul>
+      <li>Country code</li>
+      <li>City name</li>
+      <li>Latitude and longitude values</li>
+      <li>IP address</li>
+    </ul>
+  </ul>
 </ul>
 <p>
   Product Information:
@@ -2301,15 +2579,19 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
   <span>After a user gives a rating, a reserved event will be recorded with <code>[CLY]_star_rating</code></span><span>as the key and following as the segmentation dictionary:</span>
 </p>
 <ul>
-  <li>
-    <strong>platform:</strong> on which the application runs
-  </li>
-  <li>
-    <strong>app_version:</strong> application's version number
-  </li>
-  <li>
-    <strong>rating:</strong> user's 1-to-5 rating
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <strong>platform:</strong> on which the application runs
+      </li>
+      <li>
+        <strong>app_version:</strong> application's version number
+      </li>
+      <li>
+        <strong>rating:</strong> user's 1-to-5 rating
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>If a user dismisses the star-rating dialog without giving a rating, an event will not be recorded. The star-rating dialog's message and dismiss button title may be customized using the properties on the initial configuration object.</span>
@@ -2375,27 +2657,31 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   <span>"recordRatingWidgetWithID" should record an event with the internal key "[CLY]_star_rating". The event should have the following segmentation:</span>
 </p>
 <ul>
-  <li>
-    <span>"platform" - current platform</span>
-  </li>
-  <li>
-    <span>"app_version" - current app version</span>
-  </li>
-  <li>
-    <span>"rating" - provided rating result. In the range from 1 to 5. (Mandatory)</span>
-  </li>
-  <li>
-    <span>"widget_id" - provided widget ID. (Mandatory)</span>
-  </li>
-  <li>
-    <span>"contactMe" - provided value.</span>
-  </li>
-  <li>
-    "email" - <span>provided value.</span>
-  </li>
-  <li>
-    "comment" - <span>provided value.</span>
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <span>"platform" - current platform</span>
+      </li>
+      <li>
+        <span>"app_version" - current app version</span>
+      </li>
+      <li>
+        <span>"rating" - provided rating result. In the range from 1 to 5. (Mandatory)</span>
+      </li>
+      <li>
+        <span>"widget_id" - provided widget ID. (Mandatory)</span>
+      </li>
+      <li>
+        <span>"contactMe" - provided value.</span>
+      </li>
+      <li>
+        "email" - <span>provided value.</span>
+      </li>
+      <li>
+        "comment" - <span>provided value.</span>
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>Basic filtering (type checks) on the provided values should be performed. Mandatory values must be provided. Invalid widget ID's (non string or empty values) should not be accepted. Rating value should be modified, if necessary, so that it lies within the acceptable range of [1,5].</span>
@@ -2414,18 +2700,23 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   The Feedback Widgets API provides access to three types of widgets:
 </p>
 <ul>
-  <li>
-    <strong>Surveys: </strong>A list of questions supporting various answer formats
-    such as multiple-choice, textbox, and rating scales.
-  </li>
-  <li>
-    <strong>Ratings: </strong>Collects user feedback using a 1-5 rating scale.
-    Has an option to leave a comment, and lea to leave an email for future contact.
-  </li>
-  <li>
-    <strong>NPS (Net Promoter Score): </strong>Questions on a scale from 0-10,
-    with customization options for follow-up questions.
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <strong>Surveys: </strong>A list of questions supporting various
+        answer formats such as multiple-choice, textbox, and rating scales.
+      </li>
+      <li>
+        <strong>Ratings: </strong>Collects user feedback using a 1-5 rating
+        scale. Has an option to leave a comment, and lea to leave an email
+        for future contact.
+      </li>
+      <li>
+        <strong>NPS (Net Promoter Score): </strong>Questions on a scale from
+        0-10, with customization options for follow-up questions.
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   They are shown using a very similar server API and basically the same processing.
@@ -2436,27 +2727,32 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <p>Feedback widgets can be used through three methods:</p>
 <ul>
-  <li>
-    <p>
-      <strong>Automatic Server Rendered Widget: </strong>The server rendered
-      widget is inserted in the web page or the UI, using a WebView, by the
-      SDK.
-    </p>
-  </li>
-  <li>
-    <p>
-      <strong>Manually Rendered and Reported Widget: </strong>The client app
-      builds a custom UI, and the results are reported to the SDK manually.
-      Used in cases where the developer wants to use a custom UI.
-    </p>
-  </li>
-  <li>
-    <p>
-      <strong>Server Rendered Widget in a Custom WebView: </strong>The SDK
-      builds a required URL to be used in a WebView. This would then be used
-      in the WebView of the client app of choice.
-    </p>
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <p>
+          <strong>Automatic Server Rendered Widget: </strong>The server
+          rendered widget is inserted in the web page or the UI, using
+          a WebView, by the SDK.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Manually Rendered and Reported Widget: </strong>The client
+          app builds a custom UI, and the results are reported to the SDK
+          manually. Used in cases where the developer wants to use a custom
+          UI.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Server Rendered Widget in a Custom WebView: </strong>The
+          SDK builds a required URL to be used in a WebView. This would
+          then be used in the WebView of the client app of choice.
+        </p>
+      </li>
+    </ul>
+  </ul>
 </ul>
 <h3 id="01H821RTQ6RS3BAEPWF1EGD07R">Retrieving the List of Eligible Widgets</h3>
 <p>
@@ -2569,13 +2865,17 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
 </p>
 <h3 id="01HQ5E6TCV5BG1EWH2E3YD7BF1">Automatic Feedback Widgets</h3>
 <p>Automatic Feedback Widget reporting has 3 steps:</p>
-<ol>
-  <li>Retrieve a list of available widgets and pick one.</li>
-  <li>
-    Presenting the widget with <code>presentFeedbackWidget</code> call.
-  </li>
-  <li>Handling the callbacks.</li>
-</ol>
+<ul>
+  <ul>
+    <ol>
+      <li>Retrieve a list of available widgets and pick one.</li>
+      <li>
+        Presenting the widget with <code>presentFeedbackWidget</code> call.
+      </li>
+      <li>Handling the callbacks.</li>
+    </ol>
+  </ul>
+</ul>
 <p>
   As explained in the 'Retrieving the List of Eligible Widgets' section, the first
   step uses the <code>getAvailableFeedbackWidgets</code> function to communicate
@@ -2593,40 +2893,49 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   It should be possible to provide 2 optional callbacks to the
   <code>presentFeedbackWidget</code> call:
 </p>
-<ol>
-  <li>
-    a callback (potentially named <code>widgetShown</code>) that is called when
-    the widget is successfully presented (currently that would mean that there
-    were no issues/errors while trying to show the dialog with the WebView).
-    Also, we aren't verifying if the WebView is showing a working widget. If
-    there are any issues during the display of the widget, this callback will
-    return an error message.
-  </li>
-  <li>
-    a callback (potentially named <code>widgetClosed</code>) that is called when
-    the widget/dialog is closed (for mobile SDKs and for the web SDK that would
-    mean slightly different things, but the main point is to have the host app/site
-    notified of when the "feedback process" is over). If there are any issues
-    during the closing of the widget, this callback will return an error message.
-  </li>
-</ol>
+<ul>
+  <ul>
+    <ol>
+      <li>
+        a callback (potentially named <code>widgetShown</code>) that is called
+        when the widget is successfully presented (currently that would mean
+        that there were no issues/errors while trying to show the dialog
+        with the WebView). Also, we aren't verifying if the WebView is showing
+        a working widget. If there are any issues during the display of the
+        widget, this callback will return an error message.
+      </li>
+      <li>
+        a callback (potentially named <code>widgetClosed</code>) that is
+        called when the widget/dialog is closed (for mobile SDKs and for
+        the web SDK that would mean slightly different things, but the main
+        point is to have the host app/site notified of when the "feedback
+        process" is over). If there are any issues during the closing of
+        the widget, this callback will return an error message.
+      </li>
+    </ol>
+  </ul>
+</ul>
 <h3 id="01H821RTQ6VMWG2GBHZHBYZ4DB">Manual Feedback Widgets</h3>
 <p>Manual feedback widget reporting has 3 steps:</p>
-<ol>
-  <li>
-    Retrieve a list of available widgets and pick one. This is the same initial
-    step with the automatic feedback widgets and reuses the same call to retrieve
-    them.
-  </li>
-  <li>
-    Download widget data from the server (for that single widget with the information
-    that has been retrieved from the previous step).
-  </li>
-  <li>
-    Report the feedback result (for that single widget according to that data
-    from the previous step).
-  </li>
-</ol>
+<ul>
+  <ul>
+    <ol>
+      <li>
+        Retrieve a list of available widgets and pick one. This is the same
+        initial step with the automatic feedback widgets and reuses the same
+        call to retrieve them.
+      </li>
+      <li>
+        Download widget data from the server (for that single widget with
+        the information that has been retrieved from the previous step).
+      </li>
+      <li>
+        Report the feedback result (for that single widget according to that
+        data from the previous step).
+      </li>
+    </ol>
+  </ul>
+</ul>
 <p>
   As mentioned before, the first step uses
   <code>getAvailableFeedbackWidgets</code> function, which is also used for automatic
@@ -2696,15 +3005,19 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   to the type of the reported widget. That event should have the following segmentation:
 </p>
 <ul>
-  <li>
-    <code>platform</code> - SDK platform
-  </li>
-  <li>
-    <code>app_version</code> - host app version
-  </li>
-  <li>
-    <code>widget_id</code> - respective widget ID
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <code>platform</code> - SDK platform
+      </li>
+      <li>
+        <code>app_version</code> - host app version
+      </li>
+      <li>
+        <code>widget_id</code> - respective widget ID
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   In addition to this segmentation which identifies the widget, the contents of
@@ -2714,9 +3027,13 @@ CountlyConfiguration.starRatingDismissButtonTitle = "Custom Dismiss Button Title
   value:
 </p>
 <ul>
-  <li>
-    <code>closed</code> - with the value of "1"
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <code>closed</code> - with the value of "1"
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   After this event has been added to the event queue, the event queue should be
@@ -2788,8 +3105,12 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span>Additionally, there could be custom key values added to the user details. In this case, you would need to provide a means to set them:</span>
 </p>
 <ul>
-  <li>Countly.user_details(map details)</li>
-  <li>Countly.user_custom_details(map custom_details)</li>
+  <ul>
+    <ul>
+      <li>Countly.user_details(map details)</li>
+      <li>Countly.user_custom_details(map custom_details)</li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>You may find more information on what data may be set for a user </span><a href="https://api.count.ly/reference/i#user-details" target="_self">by following this link</a><span>.</span>
@@ -2811,17 +3132,21 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span>The standard methods that should be provided by the SDK are as follows (provided as pseudo-code, naming conventions may differ from platform to platform):</span>
 </p>
 <ul>
-  <li>Countly.userData.set(string key, string value)</li>
-  <li>Countly.userData.setOnce(string key, string value)</li>
-  <li>Countly.userData.increment(string key)</li>
-  <li>Countly.userData.incrementBy(string key, double value)</li>
-  <li>Countly.userData.multiply(string key, double value)</li>
-  <li>Countly.userData.max(string key, double value)</li>
-  <li>Countly.userData.min(string key, double value)</li>
-  <li>Countly.userData.push(string key, string value)</li>
-  <li>Countly.userData.pushUnique(string key, string value)</li>
-  <li>Countly.userData.pull(string key, string value)</li>
-  <li>Countly.userData.save() //send data to server</li>
+  <ul>
+    <ul>
+      <li>Countly.userData.set(string key, string value)</li>
+      <li>Countly.userData.setOnce(string key, string value)</li>
+      <li>Countly.userData.increment(string key)</li>
+      <li>Countly.userData.incrementBy(string key, double value)</li>
+      <li>Countly.userData.multiply(string key, double value)</li>
+      <li>Countly.userData.max(string key, double value)</li>
+      <li>Countly.userData.min(string key, double value)</li>
+      <li>Countly.userData.push(string key, string value)</li>
+      <li>Countly.userData.pushUnique(string key, string value)</li>
+      <li>Countly.userData.pull(string key, string value)</li>
+      <li>Countly.userData.save() //send data to server</li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <strong>Note</strong>:&nbsp;<span>when reporting to the server, assure the push, pushUnique, and pull parameters can provide multiple values for the same property as an array.</span>
@@ -2856,9 +3181,13 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   divided into 3 groups:
 </p>
 <ul>
-  <li>Custom traces</li>
-  <li>Network request traces</li>
-  <li>Device traces</li>
+  <ul>
+    <ul>
+      <li>Custom traces</li>
+      <li>Network request traces</li>
+      <li>Device traces</li>
+    </ul>
+  </ul>
 </ul>
 <h2 id="01H821RTQ6N7TWRG1FZXQ9E9HW">Trace / Metric keys</h2>
 <p>
@@ -2918,14 +3247,18 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>
   <span>Consent management in the SDK is done in 2 steps<br></span><span></span>
 </p>
-<ol>
-  <li>
-    <span>consent has to first be required in the app otherwise, the SDK works as if all consent is given</span>
-  </li>
-  <li>
-    <span>if consent is required, it has to explicitly be given for each targeted feature</span>
-  </li>
-</ol>
+<ul>
+  <ul>
+    <ol>
+      <li>
+        <span>consent has to first be required in the app otherwise, the SDK works as if all consent is given</span>
+      </li>
+      <li>
+        <span>if consent is required, it has to explicitly be given for each targeted feature</span>
+      </li>
+    </ol>
+  </ul>
+</ul>
 <h2 id="01H821RTQ7CS4N3G4Q9AXQC904">Initial Configuration</h2>
 <p>
   During SDK init there should be a flag (e.g. <code>requiresConsent</code>) to
@@ -2950,67 +3283,71 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span>The following are the currently available features: </span>
 </p>
 <ul>
-  <li>
-    <code>sessions</code> -
-    <span>tracking when, how often, and how long users use your app/website</span>
-  </li>
-  <li>
-    <code>events</code> -
-    <span>allow events to be sent to the server (doesn't apply to other features using event mechanisms)</span>
-  </li>
-  <li>
-    <code>location</code> -&nbsp;<span>allows location information to be sent. If consent has not been given, the SDK should force send an empty location upon <code>begin_session</code></span><span>to prevent the server from determining location via IP addresses</span>
-  </li>
-  <li>
-    <code>views</code> -
-    <span>allow tracking of which views/pages a user visits</span>
-  </li>
-  <li>
-    <code>scrolls</code> -
-    <span>allow user scrolls for scroll heatmap to be tracked</span>
-  </li>
-  <li>
-    <code>clicks</code> -
-    <span>allow user clicks for heatmaps as well as link clicks to be tracked</span>
-  </li>
-  <li>
-    <code>forms</code> -
-    <span>allow user's form submissions to be tracked</span>
-  </li>
-  <li>
-    <code>crashes</code> -
-    <span>allow crashes, exceptions, and errors to be tracked</span>
-  </li>
-  <li>
-    <code>attribution</code> -
-    <span>allows the campaign from which a user came to be tracked</span>
-  </li>
-  <li>
-    <code>users</code> -
-    <span>allow collecting/providing user information, including custom properties</span>
-  </li>
-  <li>
-    <code>push</code> - allows push notifications
-  </li>
-  <li>
-    <code>star-rating</code> -
-    <span>allows their rating and feedback to be sent</span>
-  </li>
-  <li>
-    <code>accessory-devices</code> -
-    <span>allow accessories or wearable devices, such as Apple Watches, etc. to be detected</span>
-  </li>
-  <li>
-    <code>apm</code> -
-    <span>allows usage of application performance monitoring features</span>
-  </li>
-  <li>
-    <code>remote-config</code> -
-    <span>allows downloading of remote configs from the server</span>
-  </li>
-  <li>
-    <span><code>feedback</code>- allows showing things like surveys and NPS</span>
-  </li>
+  <ul>
+    <ul>
+      <li>
+        <code>sessions</code> -
+        <span>tracking when, how often, and how long users use your app/website</span>
+      </li>
+      <li>
+        <code>events</code> -
+        <span>allow events to be sent to the server (doesn't apply to other features using event mechanisms)</span>
+      </li>
+      <li>
+        <code>location</code> -&nbsp;<span>allows location information to be sent. If consent has not been given, the SDK should force send an empty location upon <code>begin_session</code></span><span>to prevent the server from determining location via IP addresses</span>
+      </li>
+      <li>
+        <code>views</code> -
+        <span>allow tracking of which views/pages a user visits</span>
+      </li>
+      <li>
+        <code>scrolls</code> -
+        <span>allow user scrolls for scroll heatmap to be tracked</span>
+      </li>
+      <li>
+        <code>clicks</code> -
+        <span>allow user clicks for heatmaps as well as link clicks to be tracked</span>
+      </li>
+      <li>
+        <code>forms</code> -
+        <span>allow user's form submissions to be tracked</span>
+      </li>
+      <li>
+        <code>crashes</code> -
+        <span>allow crashes, exceptions, and errors to be tracked</span>
+      </li>
+      <li>
+        <code>attribution</code> -
+        <span>allows the campaign from which a user came to be tracked</span>
+      </li>
+      <li>
+        <code>users</code> -
+        <span>allow collecting/providing user information, including custom properties</span>
+      </li>
+      <li>
+        <code>push</code> - allows push notifications
+      </li>
+      <li>
+        <code>star-rating</code> -
+        <span>allows their rating and feedback to be sent</span>
+      </li>
+      <li>
+        <code>accessory-devices</code> -
+        <span>allow accessories or wearable devices, such as Apple Watches, etc. to be detected</span>
+      </li>
+      <li>
+        <code>apm</code> -
+        <span>allows usage of application performance monitoring features</span>
+      </li>
+      <li>
+        <code>remote-config</code> -
+        <span>allows downloading of remote configs from the server</span>
+      </li>
+      <li>
+        <span><code>feedback</code>- allows showing things like surveys and NPS</span>
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>Note that the available features may change depending on the platform.</span>
@@ -3246,10 +3583,15 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <pre><span>&amp;aid=</span><span>{"rndid":[SOME_OTHER_ID_VALUE]</span><span>}</span></pre>
 <h2 id="01H821RTQ7AZ6J858BHP4883ZC">SDK Internal Limits</h2>
 <p>The SDK should have the following limits:</p>
-<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
-  <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxKeyLength</strong>" - 128 chars
-  </li>
+<ul>
+  <ul>
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li data-stringify-indent="0">
+        "<strong data-stringify-type="bold">maxKeyLength</strong>" - 128
+        chars
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>Limits the maximum size of all string keys.</span><br>
@@ -3262,10 +3604,15 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span> - custom user property</span><br>
   <span> - custom user property keys that are used for property modifiers (mul, push, pull, set, increment, etc)</span>
 </p>
-<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
-  <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxValueSize</strong>" - 256 chars
-  </li>
+<ul>
+  <ul>
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li data-stringify-indent="0">
+        "<strong data-stringify-type="bold">maxValueSize</strong>" - 256
+        chars
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>Limits the size of all values in our key-value pairs.</span><br>
@@ -3278,11 +3625,15 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   <span> - manual feedback widget reporting fields (reported as an event)</span><br>
   <span> - rating widget response (reported as an event)<br></span>
 </p>
-<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
-  <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxSegmentationValues</strong>" - 100
-    developer-supplied entries
-  </li>
+<ul>
+  <ul>
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li data-stringify-indent="0">
+        "<strong data-stringify-type="bold">maxSegmentationValues</strong>"
+        - 100 developer-supplied entries
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>Max amount of custom (dev-provided) segmentation in:</span>
@@ -3305,28 +3656,41 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <p>
   <span>- Custom APM Metrics</span>
 </p>
-<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
-  <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxBreadcrumbCount</strong>" - 100 entries
-  </li>
+<ul>
+  <ul>
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li data-stringify-indent="0">
+        "<strong data-stringify-type="bold">maxBreadcrumbCount</strong>"
+        - 100 entries
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>Maximum amount of breadcrumbs that can be recorded before the oldest one is deleted</span>
 </p>
-<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
-  <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxStackTraceLinesPerThread</strong>"
-    - default value of 30
-  </li>
+<ul>
+  <ul>
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li data-stringify-indent="0">
+        "<strong data-stringify-type="bold">maxStackTraceLinesPerThread</strong>"
+        - default value of 30
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>limits how many stack trace lines would be recorded per thread</span>
 </p>
-<ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
-  <li data-stringify-indent="0">
-    "<strong data-stringify-type="bold">maxStackTraceLineLength</strong>" - default
-    value of 200
-  </li>
+<ul>
+  <ul>
+    <ul class="p-rich_text_list p-rich_text_list__bullet" data-stringify-type="unordered-list" data-indent="0">
+      <li data-stringify-indent="0">
+        "<strong data-stringify-type="bold">maxStackTraceLineLength</strong>"
+        - default value of 200
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   <span>limits how many characters are allowed per stack trace line. This also limits the crash message length.</span>
@@ -3449,42 +3813,52 @@ npm install markdownlint --save-dev
   be changed after the following triggers:
 </p>
 <ul>
-  <li>Session update timer - for a periodic save</li>
-  <li>
-    Session ended - as a proxy that the app/page is about to be closed
-  </li>
-  <li>
-    Any other platform mechanisms that would indicate that the app is about to
-    be closed or killed
-  </li>
+  <ul>
+    <ul>
+      <li>Session update timer - for a periodic save</li>
+      <li>
+        Session ended - as a proxy that the app/page is about to be closed
+      </li>
+      <li>
+        Any other platform mechanisms that would indicate that the app is
+        about to be closed or killed
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   Here is a list of metrics that need to be tracked. They are identified by the
   JSON key that should be used when sending these health metrics:
 </p>
-<ul dir="auto">
-  <li>
-    <p dir="auto">
-      <strong>el</strong> (Integer) - The amount of error-level SDK logs triggered
-    </p>
-  </li>
-  <li>
-    <p dir="auto">
-      <strong>wl</strong> (Integer) - The amount of warning-level SDK logs
-      triggered&nbsp;
-    </p>
-  </li>
-  <li>
-    <p dir="auto">
-      <strong>sc</strong> (Integer) - The status code of the last failed request&nbsp;
-    </p>
-  </li>
-  <li>
-    <p dir="auto">
-      <strong>em</strong> (String) - The first 1000 characters of the response
-      returned by the last failed request
-    </p>
-  </li>
+<ul>
+  <ul>
+    <ul dir="auto">
+      <li>
+        <p dir="auto">
+          <strong>el</strong> (Integer) - The amount of error-level SDK
+          logs triggered
+        </p>
+      </li>
+      <li>
+        <p dir="auto">
+          <strong>wl</strong> (Integer) - The amount of warning-level SDK
+          logs triggered&nbsp;
+        </p>
+      </li>
+      <li>
+        <p dir="auto">
+          <strong>sc</strong> (Integer) - The status code of the last failed
+          request&nbsp;
+        </p>
+      </li>
+      <li>
+        <p dir="auto">
+          <strong>em</strong> (String) - The first 1000 characters of the
+          response returned by the last failed request
+        </p>
+      </li>
+    </ul>
+  </ul>
 </ul>
 <p>
   The module should expose the following methods for tracking, saving, and creating
