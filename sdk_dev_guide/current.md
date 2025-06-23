@@ -3356,16 +3356,19 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <pre>CountlyConfig.<strong>disableSDKBehaviorSettingsUpdates</strong>()</pre>
 <h3 id="h_01JRT094QEGTG0BXBN2MTT82D7_id">Implementation Details</h3>
 <p>
-  During init and every X hours (4 hours by default) SDK tries to acquire the config
-  and stores it persistently locally. Afterwards, tries to reconfigure itself.
+  During init and every X hours (4 hours by default) SDK tries to acquire the behavior
+  settings and stores it persistently locally. Afterwards, tries to reconfigure
+  itself.
 </p>
 <p>
-  When initializing the SDK, if there is a persistent config stored, it will be
-  used. The SDK will still try to get a up to date version of the config at the
-  end of initialization. Once the up to date version has been acquired, it is stored
-  persistently and the SDK reconfigures itself to reflect the new configuration.
+  When initializing the SDK, if there is a persistent behavior settings stored,
+  it will be used. The SDK will still try to get a up to date version of the behavior
+  settings at the end of initialization. Once the up to date version has been acquired,
+  it is stored persistently and the SDK reconfigures itself to reflect the new
+  settings.
 </p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK's Default &lt; Dev Set Config &lt; Dev Set Server Config &lt; Stored Server Config</pre>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK's Default &lt; Dev Set Behavior Settings &lt; Dev Set Behavior Settings &lt; Stored Behavior Settings</pre>
+<p>SBS = SDK Behavior Settings</p>
 <table dir="ltr" style="width: 548px; border-collapse: collapse; border: none;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
   <colgroup>
 
@@ -3388,8 +3391,8 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
       </td>
     </tr>
     <tr style="height: 21px;">
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Stored SC</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">Provided SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Stored SBS</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">Provided SBS</td>
       <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">Temp ID</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">&nbsp;</td>
     </tr>
@@ -3397,56 +3400,56 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SC</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User C</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User Config</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User C</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User Config</td>
     </tr>
   </tbody>
 </table>
 <p>
-  After this initial behavior SDK should get the server config again to be up-to-date
-  and save it. If that request fails or the config is invalid it should keep using
-  what it has.
+  After this initial behavior SDK should get the SDK Behavior Settings again to
+  be up-to-date and save it. If that request fails or the settings are invalid
+  it should keep using what it has.
 </p>
 <p>
   After fetching the settings, the module must notify dependent components to allow
@@ -3461,7 +3464,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   provided by the developer.
 </p>
 <p>
-  If temporary id is enabled, server config fetches must be omitted.
+  If temporary id is enabled, SDK Behavior Settings fetches must be omitted.
 </p>
 <p>
   For config method <strong>setSDKBehaviorSettings:</strong>
@@ -3472,18 +3475,18 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 Provided value should be not empty and correcty structured JSON object like below.
   
 <strong>// Logic</strong>
-In some cases, the server configuration may not be applied on the app’s first run, 
+In some cases, the behavior settings may not be applied on the app’s first run, 
 or the app might temporarily lack internet connectivity. Therefore, providing the 
-server configuration through a dedicated configuration function becomes necessary.<br>- After the SDK behavior settings are supplied, they are among the first components <br>processed during SDK initialization. Relevant parts of the system are notified of <br>any changes before the rest of the initialization continues.</pre>
+behavior settings through a dedicated configuration function becomes necessary.<br>- After the SDK behavior settings are supplied, they are among the first components <br>processed during SDK initialization. Relevant parts of the system are notified of <br>any changes before the rest of the initialization continues.</pre>
 <p>
   For config method <strong>disableSDKBehaviorSettingsUpdates:</strong>
 </p>
 <pre>CountlyConfig.<strong>disableSDKBehaviorSettingsUpdates</strong>()
 
 <strong>// Logic</strong>
-By default, SDKs fetch the server configuration from the server. However, in some 
+By default, SDKs fetch the behavior settings from the server. However, in some 
 cases, network traffic may increase due to unintended factors. This configuration 
-method disables server configuration requests to help mitigate such issues.<br>- After SDK behavior settings updates disabled, it will only disable server config<br>fetch requests. Feature still continues to read the stored server config and provided<br>server config.</pre>
+method disables behavior settings requests to help mitigate such issues.<br>- After SDK behavior settings updates disabled, it will only disable server config<br>fetch requests. Feature still continues to read the stored behavior settings and provided<br>behavior settings.</pre>
 <p>
   The feature must expose an internal interface for other components to access
   the required settings. Here is an example interface for function signatures.
@@ -3548,17 +3551,17 @@ method disables server configuration requests to help mitigate such issues.<br>-
 }</code></pre>
 <h4 id="h_01JRT094QEGTG0BXBN2MTT82D7_id_nap">Networking and Params</h4>
 <p>
-  Server config fetch request might consist of only 1 parameter
+  Behavior settings fetch request might consist of only 1 parameter
 </p>
 <pre>method: this is always "sc"</pre>
 <p>
-  method parameter is always sent with server config fetch request
+  method parameter is always sent with behavior settings fetch request
 </p>
 <p>
-  Server config fetch request is sent to the "/o/sdk" endpoint.
+  Behavior settings fetch request is sent to the "/o/sdk" endpoint.
 </p>
 <p>
-  Server config fetch requests are <strong>directly</strong> sent to the server,
+  Behavior settings fetch requests are <strong>directly</strong> sent to the server,
   they will not be added to the request queue.
 </p>
 <pre><strong>// Common way to send</strong><br>serverURL + /o/sdk? + <br>method="sc" +<br>...remaining common params</pre>
