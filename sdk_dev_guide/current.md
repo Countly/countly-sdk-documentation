@@ -3583,6 +3583,11 @@ method disables behavior settings requests to help mitigate such issues.<br>- Af
 </p>
 <h4 id="h_01JRT094QEGTG0BXBN2MTT82D7_id_s">Storage</h4>
 <p>
+  The newly fetched server configuration should be merged with the stored configuration.
+  It must not override all existing values only update the keys present in the
+  new configuration.
+</p>
+<p>
   Values are preserved in their original format as received from the response.
   Here is a full list of server config key value pairs and defaults:
 </p>
