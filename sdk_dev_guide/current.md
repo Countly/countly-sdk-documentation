@@ -3443,7 +3443,6 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   For config method <strong>disableBackoffMechanism</strong>
 </p>
 <pre>CountlyConfig.<strong>disableBackoffMechanism</strong>()<br><br><strong>// Logic</strong><br>Disables the backoff mechanism<br>- After disabling, mechanism must not work.</pre>
-=======
 <h2 id="h_01JRT094QEGTG0BXBN2MTT82D7">SDK Behavior Settings</h2>
 <p>
   SDK Behavior Settings provide a way for server to provide a configuration. This
