@@ -4004,12 +4004,47 @@ npm install markdownlint --save-dev
       returned by the last failed request
     </p>
   </li>
+  <li>
+    <p dir="auto">
+      <strong>bom</strong> (Integer) - The amount of backoff mechanism triggered
+    </p>
+  </li>
+  <li>
+    <p dir="auto">
+      <strong>cbom</strong> (Integer) - The maximum amount of consecutive backoff
+      mechanism triggered
+    </p>
+  </li>
 </ul>
 <p>
   The module should expose the following methods for tracking, saving, and creating
   the param:
 </p>
-<pre>//increments the "wl" counter<br>void logWarning()<br><br>//increment the "el" counter<br>void logError()<br><br>//update the "sc" and "em" values<br>void logFailedNetworkRequest(integer statusCode, string errorResponse)<br><br>//counters should be cleared, and the state should be saved<br>void clearAndSave()<br><br>//state should be saved<br>void saveState()</pre>
+<pre>//increments the "wl" counter
+void logWarning()
+
+//increment the "el" counter
+void logError()
+
+//update the "sc" and "em" values
+void logFailedNetworkRequest(integer statusCode, string errorResponse)
+
+//increment the "bom" counter
+//increment the "cbom_counter" counter
+// called when a request backed off excluding immediate requests
+void logBackoffRequest()
+  
+//get max of "cbom, cbom_counter"
+//reset "cbom_counter"
+// called when a request not backed off excluding immediate requests
+void logConsecutiveBackoffRequest()
+
+//counters should be cleared, and the state should be saved
+void clearAndSave()
+
+//state should be saved
+void saveState()
+</pre>
 <p>
   The health check request contains the base params, the regular metric param with
   only the app version, and the metric information under the "hc" param. The request
@@ -4017,7 +4052,7 @@ npm install markdownlint --save-dev
   JSON. Each metric would be setting its key-value pair in there.
 </p>
 <pre><code>// the relevant parts:
-https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error" }&amp;metrics={app_version:2}...</code></pre>
+https://countly.server/i?hc={"el":12,"wl": 22,"sc":300,"em": "some_error", "bom": 13, "cbom": 3 }&amp;metrics={app_version:2}...</code></pre>
 <p>
   The request is considered sent successfully as per the regular SDK interpretations
   of success.
