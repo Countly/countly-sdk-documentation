@@ -3393,28 +3393,28 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
 <ul>
   <li>
     <p>
-      <code>bom</code>: Enable/disable the backoff mechanism
+      <code>bom</code>: Enable/disable the backoff mechanism (default: true)
     </p>
   </li>
   <li>
     <p>
-      <code>bom_at</code>: Accepted timeout in seconds
+      <code>bom_at</code>: Accepted timeout in seconds (default: 10)
     </p>
   </li>
   <li>
     <p>
       <code>bom_rqp</code>: Accepted request queue percentage (between 0 and
-      1)
+      1) (default: 0.5)
     </p>
   </li>
   <li>
     <p>
-      <code>bom_ra</code>: Accepted request age
+      <code>bom_ra</code>: Accepted request age (default: 24)
     </p>
   </li>
   <li>
     <p>
-      <code>bom_d</code>: Backoff duration in seconds
+      <code>bom_d</code>: Backoff duration in seconds (default: 60)
     </p>
   </li>
 </ul>
