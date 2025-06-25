@@ -3338,6 +3338,111 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   Crash information like PLC crashes for iOS, and native Android crashes do not
   have any limits applied to them.
 </p>
+<h2 id="h_01JXJ9Z1GHM8QBQ1KE9BAVYVHJ">Backoff Mechanism</h2>
+<p>
+  The SDK uses a backoff mechanism to pause requests when the server is slow or
+  unresponsive.
+</p>
+<p>
+  Feature Information:
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">Feature Documentation</a>
+</p>
+<h3 id="h_01JXJ9Z1GHM8QBQ1KE9BAVYVHJ_em">Exposed Methods</h3>
+<p>
+  <strong>Config Methods</strong>
+</p>
+<pre>CountlyConfig.<strong>disableBackoffMechanism</strong>()</pre>
+<h3 id="h_01JXJ9Z1GHM8QBQ1KE9BAVYVHJ_id">Implementation Details</h3>
+<p>
+  The backoff mechanism should be applied where the SDK handles network traffic.
+</p>
+<p>
+  It uses a 3-stage check to determine whether to initiate backoff:
+</p>
+<ol>
+  <li>
+    <strong>Response Time Check</strong>: If the response time of the most recent
+    request is greater than or equal to the accepted timeout (default: 10 seconds).
+  </li>
+  <li>
+    <strong>Queue Load Check</strong>: If the ratio of stored requests to the
+    maximum request queue size is less than or equal to the accepted threshold
+    (default: 50%).
+  </li>
+  <li>
+    <strong>Request Age Check</strong>: If the age of the request is less than
+    or equal to the accepted request age (default: 24 hours).
+  </li>
+</ol>
+<p>
+  If all conditions are met, the SDK enters backoff mode and pauses new outgoing
+  requests for a defined duration (default: 60 seconds). After that duration, SDK
+  triggers sending requests.
+</p>
+<p>
+  The current request is still processed and removed from the queue since a response
+  was received.
+</p>
+<p>
+  <strong>Note</strong>: Immediate requests are not subject to the Backoff Mechanism.
+</p>
+<p>
+  These parameters are configurable via the SDK Behavior settings for the Backoff
+  Mechanism:
+</p>
+<ul>
+  <li>
+    <p>
+      <code>bom</code>: Enable/disable the backoff mechanism (default: true)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>bom_at</code>: Accepted timeout in seconds (default: 10)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>bom_rqp</code>: Accepted request queue percentage (between 0 and
+      1) (default: 0.5)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>bom_ra</code>: Accepted request age (default: 24)
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>bom_d</code>: Backoff duration in seconds (default: 60)
+    </p>
+  </li>
+</ul>
+<p>
+  For more information about SDK Behavior Settings see
+  <a href="#h_01JRT094QEGTG0BXBN2MTT82D7_id_s">here</a>.
+</p>
+<p>
+  To observe SDK health and how backoff mechanism is doing, two health check parameters
+  are logged for the backoff mechanism:
+</p>
+<ul>
+  <li>
+    <code>bom</code>: Total number of requests that were backed off
+  </li>
+  <li>
+    <code>cbom</code>: Maximum number of consecutive requests that were backed
+    off
+  </li>
+</ul>
+<p>
+  For more information about SDK Health Checks see
+  <a href="#h_01HPM01NK3F2VHHXJ07P53QF55">here</a>.
+</p>
+<p>
+  For config method <strong>disableBackoffMechanism</strong>
+</p>
+<pre>CountlyConfig.<strong>disableBackoffMechanism</strong>()<br><br><strong>// Logic</strong><br>Disables the backoff mechanism<br>- After disabling, mechanism must not work.</pre>
 <h2 id="h_01JRT094QEGTG0BXBN2MTT82D7">SDK Behavior Settings</h2>
 <p>
   SDK Behavior Settings provide a way for server to provide a configuration. This
