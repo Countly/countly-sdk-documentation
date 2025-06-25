@@ -3443,6 +3443,421 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   For config method <strong>disableBackoffMechanism</strong>
 </p>
 <pre>CountlyConfig.<strong>disableBackoffMechanism</strong>()<br><br><strong>// Logic</strong><br>Disables the backoff mechanism<br>- After disabling, mechanism must not work.</pre>
+=======
+<h2 id="h_01JRT094QEGTG0BXBN2MTT82D7">SDK Behavior Settings</h2>
+<p>
+  SDK Behavior Settings provide a way for server to provide a configuration. This
+  configuration can effect which internal limits are used and which features are
+  allowed to work in the SDKs.
+</p>
+<p>
+  Product Information:
+  <a href="/hc/en-us/articles/30459276723353#h_01HZ7RDSRQ1B93E997YXZMNN9Q">Product Documentation</a>
+</p>
+<h3 id="h_01JRT094QEGTG0BXBN2MTT82D7_em">Exposed Methods</h3>
+<p id="h_01JRT094QEGTG0BXBN2MTT82D7_em_cm">
+  <strong>Config Methods</strong>
+</p>
+<pre>CountlyConfig.<strong>setSDKBehaviorSettings</strong>(sdkBehaviorSettings: String)</pre>
+<pre>CountlyConfig.<strong>disableSDKBehaviorSettingsUpdates</strong>()</pre>
+<h3 id="h_01JRT094QEGTG0BXBN2MTT82D7_id">Implementation Details</h3>
+<p>
+  During init and every X hours (4 hours by default) SDK tries to acquire the behavior
+  settings and stores it persistently locally. Afterwards, tries to reconfigure
+  itself.
+</p>
+<p>
+  When initializing the SDK, if there is a persistent behavior settings stored,
+  it will be used. The SDK will still try to get a up to date version of the behavior
+  settings at the end of initialization. Once the up to date version has been acquired,
+  it is stored persistently and the SDK reconfigures itself to reflect the new
+  settings.
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK's Default &lt; Dev Set Behavior Settings &lt; Dev Set Behavior Settings &lt; Stored Behavior Settings</pre>
+<p>SBS = SDK Behavior Settings</p>
+<table dir="ltr" style="width: 548px; border-collapse: collapse; border: none;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
+  <colgroup>
+
+    <col width="100">
+
+    <col width="100">
+
+    <col width="100">
+
+    <col width="107">
+
+  </colgroup>
+  <tbody>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 327.125px;" colspan="3" rowspan="1">
+        <strong>Init Time Status</strong>
+      </td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 206.475px;">
+        <strong>Initial Behavior</strong>
+      </td>
+    </tr>
+    <tr style="height: 21px;">
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Stored SBS</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">Provided SBS</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">Temp ID</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">&nbsp;</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User Config</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User Config</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  After this initial behavior SDK should get the SDK Behavior Settings again to
+  be up-to-date and save it. If that request fails or the settings are invalid
+  it should keep using what it has.
+</p>
+<p>
+  After fetching the settings, the module must notify dependent components to allow
+  them to reconfigure themselves with the updated settings. The notification mechanism
+  can be implemented as a single function or a callback, allowing features to handle
+  updates themselves. The exact approach depends on SDK design and platform constraints.
+</p>
+<p>
+  If user changes a setting in server, response would include that option with
+  new value. If no value is sent for a configuration (meaning <strong>c</strong>
+  is empty), then that means that the SDK has to use its own default or the value
+  provided by the developer.
+</p>
+<p>
+  If temporary id is enabled, SDK Behavior Settings fetches must be omitted.
+</p>
+<p>
+  For config method <strong>setSDKBehaviorSettings:</strong>
+</p>
+<pre>CountlyConfig.<strong>setSDKBehaviorSettings</strong>(sdkBehaviorSettings: <strong>String</strong>)
+
+<strong>// Valid values</strong>
+Provided value should be not empty and correcty structured JSON object like below.
+  
+<strong>// Logic</strong>
+In some cases, the behavior settings may not be applied on the app’s first run, 
+or the app might temporarily lack internet connectivity. Therefore, providing the 
+behavior settings through a dedicated configuration function becomes necessary.<br>- After the SDK behavior settings are supplied, they are among the first components <br>processed during SDK initialization. Relevant parts of the system are notified of <br>any changes before the rest of the initialization continues.</pre>
+<p>
+  For config method <strong>disableSDKBehaviorSettingsUpdates:</strong>
+</p>
+<pre>CountlyConfig.<strong>disableSDKBehaviorSettingsUpdates</strong>()
+
+<strong>// Logic</strong>
+By default, SDKs fetch the behavior settings from the server. However, in some 
+cases, network traffic may increase due to unintended factors. This configuration 
+method disables behavior settings requests to help mitigate such issues.<br>- After SDK behavior settings updates disabled, it will only disable server config<br>fetch requests. Feature still continues to read the stored behavior settings and provided<br>behavior settings.</pre>
+<p>
+  The feature must expose an internal interface for other components to access
+  the required settings. Here is an example interface for function signatures.
+  Some functions might not be exposed if they are used only inside of the feature.
+  It is up to SDK design and platform constraints.
+</p>
+<pre><code class="java">interface ConfigurationProvider {
+
+  Boolean getNetworkingEnabled() //networking
+
+  Boolean getTrackingEnabled() //tracking
+
+  Boolean getSessionTrackingEnabled() //st
+
+  Boolean getViewTrackingEnabled() //vt
+
+  Boolean getCustomEventTrackingEnabled() //cet
+
+  Boolean getEnterContentZone() //ecz
+
+  Boolean getCrashReportingEnabled() //crt
+
+  Boolean getLocationTrackingEnabled() //lt
+
+  Boolean getRefreshContentZoneEnabled() //rcz
+
+  Integer getRequestQueueSize() // rqs
+
+  Integer getEventQueueSize() //eqs
+
+  Integer getSessionUpdateInterval() //sui
+
+  Integer getLimitKeyLength() //lkl
+
+  Integer getLimitValueSize() //lvs
+
+  Integer getLimitSegmentationValues() //lsv
+
+  Integer getLimitBreadcrumbCount() //lbc
+
+  Integer getLimitStackTraceLineCount() //ltlpt
+
+  Integer getLimitStackTraceLineLength() //ltl
+
+  Integer getContentZoneInterval() //czi
+
+  Boolean getConsentRequired() //cr
+
+  Integer getServerConfigUpdateInterval() //scui
+
+  Integer getDropOldRequestTime() //dort
+
+  Boolean getBOMEnabled() //bom
+
+  Integer getBOMAcceptedTimeoutSeconds() //bom_at
+
+  Double getBOMRQPercentage() //bom_rqp
+
+  Integer getBOMRequestAge() //bom_ra
+
+  Integer getBOMDuration() //bom_d
+}</code></pre>
+<h4 id="h_01JRT094QEGTG0BXBN2MTT82D7_id_nap">Networking and Params</h4>
+<p>
+  Behavior settings fetch request might consist of only 1 parameter
+</p>
+<pre>method: this is always "sc"</pre>
+<p>
+  method parameter is always sent with behavior settings fetch request
+</p>
+<p>
+  Behavior settings fetch request is sent to the "/o/sdk" endpoint.
+</p>
+<p>
+  Behavior settings fetch requests are <strong>directly</strong> sent to the server,
+  they will not be added to the request queue.
+</p>
+<pre><strong>// Common way to send</strong><br>serverURL + /o/sdk? + <br>method="sc" +<br>...remaining common params</pre>
+<p>Response would look like this:</p>
+<pre>{
+  "v": 1,
+  "t": 1742459739383,
+  "c": {
+    "tracking": false,
+    "networking": false,
+    // ...
+  }
+}</pre>
+<p>Which are:</p>
+<p>
+  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>v</strong> - current schema version</span><br>
+  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>t</strong> - timestamp (at the time of creation)</span><br>
+  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>c</strong> - config object (key value pairs)</span>
+</p>
+<h4 id="h_01JRT094QEGTG0BXBN2MTT82D7_id_s">Storage</h4>
+<p>
+  The newly fetched server configuration should be merged with the stored configuration.
+  It must not override all existing values only update the keys present in the
+  new configuration.
+</p>
+<p>
+  Values are preserved in their original format as received from the response.
+  Here is a full list of server config key value pairs and defaults:
+</p>
+<table dir="ltr" style="width: 579px; border-collapse: collapse; border: none; height: 506px;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
+  <colgroup>
+
+    <col width="187">
+
+    <col width="110">
+
+    <col width="141">
+
+  </colgroup>
+  <tbody>
+    <tr style="height: 21px;">
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">
+        <strong>Feature Name</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">
+        <strong>Key</strong>
+      </td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 178.109px; height: 22px;">
+        <strong>Default Val</strong>
+      </td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow all tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">tracking</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow sending requests</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">networking</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Request queue size</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">rqs</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">1000 requests</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Event queue size (or batch)</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">eqs</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">100 events</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Session update interval</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">sui</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">60 seconds</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow session tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">st</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow crash tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">crt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow location tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">lt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow view tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">vt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Key length limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">lkl</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">128 chars</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Value size limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">lvs</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">256 chars</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Segmentation values count limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">lsv</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">100 key/values</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Breadcrumb count limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">lbc</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">100 breadcrumbs</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Stack trace line count limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">ltlpt</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">30 lines</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Stack trace line length limit</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">ltl</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">200 chars</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow custom event tracking</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">cet</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Enter Content Zone after init</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">ecz</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">FALSE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Content Zone request interval</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">czi</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">30 seconds</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Consent required</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">cr</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">FALSE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Server config update interval</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">scui</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">4 hours</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Allow Refresh Content Zone</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">rcz</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">TRUE</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px; height: 22px;">Drop old request time</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px; height: 22px;">dort</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px; height: 22px;">0 (disabled)</td>
+    </tr>
+    <tr>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism enabled</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px;">bom</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">TRUE</td>
+    </tr>
+    <tr>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism accepted timeout</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px;">bom_at</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">10 seconds</td>
+    </tr>
+    <tr>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism request queue %</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px;">bom_rqp</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">0.5 (between 0 and 1)</td>
+    </tr>
+    <tr>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism request age</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px;">bom_ra</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">24 hours</td>
+    </tr>
+    <tr>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 276.148px;">Backoff mechanism duration</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 102.742px;">bom_d</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 178.109px;">60 seconds</td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="h_01JRT094QEGTG0BXBN2MTT82D7_id_c">Consent</h4>
+<p>This feature does not need any consent.</p>
 <h2 id="01H821RTQ8PWHE34M7R8RFAT3S">Changing the Server URL</h2>
 <p>
   This feature adds the ability to change the server URL after the SDK is initialised.
@@ -3626,271 +4041,6 @@ https://countly.server/*?...&amp;rr=23...</pre>
   If tamper protection (salting) is enabled, this parameter should also be included
   in the checksum calculation.
 </p>
-<h1 id="h_01JRT094QEGTG0BXBN2MTT82D7">Server Config</h1>
-<p>
-  SDK should provide a way for server to provide a configuration. This configuration
-  can effect which internal limits are used and which features are allowed to work.
-</p>
-<p>
-  Server UI URL for the UI (Management -&gt; SDK):<br>
-  <a class="c-link" href="https://xxx.count.ly/dashboard#/manage/sdk/configurations" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/dashboard#/manage/sdk/configurations" data-sk="tooltip_parent">https://xxx.count.ly/dashboard#/manage/sdk/configurations</a>
-</p>
-<p>
-  <strong>API Endpoint</strong>
-</p>
-<p>
-  Server Example Endpoint:<br>
-  <a class="c-link" href="https://xxx.count.ly/o/sdk?app_key=3d8b79s4fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" target="_blank" rel="noopener" data-stringify-link="https://xxx.count.ly/o/sdk?app_key=3d8bs94fc4ba5f0bf9c182656c34b37d8d1b830d&amp;device_id=1&amp;method=sc" data-sk="tooltip_parent">https://xxx.count.ly/o/sdk?app_key=123&amp;device_id=1&amp;method=sc</a>
-</p>
-<p>Server configuration response has the following format:</p>
-<pre>{<br>"v": 1, <br>"t": 1742459739383,<br>"c": {<br>    "tracking": false,<br>    "networking": false,<br>    // ...<br>  }<br>}</pre>
-<p>
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>v</strong> - current schema version</span><br>
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>t</strong> - timestamp (at the time of creation)</span><br>
-  <span class="c-mrkdwn__br" aria-label="" data-stringify-type="paragraph-break"><strong>c</strong> - config object (key value pairs)</span>
-</p>
-<p>
-  <strong>Behavior</strong>
-</p>
-<p>
-  During init and every X hours SDK tries to acquire the config and stores it persistently
-  locally.
-</p>
-<p>
-  When initializing the SDK, if there is a persistent config stored, it will be
-  used. The SDK will still try to get a up to date version of the config at the
-  end of initialization. Once the up to date version has been acquired, it is stored
-  persistently and the SDK reconfigures itself to reflect the new configuration.
-  Summary of SDK side precedence of the config values will be:
-</p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK's Default &lt; Dev Set Config &lt; Dev Set Server Config &lt; Stored Server Config</pre>
-<table dir="ltr" style="width: 548px; border-collapse: collapse; border: none;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
-  <colgroup>
-
-    <col width="100">
-
-    <col width="100">
-
-    <col width="100">
-
-    <col width="107">
-
-  </colgroup>
-  <tbody>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 327.125px;" colspan="3" rowspan="1">
-        <strong>Init Time Status</strong>
-      </td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 206.475px;">
-        <strong>Initial Behavior</strong>
-      </td>
-    </tr>
-    <tr style="height: 21px;">
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Stored SC</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">Provided SC</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">Temp ID</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">&nbsp;</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SC</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SC</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SC</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User C</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User C</td>
-    </tr>
-  </tbody>
-</table>
-<p>
-  After this initial behavior SDK should get the server config again to be up-to-date
-  and save it. If that request fails or the config is invalid it should keep using
-  what it has.
-</p>
-<p>
-  <strong>Affected Options</strong>
-</p>
-<p>
-  Server and SDK has default values for every config option keys.<br>
-  If user changes a setting in server, response would include that option with
-  new value. If no value is sent for a configuration (meaning <strong>c</strong>
-  is empty), then that means that the SDK has to use its own default or the value
-  provided by the developer.
-</p>
-<p>Server config keys and their default values are:</p>
-<table dir="ltr" style="width: 579px; border-collapse: collapse; border: none; height: 506px;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
-  <colgroup>
-
-    <col width="187">
-
-    <col width="110">
-
-    <col width="141">
-
-  </colgroup>
-  <tbody>
-    <tr style="height: 21px;">
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">
-        <strong>Feature Name</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">
-        <strong>Key</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 179.35px; height: 22px;">
-        <strong>Default Val</strong>
-      </td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow all tracking</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">tracking</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow sending requests</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">networking</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Request queue size</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">rqs</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">1000 requests</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Event queue size (or batch)</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">eqs</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">100 events</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Session update interval</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">sui</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">60 seconds</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow session tracking</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">st</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow crash tracking</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">crt</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow location tracking</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lt</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow view tracking</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">vt</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Key length limit</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lkl</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">128 chars</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Value size limit</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lvs</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">256 chars</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Segmentation values count limit</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lsv</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">100 key/values</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Breadcrumb count limit</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">lbc</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">100 breadcrumbs</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Stack trace line count limit</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">ltlpt</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">30 lines</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Stack trace line length limit</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">ltl</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">200 chars</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow custom event tracking</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">cet</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Enter Content Zone after init</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">ecz</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">FALSE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Content Zone request interval</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">czi</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">30 seconds</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Consent required</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">cr</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">FALSE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Server config update interval</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">scui</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">4 hours</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Allow Refresh Content Zone</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">rcz</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">TRUE</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 240.05px; height: 22px;">Drop old request time</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 138.4px; height: 22px;">dort</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 179.35px; height: 22px;">0 (disabled)</td>
-    </tr>
-  </tbody>
-</table>
 <h1 id="01H821RTQ8E32MD3GHXYVV4WCZ">Legacy Features</h1>
 <h2 id="01H821RTQ8R9M4X5A2XA17HH61">Remote Config (Legacy)</h2>
 <p>

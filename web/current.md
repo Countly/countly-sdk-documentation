@@ -114,11 +114,11 @@
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// 25.4.0 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.js</a>
+    <pre><code class="javascript">// 25.4.1 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.js</a>
 
-// 25.4.0 minified (<span>JSDelivr</span> or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.0/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.0/countly.min.js</a></code></pre>
+// 25.4.1 minified (<span>JSDelivr</span> or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.1/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.1/countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
@@ -1938,6 +1938,14 @@ Countly.salt = "your_salt";
     <span style="font-weight: 400;">set the time to wait in seconds after a failed connection to the server (default: 60 seconds)</span>
   </li>
   <li>
+    <strong>disable_sdk_behavior_settings_updates</strong> -
+    <span style="font-weight: 400;">set it to true to disable SDK behavior setting updates (default: false)</span>
+  </li>
+  <li>
+    <strong>disable_backoff_mechanism</strong> -
+    <span style="font-weight: 400;">set it to true to disable request backoff when server is busy logic (default: false)</span>
+  </li>
+  <li>
     <strong>inactivity_time</strong> -
     <span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
   </li>
@@ -1950,10 +1958,12 @@ Countly.salt = "your_salt";
     (default: 100)
   </li>
   <li>
-    <strong>behavior_settings</strong> - an object that includes server config options taken from your server (experimental!)
+    <strong>behavior_settings</strong> - an object that includes server config
+    options taken from your server (experimental!)
   </li>
   <li>
-    <strong>content_whitelist</strong> - an array that includes urls to your other domains which can serve the Content
+    <strong>content_whitelist</strong> - an array that includes urls to your
+    other domains which can serve the Content
   </li>
   <li>
     <strong>max_breadcrumb_count</strong> -
