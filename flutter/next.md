@@ -916,7 +916,7 @@ func application(application: UIApplication,  didReceiveRemoteNotification userI
 }
 
 @available(iOS 10.0, \*)
-override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
+override func userNotificationCenter(_center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
 
   //Called when a notification is delivered to a foreground app.
 
@@ -1094,7 +1094,7 @@ Countly.disableLocation();</code></pre>
     were not updated, you would have metadata indicating if a value belongs to
     the old or current user.
   </p>
-  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) 
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
   ..enableRemoteConfigValueCaching(); </pre>
 </div>
 <h3 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Calls</h3>
@@ -1218,7 +1218,7 @@ JSONObject jObj = allValues["key_4"] as JSONObject;</code></pre>
   config download request is finished with
   <code class="dart">remoteConfigRegisterGlobalCallback</code> during the SDK initialization:
 </p>
-<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) 
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
   ..remoteConfigRegisterGlobalCallback((rResult, error, fullValueUpdate, downloadedValues) {
     if (error != null) {
       // do sth
@@ -1401,7 +1401,6 @@ Countly.instance.feedback.presentSurvey();
 
 // Example with show a specific widget according to its name, ID or one of its tags
 Countly.instance.feedback.presentRating("/home-page");
-
 
 // Example about need to know when the widget you are showing is closed
 Countly.instance.feedback.presentNPS("MyNetPromoterScore", FeedbackCallback(
@@ -1905,9 +1904,11 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
 
 # dive into the cloned repo
+
 cd countly-sdk-flutter-bridge/example
 
 # install packages and run
+
 flutter pub get
 flutter run</code></pre>
 <p>
@@ -2095,7 +2096,7 @@ config.setHttpPostForced(true); // default is false</code></pre>
 <div class="callout callout--info">
   <p>
     <strong>Platform Info</strong><br>
-    This feature is not supported in the Web and Android platforms.
+    This feature is not supported in the Web platform.
   </p>
 </div>
 <p>
