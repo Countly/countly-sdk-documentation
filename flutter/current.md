@@ -916,7 +916,7 @@ func application(application: UIApplication,  didReceiveRemoteNotification userI
 }
 
 @available(iOS 10.0, \*)
-override func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
+override func userNotificationCenter(_center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options: UNNotificationPresentationOptions) -&gt; Void) {
 
   //Called when a notification is delivered to a foreground app.
 
@@ -1094,7 +1094,7 @@ Countly.disableLocation();</code></pre>
     were not updated, you would have metadata indicating if a value belongs to
     the old or current user.
   </p>
-  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) 
+  <pre>CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
   ..enableRemoteConfigValueCaching(); </pre>
 </div>
 <h3 id="h_01H930GAQ68M62GD62G8JC2ZVC">Manually Calls</h3>
@@ -1218,7 +1218,7 @@ JSONObject jObj = allValues["key_4"] as JSONObject;</code></pre>
   config download request is finished with
   <code class="dart">remoteConfigRegisterGlobalCallback</code> during the SDK initialization:
 </p>
-<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY) 
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY)
   ..remoteConfigRegisterGlobalCallback((rResult, error, fullValueUpdate, downloadedValues) {
     if (error != null) {
       // do sth
@@ -1401,7 +1401,6 @@ Countly.instance.feedback.presentSurvey();
 
 // Example with show a specific widget according to its name, ID or one of its tags
 Countly.instance.feedback.presentRating("/home-page");
-
 
 // Example about need to know when the widget you are showing is closed
 Countly.instance.feedback.presentNPS("MyNetPromoterScore", FeedbackCallback(
@@ -1905,9 +1904,11 @@ config.setParameterTamperingProtectionSalt("salt");</code></pre>
 git clone https://github.com/Countly/countly-sdk-flutter-bridge.git
 
 # dive into the cloned repo
+
 cd countly-sdk-flutter-bridge/example
 
 # install packages and run
+
 flutter pub get
 flutter run</code></pre>
 <p>
@@ -2095,7 +2096,7 @@ config.setHttpPostForced(true); // default is false</code></pre>
 <div class="callout callout--info">
   <p>
     <strong>Platform Info</strong><br>
-    This feature is not supported in the Web and Android platforms.
+    This feature is not supported in the Web platform.
   </p>
 </div>
 <p>
@@ -2135,6 +2136,19 @@ Countly.removeDifferentAppKeysFromQueue();</code></pre>
   In the request queue, if there are any requests whose app key is different than
   the current app key, these requests will be removed from the request queue.
 </p>
+<h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
+<p>
+  The SDK includes a backoff mechanism that temporarily pauses sending requests
+  when the server is slow or unresponsive. This helps reduce server load and avoid
+  unnecessary retries. It’s enabled by default but can be disabled if needed.
+</p>
+<pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
+config.disableBackoffMechanism();</code></pre>
+<p>
+  For a detailed explanation of how the backoff mechanism works and when it triggers,
+  see the
+  <a href="/hc/en-us/articles/9290669873305#h_05JJ9EJ330VBFVZRZEWZYSZT30" target="_blank" rel="noopener noreferrer">full documentation here</a>.
+</p>
 <h2 id="h_01HD3ZJYNBDW19BCE6NM12HM7T">Drop Old Requests</h2>
 <div class="callout callout--info">
   <p>
@@ -2171,6 +2185,23 @@ config.setEventQueueSizeToSend(6);</code></pre>
   function:
 </p>
 <pre><code class="dart">Countly.isInitialized();</code></pre>
+<h2 id="h_01HAVQDM5W6FJH42AFSGV7FZ2T">Server Configuration</h2>
+<p>
+  Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
+  on your server will affect SDK behavior directly.
+</p>
+p>
+  In all cases, the configuration may not be applied during the app’s first run.
+  If this is a security sensitive case for the situations, you can provide the
+  server config to the SDK during initialization.
+</p>
+<pre><code class="java">config.setSDKBehaviorSettings("json server config")</code></pre>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates()</code></pre>
 <h2 id="h_01JDHWBTSH0SJXE2NKFN1ZX45G">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
@@ -2192,6 +2223,10 @@ config.setEventQueueSizeToSend(6);</code></pre>
   while initializing the SDK through and it must be greater than 15 seconds.
 </p>
 <pre><code class="dart">countlyConfig.content.setZoneTimerInterval(60) //in seconds</code></pre>
+<p>
+  If you need to ask for content after a trigger you know you can use this method:
+</p>
+<pre><code class="java">Countly.instance.content.refreshContentZone()</code></pre>
 <p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
