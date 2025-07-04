@@ -2093,12 +2093,6 @@ Countly.recordIndirectAttribution(attributionValues);</code></pre>
 <pre><code class="dart">CountlyConfig config = CountlyConfig(SERVER_URL, APP_KEY);
 config.setHttpPostForced(true); // default is false</code></pre>
 <h2 id="h_01JDKS8P2TP840JX9AK318PAJW">Setting Custom Network Request Headers</h2>
-<div class="callout callout--info">
-  <p>
-    <strong>Platform Info</strong><br>
-    This feature is not supported in the Web platform.
-  </p>
-</div>
 <p>
   If you need to include custom network request headers in the requests sent by
   the SDK, you can easily add them using the following method.
