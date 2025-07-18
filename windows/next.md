@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Windows SDK version 24.1.X. The SDK source
+  This documentation is for the Countly Windows SDK version 25.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -460,11 +460,6 @@ Countly.Instance.Init(cc);</code></pre>
     </p>
   </li>
 </ul>
-<div class="callout callout--info">
-  <p>
-    <span>If you need a more complicated logic or using the SDK version 24.1.1 and below then you will need to use this method mentioned <a href="#h_01JCGK7691XPRWANRT01QRZ92T">here</a> instead.</span>
-  </p>
-</div>
 <p>
   <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
 </p>
@@ -864,9 +859,6 @@ cc.MaxStackTraceLineLength = 128;
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HJT9W4R283JCJNXZJM0C42VQ">Custom Metrics</h2>
-<div class="callout callout--warning">
-  <p>This functionality is available since SDK version 24.1.0.</p>
-</div>
 <p>
   During some specific circumstances, like beginning a session or requesting remote
   config, the SDK is sending device metrics.
@@ -1320,7 +1312,7 @@ var parameters = new Dictionary&lt;string, string&gt;(){
    {"begin_session", "1"},
    {"metrics", ... }, // metrics to provide
    {"location", "-0.3720234014105792,-159.99741809049596" },
-   {"sdk_custom_version", "24.1.0:04"},
+   {"sdk_custom_version", "25.4.0:04"},
    {"user_id", "123456789"},
    {"onesignal_id", "..."}
 };
