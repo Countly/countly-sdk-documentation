@@ -1234,6 +1234,10 @@ Countly.instance().init(config);</code></pre>
     <strong>disableUnhandledCrashReporting()</strong> - To disable unhandled
     crash reporting
   </li>
+  <li>
+    <strong>addCustomNetworkRequestHeaders(Map&lt;String, String&gt; customHeaderValues)</strong>
+    - Adds custom header key/value pairs to each request.
+  </li>
 </ul>
 <h2 id="h_01HNFH7ZFRE3CKRCTZE6EZWM86">Example Integrations</h2>
 <p>
@@ -1267,9 +1271,17 @@ Countly.instance().init(config);</code></pre>
   is 1000. You can change this by:
 </p>
 <pre>config.setRequestQueueMaxSize(<span>56</span>);</pre>
-<h3 id="h_01HD3JPGMZP46HZAJHZSPN59F2">Forcing HTTP POST</h3>
+<h2 id="h_01HD3JPGMZP46HZAJHZSPN59F2">Forcing HTTP POST</h2>
 <p>You can force HTTP POST request for all requests by:</p>
 <pre>config.enableForcedHTTPPost();</pre>
+<h2 id="h_01HAVQDM5W8GFBCZ3B8CFT5BHF">Custom HTTP Header Values</h2>
+<p>
+  <span>If you want to include custom header key/value pairs in each network request sent to the Countly server, you can use the addCustomNetworkRequestHeaders method during configuration:</span>
+</p>
+<pre><code class="java">HashMap&lt;String, String&gt; customHeaderValues = new HashMap&lt;&gt;();
+customHeaderValues.put("foo", "bar");
+
+config.addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
 <h2 id="h_01HAXVT7C5G91JJG8FSCXH3CJV">Custom Metrics</h2>
 <div class="callout callout--warning">
   <p>This functionality is available since SDK version 22.09.1.</p>

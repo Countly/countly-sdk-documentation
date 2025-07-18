@@ -2919,9 +2919,6 @@ config.setHttpPostForced(false);
 customHeaderValues.put("foo", "bar");
 
 config.addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
-<p>
-  <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
-</p>
 <h2 id="h_01GVJB16Q86TAX1AJ0QZZ5VR9N">Custom Metrics</h2>
 <p>
   During some specific circumstances, like beginning a session or requesting remote
