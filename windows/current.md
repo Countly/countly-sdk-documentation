@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Windows SDK version 24.1.X. The SDK source
+  This documentation is for the Countly Windows SDK version 25.4.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-windows" target="_blank" rel="noopener noreferrer">here.</a>
 </p>
@@ -154,7 +154,7 @@ await Countly.Instance.Init(cc);</code></pre>
 </p>
 <p>
   You can check some platform specific recommendations from
-  <a href="#h_01J14B8K2JA0CX21YNCC0EWBRH" target="_blank" rel="noopener noreferrer">here</a>.
+  <a href="/hc/en-us/articles/4409195031577#h_01J14B8K2JA0CX21YNCC0EWBRH" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h2 id="h_01HABTXQF8WV6H2G2XNWXNTFBT">Handled Exceptions</h2>
 <p>
@@ -442,37 +442,57 @@ cc.developerProvidedDeviceId = "use@email.com";
 Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HABTXQF9N0EKQNJ65GX4DMRA">Changing Device ID</h2>
 <p>
-  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+  <span>You can change the device ID of a user with SetId method:</span>
 </p>
-<div class="callout callout--warning">
-  <p>
-    <strong>Performance risk.</strong> Changing device id with server merging
-    results in huge load on server as it is rewriting all the user history. This
-    should be done only once per user.
-  </p>
-</div>
-<pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", true);</code></pre>
+<pre><code class="csharp">await Countly.Instance.SetId("new-device-id");</code></pre>
 <p>
-  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
 </p>
-<pre><code class="csharp">Countly.Instance.ChangeDeviceId("new-device-id", false);</code></pre>
+<ul>
+  <li>
+    <p>
+      <span>If current stored ID is <code>DeviceIdType.SDKGenerated</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>DeviceIdType.SDKGenerated</code> ID will be erased.</span>
+    </p>
+  </li>
+  <li>
+    <p>
+      <span>If the current stored ID is <code>DeviceIdType.DeveloperProvided</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
+    </p>
+  </li>
+</ul>
 <p>
-  <span>Doing it this way, will not merge the previously acquired data with the new id.</span>
-</p>
-<div class="callout callout--warning">
-  <p>
-    <span style="font-weight: 400;">If the device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
-  </p>
-</div>
-<p>
-  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
+  <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
 </p>
 <h2 id="h_01HABTXQF9503C704R080YHTW2">Retrieving Current Device ID</h2>
 <p>
   You may want to see what device id Countly is assigning for the specific device.
   For that, you may use the following calls.
 </p>
-<pre><code class="java hljs">string usedId = await Countly.GetDeviceId();</code></pre>
+<pre><code class="csharp">string usedId = await Countly.GetDeviceId();</code></pre>
+<p>SDK record the type of an id. These types are:</p>
+<ul>
+  <li>
+    <code>DeveloperProvided</code>
+  </li>
+  <li>
+    <code>SDKGenerated</code>
+  </li>
+</ul>
+<p>
+  DeveloperProvided device ID means this ID was assigned by your internal logic.
+  SDKGenerated device ID means the ID was generated randomly by the SDK.
+</p>
+<p>
+  You can get the device ID type of a user by calling the GetDeviceIDType function:
+</p>
+<pre><code class="csharp">var idType = Countly.Instance.GetDeviceIDType();</code></pre>
+<p>
+  You can use the DeviceIdType enums to evaluate the device ID type you retrieved:
+</p>
+<pre><code class="csharp">var idType = Countly.Instance.GetDeviceIDType();
+if (idType.Equals(Countly.DeviceIdType.DeveloperProvided)) {
+  // ...do something
+}</code></pre>
 <h1 id="h_01HABTXQF9MFA0FMGZM3NA6M7R">User Location</h1>
 <p>
   While integrating this SDK into your application, you might want to track your
@@ -682,6 +702,22 @@ consent.Add(ConsentFeatures.Location, true);
 
 //changing consent
 Countly.Instance.SetConsent(consent);</code></pre>
+<h1 id="h_01K0EMFX4RGV1HY01J8YTNVDTK">Security and Privacy</h1>
+<h2 id="h_01K0EMFX4R7H58CPKNXMGRJ53C">Parameter Tamper Protection</h2>
+<p>
+  You may set the optional <code>salt</code> to be used for calculating the checksum
+  of requested data, which will be sent with each request, using the
+  <code>&amp;checksum256</code> field. You will need to set the same salt on the
+  Countly server. If the salt on the Countly server is selected, all requests will
+  be checked for the validity of the <code>checksum256</code> field before being
+  processed.
+</p>
+<pre><code class="csharp">CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
+cc.SetParamaterTamperingProtectionSalt("SOME_SALT");
+
+Countly.Instance.Init(cc);</code></pre>
 <h1 id="h_01HABTXQFAD7RRPHNVJT9XDF6X">Other Features and Notes</h1>
 <h2 id="h_01HABTXQFA9FYPT9FFRADPMMF8">SDK Config Parameters Explained</h2>
 <p>
@@ -696,6 +732,14 @@ Countly.Instance.SetConsent(consent);</code></pre>
 </p>
 <p>
   <span><strong>sessionUpdateInterval -</strong> (Optional, int) Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong> 60 </strong>(seconds).</span>
+</p>
+<p>
+  <strong>AddCustomNetworkRequestHeaders(IDictionary&lt;string, string&gt; customHeaderValues) -</strong>
+  Adds custom header key/value pairs to each request.
+</p>
+<p>
+  <strong>SetParamaterTamperingProtectionSalt(string paramaterTamperingProtectionSalt) -</strong>
+  Set parameter tampering protection salt.
 </p>
 <h2 id="h_01HNFMRRC2N7DE6WB88PJ8DXA4">Example Integrations</h2>
 <p>
@@ -758,6 +802,21 @@ Countly.Instance.SetConsent(consent);</code></pre>
   <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleAppNativeIntegrations">MauiSampleAppNativeIntegrations</a>
   projects is a MAUI application demonstration of native crash reporting
 </p>
+<h2 id="h_01K0EMFX4R1PT2Z0A5HCZ86HVN">Forcing HTTP Post</h2>
+<p>
+  The Windows SDK currently uses the POST method for all network requests by default.
+  At this time, this behavior is not configurable.
+</p>
+<h2 id="h_01K0EMFX4RE29K5ERD4NH6WAC4">Custom HTTP Header Values</h2>
+<p>
+  If you want to include custom header key/value pairs in each network request
+  sent to the Countly server, you can use the AddCustomNetworkRequestHeaders method
+  during configuration:
+</p>
+<pre><code class="csharp">Dictionary&lt;string, string&gt; customHeaderValues = new Dictionary&lt;string, string&gt;();
+customHeaderValues.Add("foo", "bar");
+
+config.AddCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
 <h2 id="h_01HABTXQFAHAQTRDWQ0YVM3VX4">SDK Internal Limits</h2>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
@@ -839,9 +898,6 @@ cc.MaxStackTraceLineLength = 128;
 //initiate the SDK with your preferences
 Countly.Instance.Init(cc);</code></pre>
 <h2 id="h_01HJT9W4R283JCJNXZJM0C42VQ">Custom Metrics</h2>
-<div class="callout callout--warning">
-  <p>This functionality is available since SDK version 24.1.0.</p>
-</div>
 <p>
   During some specific circumstances, like beginning a session or requesting remote
   config, the SDK is sending device metrics.
@@ -1295,7 +1351,7 @@ var parameters = new Dictionary&lt;string, string&gt;(){
    {"begin_session", "1"},
    {"metrics", ... }, // metrics to provide
    {"location", "-0.3720234014105792,-159.99741809049596" },
-   {"sdk_custom_version", "24.1.0:04"},
+   {"sdk_custom_version", "25.4.0:04"},
    {"user_id", "123456789"},
    {"onesignal_id", "..."}
 };
@@ -1384,6 +1440,26 @@ cc.SetBackendModeServerEQSizeToSend(10000): // sets event queue size for server<
   You can check a sample implementation from our Windows SDK
   <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleApp">GitHub</a>
   page.
+</p>
+<h2 id="h_01JCGK7691XPRWANRT01QRZ92T">Extended Device ID Management</h2>
+<p>
+  <span>In case your application authenticates users, you might want to change the ID to the one in your backend after he has logged in. This helps you identify a specific user with a specific ID on a device he logs in, and the same scenario can also be used in cases this user logs in using a different way (e.g another tablet, another mobile phone, or web). In this case, any data stored in your Countly server database associated with the current device ID will be transferred (merged) into the user profile with the device id you specified in the following method call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", true);</span></code></span></pre>
+<p>
+  <span>You might want to track information about another separate user that starts using your app (changing apps account), or your app enters a state where you no longer can verify the identity of the current user (user logs out). In that case, you can change the current device ID to a new one without merging their data. You would call:</span>
+</p>
+<pre><span style="font-weight: 400;"><code class="java"><span class="pl-c1">Countly.Instance</span><span>.ChangeDeviceId("new-device-id", false);</span></code></span></pre>
+<p>
+  <span>Doing it this way, will not merge the previously acquired data with the new id.</span><span></span><span></span>
+</p>
+<div class="callout callout--warning">
+  <p>
+    <span style="font-weight: 400;">If the device ID is changed without merging and consent was enabled, all previously given consent will be removed. This means that all features will cease to function until new consent has been given again for that new device ID.</span>
+  </p>
+</div>
+<p>
+  <span>Do note that every time you change your deviceId without a merge, it will be interpreted as a new user. Therefore implementing id management in a bad way could inflate the users count by quite a lot.</span>
 </p>
 <h1 id="h_01HABTXQFAA2KJMX7VB5F0HF31">FAQ</h1>
 <h2 id="h_01HABTXQFAM9J70KBWZYBQVTB4">What Information Is Collected by the SDK?</h2>

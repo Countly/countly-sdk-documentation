@@ -702,6 +702,22 @@ consent.Add(ConsentFeatures.Location, true);
 
 //changing consent
 Countly.Instance.SetConsent(consent);</code></pre>
+<h1 id="h_01K0EMFX4RGV1HY01J8YTNVDTK">Security and Privacy</h1>
+<h2 id="h_01K0EMFX4R7H58CPKNXMGRJ53C">Parameter Tamper Protection</h2>
+<p>
+  You may set the optional <code>salt</code> to be used for calculating the checksum
+  of requested data, which will be sent with each request, using the
+  <code>&amp;checksum256</code> field. You will need to set the same salt on the
+  Countly server. If the salt on the Countly server is selected, all requests will
+  be checked for the validity of the <code>checksum256</code> field before being
+  processed.
+</p>
+<pre><code class="csharp">CountlyConfig cc = new CountlyConfig();
+cc.serverUrl = "COUNTLY_SERVER_URL";
+cc.appKey = "COUNTLY_APP_KEY";
+cc.SetParamaterTamperingProtectionSalt("SOME_SALT");
+
+Countly.Instance.Init(cc);</code></pre>
 <h1 id="h_01HABTXQFAD7RRPHNVJT9XDF6X">Other Features and Notes</h1>
 <h2 id="h_01HABTXQFA9FYPT9FFRADPMMF8">SDK Config Parameters Explained</h2>
 <p>
@@ -716,6 +732,14 @@ Countly.Instance.SetConsent(consent);</code></pre>
 </p>
 <p>
   <span><strong>sessionUpdateInterval -</strong> (Optional, int) Sets the interval (in seconds) after which the application will automatically extend the session. The default value is<strong> 60 </strong>(seconds).</span>
+</p>
+<p>
+  <strong>AddCustomNetworkRequestHeaders(IDictionary&lt;string, string&gt; customHeaderValues) -</strong>
+  Adds custom header key/value pairs to each request.
+</p>
+<p>
+  <strong>SetParamaterTamperingProtectionSalt(string paramaterTamperingProtectionSalt) -</strong>
+  Set parameter tampering protection salt.
 </p>
 <h2 id="h_01HNFMRRC2N7DE6WB88PJ8DXA4">Example Integrations</h2>
 <p>
@@ -778,6 +802,21 @@ Countly.Instance.SetConsent(consent);</code></pre>
   <a href="https://github.com/Countly/countly-sdk-windows/tree/master/netstd/MauiSampleAppNativeIntegrations">MauiSampleAppNativeIntegrations</a>
   projects is a MAUI application demonstration of native crash reporting
 </p>
+<h2 id="h_01K0EMFX4R1PT2Z0A5HCZ86HVN">Forcing HTTP Post</h2>
+<p>
+  The Windows SDK currently uses the POST method for all network requests by default.
+  At this time, this behavior is not configurable.
+</p>
+<h2 id="h_01K0EMFX4RE29K5ERD4NH6WAC4">Custom HTTP Header Values</h2>
+<p>
+  If you want to include custom header key/value pairs in each network request
+  sent to the Countly server, you can use the AddCustomNetworkRequestHeaders method
+  during configuration:
+</p>
+<pre><code class="csharp">Dictionary&lt;string, string&gt; customHeaderValues = new Dictionary&lt;string, string&gt;();
+customHeaderValues.Add("foo", "bar");
+
+config.AddCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
 <h2 id="h_01HABTXQFAHAQTRDWQ0YVM3VX4">SDK Internal Limits</h2>
 <p>
   SDK does have configurable fields to manipulate the internal SDK value and key
