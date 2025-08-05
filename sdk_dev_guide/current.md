@@ -3472,7 +3472,11 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   it is stored persistently and the SDK reconfigures itself to reflect the new
   settings.
 </p>
-<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK's Default &lt; Dev Set Behavior Settings &lt; Dev Set Behavior Settings &lt; Stored Behavior Settings</pre>
+<p>
+  If there is a persistent behavior settings already, dev provided behavior settings
+  won't be used.
+</p>
+<pre class="c-mrkdwn__pre" data-stringify-type="pre">SDK Defaults &lt; Dev Set Configuration &lt; Dev Provided Behavior Settings &lt; Stored Behavior Settings &lt; Behavior Settings from Server</pre>
 <p>SBS = SDK Behavior Settings</p>
 <table dir="ltr" style="width: 548px; border-collapse: collapse; border: none;" border="1" cellspacing="0" cellpadding="0" data-sheets-root="1" data-sheets-baot="1">
   <colgroup>
@@ -3488,7 +3492,7 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
   </colgroup>
   <tbody>
     <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 327.125px;" colspan="3" rowspan="1">
+      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 327.125px;" colspan="4" rowspan="1">
         <strong>Init Time Status</strong>
       </td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 206.475px;">
@@ -3496,8 +3500,9 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
       </td>
     </tr>
     <tr style="height: 21px;">
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Stored SBS</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">Set Config</td>
       <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">Provided SBS</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">Stored SBS</td>
       <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">Temp ID</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">&nbsp;</td>
     </tr>
@@ -3505,49 +3510,113 @@ string constructFeedbackWidgetUrl(CountlyFeedbackWidget chosenWidget);</code></p
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Dev Set Config</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Provided SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
+      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
     </tr>
     <tr style="height: 21px;">
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 91.8375px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
       <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Stored SBS</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SBS</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 115.925px;">●</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses Provided SBS</td>
-    </tr>
-    <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
       <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; text-align: center; width: 105.762px;">●</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User Config</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
     </tr>
     <tr style="height: 21px;">
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 91.8375px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 115.925px;">&nbsp;</td>
-      <td style="padding: 2px 3px; vertical-align: bottom; width: 105.762px;">&nbsp;</td>
-      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Uses User Config</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Dev Set Config</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Provided SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Provided SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Provided SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">SDK Defaults</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">●</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">Stored SBS</td>
+    </tr>
+    <tr style="height: 21px;">
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td style="padding: 2px 3px; width: 105.762px; vertical-align: middle; text-align: center;">&nbsp;</td>
+      <td class="wysiwyg-text-align-center" style="padding: 2px 3px; vertical-align: bottom; width: 206.475px;">SDK Defaults</td>
     </tr>
   </tbody>
 </table>
