@@ -681,6 +681,8 @@
 </p>
 <h2 id="h_01H9QCP8G8HMBBT2NPHFJPJ3KX">Windows SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/21224088645020" target="_blank" rel="noopener">Version 24.1</a>
+  -
   <a href="/hc/en-us/articles/27983325097241" target="_blank" rel="noopener">Version 23.12</a>
   -
   <a href="/hc/en-us/articles/26360970027033" target="_blank" rel="noopener">Version 23.02</a>
