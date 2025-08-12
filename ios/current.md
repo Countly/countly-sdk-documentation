@@ -3063,7 +3063,8 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </p>
 </div>
 <p>
-  After you have created widgets on your dashboard, you can reach the methods to show them from the feedback interface of your Countly instance:
+  After you have created widgets on your dashboard, you can reach the methods to
+  show them from the feedback interface of your Countly instance:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3104,7 +3105,8 @@ Countly.sharedInstance().feedback().presentNPS()
   </div>
 </div>
 <p>
-  If you want to show a specific widget according to its name, ID or one of its tags then you can use these methods:
+  If you want to show a specific widget according to its name, ID or one of its
+  tags then you can use these methods:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3130,24 +3132,25 @@ Countly.sharedInstance().feedback().presentNPS("/home-page")
         </code></pre>
       </div>
     </div>
-    <p>
-      If an empty nameIDorTag is provided it will show the first feedback widget
-      by its type.
-    </p>
-    <p>
-      If you need to know when the widget is appeared or closed you can use
-      these methods to provide a callback which will be called when the widget
-      appeared/closes:
-    </p>
+  </div>
+</div>
+<p>
+  If an empty nameIDorTag is provided it will show the first feedback widget by
+  its type.
+</p>
+<p>
+  If you need to know when the widget is appeared or closed you can use these methods
+  to provide a callback which will be called when the widget appeared/closes:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
     <div class="tabs">
       <div class="tabs-menu">
-        <div class="tabs">
-          <div class="tabs-menu">
-            <span class="tabs-link is-active">Objective-C</span>
-            <span class="tabs-link">Swift</span>
-          </div>
-          <div class="tab">
-            <pre><code class="objectivec">[presentNPS:nameIDorTag widgetCallback:]
+        <span class="tabs-link is-active">Objective-C</span>
+        <span class="tabs-link">Swift</span>
+      </div>
+      <div class="tab">
+        <pre><code class="objectivec">[presentNPS:nameIDorTag widgetCallback:]
 [presentSurvey:nameIDorTag widgetCallback:]
 [presentRating:nameIDorTag widgetCallback:]
 // Example:
@@ -3155,9 +3158,9 @@ Countly.sharedInstance().feedback().presentNPS("/home-page")
 //...
 }];
               </code></pre>
-          </div>
-          <div class="tab is-hidden">
-            <pre><code class="swift">.presentNPS(nameIDorTag, widgetCallback)
+      </div>
+      <div class="tab is-hidden">
+        <pre><code class="swift">.presentNPS(nameIDorTag, widgetCallback)
 .presentSurvey(nameIDorTag, widgetCallback)
 .presentRating(nameIDorTag, widgetCallback)
 // Example:
@@ -3165,8 +3168,6 @@ Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetSta
 //...
 })
             </code></pre>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -5379,5 +5380,4 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     Notification is not coming from Countly and it does not have any value for
     <code>kCountlyPNKeyNotificationID = @"i"</code> key in it
   </li>
-
 </ol>
