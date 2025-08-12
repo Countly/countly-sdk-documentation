@@ -3065,12 +3065,6 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 <p>
   After you have created widgets on your dashboard, you can reach the methods to show them from the feedback interface of your Countly instance:
 </p>
-<div class="callout callout--warning">
-  <p>
-    For SDK version prior 24.7.5 check out the previous documentation
-    <a href="/hc/en-us/articles/34585282246553#h_01HAVHW0RR6N7WKDSA1GRJXBJ1" target="_blank" rel="noopener noreferrer">here</a>
-  </p>
-</div>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
@@ -5385,4 +5379,5 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     Notification is not coming from Countly and it does not have any value for
     <code>kCountlyPNKeyNotificationID = @"i"</code> key in it
   </li>
+
 </ol>
