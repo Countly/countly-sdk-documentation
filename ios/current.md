@@ -3063,10 +3063,130 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </p>
 </div>
 <p>
-  When the widgets are created, you need to use 2 calls in your SDK: one to get
-  all available widgets for a user and another to display a chosen widget.
+  After you have created widgets on your dashboard, you can reach the methods to
+  show them from the feedback interface of your Countly instance:
 </p>
-<p>To get your available widget list, use the call below.</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[Countly.sharedInstance feedback];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">Countly.sharedInstance().feedback()</code></pre>
+  </div>
+</div>
+<p>
+  You can display a random active widget for the widget type you want with one
+  of these methods:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">[presentNPS]
+[presentSurvey]
+[presentRating]
+// Example:
+[Countly.sharedInstance.feedback presentNPS];
+    </code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">.presentNPS()
+.presentSurvey()
+.presentRating()
+// Example:
+Countly.sharedInstance().feedback().presentNPS()
+    </code></pre>
+  </div>
+</div>
+<p>
+  If you want to show a specific widget according to its name, ID or one of its
+  tags then you can use these methods:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <div class="tabs">
+      <div class="tabs-menu">
+        <span class="tabs-link is-active">Objective-C</span>
+        <span class="tabs-link">Swift</span>
+      </div>
+      <div class="tab">
+        <pre><code class="objectivec">[presentNPS:nameIDorTag
+[presentSurvey:nameIDorTag]
+[presentRating:nameIDorTag]
+// Example:
+[Countly.sharedInstance.feedback presentNPS:@"/home-page"];
+        </code></pre>
+      </div>
+      <div class="tab is-hidden">
+        <pre><code class="swift">.presentNPS(nameIDorTag)
+.presentSurvey(nameIDorTag)
+.presentRating(nameIDorTag)
+// Example:
+Countly.sharedInstance().feedback().presentNPS("/home-page")
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+<p>
+  If an empty nameIDorTag is provided it will show the first feedback widget by
+  its type.
+</p>
+<p>
+  If you need to know when the widget is appeared or closed you can use these methods
+  to provide a callback which will be called when the widget appeared/closes:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <div class="tabs">
+      <div class="tabs-menu">
+        <span class="tabs-link is-active">Objective-C</span>
+        <span class="tabs-link">Swift</span>
+      </div>
+      <div class="tab">
+        <pre><code class="objectivec">[presentNPS:nameIDorTag widgetCallback:]
+[presentSurvey:nameIDorTag widgetCallback:]
+[presentRating:nameIDorTag widgetCallback:]
+// Example:
+[Countly.sharedInstance.feedback presentNPS:@"MyNetPromoterScore" widgetCallback:^(WidgetState widgetState) {
+//...
+}];
+              </code></pre>
+      </div>
+      <div class="tab is-hidden">
+        <pre><code class="swift">.presentNPS(nameIDorTag, widgetCallback)
+.presentSurvey(nameIDorTag, widgetCallback)
+.presentRating(nameIDorTag, widgetCallback)
+// Example:
+Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetState in
+//...
+})
+            </code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+<p>
+  <code class="swift">widgetState</code> enum has two values
+  <code class="swift">WIDGET_APPEARED</code> and
+  <code class="swift">WIDGET_CLOSED</code>, on the basis of widget state you know
+  about whether widget is appeared or closed.
+</p>
+<p>
+  For more in-depth information on retrieving feedback widgets, understanding object
+  structures, or presenting them yourself, please refer to the following
+  <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HABT18WTFWFNKVPJJ6G6DEM4">resource</a>.
+</p>
+<h3 id="h_01HAVHW0RRR7N3A283E2YQQT1Z">Manual Reporting</h3>
+<p>
+  Optionally you can fetch feedback widget data and create your own UI using:
+</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
@@ -3082,7 +3202,18 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   }
   else
   {
-    NSLog(@"Getting widgets list successfully completed. %@", [feedbackWidgets description]);
+    CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
+    [aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
+    {
+      if (error)
+      {
+        NSLog(@"Getting widget data failed. Error: %@", error);
+      }
+      else
+      {
+        NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
+      }
+    }];
   }
 }];
     </code></pre>
@@ -3097,117 +3228,21 @@ Countly.sharedInstance().getFeedbackWidgets
   }
   else
   {
-    print("Getting widgets list successfully completed. \(String(describing: feedbackWidgets))")
+    let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
+    aFeedbackWidget?.getData
+    { (widgetData: [AnyHashable: Any]?, error: Error?) in
+      if (error != nil)
+      {
+        print("Getting widget data failed. Error \(error.debugDescription)")
+      }
+      else
+      {
+        print("Getting widget data successfully completed. \(String(describing: widgetData))")
+      }
+    }
   }
-}</code></pre>
-  </div>
-</div>
-<p>
-  When feedback widgets are fetched successfully, <code>completionHandler</code>
-  will be executed with an array of <code>CountlyFeedbackWidget</code> objects.
-  Otherwise, <code>completionHandler</code> will be executed with an
-  <code>NSError</code>.
-</p>
-<p>
-  Calls to this method will be ignored and <code>completionHandler</code> will
-  not be executed if:<br>
-  - Consent for <code>CLYConsentFeedback</code> is not given, while
-  <code>requiresConsent</code> flag is set on initial configuration.<br>
-  - Current device ID is <code>CLYTemporaryDeviceID</code>.
-</p>
-<p>
-  Once you get the list, you can inspect <code>CountlyFeedbackWidget</code> objects
-  in it, by checking their <code>type</code>, <code>ID</code>, and
-  <code>name</code> properties to decide which one to display. And when you decide,
-  you can use <code>present</code> method on <code>CountlyFeedbackWidget</code>
-  object to display it.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-[aFeedbackWidget present];
-    </code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
-aFeedbackWidget?.present()
-    </code></pre>
-  </div>
-</div>
-<p>Optionally you can pass appear and dismiss callback blocks:</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-[aFeedbackWidget presentWithAppearBlock:^
-{
-  NSLog(@"Appeared!");
 }
-andDismissBlock:^
-{
-  NSLog(@"Dismissed!");
-}];
     </code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
-aFeedbackWidget?.present(appear:
-{
-  print("Appeared.")
-},
-andDismiss:
-{
-  print("Dismissed.")
-})
-    </code></pre>
-  </div>
-</div>
-<h3 id="h_01HAVHW0RRR7N3A283E2YQQT1Z">Manual Reporting</h3>
-<p>
-  Optionally you can fetch feedback widget data and create your own UI using:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">
-CountlyFeedbackWidget * aFeedbackWidget = feedbackWidgets.firstObject; //assuming we want to display the first one in the list
-[aFeedbackWidget getWidgetData:^(NSDictionary * widgetData, NSError * error)
-{
-  if (error)
-  {
-    NSLog(@"Getting widget data failed. Error: %@", error);
-  }
-  else
-  {
-    NSLog(@"Getting widget data successfully completed. %@", [widgetData description]);
-  }
-}];
-    </code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">
-let aFeedbackWidget : CountlyFeedbackWidget? = feedbackWidgets?.first //assuming we want to display the first one in the list
-aFeedbackWidget?.getData
-{ (widgetData: [AnyHashable: Any]?, error: Error?) in
-  if (error != nil)
-  {
-    print("Getting widget data failed. Error \(error.debugDescription)")
-  }
-  else
-  {
-    print("Getting widget data successfully completed. \(String(describing: widgetData))")
-  }
-}    </code></pre>
   </div>
 </div>
 <p>
@@ -3644,7 +3679,8 @@ CLYConsentAttribution<br>
 CLYConsentPerformanceMonitoring<br>
 CLYConsentFeedback<br>
 CLYConsentRemoteConfig<br>
-CLYConsentContent</pre>
+CLYConsentContent<br>
+CLYConsentMetrics</pre>
 <h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
 <p>
   The requirement for consent is disabled by default. To enable it, you will have
@@ -4052,6 +4088,23 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.alwaysUsePOST = true</code></pre>
   </div>
 </div>
+<h2 id="h_01K5H1SAPD1X7QT3HWN2EH5FM0">Request Timeout Duration</h2>
+<p>
+  The request timeout duration can be adjusted to accommodate different network
+  conditions. The minimum allowed value is 1 second, and the default is 30 seconds.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.requestTimeoutDuration = 60;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.requestTimeoutDuration = 60</code></pre>
+  </div>
+</div>
 <h2 id="h_01HAVHW0RSY3ZX1QB701E8XS44">Custom URLSessionConfiguration</h2>
 <p>
   For additional networking settings, you can optionally set a custom
@@ -4241,7 +4294,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
-<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">SDK Behavior Settings</h2>
+<h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">Server Configuration</h2>
 <p>
   Server Configuration is enabled by default. Changes made on SDK Manager SDK Configuration
   on your server will affect SDK behavior directly.
@@ -4261,6 +4314,23 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
+  </div>
+</div>
+<p>
+  If you want to disable automatic config updates from the server, you can prevent
+  the SDK from making server configuration fetch requests. This is useful if you're
+  trying to reduce network traffic or control request counts.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates = YES;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.disableSDKBehaviorSettingsUpdates = true</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
@@ -4534,6 +4604,41 @@ func toString(dictionaryOrArrayToOutput: Any) - String {
     </code></pre>
   </div>
 </div>
+<h2 id="h_01K5H0538Y22ATZBW4ECSZJZYB">Record Metrics</h2>
+<p>
+  Sends a manual metrics request, allowing users to define and send custom metric
+  data and send metrics when needed.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSMutableDictionary *metricsOverride = [NSMutableDictionary dictionary];
+metricsOverride[@"_app_version"] = @"5.0";
+metricsOverride[@"_os"] = @"CustomOS";
+
+[Countly.sharedInstance recordMetrics:metricsOverride];
+// or
+[Countly.sharedInstance recordMetrics:nil];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">var metricsOverride = [String: String]()
+metricsOverride["_app_version"] = "5.0"
+metricsOverride["_os"] = "CustomOS"
+
+Countly.sharedInstance().recordMetrics(metricsOverride)
+// or
+Countly.sharedInstance().recordMetrics(nil)</code></pre>
+  </div>
+</div>
+<h3 id="h_01K5H0BQV4GBRVFFN8A0YBMS1H">Consent</h3>
+<p>
+  If consents are enabled, this function is controlled by 'CLYConsentMetrics' consent.
+  This consent does not affect any other metrics included in requests sent by the
+  SDK.
+</p>
 <h2 id="h_01HAVHW0RTPMZFEQGNNNR3ERYK">watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>
