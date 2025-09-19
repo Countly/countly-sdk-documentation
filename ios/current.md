@@ -3679,7 +3679,8 @@ CLYConsentAttribution<br>
 CLYConsentPerformanceMonitoring<br>
 CLYConsentFeedback<br>
 CLYConsentRemoteConfig<br>
-CLYConsentContent</pre>
+CLYConsentContent<br>
+CLYConsentMetrics</pre>
 <h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
 <p>
   The requirement for consent is disabled by default. To enable it, you will have
@@ -4085,6 +4086,23 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   </div>
   <div class="tab is-hidden">
     <pre><code class="swift">config.alwaysUsePOST = true</code></pre>
+  </div>
+</div>
+<h2 id="h_01K5H1SAPD1X7QT3HWN2EH5FM0">Request Timeout Duration</h2>
+<p>
+  The request timeout duration can be adjusted to accommodate different network
+  conditions. The minimum allowed value is 1 second, and the default is 30 seconds.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">config.requestTimeoutDuration = 60;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">config.requestTimeoutDuration = 60</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSY3ZX1QB701E8XS44">Custom URLSessionConfiguration</h2>
@@ -4586,6 +4604,41 @@ func toString(dictionaryOrArrayToOutput: Any) - String {
     </code></pre>
   </div>
 </div>
+<h2 id="h_01K5H0538Y22ATZBW4ECSZJZYB">Record Metrics</h2>
+<p>
+  Sends a manual metrics request, allowing users to define and send custom metric
+  data and send metrics when needed.
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre><code class="objectivec">NSMutableDictionary *metricsOverride = [NSMutableDictionary dictionary];
+metricsOverride[@"_app_version"] = @"5.0";
+metricsOverride[@"_os"] = @"CustomOS";
+
+[Countly.sharedInstance recordMetrics:metricsOverride];
+// or
+[Countly.sharedInstance recordMetrics:nil];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre><code class="swift">var metricsOverride = [String: String]()
+metricsOverride["_app_version"] = "5.0"
+metricsOverride["_os"] = "CustomOS"
+
+Countly.sharedInstance().recordMetrics(metricsOverride)
+// or
+Countly.sharedInstance().recordMetrics(nil)</code></pre>
+  </div>
+</div>
+<h3 id="h_01K5H0BQV4GBRVFFN8A0YBMS1H">Consent</h3>
+<p>
+  If consents are enabled, this function is controlled by 'CLYConsentMetrics' consent.
+  This consent does not affect any other metrics included in requests sent by the
+  SDK.
+</p>
 <h2 id="h_01HAVHW0RTPMZFEQGNNNR3ERYK">watchOS Integration</h2>
 <p>
   <span style="font-weight: 400;">Just like iPhones and iPads, collecting and analyzing usage statistics and analytics data from an Apple Watch is the key for offering a better experience. Fortunately, the Countly iOS SDK has watchOS support. Here you can find out how to use the Countly iOS SDK in your watchOS apps:</span>

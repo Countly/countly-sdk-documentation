@@ -31,7 +31,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre><code class="java">dependencies {
-  implementation 'ly.count.android:sdk:25.4.0'
+  implementation 'ly.count.android:sdk:25.4.4'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -281,12 +281,12 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   </div>
   <div class="tab">
     <pre><code class="java">plugins {
-  id "ly.count.android.plugins.upload-symbols" version "25.4.0"
+  id "ly.count.android.plugins.upload-symbols" version "25.4.4"
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre><code class="java">plugins {
-  id("ly.count.android.plugins.upload-symbols") version "25.4.0"
+  id("ly.count.android.plugins.upload-symbols") version "25.4.4"
 }</code></pre>
   </div>
 </div>
@@ -303,7 +303,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <div class="tab">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id "ly.count.android.plugins.upload-symbols" version "25.4.0" apply false
+  id "ly.count.android.plugins.upload-symbols" version "25.4.4" apply false
 }
     
 // in sub-project gradle file
@@ -314,7 +314,7 @@ plugins {
   <div class="tab is-hidden">
     <pre><code class="java">// in root level gradle file
 plugins {
-  id("ly.count.android.plugins.upload-symbols") version "25.4.0" apply false
+  id("ly.count.android.plugins.upload-symbols") version "25.4.4" apply false
 }
     
 // in sub-project gradle file
@@ -1121,7 +1121,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
 <p>
   <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
-<pre>//latest firebase-messaging version that is available<code class="java">
+<pre><code class="java">//latest firebase-messaging version that is available
 implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 <p>
   <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
@@ -2389,6 +2389,9 @@ config.setConsentEnabled(String[] featureNames)</code></pre>
   * <code>content</code> - allow to enter content zone to receive contents from
   the server.
 </p>
+<p>
+  * <code>metrics</code> - allow to send manual metrics data
+</p>
 <h2 id="h_01HAVQDM5VH4GZ0YG1S0G6XWGZ">Changing Consent</h2>
 <p>
   <span style="font-weight: 400;">There are 4 ways of changing feature consent:</span>
@@ -2780,6 +2783,11 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
     the SDK not write the request and event queues to disk until the explicit
     write signal is given.
   </li>
+  <li>
+    <strong>setRequestTimeoutDuration(int requestTimeoutDuration)</strong> -
+    Set the request's timeout duration in seconds. Mininum is 1 second, default
+    is 30 seconds.
+  </li>
 </ul>
 <h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
 <p>
@@ -3140,6 +3148,23 @@ try {
   e.printStackTrace();
 }
 Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pre>
+<h2 id="h_01K5H0538Y22ATZBW4ECSZJZYB">Record Metrics</h2>
+<p>
+  Sends a manual metrics request, allowing users to define and send custom metric
+  data and send metrics when needed.
+</p>
+<pre><code class="java">Map&lt;String, String&gt; metricsOverride = new ConcurrentHashMap&lt;String, String&gt;();
+metricsOverride.put("_app_version", "5.0");
+metricsOverride.put("_os", "CustomOS");
+
+Countly.sharedInstance().requestQueue().recordMetrics(metricsOverride);
+// or
+Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
+<h3 id="h_01K5H0BQV4GBRVFFN8A0YBMS1H">Consent</h3>
+<p>
+  If consents are enabled, this function is controlled by 'metrics' consent. This
+  consent does not affect any other metrics included in requests sent by the SDK.
+</p>
 <h2 id="h_01HAVQDM5WCX9V0KET8KJG69WH">Explicit Storage Mode</h2>
 <p>
   The Explicit Storage Mode is a feature that allows you to control the frequency
@@ -3210,7 +3235,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   on your server will affect SDK behavior directly.
 </p>
 <p>
-  p In all cases, the configuration may not be applied during the app’s first run.
+  In all cases, the configuration may not be applied during the app’s first run.
   If this is a security sensitive case for the situations, you can provide the
   server config to the SDK during initialization.
 </p>
@@ -3227,6 +3252,9 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   of content blocks, such as in-app messaging, ads, or user engagement prompts.
   These content blocks are dynamically served from the content builder on the server,
   ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  Content support is available only on Android API level 28 and above.
 </p>
 <div class="callout callout--info">
   <p>
