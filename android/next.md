@@ -22,7 +22,7 @@
 <p>
   <span style="font-weight: 400;">You need to use the MavenCentral repository to download the SDK package. If it is not included in your project, include it, with the following code:</span>
 </p>
-<pre><code>buildscript {
+<pre class="wysiwyg-code-block"><code class="language-java">buildscript {
   repositories {
       mavenCentral()
   }
@@ -30,8 +30,8 @@
 <p>
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
-<pre><code class="java">dependencies {
-  implementation 'ly.count.android:sdk:25.4.4'
+<pre class="wysiwyg-code-block"><code class="language-java java">dependencies {
+  implementation 'ly.count.android:sdk:25.4.6'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -41,12 +41,12 @@
 </p>
 <h2 id="h_01HAVQDM5SPR8WSAQ76DEREE2E">Minimal Setup</h2>
 <p>The shortest way to initiate the SDK is with this call:</p>
-<pre><code>Countly.sharedInstance().init(<span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().init(new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));</code></pre>
 <p>
-  <span style="font-weight: 400;">Using the Application class is the recommended approach for integrating the Countly Android SDK. When provided, the SDK automatically registers for lifecycle callbacks, eliminating the need for manual <code>onStart</code> and <code>onStop</code> calls. This simplifies setup and management.</span>
+  <span style="font-weight: 400;">Using the Application class is the recommended approach for integrating the Countly Android SDK. When provided, the SDK automatically registers for lifecycle callbacks, eliminating the need for manual </span><code><span style="font-weight: 400;">onStart</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">onStop</span></code><span style="font-weight: 400;"> calls. This simplifies setup and management.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check <a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
+  <span style="font-weight: 400;">It is there that you provide the Android context, your appKey, and your Countly server URL. Please check </span><a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;"> for more information on how to acquire your application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   To configure the SDK during init, a config object called "CountlyConfig" is used.
@@ -58,7 +58,7 @@
   <p>
     If you are in doubt about the correctness of your Countly SDK integration
     you can learn about the verification methods from
-    <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener">here</a>.
+    <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXE6YKVETHDWPP8J3K" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <h2 id="h_01HAVQDM5SXG0Q4MRTDYXJRA8H">Adding callbacks</h2>
@@ -66,14 +66,14 @@
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities. If Application class is provided during init you can omit this step:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e8b9bf12ead2544ada90957cf44b6702d">
     Call <code>Countly.sharedInstance().onStart(this)</code> in onStart, where
     <code>this</code> is a link to the current Activity.
   </li>
-  <li>
+  <li data-list-item-id="e941fcb4a3144c505d54375e63eb1566b">
     Call <code>Countly.sharedInstance().onStop()</code> in onStop.
   </li>
-  <li>
+  <li data-list-item-id="e4387842e3ff575c80f83c3b3c8e1b848">
     Call <code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
     onConfigurationChanged if you want to track the orientation changes.
   </li>
@@ -88,7 +88,8 @@
 <p>
   <span style="font-weight: 400;">Additionally, ensure the&nbsp;</span><em><span style="font-weight: 400;">INTERNET</span></em><span style="font-weight: 400;">&nbsp;and&nbsp;</span><em><span style="font-weight: 400;">ACCESS_NETWORK_STATE</span></em><span style="font-weight: 400;">&nbsp;permissions are set if there aren’t any, in your manifest file. Those calls should look something like this:</span>
 </p>
-<pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;<br>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</code></pre>
 <h1 id="h_01HAVQDM5S6PHPV8SAQ32HDXXT">SDK Logging</h1>
 <p>
   <span style="font-weight: 400;">The first thing you should do while integrating our SDK is enable logging. If logging is enabled, then our SDK will print out debug messages about its internal state and encountered problems. Those messages may be screened in logcat and may use Android's internal log calls.</span>
@@ -96,7 +97,8 @@
 <p>
   Call <code>setLoggingEnabled</code> on the config class to enable logging:
 </p>
-<pre><code>CountlyConfig config = (<span>new </span>CountlyConfig(appC, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>));<br>config.setLoggingEnabled(<span>true</span>);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+config.setLoggingEnabled(true);</code></pre>
 <p>
   For more information on where to find the SDK logs you can check the documentation
   <a href="/hc/en-us/articles/900000908046#h_01HABSX9KXC5S8Q1NQWDZ33HXC" target="blank">here</a>.
@@ -109,7 +111,7 @@
   In the SDK all crash-related functionality can be browsed from the returned interface
   on:
 </p>
-<pre><code class="java">Countly.sharedInstance().crashes()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().crashes()</code></pre>
 <h2 id="h_01HAVQDM5S4J1CPZM9S6V1XWGG">Automatic Crash Handling</h2>
 <p>
   To enable automatic crash reporting, call the following function on the config
@@ -117,7 +119,7 @@
   <span style="font-weight: 400;">After init, this will enable crash reporting, which will automatically catch uncaught Java exceptions.&nbsp;</span>They
   will be sent to the dashboard once the app is launched again and the SDK is initiated.
 </p>
-<pre><code class="java">config.enableCrashReporting();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.enableCrashReporting();</code></pre>
 <h2 id="h_01HAVQDM5S32DXG50VTJWQ8XJY">Automatic Crash Report Segmentation</h2>
 <p>
   <span style="font-weight: 400;">You may add a key/value segment to crash reports. For example, you could set which specific library or framework version you used in your app. You may then figure out if there is any correlation between the specific library or another segment and the crash reports.</span>
@@ -125,7 +127,7 @@
 <p>
   <span style="font-weight: 400;">Use the following function for this purpose:</span>
 </p>
-<pre><code class="java">config.setCustomCrashSegment(Map&lt;String, String&gt; segments)</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.setCustomCrashSegment(Map&lt;String, String&gt; segments)</code></pre>
 <h2 id="h_01HAVQDM5S5JQR96A55W4WA3ZQ">Handled Exceptions</h2>
 <p>
   <span style="font-weight: 400;">You might catch an exception or similar error during your app’s runtime.</span>
@@ -133,11 +135,11 @@
 <p>
   <span style="font-weight: 400;">You may also log these handled exceptions to monitor how and when they are happening with the following command:</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().crashes().recordHandledException(Exception exception);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().crashes().recordHandledException(Exception exception);</code></pre>
 <p>
   <span style="font-weight: 400;">If you have handled an exception and it turns out to be fatal to your app, you may use this call:</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().crashes().recordUnhandledException(Exception exception);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().crashes().recordUnhandledException(Exception exception);</code></pre>
 <h2 id="h_01HAVQDM5S4VR5M3H2GCMCY8S8">Crash Breadcrumbs</h2>
 <p>
   Throughout your app you can leave crash breadcrumbs which would describe previous
@@ -145,7 +147,7 @@
   will be sent together with the crash report.
 </p>
 <p>Following the command adds crash breadcrumb:</p>
-<pre><code class="java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().crashes().addCrashBreadcrumb(String record) </code></pre>
 <h2 id="h_01HAVQDM5TQA2GG1ST6KSP2W56">Crash Filtering</h2>
 <p>
   There might be cases where a crash could contain sensitive information. For such
@@ -160,7 +162,7 @@
   The callback receives a <code>CrashData</code> object, which contains all the
   information about the crash that would be sent to the server:
 </p>
-<pre><code class="java">class CrashData {
+<pre class="wysiwyg-code-block"><code class="language-java java">class CrashData {
   String stackTrace;
   Map&lt;String, Object&gt; crashSegmentation;
   List&lt;String&gt; breadcrumbs;
@@ -190,7 +192,7 @@
   by the CrashData. After modifying the crash, to send the crash to the server,
   you should return 'false.' If the callback returns 'true' the crash will be discarded:
 </p>
-<pre><code class="java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
+<pre class="wysiwyg-code-block"><code class="language-java java">config.crashes.setGlobalCrashFilterCallback(new GlobalCrashFilterCallback() {
   @Override
   public boolean filterCrash(CrashData crash) {
     // You may want to omit a secret from the stack trace to protect it
@@ -223,7 +225,7 @@
   exception or during the recording of a handled exception, you can call this during
   init:
 </p>
-<pre>config.setRecordAllThreadsWithCrash();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.setRecordAllThreadsWithCrash();</code></pre>
 <h2 id="h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ Crash Reporting</h2>
 <div class="callout callout--warning">
   <p>
@@ -235,13 +237,13 @@
   <span style="font-weight: 400;">Countly uses </span><a href="https://github.com/google/breakpad"><span style="font-weight: 400;">Google's Breakpad open source library</span></a><span style="font-weight: 400;"> to be able to report crashes that occurred within the C++ components of your application, assuming there are any. Breakpad provides:</span>
 </p>
 <ul>
-  <li>
-    <span style="font-weight: 400;">a tool for creating symbol files from your object files (<code>dump_syms</code></span><span style="font-weight: 400;">)</span>
+  <li data-list-item-id="e24c65821860d874e0785dae5c34d4d87">
+    <span style="font-weight: 400;">a tool for creating symbol files from your object files (</span><code><span style="font-weight: 400;">dump_syms</span></code><span style="font-weight: 400;">)</span>
   </li>
-  <li>
+  <li data-list-item-id="e927c71fdcba13e1444d1b22271d1393c">
     <span style="font-weight: 400;">the ability to detect and record crashes via compact minidump files (crash handler)</span>
   </li>
-  <li>
+  <li data-list-item-id="e426f58f37ab53e373242321467744341">
     <span style="font-weight: 400;">a tool for generating human readable stack traces by using symbol files and crash minidump files.</span>
   </li>
 </ul>
@@ -249,9 +251,9 @@
   <img src="https://archive.count.ly/images/guide/7cbb985-breakpad.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download <code>sdk_native</code></span><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the <code>LATEST_VERSION</code></span><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://central.sonatype.com/artifact/ly.count.android/sdk/versions"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 23.8.3):</span>
+  <span style="font-weight: 400;">Countly provides the&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/tree/master/sdk-native"><span style="font-weight: 400;">sdk_native</span></a><span style="font-weight: 400;">&nbsp;Android library to add crash handler to your native code and create crash minidump files. The SDK will check for those minidump files and send them automatically to your Countly server upon application start. You would download </span><code><span style="font-weight: 400;">sdk_native</span></code><span style="font-weight: 400;">&nbsp;from the MavenCentral repository and include it in your project, similar to how you included our SDK (please change the </span><code><span style="font-weight: 400;">LATEST_VERSION</span></code><span style="font-weight: 400;">&nbsp;below by checking our Maven&nbsp;</span><a href="https://central.sonatype.com/artifact/ly.count.android/sdk/versions"><span style="font-weight: 400;">page</span></a><span style="font-weight: 400;">, currently 23.8.3):</span>
 </p>
-<pre><code class="java">// build gradle file
+<pre class="wysiwyg-code-block"><code class="language-java java">// build gradle file
 repositories {
   mavenCentral()
 }
@@ -262,7 +264,7 @@ dependencies {
 <p>
   <span style="font-weight: 400;">Then call our init method as early as possible in your application life cycle to be able to catch crashes that occur during initialization:</span>
 </p>
-<pre><code class="java">import ly.count.android.sdknative.CountlyNative;
+<pre class="wysiwyg-code-block"><code class="language-java java">import ly.count.android.sdknative.CountlyNative;
 
 CountlyNative.initNative(getApplicationContext());</code></pre>
 <p>
@@ -280,13 +282,13 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
     <span class="tabs-link">build.gradle.kts</span>
   </div>
   <div class="tab">
-    <pre><code class="java">plugins {
-  id "ly.count.android.plugins.upload-symbols" version "25.4.4"
+    <pre class="wysiwyg-code-block"><code class="language-java java">plugins {
+  id "ly.count.android.plugins.upload-symbols" version "25.4.6"
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">plugins {
-  id("ly.count.android.plugins.upload-symbols") version "25.4.4"
+    <pre class="wysiwyg-code-block"><code class="language-java java">plugins {
+  id("ly.count.android.plugins.upload-symbols") version "25.4.6"
 }</code></pre>
   </div>
 </div>
@@ -301,9 +303,9 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
     <span class="tabs-link">build.gradle.kts</span>
   </div>
   <div class="tab">
-    <pre><code class="java">// in root level gradle file
+    <pre class="wysiwyg-code-block"><code class="language-java java">// in root level gradle file
 plugins {
-  id "ly.count.android.plugins.upload-symbols" version "25.4.4" apply false
+  id "ly.count.android.plugins.upload-symbols" version "25.4.6" apply false
 }
     
 // in sub-project gradle file
@@ -312,9 +314,9 @@ plugins {
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">// in root level gradle file
+    <pre class="wysiwyg-code-block"><code class="language-java java">// in root level gradle file
 plugins {
-  id("ly.count.android.plugins.upload-symbols") version "25.4.4" apply false
+  id("ly.count.android.plugins.upload-symbols") version "25.4.6" apply false
 }
     
 // in sub-project gradle file
@@ -333,11 +335,11 @@ plugins {
     <span class="tabs-link">build.gradle.kts</span>
   </div>
   <div class="tab">
-    <pre><code class="java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin
+    <pre class="wysiwyg-code-block"><code class="language-java java">apply plugin: ly.count.android.plugins.UploadSymbolsPlugin
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">apply(plugin = "ly.count.android.plugins.upload-symbols")
+    <pre class="wysiwyg-code-block"><code class="language-java java">apply(plugin = "ly.count.android.plugins.upload-symbols")
 </code></pre>
   </div>
 </div>
@@ -350,13 +352,13 @@ plugins {
     <span class="tabs-link">build.gradle.kts</span>
   </div>
   <div class="tab">
-    <pre><code class="java">countly {
+    <pre class="wysiwyg-code-block"><code class="language-java java">countly {
   server "https://YOUR_SERVER"
   app_key "YOUR_APP_KEY"  
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">countly {
+    <pre class="wysiwyg-code-block"><code class="language-java java">countly {
   server = "https://YOUR_SERVER"
   app_key = "YOUR_APP_KEY"  
 }</code></pre>
@@ -374,7 +376,7 @@ plugins {
   <img src="https://archive.count.ly/images/guide/6ddc195-Selection_006.png">
 </div>
 <p>Another option is to run them from the command line:</p>
-<pre><code class="java">./gradlew uploadNativeSymbols
+<pre class="wysiwyg-code-block"><code class="language-java java">./gradlew uploadNativeSymbols
 
 // or if you have subprojects
 
@@ -382,7 +384,7 @@ plugins {
 <p>
   <span style="font-weight: 400;">You may also configure your build so these tasks will run after every build (leave out the task which is not required for you):</span>
 </p>
-<pre><code class="java">tasks.whenTaskAdded { task -&gt;
+<pre class="wysiwyg-code-block"><code class="language-java java">tasks.whenTaskAdded { task -&gt;
   if (task.name.startsWith('assemble')) {
     //this would upload your Java mapping file
     task.dependsOn('uploadJaveSymbols')
@@ -400,7 +402,7 @@ plugins {
     <span class="tabs-link">build.gradle.kts</span>
   </div>
   <div class="tab">
-    <pre><code class="java">countly {
+    <pre class="wysiwyg-code-block"><code class="language-java java">countly {
   // required by both tasks
   server "https://try.count.ly"
   app_key "XXXXXX"  // same app_key used for SDK integration
@@ -425,7 +427,7 @@ plugins {
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">countly {
+    <pre class="wysiwyg-code-block"><code class="language-java java">countly {
   // required by both tasks
   server = "https://try.count.ly"
   app_key = "XXXXXX"  // same app_key used for SDK integration
@@ -451,7 +453,7 @@ plugins {
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">It is possible that two of these properties will need to be configured manually: <code>dumpSymsPath</code></span><span style="font-weight: 400;"> and <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;">. The plugin assumes you will run the task after a release build. To test it for debug builds, please change <code>nativeObjectFilesDir</code></span><span style="font-weight: 400;"> to <code>"intermediates/cmake/debug/obj"</code></span><span style="font-weight: 400;"> (or to wherever your build process puts .so files under the build directory).</span>
+  <span style="font-weight: 400;">It is possible that two of these properties will need to be configured manually: </span><code><span style="font-weight: 400;">dumpSymsPath</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">nativeObjectFilesDir</span></code><span style="font-weight: 400;">. The plugin assumes you will run the task after a release build. To test it for debug builds, please change </span><code><span style="font-weight: 400;">nativeObjectFilesDir</span></code><span style="font-weight: 400;"> to </span><code><span style="font-weight: 400;">"intermediates/cmake/debug/obj"</span></code><span style="font-weight: 400;"> (or to wherever your build process puts .so files under the build directory).</span>
 </p>
 <p>
   <span style="font-weight: 400;">We created a </span><a href="https://github.com/Countly/countly-sdk-android/tree/master/app-native"><span style="font-weight: 400;">sample app</span></a><span style="font-weight: 400;"> in our github repo that demonstrates both how to use SDK-native and our upload plugin.</span>
@@ -468,7 +470,7 @@ plugins {
   In the SDK all event-related functionality can be browsed from the returned interface
   on:
 </p>
-<pre><code class="java">Countly.sharedInstance().events()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().events()</code></pre>
 <p>
   When providing segmentation for events, the following primitive data types are
   supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays,
@@ -480,22 +482,22 @@ plugins {
   <span style="font-weight: 400;">We have provided an example of recording a </span><strong>purchase</strong><span style="font-weight: 400;"> event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="ef2a9c313d7630fc8b9d59aaced3391ff">
     Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
-  <li>
+  <li data-list-item-id="e376ae782c2368652b7101b3611b446d3">
     Usage 2: how many times the <strong>purchase</strong> event occurred + the
     total amount of those purchases.
   </li>
-  <li>
+  <li data-list-item-id="eb382aa12558a974c1409d9667bf045df">
     Usage 3: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
-  <li>
+  <li data-list-item-id="edbd2d5ba390f93b8bac604587f4c7a79">
     Usage 4: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
-  <li>
+  <li data-list-item-id="efeb3b7bf99fe7b14e089ea6dbb15be59">
     Usage 5: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
   </li>
@@ -503,15 +505,15 @@ plugins {
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="java">Countly.sharedInstance().events().recordEvent("purchase", 1);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().events().recordEvent("purchase", 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="java">Countly.sharedInstance().events().recordEvent("purchase", 1, 0.99);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().events().recordEvent("purchase", 1, 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -526,7 +528,7 @@ Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1);</cod
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -541,7 +543,7 @@ Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99)
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -560,7 +562,7 @@ Countly.sharedInstance().events().recordEvent("purchase", segmentation, 1, 0.99,
 <p>
   <span style="font-weight: 400;">It's possible to create timed events by defining a start and a stop moment.</span>
 </p>
-<pre><code class="java">String eventName = "Some event";
+<pre class="wysiwyg-code-block"><code class="language-java java">String eventName = "Some event";
 
 //start some event
 Countly.sharedInstance().events().startEvent(eventName);
@@ -571,7 +573,7 @@ Countly.sharedInstance().events().endEvent(eventName);</code></pre>
 <p>
   <span style="font-weight: 400;">You may also provide additional information when ending an event. However, in that case, you have to provide the segmentation, count, and sum. The default values for those are "null", 1 and 0.</span>
 </p>
-<pre><code class="java">String eventName = "Some event";
+<pre class="wysiwyg-code-block"><code class="language-java java">String eventName = "Some event";
 
 //start some event
 Countly.sharedInstance().events().startEvent(eventName);
@@ -586,7 +588,7 @@ Countly.sharedInstance().events().endEvent(eventName, segmentation, 4, 34);
 <p>
   You may cancel the started timed event in case it is not relevant anymore:
 </p>
-<pre><code class="java">//start some event
+<pre class="wysiwyg-code-block"><code class="language-java java">//start some event
 Countly.sharedInstance().events().startEvent(eventName);
 //wait some time
 
@@ -602,7 +604,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   record them in the SDK with a past timestamp. The timestamp is a Unix timestamp
   stored in milliseconds. For that you would use:
 </p>
-<pre><code class="java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().events().recordPastEvent(key, segmentation, count, sum, dur, timestamp)</code></pre>
 <h1 id="h_01HAVQDM5T14975HJ27TKPN43E">Sessions</h1>
 <h2 id="h_01HAVQDM5TPNFY7Z7RNWANTVB6">Automatic Sessions</h2>
 <p>
@@ -617,19 +619,22 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   on the SDK.
 </p>
 <p>It can be enabled during init with:</p>
-<pre>config.enableManualSessionControl();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.enableManualSessionControl();</code></pre>
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
-  <li>Begin session</li>
-  <li>Update session duration</li>
-  <li>End session (also updates duration)</li>
+  <li data-list-item-id="e8b51e47545add9d241b7f06adf2e8113">Begin session</li>
+  <li data-list-item-id="e0f745897ecf746fb8c648ae0daa5197d">Update session duration</li>
+  <li data-list-item-id="e9599dd8b2a332e00021f1557784ad605">End session (also updates duration)</li>
 </ul>
 <p>The appropriate call to do that are:</p>
-<pre>Countly.sharedInstance().sessions().beginSession();<br>Countly.sharedInstance().sessions().updateSession();<br>Countly.sharedInstance().sessions().endSession();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().sessions().beginSession();
+Countly.sharedInstance().sessions().updateSession();
+Countly.sharedInstance().sessions().endSession();</code></pre>
 <p>
   By default, you should do some session call every 60 seconds after beginning
   a session so that it is not closed server side. If you would want to increase
-  that duration, you would have to increase the "<span>Maximal Session Duration" in your server API configuration.</span>
+  that duration, you would have to increase the "Maximal Session Duration" in your
+  server API configuration.
 </p>
 <h3 id="h_01HVKEZN4D4FYXAVD5V9HRC9VW">Hybrid Mode</h3>
 <p>
@@ -638,14 +643,14 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   call <code>beginSession</code> and <code>endSession</code> methods and SDK would
   handle the rest.
 </p>
-<pre><code>// after enabling manual sessions
+<pre class="wysiwyg-code-block"><code class="language-java">// after enabling manual sessions
 config.enableManualSessionControlHybridMode();</code></pre>
 <h1 id="h_01HAVQDM5T4KYTSDG1BQ41WDM1">View Tracking</h1>
 <p>
   In the SDK all view related functionality can be browsed from the returned interface
   on:
 </p>
-<pre><code class="java">Countly.sharedInstance().views()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().views()</code></pre>
 <p>
   While going to the background, all running views will be automatically stopped,
   and while coming to the foreground, all stopped views will be automatically started.
@@ -654,7 +659,7 @@ config.enableManualSessionControlHybridMode();</code></pre>
 <p>
   <span style="font-weight: 400;">View tracking is a way to report every screen view to the Countly dashboard. In order to enable automatic view tracking, call:</span>
 </p>
-<pre><code class="java">config.enableAutomaticViewTracking();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.enableAutomaticViewTracking();</code></pre>
 <p>
   The tracked views will use the full activity names which include their package
   name. It would look similar to "com.my.company.activityname".
@@ -662,7 +667,7 @@ config.enableManualSessionControlHybridMode();</code></pre>
 <p>
   <span style="font-weight: 400;">It is possible to use short view names that make use of the simple activity name. This would look like "activityname". To use this functionality, call this before calling init:</span>
 </p>
-<pre><code class="java">config.enableAutomaticViewShortNames();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.enableAutomaticViewShortNames();</code></pre>
 <p>
   If you want to add segmentation to all your automatic views, please have a look
   <a href="#h_01HHNZ0MAP34090BTSV1KAYD4J">here</a>.
@@ -671,7 +676,7 @@ config.enableManualSessionControlHybridMode();</code></pre>
   If you want to exclude certain activities from automatic view tracking, you can
   let the SDK know during initialization by passing them in an array:
 </p>
-<pre><code class="java">config.setAutomaticViewTrackingExclusions(Class[] exclusions);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.setAutomaticViewTrackingExclusions(Class[] exclusions);</code></pre>
 <h2 id="h_01HAVQDM5TAM7FDYHWYNEA244T">Manual View Recording</h2>
 <p>
   The SDK provides various ways to track views. You can have a single view at a
@@ -684,7 +689,7 @@ config.enableManualSessionControlHybridMode();</code></pre>
   would stop if another view starts. You can start an auto stopped view with or
   without segmentation like this:
 </p>
-<pre><code class="java">// without segmentation
+<pre class="wysiwyg-code-block"><code class="language-java java">// without segmentation
 Countly.sharedInstance().views().startAutoStoppedView("View Name");
   
 // Or with segmentation
@@ -703,7 +708,7 @@ Countly.sharedInstance().views().startAutoStoppedView("View Name", segmentation)
 <p>
   <span style="font-weight: 400;">It would return a string view ID:</span>
 </p>
-<pre><span style="font-weight: 400;">String id = Countly.sharedInstance().views().startAutoStoppedView(<span>"View Name"</span>);</span></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">String id = Countly.sharedInstance().views().startAutoStoppedView("View Name");</code></pre>
 <h3 id="h_01HHNY1G0SVAKPH1BAKJTVVSBZ">Regular Views</h3>
 <p>
   Opposed to "auto stopped views", with regular views you can have multiple of
@@ -712,12 +717,12 @@ Countly.sharedInstance().views().startAutoStoppedView("View Name", segmentation)
 <p>
   You can start a view that would not close when another views starts like this:
 </p>
-<pre><code class="java">Countly.sharedInstance().views().startView("View Name");</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().views().startView("View Name");</code></pre>
 <p>
   While manually tracking views, you may add your custom segmentation to them like
   this:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -736,9 +741,9 @@ Countly.sharedInstance().views().startView("View Name", segmentation);</code></p
 <p>
   You can stop a view with its name or its view ID. To stop it with its name:
 </p>
-<pre>Countly.sharedInstance().views().stopViewWithName("View Name");</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().views().stopViewWithName("View Name");</code></pre>
 <p>You can provide a segmentation while doing so:</p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -751,16 +756,16 @@ segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
 Countly.sharedInstance().views().stopViewWithName("View Name", segmentation);</code></pre>
 <p>
-  <span style="font-weight: 400;"><span>If there are multiple views with the same name (they would have different identifiers) but if you try to stop one with that name the SDK would close one of those randomly.</span></span>
+  <span style="font-weight: 400;">If there are multiple views with the same name (they would have different identifiers) but if you try to stop one with that name the SDK would close one of those randomly.</span>
 </p>
 <p>
   <span style="font-weight: 400;">To stop a view with its view ID:</span>
 </p>
-<pre>Countly.sharedInstance().views().stopViewWithID("View ID");</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().views().stopViewWithID("View ID");</code></pre>
 <p>
   <span style="font-weight: 400;">You can provide a segmentation while doing so:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -775,7 +780,7 @@ Countly.sharedInstance().views().stopViewWithID("View ID", segmentation);</code>
 <p>
   You can also stop all running views at once with a segmentation:
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -789,20 +794,20 @@ segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 Countly.sharedInstance().views().stopAllViews(segmentation);</code></pre>
 <h3 id="h_01HHNYPKFGD5CC7SJECDWQ7EXB">Pausing and Resuming Views</h3>
 <p>
-  <span>If you are starting multiple views at the same time it might be necessary for you to pause some views while others are still continuing. This can be achieved by using the unique identifier you get while starting a view.</span>
+  If you are starting multiple views at the same time it might be necessary for
+  you to pause some views while others are still continuing. This can be achieved
+  by using the unique identifier you get while starting a view.
 </p>
 <p>
   Pausing and resuming views will only impact a single view, ensuring it receives
   the correct duration.
 </p>
-<p>
-  <span>To pause a view with its ID:</span>
-</p>
-<pre><span>Countly.sharedInstance().views().pauseViewWithID("View ID");</span></pre>
+<p>To pause a view with its ID:</p>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().views().pauseViewWithID("View ID");</code></pre>
 <p>
   <span style="font-weight: 400;">To resume a view with its ID:</span>
 </p>
-<pre><span style="font-weight: 400;"><span>Countly.sharedInstance().views().resumeViewWithID("View ID");</span></span></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().views().resumeViewWithID("View ID");</code></pre>
 <h3 id="h_01HHNZEE94N9FH6GYZTR4A1H0M">Adding Segmentation to Started Views</h3>
 <p>
   <span style="font-weight: 400;">You can add segmentation values to a view before it ends. This can be done as many times as desired and the final segmentation that will be send to the server would be the cumulative sum of all segmentations. However if a certain segmentation value for a specific key has been updated, the latest value will be used.</span>
@@ -810,7 +815,7 @@ Countly.sharedInstance().views().stopAllViews(segmentation);</code></pre>
 <p>
   <span style="font-weight: 400;">To add segmentation to a view using its view ID:</span>
 </p>
-<pre><code class="java">String viewID = Countly.sharedInstance().views().startView("View Name");
+<pre class="wysiwyg-code-block"><code class="language-java java">String viewID = Countly.sharedInstance().views().startView("View Name");
 
 Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
@@ -827,7 +832,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithID(viewID, segmentatio
 <p>
   <span style="font-weight: 400;">To add segmentation to a view using its name:</span>
 </p>
-<pre><code class="java">String viewName = "View Name";
+<pre class="wysiwyg-code-block"><code class="language-java java">String viewName = "View Name";
 Countly.sharedInstance().views().startView(viewName);
   
 Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
@@ -846,7 +851,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(viewName, segment
 <p>
   <span style="font-weight: 400;">You can set a global segmentation to be send with all views when it ends:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -857,11 +862,12 @@ segmentation.put("languages", new String[] { "en", "de", "fr" });
 segmentation.put("sub_names", Arrays.asList("John", "Doe", "Jane"));
 segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
 
-Countly.sharedInstance().views().setGlobalViewSegmentation(segmentation);<br></code></pre>
+Countly.sharedInstance().views().setGlobalViewSegmentation(segmentation);
+</code></pre>
 <p>
   <span style="font-weight: 400;">You can update this segmentation any time you want:</span>
 </p>
-<pre><code class="java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Object&gt; segmentation = new ConcurrentHashMap&lt;&gt;();
 segmentation.put("country", "Germany");
 segmentation.put("app_version", "1.0");
 segmentation.put("rating", 10);
@@ -874,7 +880,7 @@ segmentation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3")));
   
 Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</code></pre>
 <p>
-  <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;<code>Analytics &gt; Views</code></span><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="/hc/en-us/articles/4431589003545#h_01HAWAJ8QP89XMBYDBPWBPQ14C"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">To review the resulting data from view tracking, open the dashboard and go to</span><span style="font-weight: 400;">&nbsp;</span><code><span style="font-weight: 400;">Analytics &gt; Views</span></code><span style="font-weight: 400;">. For more information on how to use view tracking data to its fullest potential, click </span><a href="/hc/en-us/articles/4431589003545#h_01HAWAJ8QP89XMBYDBPWBPQ14C"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="img-container">
   <img src="/guide-media/01GVB67JY4JTN99572G79YBBWF" alt="001.png">
@@ -889,38 +895,45 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
 <p>
   <span style="font-weight: 400;">The easiest method is letting the Countly SDK seamlessly handle the device ID on its own. You may then use the following calls. It will use the default strategy, which currently is UUID.</span>
 </p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>Countly.sharedInstance().init(config);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+Countly.sharedInstance().init(config);</code></pre>
 <p>
   <span style="font-weight: 400;">You may specify the device ID by yourself if you have one (it has to be unique for each device). It may be an email or some other internal ID used by your other systems.</span>
 </p>
-<pre><code class="java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));<br>config.setDeviceId("YOUR_DEVICE_ID");<br>Countly.sharedInstance().init(config);</code><code class="java"></code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+config.setDeviceId("YOUR_DEVICE_ID");
+Countly.sharedInstance().init(config);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">&nbsp;</code></pre>
 <h2 id="h_01HAVQDM5TPKRQAZGXW73GBM90">Changing Device ID</h2>
+<p>You can change the device ID of an user with setID method:</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().deviceId().setID("newId");</code></pre>
 <p>
-  <span>You can change the device ID of an user with setID method:</span>
-</p>
-<pre><code class="java">Countly.sharedInstance().deviceId().setID("newId");</code></pre>
-<p>
-  <span>This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
+  This method's effect on the server will be different according to the type of
+  the current ID stored in the SDK at the time you call it:
 </p>
 <ul>
-  <li>
-    <p>
-      <span>If current stored ID is <code>DeviceIdType.OPEN_UDID</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>DeviceIdType.OPEN_UDID</code> ID will be erased.</span>
-    </p>
+  <li data-list-item-id="e72f196f0722d3ab63872c2e5d7f85005">
+    If current stored ID is <code>DeviceIdType.OPEN_UDID</code> then in the server
+    all the information recorded for that device ID will be merged to the new
+    ID you provide and old user with the <code>DeviceIdType.OPEN_UDID</code>
+    ID will be erased.
   </li>
-  <li>
-    <p>
-      <span>If the current stored ID is <code>DeviceIdType.DEVELOPER_SUPPLIED</code> or <code>DeviceIdType.TEMPORARY_ID</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
-    </p>
+  <li data-list-item-id="eb8418b91084d23da577c1971cafccb67">
+    If the current stored ID is <code>DeviceIdType.DEVELOPER_SUPPLIED</code>
+    or <code>DeviceIdType.TEMPORARY_ID</code> then in the server it will also
+    create a new user with this new ID if it does not exist.
   </li>
 </ul>
 <div class="callout callout--info">
   <p>
-    <span>If you need a more complicated logic or using the SDK version 24.4.1 and below then you will need to use this method mentioned <a href="#h_01JCGHKHE44J6TCC0JTYB4HDCR">here</a> instead.</span>
+    If you need a more complicated logic or using the SDK version 24.4.1 and
+    below then you will need to use this method mentioned
+    <a href="#h_01JCGHKHE44J6TCC0JTYB4HDCR">here</a> instead.
   </p>
 </div>
 <p>
-  <span>NOTE: The call will reject invalid device ID values. A valid value is not null and is not an empty string.</span>
+  NOTE: The call will reject invalid device ID values. A valid value is not null
+  and is not an empty string.
 </p>
 <h2 id="h_01HAVQDM5TY12M81SJ1NSXT2E2">Temporary Device ID</h2>
 <p>
@@ -938,9 +951,9 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
   To enable this mode during init, you would call this on your config object before
   init:
 </p>
-<pre>countlyConfig.enableTemporaryDeviceIdMode();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">countlyConfig.enableTemporaryDeviceIdMode();</code></pre>
 <p>To enable temporary id after init, you would call:</p>
-<pre>Countly.sharedInstance().deviceId().enableTemporaryIdMode();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().deviceId().enableTemporaryIdMode();</code></pre>
 <p>
   To exit temporary id mode, you would call either "changeDeviceIdWithoutMerge"
   or "changeDeviceIdWithMerge" or init the SDK with a developer supplied device
@@ -953,7 +966,7 @@ Countly.sharedInstance().views().updateGlobalViewSegmentation(segmentation);</co
   The id type is an enum with the possible values of: "DEVELOPER_SUPPLIED", "OPEN_UDID",
   "TEMPORARY_ID".
 </p>
-<pre><code class="java">String usedId = Countly.sharedInstance().deviceId().getID();
+<pre class="wysiwyg-code-block"><code class="language-java java">String usedId = Countly.sharedInstance().deviceId().getID();
 DeviceIdType idType = Countly.sharedInstance().deviceId().getType();</code></pre>
 <h1 id="h_01HAVQDM5TNGS4ZR4109W4S5TK">Push Notifications</h1>
 <div class="callout callout--info">
@@ -983,16 +996,16 @@ DeviceIdType idType = Countly.sharedInstance().deviceId().getType();</code></pre
   present in the system, Countly would try to get HMS token instead. It's possible
   to alter this behaviour by supplying HMS as a preferred provider:
 </p>
-<pre><code class="java">CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this).setProvider(Countly.CountlyMessagingProvider.HMS);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfigPush countlyConfigPush = new CountlyConfigPush(this).setProvider(Countly.CountlyMessagingProvider.HMS);
 CountlyPush.init(countlyConfigPush);</code></pre>
 <h2 id="h_01HAVQDM5T196CVPSG134PEDGQ">Integration</h2>
 <p>
   To have the best experience with push notifications, the SDK should be initialized
   in your Application subclass' "onCreate" method.
-  <span style="font-weight: 400;">Android O and later models require the use of <code>NotificationChannel</code>s</span>.
+  <span style="font-weight: 400;">Android O and later models require the use of </span><code><span style="font-weight: 400;">NotificationChannel</span></code><span style="font-weight: 400;">s</span>.
   Use <code>CountlyPush.CHANNEL_ID</code> for Countly-displayed notifications:
 </p>
-<pre><code class="java">public class App extends Application {
+<pre class="wysiwyg-code-block"><code class="language-java java">public class App extends Application {
 
   @Override
   public void onCreate() {
@@ -1035,12 +1048,13 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   }
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">Please note that the second parameter in <code>CountlyConfigPush()</code></span><span style="font-weight: 400;">&nbsp;call defines whether a particular device would be handled as a test setup or in production. It's quite handy to separate test devices from production ones by changing <code>CountlyMessagingMode</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you could test your notifications before sending them to all your users.</span>
+  <span style="font-weight: 400;">Please note that the second parameter in </span><code><span style="font-weight: 400;">CountlyConfigPush()</span></code><span style="font-weight: 400;">&nbsp;call defines whether a particular device would be handled as a test setup or in production. It's quite handy to separate test devices from production ones by changing </span><code><span style="font-weight: 400;">CountlyMessagingMode</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;so you could test your notifications before sending them to all your users.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You should add this permission entry into your app manifest:<br></span>
+  <span style="font-weight: 400;">You should add this permission entry into your app manifest:</span><br>
+  &nbsp;
 </p>
-<pre>&lt;<span>uses-permission </span><span>android</span><span>:name</span><span>="${applicationId}.CountlyPush.BROADCAST_PERMISSION" </span>/&gt;</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">&lt;uses-permission android:name="${applicationId}.CountlyPush.BROADCAST_PERMISSION" /&gt;</code></pre>
 <p>
   <strong>Additional Intent Redirection checks</strong>
 </p>
@@ -1055,11 +1069,11 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   You can set the additional intent redirection check to true for intent redirect
   security.
 </p>
-<pre><span>CountlyPush</span>.<span>useAdditionalIntentRedirectionChecks </span>= <span>true</span>;</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">CountlyPush.useAdditionalIntentRedirectionChecks = true;</code></pre>
 <p>
   If these are enabled then the SDK will enforce additional security checks. More
   info can be found
-  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener">here</a>.&nbsp;
+  <a href="https://support.google.com/faqs/answer/9267555?hl=en" target="_blank" rel="noopener noreferrer">here</a>.&nbsp;
 </p>
 <p>
   If, for some reason, the 'activity name' does not start with the 'application
@@ -1071,7 +1085,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   You can set the allowed package and class names for Intent Redirection using
   this call:
 </p>
-<pre><code class="java">List&lt;String&gt; allowedClassNames = new ArrayList&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">List&lt;String&gt; allowedClassNames = new ArrayList&lt;&gt;();
 allowedClassNames.add("MainActivity");
 List&lt;String&gt; allowedPackageNames = new ArrayList&lt;&gt;();
 allowedPackageNames.add(getPackageName());
@@ -1083,7 +1097,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
 <p>
   You can set a custom URL handler for the push notification if needed.
 </p>
-<pre><code class="java">public interface CountlyNotificationButtonURLHandler {
+<pre class="wysiwyg-code-block"><code class="language-java java">public interface CountlyNotificationButtonURLHandler {
   // true if it is handled, false otherwise
   boolean onClick(String url);
 }
@@ -1119,14 +1133,14 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   <strong>Adding dependencies</strong>
 </p>
 <p>
-  <span style="font-weight: 400;">Add the following dependency to your <code>build.gradle</code></span><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
+  <span style="font-weight: 400;">Add the following dependency to your </span><code><span style="font-weight: 400;">build.gradle</span></code><span style="font-weight: 400;">&nbsp;(</span><strong>use latest Firebase version</strong><span style="font-weight: 400;">):</span>
 </p>
-<pre><code class="java">//latest firebase-messaging version that is available
+<pre class="wysiwyg-code-block"><code class="language-java java">//latest firebase-messaging version that is available
 implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 <p>
-  <span style="font-weight: 400;">Now, we will need to add the <code>Service</code></span><span style="font-weight: 400;">. Add a service definition to your <code>AndroidManifest.xml</code></span><span style="font-weight: 400;">:</span>
+  <span style="font-weight: 400;">Now, we will need to add the </span><code><span style="font-weight: 400;">Service</span></code><span style="font-weight: 400;">. Add a service definition to your </span><code><span style="font-weight: 400;">AndroidManifest.xml</span></code><span style="font-weight: 400;">:</span>
 </p>
-<pre><code class="xml">&lt;service android:name=".DemoFirebaseMessagingService"&gt;
+<pre class="wysiwyg-code-block"><code class="language-java xml">&lt;service android:name=".DemoFirebaseMessagingService"&gt;
   &lt;intent-filter&gt;
     &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
   &lt;/intent-filter&gt;
@@ -1136,7 +1150,7 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
   ... and add a class for it as well (for Flutter and React-Native project this
   step is not needed as the SDK adds the service files implicitly):
 </p>
-<pre><code class="java">public class DemoFirebaseMessagingService extends FirebaseMessagingService {
+<pre class="wysiwyg-code-block"><code class="language-java java">public class DemoFirebaseMessagingService extends FirebaseMessagingService {
   private static final String TAG = "DemoMessagingService";
 
   @Override
@@ -1183,20 +1197,20 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
   }
 }</code></pre>
 <p>
-  <span style="font-weight: 400;">This class is responsible for token changes and message handling logic. Countly provides default UI for your notifications, which would display a <code>Notification</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;if your app is in the background, or <code>Dialog</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;if your app is active. It will also automatically report button clicks back to the server for Actioned metric conversion tracking. However, it is completely up to you, whether you would like to use this class or not. Let's have an overview of&nbsp;the <code>onMessageReceived</code></span><span style="font-weight: 400;">&nbsp;method:</span>
+  <span style="font-weight: 400;">This class is responsible for token changes and message handling logic. Countly provides default UI for your notifications, which would display a </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;if your app is in the background, or </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;if your app is active. It will also automatically report button clicks back to the server for Actioned metric conversion tracking. However, it is completely up to you, whether you would like to use this class or not. Let's have an overview of&nbsp;the </span><code><span style="font-weight: 400;">onMessageReceived</span></code><span style="font-weight: 400;">&nbsp;method:</span>
 </p>
 <ol>
-  <li>
-    <span style="font-weight: 400;">It calls <code>CountlyPush.decodeMessage()</code></span><span style="font-weight: 400;">&nbsp;to decode a message from the Countly-specific format. In this way, you'll have a method of accessing standard fields, such as a badge, URL, or your custom data keys.</span>
+  <li data-list-item-id="e5371958bb505177c31e7e59990bb3ef0">
+    <span style="font-weight: 400;">It calls </span><code><span style="font-weight: 400;">CountlyPush.decodeMessage()</span></code><span style="font-weight: 400;">&nbsp;to decode a message from the Countly-specific format. In this way, you'll have a method of accessing standard fields, such as a badge, URL, or your custom data keys.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">Then it checks if the message has&nbsp;a <code>typ</code></span><span style="font-weight: 400;">custom data key, and if it does, it only records the Actioned metric. Let's assume your custom notification is to preload some data from a remote server. Our demo app has a more in-depth scenario for this case.</span>
+  <li data-list-item-id="e71bf26b645718a584701d829fb423dbd">
+    <span style="font-weight: 400;">Then it checks if the message has&nbsp;a </span><code><span style="font-weight: 400;">typ</span></code><span style="font-weight: 400;">custom data key, and if it does, it only records the Actioned metric. Let's assume your custom notification is to preload some data from a remote server. Our demo app has a more in-depth scenario for this case.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">In case the message also has <code>anotherActivity</code></span><span style="font-weight: 400;">&nbsp;custom data key, it creates a <code>notificationIntent</code></span><span style="font-weight: 400;">&nbsp;to launch the activity, named <code>AnotherActivity</code></span><span style="font-weight: 400;">. This intent is only used as default content intent for the user tap on a <code>Notification</code></span><span style="font-weight: 400;">. It is not used for<code>Dialog</code></span><span style="font-weight: 400;">.</span>
+  <li data-list-item-id="e05433a1a2402df839934254efc428b88">
+    <span style="font-weight: 400;">In case the message also has </span><code><span style="font-weight: 400;">anotherActivity</span></code><span style="font-weight: 400;">&nbsp;custom data key, it creates a </span><code><span style="font-weight: 400;">notificationIntent</span></code><span style="font-weight: 400;">&nbsp;to launch the activity, named </span><code><span style="font-weight: 400;">AnotherActivity</span></code><span style="font-weight: 400;">. This intent is only used as default content intent for the user tap on a </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">. It is not used for</span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">Then the service calls <code>CountlyPush.displayMessage()</code></span><span style="font-weight: 400;">to perform a standard Countly notification displaying logic - <code>Notification</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;assuming your app is in the background or not running, and the <code>Dialog</code></span><span style="font-weight: 400;">&nbsp;is in the foreground. Note that this method takes an <code>int</code></span><span style="font-weight: 400;">&nbsp;resource parameter. It must be compatible with the corresponding version of the Android notification small icon.</span>
+  <li data-list-item-id="e6c9c00718ce112af60d3483f6eb81938">
+    <span style="font-weight: 400;">Then the service calls </span><code><span style="font-weight: 400;">CountlyPush.displayMessage()</span></code><span style="font-weight: 400;">to perform a standard Countly notification displaying logic - </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;assuming your app is in the background or not running, and the </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;is in the foreground. Note that this method takes an </span><code><span style="font-weight: 400;">int</span></code><span style="font-weight: 400;">&nbsp;resource parameter. It must be compatible with the corresponding version of the Android notification small icon.</span>
   </li>
 </ol>
 <p>
@@ -1209,7 +1223,7 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 <p>
   <span style="font-weight: 400;">This is an example of a push notification payload sent from the Countly server:</span>
 </p>
-<pre><code class="json">{
+<pre class="wysiwyg-code-block"><code class="language-java json">{
   collapse_key: “collapse_key”, // if present
   time_to_live: 123,
   data: {
@@ -1246,9 +1260,10 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
   <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/android-integrating-sdk-0000001050040084" target="_self">HMS Core</a>
   into your app, all you need to do is add a dependency into build.gradle (<strong>use latest dependency version!</strong>):
 </p>
-<pre>implementation <span>'com.huawei.hms:push:4.0.3.301'<br></span></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">implementation 'com.huawei.hms:push:4.0.3.301'
+</code></pre>
 <p>... add service definition into AndroidManifest.xml:</p>
-<pre><code class="xml">&lt;service 
+<pre class="wysiwyg-code-block"><code class="language-java xml">&lt;service 
   android:name=".DemoHuaweiMessagingService"
   android:exported="false"&gt;
   &lt;intent-filter&gt;
@@ -1257,7 +1272,7 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 &lt;/service&gt;
 </code></pre>
 <p>... and the service itself:</p>
-<pre><code class="java">public class DemoHuaweiMessagingService extends HmsMessageService {
+<pre class="wysiwyg-code-block"><code class="language-java java">public class DemoHuaweiMessagingService extends HmsMessageService {
   private static final String TAG = "DemoHuaweiMessagingService";
 
   @Override
@@ -1322,14 +1337,14 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
 <p>
   <span style="font-weight: 400;">First, you will need to prepare the URI that will link to the resource on your device. It would look something like this:</span>
 </p>
-<pre><code class="java">String soundUri = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.notif_sound;</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">String soundUri = ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.notif_sound;</code></pre>
 <p>
   <span style="font-weight: 400;">You would then send this URI as part of the push notification, using the "Send sound" field. This should cover devices with the Android SDK version less than 26.</span>
 </p>
 <p>
   <span style="font-weight: 400;">For devices with the SDK version 26+, you will also need to provide this URI during the notification channel setup. It would look something like this:</span>
 </p>
-<pre><code class="java">AudioAttributes audioAttributes = new AudioAttributes.Builder()
+<pre class="wysiwyg-code-block"><code class="language-java java">AudioAttributes audioAttributes = new AudioAttributes.Builder()
   .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
    .build();
@@ -1341,10 +1356,10 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
 </p>
 <h3 id="h_01HAVQDM5TKR1NTAZ6WGH84C1S">Automatic Message Handling</h3>
 <p>
-  <span style="font-weight: 400;">Countly handles most common message handling tasks for you. For example, it generates and shows <code>Notification</code></span><span style="font-weight: 400;">&nbsp;or <code>Dialog</code></span><span style="font-weight: 400;">&nbsp;and tracks conversion rates automatically. In most cases, it’s not necessary for you to know how it works, but if you would like to customize the behavior or exchange it with your own implementation, here is a more in-depth explanation of what it does.</span>
+  <span style="font-weight: 400;">Countly handles most common message handling tasks for you. For example, it generates and shows </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">&nbsp;or </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;and tracks conversion rates automatically. In most cases, it’s not necessary for you to know how it works, but if you would like to customize the behavior or exchange it with your own implementation, here is a more in-depth explanation of what it does.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First, the received notification payload is analyzed and, if it's a Countly notification (if it has a <code>"c"</code></span><span style="font-weight: 400;">&nbsp;dictionary in the payload), it processes it. Otherwise, or if the notification analysis says it is a <code>Data-only</code></span><span style="font-weight: 400;">&nbsp;notification (you're the one responsible for message processing), it does nothing.</span>
+  <span style="font-weight: 400;">First, the received notification payload is analyzed and, if it's a Countly notification (if it has a </span><code><span style="font-weight: 400;">"c"</span></code><span style="font-weight: 400;">&nbsp;dictionary in the payload), it processes it. Otherwise, or if the notification analysis says it is a </span><code><span style="font-weight: 400;">Data-only</span></code><span style="font-weight: 400;">&nbsp;notification (you're the one responsible for message processing), it does nothing.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Next, it automatically makes callbacks to the Countly Messaging server to calculate the number of open push notifications which got open and the number of notifications with positive reactions.</span>
@@ -1353,17 +1368,17 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   <span style="font-weight: 400;">Here are the explanations of common usage scenarios that are handled automatically:&nbsp;</span>
 </p>
 <ul>
-  <li>
-    <span style="font-weight: 400;"> It doesn't do anything, apart from conversion tracking if you specify it as a <code>Data-only</code></span><span style="font-weight: 400;">&nbsp;notification in the dashboard. This effectively sets a special flag in the message payload, so you may process it on your own. </span>
+  <li data-list-item-id="e4db8db78b9ad5d4f6d5df78c7f13e70f">
+    <span style="font-weight: 400;">It doesn't do anything, apart from conversion tracking if you specify it as a </span><code><span style="font-weight: 400;">Data-only</span></code><span style="font-weight: 400;">&nbsp;notification in the dashboard. This effectively sets a special flag in the message payload, so you may process it on your own.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">It displays a <code>Notification</code></span><span style="font-weight: 400;">&nbsp;whenever a message arrives, and your application is in the background. </span>
+  <li data-list-item-id="eb26e8f9c801f11dd3c50121bc7179154">
+    <span style="font-weight: 400;">It displays a </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">&nbsp;whenever a message arrives, and your application is in the background.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">It displays <code>Dialog</code></span><span style="font-weight: 400;">&nbsp;when a new message arrives, and your application is in the foreground.&nbsp;</span>
+  <li data-list-item-id="e0f55ad1286686c78c1fcd48f17574093">
+    <span style="font-weight: 400;">It displays </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;when a new message arrives, and your application is in the foreground.&nbsp;</span>
   </li>
-  <li>
-    <span style="font-weight: 400;"> It displays <code>Dialog</code></span><span style="font-weight: 400;">&nbsp;when a new message with an action arrives (open URL), and the user responds to it by swiping or tapping the notification.</span>
+  <li data-list-item-id="efc71e04e01b820104444a550dc2bd05f">
+    <span style="font-weight: 400;">It displays </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;when a new message with an action arrives (open URL), and the user responds to it by swiping or tapping the notification.</span>
   </li>
 </ul>
 <p>
@@ -1371,19 +1386,19 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   <span style="font-weight: 400;">always has a message, but the set of displayed buttons depends on the message type:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e7ea4419c0bddf2e89b9cbd72960982a6">
     <span style="font-weight: 400;">It displays a single ‘Cancel’ button for notifications without any actions (only a text message).</span>
   </li>
-  <li>
+  <li data-list-item-id="e324e28543599677d04607aaf18a1d429">
     <span style="font-weight: 400;">For notifications with a&nbsp;</span><strong>URL</strong><span style="font-weight: 400;">&nbsp;(for instance, you ask the user to open a link to some blog post), it displays both the ‘Cancel’ &amp; ‘Open’ buttons.</span>
   </li>
-  <li>
+  <li data-list-item-id="e8523c7b65152251154644669adfaab6f">
     <span style="font-weight: 400;">It displays the corresponding buttons for notifications with custom buttons.</span>
   </li>
 </ul>
 <h2 id="h_01HAVQDM5TWYC5ZTJGVNPP1A1Z">Deep Links</h2>
 <p>
-  <span style="font-weight: 400;">When using Countly push notifications, you may benefit from Android deep links in your application for the buttons you provide. Those are basically links for specific activities of your application. A link may either be a generic ‘http’ link, such as <code>http://www.oneexample.com/survey</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;or a link with a custom URI (uniform resource indicator) scheme, such as <code>otherexample://things</code></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">When using Countly push notifications, you may benefit from Android deep links in your application for the buttons you provide. Those are basically links for specific activities of your application. A link may either be a generic ‘http’ link, such as </span><code><span style="font-weight: 400;">http://www.oneexample.com/survey</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;or a link with a custom URI (uniform resource indicator) scheme, such as </span><code><span style="font-weight: 400;">otherexample://things</span></code><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">In order for Android deep links to work, you will need to specify the intent filters in your application's manifest for the specific groups of links you would like to use.</span>
@@ -1404,21 +1419,21 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
 <p>
   <span style="font-weight: 400;">In order to enable this functionality, you will need to call the following function before initializing Countly messaging:</span>
 </p>
-<pre><code class="java">countlyConfig.setPushIntentAddMetadata(true);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.setPushIntentAddMetadata(true);</code></pre>
 <p>
   <span style="font-weight: 400;">To access those extras from the intent, you should use these names:</span>
 </p>
-<pre><code class="java">ProxyActivity.intentExtraButtonLink
+<pre class="wysiwyg-code-block"><code class="language-java java">ProxyActivity.intentExtraButtonLink
 ProxyActivity.intentExtraMessageText
 ProxyActivity.intentExtraMessageTitle
 ProxyActivity.intentExtraWhichButton</code></pre>
 <p>
   <span style="font-weight: 400;">To read the extra from the intent, you would use something similar to this:</span>
 </p>
-<pre><code class="java">String buttonUrl = intent.getStringExtra(ProxyActivity.intentExtraButtonLink);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">String buttonUrl = intent.getStringExtra(ProxyActivity.intentExtraButtonLink);</code></pre>
 <div class="callout callout--info">
   <p>
-    <span style="font-weight: 400;">You've probably noticed that we used <code>Countly.CountlyMessagingMode.TEST</code></span><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use <code>Countly.CountlyMessagingMode.PRODUCTION</code></span><span style="font-weight: 400;">.</span>
+    <span style="font-weight: 400;">You've probably noticed that we used </span><code><span style="font-weight: 400;">Countly.CountlyMessagingMode.TEST</span></code><span style="font-weight: 400;">&nbsp;in our example. That is because we are currently building the application only for testing purposes. Countly separates users who run apps built for test and for release. This way you'll be able to test messages before sending them to all your users. When releasing your app, please use </span><code><span style="font-weight: 400;">Countly.CountlyMessagingMode.PRODUCTION</span></code><span style="font-weight: 400;">.</span>
   </p>
 </div>
 <h2 id="h_01HNF9WBDT037TDHVHRSEPEMZV">Setting up Credentials</h2>
@@ -1430,7 +1445,7 @@ ProxyActivity.intentExtraWhichButton</code></pre>
 <h3 id="h_01HNF9WBDTWYNW05YZ9M5X6HNN">Acquiring Credentials</h3>
 <h4 id="h_01HNFBD33ZXXPES6GD02ZM2QM6">Firebase</h4>
 <p>
-  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM service account file. In order to get one please follow these steps mentioned <a href="/hc/en-us/articles/9290669873305#h_01JDMZ7F8TKB254YF62DTWC2JP">here</a>.</span>
+  <span style="font-weight: 400;">In order to be able to send notifications through FCM, Countly server needs a FCM service account file. In order to get one please follow these steps mentioned </span><a href="/hc/en-us/articles/9290669873305#h_01JDMZ7F8TKB254YF62DTWC2JP"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <h4 id="h_01HNFBDKJPQ5492DGFP9YDM5EQ">Huawei</h4>
 <p>
@@ -1441,11 +1456,11 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="ec532256ca45043eb8a0b215569776bdb">
     enter <code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into the callback
     address field, while replacing YOUR_COUNTLY_SERVER with actual server address;
   </li>
-  <li>
+  <li data-list-item-id="ed8db74d0323b78f15e374a60c4eed661">
     and enter your certificate in PEM format (only your certificate, without
     the rest of the chain; usually first one in
     <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).
@@ -1483,17 +1498,17 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e0bb7bb627b1e253cba4e283022483438">
     <span style="font-weight: 400;">Country code in the two-letter, ISO standard</span>
   </li>
-  <li>
+  <li data-list-item-id="ea4026fa24e28eb14b47dd51f4fcd717d">
     <span style="font-weight: 400;">City name (must be set together with the country code)</span>
   </li>
-  <li>
+  <li data-list-item-id="e52cba9ce209febe55b54b59aa9019762">
     <span style="font-weight: 400;">Latitude and longitude values separated by a comma, e.g.</span>
     "56.42345,123.45325"
   </li>
-  <li>
+  <li data-list-item-id="eccb5b89cb70929aa13995c979622e50a">
     <span style="font-weight: 400;">Your user’s IP address</span>
   </li>
 </ul>
@@ -1502,11 +1517,11 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   During init you can set location info that will be sent during the start of the
   user session:
 </p>
-<pre>config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.setLocation(countryCode, city, gpsCoordinates, ipAddress);</code></pre>
 <p>
   Note that the ipAddress will only be updated if set through the init process.
 </p>
-<pre><code class="java">//set user location
+<pre class="wysiwyg-code-block"><code class="language-java java">//set user location
 String countryCode = "us";
 String city = "Houston";
 String latitude = "29.634933";
@@ -1522,11 +1537,11 @@ Countly.sharedInstance().setLocation(countryCode, city, latitude + "," + longitu
 <p>If you don't want to set specific fields, set them to null.</p>
 <h2 id="h_01HAVQDM5V9GK1GKDAQB2AF6JZ">Disabling Location</h2>
 <p>Also during init, you can disable location:</p>
-<pre>config.setDisableLocation();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.setDisableLocation();</code></pre>
 <p>
   Users might want to opt-out of location tracking. To do so, call:
 </p>
-<pre><code class="java">//disable location
+<pre class="wysiwyg-code-block"><code class="language-java java">//disable location
 Countly.sharedInstance().disableLocation();</code></pre>
 <p>
   <span style="font-weight: 400;">This action will erase the cached location data from the device and the server.</span>
@@ -1557,16 +1572,16 @@ Countly.sharedInstance().disableLocation();</code></pre>
   <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e80d5a458edf48ecdc036b7cd1fcd3b57">
     <span style="font-weight: 400;">when the SDK has finished initializing</span>
   </li>
-  <li>
+  <li data-list-item-id="e0ffbbeed9d40bf56252657bd9ba62133">
     <span style="font-weight: 400;">after the device ID is changed without merging</span>
   </li>
-  <li>
+  <li data-list-item-id="eb2075a4b7dce193663e266346499ac11">
     <span style="font-weight: 400;">when user gets out of temp ID mode</span>
   </li>
-  <li>
+  <li data-list-item-id="e192cafbefd9bc98be7955e961eb66c8c">
     <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
   </li>
 </ul>
@@ -1575,7 +1590,7 @@ Countly.sharedInstance().disableLocation();</code></pre>
   <code class="java">enableRemoteConfigAutomaticTriggers</code> on the configuration
   object you will provide during init.
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.enableRemoteConfigAutomaticTriggers(); // necessary to enable the feature
 Countly.sharedInstance().init(config);
 </code></pre>
@@ -1585,7 +1600,7 @@ Countly.sharedInstance().init(config);
   were not updated, you would have metadata indicating if a value belongs to the
   old or current user.
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.enableRemoteConfigValueCaching();
 Countly.sharedInstance().init(config);</code></pre>
 <h3 id="h_01HAVQDM5V9WNQ3X02ZRF07QCM">Manual Calls</h3>
@@ -1593,25 +1608,25 @@ Countly.sharedInstance().init(config);</code></pre>
   There are three ways to trigger remote config value download manually:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="edd86a52aa4b26d24c15933748b593ac3">
     <span style="font-weight: 400;">Manually downloading all keys</span>
   </li>
-  <li>
+  <li data-list-item-id="ed48c16190b8c12c05c9a9c0e3e7d96e4">
     <span style="font-weight: 400;">Manually downloading specific keys</span>
   </li>
-  <li>Manually downloading, omitting (everything except) keys.</li>
+  <li data-list-item-id="e2f2a2f223339aafe6efeed68b9020f35">Manually downloading, omitting (everything except) keys.</li>
 </ul>
 <p>
   <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><code class="java">dowloadAllKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
+  <code class="java"><span style="font-weight: 400;">dowloadAllKeys</span></code><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="java">downloadSpecificKeys</code> to downloads new values for the wanted keys. Those are provided with a String array.</span>
+  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call </span><code class="java"><span style="font-weight: 400;">downloadSpecificKeys</span></code><span style="font-weight: 400;"> to downloads new values for the wanted keys. Those are provided with a String array.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="java">downloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
+  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call </span><code class="java"><span style="font-weight: 400;">downloadOmittingKeys</span></code><span style="font-weight: 400;"> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1620,7 +1635,7 @@ Countly.sharedInstance().init(config);</code></pre>
     <span class="tabs-link">Omit Keys</span>
   </div>
   <div class="tab">
-    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadAllKeys(new RCDownloadCallback() {
+    <pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().downloadAllKeys(new RCDownloadCallback() {
   @Override
   public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
     if (rResult == RequestResult.Success) {
@@ -1632,7 +1647,7 @@ Countly.sharedInstance().init(config);</code></pre>
 });</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
+    <pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().downloadSpecificKeys(String[] keysToInclude, new RCDownloadCallback() {
   @Override
   public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
     if (rResult == RequestResult.Success) {
@@ -1644,7 +1659,7 @@ Countly.sharedInstance().init(config);</code></pre>
 });</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">Countly.sharedInstance().remoteConfig().downloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
+    <pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().downloadOmittingKeys(String[] keysToOmit, new RCDownloadCallback() {
   @Override
   public void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues) {
     if (rResult == RequestResult.Success) {
@@ -1657,17 +1672,17 @@ Countly.sharedInstance().init(config);</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a <code class="java">dowloadAllKeys</code> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
+  <span style="font-weight: 400;">When making requests with an "inclusion" or "exclusion" array, if those arrays are empty or null, they will function the same as a </span><code class="java"><span style="font-weight: 400;">dowloadAllKeys</span></code><span style="font-weight: 400;"> request and will update all the values. This means it will also erase all keys not returned by the server.</span>
 </p>
 <h2 id="h_01HAVQDM5VD64KDJDNB99P6DW8">Accessing Values</h2>
 <p>
   To get a stored value, call <code class="java">getValue</code> with the specified
   key. This returns an RCData object that contains the value of the key and the
   metadata about that value's owner. If value in RCData was <code>null</code>
-  <span style="font-weight: 400;">then no value was found or the value was <code>null</code>.</span>
+  <span style="font-weight: 400;">then no value was found or the value was </span><code><span style="font-weight: 400;">null</span></code><span style="font-weight: 400;">.</span>
   &nbsp;
 </p>
-<pre><code class="java">Object value_1 = Countly.sharedInstance().remoteConfig().getValue("key_1").value;
+<pre class="wysiwyg-code-block"><code class="language-java java">Object value_1 = Countly.sharedInstance().remoteConfig().getValue("key_1").value;
 Object value_2 = Countly.sharedInstance().remoteConfig().getValue("key_2").value;
 Object value_3 = Countly.sharedInstance().remoteConfig().getValue("key_3").value;
 Object value_4 = Countly.sharedInstance().remoteConfig().getValue("key_4").value;
@@ -1679,10 +1694,11 @@ JSONObject jobj = (JSONObject) value_4;</code></pre>
 <p>
   If you want to get all values together you can use
   <code class="java">getAllValues</code> which returns a Map&lt;String, RCData&gt;.
-  <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the <code>Object</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
+  <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the </span><code><span style="font-weight: 400;">Object</span></code><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be </span><code><span style="font-weight: 400;">JSONArray</span></code><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
   or just a simple value, such as <code>int</code>.
 </p>
-<pre><code class="java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().getAllValues();<br>
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, RCData&gt; allValues = Countly.sharedInstance().remoteConfig().getAllValues();
+
 int int_value = (int) allValues["key_1"].value ;
 double double_value = (double) allValues["key_2"].value;
 JSONArray jArray = (JSONArray) allValues["key_3"].value;
@@ -1693,7 +1709,7 @@ JSONObject jobj = (JSONObject) allValues["key_4"].value;</code></pre>
   belongs to. The isCurrentUsersData is only false when there was a device ID change,
   but somehow (or intentionally) a remote config value was not updated.
 </p>
-<pre><code class="java">Class RCData {
+<pre class="wysiwyg-code-block"><code class="language-java java">Class RCData {
   Object value;
   Boolean isCurrentUsersData;
 }</code></pre>
@@ -1701,14 +1717,14 @@ JSONObject jobj = (JSONObject) allValues["key_4"].value;</code></pre>
 <p>
   <span style="font-weight: 400;">At some point, you might like to erase all the values downloaded from the server. You will need to call one function to do so.</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().clearAll();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().clearAll();</code></pre>
 <h2 id="01HC292DJC2JTQ8GWVZGB4E9R9">Global Download Callbacks</h2>
 <p>
   Also, you may provide a global callback function to be informed when the remote
   config download request is finished with
   <code class="java">remoteConfigRegisterGlobalCallback</code> during the SDK initialization:
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.remoteConfigRegisterGlobalCallback(RCDownloadCallback callback);
 Countly.sharedInstance().init(config);
 </code></pre>
@@ -1717,24 +1733,24 @@ Countly.sharedInstance().init(config);
   and it would have the following parameters:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="eede3c3ac33b50fc7f04848675db4f4ac">
     <code class="java">rResult</code>: RequestResult Enum (either
-    <span class="hljs-built_in">Error</span><span>, Success or NetworkIssue</span>)
+    <span class="hljs-built_in">Error</span>, Success or NetworkIssue)
   </li>
-  <li>
+  <li data-list-item-id="e11f8335af3505addf8b41264eae93ec7">
     <code class="java">error</code>: String (error message. "null" if there is
     no error)
   </li>
-  <li>
+  <li data-list-item-id="ee47590786e6c86ecf6529303c97be2c2">
     <code class="java">fullValueUpdate</code>: boolean ("true" - all values updated,
     "false" - a subset of values updated)
   </li>
-  <li>
+  <li data-list-item-id="e5c297d9b9f4266c05e4a38fc072ba0f6">
     <code class="java">downloadedValues</code>: Map&lt;String, RCData&gt; (the
     whole downloaded remote config values)
   </li>
 </ul>
-<pre><code class="java">RCDownloadCallback {
+<pre class="wysiwyg-code-block"><code class="language-java java">RCDownloadCallback {
   void callback(RequestResult rResult, String error, boolean fullValueUpdate, Map&lt;String, RCData&gt; downloadedValues)
 }
 </code></pre>
@@ -1748,7 +1764,7 @@ Countly.sharedInstance().init(config);
   You can also register (or remove) callbacks to do different things after the
   SDK initialization. You can register these callbacks multiple times:
 </p>
-<pre><code class="java">// register a callback
+<pre class="wysiwyg-code-block"><code class="language-java java">// register a callback
 Countly.sharedInstance().remoteConfig().registerDownloadCallback(RCDownloadCallback callback);
 
 // remove a callback
@@ -1765,7 +1781,7 @@ Countly.sharedInstance().remoteConfig().removeDownloadCallback(RCDownloadCallbac
   automatically. To do this you should call <code>enrollABOnRCDownload</code> method
   on the CountlyConfig object you pass for the initialization:
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.enrollABOnRCDownload ();
 Countly.sharedInstance().init(config);</code></pre>
 <h3 id="h_01HC2A5JDVP2RCW9RJ4VD9FSET">Enrollment on Access</h3>
@@ -1783,7 +1799,7 @@ Countly.sharedInstance().init(config);</code></pre>
   To enroll a user into the A/B tests for the given keys you use the following
   method:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().enrollIntoABTestsForKeys(String[] keys);</code></pre>
 <p>
   Here the keys array is the mandatory parameter for this method to work.
 </p>
@@ -1792,7 +1808,7 @@ Countly.sharedInstance().init(config);</code></pre>
   If you want to remove users from A/B tests of certain keys you can use the following
   function:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().exitABTestsForKeys(String[] keys);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().exitABTestsForKeys(String[] keys);</code></pre>
 <p>
   Here if no keys are provided it would remove the user from all A/B tests instead.
 </p>
@@ -1813,7 +1829,7 @@ Countly.sharedInstance().init(config);</code></pre>
 <p>
   <span style="font-weight: 400;">The star-rating dialog's title, message, and dismiss button text may be customized through the countly configuration.</span>
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.setStarRatingSessionLimit(LIMIT);
 config.setStarRatingCallback(new StarRatingCallback() {
     @Override public void onRate(int rating) {
@@ -1834,46 +1850,46 @@ Countly.sharedInstance().init(config);
   <span style="font-weight: 400;">The star-rating dialog can be displayed in 2 ways:</span>
 </p>
 <ul>
-  <li>Manually by the developer</li>
-  <li>Automatically, depending on the session count</li>
+  <li data-list-item-id="ed204c4c9c6669bb3e6f170f4e933358c">Manually by the developer</li>
+  <li data-list-item-id="e7ab694191fe39f0ac03a39fe8c4818be">Automatically, depending on the session count</li>
 </ul>
 <p>
-  <span style="font-weight: 400;">In order to display the star-rating dialog manually, you must call the <code>ShowStarRating</code></span><span style="font-weight: 400;">&nbsp;function. Optionally, you may provide the callback functions. There is no limit on how many times the star-rating dialog may be displayed manually.</span>
+  <span style="font-weight: 400;">In order to display the star-rating dialog manually, you must call the </span><code><span style="font-weight: 400;">ShowStarRating</span></code><span style="font-weight: 400;">&nbsp;function. Optionally, you may provide the callback functions. There is no limit on how many times the star-rating dialog may be displayed manually.</span>
 </p>
-<pre><code class="java">//show the star rating without a callback
+<pre class="wysiwyg-code-block"><code class="language-java java">//show the star rating without a callback
 Countly.sharedInstance().ratings().showStarRating(activity, null);
 
 //show the star rating with a callback
 Countly.sharedInstance().ratings().showStarRating(activity, callback)</code></pre>
 <p>
-  <span style="font-weight: 400;">The star-rating dialog will be displayed automatically when an application's session count reaches the specified limit, i.e. once for each new version of the application. This session count limit may be specified upon initial configuration or through the <code>SetAutomaticStarRatingSessionLimit</code></span><span style="font-weight: 400;">&nbsp;function. The default limit is 5. Once the star-rating dialog has been displayed automatically, it will not be displayed again, unless a new app version comes along.</span>
+  <span style="font-weight: 400;">The star-rating dialog will be displayed automatically when an application's session count reaches the specified limit, i.e. once for each new version of the application. This session count limit may be specified upon initial configuration or through the </span><code><span style="font-weight: 400;">SetAutomaticStarRatingSessionLimit</span></code><span style="font-weight: 400;">&nbsp;function. The default limit is 5. Once the star-rating dialog has been displayed automatically, it will not be displayed again, unless a new app version comes along.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You will need to pass the activity context during init to show the automatic star-rating dialog.</span>
 </p>
-<pre><code class="java">//set the rating limit through the configuration
+<pre class="wysiwyg-code-block"><code class="language-java java">//set the rating limit through the configuration
 int starRatingLimit = 5;
 config.setStarRatingSessionLimit(starRatingLimit);</code></pre>
 <p>
-  <span style="font-weight: 400;">If you would like to enable the automatic star-rating function, use the <code>SetIfStarRatingShownAutomatically</code></span><span style="font-weight: 400;">&nbsp;function, it is disabled by default.</span>
+  <span style="font-weight: 400;">If you would like to enable the automatic star-rating function, use the </span><code><span style="font-weight: 400;">SetIfStarRatingShownAutomatically</span></code><span style="font-weight: 400;">&nbsp;function, it is disabled by default.</span>
 </p>
-<pre><code class="java">//enable automatic star rating
+<pre class="wysiwyg-code-block"><code class="language-java java">//enable automatic star rating
 config.setIfStarRatingShownAutomatically(true);
 
 //disable automatic star rating
 config.setIfStarRatingShownAutomatically(false);</code></pre>
 <p>
-  <span style="font-weight: 400;">If you would like to have the star rating shown only once per app's lifetime and not for each new version, use the <code>SetStarRatingDisableAskingForEachAppVersion</code> function.</span>
+  <span style="font-weight: 400;">If you would like to have the star rating shown only once per app's lifetime and not for each new version, use the </span><code><span style="font-weight: 400;">SetStarRatingDisableAskingForEachAppVersion</span></code><span style="font-weight: 400;"> function.</span>
 </p>
-<pre><code class="java">//disable star rating for each new version
+<pre class="wysiwyg-code-block"><code class="language-java java">//disable star rating for each new version
 config.setStarRatingDisableAskingForEachAppVersion(true);
 
 //enable star rating for each new version
 config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 <p>
-  <span style="font-weight: 400;">The star-rating callback provides functions for two events. <code>OnRate</code></span><span style="font-weight: 400;">&nbsp;is called when the user chooses a rating. <code>OnDismiss</code></span><span style="font-weight: 400;">&nbsp;is called when the user clicks the back button, clicks outside the dialog, or clicks the "Dismiss" button. The callback provided in the init function is only used when displaying the automatic star rating. Only the provided callback will be used for the manual star rating.</span>
+  <span style="font-weight: 400;">The star-rating callback provides functions for two events. </span><code><span style="font-weight: 400;">OnRate</span></code><span style="font-weight: 400;">&nbsp;is called when the user chooses a rating. </span><code><span style="font-weight: 400;">OnDismiss</span></code><span style="font-weight: 400;">&nbsp;is called when the user clicks the back button, clicks outside the dialog, or clicks the "Dismiss" button. The callback provided in the init function is only used when displaying the automatic star rating. Only the provided callback will be used for the manual star rating.</span>
 </p>
-<pre><code class="java">StarRatingCallback callback = new StarRatingCallback() {
+<pre class="wysiwyg-code-block"><code class="language-java java">StarRatingCallback callback = new StarRatingCallback() {
   @Override
   public void onRate(int rating) {
     //the user rated the app
@@ -1883,7 +1899,7 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   public void onDismiss() {
     //the star rating dialog was dismissed
   }
-};</code><code class="java"></code></pre>
+};</code></pre>
 <h2 id="h_01HAVQDM5VNQE1BKTPNSXMX3BM">Feedback Widget</h2>
 <div class="callout callout--info">
   <p>
@@ -1894,10 +1910,10 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey,</a>
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener noreferrer">NPS</a>,
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener noreferrer">Survey,</a>
   and
-  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener noreferrer">Rating</a>.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -1913,12 +1929,12 @@ config.setStarRatingDisableAskingForEachAppVersion(false);</code></pre>
   After you have created widgets on your dashboard, you can reach the methods to
   show them from the feedback interface of your Countly instance:
 </p>
-<pre><code>Countly.sharedInstance().feedback()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().feedback()</code></pre>
 <p>
   You can display a random active widget for the widget type you want with one
   of these methods:
 </p>
-<pre><code>.presentNPS(Context context)
+<pre class="wysiwyg-code-block"><code class="language-java">.presentNPS(Context context)
 .presentRating(Context context)
 .presentSurvey(Context context)
 
@@ -1929,7 +1945,7 @@ Countly.sharedInstance().feedback().presentNPS(this);
   If you want to show a specific widget according to its name, ID or one of its
   tags then you can use these methods:
 </p>
-<pre><code>.presentNPS(Context context, String nameIDorTag)
+<pre class="wysiwyg-code-block"><code class="language-java">.presentNPS(Context context, String nameIDorTag)
 .presentRating(Context context, String nameIDorTag)
 .presentSurvey(Context context, String nameIDorTag)
 
@@ -1944,7 +1960,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "/home-page");
   If you need to know when the widget you are showing is closed you can use these
   methods to provide a callback which will be called when the widget closes:
 </p>
-<pre><code>.presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)
+<pre class="wysiwyg-code-block"><code class="language-java">.presentNPS(Context context, String nameIDorTag, FeedbackCallback devCallback)
 .presentRating(Context context, String nameIDorTag, FeedbackCallback devCallback)
 .presentSurvey(Context context, String nameIDorTag, FeedbackCallback devCallback)
 
@@ -1959,7 +1975,8 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
       Toast.makeText(ActivityExampleFeedback.this, "Encountered error while presenting the feedback widget: [" + error + "]", Toast.LENGTH_LONG).show();
     }
   }
-});<br></code></pre>
+});
+</code></pre>
 <p>
   The "devCallback" parameter has two callbacks: - "onClosed" which will be called
   when the feedback widget is closed - "onFinished" which will be called on some
@@ -1968,7 +1985,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
 <p>
   For more in-depth information on retrieving feedback widgets, understanding object
   structures, or presenting them yourself, please refer to the following
-  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener">resource</a>.
+  <a href="/hc/en-us/articles/9290669873305#h_01HABT18WTFWFNKVPJJ6G6DEM4" target="_blank" rel="noopener noreferrer">resource</a>.
 </p>
 <h3 id="h_01J9TZ3WBW2ZKNBCQNDEQBW174">Manual Reporting</h3>
 <p>
@@ -1980,7 +1997,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
 <div class="callout callout--info">
   <p>
     For a sample integration, have a look at our
-    <a href="https://github.com/Countly/countly-sdk-android/blob/master/app/src/main/java/ly/count/android/demo/ActivityExampleFeedback.java#L232" target="_blank" rel="noopener">sample app</a>
+    <a href="https://github.com/Countly/countly-sdk-android/blob/master/app/src/main/java/ly/count/android/demo/ActivityExampleFeedback.java#L232" target="_blank" rel="noopener noreferrer">sample app</a>
     at our github repo.
   </p>
 </div>
@@ -1994,7 +2011,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
   as the first parameter. Secong paramater is a callback that would return the
   widget data as first parameter and the error as second:
 </p>
-<pre><code class="java">Countly.sharedInstance().feedback().getFeedbackWidgetData(chosenWidget, new RetrieveFeedbackWidgetData() {
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().feedback().getFeedbackWidgetData(chosenWidget, new RetrieveFeedbackWidgetData() {
   @Override 
   public void onFinished(JSONObject retrievedWidgetData, String error) {
 
@@ -2008,7 +2025,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
   <p>
     For how this retrievedWidgetData would look like and in depth information
     on this topic please check our detailed article
-    <a href="/hc/en-us/articles/9290669873305#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener">here</a>.
+    <a href="/hc/en-us/articles/9290669873305#h_01HABT18WT0D08H8DR2BAD77T2" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <p>
@@ -2019,7 +2036,7 @@ Countly.sharedInstance().feedback().presentNPS(this, "MyNetPromoterScore", new M
   and the <code>retrievedWidgetData</code> to report the feedback result with the
   following call:
 </p>
-<pre><code class="java">//this contains the reported results
+<pre class="wysiwyg-code-block"><code class="language-java java">//this contains the reported results
 Map&lt;String, Object&gt; reportedResult = new HashMap&lt;&gt;();
 
 //
@@ -2063,7 +2080,7 @@ Countly.sharedInstance().feedback().reportFeedbackWidgetManually(widgetToReport,
   In the SDK, the typical workflow involves using the following methods to provide
   information about the current user:
 </p>
-<pre><code class="java">// Provide multiple properties at once within a map
+<pre class="wysiwyg-code-block"><code class="language-java java">// Provide multiple properties at once within a map
 Countly.sharedInstance().userProfile().setProperties(Map&lt;String, Object&gt; userProperties);
 
 // Provide single user property as key and value
@@ -2076,72 +2093,76 @@ Countly.sharedInstance().userProfile().setProperty(String key, Object value);</c
   Recorded User Profile data is automatically sent when:
 </p>
 <ul>
-  <li>An event is recorded</li>
-  <li>A session update occurs</li>
-  <li>The device ID changes</li>
+  <li data-list-item-id="e1533b480466e29dca614caf99e01c759">An event is recorded</li>
+  <li data-list-item-id="ec150317e7d1ddb6847ce1570af634a85">A session update occurs</li>
+  <li data-list-item-id="e1ef43016db600ced05bcb4541fdcba70">The device ID changes</li>
 </ul>
 <p>The keys for predefined user data fields are as follows:</p>
-<table>
-  <tbody>
-    <tr>
-      <th>Key</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>String</td>
-      <td>User's full name</td>
-    </tr>
-    <tr>
-      <td>username</td>
-      <td>String</td>
-      <td>User's nickname</td>
-    </tr>
-    <tr>
-      <td>email</td>
-      <td>String</td>
-      <td>User's email address</td>
-    </tr>
-    <tr>
-      <td>organization</td>
-      <td>String</td>
-      <td>User's organization name</td>
-    </tr>
-    <tr>
-      <td>phone</td>
-      <td>String</td>
-      <td>User's phone number</td>
-    </tr>
-    <tr>
-      <td>picture</td>
-      <td>String</td>
-      <td>URL to avatar or profile picture of the user</td>
-    </tr>
-    <tr>
-      <td>picturePath</td>
-      <td>String</td>
-      <td>Local path to the user's avatar or profile picture</td>
-    </tr>
-    <tr>
-      <td>gender</td>
-      <td>String</td>
-      <td>User's gender as M for male and F for female</td>
-    </tr>
-    <tr>
-      <td>byear</td>
-      <td>int</td>
-      <td>User's year of birth as integer</td>
-    </tr>
-  </tbody>
-</table>
+<figure class="wysiwyg-table wysiwyg-table-align-left">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center;">Key</th>
+        <th style="text-align: center;">Type</th>
+        <th style="text-align: center;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>name</td>
+        <td>String</td>
+        <td>User's full name</td>
+      </tr>
+      <tr>
+        <td>username</td>
+        <td>String</td>
+        <td>User's nickname</td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>String</td>
+        <td>User's email address</td>
+      </tr>
+      <tr>
+        <td>organization</td>
+        <td>String</td>
+        <td>User's organization name</td>
+      </tr>
+      <tr>
+        <td>phone</td>
+        <td>String</td>
+        <td>User's phone number</td>
+      </tr>
+      <tr>
+        <td>picture</td>
+        <td>String</td>
+        <td>URL to avatar or profile picture of the user</td>
+      </tr>
+      <tr>
+        <td>picturePath</td>
+        <td>String</td>
+        <td>Local path to the user's avatar or profile picture</td>
+      </tr>
+      <tr>
+        <td>gender</td>
+        <td>String</td>
+        <td>User's gender as M for male and F for female</td>
+      </tr>
+      <tr>
+        <td>byear</td>
+        <td>int</td>
+        <td>User's year of birth as integer</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>
   <span style="font-weight: 400;">Using "" for strings or a negative number for 'byear' will effectively delete that property.</span>
 </p>
 <p>
   <span style="font-weight: 400;">When providing properties, the following primitive data types are supported: "String," "Integer," "Double," and "Boolean." Additionally, arrays, Lists, and JSONArrays composed of these primitive types are also supported. Please note that no other data types will be recorded.</span>
 </p>
-<pre><code class="java">// Update the user profile with multiple values
+<pre class="wysiwyg-code-block"><code class="language-java java">// Update the user profile with multiple values
 Map&lt;String, Object&gt; userInformation = new HashMap&lt;&gt;();
 userInformation.put("byear", 2024);
 userInformation.put("name", "Beduk");
@@ -2155,7 +2176,7 @@ userInformation.put("tags", new JSONArray(Arrays.asList("tag1", "tag2", "tag3"))
 Countly.sharedInstance().userProfile().setProperties(userInformation);
 Countly.sharedInstance().userProfile().save();</code></pre>
 <p>
-  <strong><span style="font-weight: 400;">You may use any key values to be stored and displayed on your Countly backend for custom user properties. </span>Note: keys with . or $ symbols will have those symbols removed.</strong>
+  <span style="font-weight: 400;"><strong>You may use any key values to be stored and displayed on your Countly backend for custom user properties. </strong></span><strong>Note: keys with . or $ symbols will have those symbols removed.</strong>
 </p>
 <h2 id="h_01HAVQDM5V1TKVHB4XM726FRG6">Modifying Data</h2>
 <p>
@@ -2164,7 +2185,7 @@ Countly.sharedInstance().userProfile().save();</code></pre>
 <p>
   <span style="font-weight: 400;">You will find the list of available methods below:</span>
 </p>
-<pre><code class="java">//set one custom properties
+<pre class="wysiwyg-code-block"><code class="language-java java">//set one custom properties
 Countly.sharedInstance().userProfile().setProperty("test", "test");
 //increment used value by 1
 Countly.sharedInstance().userProfile().increment("used");
@@ -2193,13 +2214,13 @@ Countly.sharedInstance().userProfile().save();</code></pre>
   application's orientation changes, you need to disable it on your init object
   like:
 </p>
-<pre>config.setTrackOrientationChanges(<span>false</span>);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.setTrackOrientationChanges(false);</code></pre>
 <p>
   You need to add this to all of your activities where you want to track orientation:
 </p>
-<pre><code><span>android</span><span>:configChanges</span><span>="orientation|screenSize"</span></code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">android:configChanges="orientation|screenSize"</code></pre>
 <p>Inside of your manifest, it would look something like this:</p>
-<pre><code class="xml">&lt;activity
+<pre class="wysiwyg-code-block"><code class="language-java xml">&lt;activity
   android:name=".ActivityExample"
   android:label="@string/activity_name"
   android:configChanges="orientation|screenSize"&gt;
@@ -2214,7 +2235,7 @@ Countly.sharedInstance().userProfile().save();</code></pre>
   In those, you would have to call "Countly.sharedInstance().onConfigurationChanged(newConfig)".
   You may set it up similarly to this:
 </p>
-<pre><code class="java">@Override
+<pre class="wysiwyg-code-block"><code class="language-java java">@Override
 public void onConfigurationChanged (Configuration newConfig){
   super.onConfigurationChanged(newConfig);
   Countly.sharedInstance().onConfigurationChanged(newConfig);
@@ -2225,13 +2246,13 @@ public void onConfigurationChanged (Configuration newConfig){
   This SDK provides a few mechanisms for APM. To browse some of the provided functionality,
   check the returned interface from here:
 </p>
-<pre>Countly.sharedInstance().apm()</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().apm()</code></pre>
 <p>
   While using APM calls, you have the ability to provide trace keys by which you
   can track those parameters in your dashboard. Those keys have to abide by the
   following regex:
 </p>
-<pre><span>/^[a-zA-Z][a-zA-Z0-9_]*$/</span></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">/^[a-zA-Z][a-zA-Z0-9_]*$/</code></pre>
 <p>
   In short, only Latin letters, numbers, and underscores can be used. The key can
   not start with an underscore or number. The key also has to be shorter than 32
@@ -2248,9 +2269,9 @@ public void onConfigurationChanged (Configuration newConfig){
   with the same key.
 </p>
 <p>To start a custom trace, use:</p>
-<pre>Countly.sharedInstance().apm().startTrace(String traceKey);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().apm().startTrace(String traceKey);</code></pre>
 <p>To end a custom trace, use:</p>
-<pre><code class="java">Map&lt;String, Integer&gt; customMetric = new HashMap();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, Integer&gt; customMetric = new HashMap();
 customMetric.put("ABC", 1233);
 customMetric.put("C44C", 1337);
 
@@ -2261,7 +2282,7 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 <h2 id="h_01HAVQDM5V1NMVMCGPEC7X9P2A">Network Traces</h2>
 <p>You can use the APM to track your requests.</p>
 <p>Call this just before making your network request:</p>
-<pre>Countly.sharedInstance().apm().startNetworkRequest(String networkTraceKey, String uniqueId);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().apm().startNetworkRequest(String networkTraceKey, String uniqueId);</code></pre>
 <p>
   `NetworkTraceKey` would be a unique identifier of the API endpoint you are targeting.
   `UniqueId` is an identifier for requests for a specific traceKey. In case you
@@ -2270,7 +2291,7 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
   identify the request you are making.
 </p>
 <p>Call this after your network request is done:</p>
-<pre>Countly.sharedInstance().apm().endNetworkRequest(String networkTraceKey, String uniqueId, int responseCode, int requestPayloadSize, int responsePayloadSize);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().apm().endNetworkRequest(String networkTraceKey, String uniqueId, int responseCode, int requestPayloadSize, int responsePayloadSize);</code></pre>
 <p>
   You would provide the same `NetworkTraceKey` and&nbsp;`UniqueId` as starting
   the request and then also provided the received response code, sent payload size
@@ -2279,18 +2300,18 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 <h2 id="h_01HAVQDM5V5QDXFR1G3P3926Z3">Automatic Device Traces</h2>
 <p>Currently, the Android SDK provides 3 automatic traces:</p>
 <ul>
-  <li>App start time</li>
-  <li>App time in the background</li>
-  <li>App time in foreground</li>
+  <li data-list-item-id="e6cab62758a498ce523e578bb38fb4800">App start time</li>
+  <li data-list-item-id="e22bb9a3e8edd79d7cd33b640589b53eb">App time in the background</li>
+  <li data-list-item-id="e59f7a1a4fb8f81ce371f5073bd495b13">App time in foreground</li>
 </ul>
 <p>To record app start time you need to implement 3 things.</p>
 <p>First, you must enable this feature in config on init:</p>
-<pre>config.apm.enableAppStartTimeTracking()</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.apm.enableAppStartTimeTracking()</code></pre>
 <p>
   Second, you must call `Countly.applicationOnCreate();` right after your application
   classes `onCreate` like:
 </p>
-<pre><code class="java">public class App extends Application {
+<pre class="wysiwyg-code-block"><code class="language-java java">public class App extends Application {
   @Override
   public void onCreate() {
     super.onCreate();
@@ -2307,9 +2328,9 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
   Countly will record the time your users spend in the foreground and background.
   For this to work, your users need to be given any consent and enable foreground/background
   tracking. You also need to provide your Application class to your config object
-  with "<span>setApplication" during init.</span> Enable this feature on init:
+  with "setApplication" during init. Enable this feature on init:
 </p>
-<pre>config.apm.enableForegroundBackgroundTracking()</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.apm.enableForegroundBackgroundTracking()</code></pre>
 <h1 id="h_01HAVQDM5V1ZB8ECYTH1SPR3Q7">User Consent</h1>
 <p>
   <span style="font-weight: 400;">In an effort to comply with GDPR Countly provides ways to toggle different Countly features on/off depending on the given consent.</span>
@@ -2320,19 +2341,22 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 </p>
 <h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
 <p>
-  <span style="font-weight: 400;">The requirement for consent is disabled by default. To enable it, you will have to call <code>setRequiresConsent</code></span><span style="font-weight: 400;">&nbsp;with <code>true</code></span><span style="font-weight: 400;">&nbsp;before initializing Countly.</span>
+  <span style="font-weight: 400;">The requirement for consent is disabled by default. To enable it, you will have to call </span><code><span style="font-weight: 400;">setRequiresConsent</span></code><span style="font-weight: 400;">&nbsp;with </span><code><span style="font-weight: 400;">true</span></code><span style="font-weight: 400;">&nbsp;before initializing Countly.</span>
 </p>
-<pre><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setRequiresConsent(<span>true</span>);<br><span>Countly</span>.sharedInstance().init(<span>config</span>);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.setRequiresConsent(true);
+Countly.sharedInstance().init(config);</code></pre>
 <p>
-  <span style="font-weight: 400;">By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.<br>With below calls, consents for features will be given while initializing the SDK.</span>
+  <span style="font-weight: 400;">By default, no consent is given. That means that if no consent is enabled, Countly will not work and no network requests related to its features will be sent. When the consent status of a feature is changed, that change will be sent to the Countly server.</span><br>
+  <span style="font-weight: 400;">With below calls, consents for features will be given while initializing the SDK.</span>
 </p>
-<pre><code class="java">// give all consents for all features
+<pre class="wysiwyg-code-block"><code class="language-java java">// give all consents for all features
 config.giveAllConsent()
 
 // give consents for the features which specified below
 config.setConsentEnabled(String[] featureNames)</code></pre>
 <p>
-  <span style="font-weight: 400;">For all features, except <code>push</code></span><span style="font-weight: 400;">, consent is not persistent and will have to be set each time before Countly init. Therefore, the storage and persistence of the given consent falls on the SDK integrator.</span>
+  <span style="font-weight: 400;">For all features, except </span><code><span style="font-weight: 400;">push</span></code><span style="font-weight: 400;">, consent is not persistent and will have to be set each time before Countly init. Therefore, the storage and persistence of the given consent falls on the SDK integrator.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Consent for features may be given and revoked at any time, but if it is given after Countly init, some features may only work in part.</span>
@@ -2341,7 +2365,7 @@ config.setConsentEnabled(String[] featureNames)</code></pre>
   <span style="font-weight: 400;">If consent is removed, but the appropriate function can't be called before the app closes, it should be done upon the next app start, so that any relevant server-side features may be disabled (such as the reverse geo IP for location).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Feature names in the Android SDK are stored as static fields in the class called <code>CountlyFeatureNames</code></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">Feature names in the Android SDK are stored as static fields in the class called </span><code><span style="font-weight: 400;">CountlyFeatureNames</span></code><span style="font-weight: 400;">.</span>
 </p>
 <p>The current features are:</p>
 <p>
@@ -2397,42 +2421,43 @@ config.setConsentEnabled(String[] featureNames)</code></pre>
   <span style="font-weight: 400;">There are 4 ways of changing feature consent:</span>
 </p>
 <ul>
-  <li>
-    <span style="font-weight: 400;"><code>giveConsentAll</code>/<code>removeConsentAll</code><br></span>
+  <li data-list-item-id="e6374fa167cf2a2ab35e1e2622db48466">
+    <code><span style="font-weight: 400;">giveConsentAll</span></code><span style="font-weight: 400;">/</span><code><span style="font-weight: 400;">removeConsentAll</span></code><br>
+    &nbsp;
   </li>
 </ul>
-<pre><code class="java">// give consent for all features
+<pre class="wysiwyg-code-block"><code class="language-java java">// give consent for all features
 Countly.sharedInstance().consent().giveConsentAll()
 
 // remove consent for all features
 Countly.sharedInstance().consent().removeConsentAll()</code></pre>
 <ul>
-  <li>
-    <span style="font-weight: 400;"><code>giveConsent</code>/<code>removeConsent</code></span><span style="font-weight: 400;">&nbsp;- gives or removes consent to a specific feature.</span><span style="font-weight: 400;"></span>
+  <li data-list-item-id="e964b004031027bfb7dcca27545165f13">
+    <code><span style="font-weight: 400;">giveConsent</span></code><span style="font-weight: 400;">/</span><code><span style="font-weight: 400;">removeConsent</span></code><span style="font-weight: 400;">&nbsp;- gives or removes consent to a specific feature.</span><span style="font-weight: 400;"></span>
   </li>
 </ul>
-<pre><code class="java">// give consent to "sessions" feature
+<pre class="wysiwyg-code-block"><code class="language-java java">// give consent to "sessions" feature
 Countly.sharedInstance().consent().giveConsent(new String[]{Countly.CountlyFeatureNames.sessions});
 
 // remove consent from "sessions" feature
 Countly.sharedInstance().consent().removeConsent(new String[]{Countly.CountlyFeatureNames.sessions});</code></pre>
 <ul>
-  <li>
+  <li data-list-item-id="e53d79d0369f4f05f879129656cbd88e1">
     <code>setConsent</code> - set consent to a specific (true/false) value
   </li>
 </ul>
-<pre><code class="java">// give consent to "sessions" feature
+<pre class="wysiwyg-code-block"><code class="language-java java">// give consent to "sessions" feature
 Countly.sharedInstance().consent().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, true);
 
 // remove consent from "sessions" feature
 Countly.sharedInstance().consent().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, false);</code></pre>
 <ul>
-  <li>
+  <li data-list-item-id="e475322f277d7c161023d9374e9bba148">
     <code>setConsentFeatureGroup</code> - set consent for a feature group to
     a specific (true/false) value
   </li>
 </ul>
-<pre><code class="java">// prepare features that should be added to the group
+<pre class="wysiwyg-code-block"><code class="language-java java">// prepare features that should be added to the group
 // features groups need to be created before setting consent for them, see below
 String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.location };
 
@@ -2445,9 +2470,9 @@ Countly.sharedInstance().consent().setConsentFeatureGroup(groupName, true);
 Countly.sharedInstance().consent().setConsentFeatureGroup(groupName, false);</code></pre>
 <h2 id="h_01HAVQDM5VJQQ6HG65RTFF30V5">Feature Groups</h2>
 <p>
-  <span style="font-weight: 400;">Features may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using <code>createFeatureGroup</code></span><span style="font-weight: 400;">. Those groups are not persistent and must be created on every restart.</span>
+  <span style="font-weight: 400;">Features may be put into groups. By doing this, you may give/remove consent to multiple features in the same call. They may be created using </span><code><span style="font-weight: 400;">createFeatureGroup</span></code><span style="font-weight: 400;">. Those groups are not persistent and must be created on every restart.</span>
 </p>
-<pre><code class="java">// prepare features that should be added to the group
+<pre class="wysiwyg-code-block"><code class="language-java java">// prepare features that should be added to the group
 String[] groupFeatures = new String[]{ Countly.CountlyFeatureNames.sessions, Countly.CountlyFeatureNames.location };
 
 // create the feature group
@@ -2455,26 +2480,37 @@ Countly.sharedInstance().consent().createFeatureGroup("groupName", groupFeatures
 <h1 id="h_01HAVQDM5VQ3PVAC0AHJ116BCQ">Security and Privacy</h1>
 <h2 id="h_01HAVQDM5V4JB48BB1H8JQQKT2">Parameter Tamper Protection</h2>
 <p>
-  <span style="font-weight: 400;">You may set the optional <code>salt</code></span><span style="font-weight: 400;">&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field. You will need to set exactly the same <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server. If&nbsp;the <code>salt</code></span><span style="font-weight: 400;">&nbsp;on the Countly server is set, all requests would be checked for the validity of the <code>&amp;checksum</code></span><span style="font-weight: 400;">&nbsp;field before being processed.</span>
+  <span style="font-weight: 400;">You may set the optional </span><code><span style="font-weight: 400;">salt</span></code><span style="font-weight: 400;">&nbsp;to be used for calculating the checksum of requested data which will be sent with each request, using the </span><code><span style="font-weight: 400;">&amp;checksum</span></code><span style="font-weight: 400;">&nbsp;field. You will need to set exactly the same </span><code><span style="font-weight: 400;">salt</span></code><span style="font-weight: 400;">&nbsp;on the Countly server. If&nbsp;the </span><code><span style="font-weight: 400;">salt</span></code><span style="font-weight: 400;">&nbsp;on the Countly server is set, all requests would be checked for the validity of the </span><code><span style="font-weight: 400;">&amp;checksum</span></code><span style="font-weight: 400;">&nbsp;field before being processed.</span>
 </p>
-<pre><span>CountlyConfig config </span>= <span>new </span>CountlyConfig(<span>this</span>, <span>COUNTLY_APP_KEY</span>, <span>COUNTLY_SERVER_URL</span>);<br><span>config</span>.setParameterTamperingProtectionSalt(<span>"salt"</span>);<br><span>Countly</span>.sharedInstance().init(<span>config</span>);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+config.setParameterTamperingProtectionSalt("salt");
+Countly.sharedInstance().init(config);</code></pre>
 <h2 id="h_01HAVQDM5VSW75AMVE99287SBX">SSL Certificate Pinning</h2>
 <p>
-  <span>Public key and certificate pinning are techniques that improve communication security by eliminating the threat of&nbsp;</span><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a><span>&nbsp;in SSL connections.&nbsp;</span>
+  Public key and certificate pinning are techniques that improve communication
+  security by eliminating the threat of&nbsp;<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle attack (MiM)</a>&nbsp;in
+  SSL connections.&nbsp;
 </p>
 <p>
-  <span>When you supply a list of acceptable SSL certificates to Countly SDK with either&nbsp;</span><code>countlyConfig.enablePublicKeyPinning()</code><span>&nbsp;or&nbsp;</span><code>countlyConfig.enableCertificatePinning()</code><span>, it will ensure that connection is made with one of the public keys specified or one of the certificates specified respectively. Using whole certificate pinning is somewhat safer, but using public key pinning is preferred since certificates can be rotated and do expire while public keys don't (assuming you don't change your CA).</span>
+  When you supply a list of acceptable SSL certificates to Countly SDK with either&nbsp;<code>countlyConfig.enablePublicKeyPinning()</code>&nbsp;or&nbsp;<code>countlyConfig.enableCertificatePinning()</code>,
+  it will ensure that connection is made with one of the public keys specified
+  or one of the certificates specified respectively. Using whole certificate pinning
+  is somewhat safer, but using public key pinning is preferred since certificates
+  can be rotated and do expire while public keys don't (assuming you don't change
+  your CA).
 </p>
 <p>
   Pinning is done during init through the CountlyConfig object.
 </p>
 <p>
-  <span>For more information on how to acquire the public key or the certificate, have a look <a href="/hc/en-us/articles/9290669873305#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.</span>
+  For more information on how to acquire the public key or the certificate, have
+  a look
+  <a href="/hc/en-us/articles/9290669873305#h_01HDNHXZ2Y30VG0D1TKCYPHJXT" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>
   Here is an example of public key pinning for a example server.
 </p>
-<pre><code class="java">//sample certificate for the countly try server
+<pre class="wysiwyg-code-block"><code class="language-java java">//sample certificate for the countly try server
 String[] certificates = new String[] {
   "MIIGnjCCBYagAwIBAgIRAN73cVA7Y1nD+S8rToAqBpQwDQYJKoZIhvcNAQELBQAwgY8xCzAJ"
     + "BgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1"
@@ -2535,7 +2571,7 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   If you are using the Huawei Push Kit for Push Notifications, make sure to add
   these recommended proguard rules
 </p>
-<pre><code class="java">-ignorewarnings
+<pre class="wysiwyg-code-block"><code class="language-java java">-ignorewarnings
 -keepattributes *Annotation*
 -keepattributes Exceptions
 -keepattributes InnerClasses
@@ -2551,7 +2587,7 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
 </p>
 <p>
   More info about proguard, obfuscation, and code shrinking can be found
-  <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener">here</a>.
+  <a href="https://developer.android.com/studio/build/shrink-code#keep-code" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <h1 id="h_01HAVQDM5WSC106V395S088B7G">Other Features and Notes</h1>
 <h2 id="h_01HAVQDM5W7FF117WDF6NGFV5K">SDK Config Parameters Explained</h2>
@@ -2559,231 +2595,253 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   These are the methods that lets you set values in your Countly config object:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e382906fb27ccd1e36b6349ecd18d289a">
     <strong>setContext(Context context)</strong> - Mandatory. Sets Android context.
   </li>
-  <li>
+  <li data-list-item-id="eede5a7de3a1a17120b14bf18424e9155">
     <strong>setServerURL(String serverURL)</strong> - Mandatory. Sets the URL
     of the Countly server to submit data to.
   </li>
-  <li>
+  <li data-list-item-id="ec235ed1b6e9a559605fb1aaba0867e32">
     <strong>setAppKey(String appKey)</strong> - Mandatory. Sets the app key for
     the application being tracked.
   </li>
-  <li>
+  <li data-list-item-id="e46d86a4989b1dbade3f12680f9fa71f8">
     <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
     device the app is running on. Null means that Countly will use the random
     UUID generation method.
   </li>
-  <li>
+  <li data-list-item-id="e8f22cc6d73e474ab8644e4c17acd5afa">
     <strong>setStarRatingSessionLimit(int starRatingLimit)</strong> - Sets the
     limit after how many sessions the automatic star rating dialog is shown.
   </li>
-  <li>
+  <li data-list-item-id="e268db40e1407aa296fb19d5d6b428fc7">
     <strong>setStarRatingCallback(StarRatingCallback starRatingCallback)</strong>
     - Sets the callback function that will be called from the automatic star
     rating dialog.
   </li>
-  <li>
+  <li data-list-item-id="e29efffcaaa7de800a6505b22782fc24e">
     <strong>setStarRatingTextTitle(String starRatingTextTitle)</strong> - Sets
     the title text for the star rating dialogs.
   </li>
-  <li>
+  <li data-list-item-id="ecc3184749795392cfb11ccdf30bed170">
     <strong>setStarRatingTextMessage(String starRatingTextMessage)</strong> -
     Sets the message text for the star rating dialogs.
   </li>
-  <li>
+  <li data-list-item-id="ea713e6d34d15d91787f13534e2d57502">
     <strong>setStarRatingTextDismiss(String starRatingTextDismiss)</strong> -
     Sets the dismiss button text for the star rating dialogs.
   </li>
-  <li>
+  <li data-list-item-id="e763741abaf03f8319b1c0d0ce7d4b158">
     <strong>setLoggingEnabled(boolean enabled)</strong> - Enables or disables
     internal debugging logs.
   </li>
-  <li>
+  <li data-list-item-id="e12508983fd12bedf8f84c5e3baefd669">
     <strong>enableCrashReporting()</strong> - Enables uncaught crash reporting.
   </li>
-  <li>
+  <li data-list-item-id="e2d8f67800eb18378d9c8ec18c45f7127">
     <strong>setViewTracking(boolean enable)</strong> - Enables or disables automatic
     view tracking.
   </li>
-  <li>
+  <li data-list-item-id="eea6612a5d16aecde06e0bacc1da6c77b">
     <strong>setAutoTrackingUseShortName(boolean enable)</strong> - Enables or
     disables the use of short names for automatic activity tracking.
   </li>
-  <li>
+  <li data-list-item-id="eb60206322eaf5a18a8ef1a844c22cdd4">
     <strong>setAutomaticViewSegmentation(Map&lt;String, Object&gt; segmentation)</strong>
     - Sets the automatic view segmentation.
   </li>
-  <li>
+  <li data-list-item-id="eec51b0c4f790b2fc361b1d058f0d8002">
     <strong>setAutoTrackingExceptions(Class[] exceptions)</strong> - Sets activities
     to be excluded from automatic view tracking.
   </li>
-  <li>
+  <li data-list-item-id="e1cf4b46df1a8064b33887fb98dc844ee">
     <strong>addCustomNetworkRequestHeaders(Map&lt;String, String&gt; customHeaderValues)</strong>
     - Adds custom header key/value pairs to each request.
   </li>
-  <li>
+  <li data-list-item-id="e62545c08003364b3c343ad3ab3cb3f8a">
     <strong>setPushIntentAddMetadata(boolean enable)</strong> - Enables or disables
     adding metadata to push intents.
   </li>
-  <li>
+  <li data-list-item-id="e38cc9cf00f31d3f400a39f83b017e8f1">
     <strong>setRemoteConfigAutomaticDownload(boolean enabled, RemoteConfigCallback callback)</strong>
     - If enabled, automatically downloads the newest remote config values.
   </li>
-  <li>
+  <li data-list-item-id="e33ffb7e0e9197669c5f7b204ad40eed0">
     <strong>setRequiresConsent(boolean shouldRequireConsent)</strong> - Set if
     consent should be required.
   </li>
-  <li>
+  <li data-list-item-id="e67de164c2d738808af392ba8b4d9bc96">
     <strong>setConsentEnabled(String[] featureNames)</strong> - Sets which features
     are enabled in case consent is required.
   </li>
-  <li>
+  <li data-list-item-id="ec463653f1004056be60de21773292068">
     <strong>setHttpPostForced(boolean isForced)</strong> - Set the override for
     forcing to use HTTP POST for all connections to the server.
   </li>
-  <li>
+  <li data-list-item-id="e1bb5e89ce0029770ed1e62a498bb3646">
     <strong>enableTemporaryDeviceIdMode()</strong> - Enable temporary device
     ID mode.
   </li>
-  <li>
+  <li data-list-item-id="e52317e086baf13e2f59d70608b4cb7f9">
     <strong>setCrashFilterCallback(CrashFilterCallback callback)</strong> - Set
     crash filter callback.
   </li>
-  <li>
+  <li data-list-item-id="eda169ebf714bac01aa1a1940576578c5">
     <strong>setParameterTamperingProtectionSalt(String salt)</strong> - Set parameter
     tampering protection salt.
   </li>
-  <li>
+  <li data-list-item-id="e915c6aa69f6beab896120e4dd14b0097">
     <strong>setTrackOrientationChanges(boolean shouldTrackOrientation)</strong>
     - Set track orientation changes.
   </li>
-  <li>
+  <li data-list-item-id="e7ecb242803a98c24954bbba768b74f7a">
     <strong>setRecordAllThreadsWithCrash()</strong> - Set record all threads
     with crash.
   </li>
-  <li>
+  <li data-list-item-id="e624834a61b9d3a4899113c9cd6d1d8cf">
     <strong>setEnableAttribution()</strong> - Enables or disables attribution.
   </li>
-  <li>
+  <li data-list-item-id="ecaa79e1f317d4bac56f4c0a9b88758ab">
     <strong>enablePublicKeyPinning()</strong> - Allows public key pinning by
     providing a list of SSL certificates.
   </li>
-  <li>
+  <li data-list-item-id="e9f12742788692d6892f43526428c638a">
     <strong>enableCertificatePinning()</strong> - Allows certificate pinning
     by providing a list of SSL certificates.
   </li>
-  <li>
+  <li data-list-item-id="e79737066788a8168f7f59b4f61c362ea">
     <strong>setShouldIgnoreAppCrawlers()</strong> - Specifies if the Countly
     SDK should ignore app crawlers.
   </li>
-  <li>
+  <li data-list-item-id="eaf751e59b74274402df43128efd8ca0e">
     <strong>setAppCrawlerNames()</strong> - Specifies the names of app crawlers
     to be ignored.
   </li>
-  <li>
+  <li data-list-item-id="e26450f1893439c0a0e630209d2ec84fa">
     <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
     grouping.
   </li>
-  <li>
+  <li data-list-item-id="e61a2099abb3fe7257cdd4e0fa3fd1ac7">
     <strong>enableManualSessionControl()</strong> - Enables manual session control.
   </li>
-  <li>
+  <li data-list-item-id="e2da084162717262a48f2a165d4f5350b">
     <strong>setCustomCrashSegment()</strong> - Sets custom crash segmentation
     information to be added to all recorded crashes.
   </li>
-  <li>
+  <li data-list-item-id="e211a7e3a253e556545661acaaaeb3976">
     <strong>setRecordAllThreadsWithCrash()</strong> - Sets record all threads
     with crash.
   </li>
-  <li>
+  <li data-list-item-id="e7182317a5e4085c9d51353b365cf0841">
     <strong>checkForNativeCrashDumps(boolean checkForDumps)</strong> - Set the
     check for native crash dumps.
   </li>
-  <li>
+  <li data-list-item-id="e91f5caf43d7f11002a49821f5ee72434">
     <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
     for the automatic session update calls (min value 1 sec, max value 10 min).
   </li>
-  <li>
+  <li data-list-item-id="e10feac1ee0e482aaff56695bbd5aa5f6">
     <strong>setCountlyStore(CountlyStore store)</strong> - Sets the Countly store
     for use during testing.
   </li>
-  <li>
+  <li data-list-item-id="efd73c86a9816d0bb3c592cd690039c89">
     <strong>setDisableUpdateSessionRequests(boolean disable)</strong> - Disables
     periodic session time updates.
   </li>
-  <li>
+  <li data-list-item-id="edde362faeff71ef1877e1ba3582e5c33">
     <strong>setIfStarRatingDialogIsCancellable(boolean isCancellable)</strong>
     - Sets if the star rating dialog is cancellable.
   </li>
-  <li>
+  <li data-list-item-id="e26c8e0b6a9dbcf52e841785ae3b70827">
     <strong>setIfStarRatingShownAutomatically(boolean isShownAutomatically)</strong>
     - Sets if the star rating should be shown automatically.
   </li>
-  <li>
+  <li data-list-item-id="e5a513bac1735fb8b034ff0c3c6e50d13">
     <strong>setStarRatingDisableAskingForEachAppVersion(boolean disableAsking)</strong>
     - Sets if the star rating is shown only once per app lifetime.
   </li>
-  <li>
+  <li data-list-item-id="e06eab20fbfa4eac474a2ca8aab49b9ad">
     <strong>setApplication(Application application)</strong> - Sets the link
     to the application class.
   </li>
-  <li>
+  <li data-list-item-id="e0ff4a126e826b0fd9018505b20e656d8">
     <strong>apm.enableAppStartTimeTracking()</strong> - Enables the recording
     of the app start time.
   </li>
-  <li>
+  <li data-list-item-id="ea694493be6de74ed8ebdd903fb7b70d4">
     <strong>setDisableLocation()</strong> - Disables location tracking.
   </li>
-  <li>
+  <li data-list-item-id="e088fde3e9047ae8f8960a8618331de3f">
     <strong>setLocation(String country_code, String city, String gpsCoordinates, String ipAddress)</strong>
     - Sets location parameters.
   </li>
-  <li>
+  <li data-list-item-id="e637ea6067ce4ee96c125360b4b027969">
     <strong>setMetricOverride(Map&lt;String, String&gt; providedMetricOverride)</strong>
     - Sets the metrics you want to override or additional custom metrics you
     want to provide. For more information on this, check
     <a href="#h_01GVJB16Q86TAX1AJ0QZZ5VR9N" target="_self">here</a>.
   </li>
-  <li>
+  <li data-list-item-id="e4a699f632cf0b6065f76e7dd78b3bce4">
     <strong>apm.setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
     - Overrides the app start timestamp.
   </li>
-  <li>
+  <li data-list-item-id="e6190e3165781dca9c76f174db51619b2">
     <strong>apm.enableManualAppLoadedTrigger()</strong> - Enables manual trigger
     of the moment when the app has finished loading.
   </li>
-  <li>
+  <li data-list-item-id="e3ca57eba440aea4f7aff5f9d84fae32f">
     <strong>apm.enableForegroundBackgroundTracking()</strong> - Enables automatic
     control of triggers.
   </li>
-  <li>
+  <li data-list-item-id="ea22d7447536f029ace242eadb6abd291">
     <strong>setLogListener(ModuleLog.LogCallback logCallback)</strong> - Adds
     a log callback that duplicates all logs done by the SDK.
   </li>
-  <li>
+  <li data-list-item-id="e2f083cfa20947c1f97ff4a4a28a38829">
     <strong>setMaxRequestQueueSize(int newMaxSize)</strong> - Sets the new maximum
     size for the request queue.
   </li>
-  <li>
+  <li data-list-item-id="eb9a1551b7295f8e7fd88a8cb28a2b58b">
     <strong>setDirectAttribution(String campaignType, String campaignData)</strong>
     - Reports direct user attribution.
   </li>
-  <li>
+  <li data-list-item-id="e4f3e32bbc23e5924998ba70215097069">
     <strong>setIndirectAttribution(Map&lt;String, String&gt; attributionValues)</strong>
     - Reports indirect user attribution.
   </li>
-  <li>
+  <li data-list-item-id="e5c88a045caa507ecd29d01d9384c9fdf">
+    <strong>disableGradualRequestCleaner()</strong> - When enabled, all overflowing
+    requests are removed at once instead of in batches.
+  </li>
+  <li data-list-item-id="e5e08d21b774bebd0171aa6cdd6b63e98">
     <strong>setUserProperties(Map&lt;String, Object&gt; userProperties)</strong>
     - Provides user properties that would be sent as soon as possible.
   </li>
-  <li>
+  <li data-list-item-id="e0f10811cfa278fe3d95c59fa7a59f7f1">
+    <strong>setUseSerialExecutor(boolean useSerial)</strong> - to select immediate
+    requests' executor type.
+  </li>
+  <li data-list-item-id="eed1fb6880bd0397ecdf3ee25d0433974">
+    <strong>setWebviewDisplayOption(WebViewDisplayOption)</strong> - to control
+    how Content and Feedback Widgets are displayed.
+    <ul>
+      <li data-list-item-id="ef988b39b67f6a35da1b91f17a101185b">
+        <strong>IMMERSIVE</strong> (default): Full-screen display (except
+        cutouts).
+      </li>
+      <li data-list-item-id="e3d0676a9ac7fc43bce907e41049c75bf">
+        <strong>SAFE_AREA</strong>: Omits status bar, navigation bar and
+        cutouts when displaying WebView.
+      </li>
+    </ul>
+  </li>
+  <li data-list-item-id="e7b9689c14be18116e6d8fae86a11f113">
     <strong>enableExplicitStorageMode()</strong> - If this mode is enabled then
     the SDK not write the request and event queues to disk until the explicit
     write signal is given.
   </li>
-  <li>
+  <li data-list-item-id="e32be51be10ee07f3cd2d5ebb03a84382">
     <strong>setRequestTimeoutDuration(int requestTimeoutDuration)</strong> -
     Set the request's timeout duration in seconds. Mininum is 1 second, default
     is 30 seconds.
@@ -2809,7 +2867,7 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   event count reaches a threshold. By default it is 10. If you would like to change
   this, call:
 </p>
-<pre>config.setEventQueueSizeToSend(<span>6</span>);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.setEventQueueSizeToSend(6);</code></pre>
 <h2 id="h_01HAVQDM5WA5VVGKQ621NGQBM5">Setting Maximum Request Queue Size</h2>
 <p>
   When you initialize Countly, you can specify a value for the setMaxRequestQueueSize
@@ -2833,12 +2891,12 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   If you do not specify a value for the setMaxRequestQueueSize flag, the default
   setting of 1,000 will be used.
 </p>
-<pre><code class="Java">config.setMaxRequestQueueSize(5000);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java Java">config.setMaxRequestQueueSize(5000);</code></pre>
 <h2 id="h_01HAVQDM5WN10RWACEV23XM4F1">Checking If the SDK Has Been Initialized</h2>
 <p>
   <span style="font-weight: 400;">In case you would like to check if init has been called, you may use the following function:</span>
 </p>
-<pre><code class="java">Countly.sharedInstance().isInitialized();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().isInitialized();</code></pre>
 <h2 id="h_01HV0RVRH2HFWQD8Z532GC8280">SDK Internal Limits</h2>
 <p>
   Countly SDKs have internal limits to prevent users from unintentionally sending
@@ -2851,39 +2909,39 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
 <p>
   Limits the maximum size of all user set keys (default: 128 chars):
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.sdkInternalLimits.setMaxKeyLength(32);</code></pre>
 <h3 id="h_01HV0RXX50GBFP4SPJ2DRMRJV8">Value Size</h3>
 <p>
   Limits the size of all user-set string segmentation (or their equivalent) values
   (default: 256 chars):
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.sdkInternalLimits.setMaxValueSize(128);</code></pre>
 <h3 id="h_01HV0RY0X9CJCZ0BB3FRZ0AR2H">Segmentation Values</h3>
 <p>
   Limits the amount of user-set segmentation key-value pairs (default: 100 entries):
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.sdkInternalLimits.setMaxSegmentationValues(50);</code></pre>
 <h3 id="h_01HV0SQHSK61930WJX137VX6WV">Breadcrumb Count</h3>
 <p>
   Limits the amount of user-set breadcrumbs that can be recorded (default: 100
   entries, exceeding this deletes the oldest one):
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.sdkInternalLimits.setMaxBreadcrumbCount(50);</code></pre>
 <h3 id="h_01HV0SQHSMSX4ATZ7C6VFE7MX2">Stack Trace Lines Per Thread</h3>
 <p>
   Limits the stack trace lines that would be recorded per thread (default: 30 lines):
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.sdkInternalLimits.setMaxStackTraceLinesPerThread(10);</code></pre>
 <h3 id="h_01HV0SQHSMTA47A743PTTGE6M2">Stack Trace Line Length</h3>
 <p>
   Limits the characters that are allowed per stack trace line (default: 200 chars):
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(getApplicationContext(), COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
 <h2 id="h_01HAVQDM5WX9QJWDJ4GM0CCHTB">Attribution</h2>
 <p>
@@ -2892,19 +2950,25 @@ config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
   but currently server side support for this is limited.
 </p>
 <p>
-  <strong><span style="font-weight: 400;">To report install attribution, you would perform the following request:</span></strong>
+  <span style="font-weight: 400;">To report install attribution, you would perform the following request:</span>
 </p>
-<pre><span>Countly</span>.sharedInstance().attribution().recordDirectAttribution(<span>"countly"</span>, <span>"{'cid':'campaign_id', 'cuid':'campaign_user_id'}"</span>);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().attribution().recordDirectAttribution("countly", "{'cid':'campaign_id', 'cuid':'campaign_user_id'}");</code></pre>
+<zd-html-block>
+  <p>
+    <span style="font-weight: 400;">
+      <in the="the" place="place" of="of" campaign_id="campaign_id" you="you" would="would" put="put" your="your" retrieved="retrieved" campaign="campaign" id="ID" and="and" in="in" campaign_user_id="campaign_user_id" user="user"></in>
+    </span>
+  </p>
+</zd-html-block>
 <p>
-  <strong><span style="font-weight: 400;">In the place of "campaign_id" you would put your retrieved campaign ID value, and in place of "<span>campaign_user_id" you would put your campaign user ID.</span></span></strong>
+  <span style="font-weight: 400;">For information on how to get these install attribution values, we recommend looking into </span><a href="https://developer.android.com/reference/com/android/installreferrer/api/InstallReferrerClient" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">"InstallReferrerClient".</span></a><span style="font-weight: 400;"></span>
 </p>
 <p>
-  <strong><span style="font-weight: 400;"><span>For information on how to get these install attribution values, we recommend looking into <a href="https://developer.android.com/reference/com/android/installreferrer/api/InstallReferrerClient" target="_blank" rel="noopener">"InstallReferrerClient".</a></span></span></strong><span style="font-weight: 400;"><span></span></span>
+  <span style="font-weight: 400;">If you would want to record the advertising ID of the user, you would execute the following code with the retrieved value:</span>
 </p>
-<p>
-  <strong><span style="font-weight: 400;"><span>If you would want to record the advertising ID of the user, you would execute the following code with the retrieved value:</span></span></strong>
-</p>
-<pre><span>Map</span>&lt;<span>String</span>, <span>String</span>&gt; <span>attributionValues </span>= <span>new </span>HashMap&lt;&gt;();<br><span>attributionValues</span>.put(<span>AttributionIndirectKey</span>.<span>AdvertisingID</span>, "valid_advertising_id_value");<br><span>Countly</span>.sharedInstance().attribution().recordIndirectAttribution(<span>attributionValues</span>);</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Map&lt;String, String&gt; attributionValues = new HashMap&lt;&gt;();
+attributionValues.put(AttributionIndirectKey.AdvertisingID, "valid_advertising_id_value");
+Countly.sharedInstance().attribution().recordIndirectAttribution(attributionValues);</code></pre>
 <p>&nbsp;</p>
 <h2 id="h_01HAVQDM5W0N9ZJFASS6KMGPD2">Forcing HTTP POST</h2>
 <p>
@@ -2912,7 +2976,7 @@ config.sdkInternalLimits.setMaxStackTraceLineLength(100);</code></pre>
   To override that behavior so that HTTP POST requests are used in all cases, you
   will need to set "setHttpPostForced" flag as true in your init config.
 </p>
-<pre><code class="java">// enable it at your init config
+<pre class="wysiwyg-code-block"><code class="language-java java">// enable it at your init config
 CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
 config.setHttpPostForced(true);
 
@@ -2923,12 +2987,14 @@ config.setHttpPostForced(false);
 <p>
   <span style="font-weight: 400;">In case you would like to add custom header key/value pairs to each request sent to the Countly server, you may make the following call:</span>
 </p>
-<pre><code class="java">HashMap&lt;String, String&gt; customHeaderValues = new HashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">HashMap&lt;String, String&gt; customHeaderValues = new HashMap&lt;&gt;();
 customHeaderValues.put("foo", "bar");
 
-config.addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
+config.addCustomNetworkRequestHeaders(customHeaderValues);
+// or after init
+Countly.sharedInstance().requestQueue().addCustomNetworkRequestHeaders(customHeaderValues)</code></pre>
 <p>
-  <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide <code>null</code>.</span>
+  <span style="font-weight: 400;">The provided values will override any previously stored value pairs. In case you would like to erase any previously stored pairs, provide </span><code><span style="font-weight: 400;">null</span></code><span style="font-weight: 400;">.</span>
 </p>
 <h2 id="h_01GVJB16Q86TAX1AJ0QZZ5VR9N">Custom Metrics</h2>
 <p>
@@ -2943,7 +3009,7 @@ config.addCustomNetworkRequestHeaders(customHeaderValues);</code></pre>
   to handle those custom values, they will be ignored. You can set these custom
   metrics while initializing the Countly SDK.
 </p>
-<pre><code class="java">//provide custom metric values
+<pre class="wysiwyg-code-block"><code class="language-java java">//provide custom metric values
 CountlyConfig config = ... // configuration related to implementation
 
 Map&lt;String, String&gt; metricOverride = new HashMap&lt;&gt;();
@@ -2965,7 +3031,7 @@ config.setMetricOverride(metricOverride);</code></pre>
   do anything you see fit with these logs.
 </p>
 <p>An example usage:</p>
-<pre><code>
+<pre class="wysiwyg-code-block"><code class="language-java">
  CountlyConfig config = (new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL))
   .setLoggingEnabled(true)
   .setLogListener(new ModuleLog.LogCallback() {
@@ -3005,9 +3071,9 @@ config.setMetricOverride(metricOverride);</code></pre>
   <span style="font-weight: 400;">In order to receive this badge number in your application, you must subscribe to the broadcasts about received messages. There you will be informed about all received push notifications using Message and the bundle. The badge number is sent with the key "badge". You may use it to extract the badge number from the bundle received and then use it to display badge numbers with your implementation of choice.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In the example below, we use a badge library called </span><a href="https://github.com/leolin310148/ShortcutBadger"><span style="font-weight: 400;">ShortcutBadger</span></a><span style="font-weight: 400;">, which is used for showing badge notifications on Android devices. You can reach instructions on how to implement it into your Android project </span><a href="https://github.com/leolin310148/ShortcutBadger#usage" target="_blank" rel="noopener">here</a><span style="font-weight: 400;">. </span>
+  <span style="font-weight: 400;">In the example below, we use a badge library called </span><a href="https://github.com/leolin310148/ShortcutBadger"><span style="font-weight: 400;">ShortcutBadger</span></a><span style="font-weight: 400;">, which is used for showing badge notifications on Android devices. You can reach instructions on how to implement it into your Android project </span><a href="https://github.com/leolin310148/ShortcutBadger#usage" target="_blank" rel="noopener noreferrer">here</a><span style="font-weight: 400;">.</span>
 </p>
-<pre><code class="java">/** Register for broadcast action if you need to be notified when Countly message received */
+<pre class="wysiwyg-code-block"><code class="language-java java">/** Register for broadcast action if you need to be notified when Countly message received */
 messageReceiver = new BroadcastReceiver() {
   @Override
   public void onReceive(Context context, Intent intent) {
@@ -3034,15 +3100,17 @@ filter.addAction(CountlyMessaging.getBroadcastAction(getApplicationContext()));
 registerReceiver(messageReceiver, filter);</code></pre>
 <h2 id="h_01HAVQDM5W40D12YAEZ9SW29KK">Ignoring App Crawlers</h2>
 <p>
-  <span style="font-weight: 400;">Sometimes server data might be polluted with app crawlers which are not real users, and you would like to ignore them. Starting from the 17.05 release, it's possible to ignore app crawlers by filtering on the app level. The current version does that, using device names. Internally, the Countly SDK has a list of crawler device names. If a device name matches one from that list, no information is sent to the server. </span>
+  <span style="font-weight: 400;">Sometimes server data might be polluted with app crawlers which are not real users, and you would like to ignore them. Starting from the 17.05 release, it's possible to ignore app crawlers by filtering on the app level. The current version does that, using device names. Internally, the Countly SDK has a list of crawler device names. If a device name matches one from that list, no information is sent to the server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">At the moment, that list has only one entry: "Calypso AppCrawler". In the future we might add more crawler device names if such are reported. If you have encountered a crawler that is not on that list, and you would like to ignore it, you may add it to your SDK list yourself by calling <code>addAppCrawlerName</code></span><span style="font-weight: 400;">. </span>
+  <span style="font-weight: 400;">At the moment, that list has only one entry: "Calypso AppCrawler". In the future we might add more crawler device names if such are reported. If you have encountered a crawler that is not on that list, and you would like to ignore it, you may add it to your SDK list yourself by calling </span><code><span style="font-weight: 400;">addAppCrawlerName</span></code><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Currently, the SDK ignores crawlers by default. If you would like to change this setting, use <code>ifShouldIgnoreCrawlers</code></span><span style="font-weight: 400;">. If you would like to check if the current device was detected as a crawler, use <code>isDeviceAppCrawler</code></span><span style="font-weight: 400;">. Detection is done in the init function, meaning you would have to add the crawler names before that and perform the check after.</span>
+  <span style="font-weight: 400;">Currently, the SDK ignores crawlers by default. If you would like to change this setting, use </span><code><span style="font-weight: 400;">ifShouldIgnoreCrawlers</span></code><span style="font-weight: 400;">. If you would like to check if the current device was detected as a crawler, use </span><code><span style="font-weight: 400;">isDeviceAppCrawler</span></code><span style="font-weight: 400;">. Detection is done in the init function, meaning you would have to add the crawler names before that and perform the check after.</span>
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);<br><br>//set that the sdk should ignore app crawlers
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+
+//set that the sdk should ignore app crawlers
 config.setShouldIgnoreAppCrawlers(true);
 
 //set that the sdk should not ignore app crawlers
@@ -3065,7 +3133,8 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
 <p>
   You can force the SDK to try to send the requests immediately:
 </p>
-<pre>//Doing internally stored requests<br>Countly.sharedInstance().requestQueue().attemptToSendStoredRequests();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">//Doing internally stored requests
+Countly.sharedInstance().requestQueue().attemptToSendStoredRequests();</code></pre>
 <p>
   This approach bypasses the SDK’s internal scheduling mechanisms and initiates
   an immediate attempt to send all queued requests.
@@ -3074,14 +3143,15 @@ Countly.sharedInstance().requestQueue().isDeviceAppCrawler();</code></pre>
   In certain situations, you may need to delete all stored requests from the queue.
   To do so, invoke the following method:
 </p>
-<pre><span>//Delete all stored requests in queue<br></span>Countly.sharedInstance().requestQueue().flushQueues();</pre>
+<pre class="wysiwyg-code-block"><code class="language-java">//Delete all stored requests in queue
+Countly.sharedInstance().requestQueue().flushQueues();</code></pre>
 <h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
 <p>
   The SDK includes a backoff mechanism that temporarily pauses sending requests
   when the server is slow or unresponsive. This helps reduce server load and avoid
   unnecessary retries. It’s enabled by default but can be disabled if needed.
 </p>
-<pre><code class="class">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
+<pre class="wysiwyg-code-block"><code class="language-java class">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
 config.disableBackoffMechanism();
 Countly.sharedInstance().init(config);</code></pre>
 <p>
@@ -3097,15 +3167,16 @@ Countly.sharedInstance().init(config);</code></pre>
   <span style="font-weight: 400;">This feature should not be used lightly as improper usage can lead to problems.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">This exposes a call where you can provide custom key/value pairs with <code>Map&lt;String, String&gt;</code>. These will be added to a base request created by the SDK. The base parameters will have things like time-related fields, device ID, app key, checksums, etc. These base parameters are protected fields and can't be overridden.</span>
+  <span style="font-weight: 400;">This exposes a call where you can provide custom key/value pairs with </span><code><span style="font-weight: 400;">Map&lt;String, String&gt;</span></code><span style="font-weight: 400;">. These will be added to a base request created by the SDK. The base parameters will have things like time-related fields, device ID, app key, checksums, etc. These base parameters are protected fields and can't be overridden.</span>
 </p>
 <p>
   <span style="font-weight: 400;">If consent would be required then the SDK will make sure that any consent has been given. The SDK will not perform any additional consent checks. It is up to the developer to make sure that they have the right consent to record the information they are trying to record.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.<br></span>
+  <span style="font-weight: 400;">These key/value pairs should be of simple string or stringified JSON. The simplest way to pass a stringified JSON is to create a JSONObject/JSONArray and call the toString() function on it to convert it to a stringified JSON.</span><br>
+  &nbsp;
 </p>
-<pre><code class="java">Map&lt;String, String&gt; requestMap = new HashMap&lt;&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, String&gt; requestMap = new HashMap&lt;&gt;();
 requestMap.put("city", "Istanbul");
 requestMap.put("country_code", "TR");
 requestMap.put("ip_address", "41.0082,28.9784");
@@ -3153,7 +3224,7 @@ Countly.sharedInstance().requestQueue().addDirectRequest(requestMap);</code></pr
   Sends a manual metrics request, allowing users to define and send custom metric
   data and send metrics when needed.
 </p>
-<pre><code class="java">Map&lt;String, String&gt; metricsOverride = new ConcurrentHashMap&lt;String, String&gt;();
+<pre class="wysiwyg-code-block"><code class="language-java java">Map&lt;String, String&gt; metricsOverride = new ConcurrentHashMap&lt;String, String&gt;();
 metricsOverride.put("_app_version", "5.0");
 metricsOverride.put("_os", "CustomOS");
 
@@ -3184,18 +3255,18 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
   To enable Explicit Storage Mode during initialization, use the following configuration
   option:
 </p>
-<pre><code>config.enableExplicitStorageMode();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">config.enableExplicitStorageMode();</code></pre>
 <p>
   To write the memory queues to storage, use the following method:
 </p>
-<pre><code>Countly.sharedInstance().requestQueue().esWriteCachesToPersistence();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().requestQueue().esWriteCachesToPersistence();</code></pre>
 <p>
   If you want know if any writes were performed, you can also use the following
   variant. It allows you to set a callback that would inform you if anything was
   written to storage. If your memory cache state would be the same as your perisent
   storage state, no writes would be performed.
 </p>
-<pre><code class="java">Countly.sharedInstance().requestQueue().esWriteCachesToPersistence(new ExplicitStorageCallback() {
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().requestQueue().esWriteCachesToPersistence(new ExplicitStorageCallback() {
   @Override public void WriteToStorageFinished(boolean writeWasPerformed) {
     if (writeWasPerformed) {
       Log.d(Countly.TAG, "Memory cache ouf of sync with persistent storage. New state was written to storage.");
@@ -3239,13 +3310,13 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
   If this is a security sensitive case for the situations, you can provide the
   server config to the SDK during initialization.
 </p>
-<pre><code class="java">config.setSDKBehaviorSettings("json server config");</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.setSDKBehaviorSettings("json server config");</code></pre>
 <p>
   If you want to disable automatic config updates from the server, you can prevent
   the SDK from making server configuration fetch requests. This is useful if you're
   trying to reduce network traffic or control request counts.
 </p>
-<pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java objectivec">config.disableSDKBehaviorSettingsUpdates();</code></pre>
 <h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
 <p>
   The Content Zone feature enhances user engagement by delivering various types
@@ -3267,7 +3338,7 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
 <p>
   To start fetching content from the server, use the following method:
 </p>
-<pre><code class="java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
 <p>
   This call will retrieve and display any available content for the user. It will
   also regularly check if a new content is available, and if it is, will fetch
@@ -3277,22 +3348,22 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
   This regular check happens in every 30 seconds by default. It could be configurable
   while initializing the SDK through and it must be greater than 15 seconds.
 </p>
-<pre><code class="java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
 <p>
   If you need to ask for content after a trigger you know you can use this method:
 </p>
-<pre><code class="java">Countly.sharedInstance().contents().refreshContentZone()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().refreshContentZone()</code></pre>
 <p>
   When you want to exit from content zone and stop SDK from checking for available
   content you can use this method:
 </p>
-<pre><code class="java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
 <p>
   To get informed when a user closes a content you can register a global content
   callback during SDK initialization:
 </p>
-<pre><code class="java">countlyConfig.content.setGlobalContentCallback(callback);</code></pre>
-<pre><code class="java">interface ContentCallback {
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.content.setGlobalContentCallback(callback);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">interface ContentCallback {
   void onContentCallback(ContentStatus contentStatus, Map&lt;String, Object&gt; contentData);
 }</code></pre>
 <p>
@@ -3304,25 +3375,25 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
   for enabling advanced features like view name recording and visibility tracking.
   These features are currently in a testing phase and might change in future versions.
 </p>
-<pre><code class="java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
+<pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = new CountlyConfig(this, COUNTLY_APP_KEY, COUNTLY_SERVER_URL);
 config.experimental.enableViewNameRecording().enableVisibilityTracking();</code></pre>
 <p>This class allows enabling two experimental features:</p>
 <ul>
-  <li>Previous Name Recording</li>
-  <li>Visibility Tracking</li>
+  <li data-list-item-id="e2a7586030ac24e52e0386f20875c4d57">Previous Name Recording</li>
+  <li data-list-item-id="efe00fdcbfc9427c60842d09416f9809e">Visibility Tracking</li>
 </ul>
 <p>
   When you enable previous name recording, it will add previous view name to the
   view segmentations (cly_pvn) and previous event name to the event segmentations
   (cly_pen).
 </p>
-<pre><code class="java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.experimental.enablePreviousNameRecording()</code></pre>
 <p>
   When you enable visibility tracking, it will add a parameter (cly_v) to each
   recorded event's segmentation about the visibility of the app at the time of
   its recording.
 </p>
-<pre><code class="java">countlyConfig.experimental.enableVisibilityTracking()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.experimental.enableVisibilityTracking()</code></pre>
 <h2 id="h_01HAVQDM5W9GE8E1C64J6SDFSA">A/B Testing Variant Information</h2>
 <p>
   You can access all the A/B test variants for your Countly application within
@@ -3335,7 +3406,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   You can download a map of all A/B testing parameters (keys) and variants associated
   with it:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().testingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().testingDownloadVariantInformation(RCVariantCallback completionCallback)</code></pre>
 <p>
   You can provide an RCVariantCallback (which is optional) to be called when the
   fetching process ends. Depending on the situation, this would return a RequestResponse
@@ -3343,7 +3414,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   as the second parameter if there was an error ("null" otherwise). A sample usage
   would be like this:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().TestingDownloadVariantInformation(new RCVariantCallback() {
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().TestingDownloadVariantInformation(new RCVariantCallback() {
   @Override
   public void callback(RequestResponse result, String error) {
     if (result == RequestResponse.Success) {
@@ -3361,25 +3432,25 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   fetched values right after fetching them. To access all fetched values, you can
   use:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().testingGetAllVariants()</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().testingGetAllVariants()</code></pre>
 <p>
   This would return a Map&lt;String, String[]&gt; where a test's parameter is associated
   with all variants under that parameter. The parameter would be the key, and its
   value would be a String Array of variants. For example:
 </p>
-<pre><code class="java">{
+<pre class="wysiwyg-code-block"><code class="language-java java">{
   "key_1" : ["variant_1", "variant_2"],
   "key_2" : ["variant_3"]
 }
 </code></pre>
 <p>Or instead you can get the variants of a specific key:</p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().testingGetVariantsForKey(String valueKey)</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().testingGetVariantsForKey(String valueKey)</code></pre>
 <p>
   This would only return a String Array (String[]) of variants for that specific
   key. If no variants were present for a key, it would return an empty array. A
   typical result would look like this:
 </p>
-<pre><code class="java">["variant_1", "variant_2"]
+<pre class="wysiwyg-code-block"><code class="language-java java">["variant_1", "variant_2"]
 </code></pre>
 <h3 id="h_01HAVQDM5WZC2205HT23Z4Y14R">Enrolling For a Variant</h3>
 <p>
@@ -3387,7 +3458,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   would like to enroll the user to a specific variant. To do this, you can use
   the following method:
 </p>
-<pre><code class="java">Countly.sharedInstance().remoteConfig().testingEnrollIntoVariant(String keyName, String variantName, RCVariantCallback completionCallback)</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().remoteConfig().testingEnrollIntoVariant(String keyName, String variantName, RCVariantCallback completionCallback)</code></pre>
 <p>
   Here the 'valueKey' would be the parameter of your A/B test, and 'variantName'
   is the variant you have fetched and selected to enroll for. The RCVariantCallback
@@ -3401,7 +3472,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   you don't want to get data older than a certain timeframe, you can configure
   the SDK to drop old requests:
 </p>
-<pre><code class="java">config.setRequestDropAgeHours(10)</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">config.setRequestDropAgeHours(10)</code></pre>
 <p>
   By using the <code>setRequestDropAgeHours</code> method while configuring the
   SDK initialization options, you can set a timeframe (in hours) after which the
@@ -3427,7 +3498,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
     should be done only once per user.
   </p>
 </div>
-<pre><code class="java">Countly.sharedInstance().deviceId().changeWithMerge("new device ID")</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().deviceId().changeWithMerge("new device ID")</code></pre>
 <p>
   In other circumstances, you might want to track information about another separate
   user that starts using your app (changing apps account), or your app enters a
@@ -3435,7 +3506,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
   out). In that case, you can change the current device ID to a new one without
   merging their data. You would call:
 </p>
-<pre><code class="java">Countly.sharedInstance().deviceId().changeWithoutMerge("new device ID")</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().deviceId().changeWithoutMerge("new device ID")</code></pre>
 <p>
   Doing it this way, will not merge the previously acquired data with the new id.
 </p>
@@ -3471,50 +3542,54 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
 <p>
   <span style="font-weight: 400;">If you need to customize our Android SDK to fit your needs, you may find it&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">&nbsp;among our Countly Github repositories as an Android Studio project. Modules included in the project are:</span>
 </p>
-<table>
-  <tbody>
-    <tr>
-      <th>Module Name</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>
-        <code>sdk</code>
-      </td>
-      <td>Countly Android SDK.</td>
-    </tr>
-    <tr>
-      <td>
-        <code>app</code>
-      </td>
-      <td>
-        Sample app to test <code>sdk</code>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>sdk-native</code>
-      </td>
-      <td>
-        Module needed for
-        <a href="/hc/en-us/articles/360037754031#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>app-native</code>
-      </td>
-      <td>
-        Sample app to test <code>sdk-native</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<figure class="wysiwyg-table wysiwyg-table-align-left">
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center;">Module Name</th>
+        <th style="text-align: center;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <code>sdk</code>
+        </td>
+        <td>Countly Android SDK.</td>
+      </tr>
+      <tr>
+        <td>
+          <code>app</code>
+        </td>
+        <td>
+          Sample app to test <code>sdk</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>sdk-native</code>
+        </td>
+        <td>
+          Module needed for
+          <a href="/hc/en-us/articles/360037754031#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>app-native</code>
+        </td>
+        <td>
+          Sample app to test <code>sdk-native</code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>
-  <span style="font-weight: 400;">Recently, Android Studio versions have a&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/issues/96#issuecomment-492327285"><span style="font-weight: 400;">bug</span></a><span style="font-weight: 400;"> which</span><span style="font-weight: 400;">&nbsp;you may encounter when building your project in Studio. If you see a build error such as <code>SIMPLE: Error configuring</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;please check your text view for the build Gradle output. If you see this error <code>CMake was unable to find a build program corresponding to "Ninja". CMAKE_MAKE_PROGRAM is not set</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;then you need to make <code>ninja</code></span><span style="font-weight: 400;">&nbsp;available in your&nbsp;</span><span style="font-weight: 400;">PATH</span><span style="font-weight: 400;">. If you are using <code>cmake</code></span><span style="font-weight: 400;">&nbsp;embedded in Studio, <code>ninja</code></span><span style="font-weight: 400;">&nbsp;may be found in&nbsp;the <code>&lt;sdk_location&gt;/cmake/&lt;cmake_version&gt;/bin</code></span><span style="font-weight: 400;">&nbsp;directory.</span>
+  <span style="font-weight: 400;">Recently, Android Studio versions have a&nbsp;</span><a href="https://github.com/Countly/countly-sdk-android/issues/96#issuecomment-492327285"><span style="font-weight: 400;">bug</span></a><span style="font-weight: 400;"> which</span><span style="font-weight: 400;">&nbsp;you may encounter when building your project in Studio. If you see a build error such as </span><code><span style="font-weight: 400;">SIMPLE: Error configuring</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;please check your text view for the build Gradle output. If you see this error </span><code><span style="font-weight: 400;">CMake was unable to find a build program corresponding to "Ninja". CMAKE_MAKE_PROGRAM is not set</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;then you need to make </span><code><span style="font-weight: 400;">ninja</span></code><span style="font-weight: 400;">&nbsp;available in your&nbsp;</span><span style="font-weight: 400;">PATH</span><span style="font-weight: 400;">. If you are using </span><code><span style="font-weight: 400;">cmake</span></code><span style="font-weight: 400;">&nbsp;embedded in Studio, </span><code><span style="font-weight: 400;">ninja</span></code><span style="font-weight: 400;">&nbsp;may be found in&nbsp;the </span><code><span style="font-weight: 400;">&lt;sdk_location&gt;/cmake/&lt;cmake_version&gt;/bin</span></code><span style="font-weight: 400;">&nbsp;directory.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">There is a build step for the <code>sdk-native</code></span><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in <code>sdk-native/src/cpp_precompilation</code></span><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in <code>sdk-native/src/main/jniLibs/</code></span><span style="font-weight: 400;">&nbsp;that are externally built.</span>
+  <span style="font-weight: 400;">There is a build step for the </span><code><span style="font-weight: 400;">sdk-native</span></code><span style="font-weight: 400;">&nbsp;module which takes place outside of Studio. You may find the related code and build scripts in </span><code><span style="font-weight: 400;">sdk-native/src/cpp_precompilation</span></code><span style="font-weight: 400;">. We are working on building a breakpad library with an appropriate ndk version to integrate this step into your Studio build. Meanwhile, it seems OK to use the library files in </span><code><span style="font-weight: 400;">sdk-native/src/main/jniLibs/</span></code><span style="font-weight: 400;">&nbsp;that are externally built.</span>
 </p>
 <h2 id="h_01HAVQDM5WD1VR3JFCV0XVAYC3">Which Operating Systems are Supported?</h2>
 <p>
