@@ -1,5 +1,5 @@
 <div class="callout callout--info">
-  <h3 class="callout__title">This is an unmaintained SDK</h3>
+  <h3 class="callout__title" id="h_01KCJYN3KH5SGE514RTVRJP1MN">This is an unmaintained SDK</h3>
   <p>
     You are suggested to use React Native (bridge) SDK instead. This SDK will
     be declared as end-of-life very soon.
@@ -10,14 +10,14 @@
   It is based on the following:
 </p>
 <ul>
-  <li>react-native-cli: 2.0.1</li>
-  <li>react-native: 0.49.1</li>
+  <li data-list-item-id="e05e7d3a8da2ba4046e1879cf718042b7">react-native-cli: 2.0.1</li>
+  <li data-list-item-id="e0ba042ccd04b4d5d4a2e8cab8f6eb20a">react-native: 0.49.1</li>
 </ul>
 <p>
   There are other ways to create a react Native application. Our SDK works with
   all methods, but in this document we are going to show react-native cli.
 </p>
-<h1>Creating a new application</h1>
+<h1 id="h_01KCJYN3KHK7M7JK9B49Y2RWM4">Creating a new application</h1>
 <p>
   Before creating a new application, please
   <a href="https://facebook.github.io/react-native/docs/getting-started.html">look at the documentation here</a>.
@@ -31,7 +31,7 @@
   Enter following commands to install <code>react-native-cli</code> and configure
   your environment.
 </p>
-<pre><code class="shell">npm install -g react-native-cli     # Install React Native
+<pre class="wysiwyg-code-block"><code class="language-auto shell">npm install -g react-native-cli     # Install React Native
 react-native init AwesomeProject    # Create a new project
 
 cd AwesomeProject                   # Go to that directory
@@ -41,12 +41,12 @@ react-native run-ios                # Run the iOS project
 # New terminal
 adb reverse tcp:8081 tcp:8081       # Link Android port
 npm start                           # Run the build server</code></pre>
-<h1>Installing the SDK</h1>
+<h1 id="h_01KCJYN3KHEMN0NBQ8SJ6ERSE7">Installing the SDK</h1>
 <p>
   Run the following snippet in the root of your react native project to install
   the npm dependencies and link the native libraries.
 </p>
-<pre><code class="shell"># Add dependencies
+<pre class="wysiwyg-code-block"><code class="language-auto shell"># Add dependencies
 npm install --save react-native-device-info
 npm i react-native-background-timer --save
 npm i react-native-restart
@@ -61,11 +61,11 @@ npm install --save countly-sdk-react-native
   and
   <a href="https://github.com/Countly/countly-sdk-react-native/blob/update/index.ios.js">for iOS</a>.
 </p>
-<h1>SDK Usage</h1>
+<h1 id="h_01KCJYN3KH63JG5X9ZQE5SPNPM">SDK Usage</h1>
 <p>
   Please see below on how to initialize and start Countly SDK.
 </p>
-<pre><code class="javascript">// In your javascript code 
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// In your javascript code 
 
 import Countly from 'countly-sdk-react-native';
 
@@ -113,7 +113,7 @@ Countly.stop().then((result) =&gt; {
   If you want to initialize and start session separately you can do like shown
   below.
 </p>
-<pre><code class="javascript">// In your javascript code 
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// In your javascript code 
 
 import Countly from 'countly-sdk-react-native';
 
@@ -142,25 +142,25 @@ Countly.init("https://try.count.ly","app_key","deviceId")
   you provide a deviceID, then it will take that as DeviceId. For example, you
   can use hashed value of user's email as a deviceID.
 </p>
-<h1>Sending events</h1>
+<h1 id="h_01KCJYN3KHKHW9WJJBKXBJPTXR">Sending events</h1>
 <p>
   You can send events with segmentations using following examples.
 </p>
 <p>Example for sending a basic event:</p>
-<pre><code class="javascript">var event = {"key":"basic_event","count":1};
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">var event = {"key":"basic_event","count":1};
 Countly.recordEvent(event);</code></pre>
 <p>Example for sending event with sum:</p>
-<pre><code class="javascript">var event = {"key":"event_sum","count":1,"sum":"0.99"};
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">var event = {"key":"event_sum","count":1,"sum":"0.99"};
 Countly.recordEvent(event);</code></pre>
 <p>
   Example for sending event with a segmentation value (in this case, Germany and
   Age):
 </p>
-<pre><code class="javascript">var event = {"key":"event_segment","count":1};
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">var event = {"key":"event_segment","count":1};
 event.segmentation = {"Country" : "Germany", "Age" : "28"};
 Countly.recordEvent(event);</code></pre>
 <p>Example for sending event with segmentation value and sum:</p>
-<pre><code class="javascript">var event = {"key":"event_segment_sum","count":1,"sum":"0.99"};
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">var event = {"key":"event_segment_sum","count":1,"sum":"0.99"};
 event.segmentation = {"Country" : "Turkey", "Age" : "28"};
 
 Countly.recordEvent(event);</code></pre>
@@ -169,13 +169,13 @@ Countly.recordEvent(event);</code></pre>
   to complete. If you send a timed event, then under Countly dashboard you will
   see its duration (in seconds).
 </p>
-<pre><code class="javascript">Countly.startEvent("timedEvent");
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">Countly.startEvent("timedEvent");
 Countly.endEvent("timedEvent");</code></pre>
 <p>
   Duration of the event will be calculated automatically when
   <code>endEvent</code> method is called.
 </p>
-<h1>Push Notifications</h1>
+<h1 id="h_01KCJYN3KHVVZG3KA8R72PW58C">Push Notifications</h1>
 <p>
   This section requires setting up either APNS (Apple Push Notification Services)
   or FCM (Firebase Cloud Services). For APNS, you need to get push credentials
@@ -186,7 +186,7 @@ Countly.endEvent("timedEvent");</code></pre>
 <p>
   First, install react-native-firebase plugin to implement push notifications.
 </p>
-<pre><code class="shell">npm install --save react-native-firebase
+<pre class="wysiwyg-code-block"><code class="language-auto shell">npm install --save react-native-firebase
 
 // Link Firebase
 react-native link react-native-firebase</code></pre>
@@ -195,8 +195,8 @@ react-native link react-native-firebase</code></pre>
   can follow the below given steps to guide you through.
 </p>
 <ol>
-  <li>Setup google-services.json</li>
-  <li>
+  <li data-list-item-id="e570e1834b56ba595476259bcd97988d9">Setup google-services.json</li>
+  <li data-list-item-id="eedaa08cc93b300f2073935b8244e1df8">
     A google-services.json file contains all of the information required by the
     Firebase Android SDK to connect to your Firebase project. To automatically
     generate the json file, follow the instructions on the Firebase console to
@@ -208,7 +208,7 @@ react-native link react-native-firebase</code></pre>
   In order for Android to parse this file, add the google-services gradle plugin
   as a dependency to your project in the project level build.gradle file (android/build.gradle):
 </p>
-<pre><code class="javascript">buildscript {
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">buildscript {
     repositories {
         google()  // &lt; Check this line exists and is above jcenter.
         jcenter()
@@ -223,10 +223,10 @@ react-native link react-native-firebase</code></pre>
 <p>
   Now setup gradle dependencies in your android/app/build.gradle file :
 </p>
-<pre><code class="java">dependencies {
+<pre class="wysiwyg-code-block"><code class="language-auto java">dependencies {
     ...
     //These should be already present in your gradle file.
-    implementation project(':react-native-firebase')
+  	implementation project(':react-native-firebase')
     
     //Add these lines
     implementation "com.google.android.gms:play-services-base:16.0.1"
@@ -240,7 +240,7 @@ apply plugin: 'com.google.gms.google-services'
 <p>
   Now go to your MainApplication.java and add these imports if not present.
 </p>
-<pre><code class="java">//add these imports if not present.  
+<pre class="wysiwyg-code-block"><code class="language-auto java">//add these imports if not present.  
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; 
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; 
@@ -258,7 +258,7 @@ protected List getPackages() {
  );                               
 }</code></pre>
 <p>Add these lines to your Android Manifest file</p>
-<pre><code class="xml">...
+<pre class="wysiwyg-code-block"><code class="language-auto xml">...
  &lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /&gt;
   &lt;uses-permission android:name="android.permission.VIBRATE" /&gt;
     &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
@@ -284,13 +284,13 @@ protected List getPackages() {
 &lt;/application&gt;
 </code></pre>
 <p>Add these lines in settings.gradle:</p>
-<pre><code class="java">include ':react-native-firebase'                       
+<pre class="wysiwyg-code-block"><code class="language-auto java">include ':react-native-firebase'                       
 project(':react-native-firebase').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-firebase/android')
 </code></pre>
 <p>
   Now go again to your android/app/build.gradle and add this line:
 </p>
-<pre><code class="text">dependencies {
+<pre class="wysiwyg-code-block"><code class="language-auto text">dependencies {
   compile project(':react-native-firebase')
   ...
 }</code></pre>
@@ -299,8 +299,8 @@ project(':react-native-firebase').projectDir = new File(rootProject.projectDir, 
   we proceed please make sure you have generated your certificates properly.
 </p>
 <ol>
-  <li>Setup GoogleService-Info.plist</li>
-  <li>
+  <li data-list-item-id="e254c948b9483b6f031577fee6dec616f">Setup GoogleService-Info.plist</li>
+  <li data-list-item-id="ee30b941421ff12a8f92cf71d1736e9a3">
     A GoogleService-Info.plist file contains all of the information required
     by the Firebase iOS SDK to connect to your Firebase project. To automatically
     generate the plist file, follow the instructions on the Firebase console
@@ -312,13 +312,13 @@ project(':react-native-firebase').projectDir = new File(rootProject.projectDir, 
   APP NAME]"…' in XCode.
 </p>
 <ol>
-  <li>Initialize Firebase</li>
-  <li>
+  <li data-list-item-id="e10cb6fa9afc7303bd06d148475179306">Initialize Firebase</li>
+  <li data-list-item-id="eec192d1ba46e389bdcf378612755bfbe">
     To initiaize the native SDK in your app, add the following to your ios/[YOUR
     APP NAME]/AppDelegate.h file:
   </li>
 </ol>
-<pre><code class="objectivec">//At the begining of your file
+<pre class="wysiwyg-code-block"><code class="language-auto objectivec">//At the begining of your file
 #import 
 ...
 //At the beginning of the didFinishLaunchingWithOptions:(NSDictionary *)launchOptions method add the following line:
@@ -330,7 +330,7 @@ project(':react-native-firebase').projectDir = new File(rootProject.projectDir, 
   and run command <code>pod init</code> and then add Firebase/Core and Firebase/Messaging
   as shown below:
 </p>
-<pre><code class="objectivec">
+<pre class="wysiwyg-code-block"><code class="language-auto objectivec">
 # Uncomment the next line to define a global platform for your project
 platform :ios, '9.0'
 
@@ -353,9 +353,9 @@ end
   Now open your project on Xcode from and goto Capabilities and do the following:
 </p>
 <ol>
-  <li>Turn on Push Notifications</li>
-  <li>Turn on Background modes</li>
-  <li>Check Remote notifications</li>
+  <li data-list-item-id="eb48b5c93634b87904dfdf06460e72c7a">Turn on Push Notifications</li>
+  <li data-list-item-id="e0b8f31259f2966a808efc4f0ac5c12ee">Turn on Background modes</li>
+  <li data-list-item-id="ed3540daf950ddc26eba5d3dff93b8d15">Check Remote notifications</li>
 </ol>
 <p>
   Now, go to Build Phases. Click on the “+” under “Link Binary With Libraries”
@@ -364,10 +364,10 @@ end
   Search Path, double click its value and press “+” button. Add following line
   there.
 </p>
-<pre><code class="text">$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase
+<pre class="wysiwyg-code-block"><code class="language-auto text">$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase
 </code></pre>
 <p>Go to AppDelegate.h and add those lines:</p>
-<pre><code class="objectivec">#import &lt;UIKit/UIKit.h&gt;
+<pre class="wysiwyg-code-block"><code class="language-auto objectivec">#import &lt;UIKit/UIKit.h&gt;
 #import &lt;UserNotifications/UserNotifications.h&gt;
 
 @interface AppDelegate : UIResponder &lt;UIApplicationDelegate, UNUserNotificationCenterDelegate&gt;
@@ -376,7 +376,7 @@ end
 
 @end</code></pre>
 <p>Now Add Firebase package in your AppDelegate.m as follows:</p>
-<pre><code class="objectivec">#import "AppDelegate.h"
+<pre class="wysiwyg-code-block"><code class="language-auto objectivec">#import "AppDelegate.h"
 //Add these lines
 #import 
 #import "RNFirebaseNotifications.h"
@@ -437,7 +437,7 @@ fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHand
   and follow the instructions to setup push notification action. This step should
   only be performed for iOS project only else it will generate an error.
 </p>
-<pre><code class="text"># For push notifications action support in iOS
+<pre class="wysiwyg-code-block"><code class="language-auto text"># For push notifications action support in iOS
 
 npm install --save https://github.com/nodexpertsdev/react-native-ios-notification-actions
 react-native link
@@ -447,7 +447,7 @@ react-native link
 # of the push notification payload
 </code></pre>
 <p>To initialize push notification, use the following:</p>
-<pre><code class="javascript">// To initialize the push notification.
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// To initialize the push notification.
 // For Android we have two types of users i.e test and production users
 // For test mode use Countly.TEST
 // For production mode use Countly.PRODUCTION
@@ -496,7 +496,7 @@ constructor(props) {
 <p>
   Add below lines in index.js for enabling background messaging.
 </p>
-<pre><code class="javascript">import Countly from 'countly-sdk-react-native';
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">import Countly from 'countly-sdk-react-native';
 
 const id = 'your_channel_id';
 
@@ -504,9 +504,9 @@ const id = 'your_channel_id';
 AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () =&gt; {
   return message =&gt; Countly.bgMessaging(message, id);
 });</code></pre>
-<h1>User Profiles</h1>
+<h1 id="h_01KCJYN3KHMGCWZQ5SBP2VB7GQ">User Profiles</h1>
 <div class="callout callout--info">
-  <h3 class="callout__title">Enterprise Edition Feature</h3>
+  <h3 class="callout__title" id="h_01KCJYN3KHRTVY7RG06K7HV02Y">Enterprise Edition Feature</h3>
   <p>
     This feature is only available with Enterprise Edition subscription.
   </p>
@@ -516,7 +516,7 @@ AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () =&gt; {
   dashboard by recording user details. You can record default and custom properties
   of user details like this:
 </p>
-<pre><code class="javascript">Countly.setUserData({
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">Countly.setUserData({
     "name": "Name Surname",
     "username": "xyz",
     "email": "xyz@gmail.com",
@@ -534,42 +534,42 @@ AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () =&gt; {
 <p>
   In addition, you can use custom user details modifiers like this:
 </p>
-<pre><code class="javascript">Countly.userData.setProperty("setPropertyKey", "setPropertyKeyValue");
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">Countly.userData.setProperty("setPropertyKey", "setPropertyKeyValue");
 Countly.userData.increment("incrementKey");
 Countly.userData.incrementBy("incrementByKey", 10);
 Countly.userData.multiply("multiplyKey", 20);
 Countly.userData.saveMax("saveMaxKey", 100);
 Countly.userData.saveMin("saveMinKey", 50);
 Countly.userData.setOnce("setOnceKey", 200);</code></pre>
-<h1>Manual Tracking of View (Screen)</h1>
+<h1 id="h_01KCJYN3KHVEZ9BG7RNFCZ2B9P">Manual Tracking of View (Screen)</h1>
 <p>
   You can record (track) view as well as the time for which user has visited the
   particular screen.
 </p>
-<pre><code class="javascript">// Example for recording view
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// Example for recording view
 Countly.recordView(ViewName); // ViewName will be your screen name</code></pre>
 <p>
   You can also track (record) the action performed on the view.
 </p>
-<pre><code class="javascript">// To record an action:
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// To record an action:
 Countly.recordViewActions(actionType, touchCoordinate);
 
 // where actionType may be 'touch', 'swipe' etc... and 
 // TouchCoordinate is the x, y axis of touch point.</code></pre>
-<h1>Crash Reporting</h1>
+<h1 id="h_01KCJYN3KH64REKK5GKCNN9TG9">Crash Reporting</h1>
 <p>
   Countly can send automated crash reporting to a Countly server. Below you can
   see how to enable it.
 </p>
 <p>First, add dependencies to your application:</p>
-<pre><code class="shell">npm i react-native-exception-handler --save
+<pre class="wysiwyg-code-block"><code class="language-auto shell">npm i react-native-exception-handler --save
 npm i react-native-restart
 react-native link </code></pre>
 <p>
   Then, outside the root component add the following and enable crash reporting
   feature.
 </p>
-<pre><code class="javascript">// Outside the root component add the following line.
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// Outside the root component add the following line.
 // Setting first parameter to true will enable crash 
 // reporting in production mode.
 
@@ -580,7 +580,7 @@ Countly.enableCrashReporting(true); </code></pre>
   recommended not to use crash reporting in development mode - it is used to hide
   the internal error from user and send the issue to the developer.
 </p>
-<pre><code class="javascript">Countly.enableCrashReporting(true, true); </code></pre>
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">Countly.enableCrashReporting(true, true); </code></pre>
 <p>
   If the crash occurred, SDK sends the crash data to Countly and shows an alert
   box having the crash message and a Restart button. Restart button will restart
@@ -590,7 +590,7 @@ Countly.enableCrashReporting(true); </code></pre>
   If you want to customize the default alert box functionality and message you
   can do so by changing in config variable as shown below.
 </p>
-<pre><code class="javascript">// Config variable to customize default alert box.
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// Config variable to customize default alert box.
 
 Countly.defaultAlert = {
 // default value will be false.
@@ -609,7 +609,7 @@ Countly.defaultAlert = {
   Further, if you think that you want to create your own custom crash log method
   you can do so by following the below instructions.
 </p>
-<pre><code class="javascript">// create your custom method
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// create your custom method
 
 const crashMethod = () =&gt; {
 // This is optional. If you want to send your custom 
@@ -629,14 +629,14 @@ const crashMethod = () =&gt; {
 // This will disable default crash method and enable your crash method.
 Countly.customCrashLog = crashMethod; </code></pre>
 <div class="callout callout--info">
-  <h3 class="callout__title">Important note</h3>
+  <h3 class="callout__title" id="h_01KCJYN3KHDB80R0P96C6GT9HH">Important note</h3>
   <p>
     All crash method definition and crash config assignment will be done in root
     component file of your application (which will be index.js/ index.android.js/
     index.ios.js/ App.js) and outside the React class.
   </p>
 </div>
-<h1>Parameter Tampering</h1>
+<h1 id="h_01KCJYN3KHCG1JG7FV12G9Y4VK">Parameter Tampering</h1>
 <p>
   This is one of the preventive measures of Countly. If someone in the middle intercepts
   the request, it would be possible to change the data in the request and make
@@ -653,51 +653,51 @@ Countly.customCrashLog = crashMethod; </code></pre>
   of request data, which will be sent with each request using
   <code>&amp;checksum256</code> field. You need to set exactly the same secretSalt
   on Countly under
-  <code>Management &gt; Applications&gt;"your_app"&gt;Salt  for checksum</code>.
+  <code>Management &gt; Applications&gt;"your_app"&gt;Salt for checksum</code>.
   If <code>secretSalt</code> on Countly Server is set, all requests would be checked
   for validity of <code>&amp;checksum256</code> field before being processed.
 </p>
-<pre><code class="shell">npm install crypto-js;</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-auto shell">npm install crypto-js;</code></pre>
 <p>and from your app use below lines to set your secret salt</p>
-<pre><code class="text">// set salt in Countly SDK config
+<pre class="wysiwyg-code-block"><code class="language-auto text">// set salt in Countly SDK config
 Countly.secretSalt = 'XYZ';</code></pre>
 <p>
   If SALT is not provided, SDK makes ordinary requests without any checksums.
 </p>
-<h1>Star Rating</h1>
+<h1 id="h_01KCJYN3KH2H25QH6W6BE9AHWG">Star Rating</h1>
 <p>
   For the rating purpose of your application, you can use star rating component
   of Countly by implementing steps.
 </p>
-<pre><code class="shell">// Dependency to use Countly Star Rating feature
+<pre class="wysiwyg-code-block"><code class="language-auto shell">// Dependency to use Countly Star Rating feature
 
 npm install --save react-native-modal
 react-native link
 </code></pre>
 <p>For importing star rating component from Countly:</p>
-<pre><code class="javascript">import { StarRating } from 'countly-sdk-react-native';</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">import { StarRating } from 'countly-sdk-react-native';</code></pre>
 <p>Then use star rating component as follows:</p>
-<pre><code class="html"> this.setState({isVisible: false})} // required
+<pre class="wysiwyg-code-block"><code class="language-auto html"> this.setState({isVisible: false})} // required
 /&gt;
   
 // Default values for optional field:
 // noOfStars = 5
 // message = 'How would you rate the app?'
 // dismissButtonTitle = Dismiss</code></pre>
-<h1>Other SDK usage scenarios</h1>
-<h3>Using custom device ID</h3>
+<h1 id="h_01KCJYN3KH0KNCQG1GRJR4VXZM">Other SDK usage scenarios</h1>
+<h3 id="h_01KCJYN3KHNSJX0F3QTW99V6E2">Using custom device ID</h3>
 <p>
   If you want to use custom device ID, you can change it as follows. Note that
   once set, device ID will be persistently stored in device on the first launch,
   and will not change even after app delete and re-install, unless you change it
   explicitly.
 </p>
-<pre><code class="javascript">Countly.changeDeviceId("654321");</code></pre>
-<h3>Change DeviceId on server</h3>
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">Countly.changeDeviceId("654321");</code></pre>
+<h3 id="h_01KCJYN3KH51CRTR182H9A3KM8">Change DeviceId on server</h3>
 <p>
   If you want to change the device ID on Countly server, follow steps below.
 </p>
-<pre><code class="javascript">// First parameter is onServer
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// First parameter is onServer
 let onServer = ture;
 
 // Then call the setNewDeviceId method to set the new Device Id
@@ -708,17 +708,17 @@ Countly.setNewDeviceId(onServer, newDeviceId);
 // If onServer is false then current session will be end and the new session starts with new DeviceId.
 
 // If onServer is true than the new session metrics will contain new DeviceId and the old deviceId data will be merged with the new DeviceId.</code></pre>
-<h3>Force SDK to make POST request by default</h3>
-<pre><code class="javascript">// Call method setHttpPostForced with parameter true, as shown below
+<h3 id="h_01KCJYN3KHAGDJ5X2XH1S675PH">Force SDK to make POST request by default</h3>
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// Call method setHttpPostForced with parameter true, as shown below
 
 Countly.setHttpPostForced(true);</code></pre>
-<h3>SSL Certificate Pinning</h3>
+<h3 id="h_01KCJYN3KJCAM5M5PYG9F7KAQK">SSL Certificate Pinning</h3>
 <p>
   To secure the request from "Man in the Middle" attack, you can implement SSL
   Certificate Pinning in your application. Below are the steps to implement SSL
   Certificate Pinning.
 </p>
-<pre><code class="shell">// Install dependencies
+<pre class="wysiwyg-code-block"><code class="language-auto shell">// Install dependencies
 npm i react-native-pinch
 
 // Link the libraries using the following command
@@ -733,7 +733,7 @@ react-native link react-native-pinch</code></pre>
   Then you need to set the name of the <code>.cer</code> file in
   <code>Countly.cerFileName</code> config flag as shown below.
 </p>
-<pre><code class="javascript">// Notice the file name you should set to the config flag 
+<pre class="wysiwyg-code-block"><code class="language-auto javascript">// Notice the file name you should set to the config flag 
 // doesn't have an extension.
 
 Countly.cerFileName = "fileName";</code></pre>
