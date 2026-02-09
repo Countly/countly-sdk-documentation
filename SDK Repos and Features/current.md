@@ -658,6 +658,8 @@
 </p>
 <h2 id="h_01H9QCP8G7V4S0SS317HRT5XN8">Web SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/25401720887068-Web-analytics-JavaScript-25-4-X" target="_blank" rel="noopener noreferrer">Version 25.4</a>
+  -
   <a href="/hc/en-us/articles/19642070752924" target="_blank" rel="noopener noreferrer">Version 25.1</a>
   -
   <a href="/hc/en-us/articles/18319247815196" target="_blank" rel="noopener noreferrer">Version 24.11</a>
