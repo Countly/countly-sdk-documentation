@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Web SDK version 25.4.X. The SDK source
+  This documentation is for the Countly Web SDK version 26.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-web">here</a>.
 </p>
@@ -14,54 +14,76 @@
   Countly can run with all browsers that supports ECMAScript 5. Minimum versions
   of major internet browsers that fully support ES5 are:
 </p>
-<table style="border-collapse: collapse; height: 46px; padding: 2px; margin-right: auto; margin-left: auto;" border="1" cellspacing="2" cellpadding="2">
-  <tbody>
-    <tr class="wysiwyg-text-align-center" style="height: 36px;">
-      <td class="wysiwyg-text-align-center" style="width: 63.8516px; height: 36px;">
-        <strong>IE</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 38.4453px; height: 36px;">
-        <strong>Edge</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 55.4766px; height: 36px;">
-        <strong>Firefox</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 77px; height: 36px;">
-        <strong>Firefox (Android)</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 50.375px; height: 36px;">
-        <strong>Opera</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 66.7578px; height: 36px;">
-        <strong>Opera (Mobile)</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 36px;">
-        <strong>Safari</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 36px;">
-        <strong>Safari (iOS)</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 60.7891px; height: 36px; text-align: center; vertical-align: middle;">
-        <strong>Chrome</strong>
-      </td>
-      <td class="wysiwyg-text-align-center" style="width: 77.0234px; height: 36px;">
-        <strong>Chrome (Android)</strong>
-      </td>
-    </tr>
-    <tr style="height: 22px; padding: 2px;">
-      <td class="wysiwyg-text-align-center" style="width: 63.8516px; height: 10px;">10</td>
-      <td class="wysiwyg-text-align-center" style="width: 38.4453px; height: 10px;">12</td>
-      <td class="wysiwyg-text-align-center" style="width: 55.4766px; height: 10px;">21</td>
-      <td class="wysiwyg-text-align-center" style="width: 77px; height: 10px;">96</td>
-      <td class="wysiwyg-text-align-center" style="width: 50.375px; height: 10px;">15</td>
-      <td class="wysiwyg-text-align-center" style="width: 66.7578px; height: 10px;">64</td>
-      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 10px;">6</td>
-      <td class="wysiwyg-text-align-center" style="width: 49.6406px; height: 10px;">6</td>
-      <td class="wysiwyg-text-align-center" style="width: 60.7891px; height: 10px;">23</td>
-      <td class="wysiwyg-text-align-center" style="width: 77.0234px; height: 10px;">98</td>
-    </tr>
-  </tbody>
-</table>
+<figure class="wysiwyg-table" style="height: 105px; width: 780px;">
+  <table class="table--bordered table--color-header">
+    <thead>
+      <tr style="height: 39px;">
+        <th style="height: 39px; text-align: center; width: 63.1719px;">
+          <span class="wysiwyg-font-size-small"><strong>IE*</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 65.9688px;">
+          <span class="wysiwyg-font-size-small"><strong>Edge</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 82.1719px;">
+          <span class="wysiwyg-font-size-small"><strong>Firefox</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 96.4219px;">
+          <span class="wysiwyg-font-size-small"><strong>Firefox (Android)</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 72.8594px;">
+          <span class="wysiwyg-font-size-small"><strong>Opera</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 90.2188px;">
+          <p>
+            <span class="wysiwyg-font-size-small"><strong>Opera</strong></span>
+          </p>
+          <p>
+            <span class="wysiwyg-font-size-small"><strong>(Mobile)</strong></span>
+          </p>
+        </th>
+        <th style="height: 39px; text-align: center; width: 71.9062px;">
+          <span class="wysiwyg-font-size-small"><strong>Safari</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 71.9062px;">
+          <p>
+            <span class="wysiwyg-font-size-small"><strong>Safari</strong></span>
+          </p>
+          <p>
+            <span class="wysiwyg-font-size-small"><strong>(iOS)</strong></span>
+          </p>
+        </th>
+        <th style="height: 39px; text-align: center; width: 87.0312px;">
+          <span class="wysiwyg-font-size-small"><strong>Chrome</strong></span>
+        </th>
+        <th style="height: 39px; text-align: center; width: 97.3438px;">
+          <p>
+            <span class="wysiwyg-font-size-small"><strong>Chrome</strong></span>
+          </p>
+          <p>
+            <span class="wysiwyg-font-size-small"><strong>(Android)</strong></span>
+          </p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="height: 22px; padding: 2px;">
+        <td style="height: 41px; text-align: center; width: 55.1719px;">11</td>
+        <td style="height: 41px; text-align: center; width: 57.9688px;">12</td>
+        <td style="height: 41px; text-align: center; width: 74.1719px;">21</td>
+        <td style="height: 41px; text-align: center; width: 88.4219px;">96</td>
+        <td style="height: 41px; text-align: center; width: 64.8594px;">15</td>
+        <td style="height: 41px; text-align: center; width: 82.2188px;">64</td>
+        <td style="height: 41px; text-align: center; width: 63.9062px;">6</td>
+        <td style="height: 41px; text-align: center; width: 63.9062px;">6</td>
+        <td style="height: 41px; text-align: center; width: 79.0312px;">23</td>
+        <td style="height: 41px; text-align: center; width: 89.3438px;">98</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>
+  <span style="font-size: 12px; font-weight: 200;">* With polyfills.</span>
+</p>
 <p>
   To examine the example integrations please have a look
   <a href="#h_01HPE4EQ9TKCMJ0R2XN3BAYVND">here</a>.
@@ -79,10 +101,10 @@
     <span class="tabs-link">non-minified</span>
   </div>
   <div class="tab">
-    <pre><code class="bash">https://yourdomain.com/sdk/web/countly.min.js</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">https://yourdomain.com/sdk/web/countly.min.js</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="bash">https://yourdomain.com/sdk/web/countly.js</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">https://yourdomain.com/sdk/web/countly.js</code></pre>
   </div>
 </div>
 <p>
@@ -94,10 +116,10 @@
     <span class="tabs-link">yarn</span>
   </div>
   <div class="tab">
-    <pre><code class="bash">npm install countly-sdk-web</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">npm install countly-sdk-web</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="bash">yarn add countly-sdk-web</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">yarn add countly-sdk-web</code></pre>
   </div>
 </div>
 <p>You can also reach the SDK through CDN:</p>
@@ -107,22 +129,24 @@
     <span class="tabs-link">Specific Version</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// latest non minified
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// latest non minified
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.js</a>
 
 // latest minified
 <a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js</a></code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// 25.4.1 non minified
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.js</a>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// 26.1.0 non minified
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@26.1.0/lib/countly.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@26.1.0/lib/countly.js</a>
 
-// 25.4.1 minified (<span>JSDelivr</span> or Cloudflare)
-<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@25.4.1/lib/countly.min.js</a> <br>or<br><a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.1/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/25.4.1/countly.min.js</a></code></pre>
+// 26.1.0 minified (JSDelivr or Cloudflare)
+<a href="https://cdn.jsdelivr.net/npm/countly-sdk-web@26.1.0/lib/countly.min.js" target="_blank" rel="noopener noreferrer">cdn.jsdelivr.net/npm/countly-sdk-web@26.1.0/lib/countly.min.js</a> 
+or
+<a href="https://cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/26.1.0/countly.min.js" target="_blank" rel="noopener noreferrer">cdnjs.cloudflare.com/ajax/libs/countly-sdk-web/26.1.0/countly.min.js</a></code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Lastly as an alternative option, you may download <a href="https://github.com/Countly/countly-sdk-web/tree/master/lib">countly.min.js</a> from our GitHub repository and upload it to any server from where you would like to host it.</span>
+  <span style="font-weight: 400;">Lastly as an alternative option, you may download </span><a href="https://github.com/Countly/countly-sdk-web/tree/master/lib"><span style="font-weight: 400;">countly.min.js</span></a><span style="font-weight: 400;"> from our GitHub repository and upload it to any server from where you would like to host it.</span>
 </p>
 <h1 id="h_01HABTQ436KQ0HD0G5NXFBZQR7">SDK Integration</h1>
 <h2 id="h_01HABTQ4360WX3SY413Z3ZSAWZ">Minimal Setup</h2>
@@ -143,7 +167,7 @@
   <p>
     You can check all the config options you can use to manipulate the SDK behaviour
     from
-    <a href="/hc/en-us/articles/4409195031577#h_01HABTQ439HZN7Y6A6F07Y6G0K" target="_blank" rel="noopener noreferrer">here</a>.
+    <a href="#h_01HABTQ439HZN7Y6A6F07Y6G0K" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <p>
@@ -156,9 +180,10 @@
     <span class="tabs-link">HTML (Sync)</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">import Countly from "countly-sdk-web";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">import Countly from "countly-sdk-web";
 
-Countly.init({<br>  // server credentials
+Countly.init({
+  // server credentials
   app_key: "YOUR_APP_KEY",
   url: "http://yourdomain.com"
 });
@@ -168,11 +193,12 @@ Countly.track_sessions();
 Countly.track_pageview();</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">&lt;!--inside &lt;head&gt;&lt;/head&gt;--&gt;
+    <pre class="wysiwyg-code-block"><code class="language-javascript">&lt;!--inside &lt;head&gt;&lt;/head&gt;--&gt;
 &lt;script type='text/javascript'&gt;
 var Countly = Countly || {};
 Countly.q = Countly.q || [];
-<br>// server credentials 
+
+// server credentials 
 Countly.app_key = "YOUR_APP_KEY"; 
 Countly.url = "https://yourdomain.com";
 
@@ -191,11 +217,12 @@ Countly.q.push(['track_pageview']);
 &lt;/script&gt;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="html">&lt;!--inside &lt;head&gt;&lt;/head&gt;--&gt;
+    <pre class="wysiwyg-code-block"><code class="language-javascript">&lt;!--inside &lt;head&gt;&lt;/head&gt;--&gt;
 &lt;script type='text/javascript' src='https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/lib/countly.min.js'&gt;&lt;/script&gt;
 &lt;script type='text/javascript'&gt;
 
-Countly.init({<br>  // server credentials
+Countly.init({
+  // server credentials
   app_key: "YOUR_APP_KEY",
   url: "http://yourdomain.com"
 });
@@ -225,10 +252,10 @@ Countly.track_pageview();
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">Countly.debug = true;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.debug = true;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
     debug:true,
     app_key:"YOUR_APP_KEY",
     url: "https://try.count.ly",
@@ -250,12 +277,12 @@ Countly.track_pageview();
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_errors', {
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_errors', {
   "your_extra_info_key": your_info
 }])</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_errors({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_errors({
   "your_extra_info_key": your_info
 })</code></pre>
   </div>
@@ -269,7 +296,7 @@ Countly.track_pageview();
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">try{
+    <pre class="wysiwyg-code-block"><code class="language-javascript">try{
   //do something here
 }
 catch(ex){
@@ -278,7 +305,7 @@ catch(ex){
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">try{
+    <pre class="wysiwyg-code-block"><code class="language-javascript">try{
   //do something here
 }
 catch(ex){
@@ -296,10 +323,10 @@ catch(ex){
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['add_log', "user clicked button a"]);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['add_log', "user clicked button a"]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.add_log("user clicked button a");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.add_log("user clicked button a");</code></pre>
   </div>
 </div>
 <h2 id="h_01JK8PC8KHKZ1DF3KMKTEKFCN3">Crash Filtering</h2>
@@ -315,7 +342,7 @@ catch(ex){
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// before init
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// before init
 Countly.crash_filter_callback = function (crashObject) {
       console.log("Crash object:", crashObject);
       // modify, omit or return directly
@@ -323,7 +350,7 @@ Countly.crash_filter_callback = function (crashObject) {
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
       app_key: "YOUR_APP_KEY",
       url: "https://yourdomain.com",
       crash_filter_callback: function (crashObject) {
@@ -365,15 +392,33 @@ Countly.crash_filter_callback = function (crashObject) {
     <span class="tabs-link">De-obfuscated</span>
   </div>
   <div class="tab">
-    <pre>Error: Error at depth 3<br>  at cause_error (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5657:13)<br>  at multiply (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5651:3)<br>  at saveRecords (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5648:3)<br>  at initializeCoreFunctions (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5645:3)<br>  at save (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5642:3)<br>  at removeHashes (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5639:3)<br>  at calculateParams (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5636:3)<br>  at addRecords (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5633:3)<br>  at HTMLButtonElement.unhandled_error (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5675:5)</pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Error: Error at depth 3
+  at cause_error (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5657:13)
+  at multiply (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5651:3)
+  at saveRecords (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5648:3)
+  at initializeCoreFunctions (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5645:3)
+  at save (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5642:3)
+  at removeHashes (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5639:3)
+  at calculateParams (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5636:3)
+  at addRecords (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5633:3)
+  at HTMLButtonElement.unhandled_error (http://127.0.0.1:5501/examples/symbolication/dist/main.js:5675:5)</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>Error: Error at depth 3<br>  at src/index.js:66:12<br>  at cause_error (src/index.js:59:2)<br>  at multiply (src/index.js:56:2)<br>  at saveRecords (src/index.js:53:2)<br>  at initializeCoreFunctions (src/index.js:50:2)<br>  at save (src/index.js:47:2)<br>  at removeHashes (src/index.js:44:2)<br>  at calculateParams (src/index.js:41:2)<br>  at addRecords (src/index.js:87:6)</pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Error: Error at depth 3
+  at src/index.js:66:12
+  at cause_error (src/index.js:59:2)
+  at multiply (src/index.js:56:2)
+  at saveRecords (src/index.js:53:2)
+  at initializeCoreFunctions (src/index.js:50:2)
+  at save (src/index.js:47:2)
+  at removeHashes (src/index.js:44:2)
+  at calculateParams (src/index.js:41:2)
+  at addRecords (src/index.js:87:6)</code></pre>
   </div>
 </div>
 <p>
   When using any build tool you will need to choose an option that generates the
-  source map as a separate file and not inline with the final js file (<a href="https://webpack.js.org/configuration/devtool/" target="_blank" rel="noopener">devtool</a>
+  source map as a separate file and not inline with the final js file (<a href="https://webpack.js.org/configuration/devtool/" target="_blank" rel="noopener noreferrer">devtool</a>
   option for webpack for example). If you set it up correctly your builds will
   produce a source map file ending in <code>.map</code>, which is the source map
   file you will upload to your Countly server.
@@ -401,11 +446,11 @@ Countly.crash_filter_callback = function (crashObject) {
 </div>
 <p>An event consists of a JavaScript object with keys:</p>
 <ul>
-  <li>key - the name of the event (mandatory)</li>
-  <li>count - number of events (optional) (defaults to 1)</li>
-  <li>sum - sum to report with the event (optional)</li>
-  <li>dur - duration expressed in seconds (optional)</li>
-  <li>segmentation - an object with key/value pairs (optional)</li>
+  <li data-list-item-id="e5a3a4e454692a16a8c6db4d30e1c5778">key - the name of the event (mandatory)</li>
+  <li data-list-item-id="ec29899192d8fee83eb6657884bda2876">count - number of events (optional) (defaults to 1)</li>
+  <li data-list-item-id="e42ce75cfa0124fd9dac7e09b957431c0">sum - sum to report with the event (optional)</li>
+  <li data-list-item-id="eff4b0a47f6e9abfc04b65cec09188598">dur - duration expressed in seconds (optional)</li>
+  <li data-list-item-id="e2a953ce15533433be755be645173d80b">segmentation - an object with key/value pairs (optional)</li>
 </ul>
 <p>
   <span style="font-weight: 400;">Here is an example of adding an event with all possible properties:</span>
@@ -416,7 +461,7 @@ Countly.crash_filter_callback = function (crashObject) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['add_event',{
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['add_event',{
   "key": "Survey_success",
   "count": 1,
   "sum": 0,
@@ -428,7 +473,7 @@ Countly.crash_filter_callback = function (crashObject) {
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.add_event({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.add_event({
   "key": "Survey_success",
   "count": 1,
   "sum": 0,
@@ -463,10 +508,10 @@ Countly.crash_filter_callback = function (crashObject) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['start_event', 'timedEvent']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['start_event', 'timedEvent']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.start_event("timedEvent")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.start_event("timedEvent")</code></pre>
   </div>
 </div>
 <p>
@@ -479,10 +524,10 @@ Countly.crash_filter_callback = function (crashObject) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['cancel_event', 'timedEvent']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['cancel_event', 'timedEvent']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.cancel_event("timedEvent")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.cancel_event("timedEvent")</code></pre>
   </div>
 </div>
 <p>
@@ -497,7 +542,7 @@ Countly.crash_filter_callback = function (crashObject) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//end event
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//end event
 Countly.q.push(['end_event', 'timedEvent']);
 
 //or end event with additional data
@@ -512,7 +557,7 @@ Countly.q.push(['end_event',{
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//end event
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//end event
 Countly.end_event("timedEvent")
 
 //or end event with additional data
@@ -548,10 +593,10 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_sessions']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_sessions']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_sessions();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_sessions();</code></pre>
   </div>
 </div>
 <h2 id="h_01HABTQ437J7MQ9P10ES33VHHR">Manual Sessions</h2>
@@ -559,8 +604,8 @@ Countly.end_event({
   If you need a custom session logic then you can use manual session methods to:
 </p>
 <ul>
-  <li>Starting a session at the beginning</li>
-  <li>Marking the end of a session</li>
+  <li data-list-item-id="ee52c1bf3f06f6847fd5bf2152f738a33">Starting a session at the beginning</li>
+  <li data-list-item-id="e098fd371dac18530d8a4118d8d456461">Marking the end of a session</li>
 </ul>
 <p>
   Only use the methods below if you aren’t planning on using the automatic session
@@ -568,7 +613,7 @@ Countly.end_event({
   init for more granular control of the session.
 </p>
 <p>
-  <span style="font-weight: 400;">SDK will automatically report elapsed session duration with 60 seconds intervals (this can be modified during init with <code>session_update</code> config option).</span>
+  <span style="font-weight: 400;">SDK will automatically report elapsed session duration with 60 seconds intervals (this can be modified during init with </span><code><span style="font-weight: 400;">session_update</span></code><span style="font-weight: 400;"> config option).</span>
 </p>
 <p>
   <strong>Beginning a Session</strong>
@@ -580,10 +625,10 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['begin_session']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['begin_session']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.begin_session();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.begin_session();</code></pre>
   </div>
 </div>
 <p>
@@ -596,10 +641,131 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['end_session']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['end_session']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.end_session(sec)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.end_session(sec)</code></pre>
+  </div>
+</div>
+<h1 id="h_01JF7TA0TASABV8RSAX2PWYAZ8">Content Zone</h1>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts
+  by utilizing Journeys. These content blocks are dynamically served from the content
+  builder on the server, ensuring that users receive relevant and up-to-date information.
+</p>
+<div class="callout callout--info">
+  <p>
+    For learning how you can use Journeys &amp; Content Builder to create In-App
+    messages you can check
+    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
+    article.
+  </p>
+</div>
+<p>
+  Only thing you need to do to enable the this feature and start fetching content
+  from the server according to your Journeys, use the following method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(() =&gt; { Countly.content.enterContentZone(); });
+
+// or
+Countly.q.push(['content.enterContentZone']);
+
+// or with filtering you can pick and choose which content to show
+function filter(params) {
+    var shouldContentBeShown = true;
+    console.log("Content filter called with params:", params);
+    // Add your content filtering logic here and determine whether to show content
+    return shouldContentBeShown;
+}
+
+Countly.q.push(['content.enterContentZone', filter]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.content.enterContentZone();
+
+// or with filtering you can pick and choose which content to show
+function filter(params) {
+    var shouldContentBeShown = true;
+    console.log("Content filter called with params:", params);
+    // Add your content filtering logic here and determine whether to show content
+    return shouldContentBeShown;
+}
+
+Countly.content.enterContentZone(filter);</code></pre>
+  </div>
+</div>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<h2 id="h_01KDQNWZHXSTWF997BNT8T7NP5">Fine Tuning Content</h2>
+<p>
+  If you need to trigger a Journey and display its content after a specific user
+  action you can use the method below to fasten the process:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(() =&gt; { Countly.content.refreshContentZone(); });
+
+// or
+Countly.q.push(['content.refreshContentZone']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.content.refreshContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(() =&gt; { Countly.content.exitContentZone(); });
+
+// or 
+Countly.q.push(['content.exitContentZone']);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.content.exitContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  If you need to change the frequency of content zone requests from default 30
+  seconds, you can give a custom value for intervals, in seconds, during init (min.
+  15 seconds):
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.content_zone_timer_interval = 45; // seconds
+     
+// Initialize the SDK</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
+  app_key: "YOUR_APP_KEY",
+  url: "https://your.server.ly",
+  content_zone_timer_interval: 45, //seconds
+});</code></pre>
   </div>
 </div>
 <h1 id="h_01HABTQ437CAD08ESRK6RMJ2FG">View Tracking</h1>
@@ -613,7 +779,7 @@ Countly.end_event({
   <span style="font-weight: 400;">All views are auto-stopped meaning there can only be one view tracked at a time and it will end at the end of a session or when another one starts.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">You can track the current page that the SDK initialized in by using the method below for MPAs. This uses <code>location.path</code> as the page name and then reports it to the server:</span>
+  <span style="font-weight: 400;">You can track the current page that the SDK initialized in by using the method below for MPAs. This uses </span><code><span style="font-weight: 400;">location.path</span></code><span style="font-weight: 400;"> as the page name and then reports it to the server:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -621,14 +787,14 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_pageview']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_pageview();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_pageview();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">If <code>location.path</code> as the page name is not useful for you (for Ajax updated contents and single page web applications), pass the page name as a parameter to record the new page view, for example</span>
+  <span style="font-weight: 400;">If </span><code><span style="font-weight: 400;">location.path</span></code><span style="font-weight: 400;"> as the page name is not useful for you (for Ajax updated contents and single page web applications), pass the page name as a parameter to record the new page view, for example</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -636,10 +802,10 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview', "pagename"]);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_pageview', "pagename"]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_pageview("pagename");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_pageview("pagename");</code></pre>
   </div>
 </div>
 <p>
@@ -651,14 +817,14 @@ Countly.end_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_pageview',location.pathname+location.hash]);
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_pageview',location.pathname+location.hash]);
 
 $(window).on('hashchange', function() {
   Countly.q.push(['track_pageview',location.pathname+location.hash]);
 });</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_pageview(location.pathname+location.hash);
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_pageview(location.pathname+location.hash);
 
 $(window).on('hashchange', function() {
   Countly.track_pageview(location.pathname+location.hash);
@@ -674,7 +840,7 @@ $(window).on('hashchange', function() {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//Ignoring specific page
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//Ignoring specific page
 Countly.q.push(['track_pageview',["/test-page"]]);
 
 //Ignoring multiple specific pages
@@ -687,7 +853,7 @@ Countly.q.push(['track_pageview',["/download/*"]]);
 Countly.q.push(['track_pageview', location.pathname+location.hash,["/test-page"]]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//Ignoring specific page
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//Ignoring specific page
 Countly.track_pageview(["/test-page"]);
 
 //Ignoring multiple specific pages
@@ -701,18 +867,20 @@ Countly.track_pageview(location.pathname+location.hash, ["/test-page"]);</code><
   </div>
 </div>
 <p>
-  <span>Optionally, you may provide view segments (key/value pairs) to track them with the view (as the third parameter). There is a list of reserved segment keys that should not be used:</span>
+  Optionally, you may provide view segments (key/value pairs) to track them with
+  the view (as the third parameter). There is a list of reserved segment keys that
+  should not be used:
 </p>
 <ul>
-  <li>start</li>
-  <li>visit</li>
-  <li>bounce</li>
-  <li>end</li>
-  <li>name</li>
-  <li>domain</li>
-  <li>view</li>
-  <li>segment</li>
-  <li>platform</li>
+  <li data-list-item-id="e116247f827774b4ddd532ce0049e3e22">start</li>
+  <li data-list-item-id="eb8420a2e47696d61b627aa3a478a446c">visit</li>
+  <li data-list-item-id="eb1e04f77f9b5735466f7228c5cb58507">bounce</li>
+  <li data-list-item-id="e1e874775a09cf0175fc071edfa2594cc">end</li>
+  <li data-list-item-id="e2ced246a080fd1aed1868fa225595d5d">name</li>
+  <li data-list-item-id="ecafb97478e80eee69c01dc258476f95c">domain</li>
+  <li data-list-item-id="e5da9ca16cd4160b2cb80ce52c4229125">view</li>
+  <li data-list-item-id="e1455cf0ad44fe756f1dc2db6b4513f32">segment</li>
+  <li data-list-item-id="ecb14bc4672182c26a1c49d19827ab230">platform</li>
 </ul>
 <div class="tabs">
   <div class="tabs-menu">
@@ -720,12 +888,14 @@ Countly.track_pageview(location.pathname+location.hash, ["/test-page"]);</code><
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//Provide view segments
-Countly.q.push(['track_pageview', null, null, {theme:"red", mode:"fullscreen"}]);<br></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//Provide view segments
+Countly.q.push(['track_pageview', null, null, {theme:"red", mode:"fullscreen"}]);
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//Provide view segments
-Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//Provide view segments
+Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});
+</code></pre>
   </div>
 </div>
 <h2 id="h_01HABTQ43780HVFRZME2BK1PZJ">Overriding View Name and URL Getters</h2>
@@ -744,7 +914,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
     <span class="tabs-link">URL getter</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.getViewName = function(){
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.getViewName = function(){
   //get base for our view
   var view = location.pathname;
   
@@ -768,7 +938,7 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.getViewUrl = function(){
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.getViewUrl = function(){
   //we want to have path and query string and hash as url
   return location.pathname + location.search + location.hash;
 };</code></pre>
@@ -780,16 +950,16 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
   Countly offers a convenience method (<code>get_device_id</code>) for you to get
   the current user's device ID:
 </p>
-<pre><code class="javascript">var id = Countly.get_device_id();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">var id = Countly.get_device_id();</code></pre>
 <p>SDK records the type of an ID. These types are:</p>
 <ul>
-  <li>
+  <li data-list-item-id="e1b6bedbb27233e4b613bb72d246ab704">
     <code>DEVELOPER_SUPPLIED</code>
   </li>
-  <li>
+  <li data-list-item-id="e93d439e5a0d0717eb3fd2971eedc5687">
     <code>SDK_GENERATED</code>
   </li>
-  <li>
+  <li data-list-item-id="e92267383cca6ce324959a96060f46250">
     <code>TEMPORARY_ID</code>
   </li>
 </ul>
@@ -803,12 +973,12 @@ Countly.track_pageview(null, null, {theme:"red", mode:"fullscreen"});<br></code>
   You can get the device ID type of a user by calling the
   <code>get_device_id_type</code> function:
 </p>
-<pre><code class="javascript">var idType = Countly.get_device_id_type();</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">var idType = Countly.get_device_id_type();</code></pre>
 <p>
   You can use the <code>DeviceIdType</code> enums to evaluate the device ID type
   you retrieved:
 </p>
-<pre><code class="javascript">var idType = Countly.get_device_id_type();
+<pre class="wysiwyg-code-block"><code class="language-javascript">var idType = Countly.get_device_id_type();
 if (idType === Countly.DeviceIdType.SDK_GENERATED) {
   // ...do something
 }
@@ -823,30 +993,26 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['set_id', "newId"]);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['set_id', "newId"]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.set_id("newId");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.set_id("newId");</code></pre>
   </div>
 </div>
 <p>
   <span style="font-weight: 400;">This method's effect on the server will be different according to the type of the current ID stored in the SDK at the time you call it:</span>
 </p>
 <ul>
-  <li>
-    <p>
-      <span style="font-weight: 400;">If current stored ID is <code>SDK_GENERATED</code> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the <code>SDK_GENERATED</code> ID will be erased.</span>
-    </p>
+  <li data-list-item-id="e3005a2ad09ea952022679525927172f6">
+    <span style="font-weight: 400;">If current stored ID is </span><code><span style="font-weight: 400;">SDK_GENERATED</span></code><span style="font-weight: 400;"> then in the server all the information recorded for that device ID will be merged to the new ID you provide and old user with the </span><code><span style="font-weight: 400;">SDK_GENERATED</span></code><span style="font-weight: 400;"> ID will be erased.</span>
   </li>
-  <li>
-    <p>
-      <span style="font-weight: 400;">If the current stored ID is <code>DEVELOPER_SUPPLIED</code> or <code>TEMPORARY_ID</code> then in the server it will also create a new user with this new ID if it does not exist.</span>
-    </p>
+  <li data-list-item-id="edb7f7e3901960ef4e978f6c03af8dcc0">
+    <span style="font-weight: 400;">If the current stored ID is </span><code><span style="font-weight: 400;">DEVELOPER_SUPPLIED</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">TEMPORARY_ID</span></code><span style="font-weight: 400;"> then in the server it will also create a new user with this new ID if it does not exist.</span>
   </li>
 </ul>
 <div class="callout callout--info">
   <p>
-    <span style="font-weight: 400;">If you need a more complicated logic then you will need to use this method mentioned <a href="https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438HCZ8FJVAE34W49KP" target="_blank" rel="noopener noreferrer">here</a> instead.</span>
+    <span style="font-weight: 400;">If you need a more complicated logic then you will need to use this method mentioned </span><a href="https://support.countly.com/hc/en-us/articles/31592459504537-Web-analytics-23-12-X#h_01HABTQ438HCZ8FJVAE34W49KP" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;"> instead.</span>
   </p>
 </div>
 <p>
@@ -868,7 +1034,7 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
   </p>
 </div>
 <p>
-  <span style="font-weight: 400;">To launch the SDK in offline mode, simply provide the offline_mode config value as true. At this point you may omit providing the device_id value if you would like. </span>
+  <span style="font-weight: 400;">To launch the SDK in offline mode, simply provide the offline_mode config value as true. At this point you may omit providing the device_id value if you would like.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -876,7 +1042,7 @@ if (idType === Countly.DeviceIdType.SDK_GENERATED) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.debug = false;
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.debug = false;
 Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "https://try.count.ly";
 Countly.offline_mode = true;
@@ -884,7 +1050,7 @@ Countly.offline_mode = true;
 Countly.init();</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   debug:false,
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
@@ -901,10 +1067,10 @@ Countly.init();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['enable_offline_mode']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['enable_offline_mode']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.enable_offline_mode();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.enable_offline_mode();</code></pre>
   </div>
 </div>
 <p>
@@ -916,10 +1082,10 @@ Countly.init();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['disable_offline_mode', device_id]);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['disable_offline_mode', device_id]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="java">Countly.disable_offline_mode(device_id);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.disable_offline_mode(device_id);</code></pre>
   </div>
 </div>
 <h2 id="01JBBJ304CMXVQNECECHTHAAG0">Device ID Generation</h2>
@@ -931,10 +1097,10 @@ Countly.init();</code></pre>
 </p>
 <p>Limitations to this method:</p>
 <ul>
-  <li>
+  <li data-list-item-id="e5ebe332f56eaa0b4542794d13ba76ce2">
     Multiple users using the same device would be seen as a single user
   </li>
-  <li>
+  <li data-list-item-id="e1ccd90673ed4aaabe48905eb9e7e577e">
     When a user reaches to your website from multiple devices or browsers in
     incognito mode then all devices would be seen as separate users
   </li>
@@ -944,10 +1110,10 @@ Countly.init();</code></pre>
   various device management strategies like:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e51ca85e77bf3d3f10dab6bb7c3e1356b">
     Adding a login/authentication page and assigning device ID there
   </li>
-  <li>
+  <li data-list-item-id="eb39e8c10ca8422f2d5114137bccac266">
     Entering the offline mode (mentioned above) until you identify the user and
     assigning the ID then
   </li>
@@ -956,7 +1122,7 @@ Countly.init();</code></pre>
   You can also provide an ID during init to prevent the SDK from generating a random
   ID:
 </p>
-<pre><code class="javascript">// adding device ID here will prevent the generation of a random ID
+<pre class="wysiwyg-code-block"><code class="language-javascript">// adding device ID here will prevent the generation of a random ID
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://your.server",
@@ -967,14 +1133,14 @@ Countly.init({
   If you use the param <code>cly_device_id</code> its value will be set as the
   device ID instead of generating a random one:
 </p>
-<pre><code class="javascript">// you can assign a device ID to a user through a link that you have provided to them by adding cly_device_id to your url query
+<pre class="wysiwyg-code-block"><code class="language-javascript">// you can assign a device ID to a user through a link that you have provided to them by adding cly_device_id to your url query
 yoursite.com + ?cly_device_id=yourDeviceID
 </code></pre>
 <p>
   If you want to erase the previously stored device ID from the storage you can
   set clear_stored_id flag to true at the init config:
 </p>
-<pre><code class="javascript">// this will erase the stored device ID from the local storage every time the Countly is initialized
+<pre class="wysiwyg-code-block"><code class="language-javascript">// this will erase the stored device ID from the local storage every time the Countly is initialized
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
@@ -1008,11 +1174,11 @@ Countly.init({
   There are 3 location parameters that can be provided with the SDK:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e7c5bc6d61b32ea11e5ec8e92a55f659f">
     Country code in the two-letter, ISO standard ("jp", "gr" etc.)
   </li>
-  <li>City name ("Kyoto", "Athens" etc.)</li>
-  <li>Your user’s IP address</li>
+  <li data-list-item-id="ebae93f1514e3682e4955684ffcbc6df5">City name ("Kyoto", "Athens" etc.)</li>
+  <li data-list-item-id="ef3477e164b352e3c99acbc1b15953d1e">Your user’s IP address</li>
 </ul>
 <p>
   You can provide any of these information while initializing the SDK:
@@ -1023,7 +1189,7 @@ Countly.init({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// you can directly provide the city and the country code
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// you can directly provide the city and the country code
 Countly.city = "Tokyo";
 Countly.country_code = "jp";
 // or you can provide the ip address
@@ -1032,7 +1198,7 @@ Countly.ip_address = "198.168.1.1";
 // Initialize the SDK</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key: "YOUR_APP_KEY",
   url: "https://your.server.ly",
   //  you can directly provide the city and the country code
@@ -1064,13 +1230,13 @@ Countly.ip_address = "198.168.1.1";
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "https://try.count.ly";
 Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com"];
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
   heatmap_whitelist: ["https://you.domain1.com", "https://you.domain2.com"]
@@ -1087,18 +1253,18 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_clicks']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_clicks']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_clicks();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_clicks();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;<a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps#heatmaps-troubleshooting">Troubleshooting guide</a>.</span>
+  <span style="font-weight: 400;">In the event you are facing issues with viewing heatmaps, kindly go through this&nbsp;</span><a href="https://support.count.ly/hc/en-us/articles/360037639651-Views-and-heatmaps#heatmaps-troubleshooting"><span style="font-weight: 400;">Troubleshooting guide</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="callout callout--info">
   <p class="callout__title">
-    <strong> Viewing heatmaps with HTTP/HTTPS content:</strong>
+    <strong>Viewing heatmaps with HTTP/HTTPS content:</strong>
   </p>
   <p>
     Note that browsers do not allow loading HTTP iframe content on HTTPS websites.
@@ -1122,10 +1288,10 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_scrolls']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_scrolls']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_scrolls();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_scrolls();</code></pre>
   </div>
 </div>
 <p>
@@ -1136,10 +1302,10 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
 </div>
 <h1 id="h_01HABTQ438YJDHDMKPS8X3YK99">Remote Config</h1>
 <p>
-  <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check <a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">Remote Config feature enables you to fetch data that you have created in your server. Depending on the conditions you have set, you can fetch data from your server for the specific users that fits those conditions and process the Remote Config data in anyway you want. Whether to change the background color of your site to showing a certain message, the possibilities are virtually endless. For more information on Remote Config please check </span><a href="https://support.count.ly/hc/en-us/articles/9895605514009-Remote-Config" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. But you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check <a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener">here</a>.</span>
+  <span style="font-weight: 400;">While fetching Remote Config, the SDK will automatically enroll the user to A/B testing. But you are able to explicitly enroll (or not) your users to the A/B testing while fetching the remote config values or afterwards. For more information on A/B testing please check </span><a href="https://support.count.ly/hc/en-us/articles/4416496362393-A-B-Testing-" target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <h2 id="h_01HABTQ438MKGNJ0DCP8J8YFTG">Automatic Remote Config</h2>
 <p>
@@ -1157,12 +1323,18 @@ Countly.heatmap_whitelist = ["https://you.domain1.com", "https://you.domain2.com
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// in your Countly init script
-Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// in your Countly init script
+Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.debug = true;
 Countly.remote_config = true;
-<br>// OR<br>
+
+// OR
+
 // provide a callback to be notified when configs are loaded
-Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "https://try.count.ly";<br>Countly.debug = true;
+Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "https://try.count.ly";
+Countly.debug = true;
 Countly.remote_config = function(err, remoteConfigs){
   if (!err) {
     //we have our remoteConfigs here
@@ -1171,17 +1343,21 @@ Countly.remote_config = function(err, remoteConfigs){
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// in your Countly init script
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// in your Countly init script
 Countly.init({
   app_key:"YOUR_APP_KEY",
-  url: "https://try.count.ly",<br>  debug: true,
+  url: "https://try.count.ly",
+  debug: true,
   remote_config: true 
-});<br><br>// OR
+});
+
+// OR
 
 // provide a callback to be notified when configs are loaded
 Countly.init({
   app_key:"YOUR_APP_KEY",
-  url: "https://try.count.ly",<br>  debug: true,
+  url: "https://try.count.ly",
+  debug: true,
   remote_config: function(err, remoteConfigs){
     if (!err) {
       //we have our remoteConfigs here
@@ -1204,11 +1380,15 @@ Countly.init({
   is the recommended practice.
   <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
 </p>
-<pre><code class="javascript">// load the whole configuration object with a callback
+<pre class="wysiwyg-code-block"><code class="language-javascript">// load the whole configuration object with a callback
 Countly.fetch_remote_config(function(err, remoteConfigs){
   if (!err) {
-    console.log(remoteConfigs);<br>  // or do something else here if you want with remoteConfigs object
-  }<br>});<br><br>// or whole configuration object with no params
+    console.log(remoteConfigs);
+  // or do something else here if you want with remoteConfigs object
+  }
+});
+
+// or whole configuration object with no params
 Countly.fetch_remote_config();</code></pre>
 <h3 id="h_01HABTQ438DFHHZ77E03C3H0QF">Fetch Specific Keys</h3>
 <p>
@@ -1217,12 +1397,15 @@ Countly.fetch_remote_config();</code></pre>
   a second parameter.
   <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
 </p>
-<pre><code class="javascript">// load specific keys only, as `key1` and `key2`
+<pre class="wysiwyg-code-block"><code class="language-javascript">// load specific keys only, as `key1` and `key2`
 Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
   if (!err) {
-    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+    console.log(remoteConfigs);
+    // or do something else here if you want with remoteConfigs object
   }
-});<br><br></code></pre>
+});
+
+</code></pre>
 <h3 id="h_01HABTQ4384QKB945JFQVPMJT9">Fetch All Except Specific Keys</h3>
 <p>
   Here the first parameter should be set to 'null' or 'undefined' and the keys
@@ -1230,10 +1413,11 @@ Countly.fetch_remote_config(["key1","key2"], function(err, remoteConfigs){
   keys as string. As a third parameter you can provide a callback function.
   <span style="font-weight: 400;">This callback should have two parameters, first is for error, and second is for the Remote Config object.</span>
 </p>
-<pre><code class="javascript">// load all key values except specific keys, as `key1` and `key2'
+<pre class="wysiwyg-code-block"><code class="language-javascript">// load all key values except specific keys, as `key1` and `key2'
 Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
   if (!err) {
-    console.log(remoteConfigs);<br>    // or do something else here if you want with remoteConfigs object
+    console.log(remoteConfigs);
+    // or do something else here if you want with remoteConfigs object
   }
 });</code></pre>
 <h2 id="h_01HABTQ438FY9D5GRKKBVJTV7S">Accessing Remote Config Values</h2>
@@ -1243,19 +1427,19 @@ Countly.fetch_remote_config(null, ["key1","key2"], function(err, remoteConfigs){
 <p>
   <span style="font-weight: 400;">This method should be called once the Remote Config have been successfully loaded, or it will simply return an empty object or undefined values.</span>
 </p>
-<pre><code class="javascript">//get whole Remote Config object
+<pre class="wysiwyg-code-block"><code class="language-javascript">//get whole Remote Config object
 var remoteConfig = Countly.get_remote_config();
 
 //or get value for specific key like 'test'
-var test = Countly.get_remote_config("test");</code><code class="javascript"></code></pre>
+var test = Countly.get_remote_config("test");</code></pre>
 <h2 id="h_01HABTQ438D3D1TEAHTRB8TG1M">A/B Testing</h2>
 <p>
-  <span style="font-weight: 400;">To do so you have to set the use_explicit_rc_api flag to true during init (by default it is <em>false</em>). This will use the new Remote Config API and enroll your users to the A/B testing if they are eligible. However if you want to use the new API without enrolling your users automatically <em>rc_automatic_optin_for_ab&nbsp;</em>flag should be set to false during init (by default it is <em>true</em>).</span>
+  <span style="font-weight: 400;">To do so you have to set the use_explicit_rc_api flag to true during init (by default it is </span><em><span style="font-weight: 400;">false</span></em><span style="font-weight: 400;">). This will use the new Remote Config API and enroll your users to the A/B testing if they are eligible. However if you want to use the new API without enrolling your users automatically </span><em><span style="font-weight: 400;">rc_automatic_optin_for_ab&nbsp;</span></em><span style="font-weight: 400;">flag should be set to false during init (by default it is </span><em><span style="font-weight: 400;">true</span></em><span style="font-weight: 400;">).</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you would like to enroll user to A/B testing without going through the Remote Config API, instead you can use the call <em>enrollUserToAb&nbsp;</em>with keys (an array of string values) that you want to enroll the user to.</span>
+  <span style="font-weight: 400;">If you would like to enroll user to A/B testing without going through the Remote Config API, instead you can use the call </span><em><span style="font-weight: 400;">enrollUserToAb&nbsp;</span></em><span style="font-weight: 400;">with keys (an array of string values) that you want to enroll the user to.</span>
 </p>
-<pre><code class="javascript">// enrolling user for 'key1' and 'key2'
+<pre class="wysiwyg-code-block"><code class="language-javascript">// enrolling user for 'key1' and 'key2'
 Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 <h2 id="h_01HABTQ438QWJV6X4MDDBDBKBW">Consent</h2>
 <p>
@@ -1280,10 +1464,10 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener noreferrer">NPS</a>,
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener noreferrer">Survey</a>
   and
-  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/4652903481753-Feedback-Surveys-NPS-and-Ratings-#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener noreferrer">Rating</a>.
 </p>
 <p>
   For more detailed information about Feedback Widgets, you can refer to
@@ -1301,7 +1485,7 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
   parameter:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e3d1a1ee4b1872bd3b6ab89d5c3201bd4">
     nameTagOrID - String value to select a widget according to its name, tag
     or ID (optional)
   </li>
@@ -1316,7 +1500,9 @@ Countly.enrollUserToAb(["key1","key2"]);</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.feedback.showNPS("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showSurvey("nameTagOrID"); });<br>Countly.q.push(() =&gt; { Countly.feedback.showRating("nameTagOrID"); });
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(() =&gt; { Countly.feedback.showNPS("nameTagOrID"); });
+Countly.q.push(() =&gt; { Countly.feedback.showSurvey("nameTagOrID"); });
+Countly.q.push(() =&gt; { Countly.feedback.showRating("nameTagOrID"); });
 
 // or
 Countly.q.push(["feedback.showNPS", "nameTagOrID"]);
@@ -1324,14 +1510,16 @@ Countly.q.push(["feedback.showSurvey", "nameTagOrID"]);
 Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.feedback.showNPS("nameTagOrID");<br>Countly.feedback.showSurvey("nameTagOrID");<br>Countly.feedback.showRating("nameTagOrID");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.feedback.showNPS("nameTagOrID");
+Countly.feedback.showSurvey("nameTagOrID");
+Countly.feedback.showRating("nameTagOrID");</code></pre>
   </div>
 </div>
 <div class="callout callout--info">
   <p>
     If you need a more complex logic to display your widgets you can check extended
     documentation from
-    <a href="/hc/en-us/articles/360037441932#h_01JF06CEVMYPPTDFTTTJ2DG7F6" target="_blank" rel="noopener noreferrer">here</a>.
+    <a href="#h_01JF06CEVMYPPTDFTTTJ2DG7F6" target="_blank" rel="noopener noreferrer">here</a>.
   </p>
 </div>
 <h3 id="h_01HABTQ438KSCZWEFA8GEFE07R">Manual Reporting</h3>
@@ -1339,13 +1527,13 @@ Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
   Reporting Feedback Widgets manually consists of 3 main steps:
 </p>
 <ol>
-  <li>
+  <li data-list-item-id="ea9b085e2c0f66d2576fbedc7d815c2f9">
     Fetching widget list from the server with 'get_available_feedback_widgets'
   </li>
-  <li>
+  <li data-list-item-id="e7e2d04910c7e1f24a11c0d6a37d89fa2">
     Fetching one widget's data from that list with 'getFeedbackWidgetData'
   </li>
-  <li>
+  <li data-list-item-id="e5f071b6c3ea056bdbda2b4959127f3ab">
     Reporting that single widget's results with 'reportFeedbackWidgetManually'
   </li>
 </ol>
@@ -1358,7 +1546,7 @@ Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
   one object that you want to report the results for. This array and the objects
   that you can pick would look like this:
 </p>
-<pre><code class="javascript">{
+<pre class="wysiwyg-code-block"><code class="language-javascript">{
   "result":[
       {
         "_id":"614811419f030e44be07d82f",
@@ -1398,7 +1586,7 @@ Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
 <p>
   Here you would want to pick a widget according to its type and name or any other
   information you are looking for. For more information on this data please check
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#interpreting-retrieved-feedback-widget-lists" target="_blank" rel="noopener">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-deeper-look-at-SDK-concepts#interpreting-retrieved-feedback-widget-lists" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>
   At second step, by using the 'getFeedbackWidgetData' function, you can fetch
@@ -1416,12 +1604,12 @@ Countly.q.push(["feedback.showRating", "nameTagOrID"]);</code></pre>
   that you want to report for your widget. This result object would have different
   key/value pairs depending on the type of widget you are reporting about so you
   can reach to an in-depth explanation on how to form this object from
-  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener">here</a>.
+  <a href="https://support.count.ly/hc/en-us/articles/9290669873305#reporting-a-feedback-widget-manually" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>
   And example implementation of the mentioned concepts can be seen here:
 </p>
-<pre><code class="javascript">
+<pre class="wysiwyg-code-block"><code class="language-javascript">
 // an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'
 function getFeedbackWidgetListAndDoThings(widgetType) {
   // get the widget list
@@ -1474,7 +1662,7 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
 <h1 id="h_01HABTQ439MH1SD5Q76905BRWP">User Profiles</h1>
 <h2 id="h_01HABTQ439KMGT58PHY4MRA1GT">User Details</h2>
 <p>
-  <span style="font-weight: 400;">You can provide Countly with user information like a username or email address. This will allow you to distinguish user on the "User Profiles" tab, which is available with <a href="http://count.ly/enterprise-edition">Countly Enterprise Edition</a>.</span>
+  <span style="font-weight: 400;">You can provide Countly with user information like a username or email address. This will allow you to distinguish user on the "User Profiles" tab, which is available with </span><a href="http://count.ly/enterprise-edition"><span style="font-weight: 400;">Countly Enterprise Edition</span></a><span style="font-weight: 400;">.</span>
 </p>
 <div class="callout callout--warning">
   <p>
@@ -1491,7 +1679,7 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['user_details',{
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['user_details',{
   "name": "Arturs Sosins",
   "username": "ar2rsawseen",
   "email": "test@test.com",
@@ -1509,7 +1697,7 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.user_details({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.user_details({
   "name": "Arturs Sosins",
   "username": "ar2rsawseen",
   "email": "test@test.com",
@@ -1527,12 +1715,39 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
  });</code></pre>
   </div>
 </div>
+<p>For uploading a user profile picture file directly:</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Asynchronous</span>
+    <span class="tabs-link">Synchronous</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// assuming you have an input element that accepts images
+var fileInput = document.getElementById("profilePicInput");
+var file = fileInput.files[0];
+if (!file) {
+    alert("Please select an image file.");
+    return;
+}
+Countly.q.push(["uploadUserProfilePicture", file]);</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// assuming you have an input element that accepts images
+var fileInput = document.getElementById("profilePicInput");
+var file = fileInput.files[0];
+if (!file) {
+    alert("Please select an image file.");
+    return;
+}
+Countly.uploadUserProfilePicture(file);</code></pre>
+  </div>
+</div>
 <h2 id="h_01HABTQ439HW6249PJ1F6BFA0B">Modifying Custom Data</h2>
 <p>
   <span style="font-weight: 400;">Additionally, you may perform different manipulations on custom data values, such as incrementing the current value on the server or storing an array of values under the same property.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">After using modifiers, don't forget to call&nbsp;<code class="javascript">userData.save</code>&nbsp;to send data to server.</span>
+  <span style="font-weight: 400;">After using modifiers, don't forget to call&nbsp;</span><code class="javascript"><span style="font-weight: 400;">userData.save</span></code><span style="font-weight: 400;">&nbsp;to send data to server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">The list of available methods may be found below:</span>
@@ -1543,7 +1758,7 @@ function getFeedbackWidgetListAndDoThings(widgetType) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['userData.set', key, value]) //set custom property
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['userData.set', key, value]) //set custom property
 Countly.q.push(['userData.unset', key]) //remove custom property
 Countly.q.push(['userData.set_once', key, value]) //set custom property only if property does not exist
 Countly.q.push(['userData.increment', key]) //increment value in key by one
@@ -1557,7 +1772,7 @@ Countly.q.push(['userData.pull', key, value]) //remove value from array under pr
 Countly.q.push(['userData.save']) //send userData to server</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.userData.set(key, value) //set custom property
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.userData.set(key, value) //set custom property
 Countly.userData.set_once(key, value) //set custom property only if property does not exist
 Countly.userData.increment(key) //increment value in key by one
 Countly.userData.increment_by(key, value) //increment value in key by provided value
@@ -1586,11 +1801,11 @@ Countly.userData.save() //send userData to server</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// in your Countly init script
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// in your Countly init script
 Countly.enable_orientation_tracking = false;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//to disable orientation tracking
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//to disable orientation tracking
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
@@ -1608,8 +1823,8 @@ Countly.init({
 <p>
   You can reach our example implementations of APM with BoomerangJS from the following
   links:<br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm_async.html" target="_blank" rel="noopener">Async Apm Example</a><br>
-  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html" target="_blank" rel="noopener">Sync Apm Example</a>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm_async.html" target="_blank" rel="noopener noreferrer">Async Apm Example</a><br>
+  <a href="https://github.com/Countly/countly-sdk-web/blob/master/examples/example_apm.html" target="_blank" rel="noopener noreferrer">Sync Apm Example</a>
 </p>
 <h2 id="h_01HABTQ439JA7TFSMPS38DM324">Custom Traces</h2>
 <p>
@@ -1622,7 +1837,7 @@ Countly.init({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//report custom trace
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//report custom trace
 Countly.q.push(["report_trace",{
   type: "device", //device or network
   name: "test call", //use name to identify trace and group them by
@@ -1634,7 +1849,7 @@ Countly.q.push(["report_trace",{
 }]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//report custom trace
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//report custom trace
 Countly.report_trace({
   type: "device", //device or network
   name: "test call", //use name to identify trace and group them by
@@ -1668,21 +1883,26 @@ Countly.report_trace({
   <code>customSourceCountlyBoomerang</code>. If not provided the SDK would use
   the latest CDN scripts as the source:
 </p>
-<pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";<br>Countly.url = "YOUR_SERVER_URL";<br>Countly.loadAPMScriptsAsync = true;<br>// Countly.customSourceBoomerang = "../somewhere/boomerang.min.js";<br>// Countly.customSourceCountlyBoomerang = "../somewhere/countly_boomerang.js";<br>// ...</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
+Countly.url = "YOUR_SERVER_URL";
+Countly.loadAPMScriptsAsync = true;
+// Countly.customSourceBoomerang = "../somewhere/boomerang.min.js";
+// Countly.customSourceCountlyBoomerang = "../somewhere/countly_boomerang.js";
+// ...</code></pre>
 <p>
   Also, in your Countly init script you need to call a method to start reporting
   'loading' and 'network' traces automatically:
 </p>
-<pre><code class="javascript">// enables APM
+<pre class="wysiwyg-code-block"><code class="language-javascript">// enables APM
 Countly.q.push(["track_performance"]);</code></pre>
 <p>
-  This method accepts a BoomerangJS config object (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener">more information on BoomerangJS</a>)
+  This method accepts a BoomerangJS config object (<a href="http://akamai.github.io/boomerang/BOOMR.html" target="_blank" rel="noopener noreferrer">more information on BoomerangJS</a>)
   as an optional second parameter. If you are familiar with it, you can modify
   it on your own depending on your needs (you can find the used files
-  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener">here</a>).
+  <a href="https://github.com/Countly/countly-sdk-web/tree/master/plugin/boomerang" target="_blank" rel="noopener noreferrer">here</a>).
   By default the SDK would use this configuration:
 </p>
-<pre><code class="javascript">{
+<pre class="wysiwyg-code-block"><code class="language-javascript">{
     //page load timing
   RT:{},
   //required for automated networking traces
@@ -1709,15 +1929,20 @@ Countly.q.push(["track_performance"]);</code></pre>
   your project directly after declaring the Countly script like this with the correct
   paths according to your project structure:
 </p>
-<pre>// Option 1: You can provide local paths<br>&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;
-&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;<br><br>// Option 2: Or you can use CDN for path<br>&lt;script type='text/javascript' src="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt; <br>&lt;script type='text/javascript' src="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/countly_boomerang.js"&gt;&lt;/script&gt;</pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">// Option 1: You can provide local paths
+&lt;script type='text/javascript' src="../plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt;
+&lt;script type='text/javascript' src='../plugin/boomerang/countly_boomerang.js'&gt;&lt;/script&gt;
+
+// Option 2: Or you can use CDN for path
+&lt;script type='text/javascript' src="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/boomerang.min.js"&gt;&lt;/script&gt; 
+&lt;script type='text/javascript' src="https://cdn.jsdelivr.net/npm/countly-sdk-web@latest/plugin/boomerang/countly_boomerang.js"&gt;&lt;/script&gt;</code></pre>
 <p>
   After that, you would call a method to start reporting 'loading' and 'network'
   traces automatically. You can optionally provide here a BoomerangJS config object
   if you are familiar with it as mentioned above at Async implementation. Default
   usage inside your Countly init script would be like this:
 </p>
-<pre><code class="javascript">//automatically report traces
+<pre class="wysiwyg-code-block"><code class="language-javascript">//automatically report traces
 Countly.track_performance();</code></pre>
 <h1 id="h_01HABTQ439V9NNDDCW31XG086F">User Consent</h1>
 <p>
@@ -1739,46 +1964,46 @@ Countly.track_performance();</code></pre>
   <span style="font-weight: 400;">The SDK provides different features for consent. You may check all the supported features for the current SDK by checking the&nbsp;</span><strong>Countly.features</strong><span style="font-weight: 400;">&nbsp;property. Here is a list containing all the properties with ex</span>planations:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e710c4823b77d2cd4a4726582151c4e16">
     <span style="font-weight: 400;">sessions - tracks when, how often, and how long users use your website</span>
   </li>
-  <li>
+  <li data-list-item-id="e866fb68a3b44d04691a44dcec4e34a41">
     <span style="font-weight: 400;">events - allows your events to be sent to the server</span>
   </li>
-  <li>
+  <li data-list-item-id="effb6ddd80869a9b6520f08270293b896">
     <span style="font-weight: 400;">views - allows for the views/pages accessed by a user to be tracked</span>
   </li>
-  <li>
+  <li data-list-item-id="e124cf7b9c6b27cb041ade5fc8480ebc2">
     <span style="font-weight: 400;">scrolls - allows a user’s scrolls to be tracked on the heatmap</span>
   </li>
-  <li>
+  <li data-list-item-id="e463a5163f9473f646182cc6f6f1cac76">
     <span style="font-weight: 400;">clicks - allows a user’s clicks and link clicks to be tracked on the heatmap</span>
   </li>
-  <li>
+  <li data-list-item-id="e111abab0f74ffa94bb0e89748f21527a">
     <span style="font-weight: 400;">forms - allows a user’s form submissions to be tracked</span>
   </li>
-  <li>
+  <li data-list-item-id="e6a66dc4f651c9f3e64dbc441125df156">
     <span style="font-weight: 400;">crashes - allows JavaScript errors to be tracked</span>
   </li>
-  <li>
+  <li data-list-item-id="e2723470a8754b6085196755ad280a106">
     <span style="font-weight: 400;">attribution - allows direct attribution tracking</span>
   </li>
-  <li>
+  <li data-list-item-id="e0ffa2be18fc595fd09b98f0a523a3cf7">
     <span style="font-weight: 400;">users - allows user information, including custom properties, to be collected/provided</span>
   </li>
-  <li>
+  <li data-list-item-id="e84edb7d653cdfd5c927e7b824c3d5c40">
     <span style="font-weight: 400;">star-rating - allows user rating and feedback tracking through rating widgets</span>
   </li>
-  <li>
+  <li data-list-item-id="ea2a4a8efce6feb6d98826e0c04b80bc3">
     <span style="font-weight: 400;">feedback - allows survey, nps and rating widgets usage and reporting</span>
   </li>
-  <li>
+  <li data-list-item-id="e39f646a0be15e35bc45ce7312d891072">
     <span style="font-weight: 400;">apm - allows performance tracking of application by recording traces</span>
   </li>
-  <li>
+  <li data-list-item-id="e8f213f13ca2e51b681abb0610885f3e9">
     <span style="font-weight: 400;">location - allows a user’s location (country, city area) to be recorded</span>
   </li>
-  <li>
+  <li data-list-item-id="e0c47c39e8bfe9dba49df5270b61c1e65">
     <span style="font-weight: 400;">remote-config - allows users to download remote config from the server</span>
   </li>
 </ul>
@@ -1792,11 +2017,11 @@ Countly.track_performance();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// in your Countly init script
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// in your Countly init script
 Countly.require_consent = true;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key: "YOUR_APP_KEY",
   url: "https://your.server.ly",
   require_consent: true // this will enable consent management
@@ -1805,7 +2030,7 @@ Countly.require_consent = true;</code></pre>
 </div>
 <h2 id="h_01HABTQ4391J4A916V53AVFVP5">Changing Consent</h2>
 <p>
-  <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you could check if you already have consent from this visitor. If not, you could present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the <strong>Countly.add_consent</strong> method and passing one or multiple features (as an array). </span>
+  <span style="font-weight: 400;">Upon a visitor’s arrival to your website, you could check if you already have consent from this visitor. If not, you could present them with a popup explaining what will be tracked and allow them to consent to tracking. When a user selects the consent preferences, you should persistently store it, and on each Countly load, let Countly know for which features the user gave consent by calling the <strong>Countly.add_consent</strong> method and passing one or multiple features (as an array).</span>
 </p>
 <p>
   <span style="font-weight: 400;">Also you can also allow the user to change their mind regarding separate settings and when changes are going to be made you can </span><span style="font-weight: 400;">call the <strong>Countly.add_consent</strong> or <strong>Countly.remove_consent</strong> methods to allow Countly to track specific features or disable tracking for them.</span>
@@ -1817,7 +2042,7 @@ Countly.require_consent = true;</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// to add consent {string|array}
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// to add consent {string|array}
 Countly.q.push(['add_consent', feature]);
 
 // to remove consent {string|array}
@@ -1825,7 +2050,7 @@ Countly.q.push(['remove_consent', feature]);
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// to add consent {string|array}
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// to add consent {string|array}
 Countly.add_consent(feature)
 
 // to remove consent {string|array}
@@ -1843,7 +2068,7 @@ Countly.remove_consent(feature)</code></pre>
     <span class="tabs-link">One group for everything</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.group_features({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.group_features({
   activity:["sessions","events","views"],
   interaction:["scrolls","clicks","forms"]
 });
@@ -1852,7 +2077,7 @@ Countly.remove_consent(feature)</code></pre>
 //or call Countly.add_consent("crashes") to allow some separate feature</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.group_features({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.group_features({
   all:["sessions","events","views","scrolls","clicks","forms","crashes","attribution","users"]
 });
 //After this call Countly.add_consent("all") to allow all features</code></pre>
@@ -1875,14 +2100,14 @@ Countly.remove_consent(feature)</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="JavaScript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "https://yourdomain.com";
 Countly.salt = "your_salt";
 // init after      
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="JavaScript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key: "YOUR_APP_KEY",
   url: "http://yourdomain.com",
   salt: "your_salt"
@@ -1895,144 +2120,151 @@ Countly.salt = "your_salt";
   Here are the properties you may set up upon Countly initialization:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e4100bfe95be87db77b603b90d581a2b3">
     <strong>app_key</strong> - mandatory, app key for your app created in Countly
   </li>
-  <li>
+  <li data-list-item-id="e475b7581ad60994fbbd4ee393e1c239c">
     <strong>device_id</strong> - to identify a visitor, will be autogenerated
     if not provided
   </li>
-  <li>
+  <li data-list-item-id="e2105c963aa5b3e3ac78c6a30e4b987ff">
     <strong>url</strong> - your Countly server URL - you may also use your own
     server URL or IP here
   </li>
-  <li>
+  <li data-list-item-id="edff0575cafea5ec825cde9af35e44910">
     <strong>app_version</strong> - (optional) the version of your app or website
   </li>
-  <li>
+  <li data-list-item-id="ed9ed12a3a8eb29e2c456625a0f6f450d">
     <strong>country_code</strong> - (optional) country code for your visitor
   </li>
-  <li>
+  <li data-list-item-id="eb6334e4e645344fab685c054d0b907be">
     <strong>city</strong> - (optional) name of the city of your visitor
   </li>
-  <li>
+  <li data-list-item-id="e43705e4ef123780d7526bb3afdcf68f6">
     <strong>ip_address</strong> - (optional) IP address of your visitor
   </li>
-  <li>
+  <li data-list-item-id="e52bfcad2d643a80986d062087176880b">
     <strong>debug</strong> - output debug info into the console (default: false)
   </li>
-  <li>
+  <li data-list-item-id="e578339b9ce7bd79192753e2ec819eddd">
     <strong>ignore_bots</strong> - option to ignore traffic from bots (default:
     true)
   </li>
-  <li>
+  <li data-list-item-id="eae3ec7896c9ff4d39a724710065728d0">
     <strong>interval</strong> -
     <span style="font-weight: 400;">set an interval for how often inspections should be made to see if there is any data to report and then report it (default: 500 ms)</span>
   </li>
-  <li>
+  <li data-list-item-id="ee70aa683256e8066daf462dabd4a9898">
     <strong>queue_size</strong> - the maximum amount of queued requests to store
     (default: 1000)
   </li>
-  <li>
+  <li data-list-item-id="ea30e441b05f50046d6c132c73e6d233e">
     <strong>fail_timeout</strong> -
     <span style="font-weight: 400;">set the time to wait in seconds after a failed connection to the server (default: 60 seconds)</span>
   </li>
-  <li>
+  <li data-list-item-id="eab620a982540eadabb26c3663b20c50f">
     <strong>disable_sdk_behavior_settings_updates</strong> -
     <span style="font-weight: 400;">set it to true to disable SDK behavior setting updates (default: false)</span>
   </li>
-  <li>
+  <li data-list-item-id="ee4861644a1319b3d93d7a3028f771e15">
     <strong>disable_backoff_mechanism</strong> -
     <span style="font-weight: 400;">set it to true to disable request backoff when server is busy logic (default: false)</span>
   </li>
-  <li>
+  <li data-list-item-id="e9494553d5ee19e7fe77ea814ede0b674">
     <strong>inactivity_time</strong> -
     <span style="font-weight: 400;">the time limit after which a user will be considered inactive if no actions have been made. No mouse movement, scrolling, or keys pressed. Expressed in minutes (default: 20 minutes)</span>
   </li>
-  <li>
+  <li data-list-item-id="e792c27d354bc83d2f5947a3bf284574e">
     <strong>session_update</strong> -
     <span style="font-weight: 400;">how often a session should be extended, expressed in seconds (default: 60 seconds)</span>
   </li>
-  <li>
+  <li data-list-item-id="eece4cce3e7f7e2ff2facedfd41bbcf61">
     <strong>max_events</strong> - maximum amount of events to send in one batch
     (default: 100)
   </li>
-  <li>
+  <li data-list-item-id="e352de9b8bba1bd8edca4ca1fd82f774d">
     <strong>behavior_settings</strong> - an object that includes server config
     options taken from your server (experimental!)
   </li>
-  <li>
+  <li data-list-item-id="ef51e35565be82709f8f075ef58cf1e08">
     <strong>content_whitelist</strong> - an array that includes urls to your
     other domains which can serve the Content
   </li>
-  <li>
+  <li data-list-item-id="ebefc16a076c86dd88128747ecbf529ea">
     <strong>max_breadcrumb_count</strong> -
     <span style="font-weight: 400;">the maximum amount of breadcrumbs to store for crash logs (default: 100)</span>
   </li>
-  <li>
+  <li data-list-item-id="eabe816bb534a61315c759ce84a9c30be">
     <strong>ignore_referrers</strong> - array with referrers to ignore (default:
     none)
   </li>
-  <li>
+  <li data-list-item-id="e5c86777777b3ba2f7579632735c0ba6a">
     <strong>salt</strong> - string salt for checksums (default: none)
   </li>
-  <li>
+  <li data-list-item-id="ee56e71b7416bbbe6b3e4d3b4e3196830">
     <strong>ignore_prefetch</strong> -
     <span style="font-weight: 400;">ignore prefetching and pre-rendering from counting as real website visits (default: true)</span>
   </li>
-  <li>
+  <li data-list-item-id="ec9976e02f6add178c8816120f67cb3b5">
     <strong>heatmap_whitelist</strong> -
     <span style="font-weight: 400;">Array of trusted domains (as string) that can trigger heatmap script loading. By default the SDK whitelists your server url.</span>
   </li>
-  <li>
+  <li data-list-item-id="e1c2c24d4ead8ddad05caf4726942793b">
     <strong>force_post</strong> -
     <span style="font-weight: 400;">force using post method for all requests (default: false)</span>
   </li>
-  <li>
+  <li data-list-item-id="e39a14c5f7ee5df5984ca624ef609bdc5">
     <strong>ignore_visitor</strong> -
     <span style="font-weight: 400;">ignore this current visitor (default: false)</span>
   </li>
-  <li>
+  <li data-list-item-id="e12885494f950c4f665f4362e0f0b851f">
     <strong>require_consent</strong> - P<span style="font-weight: 400;">ass true if you are implementing GDPR compatible consent management. This would prevent running any functionality without proper consent (default: false)</span>
   </li>
-  <li>
+  <li data-list-item-id="ed39e178d90895f02e6c9333d9703ddf6">
     <strong>utm</strong> - o<span style="font-weight: 400;">bject instructing which UTM parameters to track (default: {"source":true, "medium":true, "campaign":true, "term":true, "content":true})</span>
   </li>
-  <li>
+  <li data-list-item-id="eb9da4d230b0775b0a69593ad999ac0d2">
     <strong>use_session_cookie</strong> - use cookies to track sessions (default:
     true)
   </li>
-  <li>
+  <li data-list-item-id="e1deebcbabee6927893e2fb80e11376b3">
     <strong>session_cookie_timeout</strong> -
     <span style="font-weight: 400;">how long until a cookie session should expire, expressed in minutes (default: 30 minutes)</span>
   </li>
-  <li>
+  <li data-list-item-id="eb6a9ee97e7424466f8f63fb0381105c3">
     <strong>remote_config</strong> -
     <span style="font-weight: 400;">enable automatic remote config fetching, provide the callback function to be notified when fetching is complete (default: false)</span>
   </li>
-  <li>
+  <li data-list-item-id="ec4c046c6c87e5a41cd3e54ffa97892b2">
     <strong>rc_automatic_optin_for_ab</strong> -
     <span style="font-weight: 400;">opts in the user for A/B testing while fetching the remote config (default: true)</span>
   </li>
-  <li>
+  <li data-list-item-id="e979da0816dca62fd298b05a4abbed8c9">
     <strong>use_explicit_rc_api</strong> -
     <span style="font-weight: 400;">set it to true to use the explicit remote config API (default: false)</span>
   </li>
-  <li>
-    <strong>namespace</strong> - h<span>ave a separate namespace for persistent data when using multiple trackers on the same domain</span>
+  <li data-list-item-id="e18874d58d574927b35e25acc31973bdf">
+    <strong>namespace</strong> - have a separate namespace for persistent data
+    when using multiple trackers on the same domain
   </li>
-  <li>
-    <strong>track_domains</strong> -
-    <span>Set to false to disable domain tracking, so no domain data would be reported (default: true)</span>
+  <li data-list-item-id="e664cde4707026a4ddb774ef62c1f2bbc">
+    <strong>track_domains</strong> - Set to false to disable domain tracking,
+    so no domain data would be reported (default: true)
   </li>
-  <li>
-    <span><strong>headers</strong> - object to override or add headers to all SDK requests</span>
+  <li data-list-item-id="edf80e90dd8ee9bffe7d9079de90c9cfa">
+    <strong>headers</strong> - object to override or add headers to all SDK requests
   </li>
-  <li>
-    <span><strong>storage</strong> - What type of storage to use, by default uses local storage and would fallback to cookies, but you can set values "localstorage" or "cookies" to force only specific storage, or use "none" to not use any storage and keep everything in memory</span>
+  <li data-list-item-id="e61edd9fc6176cd8655198d61f8be1724">
+    <strong>storage</strong> - What type of storage to use, by default uses local
+    storage and would fallback to cookies, but you can set values "localstorage"
+    or "cookies" to force only specific storage, or use "none" to not use any
+    storage and keep everything in memory
   </li>
-  <li>
-    <span><strong>metrics</strong> - provide metrics override or custom metrics for this user. For more information on the specific metric keys used by Countly, check <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.</span><span></span>
+  <li data-list-item-id="ee4e44630e7d469305d8fdfdd576430d1">
+    <strong>metrics</strong> - provide metrics override or custom metrics for
+    this user. For more information on the specific metric keys used by Countly,
+    check
+    <a href="https://support.countly.com/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-Concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.
   </li>
 </ul>
 <p>
@@ -2044,7 +2276,7 @@ Countly.salt = "your_salt";
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.debug = false;
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.debug = false;
 Countly.app_key = "YOUR_APP_KEY";
 Countly.device_id = "1234-1234-1234-1234";
 Countly.url = "https://try.count.ly";
@@ -2054,7 +2286,7 @@ Countly.city = "Riga";
 Countly.ip_address = "83.140.15.1";</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   debug:false,
   app_key:"YOUR_APP_KEY",
   device_id:"1234-1234-1234-1234",
@@ -2140,11 +2372,11 @@ Countly.ip_address = "83.140.15.1";</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="html">//possible options are "localstorage", "cookies" and "none"
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//possible options are "localstorage", "cookies" and "none"
 Countly.storage = "localstorage";</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//possible options are "localstorage", "cookies" and "none"
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//possible options are "localstorage", "cookies" and "none"
 Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
@@ -2158,7 +2390,8 @@ Countly.init({
 </p>
 <h3 id="h_01HABTQ4397KTBE8EHNMVFRQ7V">Collect User Data From Filled Forms</h3>
 <p>
-  <span style="font-weight: 400;">This method will look into the forms filled out by your users and will try to gather data, such as names, email addresses, usernames, etc.<br>All forms will automatically be checked, but you have the option to provide a form element if you would like to collect data only from a specific form, or select a method multiple times for different forms. Also, if you are already providing data for users, then you would not want to overwrite it. You may set the third parameter as true to indicate that data found should be stored in custom properties.</span>
+  <span style="font-weight: 400;">This method will look into the forms filled out by your users and will try to gather data, such as names, email addresses, usernames, etc.</span><br>
+  <span style="font-weight: 400;">All forms will automatically be checked, but you have the option to provide a form element if you would like to collect data only from a specific form, or select a method multiple times for different forms. Also, if you are already providing data for users, then you would not want to overwrite it. You may set the third parameter as true to indicate that data found should be stored in custom properties.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2166,7 +2399,7 @@ Countly.init({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//collect data from forms
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//collect data from forms
 Countly.q.push(['collect_from_forms']);
 
 //collect data from specific form
@@ -2176,7 +2409,7 @@ Countly.q.push(['collect_from_forms', formElement]);
 Countly.q.push(['collect_from_forms', document, true]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//collect data from forms
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//collect data from forms
 Countly.collect_from_forms();
 
 //collect data from specific form
@@ -2189,7 +2422,7 @@ Countly.collect_from_forms(document, true);</code></pre>
 <p>
   <span style="font-weight: 400;">Passwords and other sensitive data will be omitted, however, if you would explicitly like to exclude some form input from being processed, just add the css class&nbsp;<strong>cly_user_ignore</strong>&nbsp;to that element. Oppositely, you may need to specify data from this input to be collected as the provided key by adding the prefixed css class&nbsp;<strong>cly_user_key</strong>. Therefore, if you would like to store data as a name, you should specify the&nbsp;<strong>cly_user_name</strong>&nbsp;css class.</span>
 </p>
-<pre><code class="html">&lt;form method='post' name='test_form'&gt;
+<pre class="wysiwyg-code-block"><code class="language-javascript">&lt;form method='post' name='test_form'&gt;
   &lt;!-- data will be checked in this input --&gt;
 &lt;p&gt;&lt;input type="text" name="e" value="myemail@mydomain.com"&gt;&lt;/p&gt;
   
@@ -2209,7 +2442,7 @@ Countly.collect_from_forms(document, true);</code></pre>
 <p>
   <span style="font-weight: 400;">Here is an example how to receive data from Facebook, including locations and time zones as custom properties.</span>
 </p>
-<pre><code class="html">&lt;script src="https://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
+<pre class="wysiwyg-code-block"><code class="language-javascript">&lt;script src="https://connect.facebook.net/en_US/all.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript"&gt;
 FB.init({
   appId: '251676171676751',
@@ -2258,14 +2491,14 @@ FB.getLoginStatus(function(stsResp) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//user stored conversion data
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//user stored conversion data
 Countly.q.push(['recordDirectAttribution']);
 
 //or provide campaign id yourself
 Countly.q.push(['recordDirectAttribution', "MyCampaignID"]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//user stored conversion data
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//user stored conversion data
 Countly.recordDirectAttribution();
 
 //or provide campaign id yourself
@@ -2285,10 +2518,10 @@ Countly.recordDirectAttribution("MyCampaignID");</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['track_links']);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['track_links']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.track_links();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.track_links();</code></pre>
   </div>
 </div>
 <p>
@@ -2310,14 +2543,14 @@ Countly.recordDirectAttribution("MyCampaignID");</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//will not collect hidden inputs
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//will not collect hidden inputs
 Countly.q.push(['track_forms']);
 
 //will collect hidden inputs
 Countly.q.push(['track_forms', null, true]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//will not collect hidden inputs
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//will not collect hidden inputs
 Countly.track_forms();
 
 //will collect hidden inputs
@@ -2331,11 +2564,12 @@ Countly.track_forms(null, true);</code></pre>
 <p>
   <span style="font-weight: 400;">Ensure JavaScript has been enabled for your Webview</span>
 </p>
-<pre><code class="java">myWebView.getSettings().setJavaScriptEnabled(true);<br></code></pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">myWebView.getSettings().setJavaScriptEnabled(true);
+</code></pre>
 <p>
   <span style="font-weight: 400;">Ensure local storage has been enabled</span>
 </p>
-<pre><code class="javascript">//change the path to where you want to store local storage data
+<pre class="wysiwyg-code-block"><code class="language-javascript">//change the path to where you want to store local storage data
 myWebView.getSettings().setDomStorageEnabled(true);
 myWebView.getSettings().setDatabaseEnabled(true);
 if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
@@ -2345,20 +2579,20 @@ if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
   <span style="font-weight: 400;">If you would like to use Countly both in the native app and Webview, then you would maybe also like to match the device_id between them, so the transitions may be seamless and you may continue to track events and data from both for the same user.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">In this case, there are a couple things you should do: </span>
+  <span style="font-weight: 400;">In this case, there are a couple things you should do:</span>
 </p>
 <ol>
-  <li>
-    <span style="font-weight: 400;">Defer initializing Countly by putting the initialization code in some function. </span>
+  <li data-list-item-id="ea75f64aa125664472b309e71105be968">
+    <span style="font-weight: 400;">Defer initializing Countly by putting the initialization code in some function.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">Do not track sessions in Webview as they are already tracked by the native app. </span>
+  <li data-list-item-id="e2607702791dfaedb3b7ea39d1a796bea">
+    <span style="font-weight: 400;">Do not track sessions in Webview as they are already tracked by the native app.</span>
   </li>
-  <li>
+  <li data-list-item-id="e2ad9122b7354bbd42a14f68a34b88ce1">
     <span style="font-weight: 400;">Pass the device_id to Webview and run the initialization function once Webview has loaded.</span>
   </li>
 </ol>
-<pre><code class="html">&lt;!--Countly script in webview--&gt;
+<pre class="wysiwyg-code-block"><code class="language-javascript">&lt;!--Countly script in webview--&gt;
 &lt;script type='text/javascript'&gt;
   var Countly = Countly || {};
   Countly.q = Countly.q || [];
@@ -2395,10 +2629,10 @@ if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.KITKAT) {
     <span class="tabs-link">iOS</span>
   </div>
   <div class="tab">
-    <pre><code class="java">myWebView.loadUrl("javascript:InitializeCountly('"+device_id+"');");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">myWebView.loadUrl("javascript:InitializeCountly('"+device_id+"');");</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="objectivec">#import "CountlyDeviceInfo.h"
+    <pre class="wysiwyg-code-block"><code class="language-javascript">#import "CountlyDeviceInfo.h"
 
 NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", CountlyDeviceInfo.sharedInstance.deviceID];
 [myWebView stringByEvaluatingJavaScriptFromString:js];</code></pre>
@@ -2406,12 +2640,12 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
 </div>
 <h2 id="h_01HABTQ43AGMDVXDS3GVJS4JKT">Tracking Users with Javascript Disabled</h2>
 <p>
-  <span style="font-weight: 400;">In some cases, a user might have JavaScript disabled, meaning normal ways of tracking those users will prove ineffective. In such a case, you may use the transparent 1px x 1px image hosted on your Countly server as reporting the URL and report all the same&nbsp;<a href="https://api.count.ly/reference#i">parameters as all the SDKs have been described here</a>.</span>
+  <span style="font-weight: 400;">In some cases, a user might have JavaScript disabled, meaning normal ways of tracking those users will prove ineffective. In such a case, you may use the transparent 1px x 1px image hosted on your Countly server as reporting the URL and report all the same&nbsp;</span><a href="https://api.count.ly/reference#i"><span style="font-weight: 400;">parameters as all the SDKs have been described here</span></a><span style="font-weight: 400;">.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Assuming your Countly is hosted at domain.com and the app_key is "12345", the default setup should look like this:</span>
 </p>
-<pre><code class="html">&lt;noscript&gt;&lt;img src='http://domain.com/pixel.png?app_key=12345&amp;begin_session=1'/&gt;&lt;/noscript&gt;</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">&lt;noscript&gt;&lt;img src='http://domain.com/pixel.png?app_key=12345&amp;begin_session=1'/&gt;&lt;/noscript&gt;</code></pre>
 <p>
   <span style="font-weight: 400;">Simply place it anywhere in your HTML code and it should only work if JavaScript is disabled, which means SDK tracking won't work.</span>
 </p>
@@ -2421,7 +2655,7 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
 <p>
   <span style="font-weight: 400;">However, as mentioned before, this accepts any parameters as a normal SDK endpoint does. Thus, if you dynamically generate data via the server, you may also dynamically generate this URL to provide information that you have about the user. That might be the device_id parameter (for identification), OS, OS version, and any other metrics or information you have, as for example</span>
 </p>
-<pre><code class="html">&lt;noscript&gt;&lt;img src='http://domain.com/pixel.png?app_key=12345&amp;device_id=test@test.com&amp;begin_session=1&amp;metrics={"_os":"Android", "_os_version":"4.1"}'/&gt;&lt;/noscript&gt;</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-javascript">&lt;noscript&gt;&lt;img src='http://domain.com/pixel.png?app_key=12345&amp;device_id=test@test.com&amp;begin_session=1&amp;metrics={"_os":"Android", "_os_version":"4.1"}'/&gt;&lt;/noscript&gt;</code></pre>
 <h2 id="h_01HABTQ43AANJH2V30NHD2NE2Y">Multiple Trackers on the Same Domain</h2>
 <p>
   <span style="font-weight: 400;">Sometimes you would like to track different parts of the same domain/website as separate applications.</span>
@@ -2441,7 +2675,7 @@ NSString \*js = [NSString stringWithFormat: @"InitializeCountly('%@');", Countly
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.debug = false;
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.debug = false;
 Countly.app_key = "YOUR_APP_KEY";
 Countly.device_id = "1234-1234-1234-1234";
 Countly.url = "https://try.count.ly";
@@ -2450,7 +2684,7 @@ Countly.namespace = "forum";
 Countly.init();</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   debug:false,
   app_key:"YOUR_APP_KEY",
   device_id:"1234-1234-1234-1234",
@@ -2467,7 +2701,7 @@ Countly.init();</code></pre>
   <span style="font-weight: 400;">This may be achieved by passing the device ID as a URL parameter when transferring a user from one website/domain to the other.</span>
 </p>
 <p>
-  <strong><span style="font-weight: 400;">Simply take the device ID value from <strong>Countly.device_id</strong>&nbsp;and pass it as a URL parameter named&nbsp;<strong>cly_device_id</strong>&nbsp;as follows:&nbsp;<a href="http://newdomain.com/?cly_device_id=your-user-device-id">http://newdomain.com/?cly_device_id=your-user-device-id.</a></span></strong>
+  <span style="font-weight: 400;"><strong>Simply take the device ID value from Countly.device_id&nbsp;and pass it as a URL parameter named&nbsp;cly_device_id&nbsp;as follows:&nbsp;</strong></span><a href="http://newdomain.com/?cly_device_id=your-user-device-id"><span style="font-weight: 400;"><strong>http://newdomain.com/?cly_device_id=your-user-device-id.</strong></span></a>
 </p>
 <h2 id="h_01HABTQ43AA30412AKD86MA7RN">Tracked Cookie List and Explanations</h2>
 <p>
@@ -2476,41 +2710,41 @@ Countly.init();</code></pre>
   cookies.
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="ec0663d581a80d561aebdfd10796e25b8">
     <strong>cly_queue</strong> - a queue of requests that will be made to the
     server and acknowledged
   </li>
-  <li>
+  <li data-list-item-id="e3a6dfcf87511ee16afa1ac70bccad8e5">
     <strong>cly_event</strong> - a queue of events reported by SDK
   </li>
-  <li>
+  <li data-list-item-id="e5766b0a38dc0cd6f556ce353eb901eb5">
     <strong>cly_remote_configs</strong> - cached remote config from server
   </li>
-  <li>
+  <li data-list-item-id="e593bedb6b873168f74f282f6ae754755">
     <strong>cly_ignore</strong> - ignore the user and do not track anything if
     this is set to true
   </li>
-  <li>
+  <li data-list-item-id="e03c29bfa4f1ef4ec190f850ee427391e">
     <strong>cly_id</strong> - current user's device id
   </li>
-  <li>
+  <li data-list-item-id="e4172b9b1982573f09370c73870de0457">
     <strong>cly_id_type</strong> - current user's device id type
   </li>
-  <li>
+  <li data-list-item-id="eebd5422669f06a459e9d03376c6e8b33">
     <strong>cly_cmp_id</strong> - last campaign id user came from
   </li>
-  <li>
+  <li data-list-item-id="eabc1135f313f8292650d0e9a8bd623d5">
     <strong>cly_cmp_uid</strong> - user identifier for last campaign
   </li>
-  <li>
+  <li data-list-item-id="ec18c70f49dc76e83d4fcfb6387327e33">
     <strong>cly_session</strong> - timestamp when the last session started so
     we would not call begin_session on each page load
   </li>
-  <li>
+  <li data-list-item-id="e7b6b5694868275710f14dcb79eb31b14">
     <strong>cly_token</strong> - token passed for retrieving heat map data from
     the server
   </li>
-  <li>
+  <li data-list-item-id="e42e5d15fc201efd6f3c27c70cd94178d">
     <strong>cly_old_token</strong> - to detect token expiration and reset for
     action map data
   </li>
@@ -2531,7 +2765,7 @@ Countly.init();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">
 Countly = Countly || {};
 Countly.q = Countly.q || [];
 
@@ -2557,7 +2791,7 @@ Countly.q.push(["YOUR_APP_KEY_2", "add_event", {
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">
 // initializing first instance, which will be global Countly
 Countly.init({
   app_key: "YOUR_APP_KEY_1",
@@ -2600,13 +2834,13 @@ Countly2.add_event({
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "YOUR_SERVER_URL";
 Countly.max_key_length = 50;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "YOUR_SERVER_URL",
   max_key_length: 50
@@ -2624,13 +2858,13 @@ Countly.max_key_length = 50;
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "YOUR_SERVER_URL";
 Countly.max_value_size = 12;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "YOUR_SERVER_URL",
   max_value_size: 12
@@ -2648,13 +2882,13 @@ Countly.max_value_size = 12;
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "YOUR_SERVER_URL";
 Countly.max_segmentation_values = 67;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "YOUR_SERVER_URL",
   max_segmentation_values: 67
@@ -2672,13 +2906,13 @@ Countly.max_segmentation_values = 67;
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "YOUR_SERVER_URL";
 Countly.max_breadcrumb_count = 45;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "YOUR_SERVER_URL",
   max_breadcrumb_count: 45
@@ -2697,13 +2931,13 @@ Countly.max_breadcrumb_count = 45;
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "YOUR_SERVER_URL";
 Countly.max_stack_trace_lines_per_thread = 23;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "YOUR_SERVER_URL",
   max_stack_trace_lines_per_thread: 23
@@ -2721,13 +2955,13 @@ Countly.max_stack_trace_lines_per_thread = 23;
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.app_key = "YOUR_APP_KEY";
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.app_key = "YOUR_APP_KEY";
 Countly.url = "YOUR_SERVER_URL";
 Countly.max_stack_trace_line_length = 10;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "YOUR_SERVER_URL",
   max_stack_trace_line_length: 10
@@ -2763,10 +2997,10 @@ Countly.max_stack_trace_line_length = 10;
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.queue_size = 5000;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.queue_size = 5000;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   url: "https://try.count.ly",
   queue_size: 5000
@@ -2787,7 +3021,7 @@ Countly.max_stack_trace_line_length = 10;
   any or all of these tags into your links as query Countly would recognize and
   record them accordingly. An example usage of the default tags is as follows:
 </p>
-<pre><code class="javascript">
+<pre class="wysiwyg-code-block"><code class="language-javascript">
 // basic structure of a link that contains all available default tags
 yourUrl + ?utm_source=someValue&amp;utm_medium=someValue&amp;utm_campaign=someValue&amp;utm_term=someValue&amp;utm_content=someValue
 
@@ -2808,7 +3042,7 @@ yourUrl + ?utm_source=someValue&amp;utm_campaign=someValue
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">
+    <pre class="wysiwyg-code-block"><code class="language-javascript">
 Countly.app_key = "YOUR_APP_KEY";
 Countly.device_id = "1234-1234-1234-1234";
 // add your custom tags and set their value to true
@@ -2819,7 +3053,7 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.init({
   app_key:"YOUR_APP_KEY",
   device_id:"1234-1234-1234-1234",
   // add your custom tags and set their value to true
@@ -2853,21 +3087,21 @@ yourUrl + ?utm_tag1=someValue&amp;utm_tag2=someValue
   There are 3 steps you have to follow to enable the GA Adapter plugin:
 </p>
 <ol>
-  <li>
+  <li data-list-item-id="e252c700fb1e35f62d1d6951da68d05b9">
     First integrate Countly into your project (You can reach details from
     <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-#minimal-setup">here</a>)
   </li>
-  <li>
+  <li data-list-item-id="e484e40715ddebced923e1c2cd840705b">
     Then declare the plugin script before your Google Analytics implementation
     block
   </li>
-  <li>
+  <li data-list-item-id="edd8b9d4a620e2c6f07d9981ba312da2a">
     Finally, add 'CountlyGAAdapter();' into your Google Analytics snippet
   </li>
 </ol>
 <p>A simple implementation would look something like this:</p>
 <div>
-  <pre><code class="html">// ...
+  <pre class="wysiwyg-code-block"><code class="language-javascript">// ...
 // ...    
 // ... Countly implementation was here
 // &lt;/script&gt;
@@ -2906,7 +3140,7 @@ ga('send','pageview','page.html');
   not supported so instead the SDK should be imported by
   <code>importScripts</code> method. It would look something like this:
 </p>
-<pre><code>// Path or URL
+<pre class="wysiwyg-code-block"><code class="language-javascript">// Path or URL
 importScripts("../path/to/countly.js");</code></pre>
 <p>
   After importing the Countly script in your worker, you can call the Countly methods
@@ -2918,7 +3152,7 @@ importScripts("../path/to/countly.js");</code></pre>
 <p>
   A sample worker (let's say 'worker.js') could look like this:
 </p>
-<pre><code>importScripts("../path/to/countly.js"); // CDN is possible
+<pre class="wysiwyg-code-block"><code class="language-javascript">importScripts("../path/to/countly.js"); // CDN is possible
 
 const STORE={}; // in-memory storage for worker
 
@@ -2963,7 +3197,7 @@ onmessage = function (e) {
 <p>
   In your website, an example communication can happen like this with the worker:
 </p>
-<pre><code>// create a worker
+<pre class="wysiwyg-code-block"><code class="language-javascript">// create a worker
 const myWorker = new Worker("worker.js");
 
 // send messages to the Worker
@@ -2990,14 +3224,14 @@ function endSession() { // end a session
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">// to stop tracking user data at next page load
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// to stop tracking user data at next page load
 Countly.q.push(['opt_out']);
 
 // to resume tracking user data at next page load
 Countly.q.push(['opt_in']);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">// to stop tracking user data at next page load
+    <pre class="wysiwyg-code-block"><code class="language-javascript">// to stop tracking user data at next page load
 Countly.opt_out();
 
 // to resume tracking user data at next page load
@@ -3005,7 +3239,7 @@ Countly.opt_in();</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Disabling tracking for specific users with these methods can be sufficient for testing or situations where you decide to not track a specific user's information from now on. However, should you desire more granular feature control, checkout the <a href="/hc/en-us/articles/4409195031577#h_01HABTQ439V9NNDDCW31XG086F">User Consent</a> section.</span>
+  <span style="font-weight: 400;">Disabling tracking for specific users with these methods can be sufficient for testing or situations where you decide to not track a specific user's information from now on. However, should you desire more granular feature control, checkout the </span><a href="#h_01HABTQ439V9NNDDCW31XG086F"><span style="font-weight: 400;">User Consent</span></a><span style="font-weight: 400;"> section.</span>
 </p>
 <div class="callout callout--info">
   <p>
@@ -3040,9 +3274,10 @@ Countly.opt_in();</code></pre>
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">//Fetch user's feedback widgets from the server
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//Fetch user's feedback widgets from the server
 Countly.q.push(['get_available_feedback_widgets', feedbackWidgetsCallback]);
-<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
+
+// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widhet objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   if (err) {
     console.log(err);
@@ -3070,9 +3305,10 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">//Fetch user's feedback widgets from the server
+    <pre class="wysiwyg-code-block"><code class="language-javascript">//Fetch user's feedback widgets from the server
 Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
-<br>// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widget objects
+
+// Feedback widget callback function, err is for error and countlyPresentableFeedback contains an array of widget objects
 function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
   if (err) {
     console.log(err);
@@ -3113,10 +3349,10 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['change_id', "myNewId"]);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['change_id', "myNewId"]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.change_id("myNewId");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.change_id("myNewId");</code></pre>
   </div>
 </div>
 <div class="callout callout--warning">
@@ -3136,107 +3372,10 @@ function feedbackWidgetsCallback(countlyPresentableFeedback, err) {
     <span class="tabs-link">Synchronous</span>
   </div>
   <div class="tab">
-    <pre><code class="javascript">Countly.q.push(['change_id', "myNewId", true]);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.q.push(['change_id', "myNewId", true]);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.change_id("myNewId", true);</code></pre>
-  </div>
-</div>
-<h2 id="h_01JF7TA0TASABV8RSAX2PWYAZ8">Content Zone</h2>
-<p>
-  The Content Zone feature enhances user engagement by delivering various types
-  of content blocks, such as in-app messaging, ads, or user engagement prompts.
-  These content blocks are dynamically served from the content builder on the server,
-  ensuring that users receive relevant and up-to-date information.
-</p>
-<div class="callout callout--info">
-  <p>
-    For learning how you can use Journeys &amp; Content Builder to create In-App
-    messages you can check
-    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
-    article.
-  </p>
-</div>
-<p>
-  To start fetching content from the server, use the following method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.enterContentZone(); });
-
-// or
-Countly.q.push(['content.enterContentZone']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.content.enterContentZone();</code></pre>
-  </div>
-</div>
-<p>
-  This call will retrieve and display any available content for the user. It will
-  also regularly check if a new content is available, and if it is, will fetch
-  and show it to the user.
-</p>
-<p>
-  If you need to ask for content after a trigger you know you can use this method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.refreshContentZone(); });
-
-// or
-Countly.q.push(['content.refreshContentZone']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.content.refreshContentZone();</code></pre>
-  </div>
-</div>
-<p>
-  When you want to exit from content zone and stop SDK from checking for available
-  content you can use this method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.q.push(() =&gt; { Countly.content.exitContentZone(); });
-
-// or 
-Countly.q.push(['content.exitContentZone']);</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.content.exitContentZone();</code></pre>
-  </div>
-</div>
-<p>
-  If you need to change the frequency of content zone requests from default 30
-  seconds, you can give a custom value for intervals, in seconds, during init:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Asynchronous</span>
-    <span class="tabs-link">Synchronous</span>
-  </div>
-  <div class="tab">
-    <pre><code class="javascript">Countly.content_zone_timer_interval = 45; // seconds
-     
-// Initialize the SDK</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="javascript">Countly.init({
-  app_key: "YOUR_APP_KEY",
-  url: "https://your.server.ly",
-  content_zone_timer_interval: 45, //seconds
-});</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-javascript">Countly.change_id("myNewId", true);</code></pre>
   </div>
 </div>
 <h1 id="h_01HABTQ43BRSHEYT75ZF6AN6F5">FAQ</h1>
