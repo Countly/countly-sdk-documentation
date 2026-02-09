@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly Android SDK version 25.4.X. The SDK source
+  This documentation is for the Countly Android SDK version 26.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-android">here</a>.
 </p>
@@ -31,7 +31,7 @@
   <span style="font-weight: 400;">Now, add the Countly SDK dependency (</span><strong>use the latest SDK version currently available from gradle, not specifically the one shown in the sample below</strong><span style="font-weight: 400;">).</span>
 </p>
 <pre class="wysiwyg-code-block"><code class="language-java java">dependencies {
-  implementation 'ly.count.android:sdk:25.4.6'
+  implementation 'ly.count.android:sdk:26.1.0'
 }</code></pre>
 <h1 id="h_01HAVQDM5SKEGK68HD5082KAZH">SDK Integration</h1>
 <p>
@@ -66,14 +66,14 @@
   After the&nbsp;<code>Countly.sharedInstance().init(...)</code><span style="font-weight: 400;">call, you'll need to add the following calls to all your activities. If Application class is provided during init you can omit this step:</span>
 </p>
 <ul>
-  <li data-list-item-id="e8b9bf12ead2544ada90957cf44b6702d">
+  <li data-list-item-id="e235af0684c73b2ce33d4c5f11984f569">
     Call <code>Countly.sharedInstance().onStart(this)</code> in onStart, where
     <code>this</code> is a link to the current Activity.
   </li>
-  <li data-list-item-id="e941fcb4a3144c505d54375e63eb1566b">
+  <li data-list-item-id="edbc6b8a3f93d691a7488ffc9af810c8b">
     Call <code>Countly.sharedInstance().onStop()</code> in onStop.
   </li>
-  <li data-list-item-id="e4387842e3ff575c80f83c3b3c8e1b848">
+  <li data-list-item-id="e9df21da83b6c25caba0cf3c8ae2b9cb5">
     Call <code>Countly.sharedInstance().onConfigurationChanged(newConfig)</code>&nbsp;in
     onConfigurationChanged if you want to track the orientation changes.
   </li>
@@ -237,13 +237,13 @@ config.setLoggingEnabled(true);</code></pre>
   <span style="font-weight: 400;">Countly uses </span><a href="https://github.com/google/breakpad"><span style="font-weight: 400;">Google's Breakpad open source library</span></a><span style="font-weight: 400;"> to be able to report crashes that occurred within the C++ components of your application, assuming there are any. Breakpad provides:</span>
 </p>
 <ul>
-  <li data-list-item-id="e24c65821860d874e0785dae5c34d4d87">
+  <li data-list-item-id="eb7f7010992d2a8b1ade1bab03e0b7278">
     <span style="font-weight: 400;">a tool for creating symbol files from your object files (</span><code><span style="font-weight: 400;">dump_syms</span></code><span style="font-weight: 400;">)</span>
   </li>
-  <li data-list-item-id="e927c71fdcba13e1444d1b22271d1393c">
+  <li data-list-item-id="e4301839766f401eca2c6c50c7b3a6a2c">
     <span style="font-weight: 400;">the ability to detect and record crashes via compact minidump files (crash handler)</span>
   </li>
-  <li data-list-item-id="e426f58f37ab53e373242321467744341">
+  <li data-list-item-id="eb8022ff1b6cfdbf123aa566061797ad4">
     <span style="font-weight: 400;">a tool for generating human readable stack traces by using symbol files and crash minidump files.</span>
   </li>
 </ul>
@@ -283,12 +283,12 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   </div>
   <div class="tab">
     <pre class="wysiwyg-code-block"><code class="language-java java">plugins {
-  id "ly.count.android.plugins.upload-symbols" version "25.4.6"
+  id "ly.count.android.plugins.upload-symbols" version "26.1.0"
 }</code></pre>
   </div>
   <div class="tab is-hidden">
     <pre class="wysiwyg-code-block"><code class="language-java java">plugins {
-  id("ly.count.android.plugins.upload-symbols") version "25.4.6"
+  id("ly.count.android.plugins.upload-symbols") version "26.1.0"
 }</code></pre>
   </div>
 </div>
@@ -305,7 +305,7 @@ CountlyNative.initNative(getApplicationContext());</code></pre>
   <div class="tab">
     <pre class="wysiwyg-code-block"><code class="language-java java">// in root level gradle file
 plugins {
-  id "ly.count.android.plugins.upload-symbols" version "25.4.6" apply false
+  id "ly.count.android.plugins.upload-symbols" version "26.1.0" apply false
 }
     
 // in sub-project gradle file
@@ -316,7 +316,7 @@ plugins {
   <div class="tab is-hidden">
     <pre class="wysiwyg-code-block"><code class="language-java java">// in root level gradle file
 plugins {
-  id("ly.count.android.plugins.upload-symbols") version "25.4.6" apply false
+  id("ly.count.android.plugins.upload-symbols") version "26.1.0" apply false
 }
     
 // in sub-project gradle file
@@ -482,22 +482,22 @@ plugins {
   <span style="font-weight: 400;">We have provided an example of recording a </span><strong>purchase</strong><span style="font-weight: 400;"> event below. Here is a quick summary of the information with which each usage will provide us:</span>
 </p>
 <ul>
-  <li data-list-item-id="ef2a9c313d7630fc8b9d59aaced3391ff">
+  <li data-list-item-id="e465b5694b4d91fd4f648748214d395f4">
     Usage 1: how many times the <strong>purchase</strong> event occurred.
   </li>
-  <li data-list-item-id="e376ae782c2368652b7101b3611b446d3">
+  <li data-list-item-id="e5567a20a94c08055fed0a69429059e8f">
     Usage 2: how many times the <strong>purchase</strong> event occurred + the
     total amount of those purchases.
   </li>
-  <li data-list-item-id="eb382aa12558a974c1409d9667bf045df">
+  <li data-list-item-id="efc104ef220ee5f7e895cea179aeaa632">
     Usage 3: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">from which countries and application versions those purchases were made.</span>
   </li>
-  <li data-list-item-id="edbd2d5ba390f93b8bac604587f4c7a79">
+  <li data-list-item-id="eddabd80f17387a6f2bb392f23fd6ff6a">
     Usage 4: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions.</span>
   </li>
-  <li data-list-item-id="efeb3b7bf99fe7b14e089ea6dbb15be59">
+  <li data-list-item-id="e3c6390741d58c9af2d3221d36ca7ab9d">
     Usage 5: how many times the <strong>purchase</strong> event occurred +
     <span style="font-weight: 400;">the total amount, both of which are also available, segmented into countries and application versions + the total duration of those events.</span>
   </li>
@@ -611,7 +611,7 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
   Countly Android SDK comes with built in automatic session tracking functionality.
   Only thing necessary for this functionality to work is to add the proper calls
   to your activities after initializing the SDK. For more information you can check
-  <a href="/hc/en-us/articles/360037754031#h_01HAVQDM5SXG0Q4MRTDYXJRA8H" target="_self">here</a>.
+  <a href="#h_01HAVQDM5SXG0Q4MRTDYXJRA8H" target="_self">here</a>.
 </p>
 <h2 id="h_01HAVQDM5TBV8FDMH3JE23ZPQB">Manual Sessions</h2>
 <p>
@@ -622,9 +622,9 @@ Countly.sharedInstance().events().cancelEvent(eventName);</code></pre>
 <pre class="wysiwyg-code-block"><code class="language-java">config.enableManualSessionControl();</code></pre>
 <p>Afterwards it is up to the implementer to make calls to:</p>
 <ul>
-  <li data-list-item-id="e8b51e47545add9d241b7f06adf2e8113">Begin session</li>
-  <li data-list-item-id="e0f745897ecf746fb8c648ae0daa5197d">Update session duration</li>
-  <li data-list-item-id="e9599dd8b2a332e00021f1557784ad605">End session (also updates duration)</li>
+  <li data-list-item-id="e90981cd5fd3c577c726f38e5f616b7e5">Begin session</li>
+  <li data-list-item-id="ede659fc92b58c61751f9ecf3af74c9ff">Update session duration</li>
+  <li data-list-item-id="e00f85d31827b33146aab5aee8baba182">End session (also updates duration)</li>
 </ul>
 <p>The appropriate call to do that are:</p>
 <pre class="wysiwyg-code-block"><code class="language-java">Countly.sharedInstance().sessions().beginSession();
@@ -645,6 +645,89 @@ Countly.sharedInstance().sessions().endSession();</code></pre>
 </p>
 <pre class="wysiwyg-code-block"><code class="language-java">// after enabling manual sessions
 config.enableManualSessionControlHybridMode();</code></pre>
+<h1 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h1>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts
+  by utilizing Journeys. These content blocks are dynamically served from the content
+  builder on the server, ensuring that users receive relevant and up-to-date information.
+</p>
+<p>
+  Content support is available only on Android API level 28 and above.
+</p>
+<div class="callout callout--info">
+  <p>
+    For learning how you can use Journeys &amp; Content Builder to create In-App
+    messages you can check
+    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
+    article.
+  </p>
+</div>
+<p>
+  Only thing you need to do to enable the this feature and start fetching content
+  from the server according to your Journeys, use the following method:
+</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<h2 id="h_01KDQ1E5TS4SQ43G0XBBG31000">Fine Tuning Content</h2>
+<p>
+  Content checks happens in every 30 seconds by default. It could be configurable
+  while initializing the SDK (min. 15 seconds.)
+</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
+<p>
+  If you need to trigger a Journey and display its content after a specific user
+  action you can use the method below to fasten the process:
+</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().refreshContentZone()</code></pre>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.content.setGlobalContentCallback(callback);</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-java java">interface ContentCallback {
+  void onContentCallback(ContentStatus contentStatus, Map&lt;String, Object&gt; contentData);
+}</code></pre>
+<p>
+  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
+</p>
+<h2 id="h_01KF15HEE4AV65R6X1HN3C4579">Deep Links</h2>
+<p>
+  You can create deep links with content buttons on Journey creation screen:<br>
+  &nbsp;
+</p>
+<figure class="wysiwyg-image">
+  <img style="aspect-ratio: 527/211;" src="/guide-media/01KF15D4GZNXJ4SV5W4D1SRQ9X" width="527" height="211">
+</figure>
+<p>
+  This will work on the same principles with Push Notifications so you can check
+  out our
+  <a href="#h_01HAVQDM5TWYC5ZTJGVNPP1A1Z" target="_blank" rel="noopener noreferrer">documentation below</a>
+  to see what you need (like <strong>intent filters.</strong>) In addition to that,
+  if you would like the content to be closed during intent redirection you can
+  add <code>&amp;close=1</code> to the end of your deep links.
+</p>
+<h2 id="h_01KFN2T2137ZATTMJZ7VPBSEZ7">Display Options</h2>
+<p>
+  SDK offers two distinct ways for you to display your content. Immersive mode
+  is on by default and avoids cutouts but if you find it too aggressive you can
+  switch to safe area mode during SDK initialization to also avoid navigation bar
+  and status bar:
+</p>
+<pre class="wysiwyg-code-block"><code class="language-java java">// IMMERSIVE or SAFE_AREA
+config.setWebviewDisplayOption(WebViewDisplayOption);</code></pre>
+<figure class="wysiwyg-image wysiwyg-image-resized" style="width: 56.88%;">
+  <img style="aspect-ratio: 826/756;" src="/guide-media/01KFN3BA2Z8GH4952WP4YS7CW6" width="826" height="756">
+</figure>
 <h1 id="h_01HAVQDM5T4KYTSDG1BQ41WDM1">View Tracking</h1>
 <p>
   In the SDK all view related functionality can be browsed from the returned interface
@@ -903,7 +986,6 @@ Countly.sharedInstance().init(config);</code></pre>
 <pre class="wysiwyg-code-block"><code class="language-java java">CountlyConfig config = (new CountlyConfig(appC, COUNTLY_APP_KEY, COUNTLY_SERVER_URL));
 config.setDeviceId("YOUR_DEVICE_ID");
 Countly.sharedInstance().init(config);</code></pre>
-<pre class="wysiwyg-code-block"><code class="language-java java">&nbsp;</code></pre>
 <h2 id="h_01HAVQDM5TPKRQAZGXW73GBM90">Changing Device ID</h2>
 <p>You can change the device ID of an user with setID method:</p>
 <pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().deviceId().setID("newId");</code></pre>
@@ -912,13 +994,13 @@ Countly.sharedInstance().init(config);</code></pre>
   the current ID stored in the SDK at the time you call it:
 </p>
 <ul>
-  <li data-list-item-id="e72f196f0722d3ab63872c2e5d7f85005">
+  <li data-list-item-id="e32e3256dc793e44278c31ffbb085fb37">
     If current stored ID is <code>DeviceIdType.OPEN_UDID</code> then in the server
     all the information recorded for that device ID will be merged to the new
     ID you provide and old user with the <code>DeviceIdType.OPEN_UDID</code>
     ID will be erased.
   </li>
-  <li data-list-item-id="eb8418b91084d23da577c1971cafccb67">
+  <li data-list-item-id="e2855058186c1a741b705c78938aabb7a">
     If the current stored ID is <code>DeviceIdType.DEVELOPER_SUPPLIED</code>
     or <code>DeviceIdType.TEMPORARY_ID</code> then in the server it will also
     create a new user with this new ID if it does not exist.
@@ -1119,8 +1201,7 @@ CountlyPush.init(countlyConfigPush);</code></pre>
   Before implementing FCM to your application you would need to get Push Notification
   credentials from your Firebase Console and upload them to your Countly server.
   (If you have not done that already you can follow
-  <a href="/hc/en-us/articles/360037754031#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
-  guide.)
+  <a href="#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a> guide.)
 </p>
 <h4 id="h_01HAVQDM5TAA8KNV9Y79HAAZS8">Integrating FCM into Your App</h4>
 <p>
@@ -1200,16 +1281,16 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
   <span style="font-weight: 400;">This class is responsible for token changes and message handling logic. Countly provides default UI for your notifications, which would display a </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;if your app is in the background, or </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;if your app is active. It will also automatically report button clicks back to the server for Actioned metric conversion tracking. However, it is completely up to you, whether you would like to use this class or not. Let's have an overview of&nbsp;the </span><code><span style="font-weight: 400;">onMessageReceived</span></code><span style="font-weight: 400;">&nbsp;method:</span>
 </p>
 <ol>
-  <li data-list-item-id="e5371958bb505177c31e7e59990bb3ef0">
+  <li data-list-item-id="e1c24c52a67db45662a7d909d6eec0d32">
     <span style="font-weight: 400;">It calls </span><code><span style="font-weight: 400;">CountlyPush.decodeMessage()</span></code><span style="font-weight: 400;">&nbsp;to decode a message from the Countly-specific format. In this way, you'll have a method of accessing standard fields, such as a badge, URL, or your custom data keys.</span>
   </li>
-  <li data-list-item-id="e71bf26b645718a584701d829fb423dbd">
+  <li data-list-item-id="eac0bd02e8a6115e1c2341d0dc48d1fa4">
     <span style="font-weight: 400;">Then it checks if the message has&nbsp;a </span><code><span style="font-weight: 400;">typ</span></code><span style="font-weight: 400;">custom data key, and if it does, it only records the Actioned metric. Let's assume your custom notification is to preload some data from a remote server. Our demo app has a more in-depth scenario for this case.</span>
   </li>
-  <li data-list-item-id="e05433a1a2402df839934254efc428b88">
+  <li data-list-item-id="efc9e523af4ca149f53ecdd6119dfaf83">
     <span style="font-weight: 400;">In case the message also has </span><code><span style="font-weight: 400;">anotherActivity</span></code><span style="font-weight: 400;">&nbsp;custom data key, it creates a </span><code><span style="font-weight: 400;">notificationIntent</span></code><span style="font-weight: 400;">&nbsp;to launch the activity, named </span><code><span style="font-weight: 400;">AnotherActivity</span></code><span style="font-weight: 400;">. This intent is only used as default content intent for the user tap on a </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">. It is not used for</span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">.</span>
   </li>
-  <li data-list-item-id="e6c9c00718ce112af60d3483f6eb81938">
+  <li data-list-item-id="e14a48226b1f8fd6588f90a088b6361fd">
     <span style="font-weight: 400;">Then the service calls </span><code><span style="font-weight: 400;">CountlyPush.displayMessage()</span></code><span style="font-weight: 400;">to perform a standard Countly notification displaying logic - </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;">&nbsp;assuming your app is in the background or not running, and the </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;is in the foreground. Note that this method takes an </span><code><span style="font-weight: 400;">int</span></code><span style="font-weight: 400;">&nbsp;resource parameter. It must be compatible with the corresponding version of the Android notification small icon.</span>
   </li>
 </ol>
@@ -1248,8 +1329,7 @@ implementation 'com.google.firebase:firebase-messaging:LATEST'</code></pre>
   Before implementing HMS to your application you would need to get Push Notification
   credentials for the Push Kit and upload them to your Countly server. (If you
   have not done that already you can follow
-  <a href="/hc/en-us/articles/360037754031#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a>
-  guide.)
+  <a href="#h_01HNF9WBDT037TDHVHRSEPEMZV">this</a> guide.)
 </p>
 <h4 id="h_01HAVQDM5TG1ZQ0FZVS0N9SCX5">Integrating HMS into Your App</h4>
 <p>
@@ -1368,16 +1448,16 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   <span style="font-weight: 400;">Here are the explanations of common usage scenarios that are handled automatically:&nbsp;</span>
 </p>
 <ul>
-  <li data-list-item-id="e4db8db78b9ad5d4f6d5df78c7f13e70f">
+  <li data-list-item-id="eeaef8cc14d943bba75e7a346164f157e">
     <span style="font-weight: 400;">It doesn't do anything, apart from conversion tracking if you specify it as a </span><code><span style="font-weight: 400;">Data-only</span></code><span style="font-weight: 400;">&nbsp;notification in the dashboard. This effectively sets a special flag in the message payload, so you may process it on your own.</span>
   </li>
-  <li data-list-item-id="eb26e8f9c801f11dd3c50121bc7179154">
+  <li data-list-item-id="e769ceee40db9737591f02c3882181fc4">
     <span style="font-weight: 400;">It displays a </span><code><span style="font-weight: 400;">Notification</span></code><span style="font-weight: 400;">&nbsp;whenever a message arrives, and your application is in the background.</span>
   </li>
-  <li data-list-item-id="e0f55ad1286686c78c1fcd48f17574093">
+  <li data-list-item-id="ee21761f7c65034c4f933861e527475f9">
     <span style="font-weight: 400;">It displays </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;when a new message arrives, and your application is in the foreground.&nbsp;</span>
   </li>
-  <li data-list-item-id="efc71e04e01b820104444a550dc2bd05f">
+  <li data-list-item-id="e9514fa284851569ca6773017e2465efe">
     <span style="font-weight: 400;">It displays </span><code><span style="font-weight: 400;">Dialog</span></code><span style="font-weight: 400;">&nbsp;when a new message with an action arrives (open URL), and the user responds to it by swiping or tapping the notification.</span>
   </li>
 </ul>
@@ -1386,13 +1466,13 @@ channel.setSound(soundUri, audioAttributes);</code></pre>
   <span style="font-weight: 400;">always has a message, but the set of displayed buttons depends on the message type:</span>
 </p>
 <ul>
-  <li data-list-item-id="e7ea4419c0bddf2e89b9cbd72960982a6">
+  <li data-list-item-id="e9509e68fc63b2e813e2a2336209f8a5f">
     <span style="font-weight: 400;">It displays a single ‘Cancel’ button for notifications without any actions (only a text message).</span>
   </li>
-  <li data-list-item-id="e324e28543599677d04607aaf18a1d429">
+  <li data-list-item-id="e8d5465117d9c4e06e0a41df818e5a181">
     <span style="font-weight: 400;">For notifications with a&nbsp;</span><strong>URL</strong><span style="font-weight: 400;">&nbsp;(for instance, you ask the user to open a link to some blog post), it displays both the ‘Cancel’ &amp; ‘Open’ buttons.</span>
   </li>
-  <li data-list-item-id="e8523c7b65152251154644669adfaab6f">
+  <li data-list-item-id="ee6753c0a7f27437fef42dfa657360845">
     <span style="font-weight: 400;">It displays the corresponding buttons for notifications with custom buttons.</span>
   </li>
 </ul>
@@ -1456,11 +1536,11 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   Then&nbsp;<a href="https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/push-receipt" target="_self">enable Receipt status</a>:
 </p>
 <ul>
-  <li data-list-item-id="ec532256ca45043eb8a0b215569776bdb">
+  <li data-list-item-id="eca7b50281a615d49783828b28775279e">
     enter <code>https://YOUR_COUNTLY_SERVER/i/pushes/huawei</code> into the callback
     address field, while replacing YOUR_COUNTLY_SERVER with actual server address;
   </li>
-  <li data-list-item-id="ed8db74d0323b78f15e374a60c4eed661">
+  <li data-list-item-id="e91ff45af77e006233e45812d7b129926">
     and enter your certificate in PEM format (only your certificate, without
     the rest of the chain; usually first one in
     <code>openssl s_client -connect YOUR_COUNTLY_SERVER:443 -showcerts</code>).
@@ -1498,17 +1578,17 @@ ProxyActivity.intentExtraWhichButton</code></pre>
   <span style="font-weight: 400;">While integrating this SDK into your application, you might want to track your user location. You could use this information to better know your app’s user base or to send them tailored push notifications based on their coordinates. There are 4 fields that may be provided:</span>
 </p>
 <ul>
-  <li data-list-item-id="e0bb7bb627b1e253cba4e283022483438">
+  <li data-list-item-id="e38cb48e80b64c820a3c2aef3e4f2ca0c">
     <span style="font-weight: 400;">Country code in the two-letter, ISO standard</span>
   </li>
-  <li data-list-item-id="ea4026fa24e28eb14b47dd51f4fcd717d">
+  <li data-list-item-id="e099f06ec56c0536b2631c8adb94d98f9">
     <span style="font-weight: 400;">City name (must be set together with the country code)</span>
   </li>
-  <li data-list-item-id="e52cba9ce209febe55b54b59aa9019762">
+  <li data-list-item-id="e66af8e5f0465d498b691c097c699f7e8">
     <span style="font-weight: 400;">Latitude and longitude values separated by a comma, e.g.</span>
     "56.42345,123.45325"
   </li>
-  <li data-list-item-id="eccb5b89cb70929aa13995c979622e50a">
+  <li data-list-item-id="ecc18c5faad9107418c97e0c61cd4d977">
     <span style="font-weight: 400;">Your user’s IP address</span>
   </li>
 </ul>
@@ -1572,16 +1652,16 @@ Countly.sharedInstance().disableLocation();</code></pre>
   <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
 </p>
 <ul>
-  <li data-list-item-id="e80d5a458edf48ecdc036b7cd1fcd3b57">
+  <li data-list-item-id="eeaf6926608cc732d182f6dbde5ed885f">
     <span style="font-weight: 400;">when the SDK has finished initializing</span>
   </li>
-  <li data-list-item-id="e0ffbbeed9d40bf56252657bd9ba62133">
+  <li data-list-item-id="e69876808d134718d4000c7ad8df46a6d">
     <span style="font-weight: 400;">after the device ID is changed without merging</span>
   </li>
-  <li data-list-item-id="eb2075a4b7dce193663e266346499ac11">
+  <li data-list-item-id="e3659946674206c227cf39bfc2c89ed80">
     <span style="font-weight: 400;">when user gets out of temp ID mode</span>
   </li>
-  <li data-list-item-id="e192cafbefd9bc98be7955e961eb66c8c">
+  <li data-list-item-id="edb5cf63d46b74a639ec8c475d3659b04">
     <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
   </li>
 </ul>
@@ -1608,13 +1688,13 @@ Countly.sharedInstance().init(config);</code></pre>
   There are three ways to trigger remote config value download manually:
 </p>
 <ul>
-  <li data-list-item-id="edd86a52aa4b26d24c15933748b593ac3">
+  <li data-list-item-id="ed4ab179d8bc96f2cae60e0db57060cdf">
     <span style="font-weight: 400;">Manually downloading all keys</span>
   </li>
-  <li data-list-item-id="ed48c16190b8c12c05c9a9c0e3e7d96e4">
+  <li data-list-item-id="ea74a7d6626a83de463be8673f238b8da">
     <span style="font-weight: 400;">Manually downloading specific keys</span>
   </li>
-  <li data-list-item-id="e2f2a2f223339aafe6efeed68b9020f35">Manually downloading, omitting (everything except) keys.</li>
+  <li data-list-item-id="e1dd63b96e0dd7bb57e252c97a80ddf7e">Manually downloading, omitting (everything except) keys.</li>
 </ul>
 <p>
   <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
@@ -1733,19 +1813,19 @@ Countly.sharedInstance().init(config);
   and it would have the following parameters:
 </p>
 <ul>
-  <li data-list-item-id="eede3c3ac33b50fc7f04848675db4f4ac">
+  <li data-list-item-id="e2b2f9415fd59026b111055c8335ab538">
     <code class="java">rResult</code>: RequestResult Enum (either
     <span class="hljs-built_in">Error</span>, Success or NetworkIssue)
   </li>
-  <li data-list-item-id="e11f8335af3505addf8b41264eae93ec7">
+  <li data-list-item-id="e299c778503e76444d230fb9c696ead44">
     <code class="java">error</code>: String (error message. "null" if there is
     no error)
   </li>
-  <li data-list-item-id="ee47590786e6c86ecf6529303c97be2c2">
+  <li data-list-item-id="e272ee1bb83e18b08b38234f2cf83a699">
     <code class="java">fullValueUpdate</code>: boolean ("true" - all values updated,
     "false" - a subset of values updated)
   </li>
-  <li data-list-item-id="e5c297d9b9f4266c05e4a38fc072ba0f6">
+  <li data-list-item-id="ea5a8b9f89a9efcab940b7102b984d0a8">
     <code class="java">downloadedValues</code>: Map&lt;String, RCData&gt; (the
     whole downloaded remote config values)
   </li>
@@ -1850,8 +1930,8 @@ Countly.sharedInstance().init(config);
   <span style="font-weight: 400;">The star-rating dialog can be displayed in 2 ways:</span>
 </p>
 <ul>
-  <li data-list-item-id="ed204c4c9c6669bb3e6f170f4e933358c">Manually by the developer</li>
-  <li data-list-item-id="e7ab694191fe39f0ac03a39fe8c4818be">Automatically, depending on the session count</li>
+  <li data-list-item-id="e464ac44928b774984a13433e869650f1">Manually by the developer</li>
+  <li data-list-item-id="e5e661e2f3713ad2106cab2a6204dd48f">Automatically, depending on the session count</li>
 </ul>
 <p>
   <span style="font-weight: 400;">In order to display the star-rating dialog manually, you must call the </span><code><span style="font-weight: 400;">ShowStarRating</span></code><span style="font-weight: 400;">&nbsp;function. Optionally, you may provide the callback functions. There is no limit on how many times the star-rating dialog may be displayed manually.</span>
@@ -2093,9 +2173,9 @@ Countly.sharedInstance().userProfile().setProperty(String key, Object value);</c
   Recorded User Profile data is automatically sent when:
 </p>
 <ul>
-  <li data-list-item-id="e1533b480466e29dca614caf99e01c759">An event is recorded</li>
-  <li data-list-item-id="ec150317e7d1ddb6847ce1570af634a85">A session update occurs</li>
-  <li data-list-item-id="e1ef43016db600ced05bcb4541fdcba70">The device ID changes</li>
+  <li data-list-item-id="eea5f61c67238c13b6d792e0f5f9a6976">An event is recorded</li>
+  <li data-list-item-id="ebb3080717490ac50edbd332686208a0f">A session update occurs</li>
+  <li data-list-item-id="eafc62e93bef6373900343c9a70f3029e">The device ID changes</li>
 </ul>
 <p>The keys for predefined user data fields are as follows:</p>
 <figure class="wysiwyg-table wysiwyg-table-align-left">
@@ -2300,9 +2380,9 @@ Countly.sharedInstance().apm().endTrace(String traceKey, customMetric);</code></
 <h2 id="h_01HAVQDM5V5QDXFR1G3P3926Z3">Automatic Device Traces</h2>
 <p>Currently, the Android SDK provides 3 automatic traces:</p>
 <ul>
-  <li data-list-item-id="e6cab62758a498ce523e578bb38fb4800">App start time</li>
-  <li data-list-item-id="e22bb9a3e8edd79d7cd33b640589b53eb">App time in the background</li>
-  <li data-list-item-id="e59f7a1a4fb8f81ce371f5073bd495b13">App time in foreground</li>
+  <li data-list-item-id="eed07481b60f2a17c6af2ea3e29269d8e">App start time</li>
+  <li data-list-item-id="e8f3447773864622ce9a2ae0e522ff2dc">App time in the background</li>
+  <li data-list-item-id="e22a0f72afbf020619fc196126495ee0d">App time in foreground</li>
 </ul>
 <p>To record app start time you need to implement 3 things.</p>
 <p>First, you must enable this feature in config on init:</p>
@@ -2421,7 +2501,7 @@ config.setConsentEnabled(String[] featureNames)</code></pre>
   <span style="font-weight: 400;">There are 4 ways of changing feature consent:</span>
 </p>
 <ul>
-  <li data-list-item-id="e6374fa167cf2a2ab35e1e2622db48466">
+  <li data-list-item-id="e8ff0f15c72e9ada75c14b73d157113a8">
     <code><span style="font-weight: 400;">giveConsentAll</span></code><span style="font-weight: 400;">/</span><code><span style="font-weight: 400;">removeConsentAll</span></code><br>
     &nbsp;
   </li>
@@ -2432,7 +2512,7 @@ Countly.sharedInstance().consent().giveConsentAll()
 // remove consent for all features
 Countly.sharedInstance().consent().removeConsentAll()</code></pre>
 <ul>
-  <li data-list-item-id="e964b004031027bfb7dcca27545165f13">
+  <li data-list-item-id="ea64eaf4d3073ae1058ee7843dc33f856">
     <code><span style="font-weight: 400;">giveConsent</span></code><span style="font-weight: 400;">/</span><code><span style="font-weight: 400;">removeConsent</span></code><span style="font-weight: 400;">&nbsp;- gives or removes consent to a specific feature.</span><span style="font-weight: 400;"></span>
   </li>
 </ul>
@@ -2442,7 +2522,7 @@ Countly.sharedInstance().consent().giveConsent(new String[]{Countly.CountlyFeatu
 // remove consent from "sessions" feature
 Countly.sharedInstance().consent().removeConsent(new String[]{Countly.CountlyFeatureNames.sessions});</code></pre>
 <ul>
-  <li data-list-item-id="e53d79d0369f4f05f879129656cbd88e1">
+  <li data-list-item-id="eeca171c0967e580bef6dcdc10afe7ecd">
     <code>setConsent</code> - set consent to a specific (true/false) value
   </li>
 </ul>
@@ -2452,7 +2532,7 @@ Countly.sharedInstance().consent().setConsent(new String[]{Countly.CountlyFeatur
 // remove consent from "sessions" feature
 Countly.sharedInstance().consent().setConsent(new String[]{Countly.CountlyFeatureNames.sessions}, false);</code></pre>
 <ul>
-  <li data-list-item-id="e475322f277d7c161023d9374e9bba148">
+  <li data-list-item-id="ec1bbe460a7e2e01f6d2f84e9cba366cb">
     <code>setConsentFeatureGroup</code> - set consent for a feature group to
     a specific (true/false) value
   </li>
@@ -2595,256 +2675,266 @@ Countly.sharedInstance().init(countlyConfig);</code></pre>
   These are the methods that lets you set values in your Countly config object:
 </p>
 <ul>
-  <li data-list-item-id="e382906fb27ccd1e36b6349ecd18d289a">
+  <li data-list-item-id="ebbc753fcfa94076467e66b21f1463e13">
     <strong>setContext(Context context)</strong> - Mandatory. Sets Android context.
   </li>
-  <li data-list-item-id="eede5a7de3a1a17120b14bf18424e9155">
+  <li data-list-item-id="ead248d75c2213d2af9e25e56d45d7221">
     <strong>setServerURL(String serverURL)</strong> - Mandatory. Sets the URL
     of the Countly server to submit data to.
   </li>
-  <li data-list-item-id="ec235ed1b6e9a559605fb1aaba0867e32">
+  <li data-list-item-id="ee505a71eb575bafb5da7e75b4069ce63">
     <strong>setAppKey(String appKey)</strong> - Mandatory. Sets the app key for
     the application being tracked.
   </li>
-  <li data-list-item-id="e46d86a4989b1dbade3f12680f9fa71f8">
+  <li data-list-item-id="efed82442c76467e4c24609a776f3fa0a">
     <strong>setDeviceId(String deviceID)</strong> - Sets the unique ID for the
     device the app is running on. Null means that Countly will use the random
     UUID generation method.
   </li>
-  <li data-list-item-id="e8f22cc6d73e474ab8644e4c17acd5afa">
+  <li data-list-item-id="e8162e5fb96ac490b7f946f7ca1874c0e">
     <strong>setStarRatingSessionLimit(int starRatingLimit)</strong> - Sets the
     limit after how many sessions the automatic star rating dialog is shown.
   </li>
-  <li data-list-item-id="e268db40e1407aa296fb19d5d6b428fc7">
+  <li data-list-item-id="e0bb4a1824f680d16070013ac528d543c">
     <strong>setStarRatingCallback(StarRatingCallback starRatingCallback)</strong>
     - Sets the callback function that will be called from the automatic star
     rating dialog.
   </li>
-  <li data-list-item-id="e29efffcaaa7de800a6505b22782fc24e">
+  <li data-list-item-id="e13fb55c267617d9c0909a1b70d6eb014">
     <strong>setStarRatingTextTitle(String starRatingTextTitle)</strong> - Sets
     the title text for the star rating dialogs.
   </li>
-  <li data-list-item-id="ecc3184749795392cfb11ccdf30bed170">
+  <li data-list-item-id="e97ea66cab9e8aa948a96033efdb677ba">
     <strong>setStarRatingTextMessage(String starRatingTextMessage)</strong> -
     Sets the message text for the star rating dialogs.
   </li>
-  <li data-list-item-id="ea713e6d34d15d91787f13534e2d57502">
+  <li data-list-item-id="e19a8091e1b0ce433fce35a82de2f8b35">
     <strong>setStarRatingTextDismiss(String starRatingTextDismiss)</strong> -
     Sets the dismiss button text for the star rating dialogs.
   </li>
-  <li data-list-item-id="e763741abaf03f8319b1c0d0ce7d4b158">
+  <li data-list-item-id="e87d0400b35c9c0381da8071b2c7973d2">
     <strong>setLoggingEnabled(boolean enabled)</strong> - Enables or disables
     internal debugging logs.
   </li>
-  <li data-list-item-id="e12508983fd12bedf8f84c5e3baefd669">
+  <li data-list-item-id="e5421b4b62efda57d2a74daa3c64f2024">
     <strong>enableCrashReporting()</strong> - Enables uncaught crash reporting.
   </li>
-  <li data-list-item-id="e2d8f67800eb18378d9c8ec18c45f7127">
+  <li data-list-item-id="eb0bebaa620cdb1073d7a784651e427c3">
     <strong>setViewTracking(boolean enable)</strong> - Enables or disables automatic
     view tracking.
   </li>
-  <li data-list-item-id="eea6612a5d16aecde06e0bacc1da6c77b">
+  <li data-list-item-id="e894ec9e05a735f7f5cc77d6cebb32a7a">
     <strong>setAutoTrackingUseShortName(boolean enable)</strong> - Enables or
     disables the use of short names for automatic activity tracking.
   </li>
-  <li data-list-item-id="eb60206322eaf5a18a8ef1a844c22cdd4">
+  <li data-list-item-id="ebc3b4457d31cbf53fd516402e67ca782">
     <strong>setAutomaticViewSegmentation(Map&lt;String, Object&gt; segmentation)</strong>
     - Sets the automatic view segmentation.
   </li>
-  <li data-list-item-id="eec51b0c4f790b2fc361b1d058f0d8002">
+  <li data-list-item-id="e407481c6915c55bf32ab4b7b5f9fce26">
     <strong>setAutoTrackingExceptions(Class[] exceptions)</strong> - Sets activities
     to be excluded from automatic view tracking.
   </li>
-  <li data-list-item-id="e1cf4b46df1a8064b33887fb98dc844ee">
+  <li data-list-item-id="e17aa7f28217708073510a785d3c6928e">
     <strong>addCustomNetworkRequestHeaders(Map&lt;String, String&gt; customHeaderValues)</strong>
     - Adds custom header key/value pairs to each request.
   </li>
-  <li data-list-item-id="e62545c08003364b3c343ad3ab3cb3f8a">
+  <li data-list-item-id="ecfc9631bf73fb9526aa54ca397080515">
     <strong>setPushIntentAddMetadata(boolean enable)</strong> - Enables or disables
     adding metadata to push intents.
   </li>
-  <li data-list-item-id="e38cc9cf00f31d3f400a39f83b017e8f1">
+  <li data-list-item-id="e2f77f4af9a6a88b8aec85793851d7889">
     <strong>setRemoteConfigAutomaticDownload(boolean enabled, RemoteConfigCallback callback)</strong>
     - If enabled, automatically downloads the newest remote config values.
   </li>
-  <li data-list-item-id="e33ffb7e0e9197669c5f7b204ad40eed0">
+  <li data-list-item-id="ec8ef87d7f14073328959874216c35db6">
     <strong>setRequiresConsent(boolean shouldRequireConsent)</strong> - Set if
     consent should be required.
   </li>
-  <li data-list-item-id="e67de164c2d738808af392ba8b4d9bc96">
+  <li data-list-item-id="e5757bfabe818b1556726b0c345241cec">
     <strong>setConsentEnabled(String[] featureNames)</strong> - Sets which features
     are enabled in case consent is required.
   </li>
-  <li data-list-item-id="ec463653f1004056be60de21773292068">
+  <li data-list-item-id="e423ad80f0f8624da28ed911c3ae6f542">
     <strong>setHttpPostForced(boolean isForced)</strong> - Set the override for
     forcing to use HTTP POST for all connections to the server.
   </li>
-  <li data-list-item-id="e1bb5e89ce0029770ed1e62a498bb3646">
+  <li data-list-item-id="e78bd07104111630bb2dd0c4a8ff6372f">
     <strong>enableTemporaryDeviceIdMode()</strong> - Enable temporary device
     ID mode.
   </li>
-  <li data-list-item-id="e52317e086baf13e2f59d70608b4cb7f9">
+  <li data-list-item-id="ead2e054c62dacbbdbf60790856aafb5b">
     <strong>setCrashFilterCallback(CrashFilterCallback callback)</strong> - Set
     crash filter callback.
   </li>
-  <li data-list-item-id="eda169ebf714bac01aa1a1940576578c5">
+  <li data-list-item-id="e6abb850773bc7392403facf198a32d3c">
     <strong>setParameterTamperingProtectionSalt(String salt)</strong> - Set parameter
     tampering protection salt.
   </li>
-  <li data-list-item-id="e915c6aa69f6beab896120e4dd14b0097">
+  <li data-list-item-id="e0de46b0f689c79fa6f74d68fccb5293e">
     <strong>setTrackOrientationChanges(boolean shouldTrackOrientation)</strong>
     - Set track orientation changes.
   </li>
-  <li data-list-item-id="e7ecb242803a98c24954bbba768b74f7a">
+  <li data-list-item-id="e7a6f5268a8dd583839acf73a43723603">
     <strong>setRecordAllThreadsWithCrash()</strong> - Set record all threads
     with crash.
   </li>
-  <li data-list-item-id="e624834a61b9d3a4899113c9cd6d1d8cf">
+  <li data-list-item-id="e6ae11ff26ac4a42041c4367570519d13">
     <strong>setEnableAttribution()</strong> - Enables or disables attribution.
   </li>
-  <li data-list-item-id="ecaa79e1f317d4bac56f4c0a9b88758ab">
+  <li data-list-item-id="e2492724e7cfab24880a7221cb2b7b090">
     <strong>enablePublicKeyPinning()</strong> - Allows public key pinning by
     providing a list of SSL certificates.
   </li>
-  <li data-list-item-id="e9f12742788692d6892f43526428c638a">
+  <li data-list-item-id="e033ff25b45d5510f40b6ddf25ba0662f">
     <strong>enableCertificatePinning()</strong> - Allows certificate pinning
     by providing a list of SSL certificates.
   </li>
-  <li data-list-item-id="e79737066788a8168f7f59b4f61c362ea">
+  <li data-list-item-id="eb0bbd1a66f995d8d8c60624167b4f112">
     <strong>setShouldIgnoreAppCrawlers()</strong> - Specifies if the Countly
     SDK should ignore app crawlers.
   </li>
-  <li data-list-item-id="eaf751e59b74274402df43128efd8ca0e">
+  <li data-list-item-id="e2d93162a0279d8fc4adc638317279cb7">
     <strong>setAppCrawlerNames()</strong> - Specifies the names of app crawlers
     to be ignored.
   </li>
-  <li data-list-item-id="e26450f1893439c0a0e630209d2ec84fa">
+  <li data-list-item-id="ebea76cc38cb87aecb39da4fa0a71ff26">
     <strong>setEventQueueSizeToSend()</strong> - Sets the threshold for event
     grouping.
   </li>
-  <li data-list-item-id="e61a2099abb3fe7257cdd4e0fa3fd1ac7">
+  <li data-list-item-id="e3b87ee11a2289335d7a24bdd46c627cc">
     <strong>enableManualSessionControl()</strong> - Enables manual session control.
   </li>
-  <li data-list-item-id="e2da084162717262a48f2a165d4f5350b">
+  <li data-list-item-id="ec197ef33d473862fe69881fad8bc4129">
     <strong>setCustomCrashSegment()</strong> - Sets custom crash segmentation
     information to be added to all recorded crashes.
   </li>
-  <li data-list-item-id="e211a7e3a253e556545661acaaaeb3976">
+  <li data-list-item-id="ec0dadfee48cf173dfb66342106b5b759">
     <strong>setRecordAllThreadsWithCrash()</strong> - Sets record all threads
     with crash.
   </li>
-  <li data-list-item-id="e7182317a5e4085c9d51353b365cf0841">
+  <li data-list-item-id="ee3e62b331527f4f484204b9dc19b7a88">
     <strong>checkForNativeCrashDumps(boolean checkForDumps)</strong> - Set the
     check for native crash dumps.
   </li>
-  <li data-list-item-id="e91f5caf43d7f11002a49821f5ee72434">
+  <li data-list-item-id="e9c704cfe5fbf18015e0e056daf873ff9">
     <strong>setUpdateSessionTimerDelay(int delay)</strong> - Sets the interval
     for the automatic session update calls (min value 1 sec, max value 10 min).
   </li>
-  <li data-list-item-id="e10feac1ee0e482aaff56695bbd5aa5f6">
+  <li data-list-item-id="ed29089f6254f7de067644022177d5a56">
     <strong>setCountlyStore(CountlyStore store)</strong> - Sets the Countly store
     for use during testing.
   </li>
-  <li data-list-item-id="efd73c86a9816d0bb3c592cd690039c89">
+  <li data-list-item-id="edff3e5f182df25acb577703b93f8a392">
     <strong>setDisableUpdateSessionRequests(boolean disable)</strong> - Disables
     periodic session time updates.
   </li>
-  <li data-list-item-id="edde362faeff71ef1877e1ba3582e5c33">
+  <li data-list-item-id="e0e0757d01214401f08650bc58955e26d">
     <strong>setIfStarRatingDialogIsCancellable(boolean isCancellable)</strong>
     - Sets if the star rating dialog is cancellable.
   </li>
-  <li data-list-item-id="e26c8e0b6a9dbcf52e841785ae3b70827">
+  <li data-list-item-id="e96a7a58ae1a90941aa7e9c11bded8000">
     <strong>setIfStarRatingShownAutomatically(boolean isShownAutomatically)</strong>
     - Sets if the star rating should be shown automatically.
   </li>
-  <li data-list-item-id="e5a513bac1735fb8b034ff0c3c6e50d13">
+  <li data-list-item-id="edc08d7f33c6f2fb2cdaf937e6c978a40">
     <strong>setStarRatingDisableAskingForEachAppVersion(boolean disableAsking)</strong>
     - Sets if the star rating is shown only once per app lifetime.
   </li>
-  <li data-list-item-id="e06eab20fbfa4eac474a2ca8aab49b9ad">
+  <li data-list-item-id="ef51b21e50a81c91ac2741fe7759727d0">
     <strong>setApplication(Application application)</strong> - Sets the link
     to the application class.
   </li>
-  <li data-list-item-id="e0ff4a126e826b0fd9018505b20e656d8">
+  <li data-list-item-id="ebc6c35c0a663771c3e259299b1940e8d">
     <strong>apm.enableAppStartTimeTracking()</strong> - Enables the recording
     of the app start time.
   </li>
-  <li data-list-item-id="ea694493be6de74ed8ebdd903fb7b70d4">
+  <li data-list-item-id="eb9fb0fad7a627a2ec90bdf08d4a5b5fd">
     <strong>setDisableLocation()</strong> - Disables location tracking.
   </li>
-  <li data-list-item-id="e088fde3e9047ae8f8960a8618331de3f">
+  <li data-list-item-id="ef712fd77a3b5b3ee9d929238d04965a7">
     <strong>setLocation(String country_code, String city, String gpsCoordinates, String ipAddress)</strong>
     - Sets location parameters.
   </li>
-  <li data-list-item-id="e637ea6067ce4ee96c125360b4b027969">
+  <li data-list-item-id="e77b720adaf5b30af96484dd55bfc366b">
     <strong>setMetricOverride(Map&lt;String, String&gt; providedMetricOverride)</strong>
     - Sets the metrics you want to override or additional custom metrics you
     want to provide. For more information on this, check
     <a href="#h_01GVJB16Q86TAX1AJ0QZZ5VR9N" target="_self">here</a>.
   </li>
-  <li data-list-item-id="e4a699f632cf0b6065f76e7dd78b3bce4">
+  <li data-list-item-id="ed5cb9932d527aa2502fa99171aa81444">
     <strong>apm.setAppStartTimestampOverride(long appStartTimestampOverride)</strong>
     - Overrides the app start timestamp.
   </li>
-  <li data-list-item-id="e6190e3165781dca9c76f174db51619b2">
+  <li data-list-item-id="e68bfe1ef5997bea2018cbb37ae942c80">
     <strong>apm.enableManualAppLoadedTrigger()</strong> - Enables manual trigger
     of the moment when the app has finished loading.
   </li>
-  <li data-list-item-id="e3ca57eba440aea4f7aff5f9d84fae32f">
+  <li data-list-item-id="eb90bc7562900ed49601cb61abdef84e8">
     <strong>apm.enableForegroundBackgroundTracking()</strong> - Enables automatic
     control of triggers.
   </li>
-  <li data-list-item-id="ea22d7447536f029ace242eadb6abd291">
+  <li data-list-item-id="e5c8d3ad6f249a187ccd1797e0e0a0054">
     <strong>setLogListener(ModuleLog.LogCallback logCallback)</strong> - Adds
     a log callback that duplicates all logs done by the SDK.
   </li>
-  <li data-list-item-id="e2f083cfa20947c1f97ff4a4a28a38829">
+  <li data-list-item-id="efe8a3a760d6abdbb17834a5d94b6f0cd">
     <strong>setMaxRequestQueueSize(int newMaxSize)</strong> - Sets the new maximum
     size for the request queue.
   </li>
-  <li data-list-item-id="eb9a1551b7295f8e7fd88a8cb28a2b58b">
+  <li data-list-item-id="e716b1134958b5f4b5b8f46d08a729fb8">
     <strong>setDirectAttribution(String campaignType, String campaignData)</strong>
     - Reports direct user attribution.
   </li>
-  <li data-list-item-id="e4f3e32bbc23e5924998ba70215097069">
+  <li data-list-item-id="ea7b39a241987110c7d1f7046fb53fd6f">
     <strong>setIndirectAttribution(Map&lt;String, String&gt; attributionValues)</strong>
     - Reports indirect user attribution.
   </li>
-  <li data-list-item-id="e5c88a045caa507ecd29d01d9384c9fdf">
+  <li data-list-item-id="e1f1d1a8feead77bef2b23f90a52b4e78">
     <strong>disableGradualRequestCleaner()</strong> - When enabled, all overflowing
     requests are removed at once instead of in batches.
   </li>
-  <li data-list-item-id="e5e08d21b774bebd0171aa6cdd6b63e98">
+  <li data-list-item-id="e30675e1cd19a21838645c2845dba3f7f">
     <strong>setUserProperties(Map&lt;String, Object&gt; userProperties)</strong>
     - Provides user properties that would be sent as soon as possible.
   </li>
-  <li data-list-item-id="e0f10811cfa278fe3d95c59fa7a59f7f1">
+  <li data-list-item-id="ee1f8c644def0f5ee1a20ee22902459d0">
     <strong>setUseSerialExecutor(boolean useSerial)</strong> - to select immediate
     requests' executor type.
   </li>
-  <li data-list-item-id="eed1fb6880bd0397ecdf3ee25d0433974">
+  <li data-list-item-id="e44cd2e580671019777e27803954cb2e3">
     <strong>setWebviewDisplayOption(WebViewDisplayOption)</strong> - to control
     how Content and Feedback Widgets are displayed.
     <ul>
-      <li data-list-item-id="ef988b39b67f6a35da1b91f17a101185b">
+      <li data-list-item-id="ee7fab4368bda3f7d4f1b545be3156ad4">
         <strong>IMMERSIVE</strong> (default): Full-screen display (except
         cutouts).
       </li>
-      <li data-list-item-id="e3d0676a9ac7fc43bce907e41049c75bf">
+      <li data-list-item-id="e4f96028a7665eea7c063e2123308f814">
         <strong>SAFE_AREA</strong>: Omits status bar, navigation bar and
         cutouts when displaying WebView.
       </li>
     </ul>
   </li>
-  <li data-list-item-id="e7b9689c14be18116e6d8fae86a11f113">
+  <li data-list-item-id="e7f72a2056f0e8d40029c493b25cb57bf">
     <strong>enableExplicitStorageMode()</strong> - If this mode is enabled then
     the SDK not write the request and event queues to disk until the explicit
     write signal is given.
   </li>
-  <li data-list-item-id="e32be51be10ee07f3cd2d5ebb03a84382">
+  <li data-list-item-id="e8e93a63be9468fa859a09b2333cfe30b">
     <strong>setRequestTimeoutDuration(int requestTimeoutDuration)</strong> -
     Set the request's timeout duration in seconds. Mininum is 1 second, default
     is 30 seconds.
+  </li>
+  <li data-list-item-id="e7324c9dda4fe01f0f1cbc8a09aa73bf3">
+    <strong>disableStoringDefaultPushConsent()</strong> - Disable storing the
+    default push consent on initialization. By default, if consent is required
+    and push consent is not set, the SDK was storing push consent as false on
+    initialization.
+  </li>
+  <li data-list-item-id="ea810e6603c13bb01718393b65d1e28b5">
+    <strong>disableViewRestartForManualRecording()</strong> - To disable auto
+    close/restart behavior of manual views on app background/foreground actions.
   </li>
 </ul>
 <h2 id="h_01HND059CTVC4QBVMB6P4CSVE7">Example Integrations</h2>
@@ -3317,58 +3407,6 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
   trying to reduce network traffic or control request counts.
 </p>
 <pre class="wysiwyg-code-block"><code class="language-java objectivec">config.disableSDKBehaviorSettingsUpdates();</code></pre>
-<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
-<p>
-  The Content Zone feature enhances user engagement by delivering various types
-  of content blocks, such as in-app messaging, ads, or user engagement prompts.
-  These content blocks are dynamically served from the content builder on the server,
-  ensuring that users receive relevant and up-to-date information.
-</p>
-<p>
-  Content support is available only on Android API level 28 and above.
-</p>
-<div class="callout callout--info">
-  <p>
-    For learning how you can use Journeys &amp; Content Builder to create In-App
-    messages you can check
-    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
-    article.
-  </p>
-</div>
-<p>
-  To start fetching content from the server, use the following method:
-</p>
-<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().enterContentZone()</code></pre>
-<p>
-  This call will retrieve and display any available content for the user. It will
-  also regularly check if a new content is available, and if it is, will fetch
-  and show it to the user.
-</p>
-<p>
-  This regular check happens in every 30 seconds by default. It could be configurable
-  while initializing the SDK through and it must be greater than 15 seconds.
-</p>
-<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.content.setZoneTimerInterval(60); //in seconds</code></pre>
-<p>
-  If you need to ask for content after a trigger you know you can use this method:
-</p>
-<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().refreshContentZone()</code></pre>
-<p>
-  When you want to exit from content zone and stop SDK from checking for available
-  content you can use this method:
-</p>
-<pre class="wysiwyg-code-block"><code class="language-java java">Countly.sharedInstance().contents().exitContentZone()</code></pre>
-<p>
-  To get informed when a user closes a content you can register a global content
-  callback during SDK initialization:
-</p>
-<pre class="wysiwyg-code-block"><code class="language-java java">countlyConfig.content.setGlobalContentCallback(callback);</code></pre>
-<pre class="wysiwyg-code-block"><code class="language-java java">interface ContentCallback {
-  void onContentCallback(ContentStatus contentStatus, Map&lt;String, Object&gt; contentData);
-}</code></pre>
-<p>
-  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
-</p>
 <h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
 <p>
   The ConfigExperimental interface provides experimental configuration options
@@ -3379,8 +3417,8 @@ Countly.sharedInstance().requestQueue().recordMetrics(null);</code></pre>
 config.experimental.enableViewNameRecording().enableVisibilityTracking();</code></pre>
 <p>This class allows enabling two experimental features:</p>
 <ul>
-  <li data-list-item-id="e2a7586030ac24e52e0386f20875c4d57">Previous Name Recording</li>
-  <li data-list-item-id="efe00fdcbfc9427c60842d09416f9809e">Visibility Tracking</li>
+  <li data-list-item-id="e541d4c681bc01aea7a1484b0854a1a1a">Previous Name Recording</li>
+  <li data-list-item-id="e35486af15ab0d64240bd7b335993695c">Visibility Tracking</li>
 </ul>
 <p>
   When you enable previous name recording, it will add previous view name to the
@@ -3571,7 +3609,7 @@ config.experimental.enableViewNameRecording().enableVisibilityTracking();</code>
         </td>
         <td>
           Module needed for
-          <a href="/hc/en-us/articles/360037754031#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
+          <a href="#h_01HAVQDM5TFKEHBN5G8J9VSP37">Native C++ crash reporting</a>
         </td>
       </tr>
       <tr>
