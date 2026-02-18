@@ -1,5 +1,5 @@
 <p>
-  This documentation is for the Countly iOS SDK version 25.4.X. The SDK source
+  This documentation is for the Countly iOS SDK version 26.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-ios">here</a>.
 </p>
@@ -54,7 +54,7 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">#import "Countly.h"
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">#import "Countly.h"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -70,7 +70,7 @@
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
   let config: CountlyConfig = CountlyConfig()
   config.appKey = "YOUR_APP_KEY"
@@ -87,7 +87,7 @@
   <strong>Note:</strong> Make sure you start Countly iOS SDK on the main thread.
 </p>
 <p>
-  <span style="font-weight: 400;">Set your app key and host on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. Please check <a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3">here</a> for more information about acquiring application key (APP_KEY) and server URL.</span>
+  <span style="font-weight: 400;">Set your app key and host on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object. Please check </span><a href="/hc/en-us/articles/900000908046#h_01HABSX9KX44C9SF48WRPQNCP3"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;"> for more information about acquiring application key (APP_KEY) and server URL.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You can run your project and see the first session data immediately displayed on your Countly Server dashboard.</span>
@@ -104,7 +104,7 @@
   If you would like to use additional features, such as
   <strong>PushNotifications</strong>, <strong>CrashReporting,</strong> and
   <strong>AutoViewTracking,</strong>
-  <span style="font-weight: 400;"> you can specify them in the <code>features</code></span><span style="font-weight: 400;"> array on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before you start:</span>
+  <span style="font-weight: 400;">you can specify them in the </span><code><span style="font-weight: 400;">features</span></code><span style="font-weight: 400;"> array on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before you start:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -112,7 +112,7 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   CountlyConfig* config = CountlyConfig.new;
   config.appKey = @"YOUR_APP_KEY";
@@ -129,7 +129,7 @@
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
   let config: CountlyConfig = CountlyConfig()
   config.appKey = "YOUR_APP_KEY"
@@ -147,7 +147,21 @@
   </div>
 </div>
 <p>Available additional features per platform:</p>
-<pre>iOS<br>  CLYPushNotifications<br>  CLYCrashReporting<br>  CLYAutoViewTracking<br><br>watchOS<br>  CLYCrashReporting<br><br>tvOS<br>  CLYCrashReporting<br>  CLYAutoViewTracking<br><br>macOS<br>  CLYPushNotifications<br>  CLYCrashReporting</pre>
+<pre class="wysiwyg-code-block"><code class="language-bash bash">iOS
+  CLYPushNotifications
+  CLYCrashReporting
+  CLYAutoViewTracking
+
+watchOS
+  CLYCrashReporting
+
+tvOS
+  CLYCrashReporting
+  CLYAutoViewTracking
+
+macOS
+  CLYPushNotifications
+  CLYCrashReporting</code></pre>
 <h2 id="h_01HAVHW0RNPY4C22J98XT6T4NN">SDK Data Storage</h2>
 <p>
   The Countly iOS SDK uses <code>NSUserDefaults</code> and a simple data file named
@@ -155,7 +169,9 @@
   for tvOS).
 </p>
 <div class="callout callout--info">
-  <strong>Countly Code Generator</strong>
+  <p>
+    <strong>Countly Code Generator</strong>
+  </p>
   <p>
     <a href="https://countly.github.io/countly-code-generator/">The Countly Code Generator</a>
     can be used to generate Countly iOS SDK code snippets effortlesly. You can
@@ -165,7 +181,7 @@
 </div>
 <h1 id="h_01HAVHW0RNQ9ZX3KMX09DDFETR">SDK Logging / Debug Mode</h1>
 <p>
-  <span style="font-weight: 400;">If you would like to enable the Countly iOS SDK to debug mode, which logs internal info, errors, and warnings into your console, you can set the <code>enableDebug</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.</span>
+  <span style="font-weight: 400;">If you would like to enable the Countly iOS SDK to debug mode, which logs internal info, errors, and warnings into your console, you can set the </span><code><span style="font-weight: 400;">enableDebug</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -173,10 +189,10 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enableDebug = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enableDebug = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enableDebug = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableDebug = true</code></pre>
   </div>
 </div>
 <p>
@@ -205,10 +221,10 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.loggerDelegate = self; //or any other object to act as CountlyLoggerDelegate</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.loggerDelegate = self; //or any other object to act as CountlyLoggerDelegate</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.loggerDelegate = self //or any other object to act as CountlyLoggerDelegate</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.loggerDelegate = self //or any other object to act as CountlyLoggerDelegate</code></pre>
   </div>
 </div>
 <p>
@@ -222,7 +238,7 @@
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">// CountlyLoggerDelegate protocol method
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">// CountlyLoggerDelegate protocol method
 - (void)internalLog:(NSString *)log
 {
 
@@ -230,7 +246,7 @@
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">// CountlyLoggerDelegate protocol method
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">// CountlyLoggerDelegate protocol method
 func internalLog(_ log: String)
 {
 
@@ -241,7 +257,7 @@ func internalLog(_ log: String)
 <h1 id="h_01HAVHW0RNQ5ESJGQW3FFQBDHV">Crash Reporting</h1>
 <h2 id="h_01HAVHW0RNZJFE1FFPKJRCEFWA">Automatic Crash Handling</h2>
 <p>
-  <span style="font-weight: 400;">For Countly Crash Reporting, you'll need to specify <code>CLYCrashReporting</code> in <code>features</code></span><span style="font-weight: 400;"> array on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.</span>
+  <span style="font-weight: 400;">For Countly Crash Reporting, you'll need to specify </span><code><span style="font-weight: 400;">CLYCrashReporting</span></code><span style="font-weight: 400;"> in </span><code><span style="font-weight: 400;">features</span></code><span style="font-weight: 400;"> array on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -249,10 +265,10 @@ func internalLog(_ log: String)
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.features = @[CLYCrashReporting];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.features = @[CLYCrashReporting];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.features = [CLYCrashReporting]</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.features = [CLYCrashReporting]</code></pre>
   </div>
 </div>
 <p>
@@ -268,12 +284,12 @@ func internalLog(_ log: String)
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
 
 [Countly.sharedInstance recordException:myException];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
 
 Countly.sharedInstance().recordException(myException)</code></pre>
   </div>
@@ -286,12 +302,12 @@ Countly.sharedInstance().recordException(myException)</code></pre>
     <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
 
 [Countly.sharedInstance recordException:myException isFatal:NO];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
 
 Countly.sharedInstance().recordException(myException, isFatal: false)</code></pre>
   </div>
@@ -305,13 +321,18 @@ Countly.sharedInstance().recordException(myException, isFatal: false)</code></pr
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
-<br>NSDictionary* segmentation = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};<br><br>[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSException* myException = [NSException exceptionWithName:@"MyException" reason:@"MyReason" userInfo:@{@"key":@"value"}];
+
+NSDictionary* segmentation = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+
+[Countly.sharedInstance recordException:myException isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
-<br>let segmentation : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]<br>
-Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+
+let segmentation : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+
+Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RNWF4H0MASN3MD1Y8S">Record Swift Error</h2>
@@ -324,10 +345,11 @@ Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace:
     <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre>[Countly.sharedInstance recordError:@"ERROR_NAME" stackTrace:[NSThread callStackSymbols]];</pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordError:@"ERROR_NAME" stackTrace:[NSThread callStackSymbols]];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordError("ERROR_NAME", stackTrace: Thread.callStackSymbols)<br></code><code class="swift"></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordError("ERROR_NAME", stackTrace: Thread.callStackSymbols)
+</code></pre>
   </div>
 </div>
 <p>
@@ -338,18 +360,22 @@ Countly.sharedInstance().recordException(myException, isFatal: true, stackTrace:
     <span class="tabs-link is-active">Objective-C</span><span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};<br><br>[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* segmentation = @{@"country":@"Germany", @"app_version":@"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+
+[Countly.sharedInstance recordError:@"ERROR_NAME" isFatal:YES stackTrace:[NSThread callStackSymbols] segmentation:segmentation];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
-<br>let segmentation : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]<br>
-Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code><code class="swift"></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let myException : NSException = NSException.init(name:NSExceptionName(rawValue: "MyException"), reason:"MyReason", userInfo:["key":"value"])
+
+let segmentation : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+
+Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Thread.callStackSymbols, segmentation:segmentation)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RNEA508VPZ6G800RDK">Crash Breadcrumbs</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>recordCrashLog:</code></span>
-  <span style="font-weight: 400;">method to receive custom logs with the crash reports. Logs generated by the <code>recordCrashLog:</code></span><span style="font-weight: 400;">method are stored in a non-persistent structure and are delivered to the Countly Server only for a crash.</span>
+  <span style="font-weight: 400;">You can use the </span><code><span style="font-weight: 400;">recordCrashLog:</span></code>
+  <span style="font-weight: 400;">method to receive custom logs with the crash reports. Logs generated by the </span><code><span style="font-weight: 400;">recordCrashLog:</span></code><span style="font-weight: 400;">method are stored in a non-persistent structure and are delivered to the Countly Server only for a crash.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -357,10 +383,10 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordCrashLog:@"This is a custom crash log."];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordCrashLog:@"This is a custom crash log."];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordCrashLog("This is a custom crash log.")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordCrashLog("This is a custom crash log.")</code></pre>
   </div>
 </div>
 <p>
@@ -370,7 +396,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 <h2 id="h_01HAVHW0RN0T1600A6B514XSNM">Crash Report Contents</h2>
 <p>A crash report includes the following information:</p>
 <h3 id="h_01HAVHW0RNZTJTKQTDWYSRMD1R">Default Crash Report Information</h3>
-<pre><code>- Exception Info:
+<pre class="wysiwyg-code-block"><code class="language-bash bash">- Exception Info:
   * Exception Name
   * Exception Description
   * Stack Trace
@@ -409,7 +435,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 </code></pre>
 <h3 id="h_01HAVHW0RNYQWZB8DXQS8YH6C2">Custom Crash Segmentation</h3>
 <p>
-  <span style="font-weight: 400;">If you would like to use custom crash segmentation, you can set the optional <code>crashSegmentation</code></span>
+  <span style="font-weight: 400;">If you would like to use custom crash segmentation, you can set the optional </span><code><span style="font-weight: 400;">crashSegmentation</span></code>
   dictionary on the <code>CountlyConfig</code>
   <span style="font-weight: 400;">object.</span>
 </p>
@@ -419,10 +445,10 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.crashSegmentation = @{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.crashSegmentation = @{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.crashSegmentation = ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.crashSegmentation = ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RNB7HWT8W9XRYRKBYZ">Crash Filtering</h2>
@@ -439,7 +465,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
   The callback receives a <code>CountlyCrashData</code> object, which contains
   all the information about the crash that would be sent to the server:
 </p>
-<pre><code class="objectivec">@interface CountlyCrashData : NSObject
+<pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">@interface CountlyCrashData : NSObject
 
 @property (nonatomic, copy, nonnull) NSString *stackTrace;
 @property (nonatomic, copy, nonnull) NSString *name;
@@ -487,7 +513,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objective">#import "Countly.h"
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">#import "Countly.h"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -538,7 +564,7 @@ Countly.sharedInstance().recordError("ERROR_NAME", isFatal: true, stackTrace: Th
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">import Countly
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">import Countly
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) - Bool
 {
@@ -586,8 +612,8 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 <p>
   As an alternative to Countly iOS SDK's own exception and signal handling mechanism
   based on
-  <span style="font-weight: 400;"><code>NSSetUncaughtExceptionHandler()</code></span>
-  and <span style="font-weight: 400;"><code>signal()</code></span> functions, you
+  <code><span style="font-weight: 400;">NSSetUncaughtExceptionHandler()</span></code>
+  and <code><span style="font-weight: 400;">signal()</span></code> functions, you
   can optionally use the more advanced
   <a href="https://github.com/microsoft/plcrashreporter" target="_self">PLCrashReporter</a>
   as well.
@@ -595,7 +621,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 <p>
   For using PLCrashReporter instead of default crash handling mechanism you can
   set
-  <span style="font-weight: 400;"><code>shouldUsePLCrashReporter</code> flag on the <code>CountlyConfig</code> object.</span>
+  <code><span style="font-weight: 400;">shouldUsePLCrashReporter</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object.</span>
 </p>
 <p>
   If set, Countly iOS SDK will be using PLCrashReporter dependency for creating
@@ -607,10 +633,10 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.shouldUsePLCrashReporter = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.shouldUsePLCrashReporter = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.shouldUsePLCrashReporter = true</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.shouldUsePLCrashReporter = true</code></pre>
   </div>
 </div>
 <p>
@@ -622,14 +648,28 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 </p>
 <p>
   Existence of PLCrashReporter dependency will be checked using
-  <span style="font-weight: 400;"><code>__has_include(&lt;CrashReporter/CrashReporter.h&gt;)</code> preprocessor macro.</span>
+  <code><span style="font-weight: 400;">__has_include(&lt;CrashReporter/CrashReporter.h&gt;)</span></code><span style="font-weight: 400;"> preprocessor macro.</span>
 </p>
 <p>
   <strong>Note:</strong> <code>Countly-PL.podspec</code>automatically manages the
   PLCrashReporter dependencies. However, if you encounter an error related to PLCrashReporter
   when using CocoaPods, you can resolve it by adding the following to your Podfile:
 </p>
-<pre>post_install do |installer|<br> installer.pods_project.targets.each do |target|<br>  target.build_configurations.each do |config|<br>   if target.name == "Countly"<br>       config.build_settings['OTHER_LDFLAGS'] ||= ['$(inherited)']<br>       config.build_settings['OTHER_LDFLAGS'] &lt;&lt; '-framework "CrashReporter"'<br><br>       config.build_settings['LIBRARY_SEARCH_PATHS'] ||= ['$(inherited)']<br>       config.build_settings['LIBRARY_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"<br>       config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= ['$(inherited)']<br>       config.build_settings['FRAMEWORK_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"<br>     end<br>   end<br> end<br>end</pre>
+<pre class="wysiwyg-code-block"><code class="language-bash bash">post_install do |installer|
+ installer.pods_project.targets.each do |target|
+  target.build_configurations.each do |config|
+   if target.name == "Countly"
+       config.build_settings['OTHER_LDFLAGS'] ||= ['$(inherited)']
+       config.build_settings['OTHER_LDFLAGS'] &lt;&lt; '-framework "CrashReporter"'
+
+       config.build_settings['LIBRARY_SEARCH_PATHS'] ||= ['$(inherited)']
+       config.build_settings['LIBRARY_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"
+       config.build_settings['FRAMEWORK_SEARCH_PATHS'] ||= ['$(inherited)']
+       config.build_settings['FRAMEWORK_SEARCH_PATHS'] &lt;&lt; "${PODS_XCFRAMEWORKS_BUILD_DIR}/PLCrashReporter"
+     end
+   end
+ end
+end</code></pre>
 <p>
   <strong>Note:</strong> PLCrashReporter option is available only for iOS apps.
 </p>
@@ -644,15 +684,14 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 </p>
 <p>
   1) BSD:
-  <span style="font-weight: 400;"><code>PLCrashReporterSignalHandlerTypeBSD</code></span>
+  <code><span style="font-weight: 400;">PLCrashReporterSignalHandlerTypeBSD</span></code>
 </p>
 <p>
   2) Mach:
-  <span style="font-weight: 400;"><code>PLCrashReporterSignalHandlerTypeMach</code></span>
+  <code><span style="font-weight: 400;">PLCrashReporterSignalHandlerTypeMach</span></code>
 </p>
 <p>
-  For more information about PLCrashReporter please see:
-  <span>https://github.com/microsoft/plcrashreporter</span>
+  For more information about PLCrashReporter please see: https://github.com/microsoft/plcrashreporter
 </p>
 <p>
   By default, BSD type will be used. For using Mach type signal handler with PLCrashReporter
@@ -665,23 +704,23 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.shouldUseMachSignalHandler = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.shouldUseMachSignalHandler = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.shouldUseMachSignalHandler = true</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.shouldUseMachSignalHandler = true</code></pre>
   </div>
 </div>
 <h3 id="h_01HAVHW0RNRV22QBWVJ17MA4ZQ">PLCrashReporter Callback Blocks</h3>
 <p>
   There is a
-  <span style="font-weight: 400;"><code>crashOccuredOnPreviousSessionCallback</code></span>
+  <code><span style="font-weight: 400;">crashOccuredOnPreviousSessionCallback</span></code>
   block to be executed when the app is launched again following a crash which is
   detected by PLCrashReporter on the previous session. It has an
-  <span style="font-weight: 400;"><code>NSDictionary</code></span> parameter that
-  represents crash report object. If<span> <span style="font-weight: 400;"><code>shouldUsePLCrashReporter</code></span></span>
+  <code><span style="font-weight: 400;">NSDictionary</span></code> parameter that
+  represents crash report object. If
+  <code><span style="font-weight: 400;">shouldUsePLCrashReporter</span></code>
   flag is not set on initial config, this block will never be executed. You can
-  set it
-  <span style="font-weight: 400;">on the <code>CountlyConfig</code> object:</span>
+  set it <span style="font-weight: 400;">on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -689,28 +728,31 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.crashOccuredOnPreviousSessionCallback = ^(NSDictionary * crashReport)
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.crashOccuredOnPreviousSessionCallback = ^(NSDictionary * crashReport)
 {  
   NSLog(@"crash report: %@", crashReport);
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.crashOccuredOnPreviousSessionCallback =<br>{<br>  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")<br>}</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.crashOccuredOnPreviousSessionCallback =
+{
+  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")
+}</code></pre>
   </div>
 </div>
 <p>
   There is also another
-  <span style="font-weight: 400;"><code>shouldSendCrashReportCallback</code></span>
+  <code><span style="font-weight: 400;">shouldSendCrashReportCallback</span></code>
   block to be executed to decide whether the crash report detected by PLCrashReporter
   on the previous session should be sent to Countly Server or not. If not set,
   crash report will be sent to Countly Server by default. If set, crash report
   will be sent to Countly Server only if
-  <span style="font-weight: 400;"><code>YES</code></span> is returned. It has an
-  <span style="font-weight: 400;"><code>NSDictionary</code></span> parameter that
-  represents crash report object. If<span> <span style="font-weight: 400;"><code>shouldUsePLCrashReporter</code></span></span>
+  <code><span style="font-weight: 400;">YES</span></code> is returned. It has an
+  <code><span style="font-weight: 400;">NSDictionary</span></code> parameter that
+  represents crash report object. If
+  <code><span style="font-weight: 400;">shouldUsePLCrashReporter</span></code>
   flag is not set on initial config, this block will never be executed. You can
-  set it
-  <span style="font-weight: 400;">on the <code>CountlyConfig</code> object:</span>
+  set it <span style="font-weight: 400;">on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -718,18 +760,24 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.shouldSendCrashReportCallback = ^(NSDictionary * crashReport)
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.shouldSendCrashReportCallback = ^(NSDictionary * crashReport)
 {                                                                                                                              NSLog(@"crash report: %@", crashReport);
   return YES;    //NO;
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.shouldSendCrashReportCallback =<br>{<br>  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")<br>  return true    //false<br>}</code><span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #ffffff;"> </span></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.shouldSendCrashReportCallback =
+{
+  (crashReport: [AnyHashable: Any]) in print("crash report: \(crashReport)")
+  return true    //false
+}</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RN851W5J4BQX3FN938">Symbolication</h2>
 <div class="callout callout--info">
-  <strong>Enterprise Edition Feature</strong>
+  <p>
+    <strong>Enterprise Edition Feature</strong>
+  </p>
   <p>
     This feature is only available with an
     <a href="https://countly.com/enterprise">Enterprise Edition</a> and built-in
@@ -745,7 +793,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 </p>
 <h3 id="h_01HAVHW0RPA8NXVET4EVGWDFNQ">Automatic dSYM Uploading</h3>
 <p>
-  <span style="font-weight: 400;">For Automatic dSYM Uploading, you can use the <code>countly_dsym_uploader</code></span><span style="font-weight: 400;"> script in the Countly iOS SDK.</span>
+  <span style="font-weight: 400;">For Automatic dSYM Uploading, you can use the </span><code><span style="font-weight: 400;">countly_dsym_uploader</span></code><span style="font-weight: 400;"> script in the Countly iOS SDK.</span>
 </p>
 <p>
   To do so, go to the <code>Build Phases</code>
@@ -756,15 +804,15 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
   <img src="https://archive.count.ly/images/guide/6dcebf7-Screen_Shot_2017-09-11_at_12.23.12.png">
 </div>
 <p>Then, add the following snippet:</p>
-<pre><code class="shell">COUNTLY_DSYM_UPLOADER=$(/usr/bin/find $SRCROOT -name "countly_dsym_uploader.sh" | head -n 1)
+<pre class="wysiwyg-code-block"><code class="language-bash bash">COUNTLY_DSYM_UPLOADER=$(/usr/bin/find $SRCROOT -name "countly_dsym_uploader.sh" | head -n 1)
 sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code></pre>
 <p>
   Starting from <strong>Xcode 15</strong> you would need to add an
   <code>Input Files</code> entry to the <code>Run Script</code> section like this:
 </p>
-<pre><span>${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}</span></pre>
+<pre class="wysiwyg-code-block"><code class="language-bash bash">${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}</code></pre>
 <p>
-  <span>This will make sure the symbolication folder is usable for the script.</span>
+  This will make sure the symbolication folder is usable for the script.
 </p>
 <p>
   <span style="font-weight: 400;">Next, select the checkbox</span><code>Run script only when installing</code>.
@@ -776,7 +824,7 @@ sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code><
   <strong>Note:</strong> Do not forget to replace your server and app key.
 </p>
 <p>
-  <span style="font-weight: 400;">By default, Xcode will generate dSYM files for the Release build configuration, and the <code>countly_dsym_uploader</code></span><span style="font-weight: 400;"> script will handle the uploading automatically. You can check for the results on the Report Navigator within Xcode. If the dSYM upload has completed successfully, you will see the<code>[Countly] dSYM upload successfully completed.</code></span><span style="font-weight: 400;">message.</span>
+  <span style="font-weight: 400;">By default, Xcode will generate dSYM files for the Release build configuration, and the </span><code><span style="font-weight: 400;">countly_dsym_uploader</span></code><span style="font-weight: 400;"> script will handle the uploading automatically. You can check for the results on the Report Navigator within Xcode. If the dSYM upload has completed successfully, you will see the</span><code><span style="font-weight: 400;">[Countly] dSYM upload successfully completed.</span></code><span style="font-weight: 400;">message.</span>
 </p>
 <div class="img-container">
   <img src="https://archive.count.ly/images/guide/4ac2acd-update-img.png">
@@ -793,10 +841,10 @@ sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code><
   <span style="font-weight: 400;">If Bitcode is enabled in your project while uploading your app to App Store Connect, Apple re-compiles your app to optimize it for specific devices. When Apple re-compiles your app, a new dSYM file is generated for the new build, and the dSYM file on your machine will not work for symbolication. So, you will need to receive this new dSYM file manually, then upload it to the Countly Server. In order to get the new dSYM file, you can use App Store Connect or Xcode Organizer.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Using App Store Connect: 1. Login to <code>App Store Connect</code></span><span style="font-weight: 400;">. 2. Go to the <code>Activity</code></span><span style="font-weight: 400;">tab. 3. Select your app's <code>Version</code> and <code>Build</code></span><span style="font-weight: 400;"> 4. Under <code>General Information</code> click on <code>Download dSYM</code></span><span style="font-weight: 400;">. 5. If the downloaded file does not have any extension, add <code>.zip</code></span><span style="font-weight: 400;"> and unarchive to see its content.</span>
+  <span style="font-weight: 400;">Using App Store Connect: 1. Login to </span><code><span style="font-weight: 400;">App Store Connect</span></code><span style="font-weight: 400;">. 2. Go to the </span><code><span style="font-weight: 400;">Activity</span></code><span style="font-weight: 400;">tab. 3. Select your app's </span><code><span style="font-weight: 400;">Version</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">Build</span></code><span style="font-weight: 400;"> 4. Under </span><code><span style="font-weight: 400;">General Information</span></code><span style="font-weight: 400;"> click on </span><code><span style="font-weight: 400;">Download dSYM</span></code><span style="font-weight: 400;">. 5. If the downloaded file does not have any extension, add </span><code><span style="font-weight: 400;">.zip</span></code><span style="font-weight: 400;"> and unarchive to see its content.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Using Xcode: 1. Open <code>Organizer</code></span><span style="font-weight: 400;"> in Xcode. 2. Go to the <code>Archives</code></span><span style="font-weight: 400;"> tab. 3. Select your app from the list on the left and select the archive. 4. Click on <code>Download dSYMs...</code>.</span><span style="font-weight: 400;"> 5. Xcode inserts the downloaded .dSYM files into the selected archive.</span>
+  <span style="font-weight: 400;">Using Xcode: 1. Open </span><code><span style="font-weight: 400;">Organizer</span></code><span style="font-weight: 400;"> in Xcode. 2. Go to the </span><code><span style="font-weight: 400;">Archives</span></code><span style="font-weight: 400;"> tab. 3. Select your app from the list on the left and select the archive. 4. Click on </span><code><span style="font-weight: 400;">Download dSYMs...</span></code><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> 5. Xcode inserts the downloaded .dSYM files into the selected archive.</span>
 </p>
 <p>
   <span style="font-weight: 400;">For more information regarding downloading dSYM files from Apple, please see Apple's documentation </span><a href="https://help.apple.com/xcode/mac/current/#/devef5928039"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
@@ -806,18 +854,18 @@ sh "$COUNTLY_DSYM_UPLOADER" "https://YOUR_COUNTLY_SERVER" "YOUR_APP_KEY"</code><
 </p>
 <h3 id="h_01HAVHW0RPGRH26TX797Y456S7">How to Use Symbolication</h3>
 <p>
-  <span style="font-weight: 400;">Once your dSYM file has been uploaded to the Countly Server, you can symbolicate your crash reports coming from that build on the <code>Crashes</code></span><span style="font-weight: 400;">panel of your Countly Server.</span>
+  <span style="font-weight: 400;">Once your dSYM file has been uploaded to the Countly Server, you can symbolicate your crash reports coming from that build on the </span><code><span style="font-weight: 400;">Crashes</span></code><span style="font-weight: 400;">panel of your Countly Server.</span>
 </p>
 <p>
   <span style="font-weight: 400;">A crash report symbolicated stack trace appears as follows:</span>
 </p>
 <p>Before symbolication:</p>
-<pre><code>YourAppName                               0x000000010006e174 YourAppName + 156020
+<pre class="wysiwyg-code-block"><code class="language-bash bash">YourAppName                               0x000000010006e174 YourAppName + 156020
 YourAppName                               0x000000010006d060 YourAppName + 151648
 YourAppName                               0x000000010006ad34 YourAppName + 142644
 </code></pre>
 <p>After symbolication:</p>
-<pre><code>-[MHViewController countlyProductionTest] (in YourAppName) (MHViewController.m:620)
+<pre class="wysiwyg-code-block"><code class="language-bash bash">-[MHViewController countlyProductionTest] (in YourAppName) (MHViewController.m:620)
 -[MHViewController transitionToMahya] (in YourAppName) (MHViewController.m:443)
 -[MHViewController textFieldShouldReturn:] (in YourAppName) (MHViewController.m:210)</code></pre>
 <p>
@@ -832,7 +880,7 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
   <span style="font-weight: 400;">We have recorded an event named </span><strong>purchase</strong><span style="font-weight: 400;"> with different scenarios in the examples below:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e0790be64ca35ae93cb42b5e3ff02396f">
     <strong>purchase</strong> event occurred <strong>1</strong> time
   </li>
 </ul>
@@ -842,14 +890,14 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordEvent:@"purchase"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordEvent:@"purchase"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordEvent("purchase")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordEvent("purchase")</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="e9a8ab77643f1143924a486ccfbffcb7c">
     <strong>purchase</strong> event occurred <strong>3</strong> times
   </li>
 </ul>
@@ -859,14 +907,14 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordEvent:@"purchase" count:3];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordEvent:@"purchase" count:3];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordEvent("purchase", count:3)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordEvent("purchase", count:3)</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="eab0b732aebbbc704f7b425abb2ce58cf">
     <strong>purchase</strong> event occurred <strong>1</strong> times with the
     total amount of <strong>3.33</strong>
   </li>
@@ -877,14 +925,14 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordEvent:@"purchase" sum:3.33];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordEvent:@"purchase" sum:3.33];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordEvent("purchase", sum:3.33)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordEvent("purchase", sum:3.33)</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="e57e3059ed293a9de61c0b01555c1118a">
     <strong>purchase</strong> event occurred <strong>3</strong> times with the
     total amount of <strong>9.99</strong>
   </li>
@@ -895,14 +943,14 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordEvent:@"purchase" count:3 sum:9.99];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordEvent:@"purchase" count:3 sum:9.99];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordEvent("purchase", count:3, sum:3.33)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordEvent("purchase", count:3, sum:3.33)</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="e508a3adbd12c3761a45bf33948ea0e42">
     <strong>purchase</strong> event occurred <strong>1</strong> time from
     <strong>country</strong> : <strong>Germany</strong>, on
     <strong>app_version</strong> : <strong>1.0</strong>
@@ -914,18 +962,18 @@ YourAppName                               0x000000010006ad34 YourAppName + 14264
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* dict = @{@"country":@"Germany", @"app_version":@"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"purchase" segmentation:dict];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country":"Germany", "app_version":"1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let dict : Dictionary&lt;String, Any&gt; = ["country":"Germany", "app_version":"1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("purchase", segmentation:dict)</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="ed20127f95dcf0c60db5402dadb5db761">
     <strong>purchase</strong> event occurred <strong>2</strong> times from
     <strong>country</strong> : <strong>Germany</strong>, on
     <strong>app_version</strong> : <strong>1.0</strong>
@@ -937,18 +985,18 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"purchase" segmentation:dict count:2];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2)</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="ee2b760d16adc85888d695935366f2def">
     <strong>purchase</strong> event occurred <strong>2</strong> times with the
     total amount of <strong>6.66</strong>, from <strong>country</strong>:
     <strong>Germany</strong>, on <strong>app_version</strong> :
@@ -961,12 +1009,12 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2)</co
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"purchase" segmentation:dict count:2 sum:6.66];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum:6.66)</code></pre>
   </div>
@@ -976,7 +1024,7 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum
   <span style="font-weight: 400;">In the examples below, we recorded a timed event called </span><strong>level24</strong><span style="font-weight: 400;"> to track how long it takes to complete:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e1b0cec6f3343b63a2a667e8c0c31949f">
     <strong>level24</strong> started
   </li>
 </ul>
@@ -986,14 +1034,14 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance startEvent:@"level24"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance startEvent:@"level24"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().startEvent("level24")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().startEvent("level24")</code></pre>
   </div>
 </div>
 <ul>
-  <li>
+  <li data-list-item-id="e3015b1d7936e4b97b4a8d3a3b96cd66d">
     <strong>level24</strong> ended
   </li>
 </ul>
@@ -1003,17 +1051,17 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance endEvent:@"level24"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance endEvent:@"level24"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().endEvent("level24")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().endEvent("level24")</code></pre>
   </div>
 </div>
 <p>
   <span style="font-weight: 400;">Additionally, you can provide more information, such as the segmentation, count, and sum while ending an event.</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="eb23e46acaf5b926ea5b2b9c3a5411231">
     <strong>level24</strong> ended <em>1</em> time with the total point of
     <strong>34578</strong>, from <strong>country</strong> :
     <strong>Germany</strong>, on <strong>app_version</strong> :
@@ -1026,18 +1074,18 @@ Countly.sharedInstance().recordEvent("purchase", segmentation:dict, count:2, sum
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance endEvent:@"level24" segmentation:dict count:1 sum:34578];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().endEvent("level24", segmentation:dict, count:1, sum:34578)</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">The duration of the event will be calculated automatically when the <code>endEvent</code></span><span style="font-weight: 400;"> method is called.</span>
+  <span style="font-weight: 400;">The duration of the event will be calculated automatically when the </span><code><span style="font-weight: 400;">endEvent</span></code><span style="font-weight: 400;"> method is called.</span>
 </p>
 <p>
   You can also cancel a started timed event using <code>cancelEvent</code> method:
@@ -1048,17 +1096,17 @@ Countly.sharedInstance().endEvent("level24", segmentation:dict, count:1, sum:345
 </div>
 <div class="tabs">
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance cancelEvent:@"level24"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance cancelEvent:@"level24"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().cancelEvent("level24")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().cancelEvent("level24")</code></pre>
   </div>
 </div>
 <p>
   <span style="font-weight: 400;">Or, if you are measuring the duration of an event yourself, you can record it directly as follows:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e3817cb334b6e9b3939afdeaae628b341">
     <strong>level24</strong> took 344 seconds to complete:
   </li>
 </ul>
@@ -1068,17 +1116,17 @@ Countly.sharedInstance().endEvent("level24", segmentation:dict, count:1, sum:345
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordEvent:@"level24" duration:344];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordEvent:@"level24" duration:344];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordEvent("level24", duration:344)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordEvent("level24", duration:344)</code></pre>
   </div>
 </div>
 <p>
   <span style="font-weight: 400;">Additionally, you can provide more information such as the segmentation, count, and sum.</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e1807aa027ecc72806bb26d67a811676f">
     <strong>level24</strong> took 344 seconds to complete <strong>2</strong>
     times with the total point of <strong>34578</strong>, from
     <strong>country</strong> : <strong>Germany</strong>, on
@@ -1091,18 +1139,20 @@ Countly.sharedInstance().endEvent("level24", segmentation:dict, count:1, sum:345
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* dict = @{@"country": @"Germany", @"app_version": @"1.0", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]};
 
 [Countly.sharedInstance recordEvent:@"level24" segmentation:dict count:2 sum:34578 duration:344];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let dict : Dictionary&lt;String, Any&gt; = ["country": "Germany", "app_version": "1.0", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]]
 
 Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:34578, duration:344)</code></pre>
   </div>
 </div>
 <div class="callout callout--warning">
-  <strong>Event Names and Segmentation</strong>
+  <p>
+    <strong>Event Names and Segmentation</strong>
+  </p>
   <p>
     Event names must be non-zero length valid <code>NSString</code> and segmentation
     must be an <code>NSDictionary</code> which
@@ -1113,11 +1163,11 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
 <h1 id="h_01HAVHW0RPNX1XDJN28R04FAW0">Sessions</h1>
 <h2 id="h_01HAVHW0RP9NFD6V5758067CSF">Automatic Session Tracking</h2>
 <p>
-  <span style="font-weight: 400;">By default, the Countly iOS SDK tracks sessions automatically and sends the <code>begin_session</code></span><span style="font-weight: 400;">request upon initialization, the <code>end_session</code></span><span style="font-weight: 400;"> request when the app goes to the background, and the <code>begin_session</code></span><span style="font-weight: 400;"> request again when the app comes back to the foreground. In addition, the Countly iOS SDK automatically sends a periodical (60 sec by default) update session request while the app is in the foreground.</span>
+  <span style="font-weight: 400;">By default, the Countly iOS SDK tracks sessions automatically and sends the </span><code><span style="font-weight: 400;">begin_session</span></code><span style="font-weight: 400;">request upon initialization, the </span><code><span style="font-weight: 400;">end_session</span></code><span style="font-weight: 400;"> request when the app goes to the background, and the </span><code><span style="font-weight: 400;">begin_session</span></code><span style="font-weight: 400;"> request again when the app comes back to the foreground. In addition, the Countly iOS SDK automatically sends a periodical (60 sec by default) update session request while the app is in the foreground.</span>
 </p>
 <h2 id="h_01HAVHW0RP6004R2GGN304V36H">Manual Sessions</h2>
 <p>
-  <span style="font-weight: 400;">You can set the <code>manualSessionHandling</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly to handle sessions manually.</span>
+  <span style="font-weight: 400;">You can set the </span><code><span style="font-weight: 400;">manualSessionHandling</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly to handle sessions manually.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1125,14 +1175,14 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.manualSessionHandling = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.manualSessionHandling = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.manualSessionHandling = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.manualSessionHandling = true</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">If the <code>manualSessionHandling</code></span><span style="font-weight: 400;"> flag is set, the Countly iOS SDK does not send the previously mentioned requests automatically, meaning you will need to manually call the <code>beginSession</code></span><span style="font-weight: 400;">, <code>updateSession</code> and <code>endSession</code></span><span style="font-weight: 400;"> methods after you start Countly, depending on your own definition of a session.</span>
+  <span style="font-weight: 400;">If the </span><code><span style="font-weight: 400;">manualSessionHandling</span></code><span style="font-weight: 400;"> flag is set, the Countly iOS SDK does not send the previously mentioned requests automatically, meaning you will need to manually call the </span><code><span style="font-weight: 400;">beginSession</span></code><span style="font-weight: 400;">, </span><code><span style="font-weight: 400;">updateSession</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">endSession</span></code><span style="font-weight: 400;"> methods after you start Countly, depending on your own definition of a session.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1140,19 +1190,19 @@ Countly.sharedInstance().recordEvent("level24", segmentation:dict, count:2, sum:
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance beginSession];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance beginSession];
 [Countly.sharedInstance updateSession];
 [Countly.sharedInstance endSession];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().beginSession()
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().beginSession()
 Countly.sharedInstance().updateSession()
 Countly.sharedInstance().endSession()</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RP7ZXRMQ1Z8BVETVM6">Update Session Period</h2>
 <p>
-  <span style="font-weight: 400;">You can specify the <code>updateSessionPeriod</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. It is used for session updating and periodically sending queued events to the server. If the <code>updateSessionPeriod</code></span><span style="font-weight: 400;"> is not explicitly set, the default setting will be at </span><strong>60 seconds</strong><span style="font-weight: 400;"> for iOS, tvOS &amp; macOS, and </span><strong>20 seconds</strong><span style="font-weight: 400;"> for watchOS.</span>
+  <span style="font-weight: 400;">You can specify the </span><code><span style="font-weight: 400;">updateSessionPeriod</span></code><span style="font-weight: 400;"> on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly. It is used for session updating and periodically sending queued events to the server. If the </span><code><span style="font-weight: 400;">updateSessionPeriod</span></code><span style="font-weight: 400;"> is not explicitly set, the default setting will be at </span><strong>60 seconds</strong><span style="font-weight: 400;"> for iOS, tvOS &amp; macOS, and </span><strong>20 seconds</strong><span style="font-weight: 400;"> for watchOS.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1160,16 +1210,163 @@ Countly.sharedInstance().endSession()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.updateSessionPeriod = 300;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.updateSessionPeriod = 300;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.updateSessionPeriod = 300</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.updateSessionPeriod = 300</code></pre>
   </div>
 </div>
+<h1 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h1>
+<p>
+  The Content Zone feature enhances user engagement by delivering various types
+  of content blocks, such as in-app messaging, ads, or user engagement prompts
+  by utilizing Journeys. These content blocks are dynamically served from the content
+  builder on the server, ensuring that users receive relevant and up-to-date information.
+</p>
+<div class="callout callout--info">
+  <p>
+    For learning how you can use Journeys &amp; Content Builder to create In-App
+    messages you can check
+    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
+    article.
+  </p>
+</div>
+<p>
+  Only thing you need to do to enable the this feature and start fetching content
+  from the server according to your Journeys, use the following method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.content enterContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().content().enterContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  This call will retrieve and display any available content for the user. It will
+  also regularly check if a new content is available, and if it is, will fetch
+  and show it to the user.
+</p>
+<h2 id="h_01KDQFDV17QX3P22SMBEHV341D">Fine Tuning Content</h2>
+<p>
+  Content checks happens in every 30 seconds by default. It could be configurable
+  while initializing the SDK (min. 15 seconds.)
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.content.zoneTimerInterval = 60;</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.content.zoneTimerInterval = 60</code></pre>
+  </div>
+</div>
+<p>
+  If you need to trigger a Journey and display its content after a specific user
+  action you can use the method below to fasten the process:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.content refreshContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().content().refreshContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  When you want to exit from content zone and stop SDK from checking for available
+  content you can use this method:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.content exitContentZone];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().content().exitContentZone();</code></pre>
+  </div>
+</div>
+<p>
+  To get informed when a user closes a content you can register a global content
+  callback during SDK initialization:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.content setGlobalContentCallback:^(ContentStatus contentStatus, NSDictionary&lt;NSString *,id&gt; * _Nonnull contentData) {
+      // do sth
+    }];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.content().setGlobalContentCallback { contentStatus, contentData in
+      // do something
+    }</code></pre>
+  </div>
+</div>
+<p>
+  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
+</p>
+<h2 id="h_01KF15YFQPAESGBC7JPQQ8XEQX">Deep Links</h2>
+<p>
+  You can create deep links with content buttons on Journey creation screen:
+</p>
+<figure class="wysiwyg-image">
+  <img style="aspect-ratio: 527/211;" src="/guide-media/01KF15D4GZNXJ4SV5W4D1SRQ9X" width="527" height="211">
+</figure>
+<p>
+  This will work on the same principles with Push Notifications so you can check
+  out our
+  <a href="#h_01HAVHW0RQG8PK3Z0KFW0D4Y2K" target="_blank" rel="noopener noreferrer">documentation below</a>
+  to see what you need (like a <strong>URL scheme.</strong>) In addition to that,
+  if you would like the content to be closed during linking you can add
+  <code>&amp;close=1</code> to the end of your deep links.
+</p>
+<h2 id="h_01KFN2T2137ZATTMJZ7VPBSEZ7">Display Options</h2>
+<p>
+  SDK offers two distinct ways for you to display your content. Immersive mode
+  is used by default which avoids cutouts but if you find it too aggressive you
+  can switch to safe area mode during SDK initialization to also avoid navigation
+  bar and status bar:
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">// IMMERSIVE OR SAFE_AREA
+[config.content setWebviewDisplayOption:SAFE_AREA];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">// IMMERSIVE OR SAFE_AREA
+config.content().setWebviewDisplayOption(SAFE_AREA)</code></pre>
+  </div>
+</div>
+<figure class="wysiwyg-image">
+  <img src="/guide-media/01KH8XECWSB3KJ7K8ZFX3A6WH2">
+</figure>
 <h1 id="h_01HAVHW0RPKXBCWY438V198Q6A">View Tracking</h1>
 <h2 id="h_01HAVHW0RP2Z0AZS62NM78RMHH">Automatic Views</h2>
 <p>
-  <span style="font-weight: 400;">To enable automatic view tracking, you will need to </span><span style="font-weight: 400;">set the <code>enableAutomaticViewTracking</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly.</span>
+  <span style="font-weight: 400;">To enable automatic view tracking, you will need to </span><span style="font-weight: 400;">set the </span><code><span style="font-weight: 400;">enableAutomaticViewTracking</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1177,21 +1374,21 @@ Countly.sharedInstance().endSession()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enableAutomaticViewTracking = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enableAutomaticViewTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enableAutomaticViewTracking = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableAutomaticViewTracking = true</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">After this step, the Countly iOS SDK will automatically track views by simply intercepting the <code>viewDidAppear:</code></span><span style="font-weight: 400;"> method of the <code>UIViewController</code></span><span style="font-weight: 400;">class and reporting which view is displayed with the view name and duration. If the view controller's <code>title</code></span><span style="font-weight: 400;"> property is set, it would be reported as the view name</span><span style="font-weight: 400;">. Otherwise, the view name will be the view controller's class name.</span>
+  <span style="font-weight: 400;">After this step, the Countly iOS SDK will automatically track views by simply intercepting the </span><code><span style="font-weight: 400;">viewDidAppear:</span></code><span style="font-weight: 400;"> method of the </span><code><span style="font-weight: 400;">UIViewController</span></code><span style="font-weight: 400;">class and reporting which view is displayed with the view name and duration. If the view controller's </span><code><span style="font-weight: 400;">title</span></code><span style="font-weight: 400;"> property is set, it would be reported as the view name</span><span style="font-weight: 400;">. Otherwise, the view name will be the view controller's class name.</span>
 </p>
 <h3 id="h_01HAVHW0RPV53JK8JRKCCWRH3Q">Automatic View Exceptions</h3>
 <h4 id="h_01HAVHW0RP6JNX0Y3PV09EPE1G">Default Exceptions for Automatic View Tracking</h4>
 <p>
   <span style="font-weight: 400;">Following system view controllers will be excluded by default from automatic view tracking, as they are not visible to the user but rather structural controllers:</span>
 </p>
-<pre><code>UINavigationController
+<pre class="wysiwyg-code-block"><code class="language-bash bash">UINavigationController
 UIAlertController
 UIPageViewController
 UITabBarController
@@ -1232,7 +1429,7 @@ UIKeyCommandDiscoverabilityHUDViewController
 </code></pre>
 <h4 id="h_01HAVHW0RPGY5061NGG4PNY0N8">Custom Exceptions for Automatic View Tracking</h4>
 <p>
-  <span style="font-weight: 400;">In addition to these default exceptions, you can manually set an exclusion list of the view controllers you don't want to track by using the <code>automaticViewTrackingExclusionList</code> array on the <code>CountlyConfig</code> object before starting Countly</span>
+  <span style="font-weight: 400;">In addition to these default exceptions, you can manually set an exclusion list of the view controllers you don't want to track by using the </span><code><span style="font-weight: 400;">automaticViewTrackingExclusionList</span></code><span style="font-weight: 400;"> array on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1240,10 +1437,10 @@ UIKeyCommandDiscoverabilityHUDViewController
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.automaticViewTrackingExclusionList = @[NSStringFromClass(MyViewController.class), @"MyViewControllerName"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.automaticViewTrackingExclusionList = @[NSStringFromClass(MyViewController.class), @"MyViewControllerName"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="objectivec">config.automaticViewTrackingExclusionList = [NSStringFromClass(MyViewController.class), "MyViewControllerName"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.automaticViewTrackingExclusionList = [NSStringFromClass(MyViewController.class), "MyViewControllerName"];</code></pre>
   </div>
 </div>
 <p>
@@ -1260,13 +1457,13 @@ UIKeyCommandDiscoverabilityHUDViewController
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//Make your view controller to conform CountlyAutoViewTrackingName protocol.
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">//Make your view controller to conform CountlyAutoViewTrackingName protocol.
 @interface MyViewController : UIViewController @end 
 //and implement countlyAutoViewTrackingName method to return custom view name to be used by Auto View Tracking.
 - (NSString *)countlyAutoViewTrackingName { return @"This is overridden custom view name"; }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//Make your view controller to conform CountlyAutoViewTrackingName protocol. 
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">//Make your view controller to conform CountlyAutoViewTrackingName protocol. 
 class MyViewController: UIViewController, CountlyAutoViewTrackingName 
 //and implement countlyAutoViewTrackingName function to return custom view name to be used by Auto View Tracking.
 func countlyAutoViewTrackingName() -&gt; String { return "This is overridden custom view name" }</code></pre>
@@ -1285,7 +1482,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <h3 id="h_01HFDVX9G293G57VFBANCB4GN6">Auto Stopped Views</h3>
 <p>
-  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use <code>startAutoStoppedView:</code></span><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.</span>
+  <span style="font-weight: 400;">A view initiated with auto stopped view method is designed to be automatically stopped when this method is called again. You should use </span><code><span style="font-weight: 400;">startAutoStoppedView:</span></code><span style="font-weight: 400;">method with a view name. This method begins tracking a view and returns a unique identifier.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1293,10 +1490,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.startAutoStoppedView("MyView")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.startAutoStoppedView("MyView")</code></pre>
   </div>
 </div>
 <p>
@@ -1308,17 +1505,17 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views startAutoStoppedView:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.startAutoStoppedView("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.startAutoStoppedView("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h3 id="h_01HFDVXW74N8XR9TXQA8K7K3F8">Regular Views</h3>
 <p>
   Opposed to "auto stopped views", with regular views you can have multiple of
   them started at the same time, and then you can control them independently. You
-  can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will <span>start tracking a view and return a unique identifier</span>, and the view will remain active until explicitly stopped using <code>stopViewWithName:</code> or <code>stopViewWithID:</code> </span>
+  can manually start a view using the <code>startView:</code><span style="font-weight: 400;">method with a view name. This will start tracking a view and return a unique identifier, and the view will remain active until explicitly stopped using </span><code><span style="font-weight: 400;">stopViewWithName:</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">stopViewWithID:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1326,10 +1523,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views startView:@"MyView"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views startView:@"MyView"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.startView("MyView")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.startView("MyView")</code></pre>
   </div>
 </div>
 <p>
@@ -1341,10 +1538,10 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views startView:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views startView:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.startView("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.startView("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h3 id="h_01HFDVY8YAXBP812A870NAZ6Q2">Stopping Views</h3>
@@ -1354,7 +1551,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <p>
   You can stop view tracking by its name using
-  <span style="font-weight: 400;"><code>stopViewWithName:</code></span>
+  <code><span style="font-weight: 400;">stopViewWithName:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1362,47 +1559,15 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithName("MyView")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.stopViewWithName("MyView")</code></pre>
   </div>
 </div>
 <p>
   This function allows you to manually stop the tracking of a view identified by
-  its name.<span style="font-weight: 400;"><br>You can also specify the custom segmentation key-value pairs while stopping views:</span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithName("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
-  </div>
-</div>
-<p>
-  You can also stop view tracking by its unique idetifier using
-  <span style="font-weight: 400;"><code>stopViewWithID:</code></span>
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID"];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID")</code></pre>
-  </div>
-</div>
-<p>
-  This function allows you to manually stop the tracking of a view identified by
-  its <span>unique identifier.</span><br>
+  its name.<br>
   <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
 </p>
 <div class="tabs">
@@ -1411,15 +1576,15 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views stopViewWithName:@"MyView" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.stopViewWithName("MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <p>
-  You can stop all views tracking using
-  <span style="font-weight: 400;"><code>stopAllViews:</code></span>
+  You can also stop view tracking by its unique idetifier using
+  <code><span style="font-weight: 400;">stopViewWithID:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1427,14 +1592,48 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views stopAllViews:@{@"key": @"value"}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.stopAllViews(["key": "value"])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID")</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;"><span>This function stops the tracking of all views.</span><br></span>
+  This function allows you to manually stop the tracking of a view identified by
+  its unique identifier.<br>
+  <span style="font-weight: 400;">You can also specify the custom segmentation key-value pairs while stopping views:</span>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views stopViewWithID:@"VIEW_ID" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.stopViewWithID("VIEW_ID", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
+  </div>
+</div>
+<p>
+  You can stop all views tracking using
+  <code><span style="font-weight: 400;">stopAllViews:</span></code>
+</p>
+<div class="tabs">
+  <div class="tabs-menu">
+    <span class="tabs-link is-active">Objective-C</span>
+    <span class="tabs-link">Swift</span>
+  </div>
+  <div class="tab">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views stopAllViews:@{@"key": @"value"}];</code></pre>
+  </div>
+  <div class="tab is-hidden">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.stopAllViews(["key": "value"])</code></pre>
+  </div>
+</div>
+<p>
+  <span style="font-weight: 400;">This function stops the tracking of all views.</span><br>
+  &nbsp;
 </p>
 <h3 id="h_01HFDVYJHTJKNHSYQAVYRRPPJE">Pausing and Resuming Views</h3>
 <p>
@@ -1446,7 +1645,7 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
 </p>
 <p>
   You can pause view tracking by its unique identifier using
-  <span style="font-weight: 400;"><code>pauseViewWithID:</code></span>
+  <code><span style="font-weight: 400;">pauseViewWithID:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1454,17 +1653,18 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views pauseViewWithID:@"VIEW_ID"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views pauseViewWithID:@"VIEW_ID"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.pauseViewWithID("VIEW_ID")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.pauseViewWithID("VIEW_ID")</code></pre>
   </div>
 </div>
 <p>
-  <span>This function temporarily pauses the tracking of a view identified by its unique identifier.</span>
+  This function temporarily pauses the tracking of a view identified by its unique
+  identifier.
 </p>
 <p>
-  You can resume view tracking by its unique identifier using<span style="font-weight: 400;"> <code>resumeViewWithID:</code></span>
+  You can resume view tracking by its unique identifier using<span style="font-weight: 400;"> </span><code><span style="font-weight: 400;">resumeViewWithID:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1472,21 +1672,20 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views resumeViewWithID:@"VIEW_ID"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views resumeViewWithID:@"VIEW_ID"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.resumeViewWithID("VIEW_ID")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.resumeViewWithID("VIEW_ID")</code></pre>
   </div>
 </div>
 <p>
   This function resumes the tracking of a previously paused view identified by
   its unique identifier.
 </p>
-<h3 id="h_01HHPQ3RAKXJ5SSV6S4KZGPSXJ">
-  <span>Adding Segmentation to Started Views</span><span></span>
-</h3>
+<h3 id="h_01HHPQ3RAKXJ5SSV6S4KZGPSXJ">Adding Segmentation to Started Views</h3>
 <p>
-  <span><span style="font-weight: 400;">You can also add segmentation to already started views using view name or view ID:<br></span></span>
+  <span style="font-weight: 400;">You can also add segmentation to already started views using view name or view ID:</span><br>
+  &nbsp;
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1494,13 +1693,13 @@ func countlyAutoViewTrackingName() -&gt; String { return "This is overridden cus
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSString * viewID = [Countly.sharedInstance.views startView:@"VIEW_NAME"];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSString * viewID = [Countly.sharedInstance.views startView:@"VIEW_NAME"];
 [Countly.sharedInstance.views addSegmentationToViewWithID:viewID segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];
       
 [Countly.sharedInstance.views addSegmentationToViewWithName:@"VIEW_NAME" segmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let viewID = Countly.sharedInstance().views().startView("MyView");
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let viewID = Countly.sharedInstance().views().startView("MyView");
 Countly.sharedInstance().views().addSegmentationToViewWithID(withID: viewID, segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])
       
 Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView", segmentation: ["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
@@ -1508,7 +1707,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </div>
 <h2 id="h_01HFDVW0B9P67GT7PWD4EB1J1A">Global View Segmentation</h2>
 <p>
-  You can set global segmentation for views by using<span style="font-weight: 400;"> <code>setGlobalViewSegmentation:</code></span>
+  You can set global segmentation for views by using<span style="font-weight: 400;"> </span><code><span style="font-weight: 400;">setGlobalViewSegmentation:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1516,14 +1715,14 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views setGlobalViewSegmentation:@{@"key": @"value"}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views setGlobalViewSegmentation:@{@"key": @"value"}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.setGlobalViewSegmentation(["key": "value"])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.setGlobalViewSegmentation(["key": "value"])</code></pre>
   </div>
 </div>
 <p>
-  You can also update global segmentation values for views by using<span style="font-weight: 400;"> <code>updateGlobalViewSegmentation:</code></span>
+  You can also update global segmentation values for views by using<span style="font-weight: 400;"> </span><code><span style="font-weight: 400;">updateGlobalViewSegmentation:</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1531,18 +1730,18 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.views updateGlobalViewSegmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.views updateGlobalViewSegmentation:@{@"key": @"value", @"arrayKey": @[@"one", @2, @3.14], @"int": @5, @"bool": @YES, @"double": @3.14, @"intArr": @[@4, @5, @6]}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().views.updateGlobalViewSegmentation(["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().views.updateGlobalViewSegmentation(["key": "value", "arrayKey": ["one", 2, 3.14], "int": 5, "bool": true, "double": 3.14, "intArr": [4, 5, 6]])</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVHW0RPRWDT82DVYT4ABT9V">Device ID Management</h1>
 <p>
-  <span style="font-weight: 400;">It is a persistently stored random <code>NSUUID</code></span><span style="font-weight: 400;"> string.</span>
+  <span style="font-weight: 400;">It is a persistently stored random </span><code><span style="font-weight: 400;">NSUUID</span></code><span style="font-weight: 400;"> string.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If you would like to use a custom device ID, you can set the <code>deviceID</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. If the <code>deviceID</code></span><span style="font-weight: 400;"> property is not set explicitly, a </span>default
+  <span style="font-weight: 400;">If you would like to use a custom device ID, you can set the </span><code><span style="font-weight: 400;">deviceID</span></code><span style="font-weight: 400;"> property on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object. If the </span><code><span style="font-weight: 400;">deviceID</span></code><span style="font-weight: 400;"> property is not set explicitly, a </span>default
   device ID<span style="font-weight: 400;"> will be used depending on the platform.</span>
 </p>
 <div class="tabs">
@@ -1551,15 +1750,15 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.deviceID = @"customDeviceID";  //Optional custom device ID</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.deviceID = @"customDeviceID";  //Optional custom device ID</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.deviceID = "customDeviceID"  //Optional custom device ID</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.deviceID = "customDeviceID"  //Optional custom device ID</code></pre>
   </div>
 </div>
 <p>
   <strong>Note:</strong>
-  <span style="font-weight: 400;">Once set, the device ID will be persistently stored on the device after the first app launch, and the <code>deviceID</code></span><span style="font-weight: 400;"> property will be ignored on the following app launches, until the app is deleted and re-installed or a <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is set. For further details, please check the </span><a href="/hc/en-us/articles/4409195031577#h_01HAVHW0RPQ7A17R8H6RZCMWXP">Resetting Stored Device ID</a><span style="font-weight: 400;"> section below.</span>
+  <span style="font-weight: 400;">Once set, the device ID will be persistently stored on the device after the first app launch, and the </span><code><span style="font-weight: 400;">deviceID</span></code><span style="font-weight: 400;"> property will be ignored on the following app launches, until the app is deleted and re-installed or a </span><code><span style="font-weight: 400;">resetStoredDeviceID</span></code><span style="font-weight: 400;"> flag is set. For further details, please check the </span><a href="#h_01HAVHW0RPQ7A17R8H6RZCMWXP">Resetting Stored Device ID</a><span style="font-weight: 400;"> section below.</span>
 </p>
 <h2 id="h_01HAVHW0RP2DPTREKXC0Q8T6QA">Changing Device ID</h2>
 <div class="callout callout--warning">
@@ -1570,7 +1769,10 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   </p>
 </div>
 <p>
-  <span style="font-weight: 400;">You can change the device ID on runtime <strong>after you start Countly</strong>. You can either allow the device to be counted as a new device or merge existing data on the server.<br><br>To set a new device ID based on the current device ID type, use the <code>setID:</code> method. If the current device ID type is <code>CLYDeviceIDTypeCustom</code>, it will be counted as a new device; otherwise, it will merge existing data on the server. With <code>setID:</code>, the SDK will automatically handle whether to merge the device ID or not.<br></span>
+  <span style="font-weight: 400;">You can change the device ID on runtime <strong>after you start Countly</strong>. You can either allow the device to be counted as a new device or merge existing data on the server.</span><br>
+  <br>
+  <span style="font-weight: 400;">To set a new device ID based on the current device ID type, use the </span><code><span style="font-weight: 400;">setID:</span></code><span style="font-weight: 400;"> method. If the current device ID type is </span><code><span style="font-weight: 400;">CLYDeviceIDTypeCustom</span></code><span style="font-weight: 400;">, it will be counted as a new device; otherwise, it will merge existing data on the server. With </span><code><span style="font-weight: 400;">setID:</span></code><span style="font-weight: 400;">, the SDK will automatically handle whether to merge the device ID or not.</span><br>
+  &nbsp;
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1578,17 +1780,20 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//Automatically handle whether to merge the device ID or not.
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">//Automatically handle whether to merge the device ID or not.
 [Countly.sharedInstance setID:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//Automatically handle whether to merge the device ID or not.<br>Countly.sharedInstance().setID("new_device_id")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">//Automatically handle whether to merge the device ID or not.
+Countly.sharedInstance().setID("new_device_id")</code></pre>
   </div>
 </div>
 <div class="callout callout--warning">
-  <strong>Consent Reset on Device ID Change</strong>
   <p>
-    <span style="font-weight: 400;">If device ID is changed again from a developer provided ID and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
+    <strong>Consent Reset on Device ID Change</strong>
+  </p>
+  <p>
+    <span style="font-weight: 400;">If device ID is changed again from a developer provided ID and </span><code><span style="font-weight: 400;">requiresConsent</span></code><span style="font-weight: 400;"> flag was enabled, all previously given consents will be removed. This means that all features will cease to function until new consent has been given again for the new device ID.</span>
   </p>
 </div>
 <h2 id="h_01HAVHW0RPA7ADFJ2Y97HNPPH5">Temporary Device ID</h2>
@@ -1610,10 +1815,10 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config enableTemporaryDeviceIDMode];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config enableTemporaryDeviceIDMode];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enableTemporaryDeviceIDMode();</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableTemporaryDeviceIDMode();</code></pre>
   </div>
 </div>
 <p>
@@ -1625,10 +1830,11 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance enableTemporaryDeviceIDMode];<br></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance enableTemporaryDeviceIDMode];
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().enableTemporaryDeviceIDMode()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().enableTemporaryDeviceIDMode()</code></pre>
   </div>
 </div>
 <p>
@@ -1641,7 +1847,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>setID:</code></span> method, all requests
+  <code><span style="font-weight: 400;">setID:</span></code> method, all requests
   which have been kept on hold until that point will start with the real device
   ID:
 </p>
@@ -1651,16 +1857,18 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setID:@"new_device_id"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance setID:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setID("new_device_id")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().setID("new_device_id")</code></pre>
   </div>
 </div>
 <div class="callout callout--warning">
-  <strong>Consent Reset on Temporary Device ID Mode</strong>
   <p>
-    <span style="font-weight: 400;">If the SDK goes into Temporary Device ID mode and <code>requiresConsent</code> flag was enabled, all previously given consents will be removed. Therefore after entering the Temporary Device ID mode, you should reestablish consent again.</span>
+    <strong>Consent Reset on Temporary Device ID Mode</strong>
+  </p>
+  <p>
+    <span style="font-weight: 400;">If the SDK goes into Temporary Device ID mode and </span><code><span style="font-weight: 400;">requiresConsent</span></code><span style="font-weight: 400;"> flag was enabled, all previously given consents will be removed. Therefore after entering the Temporary Device ID mode, you should reestablish consent again.</span>
   </p>
 </div>
 <h2 id="h_01HAVHW0RP65R779Y3869HFTND">Retrieving Current Device ID</h2>
@@ -1673,10 +1881,10 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance deviceID];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance deviceID];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().deviceID()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().deviceID()</code></pre>
   </div>
 </div>
 <p>
@@ -1693,10 +1901,10 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance deviceIDType];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance deviceIDType];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().deviceIDType()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().deviceIDType()</code></pre>
   </div>
 </div>
 <p>
@@ -1710,7 +1918,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </p>
 <h2 id="h_01HAVHW0RPQ7A17R8H6RZCMWXP">Resetting Stored Device ID</h2>
 <p>
-  <span style="font-weight: 400;">In order to handle device ID changes for logged-in and logged-out users, the device ID specified in the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object of the <code>deviceID</code></span><span style="font-weight: 400;"> property (or the default device ID, if not specified) will be persistently stored as well as the device ID passed to the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code> </span><span style="font-weight: 400;">method at any time upon the first app launch. By this point, until you delete and re-install the app, the Countly iOS SDK will continue to use the stored device ID and ignore the <code>deviceID</code></span><span style="font-weight: 400;"> property. So, if you set the <code>deviceID</code></span><span style="font-weight: 400;"> property to something different upon future app launches during development, it will have no effect. In this case, you can set the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object in order to reset the stored device ID. This will reset the initially stored device ID and the Countly iOS SDK will work as if it is the first app launch.</span>
+  <span style="font-weight: 400;">In order to handle device ID changes for logged-in and logged-out users, the device ID specified in the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object of the </span><code><span style="font-weight: 400;">deviceID</span></code><span style="font-weight: 400;"> property (or the default device ID, if not specified) will be persistently stored as well as the device ID passed to the </span><code><span style="font-weight: 400;">changeDeviceIDWithMerge:</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">changeDeviceIDWithoutMerge:</span></code><span style="font-weight: 400;"> </span><span style="font-weight: 400;">method at any time upon the first app launch. By this point, until you delete and re-install the app, the Countly iOS SDK will continue to use the stored device ID and ignore the </span><code><span style="font-weight: 400;">deviceID</span></code><span style="font-weight: 400;"> property. So, if you set the </span><code><span style="font-weight: 400;">deviceID</span></code><span style="font-weight: 400;"> property to something different upon future app launches during development, it will have no effect. In this case, you can set the </span><code><span style="font-weight: 400;">resetStoredDeviceID</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object in order to reset the stored device ID. This will reset the initially stored device ID and the Countly iOS SDK will work as if it is the first app launch.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1718,14 +1926,14 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.resetStoredDeviceID = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.resetStoredDeviceID = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.resetStoredDeviceID = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.resetStoredDeviceID = true</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">After you start Countly once with the <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag while developing, you can remove that line. The <code>resetStoredDeviceID</code></span><span style="font-weight: 400;"> flag is not meant for production. It is only for debugging purposes while performing development and not being able to delete and re-install the app.</span>
+  <span style="font-weight: 400;">After you start Countly once with the </span><code><span style="font-weight: 400;">resetStoredDeviceID</span></code><span style="font-weight: 400;"> flag while developing, you can remove that line. The </span><code><span style="font-weight: 400;">resetStoredDeviceID</span></code><span style="font-weight: 400;"> flag is not meant for production. It is only for debugging purposes while performing development and not being able to delete and re-install the app.</span>
 </p>
 <h1 id="h_01HAVHW0RQD3WBN560GAKTB77T">Push Notifications</h1>
 <p>
@@ -1740,10 +1948,10 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   app and at your Countly server.
 </p>
 <p>
-  <strong><span style="font-weight: 400;">First, you will need to acquire Push Notification credentials from Apple. (If you don't have them you can check <a href="/hc/en-us/articles/360037753511#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">this</a> article to learn how you can do it.)</span></strong>
+  <span style="font-weight: 400;"><strong>First, you will need to acquire Push Notification credentials from Apple. (If you don't have them you can check </strong></span><a href="#h_01HNF5NPFR0W8WJ1BW8WVXJ5AB"><span style="font-weight: 400;"><strong>this</strong></span></a><span style="font-weight: 400;"><strong> article to learn how you can do it.)</strong></span>
 </p>
 <p>
-  <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to <a href="/hc/en-us/articles/360037753511#h_01HNF5QRPJGG0GKMMH2SZWVK85">this</a> article for learning how you can do that.</span>
+  <span style="font-weight: 400;">Then you would need to upload these credentials&nbsp;to your Countly server. You can refer to </span><a href="#h_01HNF5QRPJGG0GKMMH2SZWVK85"><span style="font-weight: 400;">this</span></a><span style="font-weight: 400;"> article for learning how you can do that.</span>
 </p>
 <p>
   <span style="font-weight: 400;">Lastly you will need to integrate and enable the feature in your SDK as explained below.</span>
@@ -1760,7 +1968,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </div>
 <h2 id="h_01HAVHW0RQSFQYGK10F4REYQNG">Enabling Push</h2>
 <p>
-  <span style="font-weight: 400;">Now, start Countly in the <code>application:didFinishLaunchingWithOptions:</code> </span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> in the <code>features</code> </span><span style="font-weight: 400;">array on the <code>CountlyConfig</code> </span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly <code>askForNotificationPermission</code></span><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
+  <span style="font-weight: 400;">Now, start Countly in the </span><code><span style="font-weight: 400;">application:didFinishLaunchingWithOptions:</span></code><span style="font-weight: 400;"> </span><span style="font-weight: 400;">method of your app with the following configuration. Do not forget to specify </span><code><span style="font-weight: 400;">CLYPushNotifications</span></code><span style="font-weight: 400;"> in the </span><code><span style="font-weight: 400;">features</span></code><span style="font-weight: 400;"> </span><span style="font-weight: 400;">array on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> </span><span style="font-weight: 400;">object. Then you'll need to ask for user's permission for push notifications using the Countly </span><code><span style="font-weight: 400;">askForNotificationPermission</span></code><span style="font-weight: 400;"> method at any point in the app. The Countly iOS SDK will automatically handle the rest. No need to call any other method for registering when a device token is generated, or a push notification is received.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1768,7 +1976,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">#import "Countly.h"
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">#import "Countly.h"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -1791,7 +1999,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -&gt; Bool
 {
   //Start Countly with CLYPushNotifications feature as follows
   let config: CountlyConfig = CountlyConfig()
@@ -1812,7 +2020,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   </div>
 </div>
 <p>
-  <strong>Note:</strong><span style="font-weight: 400;"> Ensure you code-sign your application using the </span><strong>explicit Provisioning Profile</strong><span style="font-weight: 400;"> specific to your </span><strong>app's bundleID</strong><span style="font-weight: 400;"> with an </span><span style="font-weight: 400;">aps-environment</span><span style="font-weight: 400;"> key in it. You can get it from the </span><a href="https://developer.apple.com/account/ios/profile/landing"><strong>iOS Provisioning Profiles</strong></a><span style="font-weight: 400;"> section of the Apple Developer website. Be advised, wildcard (*) profiles or profiles <code>aps-environment</code></span><span style="font-weight: 400;"> key do not work with APNs, and the device can not receive a push token.</span>
+  <strong>Note:</strong><span style="font-weight: 400;"> Ensure you code-sign your application using the </span><strong>explicit Provisioning Profile</strong><span style="font-weight: 400;"> specific to your </span><strong>app's bundleID</strong><span style="font-weight: 400;"> with an </span><span style="font-weight: 400;">aps-environment</span><span style="font-weight: 400;"> key in it. You can get it from the </span><a href="https://developer.apple.com/account/ios/profile/landing"><strong>iOS Provisioning Profiles</strong></a><span style="font-weight: 400;"> section of the Apple Developer website. Be advised, wildcard (*) profiles or profiles </span><code><span style="font-weight: 400;">aps-environment</span></code><span style="font-weight: 400;"> key do not work with APNs, and the device can not receive a push token.</span>
 </p>
 <p>
   <strong>Note: </strong>Please make sure you <strong>do not set</strong>
@@ -1841,22 +2049,22 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </p>
 <h2 id="h_01HAVHW0RQG8PK3Z0KFW0D4Y2K">Deep links</h2>
 <p>
-  <span style="font-weight: 400;">When you send a push notification with custom actions buttons, you can redirect users to any custom page or view in your app by specifying deep links as custom actions button URLs. To do so, you will first need to create a URL scheme (e.g. : <code>myapp://</code></span><span style="font-weight: 400;">) in your project.</span>
+  <span style="font-weight: 400;">When you send a push notification with custom actions buttons, you can redirect users to any custom page or view in your app by specifying deep links as custom actions button URLs. To do so, you will first need to create a URL scheme (e.g. : </span><code><span style="font-weight: 400;">myapp://</span></code><span style="font-weight: 400;">) in your project.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">To do so, select your app target in Xcode and open the <code>Info</code></span><span style="font-weight: 400;"> tab. Then, open the <code>URL Types</code></span><span style="font-weight: 400;"> section by clicking the horizontal arrow, and click the plus <code>+</code></span><span style="font-weight: 400;"> sign there.</span>
+  <span style="font-weight: 400;">To do so, select your app target in Xcode and open the </span><code><span style="font-weight: 400;">Info</span></code><span style="font-weight: 400;"> tab. Then, open the </span><code><span style="font-weight: 400;">URL Types</span></code><span style="font-weight: 400;"> section by clicking the horizontal arrow, and click the plus </span><code><span style="font-weight: 400;">+</span></code><span style="font-weight: 400;"> sign there.</span>
 </p>
 <div class="img-container">
   <img src="https://archive.count.ly/images/guide/cbf1169-ss_url_types.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Enter an identifier (preferably in reverse domain format) into the <code>Identifier</code></span><span style="font-weight: 400;"> field and enter your app's URL scheme (without <code>://</code></span><span style="font-weight: 400;">part) into the <code>URL Schemes</code></span><span style="font-weight: 400;"> field. Optionally, you can set an <code>Icon</code></span><span style="font-weight: 400;">. You can leave the <code>Role</code></span><span style="font-weight: 400;"> field as whatever its default value is. When you are done, you can confirm that your new URL scheme has been added to your app's <code>Info.plist</code></span><span style="font-weight: 400;"> file. It should look like this:</span>
+  <span style="font-weight: 400;">Enter an identifier (preferably in reverse domain format) into the </span><code><span style="font-weight: 400;">Identifier</span></code><span style="font-weight: 400;"> field and enter your app's URL scheme (without </span><code><span style="font-weight: 400;">://</span></code><span style="font-weight: 400;">part) into the </span><code><span style="font-weight: 400;">URL Schemes</span></code><span style="font-weight: 400;"> field. Optionally, you can set an </span><code><span style="font-weight: 400;">Icon</span></code><span style="font-weight: 400;">. You can leave the </span><code><span style="font-weight: 400;">Role</span></code><span style="font-weight: 400;"> field as whatever its default value is. When you are done, you can confirm that your new URL scheme has been added to your app's </span><code><span style="font-weight: 400;">Info.plist</span></code><span style="font-weight: 400;"> file. It should look like this:</span>
 </p>
 <div class="img-container">
   <img src="https://archive.count.ly/images/guide/273fd0d-ss2.png">
 </div>
 <p>
-  <span style="font-weight: 400;">After setting up the URL scheme, you should add the <code>application:openURL:options:</code></span><span style="font-weight: 400;"> method to your app delegate:</span>
+  <span style="font-weight: 400;">After setting up the URL scheme, you should add the </span><code><span style="font-weight: 400;">application:openURL:options:</span></code><span style="font-weight: 400;"> method to your app delegate:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1864,7 +2072,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt; *)options
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;UIApplicationOpenURLOptionsKey, id&gt; *)options
 {
   //handle URL here to navigate to custom views
 
@@ -1872,7 +2080,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&gt; Bool
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&gt; Bool
 {
   //handle URL here to navigate to custom views
 
@@ -1881,7 +2089,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">If your app's deployment target is lower than iOS9, you should add the <code>application:openURL:sourceApplication:annotation:</code></span><span style="font-weight: 400;"> method instead:</span>
+  <span style="font-weight: 400;">If your app's deployment target is lower than iOS9, you should add the </span><code><span style="font-weight: 400;">application:openURL:sourceApplication:annotation:</span></code><span style="font-weight: 400;"> method instead:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1889,7 +2097,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation
 {
   //handle URL here to navigate to custom views
 
@@ -1897,7 +2105,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -&gt; Bool
 {
   //handle URL here to navigate to custom views
 
@@ -1906,7 +2114,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Then in this method, you can check the passed <code>url</code></span><span style="font-weight: 400;"> for custom view navigation using the<code>scheme</code></span><span style="font-weight: 400;"> and <code>host</code></span><span style="font-weight: 400;"> properties. For example, if you set the custom action button URLs as <code>countly://productA</code></span><span style="font-weight: 400;"> and <code>countly://productB</code></span><span style="font-weight: 400;">, you can use something similar to this snippet:</span>
+  <span style="font-weight: 400;">Then in this method, you can check the passed </span><code><span style="font-weight: 400;">url</span></code><span style="font-weight: 400;"> for custom view navigation using the</span><code><span style="font-weight: 400;">scheme</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">host</span></code><span style="font-weight: 400;"> properties. For example, if you set the custom action button URLs as </span><code><span style="font-weight: 400;">countly://productA</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">countly://productB</span></code><span style="font-weight: 400;">, you can use something similar to this snippet:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1914,7 +2122,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">if ([url.scheme isEqualToString: @"countly"])
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">if ([url.scheme isEqualToString: @"countly"])
 {
   if ([url.host isEqualToString: @"productA"])
   {
@@ -1929,7 +2137,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">if (url.scheme == "countly")
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">if (url.scheme == "countly")
 {
   if (url.host == "productA")
   {
@@ -1960,7 +2168,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
   <img src="https://archive.count.ly/images/guide/f62249f-screen-1.png">
 </div>
 <p>
-  <span style="font-weight: 400;">Use the <code>Product Name</code> field of the Notification Service Extension target as you wish (for example: CountlyNSE) and ensure the <code>Team</code> is also selected.</span>
+  <span style="font-weight: 400;">Use the </span><code><span style="font-weight: 400;">Product Name</span></code><span style="font-weight: 400;"> field of the Notification Service Extension target as you wish (for example: CountlyNSE) and ensure the </span><code><span style="font-weight: 400;">Team</span></code><span style="font-weight: 400;"> is also selected.</span>
 </p>
 <p>
   <strong>Note:</strong>
@@ -1983,7 +2191,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </p>
 <p>
   <strong>Note:</strong>
-  <span style="font-weight: 400;">If you cannot see the <code>CountlyNotificationService.m</code></span><span style="font-weight: 400;"> file because you are using CocoaPods or Carthage for integration, please locate it yourself (probably under the <code>Pods</code></span><span style="font-weight: 400;"> folder) and add it to your project manually.</span>
+  <span style="font-weight: 400;">If you cannot see the </span><code><span style="font-weight: 400;">CountlyNotificationService.m</span></code><span style="font-weight: 400;"> file because you are using CocoaPods or Carthage for integration, please locate it yourself (probably under the </span><code><span style="font-weight: 400;">Pods</span></code><span style="font-weight: 400;"> folder) and add it to your project manually.</span>
 </p>
 <div class="img-container">
   <img src="https://archive.count.ly/images/guide/2def469-screen_4.png">
@@ -1991,7 +2199,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 <p>
   Then find the <code>NotificationService.m</code> file (<code>NotificationService.swift</code>
   in Swift projects)
-  <span style="font-weight: 400;">in the extension target. It is a default template file added automatically by Xcode. Import <code>CountlyNotificationService.h</code></span><span style="font-weight: 400;"> inside this file.</span>
+  <span style="font-weight: 400;">in the extension target. It is a default template file added automatically by Xcode. Import </span><code><span style="font-weight: 400;">CountlyNotificationService.h</span></code><span style="font-weight: 400;"> inside this file.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -1999,16 +2207,15 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">#import "CountlyNotificationService.h"</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">#import "CountlyNotificationService.h"</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">// No need to import files for Swift projects</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">// No need to import files for Swift projects</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Then add the following line at the end of the </span>
-  <code>didReceiveNotificationRequest:withContentHandler:</code> method as shown
-  below:
+  <span style="font-weight: 400;">Then add the following line at the end of the </span><code>didReceiveNotificationRequest:withContentHandler:</code>
+  method as shown below:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2016,7 +2223,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">- (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler
 {
   self.contentHandler = contentHandler;
   self.bestAttemptContent = [request.content mutableCopy];
@@ -2027,7 +2234,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void)
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void)
 {
   self.contentHandler = contentHandler
   bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
@@ -2039,11 +2246,11 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 </div>
 <p>
   <strong>Note:</strong>
-  <span style="font-weight: 400;">Please ensure you also configure the <code>App Transport Security</code></span><span style="font-weight: 400;"> setting in the extension's <code>Info.plist</code></span><span style="font-weight: 400;"> file just as with the main application. Otherwise, media attachments from non-https sources cannot be loaded.</span>
+  <span style="font-weight: 400;">Please ensure you also configure the </span><code><span style="font-weight: 400;">App Transport Security</span></code><span style="font-weight: 400;"> setting in the extension's </span><code><span style="font-weight: 400;">Info.plist</span></code><span style="font-weight: 400;"> file just as with the main application. Otherwise, media attachments from non-https sources cannot be loaded.</span>
 </p>
 <p>
   <strong>Note:</strong>
-  <span style="font-weight: 400;">Please ensure you check that the <code>Deployment Target</code></span><span style="font-weight: 400;"> version of the extension target is <code>10</code></span><span style="font-weight: 400;">, not 10.3 (or whatever minor version Xcode set automatically). Otherwise, users running iOS versions lower than the <code>Deployment Target</code></span><span style="font-weight: 400;"> value will not be able to get rich push notifications.</span>
+  <span style="font-weight: 400;">Please ensure you check that the </span><code><span style="font-weight: 400;">Deployment Target</span></code><span style="font-weight: 400;"> version of the extension target is </span><code><span style="font-weight: 400;">10</span></code><span style="font-weight: 400;">, not 10.3 (or whatever minor version Xcode set automatically). Otherwise, users running iOS versions lower than the </span><code><span style="font-weight: 400;">Deployment Target</span></code><span style="font-weight: 400;"> value will not be able to get rich push notifications.</span>
 </p>
 <h2 id="h_01HAVHW0RQY6P4DBXNGBFZPKQE">
   Provisional Permission for Push Notifications (iOS 12+ only)
@@ -2065,7 +2272,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">UNAuthorizationOptions authorizationOptions = UNAuthorizationOptionProvisional;
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">UNAuthorizationOptions authorizationOptions = UNAuthorizationOptionProvisional;
 
 [Countly.sharedInstance askForNotificationPermissionWithOptions:authorizationOptions completionHandler:^(BOOL granted, NSError *error)
 {
@@ -2074,7 +2281,7 @@ Countly.sharedInstance().views().addSegmentationToViewWithName(withName: "MyView
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let authorizationOptions : UNAuthorizationOptions = [.provisional]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let authorizationOptions : UNAuthorizationOptions = [.provisional]
 
 Countly.sharedInstance().askForNotificationPermission(options: authorizationOptions, completionHandler:
 { (granted : Bool, error : Error?) in
@@ -2084,14 +2291,14 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">If this is the only notification permission type for which you ask, there will be no permission dialog and it will be granted by default. Then, later on, the Notification Center users can swipe on these provisional notifications and cancel the provisional permission anytime they please. The notification permission level then changes to the <code>UNAuthorizationStatusDenied</code></span><span style="font-weight: 400;"> from the <code>UNAuthorizationStatusProvisional</code></span><span style="font-weight: 400;"> state. This functions is a kind of opt-out.</span>
+  <span style="font-weight: 400;">If this is the only notification permission type for which you ask, there will be no permission dialog and it will be granted by default. Then, later on, the Notification Center users can swipe on these provisional notifications and cancel the provisional permission anytime they please. The notification permission level then changes to the </span><code><span style="font-weight: 400;">UNAuthorizationStatusDenied</span></code><span style="font-weight: 400;"> from the </span><code><span style="font-weight: 400;">UNAuthorizationStatusProvisional</span></code><span style="font-weight: 400;"> state. This functions is a kind of opt-out.</span>
 </p>
 <h2 id="h_01HAVHW0RQSSB4M60SRFCEA596">How Push Notifications Work in Countly</h2>
 <p>
   <span style="font-weight: 400;">When a push notification is received, the Countly iOS SDK handles everything automatically.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">First, it checks if the notification payload has the Countly specific dictionary (<code>c</code></span><span style="font-weight: 400;"> key) and the notification ID inside it (<code>i</code></span><span style="font-weight: 400;">key). If the Countly specific dictionary is present, it processes the notification. Otherwise, it does nothing. In both cases, the Countly iOS SDK forwards the notification to the default application delegate implementation for manual handling.</span>
+  <span style="font-weight: 400;">First, it checks if the notification payload has the Countly specific dictionary (</span><code><span style="font-weight: 400;">c</span></code><span style="font-weight: 400;"> key) and the notification ID inside it (</span><code><span style="font-weight: 400;">i</span></code><span style="font-weight: 400;">key). If the Countly specific dictionary is present, it processes the notification. Otherwise, it does nothing. In both cases, the Countly iOS SDK forwards the notification to the default application delegate implementation for manual handling.</span>
 </p>
 <p>
   <span style="font-weight: 400;">The processing of the notification payload depends on the iOS version, the application’s status (background or foreground) at the time of notification reception, and the notification payload's content.</span>
@@ -2130,10 +2337,10 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.pushTestMode = CLYPushTestModeDevelopment;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.pushTestMode = CLYPushTestModeDevelopment;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.pushTestMode = CLYPushTestModeDevelopment</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.pushTestMode = CLYPushTestModeDevelopment</code></pre>
   </div>
 </div>
 <p>
@@ -2149,10 +2356,10 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.pushTestMode = CLYPushTestModeTestFlightOrAdHoc;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.pushTestMode = CLYPushTestModeTestFlightOrAdHoc;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.pushTestMode = CLYPushTestModeTestFlightOrAdHoc</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.pushTestMode = CLYPushTestModeTestFlightOrAdHoc</code></pre>
   </div>
 </div>
 <p>
@@ -2166,7 +2373,7 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
 </p>
 <h3 id="h_01HAVHW0RQPGNC7YD09Q3Z41MK">Disabling Alerts Shown by Notifications</h3>
 <p>
-  <span style="font-weight: 400;">To disable messages from automatically being shown by the <code>CLYPushNotifications</code></span><span style="font-weight: 400;"> feature while the app is in the foreground, you can set the <code>doNotShowAlertForNotifications</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. If set, no message will be displayed by using the default system UI in the app, but push-open events will be recorded automatically.</span>
+  <span style="font-weight: 400;">To disable messages from automatically being shown by the </span><code><span style="font-weight: 400;">CLYPushNotifications</span></code><span style="font-weight: 400;"> feature while the app is in the foreground, you can set the </span><code><span style="font-weight: 400;">doNotShowAlertForNotifications</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object. If set, no message will be displayed by using the default system UI in the app, but push-open events will be recorded automatically.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2174,23 +2381,23 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.doNotShowAlertForNotifications = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.doNotShowAlertForNotifications = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.doNotShowAlertForNotifications = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.doNotShowAlertForNotifications = true</code></pre>
   </div>
 </div>
 <h3 id="h_01HAVHW0RQRHJ27TXHTTZ0F82M">Manually Handling Notifications</h3>
 <p>
-  <span style="font-weight: 400;">If you would like to do additional custom work when a push notification is received, all you need to do is implement the default push-related methods in your application delegate (e.g. <code>AppDelegate.m</code></span><span style="font-weight: 400;">). After finishing its internal work, the Countly iOS SDK will push forward the related method calls to the default implementations on the application delegate.</span>
+  <span style="font-weight: 400;">If you would like to do additional custom work when a push notification is received, all you need to do is implement the default push-related methods in your application delegate (e.g. </span><code><span style="font-weight: 400;">AppDelegate.m</span></code><span style="font-weight: 400;">). After finishing its internal work, the Countly iOS SDK will push forward the related method calls to the default implementations on the application delegate.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Please ensure you </span><strong>do not set </strong><span style="font-weight: 400;">the<code>UNUserNotificationCenter.currentNotificationCenter</code></span><span style="font-weight: 400;">'s delegate manually, as the Countly iOS SDK will be acting as the delegate. All you need to do is directly add the<code>UNUserNotificationCenterDelegate</code></span><span style="font-weight: 400;"> methods to your application delegate class.</span>
+  <span style="font-weight: 400;">Please ensure you </span><strong>do not set </strong><span style="font-weight: 400;">the</span><code><span style="font-weight: 400;">UNUserNotificationCenter.currentNotificationCenter</span></code><span style="font-weight: 400;">'s delegate manually, as the Countly iOS SDK will be acting as the delegate. All you need to do is directly add the</span><code><span style="font-weight: 400;">UNUserNotificationCenterDelegate</span></code><span style="font-weight: 400;"> methods to your application delegate class.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Inside the push notification <code>userInfo</code></span><span style="font-weight: 400;">dictionary you can find all the necessary information under the Countly Payload dictionary specified by the <code>c</code> (<code>kCountlyPNKeyCountlyPayload</code>)</span><span style="font-weight: 400;"> key. The array of the custom action buttons is specified by the<code>b</code> (<code>kCountlyPNKeyButtons</code></span><span style="font-weight: 400;">) key here, and each custom action button's title and action URL is specified by the<code>t</code> (<code>kCountlyPNKeyActionButtonTitle</code>) and <code>l</code> (<code>kCountlyPNKeyActionButtonURL</code>)</span><span style="font-weight: 400;"> keys, respectively. Here is an example of the Countly Push Notification Payload:</span>
+  <span style="font-weight: 400;">Inside the push notification </span><code><span style="font-weight: 400;">userInfo</span></code><span style="font-weight: 400;">dictionary you can find all the necessary information under the Countly Payload dictionary specified by the </span><code><span style="font-weight: 400;">c</span></code><span style="font-weight: 400;"> (</span><code><span style="font-weight: 400;">kCountlyPNKeyCountlyPayload</span></code><span style="font-weight: 400;">)</span><span style="font-weight: 400;"> key. The array of the custom action buttons is specified by the</span><code><span style="font-weight: 400;">b</span></code><span style="font-weight: 400;"> (</span><code><span style="font-weight: 400;">kCountlyPNKeyButtons</span></code><span style="font-weight: 400;">) key here, and each custom action button's title and action URL is specified by the</span><code><span style="font-weight: 400;">t</span></code><span style="font-weight: 400;"> (</span><code><span style="font-weight: 400;">kCountlyPNKeyActionButtonTitle</span></code><span style="font-weight: 400;">) and </span><code><span style="font-weight: 400;">l</span></code><span style="font-weight: 400;"> (</span><code><span style="font-weight: 400;">kCountlyPNKeyActionButtonURL</span></code><span style="font-weight: 400;">)</span><span style="font-weight: 400;"> keys, respectively. Here is an example of the Countly Push Notification Payload:</span>
 </p>
-<pre><code class="json">{
+<pre class="wysiwyg-code-block"><code class="language-json">{
   "aps":
   {
     "alert": "this is notification text",
@@ -2230,7 +2437,7 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary* userInfo;     // notification dictionary
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary* userInfo;     // notification dictionary
 NSInteger buttonIndex = 1;  // clicked button index
                             // 1 for first action button
                             // 2 for second action button
@@ -2239,7 +2446,7 @@ NSInteger buttonIndex = 1;  // clicked button index
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let userInfo : Dictionary&lt;String, AnyObject&gt; = Dictionary() // notification dictionary
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let userInfo : Dictionary&lt;String, AnyObject&gt; = Dictionary() // notification dictionary
 let buttonIndex : Int = 1  // clicked button index
                            // 1 for first action button
                            // 2 for second action button
@@ -2250,7 +2457,7 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
 </div>
 <h3 id="h_01HAVHW0RRY04DQTV3QNZ23N0Y">Always Sending Push Tokens</h3>
 <p>
-  <span style="font-weight: 400;">Thanks to iOS’ Remote Notification Background Mode, silent push notifications can be sent to users who have not given notification permission. However, the Countly iOS SDK does not send push tokens to the server by default from users who have not given permission for notifications. You can change this by setting the <code>sendPushTokenAlways</code> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. If set, push tokens from all users, regardless of their notification permission status, will be sent to the Countly Server and these users will be listed as possible recipients on the </span><strong>Create Message</strong><span style="font-weight: 400;"> screen of the Countly Dashboard. Be advised; these users can not be notified by an alert, sound, or badge. This is useful only for sending data via silent notifications.</span>
+  <span style="font-weight: 400;">Thanks to iOS’ Remote Notification Background Mode, silent push notifications can be sent to users who have not given notification permission. However, the Countly iOS SDK does not send push tokens to the server by default from users who have not given permission for notifications. You can change this by setting the </span><code><span style="font-weight: 400;">sendPushTokenAlways</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object. If set, push tokens from all users, regardless of their notification permission status, will be sent to the Countly Server and these users will be listed as possible recipients on the </span><strong>Create Message</strong><span style="font-weight: 400;"> screen of the Countly Dashboard. Be advised; these users can not be notified by an alert, sound, or badge. This is useful only for sending data via silent notifications.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2258,15 +2465,15 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.sendPushTokenAlways = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.sendPushTokenAlways = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sendPushTokenAlways = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sendPushTokenAlways = true</code></pre>
   </div>
 </div>
 <h3 id="h_01HAVHW0RRGZ4PQF3CJZWT6B0F">Notification Permission with Preferred Types and Callback</h3>
 <p>
-  <span style="font-weight: 400;">As asking for users’ permission for push notifications differ by iOS versions, the Countly iOS SDK has a one-liner convenience method, <code>askForNotificationPermission</code></span><span style="font-weight: 400;">,</span><span style="font-weight: 400;"> which does this for both iOS10 and older versions. It simply asks for a user's permission for all available notification types. However, if you need to specify which notification types your app will use (alert, badge, sound) or if you need a callback to see a user's response to the permission dialog, you can use the</span><code>askForNotificationPermissionWithOptions:completionHandler:</code>
+  <span style="font-weight: 400;">As asking for users’ permission for push notifications differ by iOS versions, the Countly iOS SDK has a one-liner convenience method, </span><code><span style="font-weight: 400;">askForNotificationPermission</span></code><span style="font-weight: 400;">,</span><span style="font-weight: 400;"> which does this for both iOS10 and older versions. It simply asks for a user's permission for all available notification types. However, if you need to specify which notification types your app will use (alert, badge, sound) or if you need a callback to see a user's response to the permission dialog, you can use the</span><code>askForNotificationPermissionWithOptions:completionHandler:</code>
   method.
 </p>
 <div class="tabs">
@@ -2275,7 +2482,7 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">UNAuthorizationOptions authorizationOptions = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert;
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">UNAuthorizationOptions authorizationOptions = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert;
 
 [Countly.sharedInstance askForNotificationPermissionWithOptions:authorizationOptions completionHandler:^(BOOL granted, NSError *error)
 {
@@ -2284,7 +2491,7 @@ Countly.sharedInstance().recordAction(forNotification:userInfo, clickedButtonInd
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let authorizationOptions : UNAuthorizationOptions = [.badge, .alert, .sound]
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let authorizationOptions : UNAuthorizationOptions = [.badge, .alert, .sound]
 
 Countly.sharedInstance().askForNotificationPermission(options: authorizationOptions, completionHandler:
 { (granted : Bool, error : Error?) in
@@ -2314,9 +2521,9 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
 <h3 id="h_01HAVHW0RRM96KAW3PMYCQKJN0">macOS launchNotification</h3>
 <p>
   <code>launchNotification</code> property on initial configuration needs to be
-  set in <span><code>applicationDidFinishLaunching:</code></span> method of macOS
-  apps that use <code><span>CLYPushNotifications</span></code> feature, in order
-  to handle app launches by push notification click.
+  set in <code>applicationDidFinishLaunching:</code> method of macOS apps that
+  use <code>CLYPushNotifications</code> feature, in order to handle app launches
+  by push notification click.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2324,22 +2531,22 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.launchNotification = notification;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.launchNotification = notification;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.launchNotification = notification</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.launchNotification = notification</code></pre>
   </div>
 </div>
 <h2 id="h_01HNF5NAJ41Y4YT87PGV5HKE39">Setting up Credentials</h2>
 <h3 id="h_01HNF5NPFR0W8WJ1BW8WVXJ5AB">
-  <strong><span style="font-weight: 400;">Acquiring Credentials</span></strong>
+  <span style="font-weight: 400;"><strong>Acquiring Credentials</strong></span>
 </h3>
 <p>
-  <strong><span style="font-weight: 400;">There are two ways you can acquire Push Notification credentials from Apple:</span></strong>
+  <span style="font-weight: 400;"><strong>There are two ways you can acquire Push Notification credentials from Apple:</strong></span>
 </p>
 <ul>
-  <li>APNs Auth Key (preferred method)</li>
-  <li>Universal (Sandbox + Production) Certificate</li>
+  <li data-list-item-id="ebd3cadc8f953f4291f0624c10c0049ff">APNs Auth Key (preferred method)</li>
+  <li data-list-item-id="e8aeb874de2d8e665762fa4ce0786b685">Universal (Sandbox + Production) Certificate</li>
 </ul>
 <h4 id="h_01HAVHW0RQGBSB4VVFJMK2EB8K">Getting an APNs Auth Key</h4>
 <p>
@@ -2355,28 +2562,23 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   Check the <code>APNs</code> option and create your key.
 </p>
 <p>
-  <span style="font-weight: 400;">Then download your key and store it in a safe place, you won't be able to download it again.</span><span style="font-weight: 400;"><br></span><span style="font-weight: 400;">You'll also need some identifiers to upload a key file to Countly:</span>
+  <span style="font-weight: 400;">Then download your key and store it in a safe place, you won't be able to download it again.</span><br>
+  <span style="font-weight: 400;">You'll also need some identifiers to upload a key file to Countly:</span>
 </p>
 <ul>
-  <li>
-    <p>
-      <code>Key ID</code> (filled automatically if you kept the original Auth
-      Key filename, otherwise visible on the key details panel)
-    </p>
+  <li data-list-item-id="e96715b102f46d7dc656003d854e5b980">
+    <code>Key ID</code> (filled automatically if you kept the original Auth Key
+    filename, otherwise visible on the key details panel)
   </li>
-  <li>
-    <p>
-      <code>Team ID</code> (see
-      <a href="https://developer.apple.com/account/#/membership/">Membership</a>
-      section)
-    </p>
+  <li data-list-item-id="eeef35bc1daa00ff813002e60ce08bebd">
+    <code>Team ID</code> (see
+    <a href="https://developer.apple.com/account/#/membership/">Membership</a>
+    section)
   </li>
-  <li>
-    <p>
-      <code>Bundle ID</code> (see
-      <a href="https://developer.apple.com/account/ios/identifier/bundle">App IDs</a>
-      section)
-    </p>
+  <li data-list-item-id="edbf57afa864d058239cea3039c2f57ab">
+    <code>Bundle ID</code> (see
+    <a href="https://developer.apple.com/account/ios/identifier/bundle">App IDs</a>
+    section)
   </li>
 </ul>
 <h4 id="h_01HAVHW0RQPP7Z6CQJ5V0HS7MC">Getting APNs Universal (Sandbox + Production) Certificate</h4>
@@ -2396,7 +2598,7 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   <span style="font-weight: 400;">Setting up the Dashboard</span>
 </h3>
 <p>
-  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to <code>Management</code> &gt; <code>Applications</code> &gt; <code>Your App</code></span><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
+  <span style="font-weight: 400;">Once you’ve downloaded </span><strong>your Auth Key</strong><span style="font-weight: 400;"> or exported </span><strong>your certificate</strong><span style="font-weight: 400;">, you will need to upload it to your Countly Server. Please go to </span><code><span style="font-weight: 400;">Management</span></code><span style="font-weight: 400;"> &gt; </span><code><span style="font-weight: 400;">Applications</span></code><span style="font-weight: 400;"> &gt; </span><code><span style="font-weight: 400;">Your App</span></code><span style="font-weight: 400;">.</span><span style="font-weight: 400;"> Scroll down to <strong>App settings</strong> </span><span style="font-weight: 400;">and upload your Auth Key or exported certificate under the <strong>iOS settings</strong></span><span style="font-weight: 400;"> section.</span>
 </p>
 <div class="img-container">
   <img src="/guide-media/01GVD4NGFQ4RR2VYHWBK04M12E" alt="001.png">
@@ -2406,7 +2608,9 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
 </p>
 <h1 id="h_01HAVHW0RRSPH1W989GXSPR3HY">User Location</h1>
 <div class="callout callout--info">
-  <strong>Enterprise Edition Feature</strong>
+  <p>
+    <strong>Enterprise Edition Feature</strong>
+  </p>
   <p>
     This feature is only available with an
     <a href="https:/countly.com/enterprise">Enterprise Edition</a> and built-in
@@ -2418,21 +2622,21 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
   <span style="font-weight: 400;">Countly allows you to send GeoLocation-based push notifications to your users. By default, the Countly Server uses the GeoIP database to deduce a user's location. However, if your app has a better mean of detecting location, you can send this information to the Countly Server by using the initial configuration properties or relevant methods.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">Initial configuration properties can be set on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object to be sent upon SDK initialization. These include:</span>
+  <span style="font-weight: 400;">Initial configuration properties can be set on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object to be sent upon SDK initialization. These include:</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="ee2d34d6df41f43a81d7907f3f9dbb903">
     <code>location</code>: a CLLocationCoordinate2D struct specifying latitude
     and longitude
   </li>
-  <li>
+  <li data-list-item-id="e56cce6870fe499d67ff5436783fc9a90">
     <code>ISOCountryCode</code> an NSString in ISO 3166-1 alpha-2 format country
     code
   </li>
-  <li>
+  <li data-list-item-id="e5f6b0146fc96d7eafbe96c8956723778">
     <code>city</code> an NSString specifying city name
   </li>
-  <li>
+  <li data-list-item-id="e82fbd4ac08519a5e987dd188b83a86d3">
     <code>IP</code> an NSString specifying an IP address in IPv4 or IPv6 format
   </li>
 </ul>
@@ -2442,7 +2646,7 @@ Countly.sharedInstance().askForNotificationPermission(options: authorizationOpti
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.location = (CLLocationCoordinate2D){35.6895,139.6917};
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.location = (CLLocationCoordinate2D){35.6895,139.6917};
 
 config.city = @"Tokyo";
 
@@ -2451,7 +2655,7 @@ config.ISOCountryCode = @"JP";
 config.IP = @"255.255.255.255"</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.location = CLLocationCoordinate2D(latitude:35.6895, longitude: 139.6917)
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.location = CLLocationCoordinate2D(latitude:35.6895, longitude: 139.6917)
 
 config.city = "Tokyo"
 
@@ -2469,29 +2673,27 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordLocation:(CLLocationCoordinate2D){35.6895,139.6917} city:@"Tokyo" ISOCountryCode:@"JP" IP:@"255.255.255.255"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordLocation:(CLLocationCoordinate2D){35.6895,139.6917} city:@"Tokyo" ISOCountryCode:@"JP" IP:@"255.255.255.255"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordLocation(CLLocationCoordinate2D(latitude:33.6895, longitude:139.6917), city:"Tokyo", ISOCountryCode:"JP", IP:"255.255.255.255");</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordLocation(CLLocationCoordinate2D(latitude:33.6895, longitude:139.6917), city:"Tokyo", ISOCountryCode:"JP", IP:"255.255.255.255");</code></pre>
   </div>
 </div>
 <p>
   <span style="font-weight: 400;">Preferably you should use either location coordinate or city and country code pair.</span>
 </p>
 <h2 id="h_01HAVHW0RR7HA43KJ79QKR9C8S">Disabling Location</h2>
-<p>
-  <span>Also during init, you can disable location:</span>
-</p>
+<p>Also during init, you can disable location:</p>
 <div class="tabs">
   <div class="tabs-menu">
     <span class="tabs-link is-active">Objective-C</span>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.disableLocation = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.disableLocation = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.disableLocation = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.disableLocation = true</code></pre>
   </div>
 </div>
 <p>GeoLocation info can also be disabled after init:</p>
@@ -2501,10 +2703,10 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance disableLocationInfo];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance disableLocationInfo];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().disableLocationInfo;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().disableLocationInfo;</code></pre>
   </div>
 </div>
 <p>
@@ -2530,9 +2732,7 @@ config.IP = "255.255.255.255"</code></pre>
 </p>
 <h2 id="h_01HD1JFPK6JV13N5JHST2SFHPM">Downloading Values</h2>
 <div>
-  <h3 id="h_01HD1JFSP96MQNGMVX29270QRN">
-    <span>Automatic Remote Config Triggers</span>
-  </h3>
+  <h3 id="h_01HD1JFSP96MQNGMVX29270QRN">Automatic Remote Config Triggers</h3>
   <p>
     <span style="font-weight: 400;">Automatic remote config triggers have been turned off by default; therefore, no remote config values will be requested without developer intervention.</span>
   </p>
@@ -2540,16 +2740,16 @@ config.IP = "255.255.255.255"</code></pre>
     <span style="font-weight: 400;">The automatic download triggers that would trigger a full value download are:</span>
   </p>
   <ul>
-    <li>
+    <li data-list-item-id="ed1f3f81ce9eff72d56f1088ff7ac9836">
       <span style="font-weight: 400;">when the SDK has finished initializing</span>
     </li>
-    <li>
+    <li data-list-item-id="e0178559ee12132f8875ef4ebd77a1c4d">
       <span style="font-weight: 400;">after the device ID is changed without merging</span>
     </li>
-    <li>
+    <li data-list-item-id="efc05fe0932bd246c9c6f0578e1d80d4e">
       <span style="font-weight: 400;">when user gets out of temp ID mode</span>
     </li>
-    <li>
+    <li data-list-item-id="e39de6a261aba596320235d750a0c257a">
       <span style="font-weight: 400;">when 'remote-config' consent is given after it had been removed before (if consents are enabled)</span>
     </li>
   </ul>
@@ -2564,11 +2764,11 @@ config.IP = "255.255.255.255"</code></pre>
       <span class="tabs-link">Swift</span>
     </div>
     <div class="tab">
-      <pre><code class="objectivec">config.enableRemoteConfigAutomaticTriggers = YES;
+      <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enableRemoteConfigAutomaticTriggers = YES;
 </code></pre>
     </div>
     <div class="tab is-hidden">
-      <pre><code class="swift">config.enableRemoteConfigAutomaticTriggers = true</code></pre>
+      <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableRemoteConfigAutomaticTriggers = true</code></pre>
     </div>
   </div>
 </div>
@@ -2584,11 +2784,11 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enableRemoteConfigValueCaching = YES;
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enableRemoteConfigValueCaching = YES;
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enableRemoteConfigValueCaching = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableRemoteConfigValueCaching = true</code></pre>
   </div>
 </div>
 <h3 id="h_01HAVHW0RRRC868GCFYXSND84J">Manual Calls</h3>
@@ -2596,19 +2796,19 @@ config.IP = "255.255.255.255"</code></pre>
   There are three ways to trigger remote config value download manually:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e4854c852307087c21c65a94e416b8715">
     <span style="font-weight: 400;">Manually downloading all keys</span>
   </li>
-  <li>
+  <li data-list-item-id="ecd204179303ed98dc3bdabbf739a71a9">
     <span style="font-weight: 400;">Manually downloading specific keys</span>
   </li>
-  <li>Manually downloading, omitting (everything except) keys.</li>
+  <li data-list-item-id="e5e5b8707f9694adfd4b8178cf6020349">Manually downloading, omitting (everything except) keys.</li>
 </ul>
 <p>
   <span style="font-weight: 400;">Each of these calls also has an optional parameter that you can provide a RCDownloadCallback to, which would be triggered when the download attempt has finished.</span>
 </p>
 <p>
-  <span style="font-weight: 400;"><code class="java">downloadKeys</code></span><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
+  <code class="java"><span style="font-weight: 400;">downloadKeys</span></code><span style="font-weight: 400;">&nbsp;is</span><span style="font-weight: 400;"> the same as the automatically triggered update - it replaces all stored values with the ones from the server (all locally stored values are deleted and replaced with new ones).</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2616,17 +2816,19 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadKeys:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig downloadKeys:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {
+   //...
+}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.downloadKeys { response, error, fullValueUpdate, downloadedValues in
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.downloadKeys { response, error, fullValueUpdate, downloadedValues in
    //...
 }
 </code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call <code class="dart">downloadSpecificKeys</code> to downloads new values for the wanted keys. Those are provided with a String array.</span>
+  <span style="font-weight: 400;">Or you might only want to update specific key values. To do so, you will need to call </span><code class="dart"><span style="font-weight: 400;">downloadSpecificKeys</span></code><span style="font-weight: 400;"> to downloads new values for the wanted keys. Those are provided with a String array.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2634,15 +2836,19 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadSpecificKeys:NSArray *keys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig downloadSpecificKeys:NSArray *keys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {
+   //...
+}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.downloadSpecificKeys(keys, completionHandler: { response, error, fullValueUpdate, downloadedValues in<br>   //...<br>})
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.downloadSpecificKeys(keys, completionHandler: { response, error, fullValueUpdate, downloadedValues in
+   //...
+})
 </code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call <code class="dart">downloadOmittingKeys</code> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
+  <span style="font-weight: 400;">Or you might want to update all the values except a few defined keys. To do so,&nbsp; call </span><code class="dart"><span style="font-weight: 400;">downloadOmittingKeys</span></code><span style="font-weight: 400;"> would update all values except the provided keys</span><span style="font-weight: 400;">. The keys are provided with a String array.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2650,10 +2856,14 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig downloadOmittingKeys:NSArray *omitKeys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>   //...<br>}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig downloadOmittingKeys:NSArray *omitKeys completionHandler:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {
+   //...
+}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance.remoteConfig.downloadOmittingKeys(omitKeys, completionHandler: { response, error, fullValueUpdate, downloadedValues in<br>   //...<br>})
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance.remoteConfig.downloadOmittingKeys(omitKeys, completionHandler: { response, error, fullValueUpdate, downloadedValues in
+   //...
+})
 </code></pre>
   </div>
 </div>
@@ -2666,7 +2876,7 @@ config.IP = "255.255.255.255"</code></pre>
   key. This returns an CountlyRCData object that contains the value of the key
   and the metadata about that value's owner. If value in CountlyRCData was
   <code>null</code>
-  <span style="font-weight: 400;">then no value was found or the value was <code>null</code>.</span>
+  <span style="font-weight: 400;">then no value was found or the value was </span><code><span style="font-weight: 400;">null</span></code><span style="font-weight: 400;">.</span>
   &nbsp;
 </p>
 <div class="tabs">
@@ -2675,10 +2885,18 @@ config.IP = "255.255.255.255"</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">id value_1 = [Countly.sharedInstance.remoteConfig getValue:@"key_1"].value;<br>id value_2 = [Countly.sharedInstance.remoteConfig getValue:@"key_2"].value;<br>id value_3 = [Countly.sharedInstance.remoteConfig getValue:@"key_3"].value;<br>id value_4 = [Countly.sharedInstance.remoteConfig getValue:@"key_4"].value;<br><br>int intValue = [value_1 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_1 intValue] : 0;<br>double doubleValue = [value_2 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_2 doubleValue] : 0.0;<br>NSArray *jArray = [value_3 isKindOfClass:[NSArray class]] ? (NSArray*)value_3 : @[];<br>NSDictionary *jObj = [value_4 isKindOfClass:[NSDictionary class]] ? (NSDictionary*)value_4 : @{};</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">id value_1 = [Countly.sharedInstance.remoteConfig getValue:@"key_1"].value;
+id value_2 = [Countly.sharedInstance.remoteConfig getValue:@"key_2"].value;
+id value_3 = [Countly.sharedInstance.remoteConfig getValue:@"key_3"].value;
+id value_4 = [Countly.sharedInstance.remoteConfig getValue:@"key_4"].value;
+
+int intValue = [value_1 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_1 intValue] : 0;
+double doubleValue = [value_2 isKindOfClass:[NSNumber class]] ? [(NSNumber *)value_2 doubleValue] : 0.0;
+NSArray *jArray = [value_3 isKindOfClass:[NSArray class]] ? (NSArray*)value_3 : @[];
+NSDictionary *jObj = [value_4 isKindOfClass:[NSDictionary class]] ? (NSDictionary*)value_4 : @{};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let value_1 = Countly.sharedInstance().remoteConfig.getValue("key_1")?.value
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let value_1 = Countly.sharedInstance().remoteConfig.getValue("key_1")?.value
 let value_2 = Countly.sharedInstance().remoteConfig.getValue("key_2")?.value
 let value_3 = Countly.sharedInstance().remoteConfig.getValue("key_3")?.value
 let value_4 = Countly.sharedInstance().remoteConfig.getValue("key_4")?.value
@@ -2694,7 +2912,7 @@ let jObj = value_4 as? [String: Any] ?? [:]
   If you want to get all values together you can use
   <code class="dart">getAllValues</code> which returns an NSDictionary&lt;NSString
   *, CountlyRCData*&gt;.
-  <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the <code>Any</code></span><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be <code>JSONArray</code></span><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
+  <span style="font-weight: 400;">The SDK does not know the returned value type, so, it will return the </span><code><span style="font-weight: 400;">Any</span></code><span style="font-weight: 400;">. The developer then needs to cast it to the appropriate type. The returned values may also be </span><code><span style="font-weight: 400;">JSONArray</span></code><span style="font-weight: 400;">,&nbsp;</span><code>JSONObject</code>,
   or just a simple value, such as <code>NSNumber</code>.
 </p>
 <div class="tabs">
@@ -2703,10 +2921,16 @@ let jObj = value_4 as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary&lt;NSString*, CountlyRCData*&gt; *allValues = [Countly.sharedInstance.remoteConfig getAllValues];<br><br>int intValue = [(NSNumber *)allValues[@"key_1"] intValue];<br>double doubleValue = [(NSNumber *)allValues[@"key_2"] doubleValue];<br>NSArray*jArray = (NSArray *)allValues[@"key_3"];<br>NSDictionary*jObj = (NSDictionary *)allValues[@"key_4"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary&lt;NSString*, CountlyRCData*&gt; *allValues = [Countly.sharedInstance.remoteConfig getAllValues];
+
+int intValue = [(NSNumber *)allValues[@"key_1"] intValue];
+double doubleValue = [(NSNumber *)allValues[@"key_2"] doubleValue];
+NSArray*jArray = (NSArray *)allValues[@"key_3"];
+NSDictionary*jObj = (NSDictionary *)allValues[@"key_4"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let allValues = Countly.sharedInstance().remoteConfig.getAllValues()<br>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let allValues = Countly.sharedInstance().remoteConfig.getAllValues()
+
 let intValue = (allValues["key_1"] as? NSNumber)?.intValue ?? 0
 let doubleValue = (allValues["key_2"] as? NSNumber)?.doubleValue ?? 0.0
 let jArray = allValues["key_3"] as? [Any] ?? []
@@ -2726,7 +2950,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">@interface CountlyRCData : NSObject
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">@interface CountlyRCData : NSObject
 
 @property (nonatomic) id value;
 @property (nonatomic) BOOL isCurrentUsersData;
@@ -2735,7 +2959,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">class CountlyRCData {
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">class CountlyRCData {
   var value: Any
   var isCurrentUsersData: Bool
 }
@@ -2752,12 +2976,10 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig clearAll];
-</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig clearAll];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.clearAll()
-</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.clearAll()</code></pre>
   </div>
 </div>
 <h2 id="01HD1JK8Y931787C8YXQYK4D1A">Global Download Callbacks</h2>
@@ -2772,11 +2994,12 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config remoteConfigRegisterGlobalCallback:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {<br>    // ...<br>}]
-</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config remoteConfigRegisterGlobalCallback:^(CLYRequestResult _Nonnull response, NSError * _Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData *&gt; * _Nonnull downloadedValues) {
+    // ...
+}]</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.remoteConfigRegisterGlobalCallback { response, error, fullValueUpdate, downloadedValues in
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.remoteConfigRegisterGlobalCallback { response, error, fullValueUpdate, downloadedValues in
     // ...
 }</code></pre>
   </div>
@@ -2786,18 +3009,19 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
   and it would have the following parameters:
 </p>
 <ul>
-  <li>
-    <code class="objectivec">response</code>: CLYRequestResult Enum (either CLYResponseError<span>, CLYResponseSuccess or CLYResponseNetworkIssue</span>)
+  <li data-list-item-id="ee001e165e8f5d9edaf47737c6dbc8736">
+    <code class="objectivec">response</code>: CLYRequestResult Enum (either CLYResponseError,
+    CLYResponseSuccess or CLYResponseNetworkIssue)
   </li>
-  <li>
+  <li data-list-item-id="ef1c1dd9630bf0948e11079198876a79c">
     <code class="objectivec">error</code>: NSError (error message. "null" if
     there is no error)
   </li>
-  <li>
+  <li data-list-item-id="e01a3a79b8bc4df4d2b6d3d91f38265fc">
     <code class="objectivec">fullValueUpdate</code>: BOOL ("true" - all values
     updated, "false" - a subset of values updated)
   </li>
-  <li>
+  <li data-list-item-id="e703f1f2ced30164c7622951a83533a9f">
     <code class="objectivec">downloadedValues</code>: NSDictionary&lt;NSString
     *,CountlyRCData*&gt; (the whole downloaded remote config values)
   </li>
@@ -2808,12 +3032,10 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">typedef void (^RCDownloadCallback)(CLYRequestResult response, NSError *_Nullable error, BOOL fullValueUpdate, NSDictionary&lt;NSString*, CountlyRCData *&gt;* downloadedValues);
-</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">typedef void (^RCDownloadCallback)(CLYRequestResult response, NSError *_Nullable error, BOOL fullValueUpdate, NSDictionary&lt;NSString*, CountlyRCData *&gt;* downloadedValues);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">typealias RCDownloadCallback = (CLYRequestResult, Error?, Bool, [String: CountlyRCData]?) -&gt; Void
-</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">typealias RCDownloadCallback = (CLYRequestResult, Error?, Bool, [String: CountlyRCData]?) -&gt; Void</code></pre>
   </div>
 </div>
 <p>
@@ -2832,7 +3054,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">// register a callback
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">// register a callback
 [Countly.sharedInstance.remoteConfig registerDownloadCallback:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error, BOOL fullValueUpdate, NSDictionary&lt;NSString *,CountlyRCData*&gt; * _Nonnull downloadedValues) {
    //...
 }];
@@ -2843,7 +3065,7 @@ let jObj = allValues["key_4"] as? [String: Any] ?? [:]
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">// register a callback
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">// register a callback
 Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, fullValueUpdate, downloadedValues in
    //...
 }
@@ -2861,29 +3083,29 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
   from some or all existing A/B tests available.
 </p>
 <div>
-  <h3 id="h_01HD1JPJG4G9TFTF6M42SCGPFP">
-    <span>Enrollment on Download</span>
-  </h3>
+  <h3 id="h_01HD1JPJG4G9TFTF6M42SCGPFP">Enrollment on Download</h3>
   <p>
     You can enroll to available experiments when downloading the Remote Config
     values automatically. To do this you should call
     <code>enrollABOnRCDownload</code> method on the configuration object you
     pass for the initialization:
   </p>
-  <pre><code class="objectivec">config.enrollABOnRCDownload= YES;</code></pre>
+  <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enrollABOnRCDownload= YES;</code></pre>
   <div>
     <div>
-      <h3 id="h_01HD1JPQ091MP8WRBZMBMZC3HD">
-        <span>Enrollment on Access</span>
-      </h3>
+      <h3 id="h_01HD1JPQ091MP8WRBZMBMZC3HD">Enrollment on Access</h3>
       <p>
-        <span>You can also enroll to A/B tests while getting RC values from storage. You can use <code>getValueAndEnroll</code> while getting a single value and <code>getAllValuesAndEnroll</code> while getting all values to enroll to the keys that exist. If no value was stored for those keys these functions would not enroll the user. Both of these functions works the same way with their non-enrolling variants, namely; <code>getValue</code> and <code>getAllValues</code>.</span>
+        You can also enroll to A/B tests while getting RC values from storage.
+        You can use <code>getValueAndEnroll</code> while getting a single
+        value and <code>getAllValuesAndEnroll</code> while getting all values
+        to enroll to the keys that exist. If no value was stored for those
+        keys these functions would not enroll the user. Both of these functions
+        works the same way with their non-enrolling variants, namely;
+        <code>getValue</code> and <code>getAllValues</code>.
       </p>
       <div>
         <div>
-          <h3 id="h_01HD1JPTMT7XGM3KW1WBE97VBN">
-            <span>Enrollment on Action</span>
-          </h3>
+          <h3 id="h_01HD1JPTMT7XGM3KW1WBE97VBN">Enrollment on Action</h3>
           <p>
             To enroll a user into the A/B tests for the given keys you
             use the following method:
@@ -2894,12 +3116,10 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
               <span class="tabs-link">Swift</span>
             </div>
             <div class="tab">
-              <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];
-</code></pre>
+              <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig enrollIntoABTestsForKeys:NSArray *keys];</code></pre>
             </div>
             <div class="tab is-hidden">
-              <pre><code class="swift">Countly.sharedInstance().remoteConfig.enrollIntoABTests(forKeys: keys as [String])
-</code></pre>
+              <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.enrollIntoABTests(forKeys: keys as [String])</code></pre>
             </div>
           </div>
           <p>
@@ -2908,9 +3128,7 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
           </p>
           <div>
             <div>
-              <h3 id="h_01HD1JPX82PR2HXKMZ2E68YATS">
-                <span>Exiting A/B Tests</span>
-              </h3>
+              <h3 id="h_01HD1JPX82PR2HXKMZ2E68YATS">Exiting A/B Tests</h3>
               <p>
                 If you want to remove users from A/B tests of certain
                 keys you can use the following function:
@@ -2921,12 +3139,10 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
                   <span class="tabs-link">Swift</span>
                 </div>
                 <div class="tab">
-                  <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];
-</code></pre>
+                  <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig exitABTestsForKeys:NSArray *keys];</code></pre>
                 </div>
                 <div class="tab is-hidden">
-                  <pre><code class="swift">Countly.sharedInstance().remoteConfig.exitABTestsForKeys(forKeys: keys as [String])
-</code></pre>
+                  <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.exitABTestsForKeys(forKeys: keys as [String])</code></pre>
                 </div>
               </div>
               <p>
@@ -2951,7 +3167,7 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
 </p>
 <h2 id="h_01HAVHW0RR1P4DMGKA4XVM64V7">Star Rating Dialog</h2>
 <p>
-  <span style="font-weight: 400;">Optionally, you can set the Countly iOS SDK to automatically ask users for a 1 to 5-star rating, depending on the app launch count for each version. To do so, you will need to set the <code>starRatingSessionCount</code></span><span style="font-weight: 400;"> property on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object. When the total number of sessions reaches the <code>starRatingSessionCount</code></span><span style="font-weight: 400;">, an alert view asking for a 1 to 5-star rating will be displayed automatically, once for each new version of the app.</span>
+  <span style="font-weight: 400;">Optionally, you can set the Countly iOS SDK to automatically ask users for a 1 to 5-star rating, depending on the app launch count for each version. To do so, you will need to set the </span><code><span style="font-weight: 400;">starRatingSessionCount</span></code><span style="font-weight: 400;"> property on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object. When the total number of sessions reaches the </span><code><span style="font-weight: 400;">starRatingSessionCount</span></code><span style="font-weight: 400;">, an alert view asking for a 1 to 5-star rating will be displayed automatically, once for each new version of the app.</span>
 </p>
 <div class="img-container">
   <img src="https://archive.count.ly/images/guide/0df53f4-rating-detail-white.png">
@@ -2962,14 +3178,14 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.starRatingSessionCount = 10;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.starRatingSessionCount = 10;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.starRatingSessionCount = 10</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.starRatingSessionCount = 10</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">If you would like the star-rating dialog to only be displayed once per app lifetime, instead of for each new version, you can set the <code>starRatingDisableAskingForEachAppVersion</code></span><span style="font-weight: 400;"> flag on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object.</span>
+  <span style="font-weight: 400;">If you would like the star-rating dialog to only be displayed once per app lifetime, instead of for each new version, you can set the </span><code><span style="font-weight: 400;">starRatingDisableAskingForEachAppVersion</span></code><span style="font-weight: 400;"> flag on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -2977,14 +3193,14 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.starRatingDisableAskingForEachAppVersion = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.starRatingDisableAskingForEachAppVersion = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.starRatingDisableAskingForEachAppVersion = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.starRatingDisableAskingForEachAppVersion = true</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Additionally, you can customize the star-rating dialog message using the <code>starRatingMessage</code></span>
+  <span style="font-weight: 400;">Additionally, you can customize the star-rating dialog message using the </span><code><span style="font-weight: 400;">starRatingMessage</span></code>
   property on the <code>CountlyConfig</code><span style="font-weight: 400;">object. If you do not explicitly specify this property, the message will read, "</span><em><span style="font-weight: 400;">How would you rate the app?</span></em><span style="font-weight: 400;">" or a corresponding localized version depending on the device language. Currently supported localizations: English, Turkish, Japanese, Chinese, Russian, Czech, Latvian, and Bengali.</span>
 </p>
 <div class="tabs">
@@ -2993,15 +3209,15 @@ Countly.sharedInstance().remoteConfig.removeDownloadCallback{ response, error, f
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.starRatingMessage = @"Please rate our app?";</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.starRatingMessage = @"Please rate our app?";</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.starRatingMessage = "Please rate our app?"
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.starRatingMessage = "Please rate our app?"
 config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Additionally, you can set the <code>starRatingCompletion</code></span><span style="font-weight: 400;">block property on the <code>CountlyConfig</code></span><span style="font-weight: 400;">object to be executed after the star-rating dialog has been automatically shown. The completion block has a single NSInteger parameter that indicates the 1 to 5-star rating given by the user. If the user dismissed the dialog without giving a rating, the value for this rating will be 0, and it will not be reported to the server.</span>
+  <span style="font-weight: 400;">Additionally, you can set the </span><code><span style="font-weight: 400;">starRatingCompletion</span></code><span style="font-weight: 400;">block property on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;">object to be executed after the star-rating dialog has been automatically shown. The completion block has a single NSInteger parameter that indicates the 1 to 5-star rating given by the user. If the user dismissed the dialog without giving a rating, the value for this rating will be 0, and it will not be reported to the server.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3009,17 +3225,17 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.starRatingCompletion = ^(NSInteger rating)
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.starRatingCompletion = ^(NSInteger rating)
 {
   NSLog(@"rating %d",(int)rating);
 };</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.starRatingCompletion = { (rating : Int) in print("rating \(rating)") }</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.starRatingCompletion = { (rating : Int) in print("rating \(rating)") }</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Additionally, you can use the <code>askForStarRating:</code></span><span style="font-weight: 400;"> method to ask for a star rating anytime you would like. It displays the 1 to 5-star rating dialog manually and executes the completion block after the user's action. The completion block takes a single NSInteger parameter that indicates the 1 to 5-star rating given by the user. If the user dismissed the dialog without giving a rating, the value for this rating will be 0, and it will not be reported to the server. Manually asking for a star rating does not affect the automatically requested nature of the star rating.</span>
+  <span style="font-weight: 400;">Additionally, you can use the </span><code><span style="font-weight: 400;">askForStarRating:</span></code><span style="font-weight: 400;"> method to ask for a star rating anytime you would like. It displays the 1 to 5-star rating dialog manually and executes the completion block after the user's action. The completion block takes a single NSInteger parameter that indicates the 1 to 5-star rating given by the user. If the user dismissed the dialog without giving a rating, the value for this rating will be 0, and it will not be reported to the server. Manually asking for a star rating does not affect the automatically requested nature of the star rating.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3027,13 +3243,13 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance askForStarRating:^(NSInteger rating)
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance askForStarRating:^(NSInteger rating)
 {
   NSLog(@"rating %li",(long)rating);
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().ask(forStarRating:{ (rating : Int) in print("rating \(rating)") })</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().ask(forStarRating:{ (rating : Int) in print("rating \(rating)") })</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RR6N7WKDSA1GRJXBJ1">Feedback Widget</h2>
@@ -3046,10 +3262,10 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
 </div>
 <p>
   It is possible to display 3 kinds of feedback widgets:
-  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener">NPS</a>,
-  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener">Survey</a>
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2QB9K7CRDJ90DSDM0D" target="_blank" rel="noopener noreferrer">NPS</a>,
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2Q965ZDAK31TJ6QDRY" target="_blank" rel="noopener noreferrer">Survey</a>
   and
-  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener">Rating</a>.
+  <a href="/hc/en-us/articles/4652903481753#h_01HAY62C2R4S05V7WJC5DEVM0N" target="_blank" rel="noopener noreferrer">Rating</a>.
   All widgets are shown as webviews and should be approached using the same methods.
 </p>
 <p>
@@ -3072,10 +3288,10 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance feedback];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance feedback];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().feedback()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().feedback()</code></pre>
   </div>
 </div>
 <p>
@@ -3088,7 +3304,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[presentNPS]
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[presentNPS]
 [presentSurvey]
 [presentRating]
 // Example:
@@ -3096,7 +3312,7 @@ config.starRatingDismissButtonTitle = "No, thanks."</code></pre>
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">.presentNPS()
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">.presentNPS()
 .presentSurvey()
 .presentRating()
 // Example:
@@ -3116,7 +3332,7 @@ Countly.sharedInstance().feedback().presentNPS()
         <span class="tabs-link">Swift</span>
       </div>
       <div class="tab">
-        <pre><code class="objectivec">[presentNPS:nameIDorTag
+        <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[presentNPS:nameIDorTag
 [presentSurvey:nameIDorTag]
 [presentRating:nameIDorTag]
 // Example:
@@ -3124,7 +3340,7 @@ Countly.sharedInstance().feedback().presentNPS()
         </code></pre>
       </div>
       <div class="tab is-hidden">
-        <pre><code class="swift">.presentNPS(nameIDorTag)
+        <pre class="wysiwyg-code-block"><code class="language-swift swift">.presentNPS(nameIDorTag)
 .presentSurvey(nameIDorTag)
 .presentRating(nameIDorTag)
 // Example:
@@ -3150,7 +3366,7 @@ Countly.sharedInstance().feedback().presentNPS("/home-page")
         <span class="tabs-link">Swift</span>
       </div>
       <div class="tab">
-        <pre><code class="objectivec">[presentNPS:nameIDorTag widgetCallback:]
+        <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[presentNPS:nameIDorTag widgetCallback:]
 [presentSurvey:nameIDorTag widgetCallback:]
 [presentRating:nameIDorTag widgetCallback:]
 // Example:
@@ -3160,7 +3376,7 @@ Countly.sharedInstance().feedback().presentNPS("/home-page")
               </code></pre>
       </div>
       <div class="tab is-hidden">
-        <pre><code class="swift">.presentNPS(nameIDorTag, widgetCallback)
+        <pre class="wysiwyg-code-block"><code class="language-swift swift">.presentNPS(nameIDorTag, widgetCallback)
 .presentSurvey(nameIDorTag, widgetCallback)
 .presentRating(nameIDorTag, widgetCallback)
 // Example:
@@ -3193,7 +3409,7 @@ Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetSta
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">
 [Countly.sharedInstance getFeedbackWidgets:^(NSArray * feedbackWidgets, NSError * error)
 {
   if (error)
@@ -3219,7 +3435,7 @@ Countly.sharedInstance().feedback().presentNPS("MyNetPromoterScore") { widgetSta
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">
 Countly.sharedInstance().getFeedbackWidgets
 { (feedbackWidgets: [CountlyFeedbackWidget], error) in
   if (error != nil)
@@ -3255,14 +3471,14 @@ Countly.sharedInstance().getFeedbackWidgets
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">
 [aFeedbackWidget recordResult:resultDictionary];
 // or
 [aFeedbackWidget recordResult:nil]; // if user dismissed the feedback widget without completing it
     </code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">
 aFeedbackWidget.recordResult(resultDictionary)
 // or
 aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget without completing it
@@ -3275,7 +3491,9 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
 </p>
 <h1 id="h_01HAVHW0RRRH4M1Y4CDJSHGERJ">User Profiles</h1>
 <div class="callout callout--info">
-  <strong>Enterprise Edition Feature</strong>
+  <p>
+    <strong>Enterprise Edition Feature</strong>
+  </p>
   <p>
     This feature is only available with an
     <a href="https://countly.com/enterprise">Enterprise Edition</a> and built-in
@@ -3299,7 +3517,7 @@ aFeedbackWidget.recordResult(nil) // if user dismissed the feedback widget witho
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//default properties
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">//default properties
 Countly.user.name = @"John Doe";
 Countly.user.username = @"johndoe";
 Countly.user.email = @"john@doe.com";
@@ -3317,7 +3535,7 @@ Countly.user.pictureLocalPath = localImagePath;
 [Countly.user save];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//default properties
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">//default properties
 Countly.user().name = "John Doe" as CountlyUserDetailsNullableString
 Countly.user().username = "johndoe" as CountlyUserDetailsNullableString
 Countly.user().email = "john@doe.com" as CountlyUserDetailsNullableString
@@ -3337,7 +3555,7 @@ Countly.user().save()</code></pre>
 </div>
 <p>
   <strong>Note:</strong>
-  <span style="font-weight: 400;">Local images specified on the <code>pictureLocalPath</code></span><span style="font-weight: 400;"> property will not be persisted exclusively. If a request fails and is retried later, the local image is expected to still be present on the exact same path. Otherwise, the upload will be aborted.</span>
+  <span style="font-weight: 400;">Local images specified on the </span><code><span style="font-weight: 400;">pictureLocalPath</span></code><span style="font-weight: 400;"> property will not be persisted exclusively. If a request fails and is retried later, the local image is expected to still be present on the exact same path. Otherwise, the upload will be aborted.</span>
 </p>
 <h2 id="h_01HAVHW0RRJSVXADXPHXMQA4VW">Custom User Properties</h2>
 <p>
@@ -3349,14 +3567,14 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//custom properties
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">//custom properties
 Countly.user.custom = @{@"testkey1": @"testvalue1", @"testkey2": @"testvalue2"};
 
 //save
 [Countly.user save];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//custom properties
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">//custom properties
 Countly.user().custom = ["testkey1": "testvalue1", "testkey2": "testvalue2"] as CountlyUserDetailsNullableDictionary
 
 //save
@@ -3373,7 +3591,7 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.user set:@"key101" value:@"value101"];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.user set:@"key101" value:@"value101"];
 [Countly.user setOnce:@"key101" value:@"value101"];
 [Countly.user unSet:@"key101"];
 
@@ -3396,7 +3614,7 @@ Countly.user().save()</code></pre>
 [Countly.user save];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.user().set("key101", value:"value101")
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.user().set("key101", value:"value101")
 Countly.user().setOnce("key101", value:"value101")
 Countly.user().unSet("key101")
 
@@ -3429,8 +3647,7 @@ Countly.user().save()</code></pre>
 </p>
 <h2 id="h_01HAVHW0RRY8CC2GFKN97RME88">Orientation Tracking</h2>
 <p>
-  <span style="font-weight: 400;">You can set the <code>enableOrientationTracking</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. This flag is used for enabling automatic user interface orientation tracking. If set, user interface orientation tracking feature will be enabled and an event will be sent whenever user interface orientation changes. Orientation event will not be sent if consent for <code>CLYConsentUserDetails</code> is not given while <code>requiresConsent</code> flag is set on initial configuration. Automatic user interface orientation tracking is enabled by default. For disabling it, please set this flag to <code>NO<code>.
-</code></code></span>
+  <span style="font-weight: 400;">You can set the </span><code><span style="font-weight: 400;">enableOrientationTracking</span></code><span style="font-weight: 400;"> flag on the</span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly. This flag is used for enabling automatic user interface orientation tracking. If set, user interface orientation tracking feature will be enabled and an event will be sent whenever user interface orientation changes. Orientation event will not be sent if consent for </span><code><span style="font-weight: 400;">CLYConsentUserDetails</span></code><span style="font-weight: 400;"> is not given while </span><code><span style="font-weight: 400;">requiresConsent</span></code><span style="font-weight: 400;"> flag is set on initial configuration. Automatic user interface orientation tracking is enabled by default. For disabling it, please set this flag to </span><code><span style="font-weight: 400;">NO.</span></code>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3438,10 +3655,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.enableOrientationTracking = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enableOrientationTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.enableOrientationTracking = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableOrientationTracking = true</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVHW0RSZQSMA1D7JWQ9WMT4">Application Performance Monitoring</h1>
@@ -3464,10 +3681,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.apm.enableForegroundBackgroundTracking = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.apm.enableForegroundBackgroundTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.apm().enableForegroundBackgroundTracking = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.apm().enableForegroundBackgroundTracking = true</code></pre>
   </div>
 </div>
 <p>
@@ -3488,10 +3705,12 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.apm.enableAppStartTimeTracking = YES;<br>config.apm.enableManualAppLoadedTrigger = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.apm.enableAppStartTimeTracking = YES;
+config.apm.enableManualAppLoadedTrigger = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.apm().enableAppStartTimeTracking = true<br>config.apm().enableManualAppLoadedTrigger = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.apm().enableAppStartTimeTracking = true
+config.apm().enableManualAppLoadedTrigger = true</code></pre>
   </div>
 </div>
 <p>
@@ -3512,10 +3731,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance appLoadingFinished];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance appLoadingFinished];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().appLoadingFinished()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().appLoadingFinished()</code></pre>
   </div>
 </div>
 <p>
@@ -3529,15 +3748,17 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;<br>[config.apm setAppStartTimestampOverride:timestamp];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;
+[config.apm setAppStartTimestampOverride:timestamp];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;<br>config.apm().setAppStartTimestampOverride(timestamp)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">long long timestamp = floor(NSDate.date.timeIntervalSince1970 * 1000) - 500;
+config.apm().setAppStartTimestampOverride(timestamp)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RS4Q2FT2ZN6VV4A8CP">Manual Network Traces</h2>
 <p>
-  You can record manual network traces using the<code><span>recordNetworkTrace</span>:<span>requestPayloadSize</span>:<span>responsePayloadSize</span>:<span>responseStatusCode</span>:<span>startTime</span>:<span>endTime</span>:</code>
+  You can record manual network traces using the<code>recordNetworkTrace:requestPayloadSize:responsePayloadSize:responseStatusCode:startTime:endTime:</code>
   method.
 </p>
 <p>
@@ -3563,10 +3784,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordNetworkTrace:@"/test/endpoint" requestPayloadSize:3445 responsePayloadSize:1290 responseStatusCode:200 startTime:1593418666954 endTime:1593418667384];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordNetworkTrace:@"/test/endpoint" requestPayloadSize:3445 responsePayloadSize:1290 responseStatusCode:200 startTime:1593418666954 endTime:1593418667384];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>Countly.sharedInstance().recordNetworkTrace("/test/api", requestPayloadSize:3445, responsePayloadSize:1290, responseStatusCode:200, startTime:1593418666954, endTime:1593418667384)</pre>
+    <pre class="wysiwyg-code-block"><code class="language-bash bash">Countly.sharedInstance().recordNetworkTrace("/test/api", requestPayloadSize:3445, responsePayloadSize:1290, responseStatusCode:200, startTime:1593418666954, endTime:1593418667384)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RS8M0ZKHGB72ATGA28">Custom Traces</h2>
@@ -3581,10 +3802,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance startCustomTrace:@"unzipping_saved_files"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance startCustomTrace:@"unzipping_saved_files"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>Countly.sharedInstance().startCustomTrace("unzipping_saved_files")</pre>
+    <pre class="wysiwyg-code-block"><code class="language-bash bash">Countly.sharedInstance().startCustomTrace("unzipping_saved_files")</code></pre>
   </div>
 </div>
 <p>
@@ -3598,10 +3819,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance endCustomTrace:@"unzipping_saved_files" metrics:@{@"total_file_size": @1655700}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance endCustomTrace:@"unzipping_saved_files" metrics:@{@"total_file_size": @1655700}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>Countly.sharedInstance().startCustomTrace("unzipping_saved_files", metrics:["total_file_size": 1655700])</pre>
+    <pre class="wysiwyg-code-block"><code class="language-bash bash">Countly.sharedInstance().startCustomTrace("unzipping_saved_files", metrics:["total_file_size": 1655700])</code></pre>
   </div>
 </div>
 <p>
@@ -3620,10 +3841,10 @@ Countly.user().save()</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance cancelCustomTrace:@"unzipping_saved_files"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance cancelCustomTrace:@"unzipping_saved_files"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>Countly.sharedInstance().cancelCustomTrace("unzipping_saved_files")</pre>
+    <pre class="wysiwyg-code-block"><code class="language-bash bash">Countly.sharedInstance().cancelCustomTrace("unzipping_saved_files")</code></pre>
   </div>
 </div>
 <p>
@@ -3638,10 +3859,10 @@ Countly.user().save()</code></pre>
         <span class="tabs-link">Swift</span>
       </div>
       <div class="tab">
-        <pre><code class="objectivec">[Countly.sharedInstance clearAllCustomTraces];</code></pre>
+        <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance clearAllCustomTraces];</code></pre>
       </div>
       <div class="tab is-hidden">
-        <pre>Countly.sharedInstance().clearAllCustomTraces()</pre>
+        <pre class="wysiwyg-code-block"><code class="language-bash bash">Countly.sharedInstance().clearAllCustomTraces()</code></pre>
       </div>
     </div>
     <p>
@@ -3662,25 +3883,35 @@ Countly.user().save()</code></pre>
   More information about GDPR can be found
   <a href="https://medium.com/countly/countly-the-gdpr-how-worlds-leading-mobile-and-web-analytics-platform-can-help-organizations-5015042fab27">here</a>.
 </p>
-<h2 id="h_01HJ63TKKEMWYHN1P23DP14PHB">
-  <span>Feature Names</span>
-</h2>
+<h2 id="h_01HJ63TKKEMWYHN1P23DP14PHB">Feature Names</h2>
 <p>
   Currently, available features with consent control are as follows:
 </p>
-<pre>CLYConsentSessions<br>
-CLYConsentEvents<br>
-CLYConsentUserDetails<br>
-CLYConsentCrashReporting<br>
-CLYConsentPushNotifications<br>
-CLYConsentLocation<br>
-CLYConsentViewTracking<br>
-CLYConsentAttribution<br>
-CLYConsentPerformanceMonitoring<br>
-CLYConsentFeedback<br>
-CLYConsentRemoteConfig<br>
-CLYConsentContent<br>
-CLYConsentMetrics</pre>
+<pre class="wysiwyg-code-block"><code class="language-bash bash">CLYConsentSessions
+
+CLYConsentEvents
+
+CLYConsentUserDetails
+
+CLYConsentCrashReporting
+
+CLYConsentPushNotifications
+
+CLYConsentLocation
+
+CLYConsentViewTracking
+
+CLYConsentAttribution
+
+CLYConsentPerformanceMonitoring
+
+CLYConsentFeedback
+
+CLYConsentRemoteConfig
+
+CLYConsentContent
+
+CLYConsentMetrics</code></pre>
 <h2 id="h_01HAVQDM5V9TH7NQNWADXD7BS6">Setup During Init</h2>
 <p>
   The requirement for consent is disabled by default. To enable it, you will have
@@ -3693,14 +3924,15 @@ CLYConsentMetrics</pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.requiresConsent = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.requiresConsent = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.requiresConsent = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.requiresConsent = true</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">With this flag set, the Countly iOS SDK will not automatically collect or send any data and will ignore all manual calls. Until explicit consent is given for a feature, it will remain inactive. After consent for a feature is given, it will launch immediately and will remain active.<br>You can provide specific consents during initialization </span><span style="font-weight: 400;">by using the <code>consents</code>&nbsp;array on the <code>CountlyConfig</code> object before starting Countly</span>
+  <span style="font-weight: 400;">With this flag set, the Countly iOS SDK will not automatically collect or send any data and will ignore all manual calls. Until explicit consent is given for a feature, it will remain inactive. After consent for a feature is given, it will launch immediately and will remain active.</span><br>
+  <span style="font-weight: 400;">You can provide specific consents during initialization </span><span style="font-weight: 400;">by using the </span><code><span style="font-weight: 400;">consents</span></code><span style="font-weight: 400;">&nbsp;array on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3708,16 +3940,16 @@ CLYConsentMetrics</pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.consents = @[CLYConsentSessions, CLYConsentEvents];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.consents = @[CLYConsentSessions, CLYConsentEvents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="objectivec">config.consents = [CLYConsentSessions, CLYConsentEvents];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.consents = [CLYConsentSessions, CLYConsentEvents];</code></pre>
   </div>
 </div>
 <p>
   Or, if you would like to give consent for all the features during initialization,
   you can set
-  <span style="font-weight: 400;"><code>enableAllConsents</code> flag</span>:
+  <code><span style="font-weight: 400;">enableAllConsents</span></code><span style="font-weight: 400;"> flag</span>:
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3727,21 +3959,20 @@ CLYConsentMetrics</pre>
         <span class="tabs-link">Swift</span>
       </div>
       <div class="tab">
-        <pre><code class="objectivec">config.enableAllConsents = YES;</code></pre>
+        <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.enableAllConsents = YES;</code></pre>
       </div>
       <div class="tab is-hidden">
-        <pre><code class="swift">config.enableAllConsents = true</code>&nbsp;</pre>
+        <pre class="wysiwyg-code-block"><code class="language-swift swift">config.enableAllConsents = true</code></pre>
       </div>
     </div>
     <div>
-      <h2 id="h_01HJ64PSQB64HGN27MYJFEV13M">
-        <span>Changing Consent</span>
-      </h2>
+      <h2 id="h_01HJ64PSQB64HGN27MYJFEV13M">Changing Consent</h2>
     </div>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">You can also change the consents after initializing the SDK.<br>To give consent for a feature, you can use the <code>giveConsentForFeature:</code></span><span style="font-weight: 400;">method by passing the feature name:</span>
+  <span style="font-weight: 400;">You can also change the consents after initializing the SDK.</span><br>
+  <span style="font-weight: 400;">To give consent for a feature, you can use the </span><code><span style="font-weight: 400;">giveConsentForFeature:</span></code><span style="font-weight: 400;">method by passing the feature name:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3749,11 +3980,11 @@ CLYConsentMetrics</pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance giveConsentForFeature:CLYConsentSessions];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance giveConsentForFeature:CLYConsentSessions];
 [Countly.sharedInstance giveConsentForFeature:CLYConsentEvents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().giveConsent(forFeature: CLYConsentSessions)
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().giveConsent(forFeature: CLYConsentSessions)
 Countly.sharedInstance().giveConsent(forFeature: CLYConsentEvents)</code></pre>
   </div>
 </div>
@@ -3769,10 +4000,10 @@ Countly.sharedInstance().giveConsent(forFeature: CLYConsentEvents)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance giveConsentForFeatures:@[CLYConsentSessions, CLYConsentEvents];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance giveConsentForFeatures:@[CLYConsentSessions, CLYConsentEvents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().giveConsent(forFeatures: [CLYConsentSessions, CLYConsentEvents])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().giveConsent(forFeatures: [CLYConsentSessions, CLYConsentEvents])</code></pre>
   </div>
 </div>
 <p>
@@ -3785,17 +4016,17 @@ Countly.sharedInstance().giveConsent(forFeature: CLYConsentEvents)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance giveAllConsents];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance giveAllConsents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().giveAllConsents()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().giveAllConsents()</code></pre>
   </div>
 </div>
 <p>
   <span style="font-weight: 400;">The Countly iOS SDK does not persistently store the status of given consents. You are expected to handle receiving consent from end-users using proper UIs depending on your app's context. You are also expected to store them either locally or remotely. Following this step, you will need to call the ‘giving consent’ methods on each app launch, right after starting the Countly iOS SDK depending on the permissions you managed to get from the end-users.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">If the end-user changes his/her mind about consents at a later time, you will need to reflect this in the Countly iOS SDK using the <code>cancelConsentForFeature:</code></span><span style="font-weight: 400;">method:</span>
+  <span style="font-weight: 400;">If the end-user changes his/her mind about consents at a later time, you will need to reflect this in the Countly iOS SDK using the </span><code><span style="font-weight: 400;">cancelConsentForFeature:</span></code><span style="font-weight: 400;">method:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3803,11 +4034,11 @@ Countly.sharedInstance().giveConsent(forFeature: CLYConsentEvents)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance cancelConsentForFeature:CLYConsentSessions];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance cancelConsentForFeature:CLYConsentSessions];
 [Countly.sharedInstance cancelConsentForFeature:CLYConsentEvents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().cancelConsent(forFeature: CLYConsentSessions)
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().cancelConsent(forFeature: CLYConsentSessions)
 Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre>
   </div>
 </div>
@@ -3822,14 +4053,14 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance cancelConsentForFeatures:@[CLYConsentSessions, CLYConsentEvents];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance cancelConsentForFeatures:@[CLYConsentSessions, CLYConsentEvents];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().cancelConsent(forFeatures: [CLYConsentSessions, CLYConsentEvents])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().cancelConsent(forFeatures: [CLYConsentSessions, CLYConsentEvents])</code></pre>
   </div>
 </div>
 <p>
-  <span style="font-weight: 400;">Or, if you would like to cancel consent for all the features, you can use the <code>cancelConsentForAllFeatures</code></span><span style="font-weight: 400;">convenience method:</span>
+  <span style="font-weight: 400;">Or, if you would like to cancel consent for all the features, you can use the </span><code><span style="font-weight: 400;">cancelConsentForAllFeatures</span></code><span style="font-weight: 400;">convenience method:</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3837,10 +4068,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance cancelConsentForAllFeatures];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance cancelConsentForAllFeatures];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().cancelConsentForAllFeatures()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().cancelConsentForAllFeatures()</code></pre>
   </div>
 </div>
 <p>
@@ -3851,11 +4082,11 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </p>
 <h1 id="h_01HAVHW0RS0GVN3HY2JNXCJN01">Security and Privacy</h1>
 <p>
-  <span style="font-weight: 400;">You can specify extra security features on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object:</span>
+  <span style="font-weight: 400;">You can specify extra security features on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object:</span>
 </p>
 <h2 id="h_01HAVHW0RSSS6ZX8ZXY9M87NKS">Parameter Tamper Protection</h2>
 <p>
-  <span style="font-weight: 400;">You can set the optional <code>secretSalt</code></span><span style="font-weight: 400;"> to be used for calculating the checksum of the request data which will be sent with each request using the <code>&amp;checksum256</code></span><span style="font-weight: 400;"> field. You will need to set the exact same <code>secretSalt</code></span><span style="font-weight: 400;">on the Countly Server. If the <code>secretSalt</code></span><span style="font-weight: 400;">on the Countly Server is set, all requests would be checked for validity of the <code>&amp;checksum256</code></span><span style="font-weight: 400;">field before being processed.</span>
+  <span style="font-weight: 400;">You can set the optional </span><code><span style="font-weight: 400;">secretSalt</span></code><span style="font-weight: 400;"> to be used for calculating the checksum of the request data which will be sent with each request using the </span><code><span style="font-weight: 400;">&amp;checksum256</span></code><span style="font-weight: 400;"> field. You will need to set the exact same </span><code><span style="font-weight: 400;">secretSalt</span></code><span style="font-weight: 400;">on the Countly Server. If the </span><code><span style="font-weight: 400;">secretSalt</span></code><span style="font-weight: 400;">on the Countly Server is set, all requests would be checked for validity of the </span><code><span style="font-weight: 400;">&amp;checksum256</span></code><span style="font-weight: 400;">field before being processed.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3863,15 +4094,15 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.secretSalt = @"mysecretsalt";</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.secretSalt = @"mysecretsalt";</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.secretSalt = "mysecretsalt"</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.secretSalt = "mysecretsalt"</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSD7WAN6T2EBBT7NHM">SSL Certificate Pinning</h2>
 <p>
-  <span style="font-weight: 400;">You can use optional <code>pinnedCertificates</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object for specifying bundled certificates to be used for public key pinning. Certificates from your Countly Server must be DER encoded and should have a <code>.der</code>, <code>.cer</code> or <code>.crt</code></span><span style="font-weight: 400;"> extension. They must also be added to your project and be included in the Copy Bundles Resources.</span>
+  <span style="font-weight: 400;">You can use optional </span><code><span style="font-weight: 400;">pinnedCertificates</span></code><span style="font-weight: 400;"> on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object for specifying bundled certificates to be used for public key pinning. Certificates from your Countly Server must be DER encoded and should have a </span><code><span style="font-weight: 400;">.der</span></code><span style="font-weight: 400;">, </span><code><span style="font-weight: 400;">.cer</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">.crt</span></code><span style="font-weight: 400;"> extension. They must also be added to your project and be included in the Copy Bundles Resources.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -3879,15 +4110,15 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.pinnedCertificates = @[@"mycertificate.cer"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.pinnedCertificates = @[@"mycertificate.cer"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.pinnedCertificates = ["mycertificate.cer"]</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.pinnedCertificates = ["mycertificate.cer"]</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSVZ8YYBMCN0EQ313W">Using a Self Signed-Server Certificate</h2>
 <p>
-  <span style="font-weight: 400;">You can set the <code>shouldIgnoreTrustCheck</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. </span>
+  <span style="font-weight: 400;">You can set the </span><code><span style="font-weight: 400;">shouldIgnoreTrustCheck</span></code><span style="font-weight: 400;"> flag on the</span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly.</span>
 </p>
 <p>
   This flag is used for ignoring all SSL trust check for pinned certificates by
@@ -3903,13 +4134,65 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.shouldIgnoreTrustCheck = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.shouldIgnoreTrustCheck = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.shouldIgnoreTrustCheck = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.shouldIgnoreTrustCheck = true</code></pre>
   </div>
 </div>
 <h1 id="h_01HAVHW0RS3Z70B11ATKPVWYRH">Other Features and Notes</h1>
+<h2 id="h_01KFG9BAF7SNKW7J30VBFCBVRW">SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you set values in your Countly config object:
+</p>
+<ul>
+  <li data-list-item-id="e63d52f04332477f9b7f6363832ec2855">
+    <p>
+      <strong>disableViewRestartForManualRecording</strong> - To disable auto
+      close/restart behavior of manual views on app background/foreground actions.
+    </p>
+    <div class="tabs">
+      <div class="tabs-menu">
+        <span class="tabs-link is-active">Objective-C</span>
+        <span class="tabs-link">Swift</span>
+      </div>
+      <div class="tab">
+        <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.disableViewRestartForManualRecording = YES;</code></pre>
+      </div>
+      <div class="tab is-hidden">
+        <pre class="wysiwyg-code-block"><code class="language-swift swift">config.disableViewRestartForManualRecording = true</code></pre>
+      </div>
+    </div>
+  </li>
+  <li data-list-item-id="eb894e1dc85276b3637aaab62fe72c840">
+    <p>
+      <strong>setWebviewDisplayOption: WebViewDisplayOption</strong> - to control
+      how Content and Feedback Widgets are presented.
+    </p>
+    <ul>
+      <li data-list-item-id="e8a427abce24d6e2aefc86dabd20de3d7">
+        <strong>IMMERSIVE</strong> mode (default): Full-screen display (except
+        cutouts).
+      </li>
+      <li data-list-item-id="ee9b4481279d3ff8822479db7a08585c7">
+        <strong>SAFE_AREA</strong> mode: Omits status bar, navigation bar
+        and cutouts when displaying WebView.
+      </li>
+    </ul>
+    <div class="tabs">
+      <div class="tabs-menu">
+        <span class="tabs-link is-active">Objective-C</span>
+        <span class="tabs-link">Swift</span>
+      </div>
+      <div class="tab">
+        <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.content setWebviewDisplayOption:SAFE_AREA];</code></pre>
+      </div>
+      <div class="tab is-hidden">
+        <pre class="wysiwyg-code-block"><code class="language-swift swift">config.content().setWebviewDisplayOption(SAFE_AREA)</code></pre>
+      </div>
+    </div>
+  </li>
+</ul>
 <h2 id="h_01HAVHW0RS8A28ZR4NNFVBTYFW">Changing Host and App Key</h2>
 <h3 id="h_01HAVHW0RSTYDA6WQMK6X92ZC1">App Key</h3>
 <h4 id="h_01HAVHW0RSNE3XTRZK1GNFG222">Changing App Key</h4>
@@ -3923,10 +4206,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewAppKey:@"NewAppKey"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance setNewAppKey:@"NewAppKey"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setNewAppKey("NewAppKey")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().setNewAppKey("NewAppKey")</code></pre>
   </div>
 </div>
 <p>
@@ -3949,10 +4232,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance replaceAllAppKeysInQueueWithCurrentAppKey];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance replaceAllAppKeysInQueueWithCurrentAppKey];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().replaceAllAppKeysInQueueWithCurrentAppKey()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().replaceAllAppKeysInQueueWithCurrentAppKey()</code></pre>
   </div>
 </div>
 <p>
@@ -3971,10 +4254,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance removeDifferentAppKeysFromQueue];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance removeDifferentAppKeysFromQueue];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().removeDifferentAppKeysFromQueue()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().removeDifferentAppKeysFromQueue()</code></pre>
   </div>
 </div>
 <h3 id="h_01HAVHW0RSW5CZCMYF50V4MQJE">Host</h3>
@@ -3989,10 +4272,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewHost:@"https://example.com"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance setNewHost:@"https://example.com"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().setNewHost("https://example.com")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().setNewHost("https://example.com")</code></pre>
   </div>
 </div>
 <p>
@@ -4003,7 +4286,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
   manually called again after the host change.
 </p>
 <p>
-  <span style="font-weight: 400;">You can further specify your optional settings on the <code>CountlyConfig</code></span><span style="font-weight: 400;">:</span>
+  <span style="font-weight: 400;">You can further specify your optional settings on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;">:</span>
 </p>
 <h2 id="h_01HPE2F8MYP82AZ29EV7N8HQJ3">Example Integrations</h2>
 <p>
@@ -4032,7 +4315,7 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
 </p>
 <h2 id="h_01HAVHW0RSVHW5X7F0QA5BQJWR">Event Send Threshold</h2>
 <p>
-  <span style="font-weight: 400;">You can specify the <code>eventSendThreshold</code></span><span style="font-weight: 400;"> on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. It is used to send </span><strong>events</strong><span style="font-weight: 400;"> requests to the server when the number of recorded events reaches the threshold without waiting for the next update session request. If the <code>eventSendThreshold</code></span><span style="font-weight: 400;"> is not explicitly set, the default setting will be at </span><strong>10</strong><span style="font-weight: 400;"> for iOS, tvOS &amp; macOS, and </span><strong>3</strong><span style="font-weight: 400;"> for watchOS.</span>
+  <span style="font-weight: 400;">You can specify the </span><code><span style="font-weight: 400;">eventSendThreshold</span></code><span style="font-weight: 400;"> on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly. It is used to send </span><strong>events</strong><span style="font-weight: 400;"> requests to the server when the number of recorded events reaches the threshold without waiting for the next update session request. If the </span><code><span style="font-weight: 400;">eventSendThreshold</span></code><span style="font-weight: 400;"> is not explicitly set, the default setting will be at </span><strong>10</strong><span style="font-weight: 400;"> for iOS, tvOS &amp; macOS, and </span><strong>3</strong><span style="font-weight: 400;"> for watchOS.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4040,10 +4323,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.eventSendThreshold = 5;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.eventSendThreshold = 5;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.eventSendThreshold = 5</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.eventSendThreshold = 5</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RS3K48SBK4N6X7JV2G">Setting Maximum Request Queue Size</h2>
@@ -4066,15 +4349,15 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.storedRequestsLimit = 5000;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.storedRequestsLimit = 5000;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.storedRequestsLimit = 5000</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.storedRequestsLimit = 5000</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSESJ7AQ3XCKCA48X2">Always using the POST method</h2>
 <p>
-  <span style="font-weight: 400;">You can set the <code>alwaysUsePOST</code></span><span style="font-weight: 400;"> flag on the<code>CountlyConfig</code></span><span style="font-weight: 400;"> object before starting Countly. This flag is used for sending all requests using the HTTP POST method, regardless of their data size. If set, all requests will be sent using the HTTP POST method. Otherwise, only the requests with a file upload or data size of more than 2,048 bytes will be sent using the HTTP POST method.</span>
+  <span style="font-weight: 400;">You can set the </span><code><span style="font-weight: 400;">alwaysUsePOST</span></code><span style="font-weight: 400;"> flag on the</span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object before starting Countly. This flag is used for sending all requests using the HTTP POST method, regardless of their data size. If set, all requests will be sent using the HTTP POST method. Otherwise, only the requests with a file upload or data size of more than 2,048 bytes will be sent using the HTTP POST method.</span>
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4082,10 +4365,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.alwaysUsePOST = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.alwaysUsePOST = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.alwaysUsePOST = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.alwaysUsePOST = true</code></pre>
   </div>
 </div>
 <h2 id="h_01K5H1SAPD1X7QT3HWN2EH5FM0">Request Timeout Duration</h2>
@@ -4099,21 +4382,24 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.requestTimeoutDuration = 60;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.requestTimeoutDuration = 60;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.requestTimeoutDuration = 60</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.requestTimeoutDuration = 60</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSY3ZX1QB701E8XS44">Custom URLSessionConfiguration</h2>
 <p>
   For additional networking settings, you can optionally set a custom
-  <span style="font-weight: 400;"><code>URLSessionConfiguration</code></span>
-  <span style="font-weight: 400;">on the <code>CountlyConfig</code></span><span style="font-weight: 400;"> object,</span>
+  <code><span style="font-weight: 400;">URLSessionConfiguration</span></code>
+  <span style="font-weight: 400;">on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object,</span>
   to be used with all requests sent to Countly Server.
 </p>
 <p>
-  <span>If <span style="font-weight: 400;"><code>URLSessionConfiguration</code> is </span>not set, <span style="font-weight: 400;"><code>NSURLSessionConfiguration</code>'s <code>defaultSessionConfiguration</code></span></span><span> will be used by default.</span>
+  If <code><span style="font-weight: 400;">URLSessionConfiguration</span></code><span style="font-weight: 400;"> is </span>not
+  set,
+  <code><span style="font-weight: 400;">NSURLSessionConfiguration</span></code><span style="font-weight: 400;">'s </span><code><span style="font-weight: 400;">defaultSessionConfiguration</span></code>
+  will be used by default.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4121,10 +4407,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.URLSessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.URLSessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>config.URLSessionConfiguration = URLSessionConfiguration.ephemeral</pre>
+    <pre class="wysiwyg-code-block"><code class="language-bash bash">config.URLSessionConfiguration = URLSessionConfiguration.ephemeral</code></pre>
   </div>
 </div>
 <p>
@@ -4137,25 +4423,23 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance setNewURLSessionConfiguration:newURLSessionConfiguration];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance setNewURLSessionConfiguration:newURLSessionConfiguration];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre>Countly.sharedInstance().setNewURLSessionConfiguration(newURLSessionConfiguration)</pre>
+    <pre class="wysiwyg-code-block"><code class="language-bash bash">Countly.sharedInstance().setNewURLSessionConfiguration(newURLSessionConfiguration)</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSMH9JXDSWXR3H7A4Z">Custom Metrics</h2>
 <p>
   For overriding default metrics or adding extra ones that are sent with
-  <span style="font-weight: 400;"><code><span>begin_session</span></code></span>
-  requests, you can use
-  <span style="font-weight: 400;"><code><span>customMetrics</span></code><span>dictionary on the </span><code>CountlyConfig</code><span> </span><span>object.</span></span>
+  <code><span style="font-weight: 400;">begin_session</span></code> requests, you
+  can use <code><span style="font-weight: 400;">customMetrics</span></code><span style="font-weight: 400;">dictionary on the </span><code><span style="font-weight: 400;">CountlyConfig</span></code><span style="font-weight: 400;"> object.</span>
 </p>
 <p>
   Custom metrics should be an
-  <span style="font-weight: 400;"><code><span>NSDictionary</span></code></span><span>,</span>
-  with keys and values are both
-  <span style="font-weight: 400;"><code><span>NSString</span></code></span> 's
-  only.
+  <code><span style="font-weight: 400;">NSDictionary</span></code>, with keys and
+  values are both <code><span style="font-weight: 400;">NSString</span></code>
+  's only.
 </p>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4163,18 +4447,27 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.customMetrics = @{@"key": @"value"};</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.customMetrics = @{@"key": @"value"};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.customMetrics = ["key": "value"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.customMetrics = ["key": "value"];</code></pre>
   </div>
 </div>
 <div class="tabs-menu">
   <p>
-    For overriding default metrics, keys should be
-    <span>one of the <span style="font-weight: 400;"><code>CLYMetricKey</code></span> </span>'s:
+    For overriding default metrics, keys should be one of the
+    <code><span style="font-weight: 400;">CLYMetricKey</span></code> 's:
   </p>
-  <pre>CLYMetricKeyDevice<br>CLYMetricKeyOS<br>CLYMetricKeyOSVersion<br>CLYMetricKeyAppVersion<br>CLYMetricKeyCarrier<br>CLYMetricKeyResolution<br>CLYMetricKeyDensity<br>CLYMetricKeyLocale<br>CLYMetricKeyHasWatch<br>CLYMetricKeyInstalledWatchApp</pre>
+  <pre class="wysiwyg-code-block"><code class="language-bash bash">CLYMetricKeyDevice
+CLYMetricKeyOS
+CLYMetricKeyOSVersion
+CLYMetricKeyAppVersion
+CLYMetricKeyCarrier
+CLYMetricKeyResolution
+CLYMetricKeyDensity
+CLYMetricKeyLocale
+CLYMetricKeyHasWatch
+CLYMetricKeyInstalledWatchApp</code></pre>
 </div>
 <div class="tabs">
   <div class="tabs-menu">
@@ -4182,10 +4475,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.customMetrics = @{CLYMetricKeyAppVersion: @"1.2.3"};</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.customMetrics = @{CLYMetricKeyAppVersion: @"1.2.3"};</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.customMetrics = [CLYMetricKeyAppVersion: "1.2.3"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.customMetrics = [CLYMetricKeyAppVersion: "1.2.3"];</code></pre>
   </div>
 </div>
 <h2 id="h_01HTPANJCZGDCJS92XQZV69AY7">SDK Internal Limits</h2>
@@ -4206,10 +4499,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config.sdkInternalLimits setMaxKeyLength:150];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.sdkInternalLimits setMaxKeyLength:150];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkInternalLimits().setMaxKeyLength(150);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkInternalLimits().setMaxKeyLength(150);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZCDKSFEM7NHK4PYPZ">Value Size</h3>
@@ -4223,10 +4516,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config.sdkInternalLimits setMaxValueSize:200];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.sdkInternalLimits setMaxValueSize:200];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkInternalLimits().setMaxValueSize(200);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkInternalLimits().setMaxValueSize(200);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZRWRYPYQM1RQF4V0S">Segmentation Values</h3>
@@ -4239,10 +4532,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config.sdkInternalLimits setMaxSegmentationValues:120];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.sdkInternalLimits setMaxSegmentationValues:120];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkInternalLimits().setMaxSegmentationValues(120);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkInternalLimits().setMaxSegmentationValues(120);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZ4VVWKTEEYYJ9D050">Breadcrumb Count</h3>
@@ -4256,10 +4549,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config.sdkInternalLimits setMaxBreadcrumbCount:120];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.sdkInternalLimits setMaxBreadcrumbCount:120];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkInternalLimits().setMaxBreadcrumbCount(120);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkInternalLimits().setMaxBreadcrumbCount(120);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZT9A7GMK5D8EQXSPY">Stack Trace Lines Per Thread</h3>
@@ -4272,10 +4565,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config.sdkInternalLimits setMaxStackTraceLinesPerThread:50];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.sdkInternalLimits setMaxStackTraceLinesPerThread:50];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLinesPerThread(50);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkInternalLimits().setMaxStackTraceLinesPerThread(50);</code></pre>
   </div>
 </div>
 <h3 id="h_01HTPANJCZPFVMF36BZSNNQWFX">Stack Trace Line Length</h3>
@@ -4288,10 +4581,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[config.sdkInternalLimits setMaxStackTraceLineLength:300];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[config.sdkInternalLimits setMaxStackTraceLineLength:300];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkInternalLimits().setMaxStackTraceLineLength(300);</code></pre>
   </div>
 </div>
 <h2 id="h_01JSKRSAXEH9RYJ8X22P3GEH45">Server Configuration</h2>
@@ -4310,10 +4603,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.sdkBehaviorSettings = @"json server config";</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.sdkBehaviorSettings = @"json server config";</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.sdkBehaviorSettings = "json server config";</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.sdkBehaviorSettings = "json server config";</code></pre>
   </div>
 </div>
 <p>
@@ -4327,10 +4620,10 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.disableSDKBehaviorSettingsUpdates = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.disableSDKBehaviorSettingsUpdates = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.disableSDKBehaviorSettingsUpdates = true</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.disableSDKBehaviorSettingsUpdates = true</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RSTYHES6WSX8Z80BQ6">Attribution</h2>
@@ -4351,11 +4644,11 @@ Countly.sharedInstance().cancelConsent(forFeature: CLYConsentEvents)</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSString* campaignData = @"{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}";
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSString* campaignData = @"{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}";
 [Countly.sharedInstance recordDirectAttributionWithCampaignType:@"countly" andCampaignData:campaignData];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let campaignData = "{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}"
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let campaignData = "{\"keyA\":\"valueA\",\"keyB\":\"valueB\"}"
 Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", andCampaignData: campaignData)</code></pre>
   </div>
 </div>
@@ -4374,10 +4667,10 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance recordIndirectAttribution:@{CLYAttributionKeyADID: @"value", @"key1": @"value1", @"key2": @"value2"}];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance recordIndirectAttribution:@{CLYAttributionKeyADID: @"value", @"key1": @"value1", @"key2": @"value2"}];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().recordIndirectAttribution([CLYAttributionKey.ADID.rawValue: "value", "key1": "value1", "key2": "value2"])</code></pre>
   </div>
 </div>
 <p>
@@ -4406,10 +4699,10 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance attemptToSendStoredRequests];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance attemptToSendStoredRequests];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().attemptToSendStoredRequests()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().attemptToSendStoredRequests()</code></pre>
   </div>
 </div>
 <p>
@@ -4426,10 +4719,10 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance flushQueues];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance flushQueues];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().flushQueues()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().flushQueues()</code></pre>
   </div>
 </div>
 <h2 id="h_01JXEZGV0DRSK14XWH9YXWD2K9">Backoff Mechanism</h2>
@@ -4444,14 +4737,14 @@ Countly.sharedInstance().recordDirectAttribution(withCampaignType: "countly", an
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CountlyConfig* config = CountlyConfig.new;
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">CountlyConfig* config = CountlyConfig.new;
 config.appKey = @"YOUR_APP_KEY";
 config.host = @"https://YOUR_COUNTLY_SERVER";
 config.disableBackoffMechanism = YES;
 [Countly.sharedInstance startWithConfig:config];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let config: CountlyConfig = CountlyConfig()
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let config: CountlyConfig = CountlyConfig()
 config.appKey = "YOUR_APP_KEY"
 config.host = "https://YOUR_COUNTLY_SERVER"
 config.disableBackoffMechanism = true
@@ -4480,7 +4773,7 @@ Countly.sharedInstance().start(with: config)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec" data-stringify-type="pre">- (void) sendDirectRequest {
   NSMutableDictionary *requestMap = [[NSMutableDictionary alloc] init];
   requestMap[@"city"] = @"Istanbul";
   requestMap[@"country_code"] = @"TR";
@@ -4543,7 +4836,7 @@ Countly.sharedInstance().start(with: config)</code></pre>
 }</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">func sendDirectRequest() {
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">func sendDirectRequest() {
     var requestMap = [String: Any]()
     requestMap["city"] = "Istanbul"
     requestMap["country_code"] = "TR"
@@ -4615,7 +4908,7 @@ func toString(dictionaryOrArrayToOutput: Any) - String {
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSMutableDictionary *metricsOverride = [NSMutableDictionary dictionary];
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSMutableDictionary *metricsOverride = [NSMutableDictionary dictionary];
 metricsOverride[@"_app_version"] = @"5.0";
 metricsOverride[@"_os"] = @"CustomOS";
 
@@ -4624,7 +4917,7 @@ metricsOverride[@"_os"] = @"CustomOS";
 [Countly.sharedInstance recordMetrics:nil];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">var metricsOverride = [String: String]()
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">var metricsOverride = [String: String]()
 metricsOverride["_app_version"] = "5.0"
 metricsOverride["_os"] = "CustomOS"
 
@@ -4657,7 +4950,7 @@ Countly.sharedInstance().recordMetrics(nil)</code></pre>
 </p>
 <p>
   <strong>4.</strong>
-  <span style="font-weight: 400;">Now it is time to add the Countly iOS SDK to your project. After cloning the Countly iOS SDK anywhere you would like, Drag&amp;Drop <code>.h</code> and <code>.m</code> files in <code>countly-sdk-ios</code></span><span style="font-weight: 400;"> folder into your Xcode project, and in the following dialog, please ensure the iPhone app target and </span><strong>WatchKit Extension</strong><span style="font-weight: 400;"> target (not WatchKit App) have been selected as well as the </span><strong>Copy items if needed</strong><span style="font-weight: 400;"> checkbox.</span>
+  <span style="font-weight: 400;">Now it is time to add the Countly iOS SDK to your project. After cloning the Countly iOS SDK anywhere you would like, Drag&amp;Drop </span><code><span style="font-weight: 400;">.h</span></code><span style="font-weight: 400;"> and </span><code><span style="font-weight: 400;">.m</span></code><span style="font-weight: 400;"> files in </span><code><span style="font-weight: 400;">countly-sdk-ios</span></code><span style="font-weight: 400;"> folder into your Xcode project, and in the following dialog, please ensure the iPhone app target and </span><strong>WatchKit Extension</strong><span style="font-weight: 400;"> target (not WatchKit App) have been selected as well as the </span><strong>Copy items if needed</strong><span style="font-weight: 400;"> checkbox.</span>
 </p>
 <div class="img-container">
   <img src="https://archive.count.ly/images/guide/SvLcZmJTQPKXYWtkXdLn_hcHj93L.png">
@@ -4672,10 +4965,10 @@ Countly.sharedInstance().recordMetrics(nil)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">#import "Countly.h"</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">#import "Countly.h"</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">// No need to import files for Swift projects</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">// No need to import files for Swift projects</code></pre>
   </div>
 </div>
 <p>
@@ -4688,13 +4981,13 @@ Countly.sharedInstance().recordMetrics(nil)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">CountlyConfig* config = CountlyConfig.new;
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">CountlyConfig* config = CountlyConfig.new;
 config.appKey = @"YOUR_APP_KEY";
 config.host = @"https://YOUR_COUNTLY_SERVER";
 [Countly.sharedInstance startWithConfig:config];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let config: CountlyConfig = CountlyConfig()
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let config: CountlyConfig = CountlyConfig()
 config.appKey = "YOUR_APP_KEY"
 config.host = "https://YOUR_COUNTLY_SERVER"
 Countly.sharedInstance().start(with: config)</code></pre>
@@ -4711,10 +5004,10 @@ Countly.sharedInstance().start(with: config)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance suspend];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance suspend];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().suspend()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().suspend()</code></pre>
   </div>
 </div>
 <p>
@@ -4728,10 +5021,10 @@ Countly.sharedInstance().start(with: config)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance resume];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance resume];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().resume()</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().resume()</code></pre>
   </div>
 </div>
 <p>
@@ -4745,11 +5038,11 @@ Countly.sharedInstance().start(with: config)</code></pre>
   <span style="font-weight: 400;">By the way, the session concept on watchOS is slightly different than the one on the iOS, as watchOS apps are intended for brief user interaction. So, there are two values you might need to adjust depending on your watch apps’ use cases.</span>
 </p>
 <ul>
-  <li>
-    <span style="font-weight: 400;">The first value is <code>updateSessionPeriod</code></span><span style="font-weight: 400;">. Its default value is </span><strong>20</strong><span style="font-weight: 400;"> seconds for watchOS and </span><strong>60</strong><span style="font-weight: 400;"> seconds for iOS. This value determines how often session updating requests will be sent to the server while the app is in use.</span>
+  <li data-list-item-id="e567a4b8ee429296d98f03d7eb005e1fb">
+    <span style="font-weight: 400;">The first value is </span><code><span style="font-weight: 400;">updateSessionPeriod</span></code><span style="font-weight: 400;">. Its default value is </span><strong>20</strong><span style="font-weight: 400;"> seconds for watchOS and </span><strong>60</strong><span style="font-weight: 400;"> seconds for iOS. This value determines how often session updating requests will be sent to the server while the app is in use.</span>
   </li>
-  <li>
-    <span style="font-weight: 400;">The second value is <code>eventSendThreshold</code></span><span style="font-weight: 400;">, which is </span><strong>3</strong><span style="font-weight: 400;"> for watchOS and </span><strong>10</strong><span style="font-weight: 400;"> for iOS by default. The Countly iOS SDK waits for the number of recorded unique events to reach this threshold to deliver them to the server until the next session updating kicks in. Considering the fact that Apple Watch is designed to be used for short sessions, these values generally seem appropriate. However, you can change them depending on your watchOS app’s scenario.</span>
+  <li data-list-item-id="edbc3e394b4ee8929174c058a16733e3a">
+    <span style="font-weight: 400;">The second value is </span><code><span style="font-weight: 400;">eventSendThreshold</span></code><span style="font-weight: 400;">, which is </span><strong>3</strong><span style="font-weight: 400;"> for watchOS and </span><strong>10</strong><span style="font-weight: 400;"> for iOS by default. The Countly iOS SDK waits for the number of recorded unique events to reach this threshold to deliver them to the server until the next session updating kicks in. Considering the fact that Apple Watch is designed to be used for short sessions, these values generally seem appropriate. However, you can change them depending on your watchOS app’s scenario.</span>
   </li>
 </ul>
 <div class="tabs">
@@ -4758,28 +5051,28 @@ Countly.sharedInstance().start(with: config)</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.updateSessionPeriod = 15;
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.updateSessionPeriod = 15;
 config.eventSendThreshold = 1;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.updateSessionPeriod = 15
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.updateSessionPeriod = 15
 config.eventSendThreshold = 1</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RT4ZHQVYMK1GV1WW2T">Automatic Reference Counting (ARC)</h2>
 <p>
-  <span style="font-weight: 400;">The Countly iOS SDK uses Automatic Reference Counting (ARC). If you are integrating the Countly iOS SDK into a non-ARC project, you should add the<code>-fobjc-arc</code></span><span style="font-weight: 400;"> compiler flag to all Countly iOS SDK implementation (<code>*.m</code></span><span style="font-weight: 400;">) files found under <code>Target</code> &gt; <code>Build Phases</code> &gt; <code>Compile Sources</code></span><span style="font-weight: 400;">.</span>
+  <span style="font-weight: 400;">The Countly iOS SDK uses Automatic Reference Counting (ARC). If you are integrating the Countly iOS SDK into a non-ARC project, you should add the</span><code><span style="font-weight: 400;">-fobjc-arc</span></code><span style="font-weight: 400;"> compiler flag to all Countly iOS SDK implementation (</span><code><span style="font-weight: 400;">*.m</span></code><span style="font-weight: 400;">) files found under </span><code><span style="font-weight: 400;">Target</span></code><span style="font-weight: 400;"> &gt; </span><code><span style="font-weight: 400;">Build Phases</span></code><span style="font-weight: 400;"> &gt; </span><code><span style="font-weight: 400;">Compile Sources</span></code><span style="font-weight: 400;">.</span>
 </p>
 <h2 id="h_01HAVHW0RTCEGRMYGJX0C4HCX4">App Transport Security (ATS)</h2>
 <p>
-  <span style="font-weight: 400;">With </span><strong>App Transport Security</strong><span style="font-weight: 400;"> introduced in iOS 9, connections to non-HTTPS servers which does not meet some requirements will fail with the following error: <code>Error: Error Domain=NSURLErrorDomain Code=-1022 "The resource could not be loaded because the App Transport Security policy requires the use of a secure connection."</code>. You can see details of the requirements </span><a href="https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW14"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">. If your Countly Server instance does not meet these requirements, you can need to add the <code>NSAppTransportSecurity</code></span><span style="font-weight: 400;"> key into your targets' <code>Info.plist</code></span><span style="font-weight: 400;"> files, with <code>NSAllowsArbitraryLoads</code> or <code>NSExceptionDomains</code></span><span style="font-weight: 400;"> as the value, to communicate with your Countly Server.</span>
+  <span style="font-weight: 400;">With </span><strong>App Transport Security</strong><span style="font-weight: 400;"> introduced in iOS 9, connections to non-HTTPS servers which does not meet some requirements will fail with the following error: </span><code><span style="font-weight: 400;">Error: Error Domain=NSURLErrorDomain Code=-1022 "The resource could not be loaded because the App Transport Security policy requires the use of a secure connection."</span></code><span style="font-weight: 400;">. You can see details of the requirements </span><a href="https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW14"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">. If your Countly Server instance does not meet these requirements, you can need to add the </span><code><span style="font-weight: 400;">NSAppTransportSecurity</span></code><span style="font-weight: 400;"> key into your targets' </span><code><span style="font-weight: 400;">Info.plist</span></code><span style="font-weight: 400;"> files, with </span><code><span style="font-weight: 400;">NSAllowsArbitraryLoads</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">NSExceptionDomains</span></code><span style="font-weight: 400;"> as the value, to communicate with your Countly Server.</span>
 </p>
 <h2 id="h_01HAVHW0RT9DP8543XYWP278JC">Swift Projects</h2>
 <p>
-  <span style="font-weight: 400;">For using Countly on Swift based projects, please ensure your Bridging Header File is configured properly for each target. Then import the <code>Countly.h</code></span><span style="font-weight: 400;"> file into the Bridging Header file, after which you can seamlessly use the Countly methods in your Swift projects.</span>
+  <span style="font-weight: 400;">For using Countly on Swift based projects, please ensure your Bridging Header File is configured properly for each target. Then import the </span><code><span style="font-weight: 400;">Countly.h</span></code><span style="font-weight: 400;"> file into the Bridging Header file, after which you can seamlessly use the Countly methods in your Swift projects.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">For Notification Service Extension targets, import <code>CountlyNotificationService.h</code></span><span style="font-weight: 400;"> into the Bridging Header file.</span>
+  <span style="font-weight: 400;">For Notification Service Extension targets, import </span><code><span style="font-weight: 400;">CountlyNotificationService.h</span></code><span style="font-weight: 400;"> into the Bridging Header file.</span>
 </p>
 <p>
   <span style="font-weight: 400;">You can view more details on how to create a Bridging Header file </span><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-ID126"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">.</span>
@@ -4790,7 +5083,9 @@ config.eventSendThreshold = 1</code></pre>
 </p>
 <h2 id="h_01HAVHW0RTXSFZD8R6QMX0GWPN">CocoaPods</h2>
 <div class="callout callout--warning">
-  <strong>CocoaPods Support</strong>
+  <p>
+    <strong>CocoaPods Support</strong>
+  </p>
   <p>
     While the Countly iOS SDK supports integration via CocoaPods, we can not
     be able to help you with issues stemming from the CocoaPods itself, especially
@@ -4800,7 +5095,7 @@ config.eventSendThreshold = 1</code></pre>
 <p>
   <span style="font-weight: 400;">You can integrate the Countly iOS SDK using CocoaPods. For more information, please see the </span><a href="https://cocoapods.org/pods/Countly"><span style="font-weight: 400;">Countly CocoaPods page</span></a><span style="font-weight: 400;">. Please ensure you have the latest version of CocoaPods and your local spec repo is updated. For Notification Service Extension targets, please ensure your Podfile uses something similar to the following sub specs:</span>
 </p>
-<pre><code class="ruby">target 'MyMainApp' do
+<pre class="wysiwyg-code-block"><code class="language-ruby">target 'MyMainApp' do
   platform :ios,'10.0'
   pod 'Countly'
 end
@@ -4820,118 +5115,13 @@ end</code></pre>
 <p>
   <span style="font-weight: 400;">You can integrate the Countly iOS SDK using Carthage, just add the following to your project's Cartfile:</span>
 </p>
-<pre><code class="text">github "Countly/countly-sdk-ios"</code></pre>
+<pre class="wysiwyg-code-block"><code class="language-plaintext">github "Countly/countly-sdk-ios"</code></pre>
 <h2 id="h_01HAVHW0RTQ6WN8CYVNVZQ5TEP">Swift Package Manager (SPM)</h2>
 <p>
   You can integrate the Countly iOS SDK with Swift Package Manager (SPM) using
   https://github.com/Countly/countly-sdk-ios.git repository URL. Open your XCode
   and go to File &gt; Add Packages and enter the URL into the search bar. From
   here you can add the package by targeting the master branch.
-</p>
-<h2 id="h_01J7191100003PJ0HZHYR8GS5B">Content Zone</h2>
-<p>
-  The Content Zone feature enhances user engagement by delivering various types
-  of content blocks, such as in-app messaging, ads, or user engagement prompts.
-  These content blocks are dynamically served from the content builder on the server,
-  ensuring that users receive relevant and up-to-date information.
-</p>
-<div class="callout callout--info">
-  <p>
-    For learning how you can use Journeys &amp; Content Builder to create In-App
-    messages you can check
-    <a href="/hc/en-us/articles/18995770340380" target="_blank" rel="noopener noreferrer">this</a>
-    article.
-  </p>
-</div>
-<p>
-  To start fetching content from the server, use the following method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.content enterContentZone];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().content().enterContentZone();</code></pre>
-  </div>
-</div>
-<p>
-  This call will retrieve and display any available content for the user. It will
-  also regularly check if a new content is available, and if it is, will fetch
-  and show it to the user.
-</p>
-<p>
-  This regular check happens in every 30 seconds by default. It could be configurable
-  while initializing the SDK through and it must be greater than 15 seconds.
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">config.content.zoneTimerInterval = 60;</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="objectivec">config.content.zoneTimerInterval = 60</code></pre>
-  </div>
-</div>
-<p>
-  If you need to ask for content after a trigger you know you can use this method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.content refreshContentZone];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().content().refreshContentZone();</code></pre>
-  </div>
-</div>
-<p>
-  When you want to exit from content zone and stop SDK from checking for available
-  content you can use this method:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.content exitContentZone];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().content().exitContentZone();</code></pre>
-  </div>
-</div>
-<p>
-  To get informed when a user closes a content you can register a global content
-  callback during SDK initialization:
-</p>
-<div class="tabs">
-  <div class="tabs-menu">
-    <span class="tabs-link is-active">Objective-C</span>
-    <span class="tabs-link">Swift</span>
-  </div>
-  <div class="tab">
-    <pre><code class="objectivec">[config.content setGlobalContentCallback:^(ContentStatus contentStatus, NSDictionary&lt;NSString *,id&gt; * _Nonnull contentData) {
-      // do sth
-    }];</code></pre>
-  </div>
-  <div class="tab is-hidden">
-    <pre><code class="swift">config.content().setGlobalContentCallback { contentStatus, contentData in
-      // do something
-    }</code></pre>
-  </div>
-</div>
-<p>
-  The `contentStatus` will indicate either `COMPLETED` or `CLOSED`.
 </p>
 <h2 id="h_01J719HZ10E9XGED23ZR74MWTA">Experimental Config</h2>
 <p>
@@ -4941,8 +5131,8 @@ end</code></pre>
 </p>
 <p>This class allows enabling two experimental features:</p>
 <ul>
-  <li>Previous Name Recording</li>
-  <li>Visibility Tracking</li>
+  <li data-list-item-id="eb028cb3fbba796e918d0460d6e661dc8">Previous Name Recording</li>
+  <li data-list-item-id="e6be06f70bb9a0890fe2e919bf0cdece5">Visibility Tracking</li>
 </ul>
 <p>
   When you enable previous name recording, it will add previous view name to the
@@ -4955,10 +5145,10 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.experimental.enablePreviousNameRecording = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.experimental.enablePreviousNameRecording = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.experimental().enablePreviousNameRecording = true;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.experimental().enablePreviousNameRecording = true;</code></pre>
   </div>
 </div>
 <p>
@@ -4972,10 +5162,10 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.experimental.enableVisibiltyTracking = YES;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.experimental.enableVisibiltyTracking = YES;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.experimental().enableVisibiltyTracking = true;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.experimental().enableVisibiltyTracking = true;</code></pre>
   </div>
 </div>
 <h2 id="h_01HAVHW0RT6Z24NQTD85KJP50H">A/B Testing Variant Information</h2>
@@ -4996,12 +5186,12 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig testingDownloadVariantInformation:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error) {
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig testingDownloadVariantInformation:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error) {
    // do sth
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.testingDownloadVariantInformation({ response, error in
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.testingDownloadVariantInformation({ response, error in
    // do something
 })</code></pre>
   </div>
@@ -5025,10 +5215,10 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSDictionary*allVariants = [Countly.sharedInstance.remoteConfig testingGetAllVariants];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSDictionary*allVariants = [Countly.sharedInstance.remoteConfig testingGetAllVariants];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let allVariants = Countly.sharedInstance().remoteConfig.testingGetAllVariants()
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let allVariants = Countly.sharedInstance().remoteConfig.testingGetAllVariants()
 </code></pre>
   </div>
 </div>
@@ -5037,7 +5227,7 @@ end</code></pre>
   variants under that parameter. The parameter would be the key, and its value
   would be a String Array of variants. For example:
 </p>
-<pre><code class="java">{
+<pre class="wysiwyg-code-block"><code class="language-json">{
   "key_1" : ["variant_1", "variant_2"],
   "key_2" : ["variant_3"]
 }
@@ -5049,10 +5239,10 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">NSArray* variants = [Countly.sharedInstance.remoteConfig testingGetVariantsForKey:key];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">NSArray* variants = [Countly.sharedInstance.remoteConfig testingGetVariantsForKey:key];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">let variants = Countly.sharedInstance().remoteConfig.testingGetVariants(for: key) as NSArray
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">let variants = Countly.sharedInstance().remoteConfig.testingGetVariants(for: key) as NSArray
 </code></pre>
   </div>
 </div>
@@ -5061,7 +5251,7 @@ end</code></pre>
   variants were present for a key, it would return an empty array. A typical result
   would look like this:
 </p>
-<pre><code class="java">["variant_1", "variant_2"]
+<pre class="wysiwyg-code-block"><code class="language-json">["variant_1", "variant_2"]
 </code></pre>
 <h3 id="h_01HAVHW0RTE8E7S9NNFCAEQT2Z">Enrolling For a Variant</h3>
 <p>
@@ -5075,12 +5265,12 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance.remoteConfig testingEnrollIntoVariant:key variantName:variantName completionHandler:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error) {
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance.remoteConfig testingEnrollIntoVariant:key variantName:variantName completionHandler:^(CLYRequestResult _Nonnull response, NSError *_Nonnull error) {
    // do sth
 }];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().remoteConfig.testingEnroll(intoVariant: key, variantName: variantName) { response, error in
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().remoteConfig.testingEnroll(intoVariant: key, variantName: variantName) { response, error in
    // do sth
 }</code></pre>
   </div>
@@ -5104,10 +5294,10 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.setRequestDropAgeHours(10);</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.setRequestDropAgeHours(10);</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.setRequestDropAgeHours(10)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.setRequestDropAgeHours(10)</code></pre>
   </div>
 </div>
 <p>
@@ -5119,10 +5309,11 @@ end</code></pre>
 </p>
 <h2 id="h_01JCGJ63WGHR3V9XZQT89JVYFQ">Extended Device ID Management</h2>
 <p>
-  <span style="font-weight: 400;">You can use the <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
+  <span style="font-weight: 400;">You can use the </span><code><span style="font-weight: 400;">changeDeviceIDWithMerge:</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">changeDeviceIDWithoutMerge:</span></code><span style="font-weight: 400;"> method to change the device ID on runtime </span><strong>after you start Countly</strong><span style="font-weight: 400;">. You can either allow the device to be counted as a new device or merge existing data on the server.</span>
 </p>
 <p>
-  <span style="font-weight: 400;">With this method <code>changeDeviceIDWithMerge:</code> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.<br>With <code>changeDeviceIDWithoutMerge:</code> a new device ID created on the server.</span>
+  <span style="font-weight: 400;">With this method </span><code><span style="font-weight: 400;">changeDeviceIDWithMerge:</span></code><span style="font-weight: 400;"> the old device ID on the server will be replaced with the new one, and data associated with the old device ID will be merged automatically.</span><br>
+  <span style="font-weight: 400;">With </span><code><span style="font-weight: 400;">changeDeviceIDWithoutMerge:</span></code><span style="font-weight: 400;"> a new device ID created on the server.</span>
 </p>
 <div class="callout callout--warning">
   <p>
@@ -5137,14 +5328,14 @@ end</code></pre>
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">//change and merge on server
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">//change and merge on server
 [Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
 
 //no replace and merge on server, device will be counted as new
 [Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">//replace and merge on server
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">//replace and merge on server
 Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
 
 //no replace and merge on server, device will be counted as new
@@ -5165,10 +5356,10 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">config.deviceID = CLYTemporaryDeviceID;</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">config.deviceID = CLYTemporaryDeviceID;</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">config.deviceID = CLYTemporaryDeviceID</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">config.deviceID = CLYTemporaryDeviceID</code></pre>
   </div>
 </div>
 <p>
@@ -5181,10 +5372,11 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithoutMerge:CLYTemporaryDeviceID];<br></code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance changeDeviceIDWithoutMerge:CLYTemporaryDeviceID];
+</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithoutMerge(CLYTemporaryDeviceID)</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().changeDeviceIDWithoutMerge(CLYTemporaryDeviceID)</code></pre>
   </div>
 </div>
 <p>
@@ -5194,7 +5386,7 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
 </p>
 <p>
   Later, when the real device ID is set using
-  <span style="font-weight: 400;"> <code>changeDeviceIDWithMerge:</code> or <code>changeDeviceIDWithoutMerge:</code></span><span style="font-weight: 400;"></span>
+  <code><span style="font-weight: 400;">changeDeviceIDWithMerge:</span></code><span style="font-weight: 400;"> or </span><code><span style="font-weight: 400;">changeDeviceIDWithoutMerge:</span></code><span style="font-weight: 400;"></span>
   method, all requests which have been kept on hold until that point will start
   with the real device ID:
 </p>
@@ -5204,10 +5396,14 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
     <span class="tabs-link">Swift</span><span style="background-color: #e9ebed; font-family: monospace, monospace; font-size: 13px; white-space: pre;"></span>
   </div>
   <div class="tab">
-    <pre><code class="objectivec">[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];<br><br>[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-objectivec objectivec">[Countly.sharedInstance changeDeviceIDWithMerge:@"new_device_id"];
+
+[Countly.sharedInstance changeDeviceIDWithoutMerge:@"new_device_id"];</code></pre>
   </div>
   <div class="tab is-hidden">
-    <pre><code class="swift">Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")<br><br>Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
+    <pre class="wysiwyg-code-block"><code class="language-swift swift">Countly.sharedInstance().changeDeviceIDWithMerge("new_device_id")
+
+Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre>
   </div>
 </div>
 <p>
@@ -5215,187 +5411,177 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   is <code>CLYTemporaryDeviceID</code>, with merge or without merge&nbsp;does not
   matter.
 </p>
-<h1 id="frequently-asked-questions" class="anchor-heading" tabindex="-1">
-  <span>FAQ</span>
-</h1>
+<h1 class="anchor-heading" id="frequently-asked-questions" tabindex="-1">FAQ</h1>
 <p>
   This section highlights the most frequently asked questions and any troubleshooting
   queries you may face while integrating the Countly iOS SDK into your iOS, watchOS,
   tvOS, or macOS applications.
 </p>
 <h2 id="h_01HAVHW0RTVQS0Q754MQMZ6N9X">
-  <span class="wysiwyg-color-black">What platforms does Countly iOS SDK support?</span>
+  <span style="color: #000000;">What platforms does Countly iOS SDK support?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">Even though its official name is Countly iOS SDK, it supports all Apple platforms (macOS, tvOS, and watchOS), in addition to iOS. You can use the same SDK for all kinds of projects with different sets of features available for each platform. You can also see how to integrate it into your projects by <a href="https://github.com/Countly/countly-sample-ios">checking our sample apps here</a>.</span>
+  <span style="color: #000000;">Even though its official name is Countly iOS SDK, it supports all Apple platforms (macOS, tvOS, and watchOS), in addition to iOS. You can use the same SDK for all kinds of projects with different sets of features available for each platform. You can also see how to integrate it into your projects by </span><a href="https://github.com/Countly/countly-sample-ios"><span style="color: #000000;">checking our sample apps here</span></a><span style="color: #000000;">.</span>
 </p>
 <h2 id="h_01HAVHW0RTB1QKKPGRB97AYNZ9">
-  <span class="wysiwyg-color-black">Which features are available for each platform?</span>
+  <span style="color: #000000;">Which features are available for each platform?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">In addition to Analytics, Events, and User Profiles features, Countly iOS SDK has Push Notifications, Crash Reporting, Auto View Tracking, Remote Config, and Star-Rating features. Availability of these features for platforms are as follows:</span>
+  <span style="color: #000000;">In addition to Analytics, Events, and User Profiles features, Countly iOS SDK has Push Notifications, Crash Reporting, Auto View Tracking, Remote Config, and Star-Rating features. Availability of these features for platforms are as follows:</span>
 </p>
 <ul>
-  <li>
-    <p>
-      <span class="wysiwyg-color-black">iOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>, <code>Remote Config</code>, </span>
-    </p>
+  <li class="ck-list-marker-color" data-list-item-id="eb87c80a7bb044cfe31f60327defaa0de">
+    <span style="color: #000000;">iOS</span><br>
+    <span style="color: #000000;"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>, <code>Crash Reporting</code>, <code>Auto View Tracking</code>, <code>Star-Rating</code>, <code>Remote Config</code>,</span>
   </li>
-  <li>
-    <p>
-      <span class="wysiwyg-color-black">macOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>, <code>Remote Config</code>, </span>
-    </p>
+  <li class="ck-list-marker-color" data-list-item-id="ec93c5fca1de26dd8269ff3b210d6ae50">
+    <span style="color: #000000;">macOS</span><br>
+    <span style="color: #000000;"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Push Notifications</code>,<code>Crash Reporting</code>, <code>Remote Config</code>,</span>
   </li>
-  <li>
-    <p>
-      <span class="wysiwyg-color-black">tvOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>, </span>
-    </p>
+  <li class="ck-list-marker-color" data-list-item-id="e467c35cd8f6317a774eb78942eb8b916">
+    <span style="color: #000000;">tvOS</span><br>
+    <span style="color: #000000;"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Auto View Tracking</code>,<code>Crash Reporting</code>, <code>Remote Config</code>,</span>
   </li>
-  <li>
-    <p>
-      <span class="wysiwyg-color-black">watchOS</span><br>
-      <span class="wysiwyg-color-black"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>, </span>
-    </p>
+  <li class="ck-list-marker-color" data-list-item-id="e2eafea4907a4950ca1178ecd7089653f">
+    <span style="color: #000000;">watchOS</span><br>
+    <span style="color: #000000;"><code>Analytics</code>, <code>Custom Events</code>, <code>User Profiles</code>, <code>Crash Reporting</code>,<code>Remote Config</code>,</span>
   </li>
 </ul>
 <h2 id="h_01HAVHW0RTFFZZ203T8BBSX3XZ">
-  <span class="wysiwyg-color-black">Can I integrate Countly iOS SDK using CocoaPods?</span>
+  <span style="color: #000000;">Can I integrate Countly iOS SDK using CocoaPods?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you <a href="#h_01HAVHW0RTXSFZD8R6QMX0GWPN">read our notes</a> to avoid issues.</span>
+  <span style="color: #000000;">We keep our <code>Countly.podspec</code> file up-to-date, so you can integrate Countly iOS SDK using CocoaPods. But, please make sure you </span><a href="#h_01HAVHW0RTXSFZD8R6QMX0GWPN"><span style="color: #000000;">read our notes</span></a><span style="color: #000000;"> to avoid issues.</span>
 </p>
 <h2 id="h_01HAVHW0RTR6D4DH3VNENYY5C4">
-  <span class="wysiwyg-color-black">How can I tell which Countly iOS SDK version I am using?</span>
+  <span style="color: #000000;">How can I tell which Countly iOS SDK version I am using?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">You can check for <code>kCountlySDKVersion</code> constant in Countly iOS SDK source. It is defined as <code>NSString* const kCountlySDKVersion = @"18.08";</code></span>
+  <span style="color: #000000;">You can check for <code>kCountlySDKVersion</code> constant in Countly iOS SDK source. It is defined as <code>NSString* const kCountlySDKVersion = @"18.08";</code></span>
 </p>
 <h2 id="h_01HAVHW0RTGZSGY2SKAE3EXDSQ">
-  <span class="wysiwyg-color-black">What is the difference between Default properties and Custom properties of User Profiles?</span>
+  <span style="color: #000000;">What is the difference between Default properties and Custom properties of User Profiles?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">User Profiles <em>(only available in Enterprise Edition)</em> has two kinds of properties: Default properties and Custom properties.</span>
+  <span style="color: #000000;">User Profiles <em>(only available in Enterprise Edition)</em> has two kinds of properties: Default properties and Custom properties.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">Default properties are predefined fields like <code>name</code>, <code>username</code>, <code>email</code>, <code>birth year</code>, <code>organization</code>, <code>gender</code>, <code>phone number</code> and <code>profile picture</code>. They are displayed in their own place in User Profiles section. You can set them using default properties on <code>Countly.user</code> singleton ( Ex: <code>Countly.user.email = @"john@doe.com";</code> ) and record them using <code>[Countly.user save];</code> method.</span>
+  <span style="color: #000000;">Default properties are predefined fields like <code>name</code>, <code>username</code>, <code>email</code>, <code>birth year</code>, <code>organization</code>, <code>gender</code>, <code>phone number</code> and <code>profile picture</code>. They are displayed in their own place in User Profiles section. You can set them using default properties on <code>Countly.user</code> singleton ( Ex: <code>Countly.user.email = @"john@doe.com";</code> ) and record them using <code>[Countly.user save];</code> method.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">Custom properties are custom defined key-value pairs. You can set them using <code>Countly.user.custom</code> dictionary ( Ex: <code>Countly.user.custom = @{@"testkey1":@"testvalue1", @"testkey2":@"testvalue2"};</code> ) and record them using <code>[Countly.user save];</code> method as well.</span>
+  <span style="color: #000000;">Custom properties are custom defined key-value pairs. You can set them using <code>Countly.user.custom</code> dictionary ( Ex: <code>Countly.user.custom = @{@"testkey1":@"testvalue1", @"testkey2":@"testvalue2"};</code> ) and record them using <code>[Countly.user save];</code> method as well.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
+  <span style="color: #000000;">In addition to this, you can use Custom Property Modifiers to set, unset or modify Custom Properties and record your changes using <code>[Countly.user save];</code> method again.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">For details please see <a href="#h_01HAVHW0RRRH4M1Y4CDJSHGERJ">User Profiles documentation</a>.</span>
+  <span style="color: #000000;">For details please see </span><a href="#h_01HAVHW0RRRH4M1Y4CDJSHGERJ"><span style="color: #000000;">User Profiles documentation</span></a><span style="color: #000000;">.</span>
 </p>
 <h2 id="h_01HAVHW0RTF435Z2N9WTK4BEBD">
-  <span class="wysiwyg-color-black">How can I handle logged in and logged out users?</span>
+  <span style="color: #000000;">How can I handle logged in and logged out users?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <span style="font-weight: 400;"><code>changeDeviceIDWithMerge:</code></span>method ( Ex: <code>[Countly.sharedInstance changeDeviceIDWithMerge:@"user123@example.com"];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
+  <span style="color: #000000;">When a user logs in on your app and you have a uniquely identifiable string for that user (like user ID or email address), you can use it instead of device ID to track all info afterwards, without losing all the data generated by that user so far. You can use <code><span style="font-weight: 400;">changeDeviceIDWithMerge:</span></code>method ( Ex: <code>[Countly.sharedInstance changeDeviceIDWithMerge:@"user123@example.com"];</code> ). This will replace previously used device ID on device, and merge all existing data on server.</span>
 </p>
 <h2 id="h_01HAVHW0RT68DJT106RB577FXG">
-  <span class="wysiwyg-color-black">Why are events not displayed on Countly Server dashboard?</span>
+  <span style="color: #000000;">Why are events not displayed on Countly Server dashboard?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">Events are queued but not sent to server until next <code>updateSessionPeriod</code> (60 seconds by default) or <code>eventSendThreshold</code> (10 by default) is reached. So, a little delay may be expecting in displaying events on Countly Server dashboard, while still seeing session data immediately.</span>
+  <span style="color: #000000;">Events are queued but not sent to server until next <code>updateSessionPeriod</code> (60 seconds by default) or <code>eventSendThreshold</code> (10 by default) is reached. So, a little delay may be expecting in displaying events on Countly Server dashboard, while still seeing session data immediately.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">In addition to this, Countly iOS SDK sends previously stored requests, if any, followed by a <code>begin_session</code> request, when it starts. If your app records any events meanwhile, these events will be queued and sent to server when all previously queued requests are successfully completed.</span>
+  <span style="color: #000000;">In addition to this, Countly iOS SDK sends previously stored requests, if any, followed by a <code>begin_session</code> request, when it starts. If your app records any events meanwhile, these events will be queued and sent to server when all previously queued requests are successfully completed.</span>
 </p>
 <h2 id="h_01HAVHW0RTFTH1ZZVAEEBTHP4P">
-  <span class="wysiwyg-color-black">Is it possible to use Countly iOS SDK with another crash SDK?</span>
+  <span style="color: #000000;">Is it possible to use Countly iOS SDK with another crash SDK?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">In iOS there can only be one uncaught exception handler. Even though it is possible to save the previous handler and pass the uncaught exception to the previous handler as well, it is not safe to assume that it will work in all cases. We do not know how other SDKs are implemented or whether iOS will give enough time for the all the handlers to do their work before terminating the app, hence, we advise to use Countly as the only crash handler.</span>
+  <span style="color: #000000;">In iOS there can only be one uncaught exception handler. Even though it is possible to save the previous handler and pass the uncaught exception to the previous handler as well, it is not safe to assume that it will work in all cases. We do not know how other SDKs are implemented or whether iOS will give enough time for the all the handlers to do their work before terminating the app, hence, we advise to use Countly as the only crash handler.</span>
 </p>
 <h2 id="h_01HAVHW0RT7FTCGJN48SMJ4FEG">
-  <span class="wysiwyg-color-black">Why are my test crashes not reported?</span>
+  <span style="color: #000000;">Why are my test crashes not reported?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you are running your app with Xcode debugger attached while forcing a test crash, Countly iOS SDK cannot handle the crash as debugger will be intercepting. Please make sure you run your app without Xcode debugger attached.</span>
+  <span style="color: #000000;">If you are running your app with Xcode debugger attached while forcing a test crash, Countly iOS SDK cannot handle the crash as debugger will be intercepting. Please make sure you run your app without Xcode debugger attached.</span>
 </p>
 <h2 id="h_01HAVHW0RT8HE0A761YAPH8QS9">
-  <span class="wysiwyg-color-black">How can I manually record push notification custom button actions?</span>
+  <span style="color: #000000;">How can I manually record push notification custom button actions?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see <a href="#h_01HAVHW0RQRHJ27TXHTTZ0F82M">Handling Notifications Manually</a> section.</span>
+  <span style="color: #000000;">If you have set <code>doNotShowAlertForNotifications</code> flag on initial configuration object to handle push notifications manually, you can create your own custom UI to show notification message and action buttons. For this, just implement <code>- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> method in your application's delegate. For details of handling notification manually, please see </span><a href="#h_01HAVHW0RQRHJ27TXHTTZ0F82M"><span style="color: #000000;">Handling Notifications Manually</span></a><span style="color: #000000;"> section.</span>
 </p>
 <h2 id="h_01HAVHW0RTVFVX2KYZBY7NS2G4">
-  <span class="wysiwyg-color-black">How can I get rid of compiler warning "No rule to process file"?</span>
+  <span style="color: #000000;">How can I get rid of compiler warning "No rule to process file"?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">If you get <code>Warning: no rule to process file '../countly-sdk-ios/README.md' of type net.daringfireball.markdown for architecture arm64</code> in Xcode, it means <code>README.md</code> (and/or <code>CHANGELOG.md</code>) file is added to <code>Build Phases &gt; Compile Sources</code> in your target. Please remove <code>README.md</code> from <code>Compile Sources</code> list.</span>
+  <span style="color: #000000;">If you get <code>Warning: no rule to process file '../countly-sdk-ios/README.md' of type net.daringfireball.markdown for architecture arm64</code> in Xcode, it means <code>README.md</code> (and/or <code>CHANGELOG.md</code>) file is added to <code>Build Phases &gt; Compile Sources</code> in your target. Please remove <code>README.md</code> from <code>Compile Sources</code> list.</span>
 </p>
 <h2 id="h_01HAVHW0RT6JAKSEHA94YWJW23">
-  <span class="wysiwyg-color-black">How is Countly affected by Apple's App Tracking Transparency changes?</span>
+  <span style="color: #000000;">How is Countly affected by Apple's App Tracking Transparency changes?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">As Countly is not and has never been doing any tracking, it is not affected by Apple's App Tracking Transparency changes. </span>
+  <span style="color: #000000;">As Countly is not and has never been doing any tracking, it is not affected by Apple's App Tracking Transparency changes.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">Definition of "tracking" by Apple's User Privacy and Data Use guidelines:</span>
+  <span style="color: #000000;">Definition of "tracking" by Apple's User Privacy and Data Use guidelines:</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">“Tracking” refers to linking data collected from your app about a particular end-user or device, such as a user ID, device ID, or profile, with Third-Party Data for targeted advertising or advertising measurement purposes, or sharing data collected from your app about a particular end-user or device with a data broker.</span>
+  <span style="color: #000000;">“Tracking” refers to linking data collected from your app about a particular end-user or device, such as a user ID, device ID, or profile, with Third-Party Data for targeted advertising or advertising measurement purposes, or sharing data collected from your app about a particular end-user or device with a data broker.</span>
 </p>
 <p>
-  <span class="wysiwyg-color-black">For further information please see <a href="https://developer.apple.com/app-store/app-privacy-details/">App Privact Details section on Apple Developer website.</a></span>
+  <span style="color: #000000;">For further information please see </span><a href="https://developer.apple.com/app-store/app-privacy-details/"><span style="color: #000000;">App Privact Details section on Apple Developer website.</span></a>
 </p>
 <h2 id="h_01HAVHW0RTSD5QRRH7T24Q2RP0">
-  <span class="wysiwyg-color-black">What is the average data size of a Countly iOS SDK request sent to Countly Server?</span>
+  <span style="color: #000000;">What is the average data size of a Countly iOS SDK request sent to Countly Server?</span>
 </h2>
 <p>
-  <span class="wysiwyg-color-black">While there are several types of requests that Countly iOS SDK sends to Countly Server, the most common ones are:</span>
+  <span style="color: #000000;">While there are several types of requests that Countly iOS SDK sends to Countly Server, the most common ones are:</span>
 </p>
 <ul>
-  <li>
-    <span class="wysiwyg-color-black">Begin Session Request: It is sent on every app launch (and session start after coming back from the background), and it includes basic metrics.</span><br>
-    <span class="wysiwyg-color-black">An example Begin Session request (<code>498 bytes</code>) :</span>
+  <li class="ck-list-marker-color" data-list-item-id="e59a0da1c320c09303cd06ce8b754a267">
+    <span style="color: #000000;">Begin Session Request: It is sent on every app launch (and session start after coming back from the background), and it includes basic metrics.</span><br>
+    <span style="color: #000000;">An example Begin Session request (<code>498 bytes</code>) :</span>
   </li>
 </ul>
-<pre><span class="wysiwyg-color-black"><code>http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
+<pre class="wysiwyg-code-block"><code class="language-bash bash">http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
 &amp;device_id=00000000-0000-0000-0000-000000000000
 &amp;timestamp=1534402860000&amp;hour=16&amp;dow=5&amp;tz=540
 &amp;sdk_version=18.08&amp;sdk_name=objc-native-ios
 &amp;begin_session=1
 &amp;metrics=%7B%22_device%22%3A%22iPhone9%2C1%22%2C%22_os%22%3A%22iOS%22%2C%22_os_version%22%3A%2211.4.1%22%2C%22_locale%22%3A%22en_JP%22%2C%22_density%22%3A%22%402x%22%2C%22_resolution%22%3A%22750x1334%22%2C%22_app_version%22%3A%221.0%22%2C%20%22_carrier%22%3A%22NTT%22%7D
-</code></span></pre>
+</code></pre>
 <ul>
-  <li>
-    <span class="wysiwyg-color-black">Update Session Request: It is sent every 60 seconds by default, but it depends on Countly iOS SDK initial configuration.</span><br>
-    <span class="wysiwyg-color-black">An example Update Session request (<code>233 bytes</code>) :</span>
+  <li class="ck-list-marker-color" data-list-item-id="e9ba82ba7426a195206b66ce84aa7fd6e">
+    <span style="color: #000000;">Update Session Request: It is sent every 60 seconds by default, but it depends on Countly iOS SDK initial configuration.</span><br>
+    <span style="color: #000000;">An example Update Session request (<code>233 bytes</code>) :</span>
   </li>
 </ul>
-<pre><span class="wysiwyg-color-black"><code>http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
+<pre class="wysiwyg-code-block"><code class="language-bash bash">http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
 &amp;device_id=00000000-0000-0000-0000-000000000000
 &amp;timestamp=1534402920000&amp;hour=16&amp;dow=5&amp;tz=540
 &amp;sdk_version=18.08&amp;sdk_name=objc-native-ios
 &amp;session_duration=60
-</code></span></pre>
+</code></pre>
 <ul>
-  <li>
-    <span class="wysiwyg-color-black">End Session Request: It is sent at the end of a session, when the app goes to background or terminates.</span><br>
-    <span class="wysiwyg-color-black">An example End Session request (<code>247 bytes</code>) :</span>
+  <li class="ck-list-marker-color" data-list-item-id="ee604b2383b0038850b5368cc3a9d2f32">
+    <span style="color: #000000;">End Session Request: It is sent at the end of a session, when the app goes to background or terminates.</span><br>
+    <span style="color: #000000;">An example End Session request (<code>247 bytes</code>) :</span>
   </li>
 </ul>
-<pre><span class="wysiwyg-color-black"><code>http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
+<pre class="wysiwyg-code-block"><code class="language-bash bash">http://mycountlyserver.com/i?app_key=0000000000000000000000000000000000000000
 &amp;device_id=00000000-0000-0000-0000-000000000000
 &amp;timestamp=1534402956000&amp;hour=16&amp;dow=5&amp;tz=540
 &amp;sdk_version=18.08&amp;sdk_name=objc-native-ios
 &amp;session_duration=36
 &amp;end_session=1
-</code></span></pre>
+</code></pre>
 <ul>
-  <li>
-    <span class="wysiwyg-color-black">Other Requests For Events, User Details, Push Notifications, Crash Reporting, View Tracking, Feedbacks, Consents, and some other features: Countly iOS SDK sends various requests with various data sizes. Frequency and size of these requests depend on Countly iOS SDK initial configuration and your app's use cases, as well as the end user.</span>
+  <li class="ck-list-marker-color" data-list-item-id="ed9d9ff1bad2f4dddd8752bfa95e95003">
+    <span style="color: #000000;">Other Requests For Events, User Details, Push Notifications, Crash Reporting, View Tracking, Feedbacks, Consents, and some other features: Countly iOS SDK sends various requests with various data sizes. Frequency and size of these requests depend on Countly iOS SDK initial configuration and your app's use cases, as well as the end user.</span>
   </li>
 </ul>
 <h2 id="h_01HAVHW0RT0WGM2365JVMT956J">
-  <span class="wysiwyg-color-black">What Information is Collected by the SDK?</span>
+  <span style="color: #000000;">What Information is Collected by the SDK?</span>
 </h2>
 <p>
   The following description mentions data that is collected by SDK's to perform
@@ -5419,17 +5605,17 @@ Countly.sharedInstance().changeDeviceIDWithoutMerge("new_device_id")</code></pre
   check for the following possible problem points:
 </p>
 <ol>
-  <li>
+  <li data-list-item-id="e8f8307400575a9e26aad4d4269639fa2">
     You are setting
     <code>UNUserNotificationCenter.currentNotificationCenter</code>'s delegate
     manually at some point, so Countly iOS SDK can not handle the notification.
   </li>
-  <li>
+  <li data-list-item-id="e3650ad43e26a2205b2a5f40f18689c4d">
     <code>requiresConsent</code> Flag is enabled on initial config, but consent
     for Push Notifications feature is not granted (Note that this has nothing
     to do with iOS notification permission).
   </li>
-  <li>
+  <li data-list-item-id="ecccb89984a1e255587e74ae52bce85d1">
     Notification is not coming from Countly and it does not have any value for
     <code>kCountlyPNKeyNotificationID = @"i"</code> key in it
   </li>

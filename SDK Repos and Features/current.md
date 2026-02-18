@@ -174,7 +174,7 @@
 <p>This is a feature comparison for officially supported SDKs.</p>
 <div class="table">
   <figure class="wysiwyg-table wysiwyg-table-align-left">
-    <table class="table--bordered table--color-header" style="border-style: solid;">
+    <table class="table--bordered table--color-header">
       <thead>
         <tr style="height: 44px;">
           <th style="text-align: center; vertical-align: middle; width: 85px;">
@@ -596,6 +596,8 @@
 <h1 id="h_01H9QCP8G72897X5YK7YMZAZ8K">Documentation Archive</h1>
 <h2 id="h_01H9QCP8G7Y97Y1T51TGGNDMNP">iOS SDK</h2>
 <p>
+  <a href="/hc/en-us/articles/25602113670044" target="_blank" rel="noopener noreferrer">Version 25.4</a>
+  -
   <a href="/hc/en-us/articles/19627972441500" target="_blank" rel="noopener noreferrer">Version 25.1</a>
   -
   <a href="/hc/en-us/articles/18155738523292" target="_blank" rel="noopener noreferrer">Version 24.7</a>
