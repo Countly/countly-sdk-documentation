@@ -1,12 +1,12 @@
 <p>
-  This documentation is for the Countly CPP SDK version 23.2.X. The SDK source
+  This documentation is for the Countly CPP SDK version 26.1.X. The SDK source
   code repository can be found
   <a href="https://github.com/Countly/countly-sdk-cpp">here</a>.
 </p>
 <div class="callout callout--info">
   <p>
     Click
-    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G88SRA8VHG55Z077GD" target="_blank" rel="noopener">here, </a>to
+    <a href="https://support.count.ly/hc/en-us/articles/360037236571-Downloading-and-Installing-SDKs#h_01H9QCP8G88SRA8VHG55Z077GD" target="_blank" rel="noopener noreferrer">here, </a>to
     access the documentation for older SDK versions.
   </p>
 </div>
@@ -21,26 +21,26 @@
   to run on most platforms. To build this SDK, you need:
 </p>
 <ul>
-  <li>C++ compiler with C++14 support</li>
-  <li>libcurl (with openssl) and its headers if you are on *nix</li>
-  <li>cmake &gt;= 3.13</li>
+  <li data-list-item-id="e0f2f5bf93ba5da73f291922773e427c7">C++ compiler with C++14 support</li>
+  <li data-list-item-id="ebedaf053ca9109b3d44b06181ca6b084">libcurl (with openssl) and its headers if you are on *nix</li>
+  <li data-list-item-id="e68686021091b814f1b2b0a1907f66ee8">cmake &gt;= 3.13</li>
 </ul>
 <p>First, clone the repository with its submodules:</p>
 <div>
-  <pre><code class="bash">git clone --recursive https://github.com/Countly/countly-sdk-cpp</code></pre>
+  <pre><code class="language-bash">git clone --recursive https://github.com/Countly/countly-sdk-cpp</code></pre>
 </div>
 <p>
   If submodules in your project are empty you can run this command at root of your
   project:
 </p>
 <div>
-  <pre><code class="bash">git submodule update --init --recursive</code></pre>
+  <pre><code class="language-bash">git submodule update --init --recursive</code></pre>
 </div>
 <p>
   If you want to use SQLite to store session data persistently, build sqlite:
 </p>
 <div>
-  <pre><code class="bash"># assuming we are on project root
+  <pre><code class="language-bash"># assuming we are on project root
 cd vendor/sqlite
 cmake -D BUILD_SHARED_LIBS=ON -B build . # out of source build, we don't like clutter :)
 # we define `BUILD_SHARED_LIBS` because sqlite's cmake file compiles statically by default for some reason
@@ -49,14 +49,13 @@ make # you might want to add something like -j8 to parallelize the build process
 </div>
 <p>The cmake build flow is pretty straightforward:</p>
 <div>
-  <pre><code class="bash"># assuming we are on project root again
+  <pre><code class="language-bash"># assuming we are on project root again
 ccmake -B build . # this will launch a TUI, configure the build as you see fit
 cd build
 make</code></pre>
   <p>
     In case you would also need to install the built library, check for more
-    information
-    <a href="https://support.count.ly/hc/en-us/articles/4416163384857-C-#h_01HABV267WA5KC2F54SAK5YC1F" target="_self">here</a>.
+    information <a href="#h_01HABV267WA5KC2F54SAK5YC1F" target="_self">here</a>.
   </p>
   <p>
     Build with the option <code>COUNTLY_BUILD_TESTS</code> and
@@ -66,7 +65,7 @@ make</code></pre>
     project.
   </p>
   <div>
-    <pre><code class="bash">cmake -DCOUNTLY_BUILD_SAMPLE=ON -DCOUNTLY_BUILD_TESTS=ON -DCOUNTLY_USE_SQLITE=ON -B build . # or do it interactively with cmake
+    <pre><code class="language-bash">cmake -DCOUNTLY_BUILD_SAMPLE=ON -DCOUNTLY_BUILD_TESTS=ON -DCOUNTLY_USE_SQLITE=ON -B build . # or do it interactively with cmake
 cd build
 make ./countly-tests   # run unit test
 make ./countly-sample  # run sample app</code></pre>
@@ -80,7 +79,7 @@ make ./countly-sample  # run sample app</code></pre>
 <p>
   The shortest way to initiate the SDK is with this code snippet:
 </p>
-<pre><code class="cpp">cly::Countly&amp; countly = cly::Countly::getInstance();
+<pre><code class="language-cpp">cly::Countly&amp; countly = cly::Countly::getInstance();
 countly.setDeviceID("test-device-id");
 countly.start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
 <p>
@@ -118,7 +117,7 @@ countly.start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
 <p>
   To access the Countly Global Instance use the following code snippet:
 </p>
-<pre><code class="cpp">cly::Countly::getInstance()</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance()</code></pre>
 <h1 id="h_01HABV267SRYX26E90FHT1N4S3">SDK Logging</h1>
 <p>
   The first thing you should do while integrating our SDK is to enable logging.
@@ -126,16 +125,36 @@ countly.start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
   state and about encountered problems.
 </p>
 <p>
-  Set <code>setLogger(logger_function)</code> on the <code>Counlty</code> object
+  Set <code>setLogger(logger_function)</code> on the <code>Countly</code> object
   to enable logging:
 </p>
-<pre><code class="cpp">void printLog(cly::Countly::LogLevel level, const string&amp; msg) {...}
+<pre><code class="language-cpp">void printLog(cly::LogLevel level, const string&amp; msg) {...}
 ...
 
-void (*logger_function)(cly::Countly::LogLevel level, const std::string&amp; message);
+void (*logger_function)(cly::LogLevel level, const std::string&amp; message);
 logger_function = printLog;
 cly::Countly::getInstance().setLogger(logger_function);
 </code></pre>
+<p>
+  The <code>LogLevel</code> enum has the following values:
+</p>
+<ul>
+  <li data-list-item-id="e4cb9d82d93770b5c375d688a44b505e4">
+    <code>cly::LogLevel::DEBUG</code> - Detailed information for debugging.
+  </li>
+  <li data-list-item-id="e9a559dbadd5be78f661cd5266478c7b1">
+    <code>cly::LogLevel::INFO</code> - General information about SDK operations.
+  </li>
+  <li data-list-item-id="ec06cb1ec89ddcdcd90a4b22c3f0b27c2">
+    <code>cly::LogLevel::WARNING</code> - Warnings about potential issues.
+  </li>
+  <li data-list-item-id="eaa3ae359a1dffb72a2af0ac1e5288ae9">
+    <code>cly::LogLevel::ERROR</code> - Error conditions.
+  </li>
+  <li data-list-item-id="e10e2fcb1d77db2be699a771117ca1b80">
+    <code>cly::LogLevel::FATAL</code> - Critical errors that prevent SDK operation.
+  </li>
+</ul>
 <h1 id="h_01HABV267T02RKF3WAAXMPRWKS">Crash Reporting</h1>
 <p>
   The Countly SDK for C++ can collect
@@ -146,21 +165,21 @@ cly::Countly::getInstance().setLogger(logger_function);
   In the SDK all crash-related functionalities can be browsed from the returned
   interface on:
 </p>
-<pre><code class="cpp">countly.crash()</code></pre>
+<pre><code class="language-cpp">countly.crash()</code></pre>
 <h2 id="h_01HABV267THWA65ATEK35S08XQ">Handled Exceptions</h2>
 <p>
   You might catch an exception or similar error during your app’s runtime. You
   may also log these handled exceptions to monitor how and when they are happening.
   To log handled exceptions use the following code snippet:
 </p>
-<pre><code class="cpp">/*any additional info can be provided as a segmentation*/
+<pre><code class="language-cpp">/*any additional info can be provided as a segmentation*/
 std::map&lt;std::string, std::string&gt; segmentation = {
   {"platform", "ubuntu"},
   {"time", "60"},
 };
 
 /*should create the crashMetrics map*/
-std::map&lt;std::string, std::any="std::any"&gt; crashMetrics;
+std::map&lt;std::string, std::string&gt; crashMetrics;
 
 /*mandatory values*/
 crashMetrics["_os"] = "Android"; # your OS info
@@ -174,21 +193,21 @@ countly.crash().recordException("title", "stackTrace", true, crashMetrics, segme
   <code>recordException</code> expects the parameters below:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e18bae40b56727ca7a88f1fe1819741fa">
     <code>title</code> - a string that describes the exception.
   </li>
-  <li>
+  <li data-list-item-id="ed63999313c29b152bab659744e12157c">
     <code>stackTrace</code> - a string that describes the contents of the call
     stack.
   </li>
-  <li>
+  <li data-list-item-id="ed9edbe53daea4eaa37239531ab938cb2">
     <code>fatal</code> - set true if the error is fatal.
   </li>
-  <li>
+  <li data-list-item-id="ef9e526ab4858d8e9133d12495b81d9a3">
     <code>crashMetrics</code> - key/values contain device information e.g., app
     version, OS.
   </li>
-  <li>
+  <li data-list-item-id="eaabdb18653aaeb5fc2d4282c108aac48">
     <code>segments</code> - custom key/values to be reported.
   </li>
 </ul>
@@ -202,7 +221,7 @@ countly.crash().recordException("title", "stackTrace", true, crashMetrics, segme
   keys are optional, so you can add more key-value pairs to form a detailed crash
   report from the available options shown below:
 </p>
-<pre><code class="cpp">std::map&lt;std::string, std::any&gt; crashMetrics;
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; crashMetrics;
 
 /*mandatory values*/
 crashMetrics["_os"] = "Android"; /*your OS info*/
@@ -215,17 +234,17 @@ crashMetrics["_device"] = "Galaxy S4"; /*model for Android, iPhone1,1 etc for iO
 crashMetrics["_resolution"] = "1900x1080"; /*SDK version*/
 crashMetrics["_cpu"] = "armv7"; /*type of cpu used on device (for ios will be based on device)*/
 crashMetrics["_opengl"] = "2.1"; /*version of open gl supported*/
-crashMetrics["_ram_current"] = 1024; /*in megabytes*/
-crashMetrics["_ram_total"] = 4096; /*in megabytes*/
-crashMetrics["_disk_current"] = 3000; /*in megabytes*/
-crashMetrics["_disk_total"] = 10240; /*in megabytes*/
-crashMetrics["_bat"] = 99; /*battery level from 0 to 100*/
+crashMetrics["_ram_current"] = "1024"; /*in megabytes*/
+crashMetrics["_ram_total"] = "4096"; /*in megabytes*/
+crashMetrics["_disk_current"] = "3000"; /*in megabytes*/
+crashMetrics["_disk_total"] = "10240"; /*in megabytes*/
+crashMetrics["_bat"] = "99"; /*battery level from 0 to 100*/
 crashMetrics["_orientation"] = "portrait"; /*in which device was held, landscape, portrait, etc*/
-crashMetrics["_root"] = false; /*true if device is rooted/jailbroken, false or not provided if not*/
-crashMetrics["_online"] = false; /*true if device is connected to the internet (WiFi or 3G), false or not provided if not connected*/
-crashMetrics["_muted"] = false; /*true if volume is off, device is in muted state*/
-crashMetrics["_background"] = false; /*true if app was in background when it crashed*/
-crashMetrics["_run"] = 2000; /*running time since app start in seconds*/</code></pre>
+crashMetrics["_root"] = "false"; /*true if device is rooted/jailbroken, false or not provided if not*/
+crashMetrics["_online"] = "false"; /*true if device is connected to the internet (WiFi or 3G), false or not provided if not connected*/
+crashMetrics["_muted"] = "false"; /*true if volume is off, device is in muted state*/
+crashMetrics["_background"] = "false"; /*true if app was in background when it crashed*/
+crashMetrics["_run"] = "2000"; /*running time since app start in seconds*/</code></pre>
 <h2 id="h_01HABV267T8DQQ2Y43QYDS65D7">Crash Breadcrumbs</h2>
 <p>
   Throughout your app, you can leave crash breadcrumbs. They are short string logs
@@ -233,10 +252,14 @@ crashMetrics["_run"] = 2000; /*running time since app start in seconds*/</code><
   the crash. After a crash happens, they will be sent together with the crash report.
 </p>
 <p>The following command adds a crash breadcrumb:</p>
-<pre><code class="cpp">countly.crash().addBreadcrumb("breadcrumb");</code></pre>
+<pre><code class="language-cpp">countly.crash().addBreadcrumb("breadcrumb");</code></pre>
+<p>
+  The SDK stores a maximum of <strong>100</strong> breadcrumbs by default. When
+  this limit is reached, the oldest breadcrumb is removed before adding a new one.
+</p>
 <h1 id="h_01HABV267TYQ6567PAZ1D2BE81">Events</h1>
 <p>
-  <span style="font-weight: 400;">An <a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application. </span></span>
+  <span style="font-weight: 400;">An </span><a href="http://resources.count.ly/docs/custom-events"><span style="font-weight: 400;">event</span></a><span style="font-weight: 400;"> is any type of action that you can send to a Countly instance, e.g. purchases, changed settings, view enabled, and so on, letting you get valuable information about your application.&nbsp;</span>
 </p>
 <p>
   There are a couple of values that can be set when recording an event. The main
@@ -248,88 +271,88 @@ crashMetrics["_run"] = 2000; /*running time since app start in seconds*/</code><
   Optionally there are also other properties that you might want to set:
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e20ab8fafa46f9825f9b762cf0af6f99a">
     <strong>count -</strong> a whole numerical value that marks how many times
     this event has happened. The default value for this is <strong>1</strong>.
   </li>
-  <li>
+  <li data-list-item-id="e5510394ff5d3e3b9b48d52fbe288cc3e">
     <strong>sum -</strong> This value would be summed across all events in the
     dashboard. For example, for in-app purchase events, it can be the sum of
     purchased items. Its default value is <strong>0</strong>.
   </li>
-  <li>
+  <li data-list-item-id="e3d34515419f9a6d4e452655cabab1163">
     <strong>duration - </strong>For recording and tracking the duration of events.
     The default value is <strong>0</strong>.
   </li>
-  <li>
+  <li data-list-item-id="ea91e6ff624a1f2d7588b1b7fdd8d4969">
     <strong>segments - </strong>A value where you can provide custom segmentation
     for your events to track additional information. It is a key and value map.
     The accepted data type for the value is
-    <span style="font-weight: 400;"><code class="java">std::string</code>. </span>
+    <code class="java"><span style="font-weight: 400;">std::string</span></code><span style="font-weight: 400;">.&nbsp;</span>
   </li>
 </ul>
 <h2 id="h_01HABV267TPQ8VSAJMP2P2HNCH">Recording Events</h2>
 <p>
-  <span style="font-weight: 400;">Here are some examples below, showing how to record an event for a <strong>purchase</strong> with varying levels of complexity<span style="font-weight: 400;">: </span></span>
+  <span style="font-weight: 400;">Here are some examples below, showing how to record an event for a <strong>purchase</strong> with varying levels of complexity</span><span style="font-weight: 400;">:&nbsp;</span>
 </p>
 <ul>
-  <li>
+  <li data-list-item-id="e7bce354672c3d8a29deafb2d9f49ffd1">
     Usage 1: Times the <strong>purchase</strong> event occurred.
   </li>
-  <li>
+  <li data-list-item-id="e1e7946edf5df3461154d017a374ac851">
     Usage 2: Times the <strong>purchase</strong> event occurred + the total amount
     of those purchases.
   </li>
-  <li>
+  <li data-list-item-id="e8775ded5468ae6aa08f1899247232ad9">
     Usage 3: Times the <strong>purchase</strong> event occurred +
-    <span style="font-weight: 400;">origin of the purchase. </span>
+    <span style="font-weight: 400;">origin of the purchase.&nbsp;</span>
   </li>
-  <li>
+  <li data-list-item-id="e261196f63904fe25da526de49e51505a">
     Usage 4: Times the <strong>purchase</strong> event occurred +
-    <span style="font-weight: 400;">the total amount + origin of the purchase. </span>
+    <span style="font-weight: 400;">the total amount + origin of the purchase.&nbsp;</span>
   </li>
-  <li>
+  <li data-list-item-id="e69d5e80d99c5a5fb1d1496b2fa930285">
     Usage 5: Times the <strong>purchase</strong> event occurred +
-    <span style="font-weight: 400;">the total amount + origin of the purchase + the total duration of those events. </span>
+    <span style="font-weight: 400;">the total amount + origin of the purchase + the total duration of those events.&nbsp;</span>
   </li>
 </ul>
 <p>
   <strong>1. Event key and count</strong>
 </p>
-<pre><code class="cpp">cly::Countly::getInstance().RecordEvent("purchase", 1);</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().RecordEvent("purchase", 1);</code></pre>
 <p>
   <strong>2. Event key, count, and sum</strong>
 </p>
-<pre><code class="cpp">cly::Countly::getInstance().RecordEvent("purchase", 1, 0.99);</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().RecordEvent("purchase", 1, 0.99);</code></pre>
 <p>
   <strong>3. Event key and count with segmentation(s)</strong>
 </p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation;
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; segmentation;
 segmentation["country"] = "Germany";
 
 cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1);</code></pre>
 <p>
   <strong>4. Event key, count, and sum with segmentation(s)</strong>
 </p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation;
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; segmentation;
 segmentation["country"] = "Germany";
 
 cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1, 0.99);</code></pre>
 <p>
   <strong>5. Event key, count, sum, and duration with segmentation(s)</strong>
 </p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation;
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; segmentation;
 segmentation["country"] = "Germany";
 
 cly::Countly::getInstance().RecordEvent("purchase", segmentation, 1, 0.99, 60.0);</code></pre>
 <p>
-  <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, or any other segmentation of your choice that will provide you with valuable insights. </span>
+  <span style="font-weight: 400;">These are only a few examples of what you can do with Events. You may go beyond those examples and use country, app_version, game_level, time_of_day, or any other segmentation of your choice that will provide you with valuable insights.&nbsp;</span>
 </p>
 <h2 id="h_01HABV267V6N675J40PHGZZ55M">Timed Events</h2>
 <p>
   It's possible to create timed events by defining a start and a stop moment.
 </p>
-<pre><code class="cpp">cly::Event event("Some event", 1);
+<pre><code class="language-cpp">cly::Event event("Some event", 1);
 
 //start some event
 event.startTimer();
@@ -338,11 +361,11 @@ event.startTimer();
 //end the timer and record event
 event.stopTimer();
 
-cly::Countly.getInstance().addEvent(event);</code></pre>
+cly::Countly::getInstance().addEvent(event);</code></pre>
 <p>
   You may also provide additional information e.g segmentation, count, and sum.
 </p>
-<pre><code class="cpp">//event with count and sum
+<pre><code class="language-cpp">//event with count and sum
 cly::Event event("Some event", 1, 0.99);
 
 //add segmentation to event
@@ -350,18 +373,54 @@ event.addSegmentation("country", "Germany");
 
 ...
 
-cly::Countly.getInstance().addEvent(event);
+cly::Countly::getInstance().addEvent(event);
 </code></pre>
+<h2 id="h_01HABV267VFLUSHEVENTS">Flushing Events</h2>
+<p>
+  If you would like to force send all queued events to the server immediately,
+  you can use the <code>flushEvents</code> method. This will block until all events
+  are sent or the timeout is reached.
+</p>
+<pre><code class="language-cpp">// Flush with default 30 second timeout
+cly::Countly::getInstance().flushEvents();
+
+// Flush with custom timeout
+cly::Countly::getInstance().flushEvents(std::chrono::seconds(10));</code></pre>
 <h1 id="h_01HABV267VFHP206YEJ9RMAEDQ">Sessions</h1>
-<h2 id="h_01HABV267V3KME43J82YRC9XRZ">Automatic Session Tracking</h2>
+<h2 id="h_01HABV267V3KME43J82YRC9XRZ">Automatic Sessions</h2>
 <p>
-  The SDK handles the sessions automatically. After calling the
-  <span style="font-weight: 400;"><code class="java">start(...)</code> method, the SDK starts the session tracking automatically and extends sessions after every 60 seconds. This value is configurable during and after initialization. <br>Example: </span>
+  By default, the SDK handles the sessions automatically. After calling the
+  <code class="java">start(...)</code> method, the SDK starts the session tracking
+  automatically and extends sessions after every 60 seconds. This value is configurable
+  during and after initialization.<br>
+  Example:
 </p>
-<pre><span style="font-weight: 400;"><code class="java">cly::Countly::getInstance().setAutomaticSessionUpdateInterval(10);</code></span></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().setAutomaticSessionUpdateInterval(10);</code></pre>
 <p>
-  <span style="font-weight: 400;">The SDK ends the current session whenever the user exits from the app. </span>
+  The SDK ends the current session whenever the user exits from the app.
 </p>
+<h2 id="h_01KFJCNZFY7TY9VNXT0YD8FC9Y">Manual Sessions</h2>
+<p>
+  If you need a custom session logic then you can use manual session methods. First
+  you need to enable manual session control:
+</p>
+<pre><code class="language-cpp">cly::Countly::getInstance().enableManualSessionControl();</code></pre>
+<p>It needs to be called before SDK is initialized.</p>
+<p>Afterwards it is up to implementer to set up session logic:</p>
+<ul>
+  <li data-list-item-id="e2651e1069c34fda0f34be374686b6d0d">Begin session (Starts a session)</li>
+  <li data-list-item-id="e7fb54c058df6c41961089d62b5b9a877">
+    Update session duration (By default, you would call this every 60 seconds
+    after beginning a session so that it is not closed server side. If you would
+    want to increase that duration, you would have to increase the "Maximal Session
+    Duration" in your server API configuration)
+  </li>
+  <li data-list-item-id="e70e4429e19990bcf181c7bc699af4c67">End session (Ends and updates duration)</li>
+</ul>
+<p>You can use below functions to set up your session logic</p>
+<pre><code class="language-cpp">cly::Countly::getInstance().beginSession();
+cly::Countly::getInstance().updateSession();
+cly::Countly::getInstance().endSession();</code></pre>
 <h1 id="h_01HABV267VGCPY51JCE4K88RWX">View Tracking</h1>
 <h2 id="h_01HABV267VAEJ8ZGKASQJ600M0">Manual View Recording</h2>
 <p>
@@ -369,12 +428,12 @@ cly::Countly.getInstance().addEvent(event);
   report which views a user has visited with the duration of that visit. To report
   a screen from your app to the Countly server, you can use the following method:
 </p>
-<pre><span style="font-weight: 400;"><code>std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");</code></span></pre>
+<pre><code class="language-cpp">std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");</code></pre>
 <p>
   While tracking views manually, you may add your custom segmentation to those
   views like this:
 </p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; segmentation = {
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; segmentation = {
   {"cats", "123"},
   {"moons", "9.98"},
   {"Moose", "deer"},
@@ -391,17 +450,17 @@ std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Sce
 </p>
 <p>
   When you start recording a view by calling the
-  <span class="hljs-selector-tag">openView method, it returns a view ID of type <span class="hljs-keyword">std::string. You can use this ID to close a view. </span></span>
+  <span class="hljs-selector-tag">openView method, it returns a view ID of type </span><span class="hljs-selector-tag hljs-keyword">std::string. You can use this ID to close a view.&nbsp;</span>
 </p>
 <p>For example:</p>
-<pre><code class="cpp">std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");
+<pre><code class="language-cpp">std::string&amp; viewID = cly::Countly::getInstance().views().openView("Home Scene");
 ...
 cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
 <p>
-  <strong>2. Ending a view with a view name:<br></strong>You may close a view by
-  its name using the following method:
+  <strong>2. Ending a view with a view name:</strong><br>
+  You may close a view by its name using the following method:
 </p>
-<pre><code class="cpp">cly::Countly::getInstance().views().closeViewWithName("Home Scene");</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().views().closeViewWithName("Home Scene");</code></pre>
 <p>
   To review the resulting view data, go to the <code>Analytics &gt; Views</code>
   section in your Countly server. For more information on how to utilize view tracking
@@ -420,7 +479,7 @@ cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
   you start the SDK:
 </p>
 <div>
-  <pre><code class="cpp">cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</code></pre>
+  <pre><code class="language-cpp">cly::Countly::getInstance().setDeviceID("UNIQUE_DEVICE_ID");</code></pre>
 </div>
 <h2 id="h_01HABV267VM3R87G2CHE26ZBND">Changing Device ID</h2>
 <p>
@@ -433,7 +492,7 @@ cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
   with the current device ID will be transferred (merged) into the user profile
   with the device ID you specified in the following method call:
 </p>
-<pre><span style="font-weight: 400;"><code class="cpp">cly::Countly::getInstance().setDeviceID("new-device-id", true);</code></span></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().setDeviceID("new-device-id", true);</code></pre>
 <p>
   If you integrate this method, there might be times where you might want to track
   information about another user that starts using your app from the same device
@@ -441,7 +500,7 @@ cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
   the identity of the current user (user logs out). In those cases, you can change
   the current device ID to a new one without merging their data. You would call:
 </p>
-<pre><span style="font-weight: 400;"><code class="cpp">cly::Countly::getInstance().setDeviceID("new-device-id", false);</code></span></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().setDeviceID("new-device-id", false);</code></pre>
 <p>
   Doing it this , will prevent the previous user's data to merge with the new id.
 </p>
@@ -461,12 +520,12 @@ cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
   user base. There are 4 fields that can be provided:
 </p>
 <ul>
-  <li>Country code (two-letter ISO standard).</li>
-  <li>City name (must be set together with the country code).</li>
-  <li>
+  <li data-list-item-id="efa23489dbdc109b1bc86eb2beab01a52">Country code (two-letter ISO standard).</li>
+  <li data-list-item-id="e4503ead42a69fddaa546bec7093447ce">City name (must be set together with the country code).</li>
+  <li data-list-item-id="e6db608625018f4173d5e8db19990301a">
     Latitude and longitude values, separated by a comma e.g. "56.42345,123.45325".
   </li>
-  <li>Your user’s IP address.</li>
+  <li data-list-item-id="e4ef0e0b58740039c30b60cdf010870fc">Your user’s IP address.</li>
 </ul>
 <h2 id="h_01HABV267V9QHY3R2HHGAFXCCC">Setting Location</h2>
 <p>
@@ -474,7 +533,7 @@ cly::Countly::getInstance().views().closeViewWithID(viewId);</code></pre>
   info will be sent to the server at the start of the user session.
 </p>
 <p>Example:</p>
-<pre><code class="cpp">string countryCode = "us";
+<pre><code class="language-cpp">string countryCode = "us";
 string city = "Houston";
 string latitude = "29.634933"; 
 string longitude = "-95.220255"; 
@@ -501,18 +560,31 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
   please see the
   <a href="https://resources.count.ly/docs/remote-config">Remote Config documentation</a>.
 </p>
+<h2 id="h_01HABV267VENABLERC">Enabling Remote Config</h2>
+<p>
+  Before using Remote Config, you need to enable it. Call
+  <code>enableRemoteConfig()</code> before starting the SDK:
+</p>
+<pre><code class="language-cpp">cly::Countly::getInstance().enableRemoteConfig();
+cly::Countly::getInstance().start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
 <h2 id="h_01HABV267VMB05S84GCJZRG6X8">Manual Remote Config</h2>
 <p>
   To download Remote Config, call <code>updateRemoteConfig()</code>.
 </p>
-<pre><code class="cpp">cly::Countly.getInstance().updateRemoteConfig();</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().updateRemoteConfig();</code></pre>
+<p>If you only want to update specific keys, you can use:</p>
+<pre><code class="language-cpp">std::string keys[] = {"key1", "key2"};
+cly::Countly::getInstance().updateRemoteConfigFor(keys, 2);</code></pre>
+<p>Or if you want to update all keys except specific ones:</p>
+<pre><code class="language-cpp">std::string excludeKeys[] = {"key1", "key2"};
+cly::Countly::getInstance().updateRemoteConfigExcept(excludeKeys, 2);</code></pre>
 <h2 id="h_01HABV267VENMTF2DNKJPPMC9T">Accessing Remote Config Values</h2>
 <p>
   To access the stored config, call
-  <code>cly::Countly.getInstance().getRemoteConfigValue(const std::string&amp; key)</code>.
+  <code>cly::Countly::getInstance().getRemoteConfigValue(const std::string&amp; key)</code>.
   It will return <code>null</code> if there isn't any config stored.
 </p>
-<pre><code class="cpp">cly::Countly.getInstance().getRemoteConfigValue("Key");</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().getRemoteConfigValue("Key");</code></pre>
 <p>
   It returns a value of the type <code>json</code>.
 </p>
@@ -522,7 +594,8 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
   <a href="http://resources.count.ly/docs/user-profiles">this documentation</a>.
 </p>
 <p>
-  If a property is set as an empty string, it will be deleted from the user on the server side.
+  If a property is set as an empty string, it will be deleted from the user on
+  the server side.
 </p>
 <h2 id="h_01HABV267VXMCSNAXPXD53Z8FK">Setting Predefined Values</h2>
 <p>
@@ -531,61 +604,65 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
 </p>
 <p>The keys for predefined user data fields are as follows:</p>
 <div class="table-container">
-  <table style="height: 220px;">
-    <tbody>
-      <tr style="height: 22px;">
-        <th style="width: 104px; height: 22px;">Key</th>
-        <th style="width: 61px; height: 22px;">Type</th>
-        <th style="width: 337px; height: 22px;">Description</th>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">name</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's full name</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">username</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's nickname</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">email</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's email address</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">organization</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's organization name</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">phone</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's phone number</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">picture</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">URL to avatar or profile picture of the user</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">gender</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's gender as M for male and F for female</td>
-      </tr>
-      <tr style="height: 22px;">
-        <td style="width: 96px; height: 22px;">byear</td>
-        <td style="width: 53px; height: 22px;">string</td>
-        <td style="width: 329px; height: 22px;">User's year of birth as integer</td>
-      </tr>
-    </tbody>
-  </table>
+  <figure class="wysiwyg-table" style="height: 220px;">
+    <table>
+      <thead>
+        <tr style="height: 22px;">
+          <th style="height: 22px; text-align: center; width: 104px;">Key</th>
+          <th style="height: 22px; text-align: center; width: 61px;">Type</th>
+          <th style="height: 22px; text-align: center; width: 337px;">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">name</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's full name</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">username</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's nickname</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">email</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's email address</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">organization</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's organization name</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">phone</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's phone number</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">picture</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">URL to avatar or profile picture of the user</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">gender</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's gender as M for male and F for female</td>
+        </tr>
+        <tr style="height: 22px;">
+          <td style="height: 22px; width: 96px;">byear</td>
+          <td style="height: 22px; width: 53px;">string</td>
+          <td style="height: 22px; width: 329px;">User's year of birth as integer</td>
+        </tr>
+      </tbody>
+    </table>
+  </figure>
 </div>
 <p>
   The SDK allows you to upload user details using the methods listed below.
 </p>
 <p>Example:</p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
   {"name", "Full name"}, 
   {"username", "username123"},
   {"email", "useremail@email.com"},
@@ -595,7 +672,7 @@ cly::Countly::getInstance().setLocation(countryCode, city, latitude + "," + long
   {"byear", "1991"},
   {"organization", "Organization"},
 };
-cly::Countly.getInstance().setUserDetails(userdetail);
+cly::Countly::getInstance().setUserDetails(userdetail);
 </code></pre>
 <h2 id="h_01HABV267W7SNCDY9FRE5FCJKJ">Setting Custom Values</h2>
 <p>
@@ -603,12 +680,12 @@ cly::Countly.getInstance().setUserDetails(userdetail);
   even when you don’t want to send other user-related data.
 </p>
 <p>Example:</p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
   {"Height", "5.8"}, 
   {"Mole", "Lower Left Cheek"}
 };
 
-cly::Countly.getInstance().setCustomUserDetails(userdetail);
+cly::Countly::getInstance().setCustomUserDetails(userdetail);
 </code></pre>
 <h2 id="h_01HABV267WSJFCCY9BTAJCDVCG">Setting User Picture</h2>
 <p>
@@ -616,15 +693,15 @@ cly::Countly.getInstance().setCustomUserDetails(userdetail);
   the methods listed below.
 </p>
 <p>Example:</p>
-<pre><code class="cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
+<pre><code class="language-cpp">std::map&lt;std::string, std::string&gt; userdetail = { 
   {"name", "Full name"}, 
   {"picture", "http://webresizer.com/images2/bird1_after.jpg"},
 };
 
-cly::Counlty.getInstance().setUserDetails(userdetail);
+cly::Countly::getInstance().setUserDetails(userdetail);
 </code></pre>
 <h1 id="h_01HABV267WHKGYMQE1YP16C606">Security and Privacy</h1>
-<h2 id="parameter-tampering-protection" class="anchor-heading">Parameter Tamper Protection</h2>
+<h2 class="anchor-heading" id="parameter-tampering-protection">Parameter Tamper Protection</h2>
 <p>
   You may set an optional <code>salt</code> to be used for calculating the checksum
   of requested data which will be sent with each request, using the
@@ -633,8 +710,143 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
   server is set, all requests would be checked for the validity of the
   <code>&amp;checksum</code> the field before being processed.
 </p>
-<pre><code class="cpp">cly::Countly.getInstance().setSalt("salt");</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().setSalt("salt");</code></pre>
+<p>
+  You can also manually calculate the checksum for request data using:
+</p>
+<pre><code class="language-cpp">std::string checksum = cly::Countly::getInstance().calculateChecksum("salt", "request_data");</code></pre>
 <h1 id="h_01HABV267WW07MSKNVAY9PE9HT">Other Features and Notes</h1>
+<h2 id="h_01KD50R2E1H4NYNPP7RXYG388W">SDK Config Parameters Explained</h2>
+<p>
+  These are the methods that lets you configure the Countly SDK. They need to be
+  called before SDK is initialized.
+</p>
+<ul>
+  <li data-list-item-id="e2646bc4e6f14e6a1be58419e94ca0696">
+    <strong>disableAutoEventsOnUserProperties()</strong> - Disables sending events
+    on user property calls.
+  </li>
+  <li data-list-item-id="e61f7b075bd2de7a4f2dce410c6cd517c">
+    <strong>setUpdateInterval(size_t milliseconds)</strong> - By default SDK
+    processes request queue and event queue in every 3 seconds. It can be configurable
+    via this method.
+  </li>
+  <li data-list-item-id="efc162a0c8777690257fcf10dea5b965a">
+    <strong>alwaysUsePost(bool value)</strong> - Set to send all requests made
+    to the Countly server using HTTP POST. By default it is HTTP GET.
+  </li>
+  <li data-list-item-id="e6d761b5b92ee0bc0f6cefc874d7ffae4">
+    <strong>setMaxRequestQueueSize(unsigned int requestQueueSize)</strong> -
+    Sets the new maximum size for the request queue.
+  </li>
+  <li data-list-item-id="e1ee1db90ce61bfaa7e425fe056afe7cd">
+    <strong>setHTTPClient(HTTPClientFunction fun)</strong> - It is possible to
+    provide custom HTTP client for the SDK.
+  </li>
+  <li data-list-item-id="e3a7b2c1d4e5f6a7b8c9d0e1f2a3b4c5d">
+    <strong>enableImmediateRequestOnStop()</strong> - Enables the use of a
+    condition variable in the update loop, allowing <code>stop()</code> and
+    <code>setUpdateInterval()</code> to take effect immediately instead of
+    waiting for the current sleep interval to expire. Disabled by default.
+  </li>
+</ul>
+<h2 id="h_01HABV267WCUSTOMHTTP">Custom HTTP Client</h2>
+<p>
+  It is possible to provide a custom HTTP client for the SDK. This is useful when
+  you need to handle networking in a specific way for your platform or when you
+  are using the <code>COUNTLY_USE_CUSTOM_HTTP</code> build option.
+</p>
+<p>
+  Your custom HTTP client function must match the
+  <code>HTTPClientFunction</code> signature and return an
+  <code>HTTPResponse</code> struct:
+</p>
+<pre><code class="language-cpp">// HTTPResponse structure
+struct HTTPResponse {
+  bool success;
+  nlohmann::json data;
+};
+
+// Custom HTTP client function
+cly::HTTPResponse myHTTPClient(bool is_post, const std::string&amp; url, const std::string&amp; data) {
+  cly::HTTPResponse response;
+  response.success = false;
+
+  // Implement your HTTP logic here
+  // 'is_post' indicates whether to use POST or GET
+  // 'url' is the full URL to send the request to
+  // 'data' is the request payload
+
+  // On success, set response.success = true
+  // and parse the server response into response.data
+
+  return response;
+}
+
+// Set the custom HTTP client before starting the SDK
+cly::Countly::getInstance().setHTTPClient(myHTTPClient);</code></pre>
+<p>
+  The custom HTTP client needs to be set before the SDK is initialized.
+</p>
+<h2 id="h_01HABV267WSBSBEHAVIOR">SDK Behavior Settings</h2>
+<p>
+  The SDK periodically fetches behavior settings from the server to adjust its
+  internal configuration. If you want to disable these periodic updates, you can
+  call the following method before SDK initialization:
+</p>
+<pre><code class="language-cpp">cly::Countly::getInstance().disableSDKBehaviorSettingsUpdates();</code></pre>
+<p>
+  Alternatively, you can provide SDK behavior settings manually in JSON format
+  before SDK initialization:
+</p>
+<pre><code class="language-cpp">std::string settings = "{\"your_settings_json\": \"value\"}";
+cly::Countly::getInstance().setSDKBehaviorSettings(settings);</code></pre>
+<p>
+  Both methods need to be called before the SDK is initialized.
+</p>
+<h2 id="h_01KFJG55F98IMMEDIATESTOPONREQ">Immediate Request On Stop</h2>
+<p>
+  By default, the SDK's internal update loop uses a polling-based sleep mechanism.
+  This means that when you call <code>stop()</code> or
+  <code>setUpdateInterval()</code>, the change does not take effect until the
+  current sleep interval expires (default is 3 seconds).
+</p>
+<p>
+  If you enable <code>enableImmediateRequestOnStop()</code>, the update loop
+  switches to using a condition variable instead of polling. This allows
+  <code>stop()</code> and <code>setUpdateInterval()</code> to wake the update
+  loop immediately, so changes take effect without waiting for the current
+  interval to finish.
+</p>
+<p>
+  This method must be called before the SDK is initialized:
+</p>
+<pre><code class="language-cpp">cly::Countly&amp; countly = cly::Countly::getInstance();
+countly.enableImmediateRequestOnStop();
+countly.start("YOUR_APP_KEY", "https://try.count.ly", 443, true);</code></pre>
+<p>
+  When this feature is enabled:
+</p>
+<ul>
+  <li data-list-item-id="ea1b2c3d4e5f6a7b8c9d0e1f2a3b4c51">
+    Calling <code>stop()</code> will immediately wake the update loop and
+    shut down the SDK without waiting for the remaining sleep duration.
+  </li>
+  <li data-list-item-id="ea1b2c3d4e5f6a7b8c9d0e1f2a3b4c52">
+    Calling <code>setUpdateInterval()</code> will immediately wake the update
+    loop so the new interval is applied right away.
+  </li>
+</ul>
+<p>
+  This feature is disabled by default. When disabled, the SDK uses the standard
+  sleep-based approach where <code>stop()</code> and
+  <code>setUpdateInterval()</code> wait for the current interval to expire
+  before taking effect.
+</p>
+<h2 id="h_01KFJG55F98GTCDQP8AQHY784J">Check Queue Sizes</h2>
+<p>SDK exposes some functions to observe queue sizes:</p>
+<pre><code class="language-cpp">checkEQSize() // returns event queue size
+checkRQSize() // returns request queue size</code></pre>
 <h2 id="h_01HPE3P3THK961D2W8ABCA4FCD">Example Integrations</h2>
 <p>
   <a href="https://github.com/Countly/countly-sdk-cpp/blob/master/examples/example_integration.cpp">example_integration.cpp</a>
@@ -647,7 +859,7 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
   are all sent to the request queue.<br>
   Example:
 </p>
-<pre><code class="cpp">cly::Counlty.getInstance().setEventsToRQThreshold(10);</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().setEventsToRQThreshold(10);</code></pre>
 <p>
   When the threshold is reached, the SDK batches all the events in the event queue
   and sends them to the request queue to be sent to the server in a single request.
@@ -664,7 +876,7 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
   (100 by default) and starts again at the next iteration of the update loop.<br>
   Example:
 </p>
-<pre><code class="cpp">cly::Counlty.getInstance().setMaxRQProcessingBatchSize(10);</code></pre>
+<pre><code class="language-cpp">cly::Countly::getInstance().setMaxRQProcessingBatchSize(10);</code></pre>
 <h2 id="SettingUpSQLiteStorage">Setting Up SQLite Storage</h2>
 <p>
   In case you need persistent storage, you would need to build the SDK with that
@@ -676,7 +888,7 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
   file could be stored.
 </p>
 <div>
-  <pre><code class="cpp">cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
+  <pre><code class="language-cpp">cly::Countly::getInstance().SetPath("databaseFileName.db");</code></pre>
 </div>
 <p>
   Building your SDK with SQLite would enable event and request queues to be stored
@@ -694,7 +906,7 @@ cly::Counlty.getInstance().setUserDetails(userdetail);
   <a href="https://support.count.ly/hc/en-us/articles/9290669873305-A-Deeper-Look-at-SDK-concepts#h_01HABT18WWYQ2QYPZY3GHZBA9B" target="_blank" rel="noopener noreferrer">here</a>.
 </p>
 <p>The example usage of SetMetrics() would be like this:</p>
-<pre><code class="cpp">Countly &amp;ct = Countly::getInstance();
+<pre><code class="language-cpp">Countly &amp;ct = Countly::getInstance();
 // OS, OS version, device, resolution, carrier, app version
 ct.SetMetrics("Windows 10", "10.22", "Lenovo", "800x600", "Carrier", "1.0");
 ct.start(_appKey, _serverUrl, 443, true);</code></pre>
@@ -717,38 +929,41 @@ ct.start(_appKey, _serverUrl, 443, true);</code></pre>
   2. Set custom SHA-256 method <code>setSha256</code>
 </p>
 <p>For example:</p>
-<pre><code class="cpp">std::string customChecksumCalculator(const std::string&amp; data) {
+<pre><code class="language-cpp">std::string customChecksumCalculator(const std::string&amp; data) {
   ...
   return result;
 } 
 
 
-cly::Countly&amp; countly = cly::Countly.getInstance();
+cly::Countly&amp; countly = cly::Countly::getInstance();
 
 countly.setSalt("salt");
 countly.setSha256(customChecksumCalculator);
 </code></pre>
-<h2 id="h_01HABV267WA5KC2F54SAK5YC1F" class="p-rich_text_section">Additional project install option</h2>
+<h2 class="p-rich_text_section" id="h_01HABV267WA5KC2F54SAK5YC1F">Additional project install option</h2>
 <p>
   In some cases your project might need to install Countly globally one the system.
   In those situation you would also want to run the <code>make install</code>command.
   As per the description, it install the countly library on the system.
 </p>
 <p>For example:</p>
-<pre class="bash"><code>#configure the SDK build
+<pre><code class="language-bash">#configure the SDK build
 cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DBUILD_SHARED_LIBS=OFF -B build
-<br>cd build<br>#build the SDK
+
+cd build
+#build the SDK
 make
-<br>#install countly on the system
+
+#install countly on the system
 make install</code></pre>
 <ul>
-  <li>
+  <li data-list-item-id="e5096df22307f4de53e770fd8409ab4bd">
     <code>CMAKE_INSTALL_PREFIX</code><br>
     Install directory used by install. If “make install” is invoked or INSTALL
     is built, this directory is prepended onto all install directories. This
     variable defaults to '/usr/local' on UNIX and 'c:/Program Files' on Windows.
   </li>
-  <li>
+  <li data-list-item-id="e4fa2193a93c1c12181227254b827b7b2">
     <code>BUILD_SHARED_LIBS</code><br>
     If present and true, this will cause all libraries to be built shared unless
     the library was explicitly added as a static library.
